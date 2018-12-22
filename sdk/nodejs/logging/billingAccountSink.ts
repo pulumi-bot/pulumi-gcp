@@ -9,7 +9,7 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/logging/docs/) and
  * [Exporting Logs in the API](https://cloud.google.com/logging/docs/api/tasks/exporting-logs).
  * 
- * ~> **Note** You must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
+ * > **Note** You must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
  * [granted on the billing account](https://cloud.google.com/billing/reference/rest/v1/billingAccounts/getIamPolicy) to
  * the credentials used with Terraform. [IAM roles granted on a billing account](https://cloud.google.com/billing/docs/how-to/billing-access) are separate from the
  * typical IAM roles granted on a project.
@@ -23,8 +23,8 @@ export class BillingAccountSink extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: BillingAccountSinkState): BillingAccountSink {
-        return new BillingAccountSink(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: BillingAccountSinkState, opts?: pulumi.CustomResourceOptions): BillingAccountSink {
+        return new BillingAccountSink(name, <any>state, { ...opts, id: id });
     }
 
     /**

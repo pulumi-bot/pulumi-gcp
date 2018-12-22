@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  * For a list of services available, visit the
  * [API library page](https://console.cloud.google.com/apis/library) or run `gcloud services list`.
  * 
- * ~> **Note:** This resource _must not_ be used in conjunction with
+ * > **Note:** This resource _must not_ be used in conjunction with
  *    `google_project_services` or they will fight over which services should be enabled.
  */
 export class Service extends pulumi.CustomResource {
@@ -22,8 +22,8 @@ export class Service extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ServiceState): Service {
-        return new Service(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ServiceState, opts?: pulumi.CustomResourceOptions): Service {
+        return new Service(name, <any>state, { ...opts, id: id });
     }
 
     /**

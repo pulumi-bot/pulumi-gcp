@@ -8,7 +8,7 @@ import * as utilities from "../utilities";
  * Manages a set of DNS records within Google Cloud DNS. For more information see [the official documentation](https://cloud.google.com/dns/records/) and
  * [API](https://cloud.google.com/dns/api/v1/resourceRecordSets).
  * 
- * ~> **Note:** The Google Cloud DNS API requires NS records be present at all
+ * > **Note:** The Google Cloud DNS API requires NS records be present at all
  * times. To accommodate this, when creating NS records, the default records
  * Google automatically creates will be silently overwritten.  Also, when
  * destroying NS records, Terraform will not actually remove NS records, but will
@@ -23,8 +23,8 @@ export class RecordSet extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RecordSetState): RecordSet {
-        return new RecordSet(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RecordSetState, opts?: pulumi.CustomResourceOptions): RecordSet {
+        return new RecordSet(name, <any>state, { ...opts, id: id });
     }
 
     /**

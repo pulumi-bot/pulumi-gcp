@@ -8,7 +8,7 @@ import * as utilities from "../utilities";
  * Allows creation and management of a single member for a single binding within
  * the IAM policy for an existing Google Cloud Platform folder.
  * 
- * ~> **Note:** This resource _must not_ be used in conjunction with
+ * > **Note:** This resource _must not_ be used in conjunction with
  *    `google_folder_iam_policy` or they will fight over what your policy
  *    should be. Similarly, roles controlled by `google_folder_iam_binding`
  *    should not be assigned to using `google_folder_iam_member`.
@@ -22,8 +22,8 @@ export class IAMMember extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IAMMemberState): IAMMember {
-        return new IAMMember(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IAMMemberState, opts?: pulumi.CustomResourceOptions): IAMMember {
+        return new IAMMember(name, <any>state, { ...opts, id: id });
     }
 
     /**

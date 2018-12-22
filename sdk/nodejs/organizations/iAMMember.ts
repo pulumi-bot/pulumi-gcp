@@ -8,7 +8,7 @@ import * as utilities from "../utilities";
  * Allows creation and management of a single member for a single binding within
  * the IAM policy for an existing Google Cloud Platform Organization.
  * 
- * ~> **Note:** This resource __must not__ be used in conjunction with
+ * > **Note:** This resource __must not__ be used in conjunction with
  *    `google_organization_iam_binding` for the __same role__ or they will fight over
  *    what your policy should be.
  */
@@ -21,8 +21,8 @@ export class IAMMember extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IAMMemberState): IAMMember {
-        return new IAMMember(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IAMMemberState, opts?: pulumi.CustomResourceOptions): IAMMember {
+        return new IAMMember(name, <any>state, { ...opts, id: id });
     }
 
     /**

@@ -10,9 +10,9 @@ import * as utilities from "../utilities";
  * and
  * [API](https://cloud.google.com/compute/docs/reference/latest/networks).
  * 
- * ~> **Note:** Both network must create a peering with each other for the peering to be functional.
+ * > **Note:** Both network must create a peering with each other for the peering to be functional.
  * 
- * ~> **Note:** Subnets IP ranges across peered VPC networks cannot overlap.
+ * > **Note:** Subnets IP ranges across peered VPC networks cannot overlap.
  */
 export class NetworkPeering extends pulumi.CustomResource {
     /**
@@ -23,8 +23,8 @@ export class NetworkPeering extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: NetworkPeeringState): NetworkPeering {
-        return new NetworkPeering(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: NetworkPeeringState, opts?: pulumi.CustomResourceOptions): NetworkPeering {
+        return new NetworkPeering(name, <any>state, { ...opts, id: id });
     }
 
     /**

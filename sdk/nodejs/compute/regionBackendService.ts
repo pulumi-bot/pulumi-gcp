@@ -9,7 +9,7 @@ import * as utilities from "../utilities";
  * For more information see [the official documentation](https://cloud.google.com/compute/docs/load-balancing/internal/)
  * and [API](https://cloud.google.com/compute/docs/reference/latest/regionBackendServices).
  * 
- * ~> **Note**: Region backend services can only be used when using internal load balancing. For external load balancing, use
+ * > **Note**: Region backend services can only be used when using internal load balancing. For external load balancing, use
  *   `google_compute_backend_service` instead.
  */
 export class RegionBackendService extends pulumi.CustomResource {
@@ -21,8 +21,8 @@ export class RegionBackendService extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RegionBackendServiceState): RegionBackendService {
-        return new RegionBackendService(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RegionBackendServiceState, opts?: pulumi.CustomResourceOptions): RegionBackendService {
+        return new RegionBackendService(name, <any>state, { ...opts, id: id });
     }
 
     /**

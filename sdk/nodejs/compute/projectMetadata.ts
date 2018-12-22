@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  * and
  * [API](https://cloud.google.com/compute/docs/reference/latest/projects/setCommonInstanceMetadata).
  * 
- * ~> **Note:**  If you want to manage only single key/value pairs within the project metadata
+ * > **Note:**  If you want to manage only single key/value pairs within the project metadata
  * rather than the entire set, then use
  * google_compute_project_metadata_item.
  */
@@ -23,8 +23,8 @@ export class ProjectMetadata extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ProjectMetadataState): ProjectMetadata {
-        return new ProjectMetadata(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ProjectMetadataState, opts?: pulumi.CustomResourceOptions): ProjectMetadata {
+        return new ProjectMetadata(name, <any>state, { ...opts, id: id });
     }
 
     /**

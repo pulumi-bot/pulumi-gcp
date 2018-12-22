@@ -29,7 +29,7 @@ import * as utilities from "../utilities";
  *   used just like always, keeping in mind that Terraform will attempt to undo any changes
  *   made outside Terraform.
  * 
- * ~> It's important to note that any project resources that were added to your Terraform config
+ * > It's important to note that any project resources that were added to your Terraform config
  * prior to 0.8.5 will continue to function as they always have, and will not be managed by
  * Terraform. Only newly added projects are affected.
  */
@@ -42,8 +42,8 @@ export class Project extends pulumi.CustomResource {
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ProjectState): Project {
-        return new Project(name, <any>state, { id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ProjectState, opts?: pulumi.CustomResourceOptions): Project {
+        return new Project(name, <any>state, { ...opts, id: id });
     }
 
     /**
