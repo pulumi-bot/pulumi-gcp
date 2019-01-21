@@ -12,6 +12,39 @@ import * as utilities from "../utilities";
  * default 'root'@'%' user with no password. This user will be deleted by Terraform on
  * instance creation. You should use `google_sql_user` to define a custom user with
  * a restricted host and strong password.
+ * 
+ * ## Example Usage
+ * ### SQL First Generation
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const google_sql_database_instance_master = new gcp.sql.DatabaseInstance("master", {
+ *     databaseVersion: "MYSQL_5_6",
+ *     name: "master-instance",
+ *     region: "us-central",
+ *     settings: {
+ *         tier: "D0",
+ *     },
+ * });
+ * ```
+ * 
+ * ### SQL Second generation
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const google_sql_database_instance_master = new gcp.sql.DatabaseInstance("master", {
+ *     databaseVersion: "POSTGRES_9_6",
+ *     name: "master-instance",
+ *     region: "us-central1",
+ *     settings: {
+ *         tier: "db-f1-micro",
+ *     },
+ * });
+ * ```
  */
 export class DatabaseInstance extends pulumi.CustomResource {
     /**

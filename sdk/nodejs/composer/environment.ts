@@ -29,7 +29,6 @@ import * as utilities from "../utilities";
  *     deletion. [More about Composer's use of Cloud Storage](https://cloud.google.com/composer/docs/concepts/cloud-storage).
  * 
  * ## Example Usage
- * 
  * ### Basic Usage
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -40,6 +39,7 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
+ * 
  * ### With GKE and Compute Resource Dependencies
  * 
  * **NOTE** To use service accounts, you need to give `role/composer.worker` to the service account on any resources that may be created for the environment
@@ -83,6 +83,7 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * }, {dependsOn: [google_project_iam_member_composer_worker]});
  * ```
+ * 
  * ### With Software (Airflow) Config
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
