@@ -42,7 +42,6 @@ class Environment(pulumi.CustomResource):
           * **Environments create Google Cloud Storage buckets that do not get cleaned up automatically** on environment 
             deletion. [More about Composer's use of Cloud Storage](https://cloud.google.com/composer/docs/concepts/cloud-storage).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[dict] config

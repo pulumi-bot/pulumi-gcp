@@ -58,8 +58,6 @@ class InstanceFromTemplate(pulumi.CustomResource):
         `source_instance_template`. To create an instance without a template, use the
         `google_compute_instance` resource.
         
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[bool] allow_stopping_for_update

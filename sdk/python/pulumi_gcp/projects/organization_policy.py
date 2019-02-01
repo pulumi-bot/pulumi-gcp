@@ -47,7 +47,6 @@ class OrganizationPolicy(pulumi.CustomResource):
         documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
         [API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/setOrgPolicy).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[dict] boolean_policy: A boolean policy is a constraint that is either enforced or not. Structure is documented below.

@@ -75,7 +75,6 @@ class RegionBackendService(pulumi.CustomResource):
         > **Note**: Region backend services can only be used when using internal load balancing. For external load balancing, use
           `google_compute_backend_service` instead.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[list] backends: The list of backends that serve this BackendService.

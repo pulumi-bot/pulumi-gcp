@@ -31,6 +31,7 @@ import * as utilities from "../utilities";
  *     topic: google_pubsub_topic_default_topic.name,
  * });
  * ```
+ * 
  * If the subscription has a topic in a different project:
  * 
  * ```typescript

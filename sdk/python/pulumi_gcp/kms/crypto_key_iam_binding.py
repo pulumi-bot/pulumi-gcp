@@ -34,7 +34,6 @@ class CryptoKeyIAMBinding(pulumi.CustomResource):
         Allows creation and management of a single binding within IAM policy for
         an existing Google Cloud KMS crypto key.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] crypto_key_id: The crypto key ID, in the form

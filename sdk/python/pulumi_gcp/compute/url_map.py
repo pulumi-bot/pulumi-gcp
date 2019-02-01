@@ -57,8 +57,6 @@ class URLMap(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/urlMaps).
         
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] default_service: The backend service or backend bucket to use when none of the given rules match.

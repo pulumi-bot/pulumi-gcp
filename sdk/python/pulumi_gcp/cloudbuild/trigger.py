@@ -53,7 +53,6 @@ class Trigger(pulumi.CustomResource):
         and
         [API](https://godoc.org/google.golang.org/api/cloudbuild/v1#BuildTrigger).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[dict] build: A build resource in the Container Builder API.

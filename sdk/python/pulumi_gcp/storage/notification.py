@@ -52,7 +52,6 @@ class Notification(pulumi.CustomResource):
         for an example of enabling notifications by granting the correct IAM permission. See
         [the notifications documentation](https://cloud.google.com/storage/docs/gsutil/commands/notification) for more details.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket.

@@ -7,7 +7,6 @@ import * as utilities from "../utilities";
 /**
  * Represents an InterconnectAttachment (VLAN attachment) resource. For more
  * information, see Creating VLAN Attachments.
- * 
  */
 export class InterconnectAttachment extends pulumi.CustomResource {
     /**

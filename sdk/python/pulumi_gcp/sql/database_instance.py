@@ -85,7 +85,6 @@ class DatabaseInstance(pulumi.CustomResource):
         instance creation. You should use `google_sql_user` to define a custom user with
         a restricted host and strong password.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] database_version: The MySQL version to

@@ -33,7 +33,6 @@ class AccountIamPolicy(pulumi.CustomResource):
            `google_billing_account_iam_member` or `google_billing_account_iam_binding`
            or they will fight over what your policy should be.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] billing_account_id: The billing account id.

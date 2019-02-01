@@ -7,15 +7,17 @@ import * as utilities from "../utilities";
 /**
  * Use this data source to get information about a Google Cloud Organization.
  * 
- * ```hcl
- * data "google_organization" "org" {
- *   domain = "example.com"
- * }
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
  * 
- * resource "google_folder" "sales" {
- *   display_name = "Sales"
- *   parent       = "${data.google_organization.org.name}"
- * }
+ * const google_organization_org = pulumi.output(gcp.organizations.getOrganization({
+ *     domain: "example.com",
+ * }));
+ * const google_folder_sales = new gcp.organizations.Folder("sales", {
+ *     displayName: "Sales",
+ *     parent: google_organization_org.apply(__arg0 => __arg0.name),
+ * });
  * ```
  */
 export function getOrganization(args?: GetOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> {
