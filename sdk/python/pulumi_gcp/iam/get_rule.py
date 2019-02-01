@@ -40,17 +40,6 @@ class GetRuleResult(object):
 async def get_rule(name=None):
     """
     Use this data source to get information about a Google IAM Role.
-    
-    ```hcl
-    data "google_iam_role" "roleinfo" {
-      name = "roles/compute.viewer"
-    }
-    
-    output "the_role_permissions" {
-      value = "${data.google_iam_role.roleinfo.included_permissions}"
-    }
-    
-    ```
     """
     __args__ = dict()
 

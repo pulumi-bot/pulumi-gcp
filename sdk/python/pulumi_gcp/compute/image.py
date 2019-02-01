@@ -64,8 +64,6 @@ class Image(pulumi.CustomResource):
         tarball. For more information see [the official documentation](https://cloud.google.com/compute/docs/images) and
         [API](https://cloud.google.com/compute/docs/reference/latest/images).
         
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[int] create_timeout: Configurable timeout in minutes for creating images. Default is 4 minutes.

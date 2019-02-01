@@ -44,8 +44,6 @@ class Subscription(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/pubsub/docs) and
         [API](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions).
         
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[int] ack_deadline_seconds: The maximum number of seconds a

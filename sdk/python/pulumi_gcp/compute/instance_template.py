@@ -120,8 +120,6 @@ class InstanceTemplate(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/instanceTemplates).
         
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[bool] can_ip_forward: Whether to allow sending and receiving of

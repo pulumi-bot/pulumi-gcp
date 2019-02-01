@@ -23,6 +23,23 @@ import * as utilities from "../utilities";
  *     serviceAccountId: google_service_account_myaccount.name,
  * });
  * ```
+ * 
+ * ## Create new Key Pair, encrypting the private key with a PGP Key
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const google_service_account_myaccount = new gcp.serviceAccount.Account("myaccount", {
+ *     accountId: "myaccount",
+ *     displayName: "My Service Account",
+ * });
+ * const google_service_account_key_mykey = new gcp.serviceAccount.Key("mykey", {
+ *     pgpKey: "keybase:keybaseusername",
+ *     publicKeyType: "TYPE_X509_PEM_FILE",
+ *     serviceAccountId: google_service_account_myaccount.name,
+ * });
+ * ```
  */
 export class Key extends pulumi.CustomResource {
     /**

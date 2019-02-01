@@ -28,6 +28,7 @@ import * as utilities from "../utilities";
  *     uniqueWriterIdentity: true,
  * });
  * ```
+ * 
  * A more complete example follows: this creates a compute instance, as well as a log sink that logs all activity to a
  * cloud storage bucket. Because we are using `unique_writer_identity`, we must grant it access to the bucket. Note that
  * this grant requires the "Project IAM Admin" IAM role (`roles/resourcemanager.projectIamAdmin`) granted to the credentials
@@ -82,11 +83,6 @@ export class ProjectSink extends pulumi.CustomResource {
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-     * ```
-     * "storage.googleapis.com/[GCS_BUCKET]"
-     * "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-     * "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-     * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
     public readonly destination: pulumi.Output<string>;
@@ -159,11 +155,6 @@ export interface ProjectSinkState {
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-     * ```
-     * "storage.googleapis.com/[GCS_BUCKET]"
-     * "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-     * "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-     * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
     readonly destination?: pulumi.Input<string>;
@@ -203,11 +194,6 @@ export interface ProjectSinkArgs {
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-     * ```
-     * "storage.googleapis.com/[GCS_BUCKET]"
-     * "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-     * "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-     * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
     readonly destination: pulumi.Input<string>;

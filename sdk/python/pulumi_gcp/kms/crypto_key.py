@@ -46,7 +46,6 @@ class CryptoKey(pulumi.CustomResource):
         is strongly recommended that you add lifecycle hooks to the resource to prevent
         accidental destruction.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] key_ring: The id of the Google Cloud Platform KeyRing to which the key shall belong.

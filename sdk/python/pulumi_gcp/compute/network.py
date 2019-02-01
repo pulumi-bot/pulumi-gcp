@@ -57,7 +57,6 @@ class Network(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/networks).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[bool] auto_create_subnetworks: If set to true, this network will be

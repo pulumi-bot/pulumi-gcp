@@ -28,7 +28,6 @@ class ProjectMetadataItem(pulumi.CustomResource):
         manage a single key/value setting in Terraform rather than the entire
         project metadata map.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] key: The metadata key to set.
