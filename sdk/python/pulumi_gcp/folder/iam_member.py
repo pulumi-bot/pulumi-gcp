@@ -40,7 +40,6 @@ class IAMMember(pulumi.CustomResource):
            should be. Similarly, roles controlled by `google_folder_iam_binding`
            should not be assigned to using `google_folder_iam_member`.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] folder: The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.

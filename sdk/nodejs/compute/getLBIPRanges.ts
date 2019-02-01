@@ -8,6 +8,25 @@ import * as utilities from "../utilities";
  * Use this data source to access IP ranges in your firewall rules.
  * 
  * https://cloud.google.com/compute/docs/load-balancing/health-checks#health_check_source_ips_and_firewall_rules
+ * 
+ * ## Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const google_compute_lb_ip_ranges_ranges = pulumi.output(gcp.compute.getLBIPRanges({}));
+ * const google_compute_firewall_lb = new gcp.compute.Firewall("lb", {
+ *     allows: [{
+ *         ports: ["80"],
+ *         protocol: "tcp",
+ *     }],
+ *     name: "lb-firewall",
+ *     network: google_compute_network_main.name,
+ *     sourceRanges: google_compute_lb_ip_ranges_ranges.apply(__arg0 => __arg0.networks),
+ *     targetTags: ["InstanceBehindLoadBalancer"],
+ * });
+ * ```
  */
 export function getLBIPRanges(opts?: pulumi.InvokeOptions): Promise<GetLBIPRangesResult> {
     return pulumi.runtime.invoke("gcp:compute/getLBIPRanges:getLBIPRanges", {

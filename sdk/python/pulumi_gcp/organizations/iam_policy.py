@@ -36,7 +36,6 @@ class IAMPolicy(pulumi.CustomResource):
            `google_organization_iam_member` or `google_organization_iam_binding`
            or they will fight over what your policy should be.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] org_id: The numeric ID of the organization in which you want to create a custom role.

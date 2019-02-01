@@ -79,8 +79,6 @@ class Bucket(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/storage/docs/json_api/v1/buckets).
         
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[list] cors: The bucket's [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/) configuration. Multiple blocks of this type are permitted. Structure is documented below.

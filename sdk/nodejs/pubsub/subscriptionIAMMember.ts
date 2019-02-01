@@ -14,6 +14,50 @@ import * as utilities from "../utilities";
  * > **Note:** `google_pubsub_subscription_iam_policy` **cannot** be used in conjunction with `google_pubsub_subscription_iam_binding` and `google_pubsub_subscription_iam_member` or they will fight over what your policy should be.
  * 
  * > **Note:** `google_pubsub_subscription_iam_binding` resources **can be** used in conjunction with `google_pubsub_subscription_iam_member` resources **only if** they do not grant privilege to the same role.
+ * 
+ * ## google\_pubsub\_subscription\_iam\_policy
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const google_iam_policy_admin = pulumi.output(gcp.organizations.getIAMPolicy({
+ *     bindings: [{
+ *         members: ["user:jane@example.com"],
+ *         role: "roles/editor",
+ *     }],
+ * }));
+ * const google_pubsub_subscription_iam_policy_editor = new gcp.pubsub.SubscriptionIAMPolicy("editor", {
+ *     policyData: google_iam_policy_admin.apply(__arg0 => __arg0.policyData),
+ *     subscription: "your-subscription-name",
+ * });
+ * ```
+ * 
+ * ## google\_pubsub\_subscription\_iam\_binding
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const google_pubsub_subscription_iam_binding_editor = new gcp.pubsub.SubscriptionIAMBinding("editor", {
+ *     members: ["user:jane@example.com"],
+ *     role: "roles/editor",
+ *     subscription: "your-subscription-name",
+ * });
+ * ```
+ * 
+ * ## google\_pubsub\_subscription\_iam\_member
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const google_pubsub_subscription_iam_member_editor = new gcp.pubsub.SubscriptionIAMMember("editor", {
+ *     member: "user:jane@example.com",
+ *     role: "roles/editor",
+ *     subscription: "your-subscription-name",
+ * });
+ * ```
  */
 export class SubscriptionIAMMember extends pulumi.CustomResource {
     /**

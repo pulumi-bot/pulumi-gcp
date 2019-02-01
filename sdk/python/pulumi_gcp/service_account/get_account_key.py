@@ -34,7 +34,6 @@ class GetAccountKeyResult(object):
 async def get_account_key(name=None, project=None, public_key_type=None, service_account_id=None):
     """
     Get service account public key. For more information, see [the official documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) and [API](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys/get).
-    
     """
     __args__ = dict()
 

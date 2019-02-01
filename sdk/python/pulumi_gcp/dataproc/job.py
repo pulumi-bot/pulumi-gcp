@@ -53,7 +53,6 @@ class Job(pulumi.CustomResource):
         
         !> **Note:** This resource does not support 'update' and changing any attributes will cause the resource to be recreated.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[bool] force_delete: By default, you can only delete inactive jobs within

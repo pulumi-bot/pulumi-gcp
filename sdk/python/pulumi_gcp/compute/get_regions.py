@@ -32,18 +32,6 @@ async def get_regions(project=None, status=None):
     """
     Provides access to available Google Compute regions for a given project.
     See more about [regions and regions](https://cloud.google.com/compute/docs/regions-zones/) in the upstream docs.
-    
-    ```
-    data "google_compute_regions" "available" {}
-    
-    resource "google_compute_subnetwork" "cluster" {
-      count = "${length(data.google_compute_regions.available.names)}"
-      name          = "my-network"
-      ip_cidr_range = "10.36.${count.index}.0/24"
-      network       = "my-network"
-      region        = "${data.google_compute_regions.available.names[count.index]}"
-    }
-    ```
     """
     __args__ = dict()
 

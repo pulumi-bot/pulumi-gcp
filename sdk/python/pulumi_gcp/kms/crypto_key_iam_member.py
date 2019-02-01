@@ -38,7 +38,6 @@ class CryptoKeyIAMMember(pulumi.CustomResource):
            should be. Similarly, roles controlled by `google_kms_crypto_key_iam_binding`
            should not be assigned to using `google_kms_crypto_key_iam_member`.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] crypto_key_id: The key ring ID, in the form

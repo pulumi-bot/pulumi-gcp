@@ -71,8 +71,6 @@ class BucketObject(pulumi.CustomResource):
         and 
         [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
         
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the containing bucket.

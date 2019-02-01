@@ -14,6 +14,50 @@ import * as utilities from "../utilities";
  * > **Note:** `google_kms_key_ring_iam_policy` **cannot** be used in conjunction with `google_kms_key_ring_iam_binding` and `google_kms_key_ring_iam_member` or they will fight over what your policy should be.
  * 
  * > **Note:** `google_kms_key_ring_iam_binding` resources **can be** used in conjunction with `google_kms_key_ring_iam_member` resources **only if** they do not grant privilege to the same role.
+ * 
+ * ## google\_kms\_key\_ring\_iam\_policy
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const google_iam_policy_admin = pulumi.output(gcp.organizations.getIAMPolicy({
+ *     bindings: [{
+ *         members: ["user:jane@example.com"],
+ *         role: "roles/editor",
+ *     }],
+ * }));
+ * const google_kms_key_ring_iam_policy_key_ring = new gcp.kms.KeyRingIAMPolicy("key_ring", {
+ *     keyRingId: "your-key-ring-id",
+ *     policyData: google_iam_policy_admin.apply(__arg0 => __arg0.policyData),
+ * });
+ * ```
+ * 
+ * ## google\_kms\_key\_ring\_iam\_binding
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const google_kms_key_ring_iam_binding_key_ring = new gcp.kms.KeyRingIAMBinding("key_ring", {
+ *     keyRingId: "your-key-ring-id",
+ *     members: ["user:jane@example.com"],
+ *     role: "roles/editor",
+ * });
+ * ```
+ * 
+ * ## google\_kms\_key\_ring\_iam\_member
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const google_kms_key_ring_iam_member_key_ring = new gcp.kms.KeyRingIAMMember("key_ring", {
+ *     keyRingId: "your-key-ring-id",
+ *     member: "user:jane@example.com",
+ *     role: "roles/editor",
+ * });
+ * ```
  */
 export class KeyRingIAMPolicy extends pulumi.CustomResource {
     /**

@@ -34,7 +34,6 @@ class IAMMember(pulumi.CustomResource):
            `google_organization_iam_binding` for the __same role__ or they will fight over
            what your policy should be.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] member: The user that the role should apply to.
