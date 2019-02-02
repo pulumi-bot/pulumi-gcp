@@ -18,9 +18,6 @@ class Lien(pulumi.CustomResource):
         """
         A Lien represents an encumbrance on the actions that can be performed on a resource.
         
-        
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] origin

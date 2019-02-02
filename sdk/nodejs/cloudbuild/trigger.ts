@@ -32,6 +32,7 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * 
  * OR
  * 
  * ```typescript
@@ -48,7 +49,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * 
  */
 export class Trigger extends pulumi.CustomResource {
     /**

@@ -45,6 +45,7 @@ import * as utilities from "../utilities";
  *     projectId: "your-project-id",
  * });
  * ```
+ * 
  * To create a project under a specific folder
  * 
  * ```typescript
@@ -61,6 +62,7 @@ import * as utilities from "../utilities";
  *     projectId: "your-project-id",
  * });
  * ```
+ * 
  * To create a project with an App Engine app attached
  * 
  * ```typescript

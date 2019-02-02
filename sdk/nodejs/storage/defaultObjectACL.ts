@@ -7,7 +7,7 @@ import * as utilities from "../utilities";
 /**
  * Creates a new default object ACL in Google Cloud Storage service (GCS). For more information see
  * 
- * -> Note that for each object, its creator will have the `"OWNER"` role in addition
+ * > Note that for each object, its creator will have the `"OWNER"` role in addition
  * to the default ACL that has been defined.
  * 
  * For more information see
@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * and 
  * [API](https://cloud.google.com/storage/docs/json_api/v1/defaultObjectAccessControls).
  * 
- * -> Want fine-grained control over default object ACLs? Use `google_storage_default_object_access_control`
+ * > Want fine-grained control over default object ACLs? Use `google_storage_default_object_access_control`
  * to control individual role entity pairs.
  * 
  * ## Example Usage

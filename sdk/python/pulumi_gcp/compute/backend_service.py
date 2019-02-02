@@ -97,7 +97,6 @@ class BackendService(pulumi.CustomResource):
         
         For internal load balancing, use a [google_compute_region_backend_service](https://www.terraform.io/docs/providers/google/r/compute_region_backend_service.html).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[list] backends: The list of backends that serve this BackendService. Structure is documented below.

@@ -90,7 +90,6 @@ class Function(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/functions/docs/apis).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[int] available_memory_mb: Memory (in MB), available to the function. Default value is 256MB. Allowed values are: 128MB, 256MB, 512MB, 1024MB, and 2048MB.

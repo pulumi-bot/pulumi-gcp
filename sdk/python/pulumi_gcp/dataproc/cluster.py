@@ -44,7 +44,6 @@ class Cluster(pulumi.CustomResource):
         `labels`,`cluster_config.worker_config.num_instances` and `cluster_config.preemptible_worker_config.num_instances` are non-updateable. Changing others will cause recreation of the
         whole cluster!
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[dict] cluster_config: Allows you to configure various aspects of the cluster.

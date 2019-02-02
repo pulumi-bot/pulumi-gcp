@@ -27,7 +27,6 @@ class IAMPolicy(pulumi.CustomResource):
         Allows creation and management of the IAM policy for an existing Google Cloud
         Platform folder.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] folder: The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.

@@ -46,7 +46,6 @@ class RecordSet(pulumi.CustomResource):
         destroying NS records, Terraform will not actually remove NS records, but will
         report that it did.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] managed_zone: The name of the zone in which this record set will

@@ -48,6 +48,7 @@ import * as utilities from "../utilities";
  *     type: "A",
  * });
  * ```
+ * 
  * ### Adding an A record
  * 
  * ```typescript
@@ -66,6 +67,7 @@ import * as utilities from "../utilities";
  *     type: "A",
  * });
  * ```
+ * 
  * ### Adding an MX record
  * 
  * ```typescript
@@ -90,6 +92,7 @@ import * as utilities from "../utilities";
  *     type: "MX",
  * });
  * ```
+ * 
  * ### Adding an SPF record
  * 
  * Quotes (`""`) must be added around your `rrdatas` for a SPF record. Otherwise `rrdatas` string gets split on spaces.

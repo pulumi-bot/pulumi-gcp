@@ -52,24 +52,6 @@ class GetEngineVersionsResult(object):
 async def get_engine_versions(project=None, region=None, zone=None):
     """
     Provides access to available Google Container Engine versions in a zone or region for a given project.
-    
-    ```hcl
-    data "google_container_engine_versions" "central1b" {
-      zone = "us-central1-b"
-    }
-    
-    resource "google_container_cluster" "foo" {
-      name               = "terraform-test-cluster"
-      zone               = "us-central1-b"
-      node_version       = "${data.google_container_engine_versions.central1b.latest_node_version}"
-      initial_node_count = 1
-    
-      master_auth {
-        username = "mr.yoda"
-        password = "adoy.rm"
-      }
-    }
-    ```
     """
     __args__ = dict()
 

@@ -24,13 +24,14 @@ import * as utilities from "../utilities";
  *     name: "default-subscription",
  *     pushConfig: {
  *         attributes: {
- *             x-goog-version: "v1",
+ *             "x-goog-version": "v1",
  *         },
  *         pushEndpoint: "https://example.com/push",
  *     },
  *     topic: google_pubsub_topic_default_topic.name,
  * });
  * ```
+ * 
  * If the subscription has a topic in a different project:
  * 
  * ```typescript

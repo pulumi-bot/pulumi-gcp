@@ -28,6 +28,7 @@ import * as utilities from "../utilities";
  *     text: "example.com",
  * });
  * ```
+ * 
  * You can also encode binary content using the `value` argument instead. The
  * value must be base64 encoded.
  * 

@@ -31,7 +31,6 @@ class Repository(pulumi.CustomResource):
         documentation](https://cloud.google.com/source-repositories/) and
         [API](https://cloud.google.com/source-repositories/docs/reference/rest/v1/projects.repos)
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] name: The name of the repository that will be created.

@@ -115,7 +115,6 @@ class InstanceGroupManager(pulumi.CustomResource):
         
         > **Note:** Use [google_compute_region_instance_group_manager](https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html) to create a regional (multi-zone) instance group manager.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[dict] auto_healing_policies: The autohealing policies for this managed instance
