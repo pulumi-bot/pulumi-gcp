@@ -8,6 +8,49 @@ import * as utilities from "../utilities";
  * Creates a group of dissimilar Compute Engine virtual machine instances.
  * For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/#unmanaged_instance_groups)
  * and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroups)
+ * 
+ * ## Example Usage
+ * 
+ * ### Empty instance group
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const google_compute_instance_group_test = new gcp.compute.InstanceGroup("test", {
+ *     description: "Terraform test instance group",
+ *     name: "terraform-test",
+ *     network: google_compute_network_default.selfLink,
+ *     zone: "us-central1-a",
+ * });
+ * ```
+ * 
+ * ### With instances and named ports
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const google_compute_instance_group_webservers = new gcp.compute.InstanceGroup("webservers", {
+ *     description: "Terraform test instance group",
+ *     instances: [
+ *         google_compute_instance_test.selfLink,
+ *         google_compute_instance_test2.selfLink,
+ *     ],
+ *     name: "terraform-webservers",
+ *     namedPorts: [
+ *         {
+ *             name: "http",
+ *             port: Number.parseFloat("8080"),
+ *         },
+ *         {
+ *             name: "https",
+ *             port: Number.parseFloat("8443"),
+ *         },
+ *     ],
+ *     zone: "us-central1-a",
+ * });
+ * ```
  */
 export class InstanceGroup extends pulumi.CustomResource {
     /**

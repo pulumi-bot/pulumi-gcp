@@ -27,6 +27,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  * 
+ * 
  * To set a policy with a [list contraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-list-constraints):
  * 
  * ```typescript
@@ -43,6 +44,7 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * 
  * 
  * Or to deny some services, use the following instead:
  * 
@@ -61,6 +63,7 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * 
  * To restore the default folder organization policy, use the following instead:
  * 
  * ```typescript

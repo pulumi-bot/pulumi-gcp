@@ -12,6 +12,20 @@ import * as utilities from "../utilities";
  * 
  * For more information see
  * [the API reference](https://cloud.google.com/storage/docs/json_api/v1/projects/serviceAccount).
+ * 
+ * ## Example Usage
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const google_storage_project_service_account_gcs_account = pulumi.output(gcp.storage.getProjectServiceAccount({}));
+ * const google_pubsub_topic_iam_binding_binding = new gcp.pubsub.TopicIAMBinding("binding", {
+ *     members: [google_storage_project_service_account_gcs_account.apply(__arg0 => `serviceAccount:${__arg0.emailAddress}`)],
+ *     role: "roles/pubsub.publisher",
+ *     topic: google_pubsub_topic_topic.name,
+ * });
+ * ```
  */
 export function getProjectServiceAccount(args?: GetProjectServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectServiceAccountResult> {
     args = args || {};
