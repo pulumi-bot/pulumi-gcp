@@ -90,7 +90,6 @@ class Function(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/functions/docs/apis).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[int] available_memory_mb: Memory (in MB), available to the function. Default value is 256MB. Allowed values are: 128MB, 256MB, 512MB, 1024MB, and 2048MB.
@@ -148,11 +147,11 @@ class Function(pulumi.CustomResource):
 
         __props__['runtime'] = runtime
 
-        if not source_archive_bucket:
+        if source_archive_bucket is None:
             raise TypeError('Missing required property source_archive_bucket')
         __props__['source_archive_bucket'] = source_archive_bucket
 
-        if not source_archive_object:
+        if source_archive_object is None:
             raise TypeError('Missing required property source_archive_object')
         __props__['source_archive_object'] = source_archive_object
 

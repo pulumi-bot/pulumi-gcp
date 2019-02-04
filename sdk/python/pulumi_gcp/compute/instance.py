@@ -144,8 +144,6 @@ class Instance(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/instances).
         
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[bool] allow_stopping_for_update: If true, allows Terraform to stop the instance to update its properties.
@@ -204,7 +202,7 @@ class Instance(pulumi.CustomResource):
 
         __props__['attached_disks'] = attached_disks
 
-        if not boot_disk:
+        if boot_disk is None:
             raise TypeError('Missing required property boot_disk')
         __props__['boot_disk'] = boot_disk
 
@@ -220,7 +218,7 @@ class Instance(pulumi.CustomResource):
 
         __props__['labels'] = labels
 
-        if not machine_type:
+        if machine_type is None:
             raise TypeError('Missing required property machine_type')
         __props__['machine_type'] = machine_type
 
@@ -232,7 +230,7 @@ class Instance(pulumi.CustomResource):
 
         __props__['name'] = name
 
-        if not network_interfaces:
+        if network_interfaces is None:
             raise TypeError('Missing required property network_interfaces')
         __props__['network_interfaces'] = network_interfaces
 

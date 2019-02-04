@@ -30,7 +30,6 @@ class Service(pulumi.CustomResource):
         > **Note:** This resource _must not_ be used in conjunction with
            `google_project_services` or they will fight over which services should be enabled.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[bool] disable_on_destroy: If true, disable the service when the terraform resource is destroyed.  Defaults to true.  May be useful in the event that a project is long-lived but the infrastructure running in that project changes frequently.
@@ -50,7 +49,7 @@ class Service(pulumi.CustomResource):
 
         __props__['project'] = project
 
-        if not service:
+        if service is None:
             raise TypeError('Missing required property service')
         __props__['service'] = service
 

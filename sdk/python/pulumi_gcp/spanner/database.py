@@ -36,7 +36,6 @@ class Database(pulumi.CustomResource):
         """
         Creates a Google Spanner Database within a Spanner Instance. For more information, see the [official documentation](https://cloud.google.com/spanner/), or the [JSON API](https://cloud.google.com/spanner/docs/reference/rest/v1/projects.instances.databases).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[list] ddls: An optional list of DDL statements to run inside the newly created
@@ -59,7 +58,7 @@ class Database(pulumi.CustomResource):
 
         __props__['ddls'] = ddls
 
-        if not instance:
+        if instance is None:
             raise TypeError('Missing required property instance')
         __props__['instance'] = instance
 

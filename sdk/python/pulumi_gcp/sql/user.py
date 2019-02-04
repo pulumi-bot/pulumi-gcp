@@ -41,7 +41,6 @@ class User(pulumi.CustomResource):
         [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html). Passwords will not be retrieved when running
         "terraform import".
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] host: The host the user can connect from. This is only supported
@@ -66,7 +65,7 @@ class User(pulumi.CustomResource):
 
         __props__['host'] = host
 
-        if not instance:
+        if instance is None:
             raise TypeError('Missing required property instance')
         __props__['instance'] = instance
 

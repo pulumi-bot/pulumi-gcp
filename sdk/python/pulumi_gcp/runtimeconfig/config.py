@@ -29,7 +29,6 @@ class Config(pulumi.CustomResource):
         or the
         [JSON API](https://cloud.google.com/deployment-manager/runtime-configurator/reference/rest/).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] description: The description to associate with the runtime

@@ -33,7 +33,6 @@ class AccountIamMember(pulumi.CustomResource):
            `google_billing_account_iam_binding` for the __same role__ or they will fight over
            what your policy should be.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] billing_account_id: The billing account id.
@@ -49,15 +48,15 @@ class AccountIamMember(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not billing_account_id:
+        if billing_account_id is None:
             raise TypeError('Missing required property billing_account_id')
         __props__['billing_account_id'] = billing_account_id
 
-        if not member:
+        if member is None:
             raise TypeError('Missing required property member')
         __props__['member'] = member
 
-        if not role:
+        if role is None:
             raise TypeError('Missing required property role')
         __props__['role'] = role
 

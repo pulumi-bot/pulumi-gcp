@@ -93,13 +93,13 @@ class Subnetwork(pulumi.CustomResource):
 
         __props__['enable_flow_logs'] = enable_flow_logs
 
-        if not ip_cidr_range:
+        if ip_cidr_range is None:
             raise TypeError('Missing required property ip_cidr_range')
         __props__['ip_cidr_range'] = ip_cidr_range
 
         __props__['name'] = name
 
-        if not network:
+        if network is None:
             raise TypeError('Missing required property network')
         __props__['network'] = network
 

@@ -84,7 +84,6 @@ class NodePool(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters.nodePools).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[dict] autoscaling: Configuration required by cluster autoscaler to adjust
@@ -128,7 +127,7 @@ class NodePool(pulumi.CustomResource):
 
         __props__['autoscaling'] = autoscaling
 
-        if not cluster:
+        if cluster is None:
             raise TypeError('Missing required property cluster')
         __props__['cluster'] = cluster
 

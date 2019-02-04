@@ -60,7 +60,7 @@ class VPNGateway(pulumi.CustomResource):
 
         __props__['name'] = name
 
-        if not network:
+        if network is None:
             raise TypeError('Missing required property network')
         __props__['network'] = network
 

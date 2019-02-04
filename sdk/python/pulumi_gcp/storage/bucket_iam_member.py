@@ -33,7 +33,6 @@ class BucketIAMMember(pulumi.CustomResource):
         
         > **Note:** `google_storage_bucket_iam_binding` resources **can be** used in conjunction with `google_storage_bucket_iam_member` resources **only if** they do not grant privilege to the same role.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket it applies to.
@@ -50,15 +49,15 @@ class BucketIAMMember(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not bucket:
+        if bucket is None:
             raise TypeError('Missing required property bucket')
         __props__['bucket'] = bucket
 
-        if not member:
+        if member is None:
             raise TypeError('Missing required property member')
         __props__['member'] = member
 
-        if not role:
+        if role is None:
             raise TypeError('Missing required property role')
         __props__['role'] = role
 

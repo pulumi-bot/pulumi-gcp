@@ -58,7 +58,7 @@ class Autoscalar(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not autoscaling_policy:
+        if autoscaling_policy is None:
             raise TypeError('Missing required property autoscaling_policy')
         __props__['autoscaling_policy'] = autoscaling_policy
 
@@ -68,7 +68,7 @@ class Autoscalar(pulumi.CustomResource):
 
         __props__['project'] = project
 
-        if not target:
+        if target is None:
             raise TypeError('Missing required property target')
         __props__['target'] = target
 

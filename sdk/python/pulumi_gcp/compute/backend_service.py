@@ -97,7 +97,6 @@ class BackendService(pulumi.CustomResource):
         
         For internal load balancing, use a [google_compute_region_backend_service](https://www.terraform.io/docs/providers/google/r/compute_region_backend_service.html).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[list] backends: The list of backends that serve this BackendService. Structure is documented below.
@@ -150,7 +149,7 @@ class BackendService(pulumi.CustomResource):
 
         __props__['enable_cdn'] = enable_cdn
 
-        if not health_checks:
+        if health_checks is None:
             raise TypeError('Missing required property health_checks')
         __props__['health_checks'] = health_checks
 

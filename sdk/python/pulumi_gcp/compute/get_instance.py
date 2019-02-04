@@ -169,7 +169,6 @@ async def get_instance(name=None, project=None, zone=None):
     [the official documentation](https://cloud.google.com/compute/docs/instances)
     and
     [API](https://cloud.google.com/compute/docs/reference/latest/instances).
-    
     """
     __args__ = dict()
 

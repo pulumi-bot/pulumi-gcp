@@ -60,7 +60,7 @@ class TargetTCPProxy(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not backend_service:
+        if backend_service is None:
             raise TypeError('Missing required property backend_service')
         __props__['backend_service'] = backend_service
 

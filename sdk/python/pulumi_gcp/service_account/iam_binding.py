@@ -37,7 +37,6 @@ class IAMBinding(pulumi.CustomResource):
         
         > **Note:** `google_service_account_iam_binding` resources **can be** used in conjunction with `google_service_account_iam_member` resources **only if** they do not grant privilege to the same role.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[list] members
@@ -55,15 +54,15 @@ class IAMBinding(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not members:
+        if members is None:
             raise TypeError('Missing required property members')
         __props__['members'] = members
 
-        if not role:
+        if role is None:
             raise TypeError('Missing required property role')
         __props__['role'] = role
 
-        if not service_account_id:
+        if service_account_id is None:
             raise TypeError('Missing required property service_account_id')
         __props__['service_account_id'] = service_account_id
 

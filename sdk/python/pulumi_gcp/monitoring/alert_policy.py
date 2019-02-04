@@ -30,7 +30,6 @@ class AlertPolicy(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/monitoring/alerts/)
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] combiner
@@ -50,19 +49,19 @@ class AlertPolicy(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not combiner:
+        if combiner is None:
             raise TypeError('Missing required property combiner')
         __props__['combiner'] = combiner
 
-        if not conditions:
+        if conditions is None:
             raise TypeError('Missing required property conditions')
         __props__['conditions'] = conditions
 
-        if not display_name:
+        if display_name is None:
             raise TypeError('Missing required property display_name')
         __props__['display_name'] = display_name
 
-        if not enabled:
+        if enabled is None:
             raise TypeError('Missing required property enabled')
         __props__['enabled'] = enabled
 

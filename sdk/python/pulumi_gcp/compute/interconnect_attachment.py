@@ -32,8 +32,6 @@ class InterconnectAttachment(pulumi.CustomResource):
         Represents an InterconnectAttachment (VLAN attachment) resource. For more
         information, see Creating VLAN Attachments.
         
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] description
@@ -55,7 +53,7 @@ class InterconnectAttachment(pulumi.CustomResource):
 
         __props__['description'] = description
 
-        if not interconnect:
+        if interconnect is None:
             raise TypeError('Missing required property interconnect')
         __props__['interconnect'] = interconnect
 
@@ -65,7 +63,7 @@ class InterconnectAttachment(pulumi.CustomResource):
 
         __props__['region'] = region
 
-        if not router:
+        if router is None:
             raise TypeError('Missing required property router')
         __props__['router'] = router
 

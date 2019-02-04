@@ -26,7 +26,6 @@ class Policy(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/binary-authorization/)
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[list] admission_whitelist_patterns
@@ -48,7 +47,7 @@ class Policy(pulumi.CustomResource):
 
         __props__['cluster_admission_rules'] = cluster_admission_rules
 
-        if not default_admission_rule:
+        if default_admission_rule is None:
             raise TypeError('Missing required property default_admission_rule')
         __props__['default_admission_rule'] = default_admission_rule
 

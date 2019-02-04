@@ -38,7 +38,6 @@ class Variavble(pulumi.CustomResource):
         or the
         [JSON API](https://cloud.google.com/deployment-manager/runtime-configurator/reference/rest/).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] name: The name of the variable to manage. Note that variable
@@ -61,7 +60,7 @@ class Variavble(pulumi.CustomResource):
 
         __props__['name'] = name
 
-        if not parent:
+        if parent is None:
             raise TypeError('Missing required property parent')
         __props__['parent'] = parent
 

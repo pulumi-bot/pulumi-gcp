@@ -38,7 +38,6 @@ class CryptoKeyIAMMember(pulumi.CustomResource):
            should be. Similarly, roles controlled by `google_kms_crypto_key_iam_binding`
            should not be assigned to using `google_kms_crypto_key_iam_member`.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] crypto_key_id: The key ring ID, in the form
@@ -58,15 +57,15 @@ class CryptoKeyIAMMember(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not crypto_key_id:
+        if crypto_key_id is None:
             raise TypeError('Missing required property crypto_key_id')
         __props__['crypto_key_id'] = crypto_key_id
 
-        if not member:
+        if member is None:
             raise TypeError('Missing required property member')
         __props__['member'] = member
 
-        if not role:
+        if role is None:
             raise TypeError('Missing required property role')
         __props__['role'] = role
 

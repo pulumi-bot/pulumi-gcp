@@ -47,7 +47,6 @@ class Account(pulumi.CustomResource):
         """
         Allows management of a [Google Cloud Platform service account](https://cloud.google.com/compute/docs/access/service-accounts)
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] account_id: The service account ID.
@@ -69,7 +68,7 @@ class Account(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not account_id:
+        if account_id is None:
             raise TypeError('Missing required property account_id')
         __props__['account_id'] = account_id
 

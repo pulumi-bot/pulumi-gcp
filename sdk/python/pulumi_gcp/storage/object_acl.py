@@ -31,7 +31,6 @@ class ObjectACL(pulumi.CustomResource):
         and 
         [API](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket it applies to.
@@ -48,11 +47,11 @@ class ObjectACL(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not bucket:
+        if bucket is None:
             raise TypeError('Missing required property bucket')
         __props__['bucket'] = bucket
 
-        if not object:
+        if object is None:
             raise TypeError('Missing required property object')
         __props__['object'] = object
 

@@ -63,7 +63,7 @@ class NotificationChannel(pulumi.CustomResource):
 
         __props__['description'] = description
 
-        if not display_name:
+        if display_name is None:
             raise TypeError('Missing required property display_name')
         __props__['display_name'] = display_name
 
@@ -73,7 +73,7 @@ class NotificationChannel(pulumi.CustomResource):
 
         __props__['project'] = project
 
-        if not type:
+        if type is None:
             raise TypeError('Missing required property type')
         __props__['type'] = type
 

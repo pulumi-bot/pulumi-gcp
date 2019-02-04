@@ -34,7 +34,6 @@ class Services(pulumi.CustomResource):
         	*exclusively* a particular set of APIs are enabled, you should most likely use the
         	google_project_service resource, one resource per API.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[bool] disable_on_destroy
@@ -57,7 +56,7 @@ class Services(pulumi.CustomResource):
 
         __props__['project'] = project
 
-        if not services:
+        if services is None:
             raise TypeError('Missing required property services')
         __props__['services'] = services
 

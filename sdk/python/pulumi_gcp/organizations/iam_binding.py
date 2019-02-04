@@ -35,7 +35,6 @@ class IAMBinding(pulumi.CustomResource):
            `google_organization_iam_member` for the __same role__ or they will fight over
            what your policy should be.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[list] members: A list of users that the role should apply to.
@@ -53,15 +52,15 @@ class IAMBinding(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not members:
+        if members is None:
             raise TypeError('Missing required property members')
         __props__['members'] = members
 
-        if not org_id:
+        if org_id is None:
             raise TypeError('Missing required property org_id')
         __props__['org_id'] = org_id
 
-        if not role:
+        if role is None:
             raise TypeError('Missing required property role')
         __props__['role'] = role
 

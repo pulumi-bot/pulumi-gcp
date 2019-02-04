@@ -97,7 +97,6 @@ class Project(pulumi.CustomResource):
         prior to 0.8.5 will continue to function as they always have, and will not be managed by
         Terraform. Only newly added projects are affected.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[dict] app_engine: A block of configuration to enable an App Engine app. Setting this
@@ -152,7 +151,7 @@ class Project(pulumi.CustomResource):
 
         __props__['org_id'] = org_id
 
-        if not project_id:
+        if project_id is None:
             raise TypeError('Missing required property project_id')
         __props__['project_id'] = project_id
 

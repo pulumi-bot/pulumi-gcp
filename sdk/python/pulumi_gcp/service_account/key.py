@@ -74,8 +74,6 @@ class Key(pulumi.CustomResource):
         """
         Creates and manages service account key-pairs, which allow the user to establish identity of a service account outside of GCP. For more information, see [the official documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) and [API](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys).
         
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] key_algorithm: The algorithm used to generate the key. KEY_ALG_RSA_2048 is the default algorithm.
@@ -109,7 +107,7 @@ class Key(pulumi.CustomResource):
 
         __props__['public_key_type'] = public_key_type
 
-        if not service_account_id:
+        if service_account_id is None:
             raise TypeError('Missing required property service_account_id')
         __props__['service_account_id'] = service_account_id
 

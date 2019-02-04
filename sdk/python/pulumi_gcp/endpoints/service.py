@@ -22,7 +22,6 @@ class Service(pulumi.CustomResource):
         """
         This resource creates and rolls out a Cloud Endpoints service using OpenAPI or gRPC.  View the relevant docs for [OpenAPI](https://cloud.google.com/endpoints/docs/openapi/) and [gRPC](https://cloud.google.com/endpoints/docs/grpc/).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] grpc_config
@@ -51,7 +50,7 @@ class Service(pulumi.CustomResource):
 
         __props__['protoc_output_base64'] = protoc_output_base64
 
-        if not service_name:
+        if service_name is None:
             raise TypeError('Missing required property service_name')
         __props__['service_name'] = service_name
 

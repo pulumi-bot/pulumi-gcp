@@ -41,7 +41,6 @@ class ManagedZone(pulumi.CustomResource):
         Manages a zone within Google Cloud DNS. For more information see [the official documentation](https://cloud.google.com/dns/zones/) and
         [API](https://cloud.google.com/dns/api/v1/managedZones).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] description: A textual description field. Defaults to 'Managed by Terraform'.
@@ -63,7 +62,7 @@ class ManagedZone(pulumi.CustomResource):
 
         __props__['description'] = description
 
-        if not dns_name:
+        if dns_name is None:
             raise TypeError('Missing required property dns_name')
         __props__['dns_name'] = dns_name
 

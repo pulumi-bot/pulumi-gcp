@@ -47,7 +47,6 @@ class DatabaseIAMMember(pulumi.CustomResource):
         
         > **Note:** `google_spanner_database_iam_binding` resources **can be** used in conjunction with `google_spanner_database_iam_member` resources **only if** they do not grant privilege to the same role.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] database: The name of the Spanner database.
@@ -68,21 +67,21 @@ class DatabaseIAMMember(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not database:
+        if database is None:
             raise TypeError('Missing required property database')
         __props__['database'] = database
 
-        if not instance:
+        if instance is None:
             raise TypeError('Missing required property instance')
         __props__['instance'] = instance
 
-        if not member:
+        if member is None:
             raise TypeError('Missing required property member')
         __props__['member'] = member
 
         __props__['project'] = project
 
-        if not role:
+        if role is None:
             raise TypeError('Missing required property role')
         __props__['role'] = role
 

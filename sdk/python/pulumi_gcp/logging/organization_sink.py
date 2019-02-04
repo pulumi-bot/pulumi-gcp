@@ -12,11 +12,6 @@ class OrganizationSink(pulumi.CustomResource):
     """
     The destination of the sink (or, in other words, where logs are written to). Can be a
     Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-    ```
-    "storage.googleapis.com/[GCS_BUCKET]"
-    "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-    "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-    ```
     The writer associated with the sink must have access to write to the above resource.
     """
     filter: pulumi.Output[str]
@@ -52,16 +47,10 @@ class OrganizationSink(pulumi.CustomResource):
         Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
         granted to the credentials used with terraform.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] destination: The destination of the sink (or, in other words, where logs are written to). Can be a
                Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-               ```
-               "storage.googleapis.com/[GCS_BUCKET]"
-               "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-               "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-               ```
                The writer associated with the sink must have access to write to the above resource.
         :param pulumi.Input[str] filter: The filter to apply when exporting logs. Only log entries that match the filter are exported.
                See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to
@@ -80,7 +69,7 @@ class OrganizationSink(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not destination:
+        if destination is None:
             raise TypeError('Missing required property destination')
         __props__['destination'] = destination
 
@@ -90,7 +79,7 @@ class OrganizationSink(pulumi.CustomResource):
 
         __props__['name'] = name
 
-        if not org_id:
+        if org_id is None:
             raise TypeError('Missing required property org_id')
         __props__['org_id'] = org_id
 

@@ -46,7 +46,6 @@ class RecordSet(pulumi.CustomResource):
         destroying NS records, Terraform will not actually remove NS records, but will
         report that it did.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] managed_zone: The name of the zone in which this record set will
@@ -68,7 +67,7 @@ class RecordSet(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not managed_zone:
+        if managed_zone is None:
             raise TypeError('Missing required property managed_zone')
         __props__['managed_zone'] = managed_zone
 
@@ -76,15 +75,15 @@ class RecordSet(pulumi.CustomResource):
 
         __props__['project'] = project
 
-        if not rrdatas:
+        if rrdatas is None:
             raise TypeError('Missing required property rrdatas')
         __props__['rrdatas'] = rrdatas
 
-        if not ttl:
+        if ttl is None:
             raise TypeError('Missing required property ttl')
         __props__['ttl'] = ttl
 
-        if not type:
+        if type is None:
             raise TypeError('Missing required property type')
         __props__['type'] = type
 

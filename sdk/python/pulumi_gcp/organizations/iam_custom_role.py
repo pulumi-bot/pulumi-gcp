@@ -51,7 +51,6 @@ class IAMCustomRole(pulumi.CustomResource):
          after 7 days, but it can take up to 30 more days (i.e. between 7 and 37 days after deletion) before the role name is
          made available again. This means a deleted role that has been deleted for more than 7 days cannot be changed at all
          by Terraform, and new roles cannot share that name.
-         
         
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
@@ -78,21 +77,21 @@ class IAMCustomRole(pulumi.CustomResource):
 
         __props__['description'] = description
 
-        if not org_id:
+        if org_id is None:
             raise TypeError('Missing required property org_id')
         __props__['org_id'] = org_id
 
-        if not permissions:
+        if permissions is None:
             raise TypeError('Missing required property permissions')
         __props__['permissions'] = permissions
 
-        if not role_id:
+        if role_id is None:
             raise TypeError('Missing required property role_id')
         __props__['role_id'] = role_id
 
         __props__['stage'] = stage
 
-        if not title:
+        if title is None:
             raise TypeError('Missing required property title')
         __props__['title'] = title
 

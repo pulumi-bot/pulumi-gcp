@@ -61,7 +61,6 @@ class IAMPolicy(pulumi.CustomResource):
         
         > **Note:** `google_project_iam_binding` resources **can be** used in conjunction with `google_project_iam_member` resources **only if** they do not grant privilege to the same role.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[bool] authoritative: (Optional, only for `google_project_iam_policy`)
@@ -97,7 +96,7 @@ class IAMPolicy(pulumi.CustomResource):
 
         __props__['disable_project'] = disable_project
 
-        if not policy_data:
+        if policy_data is None:
             raise TypeError('Missing required property policy_data')
         __props__['policy_data'] = policy_data
 

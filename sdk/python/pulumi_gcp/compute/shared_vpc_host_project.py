@@ -22,7 +22,6 @@ class SharedVPCHostProject(pulumi.CustomResource):
         [the Project API documentation](https://cloud.google.com/compute/docs/reference/latest/projects),
         where the Shared VPC feature is referred to by its former name "XPN".
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project that will serve as a Shared VPC host project
@@ -36,7 +35,7 @@ class SharedVPCHostProject(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not project:
+        if project is None:
             raise TypeError('Missing required property project')
         __props__['project'] = project
 

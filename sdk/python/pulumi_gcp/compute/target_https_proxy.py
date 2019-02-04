@@ -71,13 +71,13 @@ class TargetHttpsProxy(pulumi.CustomResource):
 
         __props__['quic_override'] = quic_override
 
-        if not ssl_certificates:
+        if ssl_certificates is None:
             raise TypeError('Missing required property ssl_certificates')
         __props__['ssl_certificates'] = ssl_certificates
 
         __props__['ssl_policy'] = ssl_policy
 
-        if not url_map:
+        if url_map is None:
             raise TypeError('Missing required property url_map')
         __props__['url_map'] = url_map
 

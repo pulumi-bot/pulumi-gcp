@@ -48,7 +48,6 @@ class SubnetworkIAMBinding(pulumi.CustomResource):
         
         > **Note:** `google_compute_subnetwork_iam_binding` resources **can be** used in conjunction with `google_compute_subnetwork_iam_member` resources **only if** they do not grant privilege to the same role.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[list] members
@@ -70,7 +69,7 @@ class SubnetworkIAMBinding(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not members:
+        if members is None:
             raise TypeError('Missing required property members')
         __props__['members'] = members
 
@@ -78,11 +77,11 @@ class SubnetworkIAMBinding(pulumi.CustomResource):
 
         __props__['region'] = region
 
-        if not role:
+        if role is None:
             raise TypeError('Missing required property role')
         __props__['role'] = role
 
-        if not subnetwork:
+        if subnetwork is None:
             raise TypeError('Missing required property subnetwork')
         __props__['subnetwork'] = subnetwork
 

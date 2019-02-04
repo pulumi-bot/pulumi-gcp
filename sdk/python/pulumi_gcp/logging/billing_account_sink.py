@@ -16,11 +16,6 @@ class BillingAccountSink(pulumi.CustomResource):
     """
     The destination of the sink (or, in other words, where logs are written to). Can be a
     Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-    ```
-    "storage.googleapis.com/[GCS_BUCKET]"
-    "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-    "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-    ```
     The writer associated with the sink must have access to write to the above resource.
     """
     filter: pulumi.Output[str]
@@ -49,17 +44,11 @@ class BillingAccountSink(pulumi.CustomResource):
         the credentials used with Terraform. [IAM roles granted on a billing account](https://cloud.google.com/billing/docs/how-to/billing-access) are separate from the
         typical IAM roles granted on a project.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] billing_account: The billing account exported to the sink.
         :param pulumi.Input[str] destination: The destination of the sink (or, in other words, where logs are written to). Can be a
                Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-               ```
-               "storage.googleapis.com/[GCS_BUCKET]"
-               "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-               "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-               ```
                The writer associated with the sink must have access to write to the above resource.
         :param pulumi.Input[str] filter: The filter to apply when exporting logs. Only log entries that match the filter are exported.
                See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to
@@ -75,11 +64,11 @@ class BillingAccountSink(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not billing_account:
+        if billing_account is None:
             raise TypeError('Missing required property billing_account')
         __props__['billing_account'] = billing_account
 
-        if not destination:
+        if destination is None:
             raise TypeError('Missing required property destination')
         __props__['destination'] = destination
 

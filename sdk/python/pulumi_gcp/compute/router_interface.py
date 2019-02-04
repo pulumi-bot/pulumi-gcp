@@ -46,7 +46,6 @@ class RouterInterface(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/routers).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] ip_range: IP address and range of the interface. The IP range must be
@@ -80,11 +79,11 @@ class RouterInterface(pulumi.CustomResource):
 
         __props__['region'] = region
 
-        if not router:
+        if router is None:
             raise TypeError('Missing required property router')
         __props__['router'] = router
 
-        if not vpn_tunnel:
+        if vpn_tunnel is None:
             raise TypeError('Missing required property vpn_tunnel')
         __props__['vpn_tunnel'] = vpn_tunnel
 

@@ -47,7 +47,6 @@ class Database(pulumi.CustomResource):
         the [official documentation](https://cloud.google.com/sql/),
         or the [JSON API](https://cloud.google.com/sql/docs/admin-api/v1beta4/databases).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] charset: The charset value. See MySQL's
@@ -78,7 +77,7 @@ class Database(pulumi.CustomResource):
 
         __props__['collation'] = collation
 
-        if not instance:
+        if instance is None:
             raise TypeError('Missing required property instance')
         __props__['instance'] = instance
 

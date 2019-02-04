@@ -56,7 +56,7 @@ class RouterNat(pulumi.CustomResource):
 
         __props__['name'] = name
 
-        if not nat_ip_allocate_option:
+        if nat_ip_allocate_option is None:
             raise TypeError('Missing required property nat_ip_allocate_option')
         __props__['nat_ip_allocate_option'] = nat_ip_allocate_option
 
@@ -66,7 +66,7 @@ class RouterNat(pulumi.CustomResource):
 
         __props__['region'] = region
 
-        if not router:
+        if router is None:
             raise TypeError('Missing required property router')
         __props__['router'] = router
 

@@ -121,7 +121,6 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         
         > **Note:** Use [google_compute_instance_group_manager](https://www.terraform.io/docs/providers/google/r/compute_instance_group_manager.html) to create a single-zone instance group manager.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[dict] auto_healing_policies: The autohealing policies for this managed instance
@@ -183,7 +182,7 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
 
         __props__['auto_healing_policies'] = auto_healing_policies
 
-        if not base_instance_name:
+        if base_instance_name is None:
             raise TypeError('Missing required property base_instance_name')
         __props__['base_instance_name'] = base_instance_name
 
@@ -199,7 +198,7 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
 
         __props__['project'] = project
 
-        if not region:
+        if region is None:
             raise TypeError('Missing required property region')
         __props__['region'] = region
 

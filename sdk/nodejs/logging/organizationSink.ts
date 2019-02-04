@@ -49,11 +49,6 @@ export class OrganizationSink extends pulumi.CustomResource {
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-     * ```
-     * "storage.googleapis.com/[GCS_BUCKET]"
-     * "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-     * "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-     * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
     public readonly destination: pulumi.Output<string>;
@@ -126,11 +121,6 @@ export interface OrganizationSinkState {
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-     * ```
-     * "storage.googleapis.com/[GCS_BUCKET]"
-     * "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-     * "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-     * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
     readonly destination?: pulumi.Input<string>;
@@ -167,11 +157,6 @@ export interface OrganizationSinkArgs {
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-     * ```
-     * "storage.googleapis.com/[GCS_BUCKET]"
-     * "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-     * "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-     * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
     readonly destination: pulumi.Input<string>;

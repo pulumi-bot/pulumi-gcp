@@ -18,9 +18,6 @@ class Lien(pulumi.CustomResource):
         """
         A Lien represents an encumbrance on the actions that can be performed on a resource.
         
-        
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] origin
@@ -37,19 +34,19 @@ class Lien(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not origin:
+        if origin is None:
             raise TypeError('Missing required property origin')
         __props__['origin'] = origin
 
-        if not parent:
+        if parent is None:
             raise TypeError('Missing required property parent')
         __props__['parent'] = parent
 
-        if not reason:
+        if reason is None:
             raise TypeError('Missing required property reason')
         __props__['reason'] = reason
 
-        if not restrictions:
+        if restrictions is None:
             raise TypeError('Missing required property restrictions')
         __props__['restrictions'] = restrictions
 

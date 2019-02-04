@@ -67,7 +67,7 @@ class SSLCertificate(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not certificate:
+        if certificate is None:
             raise TypeError('Missing required property certificate')
         __props__['certificate'] = certificate
 
@@ -77,7 +77,7 @@ class SSLCertificate(pulumi.CustomResource):
 
         __props__['name_prefix'] = name_prefix
 
-        if not private_key:
+        if private_key is None:
             raise TypeError('Missing required property private_key')
         __props__['private_key'] = private_key
 

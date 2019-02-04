@@ -57,7 +57,6 @@ class Snapshot(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/compute/docs/disks/create-snapshots)
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] description
@@ -93,7 +92,7 @@ class Snapshot(pulumi.CustomResource):
 
         __props__['snapshot_encryption_key_raw'] = snapshot_encryption_key_raw
 
-        if not source_disk:
+        if source_disk is None:
             raise TypeError('Missing required property source_disk')
         __props__['source_disk'] = source_disk
 

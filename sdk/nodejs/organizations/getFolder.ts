@@ -7,26 +7,20 @@ import * as utilities from "../utilities";
 /**
  * Use this data source to get information about a Google Cloud Folder.
  * 
- * ```hcl
- * # Get folder by id
- * data "google_folder" "my_folder_1" {
- *   folder = "folders/12345"
- *   lookup_organization = true
- * }
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
  * 
- * # Search by fields
- * data "google_folder" "my_folder_2" {
- *   folder = "folders/23456"
- * }
+ * const google_folder_my_folder_1 = pulumi.output(gcp.organizations.getFolder({
+ *     folder: "folders/12345",
+ *     lookupOrganization: true,
+ * }));
+ * const google_folder_my_folder_2 = pulumi.output(gcp.organizations.getFolder({
+ *     folder: "folders/23456",
+ * }));
  * 
- * output "my_folder_1_organization" {
- *   value = "${data.google_folder.my_folder_1.organization}"
- * }
- * 
- * output "my_folder_2_parent" {
- *   value = "${data.google_folder.my_folder_2.parent}"
- * }
- * 
+ * export const myFolder1Organization = google_folder_my_folder_1.apply(__arg0 => __arg0.organization);
+ * export const myFolder2Parent = google_folder_my_folder_2.apply(__arg0 => __arg0.parent);
  * ```
  */
 export function getFolder(args: GetFolderArgs, opts?: pulumi.InvokeOptions): Promise<GetFolderResult> {

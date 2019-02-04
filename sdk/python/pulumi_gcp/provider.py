@@ -31,19 +31,19 @@ class Provider(pulumi.ProviderResource):
 
         __props__ = dict()
 
-        if not credentials:
+        if credentials is None:
             credentials = utilities.get_env('GOOGLE_CREDENTIALS', 'GOOGLE_CLOUD_KEYFILE_JSON', 'GCLOUD_KEYFILE_JSON')
         __props__['credentials'] = credentials
 
-        if not project:
+        if project is None:
             project = utilities.get_env('GOOGLE_PROJECT', 'GOOGLE_CLOUD_PROJECT', 'GCLOUD_PROJECT', 'CLOUDSDK_CORE_PROJECT')
         __props__['project'] = project
 
-        if not region:
+        if region is None:
             region = utilities.get_env('GOOGLE_REGION', 'GCLOUD_REGION', 'CLOUDSDK_COMPUTE_REGION')
         __props__['region'] = region
 
-        if not zone:
+        if zone is None:
             zone = utilities.get_env('GOOGLE_ZONE', 'GCLOUD_ZONE', 'CLOUDSDK_COMPUTE_ZONE')
         __props__['zone'] = zone
 

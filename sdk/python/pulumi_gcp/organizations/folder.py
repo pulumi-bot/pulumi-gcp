@@ -47,7 +47,6 @@ class Folder(pulumi.CustomResource):
         [Access Control for Folders Using IAM](https://cloud.google.com/resource-manager/docs/access-control-folders)
         doc for more information.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] display_name: The folder’s display name.
@@ -64,11 +63,11 @@ class Folder(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not display_name:
+        if display_name is None:
             raise TypeError('Missing required property display_name')
         __props__['display_name'] = display_name
 
-        if not parent:
+        if parent is None:
             raise TypeError('Missing required property parent')
         __props__['parent'] = parent
 

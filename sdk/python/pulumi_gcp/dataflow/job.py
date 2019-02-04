@@ -52,6 +52,13 @@ class Job(pulumi.CustomResource):
         [Beam](https://beam.apache.org) and [Dataflow](https://cloud.google.com/dataflow/).
         
         
+        ## Note on "destroy" / "apply"
+        
+        There are many types of Dataflow jobs.  Some Dataflow jobs run constantly, getting new data from (e.g.) a GCS bucket, and outputting data continuously.  Some jobs process a set amount of data then terminate.  All jobs can fail while running due to programming errors or other issues.  In this way, Dataflow jobs are different from most other Terraform / Google resources.
+        
+        The Dataflow resource is considered 'existing' while it is in a nonterminal state.  If it reaches a terminal state (e.g. 'FAILED', 'COMPLETE', 'CANCELLED'), it will be recreated on the next 'apply'.  This is as expected for jobs which run continously, but may surprise users who use this resource for other kinds of Dataflow jobs.
+        
+        A Dataflow job which is 'destroyed' may be "cancelled" or "drained".  If "cancelled", the job terminates - any data written remains where it is, but no new data will be processed.  If "drained", no new data will enter the pipeline, but any data currently in the pipeline will finish being processed.  The default is "cancelled", but if a user sets `on_delete` to `"drain"` in the configuration, you may experience a long wait for your `terraform destroy` to complete.
         
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
@@ -86,11 +93,11 @@ class Job(pulumi.CustomResource):
 
         __props__['region'] = region
 
-        if not temp_gcs_location:
+        if temp_gcs_location is None:
             raise TypeError('Missing required property temp_gcs_location')
         __props__['temp_gcs_location'] = temp_gcs_location
 
-        if not template_gcs_path:
+        if template_gcs_path is None:
             raise TypeError('Missing required property template_gcs_path')
         __props__['template_gcs_path'] = template_gcs_path
 

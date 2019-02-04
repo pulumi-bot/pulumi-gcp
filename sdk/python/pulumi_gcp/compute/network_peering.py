@@ -44,7 +44,6 @@ class NetworkPeering(pulumi.CustomResource):
         
         > **Note:** Subnets IP ranges across peered VPC networks cannot overlap.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[bool] auto_create_routes: If set to `true`, the routes between the two networks will
@@ -66,11 +65,11 @@ class NetworkPeering(pulumi.CustomResource):
 
         __props__['name'] = name
 
-        if not network:
+        if network is None:
             raise TypeError('Missing required property network')
         __props__['network'] = network
 
-        if not peer_network:
+        if peer_network is None:
             raise TypeError('Missing required property peer_network')
         __props__['peer_network'] = peer_network
 

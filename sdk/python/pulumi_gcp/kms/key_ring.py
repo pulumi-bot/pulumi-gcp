@@ -40,7 +40,6 @@ class KeyRing(pulumi.CustomResource):
         > Note: KeyRings cannot be deleted from Google Cloud Platform. Destroying a Terraform-managed KeyRing will remove it
         from state but **will not delete the resource on the server**.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] location: The Google Cloud Platform location for the KeyRing.
@@ -59,7 +58,7 @@ class KeyRing(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not location:
+        if location is None:
             raise TypeError('Missing required property location')
         __props__['location'] = location
 

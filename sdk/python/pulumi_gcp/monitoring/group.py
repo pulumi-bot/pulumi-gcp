@@ -56,11 +56,11 @@ class Group(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not display_name:
+        if display_name is None:
             raise TypeError('Missing required property display_name')
         __props__['display_name'] = display_name
 
-        if not filter:
+        if filter is None:
             raise TypeError('Missing required property filter')
         __props__['filter'] = filter
 

@@ -47,8 +47,6 @@ class Registry(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/iot/docs/) and
         [API](https://cloud.google.com/iot/docs/reference/cloudiot/rest/v1/projects.locations.registries).
         
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[list] credentials: List of public key certificates to authenticate devices. Structure is documented below. 

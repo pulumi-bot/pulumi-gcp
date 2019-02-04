@@ -63,7 +63,7 @@ class TargetHttpProxy(pulumi.CustomResource):
 
         __props__['project'] = project
 
-        if not url_map:
+        if url_map is None:
             raise TypeError('Missing required property url_map')
         __props__['url_map'] = url_map
 

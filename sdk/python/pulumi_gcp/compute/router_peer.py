@@ -60,7 +60,6 @@ class RouterPeer(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/routers).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[int] advertised_route_priority: The priority of routes advertised to this BGP peer.
@@ -92,13 +91,13 @@ class RouterPeer(pulumi.CustomResource):
 
         __props__['advertised_route_priority'] = advertised_route_priority
 
-        if not interface:
+        if interface is None:
             raise TypeError('Missing required property interface')
         __props__['interface'] = interface
 
         __props__['name'] = name
 
-        if not peer_asn:
+        if peer_asn is None:
             raise TypeError('Missing required property peer_asn')
         __props__['peer_asn'] = peer_asn
 
@@ -108,7 +107,7 @@ class RouterPeer(pulumi.CustomResource):
 
         __props__['region'] = region
 
-        if not router:
+        if router is None:
             raise TypeError('Missing required property router')
         __props__['router'] = router
 

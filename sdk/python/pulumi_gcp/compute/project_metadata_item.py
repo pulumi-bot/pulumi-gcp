@@ -28,7 +28,6 @@ class ProjectMetadataItem(pulumi.CustomResource):
         manage a single key/value setting in Terraform rather than the entire
         project metadata map.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] key: The metadata key to set.
@@ -45,13 +44,13 @@ class ProjectMetadataItem(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not key:
+        if key is None:
             raise TypeError('Missing required property key')
         __props__['key'] = key
 
         __props__['project'] = project
 
-        if not value:
+        if value is None:
             raise TypeError('Missing required property value')
         __props__['value'] = value
 

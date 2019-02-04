@@ -36,7 +36,6 @@ class IAMBinding(pulumi.CustomResource):
         
         > **Note:** `google_project_iam_binding` resources **can be** used in conjunction with `google_project_iam_member` resources **only if** they do not grant privilege to the same role.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[list] members
@@ -55,13 +54,13 @@ class IAMBinding(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not members:
+        if members is None:
             raise TypeError('Missing required property members')
         __props__['members'] = members
 
         __props__['project'] = project
 
-        if not role:
+        if role is None:
             raise TypeError('Missing required property role')
         __props__['role'] = role
 

@@ -55,7 +55,6 @@ class SslCert(pulumi.CustomResource):
         > **Note:** All arguments including the private key will be stored in the raw state as plain-text.
         [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] common_name: The common name to be used in the certificate to identify the 
@@ -72,11 +71,11 @@ class SslCert(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not common_name:
+        if common_name is None:
             raise TypeError('Missing required property common_name')
         __props__['common_name'] = common_name
 
-        if not instance:
+        if instance is None:
             raise TypeError('Missing required property instance')
         __props__['instance'] = instance
 

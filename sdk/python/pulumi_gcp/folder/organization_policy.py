@@ -48,7 +48,6 @@ class OrganizationPolicy(pulumi.CustomResource):
         documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
         [API](https://cloud.google.com/resource-manager/reference/rest/v1/folders/setOrgPolicy).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[dict] boolean_policy: A boolean policy is a constraint that is either enforced or not. Structure is documented below. 
@@ -70,11 +69,11 @@ class OrganizationPolicy(pulumi.CustomResource):
 
         __props__['boolean_policy'] = boolean_policy
 
-        if not constraint:
+        if constraint is None:
             raise TypeError('Missing required property constraint')
         __props__['constraint'] = constraint
 
-        if not folder:
+        if folder is None:
             raise TypeError('Missing required property folder')
         __props__['folder'] = folder
 

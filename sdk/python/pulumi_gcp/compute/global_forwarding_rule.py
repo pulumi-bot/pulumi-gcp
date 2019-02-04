@@ -77,7 +77,6 @@ class GlobalForwardingRule(pulumi.CustomResource):
         documentation](https://cloud.google.com/compute/docs/load-balancing/http/global-forwarding-rules) and
         [API](https://cloud.google.com/compute/docs/reference/latest/globalForwardingRules).
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] description: Textual description field.
@@ -132,7 +131,7 @@ class GlobalForwardingRule(pulumi.CustomResource):
 
         __props__['project'] = project
 
-        if not target:
+        if target is None:
             raise TypeError('Missing required property target')
         __props__['target'] = target
 

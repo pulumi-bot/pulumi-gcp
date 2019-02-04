@@ -41,7 +41,6 @@ class FolderExclusion(pulumi.CustomResource):
         Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
         granted to the credentials used with Terraform.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] description: A human-readable description.
@@ -67,11 +66,11 @@ class FolderExclusion(pulumi.CustomResource):
 
         __props__['disabled'] = disabled
 
-        if not filter:
+        if filter is None:
             raise TypeError('Missing required property filter')
         __props__['filter'] = filter
 
-        if not folder:
+        if folder is None:
             raise TypeError('Missing required property folder')
         __props__['folder'] = folder
 

@@ -59,7 +59,6 @@ class Application(pulumi.CustomResource):
            successfully deleted; this is a limitation of Terraform, and will go away in the future.
            Terraform is not able to delete App Engine applications.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] auth_domain: The domain to authenticate users with when using App Engine's User API.
@@ -82,7 +81,7 @@ class Application(pulumi.CustomResource):
 
         __props__['feature_settings'] = feature_settings
 
-        if not location_id:
+        if location_id is None:
             raise TypeError('Missing required property location_id')
         __props__['location_id'] = location_id
 

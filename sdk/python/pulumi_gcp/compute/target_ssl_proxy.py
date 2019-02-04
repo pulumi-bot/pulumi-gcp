@@ -64,7 +64,7 @@ class TargetSSLProxy(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not backend_service:
+        if backend_service is None:
             raise TypeError('Missing required property backend_service')
         __props__['backend_service'] = backend_service
 
@@ -76,7 +76,7 @@ class TargetSSLProxy(pulumi.CustomResource):
 
         __props__['proxy_header'] = proxy_header
 
-        if not ssl_certificates:
+        if ssl_certificates is None:
             raise TypeError('Missing required property ssl_certificates')
         __props__['ssl_certificates'] = ssl_certificates
 

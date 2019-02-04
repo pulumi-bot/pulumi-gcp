@@ -50,7 +50,6 @@ class IAMCustomRole(pulumi.CustomResource):
          made available again. This means a deleted role that has been deleted for more than 7 days cannot be changed at all
          by Terraform, and new roles cannot share that name.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[bool] deleted
@@ -77,19 +76,19 @@ class IAMCustomRole(pulumi.CustomResource):
 
         __props__['description'] = description
 
-        if not permissions:
+        if permissions is None:
             raise TypeError('Missing required property permissions')
         __props__['permissions'] = permissions
 
         __props__['project'] = project
 
-        if not role_id:
+        if role_id is None:
             raise TypeError('Missing required property role_id')
         __props__['role_id'] = role_id
 
         __props__['stage'] = stage
 
-        if not title:
+        if title is None:
             raise TypeError('Missing required property title')
         __props__['title'] = title
 

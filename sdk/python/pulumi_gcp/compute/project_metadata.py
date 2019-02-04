@@ -29,7 +29,6 @@ class ProjectMetadata(pulumi.CustomResource):
         rather than the entire set, then use
         google_compute_project_metadata_item.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[dict] metadata: A series of key value pairs. Changing this resource
@@ -46,7 +45,7 @@ class ProjectMetadata(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not metadata:
+        if metadata is None:
             raise TypeError('Missing required property metadata')
         __props__['metadata'] = metadata
 

@@ -52,7 +52,6 @@ class Notification(pulumi.CustomResource):
         for an example of enabling notifications by granting the correct IAM permission. See
         [the notifications documentation](https://cloud.google.com/storage/docs/gsutil/commands/notification) for more details.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
@@ -73,7 +72,7 @@ class Notification(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not bucket:
+        if bucket is None:
             raise TypeError('Missing required property bucket')
         __props__['bucket'] = bucket
 
@@ -83,11 +82,11 @@ class Notification(pulumi.CustomResource):
 
         __props__['object_name_prefix'] = object_name_prefix
 
-        if not payload_format:
+        if payload_format is None:
             raise TypeError('Missing required property payload_format')
         __props__['payload_format'] = payload_format
 
-        if not topic:
+        if topic is None:
             raise TypeError('Missing required property topic')
         __props__['topic'] = topic
 

@@ -31,8 +31,6 @@ class Table(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/bigtable/) and
         [API](https://cloud.google.com/bigtable/docs/go/reference).
         
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] instance_name: The name of the Bigtable instance.
@@ -50,7 +48,7 @@ class Table(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not instance_name:
+        if instance_name is None:
             raise TypeError('Missing required property instance_name')
         __props__['instance_name'] = instance_name
 

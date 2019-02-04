@@ -25,7 +25,6 @@ class Attestor(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/binary-authorization/)
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[dict] attestation_authority_note
@@ -42,7 +41,7 @@ class Attestor(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not attestation_authority_note:
+        if attestation_authority_note is None:
             raise TypeError('Missing required property attestation_authority_note')
         __props__['attestation_authority_note'] = attestation_authority_note
 

@@ -40,7 +40,6 @@ class IAMBinding(pulumi.CustomResource):
            `google_folder_iam_policy` or they will fight over what your policy
            should be.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] folder: The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
@@ -63,15 +62,15 @@ class IAMBinding(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not folder:
+        if folder is None:
             raise TypeError('Missing required property folder')
         __props__['folder'] = folder
 
-        if not members:
+        if members is None:
             raise TypeError('Missing required property members')
         __props__['members'] = members
 
-        if not role:
+        if role is None:
             raise TypeError('Missing required property role')
         __props__['role'] = role
 

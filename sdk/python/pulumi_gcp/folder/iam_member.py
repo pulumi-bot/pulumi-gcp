@@ -40,7 +40,6 @@ class IAMMember(pulumi.CustomResource):
            should be. Similarly, roles controlled by `google_folder_iam_binding`
            should not be assigned to using `google_folder_iam_member`.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] folder: The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
@@ -62,15 +61,15 @@ class IAMMember(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not folder:
+        if folder is None:
             raise TypeError('Missing required property folder')
         __props__['folder'] = folder
 
-        if not member:
+        if member is None:
             raise TypeError('Missing required property member')
         __props__['member'] = member
 
-        if not role:
+        if role is None:
             raise TypeError('Missing required property role')
         __props__['role'] = role
 

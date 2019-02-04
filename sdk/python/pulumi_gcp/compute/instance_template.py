@@ -120,8 +120,6 @@ class InstanceTemplate(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/instanceTemplates).
         
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[bool] can_ip_forward: Whether to allow sending and receiving of
@@ -177,7 +175,7 @@ class InstanceTemplate(pulumi.CustomResource):
 
         __props__['description'] = description
 
-        if not disks:
+        if disks is None:
             raise TypeError('Missing required property disks')
         __props__['disks'] = disks
 
@@ -187,7 +185,7 @@ class InstanceTemplate(pulumi.CustomResource):
 
         __props__['labels'] = labels
 
-        if not machine_type:
+        if machine_type is None:
             raise TypeError('Missing required property machine_type')
         __props__['machine_type'] = machine_type
 

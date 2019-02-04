@@ -36,7 +36,6 @@ class KeyRingIAMPolicy(pulumi.CustomResource):
         
         > **Note:** `google_kms_key_ring_iam_binding` resources **can be** used in conjunction with `google_kms_key_ring_iam_member` resources **only if** they do not grant privilege to the same role.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] key_ring_id: The key ring ID, in the form
@@ -55,11 +54,11 @@ class KeyRingIAMPolicy(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not key_ring_id:
+        if key_ring_id is None:
             raise TypeError('Missing required property key_ring_id')
         __props__['key_ring_id'] = key_ring_id
 
-        if not policy_data:
+        if policy_data is None:
             raise TypeError('Missing required property policy_data')
         __props__['policy_data'] = policy_data
 

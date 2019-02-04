@@ -41,7 +41,6 @@ class UsageExportBucket(pulumi.CustomResource):
         prior to 0.8.5 will continue to function as they always have, and will not be managed by
         Terraform. Only newly added projects are affected.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] bucket_name
@@ -57,7 +56,7 @@ class UsageExportBucket(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not bucket_name:
+        if bucket_name is None:
             raise TypeError('Missing required property bucket_name')
         __props__['bucket_name'] = bucket_name
 

@@ -98,8 +98,6 @@ class Table(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/bigquery/docs/) and
         [API](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables).
         
-        
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] dataset_id: The dataset ID to create the table in.
@@ -130,7 +128,7 @@ class Table(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not dataset_id:
+        if dataset_id is None:
             raise TypeError('Missing required property dataset_id')
         __props__['dataset_id'] = dataset_id
 
@@ -146,7 +144,7 @@ class Table(pulumi.CustomResource):
 
         __props__['schema'] = schema
 
-        if not table_id:
+        if table_id is None:
             raise TypeError('Missing required property table_id')
         __props__['table_id'] = table_id
 

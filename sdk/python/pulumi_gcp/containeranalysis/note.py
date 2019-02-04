@@ -45,7 +45,7 @@ class Note(pulumi.CustomResource):
 
         __props__ = dict()
 
-        if not attestation_authority:
+        if attestation_authority is None:
             raise TypeError('Missing required property attestation_authority')
         __props__['attestation_authority'] = attestation_authority
 

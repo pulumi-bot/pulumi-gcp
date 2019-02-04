@@ -104,7 +104,7 @@ class RegionDisk(pulumi.CustomResource):
 
         __props__['region'] = region
 
-        if not replica_zones:
+        if replica_zones is None:
             raise TypeError('Missing required property replica_zones')
         __props__['replica_zones'] = replica_zones
 

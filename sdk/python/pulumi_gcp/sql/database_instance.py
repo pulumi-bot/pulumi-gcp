@@ -85,7 +85,6 @@ class DatabaseInstance(pulumi.CustomResource):
         instance creation. You should use `google_sql_user` to define a custom user with
         a restricted host and strong password.
         
-        
         :param str __name__: The name of the resource.
         :param pulumi.ResourceOptions __opts__: Options for the resource.
         :param pulumi.Input[str] database_version: The MySQL version to
@@ -135,7 +134,7 @@ class DatabaseInstance(pulumi.CustomResource):
 
         __props__['replica_configuration'] = replica_configuration
 
-        if not settings:
+        if settings is None:
             raise TypeError('Missing required property settings')
         __props__['settings'] = settings
 
