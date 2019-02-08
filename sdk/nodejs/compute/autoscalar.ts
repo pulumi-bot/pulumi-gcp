@@ -23,66 +23,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Autoscaler Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_compute_image_debian_9 = pulumi.output(gcp.compute.getImage({
- *     family: "debian-9",
- *     project: "debian-cloud",
- * }));
- * const google_compute_target_pool_foobar = new gcp.compute.TargetPool("foobar", {
- *     name: "my-target-pool",
- * });
- * const google_compute_instance_template_foobar = new gcp.compute.InstanceTemplate("foobar", {
- *     canIpForward: false,
- *     disks: [{
- *         sourceImage: google_compute_image_debian_9.apply(__arg0 => __arg0.selfLink),
- *     }],
- *     machineType: "n1-standard-1",
- *     metadata: {
- *         foo: "bar",
- *     },
- *     name: "my-instance-template",
- *     networkInterfaces: [{
- *         network: "default",
- *     }],
- *     serviceAccount: {
- *         scopes: [
- *             "userinfo-email",
- *             "compute-ro",
- *             "storage-ro",
- *         ],
- *     },
- *     tags: [
- *         "foo",
- *         "bar",
- *     ],
- * });
- * const google_compute_instance_group_manager_foobar = new gcp.compute.InstanceGroupManager("foobar", {
- *     baseInstanceName: "foobar",
- *     instanceTemplate: google_compute_instance_template_foobar.selfLink,
- *     name: "my-igm",
- *     targetPools: [google_compute_target_pool_foobar.selfLink],
- *     zone: "us-central1-f",
- * });
- * const google_compute_autoscaler_foobar = new gcp.compute.Autoscalar("foobar", {
- *     autoscalingPolicy: {
- *         cooldownPeriod: 60,
- *         cpuUtilization: {
- *             target: 0.500000,
- *         },
- *         maxReplicas: 5,
- *         minReplicas: 1,
- *     },
- *     name: "my-autoscaler",
- *     target: google_compute_instance_group_manager_foobar.selfLink,
- *     zone: "us-central1-f",
- * });
- * ```
  */
 export class Autoscalar extends pulumi.CustomResource {
     /**

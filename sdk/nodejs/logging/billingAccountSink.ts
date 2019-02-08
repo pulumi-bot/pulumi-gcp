@@ -13,26 +13,6 @@ import * as utilities from "../utilities";
  * [granted on the billing account](https://cloud.google.com/billing/reference/rest/v1/billingAccounts/getIamPolicy) to
  * the credentials used with Terraform. [IAM roles granted on a billing account](https://cloud.google.com/billing/docs/how-to/billing-access) are separate from the
  * typical IAM roles granted on a project.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_storage_bucket_log_bucket = new gcp.storage.Bucket("log-bucket", {
- *     name: "billing-logging-bucket",
- * });
- * const google_logging_billing_account_sink_my_sink = new gcp.logging.BillingAccountSink("my-sink", {
- *     billingAccount: "ABCDEF-012345-GHIJKL",
- *     destination: google_storage_bucket_log_bucket.name.apply(__arg0 => `storage.googleapis.com/${__arg0}`),
- *     name: "my-sink",
- * });
- * const google_project_iam_binding_log_writer = new gcp.projects.IAMBinding("log-writer", {
- *     members: [google_logging_billing_account_sink_my_sink.writerIdentity],
- *     role: "roles/storage.objectCreator",
- * });
- * ```
  */
 export class BillingAccountSink extends pulumi.CustomResource {
     /**
@@ -54,11 +34,6 @@ export class BillingAccountSink extends pulumi.CustomResource {
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-     * ```
-     * "storage.googleapis.com/[GCS_BUCKET]"
-     * "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-     * "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-     * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
     public readonly destination: pulumi.Output<string>;
@@ -124,11 +99,6 @@ export interface BillingAccountSinkState {
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-     * ```
-     * "storage.googleapis.com/[GCS_BUCKET]"
-     * "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-     * "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-     * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
     readonly destination?: pulumi.Input<string>;
@@ -160,11 +130,6 @@ export interface BillingAccountSinkArgs {
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-     * ```
-     * "storage.googleapis.com/[GCS_BUCKET]"
-     * "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-     * "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-     * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
     readonly destination: pulumi.Input<string>;

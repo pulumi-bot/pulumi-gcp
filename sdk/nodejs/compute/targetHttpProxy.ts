@@ -20,47 +20,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Target Http Proxy Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_compute_http_health_check_default = new gcp.compute.HttpHealthCheck("default", {
- *     checkIntervalSec: 1,
- *     name: "http-health-check",
- *     requestPath: "/",
- *     timeoutSec: 1,
- * });
- * const google_compute_backend_service_default = new gcp.compute.BackendService("default", {
- *     healthChecks: google_compute_http_health_check_default.selfLink,
- *     name: "backend-service",
- *     portName: "http",
- *     protocol: "HTTP",
- *     timeoutSec: 10,
- * });
- * const google_compute_url_map_default = new gcp.compute.URLMap("default", {
- *     defaultService: google_compute_backend_service_default.selfLink,
- *     hostRules: [{
- *         hosts: ["mysite.com"],
- *         pathMatcher: "allpaths",
- *     }],
- *     name: "url-map",
- *     pathMatchers: [{
- *         defaultService: google_compute_backend_service_default.selfLink,
- *         name: "allpaths",
- *         pathRules: [{
- *             paths: ["/*"],
- *             service: google_compute_backend_service_default.selfLink,
- *         }],
- *     }],
- * });
- * const google_compute_target_http_proxy_default = new gcp.compute.TargetHttpProxy("default", {
- *     name: "test-proxy",
- *     urlMap: google_compute_url_map_default.selfLink,
- * });
- * ```
  */
 export class TargetHttpProxy extends pulumi.CustomResource {
     /**

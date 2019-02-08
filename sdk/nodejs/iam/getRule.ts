@@ -6,17 +6,6 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to get information about a Google IAM Role.
- * 
- * ```hcl
- * data "google_iam_role" "roleinfo" {
- *   name = "roles/compute.viewer"
- * }
- * 
- * output "the_role_permissions" {
- *   value = "${data.google_iam_role.roleinfo.included_permissions}"
- * }
- * 
- * ```
  */
 export function getRule(args: GetRuleArgs, opts?: pulumi.InvokeOptions): Promise<GetRuleResult> {
     return pulumi.runtime.invoke("gcp:iam/getRule:getRule", {

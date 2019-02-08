@@ -25,24 +25,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Backend Bucket Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_storage_bucket_image_bucket = new gcp.storage.Bucket("image_bucket", {
- *     location: "EU",
- *     name: "image-store-bucket",
- * });
- * const google_compute_backend_bucket_image_backend = new gcp.compute.BackendBucket("image_backend", {
- *     bucketName: google_storage_bucket_image_bucket.name,
- *     description: "Contains beautiful images",
- *     enableCdn: true,
- *     name: "image-backend-bucket",
- * });
- * ```
  */
 export class BackendBucket extends pulumi.CustomResource {
     /**

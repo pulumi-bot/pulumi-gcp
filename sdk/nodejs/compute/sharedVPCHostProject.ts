@@ -12,25 +12,6 @@ import * as utilities from "../utilities";
  * For more information, see,
  * [the Project API documentation](https://cloud.google.com/compute/docs/reference/latest/projects),
  * where the Shared VPC feature is referred to by its former name "XPN".
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_compute_shared_vpc_host_project_host = new gcp.compute.SharedVPCHostProject("host", {
- *     project: "host-project-id",
- * });
- * const google_compute_shared_vpc_service_project_service1 = new gcp.compute.SharedVPCServiceProject("service1", {
- *     hostProject: google_compute_shared_vpc_host_project_host.project,
- *     serviceProject: "service-project-id-1",
- * });
- * const google_compute_shared_vpc_service_project_service2 = new gcp.compute.SharedVPCServiceProject("service2", {
- *     hostProject: google_compute_shared_vpc_host_project_host.project,
- *     serviceProject: "service-project-id-2",
- * });
- * ```
  */
 export class SharedVPCHostProject extends pulumi.CustomResource {
     /**

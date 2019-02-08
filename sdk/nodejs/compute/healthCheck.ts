@@ -29,22 +29,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Health Check Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_compute_health_check_internal_health_check = new gcp.compute.HealthCheck("internal-health-check", {
- *     checkIntervalSec: 1,
- *     name: "internal-service-health-check",
- *     tcpHealthCheck: {
- *         port: Number.parseFloat("80"),
- *     },
- *     timeoutSec: 1,
- * });
- * ```
  */
 export class HealthCheck extends pulumi.CustomResource {
     /**

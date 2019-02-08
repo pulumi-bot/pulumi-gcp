@@ -11,27 +11,6 @@ import * as utilities from "../utilities";
  * 
  * Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
  * granted to the credentials used with terraform.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_storage_bucket_log_bucket = new gcp.storage.Bucket("log-bucket", {
- *     name: "organization-logging-bucket",
- * });
- * const google_logging_organization_sink_my_sink = new gcp.logging.OrganizationSink("my-sink", {
- *     destination: google_storage_bucket_log_bucket.name.apply(__arg0 => `storage.googleapis.com/${__arg0}`),
- *     filter: "resource.type = gce_instance AND severity >= WARN",
- *     name: "my-sink",
- *     orgId: "123456789",
- * });
- * const google_project_iam_binding_log_writer = new gcp.projects.IAMBinding("log-writer", {
- *     members: [google_logging_organization_sink_my_sink.writerIdentity],
- *     role: "roles/storage.objectCreator",
- * });
- * ```
  */
 export class OrganizationSink extends pulumi.CustomResource {
     /**
@@ -49,11 +28,6 @@ export class OrganizationSink extends pulumi.CustomResource {
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-     * ```
-     * "storage.googleapis.com/[GCS_BUCKET]"
-     * "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-     * "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-     * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
     public readonly destination: pulumi.Output<string>;
@@ -126,11 +100,6 @@ export interface OrganizationSinkState {
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-     * ```
-     * "storage.googleapis.com/[GCS_BUCKET]"
-     * "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-     * "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-     * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
     readonly destination?: pulumi.Input<string>;
@@ -167,11 +136,6 @@ export interface OrganizationSinkArgs {
     /**
      * The destination of the sink (or, in other words, where logs are written to). Can be a
      * Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
-     * ```
-     * "storage.googleapis.com/[GCS_BUCKET]"
-     * "bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]"
-     * "pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]"
-     * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
     readonly destination: pulumi.Input<string>;

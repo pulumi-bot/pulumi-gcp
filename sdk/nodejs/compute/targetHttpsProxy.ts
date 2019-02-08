@@ -20,55 +20,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Target Https Proxy Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_compute_http_health_check_default = new gcp.compute.HttpHealthCheck("default", {
- *     checkIntervalSec: 1,
- *     name: "http-health-check",
- *     requestPath: "/",
- *     timeoutSec: 1,
- * });
- * const google_compute_ssl_certificate_default = new gcp.compute.SSLCertificate("default", {
- *     certificate: fs.readFileSync("path/to/certificate.crt", "utf-8"),
- *     name: "my-certificate",
- *     privateKey: fs.readFileSync("path/to/private.key", "utf-8"),
- * });
- * const google_compute_backend_service_default = new gcp.compute.BackendService("default", {
- *     healthChecks: google_compute_http_health_check_default.selfLink,
- *     name: "backend-service",
- *     portName: "http",
- *     protocol: "HTTP",
- *     timeoutSec: 10,
- * });
- * const google_compute_url_map_default = new gcp.compute.URLMap("default", {
- *     defaultService: google_compute_backend_service_default.selfLink,
- *     description: "a description",
- *     hostRules: [{
- *         hosts: ["mysite.com"],
- *         pathMatcher: "allpaths",
- *     }],
- *     name: "url-map",
- *     pathMatchers: [{
- *         defaultService: google_compute_backend_service_default.selfLink,
- *         name: "allpaths",
- *         pathRules: [{
- *             paths: ["/*"],
- *             service: google_compute_backend_service_default.selfLink,
- *         }],
- *     }],
- * });
- * const google_compute_target_https_proxy_default = new gcp.compute.TargetHttpsProxy("default", {
- *     name: "test-proxy",
- *     sslCertificates: [google_compute_ssl_certificate_default.selfLink],
- *     urlMap: google_compute_url_map_default.selfLink,
- * });
- * ```
  */
 export class TargetHttpsProxy extends pulumi.CustomResource {
     /**

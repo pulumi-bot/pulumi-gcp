@@ -18,57 +18,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Target Vpn Gateway Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_compute_address_vpn_static_ip = new gcp.compute.Address("vpn_static_ip", {
- *     name: "vpn-static-ip",
- * });
- * const google_compute_network_network1 = new gcp.compute.Network("network1", {
- *     name: "network1",
- * });
- * const google_compute_vpn_gateway_target_gateway = new gcp.compute.VPNGateway("target_gateway", {
- *     name: "vpn1",
- *     network: google_compute_network_network1.selfLink,
- * });
- * const google_compute_forwarding_rule_fr_esp = new gcp.compute.ForwardingRule("fr_esp", {
- *     ipAddress: google_compute_address_vpn_static_ip.address,
- *     ipProtocol: "ESP",
- *     name: "fr-esp",
- *     target: google_compute_vpn_gateway_target_gateway.selfLink,
- * });
- * const google_compute_forwarding_rule_fr_udp4500 = new gcp.compute.ForwardingRule("fr_udp4500", {
- *     ipAddress: google_compute_address_vpn_static_ip.address,
- *     ipProtocol: "UDP",
- *     name: "fr-udp4500",
- *     portRange: "4500",
- *     target: google_compute_vpn_gateway_target_gateway.selfLink,
- * });
- * const google_compute_forwarding_rule_fr_udp500 = new gcp.compute.ForwardingRule("fr_udp500", {
- *     ipAddress: google_compute_address_vpn_static_ip.address,
- *     ipProtocol: "UDP",
- *     name: "fr-udp500",
- *     portRange: "500",
- *     target: google_compute_vpn_gateway_target_gateway.selfLink,
- * });
- * const google_compute_vpn_tunnel_tunnel1 = new gcp.compute.VPNTunnel("tunnel1", {
- *     name: "tunnel1",
- *     peerIp: "15.0.0.120",
- *     sharedSecret: "a secret message",
- *     targetVpnGateway: google_compute_vpn_gateway_target_gateway.selfLink,
- * }, {dependsOn: [google_compute_forwarding_rule_fr_esp, google_compute_forwarding_rule_fr_udp4500, google_compute_forwarding_rule_fr_udp500]});
- * const google_compute_route_route1 = new gcp.compute.Route("route1", {
- *     destRange: "15.0.0.0/24",
- *     name: "route1",
- *     network: google_compute_network_network1.name,
- *     nextHopVpnTunnel: google_compute_vpn_tunnel_tunnel1.selfLink,
- *     priority: 1000,
- * });
- * ```
  */
 export class VPNGateway extends pulumi.CustomResource {
     /**

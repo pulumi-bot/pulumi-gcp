@@ -32,50 +32,6 @@ import * as utilities from "../utilities";
  * > It's important to note that any project resources that were added to your Terraform config
  * prior to 0.8.5 will continue to function as they always have, and will not be managed by
  * Terraform. Only newly added projects are affected.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_project_my_project = new gcp.organizations.Project("my_project", {
- *     name: "My Project",
- *     orgId: "1234567",
- *     projectId: "your-project-id",
- * });
- * ```
- * To create a project under a specific folder
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_folder_department1 = new gcp.organizations.Folder("department1", {
- *     displayName: "Department 1",
- *     parent: "organizations/1234567",
- * });
- * const google_project_my_project_in_a_folder = new gcp.organizations.Project("my_project-in-a-folder", {
- *     folderId: google_folder_department1.name,
- *     name: "My Project",
- *     projectId: "your-project-id",
- * });
- * ```
- * To create a project with an App Engine app attached
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_project_my_app_engine_app = new gcp.organizations.Project("my-app-engine-app", {
- *     appEngine: {
- *         locationId: "us-central",
- *     },
- *     name: "App Engine Project",
- *     orgId: "1234567",
- *     projectId: "app-engine-project",
- * });
- * ```
  */
 export class UsageExportBucket extends pulumi.CustomResource {
     /**

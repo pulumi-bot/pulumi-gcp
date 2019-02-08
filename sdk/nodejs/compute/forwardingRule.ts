@@ -21,22 +21,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Forwarding Rule Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_compute_target_pool_default = new gcp.compute.TargetPool("default", {
- *     name: "website-target-pool",
- * });
- * const google_compute_forwarding_rule_default = new gcp.compute.ForwardingRule("default", {
- *     name: "website-forwarding-rule",
- *     portRange: "80",
- *     target: google_compute_target_pool_default.selfLink,
- * });
- * ```
  */
 export class ForwardingRule extends pulumi.CustomResource {
     /**

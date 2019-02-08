@@ -6,23 +6,6 @@ import * as utilities from "../utilities";
 
 /**
  * Creates and manages service account key-pairs, which allow the user to establish identity of a service account outside of GCP. For more information, see [the official documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) and [API](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys).
- * 
- * 
- * ## Example Usage, creating a new Key Pair
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_service_account_myaccount = new gcp.serviceAccount.Account("myaccount", {
- *     accountId: "myaccount",
- *     displayName: "My Service Account",
- * });
- * const google_service_account_key_mykey = new gcp.serviceAccount.Key("mykey", {
- *     publicKeyType: "TYPE_X509_PEM_FILE",
- *     serviceAccountId: google_service_account_myaccount.name,
- * });
- * ```
  */
 export class Key extends pulumi.CustomResource {
     /**

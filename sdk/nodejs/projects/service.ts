@@ -12,18 +12,6 @@ import * as utilities from "../utilities";
  * 
  * > **Note:** This resource _must not_ be used in conjunction with
  *    `google_project_services` or they will fight over which services should be enabled.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_project_service_project = new gcp.projects.Service("project", {
- *     project: "your-project-id",
- *     service: "iam.googleapis.com",
- * });
- * ```
  */
 export class Service extends pulumi.CustomResource {
     /**

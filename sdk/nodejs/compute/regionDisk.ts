@@ -37,36 +37,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Region Disk Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_compute_disk_disk = new gcp.compute.Disk("disk", {
- *     image: "debian-cloud/debian-9",
- *     name: "my-disk",
- *     size: 50,
- *     type: "pd-ssd",
- *     zone: "us-central1-a",
- * });
- * const google_compute_snapshot_snapdisk = new gcp.compute.Snapshot("snapdisk", {
- *     name: "my-snapshot",
- *     sourceDisk: google_compute_disk_disk.name,
- *     zone: "us-central1-a",
- * });
- * const google_compute_region_disk_regiondisk = new gcp.compute.RegionDisk("regiondisk", {
- *     name: "my-region-disk",
- *     region: "us-central1",
- *     replicaZones: [
- *         "us-central1-a",
- *         "us-central1-f",
- *     ],
- *     snapshot: google_compute_snapshot_snapdisk.selfLink,
- *     type: "pd-ssd",
- * });
- * ```
  */
 export class RegionDisk extends pulumi.CustomResource {
     /**

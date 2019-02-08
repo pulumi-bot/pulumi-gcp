@@ -12,46 +12,6 @@ import * as utilities from "../utilities";
  * 
  * > **Note:** All arguments including the username and password will be stored in the raw state as plain-text.
  * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
- * 
- * ## Example usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_container_cluster_primary = new gcp.container.Cluster("primary", {
- *     additionalZones: [
- *         "us-central1-b",
- *         "us-central1-c",
- *     ],
- *     initialNodeCount: 3,
- *     masterAuth: {
- *         password: "adoy.rm",
- *         username: "mr.yoda",
- *     },
- *     name: "marcellus-wallace",
- *     nodeConfig: {
- *         labels: {
- *             foo: "bar",
- *         },
- *         oauthScopes: [
- *             "https://www.googleapis.com/auth/compute",
- *             "https://www.googleapis.com/auth/devstorage.read_only",
- *             "https://www.googleapis.com/auth/logging.write",
- *             "https://www.googleapis.com/auth/monitoring",
- *         ],
- *         tags: [
- *             "foo",
- *             "bar",
- *         ],
- *     },
- *     zone: "us-central1-a",
- * });
- * 
- * export const clientCertificate = google_container_cluster_primary.masterAuth.apply(__arg0 => __arg0.clientCertificate);
- * export const clientKey = google_container_cluster_primary.masterAuth.apply(__arg0 => __arg0.clientKey);
- * export const clusterCaCertificate = google_container_cluster_primary.masterAuth.apply(__arg0 => __arg0.clusterCaCertificate);
- * ```
  */
 export class Cluster extends pulumi.CustomResource {
     /**

@@ -21,38 +21,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Target Ssl Proxy Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_compute_health_check_default = new gcp.compute.HealthCheck("default", {
- *     checkIntervalSec: 1,
- *     name: "health-check",
- *     tcpHealthCheck: {
- *         port: Number.parseFloat("443"),
- *     },
- *     timeoutSec: 1,
- * });
- * const google_compute_ssl_certificate_default = new gcp.compute.SSLCertificate("default", {
- *     certificate: fs.readFileSync("path/to/certificate.crt", "utf-8"),
- *     name: "default-cert",
- *     privateKey: fs.readFileSync("path/to/private.key", "utf-8"),
- * });
- * const google_compute_backend_service_default = new gcp.compute.BackendService("default", {
- *     healthChecks: google_compute_health_check_default.selfLink,
- *     name: "backend-service",
- *     protocol: "SSL",
- * });
- * const google_compute_target_ssl_proxy_default = new gcp.compute.TargetSSLProxy("default", {
- *     backendService: google_compute_backend_service_default.selfLink,
- *     name: "test-proxy",
- *     sslCertificates: google_compute_ssl_certificate_default.selfLink,
- * });
- * ```
  */
 export class TargetSSLProxy extends pulumi.CustomResource {
     /**

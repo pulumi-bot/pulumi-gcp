@@ -31,22 +31,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Storage Default Object Access Control Public
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_storage_bucket_bucket = new gcp.storage.Bucket("bucket", {
- *     name: "static-content-bucket",
- * });
- * const google_storage_default_object_access_control_public_rule = new gcp.storage.DefaultObjectAccessControl("public_rule", {
- *     bucket: google_storage_bucket_bucket.name,
- *     entity: "allUsers",
- *     role: "READER",
- * });
- * ```
  */
 export class DefaultObjectAccessControl extends pulumi.CustomResource {
     /**

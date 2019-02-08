@@ -8,18 +8,6 @@ import * as utilities from "../utilities";
  * Creates a topic in Google's pubsub queueing system. For more information see
  * [the official documentation](https://cloud.google.com/pubsub/docs) and
  * [API](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics).
- * 
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_pubsub_topic_mytopic = new gcp.pubsub.Topic("mytopic", {
- *     name: "default-topic",
- * });
- * ```
  */
 export class Topic extends pulumi.CustomResource {
     /**

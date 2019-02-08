@@ -9,33 +9,6 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/storage/docs/access-control/lists) 
  * and 
  * [API](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls).
- * 
- * ## Example Usage
- * 
- * Create an object ACL with one owner and one reader.
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_storage_bucket_image_store = new gcp.storage.Bucket("image-store", {
- *     location: "EU",
- *     name: "image-store-bucket",
- * });
- * const google_storage_bucket_object_image = new gcp.storage.BucketObject("image", {
- *     bucket: google_storage_bucket_image_store.name,
- *     name: "image1",
- *     source: new pulumi.asset.FileArchive("image1.jpg"),
- * });
- * const google_storage_object_acl_image_store_acl = new gcp.storage.ObjectACL("image-store-acl", {
- *     bucket: google_storage_bucket_image_store.name,
- *     object: google_storage_bucket_object_image.name,
- *     roleEntities: [
- *         "OWNER:user-my.email@gmail.com",
- *         "READER:group-mygroup",
- *     ],
- * });
- * ```
  */
 export class ObjectACL extends pulumi.CustomResource {
     /**

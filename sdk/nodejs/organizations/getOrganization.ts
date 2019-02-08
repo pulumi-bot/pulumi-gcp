@@ -6,17 +6,6 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to get information about a Google Cloud Organization.
- * 
- * ```hcl
- * data "google_organization" "org" {
- *   domain = "example.com"
- * }
- * 
- * resource "google_folder" "sales" {
- *   display_name = "Sales"
- *   parent       = "${data.google_organization.org.name}"
- * }
- * ```
  */
 export function getOrganization(args?: GetOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> {
     args = args || {};

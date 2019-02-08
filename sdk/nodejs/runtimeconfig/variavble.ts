@@ -9,45 +9,6 @@ import * as utilities from "../utilities";
  * [official documentation](https://cloud.google.com/deployment-manager/runtime-configurator/),
  * or the
  * [JSON API](https://cloud.google.com/deployment-manager/runtime-configurator/reference/rest/).
- * 
- * ## Example Usage
- * 
- * Example creating a RuntimeConfig variable.
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_runtimeconfig_config_my_runtime_config = new gcp.runtimeconfig.Config("my-runtime-config", {
- *     description: "Runtime configuration values for my service",
- *     name: "my-service-runtime-config",
- * });
- * const google_runtimeconfig_variable_environment = new gcp.runtimeconfig.Variavble("environment", {
- *     name: "prod-variables/hostname",
- *     parent: google_runtimeconfig_config_my_runtime_config.name,
- *     text: "example.com",
- * });
- * ```
- * You can also encode binary content using the `value` argument instead. The
- * value must be base64 encoded.
- * 
- * Example of using the `value` argument.
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_runtimeconfig_config_my_runtime_config = new gcp.runtimeconfig.Config("my-runtime-config", {
- *     description: "Runtime configuration values for my service",
- *     name: "my-service-runtime-config",
- * });
- * const google_runtimeconfig_variable_my_secret = new gcp.runtimeconfig.Variavble("my-secret", {
- *     name: "secret",
- *     parent: google_runtimeconfig_config_my_runtime_config.name,
- *     value: Buffer.from(fs.readFileSync("my-encrypted-secret.dat", "utf-8")).toString("base64"),
- * });
- * ```
  */
 export class Variavble extends pulumi.CustomResource {
     /**

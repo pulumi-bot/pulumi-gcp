@@ -11,23 +11,6 @@ import * as utilities from "../utilities";
  *    entire project to delete the application. Terraform will report the application has been
  *    successfully deleted; this is a limitation of Terraform, and will go away in the future.
  *    Terraform is not able to delete App Engine applications.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_project_my_project = new gcp.organizations.Project("my_project", {
- *     name: "My Project",
- *     orgId: "1234567",
- *     projectId: "your-project-id",
- * });
- * const google_app_engine_application_app = new gcp.appengine.Application("app", {
- *     locationId: "us-central",
- *     project: google_project_my_project.projectId,
- * });
- * ```
  */
 export class Application extends pulumi.CustomResource {
     /**

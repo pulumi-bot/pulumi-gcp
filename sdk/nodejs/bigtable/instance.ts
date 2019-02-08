@@ -8,24 +8,6 @@ import * as utilities from "../utilities";
  * Creates a Google Bigtable instance. For more information see
  * [the official documentation](https://cloud.google.com/bigtable/) and
  * [API](https://cloud.google.com/bigtable/docs/go/reference).
- * 
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_bigtable_instance_instance = new gcp.bigtable.Instance("instance", {
- *     cluster: {
- *         clusterId: "tf-instance-cluster",
- *         numNodes: 3,
- *         storageType: "HDD",
- *         zone: "us-central1-b",
- *     },
- *     name: "tf-instance",
- * });
- * ```
  */
 export class Instance extends pulumi.CustomResource {
     /**

@@ -11,20 +11,6 @@ import * as utilities from "../utilities";
  * 
  * Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
  * granted to the credentials used with Terraform.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_logging_organization_exclusion_my_exclusion = new gcp.logging.OrganizationExclusion("my-exclusion", {
- *     description: "Exclude GCE instance debug logs",
- *     filter: "resource.type = gce_instance AND severity <= DEBUG",
- *     name: "my-instance-debug-exclusion",
- *     orgId: "123456789",
- * });
- * ```
  */
 export class OrganizationExclusion extends pulumi.CustomResource {
     /**

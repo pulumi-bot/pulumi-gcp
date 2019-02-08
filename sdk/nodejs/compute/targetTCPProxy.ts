@@ -21,32 +21,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Target Tcp Proxy Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_compute_health_check_default = new gcp.compute.HealthCheck("default", {
- *     checkIntervalSec: 1,
- *     name: "health-check",
- *     tcpHealthCheck: {
- *         port: Number.parseFloat("443"),
- *     },
- *     timeoutSec: 1,
- * });
- * const google_compute_backend_service_default = new gcp.compute.BackendService("default", {
- *     healthChecks: google_compute_health_check_default.selfLink,
- *     name: "backend-service",
- *     protocol: "TCP",
- *     timeoutSec: 10,
- * });
- * const google_compute_target_tcp_proxy_default = new gcp.compute.TargetTCPProxy("default", {
- *     backendService: google_compute_backend_service_default.selfLink,
- *     name: "test-proxy",
- * });
- * ```
  */
 export class TargetTCPProxy extends pulumi.CustomResource {
     /**

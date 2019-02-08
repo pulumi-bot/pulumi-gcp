@@ -9,27 +9,6 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/storage/docs/access-control/lists) 
  * and 
  * [API](https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls).
- * 
- * ## Example Usage
- * 
- * Example creating an ACL on a bucket with one owner, and one reader.
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_storage_bucket_image_store = new gcp.storage.Bucket("image-store", {
- *     location: "EU",
- *     name: "image-store-bucket",
- * });
- * const google_storage_bucket_acl_image_store_acl = new gcp.storage.BucketACL("image-store-acl", {
- *     bucket: google_storage_bucket_image_store.name,
- *     roleEntities: [
- *         "OWNER:user-my.email@gmail.com",
- *         "READER:group-mygroup",
- *     ],
- * });
- * ```
  */
 export class BucketACL extends pulumi.CustomResource {
     /**

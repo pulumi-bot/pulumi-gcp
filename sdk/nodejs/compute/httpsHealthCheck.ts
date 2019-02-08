@@ -27,20 +27,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Https Health Check Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_compute_https_health_check_default = new gcp.compute.HttpsHealthCheck("default", {
- *     checkIntervalSec: 1,
- *     name: "authentication-health-check",
- *     requestPath: "/health_check",
- *     timeoutSec: 1,
- * });
- * ```
  */
 export class HttpsHealthCheck extends pulumi.CustomResource {
     /**

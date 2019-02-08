@@ -20,32 +20,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Ssl Policy Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_compute_ssl_policy_custom_ssl_policy = new gcp.compute.SSLPolicy("custom-ssl-policy", {
- *     customFeatures: [
- *         "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
- *         "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
- *     ],
- *     minTlsVersion: "TLS_1_2",
- *     name: "custom-ssl-policy",
- *     profile: "CUSTOM",
- * });
- * const google_compute_ssl_policy_nonprod_ssl_policy = new gcp.compute.SSLPolicy("nonprod-ssl-policy", {
- *     minTlsVersion: "TLS_1_2",
- *     name: "nonprod-ssl-policy",
- *     profile: "MODERN",
- * });
- * const google_compute_ssl_policy_prod_ssl_policy = new gcp.compute.SSLPolicy("prod-ssl-policy", {
- *     name: "production-ssl-policy",
- *     profile: "MODERN",
- * });
- * ```
  */
 export class SSLPolicy extends pulumi.CustomResource {
     /**

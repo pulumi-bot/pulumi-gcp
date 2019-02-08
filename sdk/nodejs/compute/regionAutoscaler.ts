@@ -23,66 +23,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Region Autoscaler Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const google_compute_image_debian_9 = pulumi.output(gcp.compute.getImage({
- *     family: "debian-9",
- *     project: "debian-cloud",
- * }));
- * const google_compute_target_pool_foobar = new gcp.compute.TargetPool("foobar", {
- *     name: "my-target-pool",
- * });
- * const google_compute_instance_template_foobar = new gcp.compute.InstanceTemplate("foobar", {
- *     canIpForward: false,
- *     disks: [{
- *         sourceImage: google_compute_image_debian_9.apply(__arg0 => __arg0.selfLink),
- *     }],
- *     machineType: "n1-standard-1",
- *     metadata: {
- *         foo: "bar",
- *     },
- *     name: "my-instance-template",
- *     networkInterfaces: [{
- *         network: "default",
- *     }],
- *     serviceAccount: {
- *         scopes: [
- *             "userinfo-email",
- *             "compute-ro",
- *             "storage-ro",
- *         ],
- *     },
- *     tags: [
- *         "foo",
- *         "bar",
- *     ],
- * });
- * const google_compute_region_instance_group_manager_foobar = new gcp.compute.RegionInstanceGroupManager("foobar", {
- *     baseInstanceName: "foobar",
- *     instanceTemplate: google_compute_instance_template_foobar.selfLink,
- *     name: "my-region-igm",
- *     region: "us-central1",
- *     targetPools: [google_compute_target_pool_foobar.selfLink],
- * });
- * const google_compute_region_autoscaler_foobar = new gcp.compute.RegionAutoscaler("foobar", {
- *     autoscalingPolicy: {
- *         cooldownPeriod: 60,
- *         cpuUtilization: {
- *             target: 0.500000,
- *         },
- *         maxReplicas: 5,
- *         minReplicas: 1,
- *     },
- *     name: "my-region-autoscaler",
- *     region: "us-central1",
- *     target: google_compute_region_instance_group_manager_foobar.selfLink,
- * });
- * ```
  */
 export class RegionAutoscaler extends pulumi.CustomResource {
     /**
