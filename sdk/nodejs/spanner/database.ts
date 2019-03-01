@@ -6,27 +6,6 @@ import * as utilities from "../utilities";
 
 /**
  * Creates a Google Spanner Database within a Spanner Instance. For more information, see the [official documentation](https://cloud.google.com/spanner/), or the [JSON API](https://cloud.google.com/spanner/docs/reference/rest/v1/projects.instances.databases).
- * 
- * ## Example Usage
- * 
- * Example creating a Spanner database.
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const main = new gcp.spanner.Instance("main", {
- *     config: "regional-europe-west1",
- *     displayName: "main-instance",
- * });
- * const db = new gcp.spanner.Database("db", {
- *     ddls: [
- *         "CREATE TABLE t1 (t1 INT64 NOT NULL,) PRIMARY KEY(t1)",
- *         "CREATE TABLE t2 (t2 INT64 NOT NULL,) PRIMARY KEY(t2)",
- *     ],
- *     instance: main.name,
- * });
- * ```
  */
 export class Database extends pulumi.CustomResource {
     /**

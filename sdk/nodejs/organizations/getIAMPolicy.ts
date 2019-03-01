@@ -8,23 +8,6 @@ import * as utilities from "../utilities";
  * Generates an IAM policy document that may be referenced by and applied to
  * other Google Cloud Platform resources, such as the `google_project` resource.
  * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const admin = pulumi.output(gcp.organizations.getIAMPolicy({
- *     bindings: [
- *         {
- *             members: ["serviceAccount:your-custom-sa@your-project.iam.gserviceaccount.com"],
- *             role: "roles/compute.instanceAdmin",
- *         },
- *         {
- *             members: ["user:jane@example.com"],
- *             role: "roles/storage.objectViewer",
- *         },
- *     ],
- * }));
- * ```
  * 
  * This data source is used to define IAM policies to apply to other resources.
  * Currently, defining a policy through a datasource and referencing that policy

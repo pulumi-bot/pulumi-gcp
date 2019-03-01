@@ -9,46 +9,6 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/container-builder/docs/running-builds/automate-builds)
  * and
  * [API](https://godoc.org/google.golang.org/api/cloudbuild/v1#BuildTrigger).
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const buildTrigger = new gcp.cloudbuild.Trigger("build_trigger", {
- *     build: {
- *         images: ["gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA"],
- *         steps: [{
- *             args: "build -t gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA -f Dockerfile .",
- *             name: "gcr.io/cloud-builders/docker",
- *         }],
- *     },
- *     project: "my-project",
- *     triggerTemplate: {
- *         branchName: "master",
- *         project: "my-project",
- *         repoName: "some-repo",
- *     },
- * });
- * ```
- * 
- * OR
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const buildTrigger = new gcp.cloudbuild.Trigger("build_trigger", {
- *     filename: "cloudbuild.yaml",
- *     project: "my-project",
- *     triggerTemplate: {
- *         branchName: "master",
- *         project: "my-project",
- *         repoName: "some-repo",
- *     },
- * });
- * ```
  */
 export class Trigger extends pulumi.CustomResource {
     /**

@@ -8,37 +8,6 @@ import * as utilities from "../utilities";
  * Creates a table resource in a dataset for Google BigQuery. For more information see
  * [the official documentation](https://cloud.google.com/bigquery/docs/) and
  * [API](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables).
- * 
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const defaultDataset = new gcp.bigquery.Dataset("default", {
- *     datasetId: "foo",
- *     defaultTableExpirationMs: 3600000,
- *     description: "This is a test description",
- *     friendlyName: "test",
- *     labels: {
- *         env: "default",
- *     },
- *     location: "EU",
- * });
- * const defaultTable = new gcp.bigquery.Table("default", {
- *     datasetId: defaultDataset.datasetId,
- *     labels: {
- *         env: "default",
- *     },
- *     schema: fs.readFileSync("schema.json", "utf-8"),
- *     tableId: "bar",
- *     timePartitioning: {
- *         type: "DAY",
- *     },
- * });
- * ```
  */
 export class Table extends pulumi.CustomResource {
     /**

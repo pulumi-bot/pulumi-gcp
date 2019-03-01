@@ -24,47 +24,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Vpn Tunnel Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const vpnStaticIp = new gcp.compute.Address("vpn_static_ip", {});
- * const network1 = new gcp.compute.Network("network1", {});
- * const targetGateway = new gcp.compute.VPNGateway("target_gateway", {
- *     network: network1.selfLink,
- * });
- * const frEsp = new gcp.compute.ForwardingRule("fr_esp", {
- *     ipAddress: vpnStaticIp.address,
- *     ipProtocol: "ESP",
- *     target: targetGateway.selfLink,
- * });
- * const frUdp4500 = new gcp.compute.ForwardingRule("fr_udp4500", {
- *     ipAddress: vpnStaticIp.address,
- *     ipProtocol: "UDP",
- *     portRange: "4500",
- *     target: targetGateway.selfLink,
- * });
- * const frUdp500 = new gcp.compute.ForwardingRule("fr_udp500", {
- *     ipAddress: vpnStaticIp.address,
- *     ipProtocol: "UDP",
- *     portRange: "500",
- *     target: targetGateway.selfLink,
- * });
- * const tunnel1 = new gcp.compute.VPNTunnel("tunnel1", {
- *     peerIp: "15.0.0.120",
- *     sharedSecret: "a secret message",
- *     targetVpnGateway: targetGateway.selfLink,
- * }, {dependsOn: [frEsp, frUdp4500, frUdp500]});
- * const route1 = new gcp.compute.Route("route1", {
- *     destRange: "15.0.0.0/24",
- *     network: network1.name,
- *     nextHopVpnTunnel: tunnel1.selfLink,
- *     priority: 1000,
- * });
- * ```
  */
 export class VPNTunnel extends pulumi.CustomResource {
     /**

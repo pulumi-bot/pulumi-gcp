@@ -8,38 +8,6 @@ import * as utilities from "../utilities";
  *  Creates a device registry in Google's Cloud IoT Core platform. For more information see
  * [the official documentation](https://cloud.google.com/iot/docs/) and
  * [API](https://cloud.google.com/iot/docs/reference/cloudiot/rest/v1/projects.locations.registries).
- * 
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const default_devicestatus = new gcp.pubsub.Topic("default-devicestatus", {});
- * const default_telemetry = new gcp.pubsub.Topic("default-telemetry", {});
- * const default_registry = new gcp.kms.Registry("default-registry", {
- *     credentials: [{
- *         publicKeyCertificate: {
- *             certificate: fs.readFileSync("rsa_cert.pem", "utf-8"),
- *             format: "X509_CERTIFICATE_PEM",
- *         },
- *     }],
- *     eventNotificationConfig: {
- *         pubsub_topic_name: default_telemetry.id,
- *     },
- *     httpConfig: {
- *         http_enabled_state: "HTTP_ENABLED",
- *     },
- *     mqttConfig: {
- *         mqtt_enabled_state: "MQTT_ENABLED",
- *     },
- *     stateNotificationConfig: {
- *         pubsub_topic_name: default_devicestatus.id,
- *     },
- * });
- * ```
  */
 export class Registry extends pulumi.CustomResource {
     /**

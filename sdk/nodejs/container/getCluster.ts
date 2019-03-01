@@ -6,25 +6,6 @@ import * as utilities from "../utilities";
 
 /**
  * Get info about a cluster within GKE from its name and zone.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const myCluster = pulumi.output(gcp.container.getCluster({
- *     name: "my-cluster",
- *     zone: "us-east1-a",
- * }));
- * 
- * export const clusterPassword = myCluster.apply(myCluster => myCluster.masterAuths[0].password);
- * export const clusterUsername = myCluster.apply(myCluster => myCluster.masterAuths[0].username);
- * export const endpoint = myCluster.apply(myCluster => myCluster.endpoint);
- * export const instanceGroupUrls = myCluster.apply(myCluster => myCluster.instanceGroupUrls);
- * export const nodeConfig = myCluster.apply(myCluster => myCluster.nodeConfigs);
- * export const nodePools = myCluster.apply(myCluster => myCluster.nodePools);
- * ```
  */
 export function getCluster(args: GetClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterResult> {
     return pulumi.runtime.invoke("gcp:container/getCluster:getCluster", {

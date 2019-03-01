@@ -10,47 +10,6 @@ import * as utilities from "../utilities";
  * and the [API](https://cloud.google.com/compute/docs/reference/latest/backendServices).
  * 
  * For internal load balancing, use a [google_compute_region_backend_service](https://www.terraform.io/docs/providers/google/r/compute_region_backend_service.html).
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const defaultHttpHealthCheck = new gcp.compute.HttpHealthCheck("default", {
- *     checkIntervalSec: 1,
- *     requestPath: "/",
- *     timeoutSec: 1,
- * });
- * const webserver = new gcp.compute.InstanceTemplate("webserver", {
- *     disks: [{
- *         autoDelete: true,
- *         boot: true,
- *         sourceImage: "debian-cloud/debian-9",
- *     }],
- *     machineType: "n1-standard-1",
- *     networkInterfaces: [{
- *         network: "default",
- *     }],
- * });
- * const webservers = new gcp.compute.InstanceGroupManager("webservers", {
- *     baseInstanceName: "webserver",
- *     instanceTemplate: webserver.selfLink,
- *     targetSize: 1,
- *     zone: "us-central1-f",
- * });
- * const website = new gcp.compute.BackendService("website", {
- *     backends: [{
- *         group: webservers.instanceGroup,
- *     }],
- *     description: "Our company website",
- *     enableCdn: false,
- *     healthChecks: defaultHttpHealthCheck.selfLink,
- *     portName: "http",
- *     protocol: "HTTP",
- *     timeoutSec: 10,
- * });
- * ```
  */
 export class BackendService extends pulumi.CustomResource {
     /**

@@ -7,26 +7,6 @@ import * as utilities from "../utilities";
 /**
  * Get the IP address from a static address. For more information see
  * the official [API](https://cloud.google.com/compute/docs/reference/latest/addresses/get) documentation.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const myAddress = pulumi.output(gcp.compute.getAddress({
- *     name: "foobar",
- * }));
- * const prod = new gcp.dns.ManagedZone("prod", {
- *     dnsName: "prod.mydomain.com.",
- * });
- * const frontend = new gcp.dns.RecordSet("frontend", {
- *     managedZone: prod.name,
- *     rrdatas: [myAddress.apply(myAddress => myAddress.address)],
- *     ttl: 300,
- *     type: "A",
- * });
- * ```
  */
 export function getAddress(args: GetAddressArgs, opts?: pulumi.InvokeOptions): Promise<GetAddressResult> {
     return pulumi.runtime.invoke("gcp:compute/getAddress:getAddress", {

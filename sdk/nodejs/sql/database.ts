@@ -8,26 +8,6 @@ import * as utilities from "../utilities";
  * Creates a new Google SQL Database on a Google SQL Database Instance. For more information, see
  * the [official documentation](https://cloud.google.com/sql/),
  * or the [JSON API](https://cloud.google.com/sql/docs/admin-api/v1beta4/databases).
- * 
- * ## Example Usage
- * 
- * Example creating a SQL Database.
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const master = new gcp.sql.DatabaseInstance("master", {
- *     settings: {
- *         tier: "D0",
- *     },
- * });
- * const users = new gcp.sql.Database("users", {
- *     charset: "latin1",
- *     collation: "latin1_swedish_ci",
- *     instance: master.name,
- * });
- * ```
  */
 export class Database extends pulumi.CustomResource {
     /**

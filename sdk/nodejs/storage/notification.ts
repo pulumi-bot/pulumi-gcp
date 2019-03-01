@@ -16,34 +16,6 @@ import * as utilities from "../utilities";
  * account's email address, use the `google_storage_project_service_account` datasource's `email_address` value, and see below
  * for an example of enabling notifications by granting the correct IAM permission. See
  * [the notifications documentation](https://cloud.google.com/storage/docs/gsutil/commands/notification) for more details.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const gcsAccount = pulumi.output(gcp.storage.getProjectServiceAccount({}));
- * const topic = new gcp.pubsub.Topic("topic", {});
- * const bucket = new gcp.storage.Bucket("bucket", {});
- * const binding = new gcp.pubsub.TopicIAMBinding("binding", {
- *     members: [gcsAccount.apply(gcsAccount => `serviceAccount:${gcsAccount.emailAddress}`)],
- *     role: "roles/pubsub.publisher",
- *     topic: topic.name,
- * });
- * const notification = new gcp.storage.Notification("notification", {
- *     bucket: bucket.name,
- *     customAttributes: {
- *         "new-attribute": "new-attribute-value",
- *     },
- *     eventTypes: [
- *         "OBJECT_FINALIZE",
- *         "OBJECT_METADATA_UPDATE",
- *     ],
- *     payloadFormat: "JSON_API_V1",
- *     topic: topic.id,
- * }, {dependsOn: [binding]});
- * ```
  */
 export class Notification extends pulumi.CustomResource {
     /**

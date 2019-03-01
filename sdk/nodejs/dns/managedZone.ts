@@ -7,21 +7,6 @@ import * as utilities from "../utilities";
 /**
  * Manages a zone within Google Cloud DNS. For more information see [the official documentation](https://cloud.google.com/dns/zones/) and
  * [API](https://cloud.google.com/dns/api/v1/managedZones).
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const prod = new gcp.dns.ManagedZone("prod", {
- *     description: "Production DNS zone",
- *     dnsName: "prod.mydomain.com.",
- *     labels: {
- *         foo: "bar",
- *     },
- * });
- * ```
  */
 export class ManagedZone extends pulumi.CustomResource {
     /**

@@ -8,40 +8,6 @@ import * as utilities from "../utilities";
  * Creates a subscription in Google's pubsub queueing system. For more information see
  * [the official documentation](https://cloud.google.com/pubsub/docs) and
  * [API](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions).
- * 
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const default_topic = new gcp.pubsub.Topic("default-topic", {});
- * const defaultSubscription = new gcp.pubsub.Subscription("default", {
- *     ackDeadlineSeconds: 20,
- *     pushConfig: {
- *         attributes: {
- *             "x-goog-version": "v1",
- *         },
- *         pushEndpoint: "https://example.com/push",
- *     },
- *     topic: default_topic.name,
- * });
- * ```
- * 
- * If the subscription has a topic in a different project:
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const topic_different_project = new gcp.pubsub.Topic("topic-different-project", {
- *     project: "another-project",
- * });
- * const defaultSubscription = new gcp.pubsub.Subscription("default", {
- *     topic: topic_different_project.id,
- * });
- * ```
  */
 export class Subscription extends pulumi.CustomResource {
     /**

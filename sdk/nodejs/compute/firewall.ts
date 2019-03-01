@@ -30,32 +30,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Firewall Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const defaultNetwork = new gcp.compute.Network("default", {});
- * const defaultFirewall = new gcp.compute.Firewall("default", {
- *     allows: [
- *         {
- *             protocol: "icmp",
- *         },
- *         {
- *             ports: [
- *                 "80",
- *                 "8080",
- *                 "1000-2000",
- *             ],
- *             protocol: "tcp",
- *         },
- *     ],
- *     network: defaultNetwork.name,
- *     sourceTags: ["web"],
- * });
- * ```
  */
 export class Firewall extends pulumi.CustomResource {
     /**

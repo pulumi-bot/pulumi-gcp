@@ -6,21 +6,6 @@ import * as utilities from "../utilities";
 
 /**
  * Allows management of a [Google Cloud Platform service account](https://cloud.google.com/compute/docs/access/service-accounts)
- * 
- * ## Example Usage
- * 
- * This snippet creates a service account, then gives it objectViewer
- * permission in a project.
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const objectViewer = new gcp.serviceAccount.Account("object_viewer", {
- *     accountId: "object-viewer",
- *     displayName: "Object viewer",
- * });
- * ```
  */
 export class Account extends pulumi.CustomResource {
     /**

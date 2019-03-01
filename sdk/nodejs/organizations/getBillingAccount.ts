@@ -6,21 +6,6 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to get information about a Google Billing Account.
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const acct = pulumi.output(gcp.organizations.getBillingAccount({
- *     displayName: "My Billing Account",
- *     open: true,
- * }));
- * const myProject = new gcp.organizations.Project("my_project", {
- *     billingAccount: acct.apply(acct => acct.id),
- *     orgId: "1234567",
- *     projectId: "your-project-id",
- * });
- * ```
  */
 export function getBillingAccount(args?: GetBillingAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetBillingAccountResult> {
     args = args || {};

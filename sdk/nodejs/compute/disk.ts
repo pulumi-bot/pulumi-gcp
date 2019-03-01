@@ -37,22 +37,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Disk Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const defaultDisk = new gcp.compute.Disk("default", {
- *     image: "debian-8-jessie-v20170523",
- *     labels: {
- *         environment: "dev",
- *     },
- *     type: "pd-ssd",
- *     zone: "us-central1-a",
- * });
- * ```
  */
 export class Disk extends pulumi.CustomResource {
     /**

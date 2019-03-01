@@ -19,24 +19,6 @@ import * as utilities from "../utilities";
  * > **Note:** This resource __must not__ be used in conjunction with
  *    `google_organization_iam_member` or `google_organization_iam_binding`
  *    or they will fight over what your policy should be.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const admin = pulumi.output(gcp.organizations.getIAMPolicy({
- *     bindings: [{
- *         members: ["user:jane@example.com"],
- *         role: "roles/editor",
- *     }],
- * }));
- * const policy = new gcp.organizations.IAMPolicy("policy", {
- *     orgId: "123456789",
- *     policyData: admin.apply(admin => admin.policyData),
- * });
- * ```
  */
 export class IAMPolicy extends pulumi.CustomResource {
     /**

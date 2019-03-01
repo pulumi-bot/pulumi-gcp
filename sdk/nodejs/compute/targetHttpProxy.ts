@@ -20,43 +20,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Target Http Proxy Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const defaultHttpHealthCheck = new gcp.compute.HttpHealthCheck("default", {
- *     checkIntervalSec: 1,
- *     requestPath: "/",
- *     timeoutSec: 1,
- * });
- * const defaultBackendService = new gcp.compute.BackendService("default", {
- *     healthChecks: defaultHttpHealthCheck.selfLink,
- *     portName: "http",
- *     protocol: "HTTP",
- *     timeoutSec: 10,
- * });
- * const defaultURLMap = new gcp.compute.URLMap("default", {
- *     defaultService: defaultBackendService.selfLink,
- *     hostRules: [{
- *         hosts: ["mysite.com"],
- *         pathMatcher: "allpaths",
- *     }],
- *     pathMatchers: [{
- *         defaultService: defaultBackendService.selfLink,
- *         name: "allpaths",
- *         pathRules: [{
- *             paths: ["/*"],
- *             service: defaultBackendService.selfLink,
- *         }],
- *     }],
- * });
- * const defaultTargetHttpProxy = new gcp.compute.TargetHttpProxy("default", {
- *     urlMap: defaultURLMap.selfLink,
- * });
- * ```
  */
 export class TargetHttpProxy extends pulumi.CustomResource {
     /**

@@ -19,33 +19,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Router Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const foobarNetwork = new gcp.compute.Network("foobar", {
- *     autoCreateSubnetworks: false,
- * });
- * const foobarRouter = new gcp.compute.Router("foobar", {
- *     bgp: {
- *         advertiseMode: "CUSTOM",
- *         advertisedGroups: ["ALL_SUBNETS"],
- *         advertisedIpRanges: [
- *             {
- *                 range: "1.2.3.4",
- *             },
- *             {
- *                 range: "6.7.0.0/16",
- *             },
- *         ],
- *         asn: 64514,
- *     },
- *     network: foobarNetwork.name,
- * });
- * ```
  */
 export class Router extends pulumi.CustomResource {
     /**

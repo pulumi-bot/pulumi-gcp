@@ -20,50 +20,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Target Https Proxy Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const defaultHttpHealthCheck = new gcp.compute.HttpHealthCheck("default", {
- *     checkIntervalSec: 1,
- *     requestPath: "/",
- *     timeoutSec: 1,
- * });
- * const defaultSSLCertificate = new gcp.compute.SSLCertificate("default", {
- *     certificate: fs.readFileSync("path/to/certificate.crt", "utf-8"),
- *     privateKey: fs.readFileSync("path/to/private.key", "utf-8"),
- * });
- * const defaultBackendService = new gcp.compute.BackendService("default", {
- *     healthChecks: defaultHttpHealthCheck.selfLink,
- *     portName: "http",
- *     protocol: "HTTP",
- *     timeoutSec: 10,
- * });
- * const defaultURLMap = new gcp.compute.URLMap("default", {
- *     defaultService: defaultBackendService.selfLink,
- *     description: "a description",
- *     hostRules: [{
- *         hosts: ["mysite.com"],
- *         pathMatcher: "allpaths",
- *     }],
- *     pathMatchers: [{
- *         defaultService: defaultBackendService.selfLink,
- *         name: "allpaths",
- *         pathRules: [{
- *             paths: ["/*"],
- *             service: defaultBackendService.selfLink,
- *         }],
- *     }],
- * });
- * const defaultTargetHttpsProxy = new gcp.compute.TargetHttpsProxy("default", {
- *     sslCertificates: [defaultSSLCertificate.selfLink],
- *     urlMap: defaultURLMap.selfLink,
- * });
- * ```
  */
 export class TargetHttpsProxy extends pulumi.CustomResource {
     /**

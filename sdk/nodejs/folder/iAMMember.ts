@@ -12,23 +12,6 @@ import * as utilities from "../utilities";
  *    `google_folder_iam_policy` or they will fight over what your policy
  *    should be. Similarly, roles controlled by `google_folder_iam_binding`
  *    should not be assigned to using `google_folder_iam_member`.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const department1 = new gcp.organizations.Folder("department1", {
- *     displayName: "Department 1",
- *     parent: "organizations/1234567",
- * });
- * const admin = new gcp.folder.IAMMember("admin", {
- *     folder: department1.name,
- *     member: "user:jane@example.com",
- *     role: "roles/editor",
- * });
- * ```
  */
 export class IAMMember extends pulumi.CustomResource {
     /**

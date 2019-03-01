@@ -41,26 +41,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Subnetwork Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const custom_test = new gcp.compute.Network("custom-test", {
- *     autoCreateSubnetworks: false,
- * });
- * const network_with_private_secondary_ip_ranges = new gcp.compute.Subnetwork("network-with-private-secondary-ip-ranges", {
- *     ipCidrRange: "10.2.0.0/16",
- *     network: custom_test.selfLink,
- *     region: "us-central1",
- *     secondaryIpRanges: [{
- *         ipCidrRange: "192.168.10.0/24",
- *         rangeName: "tf-test-secondary-range-update1",
- *     }],
- * });
- * ```
  */
 export class Subnetwork extends pulumi.CustomResource {
     /**

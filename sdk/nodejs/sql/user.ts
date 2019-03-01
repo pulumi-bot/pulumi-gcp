@@ -10,26 +10,6 @@ import * as utilities from "../utilities";
  * > **Note:** All arguments including the username and password will be stored in the raw state as plain-text.
  * [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html). Passwords will not be retrieved when running
  * "terraform import".
- * 
- * ## Example Usage
- * 
- * Example creating a SQL User.
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const master = new gcp.sql.DatabaseInstance("master", {
- *     settings: {
- *         tier: "D0",
- *     },
- * });
- * const users = new gcp.sql.User("users", {
- *     host: "me.com",
- *     instance: master.name,
- *     password: "changeme",
- * });
- * ```
  */
 export class User extends pulumi.CustomResource {
     /**

@@ -10,21 +10,6 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/dns/zones/)
  * and
  * [API](https://cloud.google.com/dns/api/v1/managedZones).
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const envDnsZone = pulumi.output(gcp.dns.getManagedZone({
- *     name: "qa-zone",
- * }));
- * const dns = new gcp.dns.RecordSet("dns", {
- *     managedZone: envDnsZone.apply(envDnsZone => envDnsZone.name),
- *     rrdatas: ["test"],
- *     ttl: 300,
- *     type: "TXT",
- * });
- * ```
  */
 export function getManagedZone(args: GetManagedZoneArgs, opts?: pulumi.InvokeOptions): Promise<GetManagedZoneResult> {
     return pulumi.runtime.invoke("gcp:dns/getManagedZone:getManagedZone", {

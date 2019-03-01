@@ -7,19 +7,6 @@ import * as utilities from "../utilities";
 /**
  * Allows creation and management of a single binding within IAM policy for
  * an existing Google Cloud KMS crypto key.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const cryptoKey = new gcp.kms.CryptoKeyIAMBinding("crypto_key", {
- *     cryptoKeyId: "my-gcp-project/us-central1/my-key-ring/my-crypto-key",
- *     members: ["user:jane@example.com"],
- *     role: "roles/editor",
- * });
- * ```
  */
 export class CryptoKeyIAMBinding extends pulumi.CustomResource {
     /**

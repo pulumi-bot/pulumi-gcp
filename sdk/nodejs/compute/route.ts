@@ -39,21 +39,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Route Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const defaultNetwork = new gcp.compute.Network("default", {});
- * const defaultRoute = new gcp.compute.Route("default", {
- *     destRange: "15.0.0.0/24",
- *     network: defaultNetwork.name,
- *     nextHopIp: "10.132.1.5",
- *     priority: 100,
- * });
- * ```
  */
 export class Route extends pulumi.CustomResource {
     /**

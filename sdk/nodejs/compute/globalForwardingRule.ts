@@ -9,49 +9,6 @@ import * as utilities from "../utilities";
  * information see [the official
  * documentation](https://cloud.google.com/compute/docs/load-balancing/http/global-forwarding-rules) and
  * [API](https://cloud.google.com/compute/docs/reference/latest/globalForwardingRules).
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const defaultHttpHealthCheck = new gcp.compute.HttpHealthCheck("default", {
- *     checkIntervalSec: 1,
- *     requestPath: "/",
- *     timeoutSec: 1,
- * });
- * const defaultBackendService = new gcp.compute.BackendService("default", {
- *     healthChecks: defaultHttpHealthCheck.selfLink,
- *     portName: "http",
- *     protocol: "HTTP",
- *     timeoutSec: 10,
- * });
- * const defaultURLMap = new gcp.compute.URLMap("default", {
- *     defaultService: defaultBackendService.selfLink,
- *     description: "a description",
- *     hostRules: [{
- *         hosts: ["mysite.com"],
- *         pathMatcher: "allpaths",
- *     }],
- *     pathMatchers: [{
- *         defaultService: defaultBackendService.selfLink,
- *         name: "allpaths",
- *         pathRules: [{
- *             paths: ["/*"],
- *             service: defaultBackendService.selfLink,
- *         }],
- *     }],
- * });
- * const defaultTargetHttpProxy = new gcp.compute.TargetHttpProxy("default", {
- *     description: "a description",
- *     urlMap: defaultURLMap.selfLink,
- * });
- * const defaultGlobalForwardingRule = new gcp.compute.GlobalForwardingRule("default", {
- *     portRange: "80",
- *     target: defaultTargetHttpProxy.selfLink,
- * });
- * ```
  */
 export class GlobalForwardingRule extends pulumi.CustomResource {
     /**

@@ -8,17 +8,6 @@ import * as utilities from "../utilities";
  * For more information, see [the official
  * documentation](https://cloud.google.com/source-repositories/) and
  * [API](https://cloud.google.com/source-repositories/docs/reference/rest/v1/projects.repos)
- * 
- * ## Example Usage
- * 
- * This example is the common case of creating a repository within Google Cloud Source Repositories:
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const frontend = new gcp.sourcerepo.Repository("frontend", {});
- * ```
  */
 export class Repository extends pulumi.CustomResource {
     /**

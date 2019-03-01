@@ -20,22 +20,6 @@ import * as utilities from "../utilities";
  * previously encrypted with these keys will be irrecoverable. For this reason, it
  * is strongly recommended that you add lifecycle hooks to the resource to prevent
  * accidental destruction.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const myKeyRing = new gcp.kms.KeyRing("my_key_ring", {
- *     location: "us-central1",
- *     project: "my-project",
- * });
- * const myCryptoKey = new gcp.kms.CryptoKey("my_crypto_key", {
- *     keyRing: myKeyRing.selfLink,
- *     rotationPeriod: "100000s",
- * });
- * ```
  */
 export class CryptoKey extends pulumi.CustomResource {
     /**

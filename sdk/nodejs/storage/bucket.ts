@@ -14,24 +14,6 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/storage/docs/overview)
  * and
  * [API](https://cloud.google.com/storage/docs/json_api/v1/buckets).
- * 
- * 
- * ## Example Usage
- * 
- * Example creating a private bucket in standard storage, in the EU region.
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const image_store = new gcp.storage.Bucket("image-store", {
- *     location: "EU",
- *     websites: [{
- *         mainPageSuffix: "index.html",
- *         notFoundPage: "404.html",
- *     }],
- * });
- * ```
  */
 export class Bucket extends pulumi.CustomResource {
     /**

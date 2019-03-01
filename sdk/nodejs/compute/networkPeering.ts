@@ -13,28 +13,6 @@ import * as utilities from "../utilities";
  * > **Note:** Both network must create a peering with each other for the peering to be functional.
  * 
  * > **Note:** Subnets IP ranges across peered VPC networks cannot overlap.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const defaultNetwork = new gcp.compute.Network("default", {
- *     autoCreateSubnetworks: false,
- * });
- * const other = new gcp.compute.Network("other", {
- *     autoCreateSubnetworks: false,
- * });
- * const peering1 = new gcp.compute.NetworkPeering("peering1", {
- *     network: defaultNetwork.selfLink,
- *     peerNetwork: other.selfLink,
- * });
- * const peering2 = new gcp.compute.NetworkPeering("peering2", {
- *     network: other.selfLink,
- *     peerNetwork: defaultNetwork.selfLink,
- * });
- * ```
  */
 export class NetworkPeering extends pulumi.CustomResource {
     /**

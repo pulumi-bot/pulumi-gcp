@@ -9,17 +9,6 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/compute/docs/vpc)
  * and
  * [API](https://cloud.google.com/compute/docs/reference/latest/networks).
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const defaultNetwork = new gcp.compute.Network("default", {
- *     autoCreateSubnetworks: true,
- * });
- * ```
  */
 export class Network extends pulumi.CustomResource {
     /**

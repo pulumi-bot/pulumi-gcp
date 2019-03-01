@@ -12,64 +12,6 @@ import * as utilities from "../utilities";
  * !> **Warning:** Due to limitations of the API, all arguments except
  * `labels`,`cluster_config.worker_config.num_instances` and `cluster_config.preemptible_worker_config.num_instances` are non-updateable. Changing others will cause recreation of the
  * whole cluster!
- * 
- * ## Example usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const mycluster = new gcp.dataproc.Cluster("mycluster", {
- *     clusterConfig: {
- *         gceClusterConfig: {
- *             //network = "${google_compute_network.dataproc_network.name}"
- *             tags: [
- *                 "foo",
- *                 "bar",
- *             ],
- *         },
- *         // You can define multiple initialization_action blocks
- *         initializationActions: [{
- *             script: "gs://dataproc-initialization-actions/stackdriver/stackdriver.sh",
- *             timeoutSec: 500,
- *         }],
- *         masterConfig: {
- *             diskConfig: {
- *                 bootDiskSizeGb: 10,
- *                 bootDiskType: "pd-ssd",
- *             },
- *             machineType: "n1-standard-1",
- *             numInstances: 1,
- *         },
- *         preemptibleWorkerConfig: {
- *             numInstances: 0,
- *         },
- *         // Override or set some custom properties
- *         softwareConfig: {
- *             imageVersion: "1.3.7-deb9",
- *             overrideProperties: {
- *                 "dataproc:dataproc.allow.zero.workers": "true",
- *             },
- *         },
- *         stagingBucket: "dataproc-staging-bucket",
- *         workerConfig: {
- *             diskConfig: {
- *                 bootDiskSizeGb: 10,
- *                 numLocalSsds: 1,
- *             },
- *             machineType: "n1-standard-1",
- *             numInstances: 2,
- *         },
- *     },
- *     labels: {
- *         foo: "bar",
- *     },
- *     region: "us-central1",
- * });
- * const simplecluster = new gcp.dataproc.Cluster("simplecluster", {
- *     region: "us-central1",
- * });
- * ```
  */
 export class Cluster extends pulumi.CustomResource {
     /**

@@ -11,23 +11,6 @@ import * as utilities from "../utilities";
  * > **Note:** This resource _must not_ be used in conjunction with
  *    `google_folder_iam_policy` or they will fight over what your policy
  *    should be.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const department1 = new gcp.organizations.Folder("department1", {
- *     displayName: "Department 1",
- *     parent: "organizations/1234567",
- * });
- * const admin = new gcp.folder.IAMBinding("admin", {
- *     folder: department1.name,
- *     members: ["user:jane@example.com"],
- *     role: "roles/editor",
- * });
- * ```
  */
 export class IAMBinding extends pulumi.CustomResource {
     /**

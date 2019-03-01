@@ -11,48 +11,6 @@ import * as utilities from "../utilities";
  * 
  * > **Note**: Region backend services can only be used when using internal load balancing. For external load balancing, use
  *   `google_compute_backend_service` instead.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const defaultHealthCheck = new gcp.compute.HealthCheck("default", {
- *     checkIntervalSec: 1,
- *     tcpHealthCheck: {
- *         port: 80,
- *     },
- *     timeoutSec: 1,
- * });
- * const foobarInstanceTemplate = new gcp.compute.InstanceTemplate("foobar", {
- *     disks: [{
- *         autoDelete: true,
- *         boot: true,
- *         sourceImage: "debian-cloud/debian-9",
- *     }],
- *     machineType: "n1-standard-1",
- *     networkInterfaces: [{
- *         network: "default",
- *     }],
- * });
- * const foo = new gcp.compute.RegionInstanceGroupManager("foo", {
- *     baseInstanceName: "foobar",
- *     instanceTemplate: foobarInstanceTemplate.selfLink,
- *     region: "us-central1",
- *     targetSize: 1,
- * });
- * const foobarRegionBackendService = new gcp.compute.RegionBackendService("foobar", {
- *     backends: [{
- *         group: foo.instanceGroup,
- *     }],
- *     description: "Hello World 1234",
- *     healthChecks: defaultHealthCheck.selfLink,
- *     protocol: "TCP",
- *     sessionAffinity: "CLIENT_IP",
- *     timeoutSec: 10,
- * });
- * ```
  */
 export class RegionBackendService extends pulumi.CustomResource {
     /**

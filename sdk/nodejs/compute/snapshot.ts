@@ -24,32 +24,6 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/snapshots)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/compute/docs/disks/create-snapshots)
- * 
- * ## Example Usage - Snapshot Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const debian = pulumi.output(gcp.compute.getImage({
- *     family: "debian-9",
- *     project: "debian-cloud",
- * }));
- * const persistent = new gcp.compute.Disk("persistent", {
- *     image: debian.apply(debian => debian.selfLink),
- *     size: 10,
- *     type: "pd-ssd",
- *     zone: "us-central1-a",
- * });
- * const snapshot = new gcp.compute.Snapshot("snapshot", {
- *     labels: {
- *         my_label: "%s",
- *     },
- *     sourceDisk: persistent.name,
- *     zone: "us-central1-a",
- * });
- * ```
  */
 export class Snapshot extends pulumi.CustomResource {
     /**

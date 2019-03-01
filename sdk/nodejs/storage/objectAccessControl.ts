@@ -30,24 +30,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Storage Object Access Control Public Object
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const bucket = new gcp.storage.Bucket("bucket", {});
- * const object = new gcp.storage.BucketObject("object", {
- *     bucket: bucket.name,
- *     source: new pulumi.asset.FileArchive("../static/img/header-logo.png"),
- * });
- * const publicRule = new gcp.storage.ObjectAccessControl("public_rule", {
- *     bucket: bucket.name,
- *     entity: "allUsers",
- *     object: object.name,
- *     role: "READER",
- * });
- * ```
  */
 export class ObjectAccessControl extends pulumi.CustomResource {
     /**

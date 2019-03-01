@@ -8,35 +8,6 @@ import * as utilities from "../utilities";
  * Creates a dataset resource for Google BigQuery. For more information see
  * [the official documentation](https://cloud.google.com/bigquery/docs/) and
  * [API](https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets).
- * 
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const defaultDataset = new gcp.bigquery.Dataset("default", {
- *     accesses: [
- *         {
- *             domain: "example.com",
- *             role: "READER",
- *         },
- *         {
- *             groupByEmail: "writers@example.com",
- *             role: "WRITER",
- *         },
- *     ],
- *     datasetId: "foo",
- *     defaultTableExpirationMs: 3600000,
- *     description: "This is a test description",
- *     friendlyName: "test",
- *     labels: {
- *         env: "default",
- *     },
- *     location: "EU",
- * });
- * ```
  */
 export class Dataset extends pulumi.CustomResource {
     /**

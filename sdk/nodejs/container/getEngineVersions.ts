@@ -6,24 +6,6 @@ import * as utilities from "../utilities";
 
 /**
  * Provides access to available Google Container Engine versions in a zone or region for a given project.
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const central1b = pulumi.output(gcp.container.getEngineVersions({
- *     zone: "us-central1-b",
- * }));
- * const foo = new gcp.container.Cluster("foo", {
- *     initialNodeCount: 1,
- *     masterAuth: {
- *         password: "adoy.rm",
- *         username: "mr.yoda",
- *     },
- *     nodeVersion: central1b.apply(central1b => central1b.latestNodeVersion),
- *     zone: "us-central1-b",
- * });
- * ```
  */
 export function getEngineVersions(args?: GetEngineVersionsArgs, opts?: pulumi.InvokeOptions): Promise<GetEngineVersionsResult> {
     args = args || {};

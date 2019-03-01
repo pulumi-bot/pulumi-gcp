@@ -15,42 +15,6 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/binary-authorization/docs/reference/rest/)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/binary-authorization/)
- * 
- * ## Example Usage - Binary Authorization Policy Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const note = new gcp.containeranalysis.Note("note", {
- *     attestationAuthority: {
- *         hint: {
- *             humanReadableName: "My attestor",
- *         },
- *     },
- * });
- * const attestor = new gcp.binaryauthorization.Attestor("attestor", {
- *     attestationAuthorityNote: {
- *         noteReference: note.name,
- *     },
- * });
- * const policy = new gcp.binaryauthorization.Policy("policy", {
- *     admissionWhitelistPatterns: [{
- *         namePattern: "gcr.io/google_containers/*",
- *     }],
- *     clusterAdmissionRules: [{
- *         cluster: "us-central1-a.prod-cluster",
- *         enforcementMode: "ENFORCED_BLOCK_AND_AUDIT_LOG",
- *         evaluationMode: "REQUIRE_ATTESTATION",
- *         requireAttestationsBies: [attestor.name],
- *     }],
- *     defaultAdmissionRule: {
- *         enforcementMode: "ENFORCED_BLOCK_AND_AUDIT_LOG",
- *         evaluationMode: "ALWAYS_ALLOW",
- *     },
- * });
- * ```
  */
 export class Policy extends pulumi.CustomResource {
     /**

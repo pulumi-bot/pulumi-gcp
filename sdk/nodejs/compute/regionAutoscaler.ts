@@ -23,61 +23,6 @@ import * as utilities from "../utilities";
  *     <img alt="Open in Cloud Shell" src="//gstatic.com/cloudssh/images/open-btn.svg" style="max-height: 44px; margin: 32px auto; max-width: 100%;">
  *   </a>
  * </div>
- * ## Example Usage - Region Autoscaler Basic
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const debian9 = pulumi.output(gcp.compute.getImage({
- *     family: "debian-9",
- *     project: "debian-cloud",
- * }));
- * const foobarTargetPool = new gcp.compute.TargetPool("foobar", {});
- * const foobarInstanceTemplate = new gcp.compute.InstanceTemplate("foobar", {
- *     canIpForward: false,
- *     disks: [{
- *         sourceImage: debian9.apply(debian9 => debian9.selfLink),
- *     }],
- *     machineType: "n1-standard-1",
- *     metadata: {
- *         foo: "bar",
- *     },
- *     networkInterfaces: [{
- *         network: "default",
- *     }],
- *     serviceAccount: {
- *         scopes: [
- *             "userinfo-email",
- *             "compute-ro",
- *             "storage-ro",
- *         ],
- *     },
- *     tags: [
- *         "foo",
- *         "bar",
- *     ],
- * });
- * const foobarRegionInstanceGroupManager = new gcp.compute.RegionInstanceGroupManager("foobar", {
- *     baseInstanceName: "foobar",
- *     instanceTemplate: foobarInstanceTemplate.selfLink,
- *     region: "us-central1",
- *     targetPools: [foobarTargetPool.selfLink],
- * });
- * const foobarRegionAutoscaler = new gcp.compute.RegionAutoscaler("foobar", {
- *     autoscalingPolicy: {
- *         cooldownPeriod: 60,
- *         cpuUtilization: {
- *             target: 0.5,
- *         },
- *         maxReplicas: 5,
- *         minReplicas: 1,
- *     },
- *     region: "us-central1",
- *     target: foobarRegionInstanceGroupManager.selfLink,
- * });
- * ```
  */
 export class RegionAutoscaler extends pulumi.CustomResource {
     /**

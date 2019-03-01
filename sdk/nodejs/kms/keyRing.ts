@@ -15,17 +15,6 @@ import * as utilities from "../utilities";
  * 
  * > Note: KeyRings cannot be deleted from Google Cloud Platform. Destroying a Terraform-managed KeyRing will remove it
  * from state but **will not delete the resource on the server**.
- * 
- * ## Example Usage
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const myKeyRing = new gcp.kms.KeyRing("my_key_ring", {
- *     location: "us-central1",
- * });
- * ```
  */
 export class KeyRing extends pulumi.CustomResource {
     /**
