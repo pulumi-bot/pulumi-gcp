@@ -661,15 +661,15 @@
   revision = "ce26bd871f42b9ff346058aa0760b1a0b30677ef"
 
 [[projects]]
-  branch = "master"
-  digest = "1:9e48cffeb9b65db24f10f9271e27ed2987c037b07d7b7c0c3641bf13498bd09a"
+  digest = "1:696f317bd45042dc179408273e861c7f890ce3c0184281962861c45accff9b5c"
   name = "github.com/pulumi/pulumi-terraform"
   packages = [
     "pkg/tfbridge",
     "pkg/tfgen",
   ]
   pruneopts = ""
-  revision = "0b5b9753f915a7366dd177d9a3a106fbce2fa6de"
+  revision = "b43c1052195469ca2aab15f0fc42a2b565f6d4cc"
+  source = "http://localhost.pulumi.engineering/github.com/pulumi/pulumi-terraform"
 
 [[projects]]
   branch = "master"
