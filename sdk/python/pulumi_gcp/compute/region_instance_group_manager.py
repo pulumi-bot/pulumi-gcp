@@ -82,7 +82,7 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
     instances in the group are added. Updating the target pools attribute does
     not affect existing instances.
     """
-    target_size: pulumi.Output[int]
+    target_size: pulumi.Output[float]
     """
     - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
     """
@@ -152,7 +152,7 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         :param pulumi.Input[list] target_pools: The full URL of all target pools to which new
                instances in the group are added. Updating the target pools attribute does
                not affect existing instances.
-        :param pulumi.Input[int] target_size: - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+        :param pulumi.Input[float] target_size: - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
         :param pulumi.Input[str] update_strategy: If the `instance_template`
                resource is modified, a value of `"NONE"` will prevent any of the managed
                instances from being restarted by Terraform. A value of `"ROLLING_UPDATE"`

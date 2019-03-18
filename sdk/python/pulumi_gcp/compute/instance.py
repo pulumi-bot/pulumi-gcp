@@ -33,7 +33,7 @@ class Instance(pulumi.CustomResource):
     """
     The CPU platform used by this instance.
     """
-    create_timeout: pulumi.Output[int]
+    create_timeout: pulumi.Output[float]
     """
     Configurable timeout in minutes for creating instances. Default is 4 minutes.
     Changing this forces a new resource to be created.
@@ -155,7 +155,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[bool] can_ip_forward: Whether to allow sending and receiving of
                packets with non-matching source or destination IPs.
                This defaults to false.
-        :param pulumi.Input[int] create_timeout: Configurable timeout in minutes for creating instances. Default is 4 minutes.
+        :param pulumi.Input[float] create_timeout: Configurable timeout in minutes for creating instances. Default is 4 minutes.
                Changing this forces a new resource to be created.
         :param pulumi.Input[bool] deletion_protection: Enable deletion protection on this instance. Defaults to false.
                **Note:** you must disable deletion protection before removing the resource (e.g., via `terraform destroy`), or the instance cannot be deleted and the Terraform run will not complete successfully.

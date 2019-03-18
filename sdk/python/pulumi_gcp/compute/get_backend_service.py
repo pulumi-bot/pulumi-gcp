@@ -22,8 +22,8 @@ class GetBackendServiceResult:
         if cdn_policies and not isinstance(cdn_policies, list):
             raise TypeError('Expected argument cdn_policies to be a list')
         __self__.cdn_policies = cdn_policies
-        if connection_draining_timeout_sec and not isinstance(connection_draining_timeout_sec, int):
-            raise TypeError('Expected argument connection_draining_timeout_sec to be a int')
+        if connection_draining_timeout_sec and not isinstance(connection_draining_timeout_sec, float):
+            raise TypeError('Expected argument connection_draining_timeout_sec to be a float')
         __self__.connection_draining_timeout_sec = connection_draining_timeout_sec
         """
         Time for which instance will be drained (not accept new connections, but still work to finish started ones).
@@ -88,8 +88,8 @@ class GetBackendServiceResult:
         """
         The Backend Service session stickyness configuration.
         """
-        if timeout_sec and not isinstance(timeout_sec, int):
-            raise TypeError('Expected argument timeout_sec to be a int')
+        if timeout_sec and not isinstance(timeout_sec, float):
+            raise TypeError('Expected argument timeout_sec to be a float')
         __self__.timeout_sec = timeout_sec
         """
         The number of seconds to wait for a backend to respond to a request before considering the request failed.

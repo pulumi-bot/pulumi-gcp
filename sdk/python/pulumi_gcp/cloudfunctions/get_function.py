@@ -13,8 +13,8 @@ class GetFunctionResult:
     A collection of values returned by getFunction.
     """
     def __init__(__self__, available_memory_mb=None, description=None, entry_point=None, environment_variables=None, event_triggers=None, https_trigger_url=None, labels=None, retry_on_failure=None, runtime=None, source_archive_bucket=None, source_archive_object=None, timeout=None, trigger_bucket=None, trigger_http=None, trigger_topic=None, id=None):
-        if available_memory_mb and not isinstance(available_memory_mb, int):
-            raise TypeError('Expected argument available_memory_mb to be a int')
+        if available_memory_mb and not isinstance(available_memory_mb, float):
+            raise TypeError('Expected argument available_memory_mb to be a float')
         __self__.available_memory_mb = available_memory_mb
         """
         Available memory (in MB) to the function.
@@ -73,8 +73,8 @@ class GetFunctionResult:
         """
         The source archive object (file) in archive bucket.
         """
-        if timeout and not isinstance(timeout, int):
-            raise TypeError('Expected argument timeout to be a int')
+        if timeout and not isinstance(timeout, float):
+            raise TypeError('Expected argument timeout to be a float')
         __self__.timeout = timeout
         """
         Function execution timeout (in seconds).

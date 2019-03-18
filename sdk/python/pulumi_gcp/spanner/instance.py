@@ -33,7 +33,7 @@ class Instance(pulumi.CustomResource):
     blank, Terraform will randomly generate one when the instance is first
     created.
     """
-    num_nodes: pulumi.Output[int]
+    num_nodes: pulumi.Output[float]
     """
     The number of nodes allocated to this instance.
     Defaults to `1`. This can be updated after creation.
@@ -65,7 +65,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] name: The unique name (ID) of the instance. If the name is left
                blank, Terraform will randomly generate one when the instance is first
                created.
-        :param pulumi.Input[int] num_nodes: The number of nodes allocated to this instance.
+        :param pulumi.Input[float] num_nodes: The number of nodes allocated to this instance.
                Defaults to `1`. This can be updated after creation.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.

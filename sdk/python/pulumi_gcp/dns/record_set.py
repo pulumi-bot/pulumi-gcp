@@ -28,7 +28,7 @@ class RecordSet(pulumi.CustomResource):
     The string data for the records in this record set
     whose meaning depends on the DNS type. For TXT record, if the string data contains spaces, add surrounding `\"` if you don't want your string to get split on spaces.
     """
-    ttl: pulumi.Output[int]
+    ttl: pulumi.Output[float]
     """
     The time-to-live of this record set (seconds).
     """
@@ -56,7 +56,7 @@ class RecordSet(pulumi.CustomResource):
                is not provided, the provider project is used.
         :param pulumi.Input[list] rrdatas: The string data for the records in this record set
                whose meaning depends on the DNS type. For TXT record, if the string data contains spaces, add surrounding `\"` if you don't want your string to get split on spaces.
-        :param pulumi.Input[int] ttl: The time-to-live of this record set (seconds).
+        :param pulumi.Input[float] ttl: The time-to-live of this record set (seconds).
         :param pulumi.Input[str] type: The DNS record set type.
         """
         if __name__ is not None:

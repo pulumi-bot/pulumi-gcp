@@ -61,7 +61,7 @@ class Cluster(pulumi.CustomResource):
     """
     The IP address of this cluster's Kubernetes master.
     """
-    initial_node_count: pulumi.Output[int]
+    initial_node_count: pulumi.Output[float]
     """
     The number of nodes to create in this
     cluster (not including the Kubernetes master). Must be set if `node_pool` is not set.
@@ -255,7 +255,7 @@ class Cluster(pulumi.CustomResource):
                See the [official documentation](https://cloud.google.com/tpu/docs/kubernetes-engine-setup).
                This property is in beta, and should be used with the terraform-provider-google-beta provider.
                See [Provider Versions](https://terraform.io/docs/providers/google/provider_versions.html) for more details on beta fields.
-        :param pulumi.Input[int] initial_node_count: The number of nodes to create in this
+        :param pulumi.Input[float] initial_node_count: The number of nodes to create in this
                cluster (not including the Kubernetes master). Must be set if `node_pool` is not set.
         :param pulumi.Input[dict] ip_allocation_policy: Configuration for cluster IP allocation. As of now, only pre-allocated subnetworks (custom type with secondary ranges) are supported.
                This will activate IP aliases. See the [official documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/ip-aliases)

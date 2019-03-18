@@ -11,7 +11,7 @@ from .. import utilities, tables
 class Snapshot(pulumi.CustomResource):
     creation_timestamp: pulumi.Output[str]
     description: pulumi.Output[str]
-    disk_size_gb: pulumi.Output[int]
+    disk_size_gb: pulumi.Output[float]
     label_fingerprint: pulumi.Output[str]
     labels: pulumi.Output[dict]
     licenses: pulumi.Output[list]
@@ -28,13 +28,13 @@ class Snapshot(pulumi.CustomResource):
     snapshot_encryption_key: pulumi.Output[dict]
     snapshot_encryption_key_raw: pulumi.Output[str]
     snapshot_encryption_key_sha256: pulumi.Output[str]
-    snapshot_id: pulumi.Output[int]
+    snapshot_id: pulumi.Output[float]
     source_disk: pulumi.Output[str]
     source_disk_encryption_key: pulumi.Output[dict]
     source_disk_encryption_key_raw: pulumi.Output[str]
     source_disk_encryption_key_sha256: pulumi.Output[str]
     source_disk_link: pulumi.Output[str]
-    storage_bytes: pulumi.Output[int]
+    storage_bytes: pulumi.Output[float]
     zone: pulumi.Output[str]
     def __init__(__self__, resource_name, opts=None, description=None, labels=None, name=None, project=None, snapshot_encryption_key=None, snapshot_encryption_key_raw=None, source_disk=None, source_disk_encryption_key=None, source_disk_encryption_key_raw=None, zone=None, __name__=None, __opts__=None):
         """

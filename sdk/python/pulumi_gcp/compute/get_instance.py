@@ -40,8 +40,8 @@ class GetInstanceResult:
         """
         The CPU platform used by this instance.
         """
-        if create_timeout and not isinstance(create_timeout, int):
-            raise TypeError('Expected argument create_timeout to be a int')
+        if create_timeout and not isinstance(create_timeout, float):
+            raise TypeError('Expected argument create_timeout to be a float')
         __self__.create_timeout = create_timeout
         if deletion_protection and not isinstance(deletion_protection, bool):
             raise TypeError('Expected argument deletion_protection to be a bool')

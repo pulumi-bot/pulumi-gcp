@@ -18,7 +18,7 @@ class NodePool(pulumi.CustomResource):
     """
     The cluster to create the node pool for.  Cluster must be present in `zone` provided for zonal clusters.
     """
-    initial_node_count: pulumi.Output[int]
+    initial_node_count: pulumi.Output[float]
     """
     The initial node count for the pool. Changing this will force
     recreation of the resource.
@@ -29,7 +29,7 @@ class NodePool(pulumi.CustomResource):
     Node management configuration, wherein auto-repair and
     auto-upgrade is configured. Structure is documented below.
     """
-    max_pods_per_node: pulumi.Output[int]
+    max_pods_per_node: pulumi.Output[float]
     """
     The maximum number of pods per node in this node pool.
     Note that this does not work on node pools which are "route-based" - that is, node
@@ -52,7 +52,7 @@ class NodePool(pulumi.CustomResource):
     The node configuration of the pool. See
     google_container_cluster for schema.
     """
-    node_count: pulumi.Output[int]
+    node_count: pulumi.Output[float]
     """
     The number of nodes per instance group. This field can be used to
     update the number of nodes per instance group but should not be used alongside `autoscaling`.
@@ -90,11 +90,11 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[dict] autoscaling: Configuration required by cluster autoscaler to adjust
                the size of the node pool to the current cluster usage. Structure is documented below.
         :param pulumi.Input[str] cluster: The cluster to create the node pool for.  Cluster must be present in `zone` provided for zonal clusters.
-        :param pulumi.Input[int] initial_node_count: The initial node count for the pool. Changing this will force
+        :param pulumi.Input[float] initial_node_count: The initial node count for the pool. Changing this will force
                recreation of the resource.
         :param pulumi.Input[dict] management: Node management configuration, wherein auto-repair and
                auto-upgrade is configured. Structure is documented below.
-        :param pulumi.Input[int] max_pods_per_node: The maximum number of pods per node in this node pool.
+        :param pulumi.Input[float] max_pods_per_node: The maximum number of pods per node in this node pool.
                Note that this does not work on node pools which are "route-based" - that is, node
                pools belonging to clusters that do not have IP Aliasing enabled.
                This property is in beta, and should be used with the terraform-provider-google-beta provider.
@@ -105,7 +105,7 @@ class NodePool(pulumi.CustomResource):
                with the specified prefix. Conflicts with `name`.
         :param pulumi.Input[dict] node_config: The node configuration of the pool. See
                google_container_cluster for schema.
-        :param pulumi.Input[int] node_count: The number of nodes per instance group. This field can be used to
+        :param pulumi.Input[float] node_count: The number of nodes per instance group. This field can be used to
                update the number of nodes per instance group but should not be used alongside `autoscaling`.
         :param pulumi.Input[str] project: The ID of the project in which to create the node pool. If blank,
                the provider-configured project will be used.

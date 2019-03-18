@@ -9,7 +9,7 @@ import pulumi.runtime
 from .. import utilities, tables
 
 class Subscription(pulumi.CustomResource):
-    ack_deadline_seconds: pulumi.Output[int]
+    ack_deadline_seconds: pulumi.Output[float]
     """
     The maximum number of seconds a
     subscriber has to acknowledge a received message, otherwise the message is
@@ -47,7 +47,7 @@ class Subscription(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] ack_deadline_seconds: The maximum number of seconds a
+        :param pulumi.Input[float] ack_deadline_seconds: The maximum number of seconds a
                subscriber has to acknowledge a received message, otherwise the message is
                redelivered. Changing this forces a new resource to be created.
         :param pulumi.Input[str] name: A unique name for the resource, required by pubsub.

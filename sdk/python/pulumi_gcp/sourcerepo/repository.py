@@ -18,7 +18,7 @@ class Repository(pulumi.CustomResource):
     The ID of the project in which the resource belongs. If it
     is not provided, the provider project is used.
     """
-    size: pulumi.Output[int]
+    size: pulumi.Output[float]
     """
     The size of the repository.
     """
