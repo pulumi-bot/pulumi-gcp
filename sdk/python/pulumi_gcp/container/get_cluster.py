@@ -43,8 +43,8 @@ class GetClusterResult:
         if endpoint and not isinstance(endpoint, str):
             raise TypeError('Expected argument endpoint to be a str')
         __self__.endpoint = endpoint
-        if initial_node_count and not isinstance(initial_node_count, int):
-            raise TypeError('Expected argument initial_node_count to be a int')
+        if initial_node_count and not isinstance(initial_node_count, float):
+            raise TypeError('Expected argument initial_node_count to be a float')
         __self__.initial_node_count = initial_node_count
         if instance_group_urls and not isinstance(instance_group_urls, list):
             raise TypeError('Expected argument instance_group_urls to be a list')

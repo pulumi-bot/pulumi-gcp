@@ -9,7 +9,7 @@ import pulumi.runtime
 from .. import utilities, tables
 
 class Function(pulumi.CustomResource):
-    available_memory_mb: pulumi.Output[int]
+    available_memory_mb: pulumi.Output[float]
     """
     Memory (in MB), available to the function. Default value is 256MB. Allowed values are: 128MB, 256MB, 512MB, 1024MB, and 2048MB.
     """
@@ -66,7 +66,7 @@ class Function(pulumi.CustomResource):
     """
     The source archive object (file) in archive bucket.
     """
-    timeout: pulumi.Output[int]
+    timeout: pulumi.Output[float]
     """
     Timeout (in seconds) for the function. Default value is 60 seconds. Cannot be more than 540 seconds.
     """
@@ -93,7 +93,7 @@ class Function(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] available_memory_mb: Memory (in MB), available to the function. Default value is 256MB. Allowed values are: 128MB, 256MB, 512MB, 1024MB, and 2048MB.
+        :param pulumi.Input[float] available_memory_mb: Memory (in MB), available to the function. Default value is 256MB. Allowed values are: 128MB, 256MB, 512MB, 1024MB, and 2048MB.
         :param pulumi.Input[str] description: Description of the function.
         :param pulumi.Input[str] entry_point: Name of a JavaScript function that will be executed when the Google Cloud Function is triggered.
         :param pulumi.Input[dict] environment_variables: A set of key/value environment variable pairs to assign to the function.
@@ -108,7 +108,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] runtime: The runtime in which the function is going to run. If empty, defaults to `"nodejs6"`.
         :param pulumi.Input[str] source_archive_bucket: The GCS bucket containing the zip archive which contains the function.
         :param pulumi.Input[str] source_archive_object: The source archive object (file) in archive bucket.
-        :param pulumi.Input[int] timeout: Timeout (in seconds) for the function. Default value is 60 seconds. Cannot be more than 540 seconds.
+        :param pulumi.Input[float] timeout: Timeout (in seconds) for the function. Default value is 60 seconds. Cannot be more than 540 seconds.
         :param pulumi.Input[str] trigger_bucket: Google Cloud Storage bucket name. Every change in files in this bucket will trigger function execution. Cannot be used with `trigger_http` and `trigger_topic`.
                Deprecated. Use `event_trigger` instead.
         :param pulumi.Input[bool] trigger_http: Boolean variable. Any HTTP request (of a supported type) to the endpoint will trigger function execution. Supported HTTP request types are: POST, PUT, GET, DELETE, and OPTIONS. Endpoint is returned as `https_trigger_url`. Cannot be used with `trigger_bucket` and `trigger_topic`.

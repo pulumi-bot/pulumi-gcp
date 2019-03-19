@@ -48,7 +48,7 @@ class InstanceGroup(pulumi.CustomResource):
     """
     The URI of the created resource.
     """
-    size: pulumi.Output[int]
+    size: pulumi.Output[float]
     """
     The number of instances in the group.
     """
