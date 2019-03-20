@@ -17,7 +17,7 @@ class BackendService(pulumi.CustomResource):
     """
     Cloud CDN configuration for this BackendService. Structure is documented below.
     """
-    connection_draining_timeout_sec: pulumi.Output[int]
+    connection_draining_timeout_sec: pulumi.Output[float]
     """
     Time for which instance will be drained (not accept new connections,
     but still work to finish started ones). Defaults to `300`.
@@ -85,7 +85,7 @@ class BackendService(pulumi.CustomResource):
     affinity), `CLIENT_IP` (hash of the source/dest addresses / ports), and
     `GENERATED_COOKIE` (distribute load using a generated session cookie).
     """
-    timeout_sec: pulumi.Output[int]
+    timeout_sec: pulumi.Output[float]
     """
     The number of secs to wait for a backend to respond
     to a request before considering the request failed. Defaults to `30`.
@@ -102,7 +102,7 @@ class BackendService(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] backends: The list of backends that serve this BackendService. Structure is documented below.
         :param pulumi.Input[dict] cdn_policy: Cloud CDN configuration for this BackendService. Structure is documented below.
-        :param pulumi.Input[int] connection_draining_timeout_sec: Time for which instance will be drained (not accept new connections,
+        :param pulumi.Input[float] connection_draining_timeout_sec: Time for which instance will be drained (not accept new connections,
                but still work to finish started ones). Defaults to `300`.
         :param pulumi.Input[list] custom_request_headers: Headers that the
                HTTP/S load balancer should add to proxied requests. See [guide](https://cloud.google.com/compute/docs/load-balancing/http/backend-service#user-defined-request-headers) for details.
@@ -126,7 +126,7 @@ class BackendService(pulumi.CustomResource):
         :param pulumi.Input[str] session_affinity: How to distribute load. Options are `NONE` (no
                affinity), `CLIENT_IP` (hash of the source/dest addresses / ports), and
                `GENERATED_COOKIE` (distribute load using a generated session cookie).
-        :param pulumi.Input[int] timeout_sec: The number of secs to wait for a backend to respond
+        :param pulumi.Input[float] timeout_sec: The number of secs to wait for a backend to respond
                to a request before considering the request failed. Defaults to `30`.
         """
         if __name__ is not None:

@@ -18,7 +18,7 @@ class GlobalAddress(pulumi.CustomResource):
     labels: pulumi.Output[dict]
     name: pulumi.Output[str]
     network: pulumi.Output[str]
-    prefix_length: pulumi.Output[int]
+    prefix_length: pulumi.Output[float]
     project: pulumi.Output[str]
     """
     The ID of the project in which the resource belongs.

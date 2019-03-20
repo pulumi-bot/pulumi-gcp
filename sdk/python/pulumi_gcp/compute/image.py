@@ -9,7 +9,7 @@ import pulumi.runtime
 from .. import utilities, tables
 
 class Image(pulumi.CustomResource):
-    create_timeout: pulumi.Output[int]
+    create_timeout: pulumi.Output[float]
     """
     Configurable timeout in minutes for creating images. Default is 4 minutes.
     """
@@ -67,7 +67,7 @@ class Image(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] create_timeout: Configurable timeout in minutes for creating images. Default is 4 minutes.
+        :param pulumi.Input[float] create_timeout: Configurable timeout in minutes for creating images. Default is 4 minutes.
         :param pulumi.Input[str] description: The description of the image to be created
         :param pulumi.Input[str] family: The name of the image family to which this image belongs.
         :param pulumi.Input[dict] labels: A set of key/value label pairs to assign to the image.

@@ -14,7 +14,7 @@ class Dataset(pulumi.CustomResource):
     An array of objects that define dataset access for
     one or more entities. Structure is documented below.
     """
-    creation_time: pulumi.Output[int]
+    creation_time: pulumi.Output[float]
     """
     The time when this dataset was created, in milliseconds since the epoch.
     """
@@ -22,7 +22,7 @@ class Dataset(pulumi.CustomResource):
     """
     The ID of the dataset containing this table.
     """
-    default_table_expiration_ms: pulumi.Output[int]
+    default_table_expiration_ms: pulumi.Output[float]
     """
     The default lifetime of all
     tables in the dataset, in milliseconds. The minimum value is 3600000
@@ -44,7 +44,7 @@ class Dataset(pulumi.CustomResource):
     """
     A mapping of labels to assign to the resource.
     """
-    last_modified_time: pulumi.Output[int]
+    last_modified_time: pulumi.Output[float]
     """
     The date when this dataset or any of its tables was last modified,
     in milliseconds since the epoch.
@@ -74,7 +74,7 @@ class Dataset(pulumi.CustomResource):
         :param pulumi.Input[list] accesses: An array of objects that define dataset access for
                one or more entities. Structure is documented below.
         :param pulumi.Input[str] dataset_id: The ID of the dataset containing this table.
-        :param pulumi.Input[int] default_table_expiration_ms: The default lifetime of all
+        :param pulumi.Input[float] default_table_expiration_ms: The default lifetime of all
                tables in the dataset, in milliseconds. The minimum value is 3600000
                milliseconds (one hour).
         :param pulumi.Input[str] description: A user-friendly description of the dataset.

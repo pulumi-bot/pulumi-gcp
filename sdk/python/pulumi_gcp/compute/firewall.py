@@ -19,7 +19,7 @@ class Firewall(pulumi.CustomResource):
     enable_logging: pulumi.Output[bool]
     name: pulumi.Output[str]
     network: pulumi.Output[str]
-    priority: pulumi.Output[int]
+    priority: pulumi.Output[float]
     project: pulumi.Output[str]
     """
     The ID of the project in which the resource belongs.

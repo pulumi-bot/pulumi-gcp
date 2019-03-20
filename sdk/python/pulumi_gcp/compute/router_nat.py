@@ -9,8 +9,8 @@ import pulumi.runtime
 from .. import utilities, tables
 
 class RouterNat(pulumi.CustomResource):
-    icmp_idle_timeout_sec: pulumi.Output[int]
-    min_ports_per_vm: pulumi.Output[int]
+    icmp_idle_timeout_sec: pulumi.Output[float]
+    min_ports_per_vm: pulumi.Output[float]
     name: pulumi.Output[str]
     nat_ip_allocate_option: pulumi.Output[str]
     nat_ips: pulumi.Output[list]
@@ -19,9 +19,9 @@ class RouterNat(pulumi.CustomResource):
     router: pulumi.Output[str]
     source_subnetwork_ip_ranges_to_nat: pulumi.Output[str]
     subnetworks: pulumi.Output[list]
-    tcp_established_idle_timeout_sec: pulumi.Output[int]
-    tcp_transitory_idle_timeout_sec: pulumi.Output[int]
-    udp_idle_timeout_sec: pulumi.Output[int]
+    tcp_established_idle_timeout_sec: pulumi.Output[float]
+    tcp_transitory_idle_timeout_sec: pulumi.Output[float]
+    udp_idle_timeout_sec: pulumi.Output[float]
     def __init__(__self__, resource_name, opts=None, icmp_idle_timeout_sec=None, min_ports_per_vm=None, name=None, nat_ip_allocate_option=None, nat_ips=None, project=None, region=None, router=None, source_subnetwork_ip_ranges_to_nat=None, subnetworks=None, tcp_established_idle_timeout_sec=None, tcp_transitory_idle_timeout_sec=None, udp_idle_timeout_sec=None, __name__=None, __opts__=None):
         """
         Create a RouterNat resource with the given unique name, props, and options.

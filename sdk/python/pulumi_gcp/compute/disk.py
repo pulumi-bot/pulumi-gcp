@@ -29,7 +29,7 @@ class Disk(pulumi.CustomResource):
     """
     The URI of the created resource.
     """
-    size: pulumi.Output[int]
+    size: pulumi.Output[float]
     snapshot: pulumi.Output[str]
     source_image_encryption_key: pulumi.Output[dict]
     source_image_id: pulumi.Output[str]

@@ -29,7 +29,7 @@ class Instance(pulumi.CustomResource):
     """
     The name of the Cloud Bigtable instance.
     """
-    num_nodes: pulumi.Output[int]
+    num_nodes: pulumi.Output[float]
     """
     The number of nodes in your Cloud Bigtable cluster. Minimum of `3` for a `PRODUCTION` instance. Cannot be set for a `DEVELOPMENT` instance.
     """
@@ -59,7 +59,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] display_name: The human-readable display name of the Bigtable instance. Defaults to the instance `name`.
         :param pulumi.Input[str] instance_type: The instance type to create. One of `"DEVELOPMENT"` or `"PRODUCTION"`. Defaults to `"PRODUCTION"`.
         :param pulumi.Input[str] name: The name of the Cloud Bigtable instance.
-        :param pulumi.Input[int] num_nodes: The number of nodes in your Cloud Bigtable cluster. Minimum of `3` for a `PRODUCTION` instance. Cannot be set for a `DEVELOPMENT` instance.
+        :param pulumi.Input[float] num_nodes: The number of nodes in your Cloud Bigtable cluster. Minimum of `3` for a `PRODUCTION` instance. Cannot be set for a `DEVELOPMENT` instance.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
         :param pulumi.Input[str] storage_type: The storage type to use. One of `"SSD"` or `"HDD"`. Defaults to `"SSD"`.
