@@ -12,7 +12,7 @@ class GetInstanceGroupResult:
     """
     A collection of values returned by getInstanceGroup.
     """
-    def __init__(__self__, description=None, instances=None, named_ports=None, network=None, project=None, self_link=None, size=None, zone=None, id=None):
+    def __init__(__self__, description=None, instances=None, name=None, named_ports=None, network=None, project=None, self_link=None, size=None, zone=None, id=None):
         if description and not isinstance(description, str):
             raise TypeError('Expected argument description to be a str')
         __self__.description = description
@@ -25,6 +25,9 @@ class GetInstanceGroupResult:
         """
         List of instances in the group.
         """
+        if name and not isinstance(name, str):
+            raise TypeError('Expected argument name to be a str')
+        __self__.name = name
         if named_ports and not isinstance(named_ports, list):
             raise TypeError('Expected argument named_ports to be a list')
         __self__.named_ports = named_ports
@@ -79,6 +82,7 @@ async def get_instance_group(name=None,project=None,self_link=None,zone=None,opt
     return GetInstanceGroupResult(
         description=__ret__.get('description'),
         instances=__ret__.get('instances'),
+        name=__ret__.get('name'),
         named_ports=__ret__.get('namedPorts'),
         network=__ret__.get('network'),
         project=__ret__.get('project'),

@@ -12,7 +12,13 @@ class GetKMSCryptoKeyResult:
     """
     A collection of values returned by getKMSCryptoKey.
     """
-    def __init__(__self__, rotation_period=None, self_link=None, version_templates=None, id=None):
+    def __init__(__self__, key_ring=None, name=None, rotation_period=None, self_link=None, version_templates=None, id=None):
+        if key_ring and not isinstance(key_ring, str):
+            raise TypeError('Expected argument key_ring to be a str')
+        __self__.key_ring = key_ring
+        if name and not isinstance(name, str):
+            raise TypeError('Expected argument name to be a str')
+        __self__.name = name
         if rotation_period and not isinstance(rotation_period, str):
             raise TypeError('Expected argument rotation_period to be a str')
         __self__.rotation_period = rotation_period
@@ -54,6 +60,8 @@ async def get_kms_crypto_key(key_ring=None,name=None,opts=None):
     __ret__ = await pulumi.runtime.invoke('gcp:kms/getKMSCryptoKey:getKMSCryptoKey', __args__, opts=opts)
 
     return GetKMSCryptoKeyResult(
+        key_ring=__ret__.get('keyRing'),
+        name=__ret__.get('name'),
         rotation_period=__ret__.get('rotationPeriod'),
         self_link=__ret__.get('selfLink'),
         version_templates=__ret__.get('versionTemplates'),

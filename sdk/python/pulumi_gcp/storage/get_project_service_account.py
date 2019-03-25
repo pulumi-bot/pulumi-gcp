@@ -12,7 +12,7 @@ class GetProjectServiceAccountResult:
     """
     A collection of values returned by getProjectServiceAccount.
     """
-    def __init__(__self__, email_address=None, project=None, id=None):
+    def __init__(__self__, email_address=None, project=None, user_project=None, id=None):
         if email_address and not isinstance(email_address, str):
             raise TypeError('Expected argument email_address to be a str')
         __self__.email_address = email_address
@@ -23,6 +23,9 @@ class GetProjectServiceAccountResult:
         if project and not isinstance(project, str):
             raise TypeError('Expected argument project to be a str')
         __self__.project = project
+        if user_project and not isinstance(user_project, str):
+            raise TypeError('Expected argument user_project to be a str')
+        __self__.user_project = user_project
         if id and not isinstance(id, str):
             raise TypeError('Expected argument id to be a str')
         __self__.id = id
@@ -49,4 +52,5 @@ async def get_project_service_account(project=None,user_project=None,opts=None):
     return GetProjectServiceAccountResult(
         email_address=__ret__.get('emailAddress'),
         project=__ret__.get('project'),
+        user_project=__ret__.get('userProject'),
         id=__ret__.get('id'))

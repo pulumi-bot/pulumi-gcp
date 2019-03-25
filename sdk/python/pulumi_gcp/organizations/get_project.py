@@ -12,7 +12,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, app_engines=None, auto_create_network=None, billing_account=None, folder_id=None, labels=None, name=None, number=None, org_id=None, policy_data=None, policy_etag=None, skip_delete=None, id=None):
+    def __init__(__self__, app_engines=None, auto_create_network=None, billing_account=None, folder_id=None, labels=None, name=None, number=None, org_id=None, policy_data=None, policy_etag=None, project_id=None, skip_delete=None, id=None):
         if app_engines and not isinstance(app_engines, list):
             raise TypeError('Expected argument app_engines to be a list')
         __self__.app_engines = app_engines
@@ -43,6 +43,9 @@ class GetProjectResult:
         if policy_etag and not isinstance(policy_etag, str):
             raise TypeError('Expected argument policy_etag to be a str')
         __self__.policy_etag = policy_etag
+        if project_id and not isinstance(project_id, str):
+            raise TypeError('Expected argument project_id to be a str')
+        __self__.project_id = project_id
         if skip_delete and not isinstance(skip_delete, bool):
             raise TypeError('Expected argument skip_delete to be a bool')
         __self__.skip_delete = skip_delete
@@ -75,5 +78,6 @@ async def get_project(project_id=None,opts=None):
         org_id=__ret__.get('orgId'),
         policy_data=__ret__.get('policyData'),
         policy_etag=__ret__.get('policyEtag'),
+        project_id=__ret__.get('projectId'),
         skip_delete=__ret__.get('skipDelete'),
         id=__ret__.get('id'))

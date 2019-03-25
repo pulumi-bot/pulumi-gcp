@@ -12,7 +12,10 @@ class GetBucketObjectResult:
     """
     A collection of values returned by getBucketObject.
     """
-    def __init__(__self__, cache_control=None, content=None, content_disposition=None, content_encoding=None, content_language=None, content_type=None, crc32c=None, detect_md5hash=None, md5hash=None, output_name=None, predefined_acl=None, self_link=None, source=None, storage_class=None, id=None):
+    def __init__(__self__, bucket=None, cache_control=None, content=None, content_disposition=None, content_encoding=None, content_language=None, content_type=None, crc32c=None, detect_md5hash=None, md5hash=None, name=None, output_name=None, predefined_acl=None, self_link=None, source=None, storage_class=None, id=None):
+        if bucket and not isinstance(bucket, str):
+            raise TypeError('Expected argument bucket to be a str')
+        __self__.bucket = bucket
         if cache_control and not isinstance(cache_control, str):
             raise TypeError('Expected argument cache_control to be a str')
         __self__.cache_control = cache_control
@@ -62,6 +65,9 @@ class GetBucketObjectResult:
         """
         (Computed) Base 64 MD5 hash of the uploaded data.
         """
+        if name and not isinstance(name, str):
+            raise TypeError('Expected argument name to be a str')
+        __self__.name = name
         if output_name and not isinstance(output_name, str):
             raise TypeError('Expected argument output_name to be a str')
         __self__.output_name = output_name
@@ -106,6 +112,7 @@ async def get_bucket_object(bucket=None,name=None,opts=None):
     __ret__ = await pulumi.runtime.invoke('gcp:storage/getBucketObject:getBucketObject', __args__, opts=opts)
 
     return GetBucketObjectResult(
+        bucket=__ret__.get('bucket'),
         cache_control=__ret__.get('cacheControl'),
         content=__ret__.get('content'),
         content_disposition=__ret__.get('contentDisposition'),
@@ -115,6 +122,7 @@ async def get_bucket_object(bucket=None,name=None,opts=None):
         crc32c=__ret__.get('crc32c'),
         detect_md5hash=__ret__.get('detectMd5hash'),
         md5hash=__ret__.get('md5hash'),
+        name=__ret__.get('name'),
         output_name=__ret__.get('outputName'),
         predefined_acl=__ret__.get('predefinedAcl'),
         self_link=__ret__.get('selfLink'),

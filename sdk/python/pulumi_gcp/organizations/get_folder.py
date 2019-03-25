@@ -12,7 +12,7 @@ class GetFolderResult:
     """
     A collection of values returned by getFolder.
     """
-    def __init__(__self__, create_time=None, display_name=None, lifecycle_state=None, name=None, organization=None, parent=None, id=None):
+    def __init__(__self__, create_time=None, display_name=None, folder=None, lifecycle_state=None, lookup_organization=None, name=None, organization=None, parent=None, id=None):
         if create_time and not isinstance(create_time, str):
             raise TypeError('Expected argument create_time to be a str')
         __self__.create_time = create_time
@@ -25,12 +25,18 @@ class GetFolderResult:
         """
         The folder's display name.
         """
+        if folder and not isinstance(folder, str):
+            raise TypeError('Expected argument folder to be a str')
+        __self__.folder = folder
         if lifecycle_state and not isinstance(lifecycle_state, str):
             raise TypeError('Expected argument lifecycle_state to be a str')
         __self__.lifecycle_state = lifecycle_state
         """
         The Folder's current lifecycle state.
         """
+        if lookup_organization and not isinstance(lookup_organization, bool):
+            raise TypeError('Expected argument lookup_organization to be a bool')
+        __self__.lookup_organization = lookup_organization
         if name and not isinstance(name, str):
             raise TypeError('Expected argument name to be a str')
         __self__.name = name
@@ -69,7 +75,9 @@ async def get_folder(folder=None,lookup_organization=None,opts=None):
     return GetFolderResult(
         create_time=__ret__.get('createTime'),
         display_name=__ret__.get('displayName'),
+        folder=__ret__.get('folder'),
         lifecycle_state=__ret__.get('lifecycleState'),
+        lookup_organization=__ret__.get('lookupOrganization'),
         name=__ret__.get('name'),
         organization=__ret__.get('organization'),
         parent=__ret__.get('parent'),

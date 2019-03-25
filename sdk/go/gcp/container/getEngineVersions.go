@@ -28,8 +28,12 @@ func LookupEngineVersions(ctx *pulumi.Context, args *GetEngineVersionsArgs) (*Ge
 		DefaultClusterVersion: outputs["defaultClusterVersion"],
 		LatestMasterVersion: outputs["latestMasterVersion"],
 		LatestNodeVersion: outputs["latestNodeVersion"],
+		Project: outputs["project"],
+		Region: outputs["region"],
 		ValidMasterVersions: outputs["validMasterVersions"],
 		ValidNodeVersions: outputs["validNodeVersions"],
+		VersionPrefix: outputs["versionPrefix"],
+		Zone: outputs["zone"],
 		Id: outputs["id"],
 	}, nil
 }
@@ -60,10 +64,14 @@ type GetEngineVersionsResult struct {
 	LatestMasterVersion interface{}
 	// The latest version available in the given zone for use with node instances.
 	LatestNodeVersion interface{}
+	Project interface{}
+	Region interface{}
 	// A list of versions available in the given zone for use with master instances.
 	ValidMasterVersions interface{}
 	// A list of versions available in the given zone for use with node instances.
 	ValidNodeVersions interface{}
+	VersionPrefix interface{}
+	Zone interface{}
 	// id is the provider-assigned unique ID for this managed resource.
 	Id interface{}
 }

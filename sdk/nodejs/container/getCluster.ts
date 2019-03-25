@@ -78,6 +78,7 @@ export interface GetClusterResult {
     readonly masterVersion: string;
     readonly minMasterVersion: string;
     readonly monitoringService: string;
+    readonly name: string;
     readonly network: string;
     readonly networkPolicies: { enabled: boolean, provider: string }[];
     readonly nodeConfigs: { diskSizeGb: number, diskType: string, guestAccelerators: { count: number, type: string }[], imageType: string, labels: {[key: string]: string}, localSsdCount: number, machineType: string, metadata: {[key: string]: string}, minCpuPlatform: string, oauthScopes: string[], preemptible: boolean, serviceAccount: string, tags: string[], taints: { effect: string, key: string, value: string }[], workloadMetadataConfigs: { nodeMetadata: string }[] }[];
@@ -86,10 +87,13 @@ export interface GetClusterResult {
     readonly podSecurityPolicyConfigs: { enabled: boolean }[];
     readonly privateCluster: boolean;
     readonly privateClusterConfigs: { enablePrivateEndpoint: boolean, enablePrivateNodes: boolean, masterIpv4CidrBlock: string, privateEndpoint: string, publicEndpoint: string }[];
+    readonly project?: string;
+    readonly region?: string;
     readonly removeDefaultNodePool: boolean;
     readonly resourceLabels: {[key: string]: string};
     readonly subnetwork: string;
     readonly tpuIpv4CidrBlock: string;
+    readonly zone?: string;
     /**
      * id is the provider-assigned unique ID for this managed resource.
      */

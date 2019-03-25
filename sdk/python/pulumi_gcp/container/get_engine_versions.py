@@ -12,7 +12,7 @@ class GetEngineVersionsResult:
     """
     A collection of values returned by getEngineVersions.
     """
-    def __init__(__self__, default_cluster_version=None, latest_master_version=None, latest_node_version=None, valid_master_versions=None, valid_node_versions=None, id=None):
+    def __init__(__self__, default_cluster_version=None, latest_master_version=None, latest_node_version=None, project=None, region=None, valid_master_versions=None, valid_node_versions=None, version_prefix=None, zone=None, id=None):
         if default_cluster_version and not isinstance(default_cluster_version, str):
             raise TypeError('Expected argument default_cluster_version to be a str')
         __self__.default_cluster_version = default_cluster_version
@@ -31,6 +31,12 @@ class GetEngineVersionsResult:
         """
         The latest version available in the given zone for use with node instances.
         """
+        if project and not isinstance(project, str):
+            raise TypeError('Expected argument project to be a str')
+        __self__.project = project
+        if region and not isinstance(region, str):
+            raise TypeError('Expected argument region to be a str')
+        __self__.region = region
         if valid_master_versions and not isinstance(valid_master_versions, list):
             raise TypeError('Expected argument valid_master_versions to be a list')
         __self__.valid_master_versions = valid_master_versions
@@ -43,6 +49,12 @@ class GetEngineVersionsResult:
         """
         A list of versions available in the given zone for use with node instances.
         """
+        if version_prefix and not isinstance(version_prefix, str):
+            raise TypeError('Expected argument version_prefix to be a str')
+        __self__.version_prefix = version_prefix
+        if zone and not isinstance(zone, str):
+            raise TypeError('Expected argument zone to be a str')
+        __self__.zone = zone
         if id and not isinstance(id, str):
             raise TypeError('Expected argument id to be a str')
         __self__.id = id
@@ -70,6 +82,10 @@ async def get_engine_versions(project=None,region=None,version_prefix=None,zone=
         default_cluster_version=__ret__.get('defaultClusterVersion'),
         latest_master_version=__ret__.get('latestMasterVersion'),
         latest_node_version=__ret__.get('latestNodeVersion'),
+        project=__ret__.get('project'),
+        region=__ret__.get('region'),
         valid_master_versions=__ret__.get('validMasterVersions'),
         valid_node_versions=__ret__.get('validNodeVersions'),
+        version_prefix=__ret__.get('versionPrefix'),
+        zone=__ret__.get('zone'),
         id=__ret__.get('id'))

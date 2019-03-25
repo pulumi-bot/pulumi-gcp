@@ -12,7 +12,10 @@ class GetBillingAccountResult:
     """
     A collection of values returned by getBillingAccount.
     """
-    def __init__(__self__, display_name=None, name=None, open=None, project_ids=None, id=None):
+    def __init__(__self__, billing_account=None, display_name=None, name=None, open=None, project_ids=None, id=None):
+        if billing_account and not isinstance(billing_account, str):
+            raise TypeError('Expected argument billing_account to be a str')
+        __self__.billing_account = billing_account
         if display_name and not isinstance(display_name, str):
             raise TypeError('Expected argument display_name to be a str')
         __self__.display_name = display_name
@@ -50,6 +53,7 @@ async def get_billing_account(billing_account=None,display_name=None,open=None,o
     __ret__ = await pulumi.runtime.invoke('gcp:organizations/getBillingAccount:getBillingAccount', __args__, opts=opts)
 
     return GetBillingAccountResult(
+        billing_account=__ret__.get('billingAccount'),
         display_name=__ret__.get('displayName'),
         name=__ret__.get('name'),
         open=__ret__.get('open'),

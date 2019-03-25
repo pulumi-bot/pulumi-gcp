@@ -12,7 +12,7 @@ class GetForwardingRuleResult:
     """
     A collection of values returned by getForwardingRule.
     """
-    def __init__(__self__, backend_service=None, description=None, ip_address=None, ip_protocol=None, load_balancing_scheme=None, network=None, port_range=None, ports=None, project=None, region=None, self_link=None, subnetwork=None, target=None, id=None):
+    def __init__(__self__, backend_service=None, description=None, ip_address=None, ip_protocol=None, load_balancing_scheme=None, name=None, network=None, port_range=None, ports=None, project=None, region=None, self_link=None, subnetwork=None, target=None, id=None):
         if backend_service and not isinstance(backend_service, str):
             raise TypeError('Expected argument backend_service to be a str')
         __self__.backend_service = backend_service
@@ -43,6 +43,9 @@ class GetForwardingRuleResult:
         """
         Type of load balancing of this forwarding rule.
         """
+        if name and not isinstance(name, str):
+            raise TypeError('Expected argument name to be a str')
+        __self__.name = name
         if network and not isinstance(network, str):
             raise TypeError('Expected argument network to be a str')
         __self__.network = network
@@ -112,6 +115,7 @@ async def get_forwarding_rule(name=None,project=None,region=None,opts=None):
         ip_address=__ret__.get('ipAddress'),
         ip_protocol=__ret__.get('ipProtocol'),
         load_balancing_scheme=__ret__.get('loadBalancingScheme'),
+        name=__ret__.get('name'),
         network=__ret__.get('network'),
         port_range=__ret__.get('portRange'),
         ports=__ret__.get('ports'),
