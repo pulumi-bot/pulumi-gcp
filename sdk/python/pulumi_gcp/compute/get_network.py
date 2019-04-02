@@ -12,7 +12,7 @@ class GetNetworkResult:
     """
     A collection of values returned by getNetwork.
     """
-    def __init__(__self__, description=None, gateway_ipv4=None, self_link=None, subnetworks_self_links=None, id=None):
+    def __init__(__self__, description=None, gateway_ipv4=None, name=None, project=None, self_link=None, subnetworks_self_links=None, id=None):
         if description and not isinstance(description, str):
             raise TypeError('Expected argument description to be a str')
         __self__.description = description
@@ -25,6 +25,12 @@ class GetNetworkResult:
         """
         The IP address of the gateway.
         """
+        if name and not isinstance(name, str):
+            raise TypeError('Expected argument name to be a str')
+        __self__.name = name
+        if project and not isinstance(project, str):
+            raise TypeError('Expected argument project to be a str')
+        __self__.project = project
         if self_link and not isinstance(self_link, str):
             raise TypeError('Expected argument self_link to be a str')
         __self__.self_link = self_link
@@ -57,6 +63,8 @@ async def get_network(name=None,project=None,opts=None):
     return GetNetworkResult(
         description=__ret__.get('description'),
         gateway_ipv4=__ret__.get('gatewayIpv4'),
+        name=__ret__.get('name'),
+        project=__ret__.get('project'),
         self_link=__ret__.get('selfLink'),
         subnetworks_self_links=__ret__.get('subnetworksSelfLinks'),
         id=__ret__.get('id'))

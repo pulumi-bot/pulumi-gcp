@@ -12,13 +12,16 @@ class GetAddressResult:
     """
     A collection of values returned by getAddress.
     """
-    def __init__(__self__, address=None, project=None, region=None, self_link=None, status=None, id=None):
+    def __init__(__self__, address=None, name=None, project=None, region=None, self_link=None, status=None, id=None):
         if address and not isinstance(address, str):
             raise TypeError('Expected argument address to be a str')
         __self__.address = address
         """
         The IP of the created resource.
         """
+        if name and not isinstance(name, str):
+            raise TypeError('Expected argument name to be a str')
+        __self__.name = name
         if project and not isinstance(project, str):
             raise TypeError('Expected argument project to be a str')
         __self__.project = project
@@ -58,6 +61,7 @@ async def get_address(name=None,project=None,region=None,opts=None):
 
     return GetAddressResult(
         address=__ret__.get('address'),
+        name=__ret__.get('name'),
         project=__ret__.get('project'),
         region=__ret__.get('region'),
         self_link=__ret__.get('selfLink'),

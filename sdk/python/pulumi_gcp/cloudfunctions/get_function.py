@@ -12,7 +12,7 @@ class GetFunctionResult:
     """
     A collection of values returned by getFunction.
     """
-    def __init__(__self__, available_memory_mb=None, description=None, entry_point=None, environment_variables=None, event_triggers=None, https_trigger_url=None, labels=None, retry_on_failure=None, runtime=None, service_account_email=None, source_archive_bucket=None, source_archive_object=None, source_repositories=None, timeout=None, trigger_bucket=None, trigger_http=None, trigger_topic=None, id=None):
+    def __init__(__self__, available_memory_mb=None, description=None, entry_point=None, environment_variables=None, event_triggers=None, https_trigger_url=None, labels=None, name=None, project=None, region=None, retry_on_failure=None, runtime=None, service_account_email=None, source_archive_bucket=None, source_archive_object=None, source_repositories=None, timeout=None, trigger_bucket=None, trigger_http=None, trigger_topic=None, id=None):
         if available_memory_mb and not isinstance(available_memory_mb, float):
             raise TypeError('Expected argument available_memory_mb to be a float')
         __self__.available_memory_mb = available_memory_mb
@@ -52,6 +52,18 @@ class GetFunctionResult:
         """
         A map of labels applied to this function.
         """
+        if name and not isinstance(name, str):
+            raise TypeError('Expected argument name to be a str')
+        __self__.name = name
+        """
+        The name of the Cloud Function.
+        """
+        if project and not isinstance(project, str):
+            raise TypeError('Expected argument project to be a str')
+        __self__.project = project
+        if region and not isinstance(region, str):
+            raise TypeError('Expected argument region to be a str')
+        __self__.region = region
         if retry_on_failure and not isinstance(retry_on_failure, bool):
             raise TypeError('Expected argument retry_on_failure to be a bool')
         __self__.retry_on_failure = retry_on_failure
@@ -125,6 +137,9 @@ async def get_function(name=None,project=None,region=None,opts=None):
         event_triggers=__ret__.get('eventTriggers'),
         https_trigger_url=__ret__.get('httpsTriggerUrl'),
         labels=__ret__.get('labels'),
+        name=__ret__.get('name'),
+        project=__ret__.get('project'),
+        region=__ret__.get('region'),
         retry_on_failure=__ret__.get('retryOnFailure'),
         runtime=__ret__.get('runtime'),
         service_account_email=__ret__.get('serviceAccountEmail'),

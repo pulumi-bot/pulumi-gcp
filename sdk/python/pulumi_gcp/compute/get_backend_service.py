@@ -12,7 +12,7 @@ class GetBackendServiceResult:
     """
     A collection of values returned by getBackendService.
     """
-    def __init__(__self__, affinity_cookie_ttl_sec=None, backends=None, cdn_policies=None, connection_draining_timeout_sec=None, custom_request_headers=None, description=None, enable_cdn=None, fingerprint=None, health_checks=None, iaps=None, port_name=None, protocol=None, region=None, security_policy=None, self_link=None, session_affinity=None, timeout_sec=None, id=None):
+    def __init__(__self__, affinity_cookie_ttl_sec=None, backends=None, cdn_policies=None, connection_draining_timeout_sec=None, custom_request_headers=None, description=None, enable_cdn=None, fingerprint=None, health_checks=None, iaps=None, name=None, port_name=None, project=None, protocol=None, region=None, security_policy=None, self_link=None, session_affinity=None, timeout_sec=None, id=None):
         if affinity_cookie_ttl_sec and not isinstance(affinity_cookie_ttl_sec, float):
             raise TypeError('Expected argument affinity_cookie_ttl_sec to be a float')
         __self__.affinity_cookie_ttl_sec = affinity_cookie_ttl_sec
@@ -61,12 +61,18 @@ class GetBackendServiceResult:
         if iaps and not isinstance(iaps, list):
             raise TypeError('Expected argument iaps to be a list')
         __self__.iaps = iaps
+        if name and not isinstance(name, str):
+            raise TypeError('Expected argument name to be a str')
+        __self__.name = name
         if port_name and not isinstance(port_name, str):
             raise TypeError('Expected argument port_name to be a str')
         __self__.port_name = port_name
         """
         The name of a service that has been added to an instance group in this backend.
         """
+        if project and not isinstance(project, str):
+            raise TypeError('Expected argument project to be a str')
+        __self__.project = project
         if protocol and not isinstance(protocol, str):
             raise TypeError('Expected argument protocol to be a str')
         __self__.protocol = protocol
@@ -127,7 +133,9 @@ async def get_backend_service(name=None,project=None,opts=None):
         fingerprint=__ret__.get('fingerprint'),
         health_checks=__ret__.get('healthChecks'),
         iaps=__ret__.get('iaps'),
+        name=__ret__.get('name'),
         port_name=__ret__.get('portName'),
+        project=__ret__.get('project'),
         protocol=__ret__.get('protocol'),
         region=__ret__.get('region'),
         security_policy=__ret__.get('securityPolicy'),

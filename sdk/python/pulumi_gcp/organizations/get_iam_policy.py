@@ -12,7 +12,13 @@ class GetIAMPolicyResult:
     """
     A collection of values returned by getIAMPolicy.
     """
-    def __init__(__self__, policy_data=None, id=None):
+    def __init__(__self__, audit_configs=None, bindings=None, policy_data=None, id=None):
+        if audit_configs and not isinstance(audit_configs, list):
+            raise TypeError('Expected argument audit_configs to be a list')
+        __self__.audit_configs = audit_configs
+        if bindings and not isinstance(bindings, list):
+            raise TypeError('Expected argument bindings to be a list')
+        __self__.bindings = bindings
         if policy_data and not isinstance(policy_data, str):
             raise TypeError('Expected argument policy_data to be a str')
         __self__.policy_data = policy_data
@@ -48,5 +54,7 @@ async def get_iam_policy(audit_configs=None,bindings=None,opts=None):
     __ret__ = await pulumi.runtime.invoke('gcp:organizations/getIAMPolicy:getIAMPolicy', __args__, opts=opts)
 
     return GetIAMPolicyResult(
+        audit_configs=__ret__.get('auditConfigs'),
+        bindings=__ret__.get('bindings'),
         policy_data=__ret__.get('policyData'),
         id=__ret__.get('id'))

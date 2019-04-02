@@ -12,7 +12,7 @@ class GetSSLPolicyResult:
     """
     A collection of values returned by getSSLPolicy.
     """
-    def __init__(__self__, creation_timestamp=None, custom_features=None, description=None, enabled_features=None, fingerprint=None, min_tls_version=None, profile=None, self_link=None, id=None):
+    def __init__(__self__, creation_timestamp=None, custom_features=None, description=None, enabled_features=None, fingerprint=None, min_tls_version=None, name=None, profile=None, project=None, self_link=None, id=None):
         if creation_timestamp and not isinstance(creation_timestamp, str):
             raise TypeError('Expected argument creation_timestamp to be a str')
         __self__.creation_timestamp = creation_timestamp
@@ -48,12 +48,18 @@ class GetSSLPolicyResult:
         """
         The minimum supported TLS version of this policy.
         """
+        if name and not isinstance(name, str):
+            raise TypeError('Expected argument name to be a str')
+        __self__.name = name
         if profile and not isinstance(profile, str):
             raise TypeError('Expected argument profile to be a str')
         __self__.profile = profile
         """
         The Google-curated or custom profile used by this policy.
         """
+        if project and not isinstance(project, str):
+            raise TypeError('Expected argument project to be a str')
+        __self__.project = project
         if self_link and not isinstance(self_link, str):
             raise TypeError('Expected argument self_link to be a str')
         __self__.self_link = self_link
@@ -85,6 +91,8 @@ async def get_ssl_policy(name=None,project=None,opts=None):
         enabled_features=__ret__.get('enabledFeatures'),
         fingerprint=__ret__.get('fingerprint'),
         min_tls_version=__ret__.get('minTlsVersion'),
+        name=__ret__.get('name'),
         profile=__ret__.get('profile'),
+        project=__ret__.get('project'),
         self_link=__ret__.get('selfLink'),
         id=__ret__.get('id'))

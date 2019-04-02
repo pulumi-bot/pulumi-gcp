@@ -12,7 +12,16 @@ class GetKMSKeyRingResult:
     """
     A collection of values returned by getKMSKeyRing.
     """
-    def __init__(__self__, self_link=None, id=None):
+    def __init__(__self__, location=None, name=None, project=None, self_link=None, id=None):
+        if location and not isinstance(location, str):
+            raise TypeError('Expected argument location to be a str')
+        __self__.location = location
+        if name and not isinstance(name, str):
+            raise TypeError('Expected argument name to be a str')
+        __self__.name = name
+        if project and not isinstance(project, str):
+            raise TypeError('Expected argument project to be a str')
+        __self__.project = project
         if self_link and not isinstance(self_link, str):
             raise TypeError('Expected argument self_link to be a str')
         __self__.self_link = self_link
@@ -44,5 +53,8 @@ async def get_kms_key_ring(location=None,name=None,project=None,opts=None):
     __ret__ = await pulumi.runtime.invoke('gcp:kms/getKMSKeyRing:getKMSKeyRing', __args__, opts=opts)
 
     return GetKMSKeyRingResult(
+        location=__ret__.get('location'),
+        name=__ret__.get('name'),
+        project=__ret__.get('project'),
         self_link=__ret__.get('selfLink'),
         id=__ret__.get('id'))

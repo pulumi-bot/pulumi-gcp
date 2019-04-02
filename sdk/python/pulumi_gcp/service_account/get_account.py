@@ -12,7 +12,10 @@ class GetAccountResult:
     """
     A collection of values returned by getAccount.
     """
-    def __init__(__self__, display_name=None, email=None, name=None, unique_id=None, id=None):
+    def __init__(__self__, account_id=None, display_name=None, email=None, name=None, project=None, unique_id=None, id=None):
+        if account_id and not isinstance(account_id, str):
+            raise TypeError('Expected argument account_id to be a str')
+        __self__.account_id = account_id
         if display_name and not isinstance(display_name, str):
             raise TypeError('Expected argument display_name to be a str')
         __self__.display_name = display_name
@@ -33,6 +36,9 @@ class GetAccountResult:
         """
         The fully-qualified name of the service account.
         """
+        if project and not isinstance(project, str):
+            raise TypeError('Expected argument project to be a str')
+        __self__.project = project
         if unique_id and not isinstance(unique_id, str):
             raise TypeError('Expected argument unique_id to be a str')
         __self__.unique_id = unique_id
@@ -58,8 +64,10 @@ async def get_account(account_id=None,project=None,opts=None):
     __ret__ = await pulumi.runtime.invoke('gcp:serviceAccount/getAccount:getAccount', __args__, opts=opts)
 
     return GetAccountResult(
+        account_id=__ret__.get('accountId'),
         display_name=__ret__.get('displayName'),
         email=__ret__.get('email'),
         name=__ret__.get('name'),
+        project=__ret__.get('project'),
         unique_id=__ret__.get('uniqueId'),
         id=__ret__.get('id'))

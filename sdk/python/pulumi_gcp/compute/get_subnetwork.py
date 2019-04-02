@@ -12,7 +12,7 @@ class GetSubnetworkResult:
     """
     A collection of values returned by getSubnetwork.
     """
-    def __init__(__self__, description=None, gateway_address=None, ip_cidr_range=None, network=None, private_ip_google_access=None, project=None, region=None, secondary_ip_ranges=None, self_link=None, id=None):
+    def __init__(__self__, description=None, gateway_address=None, ip_cidr_range=None, name=None, network=None, private_ip_google_access=None, project=None, region=None, secondary_ip_ranges=None, self_link=None, id=None):
         if description and not isinstance(description, str):
             raise TypeError('Expected argument description to be a str')
         __self__.description = description
@@ -32,6 +32,9 @@ class GetSubnetworkResult:
         The range of IP addresses belonging to this subnetwork
         secondary range.
         """
+        if name and not isinstance(name, str):
+            raise TypeError('Expected argument name to be a str')
+        __self__.name = name
         if network and not isinstance(network, str):
             raise TypeError('Expected argument network to be a str')
         __self__.network = network
@@ -86,6 +89,7 @@ async def get_subnetwork(name=None,project=None,region=None,self_link=None,opts=
         description=__ret__.get('description'),
         gateway_address=__ret__.get('gatewayAddress'),
         ip_cidr_range=__ret__.get('ipCidrRange'),
+        name=__ret__.get('name'),
         network=__ret__.get('network'),
         private_ip_google_access=__ret__.get('privateIpGoogleAccess'),
         project=__ret__.get('project'),

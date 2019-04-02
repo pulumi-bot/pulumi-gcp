@@ -12,7 +12,7 @@ class GetInstanceResult:
     """
     A collection of values returned by getInstance.
     """
-    def __init__(__self__, allow_stopping_for_update=None, attached_disks=None, boot_disks=None, can_ip_forward=None, cpu_platform=None, create_timeout=None, deletion_protection=None, description=None, disks=None, guest_accelerators=None, hostname=None, instance_id=None, label_fingerprint=None, labels=None, machine_type=None, metadata=None, metadata_fingerprint=None, metadata_startup_script=None, min_cpu_platform=None, network_interfaces=None, schedulings=None, scratch_disks=None, service_accounts=None, tags=None, tags_fingerprint=None, id=None):
+    def __init__(__self__, allow_stopping_for_update=None, attached_disks=None, boot_disks=None, can_ip_forward=None, cpu_platform=None, create_timeout=None, deletion_protection=None, description=None, disks=None, guest_accelerators=None, hostname=None, instance_id=None, label_fingerprint=None, labels=None, machine_type=None, metadata=None, metadata_fingerprint=None, metadata_startup_script=None, min_cpu_platform=None, name=None, network_interfaces=None, project=None, schedulings=None, scratch_disks=None, self_link=None, service_accounts=None, tags=None, tags_fingerprint=None, zone=None, id=None):
         if allow_stopping_for_update and not isinstance(allow_stopping_for_update, bool):
             raise TypeError('Expected argument allow_stopping_for_update to be a bool')
         __self__.allow_stopping_for_update = allow_stopping_for_update
@@ -112,12 +112,18 @@ class GetInstanceResult:
         """
         The minimum CPU platform specified for the VM instance.
         """
+        if name and not isinstance(name, str):
+            raise TypeError('Expected argument name to be a str')
+        __self__.name = name
         if network_interfaces and not isinstance(network_interfaces, list):
             raise TypeError('Expected argument network_interfaces to be a list')
         __self__.network_interfaces = network_interfaces
         """
         The networks attached to the instance. Structure is documented below.
         """
+        if project and not isinstance(project, str):
+            raise TypeError('Expected argument project to be a str')
+        __self__.project = project
         if schedulings and not isinstance(schedulings, list):
             raise TypeError('Expected argument schedulings to be a list')
         __self__.schedulings = schedulings
@@ -129,6 +135,12 @@ class GetInstanceResult:
         __self__.scratch_disks = scratch_disks
         """
         The scratch disks attached to the instance. Structure is documented below.
+        """
+        if self_link and not isinstance(self_link, str):
+            raise TypeError('Expected argument self_link to be a str')
+        __self__.self_link = self_link
+        """
+        The URI of the created resource.
         """
         if service_accounts and not isinstance(service_accounts, list):
             raise TypeError('Expected argument service_accounts to be a list')
@@ -148,6 +160,9 @@ class GetInstanceResult:
         """
         The unique fingerprint of the tags.
         """
+        if zone and not isinstance(zone, str):
+            raise TypeError('Expected argument zone to be a str')
+        __self__.zone = zone
         if id and not isinstance(id, str):
             raise TypeError('Expected argument id to be a str')
         __self__.id = id
@@ -190,10 +205,14 @@ async def get_instance(name=None,project=None,self_link=None,zone=None,opts=None
         metadata_fingerprint=__ret__.get('metadataFingerprint'),
         metadata_startup_script=__ret__.get('metadataStartupScript'),
         min_cpu_platform=__ret__.get('minCpuPlatform'),
+        name=__ret__.get('name'),
         network_interfaces=__ret__.get('networkInterfaces'),
+        project=__ret__.get('project'),
         schedulings=__ret__.get('schedulings'),
         scratch_disks=__ret__.get('scratchDisks'),
+        self_link=__ret__.get('selfLink'),
         service_accounts=__ret__.get('serviceAccounts'),
         tags=__ret__.get('tags'),
         tags_fingerprint=__ret__.get('tagsFingerprint'),
+        zone=__ret__.get('zone'),
         id=__ret__.get('id'))
