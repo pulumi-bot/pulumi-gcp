@@ -46,19 +46,19 @@ export class NotificationChannel extends pulumi.CustomResource {
         return new NotificationChannel(name, <any>state, { ...opts, id: id });
     }
 
-    public readonly description: pulumi.Output<string | undefined>;
-    public readonly displayName: pulumi.Output<string>;
-    public readonly enabled: pulumi.Output<boolean | undefined>;
-    public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
-    public /*out*/ readonly name: pulumi.Output<string>;
+    public readonly description!: pulumi.Output<string | undefined>;
+    public readonly displayName!: pulumi.Output<string>;
+    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    public /*out*/ readonly name!: pulumi.Output<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    public readonly project: pulumi.Output<string>;
-    public readonly type: pulumi.Output<string>;
-    public readonly userLabels: pulumi.Output<{[key: string]: string} | undefined>;
-    public /*out*/ readonly verificationStatus: pulumi.Output<string>;
+    public readonly project!: pulumi.Output<string>;
+    public readonly type!: pulumi.Output<string>;
+    public readonly userLabels!: pulumi.Output<{[key: string]: string} | undefined>;
+    public /*out*/ readonly verificationStatus!: pulumi.Output<string>;
 
     /**
      * Create a NotificationChannel resource with the given unique name, arguments, and options.
@@ -71,7 +71,7 @@ export class NotificationChannel extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: NotificationChannelArgs | NotificationChannelState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: NotificationChannelState = argsOrState as NotificationChannelState | undefined;
+            const state = argsOrState as NotificationChannelState | undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["displayName"] = state ? state.displayName : undefined;
             inputs["enabled"] = state ? state.enabled : undefined;

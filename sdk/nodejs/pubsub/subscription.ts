@@ -85,19 +85,19 @@ export class Subscription extends pulumi.CustomResource {
         return new Subscription(name, <any>state, { ...opts, id: id });
     }
 
-    public readonly ackDeadlineSeconds: pulumi.Output<number>;
-    public readonly labels: pulumi.Output<{[key: string]: string} | undefined>;
-    public readonly messageRetentionDuration: pulumi.Output<string | undefined>;
-    public readonly name: pulumi.Output<string>;
-    public /*out*/ readonly path: pulumi.Output<string>;
+    public readonly ackDeadlineSeconds!: pulumi.Output<number>;
+    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    public readonly messageRetentionDuration!: pulumi.Output<string | undefined>;
+    public readonly name!: pulumi.Output<string>;
+    public /*out*/ readonly path!: pulumi.Output<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    public readonly project: pulumi.Output<string>;
-    public readonly pushConfig: pulumi.Output<{ attributes?: {[key: string]: string}, pushEndpoint: string } | undefined>;
-    public readonly retainAckedMessages: pulumi.Output<boolean | undefined>;
-    public readonly topic: pulumi.Output<string>;
+    public readonly project!: pulumi.Output<string>;
+    public readonly pushConfig!: pulumi.Output<{ attributes?: {[key: string]: string}, pushEndpoint: string } | undefined>;
+    public readonly retainAckedMessages!: pulumi.Output<boolean | undefined>;
+    public readonly topic!: pulumi.Output<string>;
 
     /**
      * Create a Subscription resource with the given unique name, arguments, and options.
@@ -110,7 +110,7 @@ export class Subscription extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: SubscriptionArgs | SubscriptionState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: SubscriptionState = argsOrState as SubscriptionState | undefined;
+            const state = argsOrState as SubscriptionState | undefined;
             inputs["ackDeadlineSeconds"] = state ? state.ackDeadlineSeconds : undefined;
             inputs["labels"] = state ? state.labels : undefined;
             inputs["messageRetentionDuration"] = state ? state.messageRetentionDuration : undefined;

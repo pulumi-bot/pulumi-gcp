@@ -71,60 +71,60 @@ export class RegionBackendService extends pulumi.CustomResource {
      * The list of backends that serve this BackendService.
      * Structure is documented below.
      */
-    public readonly backends: pulumi.Output<{ description?: string, group?: string }[] | undefined>;
+    public readonly backends!: pulumi.Output<{ description?: string, group?: string }[] | undefined>;
     /**
      * Time for which instance will be drained
      * (not accept new connections, but still work to finish started ones). Defaults to `0`.
      */
-    public readonly connectionDrainingTimeoutSec: pulumi.Output<number | undefined>;
+    public readonly connectionDrainingTimeoutSec!: pulumi.Output<number | undefined>;
     /**
      * The textual description for the backend service.
      */
-    public readonly description: pulumi.Output<string | undefined>;
+    public readonly description!: pulumi.Output<string | undefined>;
     /**
      * The fingerprint of the backend service.
      */
-    public /*out*/ readonly fingerprint: pulumi.Output<string>;
+    public /*out*/ readonly fingerprint!: pulumi.Output<string>;
     /**
      * Specifies a list of health checks
      * for checking the health of the backend service. Currently at most
      * one health check can be specified, and a health check is required.
      */
-    public readonly healthChecks: pulumi.Output<string>;
+    public readonly healthChecks!: pulumi.Output<string>;
     /**
      * The name of the backend service.
      */
-    public readonly name: pulumi.Output<string>;
+    public readonly name!: pulumi.Output<string>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    public readonly project: pulumi.Output<string>;
+    public readonly project!: pulumi.Output<string>;
     /**
      * The protocol for incoming requests. Defaults to
      * `TCP`.
      */
-    public readonly protocol: pulumi.Output<string>;
+    public readonly protocol!: pulumi.Output<string>;
     /**
      * The Region in which the created address should reside.
      * If it is not provided, the provider region is used.
      */
-    public readonly region: pulumi.Output<string>;
+    public readonly region!: pulumi.Output<string>;
     /**
      * The URI of the created resource.
      */
-    public /*out*/ readonly selfLink: pulumi.Output<string>;
+    public /*out*/ readonly selfLink!: pulumi.Output<string>;
     /**
      * How to distribute load. Options are `NONE` (no
      * affinity), `CLIENT_IP`, `CLIENT_IP_PROTO`, or `CLIENT_IP_PORT_PROTO`.
      * Defaults to `NONE`.
      */
-    public readonly sessionAffinity: pulumi.Output<string>;
+    public readonly sessionAffinity!: pulumi.Output<string>;
     /**
      * The number of secs to wait for a backend to respond
      * to a request before considering the request failed. Defaults to `30`.
      */
-    public readonly timeoutSec: pulumi.Output<number>;
+    public readonly timeoutSec!: pulumi.Output<number>;
 
     /**
      * Create a RegionBackendService resource with the given unique name, arguments, and options.
@@ -137,7 +137,7 @@ export class RegionBackendService extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: RegionBackendServiceArgs | RegionBackendServiceState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: RegionBackendServiceState = argsOrState as RegionBackendServiceState | undefined;
+            const state = argsOrState as RegionBackendServiceState | undefined;
             inputs["backends"] = state ? state.backends : undefined;
             inputs["connectionDrainingTimeoutSec"] = state ? state.connectionDrainingTimeoutSec : undefined;
             inputs["description"] = state ? state.description : undefined;

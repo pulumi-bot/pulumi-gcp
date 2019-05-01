@@ -81,27 +81,27 @@ export class DatabaseIAMBinding extends pulumi.CustomResource {
     /**
      * The name of the Spanner database.
      */
-    public readonly database: pulumi.Output<string>;
+    public readonly database!: pulumi.Output<string>;
     /**
      * (Computed) The etag of the database's IAM policy.
      */
-    public /*out*/ readonly etag: pulumi.Output<string>;
+    public /*out*/ readonly etag!: pulumi.Output<string>;
     /**
      * The name of the Spanner instance the database belongs to.
      */
-    public readonly instance: pulumi.Output<string>;
-    public readonly members: pulumi.Output<string[]>;
+    public readonly instance!: pulumi.Output<string>;
+    public readonly members!: pulumi.Output<string[]>;
     /**
      * The ID of the project in which the resource belongs. If it
      * is not provided, the provider project is used.
      */
-    public readonly project: pulumi.Output<string>;
+    public readonly project!: pulumi.Output<string>;
     /**
      * The role that should be applied. Only one
      * `google_spanner_database_iam_binding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    public readonly role: pulumi.Output<string>;
+    public readonly role!: pulumi.Output<string>;
 
     /**
      * Create a DatabaseIAMBinding resource with the given unique name, arguments, and options.
@@ -114,7 +114,7 @@ export class DatabaseIAMBinding extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: DatabaseIAMBindingArgs | DatabaseIAMBindingState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: DatabaseIAMBindingState = argsOrState as DatabaseIAMBindingState | undefined;
+            const state = argsOrState as DatabaseIAMBindingState | undefined;
             inputs["database"] = state ? state.database : undefined;
             inputs["etag"] = state ? state.etag : undefined;
             inputs["instance"] = state ? state.instance : undefined;

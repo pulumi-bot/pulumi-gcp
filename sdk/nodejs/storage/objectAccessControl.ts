@@ -58,15 +58,15 @@ export class ObjectAccessControl extends pulumi.CustomResource {
         return new ObjectAccessControl(name, <any>state, { ...opts, id: id });
     }
 
-    public readonly bucket: pulumi.Output<string>;
-    public /*out*/ readonly domain: pulumi.Output<string>;
-    public /*out*/ readonly email: pulumi.Output<string>;
-    public readonly entity: pulumi.Output<string>;
-    public /*out*/ readonly entityId: pulumi.Output<string>;
-    public /*out*/ readonly generation: pulumi.Output<number>;
-    public readonly object: pulumi.Output<string>;
-    public /*out*/ readonly projectTeam: pulumi.Output<{ projectNumber?: string, team?: string }>;
-    public readonly role: pulumi.Output<string>;
+    public readonly bucket!: pulumi.Output<string>;
+    public /*out*/ readonly domain!: pulumi.Output<string>;
+    public /*out*/ readonly email!: pulumi.Output<string>;
+    public readonly entity!: pulumi.Output<string>;
+    public /*out*/ readonly entityId!: pulumi.Output<string>;
+    public /*out*/ readonly generation!: pulumi.Output<number>;
+    public readonly object!: pulumi.Output<string>;
+    public /*out*/ readonly projectTeam!: pulumi.Output<{ projectNumber?: string, team?: string }>;
+    public readonly role!: pulumi.Output<string>;
 
     /**
      * Create a ObjectAccessControl resource with the given unique name, arguments, and options.
@@ -79,7 +79,7 @@ export class ObjectAccessControl extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: ObjectAccessControlArgs | ObjectAccessControlState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: ObjectAccessControlState = argsOrState as ObjectAccessControlState | undefined;
+            const state = argsOrState as ObjectAccessControlState | undefined;
             inputs["bucket"] = state ? state.bucket : undefined;
             inputs["domain"] = state ? state.domain : undefined;
             inputs["email"] = state ? state.email : undefined;

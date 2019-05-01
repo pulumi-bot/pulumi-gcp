@@ -45,20 +45,20 @@ export class CryptoKeyIAMMember extends pulumi.CustomResource {
      * `{location_name}/{key_ring_name}/{crypto_key_name}`. In the second form,
      * the provider's project setting will be used as a fallback.
      */
-    public readonly cryptoKeyId: pulumi.Output<string>;
+    public readonly cryptoKeyId!: pulumi.Output<string>;
     /**
      * (Computed) The etag of the project's IAM policy.
      */
-    public /*out*/ readonly etag: pulumi.Output<string>;
+    public /*out*/ readonly etag!: pulumi.Output<string>;
     /**
      * The user that the role should apply to. For more details on format and restrictions see https://cloud.google.com/billing/reference/rest/v1/Policy#Binding
      */
-    public readonly member: pulumi.Output<string>;
+    public readonly member!: pulumi.Output<string>;
     /**
      * The role that should be applied. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    public readonly role: pulumi.Output<string>;
+    public readonly role!: pulumi.Output<string>;
 
     /**
      * Create a CryptoKeyIAMMember resource with the given unique name, arguments, and options.
@@ -71,7 +71,7 @@ export class CryptoKeyIAMMember extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: CryptoKeyIAMMemberArgs | CryptoKeyIAMMemberState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: CryptoKeyIAMMemberState = argsOrState as CryptoKeyIAMMemberState | undefined;
+            const state = argsOrState as CryptoKeyIAMMemberState | undefined;
             inputs["cryptoKeyId"] = state ? state.cryptoKeyId : undefined;
             inputs["etag"] = state ? state.etag : undefined;
             inputs["member"] = state ? state.member : undefined;

@@ -70,26 +70,26 @@ export class Subnetwork extends pulumi.CustomResource {
         return new Subnetwork(name, <any>state, { ...opts, id: id });
     }
 
-    public /*out*/ readonly creationTimestamp: pulumi.Output<string>;
-    public readonly description: pulumi.Output<string | undefined>;
-    public readonly enableFlowLogs: pulumi.Output<boolean | undefined>;
-    public /*out*/ readonly fingerprint: pulumi.Output<string>;
-    public /*out*/ readonly gatewayAddress: pulumi.Output<string>;
-    public readonly ipCidrRange: pulumi.Output<string>;
-    public readonly name: pulumi.Output<string>;
-    public readonly network: pulumi.Output<string>;
-    public readonly privateIpGoogleAccess: pulumi.Output<boolean | undefined>;
+    public /*out*/ readonly creationTimestamp!: pulumi.Output<string>;
+    public readonly description!: pulumi.Output<string | undefined>;
+    public readonly enableFlowLogs!: pulumi.Output<boolean | undefined>;
+    public /*out*/ readonly fingerprint!: pulumi.Output<string>;
+    public /*out*/ readonly gatewayAddress!: pulumi.Output<string>;
+    public readonly ipCidrRange!: pulumi.Output<string>;
+    public readonly name!: pulumi.Output<string>;
+    public readonly network!: pulumi.Output<string>;
+    public readonly privateIpGoogleAccess!: pulumi.Output<boolean | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
-    public readonly project: pulumi.Output<string>;
-    public readonly region: pulumi.Output<string>;
-    public readonly secondaryIpRanges: pulumi.Output<{ ipCidrRange: string, rangeName: string }[] | undefined>;
+    public readonly project!: pulumi.Output<string>;
+    public readonly region!: pulumi.Output<string>;
+    public readonly secondaryIpRanges!: pulumi.Output<{ ipCidrRange: string, rangeName: string }[] | undefined>;
     /**
      * The URI of the created resource.
      */
-    public /*out*/ readonly selfLink: pulumi.Output<string>;
+    public /*out*/ readonly selfLink!: pulumi.Output<string>;
 
     /**
      * Create a Subnetwork resource with the given unique name, arguments, and options.
@@ -102,7 +102,7 @@ export class Subnetwork extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: SubnetworkArgs | SubnetworkState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: SubnetworkState = argsOrState as SubnetworkState | undefined;
+            const state = argsOrState as SubnetworkState | undefined;
             inputs["creationTimestamp"] = state ? state.creationTimestamp : undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["enableFlowLogs"] = state ? state.enableFlowLogs : undefined;

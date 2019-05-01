@@ -45,12 +45,12 @@ export class AttachedDisk extends pulumi.CustomResource {
         return new AttachedDisk(name, <any>state, { ...opts, id: id });
     }
 
-    public readonly deviceName: pulumi.Output<string>;
-    public readonly disk: pulumi.Output<string>;
-    public readonly instance: pulumi.Output<string>;
-    public readonly mode: pulumi.Output<string | undefined>;
-    public readonly project: pulumi.Output<string>;
-    public readonly zone: pulumi.Output<string>;
+    public readonly deviceName!: pulumi.Output<string>;
+    public readonly disk!: pulumi.Output<string>;
+    public readonly instance!: pulumi.Output<string>;
+    public readonly mode!: pulumi.Output<string | undefined>;
+    public readonly project!: pulumi.Output<string>;
+    public readonly zone!: pulumi.Output<string>;
 
     /**
      * Create a AttachedDisk resource with the given unique name, arguments, and options.
@@ -63,7 +63,7 @@ export class AttachedDisk extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: AttachedDiskArgs | AttachedDiskState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: AttachedDiskState = argsOrState as AttachedDiskState | undefined;
+            const state = argsOrState as AttachedDiskState | undefined;
             inputs["deviceName"] = state ? state.deviceName : undefined;
             inputs["disk"] = state ? state.disk : undefined;
             inputs["instance"] = state ? state.instance : undefined;

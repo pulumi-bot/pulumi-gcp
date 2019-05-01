@@ -68,10 +68,10 @@ export class Attestor extends pulumi.CustomResource {
         return new Attestor(name, <any>state, { ...opts, id: id });
     }
 
-    public readonly attestationAuthorityNote: pulumi.Output<{ delegationServiceAccountEmail: string, noteReference: string, publicKeys?: { asciiArmoredPgpPublicKey: string, comment?: string, id: string }[] }>;
-    public readonly description: pulumi.Output<string | undefined>;
-    public readonly name: pulumi.Output<string>;
-    public readonly project: pulumi.Output<string>;
+    public readonly attestationAuthorityNote!: pulumi.Output<{ delegationServiceAccountEmail: string, noteReference: string, publicKeys?: { asciiArmoredPgpPublicKey: string, comment?: string, id: string }[] }>;
+    public readonly description!: pulumi.Output<string | undefined>;
+    public readonly name!: pulumi.Output<string>;
+    public readonly project!: pulumi.Output<string>;
 
     /**
      * Create a Attestor resource with the given unique name, arguments, and options.
@@ -84,7 +84,7 @@ export class Attestor extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: AttestorArgs | AttestorState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: AttestorState = argsOrState as AttestorState | undefined;
+            const state = argsOrState as AttestorState | undefined;
             inputs["attestationAuthorityNote"] = state ? state.attestationAuthorityNote : undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["name"] = state ? state.name : undefined;

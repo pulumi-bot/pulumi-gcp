@@ -44,11 +44,11 @@ export class AccessPolicy extends pulumi.CustomResource {
         return new AccessPolicy(name, <any>state, { ...opts, id: id });
     }
 
-    public /*out*/ readonly createTime: pulumi.Output<string>;
-    public /*out*/ readonly name: pulumi.Output<string>;
-    public readonly parent: pulumi.Output<string>;
-    public readonly title: pulumi.Output<string>;
-    public /*out*/ readonly updateTime: pulumi.Output<string>;
+    public /*out*/ readonly createTime!: pulumi.Output<string>;
+    public /*out*/ readonly name!: pulumi.Output<string>;
+    public readonly parent!: pulumi.Output<string>;
+    public readonly title!: pulumi.Output<string>;
+    public /*out*/ readonly updateTime!: pulumi.Output<string>;
 
     /**
      * Create a AccessPolicy resource with the given unique name, arguments, and options.
@@ -61,7 +61,7 @@ export class AccessPolicy extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: AccessPolicyArgs | AccessPolicyState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: AccessPolicyState = argsOrState as AccessPolicyState | undefined;
+            const state = argsOrState as AccessPolicyState | undefined;
             inputs["createTime"] = state ? state.createTime : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["parent"] = state ? state.parent : undefined;
