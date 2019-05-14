@@ -17,11 +17,18 @@ import * as utilities from "../utilities";
  * 
  * const project = pulumi.output(gcp.organizations.getProject({}));
  * 
- * export const projectNumber = project.apply(project => project.number);
+ * export const projectNumber = project.number;
  * ```
  */
 export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
     args = args || {};
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("gcp:organizations/getProject:getProject", {
         "projectId": args.projectId,
     }, opts);

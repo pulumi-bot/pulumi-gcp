@@ -21,11 +21,18 @@ import * as utilities from "../utilities";
  *     folder: "folders/23456",
  * }));
  * 
- * export const myFolder1Organization = myFolder1.apply(myFolder1 => myFolder1.organization);
- * export const myFolder2Parent = myFolder2.apply(myFolder2 => myFolder2.parent);
+ * export const myFolder1Organization = myFolder1.organization;
+ * export const myFolder2Parent = myFolder2.parent;
  * ```
  */
 export function getFolder(args: GetFolderArgs, opts?: pulumi.InvokeOptions): Promise<GetFolderResult> {
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("gcp:organizations/getFolder:getFolder", {
         "folder": args.folder,
         "lookupOrganization": args.lookupOrganization,

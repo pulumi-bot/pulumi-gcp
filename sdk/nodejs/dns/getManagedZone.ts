@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  *     name: "qa-zone",
  * }));
  * const dns = new gcp.dns.RecordSet("dns", {
- *     managedZone: envDnsZone.apply(envDnsZone => envDnsZone.name),
+ *     managedZone: envDnsZone.name,
  *     rrdatas: ["test"],
  *     ttl: 300,
  *     type: "TXT",
@@ -27,6 +27,13 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getManagedZone(args: GetManagedZoneArgs, opts?: pulumi.InvokeOptions): Promise<GetManagedZoneResult> {
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("gcp:dns/getManagedZone:getManagedZone", {
         "name": args.name,
         "project": args.project,

@@ -30,12 +30,19 @@ import * as utilities from "../utilities";
  *         password: "adoy.rm",
  *         username: "mr.yoda",
  *     },
- *     nodeVersion: central1b.apply(central1b => central1b.latestNodeVersion),
+ *     nodeVersion: central1b.latestNodeVersion,
  * });
  * ```
  */
 export function getEngineVersions(args?: GetEngineVersionsArgs, opts?: pulumi.InvokeOptions): Promise<GetEngineVersionsResult> {
     args = args || {};
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("gcp:container/getEngineVersions:getEngineVersions", {
         "location": args.location,
         "project": args.project,
