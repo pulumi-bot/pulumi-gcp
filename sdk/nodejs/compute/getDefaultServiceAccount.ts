@@ -15,11 +15,18 @@ import * as utilities from "../utilities";
  * 
  * const defaultDefaultServiceAccount = pulumi.output(gcp.compute.getDefaultServiceAccount({}));
  * 
- * export const defaultAccount = defaultDefaultServiceAccount.apply(defaultDefaultServiceAccount => defaultDefaultServiceAccount.email);
+ * export const defaultAccount = defaultDefaultServiceAccount.email;
  * ```
  */
 export function getDefaultServiceAccount(args?: GetDefaultServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetDefaultServiceAccountResult> {
     args = args || {};
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("gcp:compute/getDefaultServiceAccount:getDefaultServiceAccount", {
         "project": args.project,
     }, opts);

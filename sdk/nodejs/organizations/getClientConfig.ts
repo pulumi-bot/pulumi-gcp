@@ -15,10 +15,17 @@ import * as utilities from "../utilities";
  * 
  * const current = pulumi.output(gcp.organizations.getClientConfig({}));
  * 
- * export const project = current.apply(current => current.project);
+ * export const project = current.project;
  * ```
  */
 export function getClientConfig(opts?: pulumi.InvokeOptions): Promise<GetClientConfigResult> {
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("gcp:organizations/getClientConfig:getClientConfig", {
     }, opts);
 }
