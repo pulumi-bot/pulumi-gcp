@@ -15,10 +15,17 @@ import * as utilities from "../utilities";
  *     name: "roles/compute.viewer",
  * }));
  * 
- * export const theRolePermissions = roleinfo.apply(roleinfo => roleinfo.includedPermissions);
+ * export const theRolePermissions = roleinfo.includedPermissions;
  * ```
  */
 export function getRule(args: GetRuleArgs, opts?: pulumi.InvokeOptions): Promise<GetRuleResult> {
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("gcp:iam/getRule:getRule", {
         "name": args.name,
     }, opts);

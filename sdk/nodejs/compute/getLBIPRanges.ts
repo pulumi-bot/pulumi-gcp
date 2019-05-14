@@ -22,12 +22,19 @@ import * as utilities from "../utilities";
  *         protocol: "tcp",
  *     }],
  *     network: google_compute_network_main.name,
- *     sourceRanges: ranges.apply(ranges => ranges.networks),
+ *     sourceRanges: ranges.networks,
  *     targetTags: ["InstanceBehindLoadBalancer"],
  * });
  * ```
  */
 export function getLBIPRanges(opts?: pulumi.InvokeOptions): Promise<GetLBIPRangesResult> {
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("gcp:compute/getLBIPRanges:getLBIPRanges", {
     }, opts);
 }

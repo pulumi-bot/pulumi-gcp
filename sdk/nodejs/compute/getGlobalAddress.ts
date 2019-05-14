@@ -22,13 +22,20 @@ import * as utilities from "../utilities";
  * });
  * const frontend = new gcp.dns.RecordSet("frontend", {
  *     managedZone: prod.name,
- *     rrdatas: [myAddress.apply(myAddress => myAddress.address)],
+ *     rrdatas: [myAddress.address],
  *     ttl: 300,
  *     type: "A",
  * });
  * ```
  */
 export function getGlobalAddress(args: GetGlobalAddressArgs, opts?: pulumi.InvokeOptions): Promise<GetGlobalAddressResult> {
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("gcp:compute/getGlobalAddress:getGlobalAddress", {
         "name": args.name,
         "project": args.project,

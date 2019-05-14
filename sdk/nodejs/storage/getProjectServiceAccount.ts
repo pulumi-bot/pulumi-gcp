@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  * 
  * const gcsAccount = pulumi.output(gcp.storage.getProjectServiceAccount({}));
  * const binding = new gcp.pubsub.TopicIAMBinding("binding", {
- *     members: [gcsAccount.apply(gcsAccount => `serviceAccount:${gcsAccount.emailAddress}`)],
+ *     members: [pulumi.interpolate`serviceAccount:${gcsAccount.emailAddress}`],
  *     role: "roles/pubsub.publisher",
  *     topic: google_pubsub_topic_topic.name,
  * });
@@ -29,6 +29,13 @@ import * as utilities from "../utilities";
  */
 export function getProjectServiceAccount(args?: GetProjectServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectServiceAccountResult> {
     args = args || {};
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("gcp:storage/getProjectServiceAccount:getProjectServiceAccount", {
         "project": args.project,
         "userProject": args.userProject,
