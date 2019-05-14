@@ -16,12 +16,19 @@ import * as utilities from "../utilities";
  * }));
  * const sales = new gcp.organizations.Folder("sales", {
  *     displayName: "Sales",
- *     parent: org.apply(org => org.name),
+ *     parent: org.name,
  * });
  * ```
  */
 export function getOrganization(args?: GetOrganizationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationResult> {
     args = args || {};
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("gcp:organizations/getOrganization:getOrganization", {
         "domain": args.domain,
         "organization": args.organization,

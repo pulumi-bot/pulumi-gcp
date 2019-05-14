@@ -19,10 +19,17 @@ import * as utilities from "../utilities";
  *     name: "debian",
  * }));
  * 
- * export const gcrLocation = debian.apply(debian => debian.imageUrl);
+ * export const gcrLocation = debian.imageUrl;
  * ```
  */
 export function getRegistryImage(args: GetRegistryImageArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryImageResult> {
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("gcp:container/getRegistryImage:getRegistryImage", {
         "digest": args.digest,
         "name": args.name,

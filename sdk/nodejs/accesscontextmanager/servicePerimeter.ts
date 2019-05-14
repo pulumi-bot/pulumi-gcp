@@ -40,7 +40,7 @@ import * as utilities from "../utilities";
  *             },
  *         }],
  *     },
- *     parent: google_access_context_manager_access_policy_test_access.name.apply(name => `accessPolicies/${name}`),
+ *     parent: pulumi.interpolate`accessPolicies/${google_access_context_manager_access_policy_test_access.name}`,
  *     title: "chromeos_no_lock",
  * });
  * const access_policy = new gcp.accesscontextmanager.AccessPolicy("access-policy", {
@@ -48,7 +48,7 @@ import * as utilities from "../utilities";
  *     title: "my policy",
  * });
  * const service_perimeter = new gcp.accesscontextmanager.ServicePerimeter("service-perimeter", {
- *     parent: google_access_context_manager_access_policy_test_access.name.apply(name => `accessPolicies/${name}`),
+ *     parent: pulumi.interpolate`accessPolicies/${google_access_context_manager_access_policy_test_access.name}`,
  *     status: {
  *         restrictedServices: ["storage.googleapis.com"],
  *     },
@@ -69,14 +69,14 @@ export class ServicePerimeter extends pulumi.CustomResource {
         return new ServicePerimeter(name, <any>state, { ...opts, id: id });
     }
 
-    public /*out*/ readonly createTime: pulumi.Output<string>;
-    public readonly description: pulumi.Output<string | undefined>;
-    public readonly name: pulumi.Output<string>;
-    public readonly parent: pulumi.Output<string>;
-    public readonly perimeterType: pulumi.Output<string | undefined>;
-    public readonly status: pulumi.Output<{ accessLevels?: string[], resources?: string[], restrictedServices?: string[] } | undefined>;
-    public readonly title: pulumi.Output<string>;
-    public /*out*/ readonly updateTime: pulumi.Output<string>;
+    public /*out*/ readonly createTime!: pulumi.Output<string>;
+    public readonly description!: pulumi.Output<string | undefined>;
+    public readonly name!: pulumi.Output<string>;
+    public readonly parent!: pulumi.Output<string>;
+    public readonly perimeterType!: pulumi.Output<string | undefined>;
+    public readonly status!: pulumi.Output<{ accessLevels?: string[], resources?: string[], restrictedServices?: string[] } | undefined>;
+    public readonly title!: pulumi.Output<string>;
+    public /*out*/ readonly updateTime!: pulumi.Output<string>;
 
     /**
      * Create a ServicePerimeter resource with the given unique name, arguments, and options.
@@ -89,7 +89,7 @@ export class ServicePerimeter extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: ServicePerimeterArgs | ServicePerimeterState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: ServicePerimeterState = argsOrState as ServicePerimeterState | undefined;
+            const state = argsOrState as ServicePerimeterState | undefined;
             inputs["createTime"] = state ? state.createTime : undefined;
             inputs["description"] = state ? state.description : undefined;
             inputs["name"] = state ? state.name : undefined;
@@ -114,6 +114,13 @@ export class ServicePerimeter extends pulumi.CustomResource {
             inputs["title"] = args ? args.title : undefined;
             inputs["createTime"] = undefined /*out*/;
             inputs["updateTime"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super("gcp:accesscontextmanager/servicePerimeter:ServicePerimeter", name, inputs, opts);
     }
