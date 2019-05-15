@@ -58,8 +58,8 @@ import * as utilities from "../utilities";
  * const log_bucket = new gcp.storage.Bucket("log-bucket", {});
  * // Our sink; this logs all activity related to our "my-logged-instance" instance
  * const instance_sink = new gcp.logging.ProjectSink("instance-sink", {
- *     destination: log_bucket.name.apply(name => `storage.googleapis.com/${name}`),
- *     filter: my_logged_instance.instanceId.apply(instanceId => `resource.type = gce_instance AND resource.labels.instance_id = "${instanceId}"`),
+ *     destination: pulumi.interpolate`storage.googleapis.com/${log_bucket.name}`,
+ *     filter: pulumi.interpolate`resource.type = gce_instance AND resource.labels.instance_id = "${my_logged_instance.instanceId}"`,
  *     uniqueWriterIdentity: true,
  * });
  * // Because our sink uses a unique_writer, we must grant that writer access to the bucket.
@@ -90,34 +90,34 @@ export class ProjectSink extends pulumi.CustomResource {
      * ```
      * The writer associated with the sink must have access to write to the above resource.
      */
-    public readonly destination: pulumi.Output<string>;
+    public readonly destination!: pulumi.Output<string>;
     /**
      * The filter to apply when exporting logs. Only log entries that match the filter are exported.
      * See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to
      * write a filter.
      */
-    public readonly filter: pulumi.Output<string | undefined>;
+    public readonly filter!: pulumi.Output<string | undefined>;
     /**
      * The name of the logging sink.
      */
-    public readonly name: pulumi.Output<string>;
+    public readonly name!: pulumi.Output<string>;
     /**
      * The ID of the project to create the sink in. If omitted, the project associated with the provider is
      * used.
      */
-    public readonly project: pulumi.Output<string>;
+    public readonly project!: pulumi.Output<string>;
     /**
      * Whether or not to create a unique identity associated with this sink. If `false`
      * (the default), then the `writer_identity` used is `serviceAccount:cloud-logs@system.gserviceaccount.com`. If `true`,
      * then a unique service account is created and used for this sink. If you wish to publish logs across projects, you
      * must set `unique_writer_identity` to true.
      */
-    public readonly uniqueWriterIdentity: pulumi.Output<boolean | undefined>;
+    public readonly uniqueWriterIdentity!: pulumi.Output<boolean | undefined>;
     /**
      * The identity associated with this sink. This identity must be granted write access to the
      * configured `destination`.
      */
-    public /*out*/ readonly writerIdentity: pulumi.Output<string>;
+    public /*out*/ readonly writerIdentity!: pulumi.Output<string>;
 
     /**
      * Create a ProjectSink resource with the given unique name, arguments, and options.
@@ -130,7 +130,7 @@ export class ProjectSink extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: ProjectSinkArgs | ProjectSinkState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: ProjectSinkState = argsOrState as ProjectSinkState | undefined;
+            const state = argsOrState as ProjectSinkState | undefined;
             inputs["destination"] = state ? state.destination : undefined;
             inputs["filter"] = state ? state.filter : undefined;
             inputs["name"] = state ? state.name : undefined;
@@ -148,6 +148,13 @@ export class ProjectSink extends pulumi.CustomResource {
             inputs["project"] = args ? args.project : undefined;
             inputs["uniqueWriterIdentity"] = args ? args.uniqueWriterIdentity : undefined;
             inputs["writerIdentity"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super("gcp:logging/projectSink:ProjectSink", name, inputs, opts);
     }

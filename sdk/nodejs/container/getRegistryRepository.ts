@@ -17,11 +17,18 @@ import * as utilities from "../utilities";
  * 
  * const foo = pulumi.output(gcp.container.getRegistryRepository({}));
  * 
- * export const gcrLocation = foo.apply(foo => foo.repositoryUrl);
+ * export const gcrLocation = foo.repositoryUrl;
  * ```
  */
 export function getRegistryRepository(args?: GetRegistryRepositoryArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryRepositoryResult> {
     args = args || {};
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("gcp:container/getRegistryRepository:getRegistryRepository", {
         "project": args.project,
         "region": args.region,

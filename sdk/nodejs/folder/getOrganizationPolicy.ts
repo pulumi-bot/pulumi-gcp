@@ -20,10 +20,17 @@ import * as utilities from "../utilities";
  *     folder: "folders/folderid",
  * }));
  * 
- * export const version = policy.apply(policy => policy.version);
+ * export const version = policy.version;
  * ```
  */
 export function getOrganizationPolicy(args: GetOrganizationPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationPolicyResult> {
+    if (!opts) {
+        opts = {}
+    }
+
+    if (!opts.version) {
+        opts.version = utilities.getVersion();
+    }
     return pulumi.runtime.invoke("gcp:folder/getOrganizationPolicy:getOrganizationPolicy", {
         "constraint": args.constraint,
         "folder": args.folder,

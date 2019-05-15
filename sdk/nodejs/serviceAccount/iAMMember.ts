@@ -34,7 +34,7 @@ import * as utilities from "../utilities";
  *     displayName: "A service account that only Jane can interact with",
  * });
  * const admin_account_iam = new gcp.serviceAccount.IAMPolicy("admin-account-iam", {
- *     policyData: admin.apply(admin => admin.policyData),
+ *     policyData: admin.policyData,
  *     serviceAccountId: sa.name,
  * });
  * ```
@@ -74,9 +74,9 @@ import * as utilities from "../utilities";
  * });
  * // Allow SA service account use the default GCE account
  * const gce_default_account_iam = new gcp.serviceAccount.IAMMember("gce-default-account-iam", {
- *     member: sa.email.apply(email => `serviceAccount:${email}`),
+ *     member: pulumi.interpolate`serviceAccount:${sa.email}`,
  *     role: "roles/iam.serviceAccountUser",
- *     serviceAccountId: defaultDefaultServiceAccount.apply(defaultDefaultServiceAccount => defaultDefaultServiceAccount.name),
+ *     serviceAccountId: defaultDefaultServiceAccount.name,
  * });
  * ```
  */
@@ -96,18 +96,18 @@ export class IAMMember extends pulumi.CustomResource {
     /**
      * (Computed) The etag of the service account IAM policy.
      */
-    public /*out*/ readonly etag: pulumi.Output<string>;
-    public readonly member: pulumi.Output<string>;
+    public /*out*/ readonly etag!: pulumi.Output<string>;
+    public readonly member!: pulumi.Output<string>;
     /**
      * The role that should be applied. Only one
      * `google_service_account_iam_binding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
-    public readonly role: pulumi.Output<string>;
+    public readonly role!: pulumi.Output<string>;
     /**
      * The fully-qualified name of the service account to apply policy to.
      */
-    public readonly serviceAccountId: pulumi.Output<string>;
+    public readonly serviceAccountId!: pulumi.Output<string>;
 
     /**
      * Create a IAMMember resource with the given unique name, arguments, and options.
@@ -120,7 +120,7 @@ export class IAMMember extends pulumi.CustomResource {
     constructor(name: string, argsOrState?: IAMMemberArgs | IAMMemberState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
-            const state: IAMMemberState = argsOrState as IAMMemberState | undefined;
+            const state = argsOrState as IAMMemberState | undefined;
             inputs["etag"] = state ? state.etag : undefined;
             inputs["member"] = state ? state.member : undefined;
             inputs["role"] = state ? state.role : undefined;
@@ -140,6 +140,13 @@ export class IAMMember extends pulumi.CustomResource {
             inputs["role"] = args ? args.role : undefined;
             inputs["serviceAccountId"] = args ? args.serviceAccountId : undefined;
             inputs["etag"] = undefined /*out*/;
+        }
+        if (!opts) {
+            opts = {}
+        }
+
+        if (!opts.version) {
+            opts.version = utilities.getVersion();
         }
         super("gcp:serviceAccount/iAMMember:IAMMember", name, inputs, opts);
     }
