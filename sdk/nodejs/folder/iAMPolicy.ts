@@ -85,13 +85,6 @@ export class IAMPolicy extends pulumi.CustomResource {
             inputs["policyData"] = args ? args.policyData : undefined;
             inputs["etag"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:folder/iAMPolicy:IAMPolicy", name, inputs, opts);
     }
 }

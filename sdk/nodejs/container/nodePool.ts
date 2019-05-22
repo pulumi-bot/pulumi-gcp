@@ -144,13 +144,6 @@ export class NodePool extends pulumi.CustomResource {
             inputs["zone"] = args ? args.zone : undefined;
             inputs["instanceGroupUrls"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:container/nodePool:NodePool", name, inputs, opts);
     }
 }

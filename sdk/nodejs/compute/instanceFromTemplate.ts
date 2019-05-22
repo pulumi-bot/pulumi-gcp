@@ -176,13 +176,6 @@ export class InstanceFromTemplate extends pulumi.CustomResource {
             inputs["selfLink"] = undefined /*out*/;
             inputs["tagsFingerprint"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:compute/instanceFromTemplate:InstanceFromTemplate", name, inputs, opts);
     }
 }

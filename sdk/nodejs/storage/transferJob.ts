@@ -170,13 +170,6 @@ export class TransferJob extends pulumi.CustomResource {
             inputs["lastModificationTime"] = undefined /*out*/;
             inputs["name"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:storage/transferJob:TransferJob", name, inputs, opts);
     }
 }

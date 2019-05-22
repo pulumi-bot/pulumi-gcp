@@ -123,13 +123,6 @@ export class IAMCustomRole extends pulumi.CustomResource {
             inputs["title"] = args ? args.title : undefined;
             inputs["deleted"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:organizations/iAMCustomRole:IAMCustomRole", name, inputs, opts);
     }
 }

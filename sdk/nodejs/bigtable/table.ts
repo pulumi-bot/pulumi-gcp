@@ -95,13 +95,6 @@ export class Table extends pulumi.CustomResource {
             inputs["project"] = args ? args.project : undefined;
             inputs["splitKeys"] = args ? args.splitKeys : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:bigtable/table:Table", name, inputs, opts);
     }
 }

@@ -110,13 +110,6 @@ export class Database extends pulumi.CustomResource {
             inputs["project"] = args ? args.project : undefined;
             inputs["selfLink"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:sql/database:Database", name, inputs, opts);
     }
 }

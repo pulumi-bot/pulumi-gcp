@@ -71,13 +71,6 @@ export class Policy extends pulumi.CustomResource {
             inputs["networks"] = args ? args.networks : undefined;
             inputs["project"] = args ? args.project : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:dns/policy:Policy", name, inputs, opts);
     }
 }

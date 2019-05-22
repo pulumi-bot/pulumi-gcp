@@ -92,13 +92,6 @@ export class CryptoKeyIAMBinding extends pulumi.CustomResource {
             inputs["role"] = args ? args.role : undefined;
             inputs["etag"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:kms/cryptoKeyIAMBinding:CryptoKeyIAMBinding", name, inputs, opts);
     }
 }

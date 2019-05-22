@@ -136,13 +136,6 @@ export class Instance extends pulumi.CustomResource {
             inputs["host"] = undefined /*out*/;
             inputs["port"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:redis/instance:Instance", name, inputs, opts);
     }
 }

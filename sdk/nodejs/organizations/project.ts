@@ -164,13 +164,6 @@ export class Project extends pulumi.CustomResource {
             inputs["skipDelete"] = args ? args.skipDelete : undefined;
             inputs["number"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:organizations/project:Project", name, inputs, opts);
     }
 }

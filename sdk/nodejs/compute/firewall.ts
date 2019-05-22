@@ -145,13 +145,6 @@ export class Firewall extends pulumi.CustomResource {
             inputs["creationTimestamp"] = undefined /*out*/;
             inputs["selfLink"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:compute/firewall:Firewall", name, inputs, opts);
     }
 }

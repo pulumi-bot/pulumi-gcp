@@ -91,13 +91,6 @@ export class ProjectExclusion extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["project"] = args ? args.project : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:logging/projectExclusion:ProjectExclusion", name, inputs, opts);
     }
 }

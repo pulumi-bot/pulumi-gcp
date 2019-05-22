@@ -118,13 +118,6 @@ export class HealthCheck extends pulumi.CustomResource {
             inputs["selfLink"] = undefined /*out*/;
             inputs["type"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:compute/healthCheck:HealthCheck", name, inputs, opts);
     }
 }

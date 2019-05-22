@@ -93,13 +93,6 @@ export class Connection extends pulumi.CustomResource {
             inputs["reservedPeeringRanges"] = args ? args.reservedPeeringRanges : undefined;
             inputs["service"] = args ? args.service : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:servicenetworking/connection:Connection", name, inputs, opts);
     }
 }

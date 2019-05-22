@@ -108,13 +108,6 @@ export class NetworkPeering extends pulumi.CustomResource {
             inputs["state"] = undefined /*out*/;
             inputs["stateDetails"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:compute/networkPeering:NetworkPeering", name, inputs, opts);
     }
 }

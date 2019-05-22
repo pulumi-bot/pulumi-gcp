@@ -141,13 +141,6 @@ export class IAMBinding extends pulumi.CustomResource {
             inputs["serviceAccountId"] = args ? args.serviceAccountId : undefined;
             inputs["etag"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:serviceAccount/iAMBinding:IAMBinding", name, inputs, opts);
     }
 }

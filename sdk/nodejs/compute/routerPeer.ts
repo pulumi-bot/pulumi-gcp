@@ -127,13 +127,6 @@ export class RouterPeer extends pulumi.CustomResource {
             inputs["router"] = args ? args.router : undefined;
             inputs["ipAddress"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:compute/routerPeer:RouterPeer", name, inputs, opts);
     }
 }

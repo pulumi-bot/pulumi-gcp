@@ -83,13 +83,6 @@ export class Service extends pulumi.CustomResource {
             inputs["project"] = args ? args.project : undefined;
             inputs["service"] = args ? args.service : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:projects/service:Service", name, inputs, opts);
     }
 }

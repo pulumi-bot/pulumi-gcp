@@ -134,13 +134,6 @@ export class ManagedZone extends pulumi.CustomResource {
             inputs["visibility"] = args ? args.visibility : undefined;
             inputs["nameServers"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:dns/managedZone:ManagedZone", name, inputs, opts);
     }
 }

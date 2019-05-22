@@ -87,13 +87,6 @@ export class AccountIamPolicy extends pulumi.CustomResource {
             inputs["policyData"] = args ? args.policyData : undefined;
             inputs["etag"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:billing/accountIamPolicy:AccountIamPolicy", name, inputs, opts);
     }
 }

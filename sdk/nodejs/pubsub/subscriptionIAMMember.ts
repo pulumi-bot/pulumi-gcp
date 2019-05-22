@@ -127,13 +127,6 @@ export class SubscriptionIAMMember extends pulumi.CustomResource {
             inputs["subscription"] = args ? args.subscription : undefined;
             inputs["etag"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:pubsub/subscriptionIAMMember:SubscriptionIAMMember", name, inputs, opts);
     }
 }

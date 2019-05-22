@@ -158,13 +158,6 @@ export class Bucket extends pulumi.CustomResource {
             inputs["selfLink"] = undefined /*out*/;
             inputs["url"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:storage/bucket:Bucket", name, inputs, opts);
     }
 }

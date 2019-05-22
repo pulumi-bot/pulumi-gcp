@@ -135,13 +135,6 @@ export class Job extends pulumi.CustomResource {
             inputs["schedule"] = args ? args.schedule : undefined;
             inputs["timeZone"] = args ? args.timeZone : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:cloudscheduler/job:Job", name, inputs, opts);
     }
 }

@@ -94,13 +94,6 @@ export class BillingAccountExclusion extends pulumi.CustomResource {
             inputs["filter"] = args ? args.filter : undefined;
             inputs["name"] = args ? args.name : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:logging/billingAccountExclusion:BillingAccountExclusion", name, inputs, opts);
     }
 }

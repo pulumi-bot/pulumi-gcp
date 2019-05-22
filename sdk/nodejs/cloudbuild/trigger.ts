@@ -100,13 +100,6 @@ export class Trigger extends pulumi.CustomResource {
             inputs["createTime"] = undefined /*out*/;
             inputs["triggerId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:cloudbuild/trigger:Trigger", name, inputs, opts);
     }
 }
