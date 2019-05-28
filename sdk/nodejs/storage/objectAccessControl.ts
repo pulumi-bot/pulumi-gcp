@@ -113,13 +113,6 @@ export class ObjectAccessControl extends pulumi.CustomResource {
             inputs["generation"] = undefined /*out*/;
             inputs["projectTeam"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:storage/objectAccessControl:ObjectAccessControl", name, inputs, opts);
     }
 }

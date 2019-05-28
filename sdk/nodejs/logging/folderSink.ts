@@ -116,13 +116,6 @@ export class FolderSink extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["writerIdentity"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:logging/folderSink:FolderSink", name, inputs, opts);
     }
 }

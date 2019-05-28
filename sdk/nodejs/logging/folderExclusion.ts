@@ -99,13 +99,6 @@ export class FolderExclusion extends pulumi.CustomResource {
             inputs["folder"] = args ? args.folder : undefined;
             inputs["name"] = args ? args.name : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:logging/folderExclusion:FolderExclusion", name, inputs, opts);
     }
 }

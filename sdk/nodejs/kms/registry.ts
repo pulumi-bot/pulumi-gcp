@@ -119,13 +119,6 @@ export class Registry extends pulumi.CustomResource {
             inputs["region"] = args ? args.region : undefined;
             inputs["stateNotificationConfig"] = args ? args.stateNotificationConfig : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:kms/registry:Registry", name, inputs, opts);
     }
 }

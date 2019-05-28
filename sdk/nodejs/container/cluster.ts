@@ -454,13 +454,6 @@ export class Cluster extends pulumi.CustomResource {
             inputs["masterVersion"] = undefined /*out*/;
             inputs["tpuIpv4CidrBlock"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:container/cluster:Cluster", name, inputs, opts);
     }
 }

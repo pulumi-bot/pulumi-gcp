@@ -81,13 +81,6 @@ export class AccessPolicy extends pulumi.CustomResource {
             inputs["name"] = undefined /*out*/;
             inputs["updateTime"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:accesscontextmanager/accessPolicy:AccessPolicy", name, inputs, opts);
     }
 }

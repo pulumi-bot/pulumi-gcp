@@ -76,13 +76,6 @@ export class ProjectMetadataItem extends pulumi.CustomResource {
             inputs["project"] = args ? args.project : undefined;
             inputs["value"] = args ? args.value : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:compute/projectMetadataItem:ProjectMetadataItem", name, inputs, opts);
     }
 }

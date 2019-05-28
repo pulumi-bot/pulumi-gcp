@@ -87,13 +87,6 @@ export class Network extends pulumi.CustomResource {
             inputs["gatewayIpv4"] = undefined /*out*/;
             inputs["selfLink"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:compute/network:Network", name, inputs, opts);
     }
 }

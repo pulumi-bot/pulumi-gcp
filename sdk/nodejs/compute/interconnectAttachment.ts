@@ -122,13 +122,6 @@ export class InterconnectAttachment extends pulumi.CustomResource {
             inputs["selfLink"] = undefined /*out*/;
             inputs["state"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:compute/interconnectAttachment:InterconnectAttachment", name, inputs, opts);
     }
 }

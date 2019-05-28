@@ -86,13 +86,6 @@ export class BucketACL extends pulumi.CustomResource {
             inputs["predefinedAcl"] = args ? args.predefinedAcl : undefined;
             inputs["roleEntities"] = args ? args.roleEntities : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:storage/bucketACL:BucketACL", name, inputs, opts);
     }
 }

@@ -163,13 +163,6 @@ export class Address extends pulumi.CustomResource {
             inputs["selfLink"] = undefined /*out*/;
             inputs["users"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:compute/address:Address", name, inputs, opts);
     }
 }

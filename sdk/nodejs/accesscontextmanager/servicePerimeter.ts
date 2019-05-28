@@ -115,13 +115,6 @@ export class ServicePerimeter extends pulumi.CustomResource {
             inputs["createTime"] = undefined /*out*/;
             inputs["updateTime"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:accesscontextmanager/servicePerimeter:ServicePerimeter", name, inputs, opts);
     }
 }

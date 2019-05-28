@@ -204,13 +204,6 @@ export class RecordSet extends pulumi.CustomResource {
             inputs["ttl"] = args ? args.ttl : undefined;
             inputs["type"] = args ? args.type : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:dns/recordSet:RecordSet", name, inputs, opts);
     }
 }

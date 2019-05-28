@@ -127,13 +127,6 @@ export class Notification extends pulumi.CustomResource {
             inputs["topic"] = args ? args.topic : undefined;
             inputs["selfLink"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:storage/notification:Notification", name, inputs, opts);
     }
 }

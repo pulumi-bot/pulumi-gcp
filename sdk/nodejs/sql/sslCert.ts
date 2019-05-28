@@ -133,13 +133,6 @@ export class SslCert extends pulumi.CustomResource {
             inputs["serverCaCert"] = undefined /*out*/;
             inputs["sha1Fingerprint"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:sql/sslCert:SslCert", name, inputs, opts);
     }
 }

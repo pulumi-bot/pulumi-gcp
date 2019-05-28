@@ -103,13 +103,6 @@ export class TargetTCPProxy extends pulumi.CustomResource {
             inputs["proxyId"] = undefined /*out*/;
             inputs["selfLink"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:compute/targetTCPProxy:TargetTCPProxy", name, inputs, opts);
     }
 }

@@ -137,13 +137,6 @@ export class Node extends pulumi.CustomResource {
             inputs["networkEndpoints"] = undefined /*out*/;
             inputs["serviceAccount"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:tpu/node:Node", name, inputs, opts);
     }
 }

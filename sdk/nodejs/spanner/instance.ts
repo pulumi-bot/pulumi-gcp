@@ -92,13 +92,6 @@ export class Instance extends pulumi.CustomResource {
             inputs["project"] = args ? args.project : undefined;
             inputs["state"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:spanner/instance:Instance", name, inputs, opts);
     }
 }

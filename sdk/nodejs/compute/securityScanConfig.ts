@@ -88,13 +88,6 @@ export class SecurityScanConfig extends pulumi.CustomResource {
             inputs["userAgent"] = args ? args.userAgent : undefined;
             inputs["name"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:compute/securityScanConfig:SecurityScanConfig", name, inputs, opts);
     }
 }

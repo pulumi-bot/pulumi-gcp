@@ -197,13 +197,6 @@ export class DatabaseInstance extends pulumi.CustomResource {
             inputs["serverCaCert"] = undefined /*out*/;
             inputs["serviceAccountEmailAddress"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:sql/databaseInstance:DatabaseInstance", name, inputs, opts);
     }
 }

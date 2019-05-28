@@ -117,13 +117,6 @@ export class TargetSSLProxy extends pulumi.CustomResource {
             inputs["proxyId"] = undefined /*out*/;
             inputs["selfLink"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:compute/targetSSLProxy:TargetSSLProxy", name, inputs, opts);
     }
 }

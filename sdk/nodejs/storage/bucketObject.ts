@@ -151,13 +151,6 @@ export class BucketObject extends pulumi.CustomResource {
             inputs["outputName"] = undefined /*out*/;
             inputs["selfLink"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:storage/bucketObject:BucketObject", name, inputs, opts);
     }
 }

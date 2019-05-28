@@ -85,13 +85,6 @@ export class DefaultObjectACL extends pulumi.CustomResource {
             inputs["bucket"] = args ? args.bucket : undefined;
             inputs["roleEntities"] = args ? args.roleEntities : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:storage/defaultObjectACL:DefaultObjectACL", name, inputs, opts);
     }
 }

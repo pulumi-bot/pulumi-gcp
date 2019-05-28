@@ -94,13 +94,6 @@ export class OrganizationExclusion extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["orgId"] = args ? args.orgId : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
-        if (!opts.version) {
-            opts.version = utilities.getVersion();
-        }
         super("gcp:logging/organizationExclusion:OrganizationExclusion", name, inputs, opts);
     }
 }
