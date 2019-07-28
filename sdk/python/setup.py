@@ -8,8 +8,11 @@ from subprocess import check_call
 class InstallPluginCommand(install):
     def run(self):
         install.run(self)
-        check_call(['pulumi', 'plugin', 'install', 'resource', 'gcp', '${PLUGIN_VERSION}'])
-
+        try:
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'gcp', '${PLUGIN_VERSION}'])
+        except OSError:
+            print('Unable to Execute `pulumi`: Please ensure it is installed and run `pulumi', \
+                'plugin install resource gcp ${PLUGIN_VERSION}`')
 def readme():
     with open('README.rst') as f:
         return f.read()
