@@ -27,7 +27,7 @@ class CryptoKeyIAMBinding(pulumi.CustomResource):
     role: pulumi.Output[str]
     """
     The role that should be applied. Only one
-    `google_kms_crypto_key_iam_binding` can be used per role. Note that custom roles must be of the format
+    `kms.CryptoKeyIAMBinding` can be used per role. Note that custom roles must be of the format
     `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
     def __init__(__self__, resource_name, opts=None, crypto_key_id=None, members=None, role=None, __name__=None, __opts__=None):
@@ -47,7 +47,7 @@ class CryptoKeyIAMBinding(pulumi.CustomResource):
                In the second form, the provider's project setting will be used as a fallback.
         :param pulumi.Input[list] members: A list of users that the role should apply to. For more details on format and restrictions see https://cloud.google.com/billing/reference/rest/v1/Policy#Binding
         :param pulumi.Input[str] role: The role that should be applied. Only one
-               `google_kms_crypto_key_iam_binding` can be used per role. Note that custom roles must be of the format
+               `kms.CryptoKeyIAMBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/kms_crypto_key_iam_binding.html.markdown.

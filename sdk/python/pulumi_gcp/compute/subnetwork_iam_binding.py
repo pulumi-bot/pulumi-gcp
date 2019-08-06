@@ -27,7 +27,7 @@ class SubnetworkIAMBinding(pulumi.CustomResource):
     role: pulumi.Output[str]
     """
     The role that should be applied. Only one
-    `google_compute_subnetwork_iam_binding` can be used per role. Note that custom roles must be of the format
+    `compute.SubnetworkIAMBinding` can be used per role. Note that custom roles must be of the format
     `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
     subnetwork: pulumi.Output[str]
@@ -45,7 +45,7 @@ class SubnetworkIAMBinding(pulumi.CustomResource):
         :param pulumi.Input[str] region: The region of the subnetwork. If
                unspecified, this defaults to the region configured in the provider.
         :param pulumi.Input[str] role: The role that should be applied. Only one
-               `google_compute_subnetwork_iam_binding` can be used per role. Note that custom roles must be of the format
+               `compute.SubnetworkIAMBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
         :param pulumi.Input[str] subnetwork: The name of the subnetwork.
 

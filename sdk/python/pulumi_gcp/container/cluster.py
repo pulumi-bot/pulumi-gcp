@@ -97,7 +97,7 @@ class Cluster(pulumi.CustomResource):
     """
     The number of nodes to create in this
     cluster's default node pool. Must be set if `node_pool` is not set. If
-    you're using `google_container_node_pool` objects with no default node pool,
+    you're using `container.NodePool` objects with no default node pool,
     you'll need to set this to a value of at least `1`, alongside setting
     `remove_default_node_pool` to `true`.
     """
@@ -161,7 +161,7 @@ class Cluster(pulumi.CustomResource):
     current master version--use the read-only `master_version` field to obtain that.
     If unset, the cluster's version will be set by GKE to the version of the most recent
     official release (which is not necessarily the latest version).  Most users will find
-    the `google_container_engine_versions` data source useful - it indicates which versions
+    the `container.getEngineVersions` data source useful - it indicates which versions
     are available, and can be use to approximate fuzzy versions. If you intend to specify versions manually,
     [the docs](https://cloud.google.com/kubernetes-engine/versioning-and-upgrades#specifying_cluster_version)
     describe the various acceptable formats for this field.
@@ -197,7 +197,7 @@ class Cluster(pulumi.CustomResource):
     """
     Parameters used in creating the default node pool.
     Generally, this field should not be used at the same time as a
-    `google_container_node_pool` or a `node_pool` block; this configuration
+    `container.NodePool` or a `node_pool` block; this configuration
     manages the default node pool, which isn't recommended to be used with
     this provider. Structure is documented below.
     """
@@ -213,11 +213,11 @@ class Cluster(pulumi.CustomResource):
     node_pools: pulumi.Output[list]
     """
     List of node pools associated with this cluster.
-    See google_container_node_pool for schema.
+    See container.NodePool for schema.
     **Warning:** node pools defined inside a cluster can't be changed (or added/removed) after
     cluster creation without deleting and recreating the entire cluster. Unless you absolutely need the ability
     to say "these are the _only_ node pools associated with this cluster", use the
-    google_container_node_pool resource instead of this property.
+    container.NodePool resource instead of this property.
     """
     node_version: pulumi.Output[str]
     """
@@ -226,7 +226,7 @@ class Cluster(pulumi.CustomResource):
     version set by GKE which is not necessarily the latest version. This only affects
     nodes in the default node pool. While a fuzzy version can be specified, it's
     recommended that you specify explicit versions as this provider will see spurious diffs
-    when fuzzy versions are used. See the `google_container_engine_versions` data source's
+    when fuzzy versions are used. See the `container.getEngineVersions` data source's
     `version_prefix` field to approximate fuzzy versions.
     To update nodes in other node pools, use the `version` attribute on the node pool.
     """
@@ -250,7 +250,7 @@ class Cluster(pulumi.CustomResource):
     remove_default_node_pool: pulumi.Output[bool]
     """
     If `true`, deletes the default node
-    pool upon cluster creation. If you're using `google_container_node_pool`
+    pool upon cluster creation. If you're using `container.NodePool`
     resources with no default node pool, this should be set to `true`, alongside
     setting `initial_node_count` to at least `1`.
     """
@@ -350,7 +350,7 @@ class Cluster(pulumi.CustomResource):
                See the [official documentation](https://cloud.google.com/tpu/docs/kubernetes-engine-setup).
         :param pulumi.Input[float] initial_node_count: The number of nodes to create in this
                cluster's default node pool. Must be set if `node_pool` is not set. If
-               you're using `google_container_node_pool` objects with no default node pool,
+               you're using `container.NodePool` objects with no default node pool,
                you'll need to set this to a value of at least `1`, alongside setting
                `remove_default_node_pool` to `true`.
         :param pulumi.Input[dict] ip_allocation_policy: Configuration for cluster IP allocation. As of now, only pre-allocated subnetworks (custom type with secondary ranges) are supported.
@@ -382,7 +382,7 @@ class Cluster(pulumi.CustomResource):
                current master version--use the read-only `master_version` field to obtain that.
                If unset, the cluster's version will be set by GKE to the version of the most recent
                official release (which is not necessarily the latest version).  Most users will find
-               the `google_container_engine_versions` data source useful - it indicates which versions
+               the `container.getEngineVersions` data source useful - it indicates which versions
                are available, and can be use to approximate fuzzy versions. If you intend to specify versions manually,
                [the docs](https://cloud.google.com/kubernetes-engine/versioning-and-upgrades#specifying_cluster_version)
                describe the various acceptable formats for this field.
@@ -403,7 +403,7 @@ class Cluster(pulumi.CustomResource):
                feature. Structure is documented below.
         :param pulumi.Input[dict] node_config: Parameters used in creating the default node pool.
                Generally, this field should not be used at the same time as a
-               `google_container_node_pool` or a `node_pool` block; this configuration
+               `container.NodePool` or a `node_pool` block; this configuration
                manages the default node pool, which isn't recommended to be used with
                this provider. Structure is documented below.
         :param pulumi.Input[list] node_locations: The list of zones in which the cluster's nodes
@@ -413,17 +413,17 @@ class Cluster(pulumi.CustomResource):
                all specified zones as well as the primary zone. If specified for a regional
                cluster, nodes will be created in only these zones.
         :param pulumi.Input[list] node_pools: List of node pools associated with this cluster.
-               See google_container_node_pool for schema.
+               See container.NodePool for schema.
                **Warning:** node pools defined inside a cluster can't be changed (or added/removed) after
                cluster creation without deleting and recreating the entire cluster. Unless you absolutely need the ability
                to say "these are the _only_ node pools associated with this cluster", use the
-               google_container_node_pool resource instead of this property.
+               container.NodePool resource instead of this property.
         :param pulumi.Input[str] node_version: The Kubernetes version on the nodes. Must either be unset
                or set to the same value as `min_master_version` on create. Defaults to the default
                version set by GKE which is not necessarily the latest version. This only affects
                nodes in the default node pool. While a fuzzy version can be specified, it's
                recommended that you specify explicit versions as this provider will see spurious diffs
-               when fuzzy versions are used. See the `google_container_engine_versions` data source's
+               when fuzzy versions are used. See the `container.getEngineVersions` data source's
                `version_prefix` field to approximate fuzzy versions.
                To update nodes in other node pools, use the `version` attribute on the node pool.
         :param pulumi.Input[dict] pod_security_policy_config: ) Configuration for the
@@ -434,7 +434,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
         :param pulumi.Input[bool] remove_default_node_pool: If `true`, deletes the default node
-               pool upon cluster creation. If you're using `google_container_node_pool`
+               pool upon cluster creation. If you're using `container.NodePool`
                resources with no default node pool, this should be set to `true`, alongside
                setting `initial_node_count` to at least `1`.
         :param pulumi.Input[dict] resource_labels: The GCE resource labels (a map of key/value pairs) to be applied to the cluster.

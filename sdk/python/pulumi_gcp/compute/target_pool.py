@@ -26,7 +26,7 @@ class TargetPool(pulumi.CustomResource):
     health_checks: pulumi.Output[str]
     """
     List of zero or one health check name or self_link. Only
-    legacy `google_compute_http_health_check` is supported.
+    legacy `compute.HttpHealthCheck` is supported.
     """
     instances: pulumi.Output[list]
     """
@@ -77,7 +77,7 @@ class TargetPool(pulumi.CustomResource):
         :param pulumi.Input[float] failover_ratio: Ratio (0 to 1) of failed nodes before using the
                backup pool (which must also be set).
         :param pulumi.Input[str] health_checks: List of zero or one health check name or self_link. Only
-               legacy `google_compute_http_health_check` is supported.
+               legacy `compute.HttpHealthCheck` is supported.
         :param pulumi.Input[list] instances: List of instances in the pool. They can be given as
                URLs, or in the form of "zone/name". Note that the instances need not exist
                at the time of target pool creation, so there is no need to use

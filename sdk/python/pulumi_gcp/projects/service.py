@@ -31,7 +31,7 @@ class Service(pulumi.CustomResource):
         [API library page](https://console.cloud.google.com/apis/library) or run `gcloud services list`.
         
         > **Note:** This resource _must not_ be used in conjunction with
-           `google_project_services` or they will fight over which services should be enabled.
+           `projects.Services` or they will fight over which services should be enabled.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

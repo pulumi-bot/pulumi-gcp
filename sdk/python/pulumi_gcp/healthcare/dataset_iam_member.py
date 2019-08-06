@@ -24,7 +24,7 @@ class DatasetIamMember(pulumi.CustomResource):
     role: pulumi.Output[str]
     """
     The role that should be applied. Only one
-    `google_healthcare_dataset_iam_binding` can be used per role. Note that custom roles must be of the format
+    `healthcare.DatasetIamBinding` can be used per role. Note that custom roles must be of the format
     `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
     def __init__(__self__, resource_name, opts=None, dataset_id=None, member=None, role=None, __name__=None, __opts__=None):
@@ -38,7 +38,7 @@ class DatasetIamMember(pulumi.CustomResource):
                `{location_name}/{dataset_name}`. In the second form, the provider's
                project setting will be used as a fallback.
         :param pulumi.Input[str] role: The role that should be applied. Only one
-               `google_healthcare_dataset_iam_binding` can be used per role. Note that custom roles must be of the format
+               `healthcare.DatasetIamBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/healthcare_dataset_iam_member.html.markdown.

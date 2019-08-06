@@ -77,7 +77,7 @@ def get_engine_versions(location=None,project=None,region=None,version_prefix=No
     """
     Provides access to available Google Kubernetes Engine versions in a zone or region for a given project.
     
-    > If you are using the `google_container_engine_versions` datasource with a
+    > If you are using the `container.getEngineVersions` datasource with a
     regional cluster, ensure that you have provided a region as the `location` to
     the datasource. A region can have a different set of supported versions than
     its component zones, and not all zones in a region are guaranteed to

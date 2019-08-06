@@ -19,7 +19,7 @@ class IAMPolicy(pulumi.CustomResource):
     """
     policy_data: pulumi.Output[str]
     """
-    The `google_iam_policy` data source that represents
+    The `organizations.getIAMPolicy` data source that represents
     the IAM policy that will be applied to the folder. This policy overrides any existing
     policy applied to the folder.
     """
@@ -31,7 +31,7 @@ class IAMPolicy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder: The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
-        :param pulumi.Input[str] policy_data: The `google_iam_policy` data source that represents
+        :param pulumi.Input[str] policy_data: The `organizations.getIAMPolicy` data source that represents
                the IAM policy that will be applied to the folder. This policy overrides any existing
                policy applied to the folder.
 

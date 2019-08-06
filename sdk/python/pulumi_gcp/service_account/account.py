@@ -24,7 +24,7 @@ class Account(pulumi.CustomResource):
     email: pulumi.Output[str]
     """
     The e-mail address of the service account. This value
-    should be referenced from any `google_iam_policy` data sources
+    should be referenced from any `organizations.getIAMPolicy` data sources
     that would grant the service account privileges.
     """
     name: pulumi.Output[str]
