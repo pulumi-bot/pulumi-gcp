@@ -53,8 +53,8 @@ class BucketObject(pulumi.CustomResource):
     """
     output_name: pulumi.Output[str]
     """
-    (Computed) The name of the object. Use this field in interpolations with `google_storage_object_acl` to recreate
-    `google_storage_object_acl` resources when your `google_storage_bucket_object` is recreated.
+    (Computed) The name of the object. Use this field in interpolations with `storage.ObjectACL` to recreate
+    `storage.ObjectACL` resources when your `storage.BucketObject` is recreated.
     """
     self_link: pulumi.Output[str]
     """
@@ -74,7 +74,7 @@ class BucketObject(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, bucket=None, cache_control=None, content=None, content_disposition=None, content_encoding=None, content_language=None, content_type=None, detect_md5hash=None, name=None, source=None, storage_class=None, __name__=None, __opts__=None):
         """
         Creates a new object inside an existing bucket in Google cloud storage service (GCS). 
-        [ACLs](https://cloud.google.com/storage/docs/access-control/lists) can be applied using the `google_storage_object_acl` resource.
+        [ACLs](https://cloud.google.com/storage/docs/access-control/lists) can be applied using the `storage.ObjectACL` resource.
          For more information see 
         [the official documentation](https://cloud.google.com/storage/docs/key-terms#objects) 
         and 

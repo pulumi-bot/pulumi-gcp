@@ -51,7 +51,7 @@ class NodePool(pulumi.CustomResource):
     node_config: pulumi.Output[dict]
     """
     The node configuration of the pool. See
-    google_container_cluster for schema.
+    container.Cluster for schema.
     """
     node_count: pulumi.Output[float]
     """
@@ -107,7 +107,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the node pool. If left blank, this provider will
                auto-generate a unique name.
         :param pulumi.Input[dict] node_config: The node configuration of the pool. See
-               google_container_cluster for schema.
+               container.Cluster for schema.
         :param pulumi.Input[float] node_count: The number of nodes per instance group. This field can be used to
                update the number of nodes per instance group but should not be used alongside `autoscaling`.
         :param pulumi.Input[str] project: The ID of the project in which to create the node pool. If blank,

@@ -24,7 +24,7 @@ class IAMBinding(pulumi.CustomResource):
     role: pulumi.Output[str]
     """
     The role that should be applied. Only one
-    `google_organization_iam_binding` can be used per role. Note that custom roles must be of the format
+    `organizations.IAMBinding` can be used per role. Note that custom roles must be of the format
     `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
     def __init__(__self__, resource_name, opts=None, members=None, org_id=None, role=None, __name__=None, __opts__=None):
@@ -33,7 +33,7 @@ class IAMBinding(pulumi.CustomResource):
         an existing Google Cloud Platform Organization.
         
         > **Note:** This resource __must not__ be used in conjunction with
-           `google_organization_iam_member` for the __same role__ or they will fight over
+           `organizations.IAMMember` for the __same role__ or they will fight over
            what your policy should be.
         
         > **Note:** On create, this resource will overwrite members of any existing roles.
@@ -45,7 +45,7 @@ class IAMBinding(pulumi.CustomResource):
         :param pulumi.Input[list] members: A list of users that the role should apply to. For more details on format and restrictions see https://cloud.google.com/billing/reference/rest/v1/Policy#Binding
         :param pulumi.Input[str] org_id: The numeric ID of the organization in which you want to create a custom role.
         :param pulumi.Input[str] role: The role that should be applied. Only one
-               `google_organization_iam_binding` can be used per role. Note that custom roles must be of the format
+               `organizations.IAMBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/organization_iam_binding.html.markdown.

@@ -29,7 +29,7 @@ class ObjectACL(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, bucket=None, object=None, predefined_acl=None, role_entities=None, __name__=None, __opts__=None):
         """
         Authoritatively manages the access control list (ACL) for an object in a Google
-        Cloud Storage (GCS) bucket. Removing a `google_storage_object_acl` sets the
+        Cloud Storage (GCS) bucket. Removing a `storage.ObjectACL` sets the
         acl to the `private` [predefined ACL](https://cloud.google.com/storage/docs/access-control#predefined-acl).
         
         For more information see
@@ -37,7 +37,7 @@ class ObjectACL(pulumi.CustomResource):
         and 
         [API](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls).
         
-        > Want fine-grained control over object ACLs? Use `google_storage_object_access_control` to control individual
+        > Want fine-grained control over object ACLs? Use `storage.ObjectAccessControl` to control individual
         role entity pairs.
         
         :param str resource_name: The name of the resource.

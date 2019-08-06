@@ -59,7 +59,7 @@ class InstanceFromTemplate(pulumi.CustomResource):
         
         This resource is specifically to create a compute instance from a given
         `source_instance_template`. To create an instance without a template, use the
-        `google_compute_instance` resource.
+        `compute.Instance` resource.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

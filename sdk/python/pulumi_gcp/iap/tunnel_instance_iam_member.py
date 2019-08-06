@@ -26,7 +26,7 @@ class TunnelInstanceIAMMember(pulumi.CustomResource):
     role: pulumi.Output[str]
     """
     The role that should be applied. Only one
-    `google_iap_tunnel_instance_iam_binding` can be used per role. Note that custom roles must be of the format
+    `iap.TunnelInstanceIAMBinding` can be used per role. Note that custom roles must be of the format
     `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
     zone: pulumi.Output[str]
@@ -44,7 +44,7 @@ class TunnelInstanceIAMMember(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
         :param pulumi.Input[str] role: The role that should be applied. Only one
-               `google_iap_tunnel_instance_iam_binding` can be used per role. Note that custom roles must be of the format
+               `iap.TunnelInstanceIAMBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
         :param pulumi.Input[str] zone: The zone of the instance. If
                unspecified, this defaults to the zone configured in the provider.

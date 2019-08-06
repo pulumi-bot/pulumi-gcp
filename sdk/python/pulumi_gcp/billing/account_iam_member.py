@@ -31,7 +31,7 @@ class AccountIamMember(pulumi.CustomResource):
         the IAM policy for an existing Google Cloud Platform Billing Account.
         
         > **Note:** This resource __must not__ be used in conjunction with
-           `google_billing_account_iam_binding` for the __same role__ or they will fight over
+           `billing.AccountIamBinding` for the __same role__ or they will fight over
            what your policy should be.
         
         :param str resource_name: The name of the resource.

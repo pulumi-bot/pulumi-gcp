@@ -36,8 +36,8 @@ class CryptoKeyIAMMember(pulumi.CustomResource):
         
         > **Note:** This resource _must not_ be used in conjunction with
            `google_kms_crypto_key_iam_policy` or they will fight over what your policy
-           should be. Similarly, roles controlled by `google_kms_crypto_key_iam_binding`
-           should not be assigned to using `google_kms_crypto_key_iam_member`.
+           should be. Similarly, roles controlled by `kms.CryptoKeyIAMBinding`
+           should not be assigned to using `kms.CryptoKeyIAMMember`.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -26,7 +26,7 @@ class IAMPolicy(pulumi.CustomResource):
         
         > **Warning:** New organizations have several default policies which will,
            without extreme caution, be **overwritten** by use of this resource.
-           The safest alternative is to use multiple `google_organization_iam_binding`
+           The safest alternative is to use multiple `organizations.IAMBinding`
            resources.  It is easy to use this resource to remove your own access to
            an organization, which will require a call to Google Support to have
            fixed, and can take multiple days to resolve.  If you do use this resource,
@@ -34,7 +34,7 @@ class IAMPolicy(pulumi.CustomResource):
            by importing your existing policy, and examining the diff very closely.
         
         > **Note:** This resource __must not__ be used in conjunction with
-           `google_organization_iam_member` or `google_organization_iam_binding`
+           `organizations.IAMMember` or `organizations.IAMBinding`
            or they will fight over what your policy should be.
         
         :param str resource_name: The name of the resource.

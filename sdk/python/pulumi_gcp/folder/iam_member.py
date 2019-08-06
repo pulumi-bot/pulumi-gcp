@@ -37,9 +37,9 @@ class IAMMember(pulumi.CustomResource):
         the IAM policy for an existing Google Cloud Platform folder.
         
         > **Note:** This resource _must not_ be used in conjunction with
-           `google_folder_iam_policy` or they will fight over what your policy
-           should be. Similarly, roles controlled by `google_folder_iam_binding`
-           should not be assigned to using `google_folder_iam_member`.
+           `folder.IAMPolicy` or they will fight over what your policy
+           should be. Similarly, roles controlled by `folder.IAMBinding`
+           should not be assigned to using `folder.IAMMember`.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
