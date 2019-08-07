@@ -26,7 +26,7 @@ class IAMPolicy(pulumi.CustomResource):
     Required for `google_project_iam_policy` - you must explicitly set the project, and it
     will not be inferred from the provider.
     """
-    def __init__(__self__, resource_name, opts=None, policy_data=None, project=None, __name__=None, __opts__=None):
+    def __init__(__self__, resource_name, opts=None, policy_data=None, project=None, __props__=None, __name__=None, __opts__=None):
         """
         Three different resources help you manage your IAM policy for a project. Each of these resources serves a different use case:
         
@@ -56,36 +56,56 @@ class IAMPolicy(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
-        if opts and not isinstance(opts, pulumi.ResourceOptions):
-            raise TypeError('Expected resource options to be a ResourceOptions instance')
-
-        __props__ = dict()
-
-        if policy_data is None:
-            raise TypeError("Missing required property 'policy_data'")
-        __props__['policy_data'] = policy_data
-
-        if project is None:
-            raise TypeError("Missing required property 'project'")
-        __props__['project'] = project
-
-        __props__['etag'] = None
-
         if opts is None:
             opts = pulumi.ResourceOptions()
+        if not isinstance(opts, pulumi.ResourceOptions):
+            raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = utilities.get_version()
+        if opts.id is None:
+            if __props__ is not None:
+                raise TypeError("[__props__] should only be provided when [opts.id] was not [None].")
+            __props__ = dict()
+
+            if policy_data is None:
+                raise TypeError("Missing required property 'policy_data'")
+            __props__['policy_data'] = policy_data
+            if project is None:
+                raise TypeError("Missing required property 'project'")
+            __props__['project'] = project
+            __props__['etag'] = None
         super(IAMPolicy, __self__).__init__(
             'gcp:projects/iAMPolicy:IAMPolicy',
             resource_name,
             __props__,
             opts)
 
+    @staticmethod
+    def get(resource_name, id, opts=None, etag=None, policy_data=None, project=None):
+        """
+        Get an existing IAMPolicy resource's state with the given name, id, and optional extra
+        properties used to qualify the lookup.
+        :param str resource_name: The unique name of the resulting resource.
+        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] etag: (Computed) The etag of the project's IAM policy.
+        :param pulumi.Input[str] policy_data: The `google_iam_policy` data source that represents
+               the IAM policy that will be applied to the project. The policy will be
+               merged with any existing policy applied to the project.
+        :param pulumi.Input[str] project: The project ID. If not specified for `google_project_iam_binding`
+               or `google_project_iam_member`, uses the ID of the project configured with the provider.
+               Required for `google_project_iam_policy` - you must explicitly set the project, and it
+               will not be inferred from the provider.
 
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/project_iam_policy.html.markdown.
+        """
+        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+
+        __props__ = dict()
+        __props__["etag"] = etag
+        __props__["policy_data"] = policy_data
+        __props__["project"] = project
+        return IAMPolicy(resource_name, opts=opts, __props__=__props__)
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
