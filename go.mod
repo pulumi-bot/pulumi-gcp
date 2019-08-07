@@ -8,7 +8,7 @@ require (
 	github.com/apache/thrift v0.12.0 // indirect
 	github.com/go-ini/ini v1.31.0 // indirect
 	github.com/gopherjs/gopherjs v0.0.0-20181103185306-d547d1d9531e // indirect
-	github.com/hashicorp/terraform v0.12.5
+	github.com/hashicorp/terraform v0.12.6
 	github.com/openzipkin/zipkin-go v0.1.6 // indirect
 	github.com/pkg/errors v0.8.1
 	github.com/pulumi/pulumi v0.17.28-0.20190731182900-6804d640fc7c
@@ -26,3 +26,5 @@ replace (
 	github.com/golang/glog => github.com/pulumi/glog v0.0.0-20180820174630-7eaa6ffb71e4
 	github.com/terraform-providers/terraform-provider-google-beta => github.com/pulumi/terraform-provider-google-beta v0.0.0-20190803170938-4774546ba1f7
 )
+
+replace github.com/pulumi/pulumi-terraform => ../pulumi-terraform/
