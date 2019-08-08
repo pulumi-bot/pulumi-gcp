@@ -43,7 +43,7 @@ class Folder(pulumi.CustomResource):
         
         Folders created live inside an Organization. See the [Organization documentation](https://cloud.google.com/resource-manager/docs/quickstarts) for more details.
         
-        The service account used to run this provider when creating a `google_folder`
+        The service account used to run this provider when creating a `organizations.Folder`
         resource must have `roles/resourcemanager.folderCreator`. See the
         [Access Control for Folders Using IAM](https://cloud.google.com/resource-manager/docs/access-control-folders)
         doc for more information.
@@ -63,10 +63,6 @@ class Folder(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
         if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
@@ -75,11 +71,9 @@ class Folder(pulumi.CustomResource):
         if display_name is None:
             raise TypeError("Missing required property 'display_name'")
         __props__['display_name'] = display_name
-
         if parent is None:
             raise TypeError("Missing required property 'parent'")
         __props__['parent'] = parent
-
         __props__['create_time'] = None
         __props__['lifecycle_state'] = None
         __props__['name'] = None
@@ -93,7 +87,6 @@ class Folder(pulumi.CustomResource):
             resource_name,
             __props__,
             opts)
-
 
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

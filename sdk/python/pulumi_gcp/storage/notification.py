@@ -49,7 +49,7 @@ class Notification(pulumi.CustomResource):
         
         In order to enable notifications, a special Google Cloud Storage service account unique to the project
         must have the IAM permission "projects.topics.publish" for a Cloud Pub/Sub topic in the project. To get the service
-        account's email address, use the `google_storage_project_service_account` datasource's `email_address` value, and see below
+        account's email address, use the `storage.getProjectServiceAccount` datasource's `email_address` value, and see below
         for an example of enabling notifications by granting the correct IAM permission. See
         [the notifications documentation](https://cloud.google.com/storage/docs/gsutil/commands/notification) for more details.
         
@@ -72,10 +72,6 @@ class Notification(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
         if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
@@ -84,21 +80,15 @@ class Notification(pulumi.CustomResource):
         if bucket is None:
             raise TypeError("Missing required property 'bucket'")
         __props__['bucket'] = bucket
-
         __props__['custom_attributes'] = custom_attributes
-
         __props__['event_types'] = event_types
-
         __props__['object_name_prefix'] = object_name_prefix
-
         if payload_format is None:
             raise TypeError("Missing required property 'payload_format'")
         __props__['payload_format'] = payload_format
-
         if topic is None:
             raise TypeError("Missing required property 'topic'")
         __props__['topic'] = topic
-
         __props__['self_link'] = None
 
         if opts is None:
@@ -110,7 +100,6 @@ class Notification(pulumi.CustomResource):
             resource_name,
             __props__,
             opts)
-
 
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

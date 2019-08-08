@@ -53,8 +53,8 @@ class BucketObject(pulumi.CustomResource):
     """
     output_name: pulumi.Output[str]
     """
-    (Computed) The name of the object. Use this field in interpolations with `google_storage_object_acl` to recreate
-    `google_storage_object_acl` resources when your `google_storage_bucket_object` is recreated.
+    (Computed) The name of the object. Use this field in interpolations with `storage.ObjectACL` to recreate
+    `storage.ObjectACL` resources when your `storage.BucketObject` is recreated.
     """
     self_link: pulumi.Output[str]
     """
@@ -74,7 +74,7 @@ class BucketObject(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, bucket=None, cache_control=None, content=None, content_disposition=None, content_encoding=None, content_language=None, content_type=None, detect_md5hash=None, name=None, source=None, storage_class=None, __name__=None, __opts__=None):
         """
         Creates a new object inside an existing bucket in Google cloud storage service (GCS). 
-        [ACLs](https://cloud.google.com/storage/docs/access-control/lists) can be applied using the `google_storage_object_acl` resource.
+        [ACLs](https://cloud.google.com/storage/docs/access-control/lists) can be applied using the `storage.ObjectACL` resource.
          For more information see 
         [the official documentation](https://cloud.google.com/storage/docs/key-terms#objects) 
         and 
@@ -105,10 +105,6 @@ class BucketObject(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
         if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
@@ -117,27 +113,16 @@ class BucketObject(pulumi.CustomResource):
         if bucket is None:
             raise TypeError("Missing required property 'bucket'")
         __props__['bucket'] = bucket
-
         __props__['cache_control'] = cache_control
-
         __props__['content'] = content
-
         __props__['content_disposition'] = content_disposition
-
         __props__['content_encoding'] = content_encoding
-
         __props__['content_language'] = content_language
-
         __props__['content_type'] = content_type
-
         __props__['detect_md5hash'] = detect_md5hash
-
         __props__['name'] = name
-
         __props__['source'] = source
-
         __props__['storage_class'] = storage_class
-
         __props__['crc32c'] = None
         __props__['md5hash'] = None
         __props__['output_name'] = None
@@ -152,7 +137,6 @@ class BucketObject(pulumi.CustomResource):
             resource_name,
             __props__,
             opts)
-
 
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

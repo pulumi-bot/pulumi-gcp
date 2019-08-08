@@ -27,7 +27,7 @@ class CryptoKeyIAMBinding(pulumi.CustomResource):
     role: pulumi.Output[str]
     """
     The role that should be applied. Only one
-    `google_kms_crypto_key_iam_binding` can be used per role. Note that custom roles must be of the format
+    `kms.CryptoKeyIAMBinding` can be used per role. Note that custom roles must be of the format
     `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
     def __init__(__self__, resource_name, opts=None, crypto_key_id=None, members=None, role=None, __name__=None, __opts__=None):
@@ -47,7 +47,7 @@ class CryptoKeyIAMBinding(pulumi.CustomResource):
                In the second form, the provider's project setting will be used as a fallback.
         :param pulumi.Input[list] members: A list of users that the role should apply to. For more details on format and restrictions see https://cloud.google.com/billing/reference/rest/v1/Policy#Binding
         :param pulumi.Input[str] role: The role that should be applied. Only one
-               `google_kms_crypto_key_iam_binding` can be used per role. Note that custom roles must be of the format
+               `kms.CryptoKeyIAMBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/kms_crypto_key_iam_binding.html.markdown.
@@ -58,10 +58,6 @@ class CryptoKeyIAMBinding(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
         if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
@@ -70,15 +66,12 @@ class CryptoKeyIAMBinding(pulumi.CustomResource):
         if crypto_key_id is None:
             raise TypeError("Missing required property 'crypto_key_id'")
         __props__['crypto_key_id'] = crypto_key_id
-
         if members is None:
             raise TypeError("Missing required property 'members'")
         __props__['members'] = members
-
         if role is None:
             raise TypeError("Missing required property 'role'")
         __props__['role'] = role
-
         __props__['etag'] = None
 
         if opts is None:
@@ -90,7 +83,6 @@ class CryptoKeyIAMBinding(pulumi.CustomResource):
             resource_name,
             __props__,
             opts)
-
 
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

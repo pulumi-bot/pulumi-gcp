@@ -19,7 +19,7 @@ class IAMPolicy(pulumi.CustomResource):
     """
     policy_data: pulumi.Output[str]
     """
-    The `google_iam_policy` data source that represents
+    The `organizations.getIAMPolicy` data source that represents
     the IAM policy that will be applied to the folder. This policy overrides any existing
     policy applied to the folder.
     """
@@ -31,7 +31,7 @@ class IAMPolicy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder: The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
-        :param pulumi.Input[str] policy_data: The `google_iam_policy` data source that represents
+        :param pulumi.Input[str] policy_data: The `organizations.getIAMPolicy` data source that represents
                the IAM policy that will be applied to the folder. This policy overrides any existing
                policy applied to the folder.
 
@@ -43,10 +43,6 @@ class IAMPolicy(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
         if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
@@ -55,11 +51,9 @@ class IAMPolicy(pulumi.CustomResource):
         if folder is None:
             raise TypeError("Missing required property 'folder'")
         __props__['folder'] = folder
-
         if policy_data is None:
             raise TypeError("Missing required property 'policy_data'")
         __props__['policy_data'] = policy_data
-
         __props__['etag'] = None
 
         if opts is None:
@@ -71,7 +65,6 @@ class IAMPolicy(pulumi.CustomResource):
             resource_name,
             __props__,
             opts)
-
 
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

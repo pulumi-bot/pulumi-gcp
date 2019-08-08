@@ -19,19 +19,19 @@ class UsageExportBucket(pulumi.CustomResource):
         Projects created with this resource must be associated with an Organization.
         See the [Organization documentation](https://cloud.google.com/resource-manager/docs/quickstarts) for more details.
         
-        The service account used to run this provider when creating a `google_project`
+        The service account used to run this provider when creating a `organizations.Project`
         resource must have `roles/resourcemanager.projectCreator`. See the
         [Access Control for Organizations Using IAM](https://cloud.google.com/resource-manager/docs/access-control-org)
         doc for more information.
         
-        Note that prior to 0.8.5, `google_project` functioned like a data source,
+        Note that prior to 0.8.5, `organizations.Project` functioned like a data source,
         meaning any project referenced by it had to be created and managed outside
-        this provider. As of 0.8.5, `google_project` functions like any other
+        this provider. As of 0.8.5, `organizations.Project` functions like any other
         resource, with this provider creating and managing the project. To replicate the old
         behavior, either:
         
         * Use the project ID directly in whatever is referencing the project, using the
-          [google_project_iam_policy](https://www.terraform.io/docs/providers/google/r/google_project_iam.html)
+          [projects.IAMPolicy](https://www.terraform.io/docs/providers/google/r/google_project_iam.html)
           to replace the old `policy_data` property.
         * Use the [import](https://www.terraform.io/docs/import/usage.html) functionality
           to import your pre-existing project into this provider, where it can be referenced and
@@ -53,10 +53,6 @@ class UsageExportBucket(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
         if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
@@ -65,11 +61,8 @@ class UsageExportBucket(pulumi.CustomResource):
         if bucket_name is None:
             raise TypeError("Missing required property 'bucket_name'")
         __props__['bucket_name'] = bucket_name
-
         __props__['prefix'] = prefix
-
         __props__['project'] = project
-
         if opts is None:
             opts = pulumi.ResourceOptions()
         if opts.version is None:
@@ -79,7 +72,6 @@ class UsageExportBucket(pulumi.CustomResource):
             resource_name,
             __props__,
             opts)
-
 
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
