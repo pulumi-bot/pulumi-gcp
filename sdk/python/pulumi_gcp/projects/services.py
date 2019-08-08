@@ -39,7 +39,7 @@ class Services(pulumi.CustomResource):
         > **Note:** This resource attempts to be the authoritative source on *all* enabled APIs, which often
         	leads to conflicts when certain actions enable other APIs. If you do not need to ensure that
         	*exclusively* a particular set of APIs are enabled, you should most likely use the
-        	google_project_service resource, one resource per API.
+        	projects.Service resource, one resource per API.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -61,23 +61,16 @@ class Services(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
         if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
         __props__ = dict()
 
         __props__['disable_on_destroy'] = disable_on_destroy
-
         __props__['project'] = project
-
         if services is None:
             raise TypeError("Missing required property 'services'")
         __props__['services'] = services
-
         if opts is None:
             opts = pulumi.ResourceOptions()
         if opts.version is None:
@@ -87,7 +80,6 @@ class Services(pulumi.CustomResource):
             resource_name,
             __props__,
             opts)
-
 
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

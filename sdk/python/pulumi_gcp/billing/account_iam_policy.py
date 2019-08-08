@@ -16,7 +16,7 @@ class AccountIamPolicy(pulumi.CustomResource):
     etag: pulumi.Output[str]
     policy_data: pulumi.Output[str]
     """
-    The `google_iam_policy` data source that represents
+    The `organizations.getIAMPolicy` data source that represents
     the IAM policy that will be applied to the billing account. This policy overrides any existing
     policy applied to the billing account.
     """
@@ -25,19 +25,19 @@ class AccountIamPolicy(pulumi.CustomResource):
         Allows management of the entire IAM policy for an existing Google Cloud Platform Billing Account.
         
         > **Warning:** Billing accounts have a default user that can be **overwritten**
-        by use of this resource. The safest alternative is to use multiple `google_billing_account_iam_binding`
+        by use of this resource. The safest alternative is to use multiple `billing.AccountIamBinding`
            resources. If you do use this resource, the best way to be sure that you are
            not making dangerous changes is to start by importing your existing policy,
            and examining the diff very closely.
         
         > **Note:** This resource __must not__ be used in conjunction with
-           `google_billing_account_iam_member` or `google_billing_account_iam_binding`
+           `billing.AccountIamMember` or `billing.AccountIamBinding`
            or they will fight over what your policy should be.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] billing_account_id: The billing account id.
-        :param pulumi.Input[str] policy_data: The `google_iam_policy` data source that represents
+        :param pulumi.Input[str] policy_data: The `organizations.getIAMPolicy` data source that represents
                the IAM policy that will be applied to the billing account. This policy overrides any existing
                policy applied to the billing account.
 
@@ -49,10 +49,6 @@ class AccountIamPolicy(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
         if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
@@ -61,11 +57,9 @@ class AccountIamPolicy(pulumi.CustomResource):
         if billing_account_id is None:
             raise TypeError("Missing required property 'billing_account_id'")
         __props__['billing_account_id'] = billing_account_id
-
         if policy_data is None:
             raise TypeError("Missing required property 'policy_data'")
         __props__['policy_data'] = policy_data
-
         __props__['etag'] = None
 
         if opts is None:
@@ -77,7 +71,6 @@ class AccountIamPolicy(pulumi.CustomResource):
             resource_name,
             __props__,
             opts)
-
 
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

@@ -98,7 +98,7 @@ class InstanceGroupManager(pulumi.CustomResource):
         template. For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/manager)
         and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroupManagers)
         
-        > **Note:** Use [google_compute_region_instance_group_manager](https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html) to create a regional (multi-zone) instance group manager.
+        > **Note:** Use [compute.RegionInstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html) to create a regional (multi-zone) instance group manager.
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -145,43 +145,27 @@ class InstanceGroupManager(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
         if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
         __props__ = dict()
 
         __props__['auto_healing_policies'] = auto_healing_policies
-
         if base_instance_name is None:
             raise TypeError("Missing required property 'base_instance_name'")
         __props__['base_instance_name'] = base_instance_name
-
         __props__['description'] = description
-
         __props__['name'] = name
-
         __props__['named_ports'] = named_ports
-
         __props__['project'] = project
-
         __props__['target_pools'] = target_pools
-
         __props__['target_size'] = target_size
-
         __props__['update_policy'] = update_policy
-
         if versions is None:
             raise TypeError("Missing required property 'versions'")
         __props__['versions'] = versions
-
         __props__['wait_for_instances'] = wait_for_instances
-
         __props__['zone'] = zone
-
         __props__['fingerprint'] = None
         __props__['instance_group'] = None
         __props__['self_link'] = None
@@ -195,7 +179,6 @@ class InstanceGroupManager(pulumi.CustomResource):
             resource_name,
             __props__,
             opts)
-
 
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

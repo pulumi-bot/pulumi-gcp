@@ -30,7 +30,7 @@ class IAMBinding(pulumi.CustomResource):
     role: pulumi.Output[str]
     """
     The role that should be applied. Only one
-    `google_folder_iam_binding` can be used per role. Note that custom roles must be of the format
+    `folder.IAMBinding` can be used per role. Note that custom roles must be of the format
     `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
     def __init__(__self__, resource_name, opts=None, folder=None, members=None, role=None, __name__=None, __opts__=None):
@@ -39,7 +39,7 @@ class IAMBinding(pulumi.CustomResource):
         an existing Google Cloud Platform folder.
         
         > **Note:** This resource _must not_ be used in conjunction with
-           `google_folder_iam_policy` or they will fight over what your policy
+           `folder.IAMPolicy` or they will fight over what your policy
            should be.
         
         > **Note:** On create, this resource will overwrite members of any existing roles.
@@ -57,7 +57,7 @@ class IAMBinding(pulumi.CustomResource):
                * **domain:{domain}**: A G Suite domain (primary, instead of alias) name that represents all the users of that domain. For example, google.com or example.com.
                * For more details on format and restrictions see https://cloud.google.com/billing/reference/rest/v1/Policy#Binding
         :param pulumi.Input[str] role: The role that should be applied. Only one
-               `google_folder_iam_binding` can be used per role. Note that custom roles must be of the format
+               `folder.IAMBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/folder_iam_binding.html.markdown.
@@ -68,10 +68,6 @@ class IAMBinding(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
         if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
@@ -80,15 +76,12 @@ class IAMBinding(pulumi.CustomResource):
         if folder is None:
             raise TypeError("Missing required property 'folder'")
         __props__['folder'] = folder
-
         if members is None:
             raise TypeError("Missing required property 'members'")
         __props__['members'] = members
-
         if role is None:
             raise TypeError("Missing required property 'role'")
         __props__['role'] = role
-
         __props__['etag'] = None
 
         if opts is None:
@@ -100,7 +93,6 @@ class IAMBinding(pulumi.CustomResource):
             resource_name,
             __props__,
             opts)
-
 
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop

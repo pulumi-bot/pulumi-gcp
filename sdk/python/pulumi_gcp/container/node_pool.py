@@ -51,7 +51,7 @@ class NodePool(pulumi.CustomResource):
     node_config: pulumi.Output[dict]
     """
     The node configuration of the pool. See
-    google_container_cluster for schema.
+    container.Cluster for schema.
     """
     node_count: pulumi.Output[float]
     """
@@ -74,7 +74,7 @@ class NodePool(pulumi.CustomResource):
     and `auto_upgrade` are both specified, they will fight each other for what the node version should
     be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
     recommended that you specify explicit versions as this provider will see spurious diffs
-    when fuzzy versions are used. See the `google_container_engine_versions` data source's
+    when fuzzy versions are used. See the `container.getEngineVersions` data source's
     `version_prefix` field to approximate fuzzy versions.
     """
     zone: pulumi.Output[str]
@@ -107,7 +107,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the node pool. If left blank, this provider will
                auto-generate a unique name.
         :param pulumi.Input[dict] node_config: The node configuration of the pool. See
-               google_container_cluster for schema.
+               container.Cluster for schema.
         :param pulumi.Input[float] node_count: The number of nodes per instance group. This field can be used to
                update the number of nodes per instance group but should not be used alongside `autoscaling`.
         :param pulumi.Input[str] project: The ID of the project in which to create the node pool. If blank,
@@ -118,7 +118,7 @@ class NodePool(pulumi.CustomResource):
                and `auto_upgrade` are both specified, they will fight each other for what the node version should
                be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
                recommended that you specify explicit versions as this provider will see spurious diffs
-               when fuzzy versions are used. See the `google_container_engine_versions` data source's
+               when fuzzy versions are used. See the `container.getEngineVersions` data source's
                `version_prefix` field to approximate fuzzy versions.
         :param pulumi.Input[str] zone: The zone in which the cluster resides. `zone`
                has been deprecated in favor of `location`.
@@ -131,45 +131,27 @@ class NodePool(pulumi.CustomResource):
         if __opts__ is not None:
             warnings.warn("explicit use of __opts__ is deprecated, use 'opts' instead", DeprecationWarning)
             opts = __opts__
-        if not resource_name:
-            raise TypeError('Missing resource name argument (for URN creation)')
-        if not isinstance(resource_name, str):
-            raise TypeError('Expected resource name to be a string')
         if opts and not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
 
         __props__ = dict()
 
         __props__['autoscaling'] = autoscaling
-
         if cluster is None:
             raise TypeError("Missing required property 'cluster'")
         __props__['cluster'] = cluster
-
         __props__['initial_node_count'] = initial_node_count
-
         __props__['location'] = location
-
         __props__['management'] = management
-
         __props__['max_pods_per_node'] = max_pods_per_node
-
         __props__['name'] = name
-
         __props__['name_prefix'] = name_prefix
-
         __props__['node_config'] = node_config
-
         __props__['node_count'] = node_count
-
         __props__['project'] = project
-
         __props__['region'] = region
-
         __props__['version'] = version
-
         __props__['zone'] = zone
-
         __props__['instance_group_urls'] = None
 
         if opts is None:
@@ -181,7 +163,6 @@ class NodePool(pulumi.CustomResource):
             resource_name,
             __props__,
             opts)
-
 
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
