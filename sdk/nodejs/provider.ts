@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "./types/input";
+import * as outputApi from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -110,7 +112,7 @@ export interface ProviderArgs {
     readonly accessContextManagerCustomEndpoint?: pulumi.Input<string>;
     readonly accessToken?: pulumi.Input<string>;
     readonly appEngineCustomEndpoint?: pulumi.Input<string>;
-    readonly batching?: pulumi.Input<{ enableBatching?: pulumi.Input<boolean>, sendAfter?: pulumi.Input<string> }>;
+    readonly batching?: pulumi.Input<inputApi.ProviderBatching>;
     readonly bigqueryCustomEndpoint?: pulumi.Input<string>;
     readonly bigtableCustomEndpoint?: pulumi.Input<string>;
     readonly binaryAuthorizationCustomEndpoint?: pulumi.Input<string>;

@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -79,7 +81,7 @@ export interface GetFunctionResult {
     /**
      * A source that fires events in response to a condition in another service. Structure is documented below.
      */
-    readonly eventTriggers: { eventType: string, failurePolicies: { retry: boolean }[], resource: string }[];
+    readonly eventTriggers: outputApi.cloudfunctions.GetFunctionEventTrigger[];
     /**
      * If function is triggered by HTTP, trigger URL is set here.
      */
@@ -108,7 +110,7 @@ export interface GetFunctionResult {
      * The source archive object (file) in archive bucket.
      */
     readonly sourceArchiveObject: string;
-    readonly sourceRepositories: { deployedUrl: string, url: string }[];
+    readonly sourceRepositories: outputApi.cloudfunctions.GetFunctionSourceRepository[];
     /**
      * Function execution timeout (in seconds).
      */

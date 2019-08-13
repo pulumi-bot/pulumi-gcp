@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -66,7 +68,7 @@ export interface GetImageVersionsResult {
     /**
      * A list of composer image versions available in the given project and location. Each `imageVersion` contains:
      */
-    readonly imageVersions: { imageVersionId: string, supportedPythonVersions: string[] }[];
+    readonly imageVersions: outputApi.composer.GetImageVersionsImageVersion[];
     readonly project: string;
     readonly region: string;
     /**

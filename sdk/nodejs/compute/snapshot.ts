@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -96,10 +98,10 @@ export class Snapshot extends pulumi.CustomResource {
      * The URI of the created resource.
      */
     public /*out*/ readonly selfLink!: pulumi.Output<string>;
-    public readonly snapshotEncryptionKey!: pulumi.Output<{ rawKey?: string, sha256: string } | undefined>;
+    public readonly snapshotEncryptionKey!: pulumi.Output<outputApi.compute.SnapshotSnapshotEncryptionKey | undefined>;
     public /*out*/ readonly snapshotId!: pulumi.Output<number>;
     public readonly sourceDisk!: pulumi.Output<string>;
-    public readonly sourceDiskEncryptionKey!: pulumi.Output<{ rawKey?: string } | undefined>;
+    public readonly sourceDiskEncryptionKey!: pulumi.Output<outputApi.compute.SnapshotSourceDiskEncryptionKey | undefined>;
     public /*out*/ readonly sourceDiskLink!: pulumi.Output<string>;
     public /*out*/ readonly storageBytes!: pulumi.Output<number>;
     public readonly zone!: pulumi.Output<string>;
@@ -185,10 +187,10 @@ export interface SnapshotState {
      * The URI of the created resource.
      */
     readonly selfLink?: pulumi.Input<string>;
-    readonly snapshotEncryptionKey?: pulumi.Input<{ rawKey?: pulumi.Input<string>, sha256?: pulumi.Input<string> }>;
+    readonly snapshotEncryptionKey?: pulumi.Input<inputApi.compute.SnapshotSnapshotEncryptionKey>;
     readonly snapshotId?: pulumi.Input<number>;
     readonly sourceDisk?: pulumi.Input<string>;
-    readonly sourceDiskEncryptionKey?: pulumi.Input<{ rawKey?: pulumi.Input<string> }>;
+    readonly sourceDiskEncryptionKey?: pulumi.Input<inputApi.compute.SnapshotSourceDiskEncryptionKey>;
     readonly sourceDiskLink?: pulumi.Input<string>;
     readonly storageBytes?: pulumi.Input<number>;
     readonly zone?: pulumi.Input<string>;
@@ -206,8 +208,8 @@ export interface SnapshotArgs {
      * If it is not provided, the provider project is used.
      */
     readonly project?: pulumi.Input<string>;
-    readonly snapshotEncryptionKey?: pulumi.Input<{ rawKey?: pulumi.Input<string>, sha256?: pulumi.Input<string> }>;
+    readonly snapshotEncryptionKey?: pulumi.Input<inputApi.compute.SnapshotSnapshotEncryptionKey>;
     readonly sourceDisk: pulumi.Input<string>;
-    readonly sourceDiskEncryptionKey?: pulumi.Input<{ rawKey?: pulumi.Input<string> }>;
+    readonly sourceDiskEncryptionKey?: pulumi.Input<inputApi.compute.SnapshotSourceDiskEncryptionKey>;
     readonly zone?: pulumi.Input<string>;
 }

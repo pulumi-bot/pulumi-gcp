@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -66,7 +68,7 @@ export class InterconnectAttachment extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     public /*out*/ readonly pairingKey!: pulumi.Output<string>;
     public /*out*/ readonly partnerAsn!: pulumi.Output<string>;
-    public /*out*/ readonly privateInterconnectInfo!: pulumi.Output<{ tag8021q: number }>;
+    public /*out*/ readonly privateInterconnectInfo!: pulumi.Output<outputApi.compute.InterconnectAttachmentPrivateInterconnectInfo>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
@@ -164,7 +166,7 @@ export interface InterconnectAttachmentState {
     readonly name?: pulumi.Input<string>;
     readonly pairingKey?: pulumi.Input<string>;
     readonly partnerAsn?: pulumi.Input<string>;
-    readonly privateInterconnectInfo?: pulumi.Input<{ tag8021q?: pulumi.Input<number> }>;
+    readonly privateInterconnectInfo?: pulumi.Input<inputApi.compute.InterconnectAttachmentPrivateInterconnectInfo>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.

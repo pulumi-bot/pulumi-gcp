@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -74,21 +76,21 @@ export interface GetIAMPolicyArgs {
     /**
      * A nested configuration block that defines logging additional configuration for your project.
      */
-    readonly auditConfigs?: { auditLogConfigs: { exemptedMembers?: string[], logType: string }[], service: string }[];
+    readonly auditConfigs?: inputApi.organizations.GetIAMPolicyAuditConfig[];
     /**
      * A nested configuration block (described below)
      * defining a binding to be included in the policy document. Multiple
      * `binding` arguments are supported.
      */
-    readonly bindings: { members: string[], role: string }[];
+    readonly bindings: inputApi.organizations.GetIAMPolicyBinding[];
 }
 
 /**
  * A collection of values returned by getIAMPolicy.
  */
 export interface GetIAMPolicyResult {
-    readonly auditConfigs?: { auditLogConfigs: { exemptedMembers?: string[], logType: string }[], service: string }[];
-    readonly bindings: { members: string[], role: string }[];
+    readonly auditConfigs?: outputApi.organizations.GetIAMPolicyAuditConfig[];
+    readonly bindings: outputApi.organizations.GetIAMPolicyBinding[];
     /**
      * The above bindings serialized in a format suitable for
      * referencing from a resource that supports IAM.
