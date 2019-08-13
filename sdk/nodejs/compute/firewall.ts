@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -81,9 +83,9 @@ export class Firewall extends pulumi.CustomResource {
         return obj['__pulumiType'] === Firewall.__pulumiType;
     }
 
-    public readonly allows!: pulumi.Output<{ ports?: string[], protocol: string }[] | undefined>;
+    public readonly allows!: pulumi.Output<outputApi.compute.FirewallAllow[] | undefined>;
     public /*out*/ readonly creationTimestamp!: pulumi.Output<string>;
-    public readonly denies!: pulumi.Output<{ ports?: string[], protocol: string }[] | undefined>;
+    public readonly denies!: pulumi.Output<outputApi.compute.FirewallDeny[] | undefined>;
     public readonly description!: pulumi.Output<string | undefined>;
     public readonly destinationRanges!: pulumi.Output<string[]>;
     public readonly direction!: pulumi.Output<string>;
@@ -176,9 +178,9 @@ export class Firewall extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Firewall resources.
  */
 export interface FirewallState {
-    readonly allows?: pulumi.Input<pulumi.Input<{ ports?: pulumi.Input<pulumi.Input<string>[]>, protocol: pulumi.Input<string> }>[]>;
+    readonly allows?: pulumi.Input<pulumi.Input<inputApi.compute.FirewallAllow>[]>;
     readonly creationTimestamp?: pulumi.Input<string>;
-    readonly denies?: pulumi.Input<pulumi.Input<{ ports?: pulumi.Input<pulumi.Input<string>[]>, protocol: pulumi.Input<string> }>[]>;
+    readonly denies?: pulumi.Input<pulumi.Input<inputApi.compute.FirewallDeny>[]>;
     readonly description?: pulumi.Input<string>;
     readonly destinationRanges?: pulumi.Input<pulumi.Input<string>[]>;
     readonly direction?: pulumi.Input<string>;
@@ -207,8 +209,8 @@ export interface FirewallState {
  * The set of arguments for constructing a Firewall resource.
  */
 export interface FirewallArgs {
-    readonly allows?: pulumi.Input<pulumi.Input<{ ports?: pulumi.Input<pulumi.Input<string>[]>, protocol: pulumi.Input<string> }>[]>;
-    readonly denies?: pulumi.Input<pulumi.Input<{ ports?: pulumi.Input<pulumi.Input<string>[]>, protocol: pulumi.Input<string> }>[]>;
+    readonly allows?: pulumi.Input<pulumi.Input<inputApi.compute.FirewallAllow>[]>;
+    readonly denies?: pulumi.Input<pulumi.Input<inputApi.compute.FirewallDeny>[]>;
     readonly description?: pulumi.Input<string>;
     readonly destinationRanges?: pulumi.Input<pulumi.Input<string>[]>;
     readonly direction?: pulumi.Input<string>;

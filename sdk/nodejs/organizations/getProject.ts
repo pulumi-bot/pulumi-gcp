@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -52,7 +54,7 @@ export interface GetProjectArgs {
  * A collection of values returned by getProject.
  */
 export interface GetProjectResult {
-    readonly appEngines: { authDomain: string, codeBucket: string, defaultBucket: string, defaultHostname: string, featureSettings: { splitHealthChecks: boolean }[], gcrDomain: string, locationId: string, name: string, servingStatus: string, urlDispatchRules: { domain: string, path: string, service: string }[] }[];
+    readonly appEngines: outputApi.organizations.GetProjectAppEngine[];
     readonly autoCreateNetwork: boolean;
     readonly billingAccount: string;
     readonly folderId: string;

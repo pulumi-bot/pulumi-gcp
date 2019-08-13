@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -80,7 +82,7 @@ export interface GetInstanceGroupResult {
     /**
      * List of named ports in the group.
      */
-    readonly namedPorts: { name: string, port: number }[];
+    readonly namedPorts: outputApi.compute.GetInstanceGroupNamedPort[];
     /**
      * The URL of the network the instance group is in.
      */

@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -66,7 +68,7 @@ export class NodeTemplate extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     public readonly nodeAffinityLabels!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly nodeType!: pulumi.Output<string | undefined>;
-    public readonly nodeTypeFlexibility!: pulumi.Output<{ cpus?: string, localSsd: string, memory?: string } | undefined>;
+    public readonly nodeTypeFlexibility!: pulumi.Output<outputApi.compute.NodeTemplateNodeTypeFlexibility | undefined>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
@@ -77,7 +79,7 @@ export class NodeTemplate extends pulumi.CustomResource {
      * The URI of the created resource.
      */
     public /*out*/ readonly selfLink!: pulumi.Output<string>;
-    public readonly serverBinding!: pulumi.Output<{ type: string }>;
+    public readonly serverBinding!: pulumi.Output<outputApi.compute.NodeTemplateServerBinding>;
 
     /**
      * Create a NodeTemplate resource with the given unique name, arguments, and options.
@@ -134,7 +136,7 @@ export interface NodeTemplateState {
     readonly name?: pulumi.Input<string>;
     readonly nodeAffinityLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     readonly nodeType?: pulumi.Input<string>;
-    readonly nodeTypeFlexibility?: pulumi.Input<{ cpus?: pulumi.Input<string>, localSsd?: pulumi.Input<string>, memory?: pulumi.Input<string> }>;
+    readonly nodeTypeFlexibility?: pulumi.Input<inputApi.compute.NodeTemplateNodeTypeFlexibility>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
@@ -145,7 +147,7 @@ export interface NodeTemplateState {
      * The URI of the created resource.
      */
     readonly selfLink?: pulumi.Input<string>;
-    readonly serverBinding?: pulumi.Input<{ type: pulumi.Input<string> }>;
+    readonly serverBinding?: pulumi.Input<inputApi.compute.NodeTemplateServerBinding>;
 }
 
 /**
@@ -156,12 +158,12 @@ export interface NodeTemplateArgs {
     readonly name?: pulumi.Input<string>;
     readonly nodeAffinityLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     readonly nodeType?: pulumi.Input<string>;
-    readonly nodeTypeFlexibility?: pulumi.Input<{ cpus?: pulumi.Input<string>, localSsd?: pulumi.Input<string>, memory?: pulumi.Input<string> }>;
+    readonly nodeTypeFlexibility?: pulumi.Input<inputApi.compute.NodeTemplateNodeTypeFlexibility>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
     readonly project?: pulumi.Input<string>;
     readonly region?: pulumi.Input<string>;
-    readonly serverBinding?: pulumi.Input<{ type: pulumi.Input<string> }>;
+    readonly serverBinding?: pulumi.Input<inputApi.compute.NodeTemplateServerBinding>;
 }

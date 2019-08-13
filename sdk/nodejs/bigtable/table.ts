@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -64,7 +66,7 @@ export class Table extends pulumi.CustomResource {
     /**
      * A group of columns within a table which share a common configuration. This can be specified multiple times. Structure is documented below.
      */
-    public readonly columnFamilies!: pulumi.Output<{ family: string }[] | undefined>;
+    public readonly columnFamilies!: pulumi.Output<outputApi.bigtable.TableColumnFamily[] | undefined>;
     /**
      * The name of the Bigtable instance.
      */
@@ -129,7 +131,7 @@ export interface TableState {
     /**
      * A group of columns within a table which share a common configuration. This can be specified multiple times. Structure is documented below.
      */
-    readonly columnFamilies?: pulumi.Input<pulumi.Input<{ family: pulumi.Input<string> }>[]>;
+    readonly columnFamilies?: pulumi.Input<pulumi.Input<inputApi.bigtable.TableColumnFamily>[]>;
     /**
      * The name of the Bigtable instance.
      */
@@ -156,7 +158,7 @@ export interface TableArgs {
     /**
      * A group of columns within a table which share a common configuration. This can be specified multiple times. Structure is documented below.
      */
-    readonly columnFamilies?: pulumi.Input<pulumi.Input<{ family: pulumi.Input<string> }>[]>;
+    readonly columnFamilies?: pulumi.Input<pulumi.Input<inputApi.bigtable.TableColumnFamily>[]>;
     /**
      * The name of the Bigtable instance.
      */

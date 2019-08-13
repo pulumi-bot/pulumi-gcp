@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -78,11 +80,11 @@ export interface GetInstanceResult {
     /**
      * List of disks attached to the instance. Structure is documented below.
      */
-    readonly attachedDisks: { deviceName: string, diskEncryptionKeyRaw: string, diskEncryptionKeySha256: string, kmsKeySelfLink: string, mode: string, source: string }[];
+    readonly attachedDisks: outputApi.compute.GetInstanceAttachedDisk[];
     /**
      * The boot disk for the instance. Structure is documented below.
      */
-    readonly bootDisks: { autoDelete: boolean, deviceName: string, diskEncryptionKeyRaw: string, diskEncryptionKeySha256: string, initializeParams: { image: string, labels: {[key: string]: any}, size: number, type: string }[], kmsKeySelfLink: string, source: string }[];
+    readonly bootDisks: outputApi.compute.GetInstanceBootDisk[];
     /**
      * Whether sending and receiving of packets with non-matching source or destination IPs is allowed.
      */
@@ -99,11 +101,11 @@ export interface GetInstanceResult {
      * A brief description of the resource.
      */
     readonly description: string;
-    readonly disks: { autoDelete: boolean, deviceName: string, disk: string, diskEncryptionKeyRaw: string, diskEncryptionKeySha256: string, image: string, scratch: boolean, size: number, type: string }[];
+    readonly disks: outputApi.compute.GetInstanceDisk[];
     /**
      * List of the type and count of accelerator cards attached to the instance. Structure is documented below.
      */
-    readonly guestAccelerators: { count: number, type: string }[];
+    readonly guestAccelerators: outputApi.compute.GetInstanceGuestAccelerator[];
     readonly hostname: string;
     /**
      * The server-assigned unique identifier of this instance.
@@ -138,16 +140,16 @@ export interface GetInstanceResult {
     /**
      * The networks attached to the instance. Structure is documented below.
      */
-    readonly networkInterfaces: { accessConfigs: { assignedNatIp: string, natIp: string, networkTier: string, publicPtrDomainName: string }[], address: string, aliasIpRanges: { ipCidrRange: string, subnetworkRangeName: string }[], name: string, network: string, networkIp: string, subnetwork: string, subnetworkProject: string }[];
+    readonly networkInterfaces: outputApi.compute.GetInstanceNetworkInterface[];
     readonly project?: string;
     /**
      * The scheduling strategy being used by the instance.
      */
-    readonly schedulings: { automaticRestart: boolean, nodeAffinities: { key: string, operator: string, values: string[] }[], onHostMaintenance: string, preemptible: boolean }[];
+    readonly schedulings: outputApi.compute.GetInstanceScheduling[];
     /**
      * The scratch disks attached to the instance. Structure is documented below.
      */
-    readonly scratchDisks: { interface: string }[];
+    readonly scratchDisks: outputApi.compute.GetInstanceScratchDisk[];
     /**
      * The URI of the created resource.
      */
@@ -155,11 +157,11 @@ export interface GetInstanceResult {
     /**
      * The service account to attach to the instance. Structure is documented below.
      */
-    readonly serviceAccounts: { email: string, scopes: string[] }[];
+    readonly serviceAccounts: outputApi.compute.GetInstanceServiceAccount[];
     /**
      * The shielded vm config being used by the instance. Structure is documented below.
      */
-    readonly shieldedInstanceConfigs: { enableIntegrityMonitoring: boolean, enableSecureBoot: boolean, enableVtpm: boolean }[];
+    readonly shieldedInstanceConfigs: outputApi.compute.GetInstanceShieldedInstanceConfig[];
     /**
      * The list of tags attached to the instance.
      */

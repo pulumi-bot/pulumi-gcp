@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -83,7 +85,7 @@ export interface GetKMSCryptoKeyResult {
      * The self link of the created CryptoKey. Its format is `projects/{projectId}/locations/{location}/keyRings/{keyRingName}/cryptoKeys/{cryptoKeyName}`.
      */
     readonly selfLink: string;
-    readonly versionTemplates: { algorithm: string, protectionLevel: string }[];
+    readonly versionTemplates: outputApi.kms.GetKMSCryptoKeyVersionTemplate[];
     /**
      * id is the provider-assigned unique ID for this managed resource.
      */
