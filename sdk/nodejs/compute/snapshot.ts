@@ -32,10 +32,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const debian = pulumi.output(gcp.compute.getImage({
+ * const debian = gcp.compute.getImage({
  *     family: "debian-9",
  *     project: "debian-cloud",
- * }));
+ * });
  * const persistent = new gcp.compute.Disk("persistent", {
  *     image: debian.selfLink,
  *     size: 10,

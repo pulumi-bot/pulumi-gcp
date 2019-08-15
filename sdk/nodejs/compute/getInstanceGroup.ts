@@ -13,10 +13,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const all = pulumi.output(gcp.compute.getInstanceGroup({
+ * const all = gcp.compute.getInstanceGroup({
  *     name: "instance-group-name",
  *     zone: "us-central1-a",
- * }));
+ * });
  * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/compute_instance_group.html.markdown.

@@ -25,10 +25,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const debian9 = pulumi.output(gcp.compute.getImage({
+ * const debian9 = gcp.compute.getImage({
  *     family: "debian-9",
  *     project: "debian-cloud",
- * }));
+ * });
  * const foobarTargetPool = new gcp.compute.TargetPool("foobar", {});
  * const foobarInstanceTemplate = new gcp.compute.InstanceTemplate("foobar", {
  *     canIpForward: false,

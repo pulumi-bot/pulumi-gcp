@@ -11,10 +11,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const acct = pulumi.output(gcp.organizations.getBillingAccount({
+ * const acct = gcp.organizations.getBillingAccount({
  *     displayName: "My Billing Account",
  *     open: true,
- * }));
+ * });
  * const myProject = new gcp.organizations.Project("myProject", {
  *     billingAccount: acct.id,
  *     orgId: "1234567",

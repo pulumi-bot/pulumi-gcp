@@ -13,10 +13,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const myCert = pulumi.output(gcp.compute.getCertificate({
+ * const myCert = gcp.compute.getCertificate({
  *     location: "us-east1-a",
  *     name: "my-cert",
- * }));
+ * });
  * 
  * export const certificate = myCert.certificate;
  * export const certificateId = myCert.certificateId;

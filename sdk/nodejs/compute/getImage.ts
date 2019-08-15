@@ -14,10 +14,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const myImage = pulumi.output(gcp.compute.getImage({
+ * const myImage = gcp.compute.getImage({
  *     family: "debian-9",
  *     project: "debian-cloud",
- * }));
+ * });
  * const defaultInstance = new gcp.compute.Instance("default", {
  *     bootDisk: {
  *         initializeParams: {

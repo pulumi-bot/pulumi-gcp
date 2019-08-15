@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const ranges = pulumi.output(gcp.compute.getLBIPRanges({}));
+ * const ranges = gcp.compute.getLBIPRanges({});
  * const lb = new gcp.compute.Firewall("lb", {
  *     allows: [{
  *         ports: ["80"],

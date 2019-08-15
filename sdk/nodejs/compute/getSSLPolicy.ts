@@ -14,9 +14,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const mySslPolicy = pulumi.output(gcp.compute.getSSLPolicy({
+ * const mySslPolicy = gcp.compute.getSSLPolicy({
  *     name: "production-ssl-policy",
- * }));
+ * });
  * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/compute_ssl_policy.html.markdown.

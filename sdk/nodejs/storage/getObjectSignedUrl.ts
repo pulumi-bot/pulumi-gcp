@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  * import * as fs from "fs";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const getUrl = pulumi.output(gcp.storage.getObjectSignedUrl({
+ * const getUrl = gcp.storage.getObjectSignedUrl({
  *     bucket: "friedChicken",
  *     contentMd5: "pRviqwS4c4OTJRTe03FD1w==",
  *     contentType: "text/plain",
@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  *         "x-goog-if-generation-match": 1,
  *     },
  *     path: "path/to/file",
- * }));
+ * });
  * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/storage_object_signed_url.html.markdown.

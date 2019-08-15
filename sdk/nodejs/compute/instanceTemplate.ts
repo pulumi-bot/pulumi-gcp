@@ -17,10 +17,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const myImage = pulumi.output(gcp.compute.getImage({
+ * const myImage = gcp.compute.getImage({
  *     family: "debian-9",
  *     project: "debian-cloud",
- * }));
+ * });
  * const foobar = new gcp.compute.Disk("foobar", {
  *     image: myImage.selfLink,
  *     size: 10,
@@ -130,10 +130,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const myImage = pulumi.output(gcp.compute.getImage({
+ * const myImage = gcp.compute.getImage({
  *     family: "debian-9",
  *     project: "debian-cloud",
- * }));
+ * });
  * const instanceTemplate = new gcp.compute.InstanceTemplate("instanceTemplate", {
  *     // boot disk
  *     disks: [{

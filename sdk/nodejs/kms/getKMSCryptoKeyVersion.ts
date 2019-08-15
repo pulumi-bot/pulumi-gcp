@@ -21,14 +21,14 @@ import * as utilities from "../utilities";
  * const myCryptoKeyVersion = google_kms_key_my_key.selfLink.apply(selfLink => gcp.kms.getKMSCryptoKeyVersion({
  *     cryptoKey: selfLink,
  * }));
- * const myKeyRing = pulumi.output(gcp.kms.getKMSKeyRing({
+ * const myKeyRing = gcp.kms.getKMSKeyRing({
  *     location: "us-central1",
  *     name: "my-key-ring",
- * }));
- * const myCryptoKey = myKeyRing.apply(myKeyRing => gcp.kms.getKMSCryptoKey({
+ * });
+ * const myCryptoKey = gcp.kms.getKMSCryptoKey({
  *     keyRing: myKeyRing.selfLink,
  *     name: "my-crypto-key",
- * }));
+ * });
  * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/kms_crypto_key_version.html.markdown.
