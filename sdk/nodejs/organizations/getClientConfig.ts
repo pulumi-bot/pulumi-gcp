@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const current = pulumi.output(gcp.organizations.getClientConfig({}));
+ * const current = gcp.organizations.getClientConfig({});
  * 
  * export const project = current.project;
  * ```

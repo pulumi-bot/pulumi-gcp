@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const project = pulumi.output(gcp.organizations.getProject({}));
+ * const project = gcp.organizations.getProject({});
  * 
  * export const projectNumber = project.number;
  * ```

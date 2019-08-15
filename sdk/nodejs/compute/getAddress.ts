@@ -14,9 +14,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const myAddress = pulumi.output(gcp.compute.getAddress({
+ * const myAddress = gcp.compute.getAddress({
  *     name: "foobar",
- * }));
+ * });
  * const prod = new gcp.dns.ManagedZone("prod", {
  *     dnsName: "prod.mydomain.com.",
  * });

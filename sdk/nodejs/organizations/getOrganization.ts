@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const org = pulumi.output(gcp.organizations.getOrganization({
+ * const org = gcp.organizations.getOrganization({
  *     domain: "example.com",
- * }));
+ * });
  * const sales = new gcp.organizations.Folder("sales", {
  *     displayName: "Sales",
  *     parent: org.name,

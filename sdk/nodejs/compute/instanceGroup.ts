@@ -60,10 +60,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const debianImage = pulumi.output(gcp.compute.getImage({
+ * const debianImage = gcp.compute.getImage({
  *     family: "debian-9",
  *     project: "debian-cloud",
- * }));
+ * });
  * const stagingHealth = new gcp.compute.HttpsHealthCheck("stagingHealth", {
  *     requestPath: "/health_check",
  * });

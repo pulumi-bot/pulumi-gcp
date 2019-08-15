@@ -31,36 +31,6 @@ import * as utilities from "../utilities";
  *     privateKey: fs.readFileSync("path/to/private.key", "utf-8"),
  * });
  * ```
- * ## Example Usage - Ssl Certificate Random Provider
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as fs from "fs";
- * import * as gcp from "@pulumi/gcp";
- * import * as random from "@pulumi/random";
- * 
- * const certificate = new random.RandomId("certificate", {
- *     byteLength: 4,
- *     // For security, do not expose raw certificate values in the output
- *     keepers: {
- *         certificate: (() => {
- *             throw "tf2pulumi error: NYI: call to base64sha256";
- *             return (() => { throw "NYI: call to base64sha256"; })();
- *         })(),
- *         private_key: (() => {
- *             throw "tf2pulumi error: NYI: call to base64sha256";
- *             return (() => { throw "NYI: call to base64sha256"; })();
- *         })(),
- *     },
- *     prefix: "my-certificate-",
- * });
- * // You may also want to control name generation explicitly:
- * const defaultSSLCertificate = new gcp.compute.SSLCertificate("default", {
- *     certificate: fs.readFileSync("path/to/certificate.crt", "utf-8"),
- *     privateKey: fs.readFileSync("path/to/private.key", "utf-8"),
- * });
- * ```
  * ## Example Usage - Ssl Certificate Target Https Proxies
  * 
  * 
