@@ -15,10 +15,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const policy = pulumi.output(gcp.folder.getOrganizationPolicy({
+ * const policy = gcp.folder.getOrganizationPolicy({
  *     constraint: "constraints/compute.trustedImageProjects",
  *     folder: "folders/folderid",
- * }));
+ * });
  * 
  * export const version = policy.version;
  * ```

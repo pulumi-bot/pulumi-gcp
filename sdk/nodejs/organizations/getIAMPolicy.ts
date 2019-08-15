@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const admin = pulumi.output(gcp.organizations.getIAMPolicy({
+ * const admin = gcp.organizations.getIAMPolicy({
  *     auditConfigs: [{
  *         auditLogConfigs: [
  *             {
@@ -38,7 +38,7 @@ import * as utilities from "../utilities";
  *             role: "roles/storage.objectViewer",
  *         },
  *     ],
- * }));
+ * });
  * ```
  * 
  * This data source is used to define IAM policies to apply to other resources.

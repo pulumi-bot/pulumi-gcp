@@ -13,10 +13,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const myCluster = pulumi.output(gcp.container.getCluster({
+ * const myCluster = gcp.container.getCluster({
  *     location: "us-east1-a",
  *     name: "my-cluster",
- * }));
+ * });
  * 
  * export const clusterPassword = myCluster.masterAuths[0].password;
  * export const clusterUsername = myCluster.masterAuths[0].username;

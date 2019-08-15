@@ -22,16 +22,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const defaultTransferProjectServieAccount = pulumi.output(gcp.storage.getTransferProjectServieAccount({
+ * const defaultTransferProjectServieAccount = gcp.storage.getTransferProjectServieAccount({
  *     project: var_project,
- * }));
+ * });
  * const s3_backup_bucketBucket = new gcp.storage.Bucket("s3-backup-bucket", {
  *     project: var_project,
  *     storageClass: "NEARLINE",
  * });
  * const s3_backup_bucketBucketIAMMember = new gcp.storage.BucketIAMMember("s3-backup-bucket", {
  *     bucket: s3_backup_bucketBucket.name,
- *     member: pulumi.interpolate`serviceAccount:${defaultTransferProjectServieAccount.email}`,
+ *     member: `serviceAccount:${defaultTransferProjectServieAccount.email}`,
  *     role: "roles/storage.admin",
  * }, {dependsOn: [s3_backup_bucketBucket]});
  * const s3BucketNightlyBackup = new gcp.storage.TransferJob("s3-bucket-nightly-backup", {

@@ -15,9 +15,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const debian = pulumi.output(gcp.container.getRegistryImage({
+ * const debian = gcp.container.getRegistryImage({
  *     name: "debian",
- * }));
+ * });
  * 
  * export const gcrLocation = debian.imageUrl;
  * ```

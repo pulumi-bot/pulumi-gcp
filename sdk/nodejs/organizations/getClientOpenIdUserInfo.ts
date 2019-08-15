@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const me = pulumi.output(gcp.organizations.getClientOpenIdUserInfo({}));
+ * const me = gcp.organizations.getClientOpenIdUserInfo({});
  * 
  * export const myEmail = me.email;
  * ```

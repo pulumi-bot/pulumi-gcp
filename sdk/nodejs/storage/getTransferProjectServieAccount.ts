@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const defaultTransferProjectServieAccount = pulumi.output(gcp.storage.getTransferProjectServieAccount({}));
+ * const defaultTransferProjectServieAccount = gcp.storage.getTransferProjectServieAccount({});
  * 
  * export const defaultAccount = defaultTransferProjectServieAccount.email;
  * ```

@@ -12,13 +12,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const available = pulumi.output(gcp.compute.getRegions({}));
+ * const available = gcp.compute.getRegions({});
  * const cluster: gcp.compute.Subnetwork[] = [];
- * for (let i = 0; i < available.apply(available => available.names.length); i++) {
+ * for (let i = 0; i < available.names.length; i++) {
  *     cluster.push(new gcp.compute.Subnetwork(`cluster-${i}`, {
  *         ipCidrRange: `10.36.${i}.0/24`,
  *         network: "my-network",
- *         region: available.apply(available => available.names[i]),
+ *         region: available.names[i],
  *     }));
  * }
  * ```

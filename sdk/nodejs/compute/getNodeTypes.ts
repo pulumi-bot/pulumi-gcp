@@ -14,9 +14,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const central1b = pulumi.output(gcp.compute.getNodeTypes({
+ * const central1b = gcp.compute.getNodeTypes({
  *     zone: "us-central1-b",
- * }));
+ * });
  * const tmpl = new gcp.compute.NodeTemplate("tmpl", {
  *     nodeType: google_compute_node_types_types.names.apply(names => names[0]),
  *     region: "us-central1",

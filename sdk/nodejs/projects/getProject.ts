@@ -15,12 +15,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const myOrgProjects = pulumi.output(gcp.projects.getProject({
+ * const myOrgProjects = gcp.projects.getProject({
  *     filter: "parent.id:012345678910 lifecycleState:DELETE_REQUESTED",
- * }));
- * const deletionCandidate = my_org_projects.apply(my_org_projects => gcp.organizations.getProject({
+ * });
+ * const deletionCandidate = gcp.organizations.getProject({
  *     projectId: my_org_projects.projects[0].projectId,
- * }));
+ * });
  * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/projects.html.markdown.

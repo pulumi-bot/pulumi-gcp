@@ -15,10 +15,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const policy = pulumi.output(gcp.projects.getOrganizationPolicy({
+ * const policy = gcp.projects.getOrganizationPolicy({
  *     constraint: "constraints/serviceuser.services",
  *     project: "project-id",
- * }));
+ * });
  * 
  * export const version = policy.version;
  * ```

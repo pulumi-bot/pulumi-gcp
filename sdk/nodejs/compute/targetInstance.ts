@@ -26,10 +26,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const vmimage = pulumi.output(gcp.compute.getImage({
+ * const vmimage = gcp.compute.getImage({
  *     family: "debian-9",
  *     project: "debian-cloud",
- * }));
+ * });
  * const targetVm = new gcp.compute.Instance("target-vm", {
  *     bootDisk: {
  *         initializeParams: {

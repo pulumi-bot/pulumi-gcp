@@ -23,11 +23,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const gcsAccount = pulumi.output(gcp.storage.getProjectServiceAccount({}));
+ * const gcsAccount = gcp.storage.getProjectServiceAccount({});
  * const topic = new gcp.pubsub.Topic("topic", {});
  * const bucket = new gcp.storage.Bucket("bucket", {});
  * const binding = new gcp.pubsub.TopicIAMBinding("binding", {
- *     members: [pulumi.interpolate`serviceAccount:${gcsAccount.emailAddress}`],
+ *     members: [`serviceAccount:${gcsAccount.emailAddress}`],
  *     role: "roles/pubsub.publisher",
  *     topic: topic.name,
  * });
