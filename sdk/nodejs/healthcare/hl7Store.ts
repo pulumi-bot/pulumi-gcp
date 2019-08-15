@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -46,8 +48,8 @@ export class Hl7Store extends pulumi.CustomResource {
     public readonly dataset!: pulumi.Output<string>;
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly name!: pulumi.Output<string>;
-    public readonly notificationConfig!: pulumi.Output<{ pubsubTopic: string } | undefined>;
-    public readonly parserConfig!: pulumi.Output<{ allowNullHeader?: boolean, segmentTerminator?: string } | undefined>;
+    public readonly notificationConfig!: pulumi.Output<outputApi.healthcare.Hl7StoreNotificationConfig | undefined>;
+    public readonly parserConfig!: pulumi.Output<outputApi.healthcare.Hl7StoreParserConfig | undefined>;
     public /*out*/ readonly selfLink!: pulumi.Output<string>;
 
     /**
@@ -98,8 +100,8 @@ export interface Hl7StoreState {
     readonly dataset?: pulumi.Input<string>;
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     readonly name?: pulumi.Input<string>;
-    readonly notificationConfig?: pulumi.Input<{ pubsubTopic: pulumi.Input<string> }>;
-    readonly parserConfig?: pulumi.Input<{ allowNullHeader?: pulumi.Input<boolean>, segmentTerminator?: pulumi.Input<string> }>;
+    readonly notificationConfig?: pulumi.Input<inputApi.healthcare.Hl7StoreNotificationConfig>;
+    readonly parserConfig?: pulumi.Input<inputApi.healthcare.Hl7StoreParserConfig>;
     readonly selfLink?: pulumi.Input<string>;
 }
 
@@ -110,6 +112,6 @@ export interface Hl7StoreArgs {
     readonly dataset: pulumi.Input<string>;
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     readonly name?: pulumi.Input<string>;
-    readonly notificationConfig?: pulumi.Input<{ pubsubTopic: pulumi.Input<string> }>;
-    readonly parserConfig?: pulumi.Input<{ allowNullHeader?: pulumi.Input<boolean>, segmentTerminator?: pulumi.Input<string> }>;
+    readonly notificationConfig?: pulumi.Input<inputApi.healthcare.Hl7StoreNotificationConfig>;
+    readonly parserConfig?: pulumi.Input<inputApi.healthcare.Hl7StoreParserConfig>;
 }

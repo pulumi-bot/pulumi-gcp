@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -69,10 +71,10 @@ export class Instance extends pulumi.CustomResource {
     public /*out*/ readonly createTime!: pulumi.Output<string>;
     public readonly description!: pulumi.Output<string | undefined>;
     public /*out*/ readonly etag!: pulumi.Output<string>;
-    public readonly fileShares!: pulumi.Output<{ capacityGb: number, name: string }>;
+    public readonly fileShares!: pulumi.Output<outputApi.filestore.InstanceFileShares>;
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly name!: pulumi.Output<string>;
-    public readonly networks!: pulumi.Output<{ ipAddresses: string[], modes: string[], network: string, reservedIpRange: string }[]>;
+    public readonly networks!: pulumi.Output<outputApi.filestore.InstanceNetwork[]>;
     public readonly project!: pulumi.Output<string>;
     public readonly tier!: pulumi.Output<string>;
     public readonly zone!: pulumi.Output<string>;
@@ -142,10 +144,10 @@ export interface InstanceState {
     readonly createTime?: pulumi.Input<string>;
     readonly description?: pulumi.Input<string>;
     readonly etag?: pulumi.Input<string>;
-    readonly fileShares?: pulumi.Input<{ capacityGb: pulumi.Input<number>, name: pulumi.Input<string> }>;
+    readonly fileShares?: pulumi.Input<inputApi.filestore.InstanceFileShares>;
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     readonly name?: pulumi.Input<string>;
-    readonly networks?: pulumi.Input<pulumi.Input<{ ipAddresses?: pulumi.Input<pulumi.Input<string>[]>, modes: pulumi.Input<pulumi.Input<string>[]>, network: pulumi.Input<string>, reservedIpRange?: pulumi.Input<string> }>[]>;
+    readonly networks?: pulumi.Input<pulumi.Input<inputApi.filestore.InstanceNetwork>[]>;
     readonly project?: pulumi.Input<string>;
     readonly tier?: pulumi.Input<string>;
     readonly zone?: pulumi.Input<string>;
@@ -156,10 +158,10 @@ export interface InstanceState {
  */
 export interface InstanceArgs {
     readonly description?: pulumi.Input<string>;
-    readonly fileShares: pulumi.Input<{ capacityGb: pulumi.Input<number>, name: pulumi.Input<string> }>;
+    readonly fileShares: pulumi.Input<inputApi.filestore.InstanceFileShares>;
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     readonly name?: pulumi.Input<string>;
-    readonly networks: pulumi.Input<pulumi.Input<{ ipAddresses?: pulumi.Input<pulumi.Input<string>[]>, modes: pulumi.Input<pulumi.Input<string>[]>, network: pulumi.Input<string>, reservedIpRange?: pulumi.Input<string> }>[]>;
+    readonly networks: pulumi.Input<pulumi.Input<inputApi.filestore.InstanceNetwork>[]>;
     readonly project?: pulumi.Input<string>;
     readonly tier: pulumi.Input<string>;
     readonly zone: pulumi.Input<string>;
