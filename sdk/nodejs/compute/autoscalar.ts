@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -103,7 +105,7 @@ export class Autoscalar extends pulumi.CustomResource {
         return obj['__pulumiType'] === Autoscalar.__pulumiType;
     }
 
-    public readonly autoscalingPolicy!: pulumi.Output<{ cooldownPeriod?: number, cpuUtilization: { target: number }, loadBalancingUtilization?: { target: number }, maxReplicas: number, metrics?: { filter?: string, name: string, singleInstanceAssignment?: number, target?: number, type?: string }[], minReplicas: number }>;
+    public readonly autoscalingPolicy!: pulumi.Output<outputApi.compute.AutoscalarAutoscalingPolicy>;
     public /*out*/ readonly creationTimestamp!: pulumi.Output<string>;
     public readonly description!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
@@ -167,7 +169,7 @@ export class Autoscalar extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Autoscalar resources.
  */
 export interface AutoscalarState {
-    readonly autoscalingPolicy?: pulumi.Input<{ cooldownPeriod?: pulumi.Input<number>, cpuUtilization?: pulumi.Input<{ target: pulumi.Input<number> }>, loadBalancingUtilization?: pulumi.Input<{ target: pulumi.Input<number> }>, maxReplicas: pulumi.Input<number>, metrics?: pulumi.Input<pulumi.Input<{ filter?: pulumi.Input<string>, name: pulumi.Input<string>, singleInstanceAssignment?: pulumi.Input<number>, target?: pulumi.Input<number>, type?: pulumi.Input<string> }>[]>, minReplicas: pulumi.Input<number> }>;
+    readonly autoscalingPolicy?: pulumi.Input<inputApi.compute.AutoscalarAutoscalingPolicy>;
     readonly creationTimestamp?: pulumi.Input<string>;
     readonly description?: pulumi.Input<string>;
     readonly name?: pulumi.Input<string>;
@@ -184,7 +186,7 @@ export interface AutoscalarState {
  * The set of arguments for constructing a Autoscalar resource.
  */
 export interface AutoscalarArgs {
-    readonly autoscalingPolicy: pulumi.Input<{ cooldownPeriod?: pulumi.Input<number>, cpuUtilization?: pulumi.Input<{ target: pulumi.Input<number> }>, loadBalancingUtilization?: pulumi.Input<{ target: pulumi.Input<number> }>, maxReplicas: pulumi.Input<number>, metrics?: pulumi.Input<pulumi.Input<{ filter?: pulumi.Input<string>, name: pulumi.Input<string>, singleInstanceAssignment?: pulumi.Input<number>, target?: pulumi.Input<number>, type?: pulumi.Input<string> }>[]>, minReplicas: pulumi.Input<number> }>;
+    readonly autoscalingPolicy: pulumi.Input<inputApi.compute.AutoscalarAutoscalingPolicy>;
     readonly description?: pulumi.Input<string>;
     readonly name?: pulumi.Input<string>;
     readonly project?: pulumi.Input<string>;

@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -59,12 +61,12 @@ export interface GetOrganizationPolicyArgs {
  * A collection of values returned by getOrganizationPolicy.
  */
 export interface GetOrganizationPolicyResult {
-    readonly booleanPolicies: { enforced: boolean }[];
+    readonly booleanPolicies: outputApi.projects.GetOrganizationPolicyBooleanPolicy[];
     readonly constraint: string;
     readonly etag: string;
-    readonly listPolicies: { allows: { all: boolean, values: string[] }[], denies: { all: boolean, values: string[] }[], inheritFromParent: boolean, suggestedValue: string }[];
+    readonly listPolicies: outputApi.projects.GetOrganizationPolicyListPolicy[];
     readonly project: string;
-    readonly restorePolicies: { default: boolean }[];
+    readonly restorePolicies: outputApi.projects.GetOrganizationPolicyRestorePolicy[];
     readonly updateTime: string;
     readonly version: number;
     /**

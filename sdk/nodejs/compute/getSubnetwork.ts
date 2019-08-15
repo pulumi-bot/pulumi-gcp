@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputApi from "../types/input";
+import * as outputApi from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -101,7 +103,7 @@ export interface GetSubnetworkResult {
      * An array of configurations for secondary IP ranges for
      * VM instances contained in this subnetwork. Structure is documented below.
      */
-    readonly secondaryIpRanges: { ipCidrRange: string, rangeName: string }[];
+    readonly secondaryIpRanges: outputApi.compute.GetSubnetworkSecondaryIpRange[];
     readonly selfLink: string;
     /**
      * id is the provider-assigned unique ID for this managed resource.
