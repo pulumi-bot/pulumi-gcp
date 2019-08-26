@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class DatabaseInstance(pulumi.CustomResource):
@@ -66,6 +67,18 @@ class DatabaseInstance(pulumi.CustomResource):
     """
     The configuration for replication. The
     configuration is detailed below.
+    
+      * `ca_certificate` (`str`)
+      * `client_certificate` (`str`)
+      * `client_key` (`str`)
+      * `connect_retry_interval` (`float`)
+      * `dump_file_path` (`str`)
+      * `failover_target` (`bool`)
+      * `master_heartbeat_period` (`float`)
+      * `password` (`str`)
+      * `ssl_cipher` (`str`)
+      * `username` (`str`)
+      * `verify_server_certificate` (`bool`)
     """
     self_link: pulumi.Output[str]
     """
@@ -81,6 +94,59 @@ class DatabaseInstance(pulumi.CustomResource):
     """
     The settings to use for the database. The
     configuration is detailed below.
+    
+      * `activation_policy` (`str`)
+      * `authorized_gae_applications` (`list`)
+      * `availability_type` (`str`)
+      * `backup_configuration` (`dict`)
+    
+        * `binary_log_enabled` (`bool`)
+        * `enabled` (`bool`)
+        * `start_time` (`str`)
+    
+      * `crash_safe_replication` (`bool`)
+      * `database_flags` (`list`)
+    
+        * `name` (`str`) - The name of the instance. If the name is left
+          blank, this provider will randomly generate one when the instance is first
+          created. This is done because after a name is used, it cannot be reused for
+          up to [one week](https://cloud.google.com/sql/docs/delete-instance).
+        * `value` (`str`)
+    
+      * `disk_autoresize` (`bool`)
+      * `disk_size` (`float`)
+      * `disk_type` (`str`)
+      * `ip_configuration` (`dict`)
+    
+        * `authorized_networks` (`list`)
+    
+          * `expiration_time` (`str`)
+          * `name` (`str`) - The name of the instance. If the name is left
+            blank, this provider will randomly generate one when the instance is first
+            created. This is done because after a name is used, it cannot be reused for
+            up to [one week](https://cloud.google.com/sql/docs/delete-instance).
+          * `value` (`str`)
+    
+        * `ipv4_enabled` (`bool`)
+        * `private_network` (`str`)
+        * `require_ssl` (`bool`)
+    
+      * `location_preference` (`dict`)
+    
+        * `follow_gae_application` (`str`)
+        * `zone` (`str`)
+    
+      * `maintenance_window` (`dict`)
+    
+        * `day` (`float`)
+        * `hour` (`float`)
+        * `update_track` (`str`)
+    
+      * `pricing_plan` (`str`)
+      * `replication_type` (`str`)
+      * `tier` (`str`)
+      * `user_labels` (`dict`)
+      * `version` (`float`)
     """
     def __init__(__self__, resource_name, opts=None, database_version=None, master_instance_name=None, name=None, project=None, region=None, replica_configuration=None, settings=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -119,6 +185,75 @@ class DatabaseInstance(pulumi.CustomResource):
                configuration is detailed below.
         :param pulumi.Input[dict] settings: The settings to use for the database. The
                configuration is detailed below.
+        
+        The **replica_configuration** object supports the following:
+        
+          * `ca_certificate` (`pulumi.Input[str]`)
+          * `client_certificate` (`pulumi.Input[str]`)
+          * `client_key` (`pulumi.Input[str]`)
+          * `connect_retry_interval` (`pulumi.Input[float]`)
+          * `dump_file_path` (`pulumi.Input[str]`)
+          * `failover_target` (`pulumi.Input[bool]`)
+          * `master_heartbeat_period` (`pulumi.Input[float]`)
+          * `password` (`pulumi.Input[str]`)
+          * `ssl_cipher` (`pulumi.Input[str]`)
+          * `username` (`pulumi.Input[str]`)
+          * `verify_server_certificate` (`pulumi.Input[bool]`)
+        
+        The **settings** object supports the following:
+        
+          * `activation_policy` (`pulumi.Input[str]`)
+          * `authorized_gae_applications` (`pulumi.Input[list]`)
+          * `availability_type` (`pulumi.Input[str]`)
+          * `backup_configuration` (`pulumi.Input[dict]`)
+        
+            * `binary_log_enabled` (`pulumi.Input[bool]`)
+            * `enabled` (`pulumi.Input[bool]`)
+            * `start_time` (`pulumi.Input[str]`)
+        
+          * `crash_safe_replication` (`pulumi.Input[bool]`)
+          * `database_flags` (`pulumi.Input[list]`)
+        
+            * `name` (`pulumi.Input[str]`) - The name of the instance. If the name is left
+              blank, this provider will randomly generate one when the instance is first
+              created. This is done because after a name is used, it cannot be reused for
+              up to [one week](https://cloud.google.com/sql/docs/delete-instance).
+            * `value` (`pulumi.Input[str]`)
+        
+          * `disk_autoresize` (`pulumi.Input[bool]`)
+          * `disk_size` (`pulumi.Input[float]`)
+          * `disk_type` (`pulumi.Input[str]`)
+          * `ip_configuration` (`pulumi.Input[dict]`)
+        
+            * `authorized_networks` (`pulumi.Input[list]`)
+        
+              * `expiration_time` (`pulumi.Input[str]`)
+              * `name` (`pulumi.Input[str]`) - The name of the instance. If the name is left
+                blank, this provider will randomly generate one when the instance is first
+                created. This is done because after a name is used, it cannot be reused for
+                up to [one week](https://cloud.google.com/sql/docs/delete-instance).
+              * `value` (`pulumi.Input[str]`)
+        
+            * `ipv4_enabled` (`pulumi.Input[bool]`)
+            * `private_network` (`pulumi.Input[str]`)
+            * `require_ssl` (`pulumi.Input[bool]`)
+        
+          * `location_preference` (`pulumi.Input[dict]`)
+        
+            * `follow_gae_application` (`pulumi.Input[str]`)
+            * `zone` (`pulumi.Input[str]`)
+        
+          * `maintenance_window` (`pulumi.Input[dict]`)
+        
+            * `day` (`pulumi.Input[float]`)
+            * `hour` (`pulumi.Input[float]`)
+            * `update_track` (`pulumi.Input[str]`)
+        
+          * `pricing_plan` (`pulumi.Input[str]`)
+          * `replication_type` (`pulumi.Input[str]`)
+          * `tier` (`pulumi.Input[str]`)
+          * `user_labels` (`pulumi.Input[dict]`)
+          * `version` (`pulumi.Input[float]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/sql_database_instance.html.markdown.
         """
@@ -167,6 +302,7 @@ class DatabaseInstance(pulumi.CustomResource):
         """
         Get an existing DatabaseInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -204,10 +340,93 @@ class DatabaseInstance(pulumi.CustomResource):
                instance. This property is applicable only to Second Generation instances.
         :param pulumi.Input[dict] settings: The settings to use for the database. The
                configuration is detailed below.
+        
+        The **ip_addresses** object supports the following:
+        
+          * `ip_address` (`pulumi.Input[str]`)
+          * `time_to_retire` (`pulumi.Input[str]`)
+          * `type` (`pulumi.Input[str]`)
+        
+        The **replica_configuration** object supports the following:
+        
+          * `ca_certificate` (`pulumi.Input[str]`)
+          * `client_certificate` (`pulumi.Input[str]`)
+          * `client_key` (`pulumi.Input[str]`)
+          * `connect_retry_interval` (`pulumi.Input[float]`)
+          * `dump_file_path` (`pulumi.Input[str]`)
+          * `failover_target` (`pulumi.Input[bool]`)
+          * `master_heartbeat_period` (`pulumi.Input[float]`)
+          * `password` (`pulumi.Input[str]`)
+          * `ssl_cipher` (`pulumi.Input[str]`)
+          * `username` (`pulumi.Input[str]`)
+          * `verify_server_certificate` (`pulumi.Input[bool]`)
+        
+        The **server_ca_cert** object supports the following:
+        
+          * `cert` (`pulumi.Input[str]`)
+          * `common_name` (`pulumi.Input[str]`)
+          * `create_time` (`pulumi.Input[str]`)
+          * `expiration_time` (`pulumi.Input[str]`)
+          * `sha1_fingerprint` (`pulumi.Input[str]`)
+        
+        The **settings** object supports the following:
+        
+          * `activation_policy` (`pulumi.Input[str]`)
+          * `authorized_gae_applications` (`pulumi.Input[list]`)
+          * `availability_type` (`pulumi.Input[str]`)
+          * `backup_configuration` (`pulumi.Input[dict]`)
+        
+            * `binary_log_enabled` (`pulumi.Input[bool]`)
+            * `enabled` (`pulumi.Input[bool]`)
+            * `start_time` (`pulumi.Input[str]`)
+        
+          * `crash_safe_replication` (`pulumi.Input[bool]`)
+          * `database_flags` (`pulumi.Input[list]`)
+        
+            * `name` (`pulumi.Input[str]`) - The name of the instance. If the name is left
+              blank, this provider will randomly generate one when the instance is first
+              created. This is done because after a name is used, it cannot be reused for
+              up to [one week](https://cloud.google.com/sql/docs/delete-instance).
+            * `value` (`pulumi.Input[str]`)
+        
+          * `disk_autoresize` (`pulumi.Input[bool]`)
+          * `disk_size` (`pulumi.Input[float]`)
+          * `disk_type` (`pulumi.Input[str]`)
+          * `ip_configuration` (`pulumi.Input[dict]`)
+        
+            * `authorized_networks` (`pulumi.Input[list]`)
+        
+              * `expiration_time` (`pulumi.Input[str]`)
+              * `name` (`pulumi.Input[str]`) - The name of the instance. If the name is left
+                blank, this provider will randomly generate one when the instance is first
+                created. This is done because after a name is used, it cannot be reused for
+                up to [one week](https://cloud.google.com/sql/docs/delete-instance).
+              * `value` (`pulumi.Input[str]`)
+        
+            * `ipv4_enabled` (`pulumi.Input[bool]`)
+            * `private_network` (`pulumi.Input[str]`)
+            * `require_ssl` (`pulumi.Input[bool]`)
+        
+          * `location_preference` (`pulumi.Input[dict]`)
+        
+            * `follow_gae_application` (`pulumi.Input[str]`)
+            * `zone` (`pulumi.Input[str]`)
+        
+          * `maintenance_window` (`pulumi.Input[dict]`)
+        
+            * `day` (`pulumi.Input[float]`)
+            * `hour` (`pulumi.Input[float]`)
+            * `update_track` (`pulumi.Input[str]`)
+        
+          * `pricing_plan` (`pulumi.Input[str]`)
+          * `replication_type` (`pulumi.Input[str]`)
+          * `tier` (`pulumi.Input[str]`)
+          * `user_labels` (`pulumi.Input[dict]`)
+          * `version` (`pulumi.Input[float]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/sql_database_instance.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["connection_name"] = connection_name

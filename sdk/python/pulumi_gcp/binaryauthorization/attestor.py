@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class Attestor(pulumi.CustomResource):
@@ -26,6 +27,20 @@ class Attestor(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        
+        The **attestation_authority_note** object supports the following:
+        
+          * `delegation_service_account_email` (`pulumi.Input[str]`)
+          * `note_reference` (`pulumi.Input[str]`)
+          * `public_keys` (`pulumi.Input[list]`)
+        
+            * `ascii_armored_pgp_public_key` (`pulumi.Input[str]`)
+            * `comment` (`pulumi.Input[str]`)
+            * `id` (`pulumi.Input[str]`)
+            * `pkix_public_key` (`pulumi.Input[dict]`)
+        
+              * `public_key_pem` (`pulumi.Input[str]`)
+              * `signature_algorithm` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/binary_authorization_attestor.html.markdown.
         """
@@ -63,13 +78,28 @@ class Attestor(pulumi.CustomResource):
         """
         Get an existing Attestor resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        
+        The **attestation_authority_note** object supports the following:
+        
+          * `delegation_service_account_email` (`pulumi.Input[str]`)
+          * `note_reference` (`pulumi.Input[str]`)
+          * `public_keys` (`pulumi.Input[list]`)
+        
+            * `ascii_armored_pgp_public_key` (`pulumi.Input[str]`)
+            * `comment` (`pulumi.Input[str]`)
+            * `id` (`pulumi.Input[str]`)
+            * `pkix_public_key` (`pulumi.Input[dict]`)
+        
+              * `public_key_pem` (`pulumi.Input[str]`)
+              * `signature_algorithm` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/binary_authorization_attestor.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["attestation_authority_note"] = attestation_authority_note

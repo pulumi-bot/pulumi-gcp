@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class Table(pulumi.CustomResource):
@@ -39,6 +40,27 @@ class Table(pulumi.CustomResource):
     location, and other properties of a table stored outside of BigQuery.
     By defining these properties, the data source can then be queried as
     if it were a standard BigQuery table. Structure is documented below.
+    
+      * `autodetect` (`bool`)
+      * `compression` (`str`)
+      * `csv_options` (`dict`)
+    
+        * `allow_jagged_rows` (`bool`)
+        * `allow_quoted_newlines` (`bool`)
+        * `encoding` (`str`)
+        * `field_delimiter` (`str`)
+        * `quote` (`str`)
+        * `skip_leading_rows` (`float`)
+    
+      * `google_sheets_options` (`dict`)
+    
+        * `range` (`str`)
+        * `skip_leading_rows` (`float`)
+    
+      * `ignore_unknown_values` (`bool`)
+      * `max_bad_records` (`float`)
+      * `source_format` (`str`)
+      * `source_uris` (`list`)
     """
     friendly_name: pulumi.Output[str]
     """
@@ -94,6 +116,11 @@ class Table(pulumi.CustomResource):
     """
     If specified, configures time-based
     partitioning for this table. Structure is documented below.
+    
+      * `expiration_ms` (`float`)
+      * `field` (`str`)
+      * `require_partition_filter` (`bool`)
+      * `type` (`str`) - Describes the table type.
     """
     type: pulumi.Output[str]
     """
@@ -103,6 +130,9 @@ class Table(pulumi.CustomResource):
     """
     If specified, configures this table as a view.
     Structure is documented below.
+    
+      * `query` (`str`)
+      * `use_legacy_sql` (`bool`)
     """
     def __init__(__self__, resource_name, opts=None, dataset_id=None, description=None, expiration_time=None, external_data_configuration=None, friendly_name=None, labels=None, project=None, schema=None, table_id=None, time_partitioning=None, view=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -138,6 +168,41 @@ class Table(pulumi.CustomResource):
                partitioning for this table. Structure is documented below.
         :param pulumi.Input[dict] view: If specified, configures this table as a view.
                Structure is documented below.
+        
+        The **external_data_configuration** object supports the following:
+        
+          * `autodetect` (`pulumi.Input[bool]`)
+          * `compression` (`pulumi.Input[str]`)
+          * `csv_options` (`pulumi.Input[dict]`)
+        
+            * `allow_jagged_rows` (`pulumi.Input[bool]`)
+            * `allow_quoted_newlines` (`pulumi.Input[bool]`)
+            * `encoding` (`pulumi.Input[str]`)
+            * `field_delimiter` (`pulumi.Input[str]`)
+            * `quote` (`pulumi.Input[str]`)
+            * `skip_leading_rows` (`pulumi.Input[float]`)
+        
+          * `google_sheets_options` (`pulumi.Input[dict]`)
+        
+            * `range` (`pulumi.Input[str]`)
+            * `skip_leading_rows` (`pulumi.Input[float]`)
+        
+          * `ignore_unknown_values` (`pulumi.Input[bool]`)
+          * `max_bad_records` (`pulumi.Input[float]`)
+          * `source_format` (`pulumi.Input[str]`)
+          * `source_uris` (`pulumi.Input[list]`)
+        
+        The **time_partitioning** object supports the following:
+        
+          * `expiration_ms` (`pulumi.Input[float]`)
+          * `field` (`pulumi.Input[str]`)
+          * `require_partition_filter` (`pulumi.Input[bool]`)
+          * `type` (`pulumi.Input[str]`) - Describes the table type.
+        
+        The **view** object supports the following:
+        
+          * `query` (`pulumi.Input[str]`)
+          * `use_legacy_sql` (`pulumi.Input[bool]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/bigquery_table.html.markdown.
         """
@@ -193,6 +258,7 @@ class Table(pulumi.CustomResource):
         """
         Get an existing Table resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -231,10 +297,45 @@ class Table(pulumi.CustomResource):
         :param pulumi.Input[str] type: Describes the table type.
         :param pulumi.Input[dict] view: If specified, configures this table as a view.
                Structure is documented below.
+        
+        The **external_data_configuration** object supports the following:
+        
+          * `autodetect` (`pulumi.Input[bool]`)
+          * `compression` (`pulumi.Input[str]`)
+          * `csv_options` (`pulumi.Input[dict]`)
+        
+            * `allow_jagged_rows` (`pulumi.Input[bool]`)
+            * `allow_quoted_newlines` (`pulumi.Input[bool]`)
+            * `encoding` (`pulumi.Input[str]`)
+            * `field_delimiter` (`pulumi.Input[str]`)
+            * `quote` (`pulumi.Input[str]`)
+            * `skip_leading_rows` (`pulumi.Input[float]`)
+        
+          * `google_sheets_options` (`pulumi.Input[dict]`)
+        
+            * `range` (`pulumi.Input[str]`)
+            * `skip_leading_rows` (`pulumi.Input[float]`)
+        
+          * `ignore_unknown_values` (`pulumi.Input[bool]`)
+          * `max_bad_records` (`pulumi.Input[float]`)
+          * `source_format` (`pulumi.Input[str]`)
+          * `source_uris` (`pulumi.Input[list]`)
+        
+        The **time_partitioning** object supports the following:
+        
+          * `expiration_ms` (`pulumi.Input[float]`)
+          * `field` (`pulumi.Input[str]`)
+          * `require_partition_filter` (`pulumi.Input[bool]`)
+          * `type` (`pulumi.Input[str]`) - Describes the table type.
+        
+        The **view** object supports the following:
+        
+          * `query` (`pulumi.Input[str]`)
+          * `use_legacy_sql` (`pulumi.Input[bool]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/bigquery_table.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["creation_time"] = creation_time

@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class HaVpnGateway(pulumi.CustomResource):
@@ -80,16 +81,22 @@ class HaVpnGateway(pulumi.CustomResource):
         """
         Get an existing HaVpnGateway resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
+        
+        The **vpn_interfaces** object supports the following:
+        
+          * `id` (`pulumi.Input[float]`)
+          * `ip_address` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_ha_vpn_gateway.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["description"] = description

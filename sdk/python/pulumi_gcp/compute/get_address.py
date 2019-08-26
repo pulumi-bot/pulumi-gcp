@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class GetAddressResult:
@@ -64,6 +65,12 @@ def get_address(name=None,project=None,region=None,opts=None):
     """
     Get the IP address from a static address. For more information see
     the official [API](https://cloud.google.com/compute/docs/reference/latest/addresses/get) documentation.
+    
+    :param str name: A unique name for the resource, required by GCE.
+    :param str project: The project in which the resource belongs. If it
+           is not provided, the provider project is used.
+    :param str region: The Region in which the created address reside.
+           If it is not provided, the provider region is used.
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/compute_address.html.markdown.
     """

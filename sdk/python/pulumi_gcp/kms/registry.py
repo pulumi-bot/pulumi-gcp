@@ -6,24 +6,36 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class Registry(pulumi.CustomResource):
     credentials: pulumi.Output[list]
     """
     List of public key certificates to authenticate devices. Structure is documented below. 
+    
+      * `public_key_certificate` (`dict`)
+    
+        * `certificate` (`str`)
+        * `format` (`str`)
     """
     event_notification_config: pulumi.Output[dict]
     """
     A PubSub topics to publish device events. Structure is documented below.
+    
+      * `pubsub_topic_name` (`str`)
     """
     http_config: pulumi.Output[dict]
     """
     Activate or deactivate HTTP. Structure is documented below.
+    
+      * `http_enabled_state` (`str`)
     """
     mqtt_config: pulumi.Output[dict]
     """
     Activate or deactivate MQTT. Structure is documented below.
+    
+      * `mqtt_enabled_state` (`str`)
     """
     name: pulumi.Output[str]
     """
@@ -41,6 +53,8 @@ class Registry(pulumi.CustomResource):
     state_notification_config: pulumi.Output[dict]
     """
     A PubSub topic to publish device state updates. Structure is documented below.
+    
+      * `pubsub_topic_name` (`str`)
     """
     def __init__(__self__, resource_name, opts=None, credentials=None, event_notification_config=None, http_config=None, mqtt_config=None, name=None, project=None, region=None, state_notification_config=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -59,6 +73,29 @@ class Registry(pulumi.CustomResource):
         :param pulumi.Input[str] project: The project in which the resource belongs. If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The Region in which the created address should reside. If it is not provided, the provider region is used.
         :param pulumi.Input[dict] state_notification_config: A PubSub topic to publish device state updates. Structure is documented below.
+        
+        The **mqtt_config** object supports the following:
+        
+          * `mqtt_enabled_state` (`pulumi.Input[str]`)
+        
+        The **state_notification_config** object supports the following:
+        
+          * `pubsub_topic_name` (`pulumi.Input[str]`)
+        
+        The **credentials** object supports the following:
+        
+          * `public_key_certificate` (`pulumi.Input[dict]`)
+        
+            * `certificate` (`pulumi.Input[str]`)
+            * `format` (`pulumi.Input[str]`)
+        
+        The **event_notification_config** object supports the following:
+        
+          * `pubsub_topic_name` (`pulumi.Input[str]`)
+        
+        The **http_config** object supports the following:
+        
+          * `http_enabled_state` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/cloudiot_registry.html.markdown.
         """
@@ -98,6 +135,7 @@ class Registry(pulumi.CustomResource):
         """
         Get an existing Registry resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -110,10 +148,33 @@ class Registry(pulumi.CustomResource):
         :param pulumi.Input[str] project: The project in which the resource belongs. If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The Region in which the created address should reside. If it is not provided, the provider region is used.
         :param pulumi.Input[dict] state_notification_config: A PubSub topic to publish device state updates. Structure is documented below.
+        
+        The **credentials** object supports the following:
+        
+          * `public_key_certificate` (`pulumi.Input[dict]`)
+        
+            * `certificate` (`pulumi.Input[str]`)
+            * `format` (`pulumi.Input[str]`)
+        
+        The **event_notification_config** object supports the following:
+        
+          * `pubsub_topic_name` (`pulumi.Input[str]`)
+        
+        The **http_config** object supports the following:
+        
+          * `http_enabled_state` (`pulumi.Input[str]`)
+        
+        The **mqtt_config** object supports the following:
+        
+          * `mqtt_enabled_state` (`pulumi.Input[str]`)
+        
+        The **state_notification_config** object supports the following:
+        
+          * `pubsub_topic_name` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/cloudiot_registry.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["credentials"] = credentials

@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class Subscription(pulumi.CustomResource):
@@ -39,6 +40,15 @@ class Subscription(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **expiration_policy** object supports the following:
+        
+          * `ttl` (`pulumi.Input[str]`)
+        
+        The **push_config** object supports the following:
+        
+          * `attributes` (`pulumi.Input[dict]`)
+          * `push_endpoint` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/pubsub_subscription.html.markdown.
         """
@@ -82,15 +92,25 @@ class Subscription(pulumi.CustomResource):
         """
         Get an existing Subscription resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **expiration_policy** object supports the following:
+        
+          * `ttl` (`pulumi.Input[str]`)
+        
+        The **push_config** object supports the following:
+        
+          * `attributes` (`pulumi.Input[dict]`)
+          * `push_endpoint` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/pubsub_subscription.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["ack_deadline_seconds"] = ack_deadline_seconds

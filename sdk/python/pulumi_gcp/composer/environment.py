@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class Environment(pulumi.CustomResource):
@@ -47,6 +48,44 @@ class Environment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **config** object supports the following:
+        
+          * `airflow_uri` (`pulumi.Input[str]`)
+          * `dag_gcs_prefix` (`pulumi.Input[str]`)
+          * `gke_cluster` (`pulumi.Input[str]`)
+          * `node_config` (`pulumi.Input[dict]`)
+        
+            * `disk_size_gb` (`pulumi.Input[float]`)
+            * `ip_allocation_policy` (`pulumi.Input[dict]`)
+        
+              * `cluster_ipv4_cidr_block` (`pulumi.Input[str]`)
+              * `cluster_secondary_range_name` (`pulumi.Input[str]`)
+              * `services_ipv4_cidr_block` (`pulumi.Input[str]`)
+              * `services_secondary_range_name` (`pulumi.Input[str]`)
+              * `use_ip_aliases` (`pulumi.Input[bool]`)
+        
+            * `machine_type` (`pulumi.Input[str]`)
+            * `network` (`pulumi.Input[str]`)
+            * `oauth_scopes` (`pulumi.Input[list]`)
+            * `service_account` (`pulumi.Input[str]`)
+            * `subnetwork` (`pulumi.Input[str]`)
+            * `tags` (`pulumi.Input[list]`)
+            * `zone` (`pulumi.Input[str]`)
+        
+          * `node_count` (`pulumi.Input[float]`)
+          * `private_environment_config` (`pulumi.Input[dict]`)
+        
+            * `enable_private_endpoint` (`pulumi.Input[bool]`)
+            * `master_ipv4_cidr_block` (`pulumi.Input[str]`)
+        
+          * `software_config` (`pulumi.Input[dict]`)
+        
+            * `airflow_config_overrides` (`pulumi.Input[dict]`)
+            * `env_variables` (`pulumi.Input[dict]`)
+            * `image_version` (`pulumi.Input[str]`)
+            * `pypi_packages` (`pulumi.Input[dict]`)
+            * `python_version` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/composer_environment.html.markdown.
         """
@@ -83,15 +122,54 @@ class Environment(pulumi.CustomResource):
         """
         Get an existing Environment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **config** object supports the following:
+        
+          * `airflow_uri` (`pulumi.Input[str]`)
+          * `dag_gcs_prefix` (`pulumi.Input[str]`)
+          * `gke_cluster` (`pulumi.Input[str]`)
+          * `node_config` (`pulumi.Input[dict]`)
+        
+            * `disk_size_gb` (`pulumi.Input[float]`)
+            * `ip_allocation_policy` (`pulumi.Input[dict]`)
+        
+              * `cluster_ipv4_cidr_block` (`pulumi.Input[str]`)
+              * `cluster_secondary_range_name` (`pulumi.Input[str]`)
+              * `services_ipv4_cidr_block` (`pulumi.Input[str]`)
+              * `services_secondary_range_name` (`pulumi.Input[str]`)
+              * `use_ip_aliases` (`pulumi.Input[bool]`)
+        
+            * `machine_type` (`pulumi.Input[str]`)
+            * `network` (`pulumi.Input[str]`)
+            * `oauth_scopes` (`pulumi.Input[list]`)
+            * `service_account` (`pulumi.Input[str]`)
+            * `subnetwork` (`pulumi.Input[str]`)
+            * `tags` (`pulumi.Input[list]`)
+            * `zone` (`pulumi.Input[str]`)
+        
+          * `node_count` (`pulumi.Input[float]`)
+          * `private_environment_config` (`pulumi.Input[dict]`)
+        
+            * `enable_private_endpoint` (`pulumi.Input[bool]`)
+            * `master_ipv4_cidr_block` (`pulumi.Input[str]`)
+        
+          * `software_config` (`pulumi.Input[dict]`)
+        
+            * `airflow_config_overrides` (`pulumi.Input[dict]`)
+            * `env_variables` (`pulumi.Input[dict]`)
+            * `image_version` (`pulumi.Input[str]`)
+            * `pypi_packages` (`pulumi.Input[dict]`)
+            * `python_version` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/composer_environment.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["config"] = config

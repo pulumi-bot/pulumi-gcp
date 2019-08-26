@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class URLMap(pulumi.CustomResource):
@@ -36,6 +37,29 @@ class URLMap(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **host_rules** object supports the following:
+        
+          * `description` (`pulumi.Input[str]`)
+          * `hosts` (`pulumi.Input[list]`)
+          * `path_matcher` (`pulumi.Input[str]`)
+        
+        The **path_matchers** object supports the following:
+        
+          * `default_service` (`pulumi.Input[str]`)
+          * `description` (`pulumi.Input[str]`)
+          * `name` (`pulumi.Input[str]`)
+          * `path_rules` (`pulumi.Input[list]`)
+        
+            * `paths` (`pulumi.Input[list]`)
+            * `service` (`pulumi.Input[str]`)
+        
+        The **tests** object supports the following:
+        
+          * `description` (`pulumi.Input[str]`)
+          * `host` (`pulumi.Input[str]`)
+          * `path` (`pulumi.Input[str]`)
+          * `service` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_url_map.html.markdown.
         """
@@ -80,16 +104,40 @@ class URLMap(pulumi.CustomResource):
         """
         Get an existing URLMap resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
+        
+        The **host_rules** object supports the following:
+        
+          * `description` (`pulumi.Input[str]`)
+          * `hosts` (`pulumi.Input[list]`)
+          * `path_matcher` (`pulumi.Input[str]`)
+        
+        The **path_matchers** object supports the following:
+        
+          * `default_service` (`pulumi.Input[str]`)
+          * `description` (`pulumi.Input[str]`)
+          * `name` (`pulumi.Input[str]`)
+          * `path_rules` (`pulumi.Input[list]`)
+        
+            * `paths` (`pulumi.Input[list]`)
+            * `service` (`pulumi.Input[str]`)
+        
+        The **tests** object supports the following:
+        
+          * `description` (`pulumi.Input[str]`)
+          * `host` (`pulumi.Input[str]`)
+          * `path` (`pulumi.Input[str]`)
+          * `service` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_url_map.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["creation_timestamp"] = creation_timestamp

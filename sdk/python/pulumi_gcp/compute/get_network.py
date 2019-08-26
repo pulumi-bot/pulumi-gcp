@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class GetNetworkResult:
@@ -66,6 +67,10 @@ class AwaitableGetNetworkResult(GetNetworkResult):
 def get_network(name=None,project=None,opts=None):
     """
     Get a network within GCE from its name.
+    
+    :param str name: The name of the network.
+    :param str project: The ID of the project in which the resource belongs. If it
+           is not provided, the provider project is used.
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/compute_network.html.markdown.
     """

@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class Function(pulumi.CustomResource):
@@ -28,6 +29,13 @@ class Function(pulumi.CustomResource):
     event_trigger: pulumi.Output[dict]
     """
     A source that fires events in response to a condition in another service. Structure is documented below. Cannot be used with `trigger_http`.
+    
+      * `event_type` (`str`)
+      * `failure_policy` (`dict`)
+    
+        * `retry` (`bool`)
+    
+      * `resource` (`str`)
     """
     https_trigger_url: pulumi.Output[str]
     """
@@ -76,6 +84,9 @@ class Function(pulumi.CustomResource):
     """
     Represents parameters related to source repository where a function is hosted.
     Cannot be set alongside `source_archive_bucket` or `source_archive_object`. Structure is documented below.
+    
+      * `deployed_url` (`str`)
+      * `url` (`str`)
     """
     timeout: pulumi.Output[float]
     """
@@ -116,6 +127,20 @@ class Function(pulumi.CustomResource):
                Cannot be set alongside `source_archive_bucket` or `source_archive_object`. Structure is documented below.
         :param pulumi.Input[float] timeout: Timeout (in seconds) for the function. Default value is 60 seconds. Cannot be more than 540 seconds.
         :param pulumi.Input[bool] trigger_http: Boolean variable. Any HTTP request (of a supported type) to the endpoint will trigger function execution. Supported HTTP request types are: POST, PUT, GET, DELETE, and OPTIONS. Endpoint is returned as `https_trigger_url`. Cannot be used with `trigger_bucket` and `trigger_topic`.
+        
+        The **event_trigger** object supports the following:
+        
+          * `event_type` (`pulumi.Input[str]`)
+          * `failure_policy` (`pulumi.Input[dict]`)
+        
+            * `retry` (`pulumi.Input[bool]`)
+        
+          * `resource` (`pulumi.Input[str]`)
+        
+        The **source_repository** object supports the following:
+        
+          * `deployed_url` (`pulumi.Input[str]`)
+          * `url` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/cloudfunctions_function.html.markdown.
         """
@@ -165,6 +190,7 @@ class Function(pulumi.CustomResource):
         """
         Get an existing Function resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -190,10 +216,24 @@ class Function(pulumi.CustomResource):
                Cannot be set alongside `source_archive_bucket` or `source_archive_object`. Structure is documented below.
         :param pulumi.Input[float] timeout: Timeout (in seconds) for the function. Default value is 60 seconds. Cannot be more than 540 seconds.
         :param pulumi.Input[bool] trigger_http: Boolean variable. Any HTTP request (of a supported type) to the endpoint will trigger function execution. Supported HTTP request types are: POST, PUT, GET, DELETE, and OPTIONS. Endpoint is returned as `https_trigger_url`. Cannot be used with `trigger_bucket` and `trigger_topic`.
+        
+        The **event_trigger** object supports the following:
+        
+          * `event_type` (`pulumi.Input[str]`)
+          * `failure_policy` (`pulumi.Input[dict]`)
+        
+            * `retry` (`pulumi.Input[bool]`)
+        
+          * `resource` (`pulumi.Input[str]`)
+        
+        The **source_repository** object supports the following:
+        
+          * `deployed_url` (`pulumi.Input[str]`)
+          * `url` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/cloudfunctions_function.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["available_memory_mb"] = available_memory_mb
