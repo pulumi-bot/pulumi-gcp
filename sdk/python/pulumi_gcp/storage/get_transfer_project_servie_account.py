@@ -49,7 +49,7 @@ def get_transfer_project_servie_account(project=None,opts=None):
 
     __args__['project'] = project
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:storage/getTransferProjectServieAccount:getTransferProjectServieAccount', __args__, opts=opts).value

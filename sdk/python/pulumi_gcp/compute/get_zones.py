@@ -60,7 +60,7 @@ def get_zones(project=None,region=None,status=None,opts=None):
     __args__['region'] = region
     __args__['status'] = status
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getZones:getZones', __args__, opts=opts).value

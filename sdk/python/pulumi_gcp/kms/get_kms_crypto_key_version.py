@@ -81,7 +81,7 @@ def get_kms_crypto_key_version(crypto_key=None,public_key=None,version=None,opts
     __args__['publicKey'] = public_key
     __args__['version'] = version
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:kms/getKMSCryptoKeyVersion:getKMSCryptoKeyVersion', __args__, opts=opts).value

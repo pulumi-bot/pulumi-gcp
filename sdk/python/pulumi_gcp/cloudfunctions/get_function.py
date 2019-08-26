@@ -158,7 +158,7 @@ def get_function(name=None,project=None,region=None,opts=None):
     __args__['project'] = project
     __args__['region'] = region
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:cloudfunctions/getFunction:getFunction', __args__, opts=opts).value

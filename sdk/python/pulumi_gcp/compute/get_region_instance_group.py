@@ -78,7 +78,7 @@ def get_region_instance_group(name=None,project=None,region=None,self_link=None,
     __args__['region'] = region
     __args__['selfLink'] = self_link
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getRegionInstanceGroup:getRegionInstanceGroup', __args__, opts=opts).value

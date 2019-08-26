@@ -84,7 +84,7 @@ def get_kms_crypto_key(key_ring=None,name=None,opts=None):
     __args__['keyRing'] = key_ring
     __args__['name'] = name
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:kms/getKMSCryptoKey:getKMSCryptoKey', __args__, opts=opts).value

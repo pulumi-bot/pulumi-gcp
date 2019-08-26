@@ -61,7 +61,7 @@ def get_project_service_account(project=None,user_project=None,opts=None):
     __args__['project'] = project
     __args__['userProject'] = user_project
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:storage/getProjectServiceAccount:getProjectServiceAccount', __args__, opts=opts).value

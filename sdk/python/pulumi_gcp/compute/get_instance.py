@@ -226,7 +226,7 @@ def get_instance(name=None,project=None,self_link=None,zone=None,opts=None):
     __args__['selfLink'] = self_link
     __args__['zone'] = zone
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getInstance:getInstance', __args__, opts=opts).value

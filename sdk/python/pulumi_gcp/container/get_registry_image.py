@@ -68,7 +68,7 @@ def get_registry_image(digest=None,name=None,project=None,region=None,tag=None,o
     __args__['region'] = region
     __args__['tag'] = tag
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:container/getRegistryImage:getRegistryImage', __args__, opts=opts).value

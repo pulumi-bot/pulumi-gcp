@@ -66,7 +66,7 @@ def get_billing_account(billing_account=None,display_name=None,open=None,opts=No
     __args__['displayName'] = display_name
     __args__['open'] = open
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getBillingAccount:getBillingAccount', __args__, opts=opts).value

@@ -103,7 +103,7 @@ def get_engine_versions(location=None,project=None,region=None,version_prefix=No
     __args__['versionPrefix'] = version_prefix
     __args__['zone'] = zone
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:container/getEngineVersions:getEngineVersions', __args__, opts=opts).value

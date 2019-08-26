@@ -88,7 +88,7 @@ def get_project(project_id=None,opts=None):
 
     __args__['projectId'] = project_id
     if opts is None:
-        opts = pulumi.ResourceOptions()
+        opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getProject:getProject', __args__, opts=opts).value
