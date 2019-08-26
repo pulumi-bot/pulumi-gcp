@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class BackendService(pulumi.CustomResource):
@@ -56,6 +57,38 @@ class BackendService(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **backends** object supports the following:
+        
+          * `balancing_mode` (`pulumi.Input[str]`)
+          * `capacity_scaler` (`pulumi.Input[float]`)
+          * `description` (`pulumi.Input[str]`)
+          * `group` (`pulumi.Input[str]`)
+          * `max_connections` (`pulumi.Input[float]`)
+          * `max_connections_per_endpoint` (`pulumi.Input[float]`)
+          * `max_connections_per_instance` (`pulumi.Input[float]`)
+          * `max_rate` (`pulumi.Input[float]`)
+          * `max_rate_per_endpoint` (`pulumi.Input[float]`)
+          * `max_rate_per_instance` (`pulumi.Input[float]`)
+          * `max_utilization` (`pulumi.Input[float]`)
+        
+        The **cdn_policy** object supports the following:
+        
+          * `cache_key_policy` (`pulumi.Input[dict]`)
+        
+            * `include_host` (`pulumi.Input[bool]`)
+            * `include_protocol` (`pulumi.Input[bool]`)
+            * `include_query_string` (`pulumi.Input[bool]`)
+            * `query_string_blacklists` (`pulumi.Input[list]`)
+            * `query_string_whitelists` (`pulumi.Input[list]`)
+        
+          * `signed_url_cache_max_age_sec` (`pulumi.Input[float]`)
+        
+        The **iap** object supports the following:
+        
+          * `oauth2_client_id` (`pulumi.Input[str]`)
+          * `oauth2_client_secret` (`pulumi.Input[str]`)
+          * `oauth2_client_secret_sha256` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_backend_service.html.markdown.
         """
@@ -109,16 +142,49 @@ class BackendService(pulumi.CustomResource):
         """
         Get an existing BackendService resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
+        
+        The **backends** object supports the following:
+        
+          * `balancing_mode` (`pulumi.Input[str]`)
+          * `capacity_scaler` (`pulumi.Input[float]`)
+          * `description` (`pulumi.Input[str]`)
+          * `group` (`pulumi.Input[str]`)
+          * `max_connections` (`pulumi.Input[float]`)
+          * `max_connections_per_endpoint` (`pulumi.Input[float]`)
+          * `max_connections_per_instance` (`pulumi.Input[float]`)
+          * `max_rate` (`pulumi.Input[float]`)
+          * `max_rate_per_endpoint` (`pulumi.Input[float]`)
+          * `max_rate_per_instance` (`pulumi.Input[float]`)
+          * `max_utilization` (`pulumi.Input[float]`)
+        
+        The **cdn_policy** object supports the following:
+        
+          * `cache_key_policy` (`pulumi.Input[dict]`)
+        
+            * `include_host` (`pulumi.Input[bool]`)
+            * `include_protocol` (`pulumi.Input[bool]`)
+            * `include_query_string` (`pulumi.Input[bool]`)
+            * `query_string_blacklists` (`pulumi.Input[list]`)
+            * `query_string_whitelists` (`pulumi.Input[list]`)
+        
+          * `signed_url_cache_max_age_sec` (`pulumi.Input[float]`)
+        
+        The **iap** object supports the following:
+        
+          * `oauth2_client_id` (`pulumi.Input[str]`)
+          * `oauth2_client_secret` (`pulumi.Input[str]`)
+          * `oauth2_client_secret_sha256` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_backend_service.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["affinity_cookie_ttl_sec"] = affinity_cookie_ttl_sec

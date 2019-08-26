@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class NodePool(pulumi.CustomResource):
@@ -13,6 +14,9 @@ class NodePool(pulumi.CustomResource):
     """
     Configuration required by cluster autoscaler to adjust
     the size of the node pool to the current cluster usage. Structure is documented below.
+    
+      * `max_node_count` (`float`)
+      * `min_node_count` (`float`)
     """
     cluster: pulumi.Output[str]
     """
@@ -33,6 +37,9 @@ class NodePool(pulumi.CustomResource):
     """
     Node management configuration, wherein auto-repair and
     auto-upgrade is configured. Structure is documented below.
+    
+      * `auto_repair` (`bool`)
+      * `auto_upgrade` (`bool`)
     """
     max_pods_per_node: pulumi.Output[float]
     """
@@ -52,6 +59,37 @@ class NodePool(pulumi.CustomResource):
     """
     The node configuration of the pool. See
     container.Cluster for schema.
+    
+      * `disk_size_gb` (`float`)
+      * `disk_type` (`str`)
+      * `guest_accelerators` (`list`)
+    
+        * `count` (`float`)
+        * `type` (`str`)
+    
+      * `image_type` (`str`)
+      * `labels` (`dict`)
+      * `local_ssd_count` (`float`)
+      * `machine_type` (`str`)
+      * `metadata` (`dict`)
+      * `min_cpu_platform` (`str`)
+      * `oauth_scopes` (`list`)
+      * `preemptible` (`bool`)
+      * `sandbox_config` (`dict`)
+    
+        * `sandbox_type` (`str`)
+    
+      * `service_account` (`str`)
+      * `tags` (`list`)
+      * `taints` (`list`)
+    
+        * `effect` (`str`)
+        * `key` (`str`)
+        * `value` (`str`)
+    
+      * `workload_metadata_config` (`dict`)
+    
+        * `node_metadata` (`str`)
     """
     node_count: pulumi.Output[float]
     """
@@ -122,6 +160,49 @@ class NodePool(pulumi.CustomResource):
                `version_prefix` field to approximate fuzzy versions.
         :param pulumi.Input[str] zone: The zone in which the cluster resides. `zone`
                has been deprecated in favor of `location`.
+        
+        The **autoscaling** object supports the following:
+        
+          * `max_node_count` (`pulumi.Input[float]`)
+          * `min_node_count` (`pulumi.Input[float]`)
+        
+        The **management** object supports the following:
+        
+          * `auto_repair` (`pulumi.Input[bool]`)
+          * `auto_upgrade` (`pulumi.Input[bool]`)
+        
+        The **node_config** object supports the following:
+        
+          * `disk_size_gb` (`pulumi.Input[float]`)
+          * `disk_type` (`pulumi.Input[str]`)
+          * `guest_accelerators` (`pulumi.Input[list]`)
+        
+            * `count` (`pulumi.Input[float]`)
+            * `type` (`pulumi.Input[str]`)
+        
+          * `image_type` (`pulumi.Input[str]`)
+          * `labels` (`pulumi.Input[dict]`)
+          * `local_ssd_count` (`pulumi.Input[float]`)
+          * `machine_type` (`pulumi.Input[str]`)
+          * `metadata` (`pulumi.Input[dict]`)
+          * `min_cpu_platform` (`pulumi.Input[str]`)
+          * `oauth_scopes` (`pulumi.Input[list]`)
+          * `preemptible` (`pulumi.Input[bool]`)
+          * `sandbox_config` (`pulumi.Input[dict]`)
+        
+            * `sandbox_type` (`pulumi.Input[str]`)
+        
+          * `service_account` (`pulumi.Input[str]`)
+          * `tags` (`pulumi.Input[list]`)
+          * `taints` (`pulumi.Input[list]`)
+        
+            * `effect` (`pulumi.Input[str]`)
+            * `key` (`pulumi.Input[str]`)
+            * `value` (`pulumi.Input[str]`)
+        
+          * `workload_metadata_config` (`pulumi.Input[dict]`)
+        
+            * `node_metadata` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/container_node_pool.html.markdown.
         """
@@ -170,6 +251,7 @@ class NodePool(pulumi.CustomResource):
         """
         Get an existing NodePool resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -205,10 +287,53 @@ class NodePool(pulumi.CustomResource):
                `version_prefix` field to approximate fuzzy versions.
         :param pulumi.Input[str] zone: The zone in which the cluster resides. `zone`
                has been deprecated in favor of `location`.
+        
+        The **autoscaling** object supports the following:
+        
+          * `max_node_count` (`pulumi.Input[float]`)
+          * `min_node_count` (`pulumi.Input[float]`)
+        
+        The **management** object supports the following:
+        
+          * `auto_repair` (`pulumi.Input[bool]`)
+          * `auto_upgrade` (`pulumi.Input[bool]`)
+        
+        The **node_config** object supports the following:
+        
+          * `disk_size_gb` (`pulumi.Input[float]`)
+          * `disk_type` (`pulumi.Input[str]`)
+          * `guest_accelerators` (`pulumi.Input[list]`)
+        
+            * `count` (`pulumi.Input[float]`)
+            * `type` (`pulumi.Input[str]`)
+        
+          * `image_type` (`pulumi.Input[str]`)
+          * `labels` (`pulumi.Input[dict]`)
+          * `local_ssd_count` (`pulumi.Input[float]`)
+          * `machine_type` (`pulumi.Input[str]`)
+          * `metadata` (`pulumi.Input[dict]`)
+          * `min_cpu_platform` (`pulumi.Input[str]`)
+          * `oauth_scopes` (`pulumi.Input[list]`)
+          * `preemptible` (`pulumi.Input[bool]`)
+          * `sandbox_config` (`pulumi.Input[dict]`)
+        
+            * `sandbox_type` (`pulumi.Input[str]`)
+        
+          * `service_account` (`pulumi.Input[str]`)
+          * `tags` (`pulumi.Input[list]`)
+          * `taints` (`pulumi.Input[list]`)
+        
+            * `effect` (`pulumi.Input[str]`)
+            * `key` (`pulumi.Input[str]`)
+            * `value` (`pulumi.Input[str]`)
+        
+          * `workload_metadata_config` (`pulumi.Input[dict]`)
+        
+            * `node_metadata` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/container_node_pool.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["autoscaling"] = autoscaling

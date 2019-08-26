@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class GetProjectServicesResult:
@@ -45,6 +46,8 @@ def get_project_services(project=None,opts=None):
     
     For a list of services available, visit the
     [API library page](https://console.cloud.google.com/apis/library) or run `gcloud services list`.
+    
+    :param str project: The project ID.
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/project_services.html.markdown.
     """

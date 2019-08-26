@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class RegionAutoscaler(pulumi.CustomResource):
@@ -37,6 +38,28 @@ class RegionAutoscaler(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        
+        The **autoscaling_policy** object supports the following:
+        
+          * `cooldown_period` (`pulumi.Input[float]`)
+          * `cpu_utilization` (`pulumi.Input[dict]`)
+        
+            * `target` (`pulumi.Input[float]`)
+        
+          * `load_balancing_utilization` (`pulumi.Input[dict]`)
+        
+            * `target` (`pulumi.Input[float]`)
+        
+          * `max_replicas` (`pulumi.Input[float]`)
+          * `metrics` (`pulumi.Input[list]`)
+        
+            * `filter` (`pulumi.Input[str]`)
+            * `name` (`pulumi.Input[str]`)
+            * `single_instance_assignment` (`pulumi.Input[float]`)
+            * `target` (`pulumi.Input[float]`)
+            * `type` (`pulumi.Input[str]`)
+        
+          * `min_replicas` (`pulumi.Input[float]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_region_autoscaler.html.markdown.
         """
@@ -80,14 +103,37 @@ class RegionAutoscaler(pulumi.CustomResource):
         """
         Get an existing RegionAutoscaler resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] self_link: The URI of the created resource.
+        
+        The **autoscaling_policy** object supports the following:
+        
+          * `cooldown_period` (`pulumi.Input[float]`)
+          * `cpu_utilization` (`pulumi.Input[dict]`)
+        
+            * `target` (`pulumi.Input[float]`)
+        
+          * `load_balancing_utilization` (`pulumi.Input[dict]`)
+        
+            * `target` (`pulumi.Input[float]`)
+        
+          * `max_replicas` (`pulumi.Input[float]`)
+          * `metrics` (`pulumi.Input[list]`)
+        
+            * `filter` (`pulumi.Input[str]`)
+            * `name` (`pulumi.Input[str]`)
+            * `single_instance_assignment` (`pulumi.Input[float]`)
+            * `target` (`pulumi.Input[float]`)
+            * `type` (`pulumi.Input[str]`)
+        
+          * `min_replicas` (`pulumi.Input[float]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_region_autoscaler.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["autoscaling_policy"] = autoscaling_policy

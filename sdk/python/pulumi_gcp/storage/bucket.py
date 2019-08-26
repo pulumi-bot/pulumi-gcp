@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class Bucket(pulumi.CustomResource):
@@ -16,10 +17,17 @@ class Bucket(pulumi.CustomResource):
     cors: pulumi.Output[list]
     """
     The bucket's [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/) configuration. Multiple blocks of this type are permitted. Structure is documented below.
+    
+      * `max_age_seconds` (`float`)
+      * `methods` (`list`)
+      * `origins` (`list`)
+      * `response_headers` (`list`)
     """
     encryption: pulumi.Output[dict]
     """
     The bucket's encryption configuration.
+    
+      * `default_kms_key_name` (`str`)
     """
     force_destroy: pulumi.Output[bool]
     """
@@ -34,6 +42,20 @@ class Bucket(pulumi.CustomResource):
     lifecycle_rules: pulumi.Output[list]
     """
     The bucket's [Lifecycle Rules](https://cloud.google.com/storage/docs/lifecycle#configuration) configuration. Multiple blocks of this type are permitted. Structure is documented below.
+    
+      * `action` (`dict`)
+    
+        * `storage_class` (`str`) - The [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of the new bucket. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
+        * `type` (`str`)
+    
+      * `condition` (`dict`)
+    
+        * `age` (`float`)
+        * `created_before` (`str`)
+        * `is_live` (`bool`)
+        * `matches_storage_classes` (`list`)
+        * `num_newer_versions` (`float`)
+        * `with_state` (`str`)
     """
     location: pulumi.Output[str]
     """
@@ -42,6 +64,9 @@ class Bucket(pulumi.CustomResource):
     logging: pulumi.Output[dict]
     """
     The bucket's [Access & Storage Logs](https://cloud.google.com/storage/docs/access-logs) configuration.
+    
+      * `log_bucket` (`str`)
+      * `log_object_prefix` (`str`)
     """
     name: pulumi.Output[str]
     """
@@ -59,6 +84,9 @@ class Bucket(pulumi.CustomResource):
     retention_policy: pulumi.Output[dict]
     """
     Configuration of the bucket's data retention policy for how long objects in the bucket should be retained. Structure is documented below.
+    
+      * `is_locked` (`bool`)
+      * `retention_period` (`float`)
     """
     self_link: pulumi.Output[str]
     """
@@ -75,10 +103,15 @@ class Bucket(pulumi.CustomResource):
     versioning: pulumi.Output[dict]
     """
     The bucket's [Versioning](https://cloud.google.com/storage/docs/object-versioning) configuration.
+    
+      * `enabled` (`bool`)
     """
     website: pulumi.Output[dict]
     """
     Configuration if the bucket acts as a website. Structure is documented below.
+    
+      * `main_page_suffix` (`str`)
+      * `not_found_page` (`str`)
     """
     def __init__(__self__, resource_name, opts=None, bucket_policy_only=None, cors=None, encryption=None, force_destroy=None, labels=None, lifecycle_rules=None, location=None, logging=None, name=None, project=None, requester_pays=None, retention_policy=None, storage_class=None, versioning=None, website=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -115,6 +148,52 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[str] storage_class: The [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of the new bucket. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
         :param pulumi.Input[dict] versioning: The bucket's [Versioning](https://cloud.google.com/storage/docs/object-versioning) configuration.
         :param pulumi.Input[dict] website: Configuration if the bucket acts as a website. Structure is documented below.
+        
+        The **retention_policy** object supports the following:
+        
+          * `is_locked` (`pulumi.Input[bool]`)
+          * `retention_period` (`pulumi.Input[float]`)
+        
+        The **versioning** object supports the following:
+        
+          * `enabled` (`pulumi.Input[bool]`)
+        
+        The **website** object supports the following:
+        
+          * `main_page_suffix` (`pulumi.Input[str]`)
+          * `not_found_page` (`pulumi.Input[str]`)
+        
+        The **cors** object supports the following:
+        
+          * `max_age_seconds` (`pulumi.Input[float]`)
+          * `methods` (`pulumi.Input[list]`)
+          * `origins` (`pulumi.Input[list]`)
+          * `response_headers` (`pulumi.Input[list]`)
+        
+        The **encryption** object supports the following:
+        
+          * `default_kms_key_name` (`pulumi.Input[str]`)
+        
+        The **lifecycle_rules** object supports the following:
+        
+          * `action` (`pulumi.Input[dict]`)
+        
+            * `storage_class` (`pulumi.Input[str]`) - The [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of the new bucket. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
+            * `type` (`pulumi.Input[str]`)
+        
+          * `condition` (`pulumi.Input[dict]`)
+        
+            * `age` (`pulumi.Input[float]`)
+            * `created_before` (`pulumi.Input[str]`)
+            * `is_live` (`pulumi.Input[bool]`)
+            * `matches_storage_classes` (`pulumi.Input[list]`)
+            * `num_newer_versions` (`pulumi.Input[float]`)
+            * `with_state` (`pulumi.Input[str]`)
+        
+        The **logging** object supports the following:
+        
+          * `log_bucket` (`pulumi.Input[str]`)
+          * `log_object_prefix` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/storage_bucket.html.markdown.
         """
@@ -163,6 +242,7 @@ class Bucket(pulumi.CustomResource):
         """
         Get an existing Bucket resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -186,10 +266,56 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[str] url: The base URL of the bucket, in the format `gs://<bucket-name>`.
         :param pulumi.Input[dict] versioning: The bucket's [Versioning](https://cloud.google.com/storage/docs/object-versioning) configuration.
         :param pulumi.Input[dict] website: Configuration if the bucket acts as a website. Structure is documented below.
+        
+        The **website** object supports the following:
+        
+          * `main_page_suffix` (`pulumi.Input[str]`)
+          * `not_found_page` (`pulumi.Input[str]`)
+        
+        The **cors** object supports the following:
+        
+          * `max_age_seconds` (`pulumi.Input[float]`)
+          * `methods` (`pulumi.Input[list]`)
+          * `origins` (`pulumi.Input[list]`)
+          * `response_headers` (`pulumi.Input[list]`)
+        
+        The **encryption** object supports the following:
+        
+          * `default_kms_key_name` (`pulumi.Input[str]`)
+        
+        The **lifecycle_rules** object supports the following:
+        
+          * `action` (`pulumi.Input[dict]`)
+        
+            * `storage_class` (`pulumi.Input[str]`) - The [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of the new bucket. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
+            * `type` (`pulumi.Input[str]`)
+        
+          * `condition` (`pulumi.Input[dict]`)
+        
+            * `age` (`pulumi.Input[float]`)
+            * `created_before` (`pulumi.Input[str]`)
+            * `is_live` (`pulumi.Input[bool]`)
+            * `matches_storage_classes` (`pulumi.Input[list]`)
+            * `num_newer_versions` (`pulumi.Input[float]`)
+            * `with_state` (`pulumi.Input[str]`)
+        
+        The **logging** object supports the following:
+        
+          * `log_bucket` (`pulumi.Input[str]`)
+          * `log_object_prefix` (`pulumi.Input[str]`)
+        
+        The **retention_policy** object supports the following:
+        
+          * `is_locked` (`pulumi.Input[bool]`)
+          * `retention_period` (`pulumi.Input[float]`)
+        
+        The **versioning** object supports the following:
+        
+          * `enabled` (`pulumi.Input[bool]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/storage_bucket.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["bucket_policy_only"] = bucket_policy_only

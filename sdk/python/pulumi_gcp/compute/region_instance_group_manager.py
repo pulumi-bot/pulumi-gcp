@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class RegionInstanceGroupManager(pulumi.CustomResource):
@@ -13,6 +14,9 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
     """
     ) The autohealing policies for this managed instance
     group. You can specify only one value. Structure is documented below. For more information, see the [official documentation](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances#monitoring_groups).
+    
+      * `health_check` (`str`)
+      * `initial_delay_sec` (`float`)
     """
     base_instance_name: pulumi.Output[str]
     """
@@ -53,6 +57,12 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
     """
     The named port configuration. See the section below
     for details on configuration.
+    
+      * `name` (`str`) - The name of the instance group manager. Must be 1-63
+        characters long and comply with
+        [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+        include lowercase letters, numbers, and hyphens.
+      * `port` (`float`)
     """
     project: pulumi.Output[str]
     """
@@ -82,12 +92,34 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
     update_policy: pulumi.Output[dict]
     """
     ) The update policy for this managed instance group. Structure is documented below. For more information, see the [official documentation](https://cloud.google.com/compute/docs/instance-groups/updating-managed-instance-groups) and [API](https://cloud.google.com/compute/docs/reference/rest/beta/regionInstanceGroupManagers/patch)
+    
+      * `max_surge_fixed` (`float`)
+      * `max_surge_percent` (`float`)
+      * `max_unavailable_fixed` (`float`)
+      * `max_unavailable_percent` (`float`)
+      * `min_ready_sec` (`float`)
+      * `minimal_action` (`str`)
+      * `type` (`str`)
     """
     versions: pulumi.Output[list]
     """
     ) Application versions managed by this instance group. Each
     version deals with a specific instance template, allowing canary release scenarios.
     Structure is documented below.
+    
+      * `instance_template` (`str`) - ) The full URL to an instance template from
+        which all new instances will be created. This field is only present in the
+        `google` provider.
+      * `name` (`str`) - The name of the instance group manager. Must be 1-63
+        characters long and comply with
+        [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+        include lowercase letters, numbers, and hyphens.
+      * `target_size` (`dict`) - The target number of running instances for this managed
+        instance group. This value should always be explicitly set unless this resource is attached to
+        an autoscaler, in which case it should never be set. Defaults to `0`.
+    
+        * `fixed` (`float`)
+        * `percent` (`float`)
     """
     wait_for_instances: pulumi.Output[bool]
     """
@@ -141,6 +173,45 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         :param pulumi.Input[bool] wait_for_instances: Whether to wait for all instances to be created/updated before
                returning. Note that if this is set to true and the operation does not succeed, this provider will
                continue trying until it times out.
+        
+        The **versions** object supports the following:
+        
+          * `instance_template` (`pulumi.Input[str]`) - ) The full URL to an instance template from
+            which all new instances will be created. This field is only present in the
+            `google` provider.
+          * `name` (`pulumi.Input[str]`) - The name of the instance group manager. Must be 1-63
+            characters long and comply with
+            [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+            include lowercase letters, numbers, and hyphens.
+          * `target_size` (`pulumi.Input[dict]`) - The target number of running instances for this managed
+            instance group. This value should always be explicitly set unless this resource is attached to
+            an autoscaler, in which case it should never be set. Defaults to `0`.
+        
+            * `fixed` (`pulumi.Input[float]`)
+            * `percent` (`pulumi.Input[float]`)
+        
+        The **auto_healing_policies** object supports the following:
+        
+          * `health_check` (`pulumi.Input[str]`)
+          * `initial_delay_sec` (`pulumi.Input[float]`)
+        
+        The **named_ports** object supports the following:
+        
+          * `name` (`pulumi.Input[str]`) - The name of the instance group manager. Must be 1-63
+            characters long and comply with
+            [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+            include lowercase letters, numbers, and hyphens.
+          * `port` (`pulumi.Input[float]`)
+        
+        The **update_policy** object supports the following:
+        
+          * `max_surge_fixed` (`pulumi.Input[float]`)
+          * `max_surge_percent` (`pulumi.Input[float]`)
+          * `max_unavailable_fixed` (`pulumi.Input[float]`)
+          * `max_unavailable_percent` (`pulumi.Input[float]`)
+          * `min_ready_sec` (`pulumi.Input[float]`)
+          * `minimal_action` (`pulumi.Input[str]`)
+          * `type` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_region_instance_group_manager.html.markdown.
         """
@@ -194,6 +265,7 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         """
         Get an existing RegionInstanceGroupManager resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -235,10 +307,49 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         :param pulumi.Input[bool] wait_for_instances: Whether to wait for all instances to be created/updated before
                returning. Note that if this is set to true and the operation does not succeed, this provider will
                continue trying until it times out.
+        
+        The **update_policy** object supports the following:
+        
+          * `max_surge_fixed` (`pulumi.Input[float]`)
+          * `max_surge_percent` (`pulumi.Input[float]`)
+          * `max_unavailable_fixed` (`pulumi.Input[float]`)
+          * `max_unavailable_percent` (`pulumi.Input[float]`)
+          * `min_ready_sec` (`pulumi.Input[float]`)
+          * `minimal_action` (`pulumi.Input[str]`)
+          * `type` (`pulumi.Input[str]`)
+        
+        The **versions** object supports the following:
+        
+          * `instance_template` (`pulumi.Input[str]`) - ) The full URL to an instance template from
+            which all new instances will be created. This field is only present in the
+            `google` provider.
+          * `name` (`pulumi.Input[str]`) - The name of the instance group manager. Must be 1-63
+            characters long and comply with
+            [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+            include lowercase letters, numbers, and hyphens.
+          * `target_size` (`pulumi.Input[dict]`) - The target number of running instances for this managed
+            instance group. This value should always be explicitly set unless this resource is attached to
+            an autoscaler, in which case it should never be set. Defaults to `0`.
+        
+            * `fixed` (`pulumi.Input[float]`)
+            * `percent` (`pulumi.Input[float]`)
+        
+        The **auto_healing_policies** object supports the following:
+        
+          * `health_check` (`pulumi.Input[str]`)
+          * `initial_delay_sec` (`pulumi.Input[float]`)
+        
+        The **named_ports** object supports the following:
+        
+          * `name` (`pulumi.Input[str]`) - The name of the instance group manager. Must be 1-63
+            characters long and comply with
+            [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+            include lowercase letters, numbers, and hyphens.
+          * `port` (`pulumi.Input[float]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_region_instance_group_manager.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["auto_healing_policies"] = auto_healing_policies

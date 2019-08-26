@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class GetKMSCryptoKeyVersionResult:
@@ -71,6 +72,14 @@ def get_kms_crypto_key_version(crypto_key=None,public_key=None,version=None,opts
     [API](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions).
     
     A CryptoKeyVersion represents an individual cryptographic key, and the associated key material.
+    
+    :param str crypto_key: The `self_link` of the Google Cloud Platform CryptoKey to which the key version belongs.
+    :param float version: The version number for this CryptoKeyVersion. Defaults to `1`.
+    
+    The **public_key** object supports the following:
+    
+      * `algorithm` (`str`) - The CryptoKeyVersionAlgorithm that this CryptoKeyVersion supports.
+      * `pem` (`str`) - The public key, encoded in PEM format. For more information, see the RFC 7468 sections for General Considerations and Textual Encoding of Subject Public Key Info.
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/kms_crypto_key_version.html.markdown.
     """

@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class Policy(pulumi.CustomResource):
@@ -27,6 +28,23 @@ class Policy(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        
+        The **admission_whitelist_patterns** object supports the following:
+        
+          * `name_pattern` (`pulumi.Input[str]`)
+        
+        The **cluster_admission_rules** object supports the following:
+        
+          * `cluster` (`pulumi.Input[str]`)
+          * `enforcement_mode` (`pulumi.Input[str]`)
+          * `evaluation_mode` (`pulumi.Input[str]`)
+          * `require_attestations_bies` (`pulumi.Input[list]`)
+        
+        The **default_admission_rule** object supports the following:
+        
+          * `enforcement_mode` (`pulumi.Input[str]`)
+          * `evaluation_mode` (`pulumi.Input[str]`)
+          * `require_attestations_bies` (`pulumi.Input[list]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/binary_authorization_policy.html.markdown.
         """
@@ -65,13 +83,31 @@ class Policy(pulumi.CustomResource):
         """
         Get an existing Policy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        
+        The **admission_whitelist_patterns** object supports the following:
+        
+          * `name_pattern` (`pulumi.Input[str]`)
+        
+        The **cluster_admission_rules** object supports the following:
+        
+          * `cluster` (`pulumi.Input[str]`)
+          * `enforcement_mode` (`pulumi.Input[str]`)
+          * `evaluation_mode` (`pulumi.Input[str]`)
+          * `require_attestations_bies` (`pulumi.Input[list]`)
+        
+        The **default_admission_rule** object supports the following:
+        
+          * `enforcement_mode` (`pulumi.Input[str]`)
+          * `evaluation_mode` (`pulumi.Input[str]`)
+          * `require_attestations_bies` (`pulumi.Input[list]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/binary_authorization_policy.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["admission_whitelist_patterns"] = admission_whitelist_patterns

@@ -6,12 +6,18 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class Instance(pulumi.CustomResource):
     clusters: pulumi.Output[list]
     """
     A block of cluster configuration options. This can be specified 1 or 2 times. See structure below.
+    
+      * `cluster_id` (`str`)
+      * `num_nodes` (`float`)
+      * `storage_type` (`str`)
+      * `zone` (`str`)
     """
     display_name: pulumi.Output[str]
     """
@@ -44,6 +50,13 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name (also called Instance Id in the Cloud Console) of the Cloud Bigtable instance.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
+        
+        The **clusters** object supports the following:
+        
+          * `cluster_id` (`pulumi.Input[str]`)
+          * `num_nodes` (`pulumi.Input[float]`)
+          * `storage_type` (`pulumi.Input[str]`)
+          * `zone` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/bigtable_instance.html.markdown.
         """
@@ -82,6 +95,7 @@ class Instance(pulumi.CustomResource):
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -91,10 +105,17 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name (also called Instance Id in the Cloud Console) of the Cloud Bigtable instance.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
+        
+        The **clusters** object supports the following:
+        
+          * `cluster_id` (`pulumi.Input[str]`)
+          * `num_nodes` (`pulumi.Input[float]`)
+          * `storage_type` (`pulumi.Input[str]`)
+          * `zone` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/bigtable_instance.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["clusters"] = clusters

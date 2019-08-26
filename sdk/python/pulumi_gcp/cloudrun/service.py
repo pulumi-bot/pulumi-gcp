@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class Service(pulumi.CustomResource):
@@ -42,6 +43,57 @@ class Service(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        
+        The **metadata** object supports the following:
+        
+          * `annotations` (`pulumi.Input[dict]`)
+          * `generation` (`pulumi.Input[float]`)
+          * `labels` (`pulumi.Input[dict]`)
+          * `namespace` (`pulumi.Input[str]`)
+          * `resource_version` (`pulumi.Input[str]`)
+          * `self_link` (`pulumi.Input[str]`)
+          * `uid` (`pulumi.Input[str]`)
+        
+        The **spec** object supports the following:
+        
+          * `container_concurrency` (`pulumi.Input[float]`)
+          * `containers` (`pulumi.Input[list]`)
+        
+            * `args` (`pulumi.Input[list]`)
+            * `commands` (`pulumi.Input[list]`)
+            * `envs` (`pulumi.Input[list]`)
+        
+              * `name` (`pulumi.Input[str]`)
+              * `value` (`pulumi.Input[str]`)
+        
+            * `env_froms` (`pulumi.Input[list]`)
+        
+              * `config_map_ref` (`pulumi.Input[dict]`)
+        
+                * `local_object_reference` (`pulumi.Input[dict]`)
+        
+                  * `name` (`pulumi.Input[str]`)
+        
+                * `optional` (`pulumi.Input[bool]`)
+        
+              * `prefix` (`pulumi.Input[str]`)
+              * `secret_ref` (`pulumi.Input[dict]`)
+        
+                * `local_object_reference` (`pulumi.Input[dict]`)
+        
+                  * `name` (`pulumi.Input[str]`)
+        
+                * `optional` (`pulumi.Input[bool]`)
+        
+            * `image` (`pulumi.Input[str]`)
+            * `resources` (`pulumi.Input[dict]`)
+        
+              * `limits` (`pulumi.Input[dict]`)
+              * `requests` (`pulumi.Input[dict]`)
+        
+            * `working_dir` (`pulumi.Input[str]`)
+        
+          * `serving_state` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/cloud_run_service.html.markdown.
         """
@@ -85,13 +137,74 @@ class Service(pulumi.CustomResource):
         """
         Get an existing Service resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        
+        The **metadata** object supports the following:
+        
+          * `annotations` (`pulumi.Input[dict]`)
+          * `generation` (`pulumi.Input[float]`)
+          * `labels` (`pulumi.Input[dict]`)
+          * `namespace` (`pulumi.Input[str]`)
+          * `resource_version` (`pulumi.Input[str]`)
+          * `self_link` (`pulumi.Input[str]`)
+          * `uid` (`pulumi.Input[str]`)
+        
+        The **spec** object supports the following:
+        
+          * `container_concurrency` (`pulumi.Input[float]`)
+          * `containers` (`pulumi.Input[list]`)
+        
+            * `args` (`pulumi.Input[list]`)
+            * `commands` (`pulumi.Input[list]`)
+            * `envs` (`pulumi.Input[list]`)
+        
+              * `name` (`pulumi.Input[str]`)
+              * `value` (`pulumi.Input[str]`)
+        
+            * `env_froms` (`pulumi.Input[list]`)
+        
+              * `config_map_ref` (`pulumi.Input[dict]`)
+        
+                * `local_object_reference` (`pulumi.Input[dict]`)
+        
+                  * `name` (`pulumi.Input[str]`)
+        
+                * `optional` (`pulumi.Input[bool]`)
+        
+              * `prefix` (`pulumi.Input[str]`)
+              * `secret_ref` (`pulumi.Input[dict]`)
+        
+                * `local_object_reference` (`pulumi.Input[dict]`)
+        
+                  * `name` (`pulumi.Input[str]`)
+        
+                * `optional` (`pulumi.Input[bool]`)
+        
+            * `image` (`pulumi.Input[str]`)
+            * `resources` (`pulumi.Input[dict]`)
+        
+              * `limits` (`pulumi.Input[dict]`)
+              * `requests` (`pulumi.Input[dict]`)
+        
+            * `working_dir` (`pulumi.Input[str]`)
+        
+          * `serving_state` (`pulumi.Input[str]`)
+        
+        The **status** object supports the following:
+        
+          * `conditions` (`pulumi.Input[list]`)
+        
+            * `message` (`pulumi.Input[str]`)
+            * `reason` (`pulumi.Input[str]`)
+            * `status` (`pulumi.Input[str]`)
+            * `type` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/cloud_run_service.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["location"] = location

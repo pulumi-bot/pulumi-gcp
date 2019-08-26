@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class GetClusterResult:
@@ -210,6 +211,17 @@ class AwaitableGetClusterResult(GetClusterResult):
 def get_cluster(location=None,name=None,project=None,region=None,zone=None,opts=None):
     """
     Get info about a GKE cluster from its name and location.
+    
+    :param str location: The location (zone or region) this cluster has been
+           created in. One of `location`, `region`, `zone`, or a provider-level `zone` must
+           be specified.
+    :param str name: The name of the cluster.
+    :param str project: The project in which the resource belongs. If it
+           is not provided, the provider project is used.
+    :param str region: The region this cluster has been created in. Deprecated
+           in favour of `location`.
+    :param str zone: The zone this cluster has been created in. Deprecated in
+           favour of `location`.
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/container_cluster.html.markdown.
     """

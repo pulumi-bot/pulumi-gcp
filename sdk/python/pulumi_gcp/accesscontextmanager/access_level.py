@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class AccessLevel(pulumi.CustomResource):
@@ -28,6 +29,27 @@ class AccessLevel(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        
+        The **basic** object supports the following:
+        
+          * `combining_function` (`pulumi.Input[str]`)
+          * `conditions` (`pulumi.Input[list]`)
+        
+            * `device_policy` (`pulumi.Input[dict]`)
+        
+              * `allowed_device_management_levels` (`pulumi.Input[list]`)
+              * `allowed_encryption_statuses` (`pulumi.Input[list]`)
+              * `os_constraints` (`pulumi.Input[list]`)
+        
+                * `minimum_version` (`pulumi.Input[str]`)
+                * `os_type` (`pulumi.Input[str]`)
+        
+              * `require_screen_lock` (`pulumi.Input[bool]`)
+        
+            * `ip_subnetworks` (`pulumi.Input[list]`)
+            * `members` (`pulumi.Input[list]`)
+            * `negate` (`pulumi.Input[bool]`)
+            * `required_access_levels` (`pulumi.Input[list]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/access_context_manager_access_level.html.markdown.
         """
@@ -68,13 +90,35 @@ class AccessLevel(pulumi.CustomResource):
         """
         Get an existing AccessLevel resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        
+        The **basic** object supports the following:
+        
+          * `combining_function` (`pulumi.Input[str]`)
+          * `conditions` (`pulumi.Input[list]`)
+        
+            * `device_policy` (`pulumi.Input[dict]`)
+        
+              * `allowed_device_management_levels` (`pulumi.Input[list]`)
+              * `allowed_encryption_statuses` (`pulumi.Input[list]`)
+              * `os_constraints` (`pulumi.Input[list]`)
+        
+                * `minimum_version` (`pulumi.Input[str]`)
+                * `os_type` (`pulumi.Input[str]`)
+        
+              * `require_screen_lock` (`pulumi.Input[bool]`)
+        
+            * `ip_subnetworks` (`pulumi.Input[list]`)
+            * `members` (`pulumi.Input[list]`)
+            * `negate` (`pulumi.Input[bool]`)
+            * `required_access_levels` (`pulumi.Input[list]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/access_context_manager_access_level.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["basic"] = basic

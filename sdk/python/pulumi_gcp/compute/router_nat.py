@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class RouterNat(pulumi.CustomResource):
@@ -66,6 +67,11 @@ class RouterNat(pulumi.CustomResource):
     One or more subnetwork NAT configurations. Only used
     if `source_subnetwork_ip_ranges_to_nat` is set to `LIST_OF_SUBNETWORKS`. See
     the section below for details on configuration.
+    
+      * `name` (`str`) - A unique name for Cloud NAT, required by GCE. Changing
+        this forces a new NAT to be created.
+      * `secondary_ip_range_names` (`list`)
+      * `source_ip_ranges_to_nats` (`list`)
     """
     tcp_established_idle_timeout_sec: pulumi.Output[float]
     """
@@ -128,6 +134,18 @@ class RouterNat(pulumi.CustomResource):
                new NAT to be created.
         :param pulumi.Input[float] udp_idle_timeout_sec: Timeout (in seconds) for UDP connections.
                Defaults to 30s if not set. Changing this forces a new NAT to be created.
+        
+        The **log_config** object supports the following:
+        
+          * `enable` (`pulumi.Input[bool]`)
+          * `filter` (`pulumi.Input[str]`)
+        
+        The **subnetworks** object supports the following:
+        
+          * `name` (`pulumi.Input[str]`) - A unique name for Cloud NAT, required by GCE. Changing
+            this forces a new NAT to be created.
+          * `secondary_ip_range_names` (`pulumi.Input[list]`)
+          * `source_ip_ranges_to_nats` (`pulumi.Input[list]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_router_nat.html.markdown.
         """
@@ -177,6 +195,7 @@ class RouterNat(pulumi.CustomResource):
         """
         Get an existing RouterNat resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -215,10 +234,22 @@ class RouterNat(pulumi.CustomResource):
                new NAT to be created.
         :param pulumi.Input[float] udp_idle_timeout_sec: Timeout (in seconds) for UDP connections.
                Defaults to 30s if not set. Changing this forces a new NAT to be created.
+        
+        The **log_config** object supports the following:
+        
+          * `enable` (`pulumi.Input[bool]`)
+          * `filter` (`pulumi.Input[str]`)
+        
+        The **subnetworks** object supports the following:
+        
+          * `name` (`pulumi.Input[str]`) - A unique name for Cloud NAT, required by GCE. Changing
+            this forces a new NAT to be created.
+          * `secondary_ip_range_names` (`pulumi.Input[list]`)
+          * `source_ip_ranges_to_nats` (`pulumi.Input[list]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_router_nat.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["icmp_idle_timeout_sec"] = icmp_idle_timeout_sec

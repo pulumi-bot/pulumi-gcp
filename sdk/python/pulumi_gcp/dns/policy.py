@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class Policy(pulumi.CustomResource):
@@ -35,6 +36,16 @@ class Policy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **networks** object supports the following:
+        
+          * `network_url` (`pulumi.Input[str]`)
+        
+        The **alternative_name_server_config** object supports the following:
+        
+          * `target_name_servers` (`pulumi.Input[list]`)
+        
+            * `ipv4_address` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dns_policy.html.markdown.
         """
@@ -73,15 +84,26 @@ class Policy(pulumi.CustomResource):
         """
         Get an existing Policy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **alternative_name_server_config** object supports the following:
+        
+          * `target_name_servers` (`pulumi.Input[list]`)
+        
+            * `ipv4_address` (`pulumi.Input[str]`)
+        
+        The **networks** object supports the following:
+        
+          * `network_url` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dns_policy.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["alternative_name_server_config"] = alternative_name_server_config

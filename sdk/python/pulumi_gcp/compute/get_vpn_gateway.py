@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class GetVPNGatewayResult:
@@ -66,6 +67,12 @@ class AwaitableGetVPNGatewayResult(GetVPNGatewayResult):
 def get_vpn_gateway(name=None,project=None,region=None,opts=None):
     """
     Get a VPN gateway within GCE from its name.
+    
+    :param str name: The name of the VPN gateway.
+    :param str project: The project in which the resource belongs. If it
+           is not provided, the provider project is used.
+    :param str region: The region in which the resource belongs. If it
+           is not provided, the project region is used.
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/compute_vpn_gateway.html.markdown.
     """

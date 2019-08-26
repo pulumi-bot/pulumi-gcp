@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class InstanceTemplate(pulumi.CustomResource):
@@ -23,10 +24,31 @@ class InstanceTemplate(pulumi.CustomResource):
     Disks to attach to instances created from this template.
     This can be specified multiple times for multiple disks. Structure is
     documented below.
+    
+      * `auto_delete` (`bool`)
+      * `boot` (`bool`)
+      * `device_name` (`str`)
+      * `disk_encryption_key` (`dict`)
+    
+        * `kms_key_self_link` (`str`)
+    
+      * `disk_name` (`str`)
+      * `disk_size_gb` (`float`)
+      * `disk_type` (`str`)
+      * `interface` (`str`)
+      * `labels` (`dict`) - A set of key/value label pairs to assign to instances
+        created from this template,
+      * `mode` (`str`)
+      * `source` (`str`)
+      * `source_image` (`str`)
+      * `type` (`str`)
     """
     guest_accelerators: pulumi.Output[list]
     """
     List of the type and count of accelerator cards attached to the instance. Structure documented below.
+    
+      * `count` (`float`)
+      * `type` (`str`)
     """
     instance_description: pulumi.Output[str]
     """
@@ -78,6 +100,21 @@ class InstanceTemplate(pulumi.CustomResource):
     Networks to attach to instances created from
     this template. This can be specified multiple times for multiple networks.
     Structure is documented below.
+    
+      * `access_configs` (`list`)
+    
+        * `nat_ip` (`str`)
+        * `network_tier` (`str`)
+    
+      * `alias_ip_ranges` (`list`)
+    
+        * `ip_cidr_range` (`str`)
+        * `subnetwork_range_name` (`str`)
+    
+      * `network` (`str`)
+      * `network_ip` (`str`)
+      * `subnetwork` (`str`)
+      * `subnetwork_project` (`str`)
     """
     project: pulumi.Output[str]
     """
@@ -97,6 +134,16 @@ class InstanceTemplate(pulumi.CustomResource):
     """
     The scheduling strategy to use. More details about
     this configuration option are detailed below.
+    
+      * `automatic_restart` (`bool`)
+      * `node_affinities` (`list`)
+    
+        * `key` (`str`)
+        * `operator` (`str`)
+        * `values` (`list`)
+    
+      * `on_host_maintenance` (`str`)
+      * `preemptible` (`bool`)
     """
     self_link: pulumi.Output[str]
     """
@@ -105,11 +152,18 @@ class InstanceTemplate(pulumi.CustomResource):
     service_account: pulumi.Output[dict]
     """
     Service account to attach to the instance. Structure is documented below.
+    
+      * `email` (`str`)
+      * `scopes` (`list`)
     """
     shielded_instance_config: pulumi.Output[dict]
     """
     Enable [Shielded VM](https://cloud.google.com/security/shielded-cloud/shielded-vm) on this instance. Shielded VM provides verifiable integrity to prevent against malware and rootkits. Defaults to disabled. Structure is documented below.
     **Note**: `shielded_instance_config` can only be used with boot images with shielded vm support. See the complete list [here](https://cloud.google.com/compute/docs/images#shielded-images).
+    
+      * `enable_integrity_monitoring` (`bool`)
+      * `enable_secure_boot` (`bool`)
+      * `enable_vtpm` (`bool`)
     """
     tags: pulumi.Output[list]
     """
@@ -169,6 +223,71 @@ class InstanceTemplate(pulumi.CustomResource):
         :param pulumi.Input[dict] shielded_instance_config: Enable [Shielded VM](https://cloud.google.com/security/shielded-cloud/shielded-vm) on this instance. Shielded VM provides verifiable integrity to prevent against malware and rootkits. Defaults to disabled. Structure is documented below.
                **Note**: `shielded_instance_config` can only be used with boot images with shielded vm support. See the complete list [here](https://cloud.google.com/compute/docs/images#shielded-images).
         :param pulumi.Input[list] tags: Tags to attach to the instance.
+        
+        The **shielded_instance_config** object supports the following:
+        
+          * `enable_integrity_monitoring` (`pulumi.Input[bool]`)
+          * `enable_secure_boot` (`pulumi.Input[bool]`)
+          * `enable_vtpm` (`pulumi.Input[bool]`)
+        
+        The **disks** object supports the following:
+        
+          * `auto_delete` (`pulumi.Input[bool]`)
+          * `boot` (`pulumi.Input[bool]`)
+          * `device_name` (`pulumi.Input[str]`)
+          * `disk_encryption_key` (`pulumi.Input[dict]`)
+        
+            * `kms_key_self_link` (`pulumi.Input[str]`)
+        
+          * `disk_name` (`pulumi.Input[str]`)
+          * `disk_size_gb` (`pulumi.Input[float]`)
+          * `disk_type` (`pulumi.Input[str]`)
+          * `interface` (`pulumi.Input[str]`)
+          * `labels` (`pulumi.Input[dict]`) - A set of key/value label pairs to assign to instances
+            created from this template,
+          * `mode` (`pulumi.Input[str]`)
+          * `source` (`pulumi.Input[str]`)
+          * `source_image` (`pulumi.Input[str]`)
+          * `type` (`pulumi.Input[str]`)
+        
+        The **guest_accelerators** object supports the following:
+        
+          * `count` (`pulumi.Input[float]`)
+          * `type` (`pulumi.Input[str]`)
+        
+        The **network_interfaces** object supports the following:
+        
+          * `access_configs` (`pulumi.Input[list]`)
+        
+            * `nat_ip` (`pulumi.Input[str]`)
+            * `network_tier` (`pulumi.Input[str]`)
+        
+          * `alias_ip_ranges` (`pulumi.Input[list]`)
+        
+            * `ip_cidr_range` (`pulumi.Input[str]`)
+            * `subnetwork_range_name` (`pulumi.Input[str]`)
+        
+          * `network` (`pulumi.Input[str]`)
+          * `network_ip` (`pulumi.Input[str]`)
+          * `subnetwork` (`pulumi.Input[str]`)
+          * `subnetwork_project` (`pulumi.Input[str]`)
+        
+        The **scheduling** object supports the following:
+        
+          * `automatic_restart` (`pulumi.Input[bool]`)
+          * `node_affinities` (`pulumi.Input[list]`)
+        
+            * `key` (`pulumi.Input[str]`)
+            * `operator` (`pulumi.Input[str]`)
+            * `values` (`pulumi.Input[list]`)
+        
+          * `on_host_maintenance` (`pulumi.Input[str]`)
+          * `preemptible` (`pulumi.Input[bool]`)
+        
+        The **service_account** object supports the following:
+        
+          * `email` (`pulumi.Input[str]`)
+          * `scopes` (`pulumi.Input[list]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_instance_template.html.markdown.
         """
@@ -226,6 +345,7 @@ class InstanceTemplate(pulumi.CustomResource):
         """
         Get an existing InstanceTemplate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
+        
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -273,10 +393,75 @@ class InstanceTemplate(pulumi.CustomResource):
                **Note**: `shielded_instance_config` can only be used with boot images with shielded vm support. See the complete list [here](https://cloud.google.com/compute/docs/images#shielded-images).
         :param pulumi.Input[list] tags: Tags to attach to the instance.
         :param pulumi.Input[str] tags_fingerprint: The unique fingerprint of the tags.
+        
+        The **scheduling** object supports the following:
+        
+          * `automatic_restart` (`pulumi.Input[bool]`)
+          * `node_affinities` (`pulumi.Input[list]`)
+        
+            * `key` (`pulumi.Input[str]`)
+            * `operator` (`pulumi.Input[str]`)
+            * `values` (`pulumi.Input[list]`)
+        
+          * `on_host_maintenance` (`pulumi.Input[str]`)
+          * `preemptible` (`pulumi.Input[bool]`)
+        
+        The **service_account** object supports the following:
+        
+          * `email` (`pulumi.Input[str]`)
+          * `scopes` (`pulumi.Input[list]`)
+        
+        The **shielded_instance_config** object supports the following:
+        
+          * `enable_integrity_monitoring` (`pulumi.Input[bool]`)
+          * `enable_secure_boot` (`pulumi.Input[bool]`)
+          * `enable_vtpm` (`pulumi.Input[bool]`)
+        
+        The **disks** object supports the following:
+        
+          * `auto_delete` (`pulumi.Input[bool]`)
+          * `boot` (`pulumi.Input[bool]`)
+          * `device_name` (`pulumi.Input[str]`)
+          * `disk_encryption_key` (`pulumi.Input[dict]`)
+        
+            * `kms_key_self_link` (`pulumi.Input[str]`)
+        
+          * `disk_name` (`pulumi.Input[str]`)
+          * `disk_size_gb` (`pulumi.Input[float]`)
+          * `disk_type` (`pulumi.Input[str]`)
+          * `interface` (`pulumi.Input[str]`)
+          * `labels` (`pulumi.Input[dict]`) - A set of key/value label pairs to assign to instances
+            created from this template,
+          * `mode` (`pulumi.Input[str]`)
+          * `source` (`pulumi.Input[str]`)
+          * `source_image` (`pulumi.Input[str]`)
+          * `type` (`pulumi.Input[str]`)
+        
+        The **guest_accelerators** object supports the following:
+        
+          * `count` (`pulumi.Input[float]`)
+          * `type` (`pulumi.Input[str]`)
+        
+        The **network_interfaces** object supports the following:
+        
+          * `access_configs` (`pulumi.Input[list]`)
+        
+            * `nat_ip` (`pulumi.Input[str]`)
+            * `network_tier` (`pulumi.Input[str]`)
+        
+          * `alias_ip_ranges` (`pulumi.Input[list]`)
+        
+            * `ip_cidr_range` (`pulumi.Input[str]`)
+            * `subnetwork_range_name` (`pulumi.Input[str]`)
+        
+          * `network` (`pulumi.Input[str]`)
+          * `network_ip` (`pulumi.Input[str]`)
+          * `subnetwork` (`pulumi.Input[str]`)
+          * `subnetwork_project` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_instance_template.html.markdown.
         """
-        opts = pulumi.ResourceOptions(id=id) if opts is None else opts.merge(pulumi.ResourceOptions(id=id))
+        opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
         __props__["can_ip_forward"] = can_ip_forward

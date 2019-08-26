@@ -6,6 +6,7 @@ import json
 import warnings
 import pulumi
 import pulumi.runtime
+from typing import Union
 from .. import utilities, tables
 
 class GetCertificateResult:
@@ -66,6 +67,10 @@ class AwaitableGetCertificateResult(GetCertificateResult):
 def get_certificate(name=None,project=None,opts=None):
     """
     Get info about a Google Compute SSL Certificate from its name.
+    
+    :param str name: The name of the certificate.
+    :param str project: The project in which the resource belongs. If it
+           is not provided, the provider project is used.
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/compute_ssl_certificate.html.markdown.
     """
