@@ -14,6 +14,84 @@ class Cluster(pulumi.CustomResource):
     """
     Allows you to configure various aspects of the cluster.
     Structure defined below.
+    
+      * `bucket` (`str`)
+      * `encryption_config` (`dict`)
+    
+        * `kms_key_name` (`str`)
+    
+      * `gce_cluster_config` (`dict`)
+    
+        * `internal_ip_only` (`bool`)
+        * `metadata` (`dict`)
+        * `network` (`str`)
+        * `service_account` (`str`)
+        * `service_account_scopes` (`list`)
+        * `subnetwork` (`str`)
+        * `tags` (`list`)
+        * `zone` (`str`)
+    
+      * `initialization_actions` (`list`)
+    
+        * `script` (`str`)
+        * `timeout_sec` (`float`)
+    
+      * `master_config` (`dict`)
+    
+        * `accelerators` (`list`)
+    
+          * `accelerator_count` (`float`)
+          * `accelerator_type` (`str`)
+    
+        * `disk_config` (`dict`)
+    
+          * `boot_disk_size_gb` (`float`)
+          * `boot_disk_type` (`str`)
+          * `num_local_ssds` (`float`)
+    
+        * `image_uri` (`str`)
+        * `instance_names` (`list`)
+        * `machine_type` (`str`)
+        * `min_cpu_platform` (`str`)
+        * `num_instances` (`float`)
+    
+      * `preemptible_worker_config` (`dict`)
+    
+        * `disk_config` (`dict`)
+    
+          * `boot_disk_size_gb` (`float`)
+          * `boot_disk_type` (`str`)
+          * `num_local_ssds` (`float`)
+    
+        * `instance_names` (`list`)
+        * `num_instances` (`float`)
+    
+      * `software_config` (`dict`)
+    
+        * `image_version` (`str`)
+        * `optional_components` (`list`)
+        * `override_properties` (`dict`)
+        * `properties` (`dict`)
+    
+      * `staging_bucket` (`str`)
+      * `worker_config` (`dict`)
+    
+        * `accelerators` (`list`)
+    
+          * `accelerator_count` (`float`)
+          * `accelerator_type` (`str`)
+    
+        * `disk_config` (`dict`)
+    
+          * `boot_disk_size_gb` (`float`)
+          * `boot_disk_type` (`str`)
+          * `num_local_ssds` (`float`)
+    
+        * `image_uri` (`str`)
+        * `instance_names` (`list`)
+        * `machine_type` (`str`)
+        * `min_cpu_platform` (`str`)
+        * `num_instances` (`float`)
     """
     labels: pulumi.Output[dict]
     """
@@ -59,6 +137,86 @@ class Cluster(pulumi.CustomResource):
                is not provided, the provider project is used.
         :param pulumi.Input[str] region: The region in which the cluster and associated nodes will be created in.
                Defaults to `global`.
+        
+        The **cluster_config** object supports the following:
+        
+          * `bucket` (`pulumi.Input[str]`)
+          * `encryption_config` (`pulumi.Input[dict]`)
+        
+            * `kms_key_name` (`pulumi.Input[str]`)
+        
+          * `gce_cluster_config` (`pulumi.Input[dict]`)
+        
+            * `internal_ip_only` (`pulumi.Input[bool]`)
+            * `metadata` (`pulumi.Input[dict]`)
+            * `network` (`pulumi.Input[str]`)
+            * `service_account` (`pulumi.Input[str]`)
+            * `service_account_scopes` (`pulumi.Input[list]`)
+            * `subnetwork` (`pulumi.Input[str]`)
+            * `tags` (`pulumi.Input[list]`)
+            * `zone` (`pulumi.Input[str]`)
+        
+          * `initialization_actions` (`pulumi.Input[list]`)
+        
+            * `script` (`pulumi.Input[str]`)
+            * `timeout_sec` (`pulumi.Input[float]`)
+        
+          * `master_config` (`pulumi.Input[dict]`)
+        
+            * `accelerators` (`pulumi.Input[list]`)
+        
+              * `accelerator_count` (`pulumi.Input[float]`)
+              * `accelerator_type` (`pulumi.Input[str]`)
+        
+            * `disk_config` (`pulumi.Input[dict]`)
+        
+              * `boot_disk_size_gb` (`pulumi.Input[float]`)
+              * `boot_disk_type` (`pulumi.Input[str]`)
+              * `num_local_ssds` (`pulumi.Input[float]`)
+        
+            * `image_uri` (`pulumi.Input[str]`)
+            * `instance_names` (`pulumi.Input[list]`)
+            * `machine_type` (`pulumi.Input[str]`)
+            * `min_cpu_platform` (`pulumi.Input[str]`)
+            * `num_instances` (`pulumi.Input[float]`)
+        
+          * `preemptible_worker_config` (`pulumi.Input[dict]`)
+        
+            * `disk_config` (`pulumi.Input[dict]`)
+        
+              * `boot_disk_size_gb` (`pulumi.Input[float]`)
+              * `boot_disk_type` (`pulumi.Input[str]`)
+              * `num_local_ssds` (`pulumi.Input[float]`)
+        
+            * `instance_names` (`pulumi.Input[list]`)
+            * `num_instances` (`pulumi.Input[float]`)
+        
+          * `software_config` (`pulumi.Input[dict]`)
+        
+            * `image_version` (`pulumi.Input[str]`)
+            * `optional_components` (`pulumi.Input[list]`)
+            * `override_properties` (`pulumi.Input[dict]`)
+            * `properties` (`pulumi.Input[dict]`)
+        
+          * `staging_bucket` (`pulumi.Input[str]`)
+          * `worker_config` (`pulumi.Input[dict]`)
+        
+            * `accelerators` (`pulumi.Input[list]`)
+        
+              * `accelerator_count` (`pulumi.Input[float]`)
+              * `accelerator_type` (`pulumi.Input[str]`)
+        
+            * `disk_config` (`pulumi.Input[dict]`)
+        
+              * `boot_disk_size_gb` (`pulumi.Input[float]`)
+              * `boot_disk_type` (`pulumi.Input[str]`)
+              * `num_local_ssds` (`pulumi.Input[float]`)
+        
+            * `image_uri` (`pulumi.Input[str]`)
+            * `instance_names` (`pulumi.Input[list]`)
+            * `machine_type` (`pulumi.Input[str]`)
+            * `min_cpu_platform` (`pulumi.Input[str]`)
+            * `num_instances` (`pulumi.Input[float]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dataproc_cluster.html.markdown.
         """
@@ -110,6 +268,86 @@ class Cluster(pulumi.CustomResource):
                is not provided, the provider project is used.
         :param pulumi.Input[str] region: The region in which the cluster and associated nodes will be created in.
                Defaults to `global`.
+        
+        The **cluster_config** object supports the following:
+        
+          * `bucket` (`pulumi.Input[str]`)
+          * `encryption_config` (`pulumi.Input[dict]`)
+        
+            * `kms_key_name` (`pulumi.Input[str]`)
+        
+          * `gce_cluster_config` (`pulumi.Input[dict]`)
+        
+            * `internal_ip_only` (`pulumi.Input[bool]`)
+            * `metadata` (`pulumi.Input[dict]`)
+            * `network` (`pulumi.Input[str]`)
+            * `service_account` (`pulumi.Input[str]`)
+            * `service_account_scopes` (`pulumi.Input[list]`)
+            * `subnetwork` (`pulumi.Input[str]`)
+            * `tags` (`pulumi.Input[list]`)
+            * `zone` (`pulumi.Input[str]`)
+        
+          * `initialization_actions` (`pulumi.Input[list]`)
+        
+            * `script` (`pulumi.Input[str]`)
+            * `timeout_sec` (`pulumi.Input[float]`)
+        
+          * `master_config` (`pulumi.Input[dict]`)
+        
+            * `accelerators` (`pulumi.Input[list]`)
+        
+              * `accelerator_count` (`pulumi.Input[float]`)
+              * `accelerator_type` (`pulumi.Input[str]`)
+        
+            * `disk_config` (`pulumi.Input[dict]`)
+        
+              * `boot_disk_size_gb` (`pulumi.Input[float]`)
+              * `boot_disk_type` (`pulumi.Input[str]`)
+              * `num_local_ssds` (`pulumi.Input[float]`)
+        
+            * `image_uri` (`pulumi.Input[str]`)
+            * `instance_names` (`pulumi.Input[list]`)
+            * `machine_type` (`pulumi.Input[str]`)
+            * `min_cpu_platform` (`pulumi.Input[str]`)
+            * `num_instances` (`pulumi.Input[float]`)
+        
+          * `preemptible_worker_config` (`pulumi.Input[dict]`)
+        
+            * `disk_config` (`pulumi.Input[dict]`)
+        
+              * `boot_disk_size_gb` (`pulumi.Input[float]`)
+              * `boot_disk_type` (`pulumi.Input[str]`)
+              * `num_local_ssds` (`pulumi.Input[float]`)
+        
+            * `instance_names` (`pulumi.Input[list]`)
+            * `num_instances` (`pulumi.Input[float]`)
+        
+          * `software_config` (`pulumi.Input[dict]`)
+        
+            * `image_version` (`pulumi.Input[str]`)
+            * `optional_components` (`pulumi.Input[list]`)
+            * `override_properties` (`pulumi.Input[dict]`)
+            * `properties` (`pulumi.Input[dict]`)
+        
+          * `staging_bucket` (`pulumi.Input[str]`)
+          * `worker_config` (`pulumi.Input[dict]`)
+        
+            * `accelerators` (`pulumi.Input[list]`)
+        
+              * `accelerator_count` (`pulumi.Input[float]`)
+              * `accelerator_type` (`pulumi.Input[str]`)
+        
+            * `disk_config` (`pulumi.Input[dict]`)
+        
+              * `boot_disk_size_gb` (`pulumi.Input[float]`)
+              * `boot_disk_type` (`pulumi.Input[str]`)
+              * `num_local_ssds` (`pulumi.Input[float]`)
+        
+            * `image_uri` (`pulumi.Input[str]`)
+            * `instance_names` (`pulumi.Input[list]`)
+            * `machine_type` (`pulumi.Input[str]`)
+            * `min_cpu_platform` (`pulumi.Input[str]`)
+            * `num_instances` (`pulumi.Input[float]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dataproc_cluster.html.markdown.
         """

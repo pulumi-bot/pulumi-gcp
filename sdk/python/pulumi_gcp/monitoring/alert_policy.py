@@ -36,6 +36,58 @@ class AlertPolicy(pulumi.CustomResource):
         
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        
+        The **conditions** object supports the following:
+        
+          * `condition_absent` (`pulumi.Input[dict]`)
+        
+            * `aggregations` (`pulumi.Input[list]`)
+        
+              * `alignment_period` (`pulumi.Input[str]`)
+              * `cross_series_reducer` (`pulumi.Input[str]`)
+              * `group_by_fields` (`pulumi.Input[list]`)
+              * `per_series_aligner` (`pulumi.Input[str]`)
+        
+            * `duration` (`pulumi.Input[str]`)
+            * `filter` (`pulumi.Input[str]`)
+            * `trigger` (`pulumi.Input[dict]`)
+        
+              * `count` (`pulumi.Input[float]`)
+              * `percent` (`pulumi.Input[float]`)
+        
+          * `condition_threshold` (`pulumi.Input[dict]`)
+        
+            * `aggregations` (`pulumi.Input[list]`)
+        
+              * `alignment_period` (`pulumi.Input[str]`)
+              * `cross_series_reducer` (`pulumi.Input[str]`)
+              * `group_by_fields` (`pulumi.Input[list]`)
+              * `per_series_aligner` (`pulumi.Input[str]`)
+        
+            * `comparison` (`pulumi.Input[str]`)
+            * `denominator_aggregations` (`pulumi.Input[list]`)
+        
+              * `alignment_period` (`pulumi.Input[str]`)
+              * `cross_series_reducer` (`pulumi.Input[str]`)
+              * `group_by_fields` (`pulumi.Input[list]`)
+              * `per_series_aligner` (`pulumi.Input[str]`)
+        
+            * `denominator_filter` (`pulumi.Input[str]`)
+            * `duration` (`pulumi.Input[str]`)
+            * `filter` (`pulumi.Input[str]`)
+            * `threshold_value` (`pulumi.Input[float]`)
+            * `trigger` (`pulumi.Input[dict]`)
+        
+              * `count` (`pulumi.Input[float]`)
+              * `percent` (`pulumi.Input[float]`)
+        
+          * `display_name` (`pulumi.Input[str]`)
+          * `name` (`pulumi.Input[str]`)
+        
+        The **documentation** object supports the following:
+        
+          * `content` (`pulumi.Input[str]`)
+          * `mime_type` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/monitoring_alert_policy.html.markdown.
         """
@@ -88,6 +140,63 @@ class AlertPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        
+        The **conditions** object supports the following:
+        
+          * `condition_absent` (`pulumi.Input[dict]`)
+        
+            * `aggregations` (`pulumi.Input[list]`)
+        
+              * `alignment_period` (`pulumi.Input[str]`)
+              * `cross_series_reducer` (`pulumi.Input[str]`)
+              * `group_by_fields` (`pulumi.Input[list]`)
+              * `per_series_aligner` (`pulumi.Input[str]`)
+        
+            * `duration` (`pulumi.Input[str]`)
+            * `filter` (`pulumi.Input[str]`)
+            * `trigger` (`pulumi.Input[dict]`)
+        
+              * `count` (`pulumi.Input[float]`)
+              * `percent` (`pulumi.Input[float]`)
+        
+          * `condition_threshold` (`pulumi.Input[dict]`)
+        
+            * `aggregations` (`pulumi.Input[list]`)
+        
+              * `alignment_period` (`pulumi.Input[str]`)
+              * `cross_series_reducer` (`pulumi.Input[str]`)
+              * `group_by_fields` (`pulumi.Input[list]`)
+              * `per_series_aligner` (`pulumi.Input[str]`)
+        
+            * `comparison` (`pulumi.Input[str]`)
+            * `denominator_aggregations` (`pulumi.Input[list]`)
+        
+              * `alignment_period` (`pulumi.Input[str]`)
+              * `cross_series_reducer` (`pulumi.Input[str]`)
+              * `group_by_fields` (`pulumi.Input[list]`)
+              * `per_series_aligner` (`pulumi.Input[str]`)
+        
+            * `denominator_filter` (`pulumi.Input[str]`)
+            * `duration` (`pulumi.Input[str]`)
+            * `filter` (`pulumi.Input[str]`)
+            * `threshold_value` (`pulumi.Input[float]`)
+            * `trigger` (`pulumi.Input[dict]`)
+        
+              * `count` (`pulumi.Input[float]`)
+              * `percent` (`pulumi.Input[float]`)
+        
+          * `display_name` (`pulumi.Input[str]`)
+          * `name` (`pulumi.Input[str]`)
+        
+        The **creation_record** object supports the following:
+        
+          * `mutate_time` (`pulumi.Input[str]`)
+          * `mutated_by` (`pulumi.Input[str]`)
+        
+        The **documentation** object supports the following:
+        
+          * `content` (`pulumi.Input[str]`)
+          * `mime_type` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/monitoring_alert_policy.html.markdown.
         """

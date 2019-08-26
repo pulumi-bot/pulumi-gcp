@@ -38,6 +38,25 @@ class TransferJob(pulumi.CustomResource):
     schedule: pulumi.Output[dict]
     """
     Schedule specification defining when the Transfer Job should be scheduled to start, end and and what time to run. Structure documented below.
+    
+      * `schedule_end_date` (`dict`)
+    
+        * `day` (`float`)
+        * `month` (`float`)
+        * `year` (`float`)
+    
+      * `schedule_start_date` (`dict`)
+    
+        * `day` (`float`)
+        * `month` (`float`)
+        * `year` (`float`)
+    
+      * `start_time_of_day` (`dict`)
+    
+        * `hours` (`float`)
+        * `minutes` (`float`)
+        * `nanos` (`float`)
+        * `seconds` (`float`)
     """
     status: pulumi.Output[str]
     """
@@ -46,6 +65,40 @@ class TransferJob(pulumi.CustomResource):
     transfer_spec: pulumi.Output[dict]
     """
     Transfer specification. Structure documented below.
+    
+      * `aws_s3_data_source` (`dict`)
+    
+        * `aws_access_key` (`dict`)
+    
+          * `access_key_id` (`str`)
+          * `secret_access_key` (`str`)
+    
+        * `bucket_name` (`str`)
+    
+      * `gcs_data_sink` (`dict`)
+    
+        * `bucket_name` (`str`)
+    
+      * `gcs_data_source` (`dict`)
+    
+        * `bucket_name` (`str`)
+    
+      * `http_data_source` (`dict`)
+    
+        * `list_url` (`str`)
+    
+      * `object_conditions` (`dict`)
+    
+        * `exclude_prefixes` (`list`)
+        * `include_prefixes` (`list`)
+        * `max_time_elapsed_since_last_modification` (`str`)
+        * `min_time_elapsed_since_last_modification` (`str`)
+    
+      * `transfer_options` (`dict`)
+    
+        * `delete_objects_from_source_after_transfer` (`bool`)
+        * `delete_objects_unique_in_sink` (`bool`)
+        * `overwrite_objects_already_existing_in_sink` (`bool`)
     """
     def __init__(__self__, resource_name, opts=None, description=None, project=None, schedule=None, status=None, transfer_spec=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -66,6 +119,63 @@ class TransferJob(pulumi.CustomResource):
         :param pulumi.Input[dict] schedule: Schedule specification defining when the Transfer Job should be scheduled to start, end and and what time to run. Structure documented below.
         :param pulumi.Input[str] status: Status of the job. Default: `ENABLED`. **NOTE: The effect of the new job status takes place during a subsequent job run. For example, if you change the job status from ENABLED to DISABLED, and an operation spawned by the transfer is running, the status change would not affect the current operation.**
         :param pulumi.Input[dict] transfer_spec: Transfer specification. Structure documented below.
+        
+        The **schedule** object supports the following:
+        
+          * `schedule_end_date` (`pulumi.Input[dict]`)
+        
+            * `day` (`pulumi.Input[float]`)
+            * `month` (`pulumi.Input[float]`)
+            * `year` (`pulumi.Input[float]`)
+        
+          * `schedule_start_date` (`pulumi.Input[dict]`)
+        
+            * `day` (`pulumi.Input[float]`)
+            * `month` (`pulumi.Input[float]`)
+            * `year` (`pulumi.Input[float]`)
+        
+          * `start_time_of_day` (`pulumi.Input[dict]`)
+        
+            * `hours` (`pulumi.Input[float]`)
+            * `minutes` (`pulumi.Input[float]`)
+            * `nanos` (`pulumi.Input[float]`)
+            * `seconds` (`pulumi.Input[float]`)
+        
+        The **transfer_spec** object supports the following:
+        
+          * `aws_s3_data_source` (`pulumi.Input[dict]`)
+        
+            * `aws_access_key` (`pulumi.Input[dict]`)
+        
+              * `access_key_id` (`pulumi.Input[str]`)
+              * `secret_access_key` (`pulumi.Input[str]`)
+        
+            * `bucket_name` (`pulumi.Input[str]`)
+        
+          * `gcs_data_sink` (`pulumi.Input[dict]`)
+        
+            * `bucket_name` (`pulumi.Input[str]`)
+        
+          * `gcs_data_source` (`pulumi.Input[dict]`)
+        
+            * `bucket_name` (`pulumi.Input[str]`)
+        
+          * `http_data_source` (`pulumi.Input[dict]`)
+        
+            * `list_url` (`pulumi.Input[str]`)
+        
+          * `object_conditions` (`pulumi.Input[dict]`)
+        
+            * `exclude_prefixes` (`pulumi.Input[list]`)
+            * `include_prefixes` (`pulumi.Input[list]`)
+            * `max_time_elapsed_since_last_modification` (`pulumi.Input[str]`)
+            * `min_time_elapsed_since_last_modification` (`pulumi.Input[str]`)
+        
+          * `transfer_options` (`pulumi.Input[dict]`)
+        
+            * `delete_objects_from_source_after_transfer` (`pulumi.Input[bool]`)
+            * `delete_objects_unique_in_sink` (`pulumi.Input[bool]`)
+            * `overwrite_objects_already_existing_in_sink` (`pulumi.Input[bool]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/storage_transfer_job.html.markdown.
         """
@@ -126,6 +236,63 @@ class TransferJob(pulumi.CustomResource):
         :param pulumi.Input[dict] schedule: Schedule specification defining when the Transfer Job should be scheduled to start, end and and what time to run. Structure documented below.
         :param pulumi.Input[str] status: Status of the job. Default: `ENABLED`. **NOTE: The effect of the new job status takes place during a subsequent job run. For example, if you change the job status from ENABLED to DISABLED, and an operation spawned by the transfer is running, the status change would not affect the current operation.**
         :param pulumi.Input[dict] transfer_spec: Transfer specification. Structure documented below.
+        
+        The **schedule** object supports the following:
+        
+          * `schedule_end_date` (`pulumi.Input[dict]`)
+        
+            * `day` (`pulumi.Input[float]`)
+            * `month` (`pulumi.Input[float]`)
+            * `year` (`pulumi.Input[float]`)
+        
+          * `schedule_start_date` (`pulumi.Input[dict]`)
+        
+            * `day` (`pulumi.Input[float]`)
+            * `month` (`pulumi.Input[float]`)
+            * `year` (`pulumi.Input[float]`)
+        
+          * `start_time_of_day` (`pulumi.Input[dict]`)
+        
+            * `hours` (`pulumi.Input[float]`)
+            * `minutes` (`pulumi.Input[float]`)
+            * `nanos` (`pulumi.Input[float]`)
+            * `seconds` (`pulumi.Input[float]`)
+        
+        The **transfer_spec** object supports the following:
+        
+          * `aws_s3_data_source` (`pulumi.Input[dict]`)
+        
+            * `aws_access_key` (`pulumi.Input[dict]`)
+        
+              * `access_key_id` (`pulumi.Input[str]`)
+              * `secret_access_key` (`pulumi.Input[str]`)
+        
+            * `bucket_name` (`pulumi.Input[str]`)
+        
+          * `gcs_data_sink` (`pulumi.Input[dict]`)
+        
+            * `bucket_name` (`pulumi.Input[str]`)
+        
+          * `gcs_data_source` (`pulumi.Input[dict]`)
+        
+            * `bucket_name` (`pulumi.Input[str]`)
+        
+          * `http_data_source` (`pulumi.Input[dict]`)
+        
+            * `list_url` (`pulumi.Input[str]`)
+        
+          * `object_conditions` (`pulumi.Input[dict]`)
+        
+            * `exclude_prefixes` (`pulumi.Input[list]`)
+            * `include_prefixes` (`pulumi.Input[list]`)
+            * `max_time_elapsed_since_last_modification` (`pulumi.Input[str]`)
+            * `min_time_elapsed_since_last_modification` (`pulumi.Input[str]`)
+        
+          * `transfer_options` (`pulumi.Input[dict]`)
+        
+            * `delete_objects_from_source_after_transfer` (`pulumi.Input[bool]`)
+            * `delete_objects_unique_in_sink` (`pulumi.Input[bool]`)
+            * `overwrite_objects_already_existing_in_sink` (`pulumi.Input[bool]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/storage_transfer_job.html.markdown.
         """

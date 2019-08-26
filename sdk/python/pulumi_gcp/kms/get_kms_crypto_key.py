@@ -76,6 +76,10 @@ def get_kms_crypto_key(key_ring=None,name=None,opts=None):
     
     A CryptoKey is an interface to key material which can be used to encrypt and decrypt data. A CryptoKey belongs to a
     Google Cloud KMS KeyRing.
+    
+    :param str key_ring: The `self_link` of the Google Cloud Platform KeyRing to which the key belongs.
+    :param str name: The CryptoKey's name.
+           A CryptoKey’s name belonging to the specified Google Cloud Platform KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/kms_crypto_key.html.markdown.
     """

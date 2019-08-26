@@ -146,6 +146,9 @@ def get_backend_service(name=None,project=None,opts=None):
     Provide access to a Backend Service's attribute. For more information
     see [the official documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
     and the [API](https://cloud.google.com/compute/docs/reference/latest/backendServices).
+    
+    :param str name: The name of the Backend Service.
+    :param str project: The project in which the resource belongs. If it is not provided, the provider project is used.
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/compute_backend_service.html.markdown.
     """

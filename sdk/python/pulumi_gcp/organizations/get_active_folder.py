@@ -46,6 +46,9 @@ class AwaitableGetActiveFolderResult(GetActiveFolderResult):
 def get_active_folder(display_name=None,parent=None,opts=None):
     """
     Get an active folder within GCP by `display_name` and `parent`.
+    
+    :param str display_name: The folder's display name.
+    :param str parent: The resource name of the parent Folder or Organization.
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/active_folder.html.markdown.
     """

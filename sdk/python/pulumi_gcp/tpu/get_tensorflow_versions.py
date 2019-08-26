@@ -41,6 +41,10 @@ class AwaitableGetTensorflowVersionsResult(GetTensorflowVersionsResult):
             id=self.id)
 
 def get_tensorflow_versions(project=None,zone=None,opts=None):
+    """
+    Use this data source to access information about an existing resource.
+    
+    """
     __args__ = dict()
 
     __args__['project'] = project

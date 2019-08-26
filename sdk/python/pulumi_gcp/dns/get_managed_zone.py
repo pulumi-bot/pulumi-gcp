@@ -66,6 +66,9 @@ def get_managed_zone(name=None,project=None,opts=None):
     [the official documentation](https://cloud.google.com/dns/zones/)
     and
     [API](https://cloud.google.com/dns/api/v1/managedZones).
+    
+    :param str name: A unique name for the resource.
+    :param str project: The ID of the project for the Google Cloud DNS zone.
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/dns_managed_zone.html.markdown.
     """

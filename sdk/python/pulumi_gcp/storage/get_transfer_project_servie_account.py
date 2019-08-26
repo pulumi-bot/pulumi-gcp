@@ -42,6 +42,8 @@ class AwaitableGetTransferProjectServieAccountResult(GetTransferProjectServieAcc
 def get_transfer_project_servie_account(project=None,opts=None):
     """
     Use this data source to retrieve Storage Transfer service account for this project
+    
+    :param str project: The project ID. If it is not provided, the provider project is used.
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/storage_transfer_project_service_account.html.markdown.
     """

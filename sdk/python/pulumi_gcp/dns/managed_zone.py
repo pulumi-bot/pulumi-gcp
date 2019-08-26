@@ -42,6 +42,37 @@ class ManagedZone(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **dnssec_config** object supports the following:
+        
+          * `default_key_specs` (`pulumi.Input[list]`)
+        
+            * `algorithm` (`pulumi.Input[str]`)
+            * `key_length` (`pulumi.Input[float]`)
+            * `key_type` (`pulumi.Input[str]`)
+            * `kind` (`pulumi.Input[str]`)
+        
+          * `kind` (`pulumi.Input[str]`)
+          * `non_existence` (`pulumi.Input[str]`)
+          * `state` (`pulumi.Input[str]`)
+        
+        The **forwarding_config** object supports the following:
+        
+          * `target_name_servers` (`pulumi.Input[list]`)
+        
+            * `ipv4_address` (`pulumi.Input[str]`)
+        
+        The **peering_config** object supports the following:
+        
+          * `target_network` (`pulumi.Input[dict]`)
+        
+            * `network_url` (`pulumi.Input[str]`)
+        
+        The **private_visibility_config** object supports the following:
+        
+          * `networks` (`pulumi.Input[list]`)
+        
+            * `network_url` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dns_managed_zone.html.markdown.
         """
@@ -94,6 +125,37 @@ class ManagedZone(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **dnssec_config** object supports the following:
+        
+          * `default_key_specs` (`pulumi.Input[list]`)
+        
+            * `algorithm` (`pulumi.Input[str]`)
+            * `key_length` (`pulumi.Input[float]`)
+            * `key_type` (`pulumi.Input[str]`)
+            * `kind` (`pulumi.Input[str]`)
+        
+          * `kind` (`pulumi.Input[str]`)
+          * `non_existence` (`pulumi.Input[str]`)
+          * `state` (`pulumi.Input[str]`)
+        
+        The **forwarding_config** object supports the following:
+        
+          * `target_name_servers` (`pulumi.Input[list]`)
+        
+            * `ipv4_address` (`pulumi.Input[str]`)
+        
+        The **peering_config** object supports the following:
+        
+          * `target_network` (`pulumi.Input[dict]`)
+        
+            * `network_url` (`pulumi.Input[str]`)
+        
+        The **private_visibility_config** object supports the following:
+        
+          * `networks` (`pulumi.Input[list]`)
+        
+            * `network_url` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dns_managed_zone.html.markdown.
         """

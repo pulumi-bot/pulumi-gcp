@@ -27,6 +27,38 @@ class ResourcePolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **snapshot_schedule_policy** object supports the following:
+        
+          * `retention_policy` (`pulumi.Input[dict]`)
+        
+            * `max_retention_days` (`pulumi.Input[float]`)
+            * `on_source_disk_delete` (`pulumi.Input[str]`)
+        
+          * `schedule` (`pulumi.Input[dict]`)
+        
+            * `daily_schedule` (`pulumi.Input[dict]`)
+        
+              * `days_in_cycle` (`pulumi.Input[float]`)
+              * `start_time` (`pulumi.Input[str]`)
+        
+            * `hourly_schedule` (`pulumi.Input[dict]`)
+        
+              * `hours_in_cycle` (`pulumi.Input[float]`)
+              * `start_time` (`pulumi.Input[str]`)
+        
+            * `weekly_schedule` (`pulumi.Input[dict]`)
+        
+              * `day_of_weeks` (`pulumi.Input[list]`)
+        
+                * `day` (`pulumi.Input[str]`)
+                * `start_time` (`pulumi.Input[str]`)
+        
+          * `snapshot_properties` (`pulumi.Input[dict]`)
+        
+            * `guest_flush` (`pulumi.Input[bool]`)
+            * `labels` (`pulumi.Input[dict]`)
+            * `storage_locations` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_resource_policy.html.markdown.
         """
@@ -69,6 +101,38 @@ class ResourcePolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **snapshot_schedule_policy** object supports the following:
+        
+          * `retention_policy` (`pulumi.Input[dict]`)
+        
+            * `max_retention_days` (`pulumi.Input[float]`)
+            * `on_source_disk_delete` (`pulumi.Input[str]`)
+        
+          * `schedule` (`pulumi.Input[dict]`)
+        
+            * `daily_schedule` (`pulumi.Input[dict]`)
+        
+              * `days_in_cycle` (`pulumi.Input[float]`)
+              * `start_time` (`pulumi.Input[str]`)
+        
+            * `hourly_schedule` (`pulumi.Input[dict]`)
+        
+              * `hours_in_cycle` (`pulumi.Input[float]`)
+              * `start_time` (`pulumi.Input[str]`)
+        
+            * `weekly_schedule` (`pulumi.Input[dict]`)
+        
+              * `day_of_weeks` (`pulumi.Input[list]`)
+        
+                * `day` (`pulumi.Input[str]`)
+                * `start_time` (`pulumi.Input[str]`)
+        
+          * `snapshot_properties` (`pulumi.Input[dict]`)
+        
+            * `guest_flush` (`pulumi.Input[bool]`)
+            * `labels` (`pulumi.Input[dict]`)
+            * `storage_locations` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_resource_policy.html.markdown.
         """

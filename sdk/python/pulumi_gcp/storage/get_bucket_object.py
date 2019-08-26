@@ -128,6 +128,9 @@ def get_bucket_object(bucket=None,name=None,opts=None):
     See [the official documentation](https://cloud.google.com/storage/docs/key-terms#objects)
     and
     [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
+    
+    :param str bucket: The name of the containing bucket.
+    :param str name: The name of the object.
 
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/storage_bucket_object.html.markdown.
     """
