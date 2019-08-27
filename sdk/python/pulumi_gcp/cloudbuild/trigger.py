@@ -40,6 +40,38 @@ class Trigger(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **build** object supports the following:
+        
+          * `images` (`pulumi.Input[list]`)
+          * `steps` (`pulumi.Input[list]`)
+        
+            * `args` (`pulumi.Input[list]`)
+            * `dir` (`pulumi.Input[str]`)
+            * `entrypoint` (`pulumi.Input[str]`)
+            * `envs` (`pulumi.Input[list]`)
+            * `id` (`pulumi.Input[str]`)
+            * `name` (`pulumi.Input[str]`)
+            * `secret_envs` (`pulumi.Input[list]`)
+            * `timeout` (`pulumi.Input[str]`)
+            * `timing` (`pulumi.Input[str]`)
+            * `volumes` (`pulumi.Input[list]`)
+        
+              * `name` (`pulumi.Input[str]`)
+              * `path` (`pulumi.Input[str]`)
+        
+            * `wait_fors` (`pulumi.Input[list]`)
+        
+          * `tags` (`pulumi.Input[list]`)
+        
+        The **trigger_template** object supports the following:
+        
+          * `branch_name` (`pulumi.Input[str]`)
+          * `commit_sha` (`pulumi.Input[str]`)
+          * `dir` (`pulumi.Input[str]`)
+          * `project_id` (`pulumi.Input[str]`)
+          * `repo_name` (`pulumi.Input[str]`)
+          * `tag_name` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/cloudbuild_trigger.html.markdown.
         """
@@ -88,6 +120,38 @@ class Trigger(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **build** object supports the following:
+        
+          * `images` (`pulumi.Input[list]`)
+          * `steps` (`pulumi.Input[list]`)
+        
+            * `args` (`pulumi.Input[list]`)
+            * `dir` (`pulumi.Input[str]`)
+            * `entrypoint` (`pulumi.Input[str]`)
+            * `envs` (`pulumi.Input[list]`)
+            * `id` (`pulumi.Input[str]`)
+            * `name` (`pulumi.Input[str]`)
+            * `secret_envs` (`pulumi.Input[list]`)
+            * `timeout` (`pulumi.Input[str]`)
+            * `timing` (`pulumi.Input[str]`)
+            * `volumes` (`pulumi.Input[list]`)
+        
+              * `name` (`pulumi.Input[str]`)
+              * `path` (`pulumi.Input[str]`)
+        
+            * `wait_fors` (`pulumi.Input[list]`)
+        
+          * `tags` (`pulumi.Input[list]`)
+        
+        The **trigger_template** object supports the following:
+        
+          * `branch_name` (`pulumi.Input[str]`)
+          * `commit_sha` (`pulumi.Input[str]`)
+          * `dir` (`pulumi.Input[str]`)
+          * `project_id` (`pulumi.Input[str]`)
+          * `repo_name` (`pulumi.Input[str]`)
+          * `tag_name` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/cloudbuild_trigger.html.markdown.
         """

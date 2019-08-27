@@ -36,6 +36,16 @@ class Policy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **alternative_name_server_config** object supports the following:
+        
+          * `target_name_servers` (`pulumi.Input[list]`)
+        
+            * `ipv4_address` (`pulumi.Input[str]`)
+        
+        The **networks** object supports the following:
+        
+          * `network_url` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dns_policy.html.markdown.
         """
@@ -80,6 +90,16 @@ class Policy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
+        
+        The **alternative_name_server_config** object supports the following:
+        
+          * `target_name_servers` (`pulumi.Input[list]`)
+        
+            * `ipv4_address` (`pulumi.Input[str]`)
+        
+        The **networks** object supports the following:
+        
+          * `network_url` (`pulumi.Input[str]`)
 
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dns_policy.html.markdown.
         """
