@@ -7,7 +7,7 @@ require (
 	github.com/Azure/go-autorest/autorest/azure/auth v0.1.0 // indirect
 	github.com/Azure/go-autorest/autorest/to v0.2.0 // indirect
 	github.com/Azure/go-autorest/autorest/validation v0.1.0 // indirect
-	github.com/hashicorp/terraform v0.12.6
+	github.com/hashicorp/terraform v0.12.7
 	github.com/pkg/errors v0.8.1
 	github.com/pulumi/pulumi v1.0.0-beta.4.0.20190824005806-5188232afad4
 	github.com/pulumi/pulumi-terraform v0.18.4-0.20190910143056-eb600bb5f0fb
@@ -24,3 +24,5 @@ replace (
 	github.com/hashicorp/vault => github.com/hashicorp/vault v1.2.0
 	github.com/terraform-providers/terraform-provider-google-beta => github.com/pulumi/terraform-provider-google-beta v0.0.0-20190829111220-e597d4db6376
 )
+
+replace github.com/pulumi/pulumi-terraform => ../pulumi-terraform/
