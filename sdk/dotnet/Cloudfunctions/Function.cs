@@ -45,7 +45,7 @@ namespace Pulumi.Gcp.Cloudfunctions
         /// A set of key/value environment variable pairs to assign to the function.
         /// </summary>
         [Output("environmentVariables")]
-        public Output<ImmutableDictionary<string, object>?> EnvironmentVariables { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> EnvironmentVariables { get; private set; } = null!;
 
         /// <summary>
         /// A source that fires events in response to a condition in another service. Structure is documented below. Cannot be used with `trigger_http`.
@@ -63,7 +63,7 @@ namespace Pulumi.Gcp.Cloudfunctions
         /// A set of key/value label pairs to assign to the function.
         /// </summary>
         [Output("labels")]
-        public Output<ImmutableDictionary<string, object>?> Labels { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
         /// The limit on the maximum number of function instances that may coexist at a given time.
@@ -206,14 +206,14 @@ namespace Pulumi.Gcp.Cloudfunctions
         public Input<string>? EntryPoint { get; set; }
 
         [Input("environmentVariables")]
-        private InputMap<object>? _environmentVariables;
+        private InputMap<string>? _environmentVariables;
 
         /// <summary>
         /// A set of key/value environment variable pairs to assign to the function.
         /// </summary>
-        public InputMap<object> EnvironmentVariables
+        public InputMap<string> EnvironmentVariables
         {
-            get => _environmentVariables ?? (_environmentVariables = new InputMap<object>());
+            get => _environmentVariables ?? (_environmentVariables = new InputMap<string>());
             set => _environmentVariables = value;
         }
 
@@ -230,14 +230,14 @@ namespace Pulumi.Gcp.Cloudfunctions
         public Input<string>? HttpsTriggerUrl { get; set; }
 
         [Input("labels")]
-        private InputMap<object>? _labels;
+        private InputMap<string>? _labels;
 
         /// <summary>
         /// A set of key/value label pairs to assign to the function.
         /// </summary>
-        public InputMap<object> Labels
+        public InputMap<string> Labels
         {
-            get => _labels ?? (_labels = new InputMap<object>());
+            get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
@@ -343,14 +343,14 @@ namespace Pulumi.Gcp.Cloudfunctions
         public Input<string>? EntryPoint { get; set; }
 
         [Input("environmentVariables")]
-        private InputMap<object>? _environmentVariables;
+        private InputMap<string>? _environmentVariables;
 
         /// <summary>
         /// A set of key/value environment variable pairs to assign to the function.
         /// </summary>
-        public InputMap<object> EnvironmentVariables
+        public InputMap<string> EnvironmentVariables
         {
-            get => _environmentVariables ?? (_environmentVariables = new InputMap<object>());
+            get => _environmentVariables ?? (_environmentVariables = new InputMap<string>());
             set => _environmentVariables = value;
         }
 
@@ -367,14 +367,14 @@ namespace Pulumi.Gcp.Cloudfunctions
         public Input<string>? HttpsTriggerUrl { get; set; }
 
         [Input("labels")]
-        private InputMap<object>? _labels;
+        private InputMap<string>? _labels;
 
         /// <summary>
         /// A set of key/value label pairs to assign to the function.
         /// </summary>
-        public InputMap<object> Labels
+        public InputMap<string> Labels
         {
-            get => _labels ?? (_labels = new InputMap<object>());
+            get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 

@@ -673,10 +673,10 @@ namespace Pulumi.Gcp.Dataproc
         }
 
         [Input("properties")]
-        private InputMap<object>? _properties;
-        public InputMap<object> Properties
+        private InputMap<string>? _properties;
+        public InputMap<string> Properties
         {
-            get => _properties ?? (_properties = new InputMap<object>());
+            get => _properties ?? (_properties = new InputMap<string>());
             set => _properties = value;
         }
 
@@ -707,10 +707,10 @@ namespace Pulumi.Gcp.Dataproc
         }
 
         [Input("properties")]
-        private InputMap<object>? _properties;
-        public InputMap<object> Properties
+        private InputMap<string>? _properties;
+        public InputMap<string> Properties
         {
-            get => _properties ?? (_properties = new InputMap<object>());
+            get => _properties ?? (_properties = new InputMap<string>());
             set => _properties = value;
         }
 
@@ -1081,14 +1081,14 @@ namespace Pulumi.Gcp.Dataproc
         public readonly string ImageVersion;
         public readonly ImmutableArray<string> OptionalComponents;
         public readonly ImmutableDictionary<string, string>? OverrideProperties;
-        public readonly ImmutableDictionary<string, object> Properties;
+        public readonly ImmutableDictionary<string, string> Properties;
 
         [OutputConstructor]
         private ClusterClusterConfigSoftwareConfig(
             string imageVersion,
             ImmutableArray<string> optionalComponents,
             ImmutableDictionary<string, string>? overrideProperties,
-            ImmutableDictionary<string, object> properties)
+            ImmutableDictionary<string, string> properties)
         {
             ImageVersion = imageVersion;
             OptionalComponents = optionalComponents;

@@ -35,7 +35,7 @@ namespace Pulumi.Gcp.Dataflow
         /// User labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page.
         /// </summary>
         [Output("labels")]
-        public Output<ImmutableDictionary<string, object>?> Labels { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
         /// The machine type to use for the job.
@@ -71,7 +71,7 @@ namespace Pulumi.Gcp.Dataflow
         /// Key/Value pairs to be passed to the Dataflow job (as used in the template).
         /// </summary>
         [Output("parameters")]
-        public Output<ImmutableDictionary<string, object>?> Parameters { get; private set; } = null!;
+        public Output<ImmutableDictionary<string, string>?> Parameters { get; private set; } = null!;
 
         /// <summary>
         /// The project in which the resource belongs. If it is not provided, the provider project is used.
@@ -171,14 +171,14 @@ namespace Pulumi.Gcp.Dataflow
         public Input<string>? IpConfiguration { get; set; }
 
         [Input("labels")]
-        private InputMap<object>? _labels;
+        private InputMap<string>? _labels;
 
         /// <summary>
         /// User labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page.
         /// </summary>
-        public InputMap<object> Labels
+        public InputMap<string> Labels
         {
-            get => _labels ?? (_labels = new InputMap<object>());
+            get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
@@ -213,14 +213,14 @@ namespace Pulumi.Gcp.Dataflow
         public Input<string>? OnDelete { get; set; }
 
         [Input("parameters")]
-        private InputMap<object>? _parameters;
+        private InputMap<string>? _parameters;
 
         /// <summary>
         /// Key/Value pairs to be passed to the Dataflow job (as used in the template).
         /// </summary>
-        public InputMap<object> Parameters
+        public InputMap<string> Parameters
         {
-            get => _parameters ?? (_parameters = new InputMap<object>());
+            get => _parameters ?? (_parameters = new InputMap<string>());
             set => _parameters = value;
         }
 
@@ -277,14 +277,14 @@ namespace Pulumi.Gcp.Dataflow
         public Input<string>? IpConfiguration { get; set; }
 
         [Input("labels")]
-        private InputMap<object>? _labels;
+        private InputMap<string>? _labels;
 
         /// <summary>
         /// User labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page.
         /// </summary>
-        public InputMap<object> Labels
+        public InputMap<string> Labels
         {
-            get => _labels ?? (_labels = new InputMap<object>());
+            get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
@@ -319,14 +319,14 @@ namespace Pulumi.Gcp.Dataflow
         public Input<string>? OnDelete { get; set; }
 
         [Input("parameters")]
-        private InputMap<object>? _parameters;
+        private InputMap<string>? _parameters;
 
         /// <summary>
         /// Key/Value pairs to be passed to the Dataflow job (as used in the template).
         /// </summary>
-        public InputMap<object> Parameters
+        public InputMap<string> Parameters
         {
-            get => _parameters ?? (_parameters = new InputMap<object>());
+            get => _parameters ?? (_parameters = new InputMap<string>());
             set => _parameters = value;
         }
 

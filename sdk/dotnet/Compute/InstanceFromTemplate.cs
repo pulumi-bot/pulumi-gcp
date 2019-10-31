@@ -549,10 +549,10 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Image { get; set; }
 
         [Input("labels")]
-        private InputMap<object>? _labels;
-        public InputMap<object> Labels
+        private InputMap<string>? _labels;
+        public InputMap<string> Labels
         {
-            get => _labels ?? (_labels = new InputMap<object>());
+            get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
@@ -573,10 +573,10 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Image { get; set; }
 
         [Input("labels")]
-        private InputMap<object>? _labels;
-        public InputMap<object> Labels
+        private InputMap<string>? _labels;
+        public InputMap<string> Labels
         {
-            get => _labels ?? (_labels = new InputMap<object>());
+            get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
@@ -1007,14 +1007,14 @@ namespace Pulumi.Gcp.Compute
     public sealed class InstanceFromTemplateBootDiskInitializeParams
     {
         public readonly string Image;
-        public readonly ImmutableDictionary<string, object> Labels;
+        public readonly ImmutableDictionary<string, string> Labels;
         public readonly int Size;
         public readonly string Type;
 
         [OutputConstructor]
         private InstanceFromTemplateBootDiskInitializeParams(
             string image,
-            ImmutableDictionary<string, object> labels,
+            ImmutableDictionary<string, string> labels,
             int size,
             string type)
         {

@@ -789,7 +789,7 @@ export namespace compute {
         /**
          * A map of key/value label pairs to assign to the instance.
          */
-        labels?: pulumi.Input<{[key: string]: any}>;
+        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         size?: pulumi.Input<number>;
         type?: pulumi.Input<string>;
     }
@@ -816,7 +816,7 @@ export namespace compute {
 
     export interface InstanceFromTemplateBootDiskInitializeParams {
         image?: pulumi.Input<string>;
-        labels?: pulumi.Input<{[key: string]: any}>;
+        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         size?: pulumi.Input<number>;
         type?: pulumi.Input<string>;
     }
@@ -1892,7 +1892,7 @@ export namespace dataproc {
         imageVersion?: pulumi.Input<string>;
         optionalComponents?: pulumi.Input<pulumi.Input<string>[]>;
         overrideProperties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-        properties?: pulumi.Input<{[key: string]: any}>;
+        properties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     }
 
     export interface ClusterClusterConfigWorkerConfig {

@@ -62,7 +62,7 @@ namespace Pulumi.Gcp.Cloudfunctions
         /// Name of a JavaScript function that will be executed when the Google Cloud Function is triggered.
         /// </summary>
         public readonly string EntryPoint;
-        public readonly ImmutableDictionary<string, object> EnvironmentVariables;
+        public readonly ImmutableDictionary<string, string> EnvironmentVariables;
         /// <summary>
         /// A source that fires events in response to a condition in another service. Structure is documented below.
         /// </summary>
@@ -74,7 +74,7 @@ namespace Pulumi.Gcp.Cloudfunctions
         /// <summary>
         /// A map of labels applied to this function.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Labels;
+        public readonly ImmutableDictionary<string, string> Labels;
         public readonly int MaxInstances;
         /// <summary>
         /// The name of the Cloud Function.
@@ -120,10 +120,10 @@ namespace Pulumi.Gcp.Cloudfunctions
             int availableMemoryMb,
             string description,
             string entryPoint,
-            ImmutableDictionary<string, object> environmentVariables,
+            ImmutableDictionary<string, string> environmentVariables,
             ImmutableArray<Outputs.GetFunctionEventTriggersResult> eventTriggers,
             string httpsTriggerUrl,
-            ImmutableDictionary<string, object> labels,
+            ImmutableDictionary<string, string> labels,
             int maxInstances,
             string name,
             string? project,
