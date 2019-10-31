@@ -129,7 +129,7 @@ export class Function extends pulumi.CustomResource {
     /**
      * A set of key/value environment variable pairs to assign to the function.
      */
-    public readonly environmentVariables!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly environmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * A source that fires events in response to a condition in another service. Structure is documented below. Cannot be used with `triggerHttp`.
      */
@@ -141,7 +141,7 @@ export class Function extends pulumi.CustomResource {
     /**
      * A set of key/value label pairs to assign to the function.
      */
-    public readonly labels!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The limit on the maximum number of function instances that may coexist at a given time.
      */
@@ -278,7 +278,7 @@ export interface FunctionState {
     /**
      * A set of key/value environment variable pairs to assign to the function.
      */
-    readonly environmentVariables?: pulumi.Input<{[key: string]: any}>;
+    readonly environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A source that fires events in response to a condition in another service. Structure is documented below. Cannot be used with `triggerHttp`.
      */
@@ -290,7 +290,7 @@ export interface FunctionState {
     /**
      * A set of key/value label pairs to assign to the function.
      */
-    readonly labels?: pulumi.Input<{[key: string]: any}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The limit on the maximum number of function instances that may coexist at a given time.
      */
@@ -364,7 +364,7 @@ export interface FunctionArgs {
     /**
      * A set of key/value environment variable pairs to assign to the function.
      */
-    readonly environmentVariables?: pulumi.Input<{[key: string]: any}>;
+    readonly environmentVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A source that fires events in response to a condition in another service. Structure is documented below. Cannot be used with `triggerHttp`.
      */
@@ -376,7 +376,7 @@ export interface FunctionArgs {
     /**
      * A set of key/value label pairs to assign to the function.
      */
-    readonly labels?: pulumi.Input<{[key: string]: any}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The limit on the maximum number of function instances that may coexist at a given time.
      */

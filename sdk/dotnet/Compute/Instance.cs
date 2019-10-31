@@ -820,14 +820,14 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Image { get; set; }
 
         [Input("labels")]
-        private InputMap<object>? _labels;
+        private InputMap<string>? _labels;
 
         /// <summary>
         /// A map of key/value label pairs to assign to the instance.
         /// </summary>
-        public InputMap<object> Labels
+        public InputMap<string> Labels
         {
-            get => _labels ?? (_labels = new InputMap<object>());
+            get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
@@ -848,14 +848,14 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Image { get; set; }
 
         [Input("labels")]
-        private InputMap<object>? _labels;
+        private InputMap<string>? _labels;
 
         /// <summary>
         /// A map of key/value label pairs to assign to the instance.
         /// </summary>
-        public InputMap<object> Labels
+        public InputMap<string> Labels
         {
-            get => _labels ?? (_labels = new InputMap<object>());
+            get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
@@ -1289,14 +1289,14 @@ namespace Pulumi.Gcp.Compute
         /// <summary>
         /// A map of key/value label pairs to assign to the instance.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Labels;
+        public readonly ImmutableDictionary<string, string> Labels;
         public readonly int Size;
         public readonly string Type;
 
         [OutputConstructor]
         private InstanceBootDiskInitializeParams(
             string image,
-            ImmutableDictionary<string, object> labels,
+            ImmutableDictionary<string, string> labels,
             int size,
             string type)
         {

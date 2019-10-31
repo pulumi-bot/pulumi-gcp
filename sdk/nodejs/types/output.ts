@@ -881,7 +881,7 @@ export namespace compute {
         /**
          * A set of key/value label pairs assigned to the instance.
          */
-        labels: {[key: string]: any};
+        labels: {[key: string]: string};
         /**
          * The size of the image in gigabytes.
          */
@@ -1188,7 +1188,7 @@ export namespace compute {
         /**
          * A map of key/value label pairs to assign to the instance.
          */
-        labels: {[key: string]: any};
+        labels: {[key: string]: string};
         size: number;
         type: string;
     }
@@ -1215,7 +1215,7 @@ export namespace compute {
 
     export interface InstanceFromTemplateBootDiskInitializeParams {
         image: string;
-        labels: {[key: string]: any};
+        labels: {[key: string]: string};
         size: number;
         type: string;
     }
@@ -2540,7 +2540,7 @@ export namespace dataproc {
         imageVersion: string;
         optionalComponents?: string[];
         overrideProperties?: {[key: string]: string};
-        properties: {[key: string]: any};
+        properties: {[key: string]: string};
     }
 
     export interface ClusterClusterConfigWorkerConfig {

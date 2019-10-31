@@ -276,7 +276,7 @@ namespace Pulumi.Gcp.Compute
         /// <summary>
         /// A set of key/value label pairs assigned to the instance.
         /// </summary>
-        public readonly ImmutableDictionary<string, object> Labels;
+        public readonly ImmutableDictionary<string, string> Labels;
         /// <summary>
         /// The size of the image in gigabytes.
         /// </summary>
@@ -289,7 +289,7 @@ namespace Pulumi.Gcp.Compute
         [OutputConstructor]
         private GetInstanceBootDisksInitializeParamsResult(
             string image,
-            ImmutableDictionary<string, object> labels,
+            ImmutableDictionary<string, string> labels,
             int size,
             string type)
         {

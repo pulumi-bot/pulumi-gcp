@@ -70,7 +70,7 @@ export class Job extends pulumi.CustomResource {
     /**
      * User labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page.
      */
-    public readonly labels!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The machine type to use for the job.
      */
@@ -94,7 +94,7 @@ export class Job extends pulumi.CustomResource {
     /**
      * Key/Value pairs to be passed to the Dataflow job (as used in the template).
      */
-    public readonly parameters!: pulumi.Output<{[key: string]: any} | undefined>;
+    public readonly parameters!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The project in which the resource belongs. If it is not provided, the provider project is used.
      */
@@ -200,7 +200,7 @@ export interface JobState {
     /**
      * User labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page.
      */
-    readonly labels?: pulumi.Input<{[key: string]: any}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The machine type to use for the job.
      */
@@ -224,7 +224,7 @@ export interface JobState {
     /**
      * Key/Value pairs to be passed to the Dataflow job (as used in the template).
      */
-    readonly parameters?: pulumi.Input<{[key: string]: any}>;
+    readonly parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The project in which the resource belongs. If it is not provided, the provider project is used.
      */
@@ -267,7 +267,7 @@ export interface JobArgs {
     /**
      * User labels to be specified for the job. Keys and values should follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page.
      */
-    readonly labels?: pulumi.Input<{[key: string]: any}>;
+    readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The machine type to use for the job.
      */
@@ -291,7 +291,7 @@ export interface JobArgs {
     /**
      * Key/Value pairs to be passed to the Dataflow job (as used in the template).
      */
-    readonly parameters?: pulumi.Input<{[key: string]: any}>;
+    readonly parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * The project in which the resource belongs. If it is not provided, the provider project is used.
      */
