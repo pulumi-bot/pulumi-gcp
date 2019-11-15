@@ -14,3 +14,5 @@ require (
 )
 
 replace github.com/terraform-providers/terraform-provider-google-beta => github.com/pulumi/terraform-provider-google-beta v0.0.0-20191111212920-c01ef296cc3c
+
+replace github.com/pulumi/pulumi-terraform-bridge => ../pulumi-terraform-bridge
