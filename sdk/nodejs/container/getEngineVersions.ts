@@ -38,7 +38,7 @@ import * as utilities from "../utilities";
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/container_engine_versions.html.markdown.
  */
-export function getEngineVersions(args?: GetEngineVersionsArgs, opts?: pulumi.InvokeOptions): Promise<GetEngineVersionsResult> & GetEngineVersionsResult {
+export function getEngineVersions(args?: GetEngineVersionsArgs, opts?: pulumi.InvokeOptions): Promise<GetEngineVersionsResult> {
     args = args || {};
     if (!opts) {
         opts = {}
@@ -47,15 +47,13 @@ export function getEngineVersions(args?: GetEngineVersionsArgs, opts?: pulumi.In
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetEngineVersionsResult> = pulumi.runtime.invoke("gcp:container/getEngineVersions:getEngineVersions", {
+    return pulumi.runtime.invoke("gcp:container/getEngineVersions:getEngineVersions", {
         "location": args.location,
         "project": args.project,
         "region": args.region,
         "versionPrefix": args.versionPrefix,
         "zone": args.zone,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**

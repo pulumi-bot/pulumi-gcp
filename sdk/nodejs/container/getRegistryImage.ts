@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/container_registry_image.html.markdown.
  */
-export function getRegistryImage(args: GetRegistryImageArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryImageResult> & GetRegistryImageResult {
+export function getRegistryImage(args: GetRegistryImageArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryImageResult> {
     if (!opts) {
         opts = {}
     }
@@ -34,15 +34,13 @@ export function getRegistryImage(args: GetRegistryImageArgs, opts?: pulumi.Invok
     if (!opts.version) {
         opts.version = utilities.getVersion();
     }
-    const promise: Promise<GetRegistryImageResult> = pulumi.runtime.invoke("gcp:container/getRegistryImage:getRegistryImage", {
+    return pulumi.runtime.invoke("gcp:container/getRegistryImage:getRegistryImage", {
         "digest": args.digest,
         "name": args.name,
         "project": args.project,
         "region": args.region,
         "tag": args.tag,
     }, opts);
-
-    return pulumi.utils.liftProperties(promise, opts);
 }
 
 /**
