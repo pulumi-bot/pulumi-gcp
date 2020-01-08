@@ -192,6 +192,7 @@ export interface SubnetworkState {
     /**
      * Fingerprint of this resource. This field is used internally during updates of this resource.
      */
+    /** @deprecated This field is not useful for users, and has been removed as an output. */
     readonly fingerprint?: pulumi.Input<string>;
     /**
      * The gateway address for default routes to reach destination addresses outside this subnetwork.
