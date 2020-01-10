@@ -197,6 +197,7 @@ type SubnetworkState struct {
 	// only at resource creation time.
 	Description interface{}
 	// Fingerprint of this resource. This field is used internally during updates of this resource.
+	// Deprecated: This field is not useful for users, and has been removed as an output.
 	Fingerprint interface{}
 	// The gateway address for default routes to reach destination addresses outside this subnetwork.
 	GatewayAddress interface{}
