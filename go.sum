@@ -472,6 +472,7 @@ github.com/prometheus/procfs v0.0.0-20181005140218-185b4288413d/go.mod h1:c3At6R
 github.com/prometheus/procfs v0.0.0-20190117184657-bf6a532e95b1/go.mod h1:c3At6R/oaqEKCNdg8wHV1ftS6bRYblBhIjjI8uT2IGk=
 github.com/pulumi/pulumi v1.6.0 h1:HgALIMX6kv5lwlgyezjKPPc2nNYv+/leFrOjJoo8EB8=
 github.com/pulumi/pulumi v1.6.0/go.mod h1:gJBsD+SkjIhWRWPY+0ID9QM6sngLsMGQH8KiknlH0lU=
+github.com/pulumi/pulumi v1.9.1-0.20200123184238-4d8027f05757/go.mod h1:BEybmRwcqAcC857LYU5YUhmi1rOze72wWWFLvkduy30=
 github.com/pulumi/pulumi-terraform-bridge v1.5.2 h1:vKzPPTsDYk3qIq9v4Ez4BTEQUKkz9vwEk7qLiEdc3wE=
 github.com/pulumi/pulumi-terraform-bridge v1.5.2/go.mod h1:dSbi1sxIj9D4VYdX+HEWCUkPEsh4hAj6pKhXC4Z9FzE=
 github.com/pulumi/terraform-provider-google-beta v0.0.0-20200124105704-9d10a44a3d71 h1:c/lWRD1lzk+W1gqPrRNPELwp7ynW67ulqWK0Ny6HU9w=
@@ -537,6 +538,7 @@ github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXf
 github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=
 github.com/stretchr/testify v1.4.0 h1:2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJyk=
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
+github.com/stretchr/testify v1.4.1-0.20191106224347-f1bd0923b832/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/terraform-providers/terraform-provider-random v0.0.0-20190925211435-95c131714b03 h1:OsOkKTZP2EdzDwXpRQGQejbSF0QsLszB229umafmojw=
 github.com/terraform-providers/terraform-provider-random v0.0.0-20190925211435-95c131714b03/go.mod h1:F4KE9YftuJyMiBth4W1kCrsyOHndtTjAmZ+ZzjqWY+4=
 github.com/texttheater/golang-levenshtein v0.0.0-20180516184445-d188e65d659e h1:T5PdfK/M1xyrHwynxMIVMWLS7f/qHwfslZphxtGnw7s=
