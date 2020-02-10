@@ -4,7 +4,7 @@
 
 # Export this package's modules as members:
 from .alert_policy import *
+from .get_notification_channel import *
 from .group import *
 from .notification_channel import *
 from .uptime_check_config import *
-from .get_notification_channel import *
