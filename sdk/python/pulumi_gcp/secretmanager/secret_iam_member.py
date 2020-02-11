@@ -19,12 +19,11 @@ class SecretIamMember(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, condition=None, member=None, project=None, role=None, secret_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecretIamMember resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        
+
         The **condition** object supports the following:
-        
+
           * `description` (`pulumi.Input[str]`)
           * `expression` (`pulumi.Input[str]`)
           * `title` (`pulumi.Input[str]`)
@@ -69,13 +68,13 @@ class SecretIamMember(pulumi.CustomResource):
         """
         Get an existing SecretIamMember resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        
+
         The **condition** object supports the following:
-        
+
           * `description` (`pulumi.Input[str]`)
           * `expression` (`pulumi.Input[str]`)
           * `title` (`pulumi.Input[str]`)
@@ -83,6 +82,7 @@ class SecretIamMember(pulumi.CustomResource):
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["condition"] = condition
         __props__["etag"] = etag
         __props__["member"] = member
