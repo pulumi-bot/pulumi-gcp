@@ -21,7 +21,7 @@ import (
 // 
 // > **Note:** `bigtable.InstanceIamBinding` resources **can be** used in conjunction with `bigtable.InstanceIamMember` resources **only if** they do not grant privilege to the same role.
 // 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/bigtable_instance_iam_policy.html.markdown.
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/bigtable_instance_iam.html.markdown.
 type InstanceIamPolicy struct {
 	pulumi.CustomResourceState
 

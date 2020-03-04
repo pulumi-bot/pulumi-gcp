@@ -21,7 +21,7 @@ import (
 // 
 // > **Note:** `kms.KeyRingIAMBinding` resources **can be** used in conjunction with `kms.KeyRingIAMMember` resources **only if** they do not grant privilege to the same role.
 // 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/kms_key_ring_iam_member.html.markdown.
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_kms_key_ring_iam.html.markdown.
 type KeyRingIAMMember struct {
 	pulumi.CustomResourceState
 

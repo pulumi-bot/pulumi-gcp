@@ -26,7 +26,7 @@ import (
 //    `organizations.IAMMember` or `organizations.IAMBinding`
 //    or they will fight over what your policy should be.
 // 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/organization_iam_policy.html.markdown.
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_organization_iam_policy.html.markdown.
 type IAMPolicy struct {
 	pulumi.CustomResourceState
 

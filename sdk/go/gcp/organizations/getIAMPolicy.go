@@ -20,7 +20,7 @@ import (
 // Currently, defining a policy through a datasource and referencing that policy
 // from another resource is the only way to apply an IAM policy to a resource.
 // 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/iam_policy.html.markdown.
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_iam_policy.html.markdown.
 func LookupIAMPolicy(ctx *pulumi.Context, args *LookupIAMPolicyArgs, opts ...pulumi.InvokeOption) (*LookupIAMPolicyResult, error) {
 	var rv LookupIAMPolicyResult
 	err := ctx.Invoke("gcp:organizations/getIAMPolicy:getIAMPolicy", args, &rv, opts...)

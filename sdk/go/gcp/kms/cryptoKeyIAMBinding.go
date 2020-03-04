@@ -18,7 +18,7 @@ import (
 //     Use `import` and inspect the preview output to ensure
 //     your existing members are preserved.
 // 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/kms_crypto_key_iam_binding.html.markdown.
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_kms_crypto_key_iam_binding.html.markdown.
 type CryptoKeyIAMBinding struct {
 	pulumi.CustomResourceState
 

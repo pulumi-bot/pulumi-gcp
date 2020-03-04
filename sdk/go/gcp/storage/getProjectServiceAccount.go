@@ -16,7 +16,7 @@ import (
 // For more information see
 // [the API reference](https://cloud.google.com/storage/docs/json_api/v1/projects/serviceAccount).
 // 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/storage_project_service_account.html.markdown.
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_storage_project_service_account.html.markdown.
 func GetProjectServiceAccount(ctx *pulumi.Context, args *GetProjectServiceAccountArgs, opts ...pulumi.InvokeOption) (*GetProjectServiceAccountResult, error) {
 	var rv GetProjectServiceAccountResult
 	err := ctx.Invoke("gcp:storage/getProjectServiceAccount:getProjectServiceAccount", args, &rv, opts...)

@@ -17,7 +17,6 @@ class SecretIamPolicy(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, policy_data=None, project=None, secret_id=None, __props__=None, __name__=None, __opts__=None):
         """
         Create a SecretIamPolicy resource with the given unique name, props, and options.
-        
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -57,7 +56,7 @@ class SecretIamPolicy(pulumi.CustomResource):
         """
         Get an existing SecretIamPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
-        
+
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -65,6 +64,7 @@ class SecretIamPolicy(pulumi.CustomResource):
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = dict()
+
         __props__["etag"] = etag
         __props__["policy_data"] = policy_data
         __props__["project"] = project

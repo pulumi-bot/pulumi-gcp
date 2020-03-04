@@ -28,7 +28,7 @@ import (
 // its component zones, and not all zones in a region are guaranteed to
 // support the same version.
 // 
-// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/container_engine_versions.html.markdown.
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_container_engine_versions.html.markdown.
 func GetEngineVersions(ctx *pulumi.Context, args *GetEngineVersionsArgs, opts ...pulumi.InvokeOption) (*GetEngineVersionsResult, error) {
 	var rv GetEngineVersionsResult
 	err := ctx.Invoke("gcp:container/getEngineVersions:getEngineVersions", args, &rv, opts...)
