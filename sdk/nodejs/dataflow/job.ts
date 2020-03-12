@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  * 
  * ## Example Usage
  * 
+ * {{% examples %}}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -24,6 +25,7 @@ import * as utilities from "../utilities";
  *     templateGcsPath: "gs://my-bucket/templates/template_file",
  * });
  * ```
+ * {{% /examples %}}
  * 
  * ## Note on "destroy" / "apply"
  * 

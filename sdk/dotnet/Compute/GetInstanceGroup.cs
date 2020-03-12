@@ -16,6 +16,9 @@ namespace Pulumi.Gcp.Compute
         /// For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/#unmanaged_instance_groups)
         /// and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroups)
         /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_compute_instance_group.html.markdown.
         /// </summary>
         public static Task<GetInstanceGroupResult> GetInstanceGroup(GetInstanceGroupArgs? args = null, InvokeOptions? options = null)

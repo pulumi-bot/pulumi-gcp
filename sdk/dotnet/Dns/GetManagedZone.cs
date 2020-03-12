@@ -18,6 +18,9 @@ namespace Pulumi.Gcp.Dns
         /// and
         /// [API](https://cloud.google.com/dns/api/v1/managedZones).
         /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/dns_managed_zone.html.markdown.
         /// </summary>
         public static Task<GetManagedZoneResult> GetManagedZone(GetManagedZoneArgs args, InvokeOptions? options = null)

@@ -20,6 +20,8 @@ namespace Pulumi.Gcp.Logging
         /// <summary>
         /// The destination of the sink (or, in other words, where logs are written to). Can be a
         /// Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// The writer associated with the sink must have access to write to the above resource.
         /// </summary>
         [Output("destination")]
@@ -114,6 +116,8 @@ namespace Pulumi.Gcp.Logging
         /// <summary>
         /// The destination of the sink (or, in other words, where logs are written to). Can be a
         /// Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// The writer associated with the sink must have access to write to the above resource.
         /// </summary>
         [Input("destination", required: true)]
@@ -162,6 +166,8 @@ namespace Pulumi.Gcp.Logging
         /// <summary>
         /// The destination of the sink (or, in other words, where logs are written to). Can be a
         /// Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// The writer associated with the sink must have access to write to the above resource.
         /// </summary>
         [Input("destination")]

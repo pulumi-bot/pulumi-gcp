@@ -23,6 +23,7 @@ import * as utilities from "../utilities";
  * 
  * This snippet creates a customized IAM organization role.
  * 
+ * {{% examples %}}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -39,6 +40,7 @@ import * as utilities from "../utilities";
  *     title: "My Custom Role",
  * });
  * ```
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_organization_iam_custom_role.html.markdown.
  */

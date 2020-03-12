@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  * 
  * Example picture stored within a folder.
  * 
+ * {{% examples %}}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -26,6 +27,7 @@ import * as utilities from "../utilities";
  *     name: "folder/butterfly01.jpg",
  * });
  * ```
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/storage_bucket_object.html.markdown.
  */

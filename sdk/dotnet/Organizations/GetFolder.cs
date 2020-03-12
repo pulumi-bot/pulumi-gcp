@@ -14,6 +14,9 @@ namespace Pulumi.Gcp.Organizations
         /// <summary>
         /// Use this data source to get information about a Google Cloud Folder.
         /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_folder.html.markdown.
         /// </summary>
         public static Task<GetFolderResult> GetFolder(GetFolderArgs args, InvokeOptions? options = null)

@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  * 
  * Allows management of audit logging config for a given service for a Google Cloud Platform Organization.
  * 
+ * {{% examples %}}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -24,6 +25,7 @@ import * as utilities from "../utilities";
  *     service: "allServices",
  * });
  * ```
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_organization_iam_audit_config.html.markdown.
  */

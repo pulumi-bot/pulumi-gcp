@@ -24,6 +24,8 @@ class BillingAccountSink(pulumi.CustomResource):
     """
     The destination of the sink (or, in other words, where logs are written to). Can be a
     Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
+    {{% examples %}}
+    {{% /examples %}}
     The writer associated with the sink must have access to write to the above resource.
     """
     filter: pulumi.Output[str]
@@ -60,6 +62,8 @@ class BillingAccountSink(pulumi.CustomResource):
         :param pulumi.Input[str] billing_account: The billing account exported to the sink.
         :param pulumi.Input[str] destination: The destination of the sink (or, in other words, where logs are written to). Can be a
                Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
+               {{% examples %}}
+               {{% /examples %}}
                The writer associated with the sink must have access to write to the above resource.
         :param pulumi.Input[str] filter: The filter to apply when exporting logs. Only log entries that match the filter are exported.
                See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to
@@ -116,6 +120,8 @@ class BillingAccountSink(pulumi.CustomResource):
         :param pulumi.Input[str] billing_account: The billing account exported to the sink.
         :param pulumi.Input[str] destination: The destination of the sink (or, in other words, where logs are written to). Can be a
                Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
+               {{% examples %}}
+               {{% /examples %}}
                The writer associated with the sink must have access to write to the above resource.
         :param pulumi.Input[str] filter: The filter to apply when exporting logs. Only log entries that match the filter are exported.
                See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to

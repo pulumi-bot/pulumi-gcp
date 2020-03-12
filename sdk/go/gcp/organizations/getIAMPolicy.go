@@ -15,6 +15,8 @@ import (
 // See the [setIamPolicy docs](https://cloud.google.com/resource-manager/reference/rest/v1/projects/setIamPolicy)
 // for a list of these restrictions.
 //
+// {{% examples %}}
+// {{% /examples %}}
 //
 // This data source is used to define IAM policies to apply to other resources.
 // Currently, defining a policy through a datasource and referencing that policy

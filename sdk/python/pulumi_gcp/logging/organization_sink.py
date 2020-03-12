@@ -20,6 +20,8 @@ class OrganizationSink(pulumi.CustomResource):
     """
     The destination of the sink (or, in other words, where logs are written to). Can be a
     Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
+    {{% examples %}}
+    {{% /examples %}}
     The writer associated with the sink must have access to write to the above resource.
     """
     filter: pulumi.Output[str]
@@ -54,6 +56,8 @@ class OrganizationSink(pulumi.CustomResource):
         :param pulumi.Input[dict] bigquery_options: Options that affect sinks exporting data to BigQuery. Structure documented below.
         :param pulumi.Input[str] destination: The destination of the sink (or, in other words, where logs are written to). Can be a
                Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
+               {{% examples %}}
+               {{% /examples %}}
                The writer associated with the sink must have access to write to the above resource.
         :param pulumi.Input[str] filter: The filter to apply when exporting logs. Only log entries that match the filter are exported.
                See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to
@@ -113,6 +117,8 @@ class OrganizationSink(pulumi.CustomResource):
         :param pulumi.Input[dict] bigquery_options: Options that affect sinks exporting data to BigQuery. Structure documented below.
         :param pulumi.Input[str] destination: The destination of the sink (or, in other words, where logs are written to). Can be a
                Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples:
+               {{% examples %}}
+               {{% /examples %}}
                The writer associated with the sink must have access to write to the above resource.
         :param pulumi.Input[str] filter: The filter to apply when exporting logs. Only log entries that match the filter are exported.
                See [Advanced Log Filters](https://cloud.google.com/logging/docs/view/advanced_filters) for information on how to

@@ -27,6 +27,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Access Context Manager Service Perimeter Basic
  * 
  * 
+ * {{% examples %}}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -57,6 +58,7 @@ import * as utilities from "../utilities";
  *     title: "chromeosNoLock",
  * });
  * ```
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/access_context_manager_service_perimeter.html.markdown.
  */

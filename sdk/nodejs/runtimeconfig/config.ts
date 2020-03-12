@@ -14,6 +14,7 @@ import * as utilities from "../utilities";
  * 
  * Example creating a RuntimeConfig resource.
  * 
+ * {{% examples %}}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -22,6 +23,7 @@ import * as utilities from "../utilities";
  *     description: "Runtime configuration values for my service",
  * });
  * ```
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/runtimeconfig_config.html.markdown.
  */

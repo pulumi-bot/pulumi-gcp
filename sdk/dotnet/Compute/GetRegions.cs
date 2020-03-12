@@ -15,6 +15,9 @@ namespace Pulumi.Gcp.Compute
         /// Provides access to available Google Compute regions for a given project.
         /// See more about [regions and regions](https://cloud.google.com/compute/docs/regions-zones/) in the upstream docs.
         /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_compute_regions.html.markdown.
         /// </summary>
         public static Task<GetRegionsResult> GetRegions(GetRegionsArgs? args = null, InvokeOptions? options = null)

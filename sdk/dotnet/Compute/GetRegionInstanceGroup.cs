@@ -15,8 +15,13 @@ namespace Pulumi.Gcp.Compute
         /// Get a Compute Region Instance Group within GCE.
         /// For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/distributing-instances-with-regional-instance-groups) and [API](https://cloud.google.com/compute/docs/reference/latest/regionInstanceGroups).
         /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// 
         /// The most common use of this datasource will be to fetch information about the instances inside regional managed instance groups, for instance:
+        /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_region_instance_group.html.markdown.
         /// </summary>
