@@ -11,7 +11,13 @@ namespace Pulumi.Gcp.Compute
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetResourcePolicy.InvokeAsync() instead")]
         public static Task<GetResourcePolicyResult> GetResourcePolicy(GetResourcePolicyArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetResourcePolicyResult>("gcp:compute/getResourcePolicy:getResourcePolicy", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetResourcePolicy
+    {
+        public static Task<GetResourcePolicyResult> InvokeAsync(GetResourcePolicyArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetResourcePolicyResult>("gcp:compute/getResourcePolicy:getResourcePolicy", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 
