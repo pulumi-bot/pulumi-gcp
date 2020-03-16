@@ -17,6 +17,8 @@ import * as utilities from "../utilities";
  * 
  * ## Example Usage
  * 
+ * {{% examples %}}
+ * 
  * Example creating a public object in an existing `image-store` bucket.
  * 
  * ```typescript
@@ -28,6 +30,8 @@ import * as utilities from "../utilities";
  *     source: new pulumi.asset.FileAsset("/images/nature/garden-tiger-moth.jpg"),
  * });
  * ```
+ * 
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/storage_bucket_object.html.markdown.
  */

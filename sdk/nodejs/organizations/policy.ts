@@ -14,6 +14,8 @@ import * as utilities from "../utilities";
  * 
  * ## Example Usage
  * 
+ * {{% examples %}}
+ * 
  * To set policy with a [boolean constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-boolean-constraints):
  * 
  * ```typescript
@@ -79,6 +81,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * 
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_organization_policy.html.markdown.
  */

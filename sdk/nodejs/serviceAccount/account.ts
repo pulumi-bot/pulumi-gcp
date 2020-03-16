@@ -13,6 +13,8 @@ import * as utilities from "../utilities";
  * 
  * ## Example Usage
  * 
+ * {{% examples %}}
+ * 
  * This snippet creates a service account in a project.
  * 
  * ```typescript
@@ -24,6 +26,8 @@ import * as utilities from "../utilities";
  *     displayName: "Service Account",
  * });
  * ```
+ * 
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_service_account.html.markdown.
  */

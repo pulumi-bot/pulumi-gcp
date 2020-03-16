@@ -14,6 +14,8 @@ import * as utilities from "../utilities";
  * 
  * ## Example Usage - Production Instance
  * 
+ * {{% examples %}}
+ * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -28,7 +30,10 @@ import * as utilities from "../utilities";
  * });
  * ```
  * 
+ * {{% /examples %}}
  * ## Example Usage - Development Instance
+ * 
+ * {{% examples %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -43,6 +48,8 @@ import * as utilities from "../utilities";
  *     instanceType: "DEVELOPMENT",
  * });
  * ```
+ * 
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/bigtable_instance.html.markdown.
  */

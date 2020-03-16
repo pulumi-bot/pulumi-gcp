@@ -15,6 +15,8 @@ import * as utilities from "../utilities";
  * 
  * ## Example Usage
  * 
+ * {{% examples %}}
+ * 
  * Example picture stored within a folder.
  * 
  * ```typescript
@@ -26,6 +28,8 @@ import * as utilities from "../utilities";
  *     name: "folder/butterfly01.jpg",
  * });
  * ```
+ * 
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/storage_bucket_object.html.markdown.
  */

@@ -32,6 +32,7 @@ import * as utilities from "../utilities";
  * 
  * ## Example Usage
  * 
+ * {{% examples %}}
  * ### Basic Usage
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -42,6 +43,8 @@ import * as utilities from "../utilities";
  * });
  * ```
  * 
+ * {{% /examples %}}
+ * {{% examples %}}
  * ### With Software (Airflow) Config
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -65,6 +68,8 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
+ * 
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/composer_environment.html.markdown.
  */

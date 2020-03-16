@@ -11,6 +11,8 @@ import * as utilities from "../utilities";
  * 
  * ## Example Usage
  * 
+ * {{% examples %}}
+ * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -20,6 +22,8 @@ import * as utilities from "../utilities";
  *     region: "us-east1",
  * });
  * ```
+ * 
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_subnetwork.html.markdown.
  */

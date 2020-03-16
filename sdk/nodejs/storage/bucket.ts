@@ -23,6 +23,8 @@ import * as utilities from "../utilities";
  * 
  * ## Example Usage - creating a private bucket in standard storage, in the EU region. Bucket configured as static website and CORS configurations
  * 
+ * {{% examples %}}
+ * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -50,7 +52,10 @@ import * as utilities from "../utilities";
  * });
  * ```
  * 
+ * {{% /examples %}}
  * ## Example Usage - Life cycle settings for storage bucket objects
+ * 
+ * {{% examples %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -69,6 +74,7 @@ import * as utilities from "../utilities";
  *     location: "US",
  * });
  * ```
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/storage_bucket.html.markdown.
  */

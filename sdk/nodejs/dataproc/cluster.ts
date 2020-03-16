@@ -17,6 +17,8 @@ import * as utilities from "../utilities";
  * 
  * ## Example Usage - Basic
  * 
+ * {{% examples %}}
+ * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -26,7 +28,10 @@ import * as utilities from "../utilities";
  * });
  * ```
  * 
+ * {{% /examples %}}
  * ## Example Usage - Advanced
+ * 
+ * {{% examples %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -87,7 +92,10 @@ import * as utilities from "../utilities";
  * });
  * ```
  * 
+ * {{% /examples %}}
  * ## Example Usage - Using a GPU accelerator
+ * 
+ * {{% examples %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -108,6 +116,8 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
+ * 
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dataproc_cluster.html.markdown.
  */

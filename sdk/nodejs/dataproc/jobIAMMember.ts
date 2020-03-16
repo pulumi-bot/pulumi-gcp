@@ -19,6 +19,8 @@ import * as utilities from "../utilities";
  * 
  * ## google\_pubsub\_subscription\_iam\_binding
  * 
+ * {{% examples %}}
+ * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -30,7 +32,10 @@ import * as utilities from "../utilities";
  * });
  * ```
  * 
+ * {{% /examples %}}
  * ## google\_pubsub\_subscription\_iam\_member
+ * 
+ * {{% examples %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -42,6 +47,8 @@ import * as utilities from "../utilities";
  *     role: "roles/editor",
  * });
  * ```
+ * 
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dataproc_job_iam.html.markdown.
  */

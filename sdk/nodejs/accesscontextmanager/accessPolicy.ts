@@ -22,6 +22,8 @@ import * as utilities from "../utilities";
  * 
  * ## Example Usage - Access Context Manager Access Policy Basic
  * 
+ * {{% examples %}}
+ * 
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -32,6 +34,8 @@ import * as utilities from "../utilities";
  *     title: "my policy",
  * });
  * ```
+ * 
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/access_context_manager_access_policy.html.markdown.
  */

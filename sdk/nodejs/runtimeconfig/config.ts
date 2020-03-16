@@ -12,6 +12,8 @@ import * as utilities from "../utilities";
  * 
  * ## Example Usage
  * 
+ * {{% examples %}}
+ * 
  * Example creating a RuntimeConfig resource.
  * 
  * ```typescript
@@ -22,6 +24,8 @@ import * as utilities from "../utilities";
  *     description: "Runtime configuration values for my service",
  * });
  * ```
+ * 
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/runtimeconfig_config.html.markdown.
  */
