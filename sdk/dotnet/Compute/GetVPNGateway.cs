@@ -14,9 +14,26 @@ namespace Pulumi.Gcp.Compute
         /// <summary>
         /// Get a VPN gateway within GCE from its name.
         /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_vpn_gateway.html.markdown.
         /// </summary>
+        [Obsolete("Use GetVPNGateway.InvokeAsync() instead")]
         public static Task<GetVPNGatewayResult> GetVPNGateway(GetVPNGatewayArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetVPNGatewayResult>("gcp:compute/getVPNGateway:getVPNGateway", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetVPNGateway
+    {
+        /// <summary>
+        /// Get a VPN gateway within GCE from its name.
+        /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// 
+        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_vpn_gateway.html.markdown.
+        /// </summary>
+        public static Task<GetVPNGatewayResult> InvokeAsync(GetVPNGatewayArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVPNGatewayResult>("gcp:compute/getVPNGateway:getVPNGateway", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

@@ -12,6 +12,9 @@ import (
 // [the official
 // documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview)
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_google_project_organization_policy.html.markdown.
 func LookupOrganizationPolicy(ctx *pulumi.Context, args *LookupOrganizationPolicyArgs, opts ...pulumi.InvokeOption) (*LookupOrganizationPolicyResult, error) {
 	var rv LookupOrganizationPolicyResult

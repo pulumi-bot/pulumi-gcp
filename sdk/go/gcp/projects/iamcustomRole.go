@@ -23,6 +23,9 @@ import (
 //  made available again. This means a deleted role that has been deleted for more than 7 days cannot be changed at all
 //  by this provider, and new roles cannot share that name.
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_project_iam_custom_role.html.markdown.
 type IAMCustomRole struct {
 	pulumi.CustomResourceState

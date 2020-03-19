@@ -10,6 +10,9 @@ import (
 
 // Get a VPN gateway within GCE from its name.
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_vpn_gateway.html.markdown.
 func LookupVPNGateway(ctx *pulumi.Context, args *LookupVPNGatewayArgs, opts ...pulumi.InvokeOption) (*LookupVPNGatewayResult, error) {
 	var rv LookupVPNGatewayResult

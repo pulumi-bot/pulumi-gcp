@@ -12,6 +12,9 @@ import (
 // the [official documentation](https://cloud.google.com/functions/docs/)
 // and [API](https://cloud.google.com/functions/docs/apis).
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_cloudfunctions_function.html.markdown.
 func LookupFunction(ctx *pulumi.Context, args *LookupFunctionArgs, opts ...pulumi.InvokeOption) (*LookupFunctionResult, error) {
 	var rv LookupFunctionResult

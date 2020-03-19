@@ -22,6 +22,9 @@ namespace Pulumi.Gcp.Projects
     ///  made available again. This means a deleted role that has been deleted for more than 7 days cannot be changed at all
     ///  by this provider, and new roles cannot share that name.
     /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_project_iam_custom_role.html.markdown.
     /// </summary>
     public partial class IAMCustomRole : Pulumi.CustomResource

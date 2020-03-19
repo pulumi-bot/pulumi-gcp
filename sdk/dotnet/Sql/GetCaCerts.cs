@@ -11,7 +11,13 @@ namespace Pulumi.Gcp.Sql
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetCaCerts.InvokeAsync() instead")]
         public static Task<GetCaCertsResult> GetCaCerts(GetCaCertsArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetCaCertsResult>("gcp:sql/getCaCerts:getCaCerts", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetCaCerts
+    {
+        public static Task<GetCaCertsResult> InvokeAsync(GetCaCertsArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetCaCertsResult>("gcp:sql/getCaCerts:getCaCerts", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

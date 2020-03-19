@@ -97,6 +97,9 @@ def get_engine_versions(location=None,project=None,version_prefix=None,opts=None
     its component zones, and not all zones in a region are guaranteed to
     support the same version.
 
+    {{% examples %}}
+    {{% /examples %}}
+
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_container_engine_versions.html.markdown.
 
 

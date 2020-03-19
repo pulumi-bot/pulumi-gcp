@@ -11,7 +11,13 @@ namespace Pulumi.Gcp.Tpu
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetTensorflowVersions.InvokeAsync() instead")]
         public static Task<GetTensorflowVersionsResult> GetTensorflowVersions(GetTensorflowVersionsArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetTensorflowVersionsResult>("gcp:tpu/getTensorflowVersions:getTensorflowVersions", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetTensorflowVersions
+    {
+        public static Task<GetTensorflowVersionsResult> InvokeAsync(GetTensorflowVersionsArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTensorflowVersionsResult>("gcp:tpu/getTensorflowVersions:getTensorflowVersions", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

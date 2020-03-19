@@ -12,7 +12,9 @@ import * as utilities from "../utilities";
  * documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
  * [API](https://cloud.google.com/resource-manager/reference/rest/v1/folders/setOrgPolicy).
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * To set policy with a [boolean constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-boolean-constraints):
  * 
@@ -80,6 +82,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_folder_organization_policy.html.markdown.
  */

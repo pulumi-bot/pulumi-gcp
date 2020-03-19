@@ -11,7 +11,13 @@ namespace Pulumi.Gcp.Monitoring
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetNotificationChannel.InvokeAsync() instead")]
         public static Task<GetNotificationChannelResult> GetNotificationChannel(GetNotificationChannelArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetNotificationChannelResult>("gcp:monitoring/getNotificationChannel:getNotificationChannel", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetNotificationChannel
+    {
+        public static Task<GetNotificationChannelResult> InvokeAsync(GetNotificationChannelArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNotificationChannelResult>("gcp:monitoring/getNotificationChannel:getNotificationChannel", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

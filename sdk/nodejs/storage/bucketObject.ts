@@ -15,7 +15,9 @@ import * as utilities from "../utilities";
  * [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
  * 
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * Example creating a public object in an existing `image-store` bucket.
  * 
@@ -28,6 +30,9 @@ import * as utilities from "../utilities";
  *     source: new pulumi.asset.FileAsset("/images/nature/garden-tiger-moth.jpg"),
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/storage_bucket_object.html.markdown.
  */

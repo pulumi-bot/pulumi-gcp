@@ -9,7 +9,9 @@ import * as utilities from "../utilities";
 /**
  * Get an active folder within GCP by `displayName` and `parent`.
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -20,6 +22,9 @@ import * as utilities from "../utilities";
  *     parent: "organizations/1234567",
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_active_folder.html.markdown.
  */

@@ -18,6 +18,9 @@ import * as utilities from "../utilities";
  * account's email address, use the `gcp.storage.getProjectServiceAccount` datasource's `emailAddress` value, and see below
  * for an example of enabling notifications by granting the correct IAM permission. See
  * [the notifications documentation](https://cloud.google.com/storage/docs/gsutil/commands/notification) for more details.
+ * 
+ * {{% examples %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/storage_notification.html.markdown.
  */

@@ -14,6 +14,10 @@ import (
 //
 // This resource can be used to ensure that the GCS bucket exists prior to assigning permissions. For more information see the [access control page](https://cloud.google.com/container-registry/docs/access-control) for GCR.
 //
+//
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/container_registry.html.markdown.
 type Registry struct {
 	pulumi.CustomResourceState

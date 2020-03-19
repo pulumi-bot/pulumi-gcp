@@ -15,6 +15,9 @@ namespace Pulumi.Gcp.Sql
     /// &gt; **Note:** All arguments including the username and password will be stored in the raw state as plain-text.
     /// [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html). Passwords will not be retrieved when running import.
     /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/sql_user.html.markdown.
     /// </summary>
     public partial class User : Pulumi.CustomResource

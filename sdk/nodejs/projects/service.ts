@@ -12,7 +12,9 @@ import * as utilities from "../utilities";
  * For a list of services available, visit the
  * [API library page](https://console.cloud.google.com/apis/library) or run `gcloud services list`.
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -24,6 +26,9 @@ import * as utilities from "../utilities";
  *     service: "iam.googleapis.com",
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_project_service.html.markdown.
  */

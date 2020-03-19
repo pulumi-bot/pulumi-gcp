@@ -9,7 +9,9 @@ import * as utilities from "../utilities";
 /**
  * Use this data source to retrieve default service account for this project
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -19,6 +21,9 @@ import * as utilities from "../utilities";
  * 
  * export const defaultAccount = defaultDefaultServiceAccount.email;
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_bigquery_default_service_account.html.markdown.
  */

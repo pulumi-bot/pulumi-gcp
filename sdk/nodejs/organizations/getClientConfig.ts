@@ -8,6 +8,9 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to access the configuration of the Google Cloud provider.
+ * 
+ * {{% examples %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_client_config.html.markdown.
  */

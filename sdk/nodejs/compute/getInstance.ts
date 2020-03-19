@@ -13,7 +13,9 @@ import * as utilities from "../utilities";
  * [API](https://cloud.google.com/compute/docs/reference/latest/instances).
  * 
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -24,6 +26,9 @@ import * as utilities from "../utilities";
  *     zone: "us-central1-a",
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_instance.html.markdown.
  */

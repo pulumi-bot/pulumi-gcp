@@ -11,7 +11,13 @@ namespace Pulumi.Gcp.Dns
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetKeys.InvokeAsync() instead")]
         public static Task<GetKeysResult> GetKeys(GetKeysArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetKeysResult>("gcp:dns/getKeys:getKeys", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetKeys
+    {
+        public static Task<GetKeysResult> InvokeAsync(GetKeysArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetKeysResult>("gcp:dns/getKeys:getKeys", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

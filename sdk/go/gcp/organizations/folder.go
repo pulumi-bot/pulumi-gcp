@@ -25,6 +25,9 @@ import (
 // [Access Control for Folders Using IAM](https://cloud.google.com/resource-manager/docs/access-control-folders)
 // doc for more information.
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_folder.html.markdown.
 type Folder struct {
 	pulumi.CustomResourceState

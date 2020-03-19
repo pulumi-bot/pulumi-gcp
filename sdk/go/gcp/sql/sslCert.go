@@ -16,6 +16,9 @@ import (
 // > **Note:** All arguments including the private key will be stored in the raw state as plain-text.
 // [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/sql_ssl_cert.html.markdown.
 type SslCert struct {
 	pulumi.CustomResourceState

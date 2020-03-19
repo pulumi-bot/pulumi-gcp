@@ -10,6 +10,9 @@ import (
 
 // Get an active folder within GCP by `displayName` and `parent`.
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_active_folder.html.markdown.
 func GetActiveFolder(ctx *pulumi.Context, args *GetActiveFolderArgs, opts ...pulumi.InvokeOption) (*GetActiveFolderResult, error) {
 	var rv GetActiveFolderResult

@@ -19,6 +19,9 @@ import (
 //    should be. Similarly, roles controlled by `folder.IAMBinding`
 //    should not be assigned to using `folder.IAMMember`.
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_folder_iam_member.html.markdown.
 type IAMMember struct {
 	pulumi.CustomResourceState

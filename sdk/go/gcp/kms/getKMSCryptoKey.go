@@ -16,6 +16,9 @@ import (
 // A CryptoKey is an interface to key material which can be used to encrypt and decrypt data. A CryptoKey belongs to a
 // Google Cloud KMS KeyRing.
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_kms_crypto_key.html.markdown.
 func GetKMSCryptoKey(ctx *pulumi.Context, args *GetKMSCryptoKeyArgs, opts ...pulumi.InvokeOption) (*GetKMSCryptoKeyResult, error) {
 	var rv GetKMSCryptoKeyResult

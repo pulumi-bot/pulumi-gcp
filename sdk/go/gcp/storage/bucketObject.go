@@ -18,6 +18,10 @@ import (
 // and 
 // [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
 //
+//
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/storage_bucket_object.html.markdown.
 type BucketObject struct {
 	pulumi.CustomResourceState
