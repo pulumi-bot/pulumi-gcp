@@ -11,7 +11,13 @@ namespace Pulumi.Gcp.Kms
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetKMSSecretCiphertext.InvokeAsync() instead")]
         public static Task<GetKMSSecretCiphertextResult> GetKMSSecretCiphertext(GetKMSSecretCiphertextArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetKMSSecretCiphertextResult>("gcp:kms/getKMSSecretCiphertext:getKMSSecretCiphertext", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetKMSSecretCiphertext
+    {
+        public static Task<GetKMSSecretCiphertextResult> InvokeAsync(GetKMSSecretCiphertextArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetKMSSecretCiphertextResult>("gcp:kms/getKMSSecretCiphertext:getKMSSecretCiphertext", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 
