@@ -12,6 +12,9 @@ import (
 // see [the official documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
 // and the [API](https://cloud.google.com/compute/docs/reference/latest/backendServices).
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_google_compute_backend_service.html.markdown.
 func LookupBackendService(ctx *pulumi.Context, args *LookupBackendServiceArgs, opts ...pulumi.InvokeOption) (*LookupBackendServiceResult, error) {
 	var rv LookupBackendServiceResult

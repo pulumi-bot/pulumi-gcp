@@ -66,6 +66,9 @@ def get_address(name=None,project=None,region=None,opts=None):
     Get the IP address from a static address. For more information see
     the official [API](https://cloud.google.com/compute/docs/reference/latest/addresses/get) documentation.
 
+    {{% examples %}}
+    {{% /examples %}}
+
     > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_address.html.markdown.
 
 

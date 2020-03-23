@@ -11,7 +11,9 @@ import * as utilities from "../utilities";
  * errors when you try to apply ACLs to service accounts immediately after
  * creation.
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * This snippet creates a service account in a project.
  * 
@@ -24,6 +26,9 @@ import * as utilities from "../utilities";
  *     displayName: "Service Account",
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_service_account.html.markdown.
  */

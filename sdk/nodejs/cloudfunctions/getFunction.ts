@@ -11,7 +11,9 @@ import * as utilities from "../utilities";
  * the [official documentation](https://cloud.google.com/functions/docs/)
  * and [API](https://cloud.google.com/functions/docs/apis).
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -21,6 +23,9 @@ import * as utilities from "../utilities";
  *     name: "function",
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_cloudfunctions_function.html.markdown.
  */

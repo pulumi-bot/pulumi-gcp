@@ -16,6 +16,9 @@ import (
 // and
 // [API](https://cloud.google.com/compute/docs/reference/latest/routers).
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_router_interface.html.markdown.
 type RouterInterface struct {
 	pulumi.CustomResourceState

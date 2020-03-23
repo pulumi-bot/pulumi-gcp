@@ -11,7 +11,13 @@ namespace Pulumi.Gcp.Compute
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetBackendBucket.InvokeAsync() instead")]
         public static Task<GetBackendBucketResult> GetBackendBucket(GetBackendBucketArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetBackendBucketResult>("gcp:compute/getBackendBucket:getBackendBucket", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetBackendBucket
+    {
+        public static Task<GetBackendBucketResult> InvokeAsync(GetBackendBucketArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetBackendBucketResult>("gcp:compute/getBackendBucket:getBackendBucket", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

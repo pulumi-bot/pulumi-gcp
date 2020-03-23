@@ -13,6 +13,10 @@ import (
 // and
 // [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
 //
+//
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/storage_bucket_object.html.markdown.
 func LookupBucketObject(ctx *pulumi.Context, args *LookupBucketObjectArgs, opts ...pulumi.InvokeOption) (*LookupBucketObjectResult, error) {
 	var rv LookupBucketObjectResult

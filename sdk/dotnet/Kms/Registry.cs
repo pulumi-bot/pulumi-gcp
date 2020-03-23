@@ -14,6 +14,10 @@ namespace Pulumi.Gcp.Kms
     /// [the official documentation](https://cloud.google.com/iot/docs/) and
     /// [API](https://cloud.google.com/iot/docs/reference/cloudiot/rest/v1/projects.locations.registries).
     /// 
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/cloudiot_registry.html.markdown.
     /// </summary>
     public partial class Registry : Pulumi.CustomResource

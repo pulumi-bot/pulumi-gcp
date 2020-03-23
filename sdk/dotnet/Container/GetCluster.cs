@@ -14,9 +14,26 @@ namespace Pulumi.Gcp.Container
         /// <summary>
         /// Get info about a GKE cluster from its name and location.
         /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_container_cluster.html.markdown.
         /// </summary>
+        [Obsolete("Use GetCluster.InvokeAsync() instead")]
         public static Task<GetClusterResult> GetCluster(GetClusterArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetClusterResult>("gcp:container/getCluster:getCluster", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetCluster
+    {
+        /// <summary>
+        /// Get info about a GKE cluster from its name and location.
+        /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// 
+        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_container_cluster.html.markdown.
+        /// </summary>
+        public static Task<GetClusterResult> InvokeAsync(GetClusterArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetClusterResult>("gcp:container/getCluster:getCluster", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

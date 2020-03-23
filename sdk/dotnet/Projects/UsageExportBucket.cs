@@ -38,6 +38,9 @@ namespace Pulumi.Gcp.Projects
     /// prior to 0.8.5 will continue to function as they always have, and will not be managed by
     /// this provider. Only newly added projects are affected.
     /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_project.html.markdown.
     /// </summary>
     public partial class UsageExportBucket : Pulumi.CustomResource

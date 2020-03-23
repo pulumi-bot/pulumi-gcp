@@ -12,6 +12,9 @@ import (
 //
 // The URLs are computed entirely offline - as long as the project exists, they will be valid, but this data source does not contact Google Container Registry (GCR) at any point.
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_container_registry_repository.html.markdown.
 func GetRegistryRepository(ctx *pulumi.Context, args *GetRegistryRepositoryArgs, opts ...pulumi.InvokeOption) (*GetRegistryRepositoryResult, error) {
 	var rv GetRegistryRepositoryResult

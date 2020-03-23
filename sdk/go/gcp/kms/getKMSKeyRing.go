@@ -16,6 +16,9 @@ import (
 // A KeyRing is a grouping of CryptoKeys for organizational purposes. A KeyRing belongs to a Google Cloud Platform Project
 // and resides in a specific location.
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_kms_key_ring.html.markdown.
 func GetKMSKeyRing(ctx *pulumi.Context, args *GetKMSKeyRingArgs, opts ...pulumi.InvokeOption) (*GetKMSKeyRingResult, error) {
 	var rv GetKMSKeyRingResult

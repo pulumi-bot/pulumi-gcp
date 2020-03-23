@@ -21,6 +21,9 @@ namespace Pulumi.Gcp.Billing
     ///     Use `import` and inspect the preview output to ensure
     ///     your existing members are preserved.
     /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_billing_account_iam_binding.html.markdown.
     /// </summary>
     public partial class AccountIamBinding : Pulumi.CustomResource

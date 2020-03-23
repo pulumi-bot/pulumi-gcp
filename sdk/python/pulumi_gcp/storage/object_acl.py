@@ -41,6 +41,9 @@ class ObjectACL(pulumi.CustomResource):
         > Want fine-grained control over object ACLs? Use `storage.ObjectAccessControl` to control individual
         role entity pairs.
 
+        {{% examples %}}
+        {{% /examples %}}
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/storage_object_acl.html.markdown.
 
         :param str resource_name: The name of the resource.

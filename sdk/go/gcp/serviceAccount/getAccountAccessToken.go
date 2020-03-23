@@ -13,6 +13,9 @@ import (
 // For more information see
 // [the official documentation](https://cloud.google.com/iam/docs/creating-short-lived-service-account-credentials) as well as [iamcredentials.generateAccessToken()](https://cloud.google.com/iam/credentials/reference/rest/v1/projects.serviceAccounts/generateAccessToken)
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_google_service_account_access_token.html.markdown.
 func GetAccountAccessToken(ctx *pulumi.Context, args *GetAccountAccessTokenArgs, opts ...pulumi.InvokeOption) (*GetAccountAccessTokenResult, error) {
 	var rv GetAccountAccessTokenResult

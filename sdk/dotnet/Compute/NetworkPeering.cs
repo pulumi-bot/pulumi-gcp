@@ -20,6 +20,9 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// &gt; Subnets IP ranges across peered VPC networks cannot overlap.
     /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_network_peering.html.markdown.
     /// </summary>
     public partial class NetworkPeering : Pulumi.CustomResource

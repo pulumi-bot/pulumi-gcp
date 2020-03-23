@@ -14,9 +14,26 @@ namespace Pulumi.Gcp.Compute
         /// <summary>
         /// Use this data source to retrieve default service account for this project
         /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_compute_default_service_account.html.markdown.
         /// </summary>
+        [Obsolete("Use GetDefaultServiceAccount.InvokeAsync() instead")]
         public static Task<GetDefaultServiceAccountResult> GetDefaultServiceAccount(GetDefaultServiceAccountArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetDefaultServiceAccountResult>("gcp:compute/getDefaultServiceAccount:getDefaultServiceAccount", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetDefaultServiceAccount
+    {
+        /// <summary>
+        /// Use this data source to retrieve default service account for this project
+        /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// 
+        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_compute_default_service_account.html.markdown.
+        /// </summary>
+        public static Task<GetDefaultServiceAccountResult> InvokeAsync(GetDefaultServiceAccountArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDefaultServiceAccountResult>("gcp:compute/getDefaultServiceAccount:getDefaultServiceAccount", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

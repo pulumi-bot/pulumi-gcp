@@ -18,6 +18,9 @@ import (
 // For more information, see,
 // [the Project API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/projects/setDefaultNetworkTier).
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_project_default_network_tier.html.markdown.
 type ProjectDefaultNetworkTier struct {
 	pulumi.CustomResourceState

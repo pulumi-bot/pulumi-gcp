@@ -14,7 +14,9 @@ import * as utilities from "../utilities";
  *     Use `import` and inspect the preview output to ensure
  *     your existing members are preserved.
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -26,6 +28,9 @@ import * as utilities from "../utilities";
  *     role: "roles/editor",
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_kms_crypto_key_iam_binding.html.markdown.
  */

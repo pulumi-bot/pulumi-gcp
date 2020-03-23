@@ -93,6 +93,9 @@ class Project(pulumi.CustomResource):
         prior to 0.8.5 will continue to function as they always have, and will not be managed by
         this provider. Only newly added projects are affected.
 
+        {{% examples %}}
+        {{% /examples %}}
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_project.html.markdown.
 
         :param str resource_name: The name of the resource.

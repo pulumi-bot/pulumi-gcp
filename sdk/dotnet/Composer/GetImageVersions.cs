@@ -14,9 +14,26 @@ namespace Pulumi.Gcp.Composer
         /// <summary>
         /// Provides access to available Cloud Composer versions in a region for a given project.
         /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_google_composer_image_versions.html.markdown.
         /// </summary>
+        [Obsolete("Use GetImageVersions.InvokeAsync() instead")]
         public static Task<GetImageVersionsResult> GetImageVersions(GetImageVersionsArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetImageVersionsResult>("gcp:composer/getImageVersions:getImageVersions", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetImageVersions
+    {
+        /// <summary>
+        /// Provides access to available Cloud Composer versions in a region for a given project.
+        /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// 
+        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_google_composer_image_versions.html.markdown.
+        /// </summary>
+        public static Task<GetImageVersionsResult> InvokeAsync(GetImageVersionsArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetImageVersionsResult>("gcp:composer/getImageVersions:getImageVersions", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

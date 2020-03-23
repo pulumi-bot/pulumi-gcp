@@ -15,6 +15,9 @@ import (
 // or the
 // [JSON API](https://cloud.google.com/deployment-manager/runtime-configurator/reference/rest/).
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/runtimeconfig_config.html.markdown.
 type Config struct {
 	pulumi.CustomResourceState

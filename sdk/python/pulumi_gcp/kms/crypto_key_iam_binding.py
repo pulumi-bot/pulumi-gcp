@@ -41,6 +41,9 @@ class CryptoKeyIAMBinding(pulumi.CustomResource):
             Use `import` and inspect the preview output to ensure
             your existing members are preserved.
 
+        {{% examples %}}
+        {{% /examples %}}
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_kms_crypto_key_iam_binding.html.markdown.
 
         :param str resource_name: The name of the resource.

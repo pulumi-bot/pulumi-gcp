@@ -11,6 +11,9 @@ import * as utilities from "../utilities";
  * [official documentation](https://cloud.google.com/deployment-manager/runtime-configurator/),
  * or the
  * [JSON API](https://cloud.google.com/deployment-manager/runtime-configurator/reference/rest/).
+ * 
+ * {{% examples %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/runtimeconfig_variable.html.markdown.
  */

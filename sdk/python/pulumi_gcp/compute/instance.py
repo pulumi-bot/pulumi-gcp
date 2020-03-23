@@ -214,6 +214,10 @@ class Instance(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/instances).
 
+
+        {{% examples %}}
+        {{% /examples %}}
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_instance.html.markdown.
 
         :param str resource_name: The name of the resource.

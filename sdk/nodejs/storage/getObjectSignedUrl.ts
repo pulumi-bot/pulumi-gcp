@@ -11,7 +11,9 @@ import * as utilities from "../utilities";
  * 
  * For more info about signed URL's is available [here](https://cloud.google.com/storage/docs/access-control/signed-urls).
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -23,6 +25,9 @@ import * as utilities from "../utilities";
  * });
  * const vm = new gcp.compute.Instance("vm", {});
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/signed_url.html.markdown.
  */
