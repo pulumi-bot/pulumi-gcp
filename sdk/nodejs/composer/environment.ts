@@ -30,8 +30,10 @@ import * as utilities from "../utilities";
  *   * **Environments create Google Cloud Storage buckets that do not get cleaned up automatically** on environment 
  *     deletion. [More about Composer's use of Cloud Storage](https://cloud.google.com/composer/docs/concepts/cloud-storage).
  * 
+ * {{% examples %}}
  * ## Example Usage
  * 
+ * {{% example %}}
  * ### Basic Usage
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -42,6 +44,8 @@ import * as utilities from "../utilities";
  * });
  * ```
  * 
+ * {{% /example %}}
+ * {{% example %}}
  * ### With Software (Airflow) Config
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -65,6 +69,9 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/composer_environment.html.markdown.
  */

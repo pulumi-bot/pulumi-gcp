@@ -9,6 +9,18 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Gcp.Redis
 {
+    /// <summary>
+    /// A Google Cloud Redis instance.
+    /// 
+    /// 
+    /// To get more information about Instance, see:
+    /// 
+    /// * [API documentation](https://cloud.google.com/memorystore/docs/redis/reference/rest/)
+    /// * How-to Guides
+    ///     * [Official Documentation](https://cloud.google.com/memorystore/docs/redis/)
+    /// 
+    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/redis_instance.html.markdown.
+    /// </summary>
     public partial class Instance : Pulumi.CustomResource
     {
         /// <summary>

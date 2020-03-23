@@ -10,7 +10,9 @@ import * as utilities from "../utilities";
  * Get the service account from a project. For more information see
  * the official [API](https://cloud.google.com/compute/docs/access/service-accounts) documentation.
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -20,6 +22,9 @@ import * as utilities from "../utilities";
  *     accountId: "object-viewer",
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_google_service_account.html.markdown.
  */

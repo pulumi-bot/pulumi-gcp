@@ -8,6 +8,9 @@ import * as utilities from "../utilities";
 
 /**
  * Get info about a Google Compute SSL Certificate from its name.
+ * 
+ * {{% examples %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_ssl_certificate.html.markdown.
  */

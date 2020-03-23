@@ -13,7 +13,9 @@ import * as utilities from "../utilities";
  * [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
  * 
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * Example picture stored within a folder.
  * 
@@ -26,6 +28,9 @@ import * as utilities from "../utilities";
  *     name: "folder/butterfly01.jpg",
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/storage_bucket_object.html.markdown.
  */

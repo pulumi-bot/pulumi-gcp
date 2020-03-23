@@ -9,7 +9,9 @@ import * as utilities from "../utilities";
 /**
  * Get a subnetwork within GCE from its name and region.
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -20,6 +22,9 @@ import * as utilities from "../utilities";
  *     region: "us-east1",
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_subnetwork.html.markdown.
  */

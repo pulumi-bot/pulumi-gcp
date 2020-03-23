@@ -17,9 +17,31 @@ namespace Pulumi.Gcp.Compute
         /// and
         /// [API](https://cloud.google.com/compute/docs/reference/latest/instances).
         /// 
+        /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_instance.html.markdown.
         /// </summary>
+        [Obsolete("Use GetInstance.InvokeAsync() instead")]
         public static Task<GetInstanceResult> GetInstance(GetInstanceArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("gcp:compute/getInstance:getInstance", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetInstance
+    {
+        /// <summary>
+        /// Get information about a VM instance resource within GCE. For more information see
+        /// [the official documentation](https://cloud.google.com/compute/docs/instances)
+        /// and
+        /// [API](https://cloud.google.com/compute/docs/reference/latest/instances).
+        /// 
+        /// 
+        /// {{% examples %}}
+        /// {{% /examples %}}
+        /// 
+        /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_instance.html.markdown.
+        /// </summary>
+        public static Task<GetInstanceResult> InvokeAsync(GetInstanceArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("gcp:compute/getInstance:getInstance", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

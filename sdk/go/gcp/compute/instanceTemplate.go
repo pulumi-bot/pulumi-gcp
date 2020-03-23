@@ -16,6 +16,10 @@ import (
 // and
 // [API](https://cloud.google.com/compute/docs/reference/latest/instanceTemplates).
 //
+//
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_instance_template.html.markdown.
 type InstanceTemplate struct {
 	pulumi.CustomResourceState

@@ -9,7 +9,9 @@ import * as utilities from "../utilities";
 /**
  * Get a network within GCE from its name.
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -19,6 +21,9 @@ import * as utilities from "../utilities";
  *     name: "default-us-east1",
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_network.html.markdown.
  */

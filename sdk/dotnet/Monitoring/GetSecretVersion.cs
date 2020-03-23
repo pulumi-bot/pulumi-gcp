@@ -11,7 +11,13 @@ namespace Pulumi.Gcp.Monitoring
 {
     public static partial class Invokes
     {
+        [Obsolete("Use GetSecretVersion.InvokeAsync() instead")]
         public static Task<GetSecretVersionResult> GetSecretVersion(GetSecretVersionArgs args, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.InvokeAsync<GetSecretVersionResult>("gcp:monitoring/getSecretVersion:getSecretVersion", args ?? InvokeArgs.Empty, options.WithVersion());
+    }
+    public static class GetSecretVersion
+    {
+        public static Task<GetSecretVersionResult> InvokeAsync(GetSecretVersionArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSecretVersionResult>("gcp:monitoring/getSecretVersion:getSecretVersion", args ?? InvokeArgs.Empty, options.WithVersion());
     }
 

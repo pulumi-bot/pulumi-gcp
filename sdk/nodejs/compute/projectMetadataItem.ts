@@ -12,7 +12,9 @@ import * as utilities from "../utilities";
  * manage a single key/value setting with this provider rather than the entire
  * project metadata map.
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -23,6 +25,9 @@ import * as utilities from "../utilities";
  *     value: "myValue",
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_project_metadata_item.html.markdown.
  */

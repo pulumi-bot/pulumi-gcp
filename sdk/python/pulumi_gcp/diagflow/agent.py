@@ -82,7 +82,20 @@ class Agent(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, api_version=None, avatar_uri=None, classification_threshold=None, default_language_code=None, description=None, display_name=None, enable_logging=None, match_mode=None, project=None, supported_language_codes=None, tier=None, time_zone=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a Agent resource with the given unique name, props, and options.
+        A Dialogflow agent is a virtual agent that handles conversations with your end-users. It is a natural language
+        understanding module that understands the nuances of human language. Dialogflow translates end-user text or audio
+        during a conversation to structured data that your apps and services can understand. You design and build a Dialogflow
+        agent to handle the types of conversations required for your system.
+
+
+        To get more information about Agent, see:
+
+        * [API documentation](https://cloud.google.com/dialogflow/docs/reference/rest/v2/projects/agent)
+        * How-to Guides
+            * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dialogflow_agent.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_version: API version displayed in Dialogflow console. If not specified, V2 API is assumed. Clients are free to query different

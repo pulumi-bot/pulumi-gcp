@@ -15,6 +15,9 @@ namespace Pulumi.Gcp.Compute
     /// manage a single key/value setting with this provider rather than the entire
     /// project metadata map.
     /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_project_metadata_item.html.markdown.
     /// </summary>
     public partial class ProjectMetadataItem : Pulumi.CustomResource

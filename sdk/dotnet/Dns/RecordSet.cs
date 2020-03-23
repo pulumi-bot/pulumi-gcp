@@ -15,6 +15,9 @@ namespace Pulumi.Gcp.Dns
     /// 
     /// &gt; **Note:** The provider treats this resource as an authoritative record set. This means existing records (including the default records) for the given type will be overwritten when you create this resource with this provider. In addition, the Google Cloud DNS API requires NS records to be present at all times, so this provider will not actually remove NS records during destroy but will report that it did.
     /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dns_record_set.html.markdown.
     /// </summary>
     public partial class RecordSet : Pulumi.CustomResource

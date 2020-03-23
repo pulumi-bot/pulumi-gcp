@@ -17,6 +17,9 @@ import (
 // errors when you try to apply ACLs to service accounts immediately after
 // creation.
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_service_account.html.markdown.
 type Account struct {
 	pulumi.CustomResourceState

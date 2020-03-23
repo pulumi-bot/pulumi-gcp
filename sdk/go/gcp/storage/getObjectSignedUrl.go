@@ -12,6 +12,9 @@ import (
 //
 // For more info about signed URL's is available [here](https://cloud.google.com/storage/docs/access-control/signed-urls).
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/signed_url.html.markdown.
 func GetObjectSignedUrl(ctx *pulumi.Context, args *GetObjectSignedUrlArgs, opts ...pulumi.InvokeOption) (*GetObjectSignedUrlResult, error) {
 	var rv GetObjectSignedUrlResult

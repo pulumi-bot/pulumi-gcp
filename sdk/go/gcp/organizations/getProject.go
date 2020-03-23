@@ -12,6 +12,9 @@ import (
 // For more information see
 // [API](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project)
 //
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_project.html.markdown.
 func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.InvokeOption) (*LookupProjectResult, error) {
 	var rv LookupProjectResult

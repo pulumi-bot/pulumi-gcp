@@ -17,7 +17,9 @@ import * as utilities from "../utilities";
  * key/value pairs within the project metadata rather than the entire set, then use
  * google_compute_project_metadata_item.
  * 
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -31,6 +33,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * 
+ * {{% /example %}}
+ * {{% /examples %}}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_project_metadata.html.markdown.
  */

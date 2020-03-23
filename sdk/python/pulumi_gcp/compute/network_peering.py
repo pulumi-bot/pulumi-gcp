@@ -54,6 +54,9 @@ class NetworkPeering(pulumi.CustomResource):
 
         > Subnets IP ranges across peered VPC networks cannot overlap.
 
+        {{% examples %}}
+        {{% /examples %}}
+
         > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_network_peering.html.markdown.
 
         :param str resource_name: The name of the resource.

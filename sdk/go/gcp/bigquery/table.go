@@ -15,6 +15,10 @@ import (
 // [the official documentation](https://cloud.google.com/bigquery/docs/) and
 // [API](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables).
 //
+//
+// {{% examples %}}
+// {{% /examples %}}
+//
 // > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/bigquery_table.html.markdown.
 type Table struct {
 	pulumi.CustomResourceState

@@ -25,6 +25,9 @@ namespace Pulumi.Gcp.Organizations
     ///    `gcp.organizations.IAMMember` or `gcp.organizations.IAMBinding`
     ///    or they will fight over what your policy should be.
     /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_organization_iam_policy.html.markdown.
     /// </summary>
     public partial class IAMPolicy : Pulumi.CustomResource
