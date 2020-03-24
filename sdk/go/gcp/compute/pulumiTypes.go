@@ -4332,11 +4332,25 @@ func (o ImageRawDiskPtrOutput) Source() pulumi.StringOutput {
 }
 
 type InstanceAttachedDisk struct {
+	// Name with which the attached disk will be accessible
+	// under `/dev/disk/by-id/google-*`
 	DeviceName *string `pulumi:"deviceName"`
+	// A 256-bit [customer-supplied encryption key]
+	// (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
+	// encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
+	// to encrypt this disk. Only one of `kmsKeySelfLink` and `diskEncryptionKeyRaw` may be set.
 	DiskEncryptionKeyRaw *string `pulumi:"diskEncryptionKeyRaw"`
 	DiskEncryptionKeySha256 *string `pulumi:"diskEncryptionKeySha256"`
+	// The selfLink of the encryption key that is
+	// stored in Google Cloud KMS to encrypt this disk. Only one of `kmsKeySelfLink`
+	// and `diskEncryptionKeyRaw` may be set.
 	KmsKeySelfLink *string `pulumi:"kmsKeySelfLink"`
+	// Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
+	// If you have a persistent disk with data that you want to share
+	// between multiple instances, detach it from any read-write instances and
+	// attach it to one or more instances in read-only mode.
 	Mode *string `pulumi:"mode"`
+	// The name or selfLink of the disk to attach to this instance.
 	Source string `pulumi:"source"`
 }
 
@@ -4348,11 +4362,25 @@ type InstanceAttachedDiskInput interface {
 }
 
 type InstanceAttachedDiskArgs struct {
+	// Name with which the attached disk will be accessible
+	// under `/dev/disk/by-id/google-*`
 	DeviceName pulumi.StringPtrInput `pulumi:"deviceName"`
+	// A 256-bit [customer-supplied encryption key]
+	// (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
+	// encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
+	// to encrypt this disk. Only one of `kmsKeySelfLink` and `diskEncryptionKeyRaw` may be set.
 	DiskEncryptionKeyRaw pulumi.StringPtrInput `pulumi:"diskEncryptionKeyRaw"`
 	DiskEncryptionKeySha256 pulumi.StringPtrInput `pulumi:"diskEncryptionKeySha256"`
+	// The selfLink of the encryption key that is
+	// stored in Google Cloud KMS to encrypt this disk. Only one of `kmsKeySelfLink`
+	// and `diskEncryptionKeyRaw` may be set.
 	KmsKeySelfLink pulumi.StringPtrInput `pulumi:"kmsKeySelfLink"`
+	// Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
+	// If you have a persistent disk with data that you want to share
+	// between multiple instances, detach it from any read-write instances and
+	// attach it to one or more instances in read-only mode.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
+	// The name or selfLink of the disk to attach to this instance.
 	Source pulumi.StringInput `pulumi:"source"`
 }
 
@@ -4403,10 +4431,16 @@ func (o InstanceAttachedDiskOutput) ToInstanceAttachedDiskOutputWithContext(ctx 
 	return o
 }
 
+// Name with which the attached disk will be accessible
+// under `/dev/disk/by-id/google-*`
 func (o InstanceAttachedDiskOutput) DeviceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceAttachedDisk) *string { return v.DeviceName }).(pulumi.StringPtrOutput)
 }
 
+// A 256-bit [customer-supplied encryption key]
+// (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
+// encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
+// to encrypt this disk. Only one of `kmsKeySelfLink` and `diskEncryptionKeyRaw` may be set.
 func (o InstanceAttachedDiskOutput) DiskEncryptionKeyRaw() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceAttachedDisk) *string { return v.DiskEncryptionKeyRaw }).(pulumi.StringPtrOutput)
 }
@@ -4415,14 +4449,22 @@ func (o InstanceAttachedDiskOutput) DiskEncryptionKeySha256() pulumi.StringPtrOu
 	return o.ApplyT(func (v InstanceAttachedDisk) *string { return v.DiskEncryptionKeySha256 }).(pulumi.StringPtrOutput)
 }
 
+// The selfLink of the encryption key that is
+// stored in Google Cloud KMS to encrypt this disk. Only one of `kmsKeySelfLink`
+// and `diskEncryptionKeyRaw` may be set.
 func (o InstanceAttachedDiskOutput) KmsKeySelfLink() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceAttachedDisk) *string { return v.KmsKeySelfLink }).(pulumi.StringPtrOutput)
 }
 
+// Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
+// If you have a persistent disk with data that you want to share
+// between multiple instances, detach it from any read-write instances and
+// attach it to one or more instances in read-only mode.
 func (o InstanceAttachedDiskOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceAttachedDisk) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
+// The name or selfLink of the disk to attach to this instance.
 func (o InstanceAttachedDiskOutput) Source() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceAttachedDisk) string { return v.Source }).(pulumi.StringOutput)
 }
@@ -4448,13 +4490,32 @@ func (o InstanceAttachedDiskArrayOutput) Index(i pulumi.IntInput) InstanceAttach
 }
 
 type InstanceBootDisk struct {
+	// Whether the disk will be auto-deleted when the instance
+	// is deleted. Defaults to true.
 	AutoDelete *bool `pulumi:"autoDelete"`
+	// Name with which the attached disk will be accessible
+	// under `/dev/disk/by-id/google-*`
 	DeviceName *string `pulumi:"deviceName"`
+	// A 256-bit [customer-supplied encryption key]
+	// (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
+	// encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
+	// to encrypt this disk. Only one of `kmsKeySelfLink` and `diskEncryptionKeyRaw` may be set.
 	DiskEncryptionKeyRaw *string `pulumi:"diskEncryptionKeyRaw"`
 	DiskEncryptionKeySha256 *string `pulumi:"diskEncryptionKeySha256"`
+	// Parameters for a new disk that will be created
+	// alongside the new instance. Either `initializeParams` or `source` must be set.
+	// Structure is documented below.
 	InitializeParams *InstanceBootDiskInitializeParams `pulumi:"initializeParams"`
+	// The selfLink of the encryption key that is
+	// stored in Google Cloud KMS to encrypt this disk. Only one of `kmsKeySelfLink`
+	// and `diskEncryptionKeyRaw` may be set.
 	KmsKeySelfLink *string `pulumi:"kmsKeySelfLink"`
+	// Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
+	// If you have a persistent disk with data that you want to share
+	// between multiple instances, detach it from any read-write instances and
+	// attach it to one or more instances in read-only mode.
 	Mode *string `pulumi:"mode"`
+	// The name or selfLink of the disk to attach to this instance.
 	Source *string `pulumi:"source"`
 }
 
@@ -4466,13 +4527,32 @@ type InstanceBootDiskInput interface {
 }
 
 type InstanceBootDiskArgs struct {
+	// Whether the disk will be auto-deleted when the instance
+	// is deleted. Defaults to true.
 	AutoDelete pulumi.BoolPtrInput `pulumi:"autoDelete"`
+	// Name with which the attached disk will be accessible
+	// under `/dev/disk/by-id/google-*`
 	DeviceName pulumi.StringPtrInput `pulumi:"deviceName"`
+	// A 256-bit [customer-supplied encryption key]
+	// (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
+	// encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
+	// to encrypt this disk. Only one of `kmsKeySelfLink` and `diskEncryptionKeyRaw` may be set.
 	DiskEncryptionKeyRaw pulumi.StringPtrInput `pulumi:"diskEncryptionKeyRaw"`
 	DiskEncryptionKeySha256 pulumi.StringPtrInput `pulumi:"diskEncryptionKeySha256"`
+	// Parameters for a new disk that will be created
+	// alongside the new instance. Either `initializeParams` or `source` must be set.
+	// Structure is documented below.
 	InitializeParams InstanceBootDiskInitializeParamsPtrInput `pulumi:"initializeParams"`
+	// The selfLink of the encryption key that is
+	// stored in Google Cloud KMS to encrypt this disk. Only one of `kmsKeySelfLink`
+	// and `diskEncryptionKeyRaw` may be set.
 	KmsKeySelfLink pulumi.StringPtrInput `pulumi:"kmsKeySelfLink"`
+	// Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
+	// If you have a persistent disk with data that you want to share
+	// between multiple instances, detach it from any read-write instances and
+	// attach it to one or more instances in read-only mode.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
+	// The name or selfLink of the disk to attach to this instance.
 	Source pulumi.StringPtrInput `pulumi:"source"`
 }
 
@@ -4543,14 +4623,22 @@ func (o InstanceBootDiskOutput) ToInstanceBootDiskPtrOutputWithContext(ctx conte
 		return &v
 	}).(InstanceBootDiskPtrOutput)
 }
+// Whether the disk will be auto-deleted when the instance
+// is deleted. Defaults to true.
 func (o InstanceBootDiskOutput) AutoDelete() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceBootDisk) *bool { return v.AutoDelete }).(pulumi.BoolPtrOutput)
 }
 
+// Name with which the attached disk will be accessible
+// under `/dev/disk/by-id/google-*`
 func (o InstanceBootDiskOutput) DeviceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceBootDisk) *string { return v.DeviceName }).(pulumi.StringPtrOutput)
 }
 
+// A 256-bit [customer-supplied encryption key]
+// (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
+// encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
+// to encrypt this disk. Only one of `kmsKeySelfLink` and `diskEncryptionKeyRaw` may be set.
 func (o InstanceBootDiskOutput) DiskEncryptionKeyRaw() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceBootDisk) *string { return v.DiskEncryptionKeyRaw }).(pulumi.StringPtrOutput)
 }
@@ -4559,18 +4647,29 @@ func (o InstanceBootDiskOutput) DiskEncryptionKeySha256() pulumi.StringPtrOutput
 	return o.ApplyT(func (v InstanceBootDisk) *string { return v.DiskEncryptionKeySha256 }).(pulumi.StringPtrOutput)
 }
 
+// Parameters for a new disk that will be created
+// alongside the new instance. Either `initializeParams` or `source` must be set.
+// Structure is documented below.
 func (o InstanceBootDiskOutput) InitializeParams() InstanceBootDiskInitializeParamsPtrOutput {
 	return o.ApplyT(func (v InstanceBootDisk) *InstanceBootDiskInitializeParams { return v.InitializeParams }).(InstanceBootDiskInitializeParamsPtrOutput)
 }
 
+// The selfLink of the encryption key that is
+// stored in Google Cloud KMS to encrypt this disk. Only one of `kmsKeySelfLink`
+// and `diskEncryptionKeyRaw` may be set.
 func (o InstanceBootDiskOutput) KmsKeySelfLink() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceBootDisk) *string { return v.KmsKeySelfLink }).(pulumi.StringPtrOutput)
 }
 
+// Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
+// If you have a persistent disk with data that you want to share
+// between multiple instances, detach it from any read-write instances and
+// attach it to one or more instances in read-only mode.
 func (o InstanceBootDiskOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceBootDisk) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
+// The name or selfLink of the disk to attach to this instance.
 func (o InstanceBootDiskOutput) Source() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceBootDisk) *string { return v.Source }).(pulumi.StringPtrOutput)
 }
@@ -4593,14 +4692,22 @@ func (o InstanceBootDiskPtrOutput) Elem() InstanceBootDiskOutput {
 	return o.ApplyT(func (v *InstanceBootDisk) InstanceBootDisk { return *v }).(InstanceBootDiskOutput)
 }
 
+// Whether the disk will be auto-deleted when the instance
+// is deleted. Defaults to true.
 func (o InstanceBootDiskPtrOutput) AutoDelete() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceBootDisk) *bool { return v.AutoDelete }).(pulumi.BoolPtrOutput)
 }
 
+// Name with which the attached disk will be accessible
+// under `/dev/disk/by-id/google-*`
 func (o InstanceBootDiskPtrOutput) DeviceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceBootDisk) *string { return v.DeviceName }).(pulumi.StringPtrOutput)
 }
 
+// A 256-bit [customer-supplied encryption key]
+// (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
+// encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
+// to encrypt this disk. Only one of `kmsKeySelfLink` and `diskEncryptionKeyRaw` may be set.
 func (o InstanceBootDiskPtrOutput) DiskEncryptionKeyRaw() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceBootDisk) *string { return v.DiskEncryptionKeyRaw }).(pulumi.StringPtrOutput)
 }
@@ -4609,27 +4716,50 @@ func (o InstanceBootDiskPtrOutput) DiskEncryptionKeySha256() pulumi.StringPtrOut
 	return o.ApplyT(func (v InstanceBootDisk) *string { return v.DiskEncryptionKeySha256 }).(pulumi.StringPtrOutput)
 }
 
+// Parameters for a new disk that will be created
+// alongside the new instance. Either `initializeParams` or `source` must be set.
+// Structure is documented below.
 func (o InstanceBootDiskPtrOutput) InitializeParams() InstanceBootDiskInitializeParamsPtrOutput {
 	return o.ApplyT(func (v InstanceBootDisk) *InstanceBootDiskInitializeParams { return v.InitializeParams }).(InstanceBootDiskInitializeParamsPtrOutput)
 }
 
+// The selfLink of the encryption key that is
+// stored in Google Cloud KMS to encrypt this disk. Only one of `kmsKeySelfLink`
+// and `diskEncryptionKeyRaw` may be set.
 func (o InstanceBootDiskPtrOutput) KmsKeySelfLink() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceBootDisk) *string { return v.KmsKeySelfLink }).(pulumi.StringPtrOutput)
 }
 
+// Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
+// If you have a persistent disk with data that you want to share
+// between multiple instances, detach it from any read-write instances and
+// attach it to one or more instances in read-only mode.
 func (o InstanceBootDiskPtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceBootDisk) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
+// The name or selfLink of the disk to attach to this instance.
 func (o InstanceBootDiskPtrOutput) Source() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceBootDisk) *string { return v.Source }).(pulumi.StringPtrOutput)
 }
 
 type InstanceBootDiskInitializeParams struct {
+	// The image from which to initialize this disk. This can be
+	// one of: the image's `selfLink`, `projects/{project}/global/images/{image}`,
+	// `projects/{project}/global/images/family/{family}`, `global/images/{image}`,
+	// `global/images/family/{family}`, `family/{family}`, `{project}/{family}`,
+	// `{project}/{image}`, `{family}`, or `{image}`. If referred by family, the
+	// images names must include the family name. If they don't, use the
+	// [compute.Image data source](https://www.terraform.io/docs/providers/google/d/datasource_compute_image.html).
+	// For instance, the image `centos-6-v20180104` includes its family name `centos-6`.
+	// These images can be referred by family name here.
 	Image *string `pulumi:"image"`
 	// A map of key/value label pairs to assign to the instance.
 	Labels map[string]interface{} `pulumi:"labels"`
+	// The size of the image in gigabytes. If not specified, it
+	// will inherit the size of its base image.
 	Size *int `pulumi:"size"`
+	// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
 	Type *string `pulumi:"type"`
 }
 
@@ -4641,10 +4771,22 @@ type InstanceBootDiskInitializeParamsInput interface {
 }
 
 type InstanceBootDiskInitializeParamsArgs struct {
+	// The image from which to initialize this disk. This can be
+	// one of: the image's `selfLink`, `projects/{project}/global/images/{image}`,
+	// `projects/{project}/global/images/family/{family}`, `global/images/{image}`,
+	// `global/images/family/{family}`, `family/{family}`, `{project}/{family}`,
+	// `{project}/{image}`, `{family}`, or `{image}`. If referred by family, the
+	// images names must include the family name. If they don't, use the
+	// [compute.Image data source](https://www.terraform.io/docs/providers/google/d/datasource_compute_image.html).
+	// For instance, the image `centos-6-v20180104` includes its family name `centos-6`.
+	// These images can be referred by family name here.
 	Image pulumi.StringPtrInput `pulumi:"image"`
 	// A map of key/value label pairs to assign to the instance.
 	Labels pulumi.MapInput `pulumi:"labels"`
+	// The size of the image in gigabytes. If not specified, it
+	// will inherit the size of its base image.
 	Size pulumi.IntPtrInput `pulumi:"size"`
+	// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -4715,6 +4857,15 @@ func (o InstanceBootDiskInitializeParamsOutput) ToInstanceBootDiskInitializePara
 		return &v
 	}).(InstanceBootDiskInitializeParamsPtrOutput)
 }
+// The image from which to initialize this disk. This can be
+// one of: the image's `selfLink`, `projects/{project}/global/images/{image}`,
+// `projects/{project}/global/images/family/{family}`, `global/images/{image}`,
+// `global/images/family/{family}`, `family/{family}`, `{project}/{family}`,
+// `{project}/{image}`, `{family}`, or `{image}`. If referred by family, the
+// images names must include the family name. If they don't, use the
+// [compute.Image data source](https://www.terraform.io/docs/providers/google/d/datasource_compute_image.html).
+// For instance, the image `centos-6-v20180104` includes its family name `centos-6`.
+// These images can be referred by family name here.
 func (o InstanceBootDiskInitializeParamsOutput) Image() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceBootDiskInitializeParams) *string { return v.Image }).(pulumi.StringPtrOutput)
 }
@@ -4724,10 +4875,13 @@ func (o InstanceBootDiskInitializeParamsOutput) Labels() pulumi.MapOutput {
 	return o.ApplyT(func (v InstanceBootDiskInitializeParams) map[string]interface{} { return v.Labels }).(pulumi.MapOutput)
 }
 
+// The size of the image in gigabytes. If not specified, it
+// will inherit the size of its base image.
 func (o InstanceBootDiskInitializeParamsOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceBootDiskInitializeParams) *int { return v.Size }).(pulumi.IntPtrOutput)
 }
 
+// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
 func (o InstanceBootDiskInitializeParamsOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceBootDiskInitializeParams) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -4750,6 +4904,15 @@ func (o InstanceBootDiskInitializeParamsPtrOutput) Elem() InstanceBootDiskInitia
 	return o.ApplyT(func (v *InstanceBootDiskInitializeParams) InstanceBootDiskInitializeParams { return *v }).(InstanceBootDiskInitializeParamsOutput)
 }
 
+// The image from which to initialize this disk. This can be
+// one of: the image's `selfLink`, `projects/{project}/global/images/{image}`,
+// `projects/{project}/global/images/family/{family}`, `global/images/{image}`,
+// `global/images/family/{family}`, `family/{family}`, `{project}/{family}`,
+// `{project}/{image}`, `{family}`, or `{image}`. If referred by family, the
+// images names must include the family name. If they don't, use the
+// [compute.Image data source](https://www.terraform.io/docs/providers/google/d/datasource_compute_image.html).
+// For instance, the image `centos-6-v20180104` includes its family name `centos-6`.
+// These images can be referred by family name here.
 func (o InstanceBootDiskInitializeParamsPtrOutput) Image() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceBootDiskInitializeParams) *string { return v.Image }).(pulumi.StringPtrOutput)
 }
@@ -4759,10 +4922,13 @@ func (o InstanceBootDiskInitializeParamsPtrOutput) Labels() pulumi.MapOutput {
 	return o.ApplyT(func (v InstanceBootDiskInitializeParams) map[string]interface{} { return v.Labels }).(pulumi.MapOutput)
 }
 
+// The size of the image in gigabytes. If not specified, it
+// will inherit the size of its base image.
 func (o InstanceBootDiskInitializeParamsPtrOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceBootDiskInitializeParams) *int { return v.Size }).(pulumi.IntPtrOutput)
 }
 
+// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
 func (o InstanceBootDiskInitializeParamsPtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceBootDiskInitializeParams) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -6178,7 +6344,10 @@ func (o InstanceFromTemplateShieldedInstanceConfigPtrOutput) EnableVtpm() pulumi
 }
 
 type InstanceGroupManagerAutoHealingPolicies struct {
+	// The health check resource that signals autohealing.
 	HealthCheck string `pulumi:"healthCheck"`
+	// The number of seconds that the managed instance group waits before
+	// it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
 	InitialDelaySec int `pulumi:"initialDelaySec"`
 }
 
@@ -6190,7 +6359,10 @@ type InstanceGroupManagerAutoHealingPoliciesInput interface {
 }
 
 type InstanceGroupManagerAutoHealingPoliciesArgs struct {
+	// The health check resource that signals autohealing.
 	HealthCheck pulumi.StringInput `pulumi:"healthCheck"`
+	// The number of seconds that the managed instance group waits before
+	// it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
 	InitialDelaySec pulumi.IntInput `pulumi:"initialDelaySec"`
 }
 
@@ -6261,10 +6433,13 @@ func (o InstanceGroupManagerAutoHealingPoliciesOutput) ToInstanceGroupManagerAut
 		return &v
 	}).(InstanceGroupManagerAutoHealingPoliciesPtrOutput)
 }
+// The health check resource that signals autohealing.
 func (o InstanceGroupManagerAutoHealingPoliciesOutput) HealthCheck() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceGroupManagerAutoHealingPolicies) string { return v.HealthCheck }).(pulumi.StringOutput)
 }
 
+// The number of seconds that the managed instance group waits before
+// it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
 func (o InstanceGroupManagerAutoHealingPoliciesOutput) InitialDelaySec() pulumi.IntOutput {
 	return o.ApplyT(func (v InstanceGroupManagerAutoHealingPolicies) int { return v.InitialDelaySec }).(pulumi.IntOutput)
 }
@@ -6287,20 +6462,22 @@ func (o InstanceGroupManagerAutoHealingPoliciesPtrOutput) Elem() InstanceGroupMa
 	return o.ApplyT(func (v *InstanceGroupManagerAutoHealingPolicies) InstanceGroupManagerAutoHealingPolicies { return *v }).(InstanceGroupManagerAutoHealingPoliciesOutput)
 }
 
+// The health check resource that signals autohealing.
 func (o InstanceGroupManagerAutoHealingPoliciesPtrOutput) HealthCheck() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceGroupManagerAutoHealingPolicies) string { return v.HealthCheck }).(pulumi.StringOutput)
 }
 
+// The number of seconds that the managed instance group waits before
+// it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
 func (o InstanceGroupManagerAutoHealingPoliciesPtrOutput) InitialDelaySec() pulumi.IntOutput {
 	return o.ApplyT(func (v InstanceGroupManagerAutoHealingPolicies) int { return v.InitialDelaySec }).(pulumi.IntOutput)
 }
 
 type InstanceGroupManagerNamedPort struct {
-	// The name of the instance group manager. Must be 1-63
-	// characters long and comply with
-	// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-	// include lowercase letters, numbers, and hyphens.
+	// - Version name.
 	Name string `pulumi:"name"`
+	// The port number.
+	// - - -
 	Port int `pulumi:"port"`
 }
 
@@ -6312,11 +6489,10 @@ type InstanceGroupManagerNamedPortInput interface {
 }
 
 type InstanceGroupManagerNamedPortArgs struct {
-	// The name of the instance group manager. Must be 1-63
-	// characters long and comply with
-	// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-	// include lowercase letters, numbers, and hyphens.
+	// - Version name.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The port number.
+	// - - -
 	Port pulumi.IntInput `pulumi:"port"`
 }
 
@@ -6367,14 +6543,13 @@ func (o InstanceGroupManagerNamedPortOutput) ToInstanceGroupManagerNamedPortOutp
 	return o
 }
 
-// The name of the instance group manager. Must be 1-63
-// characters long and comply with
-// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-// include lowercase letters, numbers, and hyphens.
+// - Version name.
 func (o InstanceGroupManagerNamedPortOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceGroupManagerNamedPort) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The port number.
+// - - -
 func (o InstanceGroupManagerNamedPortOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func (v InstanceGroupManagerNamedPort) int { return v.Port }).(pulumi.IntOutput)
 }
@@ -6400,12 +6575,20 @@ func (o InstanceGroupManagerNamedPortArrayOutput) Index(i pulumi.IntInput) Insta
 }
 
 type InstanceGroupManagerUpdatePolicy struct {
+	// , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `maxSurgePercent`. If neither is set, defaults to 1
 	MaxSurgeFixed *int `pulumi:"maxSurgeFixed"`
+	// , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `maxSurgeFixed`.
 	MaxSurgePercent *int `pulumi:"maxSurgePercent"`
+	// , The maximum number of instances that can be unavailable during the update process. Conflicts with `maxUnavailablePercent`. If neither is set, defaults to 1
 	MaxUnavailableFixed *int `pulumi:"maxUnavailableFixed"`
+	// , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `maxUnavailableFixed`.
 	MaxUnavailablePercent *int `pulumi:"maxUnavailablePercent"`
+	// , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
+	// - - -
 	MinReadySec *int `pulumi:"minReadySec"`
+	// - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
 	MinimalAction string `pulumi:"minimalAction"`
+	// - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
 	Type string `pulumi:"type"`
 }
 
@@ -6417,12 +6600,20 @@ type InstanceGroupManagerUpdatePolicyInput interface {
 }
 
 type InstanceGroupManagerUpdatePolicyArgs struct {
+	// , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `maxSurgePercent`. If neither is set, defaults to 1
 	MaxSurgeFixed pulumi.IntPtrInput `pulumi:"maxSurgeFixed"`
+	// , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `maxSurgeFixed`.
 	MaxSurgePercent pulumi.IntPtrInput `pulumi:"maxSurgePercent"`
+	// , The maximum number of instances that can be unavailable during the update process. Conflicts with `maxUnavailablePercent`. If neither is set, defaults to 1
 	MaxUnavailableFixed pulumi.IntPtrInput `pulumi:"maxUnavailableFixed"`
+	// , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `maxUnavailableFixed`.
 	MaxUnavailablePercent pulumi.IntPtrInput `pulumi:"maxUnavailablePercent"`
+	// , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
+	// - - -
 	MinReadySec pulumi.IntPtrInput `pulumi:"minReadySec"`
+	// - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
 	MinimalAction pulumi.StringInput `pulumi:"minimalAction"`
+	// - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -6493,30 +6684,38 @@ func (o InstanceGroupManagerUpdatePolicyOutput) ToInstanceGroupManagerUpdatePoli
 		return &v
 	}).(InstanceGroupManagerUpdatePolicyPtrOutput)
 }
+// , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `maxSurgePercent`. If neither is set, defaults to 1
 func (o InstanceGroupManagerUpdatePolicyOutput) MaxSurgeFixed() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerUpdatePolicy) *int { return v.MaxSurgeFixed }).(pulumi.IntPtrOutput)
 }
 
+// , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `maxSurgeFixed`.
 func (o InstanceGroupManagerUpdatePolicyOutput) MaxSurgePercent() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerUpdatePolicy) *int { return v.MaxSurgePercent }).(pulumi.IntPtrOutput)
 }
 
+// , The maximum number of instances that can be unavailable during the update process. Conflicts with `maxUnavailablePercent`. If neither is set, defaults to 1
 func (o InstanceGroupManagerUpdatePolicyOutput) MaxUnavailableFixed() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerUpdatePolicy) *int { return v.MaxUnavailableFixed }).(pulumi.IntPtrOutput)
 }
 
+// , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `maxUnavailableFixed`.
 func (o InstanceGroupManagerUpdatePolicyOutput) MaxUnavailablePercent() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerUpdatePolicy) *int { return v.MaxUnavailablePercent }).(pulumi.IntPtrOutput)
 }
 
+// , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
+// - - -
 func (o InstanceGroupManagerUpdatePolicyOutput) MinReadySec() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerUpdatePolicy) *int { return v.MinReadySec }).(pulumi.IntPtrOutput)
 }
 
+// - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
 func (o InstanceGroupManagerUpdatePolicyOutput) MinimalAction() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceGroupManagerUpdatePolicy) string { return v.MinimalAction }).(pulumi.StringOutput)
 }
 
+// - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
 func (o InstanceGroupManagerUpdatePolicyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceGroupManagerUpdatePolicy) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -6539,44 +6738,48 @@ func (o InstanceGroupManagerUpdatePolicyPtrOutput) Elem() InstanceGroupManagerUp
 	return o.ApplyT(func (v *InstanceGroupManagerUpdatePolicy) InstanceGroupManagerUpdatePolicy { return *v }).(InstanceGroupManagerUpdatePolicyOutput)
 }
 
+// , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `maxSurgePercent`. If neither is set, defaults to 1
 func (o InstanceGroupManagerUpdatePolicyPtrOutput) MaxSurgeFixed() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerUpdatePolicy) *int { return v.MaxSurgeFixed }).(pulumi.IntPtrOutput)
 }
 
+// , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `maxSurgeFixed`.
 func (o InstanceGroupManagerUpdatePolicyPtrOutput) MaxSurgePercent() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerUpdatePolicy) *int { return v.MaxSurgePercent }).(pulumi.IntPtrOutput)
 }
 
+// , The maximum number of instances that can be unavailable during the update process. Conflicts with `maxUnavailablePercent`. If neither is set, defaults to 1
 func (o InstanceGroupManagerUpdatePolicyPtrOutput) MaxUnavailableFixed() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerUpdatePolicy) *int { return v.MaxUnavailableFixed }).(pulumi.IntPtrOutput)
 }
 
+// , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `maxUnavailableFixed`.
 func (o InstanceGroupManagerUpdatePolicyPtrOutput) MaxUnavailablePercent() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerUpdatePolicy) *int { return v.MaxUnavailablePercent }).(pulumi.IntPtrOutput)
 }
 
+// , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
+// - - -
 func (o InstanceGroupManagerUpdatePolicyPtrOutput) MinReadySec() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerUpdatePolicy) *int { return v.MinReadySec }).(pulumi.IntPtrOutput)
 }
 
+// - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
 func (o InstanceGroupManagerUpdatePolicyPtrOutput) MinimalAction() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceGroupManagerUpdatePolicy) string { return v.MinimalAction }).(pulumi.StringOutput)
 }
 
+// - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
 func (o InstanceGroupManagerUpdatePolicyPtrOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceGroupManagerUpdatePolicy) string { return v.Type }).(pulumi.StringOutput)
 }
 
 type InstanceGroupManagerVersion struct {
+	// - The full URL to an instance template from which all new instances of this version will be created.
 	InstanceTemplate string `pulumi:"instanceTemplate"`
-	// The name of the instance group manager. Must be 1-63
-	// characters long and comply with
-	// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-	// include lowercase letters, numbers, and hyphens.
+	// - Version name.
 	Name *string `pulumi:"name"`
-	// The target number of running instances for this managed
-	// instance group. This value should always be explicitly set unless this resource is attached to
-	// an autoscaler, in which case it should never be set. Defaults to `0`.
+	// - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
 	TargetSize *InstanceGroupManagerVersionTargetSize `pulumi:"targetSize"`
 }
 
@@ -6588,15 +6791,11 @@ type InstanceGroupManagerVersionInput interface {
 }
 
 type InstanceGroupManagerVersionArgs struct {
+	// - The full URL to an instance template from which all new instances of this version will be created.
 	InstanceTemplate pulumi.StringInput `pulumi:"instanceTemplate"`
-	// The name of the instance group manager. Must be 1-63
-	// characters long and comply with
-	// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-	// include lowercase letters, numbers, and hyphens.
+	// - Version name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The target number of running instances for this managed
-	// instance group. This value should always be explicitly set unless this resource is attached to
-	// an autoscaler, in which case it should never be set. Defaults to `0`.
+	// - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
 	TargetSize InstanceGroupManagerVersionTargetSizePtrInput `pulumi:"targetSize"`
 }
 
@@ -6647,21 +6846,17 @@ func (o InstanceGroupManagerVersionOutput) ToInstanceGroupManagerVersionOutputWi
 	return o
 }
 
+// - The full URL to an instance template from which all new instances of this version will be created.
 func (o InstanceGroupManagerVersionOutput) InstanceTemplate() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceGroupManagerVersion) string { return v.InstanceTemplate }).(pulumi.StringOutput)
 }
 
-// The name of the instance group manager. Must be 1-63
-// characters long and comply with
-// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-// include lowercase letters, numbers, and hyphens.
+// - Version name.
 func (o InstanceGroupManagerVersionOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerVersion) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The target number of running instances for this managed
-// instance group. This value should always be explicitly set unless this resource is attached to
-// an autoscaler, in which case it should never be set. Defaults to `0`.
+// - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
 func (o InstanceGroupManagerVersionOutput) TargetSize() InstanceGroupManagerVersionTargetSizePtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerVersion) *InstanceGroupManagerVersionTargetSize { return v.TargetSize }).(InstanceGroupManagerVersionTargetSizePtrOutput)
 }
@@ -6687,7 +6882,11 @@ func (o InstanceGroupManagerVersionArrayOutput) Index(i pulumi.IntInput) Instanc
 }
 
 type InstanceGroupManagerVersionTargetSize struct {
+	// , The number of instances which are managed for this version. Conflicts with `percent`.
 	Fixed *int `pulumi:"fixed"`
+	// , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
+	// Note that when using `percent`, rounding will be in favor of explicitly set `targetSize` values; a managed instance group with 2 instances and 2 `version`s,
+	// one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
 	Percent *int `pulumi:"percent"`
 }
 
@@ -6699,7 +6898,11 @@ type InstanceGroupManagerVersionTargetSizeInput interface {
 }
 
 type InstanceGroupManagerVersionTargetSizeArgs struct {
+	// , The number of instances which are managed for this version. Conflicts with `percent`.
 	Fixed pulumi.IntPtrInput `pulumi:"fixed"`
+	// , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
+	// Note that when using `percent`, rounding will be in favor of explicitly set `targetSize` values; a managed instance group with 2 instances and 2 `version`s,
+	// one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
 	Percent pulumi.IntPtrInput `pulumi:"percent"`
 }
 
@@ -6770,10 +6973,14 @@ func (o InstanceGroupManagerVersionTargetSizeOutput) ToInstanceGroupManagerVersi
 		return &v
 	}).(InstanceGroupManagerVersionTargetSizePtrOutput)
 }
+// , The number of instances which are managed for this version. Conflicts with `percent`.
 func (o InstanceGroupManagerVersionTargetSizeOutput) Fixed() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerVersionTargetSize) *int { return v.Fixed }).(pulumi.IntPtrOutput)
 }
 
+// , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
+// Note that when using `percent`, rounding will be in favor of explicitly set `targetSize` values; a managed instance group with 2 instances and 2 `version`s,
+// one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
 func (o InstanceGroupManagerVersionTargetSizeOutput) Percent() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerVersionTargetSize) *int { return v.Percent }).(pulumi.IntPtrOutput)
 }
@@ -6796,20 +7003,22 @@ func (o InstanceGroupManagerVersionTargetSizePtrOutput) Elem() InstanceGroupMana
 	return o.ApplyT(func (v *InstanceGroupManagerVersionTargetSize) InstanceGroupManagerVersionTargetSize { return *v }).(InstanceGroupManagerVersionTargetSizeOutput)
 }
 
+// , The number of instances which are managed for this version. Conflicts with `percent`.
 func (o InstanceGroupManagerVersionTargetSizePtrOutput) Fixed() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerVersionTargetSize) *int { return v.Fixed }).(pulumi.IntPtrOutput)
 }
 
+// , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
+// Note that when using `percent`, rounding will be in favor of explicitly set `targetSize` values; a managed instance group with 2 instances and 2 `version`s,
+// one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
 func (o InstanceGroupManagerVersionTargetSizePtrOutput) Percent() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceGroupManagerVersionTargetSize) *int { return v.Percent }).(pulumi.IntPtrOutput)
 }
 
 type InstanceGroupNamedPort struct {
-	// The name of the instance group. Must be 1-63
-	// characters long and comply with
-	// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-	// include lowercase letters, numbers, and hyphens.
+	// The name which the port will be mapped to.
 	Name string `pulumi:"name"`
+	// The port number to map the name to.
 	Port int `pulumi:"port"`
 }
 
@@ -6821,11 +7030,9 @@ type InstanceGroupNamedPortInput interface {
 }
 
 type InstanceGroupNamedPortArgs struct {
-	// The name of the instance group. Must be 1-63
-	// characters long and comply with
-	// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-	// include lowercase letters, numbers, and hyphens.
+	// The name which the port will be mapped to.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The port number to map the name to.
 	Port pulumi.IntInput `pulumi:"port"`
 }
 
@@ -6876,14 +7083,12 @@ func (o InstanceGroupNamedPortOutput) ToInstanceGroupNamedPortOutputWithContext(
 	return o
 }
 
-// The name of the instance group. Must be 1-63
-// characters long and comply with
-// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-// include lowercase letters, numbers, and hyphens.
+// The name which the port will be mapped to.
 func (o InstanceGroupNamedPortOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceGroupNamedPort) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The port number to map the name to.
 func (o InstanceGroupNamedPortOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func (v InstanceGroupNamedPort) int { return v.Port }).(pulumi.IntOutput)
 }
@@ -6909,7 +7114,9 @@ func (o InstanceGroupNamedPortArrayOutput) Index(i pulumi.IntInput) InstanceGrou
 }
 
 type InstanceGuestAccelerator struct {
+	// The number of the guest accelerator cards exposed to this instance.
 	Count int `pulumi:"count"`
+	// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
 	Type string `pulumi:"type"`
 }
 
@@ -6921,7 +7128,9 @@ type InstanceGuestAcceleratorInput interface {
 }
 
 type InstanceGuestAcceleratorArgs struct {
+	// The number of the guest accelerator cards exposed to this instance.
 	Count pulumi.IntInput `pulumi:"count"`
+	// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -6972,10 +7181,12 @@ func (o InstanceGuestAcceleratorOutput) ToInstanceGuestAcceleratorOutputWithCont
 	return o
 }
 
+// The number of the guest accelerator cards exposed to this instance.
 func (o InstanceGuestAcceleratorOutput) Count() pulumi.IntOutput {
 	return o.ApplyT(func (v InstanceGuestAccelerator) int { return v.Count }).(pulumi.IntOutput)
 }
 
+// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
 func (o InstanceGuestAcceleratorOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceGuestAccelerator) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -7001,8 +7212,11 @@ func (o InstanceGuestAcceleratorArrayOutput) Index(i pulumi.IntInput) InstanceGu
 }
 
 type InstanceIAMBindingCondition struct {
+	// An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
 	Description *string `pulumi:"description"`
+	// Textual representation of an expression in Common Expression Language syntax.
 	Expression string `pulumi:"expression"`
+	// A title for the expression, i.e. a short string describing its purpose.
 	Title string `pulumi:"title"`
 }
 
@@ -7014,8 +7228,11 @@ type InstanceIAMBindingConditionInput interface {
 }
 
 type InstanceIAMBindingConditionArgs struct {
+	// An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
 	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Textual representation of an expression in Common Expression Language syntax.
 	Expression pulumi.StringInput `pulumi:"expression"`
+	// A title for the expression, i.e. a short string describing its purpose.
 	Title pulumi.StringInput `pulumi:"title"`
 }
 
@@ -7086,14 +7303,17 @@ func (o InstanceIAMBindingConditionOutput) ToInstanceIAMBindingConditionPtrOutpu
 		return &v
 	}).(InstanceIAMBindingConditionPtrOutput)
 }
+// An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
 func (o InstanceIAMBindingConditionOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceIAMBindingCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Textual representation of an expression in Common Expression Language syntax.
 func (o InstanceIAMBindingConditionOutput) Expression() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceIAMBindingCondition) string { return v.Expression }).(pulumi.StringOutput)
 }
 
+// A title for the expression, i.e. a short string describing its purpose.
 func (o InstanceIAMBindingConditionOutput) Title() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceIAMBindingCondition) string { return v.Title }).(pulumi.StringOutput)
 }
@@ -7116,21 +7336,27 @@ func (o InstanceIAMBindingConditionPtrOutput) Elem() InstanceIAMBindingCondition
 	return o.ApplyT(func (v *InstanceIAMBindingCondition) InstanceIAMBindingCondition { return *v }).(InstanceIAMBindingConditionOutput)
 }
 
+// An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
 func (o InstanceIAMBindingConditionPtrOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceIAMBindingCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Textual representation of an expression in Common Expression Language syntax.
 func (o InstanceIAMBindingConditionPtrOutput) Expression() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceIAMBindingCondition) string { return v.Expression }).(pulumi.StringOutput)
 }
 
+// A title for the expression, i.e. a short string describing its purpose.
 func (o InstanceIAMBindingConditionPtrOutput) Title() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceIAMBindingCondition) string { return v.Title }).(pulumi.StringOutput)
 }
 
 type InstanceIAMMemberCondition struct {
+	// An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
 	Description *string `pulumi:"description"`
+	// Textual representation of an expression in Common Expression Language syntax.
 	Expression string `pulumi:"expression"`
+	// A title for the expression, i.e. a short string describing its purpose.
 	Title string `pulumi:"title"`
 }
 
@@ -7142,8 +7368,11 @@ type InstanceIAMMemberConditionInput interface {
 }
 
 type InstanceIAMMemberConditionArgs struct {
+	// An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
 	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Textual representation of an expression in Common Expression Language syntax.
 	Expression pulumi.StringInput `pulumi:"expression"`
+	// A title for the expression, i.e. a short string describing its purpose.
 	Title pulumi.StringInput `pulumi:"title"`
 }
 
@@ -7214,14 +7443,17 @@ func (o InstanceIAMMemberConditionOutput) ToInstanceIAMMemberConditionPtrOutputW
 		return &v
 	}).(InstanceIAMMemberConditionPtrOutput)
 }
+// An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
 func (o InstanceIAMMemberConditionOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceIAMMemberCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Textual representation of an expression in Common Expression Language syntax.
 func (o InstanceIAMMemberConditionOutput) Expression() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceIAMMemberCondition) string { return v.Expression }).(pulumi.StringOutput)
 }
 
+// A title for the expression, i.e. a short string describing its purpose.
 func (o InstanceIAMMemberConditionOutput) Title() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceIAMMemberCondition) string { return v.Title }).(pulumi.StringOutput)
 }
@@ -7244,27 +7476,50 @@ func (o InstanceIAMMemberConditionPtrOutput) Elem() InstanceIAMMemberConditionOu
 	return o.ApplyT(func (v *InstanceIAMMemberCondition) InstanceIAMMemberCondition { return *v }).(InstanceIAMMemberConditionOutput)
 }
 
+// An optional description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
 func (o InstanceIAMMemberConditionPtrOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceIAMMemberCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Textual representation of an expression in Common Expression Language syntax.
 func (o InstanceIAMMemberConditionPtrOutput) Expression() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceIAMMemberCondition) string { return v.Expression }).(pulumi.StringOutput)
 }
 
+// A title for the expression, i.e. a short string describing its purpose.
 func (o InstanceIAMMemberConditionPtrOutput) Title() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceIAMMemberCondition) string { return v.Title }).(pulumi.StringOutput)
 }
 
 type InstanceNetworkInterface struct {
+	// Access configurations, i.e. IPs via which this
+	// instance can be accessed via the Internet. Omit to ensure that the instance
+	// is not accessible from the Internet. If omitted, ssh provisioners will not
+	// work unless this provider can send traffic to the instance's network (e.g. via
+	// tunnel or because it is running on another cloud instance on that network).
+	// This block can be repeated multiple times. Structure documented below.
 	AccessConfigs []InstanceNetworkInterfaceAccessConfig `pulumi:"accessConfigs"`
+	// An
+	// array of alias IP ranges for this network interface. Can only be specified for network
+	// interfaces on subnet-mode networks. Structure documented below.
 	AliasIpRanges []InstanceNetworkInterfaceAliasIpRange `pulumi:"aliasIpRanges"`
 	// A unique name for the resource, required by GCE.
 	// Changing this forces a new resource to be created.
 	Name *string `pulumi:"name"`
+	// The name or selfLink of the network to attach this interface to.
+	// Either `network` or `subnetwork` must be provided.
 	Network *string `pulumi:"network"`
+	// The private IP address to assign to the instance. If
+	// empty, the address will be automatically assigned.
 	NetworkIp *string `pulumi:"networkIp"`
+	// The name or selfLink of the subnetwork to attach this
+	// interface to. The subnetwork must exist in the same region this instance will be
+	// created in. Either `network` or `subnetwork` must be provided.
 	Subnetwork *string `pulumi:"subnetwork"`
+	// The project in which the subnetwork belongs.
+	// If the `subnetwork` is a self_link, this field is ignored in favor of the project
+	// defined in the subnetwork self_link. If the `subnetwork` is a name and this
+	// field is not provided, the provider project is used.
 	SubnetworkProject *string `pulumi:"subnetworkProject"`
 }
 
@@ -7276,14 +7531,34 @@ type InstanceNetworkInterfaceInput interface {
 }
 
 type InstanceNetworkInterfaceArgs struct {
+	// Access configurations, i.e. IPs via which this
+	// instance can be accessed via the Internet. Omit to ensure that the instance
+	// is not accessible from the Internet. If omitted, ssh provisioners will not
+	// work unless this provider can send traffic to the instance's network (e.g. via
+	// tunnel or because it is running on another cloud instance on that network).
+	// This block can be repeated multiple times. Structure documented below.
 	AccessConfigs InstanceNetworkInterfaceAccessConfigArrayInput `pulumi:"accessConfigs"`
+	// An
+	// array of alias IP ranges for this network interface. Can only be specified for network
+	// interfaces on subnet-mode networks. Structure documented below.
 	AliasIpRanges InstanceNetworkInterfaceAliasIpRangeArrayInput `pulumi:"aliasIpRanges"`
 	// A unique name for the resource, required by GCE.
 	// Changing this forces a new resource to be created.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The name or selfLink of the network to attach this interface to.
+	// Either `network` or `subnetwork` must be provided.
 	Network pulumi.StringPtrInput `pulumi:"network"`
+	// The private IP address to assign to the instance. If
+	// empty, the address will be automatically assigned.
 	NetworkIp pulumi.StringPtrInput `pulumi:"networkIp"`
+	// The name or selfLink of the subnetwork to attach this
+	// interface to. The subnetwork must exist in the same region this instance will be
+	// created in. Either `network` or `subnetwork` must be provided.
 	Subnetwork pulumi.StringPtrInput `pulumi:"subnetwork"`
+	// The project in which the subnetwork belongs.
+	// If the `subnetwork` is a self_link, this field is ignored in favor of the project
+	// defined in the subnetwork self_link. If the `subnetwork` is a name and this
+	// field is not provided, the provider project is used.
 	SubnetworkProject pulumi.StringPtrInput `pulumi:"subnetworkProject"`
 }
 
@@ -7334,10 +7609,19 @@ func (o InstanceNetworkInterfaceOutput) ToInstanceNetworkInterfaceOutputWithCont
 	return o
 }
 
+// Access configurations, i.e. IPs via which this
+// instance can be accessed via the Internet. Omit to ensure that the instance
+// is not accessible from the Internet. If omitted, ssh provisioners will not
+// work unless this provider can send traffic to the instance's network (e.g. via
+// tunnel or because it is running on another cloud instance on that network).
+// This block can be repeated multiple times. Structure documented below.
 func (o InstanceNetworkInterfaceOutput) AccessConfigs() InstanceNetworkInterfaceAccessConfigArrayOutput {
 	return o.ApplyT(func (v InstanceNetworkInterface) []InstanceNetworkInterfaceAccessConfig { return v.AccessConfigs }).(InstanceNetworkInterfaceAccessConfigArrayOutput)
 }
 
+// An
+// array of alias IP ranges for this network interface. Can only be specified for network
+// interfaces on subnet-mode networks. Structure documented below.
 func (o InstanceNetworkInterfaceOutput) AliasIpRanges() InstanceNetworkInterfaceAliasIpRangeArrayOutput {
 	return o.ApplyT(func (v InstanceNetworkInterface) []InstanceNetworkInterfaceAliasIpRange { return v.AliasIpRanges }).(InstanceNetworkInterfaceAliasIpRangeArrayOutput)
 }
@@ -7348,18 +7632,29 @@ func (o InstanceNetworkInterfaceOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceNetworkInterface) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// The name or selfLink of the network to attach this interface to.
+// Either `network` or `subnetwork` must be provided.
 func (o InstanceNetworkInterfaceOutput) Network() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceNetworkInterface) *string { return v.Network }).(pulumi.StringPtrOutput)
 }
 
+// The private IP address to assign to the instance. If
+// empty, the address will be automatically assigned.
 func (o InstanceNetworkInterfaceOutput) NetworkIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceNetworkInterface) *string { return v.NetworkIp }).(pulumi.StringPtrOutput)
 }
 
+// The name or selfLink of the subnetwork to attach this
+// interface to. The subnetwork must exist in the same region this instance will be
+// created in. Either `network` or `subnetwork` must be provided.
 func (o InstanceNetworkInterfaceOutput) Subnetwork() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceNetworkInterface) *string { return v.Subnetwork }).(pulumi.StringPtrOutput)
 }
 
+// The project in which the subnetwork belongs.
+// If the `subnetwork` is a self_link, this field is ignored in favor of the project
+// defined in the subnetwork self_link. If the `subnetwork` is a name and this
+// field is not provided, the provider project is used.
 func (o InstanceNetworkInterfaceOutput) SubnetworkProject() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceNetworkInterface) *string { return v.SubnetworkProject }).(pulumi.StringPtrOutput)
 }
@@ -7385,8 +7680,17 @@ func (o InstanceNetworkInterfaceArrayOutput) Index(i pulumi.IntInput) InstanceNe
 }
 
 type InstanceNetworkInterfaceAccessConfig struct {
+	// The IP address that will be 1:1 mapped to the instance's
+	// network ip. If not given, one will be generated.
 	NatIp *string `pulumi:"natIp"`
+	// The [networking tier][network-tier] used for configuring this instance.
+	// This field can take the following values: PREMIUM or STANDARD. If this field is
+	// not specified, it is assumed to be PREMIUM.
 	NetworkTier *string `pulumi:"networkTier"`
+	// The DNS domain name for the public PTR record.
+	// To set this field on an instance, you must be verified as the owner of the domain.
+	// See [the docs](https://cloud.google.com/compute/docs/instances/create-ptr-record) for how
+	// to become verified as a domain owner.
 	PublicPtrDomainName *string `pulumi:"publicPtrDomainName"`
 }
 
@@ -7398,8 +7702,17 @@ type InstanceNetworkInterfaceAccessConfigInput interface {
 }
 
 type InstanceNetworkInterfaceAccessConfigArgs struct {
+	// The IP address that will be 1:1 mapped to the instance's
+	// network ip. If not given, one will be generated.
 	NatIp pulumi.StringPtrInput `pulumi:"natIp"`
+	// The [networking tier][network-tier] used for configuring this instance.
+	// This field can take the following values: PREMIUM or STANDARD. If this field is
+	// not specified, it is assumed to be PREMIUM.
 	NetworkTier pulumi.StringPtrInput `pulumi:"networkTier"`
+	// The DNS domain name for the public PTR record.
+	// To set this field on an instance, you must be verified as the owner of the domain.
+	// See [the docs](https://cloud.google.com/compute/docs/instances/create-ptr-record) for how
+	// to become verified as a domain owner.
 	PublicPtrDomainName pulumi.StringPtrInput `pulumi:"publicPtrDomainName"`
 }
 
@@ -7450,14 +7763,23 @@ func (o InstanceNetworkInterfaceAccessConfigOutput) ToInstanceNetworkInterfaceAc
 	return o
 }
 
+// The IP address that will be 1:1 mapped to the instance's
+// network ip. If not given, one will be generated.
 func (o InstanceNetworkInterfaceAccessConfigOutput) NatIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceNetworkInterfaceAccessConfig) *string { return v.NatIp }).(pulumi.StringPtrOutput)
 }
 
+// The [networking tier][network-tier] used for configuring this instance.
+// This field can take the following values: PREMIUM or STANDARD. If this field is
+// not specified, it is assumed to be PREMIUM.
 func (o InstanceNetworkInterfaceAccessConfigOutput) NetworkTier() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceNetworkInterfaceAccessConfig) *string { return v.NetworkTier }).(pulumi.StringPtrOutput)
 }
 
+// The DNS domain name for the public PTR record.
+// To set this field on an instance, you must be verified as the owner of the domain.
+// See [the docs](https://cloud.google.com/compute/docs/instances/create-ptr-record) for how
+// to become verified as a domain owner.
 func (o InstanceNetworkInterfaceAccessConfigOutput) PublicPtrDomainName() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceNetworkInterfaceAccessConfig) *string { return v.PublicPtrDomainName }).(pulumi.StringPtrOutput)
 }
@@ -7483,7 +7805,14 @@ func (o InstanceNetworkInterfaceAccessConfigArrayOutput) Index(i pulumi.IntInput
 }
 
 type InstanceNetworkInterfaceAliasIpRange struct {
+	// The IP CIDR range represented by this alias IP range. This IP CIDR range
+	// must belong to the specified subnetwork and cannot contain IP addresses reserved by
+	// system or used by other network interfaces. This range may be a single IP address
+	// (e.g. 10.2.3.4), a netmask (e.g. /24) or a CIDR format string (e.g. 10.1.2.0/24).
 	IpCidrRange string `pulumi:"ipCidrRange"`
+	// The subnetwork secondary range name specifying
+	// the secondary range from which to allocate the IP CIDR range for this alias IP
+	// range. If left unspecified, the primary range of the subnetwork will be used.
 	SubnetworkRangeName *string `pulumi:"subnetworkRangeName"`
 }
 
@@ -7495,7 +7824,14 @@ type InstanceNetworkInterfaceAliasIpRangeInput interface {
 }
 
 type InstanceNetworkInterfaceAliasIpRangeArgs struct {
+	// The IP CIDR range represented by this alias IP range. This IP CIDR range
+	// must belong to the specified subnetwork and cannot contain IP addresses reserved by
+	// system or used by other network interfaces. This range may be a single IP address
+	// (e.g. 10.2.3.4), a netmask (e.g. /24) or a CIDR format string (e.g. 10.1.2.0/24).
 	IpCidrRange pulumi.StringInput `pulumi:"ipCidrRange"`
+	// The subnetwork secondary range name specifying
+	// the secondary range from which to allocate the IP CIDR range for this alias IP
+	// range. If left unspecified, the primary range of the subnetwork will be used.
 	SubnetworkRangeName pulumi.StringPtrInput `pulumi:"subnetworkRangeName"`
 }
 
@@ -7546,10 +7882,17 @@ func (o InstanceNetworkInterfaceAliasIpRangeOutput) ToInstanceNetworkInterfaceAl
 	return o
 }
 
+// The IP CIDR range represented by this alias IP range. This IP CIDR range
+// must belong to the specified subnetwork and cannot contain IP addresses reserved by
+// system or used by other network interfaces. This range may be a single IP address
+// (e.g. 10.2.3.4), a netmask (e.g. /24) or a CIDR format string (e.g. 10.1.2.0/24).
 func (o InstanceNetworkInterfaceAliasIpRangeOutput) IpCidrRange() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceNetworkInterfaceAliasIpRange) string { return v.IpCidrRange }).(pulumi.StringOutput)
 }
 
+// The subnetwork secondary range name specifying
+// the secondary range from which to allocate the IP CIDR range for this alias IP
+// range. If left unspecified, the primary range of the subnetwork will be used.
 func (o InstanceNetworkInterfaceAliasIpRangeOutput) SubnetworkRangeName() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceNetworkInterfaceAliasIpRange) *string { return v.SubnetworkRangeName }).(pulumi.StringPtrOutput)
 }
@@ -7575,9 +7918,23 @@ func (o InstanceNetworkInterfaceAliasIpRangeArrayOutput) Index(i pulumi.IntInput
 }
 
 type InstanceScheduling struct {
+	// Specifies if the instance should be
+	// restarted if it was terminated by Compute Engine (not a user).
+	// Defaults to true.
 	AutomaticRestart *bool `pulumi:"automaticRestart"`
+	// Specifies node affinities or anti-affinities
+	// to determine which sole-tenant nodes your instances and managed instance
+	// groups will use as host systems. Read more on sole-tenant node creation
+	// [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
+	// Structure documented below.
 	NodeAffinities []InstanceSchedulingNodeAffinity `pulumi:"nodeAffinities"`
+	// Describes maintenance behavior for the
+	// instance. Can be MIGRATE or TERMINATE, for more info, read
+	// [here](https://cloud.google.com/compute/docs/instances/setting-instance-scheduling-options).
 	OnHostMaintenance *string `pulumi:"onHostMaintenance"`
+	// Specifies if the instance is preemptible.
+	// If this field is set to true, then `automaticRestart` must be
+	// set to false.  Defaults to false.
 	Preemptible *bool `pulumi:"preemptible"`
 }
 
@@ -7589,9 +7946,23 @@ type InstanceSchedulingInput interface {
 }
 
 type InstanceSchedulingArgs struct {
+	// Specifies if the instance should be
+	// restarted if it was terminated by Compute Engine (not a user).
+	// Defaults to true.
 	AutomaticRestart pulumi.BoolPtrInput `pulumi:"automaticRestart"`
+	// Specifies node affinities or anti-affinities
+	// to determine which sole-tenant nodes your instances and managed instance
+	// groups will use as host systems. Read more on sole-tenant node creation
+	// [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
+	// Structure documented below.
 	NodeAffinities InstanceSchedulingNodeAffinityArrayInput `pulumi:"nodeAffinities"`
+	// Describes maintenance behavior for the
+	// instance. Can be MIGRATE or TERMINATE, for more info, read
+	// [here](https://cloud.google.com/compute/docs/instances/setting-instance-scheduling-options).
 	OnHostMaintenance pulumi.StringPtrInput `pulumi:"onHostMaintenance"`
+	// Specifies if the instance is preemptible.
+	// If this field is set to true, then `automaticRestart` must be
+	// set to false.  Defaults to false.
 	Preemptible pulumi.BoolPtrInput `pulumi:"preemptible"`
 }
 
@@ -7662,18 +8033,32 @@ func (o InstanceSchedulingOutput) ToInstanceSchedulingPtrOutputWithContext(ctx c
 		return &v
 	}).(InstanceSchedulingPtrOutput)
 }
+// Specifies if the instance should be
+// restarted if it was terminated by Compute Engine (not a user).
+// Defaults to true.
 func (o InstanceSchedulingOutput) AutomaticRestart() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceScheduling) *bool { return v.AutomaticRestart }).(pulumi.BoolPtrOutput)
 }
 
+// Specifies node affinities or anti-affinities
+// to determine which sole-tenant nodes your instances and managed instance
+// groups will use as host systems. Read more on sole-tenant node creation
+// [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
+// Structure documented below.
 func (o InstanceSchedulingOutput) NodeAffinities() InstanceSchedulingNodeAffinityArrayOutput {
 	return o.ApplyT(func (v InstanceScheduling) []InstanceSchedulingNodeAffinity { return v.NodeAffinities }).(InstanceSchedulingNodeAffinityArrayOutput)
 }
 
+// Describes maintenance behavior for the
+// instance. Can be MIGRATE or TERMINATE, for more info, read
+// [here](https://cloud.google.com/compute/docs/instances/setting-instance-scheduling-options).
 func (o InstanceSchedulingOutput) OnHostMaintenance() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceScheduling) *string { return v.OnHostMaintenance }).(pulumi.StringPtrOutput)
 }
 
+// Specifies if the instance is preemptible.
+// If this field is set to true, then `automaticRestart` must be
+// set to false.  Defaults to false.
 func (o InstanceSchedulingOutput) Preemptible() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceScheduling) *bool { return v.Preemptible }).(pulumi.BoolPtrOutput)
 }
@@ -7696,24 +8081,41 @@ func (o InstanceSchedulingPtrOutput) Elem() InstanceSchedulingOutput {
 	return o.ApplyT(func (v *InstanceScheduling) InstanceScheduling { return *v }).(InstanceSchedulingOutput)
 }
 
+// Specifies if the instance should be
+// restarted if it was terminated by Compute Engine (not a user).
+// Defaults to true.
 func (o InstanceSchedulingPtrOutput) AutomaticRestart() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceScheduling) *bool { return v.AutomaticRestart }).(pulumi.BoolPtrOutput)
 }
 
+// Specifies node affinities or anti-affinities
+// to determine which sole-tenant nodes your instances and managed instance
+// groups will use as host systems. Read more on sole-tenant node creation
+// [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
+// Structure documented below.
 func (o InstanceSchedulingPtrOutput) NodeAffinities() InstanceSchedulingNodeAffinityArrayOutput {
 	return o.ApplyT(func (v InstanceScheduling) []InstanceSchedulingNodeAffinity { return v.NodeAffinities }).(InstanceSchedulingNodeAffinityArrayOutput)
 }
 
+// Describes maintenance behavior for the
+// instance. Can be MIGRATE or TERMINATE, for more info, read
+// [here](https://cloud.google.com/compute/docs/instances/setting-instance-scheduling-options).
 func (o InstanceSchedulingPtrOutput) OnHostMaintenance() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceScheduling) *string { return v.OnHostMaintenance }).(pulumi.StringPtrOutput)
 }
 
+// Specifies if the instance is preemptible.
+// If this field is set to true, then `automaticRestart` must be
+// set to false.  Defaults to false.
 func (o InstanceSchedulingPtrOutput) Preemptible() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceScheduling) *bool { return v.Preemptible }).(pulumi.BoolPtrOutput)
 }
 
 type InstanceSchedulingNodeAffinity struct {
+	// The key for the node affinity label.
 	Key string `pulumi:"key"`
+	// The operator. Can be `IN` for node-affinities
+	// or `NOT` for anti-affinities.
 	Operator string `pulumi:"operator"`
 	Values []string `pulumi:"values"`
 }
@@ -7726,7 +8128,10 @@ type InstanceSchedulingNodeAffinityInput interface {
 }
 
 type InstanceSchedulingNodeAffinityArgs struct {
+	// The key for the node affinity label.
 	Key pulumi.StringInput `pulumi:"key"`
+	// The operator. Can be `IN` for node-affinities
+	// or `NOT` for anti-affinities.
 	Operator pulumi.StringInput `pulumi:"operator"`
 	Values pulumi.StringArrayInput `pulumi:"values"`
 }
@@ -7778,10 +8183,13 @@ func (o InstanceSchedulingNodeAffinityOutput) ToInstanceSchedulingNodeAffinityOu
 	return o
 }
 
+// The key for the node affinity label.
 func (o InstanceSchedulingNodeAffinityOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceSchedulingNodeAffinity) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// The operator. Can be `IN` for node-affinities
+// or `NOT` for anti-affinities.
 func (o InstanceSchedulingNodeAffinityOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceSchedulingNodeAffinity) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -7811,6 +8219,7 @@ func (o InstanceSchedulingNodeAffinityArrayOutput) Index(i pulumi.IntInput) Inst
 }
 
 type InstanceScratchDisk struct {
+	// The disk interface to use for attaching this disk; either SCSI or NVME.
 	Interface string `pulumi:"interface"`
 }
 
@@ -7822,6 +8231,7 @@ type InstanceScratchDiskInput interface {
 }
 
 type InstanceScratchDiskArgs struct {
+	// The disk interface to use for attaching this disk; either SCSI or NVME.
 	Interface pulumi.StringInput `pulumi:"interface"`
 }
 
@@ -7872,6 +8282,7 @@ func (o InstanceScratchDiskOutput) ToInstanceScratchDiskOutputWithContext(ctx co
 	return o
 }
 
+// The disk interface to use for attaching this disk; either SCSI or NVME.
 func (o InstanceScratchDiskOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceScratchDisk) string { return v.Interface }).(pulumi.StringOutput)
 }
@@ -7897,7 +8308,14 @@ func (o InstanceScratchDiskArrayOutput) Index(i pulumi.IntInput) InstanceScratch
 }
 
 type InstanceServiceAccount struct {
+	// The service account e-mail address. If not given, the
+	// default Google Compute Engine service account is used.
+	// **Note**: `allowStoppingForUpdate` must be set to true or your instance must have a `desiredStatus` of `TERMINATED` in order to update this field.
 	Email *string `pulumi:"email"`
+	// A list of service scopes. Both OAuth2 URLs and gcloud
+	// short names are supported. To allow full access to all Cloud APIs, use the
+	// `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
+	// **Note**: `allowStoppingForUpdate` must be set to true or your instance must have a `desiredStatus` of `TERMINATED` in order to update this field.
 	Scopes []string `pulumi:"scopes"`
 }
 
@@ -7909,7 +8327,14 @@ type InstanceServiceAccountInput interface {
 }
 
 type InstanceServiceAccountArgs struct {
+	// The service account e-mail address. If not given, the
+	// default Google Compute Engine service account is used.
+	// **Note**: `allowStoppingForUpdate` must be set to true or your instance must have a `desiredStatus` of `TERMINATED` in order to update this field.
 	Email pulumi.StringPtrInput `pulumi:"email"`
+	// A list of service scopes. Both OAuth2 URLs and gcloud
+	// short names are supported. To allow full access to all Cloud APIs, use the
+	// `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
+	// **Note**: `allowStoppingForUpdate` must be set to true or your instance must have a `desiredStatus` of `TERMINATED` in order to update this field.
 	Scopes pulumi.StringArrayInput `pulumi:"scopes"`
 }
 
@@ -7980,10 +8405,17 @@ func (o InstanceServiceAccountOutput) ToInstanceServiceAccountPtrOutputWithConte
 		return &v
 	}).(InstanceServiceAccountPtrOutput)
 }
+// The service account e-mail address. If not given, the
+// default Google Compute Engine service account is used.
+// **Note**: `allowStoppingForUpdate` must be set to true or your instance must have a `desiredStatus` of `TERMINATED` in order to update this field.
 func (o InstanceServiceAccountOutput) Email() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceServiceAccount) *string { return v.Email }).(pulumi.StringPtrOutput)
 }
 
+// A list of service scopes. Both OAuth2 URLs and gcloud
+// short names are supported. To allow full access to all Cloud APIs, use the
+// `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
+// **Note**: `allowStoppingForUpdate` must be set to true or your instance must have a `desiredStatus` of `TERMINATED` in order to update this field.
 func (o InstanceServiceAccountOutput) Scopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v InstanceServiceAccount) []string { return v.Scopes }).(pulumi.StringArrayOutput)
 }
@@ -8006,17 +8438,27 @@ func (o InstanceServiceAccountPtrOutput) Elem() InstanceServiceAccountOutput {
 	return o.ApplyT(func (v *InstanceServiceAccount) InstanceServiceAccount { return *v }).(InstanceServiceAccountOutput)
 }
 
+// The service account e-mail address. If not given, the
+// default Google Compute Engine service account is used.
+// **Note**: `allowStoppingForUpdate` must be set to true or your instance must have a `desiredStatus` of `TERMINATED` in order to update this field.
 func (o InstanceServiceAccountPtrOutput) Email() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceServiceAccount) *string { return v.Email }).(pulumi.StringPtrOutput)
 }
 
+// A list of service scopes. Both OAuth2 URLs and gcloud
+// short names are supported. To allow full access to all Cloud APIs, use the
+// `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
+// **Note**: `allowStoppingForUpdate` must be set to true or your instance must have a `desiredStatus` of `TERMINATED` in order to update this field.
 func (o InstanceServiceAccountPtrOutput) Scopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v InstanceServiceAccount) []string { return v.Scopes }).(pulumi.StringArrayOutput)
 }
 
 type InstanceShieldedInstanceConfig struct {
+	// -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
 	EnableIntegrityMonitoring *bool `pulumi:"enableIntegrityMonitoring"`
+	// -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
 	EnableSecureBoot *bool `pulumi:"enableSecureBoot"`
+	// -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
 	EnableVtpm *bool `pulumi:"enableVtpm"`
 }
 
@@ -8028,8 +8470,11 @@ type InstanceShieldedInstanceConfigInput interface {
 }
 
 type InstanceShieldedInstanceConfigArgs struct {
+	// -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
 	EnableIntegrityMonitoring pulumi.BoolPtrInput `pulumi:"enableIntegrityMonitoring"`
+	// -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
 	EnableSecureBoot pulumi.BoolPtrInput `pulumi:"enableSecureBoot"`
+	// -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
 	EnableVtpm pulumi.BoolPtrInput `pulumi:"enableVtpm"`
 }
 
@@ -8100,14 +8545,17 @@ func (o InstanceShieldedInstanceConfigOutput) ToInstanceShieldedInstanceConfigPt
 		return &v
 	}).(InstanceShieldedInstanceConfigPtrOutput)
 }
+// -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
 func (o InstanceShieldedInstanceConfigOutput) EnableIntegrityMonitoring() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceShieldedInstanceConfig) *bool { return v.EnableIntegrityMonitoring }).(pulumi.BoolPtrOutput)
 }
 
+// -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
 func (o InstanceShieldedInstanceConfigOutput) EnableSecureBoot() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceShieldedInstanceConfig) *bool { return v.EnableSecureBoot }).(pulumi.BoolPtrOutput)
 }
 
+// -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
 func (o InstanceShieldedInstanceConfigOutput) EnableVtpm() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceShieldedInstanceConfig) *bool { return v.EnableVtpm }).(pulumi.BoolPtrOutput)
 }
@@ -8130,33 +8578,64 @@ func (o InstanceShieldedInstanceConfigPtrOutput) Elem() InstanceShieldedInstance
 	return o.ApplyT(func (v *InstanceShieldedInstanceConfig) InstanceShieldedInstanceConfig { return *v }).(InstanceShieldedInstanceConfigOutput)
 }
 
+// -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
 func (o InstanceShieldedInstanceConfigPtrOutput) EnableIntegrityMonitoring() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceShieldedInstanceConfig) *bool { return v.EnableIntegrityMonitoring }).(pulumi.BoolPtrOutput)
 }
 
+// -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
 func (o InstanceShieldedInstanceConfigPtrOutput) EnableSecureBoot() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceShieldedInstanceConfig) *bool { return v.EnableSecureBoot }).(pulumi.BoolPtrOutput)
 }
 
+// -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
 func (o InstanceShieldedInstanceConfigPtrOutput) EnableVtpm() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceShieldedInstanceConfig) *bool { return v.EnableVtpm }).(pulumi.BoolPtrOutput)
 }
 
 type InstanceTemplateDisk struct {
+	// Whether or not the disk should be auto-deleted.
+	// This defaults to true.
 	AutoDelete *bool `pulumi:"autoDelete"`
+	// Indicates that this is a boot disk.
 	Boot *bool `pulumi:"boot"`
+	// A unique device name that is reflected into the
+	// /dev/  tree of a Linux operating system running within the instance. If not
+	// specified, the server chooses a default device name to apply to this disk.
 	DeviceName *string `pulumi:"deviceName"`
+	// Encrypts or decrypts a disk using a customer-supplied encryption key.
 	DiskEncryptionKey *InstanceTemplateDiskDiskEncryptionKey `pulumi:"diskEncryptionKey"`
+	// Name of the disk. When not provided, this defaults
+	// to the name of the instance.
 	DiskName *string `pulumi:"diskName"`
+	// The size of the image in gigabytes. If not
+	// specified, it will inherit the size of its base image. For SCRATCH disks,
+	// the size must be exactly 375GB.
 	DiskSizeGb *int `pulumi:"diskSizeGb"`
+	// The GCE disk type. Can be either `"pd-ssd"`,
+	// `"local-ssd"`, or `"pd-standard"`.
 	DiskType *string `pulumi:"diskType"`
+	// Specifies the disk interface to use for attaching
+	// this disk.
 	Interface *string `pulumi:"interface"`
 	// A set of key/value label pairs to assign to instances
 	// created from this template,
 	Labels map[string]string `pulumi:"labels"`
+	// The mode in which to attach this disk, either READ_WRITE
+	// or READ_ONLY. If you are attaching or creating a boot disk, this must
+	// read-write mode.
 	Mode *string `pulumi:"mode"`
+	// The name (**not self_link**)
+	// of the disk (such as those managed by `compute.Disk`) to attach.
 	Source *string `pulumi:"source"`
+	// The image from which to
+	// initialize this disk. This can be one of: the image's `selfLink`,
+	// `projects/{project}/global/images/{image}`,
+	// `projects/{project}/global/images/family/{family}`, `global/images/{image}`,
+	// `global/images/family/{family}`, `family/{family}`, `{project}/{family}`,
+	// `{project}/{image}`, `{family}`, or `{image}`.
 	SourceImage *string `pulumi:"sourceImage"`
+	// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
 	Type *string `pulumi:"type"`
 }
 
@@ -8168,20 +8647,48 @@ type InstanceTemplateDiskInput interface {
 }
 
 type InstanceTemplateDiskArgs struct {
+	// Whether or not the disk should be auto-deleted.
+	// This defaults to true.
 	AutoDelete pulumi.BoolPtrInput `pulumi:"autoDelete"`
+	// Indicates that this is a boot disk.
 	Boot pulumi.BoolPtrInput `pulumi:"boot"`
+	// A unique device name that is reflected into the
+	// /dev/  tree of a Linux operating system running within the instance. If not
+	// specified, the server chooses a default device name to apply to this disk.
 	DeviceName pulumi.StringPtrInput `pulumi:"deviceName"`
+	// Encrypts or decrypts a disk using a customer-supplied encryption key.
 	DiskEncryptionKey InstanceTemplateDiskDiskEncryptionKeyPtrInput `pulumi:"diskEncryptionKey"`
+	// Name of the disk. When not provided, this defaults
+	// to the name of the instance.
 	DiskName pulumi.StringPtrInput `pulumi:"diskName"`
+	// The size of the image in gigabytes. If not
+	// specified, it will inherit the size of its base image. For SCRATCH disks,
+	// the size must be exactly 375GB.
 	DiskSizeGb pulumi.IntPtrInput `pulumi:"diskSizeGb"`
+	// The GCE disk type. Can be either `"pd-ssd"`,
+	// `"local-ssd"`, or `"pd-standard"`.
 	DiskType pulumi.StringPtrInput `pulumi:"diskType"`
+	// Specifies the disk interface to use for attaching
+	// this disk.
 	Interface pulumi.StringPtrInput `pulumi:"interface"`
 	// A set of key/value label pairs to assign to instances
 	// created from this template,
 	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// The mode in which to attach this disk, either READ_WRITE
+	// or READ_ONLY. If you are attaching or creating a boot disk, this must
+	// read-write mode.
 	Mode pulumi.StringPtrInput `pulumi:"mode"`
+	// The name (**not self_link**)
+	// of the disk (such as those managed by `compute.Disk`) to attach.
 	Source pulumi.StringPtrInput `pulumi:"source"`
+	// The image from which to
+	// initialize this disk. This can be one of: the image's `selfLink`,
+	// `projects/{project}/global/images/{image}`,
+	// `projects/{project}/global/images/family/{family}`, `global/images/{image}`,
+	// `global/images/family/{family}`, `family/{family}`, `{project}/{family}`,
+	// `{project}/{image}`, `{family}`, or `{image}`.
 	SourceImage pulumi.StringPtrInput `pulumi:"sourceImage"`
+	// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -8232,34 +8739,50 @@ func (o InstanceTemplateDiskOutput) ToInstanceTemplateDiskOutputWithContext(ctx 
 	return o
 }
 
+// Whether or not the disk should be auto-deleted.
+// This defaults to true.
 func (o InstanceTemplateDiskOutput) AutoDelete() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateDisk) *bool { return v.AutoDelete }).(pulumi.BoolPtrOutput)
 }
 
+// Indicates that this is a boot disk.
 func (o InstanceTemplateDiskOutput) Boot() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateDisk) *bool { return v.Boot }).(pulumi.BoolPtrOutput)
 }
 
+// A unique device name that is reflected into the
+// /dev/  tree of a Linux operating system running within the instance. If not
+// specified, the server chooses a default device name to apply to this disk.
 func (o InstanceTemplateDiskOutput) DeviceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateDisk) *string { return v.DeviceName }).(pulumi.StringPtrOutput)
 }
 
+// Encrypts or decrypts a disk using a customer-supplied encryption key.
 func (o InstanceTemplateDiskOutput) DiskEncryptionKey() InstanceTemplateDiskDiskEncryptionKeyPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateDisk) *InstanceTemplateDiskDiskEncryptionKey { return v.DiskEncryptionKey }).(InstanceTemplateDiskDiskEncryptionKeyPtrOutput)
 }
 
+// Name of the disk. When not provided, this defaults
+// to the name of the instance.
 func (o InstanceTemplateDiskOutput) DiskName() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateDisk) *string { return v.DiskName }).(pulumi.StringPtrOutput)
 }
 
+// The size of the image in gigabytes. If not
+// specified, it will inherit the size of its base image. For SCRATCH disks,
+// the size must be exactly 375GB.
 func (o InstanceTemplateDiskOutput) DiskSizeGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateDisk) *int { return v.DiskSizeGb }).(pulumi.IntPtrOutput)
 }
 
+// The GCE disk type. Can be either `"pd-ssd"`,
+// `"local-ssd"`, or `"pd-standard"`.
 func (o InstanceTemplateDiskOutput) DiskType() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateDisk) *string { return v.DiskType }).(pulumi.StringPtrOutput)
 }
 
+// Specifies the disk interface to use for attaching
+// this disk.
 func (o InstanceTemplateDiskOutput) Interface() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateDisk) *string { return v.Interface }).(pulumi.StringPtrOutput)
 }
@@ -8270,18 +8793,30 @@ func (o InstanceTemplateDiskOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func (v InstanceTemplateDisk) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// The mode in which to attach this disk, either READ_WRITE
+// or READ_ONLY. If you are attaching or creating a boot disk, this must
+// read-write mode.
 func (o InstanceTemplateDiskOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateDisk) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
 
+// The name (**not self_link**)
+// of the disk (such as those managed by `compute.Disk`) to attach.
 func (o InstanceTemplateDiskOutput) Source() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateDisk) *string { return v.Source }).(pulumi.StringPtrOutput)
 }
 
+// The image from which to
+// initialize this disk. This can be one of: the image's `selfLink`,
+// `projects/{project}/global/images/{image}`,
+// `projects/{project}/global/images/family/{family}`, `global/images/{image}`,
+// `global/images/family/{family}`, `family/{family}`, `{project}/{family}`,
+// `{project}/{image}`, `{family}`, or `{image}`.
 func (o InstanceTemplateDiskOutput) SourceImage() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateDisk) *string { return v.SourceImage }).(pulumi.StringPtrOutput)
 }
 
+// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
 func (o InstanceTemplateDiskOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateDisk) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -8307,6 +8842,7 @@ func (o InstanceTemplateDiskArrayOutput) Index(i pulumi.IntInput) InstanceTempla
 }
 
 type InstanceTemplateDiskDiskEncryptionKey struct {
+	// The self link of the encryption key that is stored in Google Cloud KMS
 	KmsKeySelfLink string `pulumi:"kmsKeySelfLink"`
 }
 
@@ -8318,6 +8854,7 @@ type InstanceTemplateDiskDiskEncryptionKeyInput interface {
 }
 
 type InstanceTemplateDiskDiskEncryptionKeyArgs struct {
+	// The self link of the encryption key that is stored in Google Cloud KMS
 	KmsKeySelfLink pulumi.StringInput `pulumi:"kmsKeySelfLink"`
 }
 
@@ -8388,6 +8925,7 @@ func (o InstanceTemplateDiskDiskEncryptionKeyOutput) ToInstanceTemplateDiskDiskE
 		return &v
 	}).(InstanceTemplateDiskDiskEncryptionKeyPtrOutput)
 }
+// The self link of the encryption key that is stored in Google Cloud KMS
 func (o InstanceTemplateDiskDiskEncryptionKeyOutput) KmsKeySelfLink() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceTemplateDiskDiskEncryptionKey) string { return v.KmsKeySelfLink }).(pulumi.StringOutput)
 }
@@ -8410,12 +8948,15 @@ func (o InstanceTemplateDiskDiskEncryptionKeyPtrOutput) Elem() InstanceTemplateD
 	return o.ApplyT(func (v *InstanceTemplateDiskDiskEncryptionKey) InstanceTemplateDiskDiskEncryptionKey { return *v }).(InstanceTemplateDiskDiskEncryptionKeyOutput)
 }
 
+// The self link of the encryption key that is stored in Google Cloud KMS
 func (o InstanceTemplateDiskDiskEncryptionKeyPtrOutput) KmsKeySelfLink() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceTemplateDiskDiskEncryptionKey) string { return v.KmsKeySelfLink }).(pulumi.StringOutput)
 }
 
 type InstanceTemplateGuestAccelerator struct {
+	// The number of the guest accelerator cards exposed to this instance.
 	Count int `pulumi:"count"`
+	// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
 	Type string `pulumi:"type"`
 }
 
@@ -8427,7 +8968,9 @@ type InstanceTemplateGuestAcceleratorInput interface {
 }
 
 type InstanceTemplateGuestAcceleratorArgs struct {
+	// The number of the guest accelerator cards exposed to this instance.
 	Count pulumi.IntInput `pulumi:"count"`
+	// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -8478,10 +9021,12 @@ func (o InstanceTemplateGuestAcceleratorOutput) ToInstanceTemplateGuestAccelerat
 	return o
 }
 
+// The number of the guest accelerator cards exposed to this instance.
 func (o InstanceTemplateGuestAcceleratorOutput) Count() pulumi.IntOutput {
 	return o.ApplyT(func (v InstanceTemplateGuestAccelerator) int { return v.Count }).(pulumi.IntOutput)
 }
 
+// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
 func (o InstanceTemplateGuestAcceleratorOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceTemplateGuestAccelerator) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -8507,14 +9052,33 @@ func (o InstanceTemplateGuestAcceleratorArrayOutput) Index(i pulumi.IntInput) In
 }
 
 type InstanceTemplateNetworkInterface struct {
+	// Access configurations, i.e. IPs via which this
+	// instance can be accessed via the Internet. Omit to ensure that the instance
+	// is not accessible from the Internet - this means that ssh provisioners will
+	// not work unless the machine you are running this provider on can send traffic to the instance's
+	// network (e.g. via tunnel or because it is running on another cloud instance
+	// on that network). This block can be repeated multiple times. Structure documented below.
 	AccessConfigs []InstanceTemplateNetworkInterfaceAccessConfig `pulumi:"accessConfigs"`
+	// An
+	// array of alias IP ranges for this network interface. Can only be specified for network
+	// interfaces on subnet-mode networks. Structure documented below.
 	AliasIpRanges []InstanceTemplateNetworkInterfaceAliasIpRange `pulumi:"aliasIpRanges"`
 	// The name of the instance template. If you leave
 	// this blank, this provider will auto-generate a unique name.
 	Name *string `pulumi:"name"`
+	// The name or selfLink of the network to attach this interface to.
+	// Use `network` attribute for Legacy or Auto subnetted networks and
+	// `subnetwork` for custom subnetted networks.
 	Network *string `pulumi:"network"`
+	// The private IP address to assign to the instance. If
+	// empty, the address will be automatically assigned.
 	NetworkIp *string `pulumi:"networkIp"`
+	// the name of the subnetwork to attach this interface
+	// to. The subnetwork must exist in the same `region` this instance will be
+	// created in. Either `network` or `subnetwork` must be provided.
 	Subnetwork *string `pulumi:"subnetwork"`
+	// The ID of the project in which the subnetwork belongs.
+	// If it is not provided, the provider project is used.
 	SubnetworkProject *string `pulumi:"subnetworkProject"`
 }
 
@@ -8526,14 +9090,33 @@ type InstanceTemplateNetworkInterfaceInput interface {
 }
 
 type InstanceTemplateNetworkInterfaceArgs struct {
+	// Access configurations, i.e. IPs via which this
+	// instance can be accessed via the Internet. Omit to ensure that the instance
+	// is not accessible from the Internet - this means that ssh provisioners will
+	// not work unless the machine you are running this provider on can send traffic to the instance's
+	// network (e.g. via tunnel or because it is running on another cloud instance
+	// on that network). This block can be repeated multiple times. Structure documented below.
 	AccessConfigs InstanceTemplateNetworkInterfaceAccessConfigArrayInput `pulumi:"accessConfigs"`
+	// An
+	// array of alias IP ranges for this network interface. Can only be specified for network
+	// interfaces on subnet-mode networks. Structure documented below.
 	AliasIpRanges InstanceTemplateNetworkInterfaceAliasIpRangeArrayInput `pulumi:"aliasIpRanges"`
 	// The name of the instance template. If you leave
 	// this blank, this provider will auto-generate a unique name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The name or selfLink of the network to attach this interface to.
+	// Use `network` attribute for Legacy or Auto subnetted networks and
+	// `subnetwork` for custom subnetted networks.
 	Network pulumi.StringPtrInput `pulumi:"network"`
+	// The private IP address to assign to the instance. If
+	// empty, the address will be automatically assigned.
 	NetworkIp pulumi.StringPtrInput `pulumi:"networkIp"`
+	// the name of the subnetwork to attach this interface
+	// to. The subnetwork must exist in the same `region` this instance will be
+	// created in. Either `network` or `subnetwork` must be provided.
 	Subnetwork pulumi.StringPtrInput `pulumi:"subnetwork"`
+	// The ID of the project in which the subnetwork belongs.
+	// If it is not provided, the provider project is used.
 	SubnetworkProject pulumi.StringPtrInput `pulumi:"subnetworkProject"`
 }
 
@@ -8584,10 +9167,19 @@ func (o InstanceTemplateNetworkInterfaceOutput) ToInstanceTemplateNetworkInterfa
 	return o
 }
 
+// Access configurations, i.e. IPs via which this
+// instance can be accessed via the Internet. Omit to ensure that the instance
+// is not accessible from the Internet - this means that ssh provisioners will
+// not work unless the machine you are running this provider on can send traffic to the instance's
+// network (e.g. via tunnel or because it is running on another cloud instance
+// on that network). This block can be repeated multiple times. Structure documented below.
 func (o InstanceTemplateNetworkInterfaceOutput) AccessConfigs() InstanceTemplateNetworkInterfaceAccessConfigArrayOutput {
 	return o.ApplyT(func (v InstanceTemplateNetworkInterface) []InstanceTemplateNetworkInterfaceAccessConfig { return v.AccessConfigs }).(InstanceTemplateNetworkInterfaceAccessConfigArrayOutput)
 }
 
+// An
+// array of alias IP ranges for this network interface. Can only be specified for network
+// interfaces on subnet-mode networks. Structure documented below.
 func (o InstanceTemplateNetworkInterfaceOutput) AliasIpRanges() InstanceTemplateNetworkInterfaceAliasIpRangeArrayOutput {
 	return o.ApplyT(func (v InstanceTemplateNetworkInterface) []InstanceTemplateNetworkInterfaceAliasIpRange { return v.AliasIpRanges }).(InstanceTemplateNetworkInterfaceAliasIpRangeArrayOutput)
 }
@@ -8598,18 +9190,28 @@ func (o InstanceTemplateNetworkInterfaceOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateNetworkInterface) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// The name or selfLink of the network to attach this interface to.
+// Use `network` attribute for Legacy or Auto subnetted networks and
+// `subnetwork` for custom subnetted networks.
 func (o InstanceTemplateNetworkInterfaceOutput) Network() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateNetworkInterface) *string { return v.Network }).(pulumi.StringPtrOutput)
 }
 
+// The private IP address to assign to the instance. If
+// empty, the address will be automatically assigned.
 func (o InstanceTemplateNetworkInterfaceOutput) NetworkIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateNetworkInterface) *string { return v.NetworkIp }).(pulumi.StringPtrOutput)
 }
 
+// the name of the subnetwork to attach this interface
+// to. The subnetwork must exist in the same `region` this instance will be
+// created in. Either `network` or `subnetwork` must be provided.
 func (o InstanceTemplateNetworkInterfaceOutput) Subnetwork() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateNetworkInterface) *string { return v.Subnetwork }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the project in which the subnetwork belongs.
+// If it is not provided, the provider project is used.
 func (o InstanceTemplateNetworkInterfaceOutput) SubnetworkProject() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateNetworkInterface) *string { return v.SubnetworkProject }).(pulumi.StringPtrOutput)
 }
@@ -8635,7 +9237,12 @@ func (o InstanceTemplateNetworkInterfaceArrayOutput) Index(i pulumi.IntInput) In
 }
 
 type InstanceTemplateNetworkInterfaceAccessConfig struct {
+	// The IP address that will be 1:1 mapped to the instance's
+	// network ip. If not given, one will be generated.
 	NatIp *string `pulumi:"natIp"`
+	// The [networking tier][network-tier] used for configuring
+	// this instance template. This field can take the following values: PREMIUM or
+	// STANDARD. If this field is not specified, it is assumed to be PREMIUM.
 	NetworkTier *string `pulumi:"networkTier"`
 	PublicPtrDomainName *string `pulumi:"publicPtrDomainName"`
 }
@@ -8648,7 +9255,12 @@ type InstanceTemplateNetworkInterfaceAccessConfigInput interface {
 }
 
 type InstanceTemplateNetworkInterfaceAccessConfigArgs struct {
+	// The IP address that will be 1:1 mapped to the instance's
+	// network ip. If not given, one will be generated.
 	NatIp pulumi.StringPtrInput `pulumi:"natIp"`
+	// The [networking tier][network-tier] used for configuring
+	// this instance template. This field can take the following values: PREMIUM or
+	// STANDARD. If this field is not specified, it is assumed to be PREMIUM.
 	NetworkTier pulumi.StringPtrInput `pulumi:"networkTier"`
 	PublicPtrDomainName pulumi.StringPtrInput `pulumi:"publicPtrDomainName"`
 }
@@ -8700,10 +9312,15 @@ func (o InstanceTemplateNetworkInterfaceAccessConfigOutput) ToInstanceTemplateNe
 	return o
 }
 
+// The IP address that will be 1:1 mapped to the instance's
+// network ip. If not given, one will be generated.
 func (o InstanceTemplateNetworkInterfaceAccessConfigOutput) NatIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateNetworkInterfaceAccessConfig) *string { return v.NatIp }).(pulumi.StringPtrOutput)
 }
 
+// The [networking tier][network-tier] used for configuring
+// this instance template. This field can take the following values: PREMIUM or
+// STANDARD. If this field is not specified, it is assumed to be PREMIUM.
 func (o InstanceTemplateNetworkInterfaceAccessConfigOutput) NetworkTier() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateNetworkInterfaceAccessConfig) *string { return v.NetworkTier }).(pulumi.StringPtrOutput)
 }
@@ -8733,7 +9350,15 @@ func (o InstanceTemplateNetworkInterfaceAccessConfigArrayOutput) Index(i pulumi.
 }
 
 type InstanceTemplateNetworkInterfaceAliasIpRange struct {
+	// The IP CIDR range represented by this alias IP range. This IP CIDR range
+	// must belong to the specified subnetwork and cannot contain IP addresses reserved by
+	// system or used by other network interfaces. At the time of writing only a
+	// netmask (e.g. /24) may be supplied, with a CIDR format resulting in an API
+	// error.
 	IpCidrRange string `pulumi:"ipCidrRange"`
+	// The subnetwork secondary range name specifying
+	// the secondary range from which to allocate the IP CIDR range for this alias IP
+	// range. If left unspecified, the primary range of the subnetwork will be used.
 	SubnetworkRangeName *string `pulumi:"subnetworkRangeName"`
 }
 
@@ -8745,7 +9370,15 @@ type InstanceTemplateNetworkInterfaceAliasIpRangeInput interface {
 }
 
 type InstanceTemplateNetworkInterfaceAliasIpRangeArgs struct {
+	// The IP CIDR range represented by this alias IP range. This IP CIDR range
+	// must belong to the specified subnetwork and cannot contain IP addresses reserved by
+	// system or used by other network interfaces. At the time of writing only a
+	// netmask (e.g. /24) may be supplied, with a CIDR format resulting in an API
+	// error.
 	IpCidrRange pulumi.StringInput `pulumi:"ipCidrRange"`
+	// The subnetwork secondary range name specifying
+	// the secondary range from which to allocate the IP CIDR range for this alias IP
+	// range. If left unspecified, the primary range of the subnetwork will be used.
 	SubnetworkRangeName pulumi.StringPtrInput `pulumi:"subnetworkRangeName"`
 }
 
@@ -8796,10 +9429,18 @@ func (o InstanceTemplateNetworkInterfaceAliasIpRangeOutput) ToInstanceTemplateNe
 	return o
 }
 
+// The IP CIDR range represented by this alias IP range. This IP CIDR range
+// must belong to the specified subnetwork and cannot contain IP addresses reserved by
+// system or used by other network interfaces. At the time of writing only a
+// netmask (e.g. /24) may be supplied, with a CIDR format resulting in an API
+// error.
 func (o InstanceTemplateNetworkInterfaceAliasIpRangeOutput) IpCidrRange() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceTemplateNetworkInterfaceAliasIpRange) string { return v.IpCidrRange }).(pulumi.StringOutput)
 }
 
+// The subnetwork secondary range name specifying
+// the secondary range from which to allocate the IP CIDR range for this alias IP
+// range. If left unspecified, the primary range of the subnetwork will be used.
 func (o InstanceTemplateNetworkInterfaceAliasIpRangeOutput) SubnetworkRangeName() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateNetworkInterfaceAliasIpRange) *string { return v.SubnetworkRangeName }).(pulumi.StringPtrOutput)
 }
@@ -8825,9 +9466,22 @@ func (o InstanceTemplateNetworkInterfaceAliasIpRangeArrayOutput) Index(i pulumi.
 }
 
 type InstanceTemplateScheduling struct {
+	// Specifies whether the instance should be
+	// automatically restarted if it is terminated by Compute Engine (not
+	// terminated by a user). This defaults to true.
 	AutomaticRestart *bool `pulumi:"automaticRestart"`
+	// Specifies node affinities or anti-affinities
+	// to determine which sole-tenant nodes your instances and managed instance
+	// groups will use as host systems. Read more on sole-tenant node creation
+	// [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
+	// Structure documented below.
 	NodeAffinities []InstanceTemplateSchedulingNodeAffinity `pulumi:"nodeAffinities"`
+	// Defines the maintenance behavior for this
+	// instance.
 	OnHostMaintenance *string `pulumi:"onHostMaintenance"`
+	// Allows instance to be preempted. This defaults to
+	// false. Read more on this
+	// [here](https://cloud.google.com/compute/docs/instances/preemptible).
 	Preemptible *bool `pulumi:"preemptible"`
 }
 
@@ -8839,9 +9493,22 @@ type InstanceTemplateSchedulingInput interface {
 }
 
 type InstanceTemplateSchedulingArgs struct {
+	// Specifies whether the instance should be
+	// automatically restarted if it is terminated by Compute Engine (not
+	// terminated by a user). This defaults to true.
 	AutomaticRestart pulumi.BoolPtrInput `pulumi:"automaticRestart"`
+	// Specifies node affinities or anti-affinities
+	// to determine which sole-tenant nodes your instances and managed instance
+	// groups will use as host systems. Read more on sole-tenant node creation
+	// [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
+	// Structure documented below.
 	NodeAffinities InstanceTemplateSchedulingNodeAffinityArrayInput `pulumi:"nodeAffinities"`
+	// Defines the maintenance behavior for this
+	// instance.
 	OnHostMaintenance pulumi.StringPtrInput `pulumi:"onHostMaintenance"`
+	// Allows instance to be preempted. This defaults to
+	// false. Read more on this
+	// [here](https://cloud.google.com/compute/docs/instances/preemptible).
 	Preemptible pulumi.BoolPtrInput `pulumi:"preemptible"`
 }
 
@@ -8912,18 +9579,31 @@ func (o InstanceTemplateSchedulingOutput) ToInstanceTemplateSchedulingPtrOutputW
 		return &v
 	}).(InstanceTemplateSchedulingPtrOutput)
 }
+// Specifies whether the instance should be
+// automatically restarted if it is terminated by Compute Engine (not
+// terminated by a user). This defaults to true.
 func (o InstanceTemplateSchedulingOutput) AutomaticRestart() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateScheduling) *bool { return v.AutomaticRestart }).(pulumi.BoolPtrOutput)
 }
 
+// Specifies node affinities or anti-affinities
+// to determine which sole-tenant nodes your instances and managed instance
+// groups will use as host systems. Read more on sole-tenant node creation
+// [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
+// Structure documented below.
 func (o InstanceTemplateSchedulingOutput) NodeAffinities() InstanceTemplateSchedulingNodeAffinityArrayOutput {
 	return o.ApplyT(func (v InstanceTemplateScheduling) []InstanceTemplateSchedulingNodeAffinity { return v.NodeAffinities }).(InstanceTemplateSchedulingNodeAffinityArrayOutput)
 }
 
+// Defines the maintenance behavior for this
+// instance.
 func (o InstanceTemplateSchedulingOutput) OnHostMaintenance() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateScheduling) *string { return v.OnHostMaintenance }).(pulumi.StringPtrOutput)
 }
 
+// Allows instance to be preempted. This defaults to
+// false. Read more on this
+// [here](https://cloud.google.com/compute/docs/instances/preemptible).
 func (o InstanceTemplateSchedulingOutput) Preemptible() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateScheduling) *bool { return v.Preemptible }).(pulumi.BoolPtrOutput)
 }
@@ -8946,24 +9626,40 @@ func (o InstanceTemplateSchedulingPtrOutput) Elem() InstanceTemplateSchedulingOu
 	return o.ApplyT(func (v *InstanceTemplateScheduling) InstanceTemplateScheduling { return *v }).(InstanceTemplateSchedulingOutput)
 }
 
+// Specifies whether the instance should be
+// automatically restarted if it is terminated by Compute Engine (not
+// terminated by a user). This defaults to true.
 func (o InstanceTemplateSchedulingPtrOutput) AutomaticRestart() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateScheduling) *bool { return v.AutomaticRestart }).(pulumi.BoolPtrOutput)
 }
 
+// Specifies node affinities or anti-affinities
+// to determine which sole-tenant nodes your instances and managed instance
+// groups will use as host systems. Read more on sole-tenant node creation
+// [here](https://cloud.google.com/compute/docs/nodes/create-nodes).
+// Structure documented below.
 func (o InstanceTemplateSchedulingPtrOutput) NodeAffinities() InstanceTemplateSchedulingNodeAffinityArrayOutput {
 	return o.ApplyT(func (v InstanceTemplateScheduling) []InstanceTemplateSchedulingNodeAffinity { return v.NodeAffinities }).(InstanceTemplateSchedulingNodeAffinityArrayOutput)
 }
 
+// Defines the maintenance behavior for this
+// instance.
 func (o InstanceTemplateSchedulingPtrOutput) OnHostMaintenance() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateScheduling) *string { return v.OnHostMaintenance }).(pulumi.StringPtrOutput)
 }
 
+// Allows instance to be preempted. This defaults to
+// false. Read more on this
+// [here](https://cloud.google.com/compute/docs/instances/preemptible).
 func (o InstanceTemplateSchedulingPtrOutput) Preemptible() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateScheduling) *bool { return v.Preemptible }).(pulumi.BoolPtrOutput)
 }
 
 type InstanceTemplateSchedulingNodeAffinity struct {
+	// The key for the node affinity label.
 	Key string `pulumi:"key"`
+	// The operator. Can be `IN` for node-affinities
+	// or `NOT` for anti-affinities.
 	Operator string `pulumi:"operator"`
 	Values []string `pulumi:"values"`
 }
@@ -8976,7 +9672,10 @@ type InstanceTemplateSchedulingNodeAffinityInput interface {
 }
 
 type InstanceTemplateSchedulingNodeAffinityArgs struct {
+	// The key for the node affinity label.
 	Key pulumi.StringInput `pulumi:"key"`
+	// The operator. Can be `IN` for node-affinities
+	// or `NOT` for anti-affinities.
 	Operator pulumi.StringInput `pulumi:"operator"`
 	Values pulumi.StringArrayInput `pulumi:"values"`
 }
@@ -9028,10 +9727,13 @@ func (o InstanceTemplateSchedulingNodeAffinityOutput) ToInstanceTemplateScheduli
 	return o
 }
 
+// The key for the node affinity label.
 func (o InstanceTemplateSchedulingNodeAffinityOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceTemplateSchedulingNodeAffinity) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// The operator. Can be `IN` for node-affinities
+// or `NOT` for anti-affinities.
 func (o InstanceTemplateSchedulingNodeAffinityOutput) Operator() pulumi.StringOutput {
 	return o.ApplyT(func (v InstanceTemplateSchedulingNodeAffinity) string { return v.Operator }).(pulumi.StringOutput)
 }
@@ -9061,7 +9763,12 @@ func (o InstanceTemplateSchedulingNodeAffinityArrayOutput) Index(i pulumi.IntInp
 }
 
 type InstanceTemplateServiceAccount struct {
+	// The service account e-mail address. If not given, the
+	// default Google Compute Engine service account is used.
 	Email *string `pulumi:"email"`
+	// A list of service scopes. Both OAuth2 URLs and gcloud
+	// short names are supported. To allow full access to all Cloud APIs, use the
+	// `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
 	Scopes []string `pulumi:"scopes"`
 }
 
@@ -9073,7 +9780,12 @@ type InstanceTemplateServiceAccountInput interface {
 }
 
 type InstanceTemplateServiceAccountArgs struct {
+	// The service account e-mail address. If not given, the
+	// default Google Compute Engine service account is used.
 	Email pulumi.StringPtrInput `pulumi:"email"`
+	// A list of service scopes. Both OAuth2 URLs and gcloud
+	// short names are supported. To allow full access to all Cloud APIs, use the
+	// `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
 	Scopes pulumi.StringArrayInput `pulumi:"scopes"`
 }
 
@@ -9144,10 +9856,15 @@ func (o InstanceTemplateServiceAccountOutput) ToInstanceTemplateServiceAccountPt
 		return &v
 	}).(InstanceTemplateServiceAccountPtrOutput)
 }
+// The service account e-mail address. If not given, the
+// default Google Compute Engine service account is used.
 func (o InstanceTemplateServiceAccountOutput) Email() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateServiceAccount) *string { return v.Email }).(pulumi.StringPtrOutput)
 }
 
+// A list of service scopes. Both OAuth2 URLs and gcloud
+// short names are supported. To allow full access to all Cloud APIs, use the
+// `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
 func (o InstanceTemplateServiceAccountOutput) Scopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v InstanceTemplateServiceAccount) []string { return v.Scopes }).(pulumi.StringArrayOutput)
 }
@@ -9170,17 +9887,25 @@ func (o InstanceTemplateServiceAccountPtrOutput) Elem() InstanceTemplateServiceA
 	return o.ApplyT(func (v *InstanceTemplateServiceAccount) InstanceTemplateServiceAccount { return *v }).(InstanceTemplateServiceAccountOutput)
 }
 
+// The service account e-mail address. If not given, the
+// default Google Compute Engine service account is used.
 func (o InstanceTemplateServiceAccountPtrOutput) Email() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateServiceAccount) *string { return v.Email }).(pulumi.StringPtrOutput)
 }
 
+// A list of service scopes. Both OAuth2 URLs and gcloud
+// short names are supported. To allow full access to all Cloud APIs, use the
+// `cloud-platform` scope. See a complete list of scopes [here](https://cloud.google.com/sdk/gcloud/reference/alpha/compute/instances/set-scopes#--scopes).
 func (o InstanceTemplateServiceAccountPtrOutput) Scopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v InstanceTemplateServiceAccount) []string { return v.Scopes }).(pulumi.StringArrayOutput)
 }
 
 type InstanceTemplateShieldedInstanceConfig struct {
+	// -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
 	EnableIntegrityMonitoring *bool `pulumi:"enableIntegrityMonitoring"`
+	// -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
 	EnableSecureBoot *bool `pulumi:"enableSecureBoot"`
+	// -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
 	EnableVtpm *bool `pulumi:"enableVtpm"`
 }
 
@@ -9192,8 +9917,11 @@ type InstanceTemplateShieldedInstanceConfigInput interface {
 }
 
 type InstanceTemplateShieldedInstanceConfigArgs struct {
+	// -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
 	EnableIntegrityMonitoring pulumi.BoolPtrInput `pulumi:"enableIntegrityMonitoring"`
+	// -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
 	EnableSecureBoot pulumi.BoolPtrInput `pulumi:"enableSecureBoot"`
+	// -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
 	EnableVtpm pulumi.BoolPtrInput `pulumi:"enableVtpm"`
 }
 
@@ -9264,14 +9992,17 @@ func (o InstanceTemplateShieldedInstanceConfigOutput) ToInstanceTemplateShielded
 		return &v
 	}).(InstanceTemplateShieldedInstanceConfigPtrOutput)
 }
+// -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
 func (o InstanceTemplateShieldedInstanceConfigOutput) EnableIntegrityMonitoring() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateShieldedInstanceConfig) *bool { return v.EnableIntegrityMonitoring }).(pulumi.BoolPtrOutput)
 }
 
+// -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
 func (o InstanceTemplateShieldedInstanceConfigOutput) EnableSecureBoot() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateShieldedInstanceConfig) *bool { return v.EnableSecureBoot }).(pulumi.BoolPtrOutput)
 }
 
+// -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
 func (o InstanceTemplateShieldedInstanceConfigOutput) EnableVtpm() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateShieldedInstanceConfig) *bool { return v.EnableVtpm }).(pulumi.BoolPtrOutput)
 }
@@ -9294,14 +10025,17 @@ func (o InstanceTemplateShieldedInstanceConfigPtrOutput) Elem() InstanceTemplate
 	return o.ApplyT(func (v *InstanceTemplateShieldedInstanceConfig) InstanceTemplateShieldedInstanceConfig { return *v }).(InstanceTemplateShieldedInstanceConfigOutput)
 }
 
+// -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
 func (o InstanceTemplateShieldedInstanceConfigPtrOutput) EnableIntegrityMonitoring() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateShieldedInstanceConfig) *bool { return v.EnableIntegrityMonitoring }).(pulumi.BoolPtrOutput)
 }
 
+// -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
 func (o InstanceTemplateShieldedInstanceConfigPtrOutput) EnableSecureBoot() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateShieldedInstanceConfig) *bool { return v.EnableSecureBoot }).(pulumi.BoolPtrOutput)
 }
 
+// -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
 func (o InstanceTemplateShieldedInstanceConfigPtrOutput) EnableVtpm() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v InstanceTemplateShieldedInstanceConfig) *bool { return v.EnableVtpm }).(pulumi.BoolPtrOutput)
 }
@@ -13553,7 +14287,10 @@ func (o RegionHealthCheckTcpHealthCheckPtrOutput) Response() pulumi.StringPtrOut
 }
 
 type RegionInstanceGroupManagerAutoHealingPolicies struct {
+	// The health check resource that signals autohealing.
 	HealthCheck string `pulumi:"healthCheck"`
+	// The number of seconds that the managed instance group waits before
+	// it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
 	InitialDelaySec int `pulumi:"initialDelaySec"`
 }
 
@@ -13565,7 +14302,10 @@ type RegionInstanceGroupManagerAutoHealingPoliciesInput interface {
 }
 
 type RegionInstanceGroupManagerAutoHealingPoliciesArgs struct {
+	// The health check resource that signals autohealing.
 	HealthCheck pulumi.StringInput `pulumi:"healthCheck"`
+	// The number of seconds that the managed instance group waits before
+	// it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
 	InitialDelaySec pulumi.IntInput `pulumi:"initialDelaySec"`
 }
 
@@ -13636,10 +14376,13 @@ func (o RegionInstanceGroupManagerAutoHealingPoliciesOutput) ToRegionInstanceGro
 		return &v
 	}).(RegionInstanceGroupManagerAutoHealingPoliciesPtrOutput)
 }
+// The health check resource that signals autohealing.
 func (o RegionInstanceGroupManagerAutoHealingPoliciesOutput) HealthCheck() pulumi.StringOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerAutoHealingPolicies) string { return v.HealthCheck }).(pulumi.StringOutput)
 }
 
+// The number of seconds that the managed instance group waits before
+// it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
 func (o RegionInstanceGroupManagerAutoHealingPoliciesOutput) InitialDelaySec() pulumi.IntOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerAutoHealingPolicies) int { return v.InitialDelaySec }).(pulumi.IntOutput)
 }
@@ -13662,20 +14405,22 @@ func (o RegionInstanceGroupManagerAutoHealingPoliciesPtrOutput) Elem() RegionIns
 	return o.ApplyT(func (v *RegionInstanceGroupManagerAutoHealingPolicies) RegionInstanceGroupManagerAutoHealingPolicies { return *v }).(RegionInstanceGroupManagerAutoHealingPoliciesOutput)
 }
 
+// The health check resource that signals autohealing.
 func (o RegionInstanceGroupManagerAutoHealingPoliciesPtrOutput) HealthCheck() pulumi.StringOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerAutoHealingPolicies) string { return v.HealthCheck }).(pulumi.StringOutput)
 }
 
+// The number of seconds that the managed instance group waits before
+// it applies autohealing policies to new instances or recently recreated instances. Between 0 and 3600.
 func (o RegionInstanceGroupManagerAutoHealingPoliciesPtrOutput) InitialDelaySec() pulumi.IntOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerAutoHealingPolicies) int { return v.InitialDelaySec }).(pulumi.IntOutput)
 }
 
 type RegionInstanceGroupManagerNamedPort struct {
-	// The name of the instance group manager. Must be 1-63
-	// characters long and comply with
-	// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-	// include lowercase letters, numbers, and hyphens.
+	// - Version name.
 	Name string `pulumi:"name"`
+	// The port number.
+	// - - -
 	Port int `pulumi:"port"`
 }
 
@@ -13687,11 +14432,10 @@ type RegionInstanceGroupManagerNamedPortInput interface {
 }
 
 type RegionInstanceGroupManagerNamedPortArgs struct {
-	// The name of the instance group manager. Must be 1-63
-	// characters long and comply with
-	// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-	// include lowercase letters, numbers, and hyphens.
+	// - Version name.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The port number.
+	// - - -
 	Port pulumi.IntInput `pulumi:"port"`
 }
 
@@ -13742,14 +14486,13 @@ func (o RegionInstanceGroupManagerNamedPortOutput) ToRegionInstanceGroupManagerN
 	return o
 }
 
-// The name of the instance group manager. Must be 1-63
-// characters long and comply with
-// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-// include lowercase letters, numbers, and hyphens.
+// - Version name.
 func (o RegionInstanceGroupManagerNamedPortOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerNamedPort) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The port number.
+// - - -
 func (o RegionInstanceGroupManagerNamedPortOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerNamedPort) int { return v.Port }).(pulumi.IntOutput)
 }
@@ -13775,13 +14518,22 @@ func (o RegionInstanceGroupManagerNamedPortArrayOutput) Index(i pulumi.IntInput)
 }
 
 type RegionInstanceGroupManagerUpdatePolicy struct {
+	// - The instance redistribution policy for regional managed instance groups. Valid values are: `"PROACTIVE"`, `"NONE"`. If `PROACTIVE` (default), the group attempts to maintain an even distribution of VM instances across zones in the region. If `NONE`, proactive redistribution is disabled.
 	InstanceRedistributionType *string `pulumi:"instanceRedistributionType"`
+	// , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `maxSurgePercent`. It has to be either 0 or at least equal to the number of zones.  If fixed values are used, at least one of `maxUnavailableFixed` or `maxSurgeFixed` must be greater than 0.
 	MaxSurgeFixed *int `pulumi:"maxSurgeFixed"`
+	// , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `maxSurgeFixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
 	MaxSurgePercent *int `pulumi:"maxSurgePercent"`
+	// , The maximum number of instances that can be unavailable during the update process. Conflicts with `maxUnavailablePercent`. It has to be either 0 or at least equal to the number of zones. If fixed values are used, at least one of `maxUnavailableFixed` or `maxSurgeFixed` must be greater than 0.
 	MaxUnavailableFixed *int `pulumi:"maxUnavailableFixed"`
+	// , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `maxUnavailableFixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
 	MaxUnavailablePercent *int `pulumi:"maxUnavailablePercent"`
+	// , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
+	// - - -
 	MinReadySec *int `pulumi:"minReadySec"`
+	// - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
 	MinimalAction string `pulumi:"minimalAction"`
+	// - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
 	Type string `pulumi:"type"`
 }
 
@@ -13793,13 +14545,22 @@ type RegionInstanceGroupManagerUpdatePolicyInput interface {
 }
 
 type RegionInstanceGroupManagerUpdatePolicyArgs struct {
+	// - The instance redistribution policy for regional managed instance groups. Valid values are: `"PROACTIVE"`, `"NONE"`. If `PROACTIVE` (default), the group attempts to maintain an even distribution of VM instances across zones in the region. If `NONE`, proactive redistribution is disabled.
 	InstanceRedistributionType pulumi.StringPtrInput `pulumi:"instanceRedistributionType"`
+	// , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `maxSurgePercent`. It has to be either 0 or at least equal to the number of zones.  If fixed values are used, at least one of `maxUnavailableFixed` or `maxSurgeFixed` must be greater than 0.
 	MaxSurgeFixed pulumi.IntPtrInput `pulumi:"maxSurgeFixed"`
+	// , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `maxSurgeFixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
 	MaxSurgePercent pulumi.IntPtrInput `pulumi:"maxSurgePercent"`
+	// , The maximum number of instances that can be unavailable during the update process. Conflicts with `maxUnavailablePercent`. It has to be either 0 or at least equal to the number of zones. If fixed values are used, at least one of `maxUnavailableFixed` or `maxSurgeFixed` must be greater than 0.
 	MaxUnavailableFixed pulumi.IntPtrInput `pulumi:"maxUnavailableFixed"`
+	// , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `maxUnavailableFixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
 	MaxUnavailablePercent pulumi.IntPtrInput `pulumi:"maxUnavailablePercent"`
+	// , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
+	// - - -
 	MinReadySec pulumi.IntPtrInput `pulumi:"minReadySec"`
+	// - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
 	MinimalAction pulumi.StringInput `pulumi:"minimalAction"`
+	// - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -13870,34 +14631,43 @@ func (o RegionInstanceGroupManagerUpdatePolicyOutput) ToRegionInstanceGroupManag
 		return &v
 	}).(RegionInstanceGroupManagerUpdatePolicyPtrOutput)
 }
+// - The instance redistribution policy for regional managed instance groups. Valid values are: `"PROACTIVE"`, `"NONE"`. If `PROACTIVE` (default), the group attempts to maintain an even distribution of VM instances across zones in the region. If `NONE`, proactive redistribution is disabled.
 func (o RegionInstanceGroupManagerUpdatePolicyOutput) InstanceRedistributionType() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) *string { return v.InstanceRedistributionType }).(pulumi.StringPtrOutput)
 }
 
+// , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `maxSurgePercent`. It has to be either 0 or at least equal to the number of zones.  If fixed values are used, at least one of `maxUnavailableFixed` or `maxSurgeFixed` must be greater than 0.
 func (o RegionInstanceGroupManagerUpdatePolicyOutput) MaxSurgeFixed() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) *int { return v.MaxSurgeFixed }).(pulumi.IntPtrOutput)
 }
 
+// , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `maxSurgeFixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
 func (o RegionInstanceGroupManagerUpdatePolicyOutput) MaxSurgePercent() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) *int { return v.MaxSurgePercent }).(pulumi.IntPtrOutput)
 }
 
+// , The maximum number of instances that can be unavailable during the update process. Conflicts with `maxUnavailablePercent`. It has to be either 0 or at least equal to the number of zones. If fixed values are used, at least one of `maxUnavailableFixed` or `maxSurgeFixed` must be greater than 0.
 func (o RegionInstanceGroupManagerUpdatePolicyOutput) MaxUnavailableFixed() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) *int { return v.MaxUnavailableFixed }).(pulumi.IntPtrOutput)
 }
 
+// , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `maxUnavailableFixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
 func (o RegionInstanceGroupManagerUpdatePolicyOutput) MaxUnavailablePercent() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) *int { return v.MaxUnavailablePercent }).(pulumi.IntPtrOutput)
 }
 
+// , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
+// - - -
 func (o RegionInstanceGroupManagerUpdatePolicyOutput) MinReadySec() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) *int { return v.MinReadySec }).(pulumi.IntPtrOutput)
 }
 
+// - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
 func (o RegionInstanceGroupManagerUpdatePolicyOutput) MinimalAction() pulumi.StringOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) string { return v.MinimalAction }).(pulumi.StringOutput)
 }
 
+// - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
 func (o RegionInstanceGroupManagerUpdatePolicyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -13920,48 +14690,53 @@ func (o RegionInstanceGroupManagerUpdatePolicyPtrOutput) Elem() RegionInstanceGr
 	return o.ApplyT(func (v *RegionInstanceGroupManagerUpdatePolicy) RegionInstanceGroupManagerUpdatePolicy { return *v }).(RegionInstanceGroupManagerUpdatePolicyOutput)
 }
 
+// - The instance redistribution policy for regional managed instance groups. Valid values are: `"PROACTIVE"`, `"NONE"`. If `PROACTIVE` (default), the group attempts to maintain an even distribution of VM instances across zones in the region. If `NONE`, proactive redistribution is disabled.
 func (o RegionInstanceGroupManagerUpdatePolicyPtrOutput) InstanceRedistributionType() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) *string { return v.InstanceRedistributionType }).(pulumi.StringPtrOutput)
 }
 
+// , The maximum number of instances that can be created above the specified targetSize during the update process. Conflicts with `maxSurgePercent`. It has to be either 0 or at least equal to the number of zones.  If fixed values are used, at least one of `maxUnavailableFixed` or `maxSurgeFixed` must be greater than 0.
 func (o RegionInstanceGroupManagerUpdatePolicyPtrOutput) MaxSurgeFixed() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) *int { return v.MaxSurgeFixed }).(pulumi.IntPtrOutput)
 }
 
+// , The maximum number of instances(calculated as percentage) that can be created above the specified targetSize during the update process. Conflicts with `maxSurgeFixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
 func (o RegionInstanceGroupManagerUpdatePolicyPtrOutput) MaxSurgePercent() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) *int { return v.MaxSurgePercent }).(pulumi.IntPtrOutput)
 }
 
+// , The maximum number of instances that can be unavailable during the update process. Conflicts with `maxUnavailablePercent`. It has to be either 0 or at least equal to the number of zones. If fixed values are used, at least one of `maxUnavailableFixed` or `maxSurgeFixed` must be greater than 0.
 func (o RegionInstanceGroupManagerUpdatePolicyPtrOutput) MaxUnavailableFixed() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) *int { return v.MaxUnavailableFixed }).(pulumi.IntPtrOutput)
 }
 
+// , The maximum number of instances(calculated as percentage) that can be unavailable during the update process. Conflicts with `maxUnavailableFixed`. Percent value is only allowed for regional managed instance groups with size at least 10.
 func (o RegionInstanceGroupManagerUpdatePolicyPtrOutput) MaxUnavailablePercent() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) *int { return v.MaxUnavailablePercent }).(pulumi.IntPtrOutput)
 }
 
+// , Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600]
+// - - -
 func (o RegionInstanceGroupManagerUpdatePolicyPtrOutput) MinReadySec() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) *int { return v.MinReadySec }).(pulumi.IntPtrOutput)
 }
 
+// - Minimal action to be taken on an instance. You can specify either `RESTART` to restart existing instances or `REPLACE` to delete and create new instances from the target template. If you specify a `RESTART`, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
 func (o RegionInstanceGroupManagerUpdatePolicyPtrOutput) MinimalAction() pulumi.StringOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) string { return v.MinimalAction }).(pulumi.StringOutput)
 }
 
+// - The type of update process. You can specify either `PROACTIVE` so that the instance group manager proactively executes actions in order to bring instances to their target versions or `OPPORTUNISTIC` so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
 func (o RegionInstanceGroupManagerUpdatePolicyPtrOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerUpdatePolicy) string { return v.Type }).(pulumi.StringOutput)
 }
 
 type RegionInstanceGroupManagerVersion struct {
+	// - The full URL to an instance template from which all new instances of this version will be created.
 	InstanceTemplate string `pulumi:"instanceTemplate"`
-	// The name of the instance group manager. Must be 1-63
-	// characters long and comply with
-	// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-	// include lowercase letters, numbers, and hyphens.
+	// - Version name.
 	Name *string `pulumi:"name"`
-	// The target number of running instances for this managed
-	// instance group. This value should always be explicitly set unless this resource is attached to
-	// an autoscaler, in which case it should never be set. Defaults to `0`.
+	// - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
 	TargetSize *RegionInstanceGroupManagerVersionTargetSize `pulumi:"targetSize"`
 }
 
@@ -13973,15 +14748,11 @@ type RegionInstanceGroupManagerVersionInput interface {
 }
 
 type RegionInstanceGroupManagerVersionArgs struct {
+	// - The full URL to an instance template from which all new instances of this version will be created.
 	InstanceTemplate pulumi.StringInput `pulumi:"instanceTemplate"`
-	// The name of the instance group manager. Must be 1-63
-	// characters long and comply with
-	// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-	// include lowercase letters, numbers, and hyphens.
+	// - Version name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The target number of running instances for this managed
-	// instance group. This value should always be explicitly set unless this resource is attached to
-	// an autoscaler, in which case it should never be set. Defaults to `0`.
+	// - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
 	TargetSize RegionInstanceGroupManagerVersionTargetSizePtrInput `pulumi:"targetSize"`
 }
 
@@ -14032,21 +14803,17 @@ func (o RegionInstanceGroupManagerVersionOutput) ToRegionInstanceGroupManagerVer
 	return o
 }
 
+// - The full URL to an instance template from which all new instances of this version will be created.
 func (o RegionInstanceGroupManagerVersionOutput) InstanceTemplate() pulumi.StringOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerVersion) string { return v.InstanceTemplate }).(pulumi.StringOutput)
 }
 
-// The name of the instance group manager. Must be 1-63
-// characters long and comply with
-// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
-// include lowercase letters, numbers, and hyphens.
+// - Version name.
 func (o RegionInstanceGroupManagerVersionOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerVersion) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The target number of running instances for this managed
-// instance group. This value should always be explicitly set unless this resource is attached to
-// an autoscaler, in which case it should never be set. Defaults to `0`.
+// - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
 func (o RegionInstanceGroupManagerVersionOutput) TargetSize() RegionInstanceGroupManagerVersionTargetSizePtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerVersion) *RegionInstanceGroupManagerVersionTargetSize { return v.TargetSize }).(RegionInstanceGroupManagerVersionTargetSizePtrOutput)
 }
@@ -14072,7 +14839,11 @@ func (o RegionInstanceGroupManagerVersionArrayOutput) Index(i pulumi.IntInput) R
 }
 
 type RegionInstanceGroupManagerVersionTargetSize struct {
+	// , The number of instances which are managed for this version. Conflicts with `percent`.
 	Fixed *int `pulumi:"fixed"`
+	// , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
+	// Note that when using `percent`, rounding will be in favor of explicitly set `targetSize` values; a managed instance group with 2 instances and 2 `version`s,
+	// one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
 	Percent *int `pulumi:"percent"`
 }
 
@@ -14084,7 +14855,11 @@ type RegionInstanceGroupManagerVersionTargetSizeInput interface {
 }
 
 type RegionInstanceGroupManagerVersionTargetSizeArgs struct {
+	// , The number of instances which are managed for this version. Conflicts with `percent`.
 	Fixed pulumi.IntPtrInput `pulumi:"fixed"`
+	// , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
+	// Note that when using `percent`, rounding will be in favor of explicitly set `targetSize` values; a managed instance group with 2 instances and 2 `version`s,
+	// one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
 	Percent pulumi.IntPtrInput `pulumi:"percent"`
 }
 
@@ -14155,10 +14930,14 @@ func (o RegionInstanceGroupManagerVersionTargetSizeOutput) ToRegionInstanceGroup
 		return &v
 	}).(RegionInstanceGroupManagerVersionTargetSizePtrOutput)
 }
+// , The number of instances which are managed for this version. Conflicts with `percent`.
 func (o RegionInstanceGroupManagerVersionTargetSizeOutput) Fixed() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerVersionTargetSize) *int { return v.Fixed }).(pulumi.IntPtrOutput)
 }
 
+// , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
+// Note that when using `percent`, rounding will be in favor of explicitly set `targetSize` values; a managed instance group with 2 instances and 2 `version`s,
+// one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
 func (o RegionInstanceGroupManagerVersionTargetSizeOutput) Percent() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerVersionTargetSize) *int { return v.Percent }).(pulumi.IntPtrOutput)
 }
@@ -14181,10 +14960,14 @@ func (o RegionInstanceGroupManagerVersionTargetSizePtrOutput) Elem() RegionInsta
 	return o.ApplyT(func (v *RegionInstanceGroupManagerVersionTargetSize) RegionInstanceGroupManagerVersionTargetSize { return *v }).(RegionInstanceGroupManagerVersionTargetSizeOutput)
 }
 
+// , The number of instances which are managed for this version. Conflicts with `percent`.
 func (o RegionInstanceGroupManagerVersionTargetSizePtrOutput) Fixed() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerVersionTargetSize) *int { return v.Fixed }).(pulumi.IntPtrOutput)
 }
 
+// , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
+// Note that when using `percent`, rounding will be in favor of explicitly set `targetSize` values; a managed instance group with 2 instances and 2 `version`s,
+// one of which has a `target_size.percent` of `60` will create 2 instances of that `version`.
 func (o RegionInstanceGroupManagerVersionTargetSizePtrOutput) Percent() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v RegionInstanceGroupManagerVersionTargetSize) *int { return v.Percent }).(pulumi.IntPtrOutput)
 }
@@ -21421,11 +22204,20 @@ func (o RouterPeerAdvertisedIpRangeArrayOutput) Index(i pulumi.IntInput) RouterP
 }
 
 type SecurityPolicyRule struct {
+	// Action to take when `match` matches the request. Valid values:
+	// * "allow" : allow access to target
+	// * "deny(status)" : deny access to target, returns the  HTTP response code specified (valid values are 403, 404 and 502)
 	Action string `pulumi:"action"`
-	// An optional description of this security policy. Max size is 2048.
+	// An optional description of this rule. Max size is 64.
 	Description *string `pulumi:"description"`
+	// A match condition that incoming traffic is evaluated against.
+	// If it evaluates to true, the corresponding `action` is enforced. Structure is documented below.
 	Match SecurityPolicyRuleMatch `pulumi:"match"`
+	// When set to true, the `action` specified above is not enforced.
+	// Stackdriver logs for requests that trigger a preview action are annotated as such.
 	Preview *bool `pulumi:"preview"`
+	// An unique positive integer indicating the priority of evaluation for a rule.
+	// Rules are evaluated from highest priority (lowest numerically) to lowest priority (highest numerically) in order.
 	Priority int `pulumi:"priority"`
 }
 
@@ -21437,11 +22229,20 @@ type SecurityPolicyRuleInput interface {
 }
 
 type SecurityPolicyRuleArgs struct {
+	// Action to take when `match` matches the request. Valid values:
+	// * "allow" : allow access to target
+	// * "deny(status)" : deny access to target, returns the  HTTP response code specified (valid values are 403, 404 and 502)
 	Action pulumi.StringInput `pulumi:"action"`
-	// An optional description of this security policy. Max size is 2048.
+	// An optional description of this rule. Max size is 64.
 	Description pulumi.StringPtrInput `pulumi:"description"`
+	// A match condition that incoming traffic is evaluated against.
+	// If it evaluates to true, the corresponding `action` is enforced. Structure is documented below.
 	Match SecurityPolicyRuleMatchInput `pulumi:"match"`
+	// When set to true, the `action` specified above is not enforced.
+	// Stackdriver logs for requests that trigger a preview action are annotated as such.
 	Preview pulumi.BoolPtrInput `pulumi:"preview"`
+	// An unique positive integer indicating the priority of evaluation for a rule.
+	// Rules are evaluated from highest priority (lowest numerically) to lowest priority (highest numerically) in order.
 	Priority pulumi.IntInput `pulumi:"priority"`
 }
 
@@ -21492,23 +22293,32 @@ func (o SecurityPolicyRuleOutput) ToSecurityPolicyRuleOutputWithContext(ctx cont
 	return o
 }
 
+// Action to take when `match` matches the request. Valid values:
+// * "allow" : allow access to target
+// * "deny(status)" : deny access to target, returns the  HTTP response code specified (valid values are 403, 404 and 502)
 func (o SecurityPolicyRuleOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func (v SecurityPolicyRule) string { return v.Action }).(pulumi.StringOutput)
 }
 
-// An optional description of this security policy. Max size is 2048.
+// An optional description of this rule. Max size is 64.
 func (o SecurityPolicyRuleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v SecurityPolicyRule) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// A match condition that incoming traffic is evaluated against.
+// If it evaluates to true, the corresponding `action` is enforced. Structure is documented below.
 func (o SecurityPolicyRuleOutput) Match() SecurityPolicyRuleMatchOutput {
 	return o.ApplyT(func (v SecurityPolicyRule) SecurityPolicyRuleMatch { return v.Match }).(SecurityPolicyRuleMatchOutput)
 }
 
+// When set to true, the `action` specified above is not enforced.
+// Stackdriver logs for requests that trigger a preview action are annotated as such.
 func (o SecurityPolicyRuleOutput) Preview() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v SecurityPolicyRule) *bool { return v.Preview }).(pulumi.BoolPtrOutput)
 }
 
+// An unique positive integer indicating the priority of evaluation for a rule.
+// Rules are evaluated from highest priority (lowest numerically) to lowest priority (highest numerically) in order.
 func (o SecurityPolicyRuleOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func (v SecurityPolicyRule) int { return v.Priority }).(pulumi.IntOutput)
 }
@@ -21534,8 +22344,17 @@ func (o SecurityPolicyRuleArrayOutput) Index(i pulumi.IntInput) SecurityPolicyRu
 }
 
 type SecurityPolicyRuleMatch struct {
+	// The configuration options available when specifying `versionedExpr`.
+	// This field must be specified if `versionedExpr` is specified and cannot be specified if `versionedExpr` is not specified.
+	// Structure is documented below.
 	Config *SecurityPolicyRuleMatchConfig `pulumi:"config"`
+	// User defined CEVAL expression. A CEVAL expression is used to specify match criteria
+	// such as origin.ip, source.region_code and contents in the request header.
+	// Structure is documented below.
 	Expr *SecurityPolicyRuleMatchExpr `pulumi:"expr"`
+	// Predefined rule expression. If this field is specified, `config` must also be specified.
+	// Available options:
+	// * SRC_IPS_V1: Must specify the corresponding `srcIpRanges` field in `config`.
 	VersionedExpr *string `pulumi:"versionedExpr"`
 }
 
@@ -21547,8 +22366,17 @@ type SecurityPolicyRuleMatchInput interface {
 }
 
 type SecurityPolicyRuleMatchArgs struct {
+	// The configuration options available when specifying `versionedExpr`.
+	// This field must be specified if `versionedExpr` is specified and cannot be specified if `versionedExpr` is not specified.
+	// Structure is documented below.
 	Config SecurityPolicyRuleMatchConfigPtrInput `pulumi:"config"`
+	// User defined CEVAL expression. A CEVAL expression is used to specify match criteria
+	// such as origin.ip, source.region_code and contents in the request header.
+	// Structure is documented below.
 	Expr SecurityPolicyRuleMatchExprPtrInput `pulumi:"expr"`
+	// Predefined rule expression. If this field is specified, `config` must also be specified.
+	// Available options:
+	// * SRC_IPS_V1: Must specify the corresponding `srcIpRanges` field in `config`.
 	VersionedExpr pulumi.StringPtrInput `pulumi:"versionedExpr"`
 }
 
@@ -21578,19 +22406,31 @@ func (o SecurityPolicyRuleMatchOutput) ToSecurityPolicyRuleMatchOutputWithContex
 	return o
 }
 
+// The configuration options available when specifying `versionedExpr`.
+// This field must be specified if `versionedExpr` is specified and cannot be specified if `versionedExpr` is not specified.
+// Structure is documented below.
 func (o SecurityPolicyRuleMatchOutput) Config() SecurityPolicyRuleMatchConfigPtrOutput {
 	return o.ApplyT(func (v SecurityPolicyRuleMatch) *SecurityPolicyRuleMatchConfig { return v.Config }).(SecurityPolicyRuleMatchConfigPtrOutput)
 }
 
+// User defined CEVAL expression. A CEVAL expression is used to specify match criteria
+// such as origin.ip, source.region_code and contents in the request header.
+// Structure is documented below.
 func (o SecurityPolicyRuleMatchOutput) Expr() SecurityPolicyRuleMatchExprPtrOutput {
 	return o.ApplyT(func (v SecurityPolicyRuleMatch) *SecurityPolicyRuleMatchExpr { return v.Expr }).(SecurityPolicyRuleMatchExprPtrOutput)
 }
 
+// Predefined rule expression. If this field is specified, `config` must also be specified.
+// Available options:
+// * SRC_IPS_V1: Must specify the corresponding `srcIpRanges` field in `config`.
 func (o SecurityPolicyRuleMatchOutput) VersionedExpr() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v SecurityPolicyRuleMatch) *string { return v.VersionedExpr }).(pulumi.StringPtrOutput)
 }
 
 type SecurityPolicyRuleMatchConfig struct {
+	// Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
+	// to match against inbound traffic. There is a limit of 5 IP ranges per rule. A value of '\*' matches all IPs
+	// (can be used to override the default behavior).
 	SrcIpRanges []string `pulumi:"srcIpRanges"`
 }
 
@@ -21602,6 +22442,9 @@ type SecurityPolicyRuleMatchConfigInput interface {
 }
 
 type SecurityPolicyRuleMatchConfigArgs struct {
+	// Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
+	// to match against inbound traffic. There is a limit of 5 IP ranges per rule. A value of '\*' matches all IPs
+	// (can be used to override the default behavior).
 	SrcIpRanges pulumi.StringArrayInput `pulumi:"srcIpRanges"`
 }
 
@@ -21672,6 +22515,9 @@ func (o SecurityPolicyRuleMatchConfigOutput) ToSecurityPolicyRuleMatchConfigPtrO
 		return &v
 	}).(SecurityPolicyRuleMatchConfigPtrOutput)
 }
+// Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
+// to match against inbound traffic. There is a limit of 5 IP ranges per rule. A value of '\*' matches all IPs
+// (can be used to override the default behavior).
 func (o SecurityPolicyRuleMatchConfigOutput) SrcIpRanges() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v SecurityPolicyRuleMatchConfig) []string { return v.SrcIpRanges }).(pulumi.StringArrayOutput)
 }
@@ -21694,11 +22540,16 @@ func (o SecurityPolicyRuleMatchConfigPtrOutput) Elem() SecurityPolicyRuleMatchCo
 	return o.ApplyT(func (v *SecurityPolicyRuleMatchConfig) SecurityPolicyRuleMatchConfig { return *v }).(SecurityPolicyRuleMatchConfigOutput)
 }
 
+// Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
+// to match against inbound traffic. There is a limit of 5 IP ranges per rule. A value of '\*' matches all IPs
+// (can be used to override the default behavior).
 func (o SecurityPolicyRuleMatchConfigPtrOutput) SrcIpRanges() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v SecurityPolicyRuleMatchConfig) []string { return v.SrcIpRanges }).(pulumi.StringArrayOutput)
 }
 
 type SecurityPolicyRuleMatchExpr struct {
+	// Textual representation of an expression in Common Expression Language syntax.
+	// The application context of the containing message determines which well-known feature set of CEL is supported.
 	Expression string `pulumi:"expression"`
 }
 
@@ -21710,6 +22561,8 @@ type SecurityPolicyRuleMatchExprInput interface {
 }
 
 type SecurityPolicyRuleMatchExprArgs struct {
+	// Textual representation of an expression in Common Expression Language syntax.
+	// The application context of the containing message determines which well-known feature set of CEL is supported.
 	Expression pulumi.StringInput `pulumi:"expression"`
 }
 
@@ -21780,6 +22633,8 @@ func (o SecurityPolicyRuleMatchExprOutput) ToSecurityPolicyRuleMatchExprPtrOutpu
 		return &v
 	}).(SecurityPolicyRuleMatchExprPtrOutput)
 }
+// Textual representation of an expression in Common Expression Language syntax.
+// The application context of the containing message determines which well-known feature set of CEL is supported.
 func (o SecurityPolicyRuleMatchExprOutput) Expression() pulumi.StringOutput {
 	return o.ApplyT(func (v SecurityPolicyRuleMatchExpr) string { return v.Expression }).(pulumi.StringOutput)
 }
@@ -21802,6 +22657,8 @@ func (o SecurityPolicyRuleMatchExprPtrOutput) Elem() SecurityPolicyRuleMatchExpr
 	return o.ApplyT(func (v *SecurityPolicyRuleMatchExpr) SecurityPolicyRuleMatchExpr { return *v }).(SecurityPolicyRuleMatchExprOutput)
 }
 
+// Textual representation of an expression in Common Expression Language syntax.
+// The application context of the containing message determines which well-known feature set of CEL is supported.
 func (o SecurityPolicyRuleMatchExprPtrOutput) Expression() pulumi.StringOutput {
 	return o.ApplyT(func (v SecurityPolicyRuleMatchExpr) string { return v.Expression }).(pulumi.StringOutput)
 }

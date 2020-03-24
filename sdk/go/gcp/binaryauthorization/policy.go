@@ -11,6 +11,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// A policy for container image binary authorization.
+//
+//
+// To get more information about Policy, see:
+//
+// * [API documentation](https://cloud.google.com/binary-authorization/docs/reference/rest/)
+// * How-to Guides
+//     * [Official Documentation](https://cloud.google.com/binary-authorization/)
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/binary_authorization_policy.html.markdown.
 type Policy struct {
 	pulumi.CustomResourceState
 
@@ -29,6 +39,8 @@ type Policy struct {
 	// Controls the evaluation of a Google-maintained global admission policy for common system-level images. Images not
 	// covered by the global policy will be subject to the project admission policy.
 	GlobalPolicyEvaluationMode pulumi.StringOutput `pulumi:"globalPolicyEvaluationMode"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
 }
 
@@ -78,6 +90,8 @@ type policyState struct {
 	// Controls the evaluation of a Google-maintained global admission policy for common system-level images. Images not
 	// covered by the global policy will be subject to the project admission policy.
 	GlobalPolicyEvaluationMode *string `pulumi:"globalPolicyEvaluationMode"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 }
 
@@ -97,6 +111,8 @@ type PolicyState struct {
 	// Controls the evaluation of a Google-maintained global admission policy for common system-level images. Images not
 	// covered by the global policy will be subject to the project admission policy.
 	GlobalPolicyEvaluationMode pulumi.StringPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 }
 
@@ -120,6 +136,8 @@ type policyArgs struct {
 	// Controls the evaluation of a Google-maintained global admission policy for common system-level images. Images not
 	// covered by the global policy will be subject to the project admission policy.
 	GlobalPolicyEvaluationMode *string `pulumi:"globalPolicyEvaluationMode"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 }
 
@@ -140,6 +158,8 @@ type PolicyArgs struct {
 	// Controls the evaluation of a Google-maintained global admission policy for common system-level images. Images not
 	// covered by the global policy will be subject to the project admission policy.
 	GlobalPolicyEvaluationMode pulumi.StringPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 }
 

@@ -914,6 +914,7 @@ func (o StandardAppVersionDeploymentPtrOutput) Zip() StandardAppVersionDeploymen
 }
 
 type StandardAppVersionDeploymentFile struct {
+	// The identifier for this object. Format specified above.
 	Name string `pulumi:"name"`
 	Sha1Sum *string `pulumi:"sha1Sum"`
 	SourceUrl string `pulumi:"sourceUrl"`
@@ -927,6 +928,7 @@ type StandardAppVersionDeploymentFileInput interface {
 }
 
 type StandardAppVersionDeploymentFileArgs struct {
+	// The identifier for this object. Format specified above.
 	Name pulumi.StringInput `pulumi:"name"`
 	Sha1Sum pulumi.StringPtrInput `pulumi:"sha1Sum"`
 	SourceUrl pulumi.StringInput `pulumi:"sourceUrl"`
@@ -979,6 +981,7 @@ func (o StandardAppVersionDeploymentFileOutput) ToStandardAppVersionDeploymentFi
 	return o
 }
 
+// The identifier for this object. Format specified above.
 func (o StandardAppVersionDeploymentFileOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func (v StandardAppVersionDeploymentFile) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -1636,6 +1639,7 @@ func (o StandardAppVersionHandlerStaticFilesPtrOutput) UploadPathRegex() pulumi.
 }
 
 type StandardAppVersionLibrary struct {
+	// The identifier for this object. Format specified above.
 	Name *string `pulumi:"name"`
 	Version *string `pulumi:"version"`
 }
@@ -1648,6 +1652,7 @@ type StandardAppVersionLibraryInput interface {
 }
 
 type StandardAppVersionLibraryArgs struct {
+	// The identifier for this object. Format specified above.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	Version pulumi.StringPtrInput `pulumi:"version"`
 }
@@ -1699,6 +1704,7 @@ func (o StandardAppVersionLibraryOutput) ToStandardAppVersionLibraryOutputWithCo
 	return o
 }
 
+// The identifier for this object. Format specified above.
 func (o StandardAppVersionLibraryOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v StandardAppVersionLibrary) *string { return v.Name }).(pulumi.StringPtrOutput)
 }

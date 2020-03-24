@@ -11,6 +11,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// Inbound SAML configuration for a Identity Toolkit tenant.
+//
+// You must enable the
+// [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
+// the marketplace prior to using this resource.
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/identity_platform_tenant_inbound_saml_config.html.markdown.
 type TenantInboundSamlConfig struct {
 	pulumi.CustomResourceState
 
@@ -24,6 +31,8 @@ type TenantInboundSamlConfig struct {
 	// underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an alphanumeric
 	// character, and have at least 2 characters.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
 	// SAML SP (Service Provider) configuration when the project acts as the relying party to receive and accept an
 	// authentication assertion issued by a SAML identity provider.
@@ -82,6 +91,8 @@ type tenantInboundSamlConfigState struct {
 	// underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an alphanumeric
 	// character, and have at least 2 characters.
 	Name *string `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// SAML SP (Service Provider) configuration when the project acts as the relying party to receive and accept an
 	// authentication assertion issued by a SAML identity provider.
@@ -101,6 +112,8 @@ type TenantInboundSamlConfigState struct {
 	// underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an alphanumeric
 	// character, and have at least 2 characters.
 	Name pulumi.StringPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// SAML SP (Service Provider) configuration when the project acts as the relying party to receive and accept an
 	// authentication assertion issued by a SAML identity provider.
@@ -124,6 +137,8 @@ type tenantInboundSamlConfigArgs struct {
 	// underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an alphanumeric
 	// character, and have at least 2 characters.
 	Name *string `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// SAML SP (Service Provider) configuration when the project acts as the relying party to receive and accept an
 	// authentication assertion issued by a SAML identity provider.
@@ -144,6 +159,8 @@ type TenantInboundSamlConfigArgs struct {
 	// underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an alphanumeric
 	// character, and have at least 2 characters.
 	Name pulumi.StringPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// SAML SP (Service Provider) configuration when the project acts as the relying party to receive and accept an
 	// authentication assertion issued by a SAML identity provider.

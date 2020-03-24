@@ -13,7 +13,7 @@ import (
 type SecurityPolicy struct {
 	pulumi.CustomResourceState
 
-	// An optional description of this security policy. Max size is 2048.
+	// An optional description of this rule. Max size is 64.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Fingerprint of this resource.
 	Fingerprint pulumi.StringOutput `pulumi:"fingerprint"`
@@ -58,7 +58,7 @@ func GetSecurityPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecurityPolicy resources.
 type securityPolicyState struct {
-	// An optional description of this security policy. Max size is 2048.
+	// An optional description of this rule. Max size is 64.
 	Description *string `pulumi:"description"`
 	// Fingerprint of this resource.
 	Fingerprint *string `pulumi:"fingerprint"`
@@ -76,7 +76,7 @@ type securityPolicyState struct {
 }
 
 type SecurityPolicyState struct {
-	// An optional description of this security policy. Max size is 2048.
+	// An optional description of this rule. Max size is 64.
 	Description pulumi.StringPtrInput
 	// Fingerprint of this resource.
 	Fingerprint pulumi.StringPtrInput
@@ -98,7 +98,7 @@ func (SecurityPolicyState) ElementType() reflect.Type {
 }
 
 type securityPolicyArgs struct {
-	// An optional description of this security policy. Max size is 2048.
+	// An optional description of this rule. Max size is 64.
 	Description *string `pulumi:"description"`
 	// The name of the security policy.
 	Name *string `pulumi:"name"`
@@ -113,7 +113,7 @@ type securityPolicyArgs struct {
 
 // The set of arguments for constructing a SecurityPolicy resource.
 type SecurityPolicyArgs struct {
-	// An optional description of this security policy. Max size is 2048.
+	// An optional description of this rule. Max size is 64.
 	Description pulumi.StringPtrInput
 	// The name of the security policy.
 	Name pulumi.StringPtrInput

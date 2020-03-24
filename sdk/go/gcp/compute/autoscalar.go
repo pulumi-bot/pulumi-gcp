@@ -11,6 +11,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// Represents an Autoscaler resource.
+//
+// Autoscalers allow you to automatically scale virtual machine instances in
+// managed instance groups according to an autoscaling policy that you
+// define.
+//
+//
+// To get more information about Autoscaler, see:
+//
+// * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/autoscalers)
+// * How-to Guides
+//     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_autoscaler.html.markdown.
 type Autoscalar struct {
 	pulumi.CustomResourceState
 
@@ -26,6 +40,8 @@ type Autoscalar struct {
 	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
 	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
 	// The URI of the created resource.
 	SelfLink pulumi.StringOutput `pulumi:"selfLink"`
@@ -81,6 +97,8 @@ type autoscalarState struct {
 	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
 	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 	Name *string `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// The URI of the created resource.
 	SelfLink *string `pulumi:"selfLink"`
@@ -103,6 +121,8 @@ type AutoscalarState struct {
 	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
 	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 	Name pulumi.StringPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// The URI of the created resource.
 	SelfLink pulumi.StringPtrInput
@@ -127,6 +147,8 @@ type autoscalarArgs struct {
 	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
 	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 	Name *string `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// URL of the managed instance group that this autoscaler will scale.
 	Target string `pulumi:"target"`
@@ -146,6 +168,8 @@ type AutoscalarArgs struct {
 	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
 	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
 	Name pulumi.StringPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// URL of the managed instance group that this autoscaler will scale.
 	Target pulumi.StringInput

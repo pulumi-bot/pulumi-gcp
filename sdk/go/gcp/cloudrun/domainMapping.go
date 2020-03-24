@@ -11,6 +11,16 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// Resource to hold the state and status of a user's domain mapping.
+//
+//
+// To get more information about DomainMapping, see:
+//
+// * [API documentation](https://cloud.google.com/run/docs/reference/rest/v1alpha1/projects.locations.domainmappings)
+// * How-to Guides
+//     * [Official Documentation](https://cloud.google.com/run/docs/mapping-custom-domains)
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/cloud_run_domain_mapping.html.markdown.
 type DomainMapping struct {
 	pulumi.CustomResourceState
 
@@ -20,6 +30,8 @@ type DomainMapping struct {
 	Metadata DomainMappingMetadataOutput `pulumi:"metadata"`
 	// Name should be a verified domain
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
 	// The spec for this DomainMapping.
 	Spec DomainMappingSpecOutput `pulumi:"spec"`
@@ -70,6 +82,8 @@ type domainMappingState struct {
 	Metadata *DomainMappingMetadata `pulumi:"metadata"`
 	// Name should be a verified domain
 	Name *string `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// The spec for this DomainMapping.
 	Spec *DomainMappingSpec `pulumi:"spec"`
@@ -84,6 +98,8 @@ type DomainMappingState struct {
 	Metadata DomainMappingMetadataPtrInput
 	// Name should be a verified domain
 	Name pulumi.StringPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// The spec for this DomainMapping.
 	Spec DomainMappingSpecPtrInput
@@ -102,6 +118,8 @@ type domainMappingArgs struct {
 	Metadata DomainMappingMetadata `pulumi:"metadata"`
 	// Name should be a verified domain
 	Name *string `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// The spec for this DomainMapping.
 	Spec DomainMappingSpec `pulumi:"spec"`
@@ -115,6 +133,8 @@ type DomainMappingArgs struct {
 	Metadata DomainMappingMetadataInput
 	// Name should be a verified domain
 	Name pulumi.StringPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// The spec for this DomainMapping.
 	Spec DomainMappingSpecInput

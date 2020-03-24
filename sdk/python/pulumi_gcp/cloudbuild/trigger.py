@@ -113,7 +113,17 @@ class Trigger(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, build=None, description=None, disabled=None, filename=None, github=None, ignored_files=None, included_files=None, name=None, project=None, substitutions=None, trigger_template=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a Trigger resource with the given unique name, props, and options.
+        Configuration for an automated build in response to source repository changes.
+
+
+        To get more information about Trigger, see:
+
+        * [API documentation](https://cloud.google.com/cloud-build/docs/api/reference/rest/)
+        * How-to Guides
+            * [Automating builds using build triggers](https://cloud.google.com/cloud-build/docs/running-builds/automate-builds)
+
+        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/cloudbuild_trigger.html.markdown.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] build: Contents of the build template. Either a filename or build template must be provided.

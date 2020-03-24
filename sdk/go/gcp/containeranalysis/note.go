@@ -11,6 +11,15 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// Provides a detailed description of a Note.
+//
+// To get more information about Note, see:
+//
+// * [API documentation](https://cloud.google.com/container-analysis/api/reference/rest/)
+// * How-to Guides
+//     * [Official Documentation](https://cloud.google.com/container-analysis/)
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/container_analysis_note.html.markdown.
 type Note struct {
 	pulumi.CustomResourceState
 
@@ -22,6 +31,8 @@ type Note struct {
 	AttestationAuthority NoteAttestationAuthorityOutput `pulumi:"attestationAuthority"`
 	// The name of the note.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
 }
 
@@ -64,6 +75,8 @@ type noteState struct {
 	AttestationAuthority *NoteAttestationAuthority `pulumi:"attestationAuthority"`
 	// The name of the note.
 	Name *string `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 }
 
@@ -76,6 +89,8 @@ type NoteState struct {
 	AttestationAuthority NoteAttestationAuthorityPtrInput
 	// The name of the note.
 	Name pulumi.StringPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 }
 
@@ -92,6 +107,8 @@ type noteArgs struct {
 	AttestationAuthority NoteAttestationAuthority `pulumi:"attestationAuthority"`
 	// The name of the note.
 	Name *string `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 }
 
@@ -105,6 +122,8 @@ type NoteArgs struct {
 	AttestationAuthority NoteAttestationAuthorityInput
 	// The name of the note.
 	Name pulumi.StringPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 }
 

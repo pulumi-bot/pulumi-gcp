@@ -11,11 +11,21 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// Traffic routing configuration for versions within a single service. Traffic splits define how traffic directed to the service is assigned to versions.
+//
+//
+// To get more information about ServiceSplitTraffic, see:
+//
+// * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services)
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/app_engine_service_split_traffic.html.markdown.
 type EngineSplitTraffic struct {
 	pulumi.CustomResourceState
 
 	// If set to true traffic will be migrated to this version.
 	MigrateTraffic pulumi.BoolPtrOutput `pulumi:"migrateTraffic"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
 	// The name of the service these settings apply to.
 	Service pulumi.StringOutput `pulumi:"service"`
@@ -59,6 +69,8 @@ func GetEngineSplitTraffic(ctx *pulumi.Context,
 type engineSplitTrafficState struct {
 	// If set to true traffic will be migrated to this version.
 	MigrateTraffic *bool `pulumi:"migrateTraffic"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// The name of the service these settings apply to.
 	Service *string `pulumi:"service"`
@@ -69,6 +81,8 @@ type engineSplitTrafficState struct {
 type EngineSplitTrafficState struct {
 	// If set to true traffic will be migrated to this version.
 	MigrateTraffic pulumi.BoolPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// The name of the service these settings apply to.
 	Service pulumi.StringPtrInput
@@ -83,6 +97,8 @@ func (EngineSplitTrafficState) ElementType() reflect.Type {
 type engineSplitTrafficArgs struct {
 	// If set to true traffic will be migrated to this version.
 	MigrateTraffic *bool `pulumi:"migrateTraffic"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// The name of the service these settings apply to.
 	Service string `pulumi:"service"`
@@ -94,6 +110,8 @@ type engineSplitTrafficArgs struct {
 type EngineSplitTrafficArgs struct {
 	// If set to true traffic will be migrated to this version.
 	MigrateTraffic pulumi.BoolPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// The name of the service these settings apply to.
 	Service pulumi.StringInput

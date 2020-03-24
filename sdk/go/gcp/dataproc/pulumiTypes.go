@@ -455,17 +455,41 @@ func (o AutoscalingPolicyWorkerConfigPtrOutput) Weight() pulumi.IntPtrOutput {
 }
 
 type ClusterClusterConfig struct {
+	// The autoscaling policy config associated with the cluster.
+	// Structure defined below.
 	AutoscalingConfig *ClusterClusterConfigAutoscalingConfig `pulumi:"autoscalingConfig"`
 	Bucket *string `pulumi:"bucket"`
+	// The Customer managed encryption keys settings for the cluster.
+	// Structure defined below.
 	EncryptionConfig *ClusterClusterConfigEncryptionConfig `pulumi:"encryptionConfig"`
+	// Common config settings for resources of Google Compute Engine cluster
+	// instances, applicable to all instances in the cluster. Structure defined below.
 	GceClusterConfig *ClusterClusterConfigGceClusterConfig `pulumi:"gceClusterConfig"`
+	// Commands to execute on each node after config is completed.
+	// You can specify multiple versions of these. Structure defined below.
 	InitializationActions []ClusterClusterConfigInitializationAction `pulumi:"initializationActions"`
 	LifecycleConfig *ClusterClusterConfigLifecycleConfig `pulumi:"lifecycleConfig"`
+	// The Google Compute Engine config settings for the master instances
+	// in a cluster.. Structure defined below.
 	MasterConfig *ClusterClusterConfigMasterConfig `pulumi:"masterConfig"`
+	// The Google Compute Engine config settings for the additional (aka
+	// preemptible) instances in a cluster. Structure defined below.
 	PreemptibleWorkerConfig *ClusterClusterConfigPreemptibleWorkerConfig `pulumi:"preemptibleWorkerConfig"`
+	// Security related configuration. Structure defined below.
 	SecurityConfig *ClusterClusterConfigSecurityConfig `pulumi:"securityConfig"`
+	// The config settings for software inside the cluster.
+	// Structure defined below.
 	SoftwareConfig *ClusterClusterConfigSoftwareConfig `pulumi:"softwareConfig"`
+	// The Cloud Storage staging bucket used to stage files,
+	// such as Hadoop jars, between client machines and the cluster.
+	// Note: If you don't explicitly specify a `stagingBucket`
+	// then GCP will auto create / assign one for you. However, you are not guaranteed
+	// an auto generated bucket which is solely dedicated to your cluster; it may be shared
+	// with other clusters in the same region/zone also choosing to use the auto generation
+	// option.
 	StagingBucket *string `pulumi:"stagingBucket"`
+	// The Google Compute Engine config settings for the worker instances
+	// in a cluster.. Structure defined below.
 	WorkerConfig *ClusterClusterConfigWorkerConfig `pulumi:"workerConfig"`
 }
 
@@ -477,17 +501,41 @@ type ClusterClusterConfigInput interface {
 }
 
 type ClusterClusterConfigArgs struct {
+	// The autoscaling policy config associated with the cluster.
+	// Structure defined below.
 	AutoscalingConfig ClusterClusterConfigAutoscalingConfigPtrInput `pulumi:"autoscalingConfig"`
 	Bucket pulumi.StringPtrInput `pulumi:"bucket"`
+	// The Customer managed encryption keys settings for the cluster.
+	// Structure defined below.
 	EncryptionConfig ClusterClusterConfigEncryptionConfigPtrInput `pulumi:"encryptionConfig"`
+	// Common config settings for resources of Google Compute Engine cluster
+	// instances, applicable to all instances in the cluster. Structure defined below.
 	GceClusterConfig ClusterClusterConfigGceClusterConfigPtrInput `pulumi:"gceClusterConfig"`
+	// Commands to execute on each node after config is completed.
+	// You can specify multiple versions of these. Structure defined below.
 	InitializationActions ClusterClusterConfigInitializationActionArrayInput `pulumi:"initializationActions"`
 	LifecycleConfig ClusterClusterConfigLifecycleConfigPtrInput `pulumi:"lifecycleConfig"`
+	// The Google Compute Engine config settings for the master instances
+	// in a cluster.. Structure defined below.
 	MasterConfig ClusterClusterConfigMasterConfigPtrInput `pulumi:"masterConfig"`
+	// The Google Compute Engine config settings for the additional (aka
+	// preemptible) instances in a cluster. Structure defined below.
 	PreemptibleWorkerConfig ClusterClusterConfigPreemptibleWorkerConfigPtrInput `pulumi:"preemptibleWorkerConfig"`
+	// Security related configuration. Structure defined below.
 	SecurityConfig ClusterClusterConfigSecurityConfigPtrInput `pulumi:"securityConfig"`
+	// The config settings for software inside the cluster.
+	// Structure defined below.
 	SoftwareConfig ClusterClusterConfigSoftwareConfigPtrInput `pulumi:"softwareConfig"`
+	// The Cloud Storage staging bucket used to stage files,
+	// such as Hadoop jars, between client machines and the cluster.
+	// Note: If you don't explicitly specify a `stagingBucket`
+	// then GCP will auto create / assign one for you. However, you are not guaranteed
+	// an auto generated bucket which is solely dedicated to your cluster; it may be shared
+	// with other clusters in the same region/zone also choosing to use the auto generation
+	// option.
 	StagingBucket pulumi.StringPtrInput `pulumi:"stagingBucket"`
+	// The Google Compute Engine config settings for the worker instances
+	// in a cluster.. Structure defined below.
 	WorkerConfig ClusterClusterConfigWorkerConfigPtrInput `pulumi:"workerConfig"`
 }
 
@@ -558,6 +606,8 @@ func (o ClusterClusterConfigOutput) ToClusterClusterConfigPtrOutputWithContext(c
 		return &v
 	}).(ClusterClusterConfigPtrOutput)
 }
+// The autoscaling policy config associated with the cluster.
+// Structure defined below.
 func (o ClusterClusterConfigOutput) AutoscalingConfig() ClusterClusterConfigAutoscalingConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigAutoscalingConfig { return v.AutoscalingConfig }).(ClusterClusterConfigAutoscalingConfigPtrOutput)
 }
@@ -566,14 +616,20 @@ func (o ClusterClusterConfigOutput) Bucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *string { return v.Bucket }).(pulumi.StringPtrOutput)
 }
 
+// The Customer managed encryption keys settings for the cluster.
+// Structure defined below.
 func (o ClusterClusterConfigOutput) EncryptionConfig() ClusterClusterConfigEncryptionConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigEncryptionConfig { return v.EncryptionConfig }).(ClusterClusterConfigEncryptionConfigPtrOutput)
 }
 
+// Common config settings for resources of Google Compute Engine cluster
+// instances, applicable to all instances in the cluster. Structure defined below.
 func (o ClusterClusterConfigOutput) GceClusterConfig() ClusterClusterConfigGceClusterConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigGceClusterConfig { return v.GceClusterConfig }).(ClusterClusterConfigGceClusterConfigPtrOutput)
 }
 
+// Commands to execute on each node after config is completed.
+// You can specify multiple versions of these. Structure defined below.
 func (o ClusterClusterConfigOutput) InitializationActions() ClusterClusterConfigInitializationActionArrayOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) []ClusterClusterConfigInitializationAction { return v.InitializationActions }).(ClusterClusterConfigInitializationActionArrayOutput)
 }
@@ -582,26 +638,42 @@ func (o ClusterClusterConfigOutput) LifecycleConfig() ClusterClusterConfigLifecy
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigLifecycleConfig { return v.LifecycleConfig }).(ClusterClusterConfigLifecycleConfigPtrOutput)
 }
 
+// The Google Compute Engine config settings for the master instances
+// in a cluster.. Structure defined below.
 func (o ClusterClusterConfigOutput) MasterConfig() ClusterClusterConfigMasterConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigMasterConfig { return v.MasterConfig }).(ClusterClusterConfigMasterConfigPtrOutput)
 }
 
+// The Google Compute Engine config settings for the additional (aka
+// preemptible) instances in a cluster. Structure defined below.
 func (o ClusterClusterConfigOutput) PreemptibleWorkerConfig() ClusterClusterConfigPreemptibleWorkerConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigPreemptibleWorkerConfig { return v.PreemptibleWorkerConfig }).(ClusterClusterConfigPreemptibleWorkerConfigPtrOutput)
 }
 
+// Security related configuration. Structure defined below.
 func (o ClusterClusterConfigOutput) SecurityConfig() ClusterClusterConfigSecurityConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigSecurityConfig { return v.SecurityConfig }).(ClusterClusterConfigSecurityConfigPtrOutput)
 }
 
+// The config settings for software inside the cluster.
+// Structure defined below.
 func (o ClusterClusterConfigOutput) SoftwareConfig() ClusterClusterConfigSoftwareConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigSoftwareConfig { return v.SoftwareConfig }).(ClusterClusterConfigSoftwareConfigPtrOutput)
 }
 
+// The Cloud Storage staging bucket used to stage files,
+// such as Hadoop jars, between client machines and the cluster.
+// Note: If you don't explicitly specify a `stagingBucket`
+// then GCP will auto create / assign one for you. However, you are not guaranteed
+// an auto generated bucket which is solely dedicated to your cluster; it may be shared
+// with other clusters in the same region/zone also choosing to use the auto generation
+// option.
 func (o ClusterClusterConfigOutput) StagingBucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *string { return v.StagingBucket }).(pulumi.StringPtrOutput)
 }
 
+// The Google Compute Engine config settings for the worker instances
+// in a cluster.. Structure defined below.
 func (o ClusterClusterConfigOutput) WorkerConfig() ClusterClusterConfigWorkerConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigWorkerConfig { return v.WorkerConfig }).(ClusterClusterConfigWorkerConfigPtrOutput)
 }
@@ -624,6 +696,8 @@ func (o ClusterClusterConfigPtrOutput) Elem() ClusterClusterConfigOutput {
 	return o.ApplyT(func (v *ClusterClusterConfig) ClusterClusterConfig { return *v }).(ClusterClusterConfigOutput)
 }
 
+// The autoscaling policy config associated with the cluster.
+// Structure defined below.
 func (o ClusterClusterConfigPtrOutput) AutoscalingConfig() ClusterClusterConfigAutoscalingConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigAutoscalingConfig { return v.AutoscalingConfig }).(ClusterClusterConfigAutoscalingConfigPtrOutput)
 }
@@ -632,14 +706,20 @@ func (o ClusterClusterConfigPtrOutput) Bucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *string { return v.Bucket }).(pulumi.StringPtrOutput)
 }
 
+// The Customer managed encryption keys settings for the cluster.
+// Structure defined below.
 func (o ClusterClusterConfigPtrOutput) EncryptionConfig() ClusterClusterConfigEncryptionConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigEncryptionConfig { return v.EncryptionConfig }).(ClusterClusterConfigEncryptionConfigPtrOutput)
 }
 
+// Common config settings for resources of Google Compute Engine cluster
+// instances, applicable to all instances in the cluster. Structure defined below.
 func (o ClusterClusterConfigPtrOutput) GceClusterConfig() ClusterClusterConfigGceClusterConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigGceClusterConfig { return v.GceClusterConfig }).(ClusterClusterConfigGceClusterConfigPtrOutput)
 }
 
+// Commands to execute on each node after config is completed.
+// You can specify multiple versions of these. Structure defined below.
 func (o ClusterClusterConfigPtrOutput) InitializationActions() ClusterClusterConfigInitializationActionArrayOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) []ClusterClusterConfigInitializationAction { return v.InitializationActions }).(ClusterClusterConfigInitializationActionArrayOutput)
 }
@@ -648,31 +728,48 @@ func (o ClusterClusterConfigPtrOutput) LifecycleConfig() ClusterClusterConfigLif
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigLifecycleConfig { return v.LifecycleConfig }).(ClusterClusterConfigLifecycleConfigPtrOutput)
 }
 
+// The Google Compute Engine config settings for the master instances
+// in a cluster.. Structure defined below.
 func (o ClusterClusterConfigPtrOutput) MasterConfig() ClusterClusterConfigMasterConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigMasterConfig { return v.MasterConfig }).(ClusterClusterConfigMasterConfigPtrOutput)
 }
 
+// The Google Compute Engine config settings for the additional (aka
+// preemptible) instances in a cluster. Structure defined below.
 func (o ClusterClusterConfigPtrOutput) PreemptibleWorkerConfig() ClusterClusterConfigPreemptibleWorkerConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigPreemptibleWorkerConfig { return v.PreemptibleWorkerConfig }).(ClusterClusterConfigPreemptibleWorkerConfigPtrOutput)
 }
 
+// Security related configuration. Structure defined below.
 func (o ClusterClusterConfigPtrOutput) SecurityConfig() ClusterClusterConfigSecurityConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigSecurityConfig { return v.SecurityConfig }).(ClusterClusterConfigSecurityConfigPtrOutput)
 }
 
+// The config settings for software inside the cluster.
+// Structure defined below.
 func (o ClusterClusterConfigPtrOutput) SoftwareConfig() ClusterClusterConfigSoftwareConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigSoftwareConfig { return v.SoftwareConfig }).(ClusterClusterConfigSoftwareConfigPtrOutput)
 }
 
+// The Cloud Storage staging bucket used to stage files,
+// such as Hadoop jars, between client machines and the cluster.
+// Note: If you don't explicitly specify a `stagingBucket`
+// then GCP will auto create / assign one for you. However, you are not guaranteed
+// an auto generated bucket which is solely dedicated to your cluster; it may be shared
+// with other clusters in the same region/zone also choosing to use the auto generation
+// option.
 func (o ClusterClusterConfigPtrOutput) StagingBucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *string { return v.StagingBucket }).(pulumi.StringPtrOutput)
 }
 
+// The Google Compute Engine config settings for the worker instances
+// in a cluster.. Structure defined below.
 func (o ClusterClusterConfigPtrOutput) WorkerConfig() ClusterClusterConfigWorkerConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfig) *ClusterClusterConfigWorkerConfig { return v.WorkerConfig }).(ClusterClusterConfigWorkerConfigPtrOutput)
 }
 
 type ClusterClusterConfigAutoscalingConfig struct {
+	// The autoscaling policy used by the cluster.
 	PolicyUri string `pulumi:"policyUri"`
 }
 
@@ -684,6 +781,7 @@ type ClusterClusterConfigAutoscalingConfigInput interface {
 }
 
 type ClusterClusterConfigAutoscalingConfigArgs struct {
+	// The autoscaling policy used by the cluster.
 	PolicyUri pulumi.StringInput `pulumi:"policyUri"`
 }
 
@@ -754,6 +852,7 @@ func (o ClusterClusterConfigAutoscalingConfigOutput) ToClusterClusterConfigAutos
 		return &v
 	}).(ClusterClusterConfigAutoscalingConfigPtrOutput)
 }
+// The autoscaling policy used by the cluster.
 func (o ClusterClusterConfigAutoscalingConfigOutput) PolicyUri() pulumi.StringOutput {
 	return o.ApplyT(func (v ClusterClusterConfigAutoscalingConfig) string { return v.PolicyUri }).(pulumi.StringOutput)
 }
@@ -776,11 +875,14 @@ func (o ClusterClusterConfigAutoscalingConfigPtrOutput) Elem() ClusterClusterCon
 	return o.ApplyT(func (v *ClusterClusterConfigAutoscalingConfig) ClusterClusterConfigAutoscalingConfig { return *v }).(ClusterClusterConfigAutoscalingConfigOutput)
 }
 
+// The autoscaling policy used by the cluster.
 func (o ClusterClusterConfigAutoscalingConfigPtrOutput) PolicyUri() pulumi.StringOutput {
 	return o.ApplyT(func (v ClusterClusterConfigAutoscalingConfig) string { return v.PolicyUri }).(pulumi.StringOutput)
 }
 
 type ClusterClusterConfigEncryptionConfig struct {
+	// The Cloud KMS key name to use for PD disk encryption for
+	// all instances in the cluster.
 	KmsKeyName string `pulumi:"kmsKeyName"`
 }
 
@@ -792,6 +894,8 @@ type ClusterClusterConfigEncryptionConfigInput interface {
 }
 
 type ClusterClusterConfigEncryptionConfigArgs struct {
+	// The Cloud KMS key name to use for PD disk encryption for
+	// all instances in the cluster.
 	KmsKeyName pulumi.StringInput `pulumi:"kmsKeyName"`
 }
 
@@ -862,6 +966,8 @@ func (o ClusterClusterConfigEncryptionConfigOutput) ToClusterClusterConfigEncryp
 		return &v
 	}).(ClusterClusterConfigEncryptionConfigPtrOutput)
 }
+// The Cloud KMS key name to use for PD disk encryption for
+// all instances in the cluster.
 func (o ClusterClusterConfigEncryptionConfigOutput) KmsKeyName() pulumi.StringOutput {
 	return o.ApplyT(func (v ClusterClusterConfigEncryptionConfig) string { return v.KmsKeyName }).(pulumi.StringOutput)
 }
@@ -884,18 +990,48 @@ func (o ClusterClusterConfigEncryptionConfigPtrOutput) Elem() ClusterClusterConf
 	return o.ApplyT(func (v *ClusterClusterConfigEncryptionConfig) ClusterClusterConfigEncryptionConfig { return *v }).(ClusterClusterConfigEncryptionConfigOutput)
 }
 
+// The Cloud KMS key name to use for PD disk encryption for
+// all instances in the cluster.
 func (o ClusterClusterConfigEncryptionConfigPtrOutput) KmsKeyName() pulumi.StringOutput {
 	return o.ApplyT(func (v ClusterClusterConfigEncryptionConfig) string { return v.KmsKeyName }).(pulumi.StringOutput)
 }
 
 type ClusterClusterConfigGceClusterConfig struct {
+	// By default, clusters are not restricted to internal IP addresses, 
+	// and will have ephemeral external IP addresses assigned to each instance. If set to true, all
+	// instances in the cluster will only have internal IP addresses. Note: Private Google Access
+	// (also known as `privateIpGoogleAccess`) must be enabled on the subnetwork that the cluster
+	// will be launched in.
 	InternalIpOnly *bool `pulumi:"internalIpOnly"`
+	// A map of the Compute Engine metadata entries to add to all instances
+	// (see [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
 	Metadata map[string]string `pulumi:"metadata"`
+	// The name or selfLink of the Google Compute Engine
+	// network to the cluster will be part of. Conflicts with `subnetwork`.
+	// If neither is specified, this defaults to the "default" network.
 	Network *string `pulumi:"network"`
+	// The service account to be used by the Node VMs.
+	// If not specified, the "default" service account is used.
 	ServiceAccount *string `pulumi:"serviceAccount"`
+	// The set of Google API scopes
+	// to be made available on all of the node VMs under the `serviceAccount`
+	// specified. These can be	either FQDNs, or scope aliases. The following scopes
+	// must be set if any other scopes are set. They're necessary to ensure the
+	// correct functioning ofthe cluster, and are set automatically by the API:
 	ServiceAccountScopes []string `pulumi:"serviceAccountScopes"`
+	// The name or selfLink of the Google Compute Engine
+	// subnetwork the cluster will be part of. Conflicts with `network`.
 	Subnetwork *string `pulumi:"subnetwork"`
+	// The list of instance tags applied to instances in the cluster.
+	// Tags are used to identify valid sources or targets for network firewalls.
 	Tags []string `pulumi:"tags"`
+	// The GCP zone where your data is stored and used (i.e. where
+	// the master and the worker nodes will be created in). If `region` is set to 'global' (default)
+	// then `zone` is mandatory, otherwise GCP is able to make use of [Auto Zone Placement](https://cloud.google.com/dataproc/docs/concepts/auto-zone)
+	// to determine this automatically for you.
+	// Note: This setting additionally determines and restricts
+	// which computing resources are available for use with other configs such as
+	// `cluster_config.master_config.machine_type` and `cluster_config.worker_config.machine_type`.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -907,13 +1043,41 @@ type ClusterClusterConfigGceClusterConfigInput interface {
 }
 
 type ClusterClusterConfigGceClusterConfigArgs struct {
+	// By default, clusters are not restricted to internal IP addresses, 
+	// and will have ephemeral external IP addresses assigned to each instance. If set to true, all
+	// instances in the cluster will only have internal IP addresses. Note: Private Google Access
+	// (also known as `privateIpGoogleAccess`) must be enabled on the subnetwork that the cluster
+	// will be launched in.
 	InternalIpOnly pulumi.BoolPtrInput `pulumi:"internalIpOnly"`
+	// A map of the Compute Engine metadata entries to add to all instances
+	// (see [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
 	Metadata pulumi.StringMapInput `pulumi:"metadata"`
+	// The name or selfLink of the Google Compute Engine
+	// network to the cluster will be part of. Conflicts with `subnetwork`.
+	// If neither is specified, this defaults to the "default" network.
 	Network pulumi.StringPtrInput `pulumi:"network"`
+	// The service account to be used by the Node VMs.
+	// If not specified, the "default" service account is used.
 	ServiceAccount pulumi.StringPtrInput `pulumi:"serviceAccount"`
+	// The set of Google API scopes
+	// to be made available on all of the node VMs under the `serviceAccount`
+	// specified. These can be	either FQDNs, or scope aliases. The following scopes
+	// must be set if any other scopes are set. They're necessary to ensure the
+	// correct functioning ofthe cluster, and are set automatically by the API:
 	ServiceAccountScopes pulumi.StringArrayInput `pulumi:"serviceAccountScopes"`
+	// The name or selfLink of the Google Compute Engine
+	// subnetwork the cluster will be part of. Conflicts with `network`.
 	Subnetwork pulumi.StringPtrInput `pulumi:"subnetwork"`
+	// The list of instance tags applied to instances in the cluster.
+	// Tags are used to identify valid sources or targets for network firewalls.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// The GCP zone where your data is stored and used (i.e. where
+	// the master and the worker nodes will be created in). If `region` is set to 'global' (default)
+	// then `zone` is mandatory, otherwise GCP is able to make use of [Auto Zone Placement](https://cloud.google.com/dataproc/docs/concepts/auto-zone)
+	// to determine this automatically for you.
+	// Note: This setting additionally determines and restricts
+	// which computing resources are available for use with other configs such as
+	// `cluster_config.master_config.machine_type` and `cluster_config.worker_config.machine_type`.
 	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
@@ -984,34 +1148,62 @@ func (o ClusterClusterConfigGceClusterConfigOutput) ToClusterClusterConfigGceClu
 		return &v
 	}).(ClusterClusterConfigGceClusterConfigPtrOutput)
 }
+// By default, clusters are not restricted to internal IP addresses, 
+// and will have ephemeral external IP addresses assigned to each instance. If set to true, all
+// instances in the cluster will only have internal IP addresses. Note: Private Google Access
+// (also known as `privateIpGoogleAccess`) must be enabled on the subnetwork that the cluster
+// will be launched in.
 func (o ClusterClusterConfigGceClusterConfigOutput) InternalIpOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) *bool { return v.InternalIpOnly }).(pulumi.BoolPtrOutput)
 }
 
+// A map of the Compute Engine metadata entries to add to all instances
+// (see [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
 func (o ClusterClusterConfigGceClusterConfigOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) map[string]string { return v.Metadata }).(pulumi.StringMapOutput)
 }
 
+// The name or selfLink of the Google Compute Engine
+// network to the cluster will be part of. Conflicts with `subnetwork`.
+// If neither is specified, this defaults to the "default" network.
 func (o ClusterClusterConfigGceClusterConfigOutput) Network() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) *string { return v.Network }).(pulumi.StringPtrOutput)
 }
 
+// The service account to be used by the Node VMs.
+// If not specified, the "default" service account is used.
 func (o ClusterClusterConfigGceClusterConfigOutput) ServiceAccount() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) *string { return v.ServiceAccount }).(pulumi.StringPtrOutput)
 }
 
+// The set of Google API scopes
+// to be made available on all of the node VMs under the `serviceAccount`
+// specified. These can be	either FQDNs, or scope aliases. The following scopes
+// must be set if any other scopes are set. They're necessary to ensure the
+// correct functioning ofthe cluster, and are set automatically by the API:
 func (o ClusterClusterConfigGceClusterConfigOutput) ServiceAccountScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) []string { return v.ServiceAccountScopes }).(pulumi.StringArrayOutput)
 }
 
+// The name or selfLink of the Google Compute Engine
+// subnetwork the cluster will be part of. Conflicts with `network`.
 func (o ClusterClusterConfigGceClusterConfigOutput) Subnetwork() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) *string { return v.Subnetwork }).(pulumi.StringPtrOutput)
 }
 
+// The list of instance tags applied to instances in the cluster.
+// Tags are used to identify valid sources or targets for network firewalls.
 func (o ClusterClusterConfigGceClusterConfigOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+// The GCP zone where your data is stored and used (i.e. where
+// the master and the worker nodes will be created in). If `region` is set to 'global' (default)
+// then `zone` is mandatory, otherwise GCP is able to make use of [Auto Zone Placement](https://cloud.google.com/dataproc/docs/concepts/auto-zone)
+// to determine this automatically for you.
+// Note: This setting additionally determines and restricts
+// which computing resources are available for use with other configs such as
+// `cluster_config.master_config.machine_type` and `cluster_config.worker_config.machine_type`.
 func (o ClusterClusterConfigGceClusterConfigOutput) Zone() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
@@ -1034,40 +1226,71 @@ func (o ClusterClusterConfigGceClusterConfigPtrOutput) Elem() ClusterClusterConf
 	return o.ApplyT(func (v *ClusterClusterConfigGceClusterConfig) ClusterClusterConfigGceClusterConfig { return *v }).(ClusterClusterConfigGceClusterConfigOutput)
 }
 
+// By default, clusters are not restricted to internal IP addresses, 
+// and will have ephemeral external IP addresses assigned to each instance. If set to true, all
+// instances in the cluster will only have internal IP addresses. Note: Private Google Access
+// (also known as `privateIpGoogleAccess`) must be enabled on the subnetwork that the cluster
+// will be launched in.
 func (o ClusterClusterConfigGceClusterConfigPtrOutput) InternalIpOnly() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) *bool { return v.InternalIpOnly }).(pulumi.BoolPtrOutput)
 }
 
+// A map of the Compute Engine metadata entries to add to all instances
+// (see [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
 func (o ClusterClusterConfigGceClusterConfigPtrOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) map[string]string { return v.Metadata }).(pulumi.StringMapOutput)
 }
 
+// The name or selfLink of the Google Compute Engine
+// network to the cluster will be part of. Conflicts with `subnetwork`.
+// If neither is specified, this defaults to the "default" network.
 func (o ClusterClusterConfigGceClusterConfigPtrOutput) Network() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) *string { return v.Network }).(pulumi.StringPtrOutput)
 }
 
+// The service account to be used by the Node VMs.
+// If not specified, the "default" service account is used.
 func (o ClusterClusterConfigGceClusterConfigPtrOutput) ServiceAccount() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) *string { return v.ServiceAccount }).(pulumi.StringPtrOutput)
 }
 
+// The set of Google API scopes
+// to be made available on all of the node VMs under the `serviceAccount`
+// specified. These can be	either FQDNs, or scope aliases. The following scopes
+// must be set if any other scopes are set. They're necessary to ensure the
+// correct functioning ofthe cluster, and are set automatically by the API:
 func (o ClusterClusterConfigGceClusterConfigPtrOutput) ServiceAccountScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) []string { return v.ServiceAccountScopes }).(pulumi.StringArrayOutput)
 }
 
+// The name or selfLink of the Google Compute Engine
+// subnetwork the cluster will be part of. Conflicts with `network`.
 func (o ClusterClusterConfigGceClusterConfigPtrOutput) Subnetwork() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) *string { return v.Subnetwork }).(pulumi.StringPtrOutput)
 }
 
+// The list of instance tags applied to instances in the cluster.
+// Tags are used to identify valid sources or targets for network firewalls.
 func (o ClusterClusterConfigGceClusterConfigPtrOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+// The GCP zone where your data is stored and used (i.e. where
+// the master and the worker nodes will be created in). If `region` is set to 'global' (default)
+// then `zone` is mandatory, otherwise GCP is able to make use of [Auto Zone Placement](https://cloud.google.com/dataproc/docs/concepts/auto-zone)
+// to determine this automatically for you.
+// Note: This setting additionally determines and restricts
+// which computing resources are available for use with other configs such as
+// `cluster_config.master_config.machine_type` and `cluster_config.worker_config.machine_type`.
 func (o ClusterClusterConfigGceClusterConfigPtrOutput) Zone() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigGceClusterConfig) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type ClusterClusterConfigInitializationAction struct {
 	Script string `pulumi:"script"`
+	// The maximum duration (in seconds) which `script` is
+	// allowed to take to execute its action. GCP will default to a predetermined
+	// computed value if not set (currently 300).
 	TimeoutSec *int `pulumi:"timeoutSec"`
 }
 
@@ -1080,6 +1303,9 @@ type ClusterClusterConfigInitializationActionInput interface {
 
 type ClusterClusterConfigInitializationActionArgs struct {
 	Script pulumi.StringInput `pulumi:"script"`
+	// The maximum duration (in seconds) which `script` is
+	// allowed to take to execute its action. GCP will default to a predetermined
+	// computed value if not set (currently 300).
 	TimeoutSec pulumi.IntPtrInput `pulumi:"timeoutSec"`
 }
 
@@ -1134,6 +1360,9 @@ func (o ClusterClusterConfigInitializationActionOutput) Script() pulumi.StringOu
 	return o.ApplyT(func (v ClusterClusterConfigInitializationAction) string { return v.Script }).(pulumi.StringOutput)
 }
 
+// The maximum duration (in seconds) which `script` is
+// allowed to take to execute its action. GCP will default to a predetermined
+// computed value if not set (currently 300).
 func (o ClusterClusterConfigInitializationActionOutput) TimeoutSec() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigInitializationAction) *int { return v.TimeoutSec }).(pulumi.IntPtrOutput)
 }
@@ -1159,7 +1388,12 @@ func (o ClusterClusterConfigInitializationActionArrayOutput) Index(i pulumi.IntI
 }
 
 type ClusterClusterConfigLifecycleConfig struct {
+	// The time when cluster will be auto-deleted.
+	// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds.
+	// Example: "2014-10-02T15:01:23.045123456Z".
 	AutoDeleteTime *string `pulumi:"autoDeleteTime"`
+	// The duration to keep the cluster alive while idling
+	// (no jobs running). After this TTL, the cluster will be deleted. Valid range: [10m, 14d].
 	IdleDeleteTtl *string `pulumi:"idleDeleteTtl"`
 	IdleStartTime *string `pulumi:"idleStartTime"`
 }
@@ -1172,7 +1406,12 @@ type ClusterClusterConfigLifecycleConfigInput interface {
 }
 
 type ClusterClusterConfigLifecycleConfigArgs struct {
+	// The time when cluster will be auto-deleted.
+	// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds.
+	// Example: "2014-10-02T15:01:23.045123456Z".
 	AutoDeleteTime pulumi.StringPtrInput `pulumi:"autoDeleteTime"`
+	// The duration to keep the cluster alive while idling
+	// (no jobs running). After this TTL, the cluster will be deleted. Valid range: [10m, 14d].
 	IdleDeleteTtl pulumi.StringPtrInput `pulumi:"idleDeleteTtl"`
 	IdleStartTime pulumi.StringPtrInput `pulumi:"idleStartTime"`
 }
@@ -1244,10 +1483,15 @@ func (o ClusterClusterConfigLifecycleConfigOutput) ToClusterClusterConfigLifecyc
 		return &v
 	}).(ClusterClusterConfigLifecycleConfigPtrOutput)
 }
+// The time when cluster will be auto-deleted.
+// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds.
+// Example: "2014-10-02T15:01:23.045123456Z".
 func (o ClusterClusterConfigLifecycleConfigOutput) AutoDeleteTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigLifecycleConfig) *string { return v.AutoDeleteTime }).(pulumi.StringPtrOutput)
 }
 
+// The duration to keep the cluster alive while idling
+// (no jobs running). After this TTL, the cluster will be deleted. Valid range: [10m, 14d].
 func (o ClusterClusterConfigLifecycleConfigOutput) IdleDeleteTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigLifecycleConfig) *string { return v.IdleDeleteTtl }).(pulumi.StringPtrOutput)
 }
@@ -1274,10 +1518,15 @@ func (o ClusterClusterConfigLifecycleConfigPtrOutput) Elem() ClusterClusterConfi
 	return o.ApplyT(func (v *ClusterClusterConfigLifecycleConfig) ClusterClusterConfigLifecycleConfig { return *v }).(ClusterClusterConfigLifecycleConfigOutput)
 }
 
+// The time when cluster will be auto-deleted.
+// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds.
+// Example: "2014-10-02T15:01:23.045123456Z".
 func (o ClusterClusterConfigLifecycleConfigPtrOutput) AutoDeleteTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigLifecycleConfig) *string { return v.AutoDeleteTime }).(pulumi.StringPtrOutput)
 }
 
+// The duration to keep the cluster alive while idling
+// (no jobs running). After this TTL, the cluster will be deleted. Valid range: [10m, 14d].
 func (o ClusterClusterConfigLifecycleConfigPtrOutput) IdleDeleteTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigLifecycleConfig) *string { return v.IdleDeleteTtl }).(pulumi.StringPtrOutput)
 }
@@ -1287,11 +1536,22 @@ func (o ClusterClusterConfigLifecycleConfigPtrOutput) IdleStartTime() pulumi.Str
 }
 
 type ClusterClusterConfigMasterConfig struct {
+	// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
 	Accelerators []ClusterClusterConfigMasterConfigAccelerator `pulumi:"accelerators"`
+	// Disk Config
 	DiskConfig *ClusterClusterConfigMasterConfigDiskConfig `pulumi:"diskConfig"`
+	// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
+	// for more information.
 	ImageUri *string `pulumi:"imageUri"`
 	InstanceNames []string `pulumi:"instanceNames"`
+	// The name of a Google Compute Engine machine type
+	// to create for the worker nodes. If not specified, GCP will default to a predetermined
+	// computed value (currently `n1-standard-4`).
 	MachineType *string `pulumi:"machineType"`
+	// The name of a minimum generation of CPU family
+	// for the master. If not specified, GCP will default to a predetermined computed value
+	// for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+	// for details about which CPU families are available (and defaulted) for each zone.
 	MinCpuPlatform *string `pulumi:"minCpuPlatform"`
 	NumInstances *int `pulumi:"numInstances"`
 }
@@ -1304,11 +1564,22 @@ type ClusterClusterConfigMasterConfigInput interface {
 }
 
 type ClusterClusterConfigMasterConfigArgs struct {
+	// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
 	Accelerators ClusterClusterConfigMasterConfigAcceleratorArrayInput `pulumi:"accelerators"`
+	// Disk Config
 	DiskConfig ClusterClusterConfigMasterConfigDiskConfigPtrInput `pulumi:"diskConfig"`
+	// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
+	// for more information.
 	ImageUri pulumi.StringPtrInput `pulumi:"imageUri"`
 	InstanceNames pulumi.StringArrayInput `pulumi:"instanceNames"`
+	// The name of a Google Compute Engine machine type
+	// to create for the worker nodes. If not specified, GCP will default to a predetermined
+	// computed value (currently `n1-standard-4`).
 	MachineType pulumi.StringPtrInput `pulumi:"machineType"`
+	// The name of a minimum generation of CPU family
+	// for the master. If not specified, GCP will default to a predetermined computed value
+	// for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+	// for details about which CPU families are available (and defaulted) for each zone.
 	MinCpuPlatform pulumi.StringPtrInput `pulumi:"minCpuPlatform"`
 	NumInstances pulumi.IntPtrInput `pulumi:"numInstances"`
 }
@@ -1380,14 +1651,18 @@ func (o ClusterClusterConfigMasterConfigOutput) ToClusterClusterConfigMasterConf
 		return &v
 	}).(ClusterClusterConfigMasterConfigPtrOutput)
 }
+// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
 func (o ClusterClusterConfigMasterConfigOutput) Accelerators() ClusterClusterConfigMasterConfigAcceleratorArrayOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfig) []ClusterClusterConfigMasterConfigAccelerator { return v.Accelerators }).(ClusterClusterConfigMasterConfigAcceleratorArrayOutput)
 }
 
+// Disk Config
 func (o ClusterClusterConfigMasterConfigOutput) DiskConfig() ClusterClusterConfigMasterConfigDiskConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfig) *ClusterClusterConfigMasterConfigDiskConfig { return v.DiskConfig }).(ClusterClusterConfigMasterConfigDiskConfigPtrOutput)
 }
 
+// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
+// for more information.
 func (o ClusterClusterConfigMasterConfigOutput) ImageUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfig) *string { return v.ImageUri }).(pulumi.StringPtrOutput)
 }
@@ -1396,10 +1671,17 @@ func (o ClusterClusterConfigMasterConfigOutput) InstanceNames() pulumi.StringArr
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfig) []string { return v.InstanceNames }).(pulumi.StringArrayOutput)
 }
 
+// The name of a Google Compute Engine machine type
+// to create for the worker nodes. If not specified, GCP will default to a predetermined
+// computed value (currently `n1-standard-4`).
 func (o ClusterClusterConfigMasterConfigOutput) MachineType() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfig) *string { return v.MachineType }).(pulumi.StringPtrOutput)
 }
 
+// The name of a minimum generation of CPU family
+// for the master. If not specified, GCP will default to a predetermined computed value
+// for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+// for details about which CPU families are available (and defaulted) for each zone.
 func (o ClusterClusterConfigMasterConfigOutput) MinCpuPlatform() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfig) *string { return v.MinCpuPlatform }).(pulumi.StringPtrOutput)
 }
@@ -1426,14 +1708,18 @@ func (o ClusterClusterConfigMasterConfigPtrOutput) Elem() ClusterClusterConfigMa
 	return o.ApplyT(func (v *ClusterClusterConfigMasterConfig) ClusterClusterConfigMasterConfig { return *v }).(ClusterClusterConfigMasterConfigOutput)
 }
 
+// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
 func (o ClusterClusterConfigMasterConfigPtrOutput) Accelerators() ClusterClusterConfigMasterConfigAcceleratorArrayOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfig) []ClusterClusterConfigMasterConfigAccelerator { return v.Accelerators }).(ClusterClusterConfigMasterConfigAcceleratorArrayOutput)
 }
 
+// Disk Config
 func (o ClusterClusterConfigMasterConfigPtrOutput) DiskConfig() ClusterClusterConfigMasterConfigDiskConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfig) *ClusterClusterConfigMasterConfigDiskConfig { return v.DiskConfig }).(ClusterClusterConfigMasterConfigDiskConfigPtrOutput)
 }
 
+// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
+// for more information.
 func (o ClusterClusterConfigMasterConfigPtrOutput) ImageUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfig) *string { return v.ImageUri }).(pulumi.StringPtrOutput)
 }
@@ -1442,10 +1728,17 @@ func (o ClusterClusterConfigMasterConfigPtrOutput) InstanceNames() pulumi.String
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfig) []string { return v.InstanceNames }).(pulumi.StringArrayOutput)
 }
 
+// The name of a Google Compute Engine machine type
+// to create for the worker nodes. If not specified, GCP will default to a predetermined
+// computed value (currently `n1-standard-4`).
 func (o ClusterClusterConfigMasterConfigPtrOutput) MachineType() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfig) *string { return v.MachineType }).(pulumi.StringPtrOutput)
 }
 
+// The name of a minimum generation of CPU family
+// for the master. If not specified, GCP will default to a predetermined computed value
+// for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+// for details about which CPU families are available (and defaulted) for each zone.
 func (o ClusterClusterConfigMasterConfigPtrOutput) MinCpuPlatform() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfig) *string { return v.MinCpuPlatform }).(pulumi.StringPtrOutput)
 }
@@ -1455,7 +1748,9 @@ func (o ClusterClusterConfigMasterConfigPtrOutput) NumInstances() pulumi.IntPtrO
 }
 
 type ClusterClusterConfigMasterConfigAccelerator struct {
+	// The number of the accelerator cards of this type exposed to this instance. Often restricted to one of `1`, `2`, `4`, or `8`.
 	AcceleratorCount int `pulumi:"acceleratorCount"`
+	// The short name of the accelerator type to expose to this instance. For example, `nvidia-tesla-k80`.
 	AcceleratorType string `pulumi:"acceleratorType"`
 }
 
@@ -1467,7 +1762,9 @@ type ClusterClusterConfigMasterConfigAcceleratorInput interface {
 }
 
 type ClusterClusterConfigMasterConfigAcceleratorArgs struct {
+	// The number of the accelerator cards of this type exposed to this instance. Often restricted to one of `1`, `2`, `4`, or `8`.
 	AcceleratorCount pulumi.IntInput `pulumi:"acceleratorCount"`
+	// The short name of the accelerator type to expose to this instance. For example, `nvidia-tesla-k80`.
 	AcceleratorType pulumi.StringInput `pulumi:"acceleratorType"`
 }
 
@@ -1518,10 +1815,12 @@ func (o ClusterClusterConfigMasterConfigAcceleratorOutput) ToClusterClusterConfi
 	return o
 }
 
+// The number of the accelerator cards of this type exposed to this instance. Often restricted to one of `1`, `2`, `4`, or `8`.
 func (o ClusterClusterConfigMasterConfigAcceleratorOutput) AcceleratorCount() pulumi.IntOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfigAccelerator) int { return v.AcceleratorCount }).(pulumi.IntOutput)
 }
 
+// The short name of the accelerator type to expose to this instance. For example, `nvidia-tesla-k80`.
 func (o ClusterClusterConfigMasterConfigAcceleratorOutput) AcceleratorType() pulumi.StringOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfigAccelerator) string { return v.AcceleratorType }).(pulumi.StringOutput)
 }
@@ -1547,8 +1846,16 @@ func (o ClusterClusterConfigMasterConfigAcceleratorArrayOutput) Index(i pulumi.I
 }
 
 type ClusterClusterConfigMasterConfigDiskConfig struct {
+	// Size of the primary disk attached to each preemptible worker node, specified
+	// in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+	// computed value if not set (currently 500GB). Note: If SSDs are not
+	// attached, it also contains the HDFS data blocks and Hadoop working directories.
 	BootDiskSizeGb *int `pulumi:"bootDiskSizeGb"`
+	// The disk type of the primary disk attached to each preemptible worker node.
+	// One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
 	BootDiskType *string `pulumi:"bootDiskType"`
+	// The amount of local SSD disks that will be
+	// attached to each preemptible worker node. Defaults to 0.
 	NumLocalSsds *int `pulumi:"numLocalSsds"`
 }
 
@@ -1560,8 +1867,16 @@ type ClusterClusterConfigMasterConfigDiskConfigInput interface {
 }
 
 type ClusterClusterConfigMasterConfigDiskConfigArgs struct {
+	// Size of the primary disk attached to each preemptible worker node, specified
+	// in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+	// computed value if not set (currently 500GB). Note: If SSDs are not
+	// attached, it also contains the HDFS data blocks and Hadoop working directories.
 	BootDiskSizeGb pulumi.IntPtrInput `pulumi:"bootDiskSizeGb"`
+	// The disk type of the primary disk attached to each preemptible worker node.
+	// One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
 	BootDiskType pulumi.StringPtrInput `pulumi:"bootDiskType"`
+	// The amount of local SSD disks that will be
+	// attached to each preemptible worker node. Defaults to 0.
 	NumLocalSsds pulumi.IntPtrInput `pulumi:"numLocalSsds"`
 }
 
@@ -1632,14 +1947,22 @@ func (o ClusterClusterConfigMasterConfigDiskConfigOutput) ToClusterClusterConfig
 		return &v
 	}).(ClusterClusterConfigMasterConfigDiskConfigPtrOutput)
 }
+// Size of the primary disk attached to each preemptible worker node, specified
+// in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+// computed value if not set (currently 500GB). Note: If SSDs are not
+// attached, it also contains the HDFS data blocks and Hadoop working directories.
 func (o ClusterClusterConfigMasterConfigDiskConfigOutput) BootDiskSizeGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfigDiskConfig) *int { return v.BootDiskSizeGb }).(pulumi.IntPtrOutput)
 }
 
+// The disk type of the primary disk attached to each preemptible worker node.
+// One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
 func (o ClusterClusterConfigMasterConfigDiskConfigOutput) BootDiskType() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfigDiskConfig) *string { return v.BootDiskType }).(pulumi.StringPtrOutput)
 }
 
+// The amount of local SSD disks that will be
+// attached to each preemptible worker node. Defaults to 0.
 func (o ClusterClusterConfigMasterConfigDiskConfigOutput) NumLocalSsds() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfigDiskConfig) *int { return v.NumLocalSsds }).(pulumi.IntPtrOutput)
 }
@@ -1662,19 +1985,28 @@ func (o ClusterClusterConfigMasterConfigDiskConfigPtrOutput) Elem() ClusterClust
 	return o.ApplyT(func (v *ClusterClusterConfigMasterConfigDiskConfig) ClusterClusterConfigMasterConfigDiskConfig { return *v }).(ClusterClusterConfigMasterConfigDiskConfigOutput)
 }
 
+// Size of the primary disk attached to each preemptible worker node, specified
+// in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+// computed value if not set (currently 500GB). Note: If SSDs are not
+// attached, it also contains the HDFS data blocks and Hadoop working directories.
 func (o ClusterClusterConfigMasterConfigDiskConfigPtrOutput) BootDiskSizeGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfigDiskConfig) *int { return v.BootDiskSizeGb }).(pulumi.IntPtrOutput)
 }
 
+// The disk type of the primary disk attached to each preemptible worker node.
+// One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
 func (o ClusterClusterConfigMasterConfigDiskConfigPtrOutput) BootDiskType() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfigDiskConfig) *string { return v.BootDiskType }).(pulumi.StringPtrOutput)
 }
 
+// The amount of local SSD disks that will be
+// attached to each preemptible worker node. Defaults to 0.
 func (o ClusterClusterConfigMasterConfigDiskConfigPtrOutput) NumLocalSsds() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigMasterConfigDiskConfig) *int { return v.NumLocalSsds }).(pulumi.IntPtrOutput)
 }
 
 type ClusterClusterConfigPreemptibleWorkerConfig struct {
+	// Disk Config
 	DiskConfig *ClusterClusterConfigPreemptibleWorkerConfigDiskConfig `pulumi:"diskConfig"`
 	InstanceNames []string `pulumi:"instanceNames"`
 	NumInstances *int `pulumi:"numInstances"`
@@ -1688,6 +2020,7 @@ type ClusterClusterConfigPreemptibleWorkerConfigInput interface {
 }
 
 type ClusterClusterConfigPreemptibleWorkerConfigArgs struct {
+	// Disk Config
 	DiskConfig ClusterClusterConfigPreemptibleWorkerConfigDiskConfigPtrInput `pulumi:"diskConfig"`
 	InstanceNames pulumi.StringArrayInput `pulumi:"instanceNames"`
 	NumInstances pulumi.IntPtrInput `pulumi:"numInstances"`
@@ -1760,6 +2093,7 @@ func (o ClusterClusterConfigPreemptibleWorkerConfigOutput) ToClusterClusterConfi
 		return &v
 	}).(ClusterClusterConfigPreemptibleWorkerConfigPtrOutput)
 }
+// Disk Config
 func (o ClusterClusterConfigPreemptibleWorkerConfigOutput) DiskConfig() ClusterClusterConfigPreemptibleWorkerConfigDiskConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigPreemptibleWorkerConfig) *ClusterClusterConfigPreemptibleWorkerConfigDiskConfig { return v.DiskConfig }).(ClusterClusterConfigPreemptibleWorkerConfigDiskConfigPtrOutput)
 }
@@ -1790,6 +2124,7 @@ func (o ClusterClusterConfigPreemptibleWorkerConfigPtrOutput) Elem() ClusterClus
 	return o.ApplyT(func (v *ClusterClusterConfigPreemptibleWorkerConfig) ClusterClusterConfigPreemptibleWorkerConfig { return *v }).(ClusterClusterConfigPreemptibleWorkerConfigOutput)
 }
 
+// Disk Config
 func (o ClusterClusterConfigPreemptibleWorkerConfigPtrOutput) DiskConfig() ClusterClusterConfigPreemptibleWorkerConfigDiskConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigPreemptibleWorkerConfig) *ClusterClusterConfigPreemptibleWorkerConfigDiskConfig { return v.DiskConfig }).(ClusterClusterConfigPreemptibleWorkerConfigDiskConfigPtrOutput)
 }
@@ -1803,8 +2138,16 @@ func (o ClusterClusterConfigPreemptibleWorkerConfigPtrOutput) NumInstances() pul
 }
 
 type ClusterClusterConfigPreemptibleWorkerConfigDiskConfig struct {
+	// Size of the primary disk attached to each preemptible worker node, specified
+	// in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+	// computed value if not set (currently 500GB). Note: If SSDs are not
+	// attached, it also contains the HDFS data blocks and Hadoop working directories.
 	BootDiskSizeGb *int `pulumi:"bootDiskSizeGb"`
+	// The disk type of the primary disk attached to each preemptible worker node.
+	// One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
 	BootDiskType *string `pulumi:"bootDiskType"`
+	// The amount of local SSD disks that will be
+	// attached to each preemptible worker node. Defaults to 0.
 	NumLocalSsds *int `pulumi:"numLocalSsds"`
 }
 
@@ -1816,8 +2159,16 @@ type ClusterClusterConfigPreemptibleWorkerConfigDiskConfigInput interface {
 }
 
 type ClusterClusterConfigPreemptibleWorkerConfigDiskConfigArgs struct {
+	// Size of the primary disk attached to each preemptible worker node, specified
+	// in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+	// computed value if not set (currently 500GB). Note: If SSDs are not
+	// attached, it also contains the HDFS data blocks and Hadoop working directories.
 	BootDiskSizeGb pulumi.IntPtrInput `pulumi:"bootDiskSizeGb"`
+	// The disk type of the primary disk attached to each preemptible worker node.
+	// One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
 	BootDiskType pulumi.StringPtrInput `pulumi:"bootDiskType"`
+	// The amount of local SSD disks that will be
+	// attached to each preemptible worker node. Defaults to 0.
 	NumLocalSsds pulumi.IntPtrInput `pulumi:"numLocalSsds"`
 }
 
@@ -1888,14 +2239,22 @@ func (o ClusterClusterConfigPreemptibleWorkerConfigDiskConfigOutput) ToClusterCl
 		return &v
 	}).(ClusterClusterConfigPreemptibleWorkerConfigDiskConfigPtrOutput)
 }
+// Size of the primary disk attached to each preemptible worker node, specified
+// in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+// computed value if not set (currently 500GB). Note: If SSDs are not
+// attached, it also contains the HDFS data blocks and Hadoop working directories.
 func (o ClusterClusterConfigPreemptibleWorkerConfigDiskConfigOutput) BootDiskSizeGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigPreemptibleWorkerConfigDiskConfig) *int { return v.BootDiskSizeGb }).(pulumi.IntPtrOutput)
 }
 
+// The disk type of the primary disk attached to each preemptible worker node.
+// One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
 func (o ClusterClusterConfigPreemptibleWorkerConfigDiskConfigOutput) BootDiskType() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigPreemptibleWorkerConfigDiskConfig) *string { return v.BootDiskType }).(pulumi.StringPtrOutput)
 }
 
+// The amount of local SSD disks that will be
+// attached to each preemptible worker node. Defaults to 0.
 func (o ClusterClusterConfigPreemptibleWorkerConfigDiskConfigOutput) NumLocalSsds() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigPreemptibleWorkerConfigDiskConfig) *int { return v.NumLocalSsds }).(pulumi.IntPtrOutput)
 }
@@ -1918,19 +2277,28 @@ func (o ClusterClusterConfigPreemptibleWorkerConfigDiskConfigPtrOutput) Elem() C
 	return o.ApplyT(func (v *ClusterClusterConfigPreemptibleWorkerConfigDiskConfig) ClusterClusterConfigPreemptibleWorkerConfigDiskConfig { return *v }).(ClusterClusterConfigPreemptibleWorkerConfigDiskConfigOutput)
 }
 
+// Size of the primary disk attached to each preemptible worker node, specified
+// in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+// computed value if not set (currently 500GB). Note: If SSDs are not
+// attached, it also contains the HDFS data blocks and Hadoop working directories.
 func (o ClusterClusterConfigPreemptibleWorkerConfigDiskConfigPtrOutput) BootDiskSizeGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigPreemptibleWorkerConfigDiskConfig) *int { return v.BootDiskSizeGb }).(pulumi.IntPtrOutput)
 }
 
+// The disk type of the primary disk attached to each preemptible worker node.
+// One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
 func (o ClusterClusterConfigPreemptibleWorkerConfigDiskConfigPtrOutput) BootDiskType() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigPreemptibleWorkerConfigDiskConfig) *string { return v.BootDiskType }).(pulumi.StringPtrOutput)
 }
 
+// The amount of local SSD disks that will be
+// attached to each preemptible worker node. Defaults to 0.
 func (o ClusterClusterConfigPreemptibleWorkerConfigDiskConfigPtrOutput) NumLocalSsds() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigPreemptibleWorkerConfigDiskConfig) *int { return v.NumLocalSsds }).(pulumi.IntPtrOutput)
 }
 
 type ClusterClusterConfigSecurityConfig struct {
+	// Kerberos Configuration
 	KerberosConfig ClusterClusterConfigSecurityConfigKerberosConfig `pulumi:"kerberosConfig"`
 }
 
@@ -1942,6 +2310,7 @@ type ClusterClusterConfigSecurityConfigInput interface {
 }
 
 type ClusterClusterConfigSecurityConfigArgs struct {
+	// Kerberos Configuration
 	KerberosConfig ClusterClusterConfigSecurityConfigKerberosConfigInput `pulumi:"kerberosConfig"`
 }
 
@@ -2012,6 +2381,7 @@ func (o ClusterClusterConfigSecurityConfigOutput) ToClusterClusterConfigSecurity
 		return &v
 	}).(ClusterClusterConfigSecurityConfigPtrOutput)
 }
+// Kerberos Configuration
 func (o ClusterClusterConfigSecurityConfigOutput) KerberosConfig() ClusterClusterConfigSecurityConfigKerberosConfigOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfig) ClusterClusterConfigSecurityConfigKerberosConfig { return v.KerberosConfig }).(ClusterClusterConfigSecurityConfigKerberosConfigOutput)
 }
@@ -2034,25 +2404,57 @@ func (o ClusterClusterConfigSecurityConfigPtrOutput) Elem() ClusterClusterConfig
 	return o.ApplyT(func (v *ClusterClusterConfigSecurityConfig) ClusterClusterConfigSecurityConfig { return *v }).(ClusterClusterConfigSecurityConfigOutput)
 }
 
+// Kerberos Configuration
 func (o ClusterClusterConfigSecurityConfigPtrOutput) KerberosConfig() ClusterClusterConfigSecurityConfigKerberosConfigOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfig) ClusterClusterConfigSecurityConfigKerberosConfig { return v.KerberosConfig }).(ClusterClusterConfigSecurityConfigKerberosConfigOutput)
 }
 
 type ClusterClusterConfigSecurityConfigKerberosConfig struct {
+	// The admin server (IP or hostname) for the
+	// remote trusted realm in a cross realm trust relationship.
 	CrossRealmTrustAdminServer *string `pulumi:"crossRealmTrustAdminServer"`
+	// The KDC (IP or hostname) for the
+	// remote trusted realm in a cross realm trust relationship.
 	CrossRealmTrustKdc *string `pulumi:"crossRealmTrustKdc"`
+	// The remote realm the Dataproc on-cluster KDC will
+	// trust, should the user enable cross realm trust.
 	CrossRealmTrustRealm *string `pulumi:"crossRealmTrustRealm"`
+	// The Cloud Storage URI of a KMS
+	// encrypted file containing the shared password between the on-cluster Kerberos realm
+	// and the remote trusted realm, in a cross realm trust relationship.
 	CrossRealmTrustSharedPasswordUri *string `pulumi:"crossRealmTrustSharedPasswordUri"`
+	// Flag to indicate whether to Kerberize the cluster.
 	EnableKerberos *bool `pulumi:"enableKerberos"`
+	// The Cloud Storage URI of a KMS encrypted file containing
+	// the master key of the KDC database.
 	KdcDbKeyUri *string `pulumi:"kdcDbKeyUri"`
+	// The Cloud Storage URI of a KMS encrypted file containing
+	// the password to the user provided key. For the self-signed certificate, this password
+	// is generated by Dataproc.
 	KeyPasswordUri *string `pulumi:"keyPasswordUri"`
+	// The Cloud Storage URI of a KMS encrypted file containing
+	// the password to the user provided keystore. For the self-signed certificated, the password
+	// is generated by Dataproc.
 	KeystorePasswordUri *string `pulumi:"keystorePasswordUri"`
+	// The Cloud Storage URI of the keystore file used for SSL encryption.
+	// If not provided, Dataproc will provide a self-signed certificate.
 	KeystoreUri *string `pulumi:"keystoreUri"`
+	// The URI of the KMS key used to encrypt various sensitive files.
 	KmsKeyUri string `pulumi:"kmsKeyUri"`
+	// The name of the on-cluster Kerberos realm. If not specified, the
+	// uppercased domain of hostnames will be the realm.
 	Realm *string `pulumi:"realm"`
+	// The Cloud Storage URI of a KMS encrypted file
+	// containing the root principal password.
 	RootPrincipalPasswordUri string `pulumi:"rootPrincipalPasswordUri"`
+	// The lifetime of the ticket granting ticket, in hours.
 	TgtLifetimeHours *int `pulumi:"tgtLifetimeHours"`
+	// The Cloud Storage URI of a KMS encrypted file
+	// containing the password to the user provided truststore. For the self-signed
+	// certificate, this password is generated by Dataproc.
 	TruststorePasswordUri *string `pulumi:"truststorePasswordUri"`
+	// The Cloud Storage URI of the truststore file used for
+	// SSL encryption. If not provided, Dataproc will provide a self-signed certificate.
 	TruststoreUri *string `pulumi:"truststoreUri"`
 }
 
@@ -2064,20 +2466,51 @@ type ClusterClusterConfigSecurityConfigKerberosConfigInput interface {
 }
 
 type ClusterClusterConfigSecurityConfigKerberosConfigArgs struct {
+	// The admin server (IP or hostname) for the
+	// remote trusted realm in a cross realm trust relationship.
 	CrossRealmTrustAdminServer pulumi.StringPtrInput `pulumi:"crossRealmTrustAdminServer"`
+	// The KDC (IP or hostname) for the
+	// remote trusted realm in a cross realm trust relationship.
 	CrossRealmTrustKdc pulumi.StringPtrInput `pulumi:"crossRealmTrustKdc"`
+	// The remote realm the Dataproc on-cluster KDC will
+	// trust, should the user enable cross realm trust.
 	CrossRealmTrustRealm pulumi.StringPtrInput `pulumi:"crossRealmTrustRealm"`
+	// The Cloud Storage URI of a KMS
+	// encrypted file containing the shared password between the on-cluster Kerberos realm
+	// and the remote trusted realm, in a cross realm trust relationship.
 	CrossRealmTrustSharedPasswordUri pulumi.StringPtrInput `pulumi:"crossRealmTrustSharedPasswordUri"`
+	// Flag to indicate whether to Kerberize the cluster.
 	EnableKerberos pulumi.BoolPtrInput `pulumi:"enableKerberos"`
+	// The Cloud Storage URI of a KMS encrypted file containing
+	// the master key of the KDC database.
 	KdcDbKeyUri pulumi.StringPtrInput `pulumi:"kdcDbKeyUri"`
+	// The Cloud Storage URI of a KMS encrypted file containing
+	// the password to the user provided key. For the self-signed certificate, this password
+	// is generated by Dataproc.
 	KeyPasswordUri pulumi.StringPtrInput `pulumi:"keyPasswordUri"`
+	// The Cloud Storage URI of a KMS encrypted file containing
+	// the password to the user provided keystore. For the self-signed certificated, the password
+	// is generated by Dataproc.
 	KeystorePasswordUri pulumi.StringPtrInput `pulumi:"keystorePasswordUri"`
+	// The Cloud Storage URI of the keystore file used for SSL encryption.
+	// If not provided, Dataproc will provide a self-signed certificate.
 	KeystoreUri pulumi.StringPtrInput `pulumi:"keystoreUri"`
+	// The URI of the KMS key used to encrypt various sensitive files.
 	KmsKeyUri pulumi.StringInput `pulumi:"kmsKeyUri"`
+	// The name of the on-cluster Kerberos realm. If not specified, the
+	// uppercased domain of hostnames will be the realm.
 	Realm pulumi.StringPtrInput `pulumi:"realm"`
+	// The Cloud Storage URI of a KMS encrypted file
+	// containing the root principal password.
 	RootPrincipalPasswordUri pulumi.StringInput `pulumi:"rootPrincipalPasswordUri"`
+	// The lifetime of the ticket granting ticket, in hours.
 	TgtLifetimeHours pulumi.IntPtrInput `pulumi:"tgtLifetimeHours"`
+	// The Cloud Storage URI of a KMS encrypted file
+	// containing the password to the user provided truststore. For the self-signed
+	// certificate, this password is generated by Dataproc.
 	TruststorePasswordUri pulumi.StringPtrInput `pulumi:"truststorePasswordUri"`
+	// The Cloud Storage URI of the truststore file used for
+	// SSL encryption. If not provided, Dataproc will provide a self-signed certificate.
 	TruststoreUri pulumi.StringPtrInput `pulumi:"truststoreUri"`
 }
 
@@ -2107,69 +2540,109 @@ func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) ToClusterCluster
 	return o
 }
 
+// The admin server (IP or hostname) for the
+// remote trusted realm in a cross realm trust relationship.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) CrossRealmTrustAdminServer() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) *string { return v.CrossRealmTrustAdminServer }).(pulumi.StringPtrOutput)
 }
 
+// The KDC (IP or hostname) for the
+// remote trusted realm in a cross realm trust relationship.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) CrossRealmTrustKdc() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) *string { return v.CrossRealmTrustKdc }).(pulumi.StringPtrOutput)
 }
 
+// The remote realm the Dataproc on-cluster KDC will
+// trust, should the user enable cross realm trust.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) CrossRealmTrustRealm() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) *string { return v.CrossRealmTrustRealm }).(pulumi.StringPtrOutput)
 }
 
+// The Cloud Storage URI of a KMS
+// encrypted file containing the shared password between the on-cluster Kerberos realm
+// and the remote trusted realm, in a cross realm trust relationship.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) CrossRealmTrustSharedPasswordUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) *string { return v.CrossRealmTrustSharedPasswordUri }).(pulumi.StringPtrOutput)
 }
 
+// Flag to indicate whether to Kerberize the cluster.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) EnableKerberos() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) *bool { return v.EnableKerberos }).(pulumi.BoolPtrOutput)
 }
 
+// The Cloud Storage URI of a KMS encrypted file containing
+// the master key of the KDC database.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) KdcDbKeyUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) *string { return v.KdcDbKeyUri }).(pulumi.StringPtrOutput)
 }
 
+// The Cloud Storage URI of a KMS encrypted file containing
+// the password to the user provided key. For the self-signed certificate, this password
+// is generated by Dataproc.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) KeyPasswordUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) *string { return v.KeyPasswordUri }).(pulumi.StringPtrOutput)
 }
 
+// The Cloud Storage URI of a KMS encrypted file containing
+// the password to the user provided keystore. For the self-signed certificated, the password
+// is generated by Dataproc.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) KeystorePasswordUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) *string { return v.KeystorePasswordUri }).(pulumi.StringPtrOutput)
 }
 
+// The Cloud Storage URI of the keystore file used for SSL encryption.
+// If not provided, Dataproc will provide a self-signed certificate.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) KeystoreUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) *string { return v.KeystoreUri }).(pulumi.StringPtrOutput)
 }
 
+// The URI of the KMS key used to encrypt various sensitive files.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) KmsKeyUri() pulumi.StringOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) string { return v.KmsKeyUri }).(pulumi.StringOutput)
 }
 
+// The name of the on-cluster Kerberos realm. If not specified, the
+// uppercased domain of hostnames will be the realm.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) Realm() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) *string { return v.Realm }).(pulumi.StringPtrOutput)
 }
 
+// The Cloud Storage URI of a KMS encrypted file
+// containing the root principal password.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) RootPrincipalPasswordUri() pulumi.StringOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) string { return v.RootPrincipalPasswordUri }).(pulumi.StringOutput)
 }
 
+// The lifetime of the ticket granting ticket, in hours.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) TgtLifetimeHours() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) *int { return v.TgtLifetimeHours }).(pulumi.IntPtrOutput)
 }
 
+// The Cloud Storage URI of a KMS encrypted file
+// containing the password to the user provided truststore. For the self-signed
+// certificate, this password is generated by Dataproc.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) TruststorePasswordUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) *string { return v.TruststorePasswordUri }).(pulumi.StringPtrOutput)
 }
 
+// The Cloud Storage URI of the truststore file used for
+// SSL encryption. If not provided, Dataproc will provide a self-signed certificate.
 func (o ClusterClusterConfigSecurityConfigKerberosConfigOutput) TruststoreUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSecurityConfigKerberosConfig) *string { return v.TruststoreUri }).(pulumi.StringPtrOutput)
 }
 
 type ClusterClusterConfigSoftwareConfig struct {
+	// The Cloud Dataproc image version to use
+	// for the cluster - this controls the sets of software versions
+	// installed onto the nodes when you create clusters. If not specified, defaults to the
+	// latest version. For a list of valid versions see
+	// [Cloud Dataproc versions](https://cloud.google.com/dataproc/docs/concepts/dataproc-versions)
 	ImageVersion *string `pulumi:"imageVersion"`
 	OptionalComponents []string `pulumi:"optionalComponents"`
+	// A list of override and additional properties (key/value pairs)
+	// used to modify various aspects of the common configuration files used when creating
+	// a cluster. For a list of valid properties please see
+	// [Cluster properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties)
 	OverrideProperties map[string]string `pulumi:"overrideProperties"`
 	Properties map[string]interface{} `pulumi:"properties"`
 }
@@ -2182,8 +2655,17 @@ type ClusterClusterConfigSoftwareConfigInput interface {
 }
 
 type ClusterClusterConfigSoftwareConfigArgs struct {
+	// The Cloud Dataproc image version to use
+	// for the cluster - this controls the sets of software versions
+	// installed onto the nodes when you create clusters. If not specified, defaults to the
+	// latest version. For a list of valid versions see
+	// [Cloud Dataproc versions](https://cloud.google.com/dataproc/docs/concepts/dataproc-versions)
 	ImageVersion pulumi.StringPtrInput `pulumi:"imageVersion"`
 	OptionalComponents pulumi.StringArrayInput `pulumi:"optionalComponents"`
+	// A list of override and additional properties (key/value pairs)
+	// used to modify various aspects of the common configuration files used when creating
+	// a cluster. For a list of valid properties please see
+	// [Cluster properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties)
 	OverrideProperties pulumi.StringMapInput `pulumi:"overrideProperties"`
 	Properties pulumi.MapInput `pulumi:"properties"`
 }
@@ -2255,6 +2737,11 @@ func (o ClusterClusterConfigSoftwareConfigOutput) ToClusterClusterConfigSoftware
 		return &v
 	}).(ClusterClusterConfigSoftwareConfigPtrOutput)
 }
+// The Cloud Dataproc image version to use
+// for the cluster - this controls the sets of software versions
+// installed onto the nodes when you create clusters. If not specified, defaults to the
+// latest version. For a list of valid versions see
+// [Cloud Dataproc versions](https://cloud.google.com/dataproc/docs/concepts/dataproc-versions)
 func (o ClusterClusterConfigSoftwareConfigOutput) ImageVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSoftwareConfig) *string { return v.ImageVersion }).(pulumi.StringPtrOutput)
 }
@@ -2263,6 +2750,10 @@ func (o ClusterClusterConfigSoftwareConfigOutput) OptionalComponents() pulumi.St
 	return o.ApplyT(func (v ClusterClusterConfigSoftwareConfig) []string { return v.OptionalComponents }).(pulumi.StringArrayOutput)
 }
 
+// A list of override and additional properties (key/value pairs)
+// used to modify various aspects of the common configuration files used when creating
+// a cluster. For a list of valid properties please see
+// [Cluster properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties)
 func (o ClusterClusterConfigSoftwareConfigOutput) OverrideProperties() pulumi.StringMapOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSoftwareConfig) map[string]string { return v.OverrideProperties }).(pulumi.StringMapOutput)
 }
@@ -2289,6 +2780,11 @@ func (o ClusterClusterConfigSoftwareConfigPtrOutput) Elem() ClusterClusterConfig
 	return o.ApplyT(func (v *ClusterClusterConfigSoftwareConfig) ClusterClusterConfigSoftwareConfig { return *v }).(ClusterClusterConfigSoftwareConfigOutput)
 }
 
+// The Cloud Dataproc image version to use
+// for the cluster - this controls the sets of software versions
+// installed onto the nodes when you create clusters. If not specified, defaults to the
+// latest version. For a list of valid versions see
+// [Cloud Dataproc versions](https://cloud.google.com/dataproc/docs/concepts/dataproc-versions)
 func (o ClusterClusterConfigSoftwareConfigPtrOutput) ImageVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSoftwareConfig) *string { return v.ImageVersion }).(pulumi.StringPtrOutput)
 }
@@ -2297,6 +2793,10 @@ func (o ClusterClusterConfigSoftwareConfigPtrOutput) OptionalComponents() pulumi
 	return o.ApplyT(func (v ClusterClusterConfigSoftwareConfig) []string { return v.OptionalComponents }).(pulumi.StringArrayOutput)
 }
 
+// A list of override and additional properties (key/value pairs)
+// used to modify various aspects of the common configuration files used when creating
+// a cluster. For a list of valid properties please see
+// [Cluster properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties)
 func (o ClusterClusterConfigSoftwareConfigPtrOutput) OverrideProperties() pulumi.StringMapOutput {
 	return o.ApplyT(func (v ClusterClusterConfigSoftwareConfig) map[string]string { return v.OverrideProperties }).(pulumi.StringMapOutput)
 }
@@ -2306,11 +2806,22 @@ func (o ClusterClusterConfigSoftwareConfigPtrOutput) Properties() pulumi.MapOutp
 }
 
 type ClusterClusterConfigWorkerConfig struct {
+	// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
 	Accelerators []ClusterClusterConfigWorkerConfigAccelerator `pulumi:"accelerators"`
+	// Disk Config
 	DiskConfig *ClusterClusterConfigWorkerConfigDiskConfig `pulumi:"diskConfig"`
+	// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
+	// for more information.
 	ImageUri *string `pulumi:"imageUri"`
 	InstanceNames []string `pulumi:"instanceNames"`
+	// The name of a Google Compute Engine machine type
+	// to create for the worker nodes. If not specified, GCP will default to a predetermined
+	// computed value (currently `n1-standard-4`).
 	MachineType *string `pulumi:"machineType"`
+	// The name of a minimum generation of CPU family
+	// for the master. If not specified, GCP will default to a predetermined computed value
+	// for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+	// for details about which CPU families are available (and defaulted) for each zone.
 	MinCpuPlatform *string `pulumi:"minCpuPlatform"`
 	NumInstances *int `pulumi:"numInstances"`
 }
@@ -2323,11 +2834,22 @@ type ClusterClusterConfigWorkerConfigInput interface {
 }
 
 type ClusterClusterConfigWorkerConfigArgs struct {
+	// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
 	Accelerators ClusterClusterConfigWorkerConfigAcceleratorArrayInput `pulumi:"accelerators"`
+	// Disk Config
 	DiskConfig ClusterClusterConfigWorkerConfigDiskConfigPtrInput `pulumi:"diskConfig"`
+	// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
+	// for more information.
 	ImageUri pulumi.StringPtrInput `pulumi:"imageUri"`
 	InstanceNames pulumi.StringArrayInput `pulumi:"instanceNames"`
+	// The name of a Google Compute Engine machine type
+	// to create for the worker nodes. If not specified, GCP will default to a predetermined
+	// computed value (currently `n1-standard-4`).
 	MachineType pulumi.StringPtrInput `pulumi:"machineType"`
+	// The name of a minimum generation of CPU family
+	// for the master. If not specified, GCP will default to a predetermined computed value
+	// for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+	// for details about which CPU families are available (and defaulted) for each zone.
 	MinCpuPlatform pulumi.StringPtrInput `pulumi:"minCpuPlatform"`
 	NumInstances pulumi.IntPtrInput `pulumi:"numInstances"`
 }
@@ -2399,14 +2921,18 @@ func (o ClusterClusterConfigWorkerConfigOutput) ToClusterClusterConfigWorkerConf
 		return &v
 	}).(ClusterClusterConfigWorkerConfigPtrOutput)
 }
+// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
 func (o ClusterClusterConfigWorkerConfigOutput) Accelerators() ClusterClusterConfigWorkerConfigAcceleratorArrayOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfig) []ClusterClusterConfigWorkerConfigAccelerator { return v.Accelerators }).(ClusterClusterConfigWorkerConfigAcceleratorArrayOutput)
 }
 
+// Disk Config
 func (o ClusterClusterConfigWorkerConfigOutput) DiskConfig() ClusterClusterConfigWorkerConfigDiskConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfig) *ClusterClusterConfigWorkerConfigDiskConfig { return v.DiskConfig }).(ClusterClusterConfigWorkerConfigDiskConfigPtrOutput)
 }
 
+// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
+// for more information.
 func (o ClusterClusterConfigWorkerConfigOutput) ImageUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfig) *string { return v.ImageUri }).(pulumi.StringPtrOutput)
 }
@@ -2415,10 +2941,17 @@ func (o ClusterClusterConfigWorkerConfigOutput) InstanceNames() pulumi.StringArr
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfig) []string { return v.InstanceNames }).(pulumi.StringArrayOutput)
 }
 
+// The name of a Google Compute Engine machine type
+// to create for the worker nodes. If not specified, GCP will default to a predetermined
+// computed value (currently `n1-standard-4`).
 func (o ClusterClusterConfigWorkerConfigOutput) MachineType() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfig) *string { return v.MachineType }).(pulumi.StringPtrOutput)
 }
 
+// The name of a minimum generation of CPU family
+// for the master. If not specified, GCP will default to a predetermined computed value
+// for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+// for details about which CPU families are available (and defaulted) for each zone.
 func (o ClusterClusterConfigWorkerConfigOutput) MinCpuPlatform() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfig) *string { return v.MinCpuPlatform }).(pulumi.StringPtrOutput)
 }
@@ -2445,14 +2978,18 @@ func (o ClusterClusterConfigWorkerConfigPtrOutput) Elem() ClusterClusterConfigWo
 	return o.ApplyT(func (v *ClusterClusterConfigWorkerConfig) ClusterClusterConfigWorkerConfig { return *v }).(ClusterClusterConfigWorkerConfigOutput)
 }
 
+// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
 func (o ClusterClusterConfigWorkerConfigPtrOutput) Accelerators() ClusterClusterConfigWorkerConfigAcceleratorArrayOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfig) []ClusterClusterConfigWorkerConfigAccelerator { return v.Accelerators }).(ClusterClusterConfigWorkerConfigAcceleratorArrayOutput)
 }
 
+// Disk Config
 func (o ClusterClusterConfigWorkerConfigPtrOutput) DiskConfig() ClusterClusterConfigWorkerConfigDiskConfigPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfig) *ClusterClusterConfigWorkerConfigDiskConfig { return v.DiskConfig }).(ClusterClusterConfigWorkerConfigDiskConfigPtrOutput)
 }
 
+// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
+// for more information.
 func (o ClusterClusterConfigWorkerConfigPtrOutput) ImageUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfig) *string { return v.ImageUri }).(pulumi.StringPtrOutput)
 }
@@ -2461,10 +2998,17 @@ func (o ClusterClusterConfigWorkerConfigPtrOutput) InstanceNames() pulumi.String
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfig) []string { return v.InstanceNames }).(pulumi.StringArrayOutput)
 }
 
+// The name of a Google Compute Engine machine type
+// to create for the worker nodes. If not specified, GCP will default to a predetermined
+// computed value (currently `n1-standard-4`).
 func (o ClusterClusterConfigWorkerConfigPtrOutput) MachineType() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfig) *string { return v.MachineType }).(pulumi.StringPtrOutput)
 }
 
+// The name of a minimum generation of CPU family
+// for the master. If not specified, GCP will default to a predetermined computed value
+// for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+// for details about which CPU families are available (and defaulted) for each zone.
 func (o ClusterClusterConfigWorkerConfigPtrOutput) MinCpuPlatform() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfig) *string { return v.MinCpuPlatform }).(pulumi.StringPtrOutput)
 }
@@ -2474,7 +3018,9 @@ func (o ClusterClusterConfigWorkerConfigPtrOutput) NumInstances() pulumi.IntPtrO
 }
 
 type ClusterClusterConfigWorkerConfigAccelerator struct {
+	// The number of the accelerator cards of this type exposed to this instance. Often restricted to one of `1`, `2`, `4`, or `8`.
 	AcceleratorCount int `pulumi:"acceleratorCount"`
+	// The short name of the accelerator type to expose to this instance. For example, `nvidia-tesla-k80`.
 	AcceleratorType string `pulumi:"acceleratorType"`
 }
 
@@ -2486,7 +3032,9 @@ type ClusterClusterConfigWorkerConfigAcceleratorInput interface {
 }
 
 type ClusterClusterConfigWorkerConfigAcceleratorArgs struct {
+	// The number of the accelerator cards of this type exposed to this instance. Often restricted to one of `1`, `2`, `4`, or `8`.
 	AcceleratorCount pulumi.IntInput `pulumi:"acceleratorCount"`
+	// The short name of the accelerator type to expose to this instance. For example, `nvidia-tesla-k80`.
 	AcceleratorType pulumi.StringInput `pulumi:"acceleratorType"`
 }
 
@@ -2537,10 +3085,12 @@ func (o ClusterClusterConfigWorkerConfigAcceleratorOutput) ToClusterClusterConfi
 	return o
 }
 
+// The number of the accelerator cards of this type exposed to this instance. Often restricted to one of `1`, `2`, `4`, or `8`.
 func (o ClusterClusterConfigWorkerConfigAcceleratorOutput) AcceleratorCount() pulumi.IntOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfigAccelerator) int { return v.AcceleratorCount }).(pulumi.IntOutput)
 }
 
+// The short name of the accelerator type to expose to this instance. For example, `nvidia-tesla-k80`.
 func (o ClusterClusterConfigWorkerConfigAcceleratorOutput) AcceleratorType() pulumi.StringOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfigAccelerator) string { return v.AcceleratorType }).(pulumi.StringOutput)
 }
@@ -2566,8 +3116,16 @@ func (o ClusterClusterConfigWorkerConfigAcceleratorArrayOutput) Index(i pulumi.I
 }
 
 type ClusterClusterConfigWorkerConfigDiskConfig struct {
+	// Size of the primary disk attached to each preemptible worker node, specified
+	// in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+	// computed value if not set (currently 500GB). Note: If SSDs are not
+	// attached, it also contains the HDFS data blocks and Hadoop working directories.
 	BootDiskSizeGb *int `pulumi:"bootDiskSizeGb"`
+	// The disk type of the primary disk attached to each preemptible worker node.
+	// One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
 	BootDiskType *string `pulumi:"bootDiskType"`
+	// The amount of local SSD disks that will be
+	// attached to each preemptible worker node. Defaults to 0.
 	NumLocalSsds *int `pulumi:"numLocalSsds"`
 }
 
@@ -2579,8 +3137,16 @@ type ClusterClusterConfigWorkerConfigDiskConfigInput interface {
 }
 
 type ClusterClusterConfigWorkerConfigDiskConfigArgs struct {
+	// Size of the primary disk attached to each preemptible worker node, specified
+	// in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+	// computed value if not set (currently 500GB). Note: If SSDs are not
+	// attached, it also contains the HDFS data blocks and Hadoop working directories.
 	BootDiskSizeGb pulumi.IntPtrInput `pulumi:"bootDiskSizeGb"`
+	// The disk type of the primary disk attached to each preemptible worker node.
+	// One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
 	BootDiskType pulumi.StringPtrInput `pulumi:"bootDiskType"`
+	// The amount of local SSD disks that will be
+	// attached to each preemptible worker node. Defaults to 0.
 	NumLocalSsds pulumi.IntPtrInput `pulumi:"numLocalSsds"`
 }
 
@@ -2651,14 +3217,22 @@ func (o ClusterClusterConfigWorkerConfigDiskConfigOutput) ToClusterClusterConfig
 		return &v
 	}).(ClusterClusterConfigWorkerConfigDiskConfigPtrOutput)
 }
+// Size of the primary disk attached to each preemptible worker node, specified
+// in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+// computed value if not set (currently 500GB). Note: If SSDs are not
+// attached, it also contains the HDFS data blocks and Hadoop working directories.
 func (o ClusterClusterConfigWorkerConfigDiskConfigOutput) BootDiskSizeGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfigDiskConfig) *int { return v.BootDiskSizeGb }).(pulumi.IntPtrOutput)
 }
 
+// The disk type of the primary disk attached to each preemptible worker node.
+// One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
 func (o ClusterClusterConfigWorkerConfigDiskConfigOutput) BootDiskType() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfigDiskConfig) *string { return v.BootDiskType }).(pulumi.StringPtrOutput)
 }
 
+// The amount of local SSD disks that will be
+// attached to each preemptible worker node. Defaults to 0.
 func (o ClusterClusterConfigWorkerConfigDiskConfigOutput) NumLocalSsds() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfigDiskConfig) *int { return v.NumLocalSsds }).(pulumi.IntPtrOutput)
 }
@@ -2681,14 +3255,22 @@ func (o ClusterClusterConfigWorkerConfigDiskConfigPtrOutput) Elem() ClusterClust
 	return o.ApplyT(func (v *ClusterClusterConfigWorkerConfigDiskConfig) ClusterClusterConfigWorkerConfigDiskConfig { return *v }).(ClusterClusterConfigWorkerConfigDiskConfigOutput)
 }
 
+// Size of the primary disk attached to each preemptible worker node, specified
+// in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+// computed value if not set (currently 500GB). Note: If SSDs are not
+// attached, it also contains the HDFS data blocks and Hadoop working directories.
 func (o ClusterClusterConfigWorkerConfigDiskConfigPtrOutput) BootDiskSizeGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfigDiskConfig) *int { return v.BootDiskSizeGb }).(pulumi.IntPtrOutput)
 }
 
+// The disk type of the primary disk attached to each preemptible worker node.
+// One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
 func (o ClusterClusterConfigWorkerConfigDiskConfigPtrOutput) BootDiskType() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfigDiskConfig) *string { return v.BootDiskType }).(pulumi.StringPtrOutput)
 }
 
+// The amount of local SSD disks that will be
+// attached to each preemptible worker node. Defaults to 0.
 func (o ClusterClusterConfigWorkerConfigDiskConfigPtrOutput) NumLocalSsds() pulumi.IntPtrOutput {
 	return o.ApplyT(func (v ClusterClusterConfigWorkerConfigDiskConfig) *int { return v.NumLocalSsds }).(pulumi.IntPtrOutput)
 }
@@ -2950,13 +3532,19 @@ func (o ClusterIAMMemberConditionPtrOutput) Title() pulumi.StringOutput {
 }
 
 type JobHadoopConfig struct {
+	// HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
 	ArchiveUris []string `pulumi:"archiveUris"`
+	// The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
 	Args []string `pulumi:"args"`
+	// HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
 	FileUris []string `pulumi:"fileUris"`
+	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris []string `pulumi:"jarFileUris"`
 	LoggingConfig *JobHadoopConfigLoggingConfig `pulumi:"loggingConfig"`
 	MainClass *string `pulumi:"mainClass"`
+	// The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
 	MainJarFileUri *string `pulumi:"mainJarFileUri"`
+	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 	Properties map[string]string `pulumi:"properties"`
 }
 
@@ -2968,13 +3556,19 @@ type JobHadoopConfigInput interface {
 }
 
 type JobHadoopConfigArgs struct {
+	// HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
 	ArchiveUris pulumi.StringArrayInput `pulumi:"archiveUris"`
+	// The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
 	Args pulumi.StringArrayInput `pulumi:"args"`
+	// HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
 	FileUris pulumi.StringArrayInput `pulumi:"fileUris"`
+	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris pulumi.StringArrayInput `pulumi:"jarFileUris"`
 	LoggingConfig JobHadoopConfigLoggingConfigPtrInput `pulumi:"loggingConfig"`
 	MainClass pulumi.StringPtrInput `pulumi:"mainClass"`
+	// The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
 	MainJarFileUri pulumi.StringPtrInput `pulumi:"mainJarFileUri"`
+	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 	Properties pulumi.StringMapInput `pulumi:"properties"`
 }
 
@@ -3045,18 +3639,22 @@ func (o JobHadoopConfigOutput) ToJobHadoopConfigPtrOutputWithContext(ctx context
 		return &v
 	}).(JobHadoopConfigPtrOutput)
 }
+// HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
 func (o JobHadoopConfigOutput) ArchiveUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobHadoopConfig) []string { return v.ArchiveUris }).(pulumi.StringArrayOutput)
 }
 
+// The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
 func (o JobHadoopConfigOutput) Args() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobHadoopConfig) []string { return v.Args }).(pulumi.StringArrayOutput)
 }
 
+// HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
 func (o JobHadoopConfigOutput) FileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobHadoopConfig) []string { return v.FileUris }).(pulumi.StringArrayOutput)
 }
 
+// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 func (o JobHadoopConfigOutput) JarFileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobHadoopConfig) []string { return v.JarFileUris }).(pulumi.StringArrayOutput)
 }
@@ -3069,10 +3667,12 @@ func (o JobHadoopConfigOutput) MainClass() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v JobHadoopConfig) *string { return v.MainClass }).(pulumi.StringPtrOutput)
 }
 
+// The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
 func (o JobHadoopConfigOutput) MainJarFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v JobHadoopConfig) *string { return v.MainJarFileUri }).(pulumi.StringPtrOutput)
 }
 
+// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 func (o JobHadoopConfigOutput) Properties() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobHadoopConfig) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
 }
@@ -3095,18 +3695,22 @@ func (o JobHadoopConfigPtrOutput) Elem() JobHadoopConfigOutput {
 	return o.ApplyT(func (v *JobHadoopConfig) JobHadoopConfig { return *v }).(JobHadoopConfigOutput)
 }
 
+// HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
 func (o JobHadoopConfigPtrOutput) ArchiveUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobHadoopConfig) []string { return v.ArchiveUris }).(pulumi.StringArrayOutput)
 }
 
+// The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
 func (o JobHadoopConfigPtrOutput) Args() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobHadoopConfig) []string { return v.Args }).(pulumi.StringArrayOutput)
 }
 
+// HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
 func (o JobHadoopConfigPtrOutput) FileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobHadoopConfig) []string { return v.FileUris }).(pulumi.StringArrayOutput)
 }
 
+// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 func (o JobHadoopConfigPtrOutput) JarFileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobHadoopConfig) []string { return v.JarFileUris }).(pulumi.StringArrayOutput)
 }
@@ -3119,10 +3723,12 @@ func (o JobHadoopConfigPtrOutput) MainClass() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v JobHadoopConfig) *string { return v.MainClass }).(pulumi.StringPtrOutput)
 }
 
+// The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
 func (o JobHadoopConfigPtrOutput) MainJarFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v JobHadoopConfig) *string { return v.MainJarFileUri }).(pulumi.StringPtrOutput)
 }
 
+// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 func (o JobHadoopConfigPtrOutput) Properties() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobHadoopConfig) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
 }
@@ -3236,11 +3842,17 @@ func (o JobHadoopConfigLoggingConfigPtrOutput) DriverLogLevels() pulumi.StringMa
 }
 
 type JobHiveConfig struct {
+	// Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries. Defaults to false.
 	ContinueOnFailure *bool `pulumi:"continueOnFailure"`
+	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris []string `pulumi:"jarFileUris"`
+	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 	Properties map[string]string `pulumi:"properties"`
+	// The HCFS URI of the script that contains SQL queries.
+	// Conflicts with `queryList`
 	QueryFileUri *string `pulumi:"queryFileUri"`
 	QueryLists []string `pulumi:"queryLists"`
+	// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 	ScriptVariables map[string]string `pulumi:"scriptVariables"`
 }
 
@@ -3252,11 +3864,17 @@ type JobHiveConfigInput interface {
 }
 
 type JobHiveConfigArgs struct {
+	// Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries. Defaults to false.
 	ContinueOnFailure pulumi.BoolPtrInput `pulumi:"continueOnFailure"`
+	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris pulumi.StringArrayInput `pulumi:"jarFileUris"`
+	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 	Properties pulumi.StringMapInput `pulumi:"properties"`
+	// The HCFS URI of the script that contains SQL queries.
+	// Conflicts with `queryList`
 	QueryFileUri pulumi.StringPtrInput `pulumi:"queryFileUri"`
 	QueryLists pulumi.StringArrayInput `pulumi:"queryLists"`
+	// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 	ScriptVariables pulumi.StringMapInput `pulumi:"scriptVariables"`
 }
 
@@ -3327,18 +3945,23 @@ func (o JobHiveConfigOutput) ToJobHiveConfigPtrOutputWithContext(ctx context.Con
 		return &v
 	}).(JobHiveConfigPtrOutput)
 }
+// Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries. Defaults to false.
 func (o JobHiveConfigOutput) ContinueOnFailure() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v JobHiveConfig) *bool { return v.ContinueOnFailure }).(pulumi.BoolPtrOutput)
 }
 
+// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 func (o JobHiveConfigOutput) JarFileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobHiveConfig) []string { return v.JarFileUris }).(pulumi.StringArrayOutput)
 }
 
+// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 func (o JobHiveConfigOutput) Properties() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobHiveConfig) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
 }
 
+// The HCFS URI of the script that contains SQL queries.
+// Conflicts with `queryList`
 func (o JobHiveConfigOutput) QueryFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v JobHiveConfig) *string { return v.QueryFileUri }).(pulumi.StringPtrOutput)
 }
@@ -3347,6 +3970,7 @@ func (o JobHiveConfigOutput) QueryLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobHiveConfig) []string { return v.QueryLists }).(pulumi.StringArrayOutput)
 }
 
+// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 func (o JobHiveConfigOutput) ScriptVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobHiveConfig) map[string]string { return v.ScriptVariables }).(pulumi.StringMapOutput)
 }
@@ -3369,18 +3993,23 @@ func (o JobHiveConfigPtrOutput) Elem() JobHiveConfigOutput {
 	return o.ApplyT(func (v *JobHiveConfig) JobHiveConfig { return *v }).(JobHiveConfigOutput)
 }
 
+// Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries. Defaults to false.
 func (o JobHiveConfigPtrOutput) ContinueOnFailure() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v JobHiveConfig) *bool { return v.ContinueOnFailure }).(pulumi.BoolPtrOutput)
 }
 
+// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 func (o JobHiveConfigPtrOutput) JarFileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobHiveConfig) []string { return v.JarFileUris }).(pulumi.StringArrayOutput)
 }
 
+// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 func (o JobHiveConfigPtrOutput) Properties() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobHiveConfig) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
 }
 
+// The HCFS URI of the script that contains SQL queries.
+// Conflicts with `queryList`
 func (o JobHiveConfigPtrOutput) QueryFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v JobHiveConfig) *string { return v.QueryFileUri }).(pulumi.StringPtrOutput)
 }
@@ -3389,6 +4018,7 @@ func (o JobHiveConfigPtrOutput) QueryLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobHiveConfig) []string { return v.QueryLists }).(pulumi.StringArrayOutput)
 }
 
+// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 func (o JobHiveConfigPtrOutput) ScriptVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobHiveConfig) map[string]string { return v.ScriptVariables }).(pulumi.StringMapOutput)
 }
@@ -3650,12 +4280,18 @@ func (o JobIAMMemberConditionPtrOutput) Title() pulumi.StringOutput {
 }
 
 type JobPigConfig struct {
+	// Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries. Defaults to false.
 	ContinueOnFailure *bool `pulumi:"continueOnFailure"`
+	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris []string `pulumi:"jarFileUris"`
 	LoggingConfig *JobPigConfigLoggingConfig `pulumi:"loggingConfig"`
+	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 	Properties map[string]string `pulumi:"properties"`
+	// The HCFS URI of the script that contains SQL queries.
+	// Conflicts with `queryList`
 	QueryFileUri *string `pulumi:"queryFileUri"`
 	QueryLists []string `pulumi:"queryLists"`
+	// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 	ScriptVariables map[string]string `pulumi:"scriptVariables"`
 }
 
@@ -3667,12 +4303,18 @@ type JobPigConfigInput interface {
 }
 
 type JobPigConfigArgs struct {
+	// Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries. Defaults to false.
 	ContinueOnFailure pulumi.BoolPtrInput `pulumi:"continueOnFailure"`
+	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris pulumi.StringArrayInput `pulumi:"jarFileUris"`
 	LoggingConfig JobPigConfigLoggingConfigPtrInput `pulumi:"loggingConfig"`
+	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 	Properties pulumi.StringMapInput `pulumi:"properties"`
+	// The HCFS URI of the script that contains SQL queries.
+	// Conflicts with `queryList`
 	QueryFileUri pulumi.StringPtrInput `pulumi:"queryFileUri"`
 	QueryLists pulumi.StringArrayInput `pulumi:"queryLists"`
+	// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 	ScriptVariables pulumi.StringMapInput `pulumi:"scriptVariables"`
 }
 
@@ -3743,10 +4385,12 @@ func (o JobPigConfigOutput) ToJobPigConfigPtrOutputWithContext(ctx context.Conte
 		return &v
 	}).(JobPigConfigPtrOutput)
 }
+// Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries. Defaults to false.
 func (o JobPigConfigOutput) ContinueOnFailure() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v JobPigConfig) *bool { return v.ContinueOnFailure }).(pulumi.BoolPtrOutput)
 }
 
+// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 func (o JobPigConfigOutput) JarFileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobPigConfig) []string { return v.JarFileUris }).(pulumi.StringArrayOutput)
 }
@@ -3755,10 +4399,13 @@ func (o JobPigConfigOutput) LoggingConfig() JobPigConfigLoggingConfigPtrOutput {
 	return o.ApplyT(func (v JobPigConfig) *JobPigConfigLoggingConfig { return v.LoggingConfig }).(JobPigConfigLoggingConfigPtrOutput)
 }
 
+// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 func (o JobPigConfigOutput) Properties() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobPigConfig) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
 }
 
+// The HCFS URI of the script that contains SQL queries.
+// Conflicts with `queryList`
 func (o JobPigConfigOutput) QueryFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v JobPigConfig) *string { return v.QueryFileUri }).(pulumi.StringPtrOutput)
 }
@@ -3767,6 +4414,7 @@ func (o JobPigConfigOutput) QueryLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobPigConfig) []string { return v.QueryLists }).(pulumi.StringArrayOutput)
 }
 
+// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 func (o JobPigConfigOutput) ScriptVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobPigConfig) map[string]string { return v.ScriptVariables }).(pulumi.StringMapOutput)
 }
@@ -3789,10 +4437,12 @@ func (o JobPigConfigPtrOutput) Elem() JobPigConfigOutput {
 	return o.ApplyT(func (v *JobPigConfig) JobPigConfig { return *v }).(JobPigConfigOutput)
 }
 
+// Whether to continue executing queries if a query fails. The default value is false. Setting to true can be useful when executing independent parallel queries. Defaults to false.
 func (o JobPigConfigPtrOutput) ContinueOnFailure() pulumi.BoolPtrOutput {
 	return o.ApplyT(func (v JobPigConfig) *bool { return v.ContinueOnFailure }).(pulumi.BoolPtrOutput)
 }
 
+// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 func (o JobPigConfigPtrOutput) JarFileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobPigConfig) []string { return v.JarFileUris }).(pulumi.StringArrayOutput)
 }
@@ -3801,10 +4451,13 @@ func (o JobPigConfigPtrOutput) LoggingConfig() JobPigConfigLoggingConfigPtrOutpu
 	return o.ApplyT(func (v JobPigConfig) *JobPigConfigLoggingConfig { return v.LoggingConfig }).(JobPigConfigLoggingConfigPtrOutput)
 }
 
+// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 func (o JobPigConfigPtrOutput) Properties() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobPigConfig) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
 }
 
+// The HCFS URI of the script that contains SQL queries.
+// Conflicts with `queryList`
 func (o JobPigConfigPtrOutput) QueryFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v JobPigConfig) *string { return v.QueryFileUri }).(pulumi.StringPtrOutput)
 }
@@ -3813,6 +4466,7 @@ func (o JobPigConfigPtrOutput) QueryLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobPigConfig) []string { return v.QueryLists }).(pulumi.StringArrayOutput)
 }
 
+// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 func (o JobPigConfigPtrOutput) ScriptVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobPigConfig) map[string]string { return v.ScriptVariables }).(pulumi.StringMapOutput)
 }
@@ -4044,13 +4698,19 @@ func (o JobPlacementPtrOutput) ClusterUuid() pulumi.StringPtrOutput {
 }
 
 type JobPysparkConfig struct {
+	// HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
 	ArchiveUris []string `pulumi:"archiveUris"`
+	// The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
 	Args []string `pulumi:"args"`
+	// HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
 	FileUris []string `pulumi:"fileUris"`
+	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris []string `pulumi:"jarFileUris"`
 	LoggingConfig *JobPysparkConfigLoggingConfig `pulumi:"loggingConfig"`
 	MainPythonFileUri string `pulumi:"mainPythonFileUri"`
+	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 	Properties map[string]string `pulumi:"properties"`
+	// HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip.
 	PythonFileUris []string `pulumi:"pythonFileUris"`
 }
 
@@ -4062,13 +4722,19 @@ type JobPysparkConfigInput interface {
 }
 
 type JobPysparkConfigArgs struct {
+	// HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
 	ArchiveUris pulumi.StringArrayInput `pulumi:"archiveUris"`
+	// The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
 	Args pulumi.StringArrayInput `pulumi:"args"`
+	// HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
 	FileUris pulumi.StringArrayInput `pulumi:"fileUris"`
+	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris pulumi.StringArrayInput `pulumi:"jarFileUris"`
 	LoggingConfig JobPysparkConfigLoggingConfigPtrInput `pulumi:"loggingConfig"`
 	MainPythonFileUri pulumi.StringInput `pulumi:"mainPythonFileUri"`
+	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 	Properties pulumi.StringMapInput `pulumi:"properties"`
+	// HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip.
 	PythonFileUris pulumi.StringArrayInput `pulumi:"pythonFileUris"`
 }
 
@@ -4139,18 +4805,22 @@ func (o JobPysparkConfigOutput) ToJobPysparkConfigPtrOutputWithContext(ctx conte
 		return &v
 	}).(JobPysparkConfigPtrOutput)
 }
+// HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
 func (o JobPysparkConfigOutput) ArchiveUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobPysparkConfig) []string { return v.ArchiveUris }).(pulumi.StringArrayOutput)
 }
 
+// The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
 func (o JobPysparkConfigOutput) Args() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobPysparkConfig) []string { return v.Args }).(pulumi.StringArrayOutput)
 }
 
+// HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
 func (o JobPysparkConfigOutput) FileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobPysparkConfig) []string { return v.FileUris }).(pulumi.StringArrayOutput)
 }
 
+// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 func (o JobPysparkConfigOutput) JarFileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobPysparkConfig) []string { return v.JarFileUris }).(pulumi.StringArrayOutput)
 }
@@ -4163,10 +4833,12 @@ func (o JobPysparkConfigOutput) MainPythonFileUri() pulumi.StringOutput {
 	return o.ApplyT(func (v JobPysparkConfig) string { return v.MainPythonFileUri }).(pulumi.StringOutput)
 }
 
+// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 func (o JobPysparkConfigOutput) Properties() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobPysparkConfig) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
 }
 
+// HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip.
 func (o JobPysparkConfigOutput) PythonFileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobPysparkConfig) []string { return v.PythonFileUris }).(pulumi.StringArrayOutput)
 }
@@ -4189,18 +4861,22 @@ func (o JobPysparkConfigPtrOutput) Elem() JobPysparkConfigOutput {
 	return o.ApplyT(func (v *JobPysparkConfig) JobPysparkConfig { return *v }).(JobPysparkConfigOutput)
 }
 
+// HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
 func (o JobPysparkConfigPtrOutput) ArchiveUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobPysparkConfig) []string { return v.ArchiveUris }).(pulumi.StringArrayOutput)
 }
 
+// The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
 func (o JobPysparkConfigPtrOutput) Args() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobPysparkConfig) []string { return v.Args }).(pulumi.StringArrayOutput)
 }
 
+// HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
 func (o JobPysparkConfigPtrOutput) FileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobPysparkConfig) []string { return v.FileUris }).(pulumi.StringArrayOutput)
 }
 
+// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 func (o JobPysparkConfigPtrOutput) JarFileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobPysparkConfig) []string { return v.JarFileUris }).(pulumi.StringArrayOutput)
 }
@@ -4213,10 +4889,12 @@ func (o JobPysparkConfigPtrOutput) MainPythonFileUri() pulumi.StringOutput {
 	return o.ApplyT(func (v JobPysparkConfig) string { return v.MainPythonFileUri }).(pulumi.StringOutput)
 }
 
+// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 func (o JobPysparkConfigPtrOutput) Properties() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobPysparkConfig) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
 }
 
+// HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip.
 func (o JobPysparkConfigPtrOutput) PythonFileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobPysparkConfig) []string { return v.PythonFileUris }).(pulumi.StringArrayOutput)
 }
@@ -4546,13 +5224,19 @@ func (o JobSchedulingPtrOutput) MaxFailuresPerHour() pulumi.IntOutput {
 }
 
 type JobSparkConfig struct {
+	// HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
 	ArchiveUris []string `pulumi:"archiveUris"`
+	// The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
 	Args []string `pulumi:"args"`
+	// HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
 	FileUris []string `pulumi:"fileUris"`
+	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris []string `pulumi:"jarFileUris"`
 	LoggingConfig *JobSparkConfigLoggingConfig `pulumi:"loggingConfig"`
 	MainClass *string `pulumi:"mainClass"`
+	// The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
 	MainJarFileUri *string `pulumi:"mainJarFileUri"`
+	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 	Properties map[string]string `pulumi:"properties"`
 }
 
@@ -4564,13 +5248,19 @@ type JobSparkConfigInput interface {
 }
 
 type JobSparkConfigArgs struct {
+	// HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
 	ArchiveUris pulumi.StringArrayInput `pulumi:"archiveUris"`
+	// The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
 	Args pulumi.StringArrayInput `pulumi:"args"`
+	// HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
 	FileUris pulumi.StringArrayInput `pulumi:"fileUris"`
+	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris pulumi.StringArrayInput `pulumi:"jarFileUris"`
 	LoggingConfig JobSparkConfigLoggingConfigPtrInput `pulumi:"loggingConfig"`
 	MainClass pulumi.StringPtrInput `pulumi:"mainClass"`
+	// The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
 	MainJarFileUri pulumi.StringPtrInput `pulumi:"mainJarFileUri"`
+	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 	Properties pulumi.StringMapInput `pulumi:"properties"`
 }
 
@@ -4641,18 +5331,22 @@ func (o JobSparkConfigOutput) ToJobSparkConfigPtrOutputWithContext(ctx context.C
 		return &v
 	}).(JobSparkConfigPtrOutput)
 }
+// HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
 func (o JobSparkConfigOutput) ArchiveUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobSparkConfig) []string { return v.ArchiveUris }).(pulumi.StringArrayOutput)
 }
 
+// The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
 func (o JobSparkConfigOutput) Args() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobSparkConfig) []string { return v.Args }).(pulumi.StringArrayOutput)
 }
 
+// HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
 func (o JobSparkConfigOutput) FileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobSparkConfig) []string { return v.FileUris }).(pulumi.StringArrayOutput)
 }
 
+// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 func (o JobSparkConfigOutput) JarFileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobSparkConfig) []string { return v.JarFileUris }).(pulumi.StringArrayOutput)
 }
@@ -4665,10 +5359,12 @@ func (o JobSparkConfigOutput) MainClass() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v JobSparkConfig) *string { return v.MainClass }).(pulumi.StringPtrOutput)
 }
 
+// The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
 func (o JobSparkConfigOutput) MainJarFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v JobSparkConfig) *string { return v.MainJarFileUri }).(pulumi.StringPtrOutput)
 }
 
+// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 func (o JobSparkConfigOutput) Properties() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobSparkConfig) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
 }
@@ -4691,18 +5387,22 @@ func (o JobSparkConfigPtrOutput) Elem() JobSparkConfigOutput {
 	return o.ApplyT(func (v *JobSparkConfig) JobSparkConfig { return *v }).(JobSparkConfigOutput)
 }
 
+// HCFS URIs of archives to be extracted in the working directory of .jar, .tar, .tar.gz, .tgz, and .zip.
 func (o JobSparkConfigPtrOutput) ArchiveUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobSparkConfig) []string { return v.ArchiveUris }).(pulumi.StringArrayOutput)
 }
 
+// The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
 func (o JobSparkConfigPtrOutput) Args() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobSparkConfig) []string { return v.Args }).(pulumi.StringArrayOutput)
 }
 
+// HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
 func (o JobSparkConfigPtrOutput) FileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobSparkConfig) []string { return v.FileUris }).(pulumi.StringArrayOutput)
 }
 
+// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 func (o JobSparkConfigPtrOutput) JarFileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobSparkConfig) []string { return v.JarFileUris }).(pulumi.StringArrayOutput)
 }
@@ -4715,10 +5415,12 @@ func (o JobSparkConfigPtrOutput) MainClass() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v JobSparkConfig) *string { return v.MainClass }).(pulumi.StringPtrOutput)
 }
 
+// The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
 func (o JobSparkConfigPtrOutput) MainJarFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v JobSparkConfig) *string { return v.MainJarFileUri }).(pulumi.StringPtrOutput)
 }
 
+// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 func (o JobSparkConfigPtrOutput) Properties() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobSparkConfig) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
 }
@@ -4832,11 +5534,16 @@ func (o JobSparkConfigLoggingConfigPtrOutput) DriverLogLevels() pulumi.StringMap
 }
 
 type JobSparksqlConfig struct {
+	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris []string `pulumi:"jarFileUris"`
 	LoggingConfig *JobSparksqlConfigLoggingConfig `pulumi:"loggingConfig"`
+	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 	Properties map[string]string `pulumi:"properties"`
+	// The HCFS URI of the script that contains SQL queries.
+	// Conflicts with `queryList`
 	QueryFileUri *string `pulumi:"queryFileUri"`
 	QueryLists []string `pulumi:"queryLists"`
+	// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 	ScriptVariables map[string]string `pulumi:"scriptVariables"`
 }
 
@@ -4848,11 +5555,16 @@ type JobSparksqlConfigInput interface {
 }
 
 type JobSparksqlConfigArgs struct {
+	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris pulumi.StringArrayInput `pulumi:"jarFileUris"`
 	LoggingConfig JobSparksqlConfigLoggingConfigPtrInput `pulumi:"loggingConfig"`
+	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 	Properties pulumi.StringMapInput `pulumi:"properties"`
+	// The HCFS URI of the script that contains SQL queries.
+	// Conflicts with `queryList`
 	QueryFileUri pulumi.StringPtrInput `pulumi:"queryFileUri"`
 	QueryLists pulumi.StringArrayInput `pulumi:"queryLists"`
+	// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 	ScriptVariables pulumi.StringMapInput `pulumi:"scriptVariables"`
 }
 
@@ -4923,6 +5635,7 @@ func (o JobSparksqlConfigOutput) ToJobSparksqlConfigPtrOutputWithContext(ctx con
 		return &v
 	}).(JobSparksqlConfigPtrOutput)
 }
+// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 func (o JobSparksqlConfigOutput) JarFileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobSparksqlConfig) []string { return v.JarFileUris }).(pulumi.StringArrayOutput)
 }
@@ -4931,10 +5644,13 @@ func (o JobSparksqlConfigOutput) LoggingConfig() JobSparksqlConfigLoggingConfigP
 	return o.ApplyT(func (v JobSparksqlConfig) *JobSparksqlConfigLoggingConfig { return v.LoggingConfig }).(JobSparksqlConfigLoggingConfigPtrOutput)
 }
 
+// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 func (o JobSparksqlConfigOutput) Properties() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobSparksqlConfig) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
 }
 
+// The HCFS URI of the script that contains SQL queries.
+// Conflicts with `queryList`
 func (o JobSparksqlConfigOutput) QueryFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v JobSparksqlConfig) *string { return v.QueryFileUri }).(pulumi.StringPtrOutput)
 }
@@ -4943,6 +5659,7 @@ func (o JobSparksqlConfigOutput) QueryLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobSparksqlConfig) []string { return v.QueryLists }).(pulumi.StringArrayOutput)
 }
 
+// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 func (o JobSparksqlConfigOutput) ScriptVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobSparksqlConfig) map[string]string { return v.ScriptVariables }).(pulumi.StringMapOutput)
 }
@@ -4965,6 +5682,7 @@ func (o JobSparksqlConfigPtrOutput) Elem() JobSparksqlConfigOutput {
 	return o.ApplyT(func (v *JobSparksqlConfig) JobSparksqlConfig { return *v }).(JobSparksqlConfigOutput)
 }
 
+// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 func (o JobSparksqlConfigPtrOutput) JarFileUris() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobSparksqlConfig) []string { return v.JarFileUris }).(pulumi.StringArrayOutput)
 }
@@ -4973,10 +5691,13 @@ func (o JobSparksqlConfigPtrOutput) LoggingConfig() JobSparksqlConfigLoggingConf
 	return o.ApplyT(func (v JobSparksqlConfig) *JobSparksqlConfigLoggingConfig { return v.LoggingConfig }).(JobSparksqlConfigLoggingConfigPtrOutput)
 }
 
+// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 func (o JobSparksqlConfigPtrOutput) Properties() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobSparksqlConfig) map[string]string { return v.Properties }).(pulumi.StringMapOutput)
 }
 
+// The HCFS URI of the script that contains SQL queries.
+// Conflicts with `queryList`
 func (o JobSparksqlConfigPtrOutput) QueryFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func (v JobSparksqlConfig) *string { return v.QueryFileUri }).(pulumi.StringPtrOutput)
 }
@@ -4985,6 +5706,7 @@ func (o JobSparksqlConfigPtrOutput) QueryLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func (v JobSparksqlConfig) []string { return v.QueryLists }).(pulumi.StringArrayOutput)
 }
 
+// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 func (o JobSparksqlConfigPtrOutput) ScriptVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func (v JobSparksqlConfig) map[string]string { return v.ScriptVariables }).(pulumi.StringMapOutput)
 }

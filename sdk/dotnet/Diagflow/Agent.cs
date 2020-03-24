@@ -9,6 +9,21 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Gcp.Diagflow
 {
+    /// <summary>
+    /// A Dialogflow agent is a virtual agent that handles conversations with your end-users. It is a natural language
+    /// understanding module that understands the nuances of human language. Dialogflow translates end-user text or audio
+    /// during a conversation to structured data that your apps and services can understand. You design and build a Dialogflow
+    /// agent to handle the types of conversations required for your system.
+    /// 
+    /// 
+    /// To get more information about Agent, see:
+    /// 
+    /// * [API documentation](https://cloud.google.com/dialogflow/docs/reference/rest/v2/projects/agent)
+    /// * How-to Guides
+    ///     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
+    /// 
+    /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dialogflow_agent.html.markdown.
+    /// </summary>
     public partial class Agent : Pulumi.CustomResource
     {
         /// <summary>

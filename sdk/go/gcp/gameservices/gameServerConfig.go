@@ -29,6 +29,8 @@ type GameServerConfig struct {
 	// The resource name of the game server config, in the form:
 	// 'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
 	// Optional. This contains the autoscaling settings.
 	ScalingConfigs GameServerConfigScalingConfigArrayOutput `pulumi:"scalingConfigs"`
@@ -86,6 +88,8 @@ type gameServerConfigState struct {
 	// The resource name of the game server config, in the form:
 	// 'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
 	Name *string `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// Optional. This contains the autoscaling settings.
 	ScalingConfigs []GameServerConfigScalingConfig `pulumi:"scalingConfigs"`
@@ -107,6 +111,8 @@ type GameServerConfigState struct {
 	// The resource name of the game server config, in the form:
 	// 'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
 	Name pulumi.StringPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// Optional. This contains the autoscaling settings.
 	ScalingConfigs GameServerConfigScalingConfigArrayInput
@@ -129,6 +135,8 @@ type gameServerConfigArgs struct {
 	Labels map[string]string `pulumi:"labels"`
 	// Location of the Deployment.
 	Location *string `pulumi:"location"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// Optional. This contains the autoscaling settings.
 	ScalingConfigs []GameServerConfigScalingConfig `pulumi:"scalingConfigs"`
@@ -148,6 +156,8 @@ type GameServerConfigArgs struct {
 	Labels pulumi.StringMapInput
 	// Location of the Deployment.
 	Location pulumi.StringPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// Optional. This contains the autoscaling settings.
 	ScalingConfigs GameServerConfigScalingConfigArrayInput

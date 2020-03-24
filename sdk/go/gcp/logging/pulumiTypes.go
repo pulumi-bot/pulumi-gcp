@@ -12,6 +12,10 @@ import (
 )
 
 type BillingAccountSinkBigqueryOptions struct {
+	// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+	// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+	// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+	// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 	UsePartitionedTables bool `pulumi:"usePartitionedTables"`
 }
 
@@ -23,6 +27,10 @@ type BillingAccountSinkBigqueryOptionsInput interface {
 }
 
 type BillingAccountSinkBigqueryOptionsArgs struct {
+	// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+	// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+	// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+	// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 	UsePartitionedTables pulumi.BoolInput `pulumi:"usePartitionedTables"`
 }
 
@@ -93,6 +101,10 @@ func (o BillingAccountSinkBigqueryOptionsOutput) ToBillingAccountSinkBigqueryOpt
 		return &v
 	}).(BillingAccountSinkBigqueryOptionsPtrOutput)
 }
+// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 func (o BillingAccountSinkBigqueryOptionsOutput) UsePartitionedTables() pulumi.BoolOutput {
 	return o.ApplyT(func (v BillingAccountSinkBigqueryOptions) bool { return v.UsePartitionedTables }).(pulumi.BoolOutput)
 }
@@ -115,11 +127,19 @@ func (o BillingAccountSinkBigqueryOptionsPtrOutput) Elem() BillingAccountSinkBig
 	return o.ApplyT(func (v *BillingAccountSinkBigqueryOptions) BillingAccountSinkBigqueryOptions { return *v }).(BillingAccountSinkBigqueryOptionsOutput)
 }
 
+// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 func (o BillingAccountSinkBigqueryOptionsPtrOutput) UsePartitionedTables() pulumi.BoolOutput {
 	return o.ApplyT(func (v BillingAccountSinkBigqueryOptions) bool { return v.UsePartitionedTables }).(pulumi.BoolOutput)
 }
 
 type FolderSinkBigqueryOptions struct {
+	// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+	// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+	// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+	// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 	UsePartitionedTables bool `pulumi:"usePartitionedTables"`
 }
 
@@ -131,6 +151,10 @@ type FolderSinkBigqueryOptionsInput interface {
 }
 
 type FolderSinkBigqueryOptionsArgs struct {
+	// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+	// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+	// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+	// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 	UsePartitionedTables pulumi.BoolInput `pulumi:"usePartitionedTables"`
 }
 
@@ -201,6 +225,10 @@ func (o FolderSinkBigqueryOptionsOutput) ToFolderSinkBigqueryOptionsPtrOutputWit
 		return &v
 	}).(FolderSinkBigqueryOptionsPtrOutput)
 }
+// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 func (o FolderSinkBigqueryOptionsOutput) UsePartitionedTables() pulumi.BoolOutput {
 	return o.ApplyT(func (v FolderSinkBigqueryOptions) bool { return v.UsePartitionedTables }).(pulumi.BoolOutput)
 }
@@ -223,6 +251,10 @@ func (o FolderSinkBigqueryOptionsPtrOutput) Elem() FolderSinkBigqueryOptionsOutp
 	return o.ApplyT(func (v *FolderSinkBigqueryOptions) FolderSinkBigqueryOptions { return *v }).(FolderSinkBigqueryOptionsOutput)
 }
 
+// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 func (o FolderSinkBigqueryOptionsPtrOutput) UsePartitionedTables() pulumi.BoolOutput {
 	return o.ApplyT(func (v FolderSinkBigqueryOptions) bool { return v.UsePartitionedTables }).(pulumi.BoolOutput)
 }
@@ -966,6 +998,10 @@ func (o MetricMetricDescriptorLabelArrayOutput) Index(i pulumi.IntInput) MetricM
 }
 
 type OrganizationSinkBigqueryOptions struct {
+	// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+	// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+	// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+	// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 	UsePartitionedTables bool `pulumi:"usePartitionedTables"`
 }
 
@@ -977,6 +1013,10 @@ type OrganizationSinkBigqueryOptionsInput interface {
 }
 
 type OrganizationSinkBigqueryOptionsArgs struct {
+	// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+	// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+	// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+	// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 	UsePartitionedTables pulumi.BoolInput `pulumi:"usePartitionedTables"`
 }
 
@@ -1047,6 +1087,10 @@ func (o OrganizationSinkBigqueryOptionsOutput) ToOrganizationSinkBigqueryOptions
 		return &v
 	}).(OrganizationSinkBigqueryOptionsPtrOutput)
 }
+// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 func (o OrganizationSinkBigqueryOptionsOutput) UsePartitionedTables() pulumi.BoolOutput {
 	return o.ApplyT(func (v OrganizationSinkBigqueryOptions) bool { return v.UsePartitionedTables }).(pulumi.BoolOutput)
 }
@@ -1069,11 +1113,19 @@ func (o OrganizationSinkBigqueryOptionsPtrOutput) Elem() OrganizationSinkBigquer
 	return o.ApplyT(func (v *OrganizationSinkBigqueryOptions) OrganizationSinkBigqueryOptions { return *v }).(OrganizationSinkBigqueryOptionsOutput)
 }
 
+// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 func (o OrganizationSinkBigqueryOptionsPtrOutput) UsePartitionedTables() pulumi.BoolOutput {
 	return o.ApplyT(func (v OrganizationSinkBigqueryOptions) bool { return v.UsePartitionedTables }).(pulumi.BoolOutput)
 }
 
 type ProjectSinkBigqueryOptions struct {
+	// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+	// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+	// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+	// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 	UsePartitionedTables bool `pulumi:"usePartitionedTables"`
 }
 
@@ -1085,6 +1137,10 @@ type ProjectSinkBigqueryOptionsInput interface {
 }
 
 type ProjectSinkBigqueryOptionsArgs struct {
+	// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+	// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+	// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+	// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 	UsePartitionedTables pulumi.BoolInput `pulumi:"usePartitionedTables"`
 }
 
@@ -1155,6 +1211,10 @@ func (o ProjectSinkBigqueryOptionsOutput) ToProjectSinkBigqueryOptionsPtrOutputW
 		return &v
 	}).(ProjectSinkBigqueryOptionsPtrOutput)
 }
+// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 func (o ProjectSinkBigqueryOptionsOutput) UsePartitionedTables() pulumi.BoolOutput {
 	return o.ApplyT(func (v ProjectSinkBigqueryOptions) bool { return v.UsePartitionedTables }).(pulumi.BoolOutput)
 }
@@ -1177,6 +1237,10 @@ func (o ProjectSinkBigqueryOptionsPtrOutput) Elem() ProjectSinkBigqueryOptionsOu
 	return o.ApplyT(func (v *ProjectSinkBigqueryOptions) ProjectSinkBigqueryOptions { return *v }).(ProjectSinkBigqueryOptionsOutput)
 }
 
+// Whether to use [BigQuery's partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables).
+// By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned
+// tables the date suffix is no longer present and [special query syntax](https://cloud.google.com/bigquery/docs/querying-partitioned-tables)
+// has to be used instead. In both cases, tables are sharded based on UTC timezone.
 func (o ProjectSinkBigqueryOptionsPtrOutput) UsePartitionedTables() pulumi.BoolOutput {
 	return o.ApplyT(func (v ProjectSinkBigqueryOptions) bool { return v.UsePartitionedTables }).(pulumi.BoolOutput)
 }

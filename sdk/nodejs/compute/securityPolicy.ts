@@ -34,7 +34,7 @@ export class SecurityPolicy extends pulumi.CustomResource {
     }
 
     /**
-     * An optional description of this security policy. Max size is 2048.
+     * An optional description of this rule. Max size is 64.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
@@ -104,7 +104,7 @@ export class SecurityPolicy extends pulumi.CustomResource {
  */
 export interface SecurityPolicyState {
     /**
-     * An optional description of this security policy. Max size is 2048.
+     * An optional description of this rule. Max size is 64.
      */
     readonly description?: pulumi.Input<string>;
     /**
@@ -137,7 +137,7 @@ export interface SecurityPolicyState {
  */
 export interface SecurityPolicyArgs {
     /**
-     * An optional description of this security policy. Max size is 2048.
+     * An optional description of this rule. Max size is 64.
      */
     readonly description?: pulumi.Input<string>;
     /**

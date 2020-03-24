@@ -28,6 +28,8 @@ type GameServerCluster struct {
 	// 'projects/{project_id}/locations/{location}/realms/{realm_id}/gameServerClusters/{cluster_id}'. For example,
 	// 'projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster'.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
 	// The realm id of the game server realm.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
@@ -84,6 +86,8 @@ type gameServerClusterState struct {
 	// 'projects/{project_id}/locations/{location}/realms/{realm_id}/gameServerClusters/{cluster_id}'. For example,
 	// 'projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster'.
 	Name *string `pulumi:"name"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// The realm id of the game server realm.
 	RealmId *string `pulumi:"realmId"`
@@ -104,6 +108,8 @@ type GameServerClusterState struct {
 	// 'projects/{project_id}/locations/{location}/realms/{realm_id}/gameServerClusters/{cluster_id}'. For example,
 	// 'projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster'.
 	Name pulumi.StringPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// The realm id of the game server realm.
 	RealmId pulumi.StringPtrInput
@@ -124,6 +130,8 @@ type gameServerClusterArgs struct {
 	Labels map[string]string `pulumi:"labels"`
 	// Location of the Cluster.
 	Location *string `pulumi:"location"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// The realm id of the game server realm.
 	RealmId string `pulumi:"realmId"`
@@ -141,6 +149,8 @@ type GameServerClusterArgs struct {
 	Labels pulumi.StringMapInput
 	// Location of the Cluster.
 	Location pulumi.StringPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// The realm id of the game server realm.
 	RealmId pulumi.StringInput

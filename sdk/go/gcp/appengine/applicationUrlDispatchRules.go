@@ -11,11 +11,21 @@ import (
 	"github.com/pulumi/pulumi/sdk/go/pulumi"
 )
 
+// Rules to match an HTTP request and dispatch that request to a service.
+//
+//
+// To get more information about ApplicationUrlDispatchRules, see:
+//
+// * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps#UrlDispatchRule)
+//
+// > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/app_engine_application_url_dispatch_rules.html.markdown.
 type ApplicationUrlDispatchRules struct {
 	pulumi.CustomResourceState
 
 	// Rules to match an HTTP request and dispatch that request to a service.
 	DispatchRules ApplicationUrlDispatchRulesDispatchRuleArrayOutput `pulumi:"dispatchRules"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
 }
 
@@ -52,12 +62,16 @@ func GetApplicationUrlDispatchRules(ctx *pulumi.Context,
 type applicationUrlDispatchRulesState struct {
 	// Rules to match an HTTP request and dispatch that request to a service.
 	DispatchRules []ApplicationUrlDispatchRulesDispatchRule `pulumi:"dispatchRules"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 }
 
 type ApplicationUrlDispatchRulesState struct {
 	// Rules to match an HTTP request and dispatch that request to a service.
 	DispatchRules ApplicationUrlDispatchRulesDispatchRuleArrayInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 }
 
@@ -68,6 +82,8 @@ func (ApplicationUrlDispatchRulesState) ElementType() reflect.Type {
 type applicationUrlDispatchRulesArgs struct {
 	// Rules to match an HTTP request and dispatch that request to a service.
 	DispatchRules []ApplicationUrlDispatchRulesDispatchRule `pulumi:"dispatchRules"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 }
 
@@ -75,6 +91,8 @@ type applicationUrlDispatchRulesArgs struct {
 type ApplicationUrlDispatchRulesArgs struct {
 	// Rules to match an HTTP request and dispatch that request to a service.
 	DispatchRules ApplicationUrlDispatchRulesDispatchRuleArrayInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 }
 

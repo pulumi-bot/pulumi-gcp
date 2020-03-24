@@ -420,9 +420,16 @@ namespace Pulumi.Gcp.Container
 
     public sealed class NodePoolAutoscalingArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Maximum number of nodes in the NodePool. Must be &gt;= min_node_count.
+        /// </summary>
         [Input("maxNodeCount", required: true)]
         public Input<int> MaxNodeCount { get; set; } = null!;
 
+        /// <summary>
+        /// Minimum number of nodes in the NodePool. Must be &gt;=0 and
+        /// &lt;= `max_node_count`.
+        /// </summary>
         [Input("minNodeCount", required: true)]
         public Input<int> MinNodeCount { get; set; } = null!;
 
@@ -433,9 +440,16 @@ namespace Pulumi.Gcp.Container
 
     public sealed class NodePoolAutoscalingGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Maximum number of nodes in the NodePool. Must be &gt;= min_node_count.
+        /// </summary>
         [Input("maxNodeCount", required: true)]
         public Input<int> MaxNodeCount { get; set; } = null!;
 
+        /// <summary>
+        /// Minimum number of nodes in the NodePool. Must be &gt;=0 and
+        /// &lt;= `max_node_count`.
+        /// </summary>
         [Input("minNodeCount", required: true)]
         public Input<int> MinNodeCount { get; set; } = null!;
 
@@ -446,9 +460,15 @@ namespace Pulumi.Gcp.Container
 
     public sealed class NodePoolManagementArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Whether the nodes will be automatically repaired.
+        /// </summary>
         [Input("autoRepair")]
         public Input<bool>? AutoRepair { get; set; }
 
+        /// <summary>
+        /// Whether the nodes will be automatically upgraded.
+        /// </summary>
         [Input("autoUpgrade")]
         public Input<bool>? AutoUpgrade { get; set; }
 
@@ -459,9 +479,15 @@ namespace Pulumi.Gcp.Container
 
     public sealed class NodePoolManagementGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Whether the nodes will be automatically repaired.
+        /// </summary>
         [Input("autoRepair")]
         public Input<bool>? AutoRepair { get; set; }
 
+        /// <summary>
+        /// Whether the nodes will be automatically upgraded.
+        /// </summary>
         [Input("autoUpgrade")]
         public Input<bool>? AutoUpgrade { get; set; }
 
@@ -778,9 +804,19 @@ namespace Pulumi.Gcp.Container
 
     public sealed class NodePoolUpgradeSettingsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The number of additional nodes that can be added to the node pool during
+        /// an upgrade. Increasing `max_surge` raises the number of nodes that can be upgraded simultaneously.
+        /// Can be set to 0 or greater.
+        /// </summary>
         [Input("maxSurge", required: true)]
         public Input<int> MaxSurge { get; set; } = null!;
 
+        /// <summary>
+        /// The number of nodes that can be simultaneously unavailable during
+        /// an upgrade. Increasing `max_unavailable` raises the number of nodes that can be upgraded in
+        /// parallel. Can be set to 0 or greater.
+        /// </summary>
         [Input("maxUnavailable", required: true)]
         public Input<int> MaxUnavailable { get; set; } = null!;
 
@@ -791,9 +827,19 @@ namespace Pulumi.Gcp.Container
 
     public sealed class NodePoolUpgradeSettingsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The number of additional nodes that can be added to the node pool during
+        /// an upgrade. Increasing `max_surge` raises the number of nodes that can be upgraded simultaneously.
+        /// Can be set to 0 or greater.
+        /// </summary>
         [Input("maxSurge", required: true)]
         public Input<int> MaxSurge { get; set; } = null!;
 
+        /// <summary>
+        /// The number of nodes that can be simultaneously unavailable during
+        /// an upgrade. Increasing `max_unavailable` raises the number of nodes that can be upgraded in
+        /// parallel. Can be set to 0 or greater.
+        /// </summary>
         [Input("maxUnavailable", required: true)]
         public Input<int> MaxUnavailable { get; set; } = null!;
 
@@ -809,7 +855,14 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class NodePoolAutoscaling
     {
+        /// <summary>
+        /// Maximum number of nodes in the NodePool. Must be &gt;= min_node_count.
+        /// </summary>
         public readonly int MaxNodeCount;
+        /// <summary>
+        /// Minimum number of nodes in the NodePool. Must be &gt;=0 and
+        /// &lt;= `max_node_count`.
+        /// </summary>
         public readonly int MinNodeCount;
 
         [OutputConstructor]
@@ -825,7 +878,13 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class NodePoolManagement
     {
+        /// <summary>
+        /// Whether the nodes will be automatically repaired.
+        /// </summary>
         public readonly bool? AutoRepair;
+        /// <summary>
+        /// Whether the nodes will be automatically upgraded.
+        /// </summary>
         public readonly bool? AutoUpgrade;
 
         [OutputConstructor]
@@ -980,7 +1039,17 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class NodePoolUpgradeSettings
     {
+        /// <summary>
+        /// The number of additional nodes that can be added to the node pool during
+        /// an upgrade. Increasing `max_surge` raises the number of nodes that can be upgraded simultaneously.
+        /// Can be set to 0 or greater.
+        /// </summary>
         public readonly int MaxSurge;
+        /// <summary>
+        /// The number of nodes that can be simultaneously unavailable during
+        /// an upgrade. Increasing `max_unavailable` raises the number of nodes that can be upgraded in
+        /// parallel. Can be set to 0 or greater.
+        /// </summary>
         public readonly int MaxUnavailable;
 
         [OutputConstructor]

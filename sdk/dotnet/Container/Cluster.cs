@@ -1216,18 +1216,48 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterAddonsConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ).
+        /// The status of the CloudRun addon. It requires `istio_config` enabled. It is disabled by default.
+        /// Set `disabled = false` to enable. This addon can only be enabled at cluster creation time.
+        /// </summary>
         [Input("cloudrunConfig")]
         public Input<ClusterAddonsConfigCloudrunConfigArgs>? CloudrunConfig { get; set; }
 
+        /// <summary>
+        /// The status of the Horizontal Pod Autoscaling
+        /// addon, which increases or decreases the number of replica pods a replication controller
+        /// has based on the resource usage of the existing pods.
+        /// It ensures that a Heapster pod is running in the cluster, which is also used by the Cloud Monitoring service.
+        /// It is enabled by default;
+        /// set `disabled = true` to disable.
+        /// </summary>
         [Input("horizontalPodAutoscaling")]
         public Input<ClusterAddonsConfigHorizontalPodAutoscalingArgs>? HorizontalPodAutoscaling { get; set; }
 
+        /// <summary>
+        /// The status of the HTTP (L7) load balancing
+        /// controller addon, which makes it easy to set up HTTP load balancers for services in a
+        /// cluster. It is enabled by default; set `disabled = true` to disable.
+        /// </summary>
         [Input("httpLoadBalancing")]
         public Input<ClusterAddonsConfigHttpLoadBalancingArgs>? HttpLoadBalancing { get; set; }
 
+        /// <summary>
+        /// ).
+        /// Structure is documented below.
+        /// </summary>
         [Input("istioConfig")]
         public Input<ClusterAddonsConfigIstioConfigArgs>? IstioConfig { get; set; }
 
+        /// <summary>
+        /// Whether we should enable the network policy addon
+        /// for the master.  This must be enabled in order to enable network policy for the nodes.
+        /// To enable this, you must also define a `network_policy` block,
+        /// otherwise nothing will happen.
+        /// It can only be disabled if the nodes already do not have network policies enabled.
+        /// Defaults to disabled; set `disabled = false` to enable.
+        /// </summary>
         [Input("networkPolicyConfig")]
         public Input<ClusterAddonsConfigNetworkPolicyConfigArgs>? NetworkPolicyConfig { get; set; }
 
@@ -1238,6 +1268,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterAddonsConfigCloudrunConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         [Input("disabled", required: true)]
         public Input<bool> Disabled { get; set; } = null!;
 
@@ -1248,6 +1282,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterAddonsConfigCloudrunConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         [Input("disabled", required: true)]
         public Input<bool> Disabled { get; set; } = null!;
 
@@ -1258,18 +1296,48 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterAddonsConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ).
+        /// The status of the CloudRun addon. It requires `istio_config` enabled. It is disabled by default.
+        /// Set `disabled = false` to enable. This addon can only be enabled at cluster creation time.
+        /// </summary>
         [Input("cloudrunConfig")]
         public Input<ClusterAddonsConfigCloudrunConfigGetArgs>? CloudrunConfig { get; set; }
 
+        /// <summary>
+        /// The status of the Horizontal Pod Autoscaling
+        /// addon, which increases or decreases the number of replica pods a replication controller
+        /// has based on the resource usage of the existing pods.
+        /// It ensures that a Heapster pod is running in the cluster, which is also used by the Cloud Monitoring service.
+        /// It is enabled by default;
+        /// set `disabled = true` to disable.
+        /// </summary>
         [Input("horizontalPodAutoscaling")]
         public Input<ClusterAddonsConfigHorizontalPodAutoscalingGetArgs>? HorizontalPodAutoscaling { get; set; }
 
+        /// <summary>
+        /// The status of the HTTP (L7) load balancing
+        /// controller addon, which makes it easy to set up HTTP load balancers for services in a
+        /// cluster. It is enabled by default; set `disabled = true` to disable.
+        /// </summary>
         [Input("httpLoadBalancing")]
         public Input<ClusterAddonsConfigHttpLoadBalancingGetArgs>? HttpLoadBalancing { get; set; }
 
+        /// <summary>
+        /// ).
+        /// Structure is documented below.
+        /// </summary>
         [Input("istioConfig")]
         public Input<ClusterAddonsConfigIstioConfigGetArgs>? IstioConfig { get; set; }
 
+        /// <summary>
+        /// Whether we should enable the network policy addon
+        /// for the master.  This must be enabled in order to enable network policy for the nodes.
+        /// To enable this, you must also define a `network_policy` block,
+        /// otherwise nothing will happen.
+        /// It can only be disabled if the nodes already do not have network policies enabled.
+        /// Defaults to disabled; set `disabled = false` to enable.
+        /// </summary>
         [Input("networkPolicyConfig")]
         public Input<ClusterAddonsConfigNetworkPolicyConfigGetArgs>? NetworkPolicyConfig { get; set; }
 
@@ -1280,6 +1348,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterAddonsConfigHorizontalPodAutoscalingArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         [Input("disabled", required: true)]
         public Input<bool> Disabled { get; set; } = null!;
 
@@ -1290,6 +1362,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterAddonsConfigHorizontalPodAutoscalingGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         [Input("disabled", required: true)]
         public Input<bool> Disabled { get; set; } = null!;
 
@@ -1300,6 +1376,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterAddonsConfigHttpLoadBalancingArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         [Input("disabled", required: true)]
         public Input<bool> Disabled { get; set; } = null!;
 
@@ -1310,6 +1390,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterAddonsConfigHttpLoadBalancingGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         [Input("disabled", required: true)]
         public Input<bool> Disabled { get; set; } = null!;
 
@@ -1320,9 +1404,16 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterAddonsConfigIstioConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The authentication type between services in Istio. Available options include `AUTH_MUTUAL_TLS`.
+        /// </summary>
         [Input("auth")]
         public Input<string>? Auth { get; set; }
 
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         [Input("disabled", required: true)]
         public Input<bool> Disabled { get; set; } = null!;
 
@@ -1333,9 +1424,16 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterAddonsConfigIstioConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The authentication type between services in Istio. Available options include `AUTH_MUTUAL_TLS`.
+        /// </summary>
         [Input("auth")]
         public Input<string>? Auth { get; set; }
 
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         [Input("disabled", required: true)]
         public Input<bool> Disabled { get; set; } = null!;
 
@@ -1346,6 +1444,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterAddonsConfigNetworkPolicyConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         [Input("disabled", required: true)]
         public Input<bool> Disabled { get; set; } = null!;
 
@@ -1356,6 +1458,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterAddonsConfigNetworkPolicyConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         [Input("disabled", required: true)]
         public Input<bool> Disabled { get; set; } = null!;
 
@@ -1366,6 +1472,9 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterAuthenticatorGroupsConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the RBAC security group for use with Google security groups in Kubernetes RBAC. Group name must be in format `gke-security-groups@yourdomain.com`.
+        /// </summary>
         [Input("securityGroup", required: true)]
         public Input<string> SecurityGroup { get; set; } = null!;
 
@@ -1376,6 +1485,9 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterAuthenticatorGroupsConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the RBAC security group for use with Google security groups in Kubernetes RBAC. Group name must be in format `gke-security-groups@yourdomain.com`.
+        /// </summary>
         [Input("securityGroup", required: true)]
         public Input<string> SecurityGroup { get; set; } = null!;
 
@@ -1386,17 +1498,38 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterClusterAutoscalingArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Contains defaults for a node pool created by NAP.
+        /// Structure is documented below.
+        /// </summary>
         [Input("autoProvisioningDefaults")]
         public Input<ClusterClusterAutoscalingAutoProvisioningDefaultsArgs>? AutoProvisioningDefaults { get; set; }
 
+        /// <summary>
+        /// ) Configuration
+        /// options for the [Autoscaling profile](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#autoscaling_profiles)
+        /// feature, which lets you choose whether the cluster autoscaler should optimize for resource utilization or resource availability
+        /// when deciding to remove nodes from a cluster. Can be `BALANCED` or `OPTIMIZE_UTILIZATION`. Defaults to `BALANCED`.
+        /// </summary>
         [Input("autoscalingProfile")]
         public Input<string>? AutoscalingProfile { get; set; }
 
+        /// <summary>
+        /// Enable the PodSecurityPolicy controller for this cluster.
+        /// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+        /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
         [Input("resourceLimits")]
         private InputList<ClusterClusterAutoscalingResourceLimitsArgs>? _resourceLimits;
+
+        /// <summary>
+        /// Global constraints for machine resources in the
+        /// cluster. Configuring the `cpu` and `memory` types is required if node
+        /// auto-provisioning is enabled. These limits will apply to node pool autoscaling
+        /// in addition to node auto-provisioning. Structure is documented below.
+        /// </summary>
         public InputList<ClusterClusterAutoscalingResourceLimitsArgs> ResourceLimits
         {
             get => _resourceLimits ?? (_resourceLimits = new InputList<ClusterClusterAutoscalingResourceLimitsArgs>());
@@ -1412,12 +1545,26 @@ namespace Pulumi.Gcp.Container
     {
         [Input("oauthScopes")]
         private InputList<string>? _oauthScopes;
+
+        /// <summary>
+        /// The set of Google API scopes to be made available
+        /// on all of the node VMs under the "default" service account. These can be
+        /// either FQDNs, or scope aliases. The following scopes are necessary to ensure
+        /// the correct functioning of the cluster:
+        /// </summary>
         public InputList<string> OauthScopes
         {
             get => _oauthScopes ?? (_oauthScopes = new InputList<string>());
             set => _oauthScopes = value;
         }
 
+        /// <summary>
+        /// The service account to be used by the Node VMs.
+        /// If not specified, the "default" service account is used.
+        /// In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
+        /// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
+        /// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+        /// </summary>
         [Input("serviceAccount")]
         public Input<string>? ServiceAccount { get; set; }
 
@@ -1430,12 +1577,26 @@ namespace Pulumi.Gcp.Container
     {
         [Input("oauthScopes")]
         private InputList<string>? _oauthScopes;
+
+        /// <summary>
+        /// The set of Google API scopes to be made available
+        /// on all of the node VMs under the "default" service account. These can be
+        /// either FQDNs, or scope aliases. The following scopes are necessary to ensure
+        /// the correct functioning of the cluster:
+        /// </summary>
         public InputList<string> OauthScopes
         {
             get => _oauthScopes ?? (_oauthScopes = new InputList<string>());
             set => _oauthScopes = value;
         }
 
+        /// <summary>
+        /// The service account to be used by the Node VMs.
+        /// If not specified, the "default" service account is used.
+        /// In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
+        /// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
+        /// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+        /// </summary>
         [Input("serviceAccount")]
         public Input<string>? ServiceAccount { get; set; }
 
@@ -1446,17 +1607,38 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterClusterAutoscalingGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Contains defaults for a node pool created by NAP.
+        /// Structure is documented below.
+        /// </summary>
         [Input("autoProvisioningDefaults")]
         public Input<ClusterClusterAutoscalingAutoProvisioningDefaultsGetArgs>? AutoProvisioningDefaults { get; set; }
 
+        /// <summary>
+        /// ) Configuration
+        /// options for the [Autoscaling profile](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#autoscaling_profiles)
+        /// feature, which lets you choose whether the cluster autoscaler should optimize for resource utilization or resource availability
+        /// when deciding to remove nodes from a cluster. Can be `BALANCED` or `OPTIMIZE_UTILIZATION`. Defaults to `BALANCED`.
+        /// </summary>
         [Input("autoscalingProfile")]
         public Input<string>? AutoscalingProfile { get; set; }
 
+        /// <summary>
+        /// Enable the PodSecurityPolicy controller for this cluster.
+        /// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+        /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
         [Input("resourceLimits")]
         private InputList<ClusterClusterAutoscalingResourceLimitsGetArgs>? _resourceLimits;
+
+        /// <summary>
+        /// Global constraints for machine resources in the
+        /// cluster. Configuring the `cpu` and `memory` types is required if node
+        /// auto-provisioning is enabled. These limits will apply to node pool autoscaling
+        /// in addition to node auto-provisioning. Structure is documented below.
+        /// </summary>
         public InputList<ClusterClusterAutoscalingResourceLimitsGetArgs> ResourceLimits
         {
             get => _resourceLimits ?? (_resourceLimits = new InputList<ClusterClusterAutoscalingResourceLimitsGetArgs>());
@@ -1470,12 +1652,23 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterClusterAutoscalingResourceLimitsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Maximum amount of the resource in the cluster.
+        /// </summary>
         [Input("maximum")]
         public Input<int>? Maximum { get; set; }
 
+        /// <summary>
+        /// Minimum amount of the resource in the cluster.
+        /// </summary>
         [Input("minimum")]
         public Input<int>? Minimum { get; set; }
 
+        /// <summary>
+        /// The type of the resource. For example, `cpu` and
+        /// `memory`.  See the [guide to using Node Auto-Provisioning](https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning)
+        /// for a list of types.
+        /// </summary>
         [Input("resourceType", required: true)]
         public Input<string> ResourceType { get; set; } = null!;
 
@@ -1486,12 +1679,23 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterClusterAutoscalingResourceLimitsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Maximum amount of the resource in the cluster.
+        /// </summary>
         [Input("maximum")]
         public Input<int>? Maximum { get; set; }
 
+        /// <summary>
+        /// Minimum amount of the resource in the cluster.
+        /// </summary>
         [Input("minimum")]
         public Input<int>? Minimum { get; set; }
 
+        /// <summary>
+        /// The type of the resource. For example, `cpu` and
+        /// `memory`.  See the [guide to using Node Auto-Provisioning](https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning)
+        /// for a list of types.
+        /// </summary>
         [Input("resourceType", required: true)]
         public Input<string> ResourceType { get; set; } = null!;
 
@@ -1502,9 +1706,15 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterDatabaseEncryptionArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// the key to use to encrypt/decrypt secrets.  See the [DatabaseEncryption definition](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters#Cluster.DatabaseEncryption) for more information.
+        /// </summary>
         [Input("keyName")]
         public Input<string>? KeyName { get; set; }
 
+        /// <summary>
+        /// `ENCRYPTED` or `DECRYPTED`
+        /// </summary>
         [Input("state", required: true)]
         public Input<string> State { get; set; } = null!;
 
@@ -1515,9 +1725,15 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterDatabaseEncryptionGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// the key to use to encrypt/decrypt secrets.  See the [DatabaseEncryption definition](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters#Cluster.DatabaseEncryption) for more information.
+        /// </summary>
         [Input("keyName")]
         public Input<string>? KeyName { get; set; }
 
+        /// <summary>
+        /// `ENCRYPTED` or `DECRYPTED`
+        /// </summary>
         [Input("state", required: true)]
         public Input<string> State { get; set; } = null!;
 
@@ -1528,15 +1744,40 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterIpAllocationPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The IP address range for the cluster pod IPs.
+        /// Set to blank to have a range chosen with the default size. Set to /netmask (e.g. /14)
+        /// to have a range chosen with a specific netmask. Set to a CIDR notation (e.g. 10.96.0.0/14)
+        /// from the RFC-1918 private networks (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to
+        /// pick a specific range to use.
+        /// </summary>
         [Input("clusterIpv4CidrBlock")]
         public Input<string>? ClusterIpv4CidrBlock { get; set; }
 
+        /// <summary>
+        /// The name of the existing secondary
+        /// range in the cluster's subnetwork to use for pod IP addresses. Alternatively,
+        /// `cluster_ipv4_cidr_block` can be used to automatically create a GKE-managed one.
+        /// </summary>
         [Input("clusterSecondaryRangeName")]
         public Input<string>? ClusterSecondaryRangeName { get; set; }
 
+        /// <summary>
+        /// The IP address range of the services IPs in this cluster.
+        /// Set to blank to have a range chosen with the default size. Set to /netmask (e.g. /14)
+        /// to have a range chosen with a specific netmask. Set to a CIDR notation (e.g. 10.96.0.0/14)
+        /// from the RFC-1918 private networks (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to
+        /// pick a specific range to use.
+        /// </summary>
         [Input("servicesIpv4CidrBlock")]
         public Input<string>? ServicesIpv4CidrBlock { get; set; }
 
+        /// <summary>
+        /// The name of the existing
+        /// secondary range in the cluster's subnetwork to use for service `ClusterIP`s.
+        /// Alternatively, `services_ipv4_cidr_block` can be used to automatically create a
+        /// GKE-managed one.
+        /// </summary>
         [Input("servicesSecondaryRangeName")]
         public Input<string>? ServicesSecondaryRangeName { get; set; }
 
@@ -1547,15 +1788,40 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterIpAllocationPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The IP address range for the cluster pod IPs.
+        /// Set to blank to have a range chosen with the default size. Set to /netmask (e.g. /14)
+        /// to have a range chosen with a specific netmask. Set to a CIDR notation (e.g. 10.96.0.0/14)
+        /// from the RFC-1918 private networks (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to
+        /// pick a specific range to use.
+        /// </summary>
         [Input("clusterIpv4CidrBlock")]
         public Input<string>? ClusterIpv4CidrBlock { get; set; }
 
+        /// <summary>
+        /// The name of the existing secondary
+        /// range in the cluster's subnetwork to use for pod IP addresses. Alternatively,
+        /// `cluster_ipv4_cidr_block` can be used to automatically create a GKE-managed one.
+        /// </summary>
         [Input("clusterSecondaryRangeName")]
         public Input<string>? ClusterSecondaryRangeName { get; set; }
 
+        /// <summary>
+        /// The IP address range of the services IPs in this cluster.
+        /// Set to blank to have a range chosen with the default size. Set to /netmask (e.g. /14)
+        /// to have a range chosen with a specific netmask. Set to a CIDR notation (e.g. 10.96.0.0/14)
+        /// from the RFC-1918 private networks (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to
+        /// pick a specific range to use.
+        /// </summary>
         [Input("servicesIpv4CidrBlock")]
         public Input<string>? ServicesIpv4CidrBlock { get; set; }
 
+        /// <summary>
+        /// The name of the existing
+        /// secondary range in the cluster's subnetwork to use for service `ClusterIP`s.
+        /// Alternatively, `services_ipv4_cidr_block` can be used to automatically create a
+        /// GKE-managed one.
+        /// </summary>
         [Input("servicesSecondaryRangeName")]
         public Input<string>? ServicesSecondaryRangeName { get; set; }
 
@@ -1566,9 +1832,18 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterMaintenancePolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Time window specified for daily maintenance operations.
+        /// Specify `start_time` in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) format "HH:MM”,
+        /// where HH : \[00-23\] and MM : \[00-59\] GMT. For example:
+        /// </summary>
         [Input("dailyMaintenanceWindow")]
         public Input<ClusterMaintenancePolicyDailyMaintenanceWindowArgs>? DailyMaintenanceWindow { get; set; }
 
+        /// <summary>
+        /// ) Time window for
+        /// recurring maintenance operations.
+        /// </summary>
         [Input("recurringWindow")]
         public Input<ClusterMaintenancePolicyRecurringWindowArgs>? RecurringWindow { get; set; }
 
@@ -1605,9 +1880,18 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterMaintenancePolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Time window specified for daily maintenance operations.
+        /// Specify `start_time` in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) format "HH:MM”,
+        /// where HH : \[00-23\] and MM : \[00-59\] GMT. For example:
+        /// </summary>
         [Input("dailyMaintenanceWindow")]
         public Input<ClusterMaintenancePolicyDailyMaintenanceWindowGetArgs>? DailyMaintenanceWindow { get; set; }
 
+        /// <summary>
+        /// ) Time window for
+        /// recurring maintenance operations.
+        /// </summary>
         [Input("recurringWindow")]
         public Input<ClusterMaintenancePolicyRecurringWindowGetArgs>? RecurringWindow { get; set; }
 
@@ -1653,6 +1937,9 @@ namespace Pulumi.Gcp.Container
         [Input("clientCertificate")]
         public Input<string>? ClientCertificate { get; set; }
 
+        /// <summary>
+        /// Whether client certificate authorization is enabled for this cluster.  For example:
+        /// </summary>
         [Input("clientCertificateConfig")]
         public Input<ClusterMasterAuthClientCertificateConfigArgs>? ClientCertificateConfig { get; set; }
 
@@ -1662,9 +1949,17 @@ namespace Pulumi.Gcp.Container
         [Input("clusterCaCertificate")]
         public Input<string>? ClusterCaCertificate { get; set; }
 
+        /// <summary>
+        /// The password to use for HTTP basic authentication when accessing
+        /// the Kubernetes master endpoint.
+        /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
 
+        /// <summary>
+        /// The username to use for HTTP basic authentication when accessing
+        /// the Kubernetes master endpoint. If not present basic auth will be disabled.
+        /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 
@@ -1698,6 +1993,9 @@ namespace Pulumi.Gcp.Container
         [Input("clientCertificate")]
         public Input<string>? ClientCertificate { get; set; }
 
+        /// <summary>
+        /// Whether client certificate authorization is enabled for this cluster.  For example:
+        /// </summary>
         [Input("clientCertificateConfig")]
         public Input<ClusterMasterAuthClientCertificateConfigGetArgs>? ClientCertificateConfig { get; set; }
 
@@ -1707,9 +2005,17 @@ namespace Pulumi.Gcp.Container
         [Input("clusterCaCertificate")]
         public Input<string>? ClusterCaCertificate { get; set; }
 
+        /// <summary>
+        /// The password to use for HTTP basic authentication when accessing
+        /// the Kubernetes master endpoint.
+        /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
 
+        /// <summary>
+        /// The username to use for HTTP basic authentication when accessing
+        /// the Kubernetes master endpoint. If not present basic auth will be disabled.
+        /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 
@@ -1722,6 +2028,11 @@ namespace Pulumi.Gcp.Container
     {
         [Input("cidrBlocks")]
         private InputList<ClusterMasterAuthorizedNetworksConfigCidrBlocksArgs>? _cidrBlocks;
+
+        /// <summary>
+        /// External networks that can access the
+        /// Kubernetes cluster master through HTTPS.
+        /// </summary>
         public InputList<ClusterMasterAuthorizedNetworksConfigCidrBlocksArgs> CidrBlocks
         {
             get => _cidrBlocks ?? (_cidrBlocks = new InputList<ClusterMasterAuthorizedNetworksConfigCidrBlocksArgs>());
@@ -1735,9 +2046,16 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterMasterAuthorizedNetworksConfigCidrBlocksArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// External network that can access Kubernetes master through HTTPS.
+        /// Must be specified in CIDR notation.
+        /// </summary>
         [Input("cidrBlock", required: true)]
         public Input<string> CidrBlock { get; set; } = null!;
 
+        /// <summary>
+        /// Field for users to identify CIDR blocks.
+        /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
@@ -1748,9 +2066,16 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterMasterAuthorizedNetworksConfigCidrBlocksGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// External network that can access Kubernetes master through HTTPS.
+        /// Must be specified in CIDR notation.
+        /// </summary>
         [Input("cidrBlock", required: true)]
         public Input<string> CidrBlock { get; set; } = null!;
 
+        /// <summary>
+        /// Field for users to identify CIDR blocks.
+        /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
@@ -1763,6 +2088,11 @@ namespace Pulumi.Gcp.Container
     {
         [Input("cidrBlocks")]
         private InputList<ClusterMasterAuthorizedNetworksConfigCidrBlocksGetArgs>? _cidrBlocks;
+
+        /// <summary>
+        /// External networks that can access the
+        /// Kubernetes cluster master through HTTPS.
+        /// </summary>
         public InputList<ClusterMasterAuthorizedNetworksConfigCidrBlocksGetArgs> CidrBlocks
         {
             get => _cidrBlocks ?? (_cidrBlocks = new InputList<ClusterMasterAuthorizedNetworksConfigCidrBlocksGetArgs>());
@@ -1776,9 +2106,16 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNetworkPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Enable the PodSecurityPolicy controller for this cluster.
+        /// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+        /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
+        /// <summary>
+        /// The selected network policy provider. Defaults to PROVIDER_UNSPECIFIED.
+        /// </summary>
         [Input("provider")]
         public Input<string>? Provider { get; set; }
 
@@ -1789,9 +2126,16 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNetworkPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Enable the PodSecurityPolicy controller for this cluster.
+        /// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+        /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
+        /// <summary>
+        /// The selected network policy provider. Defaults to PROVIDER_UNSPECIFIED.
+        /// </summary>
         [Input("provider")]
         public Input<string>? Provider { get; set; }
 
@@ -1802,73 +2146,152 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodeConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ) The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+        /// </summary>
         [Input("bootDiskKmsKey")]
         public Input<string>? BootDiskKmsKey { get; set; }
 
+        /// <summary>
+        /// Size of the disk attached to each node, specified
+        /// in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
+        /// </summary>
         [Input("diskSizeGb")]
         public Input<int>? DiskSizeGb { get; set; }
 
+        /// <summary>
+        /// Type of the disk attached to each node
+        /// (e.g. 'pd-standard' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'
+        /// </summary>
         [Input("diskType")]
         public Input<string>? DiskType { get; set; }
 
         [Input("guestAccelerators")]
         private InputList<ClusterNodeConfigGuestAcceleratorsArgs>? _guestAccelerators;
+
+        /// <summary>
+        /// List of the type and count of accelerator cards attached to the instance.
+        /// Structure documented below.
+        /// </summary>
         public InputList<ClusterNodeConfigGuestAcceleratorsArgs> GuestAccelerators
         {
             get => _guestAccelerators ?? (_guestAccelerators = new InputList<ClusterNodeConfigGuestAcceleratorsArgs>());
             set => _guestAccelerators = value;
         }
 
+        /// <summary>
+        /// The image type to use for this node. Note that changing the image type
+        /// will delete and recreate all nodes in the node pool.
+        /// </summary>
         [Input("imageType")]
         public Input<string>? ImageType { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// The Kubernetes labels (key/value pairs) to be applied to each node.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// The amount of local SSD disks that will be
+        /// attached to each cluster node. Defaults to 0.
+        /// </summary>
         [Input("localSsdCount")]
         public Input<int>? LocalSsdCount { get; set; }
 
+        /// <summary>
+        /// The name of a Google Compute Engine machine type.
+        /// Defaults to `n1-standard-1`. To create a custom machine type, value should be set as specified
+        /// [here](https://cloud.google.com/compute/docs/reference/latest/instances#machineType).
+        /// </summary>
         [Input("machineType")]
         public Input<string>? MachineType { get; set; }
 
         [Input("metadata")]
         private InputMap<string>? _metadata;
+
+        /// <summary>
+        /// The metadata key/value pairs assigned to instances in
+        /// the cluster. From GKE `1.12` onwards, `disable-legacy-endpoints` is set to
+        /// `true` by the API; if `metadata` is set but that default value is not
+        /// included, this provider will attempt to unset the value. To avoid this, set the
+        /// value in your config.
+        /// </summary>
         public InputMap<string> Metadata
         {
             get => _metadata ?? (_metadata = new InputMap<string>());
             set => _metadata = value;
         }
 
+        /// <summary>
+        /// Minimum CPU platform to be used by this instance.
+        /// The instance may be scheduled on the specified or newer CPU platform. Applicable
+        /// values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
+        /// [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+        /// for more information.
+        /// </summary>
         [Input("minCpuPlatform")]
         public Input<string>? MinCpuPlatform { get; set; }
 
         [Input("oauthScopes")]
         private InputList<string>? _oauthScopes;
+
+        /// <summary>
+        /// The set of Google API scopes to be made available
+        /// on all of the node VMs under the "default" service account. These can be
+        /// either FQDNs, or scope aliases. The following scopes are necessary to ensure
+        /// the correct functioning of the cluster:
+        /// </summary>
         public InputList<string> OauthScopes
         {
             get => _oauthScopes ?? (_oauthScopes = new InputList<string>());
             set => _oauthScopes = value;
         }
 
+        /// <summary>
+        /// A boolean that represents whether or not the underlying node VMs
+        /// are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
+        /// for more information. Defaults to false.
+        /// </summary>
         [Input("preemptible")]
         public Input<bool>? Preemptible { get; set; }
 
+        /// <summary>
+        /// ) [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `image_type = "COS_CONTAINERD"` and `node_version = "1.12.7-gke.17"` or later to use it.
+        /// Structure is documented below.
+        /// </summary>
         [Input("sandboxConfig")]
         public Input<ClusterNodeConfigSandboxConfigArgs>? SandboxConfig { get; set; }
 
+        /// <summary>
+        /// The service account to be used by the Node VMs.
+        /// If not specified, the "default" service account is used.
+        /// In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
+        /// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
+        /// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+        /// </summary>
         [Input("serviceAccount")]
         public Input<string>? ServiceAccount { get; set; }
 
+        /// <summary>
+        /// Shielded Instance options. Structure is documented below.
+        /// </summary>
         [Input("shieldedInstanceConfig")]
         public Input<ClusterNodeConfigShieldedInstanceConfigArgs>? ShieldedInstanceConfig { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// The list of instance tags applied to all nodes. Tags are used to identify
+        /// valid sources or targets for network firewalls.
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
@@ -1883,6 +2306,10 @@ namespace Pulumi.Gcp.Container
             set => _taints = value;
         }
 
+        /// <summary>
+        /// ) Metadata configuration to expose to workloads on the node pool.
+        /// Structure is documented below.
+        /// </summary>
         [Input("workloadMetadataConfig")]
         public Input<ClusterNodeConfigWorkloadMetadataConfigArgs>? WorkloadMetadataConfig { get; set; }
 
@@ -1893,73 +2320,152 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodeConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ) The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+        /// </summary>
         [Input("bootDiskKmsKey")]
         public Input<string>? BootDiskKmsKey { get; set; }
 
+        /// <summary>
+        /// Size of the disk attached to each node, specified
+        /// in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
+        /// </summary>
         [Input("diskSizeGb")]
         public Input<int>? DiskSizeGb { get; set; }
 
+        /// <summary>
+        /// Type of the disk attached to each node
+        /// (e.g. 'pd-standard' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'
+        /// </summary>
         [Input("diskType")]
         public Input<string>? DiskType { get; set; }
 
         [Input("guestAccelerators")]
         private InputList<ClusterNodeConfigGuestAcceleratorsGetArgs>? _guestAccelerators;
+
+        /// <summary>
+        /// List of the type and count of accelerator cards attached to the instance.
+        /// Structure documented below.
+        /// </summary>
         public InputList<ClusterNodeConfigGuestAcceleratorsGetArgs> GuestAccelerators
         {
             get => _guestAccelerators ?? (_guestAccelerators = new InputList<ClusterNodeConfigGuestAcceleratorsGetArgs>());
             set => _guestAccelerators = value;
         }
 
+        /// <summary>
+        /// The image type to use for this node. Note that changing the image type
+        /// will delete and recreate all nodes in the node pool.
+        /// </summary>
         [Input("imageType")]
         public Input<string>? ImageType { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// The Kubernetes labels (key/value pairs) to be applied to each node.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// The amount of local SSD disks that will be
+        /// attached to each cluster node. Defaults to 0.
+        /// </summary>
         [Input("localSsdCount")]
         public Input<int>? LocalSsdCount { get; set; }
 
+        /// <summary>
+        /// The name of a Google Compute Engine machine type.
+        /// Defaults to `n1-standard-1`. To create a custom machine type, value should be set as specified
+        /// [here](https://cloud.google.com/compute/docs/reference/latest/instances#machineType).
+        /// </summary>
         [Input("machineType")]
         public Input<string>? MachineType { get; set; }
 
         [Input("metadata")]
         private InputMap<string>? _metadata;
+
+        /// <summary>
+        /// The metadata key/value pairs assigned to instances in
+        /// the cluster. From GKE `1.12` onwards, `disable-legacy-endpoints` is set to
+        /// `true` by the API; if `metadata` is set but that default value is not
+        /// included, this provider will attempt to unset the value. To avoid this, set the
+        /// value in your config.
+        /// </summary>
         public InputMap<string> Metadata
         {
             get => _metadata ?? (_metadata = new InputMap<string>());
             set => _metadata = value;
         }
 
+        /// <summary>
+        /// Minimum CPU platform to be used by this instance.
+        /// The instance may be scheduled on the specified or newer CPU platform. Applicable
+        /// values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
+        /// [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+        /// for more information.
+        /// </summary>
         [Input("minCpuPlatform")]
         public Input<string>? MinCpuPlatform { get; set; }
 
         [Input("oauthScopes")]
         private InputList<string>? _oauthScopes;
+
+        /// <summary>
+        /// The set of Google API scopes to be made available
+        /// on all of the node VMs under the "default" service account. These can be
+        /// either FQDNs, or scope aliases. The following scopes are necessary to ensure
+        /// the correct functioning of the cluster:
+        /// </summary>
         public InputList<string> OauthScopes
         {
             get => _oauthScopes ?? (_oauthScopes = new InputList<string>());
             set => _oauthScopes = value;
         }
 
+        /// <summary>
+        /// A boolean that represents whether or not the underlying node VMs
+        /// are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
+        /// for more information. Defaults to false.
+        /// </summary>
         [Input("preemptible")]
         public Input<bool>? Preemptible { get; set; }
 
+        /// <summary>
+        /// ) [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `image_type = "COS_CONTAINERD"` and `node_version = "1.12.7-gke.17"` or later to use it.
+        /// Structure is documented below.
+        /// </summary>
         [Input("sandboxConfig")]
         public Input<ClusterNodeConfigSandboxConfigGetArgs>? SandboxConfig { get; set; }
 
+        /// <summary>
+        /// The service account to be used by the Node VMs.
+        /// If not specified, the "default" service account is used.
+        /// In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
+        /// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
+        /// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+        /// </summary>
         [Input("serviceAccount")]
         public Input<string>? ServiceAccount { get; set; }
 
+        /// <summary>
+        /// Shielded Instance options. Structure is documented below.
+        /// </summary>
         [Input("shieldedInstanceConfig")]
         public Input<ClusterNodeConfigShieldedInstanceConfigGetArgs>? ShieldedInstanceConfig { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// The list of instance tags applied to all nodes. Tags are used to identify
+        /// valid sources or targets for network firewalls.
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
@@ -1974,6 +2480,10 @@ namespace Pulumi.Gcp.Container
             set => _taints = value;
         }
 
+        /// <summary>
+        /// ) Metadata configuration to expose to workloads on the node pool.
+        /// Structure is documented below.
+        /// </summary>
         [Input("workloadMetadataConfig")]
         public Input<ClusterNodeConfigWorkloadMetadataConfigGetArgs>? WorkloadMetadataConfig { get; set; }
 
@@ -1984,9 +2494,15 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodeConfigGuestAcceleratorsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The number of the guest accelerator cards exposed to this instance.
+        /// </summary>
         [Input("count", required: true)]
         public Input<int> Count { get; set; } = null!;
 
+        /// <summary>
+        /// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -1997,9 +2513,15 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodeConfigGuestAcceleratorsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The number of the guest accelerator cards exposed to this instance.
+        /// </summary>
         [Input("count", required: true)]
         public Input<int> Count { get; set; } = null!;
 
+        /// <summary>
+        /// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -2010,6 +2532,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodeConfigSandboxConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Which sandbox to use for pods in the node pool.
+        /// Accepted values are:
+        /// </summary>
         [Input("sandboxType", required: true)]
         public Input<string> SandboxType { get; set; } = null!;
 
@@ -2020,6 +2546,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodeConfigSandboxConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Which sandbox to use for pods in the node pool.
+        /// Accepted values are:
+        /// </summary>
         [Input("sandboxType", required: true)]
         public Input<string> SandboxType { get; set; } = null!;
 
@@ -2030,9 +2560,15 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodeConfigShieldedInstanceConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Defines if the instance has integrity monitoring enabled.
+        /// </summary>
         [Input("enableIntegrityMonitoring")]
         public Input<bool>? EnableIntegrityMonitoring { get; set; }
 
+        /// <summary>
+        /// Defines if the instance has Secure Boot enabled.
+        /// </summary>
         [Input("enableSecureBoot")]
         public Input<bool>? EnableSecureBoot { get; set; }
 
@@ -2043,9 +2579,15 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodeConfigShieldedInstanceConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Defines if the instance has integrity monitoring enabled.
+        /// </summary>
         [Input("enableIntegrityMonitoring")]
         public Input<bool>? EnableIntegrityMonitoring { get; set; }
 
+        /// <summary>
+        /// Defines if the instance has Secure Boot enabled.
+        /// </summary>
         [Input("enableSecureBoot")]
         public Input<bool>? EnableSecureBoot { get; set; }
 
@@ -2056,12 +2598,21 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodeConfigTaintsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
+        /// </summary>
         [Input("effect", required: true)]
         public Input<string> Effect { get; set; } = null!;
 
+        /// <summary>
+        /// Key for taint.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        /// <summary>
+        /// Value for taint.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 
@@ -2072,12 +2623,21 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodeConfigTaintsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
+        /// </summary>
         [Input("effect", required: true)]
         public Input<string> Effect { get; set; } = null!;
 
+        /// <summary>
+        /// Key for taint.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        /// <summary>
+        /// Value for taint.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 
@@ -2088,6 +2648,14 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodeConfigWorkloadMetadataConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// How to expose the node metadata to the workload running on the node.
+        /// Accepted values are:
+        /// * UNSPECIFIED: Not Set
+        /// * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
+        /// * EXPOSE: Expose all VM metadata to pods.
+        /// * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
+        /// </summary>
         [Input("nodeMetadata", required: true)]
         public Input<string> NodeMetadata { get; set; } = null!;
 
@@ -2098,6 +2666,14 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodeConfigWorkloadMetadataConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// How to expose the node metadata to the workload running on the node.
+        /// Accepted values are:
+        /// * UNSPECIFIED: Not Set
+        /// * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
+        /// * EXPOSE: Expose all VM metadata to pods.
+        /// * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
+        /// </summary>
         [Input("nodeMetadata", required: true)]
         public Input<string> NodeMetadata { get; set; } = null!;
 
@@ -2328,73 +2904,152 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodePoolsNodeConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ) The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+        /// </summary>
         [Input("bootDiskKmsKey")]
         public Input<string>? BootDiskKmsKey { get; set; }
 
+        /// <summary>
+        /// Size of the disk attached to each node, specified
+        /// in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
+        /// </summary>
         [Input("diskSizeGb")]
         public Input<int>? DiskSizeGb { get; set; }
 
+        /// <summary>
+        /// Type of the disk attached to each node
+        /// (e.g. 'pd-standard' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'
+        /// </summary>
         [Input("diskType")]
         public Input<string>? DiskType { get; set; }
 
         [Input("guestAccelerators")]
         private InputList<ClusterNodePoolsNodeConfigGuestAcceleratorsArgs>? _guestAccelerators;
+
+        /// <summary>
+        /// List of the type and count of accelerator cards attached to the instance.
+        /// Structure documented below.
+        /// </summary>
         public InputList<ClusterNodePoolsNodeConfigGuestAcceleratorsArgs> GuestAccelerators
         {
             get => _guestAccelerators ?? (_guestAccelerators = new InputList<ClusterNodePoolsNodeConfigGuestAcceleratorsArgs>());
             set => _guestAccelerators = value;
         }
 
+        /// <summary>
+        /// The image type to use for this node. Note that changing the image type
+        /// will delete and recreate all nodes in the node pool.
+        /// </summary>
         [Input("imageType")]
         public Input<string>? ImageType { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// The Kubernetes labels (key/value pairs) to be applied to each node.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// The amount of local SSD disks that will be
+        /// attached to each cluster node. Defaults to 0.
+        /// </summary>
         [Input("localSsdCount")]
         public Input<int>? LocalSsdCount { get; set; }
 
+        /// <summary>
+        /// The name of a Google Compute Engine machine type.
+        /// Defaults to `n1-standard-1`. To create a custom machine type, value should be set as specified
+        /// [here](https://cloud.google.com/compute/docs/reference/latest/instances#machineType).
+        /// </summary>
         [Input("machineType")]
         public Input<string>? MachineType { get; set; }
 
         [Input("metadata")]
         private InputMap<string>? _metadata;
+
+        /// <summary>
+        /// The metadata key/value pairs assigned to instances in
+        /// the cluster. From GKE `1.12` onwards, `disable-legacy-endpoints` is set to
+        /// `true` by the API; if `metadata` is set but that default value is not
+        /// included, this provider will attempt to unset the value. To avoid this, set the
+        /// value in your config.
+        /// </summary>
         public InputMap<string> Metadata
         {
             get => _metadata ?? (_metadata = new InputMap<string>());
             set => _metadata = value;
         }
 
+        /// <summary>
+        /// Minimum CPU platform to be used by this instance.
+        /// The instance may be scheduled on the specified or newer CPU platform. Applicable
+        /// values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
+        /// [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+        /// for more information.
+        /// </summary>
         [Input("minCpuPlatform")]
         public Input<string>? MinCpuPlatform { get; set; }
 
         [Input("oauthScopes")]
         private InputList<string>? _oauthScopes;
+
+        /// <summary>
+        /// The set of Google API scopes to be made available
+        /// on all of the node VMs under the "default" service account. These can be
+        /// either FQDNs, or scope aliases. The following scopes are necessary to ensure
+        /// the correct functioning of the cluster:
+        /// </summary>
         public InputList<string> OauthScopes
         {
             get => _oauthScopes ?? (_oauthScopes = new InputList<string>());
             set => _oauthScopes = value;
         }
 
+        /// <summary>
+        /// A boolean that represents whether or not the underlying node VMs
+        /// are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
+        /// for more information. Defaults to false.
+        /// </summary>
         [Input("preemptible")]
         public Input<bool>? Preemptible { get; set; }
 
+        /// <summary>
+        /// ) [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `image_type = "COS_CONTAINERD"` and `node_version = "1.12.7-gke.17"` or later to use it.
+        /// Structure is documented below.
+        /// </summary>
         [Input("sandboxConfig")]
         public Input<ClusterNodePoolsNodeConfigSandboxConfigArgs>? SandboxConfig { get; set; }
 
+        /// <summary>
+        /// The service account to be used by the Node VMs.
+        /// If not specified, the "default" service account is used.
+        /// In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
+        /// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
+        /// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+        /// </summary>
         [Input("serviceAccount")]
         public Input<string>? ServiceAccount { get; set; }
 
+        /// <summary>
+        /// Shielded Instance options. Structure is documented below.
+        /// </summary>
         [Input("shieldedInstanceConfig")]
         public Input<ClusterNodePoolsNodeConfigShieldedInstanceConfigArgs>? ShieldedInstanceConfig { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// The list of instance tags applied to all nodes. Tags are used to identify
+        /// valid sources or targets for network firewalls.
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
@@ -2409,6 +3064,10 @@ namespace Pulumi.Gcp.Container
             set => _taints = value;
         }
 
+        /// <summary>
+        /// ) Metadata configuration to expose to workloads on the node pool.
+        /// Structure is documented below.
+        /// </summary>
         [Input("workloadMetadataConfig")]
         public Input<ClusterNodePoolsNodeConfigWorkloadMetadataConfigArgs>? WorkloadMetadataConfig { get; set; }
 
@@ -2419,73 +3078,152 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodePoolsNodeConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ) The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+        /// </summary>
         [Input("bootDiskKmsKey")]
         public Input<string>? BootDiskKmsKey { get; set; }
 
+        /// <summary>
+        /// Size of the disk attached to each node, specified
+        /// in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
+        /// </summary>
         [Input("diskSizeGb")]
         public Input<int>? DiskSizeGb { get; set; }
 
+        /// <summary>
+        /// Type of the disk attached to each node
+        /// (e.g. 'pd-standard' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'
+        /// </summary>
         [Input("diskType")]
         public Input<string>? DiskType { get; set; }
 
         [Input("guestAccelerators")]
         private InputList<ClusterNodePoolsNodeConfigGuestAcceleratorsGetArgs>? _guestAccelerators;
+
+        /// <summary>
+        /// List of the type and count of accelerator cards attached to the instance.
+        /// Structure documented below.
+        /// </summary>
         public InputList<ClusterNodePoolsNodeConfigGuestAcceleratorsGetArgs> GuestAccelerators
         {
             get => _guestAccelerators ?? (_guestAccelerators = new InputList<ClusterNodePoolsNodeConfigGuestAcceleratorsGetArgs>());
             set => _guestAccelerators = value;
         }
 
+        /// <summary>
+        /// The image type to use for this node. Note that changing the image type
+        /// will delete and recreate all nodes in the node pool.
+        /// </summary>
         [Input("imageType")]
         public Input<string>? ImageType { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// The Kubernetes labels (key/value pairs) to be applied to each node.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// The amount of local SSD disks that will be
+        /// attached to each cluster node. Defaults to 0.
+        /// </summary>
         [Input("localSsdCount")]
         public Input<int>? LocalSsdCount { get; set; }
 
+        /// <summary>
+        /// The name of a Google Compute Engine machine type.
+        /// Defaults to `n1-standard-1`. To create a custom machine type, value should be set as specified
+        /// [here](https://cloud.google.com/compute/docs/reference/latest/instances#machineType).
+        /// </summary>
         [Input("machineType")]
         public Input<string>? MachineType { get; set; }
 
         [Input("metadata")]
         private InputMap<string>? _metadata;
+
+        /// <summary>
+        /// The metadata key/value pairs assigned to instances in
+        /// the cluster. From GKE `1.12` onwards, `disable-legacy-endpoints` is set to
+        /// `true` by the API; if `metadata` is set but that default value is not
+        /// included, this provider will attempt to unset the value. To avoid this, set the
+        /// value in your config.
+        /// </summary>
         public InputMap<string> Metadata
         {
             get => _metadata ?? (_metadata = new InputMap<string>());
             set => _metadata = value;
         }
 
+        /// <summary>
+        /// Minimum CPU platform to be used by this instance.
+        /// The instance may be scheduled on the specified or newer CPU platform. Applicable
+        /// values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
+        /// [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+        /// for more information.
+        /// </summary>
         [Input("minCpuPlatform")]
         public Input<string>? MinCpuPlatform { get; set; }
 
         [Input("oauthScopes")]
         private InputList<string>? _oauthScopes;
+
+        /// <summary>
+        /// The set of Google API scopes to be made available
+        /// on all of the node VMs under the "default" service account. These can be
+        /// either FQDNs, or scope aliases. The following scopes are necessary to ensure
+        /// the correct functioning of the cluster:
+        /// </summary>
         public InputList<string> OauthScopes
         {
             get => _oauthScopes ?? (_oauthScopes = new InputList<string>());
             set => _oauthScopes = value;
         }
 
+        /// <summary>
+        /// A boolean that represents whether or not the underlying node VMs
+        /// are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
+        /// for more information. Defaults to false.
+        /// </summary>
         [Input("preemptible")]
         public Input<bool>? Preemptible { get; set; }
 
+        /// <summary>
+        /// ) [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `image_type = "COS_CONTAINERD"` and `node_version = "1.12.7-gke.17"` or later to use it.
+        /// Structure is documented below.
+        /// </summary>
         [Input("sandboxConfig")]
         public Input<ClusterNodePoolsNodeConfigSandboxConfigGetArgs>? SandboxConfig { get; set; }
 
+        /// <summary>
+        /// The service account to be used by the Node VMs.
+        /// If not specified, the "default" service account is used.
+        /// In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
+        /// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
+        /// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+        /// </summary>
         [Input("serviceAccount")]
         public Input<string>? ServiceAccount { get; set; }
 
+        /// <summary>
+        /// Shielded Instance options. Structure is documented below.
+        /// </summary>
         [Input("shieldedInstanceConfig")]
         public Input<ClusterNodePoolsNodeConfigShieldedInstanceConfigGetArgs>? ShieldedInstanceConfig { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// The list of instance tags applied to all nodes. Tags are used to identify
+        /// valid sources or targets for network firewalls.
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
@@ -2500,6 +3238,10 @@ namespace Pulumi.Gcp.Container
             set => _taints = value;
         }
 
+        /// <summary>
+        /// ) Metadata configuration to expose to workloads on the node pool.
+        /// Structure is documented below.
+        /// </summary>
         [Input("workloadMetadataConfig")]
         public Input<ClusterNodePoolsNodeConfigWorkloadMetadataConfigGetArgs>? WorkloadMetadataConfig { get; set; }
 
@@ -2510,9 +3252,15 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodePoolsNodeConfigGuestAcceleratorsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The number of the guest accelerator cards exposed to this instance.
+        /// </summary>
         [Input("count", required: true)]
         public Input<int> Count { get; set; } = null!;
 
+        /// <summary>
+        /// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -2523,9 +3271,15 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodePoolsNodeConfigGuestAcceleratorsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The number of the guest accelerator cards exposed to this instance.
+        /// </summary>
         [Input("count", required: true)]
         public Input<int> Count { get; set; } = null!;
 
+        /// <summary>
+        /// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -2536,6 +3290,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodePoolsNodeConfigSandboxConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Which sandbox to use for pods in the node pool.
+        /// Accepted values are:
+        /// </summary>
         [Input("sandboxType", required: true)]
         public Input<string> SandboxType { get; set; } = null!;
 
@@ -2546,6 +3304,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodePoolsNodeConfigSandboxConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Which sandbox to use for pods in the node pool.
+        /// Accepted values are:
+        /// </summary>
         [Input("sandboxType", required: true)]
         public Input<string> SandboxType { get; set; } = null!;
 
@@ -2556,9 +3318,15 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodePoolsNodeConfigShieldedInstanceConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Defines if the instance has integrity monitoring enabled.
+        /// </summary>
         [Input("enableIntegrityMonitoring")]
         public Input<bool>? EnableIntegrityMonitoring { get; set; }
 
+        /// <summary>
+        /// Defines if the instance has Secure Boot enabled.
+        /// </summary>
         [Input("enableSecureBoot")]
         public Input<bool>? EnableSecureBoot { get; set; }
 
@@ -2569,9 +3337,15 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodePoolsNodeConfigShieldedInstanceConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Defines if the instance has integrity monitoring enabled.
+        /// </summary>
         [Input("enableIntegrityMonitoring")]
         public Input<bool>? EnableIntegrityMonitoring { get; set; }
 
+        /// <summary>
+        /// Defines if the instance has Secure Boot enabled.
+        /// </summary>
         [Input("enableSecureBoot")]
         public Input<bool>? EnableSecureBoot { get; set; }
 
@@ -2582,12 +3356,21 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodePoolsNodeConfigTaintsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
+        /// </summary>
         [Input("effect", required: true)]
         public Input<string> Effect { get; set; } = null!;
 
+        /// <summary>
+        /// Key for taint.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        /// <summary>
+        /// Value for taint.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 
@@ -2598,12 +3381,21 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodePoolsNodeConfigTaintsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
+        /// </summary>
         [Input("effect", required: true)]
         public Input<string> Effect { get; set; } = null!;
 
+        /// <summary>
+        /// Key for taint.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        /// <summary>
+        /// Value for taint.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 
@@ -2614,6 +3406,14 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodePoolsNodeConfigWorkloadMetadataConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// How to expose the node metadata to the workload running on the node.
+        /// Accepted values are:
+        /// * UNSPECIFIED: Not Set
+        /// * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
+        /// * EXPOSE: Expose all VM metadata to pods.
+        /// * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
+        /// </summary>
         [Input("nodeMetadata", required: true)]
         public Input<string> NodeMetadata { get; set; } = null!;
 
@@ -2624,6 +3424,14 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterNodePoolsNodeConfigWorkloadMetadataConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// How to expose the node metadata to the workload running on the node.
+        /// Accepted values are:
+        /// * UNSPECIFIED: Not Set
+        /// * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
+        /// * EXPOSE: Expose all VM metadata to pods.
+        /// * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
+        /// </summary>
         [Input("nodeMetadata", required: true)]
         public Input<string> NodeMetadata { get; set; } = null!;
 
@@ -2660,6 +3468,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterPodSecurityPolicyConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Enable the PodSecurityPolicy controller for this cluster.
+        /// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+        /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
@@ -2670,6 +3482,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterPodSecurityPolicyConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Enable the PodSecurityPolicy controller for this cluster.
+        /// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+        /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
@@ -2680,21 +3496,51 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterPrivateClusterConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// When `true`, the cluster's private
+        /// endpoint is used as the cluster endpoint and access through the public endpoint
+        /// is disabled. When `false`, either endpoint can be used. This field only applies
+        /// to private clusters, when `enable_private_nodes` is `true`.
+        /// </summary>
         [Input("enablePrivateEndpoint", required: true)]
         public Input<bool> EnablePrivateEndpoint { get; set; } = null!;
 
+        /// <summary>
+        /// Enables the private cluster feature,
+        /// creating a private endpoint on the cluster. In a private cluster, nodes only
+        /// have RFC 1918 private addresses and communicate with the master's private
+        /// endpoint via private networking.
+        /// </summary>
         [Input("enablePrivateNodes")]
         public Input<bool>? EnablePrivateNodes { get; set; }
 
+        /// <summary>
+        /// The IP range in CIDR notation to use for
+        /// the hosted master network. This range will be used for assigning private IP
+        /// addresses to the cluster master(s) and the ILB VIP. This range must not overlap
+        /// with any other ranges in use within the cluster's network, and it must be a /28
+        /// subnet. See [Private Cluster Limitations](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#limitations)
+        /// for more details. This field only applies to private clusters, when
+        /// `enable_private_nodes` is `true`.
+        /// </summary>
         [Input("masterIpv4CidrBlock")]
         public Input<string>? MasterIpv4CidrBlock { get; set; }
 
+        /// <summary>
+        /// The name of the peering between this cluster and the Google owned VPC.
+        /// </summary>
         [Input("peeringName")]
         public Input<string>? PeeringName { get; set; }
 
+        /// <summary>
+        /// The internal IP address of this cluster's master endpoint.
+        /// </summary>
         [Input("privateEndpoint")]
         public Input<string>? PrivateEndpoint { get; set; }
 
+        /// <summary>
+        /// The external IP address of this cluster's master endpoint.
+        /// </summary>
         [Input("publicEndpoint")]
         public Input<string>? PublicEndpoint { get; set; }
 
@@ -2705,21 +3551,51 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterPrivateClusterConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// When `true`, the cluster's private
+        /// endpoint is used as the cluster endpoint and access through the public endpoint
+        /// is disabled. When `false`, either endpoint can be used. This field only applies
+        /// to private clusters, when `enable_private_nodes` is `true`.
+        /// </summary>
         [Input("enablePrivateEndpoint", required: true)]
         public Input<bool> EnablePrivateEndpoint { get; set; } = null!;
 
+        /// <summary>
+        /// Enables the private cluster feature,
+        /// creating a private endpoint on the cluster. In a private cluster, nodes only
+        /// have RFC 1918 private addresses and communicate with the master's private
+        /// endpoint via private networking.
+        /// </summary>
         [Input("enablePrivateNodes")]
         public Input<bool>? EnablePrivateNodes { get; set; }
 
+        /// <summary>
+        /// The IP range in CIDR notation to use for
+        /// the hosted master network. This range will be used for assigning private IP
+        /// addresses to the cluster master(s) and the ILB VIP. This range must not overlap
+        /// with any other ranges in use within the cluster's network, and it must be a /28
+        /// subnet. See [Private Cluster Limitations](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#limitations)
+        /// for more details. This field only applies to private clusters, when
+        /// `enable_private_nodes` is `true`.
+        /// </summary>
         [Input("masterIpv4CidrBlock")]
         public Input<string>? MasterIpv4CidrBlock { get; set; }
 
+        /// <summary>
+        /// The name of the peering between this cluster and the Google owned VPC.
+        /// </summary>
         [Input("peeringName")]
         public Input<string>? PeeringName { get; set; }
 
+        /// <summary>
+        /// The internal IP address of this cluster's master endpoint.
+        /// </summary>
         [Input("privateEndpoint")]
         public Input<string>? PrivateEndpoint { get; set; }
 
+        /// <summary>
+        /// The external IP address of this cluster's master endpoint.
+        /// </summary>
         [Input("publicEndpoint")]
         public Input<string>? PublicEndpoint { get; set; }
 
@@ -2730,6 +3606,14 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterReleaseChannelArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The selected release channel.
+        /// Accepted values are:
+        /// * UNSPECIFIED: Not set.
+        /// * RAPID: Weekly upgrade cadence; Early testers and developers who requires new features.
+        /// * REGULAR: Multiple per month upgrade cadence; Production users who need features not yet offered in the Stable channel.
+        /// * STABLE: Every few months upgrade cadence; Production users who need stability above all else, and for whom frequent upgrades are too risky.
+        /// </summary>
         [Input("channel", required: true)]
         public Input<string> Channel { get; set; } = null!;
 
@@ -2740,6 +3624,14 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterReleaseChannelGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The selected release channel.
+        /// Accepted values are:
+        /// * UNSPECIFIED: Not set.
+        /// * RAPID: Weekly upgrade cadence; Early testers and developers who requires new features.
+        /// * REGULAR: Multiple per month upgrade cadence; Production users who need features not yet offered in the Stable channel.
+        /// * STABLE: Every few months upgrade cadence; Production users who need stability above all else, and for whom frequent upgrades are too risky.
+        /// </summary>
         [Input("channel", required: true)]
         public Input<string> Channel { get; set; } = null!;
 
@@ -2750,9 +3642,16 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterResourceUsageExportConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Parameters for using BigQuery as the destination of resource usage export.
+        /// </summary>
         [Input("bigqueryDestination", required: true)]
         public Input<ClusterResourceUsageExportConfigBigqueryDestinationArgs> BigqueryDestination { get; set; } = null!;
 
+        /// <summary>
+        /// Whether to enable network egress metering for this cluster. If enabled, a daemonset will be created
+        /// in the cluster to meter network egress traffic.
+        /// </summary>
         [Input("enableNetworkEgressMetering")]
         public Input<bool>? EnableNetworkEgressMetering { get; set; }
 
@@ -2783,9 +3682,16 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterResourceUsageExportConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Parameters for using BigQuery as the destination of resource usage export.
+        /// </summary>
         [Input("bigqueryDestination", required: true)]
         public Input<ClusterResourceUsageExportConfigBigqueryDestinationGetArgs> BigqueryDestination { get; set; } = null!;
 
+        /// <summary>
+        /// Whether to enable network egress metering for this cluster. If enabled, a daemonset will be created
+        /// in the cluster to meter network egress traffic.
+        /// </summary>
         [Input("enableNetworkEgressMetering")]
         public Input<bool>? EnableNetworkEgressMetering { get; set; }
 
@@ -2796,6 +3702,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterVerticalPodAutoscalingArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Enable the PodSecurityPolicy controller for this cluster.
+        /// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+        /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
@@ -2806,6 +3716,10 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterVerticalPodAutoscalingGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Enable the PodSecurityPolicy controller for this cluster.
+        /// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+        /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 
@@ -2816,6 +3730,9 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterWorkloadIdentityConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Currently, the only supported identity namespace is the project's default.
+        /// </summary>
         [Input("identityNamespace", required: true)]
         public Input<string> IdentityNamespace { get; set; } = null!;
 
@@ -2826,6 +3743,9 @@ namespace Pulumi.Gcp.Container
 
     public sealed class ClusterWorkloadIdentityConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Currently, the only supported identity namespace is the project's default.
+        /// </summary>
         [Input("identityNamespace", required: true)]
         public Input<string> IdentityNamespace { get; set; } = null!;
 
@@ -2841,10 +3761,40 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterAddonsConfig
     {
+        /// <summary>
+        /// ).
+        /// The status of the CloudRun addon. It requires `istio_config` enabled. It is disabled by default.
+        /// Set `disabled = false` to enable. This addon can only be enabled at cluster creation time.
+        /// </summary>
         public readonly ClusterAddonsConfigCloudrunConfig CloudrunConfig;
+        /// <summary>
+        /// The status of the Horizontal Pod Autoscaling
+        /// addon, which increases or decreases the number of replica pods a replication controller
+        /// has based on the resource usage of the existing pods.
+        /// It ensures that a Heapster pod is running in the cluster, which is also used by the Cloud Monitoring service.
+        /// It is enabled by default;
+        /// set `disabled = true` to disable.
+        /// </summary>
         public readonly ClusterAddonsConfigHorizontalPodAutoscaling HorizontalPodAutoscaling;
+        /// <summary>
+        /// The status of the HTTP (L7) load balancing
+        /// controller addon, which makes it easy to set up HTTP load balancers for services in a
+        /// cluster. It is enabled by default; set `disabled = true` to disable.
+        /// </summary>
         public readonly ClusterAddonsConfigHttpLoadBalancing HttpLoadBalancing;
+        /// <summary>
+        /// ).
+        /// Structure is documented below.
+        /// </summary>
         public readonly ClusterAddonsConfigIstioConfig IstioConfig;
+        /// <summary>
+        /// Whether we should enable the network policy addon
+        /// for the master.  This must be enabled in order to enable network policy for the nodes.
+        /// To enable this, you must also define a `network_policy` block,
+        /// otherwise nothing will happen.
+        /// It can only be disabled if the nodes already do not have network policies enabled.
+        /// Defaults to disabled; set `disabled = false` to enable.
+        /// </summary>
         public readonly ClusterAddonsConfigNetworkPolicyConfig NetworkPolicyConfig;
 
         [OutputConstructor]
@@ -2866,6 +3816,10 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterAddonsConfigCloudrunConfig
     {
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         public readonly bool Disabled;
 
         [OutputConstructor]
@@ -2878,6 +3832,10 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterAddonsConfigHorizontalPodAutoscaling
     {
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         public readonly bool Disabled;
 
         [OutputConstructor]
@@ -2890,6 +3848,10 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterAddonsConfigHttpLoadBalancing
     {
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         public readonly bool Disabled;
 
         [OutputConstructor]
@@ -2902,7 +3864,14 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterAddonsConfigIstioConfig
     {
+        /// <summary>
+        /// The authentication type between services in Istio. Available options include `AUTH_MUTUAL_TLS`.
+        /// </summary>
         public readonly string? Auth;
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         public readonly bool Disabled;
 
         [OutputConstructor]
@@ -2918,6 +3887,10 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterAddonsConfigNetworkPolicyConfig
     {
+        /// <summary>
+        /// The status of the Istio addon, which makes it easy to set up Istio for services in a
+        /// cluster. It is disabled by default. Set `disabled = false` to enable.
+        /// </summary>
         public readonly bool Disabled;
 
         [OutputConstructor]
@@ -2930,6 +3903,9 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterAuthenticatorGroupsConfig
     {
+        /// <summary>
+        /// The name of the RBAC security group for use with Google security groups in Kubernetes RBAC. Group name must be in format `gke-security-groups@yourdomain.com`.
+        /// </summary>
         public readonly string SecurityGroup;
 
         [OutputConstructor]
@@ -2942,9 +3918,29 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterClusterAutoscaling
     {
+        /// <summary>
+        /// Contains defaults for a node pool created by NAP.
+        /// Structure is documented below.
+        /// </summary>
         public readonly ClusterClusterAutoscalingAutoProvisioningDefaults AutoProvisioningDefaults;
+        /// <summary>
+        /// ) Configuration
+        /// options for the [Autoscaling profile](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#autoscaling_profiles)
+        /// feature, which lets you choose whether the cluster autoscaler should optimize for resource utilization or resource availability
+        /// when deciding to remove nodes from a cluster. Can be `BALANCED` or `OPTIMIZE_UTILIZATION`. Defaults to `BALANCED`.
+        /// </summary>
         public readonly string? AutoscalingProfile;
+        /// <summary>
+        /// Enable the PodSecurityPolicy controller for this cluster.
+        /// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+        /// </summary>
         public readonly bool Enabled;
+        /// <summary>
+        /// Global constraints for machine resources in the
+        /// cluster. Configuring the `cpu` and `memory` types is required if node
+        /// auto-provisioning is enabled. These limits will apply to node pool autoscaling
+        /// in addition to node auto-provisioning. Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<ClusterClusterAutoscalingResourceLimits> ResourceLimits;
 
         [OutputConstructor]
@@ -2964,7 +3960,20 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterClusterAutoscalingAutoProvisioningDefaults
     {
+        /// <summary>
+        /// The set of Google API scopes to be made available
+        /// on all of the node VMs under the "default" service account. These can be
+        /// either FQDNs, or scope aliases. The following scopes are necessary to ensure
+        /// the correct functioning of the cluster:
+        /// </summary>
         public readonly ImmutableArray<string> OauthScopes;
+        /// <summary>
+        /// The service account to be used by the Node VMs.
+        /// If not specified, the "default" service account is used.
+        /// In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
+        /// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
+        /// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+        /// </summary>
         public readonly string? ServiceAccount;
 
         [OutputConstructor]
@@ -2980,8 +3989,19 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterClusterAutoscalingResourceLimits
     {
+        /// <summary>
+        /// Maximum amount of the resource in the cluster.
+        /// </summary>
         public readonly int? Maximum;
+        /// <summary>
+        /// Minimum amount of the resource in the cluster.
+        /// </summary>
         public readonly int? Minimum;
+        /// <summary>
+        /// The type of the resource. For example, `cpu` and
+        /// `memory`.  See the [guide to using Node Auto-Provisioning](https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning)
+        /// for a list of types.
+        /// </summary>
         public readonly string ResourceType;
 
         [OutputConstructor]
@@ -2999,7 +4019,13 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterDatabaseEncryption
     {
+        /// <summary>
+        /// the key to use to encrypt/decrypt secrets.  See the [DatabaseEncryption definition](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters#Cluster.DatabaseEncryption) for more information.
+        /// </summary>
         public readonly string? KeyName;
+        /// <summary>
+        /// `ENCRYPTED` or `DECRYPTED`
+        /// </summary>
         public readonly string State;
 
         [OutputConstructor]
@@ -3015,9 +4041,34 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterIpAllocationPolicy
     {
+        /// <summary>
+        /// The IP address range for the cluster pod IPs.
+        /// Set to blank to have a range chosen with the default size. Set to /netmask (e.g. /14)
+        /// to have a range chosen with a specific netmask. Set to a CIDR notation (e.g. 10.96.0.0/14)
+        /// from the RFC-1918 private networks (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to
+        /// pick a specific range to use.
+        /// </summary>
         public readonly string ClusterIpv4CidrBlock;
+        /// <summary>
+        /// The name of the existing secondary
+        /// range in the cluster's subnetwork to use for pod IP addresses. Alternatively,
+        /// `cluster_ipv4_cidr_block` can be used to automatically create a GKE-managed one.
+        /// </summary>
         public readonly string ClusterSecondaryRangeName;
+        /// <summary>
+        /// The IP address range of the services IPs in this cluster.
+        /// Set to blank to have a range chosen with the default size. Set to /netmask (e.g. /14)
+        /// to have a range chosen with a specific netmask. Set to a CIDR notation (e.g. 10.96.0.0/14)
+        /// from the RFC-1918 private networks (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to
+        /// pick a specific range to use.
+        /// </summary>
         public readonly string ServicesIpv4CidrBlock;
+        /// <summary>
+        /// The name of the existing
+        /// secondary range in the cluster's subnetwork to use for service `ClusterIP`s.
+        /// Alternatively, `services_ipv4_cidr_block` can be used to automatically create a
+        /// GKE-managed one.
+        /// </summary>
         public readonly string ServicesSecondaryRangeName;
 
         [OutputConstructor]
@@ -3037,7 +4088,16 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterMaintenancePolicy
     {
+        /// <summary>
+        /// Time window specified for daily maintenance operations.
+        /// Specify `start_time` in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) format "HH:MM”,
+        /// where HH : \[00-23\] and MM : \[00-59\] GMT. For example:
+        /// </summary>
         public readonly ClusterMaintenancePolicyDailyMaintenanceWindow? DailyMaintenanceWindow;
+        /// <summary>
+        /// ) Time window for
+        /// recurring maintenance operations.
+        /// </summary>
         public readonly ClusterMaintenancePolicyRecurringWindow? RecurringWindow;
 
         [OutputConstructor]
@@ -3089,10 +4149,21 @@ namespace Pulumi.Gcp.Container
     public sealed class ClusterMasterAuth
     {
         public readonly string ClientCertificate;
+        /// <summary>
+        /// Whether client certificate authorization is enabled for this cluster.  For example:
+        /// </summary>
         public readonly ClusterMasterAuthClientCertificateConfig ClientCertificateConfig;
         public readonly string ClientKey;
         public readonly string ClusterCaCertificate;
+        /// <summary>
+        /// The password to use for HTTP basic authentication when accessing
+        /// the Kubernetes master endpoint.
+        /// </summary>
         public readonly string? Password;
+        /// <summary>
+        /// The username to use for HTTP basic authentication when accessing
+        /// the Kubernetes master endpoint. If not present basic auth will be disabled.
+        /// </summary>
         public readonly string? Username;
 
         [OutputConstructor]
@@ -3128,6 +4199,10 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterMasterAuthorizedNetworksConfig
     {
+        /// <summary>
+        /// External networks that can access the
+        /// Kubernetes cluster master through HTTPS.
+        /// </summary>
         public readonly ImmutableArray<ClusterMasterAuthorizedNetworksConfigCidrBlocks> CidrBlocks;
 
         [OutputConstructor]
@@ -3140,7 +4215,14 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterMasterAuthorizedNetworksConfigCidrBlocks
     {
+        /// <summary>
+        /// External network that can access Kubernetes master through HTTPS.
+        /// Must be specified in CIDR notation.
+        /// </summary>
         public readonly string CidrBlock;
+        /// <summary>
+        /// Field for users to identify CIDR blocks.
+        /// </summary>
         public readonly string? DisplayName;
 
         [OutputConstructor]
@@ -3156,7 +4238,14 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterNetworkPolicy
     {
+        /// <summary>
+        /// Enable the PodSecurityPolicy controller for this cluster.
+        /// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+        /// </summary>
         public readonly bool Enabled;
+        /// <summary>
+        /// The selected network policy provider. Defaults to PROVIDER_UNSPECIFIED.
+        /// </summary>
         public readonly string? Provider;
 
         [OutputConstructor]
@@ -3172,23 +4261,101 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterNodeConfig
     {
+        /// <summary>
+        /// ) The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+        /// </summary>
         public readonly string? BootDiskKmsKey;
+        /// <summary>
+        /// Size of the disk attached to each node, specified
+        /// in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
+        /// </summary>
         public readonly int DiskSizeGb;
+        /// <summary>
+        /// Type of the disk attached to each node
+        /// (e.g. 'pd-standard' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'
+        /// </summary>
         public readonly string DiskType;
+        /// <summary>
+        /// List of the type and count of accelerator cards attached to the instance.
+        /// Structure documented below.
+        /// </summary>
         public readonly ImmutableArray<ClusterNodeConfigGuestAccelerators> GuestAccelerators;
+        /// <summary>
+        /// The image type to use for this node. Note that changing the image type
+        /// will delete and recreate all nodes in the node pool.
+        /// </summary>
         public readonly string ImageType;
+        /// <summary>
+        /// The Kubernetes labels (key/value pairs) to be applied to each node.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// The amount of local SSD disks that will be
+        /// attached to each cluster node. Defaults to 0.
+        /// </summary>
         public readonly int LocalSsdCount;
+        /// <summary>
+        /// The name of a Google Compute Engine machine type.
+        /// Defaults to `n1-standard-1`. To create a custom machine type, value should be set as specified
+        /// [here](https://cloud.google.com/compute/docs/reference/latest/instances#machineType).
+        /// </summary>
         public readonly string MachineType;
+        /// <summary>
+        /// The metadata key/value pairs assigned to instances in
+        /// the cluster. From GKE `1.12` onwards, `disable-legacy-endpoints` is set to
+        /// `true` by the API; if `metadata` is set but that default value is not
+        /// included, this provider will attempt to unset the value. To avoid this, set the
+        /// value in your config.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Metadata;
+        /// <summary>
+        /// Minimum CPU platform to be used by this instance.
+        /// The instance may be scheduled on the specified or newer CPU platform. Applicable
+        /// values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
+        /// [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+        /// for more information.
+        /// </summary>
         public readonly string? MinCpuPlatform;
+        /// <summary>
+        /// The set of Google API scopes to be made available
+        /// on all of the node VMs under the "default" service account. These can be
+        /// either FQDNs, or scope aliases. The following scopes are necessary to ensure
+        /// the correct functioning of the cluster:
+        /// </summary>
         public readonly ImmutableArray<string> OauthScopes;
+        /// <summary>
+        /// A boolean that represents whether or not the underlying node VMs
+        /// are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
+        /// for more information. Defaults to false.
+        /// </summary>
         public readonly bool? Preemptible;
+        /// <summary>
+        /// ) [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `image_type = "COS_CONTAINERD"` and `node_version = "1.12.7-gke.17"` or later to use it.
+        /// Structure is documented below.
+        /// </summary>
         public readonly ClusterNodeConfigSandboxConfig? SandboxConfig;
+        /// <summary>
+        /// The service account to be used by the Node VMs.
+        /// If not specified, the "default" service account is used.
+        /// In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
+        /// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
+        /// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+        /// </summary>
         public readonly string ServiceAccount;
+        /// <summary>
+        /// Shielded Instance options. Structure is documented below.
+        /// </summary>
         public readonly ClusterNodeConfigShieldedInstanceConfig ShieldedInstanceConfig;
+        /// <summary>
+        /// The list of instance tags applied to all nodes. Tags are used to identify
+        /// valid sources or targets for network firewalls.
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
         public readonly ImmutableArray<ClusterNodeConfigTaints> Taints;
+        /// <summary>
+        /// ) Metadata configuration to expose to workloads on the node pool.
+        /// Structure is documented below.
+        /// </summary>
         public readonly ClusterNodeConfigWorkloadMetadataConfig? WorkloadMetadataConfig;
 
         [OutputConstructor]
@@ -3236,7 +4403,13 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterNodeConfigGuestAccelerators
     {
+        /// <summary>
+        /// The number of the guest accelerator cards exposed to this instance.
+        /// </summary>
         public readonly int Count;
+        /// <summary>
+        /// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
@@ -3252,6 +4425,10 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterNodeConfigSandboxConfig
     {
+        /// <summary>
+        /// Which sandbox to use for pods in the node pool.
+        /// Accepted values are:
+        /// </summary>
         public readonly string SandboxType;
 
         [OutputConstructor]
@@ -3264,7 +4441,13 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterNodeConfigShieldedInstanceConfig
     {
+        /// <summary>
+        /// Defines if the instance has integrity monitoring enabled.
+        /// </summary>
         public readonly bool? EnableIntegrityMonitoring;
+        /// <summary>
+        /// Defines if the instance has Secure Boot enabled.
+        /// </summary>
         public readonly bool? EnableSecureBoot;
 
         [OutputConstructor]
@@ -3280,8 +4463,17 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterNodeConfigTaints
     {
+        /// <summary>
+        /// Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
+        /// </summary>
         public readonly string Effect;
+        /// <summary>
+        /// Key for taint.
+        /// </summary>
         public readonly string Key;
+        /// <summary>
+        /// Value for taint.
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]
@@ -3299,6 +4491,14 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterNodeConfigWorkloadMetadataConfig
     {
+        /// <summary>
+        /// How to expose the node metadata to the workload running on the node.
+        /// Accepted values are:
+        /// * UNSPECIFIED: Not Set
+        /// * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
+        /// * EXPOSE: Expose all VM metadata to pods.
+        /// * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
+        /// </summary>
         public readonly string NodeMetadata;
 
         [OutputConstructor]
@@ -3418,23 +4618,101 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterNodePoolsNodeConfig
     {
+        /// <summary>
+        /// ) The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+        /// </summary>
         public readonly string? BootDiskKmsKey;
+        /// <summary>
+        /// Size of the disk attached to each node, specified
+        /// in GB. The smallest allowed disk size is 10GB. Defaults to 100GB.
+        /// </summary>
         public readonly int DiskSizeGb;
+        /// <summary>
+        /// Type of the disk attached to each node
+        /// (e.g. 'pd-standard' or 'pd-ssd'). If unspecified, the default disk type is 'pd-standard'
+        /// </summary>
         public readonly string DiskType;
+        /// <summary>
+        /// List of the type and count of accelerator cards attached to the instance.
+        /// Structure documented below.
+        /// </summary>
         public readonly ImmutableArray<ClusterNodePoolsNodeConfigGuestAccelerators> GuestAccelerators;
+        /// <summary>
+        /// The image type to use for this node. Note that changing the image type
+        /// will delete and recreate all nodes in the node pool.
+        /// </summary>
         public readonly string ImageType;
+        /// <summary>
+        /// The Kubernetes labels (key/value pairs) to be applied to each node.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// The amount of local SSD disks that will be
+        /// attached to each cluster node. Defaults to 0.
+        /// </summary>
         public readonly int LocalSsdCount;
+        /// <summary>
+        /// The name of a Google Compute Engine machine type.
+        /// Defaults to `n1-standard-1`. To create a custom machine type, value should be set as specified
+        /// [here](https://cloud.google.com/compute/docs/reference/latest/instances#machineType).
+        /// </summary>
         public readonly string MachineType;
+        /// <summary>
+        /// The metadata key/value pairs assigned to instances in
+        /// the cluster. From GKE `1.12` onwards, `disable-legacy-endpoints` is set to
+        /// `true` by the API; if `metadata` is set but that default value is not
+        /// included, this provider will attempt to unset the value. To avoid this, set the
+        /// value in your config.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Metadata;
+        /// <summary>
+        /// Minimum CPU platform to be used by this instance.
+        /// The instance may be scheduled on the specified or newer CPU platform. Applicable
+        /// values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
+        /// [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+        /// for more information.
+        /// </summary>
         public readonly string? MinCpuPlatform;
+        /// <summary>
+        /// The set of Google API scopes to be made available
+        /// on all of the node VMs under the "default" service account. These can be
+        /// either FQDNs, or scope aliases. The following scopes are necessary to ensure
+        /// the correct functioning of the cluster:
+        /// </summary>
         public readonly ImmutableArray<string> OauthScopes;
+        /// <summary>
+        /// A boolean that represents whether or not the underlying node VMs
+        /// are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
+        /// for more information. Defaults to false.
+        /// </summary>
         public readonly bool? Preemptible;
+        /// <summary>
+        /// ) [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `image_type = "COS_CONTAINERD"` and `node_version = "1.12.7-gke.17"` or later to use it.
+        /// Structure is documented below.
+        /// </summary>
         public readonly ClusterNodePoolsNodeConfigSandboxConfig? SandboxConfig;
+        /// <summary>
+        /// The service account to be used by the Node VMs.
+        /// If not specified, the "default" service account is used.
+        /// In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
+        /// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
+        /// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+        /// </summary>
         public readonly string ServiceAccount;
+        /// <summary>
+        /// Shielded Instance options. Structure is documented below.
+        /// </summary>
         public readonly ClusterNodePoolsNodeConfigShieldedInstanceConfig ShieldedInstanceConfig;
+        /// <summary>
+        /// The list of instance tags applied to all nodes. Tags are used to identify
+        /// valid sources or targets for network firewalls.
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
         public readonly ImmutableArray<ClusterNodePoolsNodeConfigTaints> Taints;
+        /// <summary>
+        /// ) Metadata configuration to expose to workloads on the node pool.
+        /// Structure is documented below.
+        /// </summary>
         public readonly ClusterNodePoolsNodeConfigWorkloadMetadataConfig? WorkloadMetadataConfig;
 
         [OutputConstructor]
@@ -3482,7 +4760,13 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterNodePoolsNodeConfigGuestAccelerators
     {
+        /// <summary>
+        /// The number of the guest accelerator cards exposed to this instance.
+        /// </summary>
         public readonly int Count;
+        /// <summary>
+        /// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
@@ -3498,6 +4782,10 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterNodePoolsNodeConfigSandboxConfig
     {
+        /// <summary>
+        /// Which sandbox to use for pods in the node pool.
+        /// Accepted values are:
+        /// </summary>
         public readonly string SandboxType;
 
         [OutputConstructor]
@@ -3510,7 +4798,13 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterNodePoolsNodeConfigShieldedInstanceConfig
     {
+        /// <summary>
+        /// Defines if the instance has integrity monitoring enabled.
+        /// </summary>
         public readonly bool? EnableIntegrityMonitoring;
+        /// <summary>
+        /// Defines if the instance has Secure Boot enabled.
+        /// </summary>
         public readonly bool? EnableSecureBoot;
 
         [OutputConstructor]
@@ -3526,8 +4820,17 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterNodePoolsNodeConfigTaints
     {
+        /// <summary>
+        /// Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
+        /// </summary>
         public readonly string Effect;
+        /// <summary>
+        /// Key for taint.
+        /// </summary>
         public readonly string Key;
+        /// <summary>
+        /// Value for taint.
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]
@@ -3545,6 +4848,14 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterNodePoolsNodeConfigWorkloadMetadataConfig
     {
+        /// <summary>
+        /// How to expose the node metadata to the workload running on the node.
+        /// Accepted values are:
+        /// * UNSPECIFIED: Not Set
+        /// * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
+        /// * EXPOSE: Expose all VM metadata to pods.
+        /// * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
+        /// </summary>
         public readonly string NodeMetadata;
 
         [OutputConstructor]
@@ -3573,6 +4884,10 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterPodSecurityPolicyConfig
     {
+        /// <summary>
+        /// Enable the PodSecurityPolicy controller for this cluster.
+        /// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+        /// </summary>
         public readonly bool Enabled;
 
         [OutputConstructor]
@@ -3585,11 +4900,41 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterPrivateClusterConfig
     {
+        /// <summary>
+        /// When `true`, the cluster's private
+        /// endpoint is used as the cluster endpoint and access through the public endpoint
+        /// is disabled. When `false`, either endpoint can be used. This field only applies
+        /// to private clusters, when `enable_private_nodes` is `true`.
+        /// </summary>
         public readonly bool EnablePrivateEndpoint;
+        /// <summary>
+        /// Enables the private cluster feature,
+        /// creating a private endpoint on the cluster. In a private cluster, nodes only
+        /// have RFC 1918 private addresses and communicate with the master's private
+        /// endpoint via private networking.
+        /// </summary>
         public readonly bool? EnablePrivateNodes;
+        /// <summary>
+        /// The IP range in CIDR notation to use for
+        /// the hosted master network. This range will be used for assigning private IP
+        /// addresses to the cluster master(s) and the ILB VIP. This range must not overlap
+        /// with any other ranges in use within the cluster's network, and it must be a /28
+        /// subnet. See [Private Cluster Limitations](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#limitations)
+        /// for more details. This field only applies to private clusters, when
+        /// `enable_private_nodes` is `true`.
+        /// </summary>
         public readonly string? MasterIpv4CidrBlock;
+        /// <summary>
+        /// The name of the peering between this cluster and the Google owned VPC.
+        /// </summary>
         public readonly string PeeringName;
+        /// <summary>
+        /// The internal IP address of this cluster's master endpoint.
+        /// </summary>
         public readonly string PrivateEndpoint;
+        /// <summary>
+        /// The external IP address of this cluster's master endpoint.
+        /// </summary>
         public readonly string PublicEndpoint;
 
         [OutputConstructor]
@@ -3613,6 +4958,14 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterReleaseChannel
     {
+        /// <summary>
+        /// The selected release channel.
+        /// Accepted values are:
+        /// * UNSPECIFIED: Not set.
+        /// * RAPID: Weekly upgrade cadence; Early testers and developers who requires new features.
+        /// * REGULAR: Multiple per month upgrade cadence; Production users who need features not yet offered in the Stable channel.
+        /// * STABLE: Every few months upgrade cadence; Production users who need stability above all else, and for whom frequent upgrades are too risky.
+        /// </summary>
         public readonly string Channel;
 
         [OutputConstructor]
@@ -3625,7 +4978,14 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterResourceUsageExportConfig
     {
+        /// <summary>
+        /// Parameters for using BigQuery as the destination of resource usage export.
+        /// </summary>
         public readonly ClusterResourceUsageExportConfigBigqueryDestination BigqueryDestination;
+        /// <summary>
+        /// Whether to enable network egress metering for this cluster. If enabled, a daemonset will be created
+        /// in the cluster to meter network egress traffic.
+        /// </summary>
         public readonly bool? EnableNetworkEgressMetering;
 
         [OutputConstructor]
@@ -3653,6 +5013,10 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterVerticalPodAutoscaling
     {
+        /// <summary>
+        /// Enable the PodSecurityPolicy controller for this cluster.
+        /// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+        /// </summary>
         public readonly bool Enabled;
 
         [OutputConstructor]
@@ -3665,6 +5029,9 @@ namespace Pulumi.Gcp.Container
     [OutputType]
     public sealed class ClusterWorkloadIdentityConfig
     {
+        /// <summary>
+        /// Currently, the only supported identity namespace is the project's default.
+        /// </summary>
         public readonly string IdentityNamespace;
 
         [OutputConstructor]

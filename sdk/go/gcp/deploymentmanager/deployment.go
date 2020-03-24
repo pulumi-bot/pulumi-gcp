@@ -38,6 +38,8 @@ type Deployment struct {
 	// does not allow update of a deployment in preview (unless updating to preview=false). Thus, Terraform will force-recreate
 	// deployments if either preview is updated to true or if other fields are updated while preview is true.
 	Preview pulumi.BoolPtrOutput `pulumi:"preview"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
 	// Output only. Server defined URL for the resource.
 	SelfLink pulumi.StringOutput `pulumi:"selfLink"`
@@ -100,6 +102,8 @@ type deploymentState struct {
 	// does not allow update of a deployment in preview (unless updating to preview=false). Thus, Terraform will force-recreate
 	// deployments if either preview is updated to true or if other fields are updated while preview is true.
 	Preview *bool `pulumi:"preview"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// Output only. Server defined URL for the resource.
 	SelfLink *string `pulumi:"selfLink"`
@@ -132,6 +136,8 @@ type DeploymentState struct {
 	// does not allow update of a deployment in preview (unless updating to preview=false). Thus, Terraform will force-recreate
 	// deployments if either preview is updated to true or if other fields are updated while preview is true.
 	Preview pulumi.BoolPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// Output only. Server defined URL for the resource.
 	SelfLink pulumi.StringPtrInput
@@ -164,6 +170,8 @@ type deploymentArgs struct {
 	// does not allow update of a deployment in preview (unless updating to preview=false). Thus, Terraform will force-recreate
 	// deployments if either preview is updated to true or if other fields are updated while preview is true.
 	Preview *bool `pulumi:"preview"`
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// Parameters that define your deployment, including the deployment configuration and relevant templates.
 	Target DeploymentTarget `pulumi:"target"`
@@ -191,6 +199,8 @@ type DeploymentArgs struct {
 	// does not allow update of a deployment in preview (unless updating to preview=false). Thus, Terraform will force-recreate
 	// deployments if either preview is updated to true or if other fields are updated while preview is true.
 	Preview pulumi.BoolPtrInput
+	// The ID of the project in which the resource belongs.
+	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// Parameters that define your deployment, including the deployment configuration and relevant templates.
 	Target DeploymentTargetInput

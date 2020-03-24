@@ -62,6 +62,10 @@ export class GameServerConfig extends pulumi.CustomResource {
      * 'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
      */
     public /*out*/ readonly name!: pulumi.Output<string>;
+    /**
+     * The ID of the project in which the resource belongs.
+     * If it is not provided, the provider project is used.
+     */
     public readonly project!: pulumi.Output<string>;
     /**
      * Optional. This contains the autoscaling settings.
@@ -154,6 +158,10 @@ export interface GameServerConfigState {
      * 'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
      */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The ID of the project in which the resource belongs.
+     * If it is not provided, the provider project is used.
+     */
     readonly project?: pulumi.Input<string>;
     /**
      * Optional. This contains the autoscaling settings.
@@ -189,6 +197,10 @@ export interface GameServerConfigArgs {
      * Location of the Deployment.
      */
     readonly location?: pulumi.Input<string>;
+    /**
+     * The ID of the project in which the resource belongs.
+     * If it is not provided, the provider project is used.
+     */
     readonly project?: pulumi.Input<string>;
     /**
      * Optional. This contains the autoscaling settings.

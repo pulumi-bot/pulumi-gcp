@@ -69,6 +69,10 @@ namespace Pulumi.Gcp.DeploymentManager
         [Output("preview")]
         public Output<bool?> Preview { get; private set; } = null!;
 
+        /// <summary>
+        /// The ID of the project in which the resource belongs.
+        /// If it is not provided, the provider project is used.
+        /// </summary>
         [Output("project")]
         public Output<string> Project { get; private set; } = null!;
 
@@ -182,6 +186,10 @@ namespace Pulumi.Gcp.DeploymentManager
         [Input("preview")]
         public Input<bool>? Preview { get; set; }
 
+        /// <summary>
+        /// The ID of the project in which the resource belongs.
+        /// If it is not provided, the provider project is used.
+        /// </summary>
         [Input("project")]
         public Input<string>? Project { get; set; }
 
@@ -262,6 +270,10 @@ namespace Pulumi.Gcp.DeploymentManager
         [Input("preview")]
         public Input<bool>? Preview { get; set; }
 
+        /// <summary>
+        /// The ID of the project in which the resource belongs.
+        /// If it is not provided, the provider project is used.
+        /// </summary>
         [Input("project")]
         public Input<string>? Project { get; set; }
 
