@@ -67,7 +67,8 @@ class Registry(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/iot/docs/) and
         [API](https://cloud.google.com/iot/docs/reference/cloudiot/rest/v1/projects.locations.registries).
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/cloudiot_registry.html.markdown.
+
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -87,14 +88,6 @@ class Registry(pulumi.CustomResource):
           * `publicKeyCertificate` (`pulumi.Input[dict]`) - The certificate format and data.
             * `certificate` (`pulumi.Input[str]`) - The certificate data.
             * `format` (`pulumi.Input[str]`) - The field allows only  `X509_CERTIFICATE_PEM`.
-
-        The **event_notification_configs** object supports the following:
-
-          * `pubsub_topic_name` (`pulumi.Input[str]`) - PubSub topic name to publish device state updates.
-          * `subfolderMatches` (`pulumi.Input[str]`) - If the subfolder name matches this string
-            exactly, this configuration will be used. The string must not include the
-            leading '/' character. If empty, all strings are matched. Empty value can
-            only be used for the last `event_notification_configs` item.
 
         The **http_config** object supports the following:
 
@@ -165,14 +158,6 @@ class Registry(pulumi.CustomResource):
           * `publicKeyCertificate` (`pulumi.Input[dict]`) - The certificate format and data.
             * `certificate` (`pulumi.Input[str]`) - The certificate data.
             * `format` (`pulumi.Input[str]`) - The field allows only  `X509_CERTIFICATE_PEM`.
-
-        The **event_notification_configs** object supports the following:
-
-          * `pubsub_topic_name` (`pulumi.Input[str]`) - PubSub topic name to publish device state updates.
-          * `subfolderMatches` (`pulumi.Input[str]`) - If the subfolder name matches this string
-            exactly, this configuration will be used. The string must not include the
-            leading '/' character. If empty, all strings are matched. Empty value can
-            only be used for the last `event_notification_configs` item.
 
         The **http_config** object supports the following:
 
