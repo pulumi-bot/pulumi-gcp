@@ -46,21 +46,26 @@ namespace Pulumi.Gcp.CloudRun
         public Output<bool?> AutogenerateRevisionName { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The location of the cloud run instance. eg us-central1
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
-        /// Metadata associated with this Service, including name, namespace, labels, and annotations.
+        /// -
+        /// (Optional)
+        /// Metadata associated with this Service, including name, namespace, labels,
+        /// and annotations.  Structure is documented below.
         /// </summary>
         [Output("metadata")]
         public Output<Outputs.ServiceMetadata> Metadata { get; private set; } = null!;
 
         /// <summary>
-        /// Name must be unique within a namespace, within a Cloud Run region. Is required when creating resources. Name
-        /// is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info:
-        /// http://kubernetes.io/docs/user-guide/identifiers#names
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -79,19 +84,26 @@ namespace Pulumi.Gcp.CloudRun
         public Output<Outputs.ServiceStatus> Status { get; private set; } = null!;
 
         /// <summary>
-        /// template holds the latest specification for the Revision to be stamped out. The template references the
-        /// container image, and may also include labels and annotations that should be attached to the Revision. To
-        /// correlate a Revision, and/or to force a Revision to be created when the spec doesn't otherwise change, a
-        /// nonce label may be provided in the template metadata. For more details, see:
+        /// -
+        /// (Optional)
+        /// template holds the latest specification for the Revision to
+        /// be stamped out. The template references the container image, and may also
+        /// include labels and annotations that should be attached to the Revision.
+        /// To correlate a Revision, and/or to force a Revision to be created when the
+        /// spec doesn't otherwise change, a nonce label may be provided in the
+        /// template metadata. For more details, see:
         /// https://github.com/knative/serving/blob/master/docs/client-conventions.md#associate-modifications-with-revisions
-        /// Cloud Run does not currently support referencing a build that is responsible for materializing the container
-        /// image from source.
+        /// Cloud Run does not currently support referencing a build that is
+        /// responsible for materializing the container image from source.  Structure is documented below.
         /// </summary>
         [Output("template")]
         public Output<Outputs.ServiceTemplate?> Template { get; private set; } = null!;
 
         /// <summary>
-        /// Traffic specifies how to distribute traffic over a collection of Knative Revisions and Configurations
+        /// -
+        /// (Optional)
+        /// Traffic specifies how to distribute traffic over a collection of Knative Revisions
+        /// and Configurations  Structure is documented below.
         /// </summary>
         [Output("traffics")]
         public Output<ImmutableArray<Outputs.ServiceTraffics>> Traffics { get; private set; } = null!;
@@ -153,21 +165,26 @@ namespace Pulumi.Gcp.CloudRun
         public Input<bool>? AutogenerateRevisionName { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The location of the cloud run instance. eg us-central1
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
-        /// Metadata associated with this Service, including name, namespace, labels, and annotations.
+        /// -
+        /// (Optional)
+        /// Metadata associated with this Service, including name, namespace, labels,
+        /// and annotations.  Structure is documented below.
         /// </summary>
         [Input("metadata")]
         public Input<Inputs.ServiceMetadataArgs>? Metadata { get; set; }
 
         /// <summary>
-        /// Name must be unique within a namespace, within a Cloud Run region. Is required when creating resources. Name
-        /// is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info:
-        /// http://kubernetes.io/docs/user-guide/identifiers#names
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -180,13 +197,17 @@ namespace Pulumi.Gcp.CloudRun
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// template holds the latest specification for the Revision to be stamped out. The template references the
-        /// container image, and may also include labels and annotations that should be attached to the Revision. To
-        /// correlate a Revision, and/or to force a Revision to be created when the spec doesn't otherwise change, a
-        /// nonce label may be provided in the template metadata. For more details, see:
+        /// -
+        /// (Optional)
+        /// template holds the latest specification for the Revision to
+        /// be stamped out. The template references the container image, and may also
+        /// include labels and annotations that should be attached to the Revision.
+        /// To correlate a Revision, and/or to force a Revision to be created when the
+        /// spec doesn't otherwise change, a nonce label may be provided in the
+        /// template metadata. For more details, see:
         /// https://github.com/knative/serving/blob/master/docs/client-conventions.md#associate-modifications-with-revisions
-        /// Cloud Run does not currently support referencing a build that is responsible for materializing the container
-        /// image from source.
+        /// Cloud Run does not currently support referencing a build that is
+        /// responsible for materializing the container image from source.  Structure is documented below.
         /// </summary>
         [Input("template")]
         public Input<Inputs.ServiceTemplateArgs>? Template { get; set; }
@@ -195,7 +216,10 @@ namespace Pulumi.Gcp.CloudRun
         private InputList<Inputs.ServiceTrafficsArgs>? _traffics;
 
         /// <summary>
-        /// Traffic specifies how to distribute traffic over a collection of Knative Revisions and Configurations
+        /// -
+        /// (Optional)
+        /// Traffic specifies how to distribute traffic over a collection of Knative Revisions
+        /// and Configurations  Structure is documented below.
         /// </summary>
         public InputList<Inputs.ServiceTrafficsArgs> Traffics
         {
@@ -221,21 +245,26 @@ namespace Pulumi.Gcp.CloudRun
         public Input<bool>? AutogenerateRevisionName { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The location of the cloud run instance. eg us-central1
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// Metadata associated with this Service, including name, namespace, labels, and annotations.
+        /// -
+        /// (Optional)
+        /// Metadata associated with this Service, including name, namespace, labels,
+        /// and annotations.  Structure is documented below.
         /// </summary>
         [Input("metadata")]
         public Input<Inputs.ServiceMetadataGetArgs>? Metadata { get; set; }
 
         /// <summary>
-        /// Name must be unique within a namespace, within a Cloud Run region. Is required when creating resources. Name
-        /// is primarily intended for creation idempotence and configuration definition. Cannot be updated. More info:
-        /// http://kubernetes.io/docs/user-guide/identifiers#names
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -254,13 +283,17 @@ namespace Pulumi.Gcp.CloudRun
         public Input<Inputs.ServiceStatusGetArgs>? Status { get; set; }
 
         /// <summary>
-        /// template holds the latest specification for the Revision to be stamped out. The template references the
-        /// container image, and may also include labels and annotations that should be attached to the Revision. To
-        /// correlate a Revision, and/or to force a Revision to be created when the spec doesn't otherwise change, a
-        /// nonce label may be provided in the template metadata. For more details, see:
+        /// -
+        /// (Optional)
+        /// template holds the latest specification for the Revision to
+        /// be stamped out. The template references the container image, and may also
+        /// include labels and annotations that should be attached to the Revision.
+        /// To correlate a Revision, and/or to force a Revision to be created when the
+        /// spec doesn't otherwise change, a nonce label may be provided in the
+        /// template metadata. For more details, see:
         /// https://github.com/knative/serving/blob/master/docs/client-conventions.md#associate-modifications-with-revisions
-        /// Cloud Run does not currently support referencing a build that is responsible for materializing the container
-        /// image from source.
+        /// Cloud Run does not currently support referencing a build that is
+        /// responsible for materializing the container image from source.  Structure is documented below.
         /// </summary>
         [Input("template")]
         public Input<Inputs.ServiceTemplateGetArgs>? Template { get; set; }
@@ -269,7 +302,10 @@ namespace Pulumi.Gcp.CloudRun
         private InputList<Inputs.ServiceTrafficsGetArgs>? _traffics;
 
         /// <summary>
-        /// Traffic specifies how to distribute traffic over a collection of Knative Revisions and Configurations
+        /// -
+        /// (Optional)
+        /// Traffic specifies how to distribute traffic over a collection of Knative Revisions
+        /// and Configurations  Structure is documented below.
         /// </summary>
         public InputList<Inputs.ServiceTrafficsGetArgs> Traffics
         {
@@ -289,32 +325,79 @@ namespace Pulumi.Gcp.CloudRun
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Annotations is a key value map stored with a resource that
+        /// may be set by external tools to store and retrieve arbitrary metadata. More
+        /// info: http://kubernetes.io/docs/user-guide/annotations
+        /// </summary>
         public InputMap<string> Annotations
         {
             get => _annotations ?? (_annotations = new InputMap<string>());
             set => _annotations = value;
         }
 
+        /// <summary>
+        /// -
+        /// A sequence number representing a specific generation of the desired state.
+        /// </summary>
         [Input("generation")]
         public Input<int>? Generation { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Map of string keys and values that can be used to organize and categorize
+        /// (scope and select) objects. May match selectors of replication controllers
+        /// and routes.
+        /// More info: http://kubernetes.io/docs/user-guide/labels
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In Cloud Run the namespace must be equal to either the
+        /// project ID or project number.
+        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// -
+        /// An opaque value that represents the internal version of this object that
+        /// can be used by clients to determine when objects have changed. May be used
+        /// for optimistic concurrency, change detection, and the watch operation on a
+        /// resource or set of resources. They may only be valid for a
+        /// particular resource or set of resources.
+        /// More info:
+        /// https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
+        /// </summary>
         [Input("resourceVersion")]
         public Input<string>? ResourceVersion { get; set; }
 
+        /// <summary>
+        /// -
+        /// SelfLink is a URL representing this object.
+        /// </summary>
         [Input("selfLink")]
         public Input<string>? SelfLink { get; set; }
 
+        /// <summary>
+        /// -
+        /// UID is a unique id generated by the server on successful creation of a resource and is not
+        /// allowed to change on PUT operations.
+        /// More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }
 
@@ -327,32 +410,79 @@ namespace Pulumi.Gcp.CloudRun
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Annotations is a key value map stored with a resource that
+        /// may be set by external tools to store and retrieve arbitrary metadata. More
+        /// info: http://kubernetes.io/docs/user-guide/annotations
+        /// </summary>
         public InputMap<string> Annotations
         {
             get => _annotations ?? (_annotations = new InputMap<string>());
             set => _annotations = value;
         }
 
+        /// <summary>
+        /// -
+        /// A sequence number representing a specific generation of the desired state.
+        /// </summary>
         [Input("generation")]
         public Input<int>? Generation { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Map of string keys and values that can be used to organize and categorize
+        /// (scope and select) objects. May match selectors of replication controllers
+        /// and routes.
+        /// More info: http://kubernetes.io/docs/user-guide/labels
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In Cloud Run the namespace must be equal to either the
+        /// project ID or project number.
+        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// -
+        /// An opaque value that represents the internal version of this object that
+        /// can be used by clients to determine when objects have changed. May be used
+        /// for optimistic concurrency, change detection, and the watch operation on a
+        /// resource or set of resources. They may only be valid for a
+        /// particular resource or set of resources.
+        /// More info:
+        /// https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
+        /// </summary>
         [Input("resourceVersion")]
         public Input<string>? ResourceVersion { get; set; }
 
+        /// <summary>
+        /// -
+        /// SelfLink is a URL representing this object.
+        /// </summary>
         [Input("selfLink")]
         public Input<string>? SelfLink { get; set; }
 
+        /// <summary>
+        /// -
+        /// UID is a unique id generated by the server on successful creation of a resource and is not
+        /// allowed to change on PUT operations.
+        /// More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }
 
@@ -409,9 +539,20 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Metadata associated with this Service, including name, namespace, labels,
+        /// and annotations.  Structure is documented below.
+        /// </summary>
         [Input("metadata")]
         public Input<ServiceTemplateMetadataArgs>? Metadata { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// RevisionSpec holds the desired state of the Revision (from the client).  Structure is documented below.
+        /// </summary>
         [Input("spec")]
         public Input<ServiceTemplateSpecArgs>? Spec { get; set; }
 
@@ -422,9 +563,20 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Metadata associated with this Service, including name, namespace, labels,
+        /// and annotations.  Structure is documented below.
+        /// </summary>
         [Input("metadata")]
         public Input<ServiceTemplateMetadataGetArgs>? Metadata { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// RevisionSpec holds the desired state of the Revision (from the client).  Structure is documented below.
+        /// </summary>
         [Input("spec")]
         public Input<ServiceTemplateSpecGetArgs>? Spec { get; set; }
 
@@ -437,35 +589,87 @@ namespace Pulumi.Gcp.CloudRun
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Annotations is a key value map stored with a resource that
+        /// may be set by external tools to store and retrieve arbitrary metadata. More
+        /// info: http://kubernetes.io/docs/user-guide/annotations
+        /// </summary>
         public InputMap<string> Annotations
         {
             get => _annotations ?? (_annotations = new InputMap<string>());
             set => _annotations = value;
         }
 
+        /// <summary>
+        /// -
+        /// A sequence number representing a specific generation of the desired state.
+        /// </summary>
         [Input("generation")]
         public Input<int>? Generation { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Map of string keys and values that can be used to organize and categorize
+        /// (scope and select) objects. May match selectors of replication controllers
+        /// and routes.
+        /// More info: http://kubernetes.io/docs/user-guide/labels
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In Cloud Run the namespace must be equal to either the
+        /// project ID or project number.
+        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// -
+        /// An opaque value that represents the internal version of this object that
+        /// can be used by clients to determine when objects have changed. May be used
+        /// for optimistic concurrency, change detection, and the watch operation on a
+        /// resource or set of resources. They may only be valid for a
+        /// particular resource or set of resources.
+        /// More info:
+        /// https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
+        /// </summary>
         [Input("resourceVersion")]
         public Input<string>? ResourceVersion { get; set; }
 
+        /// <summary>
+        /// -
+        /// SelfLink is a URL representing this object.
+        /// </summary>
         [Input("selfLink")]
         public Input<string>? SelfLink { get; set; }
 
+        /// <summary>
+        /// -
+        /// UID is a unique id generated by the server on successful creation of a resource and is not
+        /// allowed to change on PUT operations.
+        /// More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }
 
@@ -478,35 +682,87 @@ namespace Pulumi.Gcp.CloudRun
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Annotations is a key value map stored with a resource that
+        /// may be set by external tools to store and retrieve arbitrary metadata. More
+        /// info: http://kubernetes.io/docs/user-guide/annotations
+        /// </summary>
         public InputMap<string> Annotations
         {
             get => _annotations ?? (_annotations = new InputMap<string>());
             set => _annotations = value;
         }
 
+        /// <summary>
+        /// -
+        /// A sequence number representing a specific generation of the desired state.
+        /// </summary>
         [Input("generation")]
         public Input<int>? Generation { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Map of string keys and values that can be used to organize and categorize
+        /// (scope and select) objects. May match selectors of replication controllers
+        /// and routes.
+        /// More info: http://kubernetes.io/docs/user-guide/labels
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In Cloud Run the namespace must be equal to either the
+        /// project ID or project number.
+        /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        /// <summary>
+        /// -
+        /// An opaque value that represents the internal version of this object that
+        /// can be used by clients to determine when objects have changed. May be used
+        /// for optimistic concurrency, change detection, and the watch operation on a
+        /// resource or set of resources. They may only be valid for a
+        /// particular resource or set of resources.
+        /// More info:
+        /// https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
+        /// </summary>
         [Input("resourceVersion")]
         public Input<string>? ResourceVersion { get; set; }
 
+        /// <summary>
+        /// -
+        /// SelfLink is a URL representing this object.
+        /// </summary>
         [Input("selfLink")]
         public Input<string>? SelfLink { get; set; }
 
+        /// <summary>
+        /// -
+        /// UID is a unique id generated by the server on successful creation of a resource and is not
+        /// allowed to change on PUT operations.
+        /// More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }
 
@@ -517,20 +773,55 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateSpecArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// ContainerConcurrency specifies the maximum allowed in-flight (concurrent)
+        /// requests per container of the Revision. Values are:
+        /// - `0` thread-safe, the system should manage the max concurrency. This is
+        /// the default value.
+        /// - `1` not-thread-safe. Single concurrency
+        /// - `2-N` thread-safe, max concurrency of N
+        /// </summary>
         [Input("containerConcurrency")]
         public Input<int>? ContainerConcurrency { get; set; }
 
         [Input("containers")]
         private InputList<ServiceTemplateSpecContainersArgs>? _containers;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Container defines the unit of execution for this Revision.
+        /// In the context of a Revision, we disallow a number of the fields of
+        /// this Container, including: name, ports, and volumeMounts.
+        /// The runtime contract is documented here:
+        /// https://github.com/knative/serving/blob/master/docs/runtime-contract.md  Structure is documented below.
+        /// </summary>
         public InputList<ServiceTemplateSpecContainersArgs> Containers
         {
             get => _containers ?? (_containers = new InputList<ServiceTemplateSpecContainersArgs>());
             set => _containers = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Email address of the IAM service account associated with the revision of the
+        /// service. The service account represents the identity of the running revision,
+        /// and determines what permissions the revision has. If not provided, the revision
+        /// will use the project's default service account.
+        /// </summary>
         [Input("serviceAccountName")]
         public Input<string>? ServiceAccountName { get; set; }
 
+        /// <summary>
+        /// -
+        /// ServingState holds a value describing the state the resources
+        /// are in for this Revision.
+        /// It is expected
+        /// that the system will manipulate this based on routability and load.
+        /// </summary>
         [Input("servingState")]
         public Input<string>? ServingState { get; set; }
 
@@ -543,6 +834,20 @@ namespace Pulumi.Gcp.CloudRun
     {
         [Input("args")]
         private InputList<string>? _args;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Arguments to the entrypoint.
+        /// The docker image's CMD is used if this is not provided.
+        /// Variable references $(VAR_NAME) are expanded using the container's
+        /// environment. If a variable cannot be resolved, the reference in the input
+        /// string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
+        /// double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
+        /// regardless of whether the variable exists or not.
+        /// More info:
+        /// https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+        /// </summary>
         public InputList<string> Args
         {
             get => _args ?? (_args = new InputList<string>());
@@ -551,6 +856,20 @@ namespace Pulumi.Gcp.CloudRun
 
         [Input("commands")]
         private InputList<string>? _commands;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Entrypoint array. Not executed within a shell.
+        /// The docker image's ENTRYPOINT is used if this is not provided.
+        /// Variable references $(VAR_NAME) are expanded using the container's
+        /// environment. If a variable cannot be resolved, the reference in the input
+        /// string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
+        /// double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
+        /// regardless of whether the variable exists or not.
+        /// More info:
+        /// https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+        /// </summary>
         public InputList<string> Commands
         {
             get => _commands ?? (_commands = new InputList<string>());
@@ -559,6 +878,12 @@ namespace Pulumi.Gcp.CloudRun
 
         [Input("envs")]
         private InputList<ServiceTemplateSpecContainersEnvsArgs>? _envs;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// List of environment variables to set in the container.  Structure is documented below.
+        /// </summary>
         public InputList<ServiceTemplateSpecContainersEnvsArgs> Envs
         {
             get => _envs ?? (_envs = new InputList<ServiceTemplateSpecContainersEnvsArgs>());
@@ -567,6 +892,16 @@ namespace Pulumi.Gcp.CloudRun
 
         [Input("envFroms")]
         private InputList<ServiceTemplateSpecContainersEnvFromsArgs>? _envFroms;
+
+        /// <summary>
+        /// -
+        /// (Optional, Deprecated)
+        /// List of sources to populate environment variables in the container.
+        /// All invalid keys will be reported as an event when the container is starting.
+        /// When a key exists in multiple sources, the value associated with the last source will
+        /// take precedence. Values defined by an Env with a duplicate key will take
+        /// precedence.  Structure is documented below.
+        /// </summary>
         [Obsolete(@"Not supported by Cloud Run fully managed")]
         public InputList<ServiceTemplateSpecContainersEnvFromsArgs> EnvFroms
         {
@@ -574,12 +909,33 @@ namespace Pulumi.Gcp.CloudRun
             set => _envFroms = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Docker image name. This is most often a reference to a container located
+        /// in the container registry, such as gcr.io/cloudrun/hello
+        /// More info: https://kubernetes.io/docs/concepts/containers/images
+        /// </summary>
         [Input("image", required: true)]
         public Input<string> Image { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Compute Resources required by this container. Used to set values such as max memory
+        /// More info:
+        /// https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources  Structure is documented below.
+        /// </summary>
         [Input("resources")]
         public Input<ServiceTemplateSpecContainersResourcesArgs>? Resources { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional, Deprecated)
+        /// Container's working directory.
+        /// If not specified, the container runtime's default will be used, which
+        /// might be configured in the container image.
+        /// </summary>
         [Input("workingDir")]
         public Input<string>? WorkingDir { get; set; }
 
@@ -590,12 +946,27 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateSpecContainersEnvFromsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The ConfigMap to select from.  Structure is documented below.
+        /// </summary>
         [Input("configMapRef")]
         public Input<ServiceTemplateSpecContainersEnvFromsConfigMapRefArgs>? ConfigMapRef { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional identifier to prepend to each key in the ConfigMap.
+        /// </summary>
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret to select from.  Structure is documented below.
+        /// </summary>
         [Input("secretRef")]
         public Input<ServiceTemplateSpecContainersEnvFromsSecretRefArgs>? SecretRef { get; set; }
 
@@ -606,9 +977,19 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateSpecContainersEnvFromsConfigMapRefArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret to select from.  Structure is documented below.
+        /// </summary>
         [Input("localObjectReference")]
         public Input<ServiceTemplateSpecContainersEnvFromsConfigMapRefLocalObjectReferenceArgs>? LocalObjectReference { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specify whether the Secret must be defined
+        /// </summary>
         [Input("optional")]
         public Input<bool>? Optional { get; set; }
 
@@ -619,9 +1000,19 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateSpecContainersEnvFromsConfigMapRefGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret to select from.  Structure is documented below.
+        /// </summary>
         [Input("localObjectReference")]
         public Input<ServiceTemplateSpecContainersEnvFromsConfigMapRefLocalObjectReferenceGetArgs>? LocalObjectReference { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specify whether the Secret must be defined
+        /// </summary>
         [Input("optional")]
         public Input<bool>? Optional { get; set; }
 
@@ -632,6 +1023,11 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateSpecContainersEnvFromsConfigMapRefLocalObjectReferenceArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -642,6 +1038,11 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateSpecContainersEnvFromsConfigMapRefLocalObjectReferenceGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -652,12 +1053,27 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateSpecContainersEnvFromsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The ConfigMap to select from.  Structure is documented below.
+        /// </summary>
         [Input("configMapRef")]
         public Input<ServiceTemplateSpecContainersEnvFromsConfigMapRefGetArgs>? ConfigMapRef { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional identifier to prepend to each key in the ConfigMap.
+        /// </summary>
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret to select from.  Structure is documented below.
+        /// </summary>
         [Input("secretRef")]
         public Input<ServiceTemplateSpecContainersEnvFromsSecretRefGetArgs>? SecretRef { get; set; }
 
@@ -668,9 +1084,19 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateSpecContainersEnvFromsSecretRefArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret to select from.  Structure is documented below.
+        /// </summary>
         [Input("localObjectReference")]
         public Input<ServiceTemplateSpecContainersEnvFromsSecretRefLocalObjectReferenceArgs>? LocalObjectReference { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specify whether the Secret must be defined
+        /// </summary>
         [Input("optional")]
         public Input<bool>? Optional { get; set; }
 
@@ -681,9 +1107,19 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateSpecContainersEnvFromsSecretRefGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret to select from.  Structure is documented below.
+        /// </summary>
         [Input("localObjectReference")]
         public Input<ServiceTemplateSpecContainersEnvFromsSecretRefLocalObjectReferenceGetArgs>? LocalObjectReference { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specify whether the Secret must be defined
+        /// </summary>
         [Input("optional")]
         public Input<bool>? Optional { get; set; }
 
@@ -694,6 +1130,11 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateSpecContainersEnvFromsSecretRefLocalObjectReferenceArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -704,6 +1145,11 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateSpecContainersEnvFromsSecretRefLocalObjectReferenceGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -714,9 +1160,26 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateSpecContainersEnvsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Variable references $(VAR_NAME) are expanded
+        /// using the previous defined environment variables in the container and
+        /// any route environment variables. If a variable cannot be resolved,
+        /// the reference in the input string will be unchanged. The $(VAR_NAME)
+        /// syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped
+        /// references will never be expanded, regardless of whether the variable
+        /// exists or not.
+        /// Defaults to "".
+        /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }
 
@@ -727,9 +1190,26 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateSpecContainersEnvsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Variable references $(VAR_NAME) are expanded
+        /// using the previous defined environment variables in the container and
+        /// any route environment variables. If a variable cannot be resolved,
+        /// the reference in the input string will be unchanged. The $(VAR_NAME)
+        /// syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped
+        /// references will never be expanded, regardless of whether the variable
+        /// exists or not.
+        /// Defaults to "".
+        /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }
 
@@ -742,6 +1222,20 @@ namespace Pulumi.Gcp.CloudRun
     {
         [Input("args")]
         private InputList<string>? _args;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Arguments to the entrypoint.
+        /// The docker image's CMD is used if this is not provided.
+        /// Variable references $(VAR_NAME) are expanded using the container's
+        /// environment. If a variable cannot be resolved, the reference in the input
+        /// string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
+        /// double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
+        /// regardless of whether the variable exists or not.
+        /// More info:
+        /// https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+        /// </summary>
         public InputList<string> Args
         {
             get => _args ?? (_args = new InputList<string>());
@@ -750,6 +1244,20 @@ namespace Pulumi.Gcp.CloudRun
 
         [Input("commands")]
         private InputList<string>? _commands;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Entrypoint array. Not executed within a shell.
+        /// The docker image's ENTRYPOINT is used if this is not provided.
+        /// Variable references $(VAR_NAME) are expanded using the container's
+        /// environment. If a variable cannot be resolved, the reference in the input
+        /// string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
+        /// double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
+        /// regardless of whether the variable exists or not.
+        /// More info:
+        /// https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+        /// </summary>
         public InputList<string> Commands
         {
             get => _commands ?? (_commands = new InputList<string>());
@@ -758,6 +1266,12 @@ namespace Pulumi.Gcp.CloudRun
 
         [Input("envs")]
         private InputList<ServiceTemplateSpecContainersEnvsGetArgs>? _envs;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// List of environment variables to set in the container.  Structure is documented below.
+        /// </summary>
         public InputList<ServiceTemplateSpecContainersEnvsGetArgs> Envs
         {
             get => _envs ?? (_envs = new InputList<ServiceTemplateSpecContainersEnvsGetArgs>());
@@ -766,6 +1280,16 @@ namespace Pulumi.Gcp.CloudRun
 
         [Input("envFroms")]
         private InputList<ServiceTemplateSpecContainersEnvFromsGetArgs>? _envFroms;
+
+        /// <summary>
+        /// -
+        /// (Optional, Deprecated)
+        /// List of sources to populate environment variables in the container.
+        /// All invalid keys will be reported as an event when the container is starting.
+        /// When a key exists in multiple sources, the value associated with the last source will
+        /// take precedence. Values defined by an Env with a duplicate key will take
+        /// precedence.  Structure is documented below.
+        /// </summary>
         [Obsolete(@"Not supported by Cloud Run fully managed")]
         public InputList<ServiceTemplateSpecContainersEnvFromsGetArgs> EnvFroms
         {
@@ -773,12 +1297,33 @@ namespace Pulumi.Gcp.CloudRun
             set => _envFroms = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Docker image name. This is most often a reference to a container located
+        /// in the container registry, such as gcr.io/cloudrun/hello
+        /// More info: https://kubernetes.io/docs/concepts/containers/images
+        /// </summary>
         [Input("image", required: true)]
         public Input<string> Image { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Compute Resources required by this container. Used to set values such as max memory
+        /// More info:
+        /// https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources  Structure is documented below.
+        /// </summary>
         [Input("resources")]
         public Input<ServiceTemplateSpecContainersResourcesGetArgs>? Resources { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional, Deprecated)
+        /// Container's working directory.
+        /// If not specified, the container runtime's default will be used, which
+        /// might be configured in the container image.
+        /// </summary>
         [Input("workingDir")]
         public Input<string>? WorkingDir { get; set; }
 
@@ -791,6 +1336,14 @@ namespace Pulumi.Gcp.CloudRun
     {
         [Input("limits")]
         private InputMap<string>? _limits;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Limits describes the maximum amount of compute resources allowed.
+        /// The values of the map is string form of the 'quantity' k8s type:
+        /// https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+        /// </summary>
         public InputMap<string> Limits
         {
             get => _limits ?? (_limits = new InputMap<string>());
@@ -799,6 +1352,16 @@ namespace Pulumi.Gcp.CloudRun
 
         [Input("requests")]
         private InputMap<string>? _requests;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Requests describes the minimum amount of compute resources required.
+        /// If Requests is omitted for a container, it defaults to Limits if that is
+        /// explicitly specified, otherwise to an implementation-defined value.
+        /// The values of the map is string form of the 'quantity' k8s type:
+        /// https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+        /// </summary>
         public InputMap<string> Requests
         {
             get => _requests ?? (_requests = new InputMap<string>());
@@ -814,6 +1377,14 @@ namespace Pulumi.Gcp.CloudRun
     {
         [Input("limits")]
         private InputMap<string>? _limits;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Limits describes the maximum amount of compute resources allowed.
+        /// The values of the map is string form of the 'quantity' k8s type:
+        /// https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+        /// </summary>
         public InputMap<string> Limits
         {
             get => _limits ?? (_limits = new InputMap<string>());
@@ -822,6 +1393,16 @@ namespace Pulumi.Gcp.CloudRun
 
         [Input("requests")]
         private InputMap<string>? _requests;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Requests describes the minimum amount of compute resources required.
+        /// If Requests is omitted for a container, it defaults to Limits if that is
+        /// explicitly specified, otherwise to an implementation-defined value.
+        /// The values of the map is string form of the 'quantity' k8s type:
+        /// https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+        /// </summary>
         public InputMap<string> Requests
         {
             get => _requests ?? (_requests = new InputMap<string>());
@@ -835,20 +1416,55 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTemplateSpecGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// ContainerConcurrency specifies the maximum allowed in-flight (concurrent)
+        /// requests per container of the Revision. Values are:
+        /// - `0` thread-safe, the system should manage the max concurrency. This is
+        /// the default value.
+        /// - `1` not-thread-safe. Single concurrency
+        /// - `2-N` thread-safe, max concurrency of N
+        /// </summary>
         [Input("containerConcurrency")]
         public Input<int>? ContainerConcurrency { get; set; }
 
         [Input("containers")]
         private InputList<ServiceTemplateSpecContainersGetArgs>? _containers;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Container defines the unit of execution for this Revision.
+        /// In the context of a Revision, we disallow a number of the fields of
+        /// this Container, including: name, ports, and volumeMounts.
+        /// The runtime contract is documented here:
+        /// https://github.com/knative/serving/blob/master/docs/runtime-contract.md  Structure is documented below.
+        /// </summary>
         public InputList<ServiceTemplateSpecContainersGetArgs> Containers
         {
             get => _containers ?? (_containers = new InputList<ServiceTemplateSpecContainersGetArgs>());
             set => _containers = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Email address of the IAM service account associated with the revision of the
+        /// service. The service account represents the identity of the running revision,
+        /// and determines what permissions the revision has. If not provided, the revision
+        /// will use the project's default service account.
+        /// </summary>
         [Input("serviceAccountName")]
         public Input<string>? ServiceAccountName { get; set; }
 
+        /// <summary>
+        /// -
+        /// ServingState holds a value describing the state the resources
+        /// are in for this Revision.
+        /// It is expected
+        /// that the system will manipulate this based on routability and load.
+        /// </summary>
         [Input("servingState")]
         public Input<string>? ServingState { get; set; }
 
@@ -859,12 +1475,30 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTrafficsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// LatestRevision may be optionally provided to indicate that the latest ready
+        /// Revision of the Configuration should be used for this traffic target. When
+        /// provided LatestRevision must be true if RevisionName is empty; it must be
+        /// false when RevisionName is non-empty.
+        /// </summary>
         [Input("latestRevision")]
         public Input<bool>? LatestRevision { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Percent specifies percent of the traffic to this Revision or Configuration.
+        /// </summary>
         [Input("percent", required: true)]
         public Input<int> Percent { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// RevisionName of a specific revision to which to send this portion of traffic.
+        /// </summary>
         [Input("revisionName")]
         public Input<string>? RevisionName { get; set; }
 
@@ -875,12 +1509,30 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class ServiceTrafficsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// LatestRevision may be optionally provided to indicate that the latest ready
+        /// Revision of the Configuration should be used for this traffic target. When
+        /// provided LatestRevision must be true if RevisionName is empty; it must be
+        /// false when RevisionName is non-empty.
+        /// </summary>
         [Input("latestRevision")]
         public Input<bool>? LatestRevision { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Percent specifies percent of the traffic to this Revision or Configuration.
+        /// </summary>
         [Input("percent", required: true)]
         public Input<int> Percent { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// RevisionName of a specific revision to which to send this portion of traffic.
+        /// </summary>
         [Input("revisionName")]
         public Input<string>? RevisionName { get; set; }
 
@@ -896,12 +1548,57 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class ServiceMetadata
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Annotations is a key value map stored with a resource that
+        /// may be set by external tools to store and retrieve arbitrary metadata. More
+        /// info: http://kubernetes.io/docs/user-guide/annotations
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Annotations;
+        /// <summary>
+        /// -
+        /// A sequence number representing a specific generation of the desired state.
+        /// </summary>
         public readonly int Generation;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Map of string keys and values that can be used to organize and categorize
+        /// (scope and select) objects. May match selectors of replication controllers
+        /// and routes.
+        /// More info: http://kubernetes.io/docs/user-guide/labels
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In Cloud Run the namespace must be equal to either the
+        /// project ID or project number.
+        /// </summary>
         public readonly string Namespace;
+        /// <summary>
+        /// -
+        /// An opaque value that represents the internal version of this object that
+        /// can be used by clients to determine when objects have changed. May be used
+        /// for optimistic concurrency, change detection, and the watch operation on a
+        /// resource or set of resources. They may only be valid for a
+        /// particular resource or set of resources.
+        /// More info:
+        /// https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
+        /// </summary>
         public readonly string ResourceVersion;
+        /// <summary>
+        /// -
+        /// SelfLink is a URL representing this object.
+        /// </summary>
         public readonly string SelfLink;
+        /// <summary>
+        /// -
+        /// UID is a unique id generated by the server on successful creation of a resource and is not
+        /// allowed to change on PUT operations.
+        /// More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        /// </summary>
         public readonly string Uid;
 
         [OutputConstructor]
@@ -974,7 +1671,18 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class ServiceTemplate
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Metadata associated with this Service, including name, namespace, labels,
+        /// and annotations.  Structure is documented below.
+        /// </summary>
         public readonly ServiceTemplateMetadata Metadata;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// RevisionSpec holds the desired state of the Revision (from the client).  Structure is documented below.
+        /// </summary>
         public readonly ServiceTemplateSpec Spec;
 
         [OutputConstructor]
@@ -990,13 +1698,63 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class ServiceTemplateMetadata
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Annotations is a key value map stored with a resource that
+        /// may be set by external tools to store and retrieve arbitrary metadata. More
+        /// info: http://kubernetes.io/docs/user-guide/annotations
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Annotations;
+        /// <summary>
+        /// -
+        /// A sequence number representing a specific generation of the desired state.
+        /// </summary>
         public readonly int Generation;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Map of string keys and values that can be used to organize and categorize
+        /// (scope and select) objects. May match selectors of replication controllers
+        /// and routes.
+        /// More info: http://kubernetes.io/docs/user-guide/labels
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In Cloud Run the namespace must be equal to either the
+        /// project ID or project number.
+        /// </summary>
         public readonly string Namespace;
+        /// <summary>
+        /// -
+        /// An opaque value that represents the internal version of this object that
+        /// can be used by clients to determine when objects have changed. May be used
+        /// for optimistic concurrency, change detection, and the watch operation on a
+        /// resource or set of resources. They may only be valid for a
+        /// particular resource or set of resources.
+        /// More info:
+        /// https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
+        /// </summary>
         public readonly string ResourceVersion;
+        /// <summary>
+        /// -
+        /// SelfLink is a URL representing this object.
+        /// </summary>
         public readonly string SelfLink;
+        /// <summary>
+        /// -
+        /// UID is a unique id generated by the server on successful creation of a resource and is not
+        /// allowed to change on PUT operations.
+        /// More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        /// </summary>
         public readonly string Uid;
 
         [OutputConstructor]
@@ -1024,9 +1782,43 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class ServiceTemplateSpec
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// ContainerConcurrency specifies the maximum allowed in-flight (concurrent)
+        /// requests per container of the Revision. Values are:
+        /// - `0` thread-safe, the system should manage the max concurrency. This is
+        /// the default value.
+        /// - `1` not-thread-safe. Single concurrency
+        /// - `2-N` thread-safe, max concurrency of N
+        /// </summary>
         public readonly int ContainerConcurrency;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Container defines the unit of execution for this Revision.
+        /// In the context of a Revision, we disallow a number of the fields of
+        /// this Container, including: name, ports, and volumeMounts.
+        /// The runtime contract is documented here:
+        /// https://github.com/knative/serving/blob/master/docs/runtime-contract.md  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<ServiceTemplateSpecContainers> Containers;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Email address of the IAM service account associated with the revision of the
+        /// service. The service account represents the identity of the running revision,
+        /// and determines what permissions the revision has. If not provided, the revision
+        /// will use the project's default service account.
+        /// </summary>
         public readonly string? ServiceAccountName;
+        /// <summary>
+        /// -
+        /// ServingState holds a value describing the state the resources
+        /// are in for this Revision.
+        /// It is expected
+        /// that the system will manipulate this based on routability and load.
+        /// </summary>
         public readonly string ServingState;
 
         [OutputConstructor]
@@ -1046,12 +1838,73 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class ServiceTemplateSpecContainers
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Arguments to the entrypoint.
+        /// The docker image's CMD is used if this is not provided.
+        /// Variable references $(VAR_NAME) are expanded using the container's
+        /// environment. If a variable cannot be resolved, the reference in the input
+        /// string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
+        /// double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
+        /// regardless of whether the variable exists or not.
+        /// More info:
+        /// https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+        /// </summary>
         public readonly ImmutableArray<string> Args;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Entrypoint array. Not executed within a shell.
+        /// The docker image's ENTRYPOINT is used if this is not provided.
+        /// Variable references $(VAR_NAME) are expanded using the container's
+        /// environment. If a variable cannot be resolved, the reference in the input
+        /// string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
+        /// double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
+        /// regardless of whether the variable exists or not.
+        /// More info:
+        /// https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+        /// </summary>
         public readonly ImmutableArray<string> Commands;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// List of environment variables to set in the container.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<ServiceTemplateSpecContainersEnvs> Envs;
+        /// <summary>
+        /// -
+        /// (Optional, Deprecated)
+        /// List of sources to populate environment variables in the container.
+        /// All invalid keys will be reported as an event when the container is starting.
+        /// When a key exists in multiple sources, the value associated with the last source will
+        /// take precedence. Values defined by an Env with a duplicate key will take
+        /// precedence.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<ServiceTemplateSpecContainersEnvFroms> EnvFroms;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Docker image name. This is most often a reference to a container located
+        /// in the container registry, such as gcr.io/cloudrun/hello
+        /// More info: https://kubernetes.io/docs/concepts/containers/images
+        /// </summary>
         public readonly string Image;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Compute Resources required by this container. Used to set values such as max memory
+        /// More info:
+        /// https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources  Structure is documented below.
+        /// </summary>
         public readonly ServiceTemplateSpecContainersResources Resources;
+        /// <summary>
+        /// -
+        /// (Optional, Deprecated)
+        /// Container's working directory.
+        /// If not specified, the container runtime's default will be used, which
+        /// might be configured in the container image.
+        /// </summary>
         public readonly string? WorkingDir;
 
         [OutputConstructor]
@@ -1077,8 +1930,23 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class ServiceTemplateSpecContainersEnvFroms
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The ConfigMap to select from.  Structure is documented below.
+        /// </summary>
         public readonly ServiceTemplateSpecContainersEnvFromsConfigMapRef? ConfigMapRef;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional identifier to prepend to each key in the ConfigMap.
+        /// </summary>
         public readonly string? Prefix;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret to select from.  Structure is documented below.
+        /// </summary>
         public readonly ServiceTemplateSpecContainersEnvFromsSecretRef? SecretRef;
 
         [OutputConstructor]
@@ -1096,7 +1964,17 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class ServiceTemplateSpecContainersEnvFromsConfigMapRef
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret to select from.  Structure is documented below.
+        /// </summary>
         public readonly ServiceTemplateSpecContainersEnvFromsConfigMapRefLocalObjectReference? LocalObjectReference;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specify whether the Secret must be defined
+        /// </summary>
         public readonly bool? Optional;
 
         [OutputConstructor]
@@ -1112,6 +1990,11 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class ServiceTemplateSpecContainersEnvFromsConfigMapRefLocalObjectReference
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]
@@ -1124,7 +2007,17 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class ServiceTemplateSpecContainersEnvFromsSecretRef
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret to select from.  Structure is documented below.
+        /// </summary>
         public readonly ServiceTemplateSpecContainersEnvFromsSecretRefLocalObjectReference? LocalObjectReference;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specify whether the Secret must be defined
+        /// </summary>
         public readonly bool? Optional;
 
         [OutputConstructor]
@@ -1140,6 +2033,11 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class ServiceTemplateSpecContainersEnvFromsSecretRefLocalObjectReference
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]
@@ -1152,7 +2050,24 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class ServiceTemplateSpecContainersEnvs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Variable references $(VAR_NAME) are expanded
+        /// using the previous defined environment variables in the container and
+        /// any route environment variables. If a variable cannot be resolved,
+        /// the reference in the input string will be unchanged. The $(VAR_NAME)
+        /// syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped
+        /// references will never be expanded, regardless of whether the variable
+        /// exists or not.
+        /// Defaults to "".
+        /// </summary>
         public readonly string? Value;
 
         [OutputConstructor]
@@ -1168,7 +2083,23 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class ServiceTemplateSpecContainersResources
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Limits describes the maximum amount of compute resources allowed.
+        /// The values of the map is string form of the 'quantity' k8s type:
+        /// https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Limits;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Requests describes the minimum amount of compute resources required.
+        /// If Requests is omitted for a container, it defaults to Limits if that is
+        /// explicitly specified, otherwise to an implementation-defined value.
+        /// The values of the map is string form of the 'quantity' k8s type:
+        /// https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Requests;
 
         [OutputConstructor]
@@ -1184,8 +2115,26 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class ServiceTraffics
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// LatestRevision may be optionally provided to indicate that the latest ready
+        /// Revision of the Configuration should be used for this traffic target. When
+        /// provided LatestRevision must be true if RevisionName is empty; it must be
+        /// false when RevisionName is non-empty.
+        /// </summary>
         public readonly bool? LatestRevision;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Percent specifies percent of the traffic to this Revision or Configuration.
+        /// </summary>
         public readonly int Percent;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// RevisionName of a specific revision to which to send this portion of traffic.
+        /// </summary>
         public readonly string? RevisionName;
 
         [OutputConstructor]

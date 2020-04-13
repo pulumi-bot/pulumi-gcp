@@ -24,6 +24,8 @@ namespace Pulumi.Gcp.AppEngine
     public partial class DomainMapping : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Relative name of the domain serving the application. Example: example.com.
         /// </summary>
         [Output("domainName")]
@@ -36,8 +38,10 @@ namespace Pulumi.Gcp.AppEngine
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the domain creation should override any existing mappings for this domain. By default, overrides are
-        /// rejected.
+        /// -
+        /// (Optional)
+        /// Whether the domain creation should override any existing mappings for this domain.
+        /// By default, overrides are rejected.
         /// </summary>
         [Output("overrideStrategy")]
         public Output<string?> OverrideStrategy { get; private set; } = null!;
@@ -57,7 +61,9 @@ namespace Pulumi.Gcp.AppEngine
         public Output<ImmutableArray<Outputs.DomainMappingResourceRecords>> ResourceRecords { get; private set; } = null!;
 
         /// <summary>
-        /// SSL configuration for this domain. If unconfigured, this domain will not serve with SSL.
+        /// -
+        /// (Optional)
+        /// SSL configuration for this domain. If unconfigured, this domain will not serve with SSL.  Structure is documented below.
         /// </summary>
         [Output("sslSettings")]
         public Output<Outputs.DomainMappingSslSettings?> SslSettings { get; private set; } = null!;
@@ -109,14 +115,18 @@ namespace Pulumi.Gcp.AppEngine
     public sealed class DomainMappingArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Relative name of the domain serving the application. Example: example.com.
         /// </summary>
         [Input("domainName", required: true)]
         public Input<string> DomainName { get; set; } = null!;
 
         /// <summary>
-        /// Whether the domain creation should override any existing mappings for this domain. By default, overrides are
-        /// rejected.
+        /// -
+        /// (Optional)
+        /// Whether the domain creation should override any existing mappings for this domain.
+        /// By default, overrides are rejected.
         /// </summary>
         [Input("overrideStrategy")]
         public Input<string>? OverrideStrategy { get; set; }
@@ -129,7 +139,9 @@ namespace Pulumi.Gcp.AppEngine
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// SSL configuration for this domain. If unconfigured, this domain will not serve with SSL.
+        /// -
+        /// (Optional)
+        /// SSL configuration for this domain. If unconfigured, this domain will not serve with SSL.  Structure is documented below.
         /// </summary>
         [Input("sslSettings")]
         public Input<Inputs.DomainMappingSslSettingsArgs>? SslSettings { get; set; }
@@ -142,6 +154,8 @@ namespace Pulumi.Gcp.AppEngine
     public sealed class DomainMappingState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Relative name of the domain serving the application. Example: example.com.
         /// </summary>
         [Input("domainName")]
@@ -154,8 +168,10 @@ namespace Pulumi.Gcp.AppEngine
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Whether the domain creation should override any existing mappings for this domain. By default, overrides are
-        /// rejected.
+        /// -
+        /// (Optional)
+        /// Whether the domain creation should override any existing mappings for this domain.
+        /// By default, overrides are rejected.
         /// </summary>
         [Input("overrideStrategy")]
         public Input<string>? OverrideStrategy { get; set; }
@@ -181,7 +197,9 @@ namespace Pulumi.Gcp.AppEngine
         }
 
         /// <summary>
-        /// SSL configuration for this domain. If unconfigured, this domain will not serve with SSL.
+        /// -
+        /// (Optional)
+        /// SSL configuration for this domain. If unconfigured, this domain will not serve with SSL.  Structure is documented below.
         /// </summary>
         [Input("sslSettings")]
         public Input<Inputs.DomainMappingSslSettingsGetArgs>? SslSettings { get; set; }
@@ -212,12 +230,36 @@ namespace Pulumi.Gcp.AppEngine
 
     public sealed class DomainMappingSslSettingsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// ID of the AuthorizedCertificate resource configuring SSL for the application. Clearing this field will
+        /// remove SSL support.
+        /// By default, a managed certificate is automatically created for every domain mapping. To omit SSL support
+        /// or to configure SSL manually, specify `SslManagementType.MANUAL` on a `CREATE` or `UPDATE` request. You must be
+        /// authorized to administer the `AuthorizedCertificate` resource to manually map it to a DomainMapping resource.
+        /// Example: 12345.
+        /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
 
+        /// <summary>
+        /// -
+        /// ID of the managed `AuthorizedCertificate` resource currently being provisioned, if applicable. Until the new
+        /// managed certificate has been successfully provisioned, the previous SSL state will be preserved. Once the
+        /// provisioning process completes, the `certificateId` field will reflect the new managed certificate and this
+        /// field will be left empty. To remove SSL support while there is still a pending managed certificate, clear the
+        /// `certificateId` field with an update request.
+        /// </summary>
         [Input("pendingManagedCertificateId")]
         public Input<string>? PendingManagedCertificateId { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// SSL management type for this domain. If `AUTOMATIC`, a managed certificate is automatically provisioned.
+        /// If `MANUAL`, `certificateId` must be manually specified in order to configure SSL for this domain.
+        /// </summary>
         [Input("sslManagementType", required: true)]
         public Input<string> SslManagementType { get; set; } = null!;
 
@@ -228,12 +270,36 @@ namespace Pulumi.Gcp.AppEngine
 
     public sealed class DomainMappingSslSettingsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// ID of the AuthorizedCertificate resource configuring SSL for the application. Clearing this field will
+        /// remove SSL support.
+        /// By default, a managed certificate is automatically created for every domain mapping. To omit SSL support
+        /// or to configure SSL manually, specify `SslManagementType.MANUAL` on a `CREATE` or `UPDATE` request. You must be
+        /// authorized to administer the `AuthorizedCertificate` resource to manually map it to a DomainMapping resource.
+        /// Example: 12345.
+        /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
 
+        /// <summary>
+        /// -
+        /// ID of the managed `AuthorizedCertificate` resource currently being provisioned, if applicable. Until the new
+        /// managed certificate has been successfully provisioned, the previous SSL state will be preserved. Once the
+        /// provisioning process completes, the `certificateId` field will reflect the new managed certificate and this
+        /// field will be left empty. To remove SSL support while there is still a pending managed certificate, clear the
+        /// `certificateId` field with an update request.
+        /// </summary>
         [Input("pendingManagedCertificateId")]
         public Input<string>? PendingManagedCertificateId { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// SSL management type for this domain. If `AUTOMATIC`, a managed certificate is automatically provisioned.
+        /// If `MANUAL`, `certificateId` must be manually specified in order to configure SSL for this domain.
+        /// </summary>
         [Input("sslManagementType", required: true)]
         public Input<string> SslManagementType { get; set; } = null!;
 
@@ -268,8 +334,32 @@ namespace Pulumi.Gcp.AppEngine
     [OutputType]
     public sealed class DomainMappingSslSettings
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// ID of the AuthorizedCertificate resource configuring SSL for the application. Clearing this field will
+        /// remove SSL support.
+        /// By default, a managed certificate is automatically created for every domain mapping. To omit SSL support
+        /// or to configure SSL manually, specify `SslManagementType.MANUAL` on a `CREATE` or `UPDATE` request. You must be
+        /// authorized to administer the `AuthorizedCertificate` resource to manually map it to a DomainMapping resource.
+        /// Example: 12345.
+        /// </summary>
         public readonly string CertificateId;
+        /// <summary>
+        /// -
+        /// ID of the managed `AuthorizedCertificate` resource currently being provisioned, if applicable. Until the new
+        /// managed certificate has been successfully provisioned, the previous SSL state will be preserved. Once the
+        /// provisioning process completes, the `certificateId` field will reflect the new managed certificate and this
+        /// field will be left empty. To remove SSL support while there is still a pending managed certificate, clear the
+        /// `certificateId` field with an update request.
+        /// </summary>
         public readonly string PendingManagedCertificateId;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// SSL management type for this domain. If `AUTOMATIC`, a managed certificate is automatically provisioned.
+        /// If `MANUAL`, `certificateId` must be manually specified in order to configure SSL for this domain.
+        /// </summary>
         public readonly string SslManagementType;
 
         [OutputConstructor]

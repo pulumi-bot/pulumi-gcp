@@ -46,6 +46,11 @@ export function getNotificationChannel(args?: GetNotificationChannelArgs, opts?:
  * A collection of arguments for invoking getNotificationChannel.
  */
 export interface GetNotificationChannelArgs {
+    /**
+     * -
+     * (Optional)
+     * The display name for this notification channel.
+     */
     readonly displayName?: string;
     /**
      * Labels (corresponding to the

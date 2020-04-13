@@ -12,6 +12,8 @@ from .. import utilities, tables
 class Realm(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
+    -
+    (Optional)
     Human readable description of the realm.
     """
     etag: pulumi.Output[str]
@@ -20,10 +22,14 @@ class Realm(pulumi.CustomResource):
     """
     labels: pulumi.Output[dict]
     """
+    -
+    (Optional)
     The labels associated with this realm. Each label is a key-value pair.
     """
     location: pulumi.Output[str]
     """
+    -
+    (Optional)
     Location of the Realm.
     """
     name: pulumi.Output[str]
@@ -38,12 +44,17 @@ class Realm(pulumi.CustomResource):
     """
     realm_id: pulumi.Output[str]
     """
+    -
+    (Required)
     GCP region of the Realm.
     """
     time_zone: pulumi.Output[str]
     """
-    Required. Time zone where all realm-specific policies are evaluated. The value of this field must be from the IANA time
-    zone database: https://www.iana.org/time-zones.
+    -
+    (Required)
+    Required. Time zone where all realm-specific policies are evaluated. The value of
+    this field must be from the IANA time zone database:
+    https://www.iana.org/time-zones.
     """
     def __init__(__self__, resource_name, opts=None, description=None, labels=None, location=None, project=None, realm_id=None, time_zone=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -55,18 +66,27 @@ class Realm(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/game-servers/docs)
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/game_services_realm.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Human readable description of the realm.
-        :param pulumi.Input[dict] labels: The labels associated with this realm. Each label is a key-value pair.
-        :param pulumi.Input[str] location: Location of the Realm.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               Human readable description of the realm.
+        :param pulumi.Input[dict] labels: -
+               (Optional)
+               The labels associated with this realm. Each label is a key-value pair.
+        :param pulumi.Input[str] location: -
+               (Optional)
+               Location of the Realm.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] realm_id: GCP region of the Realm.
-        :param pulumi.Input[str] time_zone: Required. Time zone where all realm-specific policies are evaluated. The value of this field must be from the IANA time
-               zone database: https://www.iana.org/time-zones.
+        :param pulumi.Input[str] realm_id: -
+               (Required)
+               GCP region of the Realm.
+        :param pulumi.Input[str] time_zone: -
+               (Required)
+               Required. Time zone where all realm-specific policies are evaluated. The value of
+               this field must be from the IANA time zone database:
+               https://www.iana.org/time-zones.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -112,17 +132,28 @@ class Realm(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Human readable description of the realm.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               Human readable description of the realm.
         :param pulumi.Input[str] etag: ETag of the resource.
-        :param pulumi.Input[dict] labels: The labels associated with this realm. Each label is a key-value pair.
-        :param pulumi.Input[str] location: Location of the Realm.
+        :param pulumi.Input[dict] labels: -
+               (Optional)
+               The labels associated with this realm. Each label is a key-value pair.
+        :param pulumi.Input[str] location: -
+               (Optional)
+               Location of the Realm.
         :param pulumi.Input[str] name: The resource id of the realm, of the form: 'projects/{project_id}/locations/{location}/realms/{realm_id}'. For example,
                'projects/my-project/locations/{location}/realms/my-realm'.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] realm_id: GCP region of the Realm.
-        :param pulumi.Input[str] time_zone: Required. Time zone where all realm-specific policies are evaluated. The value of this field must be from the IANA time
-               zone database: https://www.iana.org/time-zones.
+        :param pulumi.Input[str] realm_id: -
+               (Required)
+               GCP region of the Realm.
+        :param pulumi.Input[str] time_zone: -
+               (Required)
+               Required. Time zone where all realm-specific policies are evaluated. The value of
+               this field must be from the IANA time zone database:
+               https://www.iana.org/time-zones.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -23,44 +23,58 @@ namespace Pulumi.Gcp.GameServices
     public partial class GameServerConfig : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment config.
         /// </summary>
         [Output("configId")]
         public Output<string> ConfigId { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment.
         /// </summary>
         [Output("deploymentId")]
         public Output<string> DeploymentId { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The description of the game server config.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+        /// -
+        /// (Required)
+        /// The fleet config contains list of fleet specs. In the Single Cloud, there
+        /// will be only one.  Structure is documented below.
         /// </summary>
         [Output("fleetConfigs")]
         public Output<ImmutableArray<Outputs.GameServerConfigFleetConfigs>> FleetConfigs { get; private set; } = null!;
 
         /// <summary>
-        /// The labels associated with this game server config. Each label is a key-value pair.
+        /// -
+        /// (Optional)
+        /// Set of labels to group by.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Deployment.
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
-        /// The resource name of the game server config, in the form:
-        /// 'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
+        /// -
+        /// (Required)
+        /// The name of the ScalingConfig
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -73,7 +87,9 @@ namespace Pulumi.Gcp.GameServices
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// Optional. This contains the autoscaling settings.
+        /// -
+        /// (Optional)
+        /// Optional. This contains the autoscaling settings.  Structure is documented below.
         /// </summary>
         [Output("scalingConfigs")]
         public Output<ImmutableArray<Outputs.GameServerConfigScalingConfigs>> ScalingConfigs { get; private set; } = null!;
@@ -125,18 +141,24 @@ namespace Pulumi.Gcp.GameServices
     public sealed class GameServerConfigArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment config.
         /// </summary>
         [Input("configId", required: true)]
         public Input<string> ConfigId { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment.
         /// </summary>
         [Input("deploymentId", required: true)]
         public Input<string> DeploymentId { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The description of the game server config.
         /// </summary>
         [Input("description")]
@@ -146,7 +168,10 @@ namespace Pulumi.Gcp.GameServices
         private InputList<Inputs.GameServerConfigFleetConfigsArgs>? _fleetConfigs;
 
         /// <summary>
-        /// The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+        /// -
+        /// (Required)
+        /// The fleet config contains list of fleet specs. In the Single Cloud, there
+        /// will be only one.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.GameServerConfigFleetConfigsArgs> FleetConfigs
         {
@@ -158,7 +183,9 @@ namespace Pulumi.Gcp.GameServices
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// The labels associated with this game server config. Each label is a key-value pair.
+        /// -
+        /// (Optional)
+        /// Set of labels to group by.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -167,6 +194,8 @@ namespace Pulumi.Gcp.GameServices
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Deployment.
         /// </summary>
         [Input("location")]
@@ -183,7 +212,9 @@ namespace Pulumi.Gcp.GameServices
         private InputList<Inputs.GameServerConfigScalingConfigsArgs>? _scalingConfigs;
 
         /// <summary>
-        /// Optional. This contains the autoscaling settings.
+        /// -
+        /// (Optional)
+        /// Optional. This contains the autoscaling settings.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.GameServerConfigScalingConfigsArgs> ScalingConfigs
         {
@@ -199,18 +230,24 @@ namespace Pulumi.Gcp.GameServices
     public sealed class GameServerConfigState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment config.
         /// </summary>
         [Input("configId")]
         public Input<string>? ConfigId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment.
         /// </summary>
         [Input("deploymentId")]
         public Input<string>? DeploymentId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The description of the game server config.
         /// </summary>
         [Input("description")]
@@ -220,7 +257,10 @@ namespace Pulumi.Gcp.GameServices
         private InputList<Inputs.GameServerConfigFleetConfigsGetArgs>? _fleetConfigs;
 
         /// <summary>
-        /// The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+        /// -
+        /// (Required)
+        /// The fleet config contains list of fleet specs. In the Single Cloud, there
+        /// will be only one.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.GameServerConfigFleetConfigsGetArgs> FleetConfigs
         {
@@ -232,7 +272,9 @@ namespace Pulumi.Gcp.GameServices
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// The labels associated with this game server config. Each label is a key-value pair.
+        /// -
+        /// (Optional)
+        /// Set of labels to group by.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -241,14 +283,17 @@ namespace Pulumi.Gcp.GameServices
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Deployment.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// The resource name of the game server config, in the form:
-        /// 'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
+        /// -
+        /// (Required)
+        /// The name of the ScalingConfig
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -264,7 +309,9 @@ namespace Pulumi.Gcp.GameServices
         private InputList<Inputs.GameServerConfigScalingConfigsGetArgs>? _scalingConfigs;
 
         /// <summary>
-        /// Optional. This contains the autoscaling settings.
+        /// -
+        /// (Optional)
+        /// Optional. This contains the autoscaling settings.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.GameServerConfigScalingConfigsGetArgs> ScalingConfigs
         {
@@ -282,9 +329,25 @@ namespace Pulumi.Gcp.GameServices
 
     public sealed class GameServerConfigFleetConfigsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fleet spec, which is sent to Agones to configure fleet.
+        /// The spec can be passed as inline json but it is recommended to use a file reference
+        /// instead. File references can contain the json or yaml format of the fleet spec. Eg:
+        /// * fleet_spec = jsonencode(yamldecode(file("fleet_configs.yaml")))
+        /// * fleet_spec = file("fleet_configs.json")
+        /// The format of the spec can be found :
+        /// `https://agones.dev/site/docs/reference/fleet/`.
+        /// </summary>
         [Input("fleetSpec", required: true)]
         public Input<string> FleetSpec { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the ScalingConfig
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -295,9 +358,25 @@ namespace Pulumi.Gcp.GameServices
 
     public sealed class GameServerConfigFleetConfigsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fleet spec, which is sent to Agones to configure fleet.
+        /// The spec can be passed as inline json but it is recommended to use a file reference
+        /// instead. File references can contain the json or yaml format of the fleet spec. Eg:
+        /// * fleet_spec = jsonencode(yamldecode(file("fleet_configs.yaml")))
+        /// * fleet_spec = file("fleet_configs.json")
+        /// The format of the spec can be found :
+        /// `https://agones.dev/site/docs/reference/fleet/`.
+        /// </summary>
         [Input("fleetSpec", required: true)]
         public Input<string> FleetSpec { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the ScalingConfig
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -308,14 +387,32 @@ namespace Pulumi.Gcp.GameServices
 
     public sealed class GameServerConfigScalingConfigsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fleet autoscaler spec, which is sent to Agones.
+        /// Example spec can be found :
+        /// https://agones.dev/site/docs/reference/fleetautoscaler/
+        /// </summary>
         [Input("fleetAutoscalerSpec", required: true)]
         public Input<string> FleetAutoscalerSpec { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the ScalingConfig
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("schedules")]
         private InputList<GameServerConfigScalingConfigsSchedulesArgs>? _schedules;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The schedules to which this scaling config applies.  Structure is documented below.
+        /// </summary>
         public InputList<GameServerConfigScalingConfigsSchedulesArgs> Schedules
         {
             get => _schedules ?? (_schedules = new InputList<GameServerConfigScalingConfigsSchedulesArgs>());
@@ -324,6 +421,14 @@ namespace Pulumi.Gcp.GameServices
 
         [Input("selectors")]
         private InputList<GameServerConfigScalingConfigsSelectorsArgs>? _selectors;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Labels used to identify the clusters to which this scaling config
+        /// applies. A cluster is subject to this scaling config if its labels match
+        /// any of the selector entries.  Structure is documented below.
+        /// </summary>
         public InputList<GameServerConfigScalingConfigsSelectorsArgs> Selectors
         {
             get => _selectors ?? (_selectors = new InputList<GameServerConfigScalingConfigsSelectorsArgs>());
@@ -337,14 +442,32 @@ namespace Pulumi.Gcp.GameServices
 
     public sealed class GameServerConfigScalingConfigsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fleet autoscaler spec, which is sent to Agones.
+        /// Example spec can be found :
+        /// https://agones.dev/site/docs/reference/fleetautoscaler/
+        /// </summary>
         [Input("fleetAutoscalerSpec", required: true)]
         public Input<string> FleetAutoscalerSpec { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the ScalingConfig
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("schedules")]
         private InputList<GameServerConfigScalingConfigsSchedulesGetArgs>? _schedules;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The schedules to which this scaling config applies.  Structure is documented below.
+        /// </summary>
         public InputList<GameServerConfigScalingConfigsSchedulesGetArgs> Schedules
         {
             get => _schedules ?? (_schedules = new InputList<GameServerConfigScalingConfigsSchedulesGetArgs>());
@@ -353,6 +476,14 @@ namespace Pulumi.Gcp.GameServices
 
         [Input("selectors")]
         private InputList<GameServerConfigScalingConfigsSelectorsGetArgs>? _selectors;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Labels used to identify the clusters to which this scaling config
+        /// applies. A cluster is subject to this scaling config if its labels match
+        /// any of the selector entries.  Structure is documented below.
+        /// </summary>
         public InputList<GameServerConfigScalingConfigsSelectorsGetArgs> Selectors
         {
             get => _selectors ?? (_selectors = new InputList<GameServerConfigScalingConfigsSelectorsGetArgs>());
@@ -366,15 +497,41 @@ namespace Pulumi.Gcp.GameServices
 
     public sealed class GameServerConfigScalingConfigsSchedulesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The duration for the cron job event. The duration of the event is effective
+        /// after the cron job's start time.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
+        /// </summary>
         [Input("cronJobDuration")]
         public Input<string>? CronJobDuration { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The cron definition of the scheduled event. See
+        /// https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as
+        /// defined by the realm.
+        /// </summary>
         [Input("cronSpec")]
         public Input<string>? CronSpec { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The end time of the event.
+        /// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+        /// </summary>
         [Input("endTime")]
         public Input<string>? EndTime { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The start time of the event.
+        /// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+        /// </summary>
         [Input("startTime")]
         public Input<string>? StartTime { get; set; }
 
@@ -385,15 +542,41 @@ namespace Pulumi.Gcp.GameServices
 
     public sealed class GameServerConfigScalingConfigsSchedulesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The duration for the cron job event. The duration of the event is effective
+        /// after the cron job's start time.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
+        /// </summary>
         [Input("cronJobDuration")]
         public Input<string>? CronJobDuration { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The cron definition of the scheduled event. See
+        /// https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as
+        /// defined by the realm.
+        /// </summary>
         [Input("cronSpec")]
         public Input<string>? CronSpec { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The end time of the event.
+        /// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+        /// </summary>
         [Input("endTime")]
         public Input<string>? EndTime { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The start time of the event.
+        /// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+        /// </summary>
         [Input("startTime")]
         public Input<string>? StartTime { get; set; }
 
@@ -406,6 +589,12 @@ namespace Pulumi.Gcp.GameServices
     {
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Set of labels to group by.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
@@ -421,6 +610,12 @@ namespace Pulumi.Gcp.GameServices
     {
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Set of labels to group by.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
@@ -439,7 +634,23 @@ namespace Pulumi.Gcp.GameServices
     [OutputType]
     public sealed class GameServerConfigFleetConfigs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fleet spec, which is sent to Agones to configure fleet.
+        /// The spec can be passed as inline json but it is recommended to use a file reference
+        /// instead. File references can contain the json or yaml format of the fleet spec. Eg:
+        /// * fleet_spec = jsonencode(yamldecode(file("fleet_configs.yaml")))
+        /// * fleet_spec = file("fleet_configs.json")
+        /// The format of the spec can be found :
+        /// `https://agones.dev/site/docs/reference/fleet/`.
+        /// </summary>
         public readonly string FleetSpec;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the ScalingConfig
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]
@@ -455,9 +666,33 @@ namespace Pulumi.Gcp.GameServices
     [OutputType]
     public sealed class GameServerConfigScalingConfigs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fleet autoscaler spec, which is sent to Agones.
+        /// Example spec can be found :
+        /// https://agones.dev/site/docs/reference/fleetautoscaler/
+        /// </summary>
         public readonly string FleetAutoscalerSpec;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the ScalingConfig
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The schedules to which this scaling config applies.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<GameServerConfigScalingConfigsSchedules> Schedules;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Labels used to identify the clusters to which this scaling config
+        /// applies. A cluster is subject to this scaling config if its labels match
+        /// any of the selector entries.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<GameServerConfigScalingConfigsSelectors> Selectors;
 
         [OutputConstructor]
@@ -477,9 +712,35 @@ namespace Pulumi.Gcp.GameServices
     [OutputType]
     public sealed class GameServerConfigScalingConfigsSchedules
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The duration for the cron job event. The duration of the event is effective
+        /// after the cron job's start time.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
+        /// </summary>
         public readonly string? CronJobDuration;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The cron definition of the scheduled event. See
+        /// https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as
+        /// defined by the realm.
+        /// </summary>
         public readonly string? CronSpec;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The end time of the event.
+        /// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+        /// </summary>
         public readonly string? EndTime;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The start time of the event.
+        /// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+        /// </summary>
         public readonly string? StartTime;
 
         [OutputConstructor]
@@ -499,6 +760,11 @@ namespace Pulumi.Gcp.GameServices
     [OutputType]
     public sealed class GameServerConfigScalingConfigsSelectors
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Set of labels to group by.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
 
         [OutputConstructor]

@@ -12,16 +12,24 @@ from .. import utilities, tables
 class Deployment(pulumi.CustomResource):
     create_policy: pulumi.Output[str]
     """
-    Set the policy to use for creating new resources. Only used on create and update. Valid values are 'CREATE_OR_ACQUIRE'
-    (default) or 'ACQUIRE'. If set to 'ACQUIRE' and resources do not already exist, the deployment will fail. Note that
-    updating this field does not actually affect the deployment, just how it is updated.
+    -
+    (Optional)
+    Set the policy to use for creating new resources. Only used on
+    create and update. Valid values are `CREATE_OR_ACQUIRE` (default) or
+    `ACQUIRE`. If set to `ACQUIRE` and resources do not already exist,
+    the deployment will fail. Note that updating this field does not
+    actually affect the deployment, just how it is updated.
     """
     delete_policy: pulumi.Output[str]
     """
-    Set the policy to use for deleting new resources on update/delete. Valid values are 'DELETE' (default) or 'ABANDON'. If
-    'DELETE', resource is deleted after removal from Deployment Manager. If 'ABANDON', the resource is only removed from
-    Deployment Manager and is not actually deleted. Note that updating this field does not actually change the deployment,
-    just how it is updated.
+    -
+    (Optional)
+    Set the policy to use for deleting new resources on update/delete.
+    Valid values are `DELETE` (default) or `ABANDON`. If `DELETE`,
+    resource is deleted after removal from Deployment Manager. If
+    `ABANDON`, the resource is only removed from Deployment Manager
+    and is not actually deleted. Note that updating this field does not
+    actually change the deployment, just how it is updated.
     """
     deployment_id: pulumi.Output[str]
     """
@@ -29,14 +37,22 @@ class Deployment(pulumi.CustomResource):
     """
     description: pulumi.Output[str]
     """
+    -
+    (Optional)
     Optional user-provided description of deployment.
     """
     labels: pulumi.Output[list]
     """
-    Key-value pairs to apply to this labels.
+    -
+    (Optional)
+    Key-value pairs to apply to this labels.  Structure is documented below.
 
-      * `key` (`str`)
-      * `value` (`str`)
+      * `key` (`str`) - -
+        (Optional)
+        Key for label.
+      * `value` (`str`) - -
+        (Optional)
+        Value of label.
     """
     manifest: pulumi.Output[str]
     """
@@ -44,14 +60,23 @@ class Deployment(pulumi.CustomResource):
     """
     name: pulumi.Output[str]
     """
-    Unique name for the deployment
+    -
+    (Optional)
+    The name of the template to import, as declared in the YAML
+    configuration.
     """
     preview: pulumi.Output[bool]
     """
-    If set to true, a deployment is created with "shell" resources that are not actually instantiated. This allows you to
-    preview a deployment. It can be updated to false to actually deploy with real resources. ~>**NOTE**: Deployment Manager
-    does not allow update of a deployment in preview (unless updating to preview=false). Thus, Terraform will force-recreate
-    deployments if either preview is updated to true or if other fields are updated while preview is true.
+    -
+    (Optional)
+    If set to true, a deployment is created with "shell" resources
+    that are not actually instantiated. This allows you to preview a
+    deployment. It can be updated to false to actually deploy
+    with real resources.
+    ~>**NOTE**: Deployment Manager does not allow update
+    of a deployment in preview (unless updating to preview=false). Thus,
+    the provider will force-recreate deployments if either preview is updated
+    to true or if other fields are updated while preview is true.
     """
     project: pulumi.Output[str]
     """
@@ -64,14 +89,30 @@ class Deployment(pulumi.CustomResource):
     """
     target: pulumi.Output[dict]
     """
-    Parameters that define your deployment, including the deployment configuration and relevant templates.
+    -
+    (Required)
+    Parameters that define your deployment, including the deployment
+    configuration and relevant templates.  Structure is documented below.
 
-      * `config` (`dict`)
-        * `content` (`str`)
+      * `config` (`dict`) - -
+        (Required)
+        The root configuration file to use for this deployment.  Structure is documented below.
+        * `content` (`str`) - -
+          (Optional)
+          The full contents of the template that you want to import.
 
-      * `imports` (`list`)
-        * `content` (`str`)
-        * `name` (`str`)
+      * `imports` (`list`) - -
+        (Optional)
+        Specifies import files for this configuration. This can be
+        used to import templates or other files. For example, you might
+        import a text file in order to use the file in a template.  Structure is documented below.
+        * `content` (`str`) - -
+          (Optional)
+          The full contents of the template that you want to import.
+        * `name` (`str`) - -
+          (Optional)
+          The name of the template to import, as declared in the YAML
+          configuration.
     """
     def __init__(__self__, resource_name, opts=None, create_policy=None, delete_policy=None, description=None, labels=None, name=None, preview=None, project=None, target=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -91,41 +132,80 @@ class Deployment(pulumi.CustomResource):
         than actually deploying an in-preview deployment (i.e. `preview=true` to
         `preview=false`).
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/deployment_manager_deployment.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] create_policy: Set the policy to use for creating new resources. Only used on create and update. Valid values are 'CREATE_OR_ACQUIRE'
-               (default) or 'ACQUIRE'. If set to 'ACQUIRE' and resources do not already exist, the deployment will fail. Note that
-               updating this field does not actually affect the deployment, just how it is updated.
-        :param pulumi.Input[str] delete_policy: Set the policy to use for deleting new resources on update/delete. Valid values are 'DELETE' (default) or 'ABANDON'. If
-               'DELETE', resource is deleted after removal from Deployment Manager. If 'ABANDON', the resource is only removed from
-               Deployment Manager and is not actually deleted. Note that updating this field does not actually change the deployment,
-               just how it is updated.
-        :param pulumi.Input[str] description: Optional user-provided description of deployment.
-        :param pulumi.Input[list] labels: Key-value pairs to apply to this labels.
-        :param pulumi.Input[str] name: Unique name for the deployment
-        :param pulumi.Input[bool] preview: If set to true, a deployment is created with "shell" resources that are not actually instantiated. This allows you to
-               preview a deployment. It can be updated to false to actually deploy with real resources. ~>**NOTE**: Deployment Manager
-               does not allow update of a deployment in preview (unless updating to preview=false). Thus, Terraform will force-recreate
-               deployments if either preview is updated to true or if other fields are updated while preview is true.
+        :param pulumi.Input[str] create_policy: -
+               (Optional)
+               Set the policy to use for creating new resources. Only used on
+               create and update. Valid values are `CREATE_OR_ACQUIRE` (default) or
+               `ACQUIRE`. If set to `ACQUIRE` and resources do not already exist,
+               the deployment will fail. Note that updating this field does not
+               actually affect the deployment, just how it is updated.
+        :param pulumi.Input[str] delete_policy: -
+               (Optional)
+               Set the policy to use for deleting new resources on update/delete.
+               Valid values are `DELETE` (default) or `ABANDON`. If `DELETE`,
+               resource is deleted after removal from Deployment Manager. If
+               `ABANDON`, the resource is only removed from Deployment Manager
+               and is not actually deleted. Note that updating this field does not
+               actually change the deployment, just how it is updated.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               Optional user-provided description of deployment.
+        :param pulumi.Input[list] labels: -
+               (Optional)
+               Key-value pairs to apply to this labels.  Structure is documented below.
+        :param pulumi.Input[str] name: -
+               (Optional)
+               The name of the template to import, as declared in the YAML
+               configuration.
+        :param pulumi.Input[bool] preview: -
+               (Optional)
+               If set to true, a deployment is created with "shell" resources
+               that are not actually instantiated. This allows you to preview a
+               deployment. It can be updated to false to actually deploy
+               with real resources.
+               ~>**NOTE**: Deployment Manager does not allow update
+               of a deployment in preview (unless updating to preview=false). Thus,
+               the provider will force-recreate deployments if either preview is updated
+               to true or if other fields are updated while preview is true.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] target: Parameters that define your deployment, including the deployment configuration and relevant templates.
+        :param pulumi.Input[dict] target: -
+               (Required)
+               Parameters that define your deployment, including the deployment
+               configuration and relevant templates.  Structure is documented below.
 
         The **labels** object supports the following:
 
-          * `key` (`pulumi.Input[str]`)
-          * `value` (`pulumi.Input[str]`)
+          * `key` (`pulumi.Input[str]`) - -
+            (Optional)
+            Key for label.
+          * `value` (`pulumi.Input[str]`) - -
+            (Optional)
+            Value of label.
 
         The **target** object supports the following:
 
-          * `config` (`pulumi.Input[dict]`)
-            * `content` (`pulumi.Input[str]`)
+          * `config` (`pulumi.Input[dict]`) - -
+            (Required)
+            The root configuration file to use for this deployment.  Structure is documented below.
+            * `content` (`pulumi.Input[str]`) - -
+              (Optional)
+              The full contents of the template that you want to import.
 
-          * `imports` (`pulumi.Input[list]`)
-            * `content` (`pulumi.Input[str]`)
-            * `name` (`pulumi.Input[str]`)
+          * `imports` (`pulumi.Input[list]`) - -
+            (Optional)
+            Specifies import files for this configuration. This can be
+            used to import templates or other files. For example, you might
+            import a text file in order to use the file in a template.  Structure is documented below.
+            * `content` (`pulumi.Input[str]`) - -
+              (Optional)
+              The full contents of the template that you want to import.
+            * `name` (`pulumi.Input[str]`) - -
+              (Optional)
+              The name of the template to import, as declared in the YAML
+              configuration.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -172,40 +252,81 @@ class Deployment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] create_policy: Set the policy to use for creating new resources. Only used on create and update. Valid values are 'CREATE_OR_ACQUIRE'
-               (default) or 'ACQUIRE'. If set to 'ACQUIRE' and resources do not already exist, the deployment will fail. Note that
-               updating this field does not actually affect the deployment, just how it is updated.
-        :param pulumi.Input[str] delete_policy: Set the policy to use for deleting new resources on update/delete. Valid values are 'DELETE' (default) or 'ABANDON'. If
-               'DELETE', resource is deleted after removal from Deployment Manager. If 'ABANDON', the resource is only removed from
-               Deployment Manager and is not actually deleted. Note that updating this field does not actually change the deployment,
-               just how it is updated.
+        :param pulumi.Input[str] create_policy: -
+               (Optional)
+               Set the policy to use for creating new resources. Only used on
+               create and update. Valid values are `CREATE_OR_ACQUIRE` (default) or
+               `ACQUIRE`. If set to `ACQUIRE` and resources do not already exist,
+               the deployment will fail. Note that updating this field does not
+               actually affect the deployment, just how it is updated.
+        :param pulumi.Input[str] delete_policy: -
+               (Optional)
+               Set the policy to use for deleting new resources on update/delete.
+               Valid values are `DELETE` (default) or `ABANDON`. If `DELETE`,
+               resource is deleted after removal from Deployment Manager. If
+               `ABANDON`, the resource is only removed from Deployment Manager
+               and is not actually deleted. Note that updating this field does not
+               actually change the deployment, just how it is updated.
         :param pulumi.Input[str] deployment_id: Unique identifier for deployment. Output only.
-        :param pulumi.Input[str] description: Optional user-provided description of deployment.
-        :param pulumi.Input[list] labels: Key-value pairs to apply to this labels.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               Optional user-provided description of deployment.
+        :param pulumi.Input[list] labels: -
+               (Optional)
+               Key-value pairs to apply to this labels.  Structure is documented below.
         :param pulumi.Input[str] manifest: Output only. URL of the manifest representing the last manifest that was successfully deployed.
-        :param pulumi.Input[str] name: Unique name for the deployment
-        :param pulumi.Input[bool] preview: If set to true, a deployment is created with "shell" resources that are not actually instantiated. This allows you to
-               preview a deployment. It can be updated to false to actually deploy with real resources. ~>**NOTE**: Deployment Manager
-               does not allow update of a deployment in preview (unless updating to preview=false). Thus, Terraform will force-recreate
-               deployments if either preview is updated to true or if other fields are updated while preview is true.
+        :param pulumi.Input[str] name: -
+               (Optional)
+               The name of the template to import, as declared in the YAML
+               configuration.
+        :param pulumi.Input[bool] preview: -
+               (Optional)
+               If set to true, a deployment is created with "shell" resources
+               that are not actually instantiated. This allows you to preview a
+               deployment. It can be updated to false to actually deploy
+               with real resources.
+               ~>**NOTE**: Deployment Manager does not allow update
+               of a deployment in preview (unless updating to preview=false). Thus,
+               the provider will force-recreate deployments if either preview is updated
+               to true or if other fields are updated while preview is true.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: Output only. Server defined URL for the resource.
-        :param pulumi.Input[dict] target: Parameters that define your deployment, including the deployment configuration and relevant templates.
+        :param pulumi.Input[dict] target: -
+               (Required)
+               Parameters that define your deployment, including the deployment
+               configuration and relevant templates.  Structure is documented below.
 
         The **labels** object supports the following:
 
-          * `key` (`pulumi.Input[str]`)
-          * `value` (`pulumi.Input[str]`)
+          * `key` (`pulumi.Input[str]`) - -
+            (Optional)
+            Key for label.
+          * `value` (`pulumi.Input[str]`) - -
+            (Optional)
+            Value of label.
 
         The **target** object supports the following:
 
-          * `config` (`pulumi.Input[dict]`)
-            * `content` (`pulumi.Input[str]`)
+          * `config` (`pulumi.Input[dict]`) - -
+            (Required)
+            The root configuration file to use for this deployment.  Structure is documented below.
+            * `content` (`pulumi.Input[str]`) - -
+              (Optional)
+              The full contents of the template that you want to import.
 
-          * `imports` (`pulumi.Input[list]`)
-            * `content` (`pulumi.Input[str]`)
-            * `name` (`pulumi.Input[str]`)
+          * `imports` (`pulumi.Input[list]`) - -
+            (Optional)
+            Specifies import files for this configuration. This can be
+            used to import templates or other files. For example, you might
+            import a text file in order to use the file in a template.  Structure is documented below.
+            * `content` (`pulumi.Input[str]`) - -
+              (Optional)
+              The full contents of the template that you want to import.
+            * `name` (`pulumi.Input[str]`) - -
+              (Optional)
+              The name of the template to import, as declared in the YAML
+              configuration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

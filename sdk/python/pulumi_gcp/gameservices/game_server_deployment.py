@@ -12,18 +12,27 @@ from .. import utilities, tables
 class GameServerDeployment(pulumi.CustomResource):
     deployment_id: pulumi.Output[str]
     """
+    -
+    (Required)
     A unique id for the deployment.
     """
     description: pulumi.Output[str]
     """
+    -
+    (Optional)
     Human readable description of the game server deployment.
     """
     labels: pulumi.Output[dict]
     """
-    The labels associated with this game server deployment. Each label is a key-value pair.
+    -
+    (Optional)
+    The labels associated with this game server deployment. Each label is a
+    key-value pair.
     """
     location: pulumi.Output[str]
     """
+    -
+    (Optional)
     Location of the Deployment.
     """
     name: pulumi.Output[str]
@@ -47,14 +56,21 @@ class GameServerDeployment(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/game-servers/docs)
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/game_services_game_server_deployment.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] deployment_id: A unique id for the deployment.
-        :param pulumi.Input[str] description: Human readable description of the game server deployment.
-        :param pulumi.Input[dict] labels: The labels associated with this game server deployment. Each label is a key-value pair.
-        :param pulumi.Input[str] location: Location of the Deployment.
+        :param pulumi.Input[str] deployment_id: -
+               (Required)
+               A unique id for the deployment.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               Human readable description of the game server deployment.
+        :param pulumi.Input[dict] labels: -
+               (Optional)
+               The labels associated with this game server deployment. Each label is a
+               key-value pair.
+        :param pulumi.Input[str] location: -
+               (Optional)
+               Location of the Deployment.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         """
@@ -98,10 +114,19 @@ class GameServerDeployment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] deployment_id: A unique id for the deployment.
-        :param pulumi.Input[str] description: Human readable description of the game server deployment.
-        :param pulumi.Input[dict] labels: The labels associated with this game server deployment. Each label is a key-value pair.
-        :param pulumi.Input[str] location: Location of the Deployment.
+        :param pulumi.Input[str] deployment_id: -
+               (Required)
+               A unique id for the deployment.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               Human readable description of the game server deployment.
+        :param pulumi.Input[dict] labels: -
+               (Optional)
+               The labels associated with this game server deployment. Each label is a
+               key-value pair.
+        :param pulumi.Input[str] location: -
+               (Optional)
+               Location of the Deployment.
         :param pulumi.Input[str] name: The resource id of the game server deployment, eg:
                'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}'. For example,
                'projects/my-project/locations/{location}/gameServerDeployments/my-deployment'.

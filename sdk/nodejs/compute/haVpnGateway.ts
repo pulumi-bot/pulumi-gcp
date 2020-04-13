@@ -48,17 +48,26 @@ export class HaVpnGateway extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Optional)
      * An optional description of this resource.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035.  Specifically, the name must be 1-63 characters long and
+     * match the regular expression `a-z?` which means
+     * the first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The network this VPN gateway is accepting traffic for.
      */
     public readonly network!: pulumi.Output<string>;
@@ -68,6 +77,8 @@ export class HaVpnGateway extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * The region this gateway should sit in.
      */
     public readonly region!: pulumi.Output<string>;
@@ -128,17 +139,26 @@ export class HaVpnGateway extends pulumi.CustomResource {
  */
 export interface HaVpnGatewayState {
     /**
+     * -
+     * (Optional)
      * An optional description of this resource.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035.  Specifically, the name must be 1-63 characters long and
+     * match the regular expression `a-z?` which means
+     * the first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     readonly name?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The network this VPN gateway is accepting traffic for.
      */
     readonly network?: pulumi.Input<string>;
@@ -148,6 +168,8 @@ export interface HaVpnGatewayState {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The region this gateway should sit in.
      */
     readonly region?: pulumi.Input<string>;
@@ -166,17 +188,26 @@ export interface HaVpnGatewayState {
  */
 export interface HaVpnGatewayArgs {
     /**
+     * -
+     * (Optional)
      * An optional description of this resource.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035.  Specifically, the name must be 1-63 characters long and
+     * match the regular expression `a-z?` which means
+     * the first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     readonly name?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The network this VPN gateway is accepting traffic for.
      */
     readonly network: pulumi.Input<string>;
@@ -186,6 +217,8 @@ export interface HaVpnGatewayArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The region this gateway should sit in.
      */
     readonly region?: pulumi.Input<string>;

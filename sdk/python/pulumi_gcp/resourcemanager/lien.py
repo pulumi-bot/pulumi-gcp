@@ -20,44 +20,66 @@ class Lien(pulumi.CustomResource):
     """
     origin: pulumi.Output[str]
     """
-    A stable, user-visible/meaningful string identifying the origin of the Lien, intended to be inspected programmatically.
-    Maximum length of 200 characters.
+    -
+    (Required)
+    A stable, user-visible/meaningful string identifying the origin
+    of the Lien, intended to be inspected programmatically. Maximum length of
+    200 characters.
     """
     parent: pulumi.Output[str]
     """
-    A reference to the resource this Lien is attached to. The server will validate the parent against those for which Liens
-    are supported. Since a variety of objects can have Liens against them, you must provide the type prefix (e.g.
-    "projects/my-project-name").
+    -
+    (Required)
+    A reference to the resource this Lien is attached to.
+    The server will validate the parent against those for which Liens are supported.
+    Since a variety of objects can have Liens against them, you must provide the type
+    prefix (e.g. "projects/my-project-name").
     """
     reason: pulumi.Output[str]
     """
-    Concise user-visible strings indicating why an action cannot be performed on a resource. Maximum length of 200
-    characters.
+    -
+    (Required)
+    Concise user-visible strings indicating why an action cannot be performed
+    on a resource. Maximum length of 200 characters.
     """
     restrictions: pulumi.Output[list]
     """
-    The types of operations which should be blocked as a result of this Lien. Each value should correspond to an IAM
-    permission. The server will validate the permissions against those for which Liens are supported. An empty list is
-    meaningless and will be rejected. e.g. ['resourcemanager.projects.delete']
+    -
+    (Required)
+    The types of operations which should be blocked as a result of this Lien.
+    Each value should correspond to an IAM permission. The server will validate
+    the permissions against those for which Liens are supported.  An empty
+    list is meaningless and will be rejected.
+    e.g. ['resourcemanager.projects.delete']
     """
     def __init__(__self__, resource_name, opts=None, origin=None, parent=None, reason=None, restrictions=None, __props__=None, __name__=None, __opts__=None):
         """
         A Lien represents an encumbrance on the actions that can be performed on a resource.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/resource_manager_lien.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] origin: A stable, user-visible/meaningful string identifying the origin of the Lien, intended to be inspected programmatically.
-               Maximum length of 200 characters.
-        :param pulumi.Input[str] parent: A reference to the resource this Lien is attached to. The server will validate the parent against those for which Liens
-               are supported. Since a variety of objects can have Liens against them, you must provide the type prefix (e.g.
-               "projects/my-project-name").
-        :param pulumi.Input[str] reason: Concise user-visible strings indicating why an action cannot be performed on a resource. Maximum length of 200
-               characters.
-        :param pulumi.Input[list] restrictions: The types of operations which should be blocked as a result of this Lien. Each value should correspond to an IAM
-               permission. The server will validate the permissions against those for which Liens are supported. An empty list is
-               meaningless and will be rejected. e.g. ['resourcemanager.projects.delete']
+        :param pulumi.Input[str] origin: -
+               (Required)
+               A stable, user-visible/meaningful string identifying the origin
+               of the Lien, intended to be inspected programmatically. Maximum length of
+               200 characters.
+        :param pulumi.Input[str] parent: -
+               (Required)
+               A reference to the resource this Lien is attached to.
+               The server will validate the parent against those for which Liens are supported.
+               Since a variety of objects can have Liens against them, you must provide the type
+               prefix (e.g. "projects/my-project-name").
+        :param pulumi.Input[str] reason: -
+               (Required)
+               Concise user-visible strings indicating why an action cannot be performed
+               on a resource. Maximum length of 200 characters.
+        :param pulumi.Input[list] restrictions: -
+               (Required)
+               The types of operations which should be blocked as a result of this Lien.
+               Each value should correspond to an IAM permission. The server will validate
+               the permissions against those for which Liens are supported.  An empty
+               list is meaningless and will be rejected.
+               e.g. ['resourcemanager.projects.delete']
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -107,16 +129,28 @@ class Lien(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] create_time: Time of creation
         :param pulumi.Input[str] name: A system-generated unique identifier for this Lien.
-        :param pulumi.Input[str] origin: A stable, user-visible/meaningful string identifying the origin of the Lien, intended to be inspected programmatically.
-               Maximum length of 200 characters.
-        :param pulumi.Input[str] parent: A reference to the resource this Lien is attached to. The server will validate the parent against those for which Liens
-               are supported. Since a variety of objects can have Liens against them, you must provide the type prefix (e.g.
-               "projects/my-project-name").
-        :param pulumi.Input[str] reason: Concise user-visible strings indicating why an action cannot be performed on a resource. Maximum length of 200
-               characters.
-        :param pulumi.Input[list] restrictions: The types of operations which should be blocked as a result of this Lien. Each value should correspond to an IAM
-               permission. The server will validate the permissions against those for which Liens are supported. An empty list is
-               meaningless and will be rejected. e.g. ['resourcemanager.projects.delete']
+        :param pulumi.Input[str] origin: -
+               (Required)
+               A stable, user-visible/meaningful string identifying the origin
+               of the Lien, intended to be inspected programmatically. Maximum length of
+               200 characters.
+        :param pulumi.Input[str] parent: -
+               (Required)
+               A reference to the resource this Lien is attached to.
+               The server will validate the parent against those for which Liens are supported.
+               Since a variety of objects can have Liens against them, you must provide the type
+               prefix (e.g. "projects/my-project-name").
+        :param pulumi.Input[str] reason: -
+               (Required)
+               Concise user-visible strings indicating why an action cannot be performed
+               on a resource. Maximum length of 200 characters.
+        :param pulumi.Input[list] restrictions: -
+               (Required)
+               The types of operations which should be blocked as a result of this Lien.
+               Each value should correspond to an IAM permission. The server will validate
+               the permissions against those for which Liens are supported.  An empty
+               list is meaningless and will be rejected.
+               e.g. ['resourcemanager.projects.delete']
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

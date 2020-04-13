@@ -12,27 +12,39 @@ from .. import utilities, tables
 class OauthIdpConfig(pulumi.CustomResource):
     client_id: pulumi.Output[str]
     """
+    -
+    (Required)
     The client id of an OAuth client.
     """
     client_secret: pulumi.Output[str]
     """
+    -
+    (Optional)
     The client secret of the OAuth client, to enable OIDC code flow.
     """
     display_name: pulumi.Output[str]
     """
+    -
+    (Optional)
     Human friendly display name.
     """
     enabled: pulumi.Output[bool]
     """
+    -
+    (Optional)
     If this config allows users to sign in with the provider.
     """
     issuer: pulumi.Output[str]
     """
+    -
+    (Required)
     For OIDC Idps, the issuer identifier.
     """
     name: pulumi.Output[str]
     """
-    The name of the OauthIdpConfig. Must start with 'oidc.'.
+    -
+    (Required)
+    The name of the OauthIdpConfig. Must start with `oidc.`.
     """
     project: pulumi.Output[str]
     """
@@ -47,16 +59,26 @@ class OauthIdpConfig(pulumi.CustomResource):
         [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
         the marketplace prior to using this resource.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/identity_platform_oauth_idp_config.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: The client id of an OAuth client.
-        :param pulumi.Input[str] client_secret: The client secret of the OAuth client, to enable OIDC code flow.
-        :param pulumi.Input[str] display_name: Human friendly display name.
-        :param pulumi.Input[bool] enabled: If this config allows users to sign in with the provider.
-        :param pulumi.Input[str] issuer: For OIDC Idps, the issuer identifier.
-        :param pulumi.Input[str] name: The name of the OauthIdpConfig. Must start with 'oidc.'.
+        :param pulumi.Input[str] client_id: -
+               (Required)
+               The client id of an OAuth client.
+        :param pulumi.Input[str] client_secret: -
+               (Optional)
+               The client secret of the OAuth client, to enable OIDC code flow.
+        :param pulumi.Input[str] display_name: -
+               (Optional)
+               Human friendly display name.
+        :param pulumi.Input[bool] enabled: -
+               (Optional)
+               If this config allows users to sign in with the provider.
+        :param pulumi.Input[str] issuer: -
+               (Required)
+               For OIDC Idps, the issuer identifier.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the OauthIdpConfig. Must start with `oidc.`.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         """
@@ -103,12 +125,24 @@ class OauthIdpConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: The client id of an OAuth client.
-        :param pulumi.Input[str] client_secret: The client secret of the OAuth client, to enable OIDC code flow.
-        :param pulumi.Input[str] display_name: Human friendly display name.
-        :param pulumi.Input[bool] enabled: If this config allows users to sign in with the provider.
-        :param pulumi.Input[str] issuer: For OIDC Idps, the issuer identifier.
-        :param pulumi.Input[str] name: The name of the OauthIdpConfig. Must start with 'oidc.'.
+        :param pulumi.Input[str] client_id: -
+               (Required)
+               The client id of an OAuth client.
+        :param pulumi.Input[str] client_secret: -
+               (Optional)
+               The client secret of the OAuth client, to enable OIDC code flow.
+        :param pulumi.Input[str] display_name: -
+               (Optional)
+               Human friendly display name.
+        :param pulumi.Input[bool] enabled: -
+               (Optional)
+               If this config allows users to sign in with the provider.
+        :param pulumi.Input[str] issuer: -
+               (Required)
+               For OIDC Idps, the issuer identifier.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the OauthIdpConfig. Must start with `oidc.`.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         """

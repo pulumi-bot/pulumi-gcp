@@ -21,23 +21,31 @@ namespace Pulumi.Gcp.Compute
     public partial class ExternalVpnGateway : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// A list of interfaces on this external VPN gateway.
+        /// -
+        /// (Optional)
+        /// A list of interfaces on this external VPN gateway.  Structure is documented below.
         /// </summary>
         [Output("interfaces")]
         public Output<ImmutableArray<Outputs.ExternalVpnGatewayInterfaces>> Interfaces { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035.  Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z?` which means
+        /// the first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -50,6 +58,8 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Indicates the redundancy type of this external VPN gateway
         /// </summary>
         [Output("redundancyType")]
@@ -108,6 +118,8 @@ namespace Pulumi.Gcp.Compute
     public sealed class ExternalVpnGatewayArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Input("description")]
@@ -117,7 +129,9 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.ExternalVpnGatewayInterfacesArgs>? _interfaces;
 
         /// <summary>
-        /// A list of interfaces on this external VPN gateway.
+        /// -
+        /// (Optional)
+        /// A list of interfaces on this external VPN gateway.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.ExternalVpnGatewayInterfacesArgs> Interfaces
         {
@@ -126,11 +140,15 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035.  Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z?` which means
+        /// the first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -143,6 +161,8 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Indicates the redundancy type of this external VPN gateway
         /// </summary>
         [Input("redundancyType")]
@@ -156,6 +176,8 @@ namespace Pulumi.Gcp.Compute
     public sealed class ExternalVpnGatewayState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Input("description")]
@@ -165,7 +187,9 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.ExternalVpnGatewayInterfacesGetArgs>? _interfaces;
 
         /// <summary>
-        /// A list of interfaces on this external VPN gateway.
+        /// -
+        /// (Optional)
+        /// A list of interfaces on this external VPN gateway.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.ExternalVpnGatewayInterfacesGetArgs> Interfaces
         {
@@ -174,11 +198,15 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035.  Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z?` which means
+        /// the first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -191,6 +219,8 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Indicates the redundancy type of this external VPN gateway
         /// </summary>
         [Input("redundancyType")]
@@ -213,11 +243,25 @@ namespace Pulumi.Gcp.Compute
     public sealed class ExternalVpnGatewayInterfacesArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// an identifier for the resource with format `projects/{{project}}/global/externalVpnGateways/{{name}}`
+        /// -
+        /// (Optional)
+        /// The numberic ID for this interface. Allowed values are based on the redundancy type
+        /// of this external VPN gateway
+        /// * `0 - SINGLE_IP_INTERNALLY_REDUNDANT`
+        /// * `0, 1 - TWO_IPS_REDUNDANCY`
+        /// * `0, 1, 2, 3 - FOUR_IPS_REDUNDANCY`
         /// </summary>
         [Input("id")]
         public Input<int>? Id { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// IP address of the interface in the external VPN gateway.
+        /// Only IPv4 is supported. This IP address can be either from
+        /// your on-premise gateway or another Cloud provider’s VPN gateway,
+        /// it cannot be an IP address from Google Compute Engine.
+        /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
@@ -229,11 +273,25 @@ namespace Pulumi.Gcp.Compute
     public sealed class ExternalVpnGatewayInterfacesGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// an identifier for the resource with format `projects/{{project}}/global/externalVpnGateways/{{name}}`
+        /// -
+        /// (Optional)
+        /// The numberic ID for this interface. Allowed values are based on the redundancy type
+        /// of this external VPN gateway
+        /// * `0 - SINGLE_IP_INTERNALLY_REDUNDANT`
+        /// * `0, 1 - TWO_IPS_REDUNDANCY`
+        /// * `0, 1, 2, 3 - FOUR_IPS_REDUNDANCY`
         /// </summary>
         [Input("id")]
         public Input<int>? Id { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// IP address of the interface in the external VPN gateway.
+        /// Only IPv4 is supported. This IP address can be either from
+        /// your on-premise gateway or another Cloud provider’s VPN gateway,
+        /// it cannot be an IP address from Google Compute Engine.
+        /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
@@ -250,9 +308,23 @@ namespace Pulumi.Gcp.Compute
     public sealed class ExternalVpnGatewayInterfaces
     {
         /// <summary>
-        /// an identifier for the resource with format `projects/{{project}}/global/externalVpnGateways/{{name}}`
+        /// -
+        /// (Optional)
+        /// The numberic ID for this interface. Allowed values are based on the redundancy type
+        /// of this external VPN gateway
+        /// * `0 - SINGLE_IP_INTERNALLY_REDUNDANT`
+        /// * `0, 1 - TWO_IPS_REDUNDANCY`
+        /// * `0, 1, 2, 3 - FOUR_IPS_REDUNDANCY`
         /// </summary>
         public readonly int? Id;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// IP address of the interface in the external VPN gateway.
+        /// Only IPv4 is supported. This IP address can be either from
+        /// your on-premise gateway or another Cloud provider’s VPN gateway,
+        /// it cannot be an IP address from Google Compute Engine.
+        /// </summary>
         public readonly string? IpAddress;
 
         [OutputConstructor]

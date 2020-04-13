@@ -33,6 +33,7 @@ import * as utilities from "../utilities";
  * ## Example Usage
  * 
  * ### Basic Usage
+ * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -43,6 +44,7 @@ import * as utilities from "../utilities";
  * ```
  * 
  * ### With Software (Airflow) Config
+ * 
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -95,14 +97,42 @@ export class Environment extends pulumi.CustomResource {
         return obj['__pulumiType'] === Environment.__pulumiType;
     }
 
+    /**
+     * -
+     * (Optional)
+     * Configuration parameters for this environment  Structure is documented below.
+     */
     public readonly config!: pulumi.Output<outputs.composer.EnvironmentConfig>;
+    /**
+     * -
+     * (Optional)
+     * User-defined labels for this environment. The labels map can contain
+     * no more than 64 entries. Entries of the labels map are UTF8 strings
+     * that comply with the following restrictions:
+     * Label keys must be between 1 and 63 characters long and must conform
+     * to the following regular expression: `a-z?`.
+     * Label values must be between 0 and 63 characters long and must
+     * conform to the regular expression `(a-z?)?`.
+     * No more than 64 labels can be associated with a given environment.
+     * Both keys and values must be <= 128 bytes in size.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * -
+     * (Required)
+     * Name of the environment
+     */
     public readonly name!: pulumi.Output<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
     public readonly project!: pulumi.Output<string>;
+    /**
+     * -
+     * (Optional)
+     * The location or Compute Engine region for the environment.
+     */
     public readonly region!: pulumi.Output<string | undefined>;
 
     /**
@@ -145,14 +175,42 @@ export class Environment extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Environment resources.
  */
 export interface EnvironmentState {
+    /**
+     * -
+     * (Optional)
+     * Configuration parameters for this environment  Structure is documented below.
+     */
     readonly config?: pulumi.Input<inputs.composer.EnvironmentConfig>;
+    /**
+     * -
+     * (Optional)
+     * User-defined labels for this environment. The labels map can contain
+     * no more than 64 entries. Entries of the labels map are UTF8 strings
+     * that comply with the following restrictions:
+     * Label keys must be between 1 and 63 characters long and must conform
+     * to the following regular expression: `a-z?`.
+     * Label values must be between 0 and 63 characters long and must
+     * conform to the regular expression `(a-z?)?`.
+     * No more than 64 labels can be associated with a given environment.
+     * Both keys and values must be <= 128 bytes in size.
+     */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * -
+     * (Required)
+     * Name of the environment
+     */
     readonly name?: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
     readonly project?: pulumi.Input<string>;
+    /**
+     * -
+     * (Optional)
+     * The location or Compute Engine region for the environment.
+     */
     readonly region?: pulumi.Input<string>;
 }
 
@@ -160,13 +218,41 @@ export interface EnvironmentState {
  * The set of arguments for constructing a Environment resource.
  */
 export interface EnvironmentArgs {
+    /**
+     * -
+     * (Optional)
+     * Configuration parameters for this environment  Structure is documented below.
+     */
     readonly config?: pulumi.Input<inputs.composer.EnvironmentConfig>;
+    /**
+     * -
+     * (Optional)
+     * User-defined labels for this environment. The labels map can contain
+     * no more than 64 entries. Entries of the labels map are UTF8 strings
+     * that comply with the following restrictions:
+     * Label keys must be between 1 and 63 characters long and must conform
+     * to the following regular expression: `a-z?`.
+     * Label values must be between 0 and 63 characters long and must
+     * conform to the regular expression `(a-z?)?`.
+     * No more than 64 labels can be associated with a given environment.
+     * Both keys and values must be <= 128 bytes in size.
+     */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * -
+     * (Required)
+     * Name of the environment
+     */
     readonly name?: pulumi.Input<string>;
     /**
      * The ID of the project in which the resource belongs.
      * If it is not provided, the provider project is used.
      */
     readonly project?: pulumi.Input<string>;
+    /**
+     * -
+     * (Optional)
+     * The location or Compute Engine region for the environment.
+     */
     readonly region?: pulumi.Input<string>;
 }

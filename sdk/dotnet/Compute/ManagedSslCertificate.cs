@@ -53,6 +53,8 @@ namespace Pulumi.Gcp.Compute
         public Output<string> CreationTimestamp { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Output("description")]
@@ -65,18 +67,24 @@ namespace Pulumi.Gcp.Compute
         public Output<string> ExpireTime { get; private set; } = null!;
 
         /// <summary>
-        /// Properties relevant to a managed certificate. These will be used if the certificate is managed (as indicated
-        /// by a value of 'MANAGED' in 'type').
+        /// -
+        /// (Optional)
+        /// Properties relevant to a managed certificate.  These will be used if the
+        /// certificate is managed (as indicated by a value of `MANAGED` in `type`).  Structure is documented below.
         /// </summary>
         [Output("managed")]
         public Output<Outputs.ManagedSslCertificateManaged?> Managed { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash. These are in the same namespace as the managed SSL certificates.
+        /// -
+        /// (Optional)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -101,7 +109,10 @@ namespace Pulumi.Gcp.Compute
         public Output<ImmutableArray<string>> SubjectAlternativeNames { get; private set; } = null!;
 
         /// <summary>
-        /// Enum field whose value is always 'MANAGED' - used to signal to the API which type this is.
+        /// -
+        /// (Optional)
+        /// Enum field whose value is always `MANAGED` - used to signal to the API
+        /// which type this is.
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -159,24 +170,32 @@ namespace Pulumi.Gcp.Compute
         public Input<int>? CertificateId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Properties relevant to a managed certificate. These will be used if the certificate is managed (as indicated
-        /// by a value of 'MANAGED' in 'type').
+        /// -
+        /// (Optional)
+        /// Properties relevant to a managed certificate.  These will be used if the
+        /// certificate is managed (as indicated by a value of `MANAGED` in `type`).  Structure is documented below.
         /// </summary>
         [Input("managed")]
         public Input<Inputs.ManagedSslCertificateManagedArgs>? Managed { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash. These are in the same namespace as the managed SSL certificates.
+        /// -
+        /// (Optional)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -189,7 +208,10 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// Enum field whose value is always 'MANAGED' - used to signal to the API which type this is.
+        /// -
+        /// (Optional)
+        /// Enum field whose value is always `MANAGED` - used to signal to the API
+        /// which type this is.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -214,6 +236,8 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? CreationTimestamp { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Input("description")]
@@ -226,18 +250,24 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? ExpireTime { get; set; }
 
         /// <summary>
-        /// Properties relevant to a managed certificate. These will be used if the certificate is managed (as indicated
-        /// by a value of 'MANAGED' in 'type').
+        /// -
+        /// (Optional)
+        /// Properties relevant to a managed certificate.  These will be used if the
+        /// certificate is managed (as indicated by a value of `MANAGED` in `type`).  Structure is documented below.
         /// </summary>
         [Input("managed")]
         public Input<Inputs.ManagedSslCertificateManagedGetArgs>? Managed { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash. These are in the same namespace as the managed SSL certificates.
+        /// -
+        /// (Optional)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -268,7 +298,10 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// Enum field whose value is always 'MANAGED' - used to signal to the API which type this is.
+        /// -
+        /// (Optional)
+        /// Enum field whose value is always `MANAGED` - used to signal to the API
+        /// which type this is.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -285,6 +318,13 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("domains", required: true)]
         private InputList<string>? _domains;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Domains for which a managed SSL certificate will be valid.  Currently,
+        /// there can be up to 100 domains in this list.
+        /// </summary>
         public InputList<string> Domains
         {
             get => _domains ?? (_domains = new InputList<string>());
@@ -300,6 +340,13 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("domains", required: true)]
         private InputList<string>? _domains;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Domains for which a managed SSL certificate will be valid.  Currently,
+        /// there can be up to 100 domains in this list.
+        /// </summary>
         public InputList<string> Domains
         {
             get => _domains ?? (_domains = new InputList<string>());
@@ -318,6 +365,12 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ManagedSslCertificateManaged
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Domains for which a managed SSL certificate will be valid.  Currently,
+        /// there can be up to 100 domains in this list.
+        /// </summary>
         public readonly ImmutableArray<string> Domains;
 
         [OutputConstructor]

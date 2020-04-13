@@ -27,12 +27,16 @@ namespace Pulumi.Gcp.SecretManager
         public Output<string> CreateTime { get; private set; } = null!;
 
         /// <summary>
-        /// The labels assigned to this Secret. Label keys must be between 1 and 63 characters long, have a UTF-8
-        /// encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62} Label values must be between 0 and 63 characters long, have a
-        /// UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be assigned to a given resource. An object containing
-        /// a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
+        /// -
+        /// (Optional)
+        /// The labels assigned to this Secret.
+        /// Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes,
+        /// and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
+        /// Label values must be between 0 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes,
+        /// and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
+        /// No more than 64 labels can be assigned to a given resource.
+        /// An object containing a list of "key": value pairs. Example:
+        /// { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
@@ -51,13 +55,17 @@ namespace Pulumi.Gcp.SecretManager
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// The replication policy of the secret data attached to the Secret. It cannot be changed after the Secret has
-        /// been created.
+        /// -
+        /// (Required)
+        /// The replication policy of the secret data attached to the Secret. It cannot be changed
+        /// after the Secret has been created.  Structure is documented below.
         /// </summary>
         [Output("replication")]
         public Output<Outputs.SecretReplication> Replication { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// This must be unique within the project.
         /// </summary>
         [Output("secretId")]
@@ -113,12 +121,16 @@ namespace Pulumi.Gcp.SecretManager
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// The labels assigned to this Secret. Label keys must be between 1 and 63 characters long, have a UTF-8
-        /// encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62} Label values must be between 0 and 63 characters long, have a
-        /// UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be assigned to a given resource. An object containing
-        /// a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
+        /// -
+        /// (Optional)
+        /// The labels assigned to this Secret.
+        /// Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes,
+        /// and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
+        /// Label values must be between 0 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes,
+        /// and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
+        /// No more than 64 labels can be assigned to a given resource.
+        /// An object containing a list of "key": value pairs. Example:
+        /// { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -134,13 +146,17 @@ namespace Pulumi.Gcp.SecretManager
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The replication policy of the secret data attached to the Secret. It cannot be changed after the Secret has
-        /// been created.
+        /// -
+        /// (Required)
+        /// The replication policy of the secret data attached to the Secret. It cannot be changed
+        /// after the Secret has been created.  Structure is documented below.
         /// </summary>
         [Input("replication", required: true)]
         public Input<Inputs.SecretReplicationArgs> Replication { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// This must be unique within the project.
         /// </summary>
         [Input("secretId", required: true)]
@@ -163,12 +179,16 @@ namespace Pulumi.Gcp.SecretManager
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// The labels assigned to this Secret. Label keys must be between 1 and 63 characters long, have a UTF-8
-        /// encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62} Label values must be between 0 and 63 characters long, have a
-        /// UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be assigned to a given resource. An object containing
-        /// a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
+        /// -
+        /// (Optional)
+        /// The labels assigned to this Secret.
+        /// Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes,
+        /// and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
+        /// Label values must be between 0 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes,
+        /// and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
+        /// No more than 64 labels can be assigned to a given resource.
+        /// An object containing a list of "key": value pairs. Example:
+        /// { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -190,13 +210,17 @@ namespace Pulumi.Gcp.SecretManager
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The replication policy of the secret data attached to the Secret. It cannot be changed after the Secret has
-        /// been created.
+        /// -
+        /// (Required)
+        /// The replication policy of the secret data attached to the Secret. It cannot be changed
+        /// after the Secret has been created.  Structure is documented below.
         /// </summary>
         [Input("replication")]
         public Input<Inputs.SecretReplicationGetArgs>? Replication { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// This must be unique within the project.
         /// </summary>
         [Input("secretId")]
@@ -212,9 +236,19 @@ namespace Pulumi.Gcp.SecretManager
 
     public sealed class SecretReplicationArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret will automatically be replicated without any restrictions.
+        /// </summary>
         [Input("automatic")]
         public Input<bool>? Automatic { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret will automatically be replicated without any restrictions.  Structure is documented below.
+        /// </summary>
         [Input("userManaged")]
         public Input<SecretReplicationUserManagedArgs>? UserManaged { get; set; }
 
@@ -225,9 +259,19 @@ namespace Pulumi.Gcp.SecretManager
 
     public sealed class SecretReplicationGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret will automatically be replicated without any restrictions.
+        /// </summary>
         [Input("automatic")]
         public Input<bool>? Automatic { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret will automatically be replicated without any restrictions.  Structure is documented below.
+        /// </summary>
         [Input("userManaged")]
         public Input<SecretReplicationUserManagedGetArgs>? UserManaged { get; set; }
 
@@ -240,6 +284,12 @@ namespace Pulumi.Gcp.SecretManager
     {
         [Input("replicas", required: true)]
         private InputList<SecretReplicationUserManagedReplicasArgs>? _replicas;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of Replicas for this Secret. Cannot be empty.  Structure is documented below.
+        /// </summary>
         public InputList<SecretReplicationUserManagedReplicasArgs> Replicas
         {
             get => _replicas ?? (_replicas = new InputList<SecretReplicationUserManagedReplicasArgs>());
@@ -255,6 +305,12 @@ namespace Pulumi.Gcp.SecretManager
     {
         [Input("replicas", required: true)]
         private InputList<SecretReplicationUserManagedReplicasGetArgs>? _replicas;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of Replicas for this Secret. Cannot be empty.  Structure is documented below.
+        /// </summary>
         public InputList<SecretReplicationUserManagedReplicasGetArgs> Replicas
         {
             get => _replicas ?? (_replicas = new InputList<SecretReplicationUserManagedReplicasGetArgs>());
@@ -268,6 +324,11 @@ namespace Pulumi.Gcp.SecretManager
 
     public sealed class SecretReplicationUserManagedReplicasArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The canonical IDs of the location to replicate data. For example: "us-east1".
+        /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
@@ -278,6 +339,11 @@ namespace Pulumi.Gcp.SecretManager
 
     public sealed class SecretReplicationUserManagedReplicasGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The canonical IDs of the location to replicate data. For example: "us-east1".
+        /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
@@ -293,7 +359,17 @@ namespace Pulumi.Gcp.SecretManager
     [OutputType]
     public sealed class SecretReplication
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret will automatically be replicated without any restrictions.
+        /// </summary>
         public readonly bool? Automatic;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret will automatically be replicated without any restrictions.  Structure is documented below.
+        /// </summary>
         public readonly SecretReplicationUserManaged? UserManaged;
 
         [OutputConstructor]
@@ -309,6 +385,11 @@ namespace Pulumi.Gcp.SecretManager
     [OutputType]
     public sealed class SecretReplicationUserManaged
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of Replicas for this Secret. Cannot be empty.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<SecretReplicationUserManagedReplicas> Replicas;
 
         [OutputConstructor]
@@ -321,6 +402,11 @@ namespace Pulumi.Gcp.SecretManager
     [OutputType]
     public sealed class SecretReplicationUserManagedReplicas
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The canonical IDs of the location to replicate data. For example: "us-east1".
+        /// </summary>
         public readonly string Location;
 
         [OutputConstructor]

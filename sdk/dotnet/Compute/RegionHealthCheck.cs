@@ -34,7 +34,10 @@ namespace Pulumi.Gcp.Compute
     public partial class RegionHealthCheck : Pulumi.CustomResource
     {
         /// <summary>
-        /// How often (in seconds) to send a health check. The default value is 5 seconds.
+        /// -
+        /// (Optional)
+        /// How often (in seconds) to send a health check. The default value is 5
+        /// seconds.
         /// </summary>
         [Output("checkIntervalSec")]
         public Output<int?> CheckIntervalSec { get; private set; } = null!;
@@ -46,42 +49,57 @@ namespace Pulumi.Gcp.Compute
         public Output<string> CreationTimestamp { get; private set; } = null!;
 
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value
-        /// is 2.
+        /// -
+        /// (Optional)
+        /// A so-far unhealthy instance will be marked healthy after this many
+        /// consecutive successes. The default value is 2.
         /// </summary>
         [Output("healthyThreshold")]
         public Output<int?> HealthyThreshold { get; private set; } = null!;
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Output("http2HealthCheck")]
         public Output<Outputs.RegionHealthCheckHttp2HealthCheck?> Http2HealthCheck { get; private set; } = null!;
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Output("httpHealthCheck")]
         public Output<Outputs.RegionHealthCheckHttpHealthCheck?> HttpHealthCheck { get; private set; } = null!;
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Output("httpsHealthCheck")]
         public Output<Outputs.RegionHealthCheckHttpsHealthCheck?> HttpsHealthCheck { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035.  Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z?` which means
+        /// the first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the
+        /// last character, which cannot be a dash.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -94,8 +112,10 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// The Region in which the created health check should reside. If it is not provided, the provider region is
-        /// used.
+        /// -
+        /// (Optional)
+        /// The Region in which the created health check should reside.
+        /// If it is not provided, the provider region is used.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -107,20 +127,27 @@ namespace Pulumi.Gcp.Compute
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Output("sslHealthCheck")]
         public Output<Outputs.RegionHealthCheckSslHealthCheck?> SslHealthCheck { get; private set; } = null!;
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Output("tcpHealthCheck")]
         public Output<Outputs.RegionHealthCheckTcpHealthCheck?> TcpHealthCheck { get; private set; } = null!;
 
         /// <summary>
-        /// How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for
-        /// timeoutSec to have greater value than checkIntervalSec.
+        /// -
+        /// (Optional)
+        /// How long (in seconds) to wait before claiming failure.
+        /// The default value is 5 seconds.  It is invalid for timeoutSec to have
+        /// greater value than checkIntervalSec.
         /// </summary>
         [Output("timeoutSec")]
         public Output<int?> TimeoutSec { get; private set; } = null!;
@@ -132,8 +159,10 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value
-        /// is 2.
+        /// -
+        /// (Optional)
+        /// A so-far healthy instance will be marked unhealthy after this many
+        /// consecutive failures. The default value is 2.
         /// </summary>
         [Output("unhealthyThreshold")]
         public Output<int?> UnhealthyThreshold { get; private set; } = null!;
@@ -185,48 +214,66 @@ namespace Pulumi.Gcp.Compute
     public sealed class RegionHealthCheckArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// How often (in seconds) to send a health check. The default value is 5 seconds.
+        /// -
+        /// (Optional)
+        /// How often (in seconds) to send a health check. The default value is 5
+        /// seconds.
         /// </summary>
         [Input("checkIntervalSec")]
         public Input<int>? CheckIntervalSec { get; set; }
 
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value
-        /// is 2.
+        /// -
+        /// (Optional)
+        /// A so-far unhealthy instance will be marked healthy after this many
+        /// consecutive successes. The default value is 2.
         /// </summary>
         [Input("healthyThreshold")]
         public Input<int>? HealthyThreshold { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("http2HealthCheck")]
         public Input<Inputs.RegionHealthCheckHttp2HealthCheckArgs>? Http2HealthCheck { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("httpHealthCheck")]
         public Input<Inputs.RegionHealthCheckHttpHealthCheckArgs>? HttpHealthCheck { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("httpsHealthCheck")]
         public Input<Inputs.RegionHealthCheckHttpsHealthCheckArgs>? HttpsHealthCheck { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035.  Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z?` which means
+        /// the first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the
+        /// last character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -239,34 +286,45 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The Region in which the created health check should reside. If it is not provided, the provider region is
-        /// used.
+        /// -
+        /// (Optional)
+        /// The Region in which the created health check should reside.
+        /// If it is not provided, the provider region is used.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("sslHealthCheck")]
         public Input<Inputs.RegionHealthCheckSslHealthCheckArgs>? SslHealthCheck { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("tcpHealthCheck")]
         public Input<Inputs.RegionHealthCheckTcpHealthCheckArgs>? TcpHealthCheck { get; set; }
 
         /// <summary>
-        /// How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for
-        /// timeoutSec to have greater value than checkIntervalSec.
+        /// -
+        /// (Optional)
+        /// How long (in seconds) to wait before claiming failure.
+        /// The default value is 5 seconds.  It is invalid for timeoutSec to have
+        /// greater value than checkIntervalSec.
         /// </summary>
         [Input("timeoutSec")]
         public Input<int>? TimeoutSec { get; set; }
 
         /// <summary>
-        /// A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value
-        /// is 2.
+        /// -
+        /// (Optional)
+        /// A so-far healthy instance will be marked unhealthy after this many
+        /// consecutive failures. The default value is 2.
         /// </summary>
         [Input("unhealthyThreshold")]
         public Input<int>? UnhealthyThreshold { get; set; }
@@ -279,7 +337,10 @@ namespace Pulumi.Gcp.Compute
     public sealed class RegionHealthCheckState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// How often (in seconds) to send a health check. The default value is 5 seconds.
+        /// -
+        /// (Optional)
+        /// How often (in seconds) to send a health check. The default value is 5
+        /// seconds.
         /// </summary>
         [Input("checkIntervalSec")]
         public Input<int>? CheckIntervalSec { get; set; }
@@ -291,42 +352,57 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? CreationTimestamp { get; set; }
 
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value
-        /// is 2.
+        /// -
+        /// (Optional)
+        /// A so-far unhealthy instance will be marked healthy after this many
+        /// consecutive successes. The default value is 2.
         /// </summary>
         [Input("healthyThreshold")]
         public Input<int>? HealthyThreshold { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("http2HealthCheck")]
         public Input<Inputs.RegionHealthCheckHttp2HealthCheckGetArgs>? Http2HealthCheck { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("httpHealthCheck")]
         public Input<Inputs.RegionHealthCheckHttpHealthCheckGetArgs>? HttpHealthCheck { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("httpsHealthCheck")]
         public Input<Inputs.RegionHealthCheckHttpsHealthCheckGetArgs>? HttpsHealthCheck { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035.  Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z?` which means
+        /// the first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the
+        /// last character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -339,8 +415,10 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The Region in which the created health check should reside. If it is not provided, the provider region is
-        /// used.
+        /// -
+        /// (Optional)
+        /// The Region in which the created health check should reside.
+        /// If it is not provided, the provider region is used.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -352,20 +430,27 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? SelfLink { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("sslHealthCheck")]
         public Input<Inputs.RegionHealthCheckSslHealthCheckGetArgs>? SslHealthCheck { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("tcpHealthCheck")]
         public Input<Inputs.RegionHealthCheckTcpHealthCheckGetArgs>? TcpHealthCheck { get; set; }
 
         /// <summary>
-        /// How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for
-        /// timeoutSec to have greater value than checkIntervalSec.
+        /// -
+        /// (Optional)
+        /// How long (in seconds) to wait before claiming failure.
+        /// The default value is 5 seconds.  It is invalid for timeoutSec to have
+        /// greater value than checkIntervalSec.
         /// </summary>
         [Input("timeoutSec")]
         public Input<int>? TimeoutSec { get; set; }
@@ -377,8 +462,10 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value
-        /// is 2.
+        /// -
+        /// (Optional)
+        /// A so-far healthy instance will be marked unhealthy after this many
+        /// consecutive failures. The default value is 2.
         /// </summary>
         [Input("unhealthyThreshold")]
         public Input<int>? UnhealthyThreshold { get; set; }
@@ -393,24 +480,76 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class RegionHealthCheckHttp2HealthCheckArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the host header in the HTTP2 health check request.
+        /// If left empty (default value), the public IP on behalf of which this health
+        /// check is performed will be used.
+        /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         [Input("portName")]
         public Input<string>? PortName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         [Input("portSpecification")]
         public Input<string>? PortSpecification { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         [Input("proxyHeader")]
         public Input<string>? ProxyHeader { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The request path of the HTTP2 health check request.
+        /// The default value is /.
+        /// </summary>
         [Input("requestPath")]
         public Input<string>? RequestPath { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         [Input("response")]
         public Input<string>? Response { get; set; }
 
@@ -421,24 +560,76 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class RegionHealthCheckHttp2HealthCheckGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the host header in the HTTP2 health check request.
+        /// If left empty (default value), the public IP on behalf of which this health
+        /// check is performed will be used.
+        /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         [Input("portName")]
         public Input<string>? PortName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         [Input("portSpecification")]
         public Input<string>? PortSpecification { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         [Input("proxyHeader")]
         public Input<string>? ProxyHeader { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The request path of the HTTP2 health check request.
+        /// The default value is /.
+        /// </summary>
         [Input("requestPath")]
         public Input<string>? RequestPath { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         [Input("response")]
         public Input<string>? Response { get; set; }
 
@@ -449,24 +640,76 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class RegionHealthCheckHttpHealthCheckArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the host header in the HTTP2 health check request.
+        /// If left empty (default value), the public IP on behalf of which this health
+        /// check is performed will be used.
+        /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         [Input("portName")]
         public Input<string>? PortName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         [Input("portSpecification")]
         public Input<string>? PortSpecification { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         [Input("proxyHeader")]
         public Input<string>? ProxyHeader { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The request path of the HTTP2 health check request.
+        /// The default value is /.
+        /// </summary>
         [Input("requestPath")]
         public Input<string>? RequestPath { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         [Input("response")]
         public Input<string>? Response { get; set; }
 
@@ -477,24 +720,76 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class RegionHealthCheckHttpHealthCheckGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the host header in the HTTP2 health check request.
+        /// If left empty (default value), the public IP on behalf of which this health
+        /// check is performed will be used.
+        /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         [Input("portName")]
         public Input<string>? PortName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         [Input("portSpecification")]
         public Input<string>? PortSpecification { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         [Input("proxyHeader")]
         public Input<string>? ProxyHeader { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The request path of the HTTP2 health check request.
+        /// The default value is /.
+        /// </summary>
         [Input("requestPath")]
         public Input<string>? RequestPath { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         [Input("response")]
         public Input<string>? Response { get; set; }
 
@@ -505,24 +800,76 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class RegionHealthCheckHttpsHealthCheckArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the host header in the HTTP2 health check request.
+        /// If left empty (default value), the public IP on behalf of which this health
+        /// check is performed will be used.
+        /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         [Input("portName")]
         public Input<string>? PortName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         [Input("portSpecification")]
         public Input<string>? PortSpecification { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         [Input("proxyHeader")]
         public Input<string>? ProxyHeader { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The request path of the HTTP2 health check request.
+        /// The default value is /.
+        /// </summary>
         [Input("requestPath")]
         public Input<string>? RequestPath { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         [Input("response")]
         public Input<string>? Response { get; set; }
 
@@ -533,24 +880,76 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class RegionHealthCheckHttpsHealthCheckGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the host header in the HTTP2 health check request.
+        /// If left empty (default value), the public IP on behalf of which this health
+        /// check is performed will be used.
+        /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         [Input("portName")]
         public Input<string>? PortName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         [Input("portSpecification")]
         public Input<string>? PortSpecification { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         [Input("proxyHeader")]
         public Input<string>? ProxyHeader { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The request path of the HTTP2 health check request.
+        /// The default value is /.
+        /// </summary>
         [Input("requestPath")]
         public Input<string>? RequestPath { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         [Input("response")]
         public Input<string>? Response { get; set; }
 
@@ -561,21 +960,68 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class RegionHealthCheckSslHealthCheckArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         [Input("portName")]
         public Input<string>? PortName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         [Input("portSpecification")]
         public Input<string>? PortSpecification { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         [Input("proxyHeader")]
         public Input<string>? ProxyHeader { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The application data to send once the SSL connection has been
+        /// established (default value is empty). If both request and response are
+        /// empty, the connection establishment alone will indicate health. The request
+        /// data can only be ASCII.
+        /// </summary>
         [Input("request")]
         public Input<string>? Request { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         [Input("response")]
         public Input<string>? Response { get; set; }
 
@@ -586,21 +1032,68 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class RegionHealthCheckSslHealthCheckGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         [Input("portName")]
         public Input<string>? PortName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         [Input("portSpecification")]
         public Input<string>? PortSpecification { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         [Input("proxyHeader")]
         public Input<string>? ProxyHeader { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The application data to send once the SSL connection has been
+        /// established (default value is empty). If both request and response are
+        /// empty, the connection establishment alone will indicate health. The request
+        /// data can only be ASCII.
+        /// </summary>
         [Input("request")]
         public Input<string>? Request { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         [Input("response")]
         public Input<string>? Response { get; set; }
 
@@ -611,21 +1104,68 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class RegionHealthCheckTcpHealthCheckArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         [Input("portName")]
         public Input<string>? PortName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         [Input("portSpecification")]
         public Input<string>? PortSpecification { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         [Input("proxyHeader")]
         public Input<string>? ProxyHeader { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The application data to send once the SSL connection has been
+        /// established (default value is empty). If both request and response are
+        /// empty, the connection establishment alone will indicate health. The request
+        /// data can only be ASCII.
+        /// </summary>
         [Input("request")]
         public Input<string>? Request { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         [Input("response")]
         public Input<string>? Response { get; set; }
 
@@ -636,21 +1176,68 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class RegionHealthCheckTcpHealthCheckGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         [Input("portName")]
         public Input<string>? PortName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         [Input("portSpecification")]
         public Input<string>? PortSpecification { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         [Input("proxyHeader")]
         public Input<string>? ProxyHeader { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The application data to send once the SSL connection has been
+        /// established (default value is empty). If both request and response are
+        /// empty, the connection establishment alone will indicate health. The request
+        /// data can only be ASCII.
+        /// </summary>
         [Input("request")]
         public Input<string>? Request { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         [Input("response")]
         public Input<string>? Response { get; set; }
 
@@ -666,12 +1253,64 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class RegionHealthCheckHttp2HealthCheck
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the host header in the HTTP2 health check request.
+        /// If left empty (default value), the public IP on behalf of which this health
+        /// check is performed will be used.
+        /// </summary>
         public readonly string? Host;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         public readonly string? PortName;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         public readonly string? PortSpecification;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         public readonly string? ProxyHeader;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The request path of the HTTP2 health check request.
+        /// The default value is /.
+        /// </summary>
         public readonly string? RequestPath;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         public readonly string? Response;
 
         [OutputConstructor]
@@ -697,12 +1336,64 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class RegionHealthCheckHttpHealthCheck
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the host header in the HTTP2 health check request.
+        /// If left empty (default value), the public IP on behalf of which this health
+        /// check is performed will be used.
+        /// </summary>
         public readonly string? Host;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         public readonly string? PortName;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         public readonly string? PortSpecification;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         public readonly string? ProxyHeader;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The request path of the HTTP2 health check request.
+        /// The default value is /.
+        /// </summary>
         public readonly string? RequestPath;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         public readonly string? Response;
 
         [OutputConstructor]
@@ -728,12 +1419,64 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class RegionHealthCheckHttpsHealthCheck
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the host header in the HTTP2 health check request.
+        /// If left empty (default value), the public IP on behalf of which this health
+        /// check is performed will be used.
+        /// </summary>
         public readonly string? Host;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         public readonly string? PortName;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         public readonly string? PortSpecification;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         public readonly string? ProxyHeader;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The request path of the HTTP2 health check request.
+        /// The default value is /.
+        /// </summary>
         public readonly string? RequestPath;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         public readonly string? Response;
 
         [OutputConstructor]
@@ -759,11 +1502,58 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class RegionHealthCheckSslHealthCheck
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         public readonly string? PortName;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         public readonly string? PortSpecification;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         public readonly string? ProxyHeader;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The application data to send once the SSL connection has been
+        /// established (default value is empty). If both request and response are
+        /// empty, the connection establishment alone will indicate health. The request
+        /// data can only be ASCII.
+        /// </summary>
         public readonly string? Request;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         public readonly string? Response;
 
         [OutputConstructor]
@@ -787,11 +1577,58 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class RegionHealthCheckTcpHealthCheck
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP2 health check request.
+        /// The default value is 443.
+        /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         public readonly string? PortName;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP2 health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         public readonly string? PortSpecification;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         public readonly string? ProxyHeader;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The application data to send once the SSL connection has been
+        /// established (default value is empty). If both request and response are
+        /// empty, the connection establishment alone will indicate health. The request
+        /// data can only be ASCII.
+        /// </summary>
         public readonly string? Request;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         public readonly string? Response;
 
         [OutputConstructor]

@@ -24,30 +24,33 @@ namespace Pulumi.Gcp.Monitoring
     public partial class UptimeCheckConfig : Pulumi.CustomResource
     {
         /// <summary>
-        /// The expected content on the page the check is run against. Currently, only the first entry in the list is
-        /// supported, and other entries will be ignored. The server will look for an exact match of the string in the
-        /// page response's content. This field is optional and should only be specified if a content match is required.
+        /// -
+        /// (Optional)
+        /// The expected content on the page the check is run against. Currently, only the first entry in the list is supported, and other entries will be ignored. The server will look for an exact match of the string in the page response's content. This field is optional and should only be specified if a content match is required.  Structure is documented below.
         /// </summary>
         [Output("contentMatchers")]
         public Output<ImmutableArray<Outputs.UptimeCheckConfigContentMatchers>> ContentMatchers { get; private set; } = null!;
 
         /// <summary>
-        /// A human-friendly name for the uptime check configuration. The display name should be unique within a
-        /// Stackdriver Workspace in order to make it easier to identify; however, uniqueness is not enforced.
+        /// -
+        /// (Required)
+        /// A human-friendly name for the uptime check configuration. The display name should be unique within a Stackdriver Workspace in order to make it easier to identify; however, uniqueness is not enforced.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// Contains information needed to make an HTTP or HTTPS check.
+        /// -
+        /// (Optional)
+        /// Contains information needed to make an HTTP or HTTPS check.  Structure is documented below.
         /// </summary>
         [Output("httpCheck")]
         public Output<Outputs.UptimeCheckConfigHttpCheck?> HttpCheck { get; private set; } = null!;
 
         /// <summary>
-        /// The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the
-        /// configuration. The following monitored resource types are supported for uptime checks: uptime_url
-        /// gce_instance gae_app aws_ec2_instance aws_elb_load_balancer
+        /// -
+        /// (Optional)
+        /// The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are supported for uptime checks:  uptime_url  gce_instance  gae_app  aws_ec2_instance  aws_elb_load_balancer  Structure is documented below.
         /// </summary>
         [Output("monitoredResource")]
         public Output<Outputs.UptimeCheckConfigMonitoredResource?> MonitoredResource { get; private set; } = null!;
@@ -60,8 +63,9 @@ namespace Pulumi.Gcp.Monitoring
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// How often, in seconds, the uptime check is performed. Currently, the only supported values are 60s (1
-        /// minute), 300s (5 minutes), 600s (10 minutes), and 900s (15 minutes). Optional, defaults to 300s.
+        /// -
+        /// (Optional)
+        /// How often, in seconds, the uptime check is performed. Currently, the only supported values are 60s (1 minute), 300s (5 minutes), 600s (10 minutes), and 900s (15 minutes). Optional, defaults to 300s.
         /// </summary>
         [Output("period")]
         public Output<string?> Period { get; private set; } = null!;
@@ -74,30 +78,33 @@ namespace Pulumi.Gcp.Monitoring
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// The group resource associated with the configuration.
+        /// -
+        /// (Optional)
+        /// The group resource associated with the configuration.  Structure is documented below.
         /// </summary>
         [Output("resourceGroup")]
         public Output<Outputs.UptimeCheckConfigResourceGroup?> ResourceGroup { get; private set; } = null!;
 
         /// <summary>
-        /// The list of regions from which the check will be run. Some regions contain one location, and others contain
-        /// more than one. If this field is specified, enough regions to include a minimum of 3 locations must be
-        /// provided, or an error message is returned. Not specifying this field will result in uptime checks running
-        /// from all regions.
+        /// -
+        /// (Optional)
+        /// The list of regions from which the check will be run. Some regions contain one location, and others contain more than one. If this field is specified, enough regions to include a minimum of 3 locations must be provided, or an error message is returned. Not specifying this field will result in uptime checks running from all regions.
         /// </summary>
         [Output("selectedRegions")]
         public Output<ImmutableArray<string>> SelectedRegions { get; private set; } = null!;
 
         /// <summary>
-        /// Contains information needed to make a TCP check.
+        /// -
+        /// (Optional)
+        /// Contains information needed to make a TCP check.  Structure is documented below.
         /// </summary>
         [Output("tcpCheck")]
         public Output<Outputs.UptimeCheckConfigTcpCheck?> TcpCheck { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum amount of time to wait for the request to complete (must be between 1 and 60 seconds). Accepted
-        /// formats
-        /// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Duration
+        /// -
+        /// (Required)
+        /// The maximum amount of time to wait for the request to complete (must be between 1 and 60 seconds). Accepted formats https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Duration
         /// </summary>
         [Output("timeout")]
         public Output<string> Timeout { get; private set; } = null!;
@@ -158,9 +165,9 @@ namespace Pulumi.Gcp.Monitoring
         private InputList<Inputs.UptimeCheckConfigContentMatchersArgs>? _contentMatchers;
 
         /// <summary>
-        /// The expected content on the page the check is run against. Currently, only the first entry in the list is
-        /// supported, and other entries will be ignored. The server will look for an exact match of the string in the
-        /// page response's content. This field is optional and should only be specified if a content match is required.
+        /// -
+        /// (Optional)
+        /// The expected content on the page the check is run against. Currently, only the first entry in the list is supported, and other entries will be ignored. The server will look for an exact match of the string in the page response's content. This field is optional and should only be specified if a content match is required.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.UptimeCheckConfigContentMatchersArgs> ContentMatchers
         {
@@ -169,29 +176,33 @@ namespace Pulumi.Gcp.Monitoring
         }
 
         /// <summary>
-        /// A human-friendly name for the uptime check configuration. The display name should be unique within a
-        /// Stackdriver Workspace in order to make it easier to identify; however, uniqueness is not enforced.
+        /// -
+        /// (Required)
+        /// A human-friendly name for the uptime check configuration. The display name should be unique within a Stackdriver Workspace in order to make it easier to identify; however, uniqueness is not enforced.
         /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
 
         /// <summary>
-        /// Contains information needed to make an HTTP or HTTPS check.
+        /// -
+        /// (Optional)
+        /// Contains information needed to make an HTTP or HTTPS check.  Structure is documented below.
         /// </summary>
         [Input("httpCheck")]
         public Input<Inputs.UptimeCheckConfigHttpCheckArgs>? HttpCheck { get; set; }
 
         /// <summary>
-        /// The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the
-        /// configuration. The following monitored resource types are supported for uptime checks: uptime_url
-        /// gce_instance gae_app aws_ec2_instance aws_elb_load_balancer
+        /// -
+        /// (Optional)
+        /// The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are supported for uptime checks:  uptime_url  gce_instance  gae_app  aws_ec2_instance  aws_elb_load_balancer  Structure is documented below.
         /// </summary>
         [Input("monitoredResource")]
         public Input<Inputs.UptimeCheckConfigMonitoredResourceArgs>? MonitoredResource { get; set; }
 
         /// <summary>
-        /// How often, in seconds, the uptime check is performed. Currently, the only supported values are 60s (1
-        /// minute), 300s (5 minutes), 600s (10 minutes), and 900s (15 minutes). Optional, defaults to 300s.
+        /// -
+        /// (Optional)
+        /// How often, in seconds, the uptime check is performed. Currently, the only supported values are 60s (1 minute), 300s (5 minutes), 600s (10 minutes), and 900s (15 minutes). Optional, defaults to 300s.
         /// </summary>
         [Input("period")]
         public Input<string>? Period { get; set; }
@@ -204,7 +215,9 @@ namespace Pulumi.Gcp.Monitoring
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The group resource associated with the configuration.
+        /// -
+        /// (Optional)
+        /// The group resource associated with the configuration.  Structure is documented below.
         /// </summary>
         [Input("resourceGroup")]
         public Input<Inputs.UptimeCheckConfigResourceGroupArgs>? ResourceGroup { get; set; }
@@ -213,10 +226,9 @@ namespace Pulumi.Gcp.Monitoring
         private InputList<string>? _selectedRegions;
 
         /// <summary>
-        /// The list of regions from which the check will be run. Some regions contain one location, and others contain
-        /// more than one. If this field is specified, enough regions to include a minimum of 3 locations must be
-        /// provided, or an error message is returned. Not specifying this field will result in uptime checks running
-        /// from all regions.
+        /// -
+        /// (Optional)
+        /// The list of regions from which the check will be run. Some regions contain one location, and others contain more than one. If this field is specified, enough regions to include a minimum of 3 locations must be provided, or an error message is returned. Not specifying this field will result in uptime checks running from all regions.
         /// </summary>
         public InputList<string> SelectedRegions
         {
@@ -225,15 +237,17 @@ namespace Pulumi.Gcp.Monitoring
         }
 
         /// <summary>
-        /// Contains information needed to make a TCP check.
+        /// -
+        /// (Optional)
+        /// Contains information needed to make a TCP check.  Structure is documented below.
         /// </summary>
         [Input("tcpCheck")]
         public Input<Inputs.UptimeCheckConfigTcpCheckArgs>? TcpCheck { get; set; }
 
         /// <summary>
-        /// The maximum amount of time to wait for the request to complete (must be between 1 and 60 seconds). Accepted
-        /// formats
-        /// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Duration
+        /// -
+        /// (Required)
+        /// The maximum amount of time to wait for the request to complete (must be between 1 and 60 seconds). Accepted formats https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Duration
         /// </summary>
         [Input("timeout", required: true)]
         public Input<string> Timeout { get; set; } = null!;
@@ -249,9 +263,9 @@ namespace Pulumi.Gcp.Monitoring
         private InputList<Inputs.UptimeCheckConfigContentMatchersGetArgs>? _contentMatchers;
 
         /// <summary>
-        /// The expected content on the page the check is run against. Currently, only the first entry in the list is
-        /// supported, and other entries will be ignored. The server will look for an exact match of the string in the
-        /// page response's content. This field is optional and should only be specified if a content match is required.
+        /// -
+        /// (Optional)
+        /// The expected content on the page the check is run against. Currently, only the first entry in the list is supported, and other entries will be ignored. The server will look for an exact match of the string in the page response's content. This field is optional and should only be specified if a content match is required.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.UptimeCheckConfigContentMatchersGetArgs> ContentMatchers
         {
@@ -260,22 +274,25 @@ namespace Pulumi.Gcp.Monitoring
         }
 
         /// <summary>
-        /// A human-friendly name for the uptime check configuration. The display name should be unique within a
-        /// Stackdriver Workspace in order to make it easier to identify; however, uniqueness is not enforced.
+        /// -
+        /// (Required)
+        /// A human-friendly name for the uptime check configuration. The display name should be unique within a Stackdriver Workspace in order to make it easier to identify; however, uniqueness is not enforced.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// Contains information needed to make an HTTP or HTTPS check.
+        /// -
+        /// (Optional)
+        /// Contains information needed to make an HTTP or HTTPS check.  Structure is documented below.
         /// </summary>
         [Input("httpCheck")]
         public Input<Inputs.UptimeCheckConfigHttpCheckGetArgs>? HttpCheck { get; set; }
 
         /// <summary>
-        /// The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the
-        /// configuration. The following monitored resource types are supported for uptime checks: uptime_url
-        /// gce_instance gae_app aws_ec2_instance aws_elb_load_balancer
+        /// -
+        /// (Optional)
+        /// The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are supported for uptime checks:  uptime_url  gce_instance  gae_app  aws_ec2_instance  aws_elb_load_balancer  Structure is documented below.
         /// </summary>
         [Input("monitoredResource")]
         public Input<Inputs.UptimeCheckConfigMonitoredResourceGetArgs>? MonitoredResource { get; set; }
@@ -288,8 +305,9 @@ namespace Pulumi.Gcp.Monitoring
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// How often, in seconds, the uptime check is performed. Currently, the only supported values are 60s (1
-        /// minute), 300s (5 minutes), 600s (10 minutes), and 900s (15 minutes). Optional, defaults to 300s.
+        /// -
+        /// (Optional)
+        /// How often, in seconds, the uptime check is performed. Currently, the only supported values are 60s (1 minute), 300s (5 minutes), 600s (10 minutes), and 900s (15 minutes). Optional, defaults to 300s.
         /// </summary>
         [Input("period")]
         public Input<string>? Period { get; set; }
@@ -302,7 +320,9 @@ namespace Pulumi.Gcp.Monitoring
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The group resource associated with the configuration.
+        /// -
+        /// (Optional)
+        /// The group resource associated with the configuration.  Structure is documented below.
         /// </summary>
         [Input("resourceGroup")]
         public Input<Inputs.UptimeCheckConfigResourceGroupGetArgs>? ResourceGroup { get; set; }
@@ -311,10 +331,9 @@ namespace Pulumi.Gcp.Monitoring
         private InputList<string>? _selectedRegions;
 
         /// <summary>
-        /// The list of regions from which the check will be run. Some regions contain one location, and others contain
-        /// more than one. If this field is specified, enough regions to include a minimum of 3 locations must be
-        /// provided, or an error message is returned. Not specifying this field will result in uptime checks running
-        /// from all regions.
+        /// -
+        /// (Optional)
+        /// The list of regions from which the check will be run. Some regions contain one location, and others contain more than one. If this field is specified, enough regions to include a minimum of 3 locations must be provided, or an error message is returned. Not specifying this field will result in uptime checks running from all regions.
         /// </summary>
         public InputList<string> SelectedRegions
         {
@@ -323,15 +342,17 @@ namespace Pulumi.Gcp.Monitoring
         }
 
         /// <summary>
-        /// Contains information needed to make a TCP check.
+        /// -
+        /// (Optional)
+        /// Contains information needed to make a TCP check.  Structure is documented below.
         /// </summary>
         [Input("tcpCheck")]
         public Input<Inputs.UptimeCheckConfigTcpCheckGetArgs>? TcpCheck { get; set; }
 
         /// <summary>
-        /// The maximum amount of time to wait for the request to complete (must be between 1 and 60 seconds). Accepted
-        /// formats
-        /// https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Duration
+        /// -
+        /// (Required)
+        /// The maximum amount of time to wait for the request to complete (must be between 1 and 60 seconds). Accepted formats https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Duration
         /// </summary>
         [Input("timeout")]
         public Input<string>? Timeout { get; set; }
@@ -352,6 +373,11 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class UptimeCheckConfigContentMatchersArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// String or regex content to match (max 1024 bytes)
+        /// </summary>
         [Input("content", required: true)]
         public Input<string> Content { get; set; } = null!;
 
@@ -362,6 +388,11 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class UptimeCheckConfigContentMatchersGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// String or regex content to match (max 1024 bytes)
+        /// </summary>
         [Input("content", required: true)]
         public Input<string> Content { get; set; } = null!;
 
@@ -372,29 +403,65 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class UptimeCheckConfigHttpCheckArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The authentication information. Optional when creating an HTTP check; defaults to empty.  Structure is documented below.
+        /// </summary>
         [Input("authInfo")]
         public Input<UptimeCheckConfigHttpCheckAuthInfoArgs>? AuthInfo { get; set; }
 
         [Input("headers")]
         private InputMap<string>? _headers;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of headers to send as part of the uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100.
+        /// </summary>
         public InputMap<string> Headers
         {
             get => _headers ?? (_headers = new InputMap<string>());
             set => _headers = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Boolean specifying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if mask_headers is set to True then the headers will be obscured with ******.
+        /// </summary>
         [Input("maskHeaders")]
         public Input<bool>? MaskHeaders { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The path to the page to run the check against. Will be combined with the host (specified within the MonitoredResource) and port to construct the full URL. Optional (defaults to "/").
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, use HTTPS instead of HTTP to run the check.
+        /// </summary>
         [Input("useSsl")]
         public Input<bool>? UseSsl { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Boolean specifying whether to include SSL certificate validation as a part of the Uptime check. Only applies to checks where monitoredResource is set to uptime_url. If useSsl is false, setting validateSsl to true has no effect.
+        /// </summary>
         [Input("validateSsl")]
         public Input<bool>? ValidateSsl { get; set; }
 
@@ -405,9 +472,19 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class UptimeCheckConfigHttpCheckAuthInfoArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The password to authenticate.
+        /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The username to authenticate.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
@@ -418,9 +495,19 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class UptimeCheckConfigHttpCheckAuthInfoGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The password to authenticate.
+        /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The username to authenticate.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
@@ -431,29 +518,65 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class UptimeCheckConfigHttpCheckGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The authentication information. Optional when creating an HTTP check; defaults to empty.  Structure is documented below.
+        /// </summary>
         [Input("authInfo")]
         public Input<UptimeCheckConfigHttpCheckAuthInfoGetArgs>? AuthInfo { get; set; }
 
         [Input("headers")]
         private InputMap<string>? _headers;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of headers to send as part of the uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100.
+        /// </summary>
         public InputMap<string> Headers
         {
             get => _headers ?? (_headers = new InputMap<string>());
             set => _headers = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Boolean specifying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if mask_headers is set to True then the headers will be obscured with ******.
+        /// </summary>
         [Input("maskHeaders")]
         public Input<bool>? MaskHeaders { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The path to the page to run the check against. Will be combined with the host (specified within the MonitoredResource) and port to construct the full URL. Optional (defaults to "/").
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, use HTTPS instead of HTTP to run the check.
+        /// </summary>
         [Input("useSsl")]
         public Input<bool>? UseSsl { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Boolean specifying whether to include SSL certificate validation as a part of the Uptime check. Only applies to checks where monitoredResource is set to uptime_url. If useSsl is false, setting validateSsl to true has no effect.
+        /// </summary>
         [Input("validateSsl")]
         public Input<bool>? ValidateSsl { get; set; }
 
@@ -466,12 +589,23 @@ namespace Pulumi.Gcp.Monitoring
     {
         [Input("labels", required: true)]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels "project_id", "instance_id", and "zone".
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.monitoredResourceDescriptors#MonitoredResourceDescriptor) object. For example, the type of a Compute Engine VM instance is gce_instance. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -484,12 +618,23 @@ namespace Pulumi.Gcp.Monitoring
     {
         [Input("labels", required: true)]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels "project_id", "instance_id", and "zone".
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.monitoredResourceDescriptors#MonitoredResourceDescriptor) object. For example, the type of a Compute Engine VM instance is gce_instance. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -500,9 +645,19 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class UptimeCheckConfigResourceGroupArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The group of resources being monitored. Should be the `name` of a group
+        /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The resource type of the group members.
+        /// </summary>
         [Input("resourceType")]
         public Input<string>? ResourceType { get; set; }
 
@@ -513,9 +668,19 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class UptimeCheckConfigResourceGroupGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The group of resources being monitored. Should be the `name` of a group
+        /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The resource type of the group members.
+        /// </summary>
         [Input("resourceType")]
         public Input<string>? ResourceType { get; set; }
 
@@ -526,6 +691,11 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class UptimeCheckConfigTcpCheckArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
+        /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 
@@ -536,6 +706,11 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class UptimeCheckConfigTcpCheckGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
+        /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 
@@ -551,6 +726,11 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class UptimeCheckConfigContentMatchers
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// String or regex content to match (max 1024 bytes)
+        /// </summary>
         public readonly string Content;
 
         [OutputConstructor]
@@ -563,12 +743,47 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class UptimeCheckConfigHttpCheck
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The authentication information. Optional when creating an HTTP check; defaults to empty.  Structure is documented below.
+        /// </summary>
         public readonly UptimeCheckConfigHttpCheckAuthInfo? AuthInfo;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of headers to send as part of the uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Headers;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Boolean specifying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if mask_headers is set to True then the headers will be obscured with ******.
+        /// </summary>
         public readonly bool? MaskHeaders;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The path to the page to run the check against. Will be combined with the host (specified within the MonitoredResource) and port to construct the full URL. Optional (defaults to "/").
+        /// </summary>
         public readonly string? Path;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
+        /// </summary>
         public readonly int Port;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, use HTTPS instead of HTTP to run the check.
+        /// </summary>
         public readonly bool? UseSsl;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Boolean specifying whether to include SSL certificate validation as a part of the Uptime check. Only applies to checks where monitoredResource is set to uptime_url. If useSsl is false, setting validateSsl to true has no effect.
+        /// </summary>
         public readonly bool? ValidateSsl;
 
         [OutputConstructor]
@@ -594,7 +809,17 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class UptimeCheckConfigHttpCheckAuthInfo
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The password to authenticate.
+        /// </summary>
         public readonly string Password;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The username to authenticate.
+        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]
@@ -610,7 +835,17 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class UptimeCheckConfigMonitoredResource
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels "project_id", "instance_id", and "zone".
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.monitoredResourceDescriptors#MonitoredResourceDescriptor) object. For example, the type of a Compute Engine VM instance is gce_instance. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
@@ -626,7 +861,17 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class UptimeCheckConfigResourceGroup
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The group of resources being monitored. Should be the `name` of a group
+        /// </summary>
         public readonly string? GroupId;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The resource type of the group members.
+        /// </summary>
         public readonly string? ResourceType;
 
         [OutputConstructor]
@@ -642,6 +887,11 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class UptimeCheckConfigTcpCheck
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
+        /// </summary>
         public readonly int Port;
 
         [OutputConstructor]

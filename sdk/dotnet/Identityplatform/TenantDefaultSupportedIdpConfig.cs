@@ -21,26 +21,43 @@ namespace Pulumi.Gcp.IdentityPlatform
     public partial class TenantDefaultSupportedIdpConfig : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// OAuth client ID
         /// </summary>
         [Output("clientId")]
         public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// OAuth client secret
         /// </summary>
         [Output("clientSecret")]
         public Output<string> ClientSecret { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If this IDP allows the user to sign in
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' *
-        /// 'google.com' * 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+        /// -
+        /// (Required)
+        /// ID of the IDP. Possible values include:
+        /// * `apple.com`
+        /// * `facebook.com`
+        /// * `gc.apple.com`
+        /// * `github.com`
+        /// * `google.com`
+        /// * `linkedin.com`
+        /// * `microsoft.com`
+        /// * `playgames.google.com`
+        /// * `twitter.com`
+        /// * `yahoo.com`
         /// </summary>
         [Output("idpId")]
         public Output<string> IdpId { get; private set; } = null!;
@@ -59,6 +76,8 @@ namespace Pulumi.Gcp.IdentityPlatform
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the tenant where this DefaultSupportedIdpConfig resource exists
         /// </summary>
         [Output("tenant")]
@@ -111,26 +130,43 @@ namespace Pulumi.Gcp.IdentityPlatform
     public sealed class TenantDefaultSupportedIdpConfigArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// OAuth client ID
         /// </summary>
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// OAuth client secret
         /// </summary>
         [Input("clientSecret", required: true)]
         public Input<string> ClientSecret { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If this IDP allows the user to sign in
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' *
-        /// 'google.com' * 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+        /// -
+        /// (Required)
+        /// ID of the IDP. Possible values include:
+        /// * `apple.com`
+        /// * `facebook.com`
+        /// * `gc.apple.com`
+        /// * `github.com`
+        /// * `google.com`
+        /// * `linkedin.com`
+        /// * `microsoft.com`
+        /// * `playgames.google.com`
+        /// * `twitter.com`
+        /// * `yahoo.com`
         /// </summary>
         [Input("idpId", required: true)]
         public Input<string> IdpId { get; set; } = null!;
@@ -143,6 +179,8 @@ namespace Pulumi.Gcp.IdentityPlatform
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the tenant where this DefaultSupportedIdpConfig resource exists
         /// </summary>
         [Input("tenant", required: true)]
@@ -156,26 +194,43 @@ namespace Pulumi.Gcp.IdentityPlatform
     public sealed class TenantDefaultSupportedIdpConfigState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// OAuth client ID
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// OAuth client secret
         /// </summary>
         [Input("clientSecret")]
         public Input<string>? ClientSecret { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If this IDP allows the user to sign in
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' *
-        /// 'google.com' * 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+        /// -
+        /// (Required)
+        /// ID of the IDP. Possible values include:
+        /// * `apple.com`
+        /// * `facebook.com`
+        /// * `gc.apple.com`
+        /// * `github.com`
+        /// * `google.com`
+        /// * `linkedin.com`
+        /// * `microsoft.com`
+        /// * `playgames.google.com`
+        /// * `twitter.com`
+        /// * `yahoo.com`
         /// </summary>
         [Input("idpId")]
         public Input<string>? IdpId { get; set; }
@@ -194,6 +249,8 @@ namespace Pulumi.Gcp.IdentityPlatform
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the tenant where this DefaultSupportedIdpConfig resource exists
         /// </summary>
         [Input("tenant")]

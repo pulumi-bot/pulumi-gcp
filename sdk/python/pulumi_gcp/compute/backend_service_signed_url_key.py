@@ -12,14 +12,21 @@ from .. import utilities, tables
 class BackendServiceSignedUrlKey(pulumi.CustomResource):
     backend_service: pulumi.Output[str]
     """
+    -
+    (Required)
     The backend service this signed URL key belongs.
     """
     key_value: pulumi.Output[str]
     """
-    128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
+    -
+    (Required)
+    128-bit key value used for signing the URL. The key value must be a
+    valid RFC 4648 Section 5 base64url encoded string.
     """
     name: pulumi.Output[str]
     """
+    -
+    (Required)
     Name of the signed URL key.
     """
     project: pulumi.Output[str]
@@ -38,13 +45,18 @@ class BackendServiceSignedUrlKey(pulumi.CustomResource):
         * How-to Guides
             * [Using Signed URLs](https://cloud.google.com/cdn/docs/using-signed-urls/)
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_backend_service_signed_url_key.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend_service: The backend service this signed URL key belongs.
-        :param pulumi.Input[str] key_value: 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
-        :param pulumi.Input[str] name: Name of the signed URL key.
+        :param pulumi.Input[str] backend_service: -
+               (Required)
+               The backend service this signed URL key belongs.
+        :param pulumi.Input[str] key_value: -
+               (Required)
+               128-bit key value used for signing the URL. The key value must be a
+               valid RFC 4648 Section 5 base64url encoded string.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Name of the signed URL key.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         """
@@ -88,9 +100,16 @@ class BackendServiceSignedUrlKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend_service: The backend service this signed URL key belongs.
-        :param pulumi.Input[str] key_value: 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
-        :param pulumi.Input[str] name: Name of the signed URL key.
+        :param pulumi.Input[str] backend_service: -
+               (Required)
+               The backend service this signed URL key belongs.
+        :param pulumi.Input[str] key_value: -
+               (Required)
+               128-bit key value used for signing the URL. The key value must be a
+               valid RFC 4648 Section 5 base64url encoded string.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Name of the signed URL key.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         """

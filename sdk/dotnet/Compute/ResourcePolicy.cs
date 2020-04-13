@@ -17,11 +17,15 @@ namespace Pulumi.Gcp.Compute
     public partial class ResourcePolicy : Pulumi.CustomResource
     {
         /// <summary>
-        /// The name of the resource, provided by the client when initially creating the resource. The resource name
-        /// must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long
-        /// and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])'? which means the first character must be a
-        /// lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last
-        /// character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// The name of the resource, provided by the client when initially creating
+        /// the resource. The resource name must be 1-63 characters long, and comply
+        /// with RFC1035. Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z`? which means the
+        /// first character must be a lowercase letter, and all following characters
+        /// must be a dash, lowercase letter, or digit, except the last character,
+        /// which cannot be a dash.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -34,6 +38,8 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Region where resource policy resides.
         /// </summary>
         [Output("region")]
@@ -46,7 +52,9 @@ namespace Pulumi.Gcp.Compute
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
-        /// Policy for creating snapshots of persistent disks.
+        /// -
+        /// (Optional)
+        /// Policy for creating snapshots of persistent disks.  Structure is documented below.
         /// </summary>
         [Output("snapshotSchedulePolicy")]
         public Output<Outputs.ResourcePolicySnapshotSchedulePolicy?> SnapshotSchedulePolicy { get; private set; } = null!;
@@ -98,11 +106,15 @@ namespace Pulumi.Gcp.Compute
     public sealed class ResourcePolicyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the resource, provided by the client when initially creating the resource. The resource name
-        /// must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long
-        /// and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])'? which means the first character must be a
-        /// lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last
-        /// character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// The name of the resource, provided by the client when initially creating
+        /// the resource. The resource name must be 1-63 characters long, and comply
+        /// with RFC1035. Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z`? which means the
+        /// first character must be a lowercase letter, and all following characters
+        /// must be a dash, lowercase letter, or digit, except the last character,
+        /// which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -115,13 +127,17 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Region where resource policy resides.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Policy for creating snapshots of persistent disks.
+        /// -
+        /// (Optional)
+        /// Policy for creating snapshots of persistent disks.  Structure is documented below.
         /// </summary>
         [Input("snapshotSchedulePolicy")]
         public Input<Inputs.ResourcePolicySnapshotSchedulePolicyArgs>? SnapshotSchedulePolicy { get; set; }
@@ -134,11 +150,15 @@ namespace Pulumi.Gcp.Compute
     public sealed class ResourcePolicyState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the resource, provided by the client when initially creating the resource. The resource name
-        /// must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long
-        /// and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])'? which means the first character must be a
-        /// lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last
-        /// character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// The name of the resource, provided by the client when initially creating
+        /// the resource. The resource name must be 1-63 characters long, and comply
+        /// with RFC1035. Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z`? which means the
+        /// first character must be a lowercase letter, and all following characters
+        /// must be a dash, lowercase letter, or digit, except the last character,
+        /// which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -151,6 +171,8 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Region where resource policy resides.
         /// </summary>
         [Input("region")]
@@ -163,7 +185,9 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? SelfLink { get; set; }
 
         /// <summary>
-        /// Policy for creating snapshots of persistent disks.
+        /// -
+        /// (Optional)
+        /// Policy for creating snapshots of persistent disks.  Structure is documented below.
         /// </summary>
         [Input("snapshotSchedulePolicy")]
         public Input<Inputs.ResourcePolicySnapshotSchedulePolicyGetArgs>? SnapshotSchedulePolicy { get; set; }
@@ -178,12 +202,27 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ResourcePolicySnapshotSchedulePolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Retention policy applied to snapshots created by this resource policy.  Structure is documented below.
+        /// </summary>
         [Input("retentionPolicy")]
         public Input<ResourcePolicySnapshotSchedulePolicyRetentionPolicyArgs>? RetentionPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Contains one of an `hourlySchedule`, `dailySchedule`, or `weeklySchedule`.  Structure is documented below.
+        /// </summary>
         [Input("schedule", required: true)]
         public Input<ResourcePolicySnapshotSchedulePolicyScheduleArgs> Schedule { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Properties with which the snapshots are created, such as labels.  Structure is documented below.
+        /// </summary>
         [Input("snapshotProperties")]
         public Input<ResourcePolicySnapshotSchedulePolicySnapshotPropertiesArgs>? SnapshotProperties { get; set; }
 
@@ -194,12 +233,27 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ResourcePolicySnapshotSchedulePolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Retention policy applied to snapshots created by this resource policy.  Structure is documented below.
+        /// </summary>
         [Input("retentionPolicy")]
         public Input<ResourcePolicySnapshotSchedulePolicyRetentionPolicyGetArgs>? RetentionPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Contains one of an `hourlySchedule`, `dailySchedule`, or `weeklySchedule`.  Structure is documented below.
+        /// </summary>
         [Input("schedule", required: true)]
         public Input<ResourcePolicySnapshotSchedulePolicyScheduleGetArgs> Schedule { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Properties with which the snapshots are created, such as labels.  Structure is documented below.
+        /// </summary>
         [Input("snapshotProperties")]
         public Input<ResourcePolicySnapshotSchedulePolicySnapshotPropertiesGetArgs>? SnapshotProperties { get; set; }
 
@@ -210,9 +264,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ResourcePolicySnapshotSchedulePolicyRetentionPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Maximum age of the snapshot that is allowed to be kept.
+        /// </summary>
         [Input("maxRetentionDays", required: true)]
         public Input<int> MaxRetentionDays { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the behavior to apply to scheduled snapshots when
+        /// the source disk is deleted.
+        /// Valid options are KEEP_AUTO_SNAPSHOTS and APPLY_RETENTION_POLICY
+        /// </summary>
         [Input("onSourceDiskDelete")]
         public Input<string>? OnSourceDiskDelete { get; set; }
 
@@ -223,9 +289,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ResourcePolicySnapshotSchedulePolicyRetentionPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Maximum age of the snapshot that is allowed to be kept.
+        /// </summary>
         [Input("maxRetentionDays", required: true)]
         public Input<int> MaxRetentionDays { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the behavior to apply to scheduled snapshots when
+        /// the source disk is deleted.
+        /// Valid options are KEEP_AUTO_SNAPSHOTS and APPLY_RETENTION_POLICY
+        /// </summary>
         [Input("onSourceDiskDelete")]
         public Input<string>? OnSourceDiskDelete { get; set; }
 
@@ -236,12 +314,27 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The policy will execute every nth day at the specified time.  Structure is documented below.
+        /// </summary>
         [Input("dailySchedule")]
         public Input<ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleArgs>? DailySchedule { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The policy will execute every nth hour starting at the specified time.  Structure is documented below.
+        /// </summary>
         [Input("hourlySchedule")]
         public Input<ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleArgs>? HourlySchedule { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Allows specifying a snapshot time for each day of the week.  Structure is documented below.
+        /// </summary>
         [Input("weeklySchedule")]
         public Input<ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleArgs>? WeeklySchedule { get; set; }
 
@@ -252,9 +345,20 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of days between snapshots.
+        /// </summary>
         [Input("daysInCycle", required: true)]
         public Input<int> DaysInCycle { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Time within the window to start the operations.
+        /// It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
+        /// </summary>
         [Input("startTime", required: true)]
         public Input<string> StartTime { get; set; } = null!;
 
@@ -265,9 +369,20 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of days between snapshots.
+        /// </summary>
         [Input("daysInCycle", required: true)]
         public Input<int> DaysInCycle { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Time within the window to start the operations.
+        /// It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
+        /// </summary>
         [Input("startTime", required: true)]
         public Input<string> StartTime { get; set; } = null!;
 
@@ -278,12 +393,27 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The policy will execute every nth day at the specified time.  Structure is documented below.
+        /// </summary>
         [Input("dailySchedule")]
         public Input<ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleGetArgs>? DailySchedule { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The policy will execute every nth hour starting at the specified time.  Structure is documented below.
+        /// </summary>
         [Input("hourlySchedule")]
         public Input<ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleGetArgs>? HourlySchedule { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Allows specifying a snapshot time for each day of the week.  Structure is documented below.
+        /// </summary>
         [Input("weeklySchedule")]
         public Input<ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleGetArgs>? WeeklySchedule { get; set; }
 
@@ -294,9 +424,20 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of hours between snapshots.
+        /// </summary>
         [Input("hoursInCycle", required: true)]
         public Input<int> HoursInCycle { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Time within the window to start the operations.
+        /// It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
+        /// </summary>
         [Input("startTime", required: true)]
         public Input<string> StartTime { get; set; } = null!;
 
@@ -307,9 +448,20 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of hours between snapshots.
+        /// </summary>
         [Input("hoursInCycle", required: true)]
         public Input<int> HoursInCycle { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Time within the window to start the operations.
+        /// It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
+        /// </summary>
         [Input("startTime", required: true)]
         public Input<string> StartTime { get; set; } = null!;
 
@@ -322,6 +474,12 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("dayOfWeeks", required: true)]
         private InputList<ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeeksArgs>? _dayOfWeeks;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// May contain up to seven (one for each day of the week) snapshot times.  Structure is documented below.
+        /// </summary>
         public InputList<ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeeksArgs> DayOfWeeks
         {
             get => _dayOfWeeks ?? (_dayOfWeeks = new InputList<ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeeksArgs>());
@@ -335,9 +493,20 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeeksArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The day of the week to create the snapshot. e.g. MONDAY
+        /// </summary>
         [Input("day", required: true)]
         public Input<string> Day { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Time within the window to start the operations.
+        /// It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
+        /// </summary>
         [Input("startTime", required: true)]
         public Input<string> StartTime { get; set; } = null!;
 
@@ -348,9 +517,20 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeeksGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The day of the week to create the snapshot. e.g. MONDAY
+        /// </summary>
         [Input("day", required: true)]
         public Input<string> Day { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Time within the window to start the operations.
+        /// It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
+        /// </summary>
         [Input("startTime", required: true)]
         public Input<string> StartTime { get; set; } = null!;
 
@@ -363,6 +543,12 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("dayOfWeeks", required: true)]
         private InputList<ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeeksGetArgs>? _dayOfWeeks;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// May contain up to seven (one for each day of the week) snapshot times.  Structure is documented below.
+        /// </summary>
         public InputList<ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeeksGetArgs> DayOfWeeks
         {
             get => _dayOfWeeks ?? (_dayOfWeeks = new InputList<ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeeksGetArgs>());
@@ -376,17 +562,34 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ResourcePolicySnapshotSchedulePolicySnapshotPropertiesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to perform a 'guest aware' snapshot.
+        /// </summary>
         [Input("guestFlush")]
         public Input<bool>? GuestFlush { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A set of key-value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Cloud Storage bucket location to store the auto snapshot
+        /// (regional or multi-regional)
+        /// </summary>
         [Input("storageLocations")]
         public Input<string>? StorageLocations { get; set; }
 
@@ -397,17 +600,34 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ResourcePolicySnapshotSchedulePolicySnapshotPropertiesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to perform a 'guest aware' snapshot.
+        /// </summary>
         [Input("guestFlush")]
         public Input<bool>? GuestFlush { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A set of key-value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Cloud Storage bucket location to store the auto snapshot
+        /// (regional or multi-regional)
+        /// </summary>
         [Input("storageLocations")]
         public Input<string>? StorageLocations { get; set; }
 
@@ -423,8 +643,23 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ResourcePolicySnapshotSchedulePolicy
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Retention policy applied to snapshots created by this resource policy.  Structure is documented below.
+        /// </summary>
         public readonly ResourcePolicySnapshotSchedulePolicyRetentionPolicy? RetentionPolicy;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Contains one of an `hourlySchedule`, `dailySchedule`, or `weeklySchedule`.  Structure is documented below.
+        /// </summary>
         public readonly ResourcePolicySnapshotSchedulePolicySchedule Schedule;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Properties with which the snapshots are created, such as labels.  Structure is documented below.
+        /// </summary>
         public readonly ResourcePolicySnapshotSchedulePolicySnapshotProperties? SnapshotProperties;
 
         [OutputConstructor]
@@ -442,7 +677,19 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ResourcePolicySnapshotSchedulePolicyRetentionPolicy
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Maximum age of the snapshot that is allowed to be kept.
+        /// </summary>
         public readonly int MaxRetentionDays;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the behavior to apply to scheduled snapshots when
+        /// the source disk is deleted.
+        /// Valid options are KEEP_AUTO_SNAPSHOTS and APPLY_RETENTION_POLICY
+        /// </summary>
         public readonly string? OnSourceDiskDelete;
 
         [OutputConstructor]
@@ -458,8 +705,23 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ResourcePolicySnapshotSchedulePolicySchedule
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The policy will execute every nth day at the specified time.  Structure is documented below.
+        /// </summary>
         public readonly ResourcePolicySnapshotSchedulePolicyScheduleDailySchedule? DailySchedule;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The policy will execute every nth hour starting at the specified time.  Structure is documented below.
+        /// </summary>
         public readonly ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule? HourlySchedule;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Allows specifying a snapshot time for each day of the week.  Structure is documented below.
+        /// </summary>
         public readonly ResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedule? WeeklySchedule;
 
         [OutputConstructor]
@@ -477,7 +739,18 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleDailySchedule
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of days between snapshots.
+        /// </summary>
         public readonly int DaysInCycle;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Time within the window to start the operations.
+        /// It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
+        /// </summary>
         public readonly string StartTime;
 
         [OutputConstructor]
@@ -493,7 +766,18 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of hours between snapshots.
+        /// </summary>
         public readonly int HoursInCycle;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Time within the window to start the operations.
+        /// It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
+        /// </summary>
         public readonly string StartTime;
 
         [OutputConstructor]
@@ -509,6 +793,11 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedule
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// May contain up to seven (one for each day of the week) snapshot times.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeeks> DayOfWeeks;
 
         [OutputConstructor]
@@ -521,7 +810,18 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeeks
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The day of the week to create the snapshot. e.g. MONDAY
+        /// </summary>
         public readonly string Day;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Time within the window to start the operations.
+        /// It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
+        /// </summary>
         public readonly string StartTime;
 
         [OutputConstructor]
@@ -537,8 +837,24 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ResourcePolicySnapshotSchedulePolicySnapshotProperties
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to perform a 'guest aware' snapshot.
+        /// </summary>
         public readonly bool? GuestFlush;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A set of key-value pairs.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Cloud Storage bucket location to store the auto snapshot
+        /// (regional or multi-regional)
+        /// </summary>
         public readonly string? StorageLocations;
 
         [OutputConstructor]

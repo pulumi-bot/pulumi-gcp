@@ -242,6 +242,10 @@ namespace Pulumi.Gcp.Dataproc
             set => _initializationActions = value;
         }
 
+        /// <summary>
+        /// The settings for auto deletion cluster schedule.
+        /// Structure defined below.
+        /// </summary>
         [Input("lifecycleConfig")]
         public Input<ClusterClusterConfigLifecycleConfigArgs>? LifecycleConfig { get; set; }
 
@@ -575,6 +579,10 @@ namespace Pulumi.Gcp.Dataproc
             set => _initializationActions = value;
         }
 
+        /// <summary>
+        /// The settings for auto deletion cluster schedule.
+        /// Structure defined below.
+        /// </summary>
         [Input("lifecycleConfig")]
         public Input<ClusterClusterConfigLifecycleConfigGetArgs>? LifecycleConfig { get; set; }
 
@@ -631,6 +639,10 @@ namespace Pulumi.Gcp.Dataproc
 
     public sealed class ClusterClusterConfigInitializationActionsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The script to be executed during initialization of the cluster.
+        /// The script must be a GCS file with a gs:// prefix.
+        /// </summary>
         [Input("script", required: true)]
         public Input<string> Script { get; set; } = null!;
 
@@ -649,6 +661,10 @@ namespace Pulumi.Gcp.Dataproc
 
     public sealed class ClusterClusterConfigInitializationActionsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The script to be executed during initialization of the cluster.
+        /// The script must be a GCS file with a gs:// prefix.
+        /// </summary>
         [Input("script", required: true)]
         public Input<string> Script { get; set; } = null!;
 
@@ -805,6 +821,10 @@ namespace Pulumi.Gcp.Dataproc
         [Input("minCpuPlatform")]
         public Input<string>? MinCpuPlatform { get; set; }
 
+        /// <summary>
+        /// Specifies the number of preemptible nodes to create.
+        /// Defaults to 0.
+        /// </summary>
         [Input("numInstances")]
         public Input<int>? NumInstances { get; set; }
 
@@ -925,6 +945,10 @@ namespace Pulumi.Gcp.Dataproc
         [Input("minCpuPlatform")]
         public Input<string>? MinCpuPlatform { get; set; }
 
+        /// <summary>
+        /// Specifies the number of preemptible nodes to create.
+        /// Defaults to 0.
+        /// </summary>
         [Input("numInstances")]
         public Input<int>? NumInstances { get; set; }
 
@@ -949,6 +973,10 @@ namespace Pulumi.Gcp.Dataproc
             set => _instanceNames = value;
         }
 
+        /// <summary>
+        /// Specifies the number of preemptible nodes to create.
+        /// Defaults to 0.
+        /// </summary>
         [Input("numInstances")]
         public Input<int>? NumInstances { get; set; }
 
@@ -1033,6 +1061,10 @@ namespace Pulumi.Gcp.Dataproc
             set => _instanceNames = value;
         }
 
+        /// <summary>
+        /// Specifies the number of preemptible nodes to create.
+        /// Defaults to 0.
+        /// </summary>
         [Input("numInstances")]
         public Input<int>? NumInstances { get; set; }
 
@@ -1505,6 +1537,10 @@ namespace Pulumi.Gcp.Dataproc
         [Input("minCpuPlatform")]
         public Input<string>? MinCpuPlatform { get; set; }
 
+        /// <summary>
+        /// Specifies the number of preemptible nodes to create.
+        /// Defaults to 0.
+        /// </summary>
         [Input("numInstances")]
         public Input<int>? NumInstances { get; set; }
 
@@ -1625,6 +1661,10 @@ namespace Pulumi.Gcp.Dataproc
         [Input("minCpuPlatform")]
         public Input<string>? MinCpuPlatform { get; set; }
 
+        /// <summary>
+        /// Specifies the number of preemptible nodes to create.
+        /// Defaults to 0.
+        /// </summary>
         [Input("numInstances")]
         public Input<int>? NumInstances { get; set; }
 
@@ -1661,6 +1701,10 @@ namespace Pulumi.Gcp.Dataproc
         /// You can specify multiple versions of these. Structure defined below.
         /// </summary>
         public readonly ImmutableArray<ClusterClusterConfigInitializationActions> InitializationActions;
+        /// <summary>
+        /// The settings for auto deletion cluster schedule.
+        /// Structure defined below.
+        /// </summary>
         public readonly ClusterClusterConfigLifecycleConfig? LifecycleConfig;
         /// <summary>
         /// The Google Compute Engine config settings for the master instances
@@ -1839,6 +1883,10 @@ namespace Pulumi.Gcp.Dataproc
     [OutputType]
     public sealed class ClusterClusterConfigInitializationActions
     {
+        /// <summary>
+        /// The script to be executed during initialization of the cluster.
+        /// The script must be a GCS file with a gs:// prefix.
+        /// </summary>
         public readonly string Script;
         /// <summary>
         /// The maximum duration (in seconds) which `script` is
@@ -1915,6 +1963,10 @@ namespace Pulumi.Gcp.Dataproc
         /// for details about which CPU families are available (and defaulted) for each zone.
         /// </summary>
         public readonly string MinCpuPlatform;
+        /// <summary>
+        /// Specifies the number of preemptible nodes to create.
+        /// Defaults to 0.
+        /// </summary>
         public readonly int NumInstances;
 
         [OutputConstructor]
@@ -2000,6 +2052,10 @@ namespace Pulumi.Gcp.Dataproc
         /// </summary>
         public readonly ClusterClusterConfigPreemptibleWorkerConfigDiskConfig DiskConfig;
         public readonly ImmutableArray<string> InstanceNames;
+        /// <summary>
+        /// Specifies the number of preemptible nodes to create.
+        /// Defaults to 0.
+        /// </summary>
         public readonly int NumInstances;
 
         [OutputConstructor]
@@ -2255,6 +2311,10 @@ namespace Pulumi.Gcp.Dataproc
         /// for details about which CPU families are available (and defaulted) for each zone.
         /// </summary>
         public readonly string MinCpuPlatform;
+        /// <summary>
+        /// Specifies the number of preemptible nodes to create.
+        /// Defaults to 0.
+        /// </summary>
         public readonly int NumInstances;
 
         [OutputConstructor]

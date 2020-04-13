@@ -28,9 +28,13 @@ namespace Pulumi.Gcp.Compute
     public partial class Autoscaler : Pulumi.CustomResource
     {
         /// <summary>
-        /// The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for
-        /// an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are
-        /// specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+        /// -
+        /// (Required)
+        /// The configuration parameters for the autoscaling algorithm. You can
+        /// define one or more of the policies for an autoscaler: cpuUtilization,
+        /// customMetricUtilizations, and loadBalancingUtilization.
+        /// If none of these are specified, the default will be to autoscale based
+        /// on cpuUtilization to 0.6 or 60%.  Structure is documented below.
         /// </summary>
         [Output("autoscalingPolicy")]
         public Output<Outputs.AutoscalerAutoscalingPolicy> AutoscalingPolicy { get; private set; } = null!;
@@ -42,15 +46,19 @@ namespace Pulumi.Gcp.Compute
         public Output<string> CreationTimestamp { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource. The name must be 1-63 characters long and match the regular expression
-        /// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-        /// characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// The identifier (type) of the Stackdriver Monitoring metric.
+        /// The metric cannot have negative values.
+        /// The metric must have a value type of INT64 or DOUBLE.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -69,12 +77,18 @@ namespace Pulumi.Gcp.Compute
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
-        /// URL of the managed instance group that this autoscaler will scale.
+        /// -
+        /// (Required)
+        /// Fraction of backend capacity utilization (set in HTTP(s) load
+        /// balancing configuration) that autoscaler should maintain. Must
+        /// be a positive float value. If not defined, the default is 0.8.
         /// </summary>
         [Output("target")]
         public Output<string> Target { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// URL of the zone where the instance group resides.
         /// </summary>
         [Output("zone")]
@@ -127,23 +141,31 @@ namespace Pulumi.Gcp.Compute
     public sealed class AutoscalerArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for
-        /// an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are
-        /// specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+        /// -
+        /// (Required)
+        /// The configuration parameters for the autoscaling algorithm. You can
+        /// define one or more of the policies for an autoscaler: cpuUtilization,
+        /// customMetricUtilizations, and loadBalancingUtilization.
+        /// If none of these are specified, the default will be to autoscale based
+        /// on cpuUtilization to 0.6 or 60%.  Structure is documented below.
         /// </summary>
         [Input("autoscalingPolicy", required: true)]
         public Input<Inputs.AutoscalerAutoscalingPolicyArgs> AutoscalingPolicy { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Name of the resource. The name must be 1-63 characters long and match the regular expression
-        /// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-        /// characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// The identifier (type) of the Stackdriver Monitoring metric.
+        /// The metric cannot have negative values.
+        /// The metric must have a value type of INT64 or DOUBLE.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -156,12 +178,18 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// URL of the managed instance group that this autoscaler will scale.
+        /// -
+        /// (Required)
+        /// Fraction of backend capacity utilization (set in HTTP(s) load
+        /// balancing configuration) that autoscaler should maintain. Must
+        /// be a positive float value. If not defined, the default is 0.8.
         /// </summary>
         [Input("target", required: true)]
         public Input<string> Target { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// URL of the zone where the instance group resides.
         /// </summary>
         [Input("zone")]
@@ -175,9 +203,13 @@ namespace Pulumi.Gcp.Compute
     public sealed class AutoscalerState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for
-        /// an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are
-        /// specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+        /// -
+        /// (Required)
+        /// The configuration parameters for the autoscaling algorithm. You can
+        /// define one or more of the policies for an autoscaler: cpuUtilization,
+        /// customMetricUtilizations, and loadBalancingUtilization.
+        /// If none of these are specified, the default will be to autoscale based
+        /// on cpuUtilization to 0.6 or 60%.  Structure is documented below.
         /// </summary>
         [Input("autoscalingPolicy")]
         public Input<Inputs.AutoscalerAutoscalingPolicyGetArgs>? AutoscalingPolicy { get; set; }
@@ -189,15 +221,19 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? CreationTimestamp { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Name of the resource. The name must be 1-63 characters long and match the regular expression
-        /// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-        /// characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// The identifier (type) of the Stackdriver Monitoring metric.
+        /// The metric cannot have negative values.
+        /// The metric must have a value type of INT64 or DOUBLE.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -216,12 +252,18 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? SelfLink { get; set; }
 
         /// <summary>
-        /// URL of the managed instance group that this autoscaler will scale.
+        /// -
+        /// (Required)
+        /// Fraction of backend capacity utilization (set in HTTP(s) load
+        /// balancing configuration) that autoscaler should maintain. Must
+        /// be a positive float value. If not defined, the default is 0.8.
         /// </summary>
         [Input("target")]
         public Input<string>? Target { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// URL of the zone where the instance group resides.
         /// </summary>
         [Input("zone")]
@@ -237,26 +279,73 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class AutoscalerAutoscalingPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of seconds that the autoscaler should wait before it
+        /// starts collecting information from a new instance. This prevents
+        /// the autoscaler from collecting information when the instance is
+        /// initializing, during which the collected usage would not be
+        /// reliable. The default time autoscaler waits is 60 seconds.
+        /// Virtual machine initialization times might vary because of
+        /// numerous factors. We recommend that you test how long an
+        /// instance may take to initialize. To do this, create an instance
+        /// and time the startup process.
+        /// </summary>
         [Input("cooldownPeriod")]
         public Input<int>? CooldownPeriod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Defines the CPU utilization policy that allows the autoscaler to
+        /// scale based on the average CPU utilization of a managed instance
+        /// group.  Structure is documented below.
+        /// </summary>
         [Input("cpuUtilization")]
         public Input<AutoscalerAutoscalingPolicyCpuUtilizationArgs>? CpuUtilization { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Configuration parameters of autoscaling based on a load balancer.  Structure is documented below.
+        /// </summary>
         [Input("loadBalancingUtilization")]
         public Input<AutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs>? LoadBalancingUtilization { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The maximum number of instances that the autoscaler can scale up
+        /// to. This is required when creating or updating an autoscaler. The
+        /// maximum number of replicas should not be lower than minimal number
+        /// of replicas.
+        /// </summary>
         [Input("maxReplicas", required: true)]
         public Input<int> MaxReplicas { get; set; } = null!;
 
         [Input("metrics")]
         private InputList<AutoscalerAutoscalingPolicyMetricsArgs>? _metrics;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Configuration parameters of autoscaling based on a custom metric.  Structure is documented below.
+        /// </summary>
         public InputList<AutoscalerAutoscalingPolicyMetricsArgs> Metrics
         {
             get => _metrics ?? (_metrics = new InputList<AutoscalerAutoscalingPolicyMetricsArgs>());
             set => _metrics = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The minimum number of replicas that the autoscaler can scale down
+        /// to. This cannot be less than 0. If not provided, autoscaler will
+        /// choose a default value depending on maximum number of instances
+        /// allowed.
+        /// </summary>
         [Input("minReplicas", required: true)]
         public Input<int> MinReplicas { get; set; } = null!;
 
@@ -267,6 +356,13 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class AutoscalerAutoscalingPolicyCpuUtilizationArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of backend capacity utilization (set in HTTP(s) load
+        /// balancing configuration) that autoscaler should maintain. Must
+        /// be a positive float value. If not defined, the default is 0.8.
+        /// </summary>
         [Input("target", required: true)]
         public Input<double> Target { get; set; } = null!;
 
@@ -277,6 +373,13 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class AutoscalerAutoscalingPolicyCpuUtilizationGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of backend capacity utilization (set in HTTP(s) load
+        /// balancing configuration) that autoscaler should maintain. Must
+        /// be a positive float value. If not defined, the default is 0.8.
+        /// </summary>
         [Input("target", required: true)]
         public Input<double> Target { get; set; } = null!;
 
@@ -287,26 +390,73 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class AutoscalerAutoscalingPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of seconds that the autoscaler should wait before it
+        /// starts collecting information from a new instance. This prevents
+        /// the autoscaler from collecting information when the instance is
+        /// initializing, during which the collected usage would not be
+        /// reliable. The default time autoscaler waits is 60 seconds.
+        /// Virtual machine initialization times might vary because of
+        /// numerous factors. We recommend that you test how long an
+        /// instance may take to initialize. To do this, create an instance
+        /// and time the startup process.
+        /// </summary>
         [Input("cooldownPeriod")]
         public Input<int>? CooldownPeriod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Defines the CPU utilization policy that allows the autoscaler to
+        /// scale based on the average CPU utilization of a managed instance
+        /// group.  Structure is documented below.
+        /// </summary>
         [Input("cpuUtilization")]
         public Input<AutoscalerAutoscalingPolicyCpuUtilizationGetArgs>? CpuUtilization { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Configuration parameters of autoscaling based on a load balancer.  Structure is documented below.
+        /// </summary>
         [Input("loadBalancingUtilization")]
         public Input<AutoscalerAutoscalingPolicyLoadBalancingUtilizationGetArgs>? LoadBalancingUtilization { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The maximum number of instances that the autoscaler can scale up
+        /// to. This is required when creating or updating an autoscaler. The
+        /// maximum number of replicas should not be lower than minimal number
+        /// of replicas.
+        /// </summary>
         [Input("maxReplicas", required: true)]
         public Input<int> MaxReplicas { get; set; } = null!;
 
         [Input("metrics")]
         private InputList<AutoscalerAutoscalingPolicyMetricsGetArgs>? _metrics;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Configuration parameters of autoscaling based on a custom metric.  Structure is documented below.
+        /// </summary>
         public InputList<AutoscalerAutoscalingPolicyMetricsGetArgs> Metrics
         {
             get => _metrics ?? (_metrics = new InputList<AutoscalerAutoscalingPolicyMetricsGetArgs>());
             set => _metrics = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The minimum number of replicas that the autoscaler can scale down
+        /// to. This cannot be less than 0. If not provided, autoscaler will
+        /// choose a default value depending on maximum number of instances
+        /// allowed.
+        /// </summary>
         [Input("minReplicas", required: true)]
         public Input<int> MinReplicas { get; set; } = null!;
 
@@ -317,6 +467,13 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class AutoscalerAutoscalingPolicyLoadBalancingUtilizationArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of backend capacity utilization (set in HTTP(s) load
+        /// balancing configuration) that autoscaler should maintain. Must
+        /// be a positive float value. If not defined, the default is 0.8.
+        /// </summary>
         [Input("target", required: true)]
         public Input<double> Target { get; set; } = null!;
 
@@ -327,6 +484,13 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class AutoscalerAutoscalingPolicyLoadBalancingUtilizationGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of backend capacity utilization (set in HTTP(s) load
+        /// balancing configuration) that autoscaler should maintain. Must
+        /// be a positive float value. If not defined, the default is 0.8.
+        /// </summary>
         [Input("target", required: true)]
         public Input<double> Target { get; set; } = null!;
 
@@ -340,15 +504,36 @@ namespace Pulumi.Gcp.Compute
         [Input("filter")]
         public Input<string>? Filter { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The identifier (type) of the Stackdriver Monitoring metric.
+        /// The metric cannot have negative values.
+        /// The metric must have a value type of INT64 or DOUBLE.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("singleInstanceAssignment")]
         public Input<double>? SingleInstanceAssignment { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of backend capacity utilization (set in HTTP(s) load
+        /// balancing configuration) that autoscaler should maintain. Must
+        /// be a positive float value. If not defined, the default is 0.8.
+        /// </summary>
         [Input("target")]
         public Input<double>? Target { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Defines how target utilization value is expressed for a
+        /// Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND,
+        /// or DELTA_PER_MINUTE.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
@@ -362,15 +547,36 @@ namespace Pulumi.Gcp.Compute
         [Input("filter")]
         public Input<string>? Filter { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The identifier (type) of the Stackdriver Monitoring metric.
+        /// The metric cannot have negative values.
+        /// The metric must have a value type of INT64 or DOUBLE.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("singleInstanceAssignment")]
         public Input<double>? SingleInstanceAssignment { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of backend capacity utilization (set in HTTP(s) load
+        /// balancing configuration) that autoscaler should maintain. Must
+        /// be a positive float value. If not defined, the default is 0.8.
+        /// </summary>
         [Input("target")]
         public Input<double>? Target { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Defines how target utilization value is expressed for a
+        /// Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND,
+        /// or DELTA_PER_MINUTE.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
@@ -386,11 +592,57 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class AutoscalerAutoscalingPolicy
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of seconds that the autoscaler should wait before it
+        /// starts collecting information from a new instance. This prevents
+        /// the autoscaler from collecting information when the instance is
+        /// initializing, during which the collected usage would not be
+        /// reliable. The default time autoscaler waits is 60 seconds.
+        /// Virtual machine initialization times might vary because of
+        /// numerous factors. We recommend that you test how long an
+        /// instance may take to initialize. To do this, create an instance
+        /// and time the startup process.
+        /// </summary>
         public readonly int? CooldownPeriod;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Defines the CPU utilization policy that allows the autoscaler to
+        /// scale based on the average CPU utilization of a managed instance
+        /// group.  Structure is documented below.
+        /// </summary>
         public readonly AutoscalerAutoscalingPolicyCpuUtilization CpuUtilization;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Configuration parameters of autoscaling based on a load balancer.  Structure is documented below.
+        /// </summary>
         public readonly AutoscalerAutoscalingPolicyLoadBalancingUtilization? LoadBalancingUtilization;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The maximum number of instances that the autoscaler can scale up
+        /// to. This is required when creating or updating an autoscaler. The
+        /// maximum number of replicas should not be lower than minimal number
+        /// of replicas.
+        /// </summary>
         public readonly int MaxReplicas;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Configuration parameters of autoscaling based on a custom metric.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<AutoscalerAutoscalingPolicyMetrics> Metrics;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The minimum number of replicas that the autoscaler can scale down
+        /// to. This cannot be less than 0. If not provided, autoscaler will
+        /// choose a default value depending on maximum number of instances
+        /// allowed.
+        /// </summary>
         public readonly int MinReplicas;
 
         [OutputConstructor]
@@ -414,6 +666,13 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class AutoscalerAutoscalingPolicyCpuUtilization
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of backend capacity utilization (set in HTTP(s) load
+        /// balancing configuration) that autoscaler should maintain. Must
+        /// be a positive float value. If not defined, the default is 0.8.
+        /// </summary>
         public readonly double Target;
 
         [OutputConstructor]
@@ -426,6 +685,13 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class AutoscalerAutoscalingPolicyLoadBalancingUtilization
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of backend capacity utilization (set in HTTP(s) load
+        /// balancing configuration) that autoscaler should maintain. Must
+        /// be a positive float value. If not defined, the default is 0.8.
+        /// </summary>
         public readonly double Target;
 
         [OutputConstructor]
@@ -439,9 +705,30 @@ namespace Pulumi.Gcp.Compute
     public sealed class AutoscalerAutoscalingPolicyMetrics
     {
         public readonly string? Filter;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The identifier (type) of the Stackdriver Monitoring metric.
+        /// The metric cannot have negative values.
+        /// The metric must have a value type of INT64 or DOUBLE.
+        /// </summary>
         public readonly string Name;
         public readonly double? SingleInstanceAssignment;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of backend capacity utilization (set in HTTP(s) load
+        /// balancing configuration) that autoscaler should maintain. Must
+        /// be a positive float value. If not defined, the default is 0.8.
+        /// </summary>
         public readonly double? Target;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Defines how target utilization value is expressed for a
+        /// Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND,
+        /// or DELTA_PER_MINUTE.
+        /// </summary>
         public readonly string? Type;
 
         [OutputConstructor]

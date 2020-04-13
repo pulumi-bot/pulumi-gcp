@@ -24,18 +24,24 @@ namespace Pulumi.Gcp.CloudRun
     public partial class DomainMapping : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The location of the cloud run instance. eg us-central1
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
-        /// Metadata associated with this DomainMapping.
+        /// -
+        /// (Required)
+        /// Metadata associated with this DomainMapping.  Structure is documented below.
         /// </summary>
         [Output("metadata")]
         public Output<Outputs.DomainMappingMetadata> Metadata { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name should be a verified domain
         /// </summary>
         [Output("name")]
@@ -49,7 +55,9 @@ namespace Pulumi.Gcp.CloudRun
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// The spec for this DomainMapping.
+        /// -
+        /// (Required)
+        /// The spec for this DomainMapping.  Structure is documented below.
         /// </summary>
         [Output("spec")]
         public Output<Outputs.DomainMappingSpec> Spec { get; private set; } = null!;
@@ -107,18 +115,24 @@ namespace Pulumi.Gcp.CloudRun
     public sealed class DomainMappingArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The location of the cloud run instance. eg us-central1
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
-        /// Metadata associated with this DomainMapping.
+        /// -
+        /// (Required)
+        /// Metadata associated with this DomainMapping.  Structure is documented below.
         /// </summary>
         [Input("metadata", required: true)]
         public Input<Inputs.DomainMappingMetadataArgs> Metadata { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name should be a verified domain
         /// </summary>
         [Input("name")]
@@ -132,7 +146,9 @@ namespace Pulumi.Gcp.CloudRun
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The spec for this DomainMapping.
+        /// -
+        /// (Required)
+        /// The spec for this DomainMapping.  Structure is documented below.
         /// </summary>
         [Input("spec", required: true)]
         public Input<Inputs.DomainMappingSpecArgs> Spec { get; set; } = null!;
@@ -145,18 +161,24 @@ namespace Pulumi.Gcp.CloudRun
     public sealed class DomainMappingState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The location of the cloud run instance. eg us-central1
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// Metadata associated with this DomainMapping.
+        /// -
+        /// (Required)
+        /// Metadata associated with this DomainMapping.  Structure is documented below.
         /// </summary>
         [Input("metadata")]
         public Input<Inputs.DomainMappingMetadataGetArgs>? Metadata { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name should be a verified domain
         /// </summary>
         [Input("name")]
@@ -170,7 +192,9 @@ namespace Pulumi.Gcp.CloudRun
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The spec for this DomainMapping.
+        /// -
+        /// (Required)
+        /// The spec for this DomainMapping.  Structure is documented below.
         /// </summary>
         [Input("spec")]
         public Input<Inputs.DomainMappingSpecGetArgs>? Spec { get; set; }
@@ -193,32 +217,79 @@ namespace Pulumi.Gcp.CloudRun
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Annotations is a key value map stored with a resource that
+        /// may be set by external tools to store and retrieve arbitrary metadata. More
+        /// info: http://kubernetes.io/docs/user-guide/annotations
+        /// </summary>
         public InputMap<string> Annotations
         {
             get => _annotations ?? (_annotations = new InputMap<string>());
             set => _annotations = value;
         }
 
+        /// <summary>
+        /// -
+        /// A sequence number representing a specific generation of the desired state.
+        /// </summary>
         [Input("generation")]
         public Input<int>? Generation { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Map of string keys and values that can be used to organize and categorize
+        /// (scope and select) objects. May match selectors of replication controllers
+        /// and routes.
+        /// More info: http://kubernetes.io/docs/user-guide/labels
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// In Cloud Run the namespace must be equal to either the
+        /// project ID or project number.
+        /// </summary>
         [Input("namespace", required: true)]
         public Input<string> Namespace { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// An opaque value that represents the internal version of this object that
+        /// can be used by clients to determine when objects have changed. May be used
+        /// for optimistic concurrency, change detection, and the watch operation on a
+        /// resource or set of resources. They may only be valid for a
+        /// particular resource or set of resources.
+        /// More info:
+        /// https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
+        /// </summary>
         [Input("resourceVersion")]
         public Input<string>? ResourceVersion { get; set; }
 
+        /// <summary>
+        /// -
+        /// SelfLink is a URL representing this object.
+        /// </summary>
         [Input("selfLink")]
         public Input<string>? SelfLink { get; set; }
 
+        /// <summary>
+        /// -
+        /// UID is a unique id generated by the server on successful creation of a resource and is not
+        /// allowed to change on PUT operations.
+        /// More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }
 
@@ -231,32 +302,79 @@ namespace Pulumi.Gcp.CloudRun
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Annotations is a key value map stored with a resource that
+        /// may be set by external tools to store and retrieve arbitrary metadata. More
+        /// info: http://kubernetes.io/docs/user-guide/annotations
+        /// </summary>
         public InputMap<string> Annotations
         {
             get => _annotations ?? (_annotations = new InputMap<string>());
             set => _annotations = value;
         }
 
+        /// <summary>
+        /// -
+        /// A sequence number representing a specific generation of the desired state.
+        /// </summary>
         [Input("generation")]
         public Input<int>? Generation { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Map of string keys and values that can be used to organize and categorize
+        /// (scope and select) objects. May match selectors of replication controllers
+        /// and routes.
+        /// More info: http://kubernetes.io/docs/user-guide/labels
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// In Cloud Run the namespace must be equal to either the
+        /// project ID or project number.
+        /// </summary>
         [Input("namespace", required: true)]
         public Input<string> Namespace { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// An opaque value that represents the internal version of this object that
+        /// can be used by clients to determine when objects have changed. May be used
+        /// for optimistic concurrency, change detection, and the watch operation on a
+        /// resource or set of resources. They may only be valid for a
+        /// particular resource or set of resources.
+        /// More info:
+        /// https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
+        /// </summary>
         [Input("resourceVersion")]
         public Input<string>? ResourceVersion { get; set; }
 
+        /// <summary>
+        /// -
+        /// SelfLink is a URL representing this object.
+        /// </summary>
         [Input("selfLink")]
         public Input<string>? SelfLink { get; set; }
 
+        /// <summary>
+        /// -
+        /// UID is a unique id generated by the server on successful creation of a resource and is not
+        /// allowed to change on PUT operations.
+        /// More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        /// </summary>
         [Input("uid")]
         public Input<string>? Uid { get; set; }
 
@@ -267,12 +385,31 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class DomainMappingSpecArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The mode of the certificate.
+        /// </summary>
         [Input("certificateMode")]
         public Input<string>? CertificateMode { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set, the mapping will override any mapping set before this spec was set.
+        /// It is recommended that the user leaves this empty to receive an error
+        /// warning about a potential conflict and only set it once the respective UI
+        /// has given such a warning.
+        /// </summary>
         [Input("forceOverride")]
         public Input<bool>? ForceOverride { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the Cloud Run Service that this DomainMapping applies to.
+        /// The route must exist.
+        /// </summary>
         [Input("routeName", required: true)]
         public Input<string> RouteName { get; set; } = null!;
 
@@ -283,12 +420,31 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class DomainMappingSpecGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The mode of the certificate.
+        /// </summary>
         [Input("certificateMode")]
         public Input<string>? CertificateMode { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set, the mapping will override any mapping set before this spec was set.
+        /// It is recommended that the user leaves this empty to receive an error
+        /// warning about a potential conflict and only set it once the respective UI
+        /// has given such a warning.
+        /// </summary>
         [Input("forceOverride")]
         public Input<bool>? ForceOverride { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the Cloud Run Service that this DomainMapping applies to.
+        /// The route must exist.
+        /// </summary>
         [Input("routeName", required: true)]
         public Input<string> RouteName { get; set; } = null!;
 
@@ -347,6 +503,11 @@ namespace Pulumi.Gcp.CloudRun
 
     public sealed class DomainMappingStatusResourceRecordsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name should be a verified domain
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -368,12 +529,57 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class DomainMappingMetadata
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Annotations is a key value map stored with a resource that
+        /// may be set by external tools to store and retrieve arbitrary metadata. More
+        /// info: http://kubernetes.io/docs/user-guide/annotations
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Annotations;
+        /// <summary>
+        /// -
+        /// A sequence number representing a specific generation of the desired state.
+        /// </summary>
         public readonly int Generation;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Map of string keys and values that can be used to organize and categorize
+        /// (scope and select) objects. May match selectors of replication controllers
+        /// and routes.
+        /// More info: http://kubernetes.io/docs/user-guide/labels
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// In Cloud Run the namespace must be equal to either the
+        /// project ID or project number.
+        /// </summary>
         public readonly string Namespace;
+        /// <summary>
+        /// -
+        /// An opaque value that represents the internal version of this object that
+        /// can be used by clients to determine when objects have changed. May be used
+        /// for optimistic concurrency, change detection, and the watch operation on a
+        /// resource or set of resources. They may only be valid for a
+        /// particular resource or set of resources.
+        /// More info:
+        /// https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
+        /// </summary>
         public readonly string ResourceVersion;
+        /// <summary>
+        /// -
+        /// SelfLink is a URL representing this object.
+        /// </summary>
         public readonly string SelfLink;
+        /// <summary>
+        /// -
+        /// UID is a unique id generated by the server on successful creation of a resource and is not
+        /// allowed to change on PUT operations.
+        /// More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+        /// </summary>
         public readonly string Uid;
 
         [OutputConstructor]
@@ -399,8 +605,27 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class DomainMappingSpec
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The mode of the certificate.
+        /// </summary>
         public readonly string? CertificateMode;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set, the mapping will override any mapping set before this spec was set.
+        /// It is recommended that the user leaves this empty to receive an error
+        /// warning about a potential conflict and only set it once the respective UI
+        /// has given such a warning.
+        /// </summary>
         public readonly bool? ForceOverride;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the Cloud Run Service that this DomainMapping applies to.
+        /// The route must exist.
+        /// </summary>
         public readonly string RouteName;
 
         [OutputConstructor]
@@ -462,6 +687,11 @@ namespace Pulumi.Gcp.CloudRun
     [OutputType]
     public sealed class DomainMappingStatusResourceRecords
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name should be a verified domain
+        /// </summary>
         public readonly string Name;
         public readonly string Rrdata;
         public readonly string? Type;

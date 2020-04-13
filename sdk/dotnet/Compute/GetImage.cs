@@ -15,6 +15,8 @@ namespace Pulumi.Gcp.Compute
         /// Get information about a Google Compute Image. Check that your service account has the `compute.imageUser` role if you want to share [custom images](https://cloud.google.com/compute/docs/images/sharing-images-across-projects) from another project. If you want to use [public images][pubimg], do not forget to specify the dedicated project. For more information see
         /// [the official documentation](https://cloud.google.com/compute/docs/images) and its [API](https://cloud.google.com/compute/docs/reference/latest/images).
         /// 
+        /// 
+        /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_image.html.markdown.
         /// </summary>
         [Obsolete("Use GetImage.InvokeAsync() instead")]
@@ -26,6 +28,8 @@ namespace Pulumi.Gcp.Compute
         /// <summary>
         /// Get information about a Google Compute Image. Check that your service account has the `compute.imageUser` role if you want to share [custom images](https://cloud.google.com/compute/docs/images/sharing-images-across-projects) from another project. If you want to use [public images][pubimg], do not forget to specify the dedicated project. For more information see
         /// [the official documentation](https://cloud.google.com/compute/docs/images) and its [API](https://cloud.google.com/compute/docs/reference/latest/images).
+        /// 
+        /// 
         /// 
         /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_image.html.markdown.
         /// </summary>
@@ -42,7 +46,10 @@ namespace Pulumi.Gcp.Compute
         public string? Family { get; set; }
 
         /// <summary>
-        /// The name of the image.
+        /// or `family` - (Required) The name of a specific image or a family.
+        /// Exactly one of `name` of `family` must be specified. If `name` is specified, it will fetch
+        /// the corresponding image. If `family` is specified, it will returns the latest image
+        /// that is part of an image family and is not deprecated.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }

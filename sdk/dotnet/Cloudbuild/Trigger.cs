@@ -24,7 +24,9 @@ namespace Pulumi.Gcp.CloudBuild
     public partial class Trigger : Pulumi.CustomResource
     {
         /// <summary>
-        /// Contents of the build template. Either a filename or build template must be provided.
+        /// -
+        /// (Optional)
+        /// Contents of the build template. Either a filename or build template must be provided.  Structure is documented below.
         /// </summary>
         [Output("build")]
         public Output<Outputs.TriggerBuild?> Build { get; private set; } = null!;
@@ -36,53 +38,74 @@ namespace Pulumi.Gcp.CloudBuild
         public Output<string> CreateTime { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human-readable description of the trigger.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether the trigger is disabled or not. If true, the trigger will never result in a build.
         /// </summary>
         [Output("disabled")]
         public Output<bool?> Disabled { get; private set; } = null!;
 
         /// <summary>
-        /// Path, from the source root, to a file whose contents is used for the template. Either a filename or build
-        /// template must be provided.
+        /// -
+        /// (Optional)
+        /// Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must be provided.
         /// </summary>
         [Output("filename")]
         public Output<string?> Filename { get; private set; } = null!;
 
         /// <summary>
-        /// Describes the configuration of a trigger that creates a build whenever a GitHub event is received. One of
-        /// 'trigger_template' or 'github' must be provided.
+        /// -
+        /// (Optional)
+        /// Describes the configuration of a trigger that creates a build whenever a GitHub event is received.
+        /// One of `trigger_template` or `github` must be provided.  Structure is documented below.
         /// </summary>
         [Output("github")]
         public Output<Outputs.TriggerGithub?> Github { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
-        /// extended with support for '**'. If ignoredFiles and changed files are both empty, then they are not used to
-        /// determine whether or not to trigger a build. If ignoredFiles is not empty, then we ignore any files that
-        /// match any of the ignored_file globs. If the change has no files that are outside of the ignoredFiles globs,
-        /// then we do not trigger a build.
+        /// extended with support for `**`.
+        /// If ignoredFiles and changed files are both empty, then they are not
+        /// used to determine whether or not to trigger a build.
+        /// If ignoredFiles is not empty, then we ignore any files that match any
+        /// of the ignored_file globs. If the change has no files that are outside
+        /// of the ignoredFiles globs, then we do not trigger a build.
         /// </summary>
         [Output("ignoredFiles")]
         public Output<ImmutableArray<string>> IgnoredFiles { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
-        /// extended with support for '**'. If any of the files altered in the commit pass the ignoredFiles filter and
-        /// includedFiles is empty, then as far as this filter is concerned, we should trigger the build. If any of the
-        /// files altered in the commit pass the ignoredFiles filter and includedFiles is not empty, then we make sure
-        /// that at least one of those files matches a includedFiles glob. If not, then we do not trigger a build.
+        /// extended with support for `**`.
+        /// If any of the files altered in the commit pass the ignoredFiles filter
+        /// and includedFiles is empty, then as far as this filter is concerned, we
+        /// should trigger the build.
+        /// If any of the files altered in the commit pass the ignoredFiles filter
+        /// and includedFiles is not empty, then we make sure that at least one of
+        /// those files matches a includedFiles glob. If not, then we do not trigger
+        /// a build.
         /// </summary>
         [Output("includedFiles")]
         public Output<ImmutableArray<string>> IncludedFiles { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the trigger. Must be unique within the project.
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -95,6 +118,8 @@ namespace Pulumi.Gcp.CloudBuild
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Substitutions data for Build resource.
         /// </summary>
         [Output("substitutions")]
@@ -107,9 +132,13 @@ namespace Pulumi.Gcp.CloudBuild
         public Output<string> TriggerId { get; private set; } = null!;
 
         /// <summary>
-        /// Template describing the types of source changes to trigger a build. Branch and tag names in trigger
-        /// templates are interpreted as regular expressions. Any branch or tag change that matches that regular
-        /// expression will trigger a build. One of 'trigger_template' or 'github' must be provided.
+        /// -
+        /// (Optional)
+        /// Template describing the types of source changes to trigger a build.
+        /// Branch and tag names in trigger templates are interpreted as regular
+        /// expressions. Any branch or tag change that matches that regular
+        /// expression will trigger a build.
+        /// One of `trigger_template` or `github` must be provided.  Structure is documented below.
         /// </summary>
         [Output("triggerTemplate")]
         public Output<Outputs.TriggerTriggerTemplate?> TriggerTemplate { get; private set; } = null!;
@@ -161,33 +190,42 @@ namespace Pulumi.Gcp.CloudBuild
     public sealed class TriggerArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Contents of the build template. Either a filename or build template must be provided.
+        /// -
+        /// (Optional)
+        /// Contents of the build template. Either a filename or build template must be provided.  Structure is documented below.
         /// </summary>
         [Input("build")]
         public Input<Inputs.TriggerBuildArgs>? Build { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human-readable description of the trigger.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether the trigger is disabled or not. If true, the trigger will never result in a build.
         /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }
 
         /// <summary>
-        /// Path, from the source root, to a file whose contents is used for the template. Either a filename or build
-        /// template must be provided.
+        /// -
+        /// (Optional)
+        /// Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must be provided.
         /// </summary>
         [Input("filename")]
         public Input<string>? Filename { get; set; }
 
         /// <summary>
-        /// Describes the configuration of a trigger that creates a build whenever a GitHub event is received. One of
-        /// 'trigger_template' or 'github' must be provided.
+        /// -
+        /// (Optional)
+        /// Describes the configuration of a trigger that creates a build whenever a GitHub event is received.
+        /// One of `trigger_template` or `github` must be provided.  Structure is documented below.
         /// </summary>
         [Input("github")]
         public Input<Inputs.TriggerGithubArgs>? Github { get; set; }
@@ -196,11 +234,15 @@ namespace Pulumi.Gcp.CloudBuild
         private InputList<string>? _ignoredFiles;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
-        /// extended with support for '**'. If ignoredFiles and changed files are both empty, then they are not used to
-        /// determine whether or not to trigger a build. If ignoredFiles is not empty, then we ignore any files that
-        /// match any of the ignored_file globs. If the change has no files that are outside of the ignoredFiles globs,
-        /// then we do not trigger a build.
+        /// extended with support for `**`.
+        /// If ignoredFiles and changed files are both empty, then they are not
+        /// used to determine whether or not to trigger a build.
+        /// If ignoredFiles is not empty, then we ignore any files that match any
+        /// of the ignored_file globs. If the change has no files that are outside
+        /// of the ignoredFiles globs, then we do not trigger a build.
         /// </summary>
         public InputList<string> IgnoredFiles
         {
@@ -212,11 +254,17 @@ namespace Pulumi.Gcp.CloudBuild
         private InputList<string>? _includedFiles;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
-        /// extended with support for '**'. If any of the files altered in the commit pass the ignoredFiles filter and
-        /// includedFiles is empty, then as far as this filter is concerned, we should trigger the build. If any of the
-        /// files altered in the commit pass the ignoredFiles filter and includedFiles is not empty, then we make sure
-        /// that at least one of those files matches a includedFiles glob. If not, then we do not trigger a build.
+        /// extended with support for `**`.
+        /// If any of the files altered in the commit pass the ignoredFiles filter
+        /// and includedFiles is empty, then as far as this filter is concerned, we
+        /// should trigger the build.
+        /// If any of the files altered in the commit pass the ignoredFiles filter
+        /// and includedFiles is not empty, then we make sure that at least one of
+        /// those files matches a includedFiles glob. If not, then we do not trigger
+        /// a build.
         /// </summary>
         public InputList<string> IncludedFiles
         {
@@ -225,7 +273,11 @@ namespace Pulumi.Gcp.CloudBuild
         }
 
         /// <summary>
-        /// Name of the trigger. Must be unique within the project.
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -241,6 +293,8 @@ namespace Pulumi.Gcp.CloudBuild
         private InputMap<string>? _substitutions;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Substitutions data for Build resource.
         /// </summary>
         public InputMap<string> Substitutions
@@ -250,9 +304,13 @@ namespace Pulumi.Gcp.CloudBuild
         }
 
         /// <summary>
-        /// Template describing the types of source changes to trigger a build. Branch and tag names in trigger
-        /// templates are interpreted as regular expressions. Any branch or tag change that matches that regular
-        /// expression will trigger a build. One of 'trigger_template' or 'github' must be provided.
+        /// -
+        /// (Optional)
+        /// Template describing the types of source changes to trigger a build.
+        /// Branch and tag names in trigger templates are interpreted as regular
+        /// expressions. Any branch or tag change that matches that regular
+        /// expression will trigger a build.
+        /// One of `trigger_template` or `github` must be provided.  Structure is documented below.
         /// </summary>
         [Input("triggerTemplate")]
         public Input<Inputs.TriggerTriggerTemplateArgs>? TriggerTemplate { get; set; }
@@ -265,7 +323,9 @@ namespace Pulumi.Gcp.CloudBuild
     public sealed class TriggerState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Contents of the build template. Either a filename or build template must be provided.
+        /// -
+        /// (Optional)
+        /// Contents of the build template. Either a filename or build template must be provided.  Structure is documented below.
         /// </summary>
         [Input("build")]
         public Input<Inputs.TriggerBuildGetArgs>? Build { get; set; }
@@ -277,27 +337,34 @@ namespace Pulumi.Gcp.CloudBuild
         public Input<string>? CreateTime { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human-readable description of the trigger.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether the trigger is disabled or not. If true, the trigger will never result in a build.
         /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }
 
         /// <summary>
-        /// Path, from the source root, to a file whose contents is used for the template. Either a filename or build
-        /// template must be provided.
+        /// -
+        /// (Optional)
+        /// Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must be provided.
         /// </summary>
         [Input("filename")]
         public Input<string>? Filename { get; set; }
 
         /// <summary>
-        /// Describes the configuration of a trigger that creates a build whenever a GitHub event is received. One of
-        /// 'trigger_template' or 'github' must be provided.
+        /// -
+        /// (Optional)
+        /// Describes the configuration of a trigger that creates a build whenever a GitHub event is received.
+        /// One of `trigger_template` or `github` must be provided.  Structure is documented below.
         /// </summary>
         [Input("github")]
         public Input<Inputs.TriggerGithubGetArgs>? Github { get; set; }
@@ -306,11 +373,15 @@ namespace Pulumi.Gcp.CloudBuild
         private InputList<string>? _ignoredFiles;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
-        /// extended with support for '**'. If ignoredFiles and changed files are both empty, then they are not used to
-        /// determine whether or not to trigger a build. If ignoredFiles is not empty, then we ignore any files that
-        /// match any of the ignored_file globs. If the change has no files that are outside of the ignoredFiles globs,
-        /// then we do not trigger a build.
+        /// extended with support for `**`.
+        /// If ignoredFiles and changed files are both empty, then they are not
+        /// used to determine whether or not to trigger a build.
+        /// If ignoredFiles is not empty, then we ignore any files that match any
+        /// of the ignored_file globs. If the change has no files that are outside
+        /// of the ignoredFiles globs, then we do not trigger a build.
         /// </summary>
         public InputList<string> IgnoredFiles
         {
@@ -322,11 +393,17 @@ namespace Pulumi.Gcp.CloudBuild
         private InputList<string>? _includedFiles;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
-        /// extended with support for '**'. If any of the files altered in the commit pass the ignoredFiles filter and
-        /// includedFiles is empty, then as far as this filter is concerned, we should trigger the build. If any of the
-        /// files altered in the commit pass the ignoredFiles filter and includedFiles is not empty, then we make sure
-        /// that at least one of those files matches a includedFiles glob. If not, then we do not trigger a build.
+        /// extended with support for `**`.
+        /// If any of the files altered in the commit pass the ignoredFiles filter
+        /// and includedFiles is empty, then as far as this filter is concerned, we
+        /// should trigger the build.
+        /// If any of the files altered in the commit pass the ignoredFiles filter
+        /// and includedFiles is not empty, then we make sure that at least one of
+        /// those files matches a includedFiles glob. If not, then we do not trigger
+        /// a build.
         /// </summary>
         public InputList<string> IncludedFiles
         {
@@ -335,7 +412,11 @@ namespace Pulumi.Gcp.CloudBuild
         }
 
         /// <summary>
-        /// Name of the trigger. Must be unique within the project.
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -351,6 +432,8 @@ namespace Pulumi.Gcp.CloudBuild
         private InputMap<string>? _substitutions;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Substitutions data for Build resource.
         /// </summary>
         public InputMap<string> Substitutions
@@ -366,9 +449,13 @@ namespace Pulumi.Gcp.CloudBuild
         public Input<string>? TriggerId { get; set; }
 
         /// <summary>
-        /// Template describing the types of source changes to trigger a build. Branch and tag names in trigger
-        /// templates are interpreted as regular expressions. Any branch or tag change that matches that regular
-        /// expression will trigger a build. One of 'trigger_template' or 'github' must be provided.
+        /// -
+        /// (Optional)
+        /// Template describing the types of source changes to trigger a build.
+        /// Branch and tag names in trigger templates are interpreted as regular
+        /// expressions. Any branch or tag change that matches that regular
+        /// expression will trigger a build.
+        /// One of `trigger_template` or `github` must be provided.  Structure is documented below.
         /// </summary>
         [Input("triggerTemplate")]
         public Input<Inputs.TriggerTriggerTemplateGetArgs>? TriggerTemplate { get; set; }
@@ -385,6 +472,15 @@ namespace Pulumi.Gcp.CloudBuild
     {
         [Input("images")]
         private InputList<string>? _images;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of images to be pushed upon the successful completion of all build steps.
+        /// The images are pushed using the builder service account's credentials.
+        /// The digests of the pushed images will be stored in the Build resource's results field.
+        /// If any of the images fail to be pushed, the build status is marked FAILURE.
+        /// </summary>
         public InputList<string> Images
         {
             get => _images ?? (_images = new InputList<string>());
@@ -393,6 +489,12 @@ namespace Pulumi.Gcp.CloudBuild
 
         [Input("steps", required: true)]
         private InputList<TriggerBuildStepsArgs>? _steps;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The operations to be performed on the workspace.  Structure is documented below.
+        /// </summary>
         public InputList<TriggerBuildStepsArgs> Steps
         {
             get => _steps ?? (_steps = new InputList<TriggerBuildStepsArgs>());
@@ -401,12 +503,26 @@ namespace Pulumi.Gcp.CloudBuild
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Tags for annotation of a Build. These are not docker tags.
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Time limit for executing this build step. If not defined,
+        /// the step has no
+        /// time limit and will be allowed to continue to run until either it
+        /// completes or the build itself times out.
+        /// </summary>
         [Input("timeout")]
         public Input<string>? Timeout { get; set; }
 
@@ -419,6 +535,15 @@ namespace Pulumi.Gcp.CloudBuild
     {
         [Input("images")]
         private InputList<string>? _images;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of images to be pushed upon the successful completion of all build steps.
+        /// The images are pushed using the builder service account's credentials.
+        /// The digests of the pushed images will be stored in the Build resource's results field.
+        /// If any of the images fail to be pushed, the build status is marked FAILURE.
+        /// </summary>
         public InputList<string> Images
         {
             get => _images ?? (_images = new InputList<string>());
@@ -427,6 +552,12 @@ namespace Pulumi.Gcp.CloudBuild
 
         [Input("steps", required: true)]
         private InputList<TriggerBuildStepsGetArgs>? _steps;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The operations to be performed on the workspace.  Structure is documented below.
+        /// </summary>
         public InputList<TriggerBuildStepsGetArgs> Steps
         {
             get => _steps ?? (_steps = new InputList<TriggerBuildStepsGetArgs>());
@@ -435,12 +566,26 @@ namespace Pulumi.Gcp.CloudBuild
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Tags for annotation of a Build. These are not docker tags.
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Time limit for executing this build step. If not defined,
+        /// the step has no
+        /// time limit and will be allowed to continue to run until either it
+        /// completes or the build itself times out.
+        /// </summary>
         [Input("timeout")]
         public Input<string>? Timeout { get; set; }
 
@@ -453,20 +598,59 @@ namespace Pulumi.Gcp.CloudBuild
     {
         [Input("args")]
         private InputList<string>? _args;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of arguments that will be presented to the step when it is started.
+        /// If the image used to run the step's container has an entrypoint, the args
+        /// are used as arguments to that entrypoint. If the image does not define an
+        /// entrypoint, the first element in args is used as the entrypoint, and the
+        /// remainder will be used as arguments.
+        /// </summary>
         public InputList<string> Args
         {
             get => _args ?? (_args = new InputList<string>());
             set => _args = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Working directory to use when running this step's container.
+        /// If this value is a relative path, it is relative to the build's working
+        /// directory. If this value is absolute, it may be outside the build's working
+        /// directory, in which case the contents of the path may not be persisted
+        /// across build step executions, unless a `volume` for that path is specified.
+        /// If the build specifies a `RepoSource` with `dir` and a step with a
+        /// `dir`,
+        /// which specifies an absolute path, the `RepoSource` `dir` is ignored
+        /// for the step's execution.
+        /// </summary>
         [Input("dir")]
         public Input<string>? Dir { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Entrypoint to be used instead of the build step image's
+        /// default entrypoint.
+        /// If unset, the image's default entrypoint is used
+        /// </summary>
         [Input("entrypoint")]
         public Input<string>? Entrypoint { get; set; }
 
         [Input("envs")]
         private InputList<string>? _envs;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of environment variable definitions to be used when
+        /// running a step.
+        /// The elements are of the form "KEY=VALUE" for the environment variable
+        /// "KEY" being given the value "VALUE".
+        /// </summary>
         public InputList<string> Envs
         {
             get => _envs ?? (_envs = new InputList<string>());
@@ -474,30 +658,74 @@ namespace Pulumi.Gcp.CloudBuild
         }
 
         /// <summary>
-        /// an identifier for the resource with format `projects/{{project}}/triggers/{{trigger_id}}`
+        /// -
+        /// (Optional)
+        /// Unique identifier for this build step, used in `wait_for` to
+        /// reference this build step as a dependency.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("secretEnvs")]
         private InputList<string>? _secretEnvs;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of environment variables which are encrypted using
+        /// a Cloud Key
+        /// Management Service crypto key. These values must be specified in
+        /// the build's `Secret`.
+        /// </summary>
         public InputList<string> SecretEnvs
         {
             get => _secretEnvs ?? (_secretEnvs = new InputList<string>());
             set => _secretEnvs = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Time limit for executing this build step. If not defined,
+        /// the step has no
+        /// time limit and will be allowed to continue to run until either it
+        /// completes or the build itself times out.
+        /// </summary>
         [Input("timeout")]
         public Input<string>? Timeout { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Output only. Stores timing information for executing this
+        /// build step.
+        /// </summary>
         [Input("timing")]
         public Input<string>? Timing { get; set; }
 
         [Input("volumes")]
         private InputList<TriggerBuildStepsVolumesArgs>? _volumes;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// List of volumes to mount into the build step.
+        /// Each volume is created as an empty volume prior to execution of the
+        /// build step. Upon completion of the build, volumes and their contents
+        /// are discarded.
+        /// Using a named volume in only one step is not valid as it is
+        /// indicative of a build request with an incorrect configuration.  Structure is documented below.
+        /// </summary>
         public InputList<TriggerBuildStepsVolumesArgs> Volumes
         {
             get => _volumes ?? (_volumes = new InputList<TriggerBuildStepsVolumesArgs>());
@@ -506,6 +734,16 @@ namespace Pulumi.Gcp.CloudBuild
 
         [Input("waitFors")]
         private InputList<string>? _waitFors;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The ID(s) of the step(s) that this build step depends on.
+        /// This build step will not start until all the build steps in `wait_for`
+        /// have completed successfully. If `wait_for` is empty, this build step
+        /// will start when all previous build steps in the `Build.Steps` list
+        /// have completed successfully.
+        /// </summary>
         public InputList<string> WaitFors
         {
             get => _waitFors ?? (_waitFors = new InputList<string>());
@@ -521,20 +759,59 @@ namespace Pulumi.Gcp.CloudBuild
     {
         [Input("args")]
         private InputList<string>? _args;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of arguments that will be presented to the step when it is started.
+        /// If the image used to run the step's container has an entrypoint, the args
+        /// are used as arguments to that entrypoint. If the image does not define an
+        /// entrypoint, the first element in args is used as the entrypoint, and the
+        /// remainder will be used as arguments.
+        /// </summary>
         public InputList<string> Args
         {
             get => _args ?? (_args = new InputList<string>());
             set => _args = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Working directory to use when running this step's container.
+        /// If this value is a relative path, it is relative to the build's working
+        /// directory. If this value is absolute, it may be outside the build's working
+        /// directory, in which case the contents of the path may not be persisted
+        /// across build step executions, unless a `volume` for that path is specified.
+        /// If the build specifies a `RepoSource` with `dir` and a step with a
+        /// `dir`,
+        /// which specifies an absolute path, the `RepoSource` `dir` is ignored
+        /// for the step's execution.
+        /// </summary>
         [Input("dir")]
         public Input<string>? Dir { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Entrypoint to be used instead of the build step image's
+        /// default entrypoint.
+        /// If unset, the image's default entrypoint is used
+        /// </summary>
         [Input("entrypoint")]
         public Input<string>? Entrypoint { get; set; }
 
         [Input("envs")]
         private InputList<string>? _envs;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of environment variable definitions to be used when
+        /// running a step.
+        /// The elements are of the form "KEY=VALUE" for the environment variable
+        /// "KEY" being given the value "VALUE".
+        /// </summary>
         public InputList<string> Envs
         {
             get => _envs ?? (_envs = new InputList<string>());
@@ -542,30 +819,74 @@ namespace Pulumi.Gcp.CloudBuild
         }
 
         /// <summary>
-        /// an identifier for the resource with format `projects/{{project}}/triggers/{{trigger_id}}`
+        /// -
+        /// (Optional)
+        /// Unique identifier for this build step, used in `wait_for` to
+        /// reference this build step as a dependency.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("secretEnvs")]
         private InputList<string>? _secretEnvs;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of environment variables which are encrypted using
+        /// a Cloud Key
+        /// Management Service crypto key. These values must be specified in
+        /// the build's `Secret`.
+        /// </summary>
         public InputList<string> SecretEnvs
         {
             get => _secretEnvs ?? (_secretEnvs = new InputList<string>());
             set => _secretEnvs = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Time limit for executing this build step. If not defined,
+        /// the step has no
+        /// time limit and will be allowed to continue to run until either it
+        /// completes or the build itself times out.
+        /// </summary>
         [Input("timeout")]
         public Input<string>? Timeout { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Output only. Stores timing information for executing this
+        /// build step.
+        /// </summary>
         [Input("timing")]
         public Input<string>? Timing { get; set; }
 
         [Input("volumes")]
         private InputList<TriggerBuildStepsVolumesGetArgs>? _volumes;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// List of volumes to mount into the build step.
+        /// Each volume is created as an empty volume prior to execution of the
+        /// build step. Upon completion of the build, volumes and their contents
+        /// are discarded.
+        /// Using a named volume in only one step is not valid as it is
+        /// indicative of a build request with an incorrect configuration.  Structure is documented below.
+        /// </summary>
         public InputList<TriggerBuildStepsVolumesGetArgs> Volumes
         {
             get => _volumes ?? (_volumes = new InputList<TriggerBuildStepsVolumesGetArgs>());
@@ -574,6 +895,16 @@ namespace Pulumi.Gcp.CloudBuild
 
         [Input("waitFors")]
         private InputList<string>? _waitFors;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The ID(s) of the step(s) that this build step depends on.
+        /// This build step will not start until all the build steps in `wait_for`
+        /// have completed successfully. If `wait_for` is empty, this build step
+        /// will start when all previous build steps in the `Build.Steps` list
+        /// have completed successfully.
+        /// </summary>
         public InputList<string> WaitFors
         {
             get => _waitFors ?? (_waitFors = new InputList<string>());
@@ -587,9 +918,23 @@ namespace Pulumi.Gcp.CloudBuild
 
     public sealed class TriggerBuildStepsVolumesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path at which to mount the volume.
+        /// Paths must be absolute and cannot conflict with other volume paths on
+        /// the same build step or with certain reserved volume paths.
+        /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
@@ -600,9 +945,23 @@ namespace Pulumi.Gcp.CloudBuild
 
     public sealed class TriggerBuildStepsVolumesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path at which to mount the volume.
+        /// Paths must be absolute and cannot conflict with other volume paths on
+        /// the same build step or with certain reserved volume paths.
+        /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
@@ -613,15 +972,38 @@ namespace Pulumi.Gcp.CloudBuild
 
     public sealed class TriggerGithubArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Owner of the repository. For example: The owner for
+        /// https://github.com/googlecloudplatform/cloud-builders is "googlecloudplatform".
+        /// </summary>
         [Input("owner")]
         public Input<string>? Owner { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// filter to match changes in pull requests.  Specify only one of pullRequest or push.  Structure is documented below.
+        /// </summary>
         [Input("pullRequest")]
         public Input<TriggerGithubPullRequestArgs>? PullRequest { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// filter to match changes in refs, like branches or tags.  Specify only one of pullRequest or push.  Structure is documented below.
+        /// </summary>
         [Input("push")]
         public Input<TriggerGithubPushArgs>? Push { get; set; }
 
@@ -632,15 +1014,38 @@ namespace Pulumi.Gcp.CloudBuild
 
     public sealed class TriggerGithubGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Owner of the repository. For example: The owner for
+        /// https://github.com/googlecloudplatform/cloud-builders is "googlecloudplatform".
+        /// </summary>
         [Input("owner")]
         public Input<string>? Owner { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// filter to match changes in pull requests.  Specify only one of pullRequest or push.  Structure is documented below.
+        /// </summary>
         [Input("pullRequest")]
         public Input<TriggerGithubPullRequestGetArgs>? PullRequest { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// filter to match changes in refs, like branches or tags.  Specify only one of pullRequest or push.  Structure is documented below.
+        /// </summary>
         [Input("push")]
         public Input<TriggerGithubPushGetArgs>? Push { get; set; }
 
@@ -651,9 +1056,19 @@ namespace Pulumi.Gcp.CloudBuild
 
     public sealed class TriggerGithubPullRequestArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Regex of branches to match.  Specify only one of branch or tag.
+        /// </summary>
         [Input("branch", required: true)]
         public Input<string> Branch { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to block builds on a "/gcbrun" comment from a repository owner or collaborator.
+        /// </summary>
         [Input("commentControl")]
         public Input<string>? CommentControl { get; set; }
 
@@ -664,9 +1079,19 @@ namespace Pulumi.Gcp.CloudBuild
 
     public sealed class TriggerGithubPullRequestGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Regex of branches to match.  Specify only one of branch or tag.
+        /// </summary>
         [Input("branch", required: true)]
         public Input<string> Branch { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to block builds on a "/gcbrun" comment from a repository owner or collaborator.
+        /// </summary>
         [Input("commentControl")]
         public Input<string>? CommentControl { get; set; }
 
@@ -677,9 +1102,19 @@ namespace Pulumi.Gcp.CloudBuild
 
     public sealed class TriggerGithubPushArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Regex of branches to match.  Specify only one of branch or tag.
+        /// </summary>
         [Input("branch")]
         public Input<string>? Branch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Regex of tags to match.  Specify only one of branch or tag.
+        /// </summary>
         [Input("tag")]
         public Input<string>? Tag { get; set; }
 
@@ -690,9 +1125,19 @@ namespace Pulumi.Gcp.CloudBuild
 
     public sealed class TriggerGithubPushGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Regex of branches to match.  Specify only one of branch or tag.
+        /// </summary>
         [Input("branch")]
         public Input<string>? Branch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Regex of tags to match.  Specify only one of branch or tag.
+        /// </summary>
         [Input("tag")]
         public Input<string>? Tag { get; set; }
 
@@ -703,21 +1148,62 @@ namespace Pulumi.Gcp.CloudBuild
 
     public sealed class TriggerTriggerTemplateArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the branch to build. Exactly one a of branch name, tag, or commit SHA must be provided.
+        /// This field is a regular expression.
+        /// </summary>
         [Input("branchName")]
         public Input<string>? BranchName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Explicit commit SHA to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+        /// </summary>
         [Input("commitSha")]
         public Input<string>? CommitSha { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Working directory to use when running this step's container.
+        /// If this value is a relative path, it is relative to the build's working
+        /// directory. If this value is absolute, it may be outside the build's working
+        /// directory, in which case the contents of the path may not be persisted
+        /// across build step executions, unless a `volume` for that path is specified.
+        /// If the build specifies a `RepoSource` with `dir` and a step with a
+        /// `dir`,
+        /// which specifies an absolute path, the `RepoSource` `dir` is ignored
+        /// for the step's execution.
+        /// </summary>
         [Input("dir")]
         public Input<string>? Dir { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// ID of the project that owns the Cloud Source Repository. If
+        /// omitted, the project ID requesting the build is assumed.
+        /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the Cloud Source Repository. If omitted, the name "default" is assumed.
+        /// </summary>
         [Input("repoName")]
         public Input<string>? RepoName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the tag to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+        /// This field is a regular expression.
+        /// </summary>
         [Input("tagName")]
         public Input<string>? TagName { get; set; }
 
@@ -728,21 +1214,62 @@ namespace Pulumi.Gcp.CloudBuild
 
     public sealed class TriggerTriggerTemplateGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the branch to build. Exactly one a of branch name, tag, or commit SHA must be provided.
+        /// This field is a regular expression.
+        /// </summary>
         [Input("branchName")]
         public Input<string>? BranchName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Explicit commit SHA to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+        /// </summary>
         [Input("commitSha")]
         public Input<string>? CommitSha { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Working directory to use when running this step's container.
+        /// If this value is a relative path, it is relative to the build's working
+        /// directory. If this value is absolute, it may be outside the build's working
+        /// directory, in which case the contents of the path may not be persisted
+        /// across build step executions, unless a `volume` for that path is specified.
+        /// If the build specifies a `RepoSource` with `dir` and a step with a
+        /// `dir`,
+        /// which specifies an absolute path, the `RepoSource` `dir` is ignored
+        /// for the step's execution.
+        /// </summary>
         [Input("dir")]
         public Input<string>? Dir { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// ID of the project that owns the Cloud Source Repository. If
+        /// omitted, the project ID requesting the build is assumed.
+        /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the Cloud Source Repository. If omitted, the name "default" is assumed.
+        /// </summary>
         [Input("repoName")]
         public Input<string>? RepoName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the tag to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+        /// This field is a regular expression.
+        /// </summary>
         [Input("tagName")]
         public Input<string>? TagName { get; set; }
 
@@ -758,9 +1285,35 @@ namespace Pulumi.Gcp.CloudBuild
     [OutputType]
     public sealed class TriggerBuild
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of images to be pushed upon the successful completion of all build steps.
+        /// The images are pushed using the builder service account's credentials.
+        /// The digests of the pushed images will be stored in the Build resource's results field.
+        /// If any of the images fail to be pushed, the build status is marked FAILURE.
+        /// </summary>
         public readonly ImmutableArray<string> Images;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The operations to be performed on the workspace.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<TriggerBuildSteps> Steps;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Tags for annotation of a Build. These are not docker tags.
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Time limit for executing this build step. If not defined,
+        /// the step has no
+        /// time limit and will be allowed to continue to run until either it
+        /// completes or the build itself times out.
+        /// </summary>
         public readonly string? Timeout;
 
         [OutputConstructor]
@@ -780,19 +1333,107 @@ namespace Pulumi.Gcp.CloudBuild
     [OutputType]
     public sealed class TriggerBuildSteps
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of arguments that will be presented to the step when it is started.
+        /// If the image used to run the step's container has an entrypoint, the args
+        /// are used as arguments to that entrypoint. If the image does not define an
+        /// entrypoint, the first element in args is used as the entrypoint, and the
+        /// remainder will be used as arguments.
+        /// </summary>
         public readonly ImmutableArray<string> Args;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Working directory to use when running this step's container.
+        /// If this value is a relative path, it is relative to the build's working
+        /// directory. If this value is absolute, it may be outside the build's working
+        /// directory, in which case the contents of the path may not be persisted
+        /// across build step executions, unless a `volume` for that path is specified.
+        /// If the build specifies a `RepoSource` with `dir` and a step with a
+        /// `dir`,
+        /// which specifies an absolute path, the `RepoSource` `dir` is ignored
+        /// for the step's execution.
+        /// </summary>
         public readonly string? Dir;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Entrypoint to be used instead of the build step image's
+        /// default entrypoint.
+        /// If unset, the image's default entrypoint is used
+        /// </summary>
         public readonly string? Entrypoint;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of environment variable definitions to be used when
+        /// running a step.
+        /// The elements are of the form "KEY=VALUE" for the environment variable
+        /// "KEY" being given the value "VALUE".
+        /// </summary>
         public readonly ImmutableArray<string> Envs;
         /// <summary>
-        /// an identifier for the resource with format `projects/{{project}}/triggers/{{trigger_id}}`
+        /// -
+        /// (Optional)
+        /// Unique identifier for this build step, used in `wait_for` to
+        /// reference this build step as a dependency.
         /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of environment variables which are encrypted using
+        /// a Cloud Key
+        /// Management Service crypto key. These values must be specified in
+        /// the build's `Secret`.
+        /// </summary>
         public readonly ImmutableArray<string> SecretEnvs;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Time limit for executing this build step. If not defined,
+        /// the step has no
+        /// time limit and will be allowed to continue to run until either it
+        /// completes or the build itself times out.
+        /// </summary>
         public readonly string? Timeout;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Output only. Stores timing information for executing this
+        /// build step.
+        /// </summary>
         public readonly string? Timing;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// List of volumes to mount into the build step.
+        /// Each volume is created as an empty volume prior to execution of the
+        /// build step. Upon completion of the build, volumes and their contents
+        /// are discarded.
+        /// Using a named volume in only one step is not valid as it is
+        /// indicative of a build request with an incorrect configuration.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<TriggerBuildStepsVolumes> Volumes;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The ID(s) of the step(s) that this build step depends on.
+        /// This build step will not start until all the build steps in `wait_for`
+        /// have completed successfully. If `wait_for` is empty, this build step
+        /// will start when all previous build steps in the `Build.Steps` list
+        /// have completed successfully.
+        /// </summary>
         public readonly ImmutableArray<string> WaitFors;
 
         [OutputConstructor]
@@ -826,7 +1467,21 @@ namespace Pulumi.Gcp.CloudBuild
     [OutputType]
     public sealed class TriggerBuildStepsVolumes
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path at which to mount the volume.
+        /// Paths must be absolute and cannot conflict with other volume paths on
+        /// the same build step or with certain reserved volume paths.
+        /// </summary>
         public readonly string Path;
 
         [OutputConstructor]
@@ -842,9 +1497,32 @@ namespace Pulumi.Gcp.CloudBuild
     [OutputType]
     public sealed class TriggerGithub
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Owner of the repository. For example: The owner for
+        /// https://github.com/googlecloudplatform/cloud-builders is "googlecloudplatform".
+        /// </summary>
         public readonly string? Owner;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// filter to match changes in pull requests.  Specify only one of pullRequest or push.  Structure is documented below.
+        /// </summary>
         public readonly TriggerGithubPullRequest? PullRequest;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// filter to match changes in refs, like branches or tags.  Specify only one of pullRequest or push.  Structure is documented below.
+        /// </summary>
         public readonly TriggerGithubPush? Push;
 
         [OutputConstructor]
@@ -864,7 +1542,17 @@ namespace Pulumi.Gcp.CloudBuild
     [OutputType]
     public sealed class TriggerGithubPullRequest
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Regex of branches to match.  Specify only one of branch or tag.
+        /// </summary>
         public readonly string Branch;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to block builds on a "/gcbrun" comment from a repository owner or collaborator.
+        /// </summary>
         public readonly string? CommentControl;
 
         [OutputConstructor]
@@ -880,7 +1568,17 @@ namespace Pulumi.Gcp.CloudBuild
     [OutputType]
     public sealed class TriggerGithubPush
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Regex of branches to match.  Specify only one of branch or tag.
+        /// </summary>
         public readonly string? Branch;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Regex of tags to match.  Specify only one of branch or tag.
+        /// </summary>
         public readonly string? Tag;
 
         [OutputConstructor]
@@ -896,11 +1594,52 @@ namespace Pulumi.Gcp.CloudBuild
     [OutputType]
     public sealed class TriggerTriggerTemplate
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the branch to build. Exactly one a of branch name, tag, or commit SHA must be provided.
+        /// This field is a regular expression.
+        /// </summary>
         public readonly string? BranchName;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Explicit commit SHA to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+        /// </summary>
         public readonly string? CommitSha;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Working directory to use when running this step's container.
+        /// If this value is a relative path, it is relative to the build's working
+        /// directory. If this value is absolute, it may be outside the build's working
+        /// directory, in which case the contents of the path may not be persisted
+        /// across build step executions, unless a `volume` for that path is specified.
+        /// If the build specifies a `RepoSource` with `dir` and a step with a
+        /// `dir`,
+        /// which specifies an absolute path, the `RepoSource` `dir` is ignored
+        /// for the step's execution.
+        /// </summary>
         public readonly string? Dir;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// ID of the project that owns the Cloud Source Repository. If
+        /// omitted, the project ID requesting the build is assumed.
+        /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the Cloud Source Repository. If omitted, the name "default" is assumed.
+        /// </summary>
         public readonly string? RepoName;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the tag to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+        /// This field is a regular expression.
+        /// </summary>
         public readonly string? TagName;
 
         [OutputConstructor]

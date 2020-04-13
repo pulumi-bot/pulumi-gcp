@@ -29,36 +29,51 @@ namespace Pulumi.Gcp.CloudScheduler
     public partial class Job : Pulumi.CustomResource
     {
         /// <summary>
-        /// App Engine HTTP target. If the job providers a App Engine HTTP target the cron will send a request to the
-        /// service instance
+        /// -
+        /// (Optional)
+        /// App Engine HTTP target.
+        /// If the job providers a App Engine HTTP target the cron will
+        /// send a request to the service instance  Structure is documented below.
         /// </summary>
         [Output("appEngineHttpTarget")]
         public Output<Outputs.JobAppEngineHttpTarget?> AppEngineHttpTarget { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The deadline for job attempts. If the request handler does not respond by this deadline then the request is
         /// cancelled and the attempt is marked as a DEADLINE_EXCEEDED failure. The failed attempt can be viewed in
-        /// execution logs. Cloud Scheduler will retry the job according to the RetryConfig. The allowed duration for
-        /// this deadline is: * For HTTP targets, between 15 seconds and 30 minutes. * For App Engine HTTP targets,
-        /// between 15 seconds and 24 hours. A duration in seconds with up to nine fractional digits, terminated by 's'.
-        /// Example: "3.5s"
+        /// execution logs. Cloud Scheduler will retry the job according to the RetryConfig.
+        /// The allowed duration for this deadline is:
+        /// * For HTTP targets, between 15 seconds and 30 minutes.
+        /// * For App Engine HTTP targets, between 15 seconds and 24 hours.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
         /// </summary>
         [Output("attemptDeadline")]
         public Output<string?> AttemptDeadline { get; private set; } = null!;
 
         /// <summary>
-        /// A human-readable description for the job. This string must not contain more than 500 characters.
+        /// -
+        /// (Optional)
+        /// A human-readable description for the job.
+        /// This string must not contain more than 500 characters.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// HTTP target. If the job providers a http_target the cron will send a request to the targeted url
+        /// -
+        /// (Optional)
+        /// HTTP target.
+        /// If the job providers a http_target the cron will
+        /// send a request to the targeted url  Structure is documented below.
         /// </summary>
         [Output("httpTarget")]
         public Output<Outputs.JobHttpTarget?> HttpTarget { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the job.
         /// </summary>
         [Output("name")]
@@ -72,33 +87,46 @@ namespace Pulumi.Gcp.CloudScheduler
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// Pub/Sub target If the job providers a Pub/Sub target the cron will publish a message to the provided topic
+        /// -
+        /// (Optional)
+        /// Pub/Sub target
+        /// If the job providers a Pub/Sub target the cron will publish
+        /// a message to the provided topic  Structure is documented below.
         /// </summary>
         [Output("pubsubTarget")]
         public Output<Outputs.JobPubsubTarget?> PubsubTarget { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Region where the scheduler job resides
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// By default, if a job does not complete successfully, meaning that an acknowledgement is not received from
-        /// the handler, then it will be retried with exponential backoff according to the settings
+        /// -
+        /// (Optional)
+        /// By default, if a job does not complete successfully,
+        /// meaning that an acknowledgement is not received from the handler,
+        /// then it will be retried with exponential backoff according to the settings  Structure is documented below.
         /// </summary>
         [Output("retryConfig")]
         public Output<Outputs.JobRetryConfig?> RetryConfig { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Describes the schedule on which the job will be executed.
         /// </summary>
         [Output("schedule")]
         public Output<string?> Schedule { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the time zone to be used in interpreting schedule. The value of this field must be a time zone
-        /// name from the tz database.
+        /// -
+        /// (Optional)
+        /// Specifies the time zone to be used in interpreting schedule.
+        /// The value of this field must be a time zone name from the tz database.
         /// </summary>
         [Output("timeZone")]
         public Output<string?> TimeZone { get; private set; } = null!;
@@ -150,36 +178,51 @@ namespace Pulumi.Gcp.CloudScheduler
     public sealed class JobArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// App Engine HTTP target. If the job providers a App Engine HTTP target the cron will send a request to the
-        /// service instance
+        /// -
+        /// (Optional)
+        /// App Engine HTTP target.
+        /// If the job providers a App Engine HTTP target the cron will
+        /// send a request to the service instance  Structure is documented below.
         /// </summary>
         [Input("appEngineHttpTarget")]
         public Input<Inputs.JobAppEngineHttpTargetArgs>? AppEngineHttpTarget { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The deadline for job attempts. If the request handler does not respond by this deadline then the request is
         /// cancelled and the attempt is marked as a DEADLINE_EXCEEDED failure. The failed attempt can be viewed in
-        /// execution logs. Cloud Scheduler will retry the job according to the RetryConfig. The allowed duration for
-        /// this deadline is: * For HTTP targets, between 15 seconds and 30 minutes. * For App Engine HTTP targets,
-        /// between 15 seconds and 24 hours. A duration in seconds with up to nine fractional digits, terminated by 's'.
-        /// Example: "3.5s"
+        /// execution logs. Cloud Scheduler will retry the job according to the RetryConfig.
+        /// The allowed duration for this deadline is:
+        /// * For HTTP targets, between 15 seconds and 30 minutes.
+        /// * For App Engine HTTP targets, between 15 seconds and 24 hours.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
         /// </summary>
         [Input("attemptDeadline")]
         public Input<string>? AttemptDeadline { get; set; }
 
         /// <summary>
-        /// A human-readable description for the job. This string must not contain more than 500 characters.
+        /// -
+        /// (Optional)
+        /// A human-readable description for the job.
+        /// This string must not contain more than 500 characters.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// HTTP target. If the job providers a http_target the cron will send a request to the targeted url
+        /// -
+        /// (Optional)
+        /// HTTP target.
+        /// If the job providers a http_target the cron will
+        /// send a request to the targeted url  Structure is documented below.
         /// </summary>
         [Input("httpTarget")]
         public Input<Inputs.JobHttpTargetArgs>? HttpTarget { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the job.
         /// </summary>
         [Input("name")]
@@ -193,33 +236,46 @@ namespace Pulumi.Gcp.CloudScheduler
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// Pub/Sub target If the job providers a Pub/Sub target the cron will publish a message to the provided topic
+        /// -
+        /// (Optional)
+        /// Pub/Sub target
+        /// If the job providers a Pub/Sub target the cron will publish
+        /// a message to the provided topic  Structure is documented below.
         /// </summary>
         [Input("pubsubTarget")]
         public Input<Inputs.JobPubsubTargetArgs>? PubsubTarget { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Region where the scheduler job resides
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// By default, if a job does not complete successfully, meaning that an acknowledgement is not received from
-        /// the handler, then it will be retried with exponential backoff according to the settings
+        /// -
+        /// (Optional)
+        /// By default, if a job does not complete successfully,
+        /// meaning that an acknowledgement is not received from the handler,
+        /// then it will be retried with exponential backoff according to the settings  Structure is documented below.
         /// </summary>
         [Input("retryConfig")]
         public Input<Inputs.JobRetryConfigArgs>? RetryConfig { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Describes the schedule on which the job will be executed.
         /// </summary>
         [Input("schedule")]
         public Input<string>? Schedule { get; set; }
 
         /// <summary>
-        /// Specifies the time zone to be used in interpreting schedule. The value of this field must be a time zone
-        /// name from the tz database.
+        /// -
+        /// (Optional)
+        /// Specifies the time zone to be used in interpreting schedule.
+        /// The value of this field must be a time zone name from the tz database.
         /// </summary>
         [Input("timeZone")]
         public Input<string>? TimeZone { get; set; }
@@ -232,36 +288,51 @@ namespace Pulumi.Gcp.CloudScheduler
     public sealed class JobState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// App Engine HTTP target. If the job providers a App Engine HTTP target the cron will send a request to the
-        /// service instance
+        /// -
+        /// (Optional)
+        /// App Engine HTTP target.
+        /// If the job providers a App Engine HTTP target the cron will
+        /// send a request to the service instance  Structure is documented below.
         /// </summary>
         [Input("appEngineHttpTarget")]
         public Input<Inputs.JobAppEngineHttpTargetGetArgs>? AppEngineHttpTarget { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The deadline for job attempts. If the request handler does not respond by this deadline then the request is
         /// cancelled and the attempt is marked as a DEADLINE_EXCEEDED failure. The failed attempt can be viewed in
-        /// execution logs. Cloud Scheduler will retry the job according to the RetryConfig. The allowed duration for
-        /// this deadline is: * For HTTP targets, between 15 seconds and 30 minutes. * For App Engine HTTP targets,
-        /// between 15 seconds and 24 hours. A duration in seconds with up to nine fractional digits, terminated by 's'.
-        /// Example: "3.5s"
+        /// execution logs. Cloud Scheduler will retry the job according to the RetryConfig.
+        /// The allowed duration for this deadline is:
+        /// * For HTTP targets, between 15 seconds and 30 minutes.
+        /// * For App Engine HTTP targets, between 15 seconds and 24 hours.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
         /// </summary>
         [Input("attemptDeadline")]
         public Input<string>? AttemptDeadline { get; set; }
 
         /// <summary>
-        /// A human-readable description for the job. This string must not contain more than 500 characters.
+        /// -
+        /// (Optional)
+        /// A human-readable description for the job.
+        /// This string must not contain more than 500 characters.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// HTTP target. If the job providers a http_target the cron will send a request to the targeted url
+        /// -
+        /// (Optional)
+        /// HTTP target.
+        /// If the job providers a http_target the cron will
+        /// send a request to the targeted url  Structure is documented below.
         /// </summary>
         [Input("httpTarget")]
         public Input<Inputs.JobHttpTargetGetArgs>? HttpTarget { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the job.
         /// </summary>
         [Input("name")]
@@ -275,33 +346,46 @@ namespace Pulumi.Gcp.CloudScheduler
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// Pub/Sub target If the job providers a Pub/Sub target the cron will publish a message to the provided topic
+        /// -
+        /// (Optional)
+        /// Pub/Sub target
+        /// If the job providers a Pub/Sub target the cron will publish
+        /// a message to the provided topic  Structure is documented below.
         /// </summary>
         [Input("pubsubTarget")]
         public Input<Inputs.JobPubsubTargetGetArgs>? PubsubTarget { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Region where the scheduler job resides
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// By default, if a job does not complete successfully, meaning that an acknowledgement is not received from
-        /// the handler, then it will be retried with exponential backoff according to the settings
+        /// -
+        /// (Optional)
+        /// By default, if a job does not complete successfully,
+        /// meaning that an acknowledgement is not received from the handler,
+        /// then it will be retried with exponential backoff according to the settings  Structure is documented below.
         /// </summary>
         [Input("retryConfig")]
         public Input<Inputs.JobRetryConfigGetArgs>? RetryConfig { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Describes the schedule on which the job will be executed.
         /// </summary>
         [Input("schedule")]
         public Input<string>? Schedule { get; set; }
 
         /// <summary>
-        /// Specifies the time zone to be used in interpreting schedule. The value of this field must be a time zone
-        /// name from the tz database.
+        /// -
+        /// (Optional)
+        /// Specifies the time zone to be used in interpreting schedule.
+        /// The value of this field must be a time zone name from the tz database.
         /// </summary>
         [Input("timeZone")]
         public Input<string>? TimeZone { get; set; }
@@ -316,12 +400,30 @@ namespace Pulumi.Gcp.CloudScheduler
 
     public sealed class JobAppEngineHttpTargetAppEngineRoutingArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App instance.
+        /// By default, the job is sent to an instance which is available when the job is attempted.
+        /// </summary>
         [Input("instance")]
         public Input<string>? Instance { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App service.
+        /// By default, the job is sent to the service which is the default service when the job is attempted.
+        /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App version.
+        /// By default, the job is sent to the version which is the default version when the job is attempted.
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 
@@ -332,12 +434,30 @@ namespace Pulumi.Gcp.CloudScheduler
 
     public sealed class JobAppEngineHttpTargetAppEngineRoutingGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App instance.
+        /// By default, the job is sent to an instance which is available when the job is attempted.
+        /// </summary>
         [Input("instance")]
         public Input<string>? Instance { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App service.
+        /// By default, the job is sent to the service which is the default service when the job is attempted.
+        /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App version.
+        /// By default, the job is sent to the version which is the default version when the job is attempted.
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 
@@ -348,23 +468,56 @@ namespace Pulumi.Gcp.CloudScheduler
 
     public sealed class JobAppEngineHttpTargetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App Engine Routing setting for the job.  Structure is documented below.
+        /// </summary>
         [Input("appEngineRouting")]
         public Input<JobAppEngineHttpTargetAppEngineRoutingArgs>? AppEngineRouting { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// HTTP request body.
+        /// A request body is allowed only if the HTTP method is POST, PUT, or PATCH.
+        /// It is an error to set body on a job with an incompatible HttpMethod.
+        /// </summary>
         [Input("body")]
         public Input<string>? Body { get; set; }
 
         [Input("headers")]
         private InputMap<string>? _headers;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// This map contains the header field names and values.
+        /// Repeated headers are not supported, but a header value can contain commas.
+        /// </summary>
         public InputMap<string> Headers
         {
             get => _headers ?? (_headers = new InputMap<string>());
             set => _headers = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Which HTTP method to use for the request.
+        /// </summary>
         [Input("httpMethod")]
         public Input<string>? HttpMethod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The relative URI.
+        /// The relative URL must begin with "/" and must be a valid HTTP relative URL.
+        /// It can contain a path, query string arguments, and \# fragments.
+        /// If the relative URL is empty, then the root path "/" will be used.
+        /// No spaces are allowed, and the maximum length allowed is 2083 characters
+        /// </summary>
         [Input("relativeUri", required: true)]
         public Input<string> RelativeUri { get; set; } = null!;
 
@@ -375,23 +528,56 @@ namespace Pulumi.Gcp.CloudScheduler
 
     public sealed class JobAppEngineHttpTargetGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App Engine Routing setting for the job.  Structure is documented below.
+        /// </summary>
         [Input("appEngineRouting")]
         public Input<JobAppEngineHttpTargetAppEngineRoutingGetArgs>? AppEngineRouting { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// HTTP request body.
+        /// A request body is allowed only if the HTTP method is POST, PUT, or PATCH.
+        /// It is an error to set body on a job with an incompatible HttpMethod.
+        /// </summary>
         [Input("body")]
         public Input<string>? Body { get; set; }
 
         [Input("headers")]
         private InputMap<string>? _headers;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// This map contains the header field names and values.
+        /// Repeated headers are not supported, but a header value can contain commas.
+        /// </summary>
         public InputMap<string> Headers
         {
             get => _headers ?? (_headers = new InputMap<string>());
             set => _headers = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Which HTTP method to use for the request.
+        /// </summary>
         [Input("httpMethod")]
         public Input<string>? HttpMethod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The relative URI.
+        /// The relative URL must begin with "/" and must be a valid HTTP relative URL.
+        /// It can contain a path, query string arguments, and \# fragments.
+        /// If the relative URL is empty, then the root path "/" will be used.
+        /// No spaces are allowed, and the maximum length allowed is 2083 characters
+        /// </summary>
         [Input("relativeUri", required: true)]
         public Input<string> RelativeUri { get; set; } = null!;
 
@@ -402,26 +588,62 @@ namespace Pulumi.Gcp.CloudScheduler
 
     public sealed class JobHttpTargetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// HTTP request body.
+        /// A request body is allowed only if the HTTP method is POST, PUT, or PATCH.
+        /// It is an error to set body on a job with an incompatible HttpMethod.
+        /// </summary>
         [Input("body")]
         public Input<string>? Body { get; set; }
 
         [Input("headers")]
         private InputMap<string>? _headers;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// This map contains the header field names and values.
+        /// Repeated headers are not supported, but a header value can contain commas.
+        /// </summary>
         public InputMap<string> Headers
         {
             get => _headers ?? (_headers = new InputMap<string>());
             set => _headers = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Which HTTP method to use for the request.
+        /// </summary>
         [Input("httpMethod")]
         public Input<string>? HttpMethod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Contains information needed for generating an OAuth token.
+        /// This type of authorization should be used when sending requests to a GCP endpoint.  Structure is documented below.
+        /// </summary>
         [Input("oauthToken")]
         public Input<JobHttpTargetOauthTokenArgs>? OauthToken { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Contains information needed for generating an OpenID Connect token.
+        /// This type of authorization should be used when sending requests to third party endpoints or Cloud Run.  Structure is documented below.
+        /// </summary>
         [Input("oidcToken")]
         public Input<JobHttpTargetOidcTokenArgs>? OidcToken { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full URI path that the request will be sent to.
+        /// </summary>
         [Input("uri", required: true)]
         public Input<string> Uri { get; set; } = null!;
 
@@ -432,26 +654,62 @@ namespace Pulumi.Gcp.CloudScheduler
 
     public sealed class JobHttpTargetGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// HTTP request body.
+        /// A request body is allowed only if the HTTP method is POST, PUT, or PATCH.
+        /// It is an error to set body on a job with an incompatible HttpMethod.
+        /// </summary>
         [Input("body")]
         public Input<string>? Body { get; set; }
 
         [Input("headers")]
         private InputMap<string>? _headers;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// This map contains the header field names and values.
+        /// Repeated headers are not supported, but a header value can contain commas.
+        /// </summary>
         public InputMap<string> Headers
         {
             get => _headers ?? (_headers = new InputMap<string>());
             set => _headers = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Which HTTP method to use for the request.
+        /// </summary>
         [Input("httpMethod")]
         public Input<string>? HttpMethod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Contains information needed for generating an OAuth token.
+        /// This type of authorization should be used when sending requests to a GCP endpoint.  Structure is documented below.
+        /// </summary>
         [Input("oauthToken")]
         public Input<JobHttpTargetOauthTokenGetArgs>? OauthToken { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Contains information needed for generating an OpenID Connect token.
+        /// This type of authorization should be used when sending requests to third party endpoints or Cloud Run.  Structure is documented below.
+        /// </summary>
         [Input("oidcToken")]
         public Input<JobHttpTargetOidcTokenGetArgs>? OidcToken { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full URI path that the request will be sent to.
+        /// </summary>
         [Input("uri", required: true)]
         public Input<string> Uri { get; set; } = null!;
 
@@ -462,9 +720,21 @@ namespace Pulumi.Gcp.CloudScheduler
 
     public sealed class JobHttpTargetOauthTokenArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// OAuth scope to be used for generating OAuth access token. If not specified,
+        /// "https://www.googleapis.com/auth/cloud-platform" will be used.
+        /// </summary>
         [Input("scope")]
         public Input<string>? Scope { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Service account email to be used for generating OAuth token.
+        /// The service account must be within the same project as the job.
+        /// </summary>
         [Input("serviceAccountEmail", required: true)]
         public Input<string> ServiceAccountEmail { get; set; } = null!;
 
@@ -475,9 +745,21 @@ namespace Pulumi.Gcp.CloudScheduler
 
     public sealed class JobHttpTargetOauthTokenGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// OAuth scope to be used for generating OAuth access token. If not specified,
+        /// "https://www.googleapis.com/auth/cloud-platform" will be used.
+        /// </summary>
         [Input("scope")]
         public Input<string>? Scope { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Service account email to be used for generating OAuth token.
+        /// The service account must be within the same project as the job.
+        /// </summary>
         [Input("serviceAccountEmail", required: true)]
         public Input<string> ServiceAccountEmail { get; set; } = null!;
 
@@ -488,9 +770,21 @@ namespace Pulumi.Gcp.CloudScheduler
 
     public sealed class JobHttpTargetOidcTokenArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Audience to be used when generating OIDC token. If not specified,
+        /// the URI specified in target will be used.
+        /// </summary>
         [Input("audience")]
         public Input<string>? Audience { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Service account email to be used for generating OAuth token.
+        /// The service account must be within the same project as the job.
+        /// </summary>
         [Input("serviceAccountEmail", required: true)]
         public Input<string> ServiceAccountEmail { get; set; } = null!;
 
@@ -501,9 +795,21 @@ namespace Pulumi.Gcp.CloudScheduler
 
     public sealed class JobHttpTargetOidcTokenGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Audience to be used when generating OIDC token. If not specified,
+        /// the URI specified in target will be used.
+        /// </summary>
         [Input("audience")]
         public Input<string>? Audience { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Service account email to be used for generating OAuth token.
+        /// The service account must be within the same project as the job.
+        /// </summary>
         [Input("serviceAccountEmail", required: true)]
         public Input<string> ServiceAccountEmail { get; set; } = null!;
 
@@ -516,15 +822,36 @@ namespace Pulumi.Gcp.CloudScheduler
     {
         [Input("attributes")]
         private InputMap<string>? _attributes;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Attributes for PubsubMessage.
+        /// Pubsub message must contain either non-empty data, or at least one attribute.
+        /// </summary>
         public InputMap<string> Attributes
         {
             get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The message payload for PubsubMessage.
+        /// Pubsub message must contain either non-empty data, or at least one attribute.
+        /// </summary>
         [Input("data")]
         public Input<string>? Data { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full resource name for the Cloud Pub/Sub topic to which
+        /// messages will be published when a job is delivered. ~&gt;**NOTE**:
+        /// The topic name must be in the same format as required by PubSub's
+        /// PublishRequest.name, e.g. `projects/my-project/topics/my-topic`.
+        /// </summary>
         [Input("topicName", required: true)]
         public Input<string> TopicName { get; set; } = null!;
 
@@ -537,15 +864,36 @@ namespace Pulumi.Gcp.CloudScheduler
     {
         [Input("attributes")]
         private InputMap<string>? _attributes;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Attributes for PubsubMessage.
+        /// Pubsub message must contain either non-empty data, or at least one attribute.
+        /// </summary>
         public InputMap<string> Attributes
         {
             get => _attributes ?? (_attributes = new InputMap<string>());
             set => _attributes = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The message payload for PubsubMessage.
+        /// Pubsub message must contain either non-empty data, or at least one attribute.
+        /// </summary>
         [Input("data")]
         public Input<string>? Data { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full resource name for the Cloud Pub/Sub topic to which
+        /// messages will be published when a job is delivered. ~&gt;**NOTE**:
+        /// The topic name must be in the same format as required by PubSub's
+        /// PublishRequest.name, e.g. `projects/my-project/topics/my-topic`.
+        /// </summary>
         [Input("topicName", required: true)]
         public Input<string> TopicName { get; set; } = null!;
 
@@ -556,18 +904,52 @@ namespace Pulumi.Gcp.CloudScheduler
 
     public sealed class JobRetryConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum amount of time to wait before retrying a job after it fails.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'.
+        /// </summary>
         [Input("maxBackoffDuration")]
         public Input<string>? MaxBackoffDuration { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The time between retries will double maxDoublings times.
+        /// A job's retry interval starts at minBackoffDuration,
+        /// then doubles maxDoublings times, then increases linearly,
+        /// and finally retries retries at intervals of maxBackoffDuration up to retryCount times.
+        /// </summary>
         [Input("maxDoublings")]
         public Input<int>? MaxDoublings { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The time limit for retrying a failed job, measured from time when an execution was first attempted.
+        /// If specified with retryCount, the job will be retried until both limits are reached.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'.
+        /// </summary>
         [Input("maxRetryDuration")]
         public Input<string>? MaxRetryDuration { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum amount of time to wait before retrying a job after it fails.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'.
+        /// </summary>
         [Input("minBackoffDuration")]
         public Input<string>? MinBackoffDuration { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of attempts that the system will make to run a
+        /// job using the exponential backoff procedure described by maxDoublings.
+        /// Values greater than 5 and negative values are not allowed.
+        /// </summary>
         [Input("retryCount")]
         public Input<int>? RetryCount { get; set; }
 
@@ -578,18 +960,52 @@ namespace Pulumi.Gcp.CloudScheduler
 
     public sealed class JobRetryConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum amount of time to wait before retrying a job after it fails.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'.
+        /// </summary>
         [Input("maxBackoffDuration")]
         public Input<string>? MaxBackoffDuration { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The time between retries will double maxDoublings times.
+        /// A job's retry interval starts at minBackoffDuration,
+        /// then doubles maxDoublings times, then increases linearly,
+        /// and finally retries retries at intervals of maxBackoffDuration up to retryCount times.
+        /// </summary>
         [Input("maxDoublings")]
         public Input<int>? MaxDoublings { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The time limit for retrying a failed job, measured from time when an execution was first attempted.
+        /// If specified with retryCount, the job will be retried until both limits are reached.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'.
+        /// </summary>
         [Input("maxRetryDuration")]
         public Input<string>? MaxRetryDuration { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum amount of time to wait before retrying a job after it fails.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'.
+        /// </summary>
         [Input("minBackoffDuration")]
         public Input<string>? MinBackoffDuration { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of attempts that the system will make to run a
+        /// job using the exponential backoff procedure described by maxDoublings.
+        /// Values greater than 5 and negative values are not allowed.
+        /// </summary>
         [Input("retryCount")]
         public Input<int>? RetryCount { get; set; }
 
@@ -605,10 +1021,42 @@ namespace Pulumi.Gcp.CloudScheduler
     [OutputType]
     public sealed class JobAppEngineHttpTarget
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App Engine Routing setting for the job.  Structure is documented below.
+        /// </summary>
         public readonly JobAppEngineHttpTargetAppEngineRouting? AppEngineRouting;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// HTTP request body.
+        /// A request body is allowed only if the HTTP method is POST, PUT, or PATCH.
+        /// It is an error to set body on a job with an incompatible HttpMethod.
+        /// </summary>
         public readonly string? Body;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// This map contains the header field names and values.
+        /// Repeated headers are not supported, but a header value can contain commas.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Headers;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Which HTTP method to use for the request.
+        /// </summary>
         public readonly string? HttpMethod;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The relative URI.
+        /// The relative URL must begin with "/" and must be a valid HTTP relative URL.
+        /// It can contain a path, query string arguments, and \# fragments.
+        /// If the relative URL is empty, then the root path "/" will be used.
+        /// No spaces are allowed, and the maximum length allowed is 2083 characters
+        /// </summary>
         public readonly string RelativeUri;
 
         [OutputConstructor]
@@ -630,8 +1078,26 @@ namespace Pulumi.Gcp.CloudScheduler
     [OutputType]
     public sealed class JobAppEngineHttpTargetAppEngineRouting
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App instance.
+        /// By default, the job is sent to an instance which is available when the job is attempted.
+        /// </summary>
         public readonly string? Instance;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App service.
+        /// By default, the job is sent to the service which is the default service when the job is attempted.
+        /// </summary>
         public readonly string? Service;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App version.
+        /// By default, the job is sent to the version which is the default version when the job is attempted.
+        /// </summary>
         public readonly string? Version;
 
         [OutputConstructor]
@@ -649,11 +1115,46 @@ namespace Pulumi.Gcp.CloudScheduler
     [OutputType]
     public sealed class JobHttpTarget
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// HTTP request body.
+        /// A request body is allowed only if the HTTP method is POST, PUT, or PATCH.
+        /// It is an error to set body on a job with an incompatible HttpMethod.
+        /// </summary>
         public readonly string? Body;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// This map contains the header field names and values.
+        /// Repeated headers are not supported, but a header value can contain commas.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Headers;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Which HTTP method to use for the request.
+        /// </summary>
         public readonly string? HttpMethod;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Contains information needed for generating an OAuth token.
+        /// This type of authorization should be used when sending requests to a GCP endpoint.  Structure is documented below.
+        /// </summary>
         public readonly JobHttpTargetOauthToken? OauthToken;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Contains information needed for generating an OpenID Connect token.
+        /// This type of authorization should be used when sending requests to third party endpoints or Cloud Run.  Structure is documented below.
+        /// </summary>
         public readonly JobHttpTargetOidcToken? OidcToken;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full URI path that the request will be sent to.
+        /// </summary>
         public readonly string Uri;
 
         [OutputConstructor]
@@ -677,7 +1178,19 @@ namespace Pulumi.Gcp.CloudScheduler
     [OutputType]
     public sealed class JobHttpTargetOauthToken
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// OAuth scope to be used for generating OAuth access token. If not specified,
+        /// "https://www.googleapis.com/auth/cloud-platform" will be used.
+        /// </summary>
         public readonly string? Scope;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Service account email to be used for generating OAuth token.
+        /// The service account must be within the same project as the job.
+        /// </summary>
         public readonly string ServiceAccountEmail;
 
         [OutputConstructor]
@@ -693,7 +1206,19 @@ namespace Pulumi.Gcp.CloudScheduler
     [OutputType]
     public sealed class JobHttpTargetOidcToken
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Audience to be used when generating OIDC token. If not specified,
+        /// the URI specified in target will be used.
+        /// </summary>
         public readonly string? Audience;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Service account email to be used for generating OAuth token.
+        /// The service account must be within the same project as the job.
+        /// </summary>
         public readonly string ServiceAccountEmail;
 
         [OutputConstructor]
@@ -709,8 +1234,28 @@ namespace Pulumi.Gcp.CloudScheduler
     [OutputType]
     public sealed class JobPubsubTarget
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Attributes for PubsubMessage.
+        /// Pubsub message must contain either non-empty data, or at least one attribute.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Attributes;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The message payload for PubsubMessage.
+        /// Pubsub message must contain either non-empty data, or at least one attribute.
+        /// </summary>
         public readonly string? Data;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full resource name for the Cloud Pub/Sub topic to which
+        /// messages will be published when a job is delivered. ~&gt;**NOTE**:
+        /// The topic name must be in the same format as required by PubSub's
+        /// PublishRequest.name, e.g. `projects/my-project/topics/my-topic`.
+        /// </summary>
         public readonly string TopicName;
 
         [OutputConstructor]
@@ -728,10 +1273,44 @@ namespace Pulumi.Gcp.CloudScheduler
     [OutputType]
     public sealed class JobRetryConfig
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum amount of time to wait before retrying a job after it fails.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'.
+        /// </summary>
         public readonly string? MaxBackoffDuration;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The time between retries will double maxDoublings times.
+        /// A job's retry interval starts at minBackoffDuration,
+        /// then doubles maxDoublings times, then increases linearly,
+        /// and finally retries retries at intervals of maxBackoffDuration up to retryCount times.
+        /// </summary>
         public readonly int? MaxDoublings;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The time limit for retrying a failed job, measured from time when an execution was first attempted.
+        /// If specified with retryCount, the job will be retried until both limits are reached.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'.
+        /// </summary>
         public readonly string? MaxRetryDuration;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum amount of time to wait before retrying a job after it fails.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'.
+        /// </summary>
         public readonly string? MinBackoffDuration;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of attempts that the system will make to run a
+        /// job using the exponential backoff procedure described by maxDoublings.
+        /// Values greater than 5 and negative values are not allowed.
+        /// </summary>
         public readonly int? RetryCount;
 
         [OutputConstructor]

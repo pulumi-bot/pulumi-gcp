@@ -26,46 +26,59 @@ namespace Pulumi.Gcp.Logging
     public partial class Metric : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// The bucketOptions are required when the logs-based metric is using a DISTRIBUTION value type and it
-        /// describes the bucket boundaries used to create a histogram of the extracted values.
+        /// describes the bucket boundaries used to create a histogram of the extracted values.  Structure is documented below.
         /// </summary>
         [Output("bucketOptions")]
         public Output<Outputs.MetricBucketOptions?> BucketOptions { get; private set; } = null!;
 
         /// <summary>
-        /// A description of this metric, which is used in documentation. The maximum length of the description is 8000
-        /// characters.
+        /// -
+        /// (Optional)
+        /// A description of this metric, which is used in documentation. The maximum length of the
+        /// description is 8000 characters.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// An advanced logs filter (https://cloud.google.com/logging/docs/view/advanced-filters) which is used to match
-        /// log entries.
+        /// -
+        /// (Required)
+        /// An advanced logs filter (https://cloud.google.com/logging/docs/view/advanced-filters) which
+        /// is used to match log entries.
         /// </summary>
         [Output("filter")]
         public Output<string> Filter { get; private set; } = null!;
 
         /// <summary>
-        /// A map from a label key string to an extractor expression which is used to extract data from a log entry
-        /// field and assign as the label value. Each label key specified in the LabelDescriptor must have an associated
-        /// extractor expression in this map. The syntax of the extractor expression is the same as for the
-        /// valueExtractor field.
+        /// -
+        /// (Optional)
+        /// A map from a label key string to an extractor expression which is used to extract data from a log
+        /// entry field and assign as the label value. Each label key specified in the LabelDescriptor must
+        /// have an associated extractor expression in this map. The syntax of the extractor expression is
+        /// the same as for the valueExtractor field.
         /// </summary>
         [Output("labelExtractors")]
         public Output<ImmutableDictionary<string, string>?> LabelExtractors { get; private set; } = null!;
 
         /// <summary>
-        /// The metric descriptor associated with the logs-based metric.
+        /// -
+        /// (Required)
+        /// The metric descriptor associated with the logs-based metric.  Structure is documented below.
         /// </summary>
         [Output("metricDescriptor")]
         public Output<Outputs.MetricMetricDescriptor> MetricDescriptor { get; private set; } = null!;
 
         /// <summary>
-        /// The client-assigned metric identifier. Examples - "error_count", "nginx/requests". Metric identifiers are
-        /// limited to 100 characters and can include only the following characters A-Z, a-z, 0-9, and the special
-        /// characters _-.,+!*',()%/. The forward-slash character (/) denotes a hierarchy of name pieces, and it cannot
-        /// be the first character of the name.
+        /// -
+        /// (Required)
+        /// The client-assigned metric identifier. Examples - "error_count", "nginx/requests".
+        /// Metric identifiers are limited to 100 characters and can include only the following
+        /// characters A-Z, a-z, 0-9, and the special characters _-.,+!*',()%/. The forward-slash
+        /// character (/) denotes a hierarchy of name pieces, and it cannot be the first character
+        /// of the name.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -78,13 +91,15 @@ namespace Pulumi.Gcp.Logging
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// A valueExtractor is required when using a distribution logs-based metric to extract the values to record
-        /// from a log entry. Two functions are supported for value extraction - EXTRACT(field) or REGEXP_EXTRACT(field,
-        /// regex). The argument are 1. field - The name of the log entry field from which the value is to be extracted.
-        /// 2. regex - A regular expression using the Google RE2 syntax (https://github.com/google/re2/wiki/Syntax) with
-        /// a single capture group to extract data from the specified log entry field. The value of the field is
-        /// converted to a string before applying the regex. It is an error to specify a regex that does not include
-        /// exactly one capture group.
+        /// -
+        /// (Optional)
+        /// A valueExtractor is required when using a distribution logs-based metric to extract the values to
+        /// record from a log entry. Two functions are supported for value extraction - EXTRACT(field) or
+        /// REGEXP_EXTRACT(field, regex). The argument are 1. field - The name of the log entry field from which
+        /// the value is to be extracted. 2. regex - A regular expression using the Google RE2 syntax
+        /// (https://github.com/google/re2/wiki/Syntax) with a single capture group to extract data from the specified
+        /// log entry field. The value of the field is converted to a string before applying the regex. It is an
+        /// error to specify a regex that does not include exactly one capture group.
         /// </summary>
         [Output("valueExtractor")]
         public Output<string?> ValueExtractor { get; private set; } = null!;
@@ -136,22 +151,28 @@ namespace Pulumi.Gcp.Logging
     public sealed class MetricArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// The bucketOptions are required when the logs-based metric is using a DISTRIBUTION value type and it
-        /// describes the bucket boundaries used to create a histogram of the extracted values.
+        /// describes the bucket boundaries used to create a histogram of the extracted values.  Structure is documented below.
         /// </summary>
         [Input("bucketOptions")]
         public Input<Inputs.MetricBucketOptionsArgs>? BucketOptions { get; set; }
 
         /// <summary>
-        /// A description of this metric, which is used in documentation. The maximum length of the description is 8000
-        /// characters.
+        /// -
+        /// (Optional)
+        /// A description of this metric, which is used in documentation. The maximum length of the
+        /// description is 8000 characters.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// An advanced logs filter (https://cloud.google.com/logging/docs/view/advanced-filters) which is used to match
-        /// log entries.
+        /// -
+        /// (Required)
+        /// An advanced logs filter (https://cloud.google.com/logging/docs/view/advanced-filters) which
+        /// is used to match log entries.
         /// </summary>
         [Input("filter", required: true)]
         public Input<string> Filter { get; set; } = null!;
@@ -160,10 +181,12 @@ namespace Pulumi.Gcp.Logging
         private InputMap<string>? _labelExtractors;
 
         /// <summary>
-        /// A map from a label key string to an extractor expression which is used to extract data from a log entry
-        /// field and assign as the label value. Each label key specified in the LabelDescriptor must have an associated
-        /// extractor expression in this map. The syntax of the extractor expression is the same as for the
-        /// valueExtractor field.
+        /// -
+        /// (Optional)
+        /// A map from a label key string to an extractor expression which is used to extract data from a log
+        /// entry field and assign as the label value. Each label key specified in the LabelDescriptor must
+        /// have an associated extractor expression in this map. The syntax of the extractor expression is
+        /// the same as for the valueExtractor field.
         /// </summary>
         public InputMap<string> LabelExtractors
         {
@@ -172,16 +195,21 @@ namespace Pulumi.Gcp.Logging
         }
 
         /// <summary>
-        /// The metric descriptor associated with the logs-based metric.
+        /// -
+        /// (Required)
+        /// The metric descriptor associated with the logs-based metric.  Structure is documented below.
         /// </summary>
         [Input("metricDescriptor", required: true)]
         public Input<Inputs.MetricMetricDescriptorArgs> MetricDescriptor { get; set; } = null!;
 
         /// <summary>
-        /// The client-assigned metric identifier. Examples - "error_count", "nginx/requests". Metric identifiers are
-        /// limited to 100 characters and can include only the following characters A-Z, a-z, 0-9, and the special
-        /// characters _-.,+!*',()%/. The forward-slash character (/) denotes a hierarchy of name pieces, and it cannot
-        /// be the first character of the name.
+        /// -
+        /// (Required)
+        /// The client-assigned metric identifier. Examples - "error_count", "nginx/requests".
+        /// Metric identifiers are limited to 100 characters and can include only the following
+        /// characters A-Z, a-z, 0-9, and the special characters _-.,+!*',()%/. The forward-slash
+        /// character (/) denotes a hierarchy of name pieces, and it cannot be the first character
+        /// of the name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -194,13 +222,15 @@ namespace Pulumi.Gcp.Logging
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// A valueExtractor is required when using a distribution logs-based metric to extract the values to record
-        /// from a log entry. Two functions are supported for value extraction - EXTRACT(field) or REGEXP_EXTRACT(field,
-        /// regex). The argument are 1. field - The name of the log entry field from which the value is to be extracted.
-        /// 2. regex - A regular expression using the Google RE2 syntax (https://github.com/google/re2/wiki/Syntax) with
-        /// a single capture group to extract data from the specified log entry field. The value of the field is
-        /// converted to a string before applying the regex. It is an error to specify a regex that does not include
-        /// exactly one capture group.
+        /// -
+        /// (Optional)
+        /// A valueExtractor is required when using a distribution logs-based metric to extract the values to
+        /// record from a log entry. Two functions are supported for value extraction - EXTRACT(field) or
+        /// REGEXP_EXTRACT(field, regex). The argument are 1. field - The name of the log entry field from which
+        /// the value is to be extracted. 2. regex - A regular expression using the Google RE2 syntax
+        /// (https://github.com/google/re2/wiki/Syntax) with a single capture group to extract data from the specified
+        /// log entry field. The value of the field is converted to a string before applying the regex. It is an
+        /// error to specify a regex that does not include exactly one capture group.
         /// </summary>
         [Input("valueExtractor")]
         public Input<string>? ValueExtractor { get; set; }
@@ -213,22 +243,28 @@ namespace Pulumi.Gcp.Logging
     public sealed class MetricState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// The bucketOptions are required when the logs-based metric is using a DISTRIBUTION value type and it
-        /// describes the bucket boundaries used to create a histogram of the extracted values.
+        /// describes the bucket boundaries used to create a histogram of the extracted values.  Structure is documented below.
         /// </summary>
         [Input("bucketOptions")]
         public Input<Inputs.MetricBucketOptionsGetArgs>? BucketOptions { get; set; }
 
         /// <summary>
-        /// A description of this metric, which is used in documentation. The maximum length of the description is 8000
-        /// characters.
+        /// -
+        /// (Optional)
+        /// A description of this metric, which is used in documentation. The maximum length of the
+        /// description is 8000 characters.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// An advanced logs filter (https://cloud.google.com/logging/docs/view/advanced-filters) which is used to match
-        /// log entries.
+        /// -
+        /// (Required)
+        /// An advanced logs filter (https://cloud.google.com/logging/docs/view/advanced-filters) which
+        /// is used to match log entries.
         /// </summary>
         [Input("filter")]
         public Input<string>? Filter { get; set; }
@@ -237,10 +273,12 @@ namespace Pulumi.Gcp.Logging
         private InputMap<string>? _labelExtractors;
 
         /// <summary>
-        /// A map from a label key string to an extractor expression which is used to extract data from a log entry
-        /// field and assign as the label value. Each label key specified in the LabelDescriptor must have an associated
-        /// extractor expression in this map. The syntax of the extractor expression is the same as for the
-        /// valueExtractor field.
+        /// -
+        /// (Optional)
+        /// A map from a label key string to an extractor expression which is used to extract data from a log
+        /// entry field and assign as the label value. Each label key specified in the LabelDescriptor must
+        /// have an associated extractor expression in this map. The syntax of the extractor expression is
+        /// the same as for the valueExtractor field.
         /// </summary>
         public InputMap<string> LabelExtractors
         {
@@ -249,16 +287,21 @@ namespace Pulumi.Gcp.Logging
         }
 
         /// <summary>
-        /// The metric descriptor associated with the logs-based metric.
+        /// -
+        /// (Required)
+        /// The metric descriptor associated with the logs-based metric.  Structure is documented below.
         /// </summary>
         [Input("metricDescriptor")]
         public Input<Inputs.MetricMetricDescriptorGetArgs>? MetricDescriptor { get; set; }
 
         /// <summary>
-        /// The client-assigned metric identifier. Examples - "error_count", "nginx/requests". Metric identifiers are
-        /// limited to 100 characters and can include only the following characters A-Z, a-z, 0-9, and the special
-        /// characters _-.,+!*',()%/. The forward-slash character (/) denotes a hierarchy of name pieces, and it cannot
-        /// be the first character of the name.
+        /// -
+        /// (Required)
+        /// The client-assigned metric identifier. Examples - "error_count", "nginx/requests".
+        /// Metric identifiers are limited to 100 characters and can include only the following
+        /// characters A-Z, a-z, 0-9, and the special characters _-.,+!*',()%/. The forward-slash
+        /// character (/) denotes a hierarchy of name pieces, and it cannot be the first character
+        /// of the name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -271,13 +314,15 @@ namespace Pulumi.Gcp.Logging
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// A valueExtractor is required when using a distribution logs-based metric to extract the values to record
-        /// from a log entry. Two functions are supported for value extraction - EXTRACT(field) or REGEXP_EXTRACT(field,
-        /// regex). The argument are 1. field - The name of the log entry field from which the value is to be extracted.
-        /// 2. regex - A regular expression using the Google RE2 syntax (https://github.com/google/re2/wiki/Syntax) with
-        /// a single capture group to extract data from the specified log entry field. The value of the field is
-        /// converted to a string before applying the regex. It is an error to specify a regex that does not include
-        /// exactly one capture group.
+        /// -
+        /// (Optional)
+        /// A valueExtractor is required when using a distribution logs-based metric to extract the values to
+        /// record from a log entry. Two functions are supported for value extraction - EXTRACT(field) or
+        /// REGEXP_EXTRACT(field, regex). The argument are 1. field - The name of the log entry field from which
+        /// the value is to be extracted. 2. regex - A regular expression using the Google RE2 syntax
+        /// (https://github.com/google/re2/wiki/Syntax) with a single capture group to extract data from the specified
+        /// log entry field. The value of the field is converted to a string before applying the regex. It is an
+        /// error to specify a regex that does not include exactly one capture group.
         /// </summary>
         [Input("valueExtractor")]
         public Input<string>? ValueExtractor { get; set; }
@@ -292,12 +337,29 @@ namespace Pulumi.Gcp.Logging
 
     public sealed class MetricBucketOptionsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a set of buckets with arbitrary widths.  Structure is documented below.
+        /// </summary>
         [Input("explicitBuckets")]
         public Input<MetricBucketOptionsExplicitBucketsArgs>? ExplicitBuckets { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies an exponential sequence of buckets that have a width that is proportional to the value of
+        /// the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket.  Structure is documented below.
+        /// </summary>
         [Input("exponentialBuckets")]
         public Input<MetricBucketOptionsExponentialBucketsArgs>? ExponentialBuckets { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a linear sequence of buckets that all have the same width (except overflow and underflow).
+        /// Each bucket represents a constant absolute uncertainty on the specific value in the bucket.  Structure is documented below.
+        /// </summary>
         [Input("linearBuckets")]
         public Input<MetricBucketOptionsLinearBucketsArgs>? LinearBuckets { get; set; }
 
@@ -310,6 +372,12 @@ namespace Pulumi.Gcp.Logging
     {
         [Input("bounds", required: true)]
         private InputList<double>? _bounds;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The values must be monotonically increasing.
+        /// </summary>
         public InputList<double> Bounds
         {
             get => _bounds ?? (_bounds = new InputList<double>());
@@ -325,6 +393,12 @@ namespace Pulumi.Gcp.Logging
     {
         [Input("bounds", required: true)]
         private InputList<double>? _bounds;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The values must be monotonically increasing.
+        /// </summary>
         public InputList<double> Bounds
         {
             get => _bounds ?? (_bounds = new InputList<double>());
@@ -338,12 +412,27 @@ namespace Pulumi.Gcp.Logging
 
     public sealed class MetricBucketOptionsExponentialBucketsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 1.
+        /// </summary>
         [Input("growthFactor")]
         public Input<double>? GrowthFactor { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         [Input("numFiniteBuckets")]
         public Input<int>? NumFiniteBuckets { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         [Input("scale")]
         public Input<double>? Scale { get; set; }
 
@@ -354,12 +443,27 @@ namespace Pulumi.Gcp.Logging
 
     public sealed class MetricBucketOptionsExponentialBucketsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 1.
+        /// </summary>
         [Input("growthFactor")]
         public Input<double>? GrowthFactor { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         [Input("numFiniteBuckets")]
         public Input<int>? NumFiniteBuckets { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         [Input("scale")]
         public Input<double>? Scale { get; set; }
 
@@ -370,12 +474,29 @@ namespace Pulumi.Gcp.Logging
 
     public sealed class MetricBucketOptionsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a set of buckets with arbitrary widths.  Structure is documented below.
+        /// </summary>
         [Input("explicitBuckets")]
         public Input<MetricBucketOptionsExplicitBucketsGetArgs>? ExplicitBuckets { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies an exponential sequence of buckets that have a width that is proportional to the value of
+        /// the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket.  Structure is documented below.
+        /// </summary>
         [Input("exponentialBuckets")]
         public Input<MetricBucketOptionsExponentialBucketsGetArgs>? ExponentialBuckets { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a linear sequence of buckets that all have the same width (except overflow and underflow).
+        /// Each bucket represents a constant absolute uncertainty on the specific value in the bucket.  Structure is documented below.
+        /// </summary>
         [Input("linearBuckets")]
         public Input<MetricBucketOptionsLinearBucketsGetArgs>? LinearBuckets { get; set; }
 
@@ -386,12 +507,27 @@ namespace Pulumi.Gcp.Logging
 
     public sealed class MetricBucketOptionsLinearBucketsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         [Input("numFiniteBuckets")]
         public Input<int>? NumFiniteBuckets { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Lower bound of the first bucket.
+        /// </summary>
         [Input("offset")]
         public Input<double>? Offset { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         [Input("width")]
         public Input<int>? Width { get; set; }
 
@@ -402,12 +538,27 @@ namespace Pulumi.Gcp.Logging
 
     public sealed class MetricBucketOptionsLinearBucketsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         [Input("numFiniteBuckets")]
         public Input<int>? NumFiniteBuckets { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Lower bound of the first bucket.
+        /// </summary>
         [Input("offset")]
         public Input<double>? Offset { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         [Input("width")]
         public Input<int>? Width { get; set; }
 
@@ -418,23 +569,58 @@ namespace Pulumi.Gcp.Logging
 
     public sealed class MetricMetricDescriptorArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A concise name for the metric, which can be displayed in user interfaces. Use sentence case
+        /// without an ending period, for example "Request count". This field is optional but it is
+        /// recommended to be set for any metrics associated with user-visible concepts, such as Quota.
+        /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         [Input("labels")]
         private InputList<MetricMetricDescriptorLabelsArgs>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of labels that can be used to describe a specific instance of this metric type. For
+        /// example, the appengine.googleapis.com/http/server/response_latencies metric type has a label
+        /// for the HTTP response code, response_code, so you can look at latencies for successful responses
+        /// or just for responses that failed.  Structure is documented below.
+        /// </summary>
         public InputList<MetricMetricDescriptorLabelsArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<MetricMetricDescriptorLabelsArgs>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Whether the metric records instantaneous values, changes to a value, etc.
+        /// Some combinations of metricKind and valueType might not be supported.
+        /// For counter metrics, set this to DELTA.
+        /// </summary>
         [Input("metricKind", required: true)]
         public Input<string> MetricKind { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The unit in which the metric value is reported. It is only applicable if the valueType is
+        /// `INT64`, `DOUBLE`, or `DISTRIBUTION`. The supported units are a subset of
+        /// [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard
+        /// </summary>
         [Input("unit")]
         public Input<string>? Unit { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The type of data that can be assigned to the label.
+        /// </summary>
         [Input("valueType", required: true)]
         public Input<string> ValueType { get; set; } = null!;
 
@@ -445,23 +631,58 @@ namespace Pulumi.Gcp.Logging
 
     public sealed class MetricMetricDescriptorGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A concise name for the metric, which can be displayed in user interfaces. Use sentence case
+        /// without an ending period, for example "Request count". This field is optional but it is
+        /// recommended to be set for any metrics associated with user-visible concepts, such as Quota.
+        /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         [Input("labels")]
         private InputList<MetricMetricDescriptorLabelsGetArgs>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of labels that can be used to describe a specific instance of this metric type. For
+        /// example, the appengine.googleapis.com/http/server/response_latencies metric type has a label
+        /// for the HTTP response code, response_code, so you can look at latencies for successful responses
+        /// or just for responses that failed.  Structure is documented below.
+        /// </summary>
         public InputList<MetricMetricDescriptorLabelsGetArgs> Labels
         {
             get => _labels ?? (_labels = new InputList<MetricMetricDescriptorLabelsGetArgs>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Whether the metric records instantaneous values, changes to a value, etc.
+        /// Some combinations of metricKind and valueType might not be supported.
+        /// For counter metrics, set this to DELTA.
+        /// </summary>
         [Input("metricKind", required: true)]
         public Input<string> MetricKind { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The unit in which the metric value is reported. It is only applicable if the valueType is
+        /// `INT64`, `DOUBLE`, or `DISTRIBUTION`. The supported units are a subset of
+        /// [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard
+        /// </summary>
         [Input("unit")]
         public Input<string>? Unit { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The type of data that can be assigned to the label.
+        /// </summary>
         [Input("valueType", required: true)]
         public Input<string> ValueType { get; set; } = null!;
 
@@ -472,12 +693,28 @@ namespace Pulumi.Gcp.Logging
 
     public sealed class MetricMetricDescriptorLabelsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A description of this metric, which is used in documentation. The maximum length of the
+        /// description is 8000 characters.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The label key.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The type of data that can be assigned to the label.
+        /// </summary>
         [Input("valueType")]
         public Input<string>? ValueType { get; set; }
 
@@ -488,12 +725,28 @@ namespace Pulumi.Gcp.Logging
 
     public sealed class MetricMetricDescriptorLabelsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A description of this metric, which is used in documentation. The maximum length of the
+        /// description is 8000 characters.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The label key.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The type of data that can be assigned to the label.
+        /// </summary>
         [Input("valueType")]
         public Input<string>? ValueType { get; set; }
 
@@ -509,8 +762,25 @@ namespace Pulumi.Gcp.Logging
     [OutputType]
     public sealed class MetricBucketOptions
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a set of buckets with arbitrary widths.  Structure is documented below.
+        /// </summary>
         public readonly MetricBucketOptionsExplicitBuckets? ExplicitBuckets;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies an exponential sequence of buckets that have a width that is proportional to the value of
+        /// the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket.  Structure is documented below.
+        /// </summary>
         public readonly MetricBucketOptionsExponentialBuckets? ExponentialBuckets;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a linear sequence of buckets that all have the same width (except overflow and underflow).
+        /// Each bucket represents a constant absolute uncertainty on the specific value in the bucket.  Structure is documented below.
+        /// </summary>
         public readonly MetricBucketOptionsLinearBuckets? LinearBuckets;
 
         [OutputConstructor]
@@ -528,6 +798,11 @@ namespace Pulumi.Gcp.Logging
     [OutputType]
     public sealed class MetricBucketOptionsExplicitBuckets
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The values must be monotonically increasing.
+        /// </summary>
         public readonly ImmutableArray<double> Bounds;
 
         [OutputConstructor]
@@ -540,8 +815,23 @@ namespace Pulumi.Gcp.Logging
     [OutputType]
     public sealed class MetricBucketOptionsExponentialBuckets
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 1.
+        /// </summary>
         public readonly double? GrowthFactor;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         public readonly int? NumFiniteBuckets;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         public readonly double? Scale;
 
         [OutputConstructor]
@@ -559,8 +849,23 @@ namespace Pulumi.Gcp.Logging
     [OutputType]
     public sealed class MetricBucketOptionsLinearBuckets
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         public readonly int? NumFiniteBuckets;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Lower bound of the first bucket.
+        /// </summary>
         public readonly double? Offset;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         public readonly int? Width;
 
         [OutputConstructor]
@@ -578,10 +883,44 @@ namespace Pulumi.Gcp.Logging
     [OutputType]
     public sealed class MetricMetricDescriptor
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A concise name for the metric, which can be displayed in user interfaces. Use sentence case
+        /// without an ending period, for example "Request count". This field is optional but it is
+        /// recommended to be set for any metrics associated with user-visible concepts, such as Quota.
+        /// </summary>
         public readonly string? DisplayName;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of labels that can be used to describe a specific instance of this metric type. For
+        /// example, the appengine.googleapis.com/http/server/response_latencies metric type has a label
+        /// for the HTTP response code, response_code, so you can look at latencies for successful responses
+        /// or just for responses that failed.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<MetricMetricDescriptorLabels> Labels;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Whether the metric records instantaneous values, changes to a value, etc.
+        /// Some combinations of metricKind and valueType might not be supported.
+        /// For counter metrics, set this to DELTA.
+        /// </summary>
         public readonly string MetricKind;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The unit in which the metric value is reported. It is only applicable if the valueType is
+        /// `INT64`, `DOUBLE`, or `DISTRIBUTION`. The supported units are a subset of
+        /// [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard
+        /// </summary>
         public readonly string? Unit;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The type of data that can be assigned to the label.
+        /// </summary>
         public readonly string ValueType;
 
         [OutputConstructor]
@@ -603,8 +942,24 @@ namespace Pulumi.Gcp.Logging
     [OutputType]
     public sealed class MetricMetricDescriptorLabels
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A description of this metric, which is used in documentation. The maximum length of the
+        /// description is 8000 characters.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The label key.
+        /// </summary>
         public readonly string Key;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The type of data that can be assigned to the label.
+        /// </summary>
         public readonly string? ValueType;
 
         [OutputConstructor]

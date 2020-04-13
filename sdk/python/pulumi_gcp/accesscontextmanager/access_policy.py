@@ -20,10 +20,15 @@ class AccessPolicy(pulumi.CustomResource):
     """
     parent: pulumi.Output[str]
     """
-    The parent of this AccessPolicy in the Cloud Resource Hierarchy. Format: organizations/{organization_id}
+    -
+    (Required)
+    The parent of this AccessPolicy in the Cloud Resource Hierarchy.
+    Format: organizations/{organization_id}
     """
     title: pulumi.Output[str]
     """
+    -
+    (Required)
     Human readable title. Does not affect behavior.
     """
     update_time: pulumi.Output[str]
@@ -45,12 +50,15 @@ class AccessPolicy(pulumi.CustomResource):
         * How-to Guides
             * [Access Policy Quickstart](https://cloud.google.com/access-context-manager/docs/quickstart)
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/access_context_manager_access_policy.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] parent: The parent of this AccessPolicy in the Cloud Resource Hierarchy. Format: organizations/{organization_id}
-        :param pulumi.Input[str] title: Human readable title. Does not affect behavior.
+        :param pulumi.Input[str] parent: -
+               (Required)
+               The parent of this AccessPolicy in the Cloud Resource Hierarchy.
+               Format: organizations/{organization_id}
+        :param pulumi.Input[str] title: -
+               (Required)
+               Human readable title. Does not affect behavior.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -95,8 +103,13 @@ class AccessPolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] create_time: Time the AccessPolicy was created in UTC.
         :param pulumi.Input[str] name: Resource name of the AccessPolicy. Format: {policy_id}
-        :param pulumi.Input[str] parent: The parent of this AccessPolicy in the Cloud Resource Hierarchy. Format: organizations/{organization_id}
-        :param pulumi.Input[str] title: Human readable title. Does not affect behavior.
+        :param pulumi.Input[str] parent: -
+               (Required)
+               The parent of this AccessPolicy in the Cloud Resource Hierarchy.
+               Format: organizations/{organization_id}
+        :param pulumi.Input[str] title: -
+               (Required)
+               Human readable title. Does not affect behavior.
         :param pulumi.Input[str] update_time: Time the AccessPolicy was updated in UTC.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

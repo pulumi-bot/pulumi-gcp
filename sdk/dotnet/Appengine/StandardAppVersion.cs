@@ -32,39 +32,52 @@ namespace Pulumi.Gcp.AppEngine
         public Output<bool?> DeleteServiceOnDestroy { get; private set; } = null!;
 
         /// <summary>
-        /// Code and application artifacts that make up this version.
+        /// -
+        /// (Optional)
+        /// Code and application artifacts that make up this version.  Structure is documented below.
         /// </summary>
         [Output("deployment")]
         public Output<Outputs.StandardAppVersionDeployment?> Deployment { get; private set; } = null!;
 
         /// <summary>
-        /// The entrypoint for the application.
+        /// -
+        /// (Optional)
+        /// The entrypoint for the application.  Structure is documented below.
         /// </summary>
         [Output("entrypoint")]
         public Output<Outputs.StandardAppVersionEntrypoint?> Entrypoint { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Environment variables available to the application.
         /// </summary>
         [Output("envVariables")]
         public Output<ImmutableDictionary<string, string>?> EnvVariables { get; private set; } = null!;
 
         /// <summary>
-        /// An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL
-        /// handles the request and other request handlers are not attempted.
+        /// -
+        /// (Optional)
+        /// An ordered list of URL-matching patterns that should be applied to incoming requests.
+        /// The first matching URL handles the request and other request handlers are not attempted.  Structure is documented below.
         /// </summary>
         [Output("handlers")]
         public Output<ImmutableArray<Outputs.StandardAppVersionHandlers>> Handlers { get; private set; } = null!;
 
         /// <summary>
-        /// Instance class that is used to run this version. Valid values are AutomaticScaling F1, F2, F4, F4_1G (Only
-        /// AutomaticScaling is supported at the moment)
+        /// -
+        /// (Optional)
+        /// Instance class that is used to run this version. Valid values are
+        /// AutomaticScaling F1, F2, F4, F4_1G
+        /// (Only AutomaticScaling is supported at the moment)
         /// </summary>
         [Output("instanceClass")]
         public Output<string?> InstanceClass { get; private set; } = null!;
 
         /// <summary>
-        /// Configuration for third-party Python runtime libraries that are required by the application.
+        /// -
+        /// (Optional)
+        /// Configuration for third-party Python runtime libraries that are required by the application.  Structure is documented below.
         /// </summary>
         [Output("libraries")]
         public Output<ImmutableArray<Outputs.StandardAppVersionLibraries>> Libraries { get; private set; } = null!;
@@ -89,33 +102,42 @@ namespace Pulumi.Gcp.AppEngine
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Desired runtime. Example python27.
         /// </summary>
         [Output("runtime")]
         public Output<string> Runtime { get; private set; } = null!;
 
         /// <summary>
-        /// The version of the API in the given runtime environment. Please see the app.yaml reference for valid values
-        /// at https://cloud.google.com/appengine/docs/standard//config/appref
+        /// -
+        /// (Optional)
+        /// The version of the API in the given runtime environment.
+        /// Please see the app.yaml reference for valid values at https://cloud.google.com/appengine/docs/standard//config/appref
         /// </summary>
         [Output("runtimeApiVersion")]
         public Output<string?> RuntimeApiVersion { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// AppEngine service resource
         /// </summary>
         [Output("service")]
         public Output<string?> Service { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether multiple requests can be dispatched to this version at once.
         /// </summary>
         [Output("threadsafe")]
         public Output<bool?> Threadsafe { get; private set; } = null!;
 
         /// <summary>
-        /// Relative name of the version within the service. For example, 'v1'. Version names can contain only lowercase
-        /// letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
+        /// -
+        /// (Optional)
+        /// Relative name of the version within the service. For example, `v1`. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
         /// </summary>
         [Output("versionId")]
         public Output<string?> VersionId { get; private set; } = null!;
@@ -173,13 +195,17 @@ namespace Pulumi.Gcp.AppEngine
         public Input<bool>? DeleteServiceOnDestroy { get; set; }
 
         /// <summary>
-        /// Code and application artifacts that make up this version.
+        /// -
+        /// (Optional)
+        /// Code and application artifacts that make up this version.  Structure is documented below.
         /// </summary>
         [Input("deployment")]
         public Input<Inputs.StandardAppVersionDeploymentArgs>? Deployment { get; set; }
 
         /// <summary>
-        /// The entrypoint for the application.
+        /// -
+        /// (Optional)
+        /// The entrypoint for the application.  Structure is documented below.
         /// </summary>
         [Input("entrypoint")]
         public Input<Inputs.StandardAppVersionEntrypointArgs>? Entrypoint { get; set; }
@@ -188,6 +214,8 @@ namespace Pulumi.Gcp.AppEngine
         private InputMap<string>? _envVariables;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Environment variables available to the application.
         /// </summary>
         public InputMap<string> EnvVariables
@@ -200,8 +228,10 @@ namespace Pulumi.Gcp.AppEngine
         private InputList<Inputs.StandardAppVersionHandlersArgs>? _handlers;
 
         /// <summary>
-        /// An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL
-        /// handles the request and other request handlers are not attempted.
+        /// -
+        /// (Optional)
+        /// An ordered list of URL-matching patterns that should be applied to incoming requests.
+        /// The first matching URL handles the request and other request handlers are not attempted.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.StandardAppVersionHandlersArgs> Handlers
         {
@@ -210,8 +240,11 @@ namespace Pulumi.Gcp.AppEngine
         }
 
         /// <summary>
-        /// Instance class that is used to run this version. Valid values are AutomaticScaling F1, F2, F4, F4_1G (Only
-        /// AutomaticScaling is supported at the moment)
+        /// -
+        /// (Optional)
+        /// Instance class that is used to run this version. Valid values are
+        /// AutomaticScaling F1, F2, F4, F4_1G
+        /// (Only AutomaticScaling is supported at the moment)
         /// </summary>
         [Input("instanceClass")]
         public Input<string>? InstanceClass { get; set; }
@@ -220,7 +253,9 @@ namespace Pulumi.Gcp.AppEngine
         private InputList<Inputs.StandardAppVersionLibrariesArgs>? _libraries;
 
         /// <summary>
-        /// Configuration for third-party Python runtime libraries that are required by the application.
+        /// -
+        /// (Optional)
+        /// Configuration for third-party Python runtime libraries that are required by the application.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.StandardAppVersionLibrariesArgs> Libraries
         {
@@ -242,33 +277,42 @@ namespace Pulumi.Gcp.AppEngine
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Desired runtime. Example python27.
         /// </summary>
         [Input("runtime", required: true)]
         public Input<string> Runtime { get; set; } = null!;
 
         /// <summary>
-        /// The version of the API in the given runtime environment. Please see the app.yaml reference for valid values
-        /// at https://cloud.google.com/appengine/docs/standard//config/appref
+        /// -
+        /// (Optional)
+        /// The version of the API in the given runtime environment.
+        /// Please see the app.yaml reference for valid values at https://cloud.google.com/appengine/docs/standard//config/appref
         /// </summary>
         [Input("runtimeApiVersion")]
         public Input<string>? RuntimeApiVersion { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// AppEngine service resource
         /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether multiple requests can be dispatched to this version at once.
         /// </summary>
         [Input("threadsafe")]
         public Input<bool>? Threadsafe { get; set; }
 
         /// <summary>
-        /// Relative name of the version within the service. For example, 'v1'. Version names can contain only lowercase
-        /// letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
+        /// -
+        /// (Optional)
+        /// Relative name of the version within the service. For example, `v1`. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
         /// </summary>
         [Input("versionId")]
         public Input<string>? VersionId { get; set; }
@@ -287,13 +331,17 @@ namespace Pulumi.Gcp.AppEngine
         public Input<bool>? DeleteServiceOnDestroy { get; set; }
 
         /// <summary>
-        /// Code and application artifacts that make up this version.
+        /// -
+        /// (Optional)
+        /// Code and application artifacts that make up this version.  Structure is documented below.
         /// </summary>
         [Input("deployment")]
         public Input<Inputs.StandardAppVersionDeploymentGetArgs>? Deployment { get; set; }
 
         /// <summary>
-        /// The entrypoint for the application.
+        /// -
+        /// (Optional)
+        /// The entrypoint for the application.  Structure is documented below.
         /// </summary>
         [Input("entrypoint")]
         public Input<Inputs.StandardAppVersionEntrypointGetArgs>? Entrypoint { get; set; }
@@ -302,6 +350,8 @@ namespace Pulumi.Gcp.AppEngine
         private InputMap<string>? _envVariables;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Environment variables available to the application.
         /// </summary>
         public InputMap<string> EnvVariables
@@ -314,8 +364,10 @@ namespace Pulumi.Gcp.AppEngine
         private InputList<Inputs.StandardAppVersionHandlersGetArgs>? _handlers;
 
         /// <summary>
-        /// An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL
-        /// handles the request and other request handlers are not attempted.
+        /// -
+        /// (Optional)
+        /// An ordered list of URL-matching patterns that should be applied to incoming requests.
+        /// The first matching URL handles the request and other request handlers are not attempted.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.StandardAppVersionHandlersGetArgs> Handlers
         {
@@ -324,8 +376,11 @@ namespace Pulumi.Gcp.AppEngine
         }
 
         /// <summary>
-        /// Instance class that is used to run this version. Valid values are AutomaticScaling F1, F2, F4, F4_1G (Only
-        /// AutomaticScaling is supported at the moment)
+        /// -
+        /// (Optional)
+        /// Instance class that is used to run this version. Valid values are
+        /// AutomaticScaling F1, F2, F4, F4_1G
+        /// (Only AutomaticScaling is supported at the moment)
         /// </summary>
         [Input("instanceClass")]
         public Input<string>? InstanceClass { get; set; }
@@ -334,7 +389,9 @@ namespace Pulumi.Gcp.AppEngine
         private InputList<Inputs.StandardAppVersionLibrariesGetArgs>? _libraries;
 
         /// <summary>
-        /// Configuration for third-party Python runtime libraries that are required by the application.
+        /// -
+        /// (Optional)
+        /// Configuration for third-party Python runtime libraries that are required by the application.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.StandardAppVersionLibrariesGetArgs> Libraries
         {
@@ -362,33 +419,42 @@ namespace Pulumi.Gcp.AppEngine
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Desired runtime. Example python27.
         /// </summary>
         [Input("runtime")]
         public Input<string>? Runtime { get; set; }
 
         /// <summary>
-        /// The version of the API in the given runtime environment. Please see the app.yaml reference for valid values
-        /// at https://cloud.google.com/appengine/docs/standard//config/appref
+        /// -
+        /// (Optional)
+        /// The version of the API in the given runtime environment.
+        /// Please see the app.yaml reference for valid values at https://cloud.google.com/appengine/docs/standard//config/appref
         /// </summary>
         [Input("runtimeApiVersion")]
         public Input<string>? RuntimeApiVersion { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// AppEngine service resource
         /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether multiple requests can be dispatched to this version at once.
         /// </summary>
         [Input("threadsafe")]
         public Input<bool>? Threadsafe { get; set; }
 
         /// <summary>
-        /// Relative name of the version within the service. For example, 'v1'. Version names can contain only lowercase
-        /// letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
+        /// -
+        /// (Optional)
+        /// Relative name of the version within the service. For example, `v1`. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
         /// </summary>
         [Input("versionId")]
         public Input<string>? VersionId { get; set; }
@@ -405,12 +471,24 @@ namespace Pulumi.Gcp.AppEngine
     {
         [Input("files")]
         private InputList<StandardAppVersionDeploymentFilesArgs>? _files;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Manifest of the files stored in Google Cloud Storage that are included as part of this version.
+        /// All files must be readable using the credentials supplied with this call.  Structure is documented below.
+        /// </summary>
         public InputList<StandardAppVersionDeploymentFilesArgs> Files
         {
             get => _files ?? (_files = new InputList<StandardAppVersionDeploymentFilesArgs>());
             set => _files = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Zip File  Structure is documented below.
+        /// </summary>
         [Input("zip")]
         public Input<StandardAppVersionDeploymentZipArgs>? Zip { get; set; }
 
@@ -427,9 +505,19 @@ namespace Pulumi.Gcp.AppEngine
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// SHA1 checksum of the file
+        /// </summary>
         [Input("sha1Sum")]
         public Input<string>? Sha1Sum { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Source URL
+        /// </summary>
         [Input("sourceUrl", required: true)]
         public Input<string> SourceUrl { get; set; } = null!;
 
@@ -446,9 +534,19 @@ namespace Pulumi.Gcp.AppEngine
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// SHA1 checksum of the file
+        /// </summary>
         [Input("sha1Sum")]
         public Input<string>? Sha1Sum { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Source URL
+        /// </summary>
         [Input("sourceUrl", required: true)]
         public Input<string> SourceUrl { get; set; } = null!;
 
@@ -461,12 +559,24 @@ namespace Pulumi.Gcp.AppEngine
     {
         [Input("files")]
         private InputList<StandardAppVersionDeploymentFilesGetArgs>? _files;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Manifest of the files stored in Google Cloud Storage that are included as part of this version.
+        /// All files must be readable using the credentials supplied with this call.  Structure is documented below.
+        /// </summary>
         public InputList<StandardAppVersionDeploymentFilesGetArgs> Files
         {
             get => _files ?? (_files = new InputList<StandardAppVersionDeploymentFilesGetArgs>());
             set => _files = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Zip File  Structure is documented below.
+        /// </summary>
         [Input("zip")]
         public Input<StandardAppVersionDeploymentZipGetArgs>? Zip { get; set; }
 
@@ -477,9 +587,19 @@ namespace Pulumi.Gcp.AppEngine
 
     public sealed class StandardAppVersionDeploymentZipArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// files count
+        /// </summary>
         [Input("filesCount")]
         public Input<int>? FilesCount { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Source URL
+        /// </summary>
         [Input("sourceUrl", required: true)]
         public Input<string> SourceUrl { get; set; } = null!;
 
@@ -490,9 +610,19 @@ namespace Pulumi.Gcp.AppEngine
 
     public sealed class StandardAppVersionDeploymentZipGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// files count
+        /// </summary>
         [Input("filesCount")]
         public Input<int>? FilesCount { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Source URL
+        /// </summary>
         [Input("sourceUrl", required: true)]
         public Input<string> SourceUrl { get; set; } = null!;
 
@@ -503,6 +633,11 @@ namespace Pulumi.Gcp.AppEngine
 
     public sealed class StandardAppVersionEntrypointArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The format should be a shell command that can be fed to bash -c.
+        /// </summary>
         [Input("shell", required: true)]
         public Input<string> Shell { get; set; } = null!;
 
@@ -513,6 +648,11 @@ namespace Pulumi.Gcp.AppEngine
 
     public sealed class StandardAppVersionEntrypointGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The format should be a shell command that can be fed to bash -c.
+        /// </summary>
         [Input("shell", required: true)]
         public Input<string> Shell { get; set; } = null!;
 
@@ -523,24 +663,61 @@ namespace Pulumi.Gcp.AppEngine
 
     public sealed class StandardAppVersionHandlersArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Actions to take when the user is not logged in.
+        /// </summary>
         [Input("authFailAction")]
         public Input<string>? AuthFailAction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Methods to restrict access to a URL based on login status.
+        /// </summary>
         [Input("login")]
         public Input<string>? Login { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// 30x code to use when performing redirects for the secure field.
+        /// </summary>
         [Input("redirectHttpResponseCode")]
         public Input<string>? RedirectHttpResponseCode { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Executes a script to handle the requests that match this URL pattern.
+        /// Only the auto value is supported for Node.js in the App Engine standard environment, for example "script:" "auto".  Structure is documented below.
+        /// </summary>
         [Input("script")]
         public Input<StandardAppVersionHandlersScriptArgs>? Script { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Security (HTTPS) enforcement for this URL.
+        /// </summary>
         [Input("securityLevel")]
         public Input<string>? SecurityLevel { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Files served directly to the user for a given URL, such as images, CSS stylesheets, or JavaScript source files. Static file handlers describe which files in the application directory are static files, and which URLs serve them.  Structure is documented below.
+        /// </summary>
         [Input("staticFiles")]
         public Input<StandardAppVersionHandlersStaticFilesArgs>? StaticFiles { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// URL prefix. Uses regular expression syntax, which means regexp special characters must be escaped, but should not contain groupings.
+        /// All URLs that begin with this prefix are handled by this handler, using the portion of the URL after the prefix as part of the file path.
+        /// </summary>
         [Input("urlRegex")]
         public Input<string>? UrlRegex { get; set; }
 
@@ -551,24 +728,61 @@ namespace Pulumi.Gcp.AppEngine
 
     public sealed class StandardAppVersionHandlersGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Actions to take when the user is not logged in.
+        /// </summary>
         [Input("authFailAction")]
         public Input<string>? AuthFailAction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Methods to restrict access to a URL based on login status.
+        /// </summary>
         [Input("login")]
         public Input<string>? Login { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// 30x code to use when performing redirects for the secure field.
+        /// </summary>
         [Input("redirectHttpResponseCode")]
         public Input<string>? RedirectHttpResponseCode { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Executes a script to handle the requests that match this URL pattern.
+        /// Only the auto value is supported for Node.js in the App Engine standard environment, for example "script:" "auto".  Structure is documented below.
+        /// </summary>
         [Input("script")]
         public Input<StandardAppVersionHandlersScriptGetArgs>? Script { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Security (HTTPS) enforcement for this URL.
+        /// </summary>
         [Input("securityLevel")]
         public Input<string>? SecurityLevel { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Files served directly to the user for a given URL, such as images, CSS stylesheets, or JavaScript source files. Static file handlers describe which files in the application directory are static files, and which URLs serve them.  Structure is documented below.
+        /// </summary>
         [Input("staticFiles")]
         public Input<StandardAppVersionHandlersStaticFilesGetArgs>? StaticFiles { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// URL prefix. Uses regular expression syntax, which means regexp special characters must be escaped, but should not contain groupings.
+        /// All URLs that begin with this prefix are handled by this handler, using the portion of the URL after the prefix as part of the file path.
+        /// </summary>
         [Input("urlRegex")]
         public Input<string>? UrlRegex { get; set; }
 
@@ -579,6 +793,11 @@ namespace Pulumi.Gcp.AppEngine
 
     public sealed class StandardAppVersionHandlersScriptArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path to the script from the application root directory.
+        /// </summary>
         [Input("scriptPath", required: true)]
         public Input<string> ScriptPath { get; set; } = null!;
 
@@ -589,6 +808,11 @@ namespace Pulumi.Gcp.AppEngine
 
     public sealed class StandardAppVersionHandlersScriptGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path to the script from the application root directory.
+        /// </summary>
         [Input("scriptPath", required: true)]
         public Input<string> ScriptPath { get; set; } = null!;
 
@@ -599,29 +823,68 @@ namespace Pulumi.Gcp.AppEngine
 
     public sealed class StandardAppVersionHandlersStaticFilesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether files should also be uploaded as code data. By default, files declared in static file handlers are uploaded as static data and are only served to end users; they cannot be read by the application. If enabled, uploads are charged against both your code and static data storage resource quotas.
+        /// </summary>
         [Input("applicationReadable")]
         public Input<bool>? ApplicationReadable { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Time a static file served by this handler should be cached by web proxies and browsers.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'. Example "3.5s".
+        /// </summary>
         [Input("expiration")]
         public Input<string>? Expiration { get; set; }
 
         [Input("httpHeaders")]
         private InputMap<string>? _httpHeaders;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// HTTP headers to use for all responses from these URLs.
+        /// An object containing a list of "key:value" value pairs.".
+        /// </summary>
         public InputMap<string> HttpHeaders
         {
             get => _httpHeaders ?? (_httpHeaders = new InputMap<string>());
             set => _httpHeaders = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// MIME type used to serve all files served by this handler.
+        /// Defaults to file-specific MIME types, which are derived from each file's filename extension.
+        /// </summary>
         [Input("mimeType")]
         public Input<string>? MimeType { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Path to the static files matched by the URL pattern, from the application root directory. The path can refer to text matched in groupings in the URL pattern.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether this handler should match the request if the file referenced by the handler does not exist.
+        /// </summary>
         [Input("requireMatchingFile")]
         public Input<bool>? RequireMatchingFile { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Regular expression that matches the file paths for all files that should be referenced by this handler.
+        /// </summary>
         [Input("uploadPathRegex")]
         public Input<string>? UploadPathRegex { get; set; }
 
@@ -632,29 +895,68 @@ namespace Pulumi.Gcp.AppEngine
 
     public sealed class StandardAppVersionHandlersStaticFilesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether files should also be uploaded as code data. By default, files declared in static file handlers are uploaded as static data and are only served to end users; they cannot be read by the application. If enabled, uploads are charged against both your code and static data storage resource quotas.
+        /// </summary>
         [Input("applicationReadable")]
         public Input<bool>? ApplicationReadable { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Time a static file served by this handler should be cached by web proxies and browsers.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'. Example "3.5s".
+        /// </summary>
         [Input("expiration")]
         public Input<string>? Expiration { get; set; }
 
         [Input("httpHeaders")]
         private InputMap<string>? _httpHeaders;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// HTTP headers to use for all responses from these URLs.
+        /// An object containing a list of "key:value" value pairs.".
+        /// </summary>
         public InputMap<string> HttpHeaders
         {
             get => _httpHeaders ?? (_httpHeaders = new InputMap<string>());
             set => _httpHeaders = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// MIME type used to serve all files served by this handler.
+        /// Defaults to file-specific MIME types, which are derived from each file's filename extension.
+        /// </summary>
         [Input("mimeType")]
         public Input<string>? MimeType { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Path to the static files matched by the URL pattern, from the application root directory. The path can refer to text matched in groupings in the URL pattern.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether this handler should match the request if the file referenced by the handler does not exist.
+        /// </summary>
         [Input("requireMatchingFile")]
         public Input<bool>? RequireMatchingFile { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Regular expression that matches the file paths for all files that should be referenced by this handler.
+        /// </summary>
         [Input("uploadPathRegex")]
         public Input<string>? UploadPathRegex { get; set; }
 
@@ -671,6 +973,11 @@ namespace Pulumi.Gcp.AppEngine
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Version of the library to select, or "latest".
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 
@@ -687,6 +994,11 @@ namespace Pulumi.Gcp.AppEngine
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Version of the library to select, or "latest".
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 
@@ -702,7 +1014,18 @@ namespace Pulumi.Gcp.AppEngine
     [OutputType]
     public sealed class StandardAppVersionDeployment
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Manifest of the files stored in Google Cloud Storage that are included as part of this version.
+        /// All files must be readable using the credentials supplied with this call.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<StandardAppVersionDeploymentFiles> Files;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Zip File  Structure is documented below.
+        /// </summary>
         public readonly StandardAppVersionDeploymentZip? Zip;
 
         [OutputConstructor]
@@ -722,7 +1045,17 @@ namespace Pulumi.Gcp.AppEngine
         /// The identifier for this object. Format specified above.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// SHA1 checksum of the file
+        /// </summary>
         public readonly string? Sha1Sum;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Source URL
+        /// </summary>
         public readonly string SourceUrl;
 
         [OutputConstructor]
@@ -740,7 +1073,17 @@ namespace Pulumi.Gcp.AppEngine
     [OutputType]
     public sealed class StandardAppVersionDeploymentZip
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// files count
+        /// </summary>
         public readonly int? FilesCount;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Source URL
+        /// </summary>
         public readonly string SourceUrl;
 
         [OutputConstructor]
@@ -756,6 +1099,11 @@ namespace Pulumi.Gcp.AppEngine
     [OutputType]
     public sealed class StandardAppVersionEntrypoint
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The format should be a shell command that can be fed to bash -c.
+        /// </summary>
         public readonly string Shell;
 
         [OutputConstructor]
@@ -768,12 +1116,49 @@ namespace Pulumi.Gcp.AppEngine
     [OutputType]
     public sealed class StandardAppVersionHandlers
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Actions to take when the user is not logged in.
+        /// </summary>
         public readonly string? AuthFailAction;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Methods to restrict access to a URL based on login status.
+        /// </summary>
         public readonly string? Login;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// 30x code to use when performing redirects for the secure field.
+        /// </summary>
         public readonly string? RedirectHttpResponseCode;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Executes a script to handle the requests that match this URL pattern.
+        /// Only the auto value is supported for Node.js in the App Engine standard environment, for example "script:" "auto".  Structure is documented below.
+        /// </summary>
         public readonly StandardAppVersionHandlersScript? Script;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Security (HTTPS) enforcement for this URL.
+        /// </summary>
         public readonly string? SecurityLevel;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Files served directly to the user for a given URL, such as images, CSS stylesheets, or JavaScript source files. Static file handlers describe which files in the application directory are static files, and which URLs serve them.  Structure is documented below.
+        /// </summary>
         public readonly StandardAppVersionHandlersStaticFiles? StaticFiles;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// URL prefix. Uses regular expression syntax, which means regexp special characters must be escaped, but should not contain groupings.
+        /// All URLs that begin with this prefix are handled by this handler, using the portion of the URL after the prefix as part of the file path.
+        /// </summary>
         public readonly string? UrlRegex;
 
         [OutputConstructor]
@@ -799,6 +1184,11 @@ namespace Pulumi.Gcp.AppEngine
     [OutputType]
     public sealed class StandardAppVersionHandlersScript
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path to the script from the application root directory.
+        /// </summary>
         public readonly string ScriptPath;
 
         [OutputConstructor]
@@ -811,12 +1201,50 @@ namespace Pulumi.Gcp.AppEngine
     [OutputType]
     public sealed class StandardAppVersionHandlersStaticFiles
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether files should also be uploaded as code data. By default, files declared in static file handlers are uploaded as static data and are only served to end users; they cannot be read by the application. If enabled, uploads are charged against both your code and static data storage resource quotas.
+        /// </summary>
         public readonly bool? ApplicationReadable;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Time a static file served by this handler should be cached by web proxies and browsers.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'. Example "3.5s".
+        /// </summary>
         public readonly string? Expiration;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// HTTP headers to use for all responses from these URLs.
+        /// An object containing a list of "key:value" value pairs.".
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? HttpHeaders;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// MIME type used to serve all files served by this handler.
+        /// Defaults to file-specific MIME types, which are derived from each file's filename extension.
+        /// </summary>
         public readonly string? MimeType;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Path to the static files matched by the URL pattern, from the application root directory. The path can refer to text matched in groupings in the URL pattern.
+        /// </summary>
         public readonly string? Path;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether this handler should match the request if the file referenced by the handler does not exist.
+        /// </summary>
         public readonly bool? RequireMatchingFile;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Regular expression that matches the file paths for all files that should be referenced by this handler.
+        /// </summary>
         public readonly string? UploadPathRegex;
 
         [OutputConstructor]
@@ -846,6 +1274,11 @@ namespace Pulumi.Gcp.AppEngine
         /// The identifier for this object. Format specified above.
         /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Version of the library to select, or "latest".
+        /// </summary>
         public readonly string? Version;
 
         [OutputConstructor]

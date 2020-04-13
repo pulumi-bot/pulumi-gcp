@@ -23,32 +23,44 @@ namespace Pulumi.Gcp.Compute
     public partial class SecurityScanConfig : Pulumi.CustomResource
     {
         /// <summary>
-        /// The authentication configuration. If specified, service will use the authentication configuration during
-        /// scanning.
+        /// -
+        /// (Optional)
+        /// The authentication configuration.
+        /// If specified, service will use the authentication configuration during scanning.  Structure is documented below.
         /// </summary>
         [Output("authentication")]
         public Output<Outputs.SecurityScanConfigAuthentication?> Authentication { get; private set; } = null!;
 
         /// <summary>
-        /// The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
+        /// -
+        /// (Optional)
+        /// The blacklist URL patterns as described in
+        /// https://cloud.google.com/security-scanner/docs/excluded-urls
         /// </summary>
         [Output("blacklistPatterns")]
         public Output<ImmutableArray<string>> BlacklistPatterns { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The user provider display name of the ScanConfig.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Controls export of scan configurations and results to Cloud Security Command Center.
         /// </summary>
         [Output("exportToSecurityCommandCenter")]
         public Output<string?> ExportToSecurityCommandCenter { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively. Defaults to 15.
+        /// -
+        /// (Optional)
+        /// The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
+        /// Defaults to 15.
         /// </summary>
         [Output("maxQps")]
         public Output<int?> MaxQps { get; private set; } = null!;
@@ -67,24 +79,32 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// The schedule of the ScanConfig
+        /// -
+        /// (Optional)
+        /// The schedule of the ScanConfig  Structure is documented below.
         /// </summary>
         [Output("schedule")]
         public Output<Outputs.SecurityScanConfigSchedule?> Schedule { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The starting URLs from which the scanner finds site pages.
         /// </summary>
         [Output("startingUrls")]
         public Output<ImmutableArray<string>> StartingUrls { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
         /// </summary>
         [Output("targetPlatforms")]
         public Output<ImmutableArray<string>> TargetPlatforms { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Type of the user agents used for scanning
         /// </summary>
         [Output("userAgent")]
@@ -137,8 +157,10 @@ namespace Pulumi.Gcp.Compute
     public sealed class SecurityScanConfigArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The authentication configuration. If specified, service will use the authentication configuration during
-        /// scanning.
+        /// -
+        /// (Optional)
+        /// The authentication configuration.
+        /// If specified, service will use the authentication configuration during scanning.  Structure is documented below.
         /// </summary>
         [Input("authentication")]
         public Input<Inputs.SecurityScanConfigAuthenticationArgs>? Authentication { get; set; }
@@ -147,7 +169,10 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _blacklistPatterns;
 
         /// <summary>
-        /// The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
+        /// -
+        /// (Optional)
+        /// The blacklist URL patterns as described in
+        /// https://cloud.google.com/security-scanner/docs/excluded-urls
         /// </summary>
         public InputList<string> BlacklistPatterns
         {
@@ -156,19 +181,26 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The user provider display name of the ScanConfig.
         /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Controls export of scan configurations and results to Cloud Security Command Center.
         /// </summary>
         [Input("exportToSecurityCommandCenter")]
         public Input<string>? ExportToSecurityCommandCenter { get; set; }
 
         /// <summary>
-        /// The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively. Defaults to 15.
+        /// -
+        /// (Optional)
+        /// The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
+        /// Defaults to 15.
         /// </summary>
         [Input("maxQps")]
         public Input<int>? MaxQps { get; set; }
@@ -181,7 +213,9 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The schedule of the ScanConfig
+        /// -
+        /// (Optional)
+        /// The schedule of the ScanConfig  Structure is documented below.
         /// </summary>
         [Input("schedule")]
         public Input<Inputs.SecurityScanConfigScheduleArgs>? Schedule { get; set; }
@@ -190,6 +224,8 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _startingUrls;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The starting URLs from which the scanner finds site pages.
         /// </summary>
         public InputList<string> StartingUrls
@@ -202,6 +238,8 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _targetPlatforms;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
         /// </summary>
         public InputList<string> TargetPlatforms
@@ -211,6 +249,8 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Type of the user agents used for scanning
         /// </summary>
         [Input("userAgent")]
@@ -224,8 +264,10 @@ namespace Pulumi.Gcp.Compute
     public sealed class SecurityScanConfigState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The authentication configuration. If specified, service will use the authentication configuration during
-        /// scanning.
+        /// -
+        /// (Optional)
+        /// The authentication configuration.
+        /// If specified, service will use the authentication configuration during scanning.  Structure is documented below.
         /// </summary>
         [Input("authentication")]
         public Input<Inputs.SecurityScanConfigAuthenticationGetArgs>? Authentication { get; set; }
@@ -234,7 +276,10 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _blacklistPatterns;
 
         /// <summary>
-        /// The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
+        /// -
+        /// (Optional)
+        /// The blacklist URL patterns as described in
+        /// https://cloud.google.com/security-scanner/docs/excluded-urls
         /// </summary>
         public InputList<string> BlacklistPatterns
         {
@@ -243,19 +288,26 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The user provider display name of the ScanConfig.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Controls export of scan configurations and results to Cloud Security Command Center.
         /// </summary>
         [Input("exportToSecurityCommandCenter")]
         public Input<string>? ExportToSecurityCommandCenter { get; set; }
 
         /// <summary>
-        /// The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively. Defaults to 15.
+        /// -
+        /// (Optional)
+        /// The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
+        /// Defaults to 15.
         /// </summary>
         [Input("maxQps")]
         public Input<int>? MaxQps { get; set; }
@@ -274,7 +326,9 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The schedule of the ScanConfig
+        /// -
+        /// (Optional)
+        /// The schedule of the ScanConfig  Structure is documented below.
         /// </summary>
         [Input("schedule")]
         public Input<Inputs.SecurityScanConfigScheduleGetArgs>? Schedule { get; set; }
@@ -283,6 +337,8 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _startingUrls;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The starting URLs from which the scanner finds site pages.
         /// </summary>
         public InputList<string> StartingUrls
@@ -295,6 +351,8 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _targetPlatforms;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
         /// </summary>
         public InputList<string> TargetPlatforms
@@ -304,6 +362,8 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Type of the user agents used for scanning
         /// </summary>
         [Input("userAgent")]
@@ -319,9 +379,19 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class SecurityScanConfigAuthenticationArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Describes authentication configuration that uses a custom account.  Structure is documented below.
+        /// </summary>
         [Input("customAccount")]
         public Input<SecurityScanConfigAuthenticationCustomAccountArgs>? CustomAccount { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Describes authentication configuration that uses a Google account.  Structure is documented below.
+        /// </summary>
         [Input("googleAccount")]
         public Input<SecurityScanConfigAuthenticationGoogleAccountArgs>? GoogleAccount { get; set; }
 
@@ -332,12 +402,28 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class SecurityScanConfigAuthenticationCustomAccountArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The login form URL of the website.
+        /// </summary>
         [Input("loginUrl", required: true)]
         public Input<string> LoginUrl { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The password of the custom account. The credential is stored encrypted
+        /// in GCP.
+        /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The user name of the custom account.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
@@ -348,12 +434,28 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class SecurityScanConfigAuthenticationCustomAccountGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The login form URL of the website.
+        /// </summary>
         [Input("loginUrl", required: true)]
         public Input<string> LoginUrl { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The password of the custom account. The credential is stored encrypted
+        /// in GCP.
+        /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The user name of the custom account.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
@@ -364,9 +466,19 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class SecurityScanConfigAuthenticationGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Describes authentication configuration that uses a custom account.  Structure is documented below.
+        /// </summary>
         [Input("customAccount")]
         public Input<SecurityScanConfigAuthenticationCustomAccountGetArgs>? CustomAccount { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Describes authentication configuration that uses a Google account.  Structure is documented below.
+        /// </summary>
         [Input("googleAccount")]
         public Input<SecurityScanConfigAuthenticationGoogleAccountGetArgs>? GoogleAccount { get; set; }
 
@@ -377,9 +489,20 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class SecurityScanConfigAuthenticationGoogleAccountArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The password of the custom account. The credential is stored encrypted
+        /// in GCP.
+        /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The user name of the custom account.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
@@ -390,9 +513,20 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class SecurityScanConfigAuthenticationGoogleAccountGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The password of the custom account. The credential is stored encrypted
+        /// in GCP.
+        /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The user name of the custom account.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 
@@ -403,9 +537,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class SecurityScanConfigScheduleArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The duration of time between executions in days
+        /// </summary>
         [Input("intervalDurationDays", required: true)]
         public Input<int> IntervalDurationDays { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A timestamp indicates when the next run will be scheduled. The value is refreshed
+        /// by the server after each run. If unspecified, it will default to current server time,
+        /// which means the scan will be scheduled to start immediately.
+        /// </summary>
         [Input("scheduleTime")]
         public Input<string>? ScheduleTime { get; set; }
 
@@ -416,9 +562,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class SecurityScanConfigScheduleGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The duration of time between executions in days
+        /// </summary>
         [Input("intervalDurationDays", required: true)]
         public Input<int> IntervalDurationDays { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A timestamp indicates when the next run will be scheduled. The value is refreshed
+        /// by the server after each run. If unspecified, it will default to current server time,
+        /// which means the scan will be scheduled to start immediately.
+        /// </summary>
         [Input("scheduleTime")]
         public Input<string>? ScheduleTime { get; set; }
 
@@ -434,7 +592,17 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class SecurityScanConfigAuthentication
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Describes authentication configuration that uses a custom account.  Structure is documented below.
+        /// </summary>
         public readonly SecurityScanConfigAuthenticationCustomAccount? CustomAccount;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Describes authentication configuration that uses a Google account.  Structure is documented below.
+        /// </summary>
         public readonly SecurityScanConfigAuthenticationGoogleAccount? GoogleAccount;
 
         [OutputConstructor]
@@ -450,8 +618,24 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class SecurityScanConfigAuthenticationCustomAccount
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The login form URL of the website.
+        /// </summary>
         public readonly string LoginUrl;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The password of the custom account. The credential is stored encrypted
+        /// in GCP.
+        /// </summary>
         public readonly string Password;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The user name of the custom account.
+        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]
@@ -469,7 +653,18 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class SecurityScanConfigAuthenticationGoogleAccount
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The password of the custom account. The credential is stored encrypted
+        /// in GCP.
+        /// </summary>
         public readonly string Password;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The user name of the custom account.
+        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]
@@ -485,7 +680,19 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class SecurityScanConfigSchedule
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The duration of time between executions in days
+        /// </summary>
         public readonly int IntervalDurationDays;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A timestamp indicates when the next run will be scheduled. The value is refreshed
+        /// by the server after each run. If unspecified, it will default to current server time,
+        /// which means the scan will be scheduled to start immediately.
+        /// </summary>
         public readonly string? ScheduleTime;
 
         [OutputConstructor]

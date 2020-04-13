@@ -24,6 +24,8 @@ namespace Pulumi.Gcp.Healthcare
     public partial class Hl7Store : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Identifies the dataset addressed by this request. Must be in the format
         /// 'projects/{project}/locations/{location}/datasets/{dataset}'
         /// </summary>
@@ -31,31 +33,41 @@ namespace Pulumi.Gcp.Healthcare
         public Output<string> Dataset { get; private set; } = null!;
 
         /// <summary>
-        /// User-supplied key-value pairs used to organize HL7v2 stores. Label keys must be between 1 and 63 characters
-        /// long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62} Label values are optional, must be between 1 and 63 characters
-        /// long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given store. An object
-        /// containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
+        /// -
+        /// (Optional)
+        /// User-supplied key-value pairs used to organize HL7v2 stores.
+        /// Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must
+        /// conform to the following PCRE regular expression: [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
+        /// Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128
+        /// bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
+        /// No more than 64 labels can be associated with a given store.
+        /// An object containing a list of "key": value pairs.
+        /// Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// The resource name for the Hl7V2Store. ** Changing this property may recreate the Hl7v2 store (removing all
-        /// data) **
+        /// -
+        /// (Required)
+        /// The resource name for the Hl7V2Store.
+        /// ** Changing this property may recreate the Hl7v2 store (removing all data) **
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Output("notificationConfig")]
         public Output<Outputs.Hl7StoreNotificationConfig?> NotificationConfig { get; private set; } = null!;
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Output("parserConfig")]
         public Output<Outputs.Hl7StoreParserConfig?> ParserConfig { get; private set; } = null!;
@@ -113,6 +125,8 @@ namespace Pulumi.Gcp.Healthcare
     public sealed class Hl7StoreArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Identifies the dataset addressed by this request. Must be in the format
         /// 'projects/{project}/locations/{location}/datasets/{dataset}'
         /// </summary>
@@ -123,12 +137,16 @@ namespace Pulumi.Gcp.Healthcare
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// User-supplied key-value pairs used to organize HL7v2 stores. Label keys must be between 1 and 63 characters
-        /// long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62} Label values are optional, must be between 1 and 63 characters
-        /// long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given store. An object
-        /// containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
+        /// -
+        /// (Optional)
+        /// User-supplied key-value pairs used to organize HL7v2 stores.
+        /// Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must
+        /// conform to the following PCRE regular expression: [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
+        /// Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128
+        /// bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
+        /// No more than 64 labels can be associated with a given store.
+        /// An object containing a list of "key": value pairs.
+        /// Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -137,20 +155,26 @@ namespace Pulumi.Gcp.Healthcare
         }
 
         /// <summary>
-        /// The resource name for the Hl7V2Store. ** Changing this property may recreate the Hl7v2 store (removing all
-        /// data) **
+        /// -
+        /// (Required)
+        /// The resource name for the Hl7V2Store.
+        /// ** Changing this property may recreate the Hl7v2 store (removing all data) **
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("notificationConfig")]
         public Input<Inputs.Hl7StoreNotificationConfigArgs>? NotificationConfig { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("parserConfig")]
         public Input<Inputs.Hl7StoreParserConfigArgs>? ParserConfig { get; set; }
@@ -163,6 +187,8 @@ namespace Pulumi.Gcp.Healthcare
     public sealed class Hl7StoreState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Identifies the dataset addressed by this request. Must be in the format
         /// 'projects/{project}/locations/{location}/datasets/{dataset}'
         /// </summary>
@@ -173,12 +199,16 @@ namespace Pulumi.Gcp.Healthcare
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// User-supplied key-value pairs used to organize HL7v2 stores. Label keys must be between 1 and 63 characters
-        /// long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62} Label values are optional, must be between 1 and 63 characters
-        /// long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given store. An object
-        /// containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
+        /// -
+        /// (Optional)
+        /// User-supplied key-value pairs used to organize HL7v2 stores.
+        /// Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must
+        /// conform to the following PCRE regular expression: [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
+        /// Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128
+        /// bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
+        /// No more than 64 labels can be associated with a given store.
+        /// An object containing a list of "key": value pairs.
+        /// Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -187,20 +217,26 @@ namespace Pulumi.Gcp.Healthcare
         }
 
         /// <summary>
-        /// The resource name for the Hl7V2Store. ** Changing this property may recreate the Hl7v2 store (removing all
-        /// data) **
+        /// -
+        /// (Required)
+        /// The resource name for the Hl7V2Store.
+        /// ** Changing this property may recreate the Hl7v2 store (removing all data) **
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("notificationConfig")]
         public Input<Inputs.Hl7StoreNotificationConfigGetArgs>? NotificationConfig { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("parserConfig")]
         public Input<Inputs.Hl7StoreParserConfigGetArgs>? ParserConfig { get; set; }
@@ -221,6 +257,16 @@ namespace Pulumi.Gcp.Healthcare
 
     public sealed class Hl7StoreNotificationConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+        /// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+        /// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+        /// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+        /// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+        /// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
+        /// </summary>
         [Input("pubsubTopic", required: true)]
         public Input<string> PubsubTopic { get; set; } = null!;
 
@@ -231,6 +277,16 @@ namespace Pulumi.Gcp.Healthcare
 
     public sealed class Hl7StoreNotificationConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+        /// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+        /// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+        /// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+        /// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+        /// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
+        /// </summary>
         [Input("pubsubTopic", required: true)]
         public Input<string> PubsubTopic { get; set; } = null!;
 
@@ -241,9 +297,20 @@ namespace Pulumi.Gcp.Healthcare
 
     public sealed class Hl7StoreParserConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Determines whether messages with no header are allowed.
+        /// </summary>
         [Input("allowNullHeader")]
         public Input<bool>? AllowNullHeader { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Byte(s) to be used as the segment terminator. If this is unset, '\r' will be used as segment terminator.
+        /// A base64-encoded string.
+        /// </summary>
         [Input("segmentTerminator")]
         public Input<string>? SegmentTerminator { get; set; }
 
@@ -254,9 +321,20 @@ namespace Pulumi.Gcp.Healthcare
 
     public sealed class Hl7StoreParserConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Determines whether messages with no header are allowed.
+        /// </summary>
         [Input("allowNullHeader")]
         public Input<bool>? AllowNullHeader { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Byte(s) to be used as the segment terminator. If this is unset, '\r' will be used as segment terminator.
+        /// A base64-encoded string.
+        /// </summary>
         [Input("segmentTerminator")]
         public Input<string>? SegmentTerminator { get; set; }
 
@@ -272,6 +350,16 @@ namespace Pulumi.Gcp.Healthcare
     [OutputType]
     public sealed class Hl7StoreNotificationConfig
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+        /// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+        /// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+        /// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+        /// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+        /// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
+        /// </summary>
         public readonly string PubsubTopic;
 
         [OutputConstructor]
@@ -284,7 +372,18 @@ namespace Pulumi.Gcp.Healthcare
     [OutputType]
     public sealed class Hl7StoreParserConfig
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Determines whether messages with no header are allowed.
+        /// </summary>
         public readonly bool? AllowNullHeader;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Byte(s) to be used as the segment terminator. If this is unset, '\r' will be used as segment terminator.
+        /// A base64-encoded string.
+        /// </summary>
         public readonly string? SegmentTerminator;
 
         [OutputConstructor]

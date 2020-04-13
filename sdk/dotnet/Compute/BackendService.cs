@@ -29,21 +29,29 @@ namespace Pulumi.Gcp.Compute
     public partial class BackendService : Pulumi.CustomResource
     {
         /// <summary>
-        /// Lifetime of cookies in seconds if session_affinity is GENERATED_COOKIE. If set to 0, the cookie is
-        /// non-persistent and lasts only until the end of the browser session (or equivalent). The maximum allowed
-        /// value for TTL is one day. When the load balancing scheme is INTERNAL, this field is not used.
+        /// -
+        /// (Optional)
+        /// Lifetime of cookies in seconds if session_affinity is
+        /// GENERATED_COOKIE. If set to 0, the cookie is non-persistent and lasts
+        /// only until the end of the browser session (or equivalent). The
+        /// maximum allowed value for TTL is one day.
+        /// When the load balancing scheme is INTERNAL, this field is not used.
         /// </summary>
         [Output("affinityCookieTtlSec")]
         public Output<int?> AffinityCookieTtlSec { get; private set; } = null!;
 
         /// <summary>
-        /// The set of backends that serve this BackendService.
+        /// -
+        /// (Optional)
+        /// The set of backends that serve this BackendService.  Structure is documented below.
         /// </summary>
         [Output("backends")]
         public Output<ImmutableArray<Outputs.BackendServiceBackends>> Backends { get; private set; } = null!;
 
         /// <summary>
-        /// Cloud CDN configuration for this BackendService.
+        /// -
+        /// (Optional)
+        /// Cloud CDN configuration for this BackendService.  Structure is documented below.
         /// </summary>
         [Output("cdnPolicy")]
         public Output<Outputs.BackendServiceCdnPolicy> CdnPolicy { get; private set; } = null!;
@@ -56,7 +64,10 @@ namespace Pulumi.Gcp.Compute
         public Output<Outputs.BackendServiceCircuitBreakers?> CircuitBreakers { get; private set; } = null!;
 
         /// <summary>
-        /// Time for which instance will be drained (not accept new connections, but still work to finish started).
+        /// -
+        /// (Optional)
+        /// Time for which instance will be drained (not accept new
+        /// connections, but still work to finish started).
         /// </summary>
         [Output("connectionDrainingTimeoutSec")]
         public Output<int?> ConnectionDrainingTimeoutSec { get; private set; } = null!;
@@ -85,12 +96,17 @@ namespace Pulumi.Gcp.Compute
         public Output<ImmutableArray<string>> CustomRequestHeaders { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
+        /// Provide this property when you create the resource.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If true, enable Cloud CDN for this BackendService.
         /// </summary>
         [Output("enableCdn")]
@@ -104,23 +120,31 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Fingerprint { get; private set; } = null!;
 
         /// <summary>
-        /// The set of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService.
-        /// Currently at most one health check can be specified, and a health check is required. For internal load
-        /// balancing, a URL to a HealthCheck resource must be specified instead.
+        /// -
+        /// (Required)
+        /// The set of URLs to the HttpHealthCheck or HttpsHealthCheck resource
+        /// for health checking this BackendService. Currently at most one health
+        /// check can be specified, and a health check is required.
+        /// For internal load balancing, a URL to a HealthCheck resource must be specified instead.
         /// </summary>
         [Output("healthChecks")]
         public Output<string> HealthChecks { get; private set; } = null!;
 
         /// <summary>
-        /// Settings for enabling Cloud Identity Aware Proxy
+        /// -
+        /// (Optional)
+        /// Settings for enabling Cloud Identity Aware Proxy  Structure is documented below.
         /// </summary>
         [Output("iap")]
         public Output<Outputs.BackendServiceIap?> Iap { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether the backend service will be used with internal or external load balancing. A backend
-        /// service created for one type of load balancing cannot be used with the other. Must be 'EXTERNAL' or
-        /// 'INTERNAL_SELF_MANAGED' for a global backend service. Defaults to 'EXTERNAL'.
+        /// -
+        /// (Optional)
+        /// Indicates whether the backend service will be used with internal or
+        /// external load balancing. A backend service created for one type of
+        /// load balancing cannot be used with the other. Must be `EXTERNAL` or
+        /// `INTERNAL_SELF_MANAGED` for a global backend service. Defaults to `EXTERNAL`.
         /// </summary>
         [Output("loadBalancingScheme")]
         public Output<string?> LoadBalancingScheme { get; private set; } = null!;
@@ -150,11 +174,9 @@ namespace Pulumi.Gcp.Compute
         public Output<Outputs.BackendServiceLogConfig> LogConfig { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Optional)
+        /// Name of the cookie.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -167,8 +189,11 @@ namespace Pulumi.Gcp.Compute
         public Output<Outputs.BackendServiceOutlierDetection?> OutlierDetection { get; private set; } = null!;
 
         /// <summary>
-        /// Name of backend port. The same name should appear in the instance groups referenced by this service.
-        /// Required when the load balancing scheme is EXTERNAL.
+        /// -
+        /// (Optional)
+        /// Name of backend port. The same name should appear in the instance
+        /// groups referenced by this service. Required when the load balancing
+        /// scheme is EXTERNAL.
         /// </summary>
         [Output("portName")]
         public Output<string> PortName { get; private set; } = null!;
@@ -181,14 +206,19 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// The protocol this BackendService uses to communicate with backends. Possible values are HTTP, HTTPS, HTTP2,
-        /// TCP, and SSL. The default is HTTP. **NOTE**: HTTP2 is only valid for beta HTTP/2 load balancer types and may
-        /// result in errors if used with the GA API.
+        /// -
+        /// (Optional)
+        /// The protocol this BackendService uses to communicate with backends.
+        /// Possible values are HTTP, HTTPS, HTTP2, TCP, and SSL. The default is
+        /// HTTP. **NOTE**: HTTP2 is only valid for beta HTTP/2 load balancer
+        /// types and may result in errors if used with the GA API.
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The security policy associated with this backend service.
         /// </summary>
         [Output("securityPolicy")]
@@ -201,15 +231,19 @@ namespace Pulumi.Gcp.Compute
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
-        /// Type of session affinity to use. The default is NONE. Session affinity is not applicable if the protocol is
-        /// UDP.
+        /// -
+        /// (Optional)
+        /// Type of session affinity to use. The default is NONE. Session affinity is
+        /// not applicable if the protocol is UDP.
         /// </summary>
         [Output("sessionAffinity")]
         public Output<string> SessionAffinity { get; private set; } = null!;
 
         /// <summary>
-        /// How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds.
-        /// Valid range is [1, 86400].
+        /// -
+        /// (Optional)
+        /// How many seconds to wait for the backend before considering it a
+        /// failed request. Default is 30 seconds. Valid range is [1, 86400].
         /// </summary>
         [Output("timeoutSec")]
         public Output<int> TimeoutSec { get; private set; } = null!;
@@ -261,9 +295,13 @@ namespace Pulumi.Gcp.Compute
     public sealed class BackendServiceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Lifetime of cookies in seconds if session_affinity is GENERATED_COOKIE. If set to 0, the cookie is
-        /// non-persistent and lasts only until the end of the browser session (or equivalent). The maximum allowed
-        /// value for TTL is one day. When the load balancing scheme is INTERNAL, this field is not used.
+        /// -
+        /// (Optional)
+        /// Lifetime of cookies in seconds if session_affinity is
+        /// GENERATED_COOKIE. If set to 0, the cookie is non-persistent and lasts
+        /// only until the end of the browser session (or equivalent). The
+        /// maximum allowed value for TTL is one day.
+        /// When the load balancing scheme is INTERNAL, this field is not used.
         /// </summary>
         [Input("affinityCookieTtlSec")]
         public Input<int>? AffinityCookieTtlSec { get; set; }
@@ -272,7 +310,9 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.BackendServiceBackendsArgs>? _backends;
 
         /// <summary>
-        /// The set of backends that serve this BackendService.
+        /// -
+        /// (Optional)
+        /// The set of backends that serve this BackendService.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.BackendServiceBackendsArgs> Backends
         {
@@ -281,7 +321,9 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// Cloud CDN configuration for this BackendService.
+        /// -
+        /// (Optional)
+        /// Cloud CDN configuration for this BackendService.  Structure is documented below.
         /// </summary>
         [Input("cdnPolicy")]
         public Input<Inputs.BackendServiceCdnPolicyArgs>? CdnPolicy { get; set; }
@@ -294,7 +336,10 @@ namespace Pulumi.Gcp.Compute
         public Input<Inputs.BackendServiceCircuitBreakersArgs>? CircuitBreakers { get; set; }
 
         /// <summary>
-        /// Time for which instance will be drained (not accept new connections, but still work to finish started).
+        /// -
+        /// (Optional)
+        /// Time for which instance will be drained (not accept new
+        /// connections, but still work to finish started).
         /// </summary>
         [Input("connectionDrainingTimeoutSec")]
         public Input<int>? ConnectionDrainingTimeoutSec { get; set; }
@@ -323,35 +368,48 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
+        /// Provide this property when you create the resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If true, enable Cloud CDN for this BackendService.
         /// </summary>
         [Input("enableCdn")]
         public Input<bool>? EnableCdn { get; set; }
 
         /// <summary>
-        /// The set of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService.
-        /// Currently at most one health check can be specified, and a health check is required. For internal load
-        /// balancing, a URL to a HealthCheck resource must be specified instead.
+        /// -
+        /// (Required)
+        /// The set of URLs to the HttpHealthCheck or HttpsHealthCheck resource
+        /// for health checking this BackendService. Currently at most one health
+        /// check can be specified, and a health check is required.
+        /// For internal load balancing, a URL to a HealthCheck resource must be specified instead.
         /// </summary>
         [Input("healthChecks", required: true)]
         public Input<string> HealthChecks { get; set; } = null!;
 
         /// <summary>
-        /// Settings for enabling Cloud Identity Aware Proxy
+        /// -
+        /// (Optional)
+        /// Settings for enabling Cloud Identity Aware Proxy  Structure is documented below.
         /// </summary>
         [Input("iap")]
         public Input<Inputs.BackendServiceIapArgs>? Iap { get; set; }
 
         /// <summary>
-        /// Indicates whether the backend service will be used with internal or external load balancing. A backend
-        /// service created for one type of load balancing cannot be used with the other. Must be 'EXTERNAL' or
-        /// 'INTERNAL_SELF_MANAGED' for a global backend service. Defaults to 'EXTERNAL'.
+        /// -
+        /// (Optional)
+        /// Indicates whether the backend service will be used with internal or
+        /// external load balancing. A backend service created for one type of
+        /// load balancing cannot be used with the other. Must be `EXTERNAL` or
+        /// `INTERNAL_SELF_MANAGED` for a global backend service. Defaults to `EXTERNAL`.
         /// </summary>
         [Input("loadBalancingScheme")]
         public Input<string>? LoadBalancingScheme { get; set; }
@@ -381,11 +439,9 @@ namespace Pulumi.Gcp.Compute
         public Input<Inputs.BackendServiceLogConfigArgs>? LogConfig { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Optional)
+        /// Name of the cookie.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -398,8 +454,11 @@ namespace Pulumi.Gcp.Compute
         public Input<Inputs.BackendServiceOutlierDetectionArgs>? OutlierDetection { get; set; }
 
         /// <summary>
-        /// Name of backend port. The same name should appear in the instance groups referenced by this service.
-        /// Required when the load balancing scheme is EXTERNAL.
+        /// -
+        /// (Optional)
+        /// Name of backend port. The same name should appear in the instance
+        /// groups referenced by this service. Required when the load balancing
+        /// scheme is EXTERNAL.
         /// </summary>
         [Input("portName")]
         public Input<string>? PortName { get; set; }
@@ -412,29 +471,38 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The protocol this BackendService uses to communicate with backends. Possible values are HTTP, HTTPS, HTTP2,
-        /// TCP, and SSL. The default is HTTP. **NOTE**: HTTP2 is only valid for beta HTTP/2 load balancer types and may
-        /// result in errors if used with the GA API.
+        /// -
+        /// (Optional)
+        /// The protocol this BackendService uses to communicate with backends.
+        /// Possible values are HTTP, HTTPS, HTTP2, TCP, and SSL. The default is
+        /// HTTP. **NOTE**: HTTP2 is only valid for beta HTTP/2 load balancer
+        /// types and may result in errors if used with the GA API.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The security policy associated with this backend service.
         /// </summary>
         [Input("securityPolicy")]
         public Input<string>? SecurityPolicy { get; set; }
 
         /// <summary>
-        /// Type of session affinity to use. The default is NONE. Session affinity is not applicable if the protocol is
-        /// UDP.
+        /// -
+        /// (Optional)
+        /// Type of session affinity to use. The default is NONE. Session affinity is
+        /// not applicable if the protocol is UDP.
         /// </summary>
         [Input("sessionAffinity")]
         public Input<string>? SessionAffinity { get; set; }
 
         /// <summary>
-        /// How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds.
-        /// Valid range is [1, 86400].
+        /// -
+        /// (Optional)
+        /// How many seconds to wait for the backend before considering it a
+        /// failed request. Default is 30 seconds. Valid range is [1, 86400].
         /// </summary>
         [Input("timeoutSec")]
         public Input<int>? TimeoutSec { get; set; }
@@ -447,9 +515,13 @@ namespace Pulumi.Gcp.Compute
     public sealed class BackendServiceState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Lifetime of cookies in seconds if session_affinity is GENERATED_COOKIE. If set to 0, the cookie is
-        /// non-persistent and lasts only until the end of the browser session (or equivalent). The maximum allowed
-        /// value for TTL is one day. When the load balancing scheme is INTERNAL, this field is not used.
+        /// -
+        /// (Optional)
+        /// Lifetime of cookies in seconds if session_affinity is
+        /// GENERATED_COOKIE. If set to 0, the cookie is non-persistent and lasts
+        /// only until the end of the browser session (or equivalent). The
+        /// maximum allowed value for TTL is one day.
+        /// When the load balancing scheme is INTERNAL, this field is not used.
         /// </summary>
         [Input("affinityCookieTtlSec")]
         public Input<int>? AffinityCookieTtlSec { get; set; }
@@ -458,7 +530,9 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.BackendServiceBackendsGetArgs>? _backends;
 
         /// <summary>
-        /// The set of backends that serve this BackendService.
+        /// -
+        /// (Optional)
+        /// The set of backends that serve this BackendService.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.BackendServiceBackendsGetArgs> Backends
         {
@@ -467,7 +541,9 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// Cloud CDN configuration for this BackendService.
+        /// -
+        /// (Optional)
+        /// Cloud CDN configuration for this BackendService.  Structure is documented below.
         /// </summary>
         [Input("cdnPolicy")]
         public Input<Inputs.BackendServiceCdnPolicyGetArgs>? CdnPolicy { get; set; }
@@ -480,7 +556,10 @@ namespace Pulumi.Gcp.Compute
         public Input<Inputs.BackendServiceCircuitBreakersGetArgs>? CircuitBreakers { get; set; }
 
         /// <summary>
-        /// Time for which instance will be drained (not accept new connections, but still work to finish started).
+        /// -
+        /// (Optional)
+        /// Time for which instance will be drained (not accept new
+        /// connections, but still work to finish started).
         /// </summary>
         [Input("connectionDrainingTimeoutSec")]
         public Input<int>? ConnectionDrainingTimeoutSec { get; set; }
@@ -515,12 +594,17 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
+        /// Provide this property when you create the resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If true, enable Cloud CDN for this BackendService.
         /// </summary>
         [Input("enableCdn")]
@@ -534,23 +618,31 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Fingerprint { get; set; }
 
         /// <summary>
-        /// The set of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService.
-        /// Currently at most one health check can be specified, and a health check is required. For internal load
-        /// balancing, a URL to a HealthCheck resource must be specified instead.
+        /// -
+        /// (Required)
+        /// The set of URLs to the HttpHealthCheck or HttpsHealthCheck resource
+        /// for health checking this BackendService. Currently at most one health
+        /// check can be specified, and a health check is required.
+        /// For internal load balancing, a URL to a HealthCheck resource must be specified instead.
         /// </summary>
         [Input("healthChecks")]
         public Input<string>? HealthChecks { get; set; }
 
         /// <summary>
-        /// Settings for enabling Cloud Identity Aware Proxy
+        /// -
+        /// (Optional)
+        /// Settings for enabling Cloud Identity Aware Proxy  Structure is documented below.
         /// </summary>
         [Input("iap")]
         public Input<Inputs.BackendServiceIapGetArgs>? Iap { get; set; }
 
         /// <summary>
-        /// Indicates whether the backend service will be used with internal or external load balancing. A backend
-        /// service created for one type of load balancing cannot be used with the other. Must be 'EXTERNAL' or
-        /// 'INTERNAL_SELF_MANAGED' for a global backend service. Defaults to 'EXTERNAL'.
+        /// -
+        /// (Optional)
+        /// Indicates whether the backend service will be used with internal or
+        /// external load balancing. A backend service created for one type of
+        /// load balancing cannot be used with the other. Must be `EXTERNAL` or
+        /// `INTERNAL_SELF_MANAGED` for a global backend service. Defaults to `EXTERNAL`.
         /// </summary>
         [Input("loadBalancingScheme")]
         public Input<string>? LoadBalancingScheme { get; set; }
@@ -580,11 +672,9 @@ namespace Pulumi.Gcp.Compute
         public Input<Inputs.BackendServiceLogConfigGetArgs>? LogConfig { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Optional)
+        /// Name of the cookie.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -597,8 +687,11 @@ namespace Pulumi.Gcp.Compute
         public Input<Inputs.BackendServiceOutlierDetectionGetArgs>? OutlierDetection { get; set; }
 
         /// <summary>
-        /// Name of backend port. The same name should appear in the instance groups referenced by this service.
-        /// Required when the load balancing scheme is EXTERNAL.
+        /// -
+        /// (Optional)
+        /// Name of backend port. The same name should appear in the instance
+        /// groups referenced by this service. Required when the load balancing
+        /// scheme is EXTERNAL.
         /// </summary>
         [Input("portName")]
         public Input<string>? PortName { get; set; }
@@ -611,14 +704,19 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The protocol this BackendService uses to communicate with backends. Possible values are HTTP, HTTPS, HTTP2,
-        /// TCP, and SSL. The default is HTTP. **NOTE**: HTTP2 is only valid for beta HTTP/2 load balancer types and may
-        /// result in errors if used with the GA API.
+        /// -
+        /// (Optional)
+        /// The protocol this BackendService uses to communicate with backends.
+        /// Possible values are HTTP, HTTPS, HTTP2, TCP, and SSL. The default is
+        /// HTTP. **NOTE**: HTTP2 is only valid for beta HTTP/2 load balancer
+        /// types and may result in errors if used with the GA API.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The security policy associated with this backend service.
         /// </summary>
         [Input("securityPolicy")]
@@ -631,15 +729,19 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? SelfLink { get; set; }
 
         /// <summary>
-        /// Type of session affinity to use. The default is NONE. Session affinity is not applicable if the protocol is
-        /// UDP.
+        /// -
+        /// (Optional)
+        /// Type of session affinity to use. The default is NONE. Session affinity is
+        /// not applicable if the protocol is UDP.
         /// </summary>
         [Input("sessionAffinity")]
         public Input<string>? SessionAffinity { get; set; }
 
         /// <summary>
-        /// How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds.
-        /// Valid range is [1, 86400].
+        /// -
+        /// (Optional)
+        /// How many seconds to wait for the backend before considering it a
+        /// failed request. Default is 30 seconds. Valid range is [1, 86400].
         /// </summary>
         [Input("timeoutSec")]
         public Input<int>? TimeoutSec { get; set; }
@@ -654,36 +756,136 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceBackendsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the balancing mode for this backend.
+        /// For global HTTP(S) or TCP/SSL load balancing, the default is
+        /// UTILIZATION. Valid values are UTILIZATION, RATE (for HTTP(S))
+        /// and CONNECTION (for TCP/SSL).
+        /// </summary>
         [Input("balancingMode")]
         public Input<string>? BalancingMode { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A multiplier applied to the group's maximum servicing capacity
+        /// (based on UTILIZATION, RATE or CONNECTION).
+        /// Default value is 1, which means the group will serve up to 100%
+        /// of its configured capacity (depending on balancingMode). A
+        /// setting of 0 means the group is completely drained, offering
+        /// 0% of its available Capacity. Valid range is [0.0,1.0].
+        /// </summary>
         [Input("capacityScaler")]
         public Input<double>? CapacityScaler { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional description of this resource.
+        /// Provide this property when you create the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fully-qualified URL of an Instance Group or Network Endpoint
+        /// Group resource. In case of instance group this defines the list
+        /// of instances that serve traffic. Member virtual machine
+        /// instances from each instance group must live in the same zone as
+        /// the instance group itself. No two backends in a backend service
+        /// are allowed to use same Instance Group resource.
+        /// For Network Endpoint Groups this defines list of endpoints. All
+        /// endpoints of Network Endpoint Group must be hosted on instances
+        /// located in the same zone as the Network Endpoint Group.
+        /// Backend services cannot mix Instance Group and
+        /// Network Endpoint Group backends.
+        /// Note that you must specify an Instance Group or Network Endpoint
+        /// Group resource using the fully-qualified URL, rather than a
+        /// partial URL.
+        /// </summary>
         [Input("group", required: true)]
         public Input<string> Group { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of connections to the backend cluster.
+        /// Defaults to 1024.
+        /// </summary>
         [Input("maxConnections")]
         public Input<int>? MaxConnections { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max number of simultaneous connections that a single backend
+        /// network endpoint can handle. This is used to calculate the
+        /// capacity of the group. Can be used in either CONNECTION or
+        /// UTILIZATION balancing modes.
+        /// For CONNECTION mode, either
+        /// maxConnections or maxConnectionsPerEndpoint must be set.
+        /// </summary>
         [Input("maxConnectionsPerEndpoint")]
         public Input<int>? MaxConnectionsPerEndpoint { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max number of simultaneous connections that a single
+        /// backend instance can handle. This is used to calculate the
+        /// capacity of the group. Can be used in either CONNECTION or
+        /// UTILIZATION balancing modes.
+        /// For CONNECTION mode, either maxConnections or
+        /// maxConnectionsPerInstance must be set.
+        /// </summary>
         [Input("maxConnectionsPerInstance")]
         public Input<int>? MaxConnectionsPerInstance { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max requests per second (RPS) of the group.
+        /// Can be used with either RATE or UTILIZATION balancing modes,
+        /// but required if RATE mode. For RATE mode, either maxRate or one
+        /// of maxRatePerInstance or maxRatePerEndpoint, as appropriate for
+        /// group type, must be set.
+        /// </summary>
         [Input("maxRate")]
         public Input<int>? MaxRate { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max requests per second (RPS) that a single backend network
+        /// endpoint can handle. This is used to calculate the capacity of
+        /// the group. Can be used in either balancing mode. For RATE mode,
+        /// either maxRate or maxRatePerEndpoint must be set.
+        /// </summary>
         [Input("maxRatePerEndpoint")]
         public Input<double>? MaxRatePerEndpoint { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max requests per second (RPS) that a single backend
+        /// instance can handle. This is used to calculate the capacity of
+        /// the group. Can be used in either balancing mode. For RATE mode,
+        /// either maxRate or maxRatePerInstance must be set.
+        /// </summary>
         [Input("maxRatePerInstance")]
         public Input<double>? MaxRatePerInstance { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Used when balancingMode is UTILIZATION. This ratio defines the
+        /// CPU utilization target for the group. The default is 0.8. Valid
+        /// range is [0.0, 1.0].
+        /// </summary>
         [Input("maxUtilization")]
         public Input<double>? MaxUtilization { get; set; }
 
@@ -694,36 +896,136 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceBackendsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the balancing mode for this backend.
+        /// For global HTTP(S) or TCP/SSL load balancing, the default is
+        /// UTILIZATION. Valid values are UTILIZATION, RATE (for HTTP(S))
+        /// and CONNECTION (for TCP/SSL).
+        /// </summary>
         [Input("balancingMode")]
         public Input<string>? BalancingMode { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A multiplier applied to the group's maximum servicing capacity
+        /// (based on UTILIZATION, RATE or CONNECTION).
+        /// Default value is 1, which means the group will serve up to 100%
+        /// of its configured capacity (depending on balancingMode). A
+        /// setting of 0 means the group is completely drained, offering
+        /// 0% of its available Capacity. Valid range is [0.0,1.0].
+        /// </summary>
         [Input("capacityScaler")]
         public Input<double>? CapacityScaler { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional description of this resource.
+        /// Provide this property when you create the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fully-qualified URL of an Instance Group or Network Endpoint
+        /// Group resource. In case of instance group this defines the list
+        /// of instances that serve traffic. Member virtual machine
+        /// instances from each instance group must live in the same zone as
+        /// the instance group itself. No two backends in a backend service
+        /// are allowed to use same Instance Group resource.
+        /// For Network Endpoint Groups this defines list of endpoints. All
+        /// endpoints of Network Endpoint Group must be hosted on instances
+        /// located in the same zone as the Network Endpoint Group.
+        /// Backend services cannot mix Instance Group and
+        /// Network Endpoint Group backends.
+        /// Note that you must specify an Instance Group or Network Endpoint
+        /// Group resource using the fully-qualified URL, rather than a
+        /// partial URL.
+        /// </summary>
         [Input("group", required: true)]
         public Input<string> Group { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of connections to the backend cluster.
+        /// Defaults to 1024.
+        /// </summary>
         [Input("maxConnections")]
         public Input<int>? MaxConnections { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max number of simultaneous connections that a single backend
+        /// network endpoint can handle. This is used to calculate the
+        /// capacity of the group. Can be used in either CONNECTION or
+        /// UTILIZATION balancing modes.
+        /// For CONNECTION mode, either
+        /// maxConnections or maxConnectionsPerEndpoint must be set.
+        /// </summary>
         [Input("maxConnectionsPerEndpoint")]
         public Input<int>? MaxConnectionsPerEndpoint { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max number of simultaneous connections that a single
+        /// backend instance can handle. This is used to calculate the
+        /// capacity of the group. Can be used in either CONNECTION or
+        /// UTILIZATION balancing modes.
+        /// For CONNECTION mode, either maxConnections or
+        /// maxConnectionsPerInstance must be set.
+        /// </summary>
         [Input("maxConnectionsPerInstance")]
         public Input<int>? MaxConnectionsPerInstance { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max requests per second (RPS) of the group.
+        /// Can be used with either RATE or UTILIZATION balancing modes,
+        /// but required if RATE mode. For RATE mode, either maxRate or one
+        /// of maxRatePerInstance or maxRatePerEndpoint, as appropriate for
+        /// group type, must be set.
+        /// </summary>
         [Input("maxRate")]
         public Input<int>? MaxRate { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max requests per second (RPS) that a single backend network
+        /// endpoint can handle. This is used to calculate the capacity of
+        /// the group. Can be used in either balancing mode. For RATE mode,
+        /// either maxRate or maxRatePerEndpoint must be set.
+        /// </summary>
         [Input("maxRatePerEndpoint")]
         public Input<double>? MaxRatePerEndpoint { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max requests per second (RPS) that a single backend
+        /// instance can handle. This is used to calculate the capacity of
+        /// the group. Can be used in either balancing mode. For RATE mode,
+        /// either maxRate or maxRatePerInstance must be set.
+        /// </summary>
         [Input("maxRatePerInstance")]
         public Input<double>? MaxRatePerInstance { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Used when balancingMode is UTILIZATION. This ratio defines the
+        /// CPU utilization target for the group. The default is 0.8. Valid
+        /// range is [0.0, 1.0].
+        /// </summary>
         [Input("maxUtilization")]
         public Input<double>? MaxUtilization { get; set; }
 
@@ -734,9 +1036,27 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceCdnPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The CacheKeyPolicy for this CdnPolicy.  Structure is documented below.
+        /// </summary>
         [Input("cacheKeyPolicy")]
         public Input<BackendServiceCdnPolicyCacheKeyPolicyArgs>? CacheKeyPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum number of seconds the response to a signed URL request
+        /// will be considered fresh, defaults to 1hr (3600s). After this
+        /// time period, the response will be revalidated before
+        /// being served.
+        /// When serving responses to signed URL requests, Cloud CDN will
+        /// internally behave as though all responses from this backend had a
+        /// "Cache-Control: public, max-age=[TTL]" header, regardless of any
+        /// existing Cache-Control header. The actual headers served in
+        /// responses will not be altered.
+        /// </summary>
         [Input("signedUrlCacheMaxAgeSec")]
         public Input<int>? SignedUrlCacheMaxAgeSec { get; set; }
 
@@ -747,17 +1067,47 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceCdnPolicyCacheKeyPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true requests to different hosts will be cached separately.
+        /// </summary>
         [Input("includeHost")]
         public Input<bool>? IncludeHost { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, http and https requests will be cached separately.
+        /// </summary>
         [Input("includeProtocol")]
         public Input<bool>? IncludeProtocol { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, include query string parameters in the cache key
+        /// according to query_string_whitelist and
+        /// query_string_blacklist. If neither is set, the entire query
+        /// string will be included.
+        /// If false, the query string will be excluded from the cache
+        /// key entirely.
+        /// </summary>
         [Input("includeQueryString")]
         public Input<bool>? IncludeQueryString { get; set; }
 
         [Input("queryStringBlacklists")]
         private InputList<string>? _queryStringBlacklists;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Names of query string parameters to exclude in cache keys.
+        /// All other parameters will be included. Either specify
+        /// query_string_whitelist or query_string_blacklist, not both.
+        /// '&amp;' and '=' will be percent encoded and not treated as
+        /// delimiters.
+        /// </summary>
         public InputList<string> QueryStringBlacklists
         {
             get => _queryStringBlacklists ?? (_queryStringBlacklists = new InputList<string>());
@@ -766,6 +1116,16 @@ namespace Pulumi.Gcp.Compute
 
         [Input("queryStringWhitelists")]
         private InputList<string>? _queryStringWhitelists;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Names of query string parameters to include in cache keys.
+        /// All other parameters will be excluded. Either specify
+        /// query_string_whitelist or query_string_blacklist, not both.
+        /// '&amp;' and '=' will be percent encoded and not treated as
+        /// delimiters.
+        /// </summary>
         public InputList<string> QueryStringWhitelists
         {
             get => _queryStringWhitelists ?? (_queryStringWhitelists = new InputList<string>());
@@ -779,17 +1139,47 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceCdnPolicyCacheKeyPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true requests to different hosts will be cached separately.
+        /// </summary>
         [Input("includeHost")]
         public Input<bool>? IncludeHost { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, http and https requests will be cached separately.
+        /// </summary>
         [Input("includeProtocol")]
         public Input<bool>? IncludeProtocol { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, include query string parameters in the cache key
+        /// according to query_string_whitelist and
+        /// query_string_blacklist. If neither is set, the entire query
+        /// string will be included.
+        /// If false, the query string will be excluded from the cache
+        /// key entirely.
+        /// </summary>
         [Input("includeQueryString")]
         public Input<bool>? IncludeQueryString { get; set; }
 
         [Input("queryStringBlacklists")]
         private InputList<string>? _queryStringBlacklists;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Names of query string parameters to exclude in cache keys.
+        /// All other parameters will be included. Either specify
+        /// query_string_whitelist or query_string_blacklist, not both.
+        /// '&amp;' and '=' will be percent encoded and not treated as
+        /// delimiters.
+        /// </summary>
         public InputList<string> QueryStringBlacklists
         {
             get => _queryStringBlacklists ?? (_queryStringBlacklists = new InputList<string>());
@@ -798,6 +1188,16 @@ namespace Pulumi.Gcp.Compute
 
         [Input("queryStringWhitelists")]
         private InputList<string>? _queryStringWhitelists;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Names of query string parameters to include in cache keys.
+        /// All other parameters will be excluded. Either specify
+        /// query_string_whitelist or query_string_blacklist, not both.
+        /// '&amp;' and '=' will be percent encoded and not treated as
+        /// delimiters.
+        /// </summary>
         public InputList<string> QueryStringWhitelists
         {
             get => _queryStringWhitelists ?? (_queryStringWhitelists = new InputList<string>());
@@ -811,9 +1211,27 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceCdnPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The CacheKeyPolicy for this CdnPolicy.  Structure is documented below.
+        /// </summary>
         [Input("cacheKeyPolicy")]
         public Input<BackendServiceCdnPolicyCacheKeyPolicyGetArgs>? CacheKeyPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum number of seconds the response to a signed URL request
+        /// will be considered fresh, defaults to 1hr (3600s). After this
+        /// time period, the response will be revalidated before
+        /// being served.
+        /// When serving responses to signed URL requests, Cloud CDN will
+        /// internally behave as though all responses from this backend had a
+        /// "Cache-Control: public, max-age=[TTL]" header, regardless of any
+        /// existing Cache-Control header. The actual headers served in
+        /// responses will not be altered.
+        /// </summary>
         [Input("signedUrlCacheMaxAgeSec")]
         public Input<int>? SignedUrlCacheMaxAgeSec { get; set; }
 
@@ -824,21 +1242,58 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceCircuitBreakersArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The timeout for new network connections to hosts.  Structure is documented below.
+        /// </summary>
         [Input("connectTimeout")]
         public Input<BackendServiceCircuitBreakersConnectTimeoutArgs>? ConnectTimeout { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of connections to the backend cluster.
+        /// Defaults to 1024.
+        /// </summary>
         [Input("maxConnections")]
         public Input<int>? MaxConnections { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of pending requests to the backend cluster.
+        /// Defaults to 1024.
+        /// </summary>
         [Input("maxPendingRequests")]
         public Input<int>? MaxPendingRequests { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of parallel requests to the backend cluster.
+        /// Defaults to 1024.
+        /// </summary>
         [Input("maxRequests")]
         public Input<int>? MaxRequests { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum requests for a single backend connection. This parameter
+        /// is respected by both the HTTP/1.1 and HTTP/2 implementations. If
+        /// not specified, there is no limit. Setting this parameter to 1
+        /// will effectively disable keep alive.
+        /// </summary>
         [Input("maxRequestsPerConnection")]
         public Input<int>? MaxRequestsPerConnection { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of parallel retries to the backend cluster.
+        /// Defaults to 3.
+        /// </summary>
         [Input("maxRetries")]
         public Input<int>? MaxRetries { get; set; }
 
@@ -849,9 +1304,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceCircuitBreakersConnectTimeoutArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<int> Seconds { get; set; } = null!;
 
@@ -862,9 +1330,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceCircuitBreakersConnectTimeoutGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<int> Seconds { get; set; } = null!;
 
@@ -875,21 +1356,58 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceCircuitBreakersGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The timeout for new network connections to hosts.  Structure is documented below.
+        /// </summary>
         [Input("connectTimeout")]
         public Input<BackendServiceCircuitBreakersConnectTimeoutGetArgs>? ConnectTimeout { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of connections to the backend cluster.
+        /// Defaults to 1024.
+        /// </summary>
         [Input("maxConnections")]
         public Input<int>? MaxConnections { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of pending requests to the backend cluster.
+        /// Defaults to 1024.
+        /// </summary>
         [Input("maxPendingRequests")]
         public Input<int>? MaxPendingRequests { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of parallel requests to the backend cluster.
+        /// Defaults to 1024.
+        /// </summary>
         [Input("maxRequests")]
         public Input<int>? MaxRequests { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum requests for a single backend connection. This parameter
+        /// is respected by both the HTTP/1.1 and HTTP/2 implementations. If
+        /// not specified, there is no limit. Setting this parameter to 1
+        /// will effectively disable keep alive.
+        /// </summary>
         [Input("maxRequestsPerConnection")]
         public Input<int>? MaxRequestsPerConnection { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of parallel retries to the backend cluster.
+        /// Defaults to 3.
+        /// </summary>
         [Input("maxRetries")]
         public Input<int>? MaxRetries { get; set; }
 
@@ -900,12 +1418,36 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceConsistentHashArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Hash is based on HTTP Cookie. This field describes a HTTP cookie
+        /// that will be used as the hash key for the consistent hash load
+        /// balancer. If the cookie is not present, it will be generated.
+        /// This field is applicable if the sessionAffinity is set to HTTP_COOKIE.  Structure is documented below.
+        /// </summary>
         [Input("httpCookie")]
         public Input<BackendServiceConsistentHashHttpCookieArgs>? HttpCookie { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The hash based on the value of the specified header field.
+        /// This field is applicable if the sessionAffinity is set to HEADER_FIELD.
+        /// </summary>
         [Input("httpHeaderName")]
         public Input<string>? HttpHeaderName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum number of virtual nodes to use for the hash ring.
+        /// Larger ring sizes result in more granular load
+        /// distributions. If the number of hosts in the load balancing pool
+        /// is larger than the ring size, each host will be assigned a single
+        /// virtual node.
+        /// Defaults to 1024.
+        /// </summary>
         [Input("minimumRingSize")]
         public Input<int>? MinimumRingSize { get; set; }
 
@@ -916,12 +1458,36 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceConsistentHashGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Hash is based on HTTP Cookie. This field describes a HTTP cookie
+        /// that will be used as the hash key for the consistent hash load
+        /// balancer. If the cookie is not present, it will be generated.
+        /// This field is applicable if the sessionAffinity is set to HTTP_COOKIE.  Structure is documented below.
+        /// </summary>
         [Input("httpCookie")]
         public Input<BackendServiceConsistentHashHttpCookieGetArgs>? HttpCookie { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The hash based on the value of the specified header field.
+        /// This field is applicable if the sessionAffinity is set to HEADER_FIELD.
+        /// </summary>
         [Input("httpHeaderName")]
         public Input<string>? HttpHeaderName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum number of virtual nodes to use for the hash ring.
+        /// Larger ring sizes result in more granular load
+        /// distributions. If the number of hosts in the load balancing pool
+        /// is larger than the ring size, each host will be assigned a single
+        /// virtual node.
+        /// Defaults to 1024.
+        /// </summary>
         [Input("minimumRingSize")]
         public Input<int>? MinimumRingSize { get; set; }
 
@@ -932,12 +1498,27 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceConsistentHashHttpCookieArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the cookie.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Path to set for the cookie.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Lifetime of the cookie.  Structure is documented below.
+        /// </summary>
         [Input("ttl")]
         public Input<BackendServiceConsistentHashHttpCookieTtlArgs>? Ttl { get; set; }
 
@@ -948,12 +1529,27 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceConsistentHashHttpCookieGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the cookie.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Path to set for the cookie.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Lifetime of the cookie.  Structure is documented below.
+        /// </summary>
         [Input("ttl")]
         public Input<BackendServiceConsistentHashHttpCookieTtlGetArgs>? Ttl { get; set; }
 
@@ -964,9 +1560,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceConsistentHashHttpCookieTtlArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<int> Seconds { get; set; } = null!;
 
@@ -977,9 +1586,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceConsistentHashHttpCookieTtlGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<int> Seconds { get; set; } = null!;
 
@@ -990,12 +1612,26 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceIapArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// OAuth2 Client ID for IAP
+        /// </summary>
         [Input("oauth2ClientId", required: true)]
         public Input<string> Oauth2ClientId { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// OAuth2 Client Secret for IAP
+        /// </summary>
         [Input("oauth2ClientSecret", required: true)]
         public Input<string> Oauth2ClientSecret { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// OAuth2 Client Secret SHA-256 for IAP
+        /// </summary>
         [Input("oauth2ClientSecretSha256")]
         public Input<string>? Oauth2ClientSecretSha256 { get; set; }
 
@@ -1006,12 +1642,26 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceIapGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// OAuth2 Client ID for IAP
+        /// </summary>
         [Input("oauth2ClientId", required: true)]
         public Input<string> Oauth2ClientId { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// OAuth2 Client Secret for IAP
+        /// </summary>
         [Input("oauth2ClientSecret", required: true)]
         public Input<string> Oauth2ClientSecret { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// OAuth2 Client Secret SHA-256 for IAP
+        /// </summary>
         [Input("oauth2ClientSecretSha256")]
         public Input<string>? Oauth2ClientSecretSha256 { get; set; }
 
@@ -1022,9 +1672,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceLogConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to enable logging for the load balancer traffic served by this backend service.
+        /// </summary>
         [Input("enable")]
         public Input<bool>? Enable { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// This field can only be specified if logging is enabled for this backend service. The value of
+        /// the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer
+        /// where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported.
+        /// The default value is 1.0.
+        /// </summary>
         [Input("sampleRate")]
         public Input<double>? SampleRate { get; set; }
 
@@ -1035,9 +1698,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceLogConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to enable logging for the load balancer traffic served by this backend service.
+        /// </summary>
         [Input("enable")]
         public Input<bool>? Enable { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// This field can only be specified if logging is enabled for this backend service. The value of
+        /// the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer
+        /// where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported.
+        /// The default value is 1.0.
+        /// </summary>
         [Input("sampleRate")]
         public Input<double>? SampleRate { get; set; }
 
@@ -1048,36 +1724,117 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceOutlierDetectionArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The base time that a host is ejected for. The real time is equal to the base
+        /// time multiplied by the number of times the host has been ejected. Defaults to
+        /// 30000ms or 30s.  Structure is documented below.
+        /// </summary>
         [Input("baseEjectionTime")]
         public Input<BackendServiceOutlierDetectionBaseEjectionTimeArgs>? BaseEjectionTime { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of errors before a host is ejected from the connection pool. When the
+        /// backend host is accessed over HTTP, a 5xx return code qualifies as an error.
+        /// Defaults to 5.
+        /// </summary>
         [Input("consecutiveErrors")]
         public Input<int>? ConsecutiveErrors { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of consecutive gateway failures (502, 503, 504 status or connection
+        /// errors that are mapped to one of those status codes) before a consecutive
+        /// gateway failure ejection occurs. Defaults to 5.
+        /// </summary>
         [Input("consecutiveGatewayFailure")]
         public Input<int>? ConsecutiveGatewayFailure { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage chance that a host will be actually ejected when an outlier
+        /// status is detected through consecutive 5xx. This setting can be used to disable
+        /// ejection or to ramp it up slowly. Defaults to 100.
+        /// </summary>
         [Input("enforcingConsecutiveErrors")]
         public Input<int>? EnforcingConsecutiveErrors { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage chance that a host will be actually ejected when an outlier
+        /// status is detected through consecutive gateway failures. This setting can be
+        /// used to disable ejection or to ramp it up slowly. Defaults to 0.
+        /// </summary>
         [Input("enforcingConsecutiveGatewayFailure")]
         public Input<int>? EnforcingConsecutiveGatewayFailure { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage chance that a host will be actually ejected when an outlier
+        /// status is detected through success rate statistics. This setting can be used to
+        /// disable ejection or to ramp it up slowly. Defaults to 100.
+        /// </summary>
         [Input("enforcingSuccessRate")]
         public Input<int>? EnforcingSuccessRate { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Time interval between ejection sweep analysis. This can result in both new
+        /// ejections as well as hosts being returned to service. Defaults to 10 seconds.  Structure is documented below.
+        /// </summary>
         [Input("interval")]
         public Input<BackendServiceOutlierDetectionIntervalArgs>? Interval { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum percentage of hosts in the load balancing pool for the backend service
+        /// that can be ejected. Defaults to 10%.
+        /// </summary>
         [Input("maxEjectionPercent")]
         public Input<int>? MaxEjectionPercent { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of hosts in a cluster that must have enough request volume to detect
+        /// success rate outliers. If the number of hosts is less than this setting, outlier
+        /// detection via success rate statistics is not performed for any host in the
+        /// cluster. Defaults to 5.
+        /// </summary>
         [Input("successRateMinimumHosts")]
         public Input<int>? SuccessRateMinimumHosts { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum number of total requests that must be collected in one interval (as
+        /// defined by the interval duration above) to include this host in success rate
+        /// based outlier detection. If the volume is lower than this setting, outlier
+        /// detection via success rate statistics is not performed for that host. Defaults
+        /// to 100.
+        /// </summary>
         [Input("successRateRequestVolume")]
         public Input<int>? SuccessRateRequestVolume { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// This factor is used to determine the ejection threshold for success rate outlier
+        /// ejection. The ejection threshold is the difference between the mean success
+        /// rate, and the product of this factor and the standard deviation of the mean
+        /// success rate: mean - (stdev * success_rate_stdev_factor). This factor is divided
+        /// by a thousand to get a double. That is, if the desired factor is 1.9, the
+        /// runtime value should be 1900. Defaults to 1900.
+        /// </summary>
         [Input("successRateStdevFactor")]
         public Input<int>? SuccessRateStdevFactor { get; set; }
 
@@ -1088,9 +1845,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceOutlierDetectionBaseEjectionTimeArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<int> Seconds { get; set; } = null!;
 
@@ -1101,9 +1871,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceOutlierDetectionBaseEjectionTimeGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<int> Seconds { get; set; } = null!;
 
@@ -1114,36 +1897,117 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceOutlierDetectionGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The base time that a host is ejected for. The real time is equal to the base
+        /// time multiplied by the number of times the host has been ejected. Defaults to
+        /// 30000ms or 30s.  Structure is documented below.
+        /// </summary>
         [Input("baseEjectionTime")]
         public Input<BackendServiceOutlierDetectionBaseEjectionTimeGetArgs>? BaseEjectionTime { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of errors before a host is ejected from the connection pool. When the
+        /// backend host is accessed over HTTP, a 5xx return code qualifies as an error.
+        /// Defaults to 5.
+        /// </summary>
         [Input("consecutiveErrors")]
         public Input<int>? ConsecutiveErrors { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of consecutive gateway failures (502, 503, 504 status or connection
+        /// errors that are mapped to one of those status codes) before a consecutive
+        /// gateway failure ejection occurs. Defaults to 5.
+        /// </summary>
         [Input("consecutiveGatewayFailure")]
         public Input<int>? ConsecutiveGatewayFailure { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage chance that a host will be actually ejected when an outlier
+        /// status is detected through consecutive 5xx. This setting can be used to disable
+        /// ejection or to ramp it up slowly. Defaults to 100.
+        /// </summary>
         [Input("enforcingConsecutiveErrors")]
         public Input<int>? EnforcingConsecutiveErrors { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage chance that a host will be actually ejected when an outlier
+        /// status is detected through consecutive gateway failures. This setting can be
+        /// used to disable ejection or to ramp it up slowly. Defaults to 0.
+        /// </summary>
         [Input("enforcingConsecutiveGatewayFailure")]
         public Input<int>? EnforcingConsecutiveGatewayFailure { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage chance that a host will be actually ejected when an outlier
+        /// status is detected through success rate statistics. This setting can be used to
+        /// disable ejection or to ramp it up slowly. Defaults to 100.
+        /// </summary>
         [Input("enforcingSuccessRate")]
         public Input<int>? EnforcingSuccessRate { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Time interval between ejection sweep analysis. This can result in both new
+        /// ejections as well as hosts being returned to service. Defaults to 10 seconds.  Structure is documented below.
+        /// </summary>
         [Input("interval")]
         public Input<BackendServiceOutlierDetectionIntervalGetArgs>? Interval { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum percentage of hosts in the load balancing pool for the backend service
+        /// that can be ejected. Defaults to 10%.
+        /// </summary>
         [Input("maxEjectionPercent")]
         public Input<int>? MaxEjectionPercent { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of hosts in a cluster that must have enough request volume to detect
+        /// success rate outliers. If the number of hosts is less than this setting, outlier
+        /// detection via success rate statistics is not performed for any host in the
+        /// cluster. Defaults to 5.
+        /// </summary>
         [Input("successRateMinimumHosts")]
         public Input<int>? SuccessRateMinimumHosts { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum number of total requests that must be collected in one interval (as
+        /// defined by the interval duration above) to include this host in success rate
+        /// based outlier detection. If the volume is lower than this setting, outlier
+        /// detection via success rate statistics is not performed for that host. Defaults
+        /// to 100.
+        /// </summary>
         [Input("successRateRequestVolume")]
         public Input<int>? SuccessRateRequestVolume { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// This factor is used to determine the ejection threshold for success rate outlier
+        /// ejection. The ejection threshold is the difference between the mean success
+        /// rate, and the product of this factor and the standard deviation of the mean
+        /// success rate: mean - (stdev * success_rate_stdev_factor). This factor is divided
+        /// by a thousand to get a double. That is, if the desired factor is 1.9, the
+        /// runtime value should be 1900. Defaults to 1900.
+        /// </summary>
         [Input("successRateStdevFactor")]
         public Input<int>? SuccessRateStdevFactor { get; set; }
 
@@ -1154,9 +2018,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceOutlierDetectionIntervalArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<int> Seconds { get; set; } = null!;
 
@@ -1167,9 +2044,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class BackendServiceOutlierDetectionIntervalGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<int> Seconds { get; set; } = null!;
 
@@ -1185,16 +2075,116 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class BackendServiceBackends
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the balancing mode for this backend.
+        /// For global HTTP(S) or TCP/SSL load balancing, the default is
+        /// UTILIZATION. Valid values are UTILIZATION, RATE (for HTTP(S))
+        /// and CONNECTION (for TCP/SSL).
+        /// </summary>
         public readonly string? BalancingMode;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A multiplier applied to the group's maximum servicing capacity
+        /// (based on UTILIZATION, RATE or CONNECTION).
+        /// Default value is 1, which means the group will serve up to 100%
+        /// of its configured capacity (depending on balancingMode). A
+        /// setting of 0 means the group is completely drained, offering
+        /// 0% of its available Capacity. Valid range is [0.0,1.0].
+        /// </summary>
         public readonly double? CapacityScaler;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional description of this resource.
+        /// Provide this property when you create the resource.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fully-qualified URL of an Instance Group or Network Endpoint
+        /// Group resource. In case of instance group this defines the list
+        /// of instances that serve traffic. Member virtual machine
+        /// instances from each instance group must live in the same zone as
+        /// the instance group itself. No two backends in a backend service
+        /// are allowed to use same Instance Group resource.
+        /// For Network Endpoint Groups this defines list of endpoints. All
+        /// endpoints of Network Endpoint Group must be hosted on instances
+        /// located in the same zone as the Network Endpoint Group.
+        /// Backend services cannot mix Instance Group and
+        /// Network Endpoint Group backends.
+        /// Note that you must specify an Instance Group or Network Endpoint
+        /// Group resource using the fully-qualified URL, rather than a
+        /// partial URL.
+        /// </summary>
         public readonly string Group;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of connections to the backend cluster.
+        /// Defaults to 1024.
+        /// </summary>
         public readonly int? MaxConnections;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max number of simultaneous connections that a single backend
+        /// network endpoint can handle. This is used to calculate the
+        /// capacity of the group. Can be used in either CONNECTION or
+        /// UTILIZATION balancing modes.
+        /// For CONNECTION mode, either
+        /// maxConnections or maxConnectionsPerEndpoint must be set.
+        /// </summary>
         public readonly int? MaxConnectionsPerEndpoint;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max number of simultaneous connections that a single
+        /// backend instance can handle. This is used to calculate the
+        /// capacity of the group. Can be used in either CONNECTION or
+        /// UTILIZATION balancing modes.
+        /// For CONNECTION mode, either maxConnections or
+        /// maxConnectionsPerInstance must be set.
+        /// </summary>
         public readonly int? MaxConnectionsPerInstance;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max requests per second (RPS) of the group.
+        /// Can be used with either RATE or UTILIZATION balancing modes,
+        /// but required if RATE mode. For RATE mode, either maxRate or one
+        /// of maxRatePerInstance or maxRatePerEndpoint, as appropriate for
+        /// group type, must be set.
+        /// </summary>
         public readonly int? MaxRate;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max requests per second (RPS) that a single backend network
+        /// endpoint can handle. This is used to calculate the capacity of
+        /// the group. Can be used in either balancing mode. For RATE mode,
+        /// either maxRate or maxRatePerEndpoint must be set.
+        /// </summary>
         public readonly double? MaxRatePerEndpoint;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The max requests per second (RPS) that a single backend
+        /// instance can handle. This is used to calculate the capacity of
+        /// the group. Can be used in either balancing mode. For RATE mode,
+        /// either maxRate or maxRatePerInstance must be set.
+        /// </summary>
         public readonly double? MaxRatePerInstance;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Used when balancingMode is UTILIZATION. This ratio defines the
+        /// CPU utilization target for the group. The default is 0.8. Valid
+        /// range is [0.0, 1.0].
+        /// </summary>
         public readonly double? MaxUtilization;
 
         [OutputConstructor]
@@ -1228,7 +2218,25 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class BackendServiceCdnPolicy
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The CacheKeyPolicy for this CdnPolicy.  Structure is documented below.
+        /// </summary>
         public readonly BackendServiceCdnPolicyCacheKeyPolicy? CacheKeyPolicy;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum number of seconds the response to a signed URL request
+        /// will be considered fresh, defaults to 1hr (3600s). After this
+        /// time period, the response will be revalidated before
+        /// being served.
+        /// When serving responses to signed URL requests, Cloud CDN will
+        /// internally behave as though all responses from this backend had a
+        /// "Cache-Control: public, max-age=[TTL]" header, regardless of any
+        /// existing Cache-Control header. The actual headers served in
+        /// responses will not be altered.
+        /// </summary>
         public readonly int? SignedUrlCacheMaxAgeSec;
 
         [OutputConstructor]
@@ -1244,10 +2252,48 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class BackendServiceCdnPolicyCacheKeyPolicy
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true requests to different hosts will be cached separately.
+        /// </summary>
         public readonly bool? IncludeHost;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, http and https requests will be cached separately.
+        /// </summary>
         public readonly bool? IncludeProtocol;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, include query string parameters in the cache key
+        /// according to query_string_whitelist and
+        /// query_string_blacklist. If neither is set, the entire query
+        /// string will be included.
+        /// If false, the query string will be excluded from the cache
+        /// key entirely.
+        /// </summary>
         public readonly bool? IncludeQueryString;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Names of query string parameters to exclude in cache keys.
+        /// All other parameters will be included. Either specify
+        /// query_string_whitelist or query_string_blacklist, not both.
+        /// '&amp;' and '=' will be percent encoded and not treated as
+        /// delimiters.
+        /// </summary>
         public readonly ImmutableArray<string> QueryStringBlacklists;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Names of query string parameters to include in cache keys.
+        /// All other parameters will be excluded. Either specify
+        /// query_string_whitelist or query_string_blacklist, not both.
+        /// '&amp;' and '=' will be percent encoded and not treated as
+        /// delimiters.
+        /// </summary>
         public readonly ImmutableArray<string> QueryStringWhitelists;
 
         [OutputConstructor]
@@ -1269,11 +2315,48 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class BackendServiceCircuitBreakers
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The timeout for new network connections to hosts.  Structure is documented below.
+        /// </summary>
         public readonly BackendServiceCircuitBreakersConnectTimeout? ConnectTimeout;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of connections to the backend cluster.
+        /// Defaults to 1024.
+        /// </summary>
         public readonly int? MaxConnections;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of pending requests to the backend cluster.
+        /// Defaults to 1024.
+        /// </summary>
         public readonly int? MaxPendingRequests;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of parallel requests to the backend cluster.
+        /// Defaults to 1024.
+        /// </summary>
         public readonly int? MaxRequests;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum requests for a single backend connection. This parameter
+        /// is respected by both the HTTP/1.1 and HTTP/2 implementations. If
+        /// not specified, there is no limit. Setting this parameter to 1
+        /// will effectively disable keep alive.
+        /// </summary>
         public readonly int? MaxRequestsPerConnection;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of parallel retries to the backend cluster.
+        /// Defaults to 3.
+        /// </summary>
         public readonly int? MaxRetries;
 
         [OutputConstructor]
@@ -1297,7 +2380,20 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class BackendServiceCircuitBreakersConnectTimeout
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         public readonly int? Nanos;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         public readonly int Seconds;
 
         [OutputConstructor]
@@ -1313,8 +2409,32 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class BackendServiceConsistentHash
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Hash is based on HTTP Cookie. This field describes a HTTP cookie
+        /// that will be used as the hash key for the consistent hash load
+        /// balancer. If the cookie is not present, it will be generated.
+        /// This field is applicable if the sessionAffinity is set to HTTP_COOKIE.  Structure is documented below.
+        /// </summary>
         public readonly BackendServiceConsistentHashHttpCookie? HttpCookie;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The hash based on the value of the specified header field.
+        /// This field is applicable if the sessionAffinity is set to HEADER_FIELD.
+        /// </summary>
         public readonly string? HttpHeaderName;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum number of virtual nodes to use for the hash ring.
+        /// Larger ring sizes result in more granular load
+        /// distributions. If the number of hosts in the load balancing pool
+        /// is larger than the ring size, each host will be assigned a single
+        /// virtual node.
+        /// Defaults to 1024.
+        /// </summary>
         public readonly int? MinimumRingSize;
 
         [OutputConstructor]
@@ -1332,8 +2452,23 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class BackendServiceConsistentHashHttpCookie
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the cookie.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Path to set for the cookie.
+        /// </summary>
         public readonly string? Path;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Lifetime of the cookie.  Structure is documented below.
+        /// </summary>
         public readonly BackendServiceConsistentHashHttpCookieTtl? Ttl;
 
         [OutputConstructor]
@@ -1351,7 +2486,20 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class BackendServiceConsistentHashHttpCookieTtl
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         public readonly int? Nanos;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         public readonly int Seconds;
 
         [OutputConstructor]
@@ -1367,8 +2515,22 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class BackendServiceIap
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// OAuth2 Client ID for IAP
+        /// </summary>
         public readonly string Oauth2ClientId;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// OAuth2 Client Secret for IAP
+        /// </summary>
         public readonly string Oauth2ClientSecret;
+        /// <summary>
+        /// -
+        /// OAuth2 Client Secret SHA-256 for IAP
+        /// </summary>
         public readonly string Oauth2ClientSecretSha256;
 
         [OutputConstructor]
@@ -1386,7 +2548,20 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class BackendServiceLogConfig
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to enable logging for the load balancer traffic served by this backend service.
+        /// </summary>
         public readonly bool? Enable;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// This field can only be specified if logging is enabled for this backend service. The value of
+        /// the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer
+        /// where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported.
+        /// The default value is 1.0.
+        /// </summary>
         public readonly double? SampleRate;
 
         [OutputConstructor]
@@ -1402,16 +2577,97 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class BackendServiceOutlierDetection
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The base time that a host is ejected for. The real time is equal to the base
+        /// time multiplied by the number of times the host has been ejected. Defaults to
+        /// 30000ms or 30s.  Structure is documented below.
+        /// </summary>
         public readonly BackendServiceOutlierDetectionBaseEjectionTime? BaseEjectionTime;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of errors before a host is ejected from the connection pool. When the
+        /// backend host is accessed over HTTP, a 5xx return code qualifies as an error.
+        /// Defaults to 5.
+        /// </summary>
         public readonly int? ConsecutiveErrors;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of consecutive gateway failures (502, 503, 504 status or connection
+        /// errors that are mapped to one of those status codes) before a consecutive
+        /// gateway failure ejection occurs. Defaults to 5.
+        /// </summary>
         public readonly int? ConsecutiveGatewayFailure;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage chance that a host will be actually ejected when an outlier
+        /// status is detected through consecutive 5xx. This setting can be used to disable
+        /// ejection or to ramp it up slowly. Defaults to 100.
+        /// </summary>
         public readonly int? EnforcingConsecutiveErrors;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage chance that a host will be actually ejected when an outlier
+        /// status is detected through consecutive gateway failures. This setting can be
+        /// used to disable ejection or to ramp it up slowly. Defaults to 0.
+        /// </summary>
         public readonly int? EnforcingConsecutiveGatewayFailure;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage chance that a host will be actually ejected when an outlier
+        /// status is detected through success rate statistics. This setting can be used to
+        /// disable ejection or to ramp it up slowly. Defaults to 100.
+        /// </summary>
         public readonly int? EnforcingSuccessRate;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Time interval between ejection sweep analysis. This can result in both new
+        /// ejections as well as hosts being returned to service. Defaults to 10 seconds.  Structure is documented below.
+        /// </summary>
         public readonly BackendServiceOutlierDetectionInterval? Interval;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum percentage of hosts in the load balancing pool for the backend service
+        /// that can be ejected. Defaults to 10%.
+        /// </summary>
         public readonly int? MaxEjectionPercent;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of hosts in a cluster that must have enough request volume to detect
+        /// success rate outliers. If the number of hosts is less than this setting, outlier
+        /// detection via success rate statistics is not performed for any host in the
+        /// cluster. Defaults to 5.
+        /// </summary>
         public readonly int? SuccessRateMinimumHosts;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum number of total requests that must be collected in one interval (as
+        /// defined by the interval duration above) to include this host in success rate
+        /// based outlier detection. If the volume is lower than this setting, outlier
+        /// detection via success rate statistics is not performed for that host. Defaults
+        /// to 100.
+        /// </summary>
         public readonly int? SuccessRateRequestVolume;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// This factor is used to determine the ejection threshold for success rate outlier
+        /// ejection. The ejection threshold is the difference between the mean success
+        /// rate, and the product of this factor and the standard deviation of the mean
+        /// success rate: mean - (stdev * success_rate_stdev_factor). This factor is divided
+        /// by a thousand to get a double. That is, if the desired factor is 1.9, the
+        /// runtime value should be 1900. Defaults to 1900.
+        /// </summary>
         public readonly int? SuccessRateStdevFactor;
 
         [OutputConstructor]
@@ -1445,7 +2701,20 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class BackendServiceOutlierDetectionBaseEjectionTime
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         public readonly int? Nanos;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         public readonly int Seconds;
 
         [OutputConstructor]
@@ -1461,7 +2730,20 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class BackendServiceOutlierDetectionInterval
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         public readonly int? Nanos;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         public readonly int Seconds;
 
         [OutputConstructor]

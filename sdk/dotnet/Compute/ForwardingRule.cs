@@ -26,22 +26,31 @@ namespace Pulumi.Gcp.Compute
     public partial class ForwardingRule : Pulumi.CustomResource
     {
         /// <summary>
-        /// For internal TCP/UDP load balancing (i.e. load balancing scheme is INTERNAL and protocol is TCP/UDP), set
-        /// this to true to allow packets addressed to any ports to be forwarded to the backends configured with this
-        /// forwarding rule. Used with backend service. Cannot be set if port or portRange are set.
+        /// -
+        /// (Optional)
+        /// For internal TCP/UDP load balancing (i.e. load balancing scheme is
+        /// INTERNAL and protocol is TCP/UDP), set this to true to allow packets
+        /// addressed to any ports to be forwarded to the backends configured
+        /// with this forwarding rule. Used with backend service. Cannot be set
+        /// if port or portRange are set.
         /// </summary>
         [Output("allPorts")]
         public Output<bool?> AllPorts { get; private set; } = null!;
 
         /// <summary>
-        /// If true, clients can access ILB from all regions. Otherwise only allows from the local region the ILB is
-        /// located at.
+        /// -
+        /// (Optional)
+        /// If true, clients can access ILB from all regions.
+        /// Otherwise only allows from the local region the ILB is located at.
         /// </summary>
         [Output("allowGlobalAccess")]
         public Output<bool?> AllowGlobalAccess { get; private set; } = null!;
 
         /// <summary>
-        /// A BackendService to receive the matched traffic. This is used only for INTERNAL load balancing.
+        /// -
+        /// (Optional)
+        /// A BackendService to receive the matched traffic. This is used only
+        /// for INTERNAL load balancing.
         /// </summary>
         [Output("backendService")]
         public Output<string?> BackendService { get; private set; } = null!;
@@ -53,7 +62,10 @@ namespace Pulumi.Gcp.Compute
         public Output<string> CreationTimestamp { get; private set; } = null!;
 
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -76,8 +88,12 @@ namespace Pulumi.Gcp.Compute
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP. When the load
-        /// balancing scheme is INTERNAL, only TCP and UDP are valid.
+        /// -
+        /// (Optional)
+        /// The IP protocol to which this rule applies. Valid options are TCP,
+        /// UDP, ESP, AH, SCTP or ICMP.
+        /// When the load balancing scheme is INTERNAL, only TCP and UDP are
+        /// valid.
         /// </summary>
         [Output("ipProtocol")]
         public Output<string> IpProtocol { get; private set; } = null!;
@@ -104,57 +120,87 @@ namespace Pulumi.Gcp.Compute
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// This signifies what the ForwardingRule will be used for and can be EXTERNAL, INTERNAL, or INTERNAL_MANAGED.
-        /// EXTERNAL is used for Classic Cloud VPN gateways, protocol forwarding to VMs from an external IP address, and
-        /// HTTP(S), SSL Proxy, TCP Proxy, and Network TCP/UDP load balancers. INTERNAL is used for protocol forwarding
-        /// to VMs from an internal IP address, and internal TCP/UDP load balancers. INTERNAL_MANAGED is used for
-        /// internal HTTP(S) load balancers.
+        /// -
+        /// (Optional)
+        /// This signifies what the ForwardingRule will be used for and can be
+        /// EXTERNAL, INTERNAL, or INTERNAL_MANAGED. EXTERNAL is used for Classic
+        /// Cloud VPN gateways, protocol forwarding to VMs from an external IP address,
+        /// and HTTP(S), SSL Proxy, TCP Proxy, and Network TCP/UDP load balancers.
+        /// INTERNAL is used for protocol forwarding to VMs from an internal IP address,
+        /// and internal TCP/UDP load balancers.
+        /// INTERNAL_MANAGED is used for internal HTTP(S) load balancers.
         /// </summary>
         [Output("loadBalancingScheme")]
         public Output<string?> LoadBalancingScheme { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource; provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// For internal load balancing, this field identifies the network that the load balanced IP should belong to
-        /// for this Forwarding Rule. If this field is not specified, the default network will be used. This field is
-        /// only used for INTERNAL load balancing.
+        /// -
+        /// (Optional)
+        /// For internal load balancing, this field identifies the network that
+        /// the load balanced IP should belong to for this Forwarding Rule. If
+        /// this field is not specified, the default network will be used.
+        /// This field is only used for INTERNAL load balancing.
         /// </summary>
         [Output("network")]
         public Output<string> Network { get; private set; } = null!;
 
         /// <summary>
-        /// The networking tier used for configuring this address. This field can take the following values: PREMIUM or
-        /// STANDARD. If this field is not specified, it is assumed to be PREMIUM.
+        /// -
+        /// (Optional)
+        /// The networking tier used for configuring this address. This field can
+        /// take the following values: PREMIUM or STANDARD. If this field is not
+        /// specified, it is assumed to be PREMIUM.
         /// </summary>
         [Output("networkTier")]
         public Output<string> NetworkTier { get; private set; } = null!;
 
         /// <summary>
-        /// This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy,
-        /// TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance. Applicable only when IPProtocol is TCP, UDP,
-        /// or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding
-        /// rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges. Some types of forwarding
-        /// target have constraints on the acceptable ports: * TargetHttpProxy: 80, 8080 * TargetHttpsProxy: 443 *
-        /// TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 * TargetSslProxy: 25, 43,
-        /// 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 * TargetVpnGateway: 500, 4500
+        /// -
+        /// (Optional)
+        /// This field is used along with the target field for TargetHttpProxy,
+        /// TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway,
+        /// TargetPool, TargetInstance.
+        /// Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets
+        /// addressed to ports in the specified range will be forwarded to target.
+        /// Forwarding rules with the same [IPAddress, IPProtocol] pair must have
+        /// disjoint port ranges.
+        /// Some types of forwarding target have constraints on the acceptable
+        /// ports:
+        /// * TargetHttpProxy: 80, 8080
+        /// * TargetHttpsProxy: 443
+        /// * TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995,
+        /// 1883, 5222
+        /// * TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995,
+        /// 1883, 5222
+        /// * TargetVpnGateway: 500, 4500
         /// </summary>
         [Output("portRange")]
         public Output<string?> PortRange { get; private set; } = null!;
 
         /// <summary>
-        /// This field is used along with the backend_service field for internal load balancing. When the load balancing
-        /// scheme is INTERNAL, a single port or a comma separated list of ports can be configured. Only packets
-        /// addressed to these ports will be forwarded to the backends configured with this forwarding rule. You may
-        /// specify a maximum of up to 5 ports.
+        /// -
+        /// (Optional)
+        /// This field is used along with the backend_service field for internal
+        /// load balancing.
+        /// When the load balancing scheme is INTERNAL, a single port or a comma
+        /// separated list of ports can be configured. Only packets addressed to
+        /// these ports will be forwarded to the backends configured with this
+        /// forwarding rule.
+        /// You may specify a maximum of up to 5 ports.
         /// </summary>
         [Output("ports")]
         public Output<ImmutableArray<string>> Ports { get; private set; } = null!;
@@ -167,8 +213,10 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// A reference to the region where the regional forwarding rule resides. This field is not applicable to global
-        /// forwarding rules.
+        /// -
+        /// (Optional)
+        /// A reference to the region where the regional forwarding rule resides.
+        /// This field is not applicable to global forwarding rules.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -180,11 +228,17 @@ namespace Pulumi.Gcp.Compute
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
-        /// An optional prefix to the service name for this Forwarding Rule. If specified, will be the first label of
-        /// the fully qualified service name. The label must be 1-63 characters long, and comply with RFC1035.
-        /// Specifically, the label must be 1-63 characters long and match the regular expression
-        /// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-        /// characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Optional)
+        /// An optional prefix to the service name for this Forwarding Rule.
+        /// If specified, will be the first label of the fully qualified service
+        /// name.
+        /// The label must be 1-63 characters long, and comply with RFC1035.
+        /// Specifically, the label must be 1-63 characters long and match the
+        /// regular expression `a-z?` which means the first
+        /// character must be a lowercase letter, and all following characters
+        /// must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// This field is only used for INTERNAL load balancing.
         /// </summary>
         [Output("serviceLabel")]
@@ -198,16 +252,24 @@ namespace Pulumi.Gcp.Compute
         public Output<string> ServiceName { get; private set; } = null!;
 
         /// <summary>
-        /// The subnetwork that the load balanced IP should belong to for this Forwarding Rule. This field is only used
-        /// for INTERNAL load balancing. If the network specified is in auto subnet mode, this field is optional.
-        /// However, if the network is in custom subnet mode, a subnetwork must be specified.
+        /// -
+        /// (Optional)
+        /// The subnetwork that the load balanced IP should belong to for this
+        /// Forwarding Rule.  This field is only used for INTERNAL load balancing.
+        /// If the network specified is in auto subnet mode, this field is
+        /// optional. However, if the network is in custom subnet mode, a
+        /// subnetwork must be specified.
         /// </summary>
         [Output("subnetwork")]
         public Output<string> Subnetwork { get; private set; } = null!;
 
         /// <summary>
-        /// The URL of the target resource to receive the matched traffic. The target must live in the same region as
-        /// the forwarding rule. The forwarded traffic must be of a type appropriate to the target object.
+        /// -
+        /// (Optional)
+        /// The URL of the target resource to receive the matched traffic.
+        /// The target must live in the same region as the forwarding rule.
+        /// The forwarded traffic must be of a type appropriate to the target
+        /// object.
         /// </summary>
         [Output("target")]
         public Output<string?> Target { get; private set; } = null!;
@@ -259,28 +321,40 @@ namespace Pulumi.Gcp.Compute
     public sealed class ForwardingRuleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// For internal TCP/UDP load balancing (i.e. load balancing scheme is INTERNAL and protocol is TCP/UDP), set
-        /// this to true to allow packets addressed to any ports to be forwarded to the backends configured with this
-        /// forwarding rule. Used with backend service. Cannot be set if port or portRange are set.
+        /// -
+        /// (Optional)
+        /// For internal TCP/UDP load balancing (i.e. load balancing scheme is
+        /// INTERNAL and protocol is TCP/UDP), set this to true to allow packets
+        /// addressed to any ports to be forwarded to the backends configured
+        /// with this forwarding rule. Used with backend service. Cannot be set
+        /// if port or portRange are set.
         /// </summary>
         [Input("allPorts")]
         public Input<bool>? AllPorts { get; set; }
 
         /// <summary>
-        /// If true, clients can access ILB from all regions. Otherwise only allows from the local region the ILB is
-        /// located at.
+        /// -
+        /// (Optional)
+        /// If true, clients can access ILB from all regions.
+        /// Otherwise only allows from the local region the ILB is located at.
         /// </summary>
         [Input("allowGlobalAccess")]
         public Input<bool>? AllowGlobalAccess { get; set; }
 
         /// <summary>
-        /// A BackendService to receive the matched traffic. This is used only for INTERNAL load balancing.
+        /// -
+        /// (Optional)
+        /// A BackendService to receive the matched traffic. This is used only
+        /// for INTERNAL load balancing.
         /// </summary>
         [Input("backendService")]
         public Input<string>? BackendService { get; set; }
 
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -303,8 +377,12 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP. When the load
-        /// balancing scheme is INTERNAL, only TCP and UDP are valid.
+        /// -
+        /// (Optional)
+        /// The IP protocol to which this rule applies. Valid options are TCP,
+        /// UDP, ESP, AH, SCTP or ICMP.
+        /// When the load balancing scheme is INTERNAL, only TCP and UDP are
+        /// valid.
         /// </summary>
         [Input("ipProtocol")]
         public Input<string>? IpProtocol { get; set; }
@@ -331,48 +409,73 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// This signifies what the ForwardingRule will be used for and can be EXTERNAL, INTERNAL, or INTERNAL_MANAGED.
-        /// EXTERNAL is used for Classic Cloud VPN gateways, protocol forwarding to VMs from an external IP address, and
-        /// HTTP(S), SSL Proxy, TCP Proxy, and Network TCP/UDP load balancers. INTERNAL is used for protocol forwarding
-        /// to VMs from an internal IP address, and internal TCP/UDP load balancers. INTERNAL_MANAGED is used for
-        /// internal HTTP(S) load balancers.
+        /// -
+        /// (Optional)
+        /// This signifies what the ForwardingRule will be used for and can be
+        /// EXTERNAL, INTERNAL, or INTERNAL_MANAGED. EXTERNAL is used for Classic
+        /// Cloud VPN gateways, protocol forwarding to VMs from an external IP address,
+        /// and HTTP(S), SSL Proxy, TCP Proxy, and Network TCP/UDP load balancers.
+        /// INTERNAL is used for protocol forwarding to VMs from an internal IP address,
+        /// and internal TCP/UDP load balancers.
+        /// INTERNAL_MANAGED is used for internal HTTP(S) load balancers.
         /// </summary>
         [Input("loadBalancingScheme")]
         public Input<string>? LoadBalancingScheme { get; set; }
 
         /// <summary>
-        /// Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource; provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// For internal load balancing, this field identifies the network that the load balanced IP should belong to
-        /// for this Forwarding Rule. If this field is not specified, the default network will be used. This field is
-        /// only used for INTERNAL load balancing.
+        /// -
+        /// (Optional)
+        /// For internal load balancing, this field identifies the network that
+        /// the load balanced IP should belong to for this Forwarding Rule. If
+        /// this field is not specified, the default network will be used.
+        /// This field is only used for INTERNAL load balancing.
         /// </summary>
         [Input("network")]
         public Input<string>? Network { get; set; }
 
         /// <summary>
-        /// The networking tier used for configuring this address. This field can take the following values: PREMIUM or
-        /// STANDARD. If this field is not specified, it is assumed to be PREMIUM.
+        /// -
+        /// (Optional)
+        /// The networking tier used for configuring this address. This field can
+        /// take the following values: PREMIUM or STANDARD. If this field is not
+        /// specified, it is assumed to be PREMIUM.
         /// </summary>
         [Input("networkTier")]
         public Input<string>? NetworkTier { get; set; }
 
         /// <summary>
-        /// This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy,
-        /// TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance. Applicable only when IPProtocol is TCP, UDP,
-        /// or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding
-        /// rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges. Some types of forwarding
-        /// target have constraints on the acceptable ports: * TargetHttpProxy: 80, 8080 * TargetHttpsProxy: 443 *
-        /// TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 * TargetSslProxy: 25, 43,
-        /// 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 * TargetVpnGateway: 500, 4500
+        /// -
+        /// (Optional)
+        /// This field is used along with the target field for TargetHttpProxy,
+        /// TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway,
+        /// TargetPool, TargetInstance.
+        /// Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets
+        /// addressed to ports in the specified range will be forwarded to target.
+        /// Forwarding rules with the same [IPAddress, IPProtocol] pair must have
+        /// disjoint port ranges.
+        /// Some types of forwarding target have constraints on the acceptable
+        /// ports:
+        /// * TargetHttpProxy: 80, 8080
+        /// * TargetHttpsProxy: 443
+        /// * TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995,
+        /// 1883, 5222
+        /// * TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995,
+        /// 1883, 5222
+        /// * TargetVpnGateway: 500, 4500
         /// </summary>
         [Input("portRange")]
         public Input<string>? PortRange { get; set; }
@@ -381,10 +484,15 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _ports;
 
         /// <summary>
-        /// This field is used along with the backend_service field for internal load balancing. When the load balancing
-        /// scheme is INTERNAL, a single port or a comma separated list of ports can be configured. Only packets
-        /// addressed to these ports will be forwarded to the backends configured with this forwarding rule. You may
-        /// specify a maximum of up to 5 ports.
+        /// -
+        /// (Optional)
+        /// This field is used along with the backend_service field for internal
+        /// load balancing.
+        /// When the load balancing scheme is INTERNAL, a single port or a comma
+        /// separated list of ports can be configured. Only packets addressed to
+        /// these ports will be forwarded to the backends configured with this
+        /// forwarding rule.
+        /// You may specify a maximum of up to 5 ports.
         /// </summary>
         public InputList<string> Ports
         {
@@ -400,34 +508,50 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// A reference to the region where the regional forwarding rule resides. This field is not applicable to global
-        /// forwarding rules.
+        /// -
+        /// (Optional)
+        /// A reference to the region where the regional forwarding rule resides.
+        /// This field is not applicable to global forwarding rules.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// An optional prefix to the service name for this Forwarding Rule. If specified, will be the first label of
-        /// the fully qualified service name. The label must be 1-63 characters long, and comply with RFC1035.
-        /// Specifically, the label must be 1-63 characters long and match the regular expression
-        /// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-        /// characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Optional)
+        /// An optional prefix to the service name for this Forwarding Rule.
+        /// If specified, will be the first label of the fully qualified service
+        /// name.
+        /// The label must be 1-63 characters long, and comply with RFC1035.
+        /// Specifically, the label must be 1-63 characters long and match the
+        /// regular expression `a-z?` which means the first
+        /// character must be a lowercase letter, and all following characters
+        /// must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// This field is only used for INTERNAL load balancing.
         /// </summary>
         [Input("serviceLabel")]
         public Input<string>? ServiceLabel { get; set; }
 
         /// <summary>
-        /// The subnetwork that the load balanced IP should belong to for this Forwarding Rule. This field is only used
-        /// for INTERNAL load balancing. If the network specified is in auto subnet mode, this field is optional.
-        /// However, if the network is in custom subnet mode, a subnetwork must be specified.
+        /// -
+        /// (Optional)
+        /// The subnetwork that the load balanced IP should belong to for this
+        /// Forwarding Rule.  This field is only used for INTERNAL load balancing.
+        /// If the network specified is in auto subnet mode, this field is
+        /// optional. However, if the network is in custom subnet mode, a
+        /// subnetwork must be specified.
         /// </summary>
         [Input("subnetwork")]
         public Input<string>? Subnetwork { get; set; }
 
         /// <summary>
-        /// The URL of the target resource to receive the matched traffic. The target must live in the same region as
-        /// the forwarding rule. The forwarded traffic must be of a type appropriate to the target object.
+        /// -
+        /// (Optional)
+        /// The URL of the target resource to receive the matched traffic.
+        /// The target must live in the same region as the forwarding rule.
+        /// The forwarded traffic must be of a type appropriate to the target
+        /// object.
         /// </summary>
         [Input("target")]
         public Input<string>? Target { get; set; }
@@ -440,22 +564,31 @@ namespace Pulumi.Gcp.Compute
     public sealed class ForwardingRuleState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// For internal TCP/UDP load balancing (i.e. load balancing scheme is INTERNAL and protocol is TCP/UDP), set
-        /// this to true to allow packets addressed to any ports to be forwarded to the backends configured with this
-        /// forwarding rule. Used with backend service. Cannot be set if port or portRange are set.
+        /// -
+        /// (Optional)
+        /// For internal TCP/UDP load balancing (i.e. load balancing scheme is
+        /// INTERNAL and protocol is TCP/UDP), set this to true to allow packets
+        /// addressed to any ports to be forwarded to the backends configured
+        /// with this forwarding rule. Used with backend service. Cannot be set
+        /// if port or portRange are set.
         /// </summary>
         [Input("allPorts")]
         public Input<bool>? AllPorts { get; set; }
 
         /// <summary>
-        /// If true, clients can access ILB from all regions. Otherwise only allows from the local region the ILB is
-        /// located at.
+        /// -
+        /// (Optional)
+        /// If true, clients can access ILB from all regions.
+        /// Otherwise only allows from the local region the ILB is located at.
         /// </summary>
         [Input("allowGlobalAccess")]
         public Input<bool>? AllowGlobalAccess { get; set; }
 
         /// <summary>
-        /// A BackendService to receive the matched traffic. This is used only for INTERNAL load balancing.
+        /// -
+        /// (Optional)
+        /// A BackendService to receive the matched traffic. This is used only
+        /// for INTERNAL load balancing.
         /// </summary>
         [Input("backendService")]
         public Input<string>? BackendService { get; set; }
@@ -467,7 +600,10 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? CreationTimestamp { get; set; }
 
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -490,8 +626,12 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP. When the load
-        /// balancing scheme is INTERNAL, only TCP and UDP are valid.
+        /// -
+        /// (Optional)
+        /// The IP protocol to which this rule applies. Valid options are TCP,
+        /// UDP, ESP, AH, SCTP or ICMP.
+        /// When the load balancing scheme is INTERNAL, only TCP and UDP are
+        /// valid.
         /// </summary>
         [Input("ipProtocol")]
         public Input<string>? IpProtocol { get; set; }
@@ -524,48 +664,73 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// This signifies what the ForwardingRule will be used for and can be EXTERNAL, INTERNAL, or INTERNAL_MANAGED.
-        /// EXTERNAL is used for Classic Cloud VPN gateways, protocol forwarding to VMs from an external IP address, and
-        /// HTTP(S), SSL Proxy, TCP Proxy, and Network TCP/UDP load balancers. INTERNAL is used for protocol forwarding
-        /// to VMs from an internal IP address, and internal TCP/UDP load balancers. INTERNAL_MANAGED is used for
-        /// internal HTTP(S) load balancers.
+        /// -
+        /// (Optional)
+        /// This signifies what the ForwardingRule will be used for and can be
+        /// EXTERNAL, INTERNAL, or INTERNAL_MANAGED. EXTERNAL is used for Classic
+        /// Cloud VPN gateways, protocol forwarding to VMs from an external IP address,
+        /// and HTTP(S), SSL Proxy, TCP Proxy, and Network TCP/UDP load balancers.
+        /// INTERNAL is used for protocol forwarding to VMs from an internal IP address,
+        /// and internal TCP/UDP load balancers.
+        /// INTERNAL_MANAGED is used for internal HTTP(S) load balancers.
         /// </summary>
         [Input("loadBalancingScheme")]
         public Input<string>? LoadBalancingScheme { get; set; }
 
         /// <summary>
-        /// Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource; provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// For internal load balancing, this field identifies the network that the load balanced IP should belong to
-        /// for this Forwarding Rule. If this field is not specified, the default network will be used. This field is
-        /// only used for INTERNAL load balancing.
+        /// -
+        /// (Optional)
+        /// For internal load balancing, this field identifies the network that
+        /// the load balanced IP should belong to for this Forwarding Rule. If
+        /// this field is not specified, the default network will be used.
+        /// This field is only used for INTERNAL load balancing.
         /// </summary>
         [Input("network")]
         public Input<string>? Network { get; set; }
 
         /// <summary>
-        /// The networking tier used for configuring this address. This field can take the following values: PREMIUM or
-        /// STANDARD. If this field is not specified, it is assumed to be PREMIUM.
+        /// -
+        /// (Optional)
+        /// The networking tier used for configuring this address. This field can
+        /// take the following values: PREMIUM or STANDARD. If this field is not
+        /// specified, it is assumed to be PREMIUM.
         /// </summary>
         [Input("networkTier")]
         public Input<string>? NetworkTier { get; set; }
 
         /// <summary>
-        /// This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy,
-        /// TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance. Applicable only when IPProtocol is TCP, UDP,
-        /// or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding
-        /// rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges. Some types of forwarding
-        /// target have constraints on the acceptable ports: * TargetHttpProxy: 80, 8080 * TargetHttpsProxy: 443 *
-        /// TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 * TargetSslProxy: 25, 43,
-        /// 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 * TargetVpnGateway: 500, 4500
+        /// -
+        /// (Optional)
+        /// This field is used along with the target field for TargetHttpProxy,
+        /// TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway,
+        /// TargetPool, TargetInstance.
+        /// Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets
+        /// addressed to ports in the specified range will be forwarded to target.
+        /// Forwarding rules with the same [IPAddress, IPProtocol] pair must have
+        /// disjoint port ranges.
+        /// Some types of forwarding target have constraints on the acceptable
+        /// ports:
+        /// * TargetHttpProxy: 80, 8080
+        /// * TargetHttpsProxy: 443
+        /// * TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995,
+        /// 1883, 5222
+        /// * TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995,
+        /// 1883, 5222
+        /// * TargetVpnGateway: 500, 4500
         /// </summary>
         [Input("portRange")]
         public Input<string>? PortRange { get; set; }
@@ -574,10 +739,15 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _ports;
 
         /// <summary>
-        /// This field is used along with the backend_service field for internal load balancing. When the load balancing
-        /// scheme is INTERNAL, a single port or a comma separated list of ports can be configured. Only packets
-        /// addressed to these ports will be forwarded to the backends configured with this forwarding rule. You may
-        /// specify a maximum of up to 5 ports.
+        /// -
+        /// (Optional)
+        /// This field is used along with the backend_service field for internal
+        /// load balancing.
+        /// When the load balancing scheme is INTERNAL, a single port or a comma
+        /// separated list of ports can be configured. Only packets addressed to
+        /// these ports will be forwarded to the backends configured with this
+        /// forwarding rule.
+        /// You may specify a maximum of up to 5 ports.
         /// </summary>
         public InputList<string> Ports
         {
@@ -593,8 +763,10 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// A reference to the region where the regional forwarding rule resides. This field is not applicable to global
-        /// forwarding rules.
+        /// -
+        /// (Optional)
+        /// A reference to the region where the regional forwarding rule resides.
+        /// This field is not applicable to global forwarding rules.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -606,11 +778,17 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? SelfLink { get; set; }
 
         /// <summary>
-        /// An optional prefix to the service name for this Forwarding Rule. If specified, will be the first label of
-        /// the fully qualified service name. The label must be 1-63 characters long, and comply with RFC1035.
-        /// Specifically, the label must be 1-63 characters long and match the regular expression
-        /// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-        /// characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Optional)
+        /// An optional prefix to the service name for this Forwarding Rule.
+        /// If specified, will be the first label of the fully qualified service
+        /// name.
+        /// The label must be 1-63 characters long, and comply with RFC1035.
+        /// Specifically, the label must be 1-63 characters long and match the
+        /// regular expression `a-z?` which means the first
+        /// character must be a lowercase letter, and all following characters
+        /// must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// This field is only used for INTERNAL load balancing.
         /// </summary>
         [Input("serviceLabel")]
@@ -624,16 +802,24 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? ServiceName { get; set; }
 
         /// <summary>
-        /// The subnetwork that the load balanced IP should belong to for this Forwarding Rule. This field is only used
-        /// for INTERNAL load balancing. If the network specified is in auto subnet mode, this field is optional.
-        /// However, if the network is in custom subnet mode, a subnetwork must be specified.
+        /// -
+        /// (Optional)
+        /// The subnetwork that the load balanced IP should belong to for this
+        /// Forwarding Rule.  This field is only used for INTERNAL load balancing.
+        /// If the network specified is in auto subnet mode, this field is
+        /// optional. However, if the network is in custom subnet mode, a
+        /// subnetwork must be specified.
         /// </summary>
         [Input("subnetwork")]
         public Input<string>? Subnetwork { get; set; }
 
         /// <summary>
-        /// The URL of the target resource to receive the matched traffic. The target must live in the same region as
-        /// the forwarding rule. The forwarded traffic must be of a type appropriate to the target object.
+        /// -
+        /// (Optional)
+        /// The URL of the target resource to receive the matched traffic.
+        /// The target must live in the same region as the forwarding rule.
+        /// The forwarded traffic must be of a type appropriate to the target
+        /// object.
         /// </summary>
         [Input("target")]
         public Input<string>? Target { get; set; }

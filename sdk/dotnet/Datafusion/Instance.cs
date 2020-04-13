@@ -29,51 +29,68 @@ namespace Pulumi.Gcp.DataFusion
         public Output<string> CreateTime { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of the instance.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Option to enable Stackdriver Logging.
         /// </summary>
         [Output("enableStackdriverLogging")]
         public Output<bool?> EnableStackdriverLogging { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Option to enable Stackdriver Monitoring.
         /// </summary>
         [Output("enableStackdriverMonitoring")]
         public Output<bool?> EnableStackdriverMonitoring { get; private set; } = null!;
 
         /// <summary>
-        /// The resource labels for instance to use to annotate any related underlying resources, such as Compute Engine
-        /// VMs.
+        /// -
+        /// (Optional)
+        /// The resource labels for instance to use to annotate any related underlying resources,
+        /// such as Compute Engine VMs.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The ID of the instance or a fully qualified identifier for the instance.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Network configuration options. These are required when a private Data Fusion instance is to be created.
+        /// -
+        /// (Optional)
+        /// Network configuration options. These are required when a private Data Fusion instance is to be created.  Structure is documented below.
         /// </summary>
         [Output("networkConfig")]
         public Output<Outputs.InstanceNetworkConfig?> NetworkConfig { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Map of additional options used to configure the behavior of Data Fusion instance.
         /// </summary>
         [Output("options")]
         public Output<ImmutableDictionary<string, string>?> Options { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies whether the Data Fusion instance should be private. If set to true, all Data Fusion nodes will
-        /// have private IP addresses and will not be able to access the public internet.
+        /// -
+        /// (Optional)
+        /// Specifies whether the Data Fusion instance should be private. If set to
+        /// true, all Data Fusion nodes will have private IP addresses and will not be
+        /// able to access the public internet.
         /// </summary>
         [Output("privateInstance")]
         public Output<bool?> PrivateInstance { get; private set; } = null!;
@@ -86,6 +103,8 @@ namespace Pulumi.Gcp.DataFusion
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The region of the Data Fusion instance.
         /// </summary>
         [Output("region")]
@@ -118,12 +137,15 @@ namespace Pulumi.Gcp.DataFusion
         public Output<string> StateMessage { get; private set; } = null!;
 
         /// <summary>
-        /// Represents the type of Data Fusion instance. Each type is configured with the default settings for
-        /// processing and memory. - BASIC: Basic Data Fusion instance. In Basic type, the user will be able to create
-        /// data pipelines using point and click UI. However, there are certain limitations, such as fewer number of
-        /// concurrent pipelines, no support for streaming pipelines, etc. - ENTERPRISE: Enterprise Data Fusion
-        /// instance. In Enterprise type, the user will have more features available, such as support for streaming
-        /// pipelines, higher number of concurrent pipelines, etc.
+        /// -
+        /// (Required)
+        /// Represents the type of Data Fusion instance. Each type is configured with
+        /// the default settings for processing and memory.
+        /// - BASIC: Basic Data Fusion instance. In Basic type, the user will be able to create data pipelines
+        /// using point and click UI. However, there are certain limitations, such as fewer number
+        /// of concurrent pipelines, no support for streaming pipelines, etc.
+        /// - ENTERPRISE: Enterprise Data Fusion instance. In Enterprise type, the user will have more features
+        /// available, such as support for streaming pipelines, higher number of concurrent pipelines, etc.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -187,18 +209,24 @@ namespace Pulumi.Gcp.DataFusion
     public sealed class InstanceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of the instance.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Option to enable Stackdriver Logging.
         /// </summary>
         [Input("enableStackdriverLogging")]
         public Input<bool>? EnableStackdriverLogging { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Option to enable Stackdriver Monitoring.
         /// </summary>
         [Input("enableStackdriverMonitoring")]
@@ -208,8 +236,10 @@ namespace Pulumi.Gcp.DataFusion
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// The resource labels for instance to use to annotate any related underlying resources, such as Compute Engine
-        /// VMs.
+        /// -
+        /// (Optional)
+        /// The resource labels for instance to use to annotate any related underlying resources,
+        /// such as Compute Engine VMs.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -218,13 +248,17 @@ namespace Pulumi.Gcp.DataFusion
         }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The ID of the instance or a fully qualified identifier for the instance.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Network configuration options. These are required when a private Data Fusion instance is to be created.
+        /// -
+        /// (Optional)
+        /// Network configuration options. These are required when a private Data Fusion instance is to be created.  Structure is documented below.
         /// </summary>
         [Input("networkConfig")]
         public Input<Inputs.InstanceNetworkConfigArgs>? NetworkConfig { get; set; }
@@ -233,6 +267,8 @@ namespace Pulumi.Gcp.DataFusion
         private InputMap<string>? _options;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Map of additional options used to configure the behavior of Data Fusion instance.
         /// </summary>
         public InputMap<string> Options
@@ -242,8 +278,11 @@ namespace Pulumi.Gcp.DataFusion
         }
 
         /// <summary>
-        /// Specifies whether the Data Fusion instance should be private. If set to true, all Data Fusion nodes will
-        /// have private IP addresses and will not be able to access the public internet.
+        /// -
+        /// (Optional)
+        /// Specifies whether the Data Fusion instance should be private. If set to
+        /// true, all Data Fusion nodes will have private IP addresses and will not be
+        /// able to access the public internet.
         /// </summary>
         [Input("privateInstance")]
         public Input<bool>? PrivateInstance { get; set; }
@@ -256,18 +295,23 @@ namespace Pulumi.Gcp.DataFusion
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The region of the Data Fusion instance.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Represents the type of Data Fusion instance. Each type is configured with the default settings for
-        /// processing and memory. - BASIC: Basic Data Fusion instance. In Basic type, the user will be able to create
-        /// data pipelines using point and click UI. However, there are certain limitations, such as fewer number of
-        /// concurrent pipelines, no support for streaming pipelines, etc. - ENTERPRISE: Enterprise Data Fusion
-        /// instance. In Enterprise type, the user will have more features available, such as support for streaming
-        /// pipelines, higher number of concurrent pipelines, etc.
+        /// -
+        /// (Required)
+        /// Represents the type of Data Fusion instance. Each type is configured with
+        /// the default settings for processing and memory.
+        /// - BASIC: Basic Data Fusion instance. In Basic type, the user will be able to create data pipelines
+        /// using point and click UI. However, there are certain limitations, such as fewer number
+        /// of concurrent pipelines, no support for streaming pipelines, etc.
+        /// - ENTERPRISE: Enterprise Data Fusion instance. In Enterprise type, the user will have more features
+        /// available, such as support for streaming pipelines, higher number of concurrent pipelines, etc.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -286,18 +330,24 @@ namespace Pulumi.Gcp.DataFusion
         public Input<string>? CreateTime { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of the instance.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Option to enable Stackdriver Logging.
         /// </summary>
         [Input("enableStackdriverLogging")]
         public Input<bool>? EnableStackdriverLogging { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Option to enable Stackdriver Monitoring.
         /// </summary>
         [Input("enableStackdriverMonitoring")]
@@ -307,8 +357,10 @@ namespace Pulumi.Gcp.DataFusion
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// The resource labels for instance to use to annotate any related underlying resources, such as Compute Engine
-        /// VMs.
+        /// -
+        /// (Optional)
+        /// The resource labels for instance to use to annotate any related underlying resources,
+        /// such as Compute Engine VMs.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -317,13 +369,17 @@ namespace Pulumi.Gcp.DataFusion
         }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The ID of the instance or a fully qualified identifier for the instance.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Network configuration options. These are required when a private Data Fusion instance is to be created.
+        /// -
+        /// (Optional)
+        /// Network configuration options. These are required when a private Data Fusion instance is to be created.  Structure is documented below.
         /// </summary>
         [Input("networkConfig")]
         public Input<Inputs.InstanceNetworkConfigGetArgs>? NetworkConfig { get; set; }
@@ -332,6 +388,8 @@ namespace Pulumi.Gcp.DataFusion
         private InputMap<string>? _options;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Map of additional options used to configure the behavior of Data Fusion instance.
         /// </summary>
         public InputMap<string> Options
@@ -341,8 +399,11 @@ namespace Pulumi.Gcp.DataFusion
         }
 
         /// <summary>
-        /// Specifies whether the Data Fusion instance should be private. If set to true, all Data Fusion nodes will
-        /// have private IP addresses and will not be able to access the public internet.
+        /// -
+        /// (Optional)
+        /// Specifies whether the Data Fusion instance should be private. If set to
+        /// true, all Data Fusion nodes will have private IP addresses and will not be
+        /// able to access the public internet.
         /// </summary>
         [Input("privateInstance")]
         public Input<bool>? PrivateInstance { get; set; }
@@ -355,6 +416,8 @@ namespace Pulumi.Gcp.DataFusion
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The region of the Data Fusion instance.
         /// </summary>
         [Input("region")]
@@ -387,12 +450,15 @@ namespace Pulumi.Gcp.DataFusion
         public Input<string>? StateMessage { get; set; }
 
         /// <summary>
-        /// Represents the type of Data Fusion instance. Each type is configured with the default settings for
-        /// processing and memory. - BASIC: Basic Data Fusion instance. In Basic type, the user will be able to create
-        /// data pipelines using point and click UI. However, there are certain limitations, such as fewer number of
-        /// concurrent pipelines, no support for streaming pipelines, etc. - ENTERPRISE: Enterprise Data Fusion
-        /// instance. In Enterprise type, the user will have more features available, such as support for streaming
-        /// pipelines, higher number of concurrent pipelines, etc.
+        /// -
+        /// (Required)
+        /// Represents the type of Data Fusion instance. Each type is configured with
+        /// the default settings for processing and memory.
+        /// - BASIC: Basic Data Fusion instance. In Basic type, the user will be able to create data pipelines
+        /// using point and click UI. However, there are certain limitations, such as fewer number
+        /// of concurrent pipelines, no support for streaming pipelines, etc.
+        /// - ENTERPRISE: Enterprise Data Fusion instance. In Enterprise type, the user will have more features
+        /// available, such as support for streaming pipelines, higher number of concurrent pipelines, etc.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -419,9 +485,22 @@ namespace Pulumi.Gcp.DataFusion
 
     public sealed class InstanceNetworkConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The IP range in CIDR notation to use for the managed Data Fusion instance
+        /// nodes. This range must not overlap with any other ranges used in the Data Fusion instance network.
+        /// </summary>
         [Input("ipAllocation", required: true)]
         public Input<string> IpAllocation { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the network in the project with which the tenant project
+        /// will be peered for executing pipelines. In case of shared VPC where the network resides in another host
+        /// project the network should specified in the form of projects/{host-project-id}/global/networks/{network}
+        /// </summary>
         [Input("network", required: true)]
         public Input<string> Network { get; set; } = null!;
 
@@ -432,9 +511,22 @@ namespace Pulumi.Gcp.DataFusion
 
     public sealed class InstanceNetworkConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The IP range in CIDR notation to use for the managed Data Fusion instance
+        /// nodes. This range must not overlap with any other ranges used in the Data Fusion instance network.
+        /// </summary>
         [Input("ipAllocation", required: true)]
         public Input<string> IpAllocation { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the network in the project with which the tenant project
+        /// will be peered for executing pipelines. In case of shared VPC where the network resides in another host
+        /// project the network should specified in the form of projects/{host-project-id}/global/networks/{network}
+        /// </summary>
         [Input("network", required: true)]
         public Input<string> Network { get; set; } = null!;
 
@@ -450,7 +542,20 @@ namespace Pulumi.Gcp.DataFusion
     [OutputType]
     public sealed class InstanceNetworkConfig
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The IP range in CIDR notation to use for the managed Data Fusion instance
+        /// nodes. This range must not overlap with any other ranges used in the Data Fusion instance network.
+        /// </summary>
         public readonly string IpAllocation;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the network in the project with which the tenant project
+        /// will be peered for executing pipelines. In case of shared VPC where the network resides in another host
+        /// project the network should specified in the form of projects/{host-project-id}/global/networks/{network}
+        /// </summary>
         public readonly string Network;
 
         [OutputConstructor]

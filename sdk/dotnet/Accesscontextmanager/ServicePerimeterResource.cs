@@ -31,14 +31,19 @@ namespace Pulumi.Gcp.AccessContextManager
     public partial class ServicePerimeterResource : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the Service Perimeter to add this resource to.
         /// </summary>
         [Output("perimeterName")]
         public Output<string> PerimeterName { get; private set; } = null!;
 
         /// <summary>
-        /// A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format:
-        /// projects/{project_number}
+        /// -
+        /// (Required)
+        /// A GCP resource that is inside of the service perimeter.
+        /// Currently only projects are allowed.
+        /// Format: projects/{project_number}
         /// </summary>
         [Output("resource")]
         public Output<string> Resource { get; private set; } = null!;
@@ -90,14 +95,19 @@ namespace Pulumi.Gcp.AccessContextManager
     public sealed class ServicePerimeterResourceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the Service Perimeter to add this resource to.
         /// </summary>
         [Input("perimeterName", required: true)]
         public Input<string> PerimeterName { get; set; } = null!;
 
         /// <summary>
-        /// A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format:
-        /// projects/{project_number}
+        /// -
+        /// (Required)
+        /// A GCP resource that is inside of the service perimeter.
+        /// Currently only projects are allowed.
+        /// Format: projects/{project_number}
         /// </summary>
         [Input("resource", required: true)]
         public Input<string> Resource { get; set; } = null!;
@@ -110,14 +120,19 @@ namespace Pulumi.Gcp.AccessContextManager
     public sealed class ServicePerimeterResourceState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the Service Perimeter to add this resource to.
         /// </summary>
         [Input("perimeterName")]
         public Input<string>? PerimeterName { get; set; }
 
         /// <summary>
-        /// A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format:
-        /// projects/{project_number}
+        /// -
+        /// (Required)
+        /// A GCP resource that is inside of the service perimeter.
+        /// Currently only projects are allowed.
+        /// Format: projects/{project_number}
         /// </summary>
         [Input("resource")]
         public Input<string>? Resource { get; set; }

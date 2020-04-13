@@ -12,20 +12,37 @@ from .. import utilities, tables
 class DefaultSupportedIdpConfig(pulumi.CustomResource):
     client_id: pulumi.Output[str]
     """
+    -
+    (Required)
     OAuth client ID
     """
     client_secret: pulumi.Output[str]
     """
+    -
+    (Required)
     OAuth client secret
     """
     enabled: pulumi.Output[bool]
     """
+    -
+    (Optional)
     If this IDP allows the user to sign in
     """
     idp_id: pulumi.Output[str]
     """
-    ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' * 'google.com' *
-    'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+    -
+    (Required)
+    ID of the IDP. Possible values include:
+    * `apple.com`
+    * `facebook.com`
+    * `gc.apple.com`
+    * `github.com`
+    * `google.com`
+    * `linkedin.com`
+    * `microsoft.com`
+    * `playgames.google.com`
+    * `twitter.com`
+    * `yahoo.com`
     """
     name: pulumi.Output[str]
     """
@@ -44,15 +61,30 @@ class DefaultSupportedIdpConfig(pulumi.CustomResource):
         [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
         the marketplace prior to using this resource.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/identity_platform_default_supported_idp_config.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: OAuth client ID
-        :param pulumi.Input[str] client_secret: OAuth client secret
-        :param pulumi.Input[bool] enabled: If this IDP allows the user to sign in
-        :param pulumi.Input[str] idp_id: ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' * 'google.com' *
-               'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+        :param pulumi.Input[str] client_id: -
+               (Required)
+               OAuth client ID
+        :param pulumi.Input[str] client_secret: -
+               (Required)
+               OAuth client secret
+        :param pulumi.Input[bool] enabled: -
+               (Optional)
+               If this IDP allows the user to sign in
+        :param pulumi.Input[str] idp_id: -
+               (Required)
+               ID of the IDP. Possible values include:
+               * `apple.com`
+               * `facebook.com`
+               * `gc.apple.com`
+               * `github.com`
+               * `google.com`
+               * `linkedin.com`
+               * `microsoft.com`
+               * `playgames.google.com`
+               * `twitter.com`
+               * `yahoo.com`
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         """
@@ -100,11 +132,28 @@ class DefaultSupportedIdpConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: OAuth client ID
-        :param pulumi.Input[str] client_secret: OAuth client secret
-        :param pulumi.Input[bool] enabled: If this IDP allows the user to sign in
-        :param pulumi.Input[str] idp_id: ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' * 'google.com' *
-               'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+        :param pulumi.Input[str] client_id: -
+               (Required)
+               OAuth client ID
+        :param pulumi.Input[str] client_secret: -
+               (Required)
+               OAuth client secret
+        :param pulumi.Input[bool] enabled: -
+               (Optional)
+               If this IDP allows the user to sign in
+        :param pulumi.Input[str] idp_id: -
+               (Required)
+               ID of the IDP. Possible values include:
+               * `apple.com`
+               * `facebook.com`
+               * `gc.apple.com`
+               * `github.com`
+               * `google.com`
+               * `linkedin.com`
+               * `microsoft.com`
+               * `playgames.google.com`
+               * `twitter.com`
+               * `yahoo.com`
         :param pulumi.Input[str] name: The name of the DefaultSupportedIdpConfig resource
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.

@@ -24,42 +24,55 @@ namespace Pulumi.Gcp.Dns
     public partial class Policy : Pulumi.CustomResource
     {
         /// <summary>
-        /// Sets an alternative name server for the associated networks. When specified, all DNS queries are forwarded
-        /// to a name server that you choose. Names such as .internal are not available when an alternative name server
-        /// is specified.
+        /// -
+        /// (Optional)
+        /// Sets an alternative name server for the associated networks.
+        /// When specified, all DNS queries are forwarded to a name server that you choose.
+        /// Names such as .internal are not available when an alternative name server is specified.  Structure is documented below.
         /// </summary>
         [Output("alternativeNameServerConfig")]
         public Output<Outputs.PolicyAlternativeNameServerConfig?> AlternativeNameServerConfig { get; private set; } = null!;
 
         /// <summary>
-        /// A textual description field. Defaults to 'Managed by Terraform'.
+        /// -
+        /// (Optional)
+        /// A textual description field. Defaults to 'Managed by Pulumi'.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Allows networks bound to this policy to receive DNS queries sent by VMs or applications over VPN
-        /// connections. When enabled, a virtual IP address will be allocated from each of the sub-networks that are
-        /// bound to this policy.
+        /// -
+        /// (Optional)
+        /// Allows networks bound to this policy to receive DNS queries sent
+        /// by VMs or applications over VPN connections. When enabled, a
+        /// virtual IP address will be allocated from each of the sub-networks
+        /// that are bound to this policy.
         /// </summary>
         [Output("enableInboundForwarding")]
         public Output<bool?> EnableInboundForwarding { get; private set; } = null!;
 
         /// <summary>
-        /// Controls whether logging is enabled for the networks bound to this policy. Defaults to no logging if not
-        /// set.
+        /// -
+        /// (Optional)
+        /// Controls whether logging is enabled for the networks bound to this policy.
+        /// Defaults to no logging if not set.
         /// </summary>
         [Output("enableLogging")]
         public Output<bool?> EnableLogging { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// User assigned name for this policy.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// List of network names specifying networks to which this policy is applied.
+        /// -
+        /// (Optional)
+        /// List of network names specifying networks to which this policy is applied.  Structure is documented below.
         /// </summary>
         [Output("networks")]
         public Output<ImmutableArray<Outputs.PolicyNetworks>> Networks { get; private set; } = null!;
@@ -118,35 +131,46 @@ namespace Pulumi.Gcp.Dns
     public sealed class PolicyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Sets an alternative name server for the associated networks. When specified, all DNS queries are forwarded
-        /// to a name server that you choose. Names such as .internal are not available when an alternative name server
-        /// is specified.
+        /// -
+        /// (Optional)
+        /// Sets an alternative name server for the associated networks.
+        /// When specified, all DNS queries are forwarded to a name server that you choose.
+        /// Names such as .internal are not available when an alternative name server is specified.  Structure is documented below.
         /// </summary>
         [Input("alternativeNameServerConfig")]
         public Input<Inputs.PolicyAlternativeNameServerConfigArgs>? AlternativeNameServerConfig { get; set; }
 
         /// <summary>
-        /// A textual description field. Defaults to 'Managed by Terraform'.
+        /// -
+        /// (Optional)
+        /// A textual description field. Defaults to 'Managed by Pulumi'.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Allows networks bound to this policy to receive DNS queries sent by VMs or applications over VPN
-        /// connections. When enabled, a virtual IP address will be allocated from each of the sub-networks that are
-        /// bound to this policy.
+        /// -
+        /// (Optional)
+        /// Allows networks bound to this policy to receive DNS queries sent
+        /// by VMs or applications over VPN connections. When enabled, a
+        /// virtual IP address will be allocated from each of the sub-networks
+        /// that are bound to this policy.
         /// </summary>
         [Input("enableInboundForwarding")]
         public Input<bool>? EnableInboundForwarding { get; set; }
 
         /// <summary>
-        /// Controls whether logging is enabled for the networks bound to this policy. Defaults to no logging if not
-        /// set.
+        /// -
+        /// (Optional)
+        /// Controls whether logging is enabled for the networks bound to this policy.
+        /// Defaults to no logging if not set.
         /// </summary>
         [Input("enableLogging")]
         public Input<bool>? EnableLogging { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// User assigned name for this policy.
         /// </summary>
         [Input("name")]
@@ -156,7 +180,9 @@ namespace Pulumi.Gcp.Dns
         private InputList<Inputs.PolicyNetworksArgs>? _networks;
 
         /// <summary>
-        /// List of network names specifying networks to which this policy is applied.
+        /// -
+        /// (Optional)
+        /// List of network names specifying networks to which this policy is applied.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.PolicyNetworksArgs> Networks
         {
@@ -179,35 +205,46 @@ namespace Pulumi.Gcp.Dns
     public sealed class PolicyState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Sets an alternative name server for the associated networks. When specified, all DNS queries are forwarded
-        /// to a name server that you choose. Names such as .internal are not available when an alternative name server
-        /// is specified.
+        /// -
+        /// (Optional)
+        /// Sets an alternative name server for the associated networks.
+        /// When specified, all DNS queries are forwarded to a name server that you choose.
+        /// Names such as .internal are not available when an alternative name server is specified.  Structure is documented below.
         /// </summary>
         [Input("alternativeNameServerConfig")]
         public Input<Inputs.PolicyAlternativeNameServerConfigGetArgs>? AlternativeNameServerConfig { get; set; }
 
         /// <summary>
-        /// A textual description field. Defaults to 'Managed by Terraform'.
+        /// -
+        /// (Optional)
+        /// A textual description field. Defaults to 'Managed by Pulumi'.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Allows networks bound to this policy to receive DNS queries sent by VMs or applications over VPN
-        /// connections. When enabled, a virtual IP address will be allocated from each of the sub-networks that are
-        /// bound to this policy.
+        /// -
+        /// (Optional)
+        /// Allows networks bound to this policy to receive DNS queries sent
+        /// by VMs or applications over VPN connections. When enabled, a
+        /// virtual IP address will be allocated from each of the sub-networks
+        /// that are bound to this policy.
         /// </summary>
         [Input("enableInboundForwarding")]
         public Input<bool>? EnableInboundForwarding { get; set; }
 
         /// <summary>
-        /// Controls whether logging is enabled for the networks bound to this policy. Defaults to no logging if not
-        /// set.
+        /// -
+        /// (Optional)
+        /// Controls whether logging is enabled for the networks bound to this policy.
+        /// Defaults to no logging if not set.
         /// </summary>
         [Input("enableLogging")]
         public Input<bool>? EnableLogging { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// User assigned name for this policy.
         /// </summary>
         [Input("name")]
@@ -217,7 +254,9 @@ namespace Pulumi.Gcp.Dns
         private InputList<Inputs.PolicyNetworksGetArgs>? _networks;
 
         /// <summary>
-        /// List of network names specifying networks to which this policy is applied.
+        /// -
+        /// (Optional)
+        /// List of network names specifying networks to which this policy is applied.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.PolicyNetworksGetArgs> Networks
         {
@@ -244,6 +283,14 @@ namespace Pulumi.Gcp.Dns
     {
         [Input("targetNameServers", required: true)]
         private InputList<PolicyAlternativeNameServerConfigTargetNameServersArgs>? _targetNameServers;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Sets an alternative name server for the associated networks. When specified,
+        /// all DNS queries are forwarded to a name server that you choose. Names such as .internal
+        /// are not available when an alternative name server is specified.  Structure is documented below.
+        /// </summary>
         public InputList<PolicyAlternativeNameServerConfigTargetNameServersArgs> TargetNameServers
         {
             get => _targetNameServers ?? (_targetNameServers = new InputList<PolicyAlternativeNameServerConfigTargetNameServersArgs>());
@@ -259,6 +306,14 @@ namespace Pulumi.Gcp.Dns
     {
         [Input("targetNameServers", required: true)]
         private InputList<PolicyAlternativeNameServerConfigTargetNameServersGetArgs>? _targetNameServers;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Sets an alternative name server for the associated networks. When specified,
+        /// all DNS queries are forwarded to a name server that you choose. Names such as .internal
+        /// are not available when an alternative name server is specified.  Structure is documented below.
+        /// </summary>
         public InputList<PolicyAlternativeNameServerConfigTargetNameServersGetArgs> TargetNameServers
         {
             get => _targetNameServers ?? (_targetNameServers = new InputList<PolicyAlternativeNameServerConfigTargetNameServersGetArgs>());
@@ -272,6 +327,11 @@ namespace Pulumi.Gcp.Dns
 
     public sealed class PolicyAlternativeNameServerConfigTargetNameServersArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// IPv4 address to forward to.
+        /// </summary>
         [Input("ipv4Address", required: true)]
         public Input<string> Ipv4Address { get; set; } = null!;
 
@@ -282,6 +342,11 @@ namespace Pulumi.Gcp.Dns
 
     public sealed class PolicyAlternativeNameServerConfigTargetNameServersGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// IPv4 address to forward to.
+        /// </summary>
         [Input("ipv4Address", required: true)]
         public Input<string> Ipv4Address { get; set; } = null!;
 
@@ -292,6 +357,13 @@ namespace Pulumi.Gcp.Dns
 
     public sealed class PolicyNetworksArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fully qualified URL of the VPC network to bind to.
+        /// This should be formatted like
+        /// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
+        /// </summary>
         [Input("networkUrl", required: true)]
         public Input<string> NetworkUrl { get; set; } = null!;
 
@@ -302,6 +374,13 @@ namespace Pulumi.Gcp.Dns
 
     public sealed class PolicyNetworksGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fully qualified URL of the VPC network to bind to.
+        /// This should be formatted like
+        /// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
+        /// </summary>
         [Input("networkUrl", required: true)]
         public Input<string> NetworkUrl { get; set; } = null!;
 
@@ -317,6 +396,13 @@ namespace Pulumi.Gcp.Dns
     [OutputType]
     public sealed class PolicyAlternativeNameServerConfig
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Sets an alternative name server for the associated networks. When specified,
+        /// all DNS queries are forwarded to a name server that you choose. Names such as .internal
+        /// are not available when an alternative name server is specified.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<PolicyAlternativeNameServerConfigTargetNameServers> TargetNameServers;
 
         [OutputConstructor]
@@ -329,6 +415,11 @@ namespace Pulumi.Gcp.Dns
     [OutputType]
     public sealed class PolicyAlternativeNameServerConfigTargetNameServers
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// IPv4 address to forward to.
+        /// </summary>
         public readonly string Ipv4Address;
 
         [OutputConstructor]
@@ -341,6 +432,13 @@ namespace Pulumi.Gcp.Dns
     [OutputType]
     public sealed class PolicyNetworks
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fully qualified URL of the VPC network to bind to.
+        /// This should be formatted like
+        /// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
+        /// </summary>
         public readonly string NetworkUrl;
 
         [OutputConstructor]

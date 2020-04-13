@@ -12,6 +12,8 @@ from .. import utilities, tables
 class TargetSSLProxy(pulumi.CustomResource):
     backend_service: pulumi.Output[str]
     """
+    -
+    (Required)
     A reference to the BackendService resource.
     """
     creation_timestamp: pulumi.Output[str]
@@ -20,14 +22,21 @@ class TargetSSLProxy(pulumi.CustomResource):
     """
     description: pulumi.Output[str]
     """
+    -
+    (Optional)
     An optional description of this resource.
     """
     name: pulumi.Output[str]
     """
-    Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-    comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-    '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-    must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+    -
+    (Required)
+    Name of the resource. Provided by the client when the resource is
+    created. The name must be 1-63 characters long, and comply with
+    RFC1035. Specifically, the name must be 1-63 characters long and match
+    the regular expression `a-z?` which means the
+    first character must be a lowercase letter, and all following
+    characters must be a dash, lowercase letter, or digit, except the last
+    character, which cannot be a dash.
     """
     project: pulumi.Output[str]
     """
@@ -36,8 +45,10 @@ class TargetSSLProxy(pulumi.CustomResource):
     """
     proxy_header: pulumi.Output[str]
     """
-    Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is
-    NONE.
+    -
+    (Optional)
+    Specifies the type of proxy header to append before sending data to
+    the backend, either NONE or PROXY_V1. The default is NONE.
     """
     proxy_id: pulumi.Output[float]
     """
@@ -49,13 +60,19 @@ class TargetSSLProxy(pulumi.CustomResource):
     """
     ssl_certificates: pulumi.Output[str]
     """
-    A list of SslCertificate resources that are used to authenticate connections between users and the load balancer.
-    Currently, exactly one SSL certificate must be specified.
+    -
+    (Required)
+    A list of SslCertificate resources that are used to authenticate
+    connections between users and the load balancer. Currently, exactly
+    one SSL certificate must be specified.
     """
     ssl_policy: pulumi.Output[str]
     """
-    A reference to the SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the
-    TargetSslProxy resource will not have any SSL policy configured.
+    -
+    (Optional)
+    A reference to the SslPolicy resource that will be associated with
+    the TargetSslProxy resource. If not set, the TargetSslProxy
+    resource will not have any SSL policy configured.
     """
     def __init__(__self__, resource_name, opts=None, backend_service=None, description=None, name=None, project=None, proxy_header=None, ssl_certificates=None, ssl_policy=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -70,24 +87,39 @@ class TargetSSLProxy(pulumi.CustomResource):
         * How-to Guides
             * [Setting Up SSL proxy for Google Cloud Load Balancing](https://cloud.google.com/compute/docs/load-balancing/tcp-ssl/)
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_target_ssl_proxy.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend_service: A reference to the BackendService resource.
-        :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-               comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-               '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-               must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        :param pulumi.Input[str] backend_service: -
+               (Required)
+               A reference to the BackendService resource.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               An optional description of this resource.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Name of the resource. Provided by the client when the resource is
+               created. The name must be 1-63 characters long, and comply with
+               RFC1035. Specifically, the name must be 1-63 characters long and match
+               the regular expression `a-z?` which means the
+               first character must be a lowercase letter, and all following
+               characters must be a dash, lowercase letter, or digit, except the last
+               character, which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] proxy_header: Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is
-               NONE.
-        :param pulumi.Input[str] ssl_certificates: A list of SslCertificate resources that are used to authenticate connections between users and the load balancer.
-               Currently, exactly one SSL certificate must be specified.
-        :param pulumi.Input[str] ssl_policy: A reference to the SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the
-               TargetSslProxy resource will not have any SSL policy configured.
+        :param pulumi.Input[str] proxy_header: -
+               (Optional)
+               Specifies the type of proxy header to append before sending data to
+               the backend, either NONE or PROXY_V1. The default is NONE.
+        :param pulumi.Input[str] ssl_certificates: -
+               (Required)
+               A list of SslCertificate resources that are used to authenticate
+               connections between users and the load balancer. Currently, exactly
+               one SSL certificate must be specified.
+        :param pulumi.Input[str] ssl_policy: -
+               (Optional)
+               A reference to the SslPolicy resource that will be associated with
+               the TargetSslProxy resource. If not set, the TargetSslProxy
+               resource will not have any SSL policy configured.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -135,23 +167,40 @@ class TargetSSLProxy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend_service: A reference to the BackendService resource.
+        :param pulumi.Input[str] backend_service: -
+               (Required)
+               A reference to the BackendService resource.
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
-        :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-               comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-               '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-               must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               An optional description of this resource.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Name of the resource. Provided by the client when the resource is
+               created. The name must be 1-63 characters long, and comply with
+               RFC1035. Specifically, the name must be 1-63 characters long and match
+               the regular expression `a-z?` which means the
+               first character must be a lowercase letter, and all following
+               characters must be a dash, lowercase letter, or digit, except the last
+               character, which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] proxy_header: Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is
-               NONE.
+        :param pulumi.Input[str] proxy_header: -
+               (Optional)
+               Specifies the type of proxy header to append before sending data to
+               the backend, either NONE or PROXY_V1. The default is NONE.
         :param pulumi.Input[float] proxy_id: The unique identifier for the resource.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[str] ssl_certificates: A list of SslCertificate resources that are used to authenticate connections between users and the load balancer.
-               Currently, exactly one SSL certificate must be specified.
-        :param pulumi.Input[str] ssl_policy: A reference to the SslPolicy resource that will be associated with the TargetSslProxy resource. If not set, the
-               TargetSslProxy resource will not have any SSL policy configured.
+        :param pulumi.Input[str] ssl_certificates: -
+               (Required)
+               A list of SslCertificate resources that are used to authenticate
+               connections between users and the load balancer. Currently, exactly
+               one SSL certificate must be specified.
+        :param pulumi.Input[str] ssl_policy: -
+               (Optional)
+               A reference to the SslPolicy resource that will be associated with
+               the TargetSslProxy resource. If not set, the TargetSslProxy
+               resource will not have any SSL policy configured.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

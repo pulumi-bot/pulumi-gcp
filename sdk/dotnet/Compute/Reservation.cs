@@ -44,17 +44,23 @@ namespace Pulumi.Gcp.Compute
         public Output<string> CreationTimestamp { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -73,14 +79,19 @@ namespace Pulumi.Gcp.Compute
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
-        /// Reservation for instances with specific machine shapes.
+        /// -
+        /// (Required)
+        /// Reservation for instances with specific machine shapes.  Structure is documented below.
         /// </summary>
         [Output("specificReservation")]
         public Output<Outputs.ReservationSpecificReservation> SpecificReservation { get; private set; } = null!;
 
         /// <summary>
-        /// When set to true, only VMs that target this reservation by name can consume this reservation. Otherwise, it
-        /// can be consumed by VMs with affinity for any reservation. Defaults to false.
+        /// -
+        /// (Optional)
+        /// When set to true, only VMs that target this reservation by name can
+        /// consume this reservation. Otherwise, it can be consumed by VMs with
+        /// affinity for any reservation. Defaults to false.
         /// </summary>
         [Output("specificReservationRequired")]
         public Output<bool?> SpecificReservationRequired { get; private set; } = null!;
@@ -92,6 +103,8 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The zone where the reservation is made.
         /// </summary>
         [Output("zone")]
@@ -144,17 +157,23 @@ namespace Pulumi.Gcp.Compute
     public sealed class ReservationArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -167,19 +186,26 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// Reservation for instances with specific machine shapes.
+        /// -
+        /// (Required)
+        /// Reservation for instances with specific machine shapes.  Structure is documented below.
         /// </summary>
         [Input("specificReservation", required: true)]
         public Input<Inputs.ReservationSpecificReservationArgs> SpecificReservation { get; set; } = null!;
 
         /// <summary>
-        /// When set to true, only VMs that target this reservation by name can consume this reservation. Otherwise, it
-        /// can be consumed by VMs with affinity for any reservation. Defaults to false.
+        /// -
+        /// (Optional)
+        /// When set to true, only VMs that target this reservation by name can
+        /// consume this reservation. Otherwise, it can be consumed by VMs with
+        /// affinity for any reservation. Defaults to false.
         /// </summary>
         [Input("specificReservationRequired")]
         public Input<bool>? SpecificReservationRequired { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The zone where the reservation is made.
         /// </summary>
         [Input("zone", required: true)]
@@ -206,17 +232,23 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? CreationTimestamp { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -235,14 +267,19 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? SelfLink { get; set; }
 
         /// <summary>
-        /// Reservation for instances with specific machine shapes.
+        /// -
+        /// (Required)
+        /// Reservation for instances with specific machine shapes.  Structure is documented below.
         /// </summary>
         [Input("specificReservation")]
         public Input<Inputs.ReservationSpecificReservationGetArgs>? SpecificReservation { get; set; }
 
         /// <summary>
-        /// When set to true, only VMs that target this reservation by name can consume this reservation. Otherwise, it
-        /// can be consumed by VMs with affinity for any reservation. Defaults to false.
+        /// -
+        /// (Optional)
+        /// When set to true, only VMs that target this reservation by name can
+        /// consume this reservation. Otherwise, it can be consumed by VMs with
+        /// affinity for any reservation. Defaults to false.
         /// </summary>
         [Input("specificReservationRequired")]
         public Input<bool>? SpecificReservationRequired { get; set; }
@@ -254,6 +291,8 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Status { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The zone where the reservation is made.
         /// </summary>
         [Input("zone")]
@@ -269,12 +308,26 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ReservationSpecificReservationArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of resources that are allocated.
+        /// </summary>
         [Input("count", required: true)]
         public Input<int> Count { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// How many instances are in use.
+        /// </summary>
         [Input("inUseCount")]
         public Input<int>? InUseCount { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The instance properties for the reservation.  Structure is documented below.
+        /// </summary>
         [Input("instanceProperties", required: true)]
         public Input<ReservationSpecificReservationInstancePropertiesArgs> InstanceProperties { get; set; } = null!;
 
@@ -285,12 +338,26 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ReservationSpecificReservationGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of resources that are allocated.
+        /// </summary>
         [Input("count", required: true)]
         public Input<int> Count { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// How many instances are in use.
+        /// </summary>
         [Input("inUseCount")]
         public Input<int>? InUseCount { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The instance properties for the reservation.  Structure is documented below.
+        /// </summary>
         [Input("instanceProperties", required: true)]
         public Input<ReservationSpecificReservationInstancePropertiesGetArgs> InstanceProperties { get; set; } = null!;
 
@@ -303,6 +370,12 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("guestAccelerators")]
         private InputList<ReservationSpecificReservationInstancePropertiesGuestAcceleratorsArgs>? _guestAccelerators;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Guest accelerator type and count.  Structure is documented below.
+        /// </summary>
         public InputList<ReservationSpecificReservationInstancePropertiesGuestAcceleratorsArgs> GuestAccelerators
         {
             get => _guestAccelerators ?? (_guestAccelerators = new InputList<ReservationSpecificReservationInstancePropertiesGuestAcceleratorsArgs>());
@@ -311,15 +384,35 @@ namespace Pulumi.Gcp.Compute
 
         [Input("localSsds")]
         private InputList<ReservationSpecificReservationInstancePropertiesLocalSsdsArgs>? _localSsds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The amount of local ssd to reserve with each instance. This
+        /// reserves disks of type `local-ssd`.  Structure is documented below.
+        /// </summary>
         public InputList<ReservationSpecificReservationInstancePropertiesLocalSsdsArgs> LocalSsds
         {
             get => _localSsds ?? (_localSsds = new InputList<ReservationSpecificReservationInstancePropertiesLocalSsdsArgs>());
             set => _localSsds = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the machine type to reserve.
+        /// </summary>
         [Input("machineType", required: true)]
         public Input<string> MachineType { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum CPU platform for the reservation. For example,
+        /// `"Intel Skylake"`. See
+        /// the CPU platform availability reference](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform#availablezones)
+        /// for information on available CPU platforms.
+        /// </summary>
         [Input("minCpuPlatform")]
         public Input<string>? MinCpuPlatform { get; set; }
 
@@ -332,6 +425,12 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("guestAccelerators")]
         private InputList<ReservationSpecificReservationInstancePropertiesGuestAcceleratorsGetArgs>? _guestAccelerators;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Guest accelerator type and count.  Structure is documented below.
+        /// </summary>
         public InputList<ReservationSpecificReservationInstancePropertiesGuestAcceleratorsGetArgs> GuestAccelerators
         {
             get => _guestAccelerators ?? (_guestAccelerators = new InputList<ReservationSpecificReservationInstancePropertiesGuestAcceleratorsGetArgs>());
@@ -340,15 +439,35 @@ namespace Pulumi.Gcp.Compute
 
         [Input("localSsds")]
         private InputList<ReservationSpecificReservationInstancePropertiesLocalSsdsGetArgs>? _localSsds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The amount of local ssd to reserve with each instance. This
+        /// reserves disks of type `local-ssd`.  Structure is documented below.
+        /// </summary>
         public InputList<ReservationSpecificReservationInstancePropertiesLocalSsdsGetArgs> LocalSsds
         {
             get => _localSsds ?? (_localSsds = new InputList<ReservationSpecificReservationInstancePropertiesLocalSsdsGetArgs>());
             set => _localSsds = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the machine type to reserve.
+        /// </summary>
         [Input("machineType", required: true)]
         public Input<string> MachineType { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum CPU platform for the reservation. For example,
+        /// `"Intel Skylake"`. See
+        /// the CPU platform availability reference](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform#availablezones)
+        /// for information on available CPU platforms.
+        /// </summary>
         [Input("minCpuPlatform")]
         public Input<string>? MinCpuPlatform { get; set; }
 
@@ -359,9 +478,23 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ReservationSpecificReservationInstancePropertiesGuestAcceleratorsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of the guest accelerator cards exposed to
+        /// this instance.
+        /// </summary>
         [Input("acceleratorCount", required: true)]
         public Input<int> AcceleratorCount { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full or partial URL of the accelerator type to
+        /// attach to this instance. For example:
+        /// `projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100`
+        /// If you are creating an instance template, specify only the accelerator name.
+        /// </summary>
         [Input("acceleratorType", required: true)]
         public Input<string> AcceleratorType { get; set; } = null!;
 
@@ -372,9 +505,23 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ReservationSpecificReservationInstancePropertiesGuestAcceleratorsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of the guest accelerator cards exposed to
+        /// this instance.
+        /// </summary>
         [Input("acceleratorCount", required: true)]
         public Input<int> AcceleratorCount { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full or partial URL of the accelerator type to
+        /// attach to this instance. For example:
+        /// `projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100`
+        /// If you are creating an instance template, specify only the accelerator name.
+        /// </summary>
         [Input("acceleratorType", required: true)]
         public Input<string> AcceleratorType { get; set; } = null!;
 
@@ -385,9 +532,20 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ReservationSpecificReservationInstancePropertiesLocalSsdsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The size of the disk in base-2 GB.
+        /// </summary>
         [Input("diskSizeGb", required: true)]
         public Input<int> DiskSizeGb { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The disk interface to use for attaching this disk, one
+        /// of `SCSI` or `NVME`. The default is `SCSI`.
+        /// </summary>
         [Input("interface")]
         public Input<string>? Interface { get; set; }
 
@@ -398,9 +556,20 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ReservationSpecificReservationInstancePropertiesLocalSsdsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The size of the disk in base-2 GB.
+        /// </summary>
         [Input("diskSizeGb", required: true)]
         public Input<int> DiskSizeGb { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The disk interface to use for attaching this disk, one
+        /// of `SCSI` or `NVME`. The default is `SCSI`.
+        /// </summary>
         [Input("interface")]
         public Input<string>? Interface { get; set; }
 
@@ -416,8 +585,22 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ReservationSpecificReservation
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of resources that are allocated.
+        /// </summary>
         public readonly int Count;
+        /// <summary>
+        /// -
+        /// How many instances are in use.
+        /// </summary>
         public readonly int InUseCount;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The instance properties for the reservation.  Structure is documented below.
+        /// </summary>
         public readonly ReservationSpecificReservationInstanceProperties InstanceProperties;
 
         [OutputConstructor]
@@ -435,9 +618,33 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ReservationSpecificReservationInstanceProperties
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Guest accelerator type and count.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<ReservationSpecificReservationInstancePropertiesGuestAccelerators> GuestAccelerators;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The amount of local ssd to reserve with each instance. This
+        /// reserves disks of type `local-ssd`.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<ReservationSpecificReservationInstancePropertiesLocalSsds> LocalSsds;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the machine type to reserve.
+        /// </summary>
         public readonly string MachineType;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum CPU platform for the reservation. For example,
+        /// `"Intel Skylake"`. See
+        /// the CPU platform availability reference](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform#availablezones)
+        /// for information on available CPU platforms.
+        /// </summary>
         public readonly string MinCpuPlatform;
 
         [OutputConstructor]
@@ -457,7 +664,21 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ReservationSpecificReservationInstancePropertiesGuestAccelerators
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of the guest accelerator cards exposed to
+        /// this instance.
+        /// </summary>
         public readonly int AcceleratorCount;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full or partial URL of the accelerator type to
+        /// attach to this instance. For example:
+        /// `projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100`
+        /// If you are creating an instance template, specify only the accelerator name.
+        /// </summary>
         public readonly string AcceleratorType;
 
         [OutputConstructor]
@@ -473,7 +694,18 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ReservationSpecificReservationInstancePropertiesLocalSsds
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The size of the disk in base-2 GB.
+        /// </summary>
         public readonly int DiskSizeGb;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The disk interface to use for attaching this disk, one
+        /// of `SCSI` or `NVME`. The default is `SCSI`.
+        /// </summary>
         public readonly string? Interface;
 
         [OutputConstructor]

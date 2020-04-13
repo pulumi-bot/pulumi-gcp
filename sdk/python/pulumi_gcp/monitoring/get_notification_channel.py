@@ -83,9 +83,10 @@ def get_notification_channel(display_name=None,labels=None,project=None,type=Non
         * [Notification Options](https://cloud.google.com/monitoring/support/notification-options)
         * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
-    > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_monitoring_notification_channel.html.markdown.
 
-
+    :param str display_name: -
+           (Optional)
+           The display name for this notification channel.
     :param dict labels: Labels (corresponding to the
            NotificationChannelDescriptor schema) to filter the notification channels by.
     :param str project: The ID of the project in which the resource belongs.

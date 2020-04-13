@@ -33,7 +33,7 @@ class OrganizationPolicy(pulumi.CustomResource):
     A policy that can define specific values that are allowed or denied for the given constraint. It
     can also be used to allow or deny all values. Structure is documented below.
 
-      * `allow` (`dict`)
+      * `allow` (`dict`) - or `deny` - (Optional) One or the other must be set.
         * `all` (`bool`) - The policy allows or denies all values.
         * `values` (`list`) - The policy can define specific values that are allowed or denied.
 
@@ -66,7 +66,7 @@ class OrganizationPolicy(pulumi.CustomResource):
         documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
         [API](https://cloud.google.com/resource-manager/reference/rest/v1/folders/setOrgPolicy).
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_folder_organization_policy.html.markdown.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -84,7 +84,7 @@ class OrganizationPolicy(pulumi.CustomResource):
 
         The **list_policy** object supports the following:
 
-          * `allow` (`pulumi.Input[dict]`)
+          * `allow` (`pulumi.Input[dict]`) - or `deny` - (Optional) One or the other must be set.
             * `all` (`pulumi.Input[bool]`) - The policy allows or denies all values.
             * `values` (`pulumi.Input[list]`) - The policy can define specific values that are allowed or denied.
 
@@ -160,7 +160,7 @@ class OrganizationPolicy(pulumi.CustomResource):
 
         The **list_policy** object supports the following:
 
-          * `allow` (`pulumi.Input[dict]`)
+          * `allow` (`pulumi.Input[dict]`) - or `deny` - (Optional) One or the other must be set.
             * `all` (`pulumi.Input[bool]`) - The policy allows or denies all values.
             * `values` (`pulumi.Input[list]`) - The policy can define specific values that are allowed or denied.
 

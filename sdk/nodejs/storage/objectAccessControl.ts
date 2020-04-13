@@ -57,6 +57,8 @@ export class ObjectAccessControl extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Required)
      * The name of the bucket.
      */
     public readonly bucket!: pulumi.Output<string>;
@@ -69,9 +71,17 @@ export class ObjectAccessControl extends pulumi.CustomResource {
      */
     public /*out*/ readonly email!: pulumi.Output<string>;
     /**
-     * The entity holding the permission, in one of the following forms: * user-{{userId}} * user-{{email}} (such as
-     * "user-liz@example.com") * group-{{groupId}} * group-{{email}} (such as "group-example@googlegroups.com") *
-     * domain-{{domain}} (such as "domain-example.com") * project-team-{{projectId}} * allUsers * allAuthenticatedUsers
+     * -
+     * (Required)
+     * The entity holding the permission, in one of the following forms:
+     * * user-{{userId}}
+     * * user-{{email}} (such as "user-liz@example.com")
+     * * group-{{groupId}}
+     * * group-{{email}} (such as "group-example@googlegroups.com")
+     * * domain-{{domain}} (such as "domain-example.com")
+     * * project-team-{{projectId}}
+     * * allUsers
+     * * allAuthenticatedUsers
      */
     public readonly entity!: pulumi.Output<string>;
     /**
@@ -83,6 +93,8 @@ export class ObjectAccessControl extends pulumi.CustomResource {
      */
     public /*out*/ readonly generation!: pulumi.Output<number>;
     /**
+     * -
+     * (Required)
      * The name of the object to apply the access control to.
      */
     public readonly object!: pulumi.Output<string>;
@@ -91,6 +103,8 @@ export class ObjectAccessControl extends pulumi.CustomResource {
      */
     public /*out*/ readonly projectTeam!: pulumi.Output<outputs.storage.ObjectAccessControlProjectTeam>;
     /**
+     * -
+     * (Required)
      * The access permission for the entity.
      */
     public readonly role!: pulumi.Output<string>;
@@ -156,6 +170,8 @@ export class ObjectAccessControl extends pulumi.CustomResource {
  */
 export interface ObjectAccessControlState {
     /**
+     * -
+     * (Required)
      * The name of the bucket.
      */
     readonly bucket?: pulumi.Input<string>;
@@ -168,9 +184,17 @@ export interface ObjectAccessControlState {
      */
     readonly email?: pulumi.Input<string>;
     /**
-     * The entity holding the permission, in one of the following forms: * user-{{userId}} * user-{{email}} (such as
-     * "user-liz@example.com") * group-{{groupId}} * group-{{email}} (such as "group-example@googlegroups.com") *
-     * domain-{{domain}} (such as "domain-example.com") * project-team-{{projectId}} * allUsers * allAuthenticatedUsers
+     * -
+     * (Required)
+     * The entity holding the permission, in one of the following forms:
+     * * user-{{userId}}
+     * * user-{{email}} (such as "user-liz@example.com")
+     * * group-{{groupId}}
+     * * group-{{email}} (such as "group-example@googlegroups.com")
+     * * domain-{{domain}} (such as "domain-example.com")
+     * * project-team-{{projectId}}
+     * * allUsers
+     * * allAuthenticatedUsers
      */
     readonly entity?: pulumi.Input<string>;
     /**
@@ -182,6 +206,8 @@ export interface ObjectAccessControlState {
      */
     readonly generation?: pulumi.Input<number>;
     /**
+     * -
+     * (Required)
      * The name of the object to apply the access control to.
      */
     readonly object?: pulumi.Input<string>;
@@ -190,6 +216,8 @@ export interface ObjectAccessControlState {
      */
     readonly projectTeam?: pulumi.Input<inputs.storage.ObjectAccessControlProjectTeam>;
     /**
+     * -
+     * (Required)
      * The access permission for the entity.
      */
     readonly role?: pulumi.Input<string>;
@@ -200,20 +228,34 @@ export interface ObjectAccessControlState {
  */
 export interface ObjectAccessControlArgs {
     /**
+     * -
+     * (Required)
      * The name of the bucket.
      */
     readonly bucket: pulumi.Input<string>;
     /**
-     * The entity holding the permission, in one of the following forms: * user-{{userId}} * user-{{email}} (such as
-     * "user-liz@example.com") * group-{{groupId}} * group-{{email}} (such as "group-example@googlegroups.com") *
-     * domain-{{domain}} (such as "domain-example.com") * project-team-{{projectId}} * allUsers * allAuthenticatedUsers
+     * -
+     * (Required)
+     * The entity holding the permission, in one of the following forms:
+     * * user-{{userId}}
+     * * user-{{email}} (such as "user-liz@example.com")
+     * * group-{{groupId}}
+     * * group-{{email}} (such as "group-example@googlegroups.com")
+     * * domain-{{domain}} (such as "domain-example.com")
+     * * project-team-{{projectId}}
+     * * allUsers
+     * * allAuthenticatedUsers
      */
     readonly entity: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The name of the object to apply the access control to.
      */
     readonly object: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The access permission for the entity.
      */
     readonly role: pulumi.Input<string>;

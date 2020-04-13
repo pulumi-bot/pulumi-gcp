@@ -24,6 +24,8 @@ namespace Pulumi.Gcp.Healthcare
     public partial class DicomStore : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Identifies the dataset addressed by this request. Must be in the format
         /// 'projects/{project}/locations/{location}/datasets/{dataset}'
         /// </summary>
@@ -31,25 +33,33 @@ namespace Pulumi.Gcp.Healthcare
         public Output<string> Dataset { get; private set; } = null!;
 
         /// <summary>
-        /// User-supplied key-value pairs used to organize DICOM stores. Label keys must be between 1 and 63 characters
-        /// long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62} Label values are optional, must be between 1 and 63 characters
-        /// long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given store. An object
-        /// containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
+        /// -
+        /// (Optional)
+        /// User-supplied key-value pairs used to organize DICOM stores.
+        /// Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must
+        /// conform to the following PCRE regular expression: [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
+        /// Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128
+        /// bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
+        /// No more than 64 labels can be associated with a given store.
+        /// An object containing a list of "key": value pairs.
+        /// Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// The resource name for the DicomStore. ** Changing this property may recreate the Dicom store (removing all
-        /// data) **
+        /// -
+        /// (Required)
+        /// The resource name for the DicomStore.
+        /// ** Changing this property may recreate the Dicom store (removing all data) **
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Output("notificationConfig")]
         public Output<Outputs.DicomStoreNotificationConfig?> NotificationConfig { get; private set; } = null!;
@@ -107,6 +117,8 @@ namespace Pulumi.Gcp.Healthcare
     public sealed class DicomStoreArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Identifies the dataset addressed by this request. Must be in the format
         /// 'projects/{project}/locations/{location}/datasets/{dataset}'
         /// </summary>
@@ -117,12 +129,16 @@ namespace Pulumi.Gcp.Healthcare
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// User-supplied key-value pairs used to organize DICOM stores. Label keys must be between 1 and 63 characters
-        /// long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62} Label values are optional, must be between 1 and 63 characters
-        /// long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given store. An object
-        /// containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
+        /// -
+        /// (Optional)
+        /// User-supplied key-value pairs used to organize DICOM stores.
+        /// Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must
+        /// conform to the following PCRE regular expression: [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
+        /// Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128
+        /// bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
+        /// No more than 64 labels can be associated with a given store.
+        /// An object containing a list of "key": value pairs.
+        /// Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -131,14 +147,18 @@ namespace Pulumi.Gcp.Healthcare
         }
 
         /// <summary>
-        /// The resource name for the DicomStore. ** Changing this property may recreate the Dicom store (removing all
-        /// data) **
+        /// -
+        /// (Required)
+        /// The resource name for the DicomStore.
+        /// ** Changing this property may recreate the Dicom store (removing all data) **
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("notificationConfig")]
         public Input<Inputs.DicomStoreNotificationConfigArgs>? NotificationConfig { get; set; }
@@ -151,6 +171,8 @@ namespace Pulumi.Gcp.Healthcare
     public sealed class DicomStoreState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Identifies the dataset addressed by this request. Must be in the format
         /// 'projects/{project}/locations/{location}/datasets/{dataset}'
         /// </summary>
@@ -161,12 +183,16 @@ namespace Pulumi.Gcp.Healthcare
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// User-supplied key-value pairs used to organize DICOM stores. Label keys must be between 1 and 63 characters
-        /// long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62} Label values are optional, must be between 1 and 63 characters
-        /// long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression:
-        /// [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be associated with a given store. An object
-        /// containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
+        /// -
+        /// (Optional)
+        /// User-supplied key-value pairs used to organize DICOM stores.
+        /// Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must
+        /// conform to the following PCRE regular expression: [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
+        /// Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128
+        /// bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63}
+        /// No more than 64 labels can be associated with a given store.
+        /// An object containing a list of "key": value pairs.
+        /// Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -175,14 +201,18 @@ namespace Pulumi.Gcp.Healthcare
         }
 
         /// <summary>
-        /// The resource name for the DicomStore. ** Changing this property may recreate the Dicom store (removing all
-        /// data) **
+        /// -
+        /// (Required)
+        /// The resource name for the DicomStore.
+        /// ** Changing this property may recreate the Dicom store (removing all data) **
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("notificationConfig")]
         public Input<Inputs.DicomStoreNotificationConfigGetArgs>? NotificationConfig { get; set; }
@@ -203,6 +233,16 @@ namespace Pulumi.Gcp.Healthcare
 
     public sealed class DicomStoreNotificationConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+        /// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+        /// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+        /// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+        /// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+        /// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
+        /// </summary>
         [Input("pubsubTopic", required: true)]
         public Input<string> PubsubTopic { get; set; } = null!;
 
@@ -213,6 +253,16 @@ namespace Pulumi.Gcp.Healthcare
 
     public sealed class DicomStoreNotificationConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+        /// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+        /// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+        /// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+        /// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+        /// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
+        /// </summary>
         [Input("pubsubTopic", required: true)]
         public Input<string> PubsubTopic { get; set; } = null!;
 
@@ -228,6 +278,16 @@ namespace Pulumi.Gcp.Healthcare
     [OutputType]
     public sealed class DicomStoreNotificationConfig
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+        /// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+        /// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+        /// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+        /// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+        /// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
+        /// </summary>
         public readonly string PubsubTopic;
 
         [OutputConstructor]

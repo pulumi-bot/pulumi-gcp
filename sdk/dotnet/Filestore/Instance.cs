@@ -32,6 +32,8 @@ namespace Pulumi.Gcp.Filestore
         public Output<string> CreateTime { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// A description of the instance.
         /// </summary>
         [Output("description")]
@@ -44,25 +46,35 @@ namespace Pulumi.Gcp.Filestore
         public Output<string> Etag { get; private set; } = null!;
 
         /// <summary>
-        /// File system shares on the instance. For this version, only a single file share is supported.
+        /// -
+        /// (Required)
+        /// File system shares on the instance. For this version, only a
+        /// single file share is supported.  Structure is documented below.
         /// </summary>
         [Output("fileShares")]
         public Output<Outputs.InstanceFileShares> FileShares { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Resource labels to represent user-provided metadata.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// The resource name of the instance.
+        /// -
+        /// (Required)
+        /// The name of the fileshare (16 characters or less)
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// VPC networks to which the instance is connected. For this version, only a single network is supported.
+        /// -
+        /// (Required)
+        /// VPC networks to which the instance is connected. For this version,
+        /// only a single network is supported.  Structure is documented below.
         /// </summary>
         [Output("networks")]
         public Output<ImmutableArray<Outputs.InstanceNetworks>> Networks { get; private set; } = null!;
@@ -75,12 +87,16 @@ namespace Pulumi.Gcp.Filestore
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The service tier of the instance.
         /// </summary>
         [Output("tier")]
         public Output<string> Tier { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the Filestore zone of the instance.
         /// </summary>
         [Output("zone")]
@@ -133,13 +149,18 @@ namespace Pulumi.Gcp.Filestore
     public sealed class InstanceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// A description of the instance.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// File system shares on the instance. For this version, only a single file share is supported.
+        /// -
+        /// (Required)
+        /// File system shares on the instance. For this version, only a
+        /// single file share is supported.  Structure is documented below.
         /// </summary>
         [Input("fileShares", required: true)]
         public Input<Inputs.InstanceFileSharesArgs> FileShares { get; set; } = null!;
@@ -148,6 +169,8 @@ namespace Pulumi.Gcp.Filestore
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Resource labels to represent user-provided metadata.
         /// </summary>
         public InputMap<string> Labels
@@ -157,7 +180,9 @@ namespace Pulumi.Gcp.Filestore
         }
 
         /// <summary>
-        /// The resource name of the instance.
+        /// -
+        /// (Required)
+        /// The name of the fileshare (16 characters or less)
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -166,7 +191,10 @@ namespace Pulumi.Gcp.Filestore
         private InputList<Inputs.InstanceNetworksArgs>? _networks;
 
         /// <summary>
-        /// VPC networks to which the instance is connected. For this version, only a single network is supported.
+        /// -
+        /// (Required)
+        /// VPC networks to which the instance is connected. For this version,
+        /// only a single network is supported.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.InstanceNetworksArgs> Networks
         {
@@ -182,12 +210,16 @@ namespace Pulumi.Gcp.Filestore
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The service tier of the instance.
         /// </summary>
         [Input("tier", required: true)]
         public Input<string> Tier { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the Filestore zone of the instance.
         /// </summary>
         [Input("zone", required: true)]
@@ -207,6 +239,8 @@ namespace Pulumi.Gcp.Filestore
         public Input<string>? CreateTime { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// A description of the instance.
         /// </summary>
         [Input("description")]
@@ -219,7 +253,10 @@ namespace Pulumi.Gcp.Filestore
         public Input<string>? Etag { get; set; }
 
         /// <summary>
-        /// File system shares on the instance. For this version, only a single file share is supported.
+        /// -
+        /// (Required)
+        /// File system shares on the instance. For this version, only a
+        /// single file share is supported.  Structure is documented below.
         /// </summary>
         [Input("fileShares")]
         public Input<Inputs.InstanceFileSharesGetArgs>? FileShares { get; set; }
@@ -228,6 +265,8 @@ namespace Pulumi.Gcp.Filestore
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Resource labels to represent user-provided metadata.
         /// </summary>
         public InputMap<string> Labels
@@ -237,7 +276,9 @@ namespace Pulumi.Gcp.Filestore
         }
 
         /// <summary>
-        /// The resource name of the instance.
+        /// -
+        /// (Required)
+        /// The name of the fileshare (16 characters or less)
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -246,7 +287,10 @@ namespace Pulumi.Gcp.Filestore
         private InputList<Inputs.InstanceNetworksGetArgs>? _networks;
 
         /// <summary>
-        /// VPC networks to which the instance is connected. For this version, only a single network is supported.
+        /// -
+        /// (Required)
+        /// VPC networks to which the instance is connected. For this version,
+        /// only a single network is supported.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.InstanceNetworksGetArgs> Networks
         {
@@ -262,12 +306,16 @@ namespace Pulumi.Gcp.Filestore
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The service tier of the instance.
         /// </summary>
         [Input("tier")]
         public Input<string>? Tier { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the Filestore zone of the instance.
         /// </summary>
         [Input("zone")]
@@ -283,9 +331,20 @@ namespace Pulumi.Gcp.Filestore
 
     public sealed class InstanceFileSharesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// File share capacity in GiB. This must be at least 1024 GiB
+        /// for the standard tier, or 2560 GiB for the premium tier.
+        /// </summary>
         [Input("capacityGb", required: true)]
         public Input<int> CapacityGb { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the fileshare (16 characters or less)
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -296,9 +355,20 @@ namespace Pulumi.Gcp.Filestore
 
     public sealed class InstanceFileSharesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// File share capacity in GiB. This must be at least 1024 GiB
+        /// for the standard tier, or 2560 GiB for the premium tier.
+        /// </summary>
         [Input("capacityGb", required: true)]
         public Input<int> CapacityGb { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the fileshare (16 characters or less)
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -311,6 +381,11 @@ namespace Pulumi.Gcp.Filestore
     {
         [Input("ipAddresses")]
         private InputList<string>? _ipAddresses;
+
+        /// <summary>
+        /// -
+        /// A list of IPv4 or IPv6 addresses.
+        /// </summary>
         public InputList<string> IpAddresses
         {
             get => _ipAddresses ?? (_ipAddresses = new InputList<string>());
@@ -319,15 +394,34 @@ namespace Pulumi.Gcp.Filestore
 
         [Input("modes", required: true)]
         private InputList<string>? _modes;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// IP versions for which the instance has
+        /// IP addresses assigned.
+        /// </summary>
         public InputList<string> Modes
         {
             get => _modes ?? (_modes = new InputList<string>());
             set => _modes = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the GCE VPC network to which the
+        /// instance is connected.
+        /// </summary>
         [Input("network", required: true)]
         public Input<string> Network { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A /29 CIDR block that identifies the range of IP
+        /// addresses reserved for this instance.
+        /// </summary>
         [Input("reservedIpRange")]
         public Input<string>? ReservedIpRange { get; set; }
 
@@ -340,6 +434,11 @@ namespace Pulumi.Gcp.Filestore
     {
         [Input("ipAddresses")]
         private InputList<string>? _ipAddresses;
+
+        /// <summary>
+        /// -
+        /// A list of IPv4 or IPv6 addresses.
+        /// </summary>
         public InputList<string> IpAddresses
         {
             get => _ipAddresses ?? (_ipAddresses = new InputList<string>());
@@ -348,15 +447,34 @@ namespace Pulumi.Gcp.Filestore
 
         [Input("modes", required: true)]
         private InputList<string>? _modes;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// IP versions for which the instance has
+        /// IP addresses assigned.
+        /// </summary>
         public InputList<string> Modes
         {
             get => _modes ?? (_modes = new InputList<string>());
             set => _modes = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the GCE VPC network to which the
+        /// instance is connected.
+        /// </summary>
         [Input("network", required: true)]
         public Input<string> Network { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A /29 CIDR block that identifies the range of IP
+        /// addresses reserved for this instance.
+        /// </summary>
         [Input("reservedIpRange")]
         public Input<string>? ReservedIpRange { get; set; }
 
@@ -372,7 +490,18 @@ namespace Pulumi.Gcp.Filestore
     [OutputType]
     public sealed class InstanceFileShares
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// File share capacity in GiB. This must be at least 1024 GiB
+        /// for the standard tier, or 2560 GiB for the premium tier.
+        /// </summary>
         public readonly int CapacityGb;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the fileshare (16 characters or less)
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]
@@ -388,9 +517,31 @@ namespace Pulumi.Gcp.Filestore
     [OutputType]
     public sealed class InstanceNetworks
     {
+        /// <summary>
+        /// -
+        /// A list of IPv4 or IPv6 addresses.
+        /// </summary>
         public readonly ImmutableArray<string> IpAddresses;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// IP versions for which the instance has
+        /// IP addresses assigned.
+        /// </summary>
         public readonly ImmutableArray<string> Modes;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the GCE VPC network to which the
+        /// instance is connected.
+        /// </summary>
         public readonly string Network;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A /29 CIDR block that identifies the range of IP
+        /// addresses reserved for this instance.
+        /// </summary>
         public readonly string ReservedIpRange;
 
         [OutputConstructor]

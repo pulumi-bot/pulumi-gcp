@@ -41,6 +41,8 @@ namespace Pulumi.Gcp.Compute
         public Output<string> CreationTimestamp { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Output("description")]
@@ -59,6 +61,8 @@ namespace Pulumi.Gcp.Compute
         public Output<string> LabelFingerprint { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Labels to apply to this Snapshot.
         /// </summary>
         [Output("labels")]
@@ -73,11 +77,15 @@ namespace Pulumi.Gcp.Compute
         public Output<ImmutableArray<string>> Licenses { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource; provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -96,8 +104,10 @@ namespace Pulumi.Gcp.Compute
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
-        /// The customer-supplied encryption key of the snapshot. Required if the source snapshot is protected by a
-        /// customer-supplied encryption key.
+        /// -
+        /// (Optional)
+        /// The customer-supplied encryption key of the snapshot. Required if the
+        /// source snapshot is protected by a customer-supplied encryption key.  Structure is documented below.
         /// </summary>
         [Output("snapshotEncryptionKey")]
         public Output<Outputs.SnapshotSnapshotEncryptionKey?> SnapshotEncryptionKey { get; private set; } = null!;
@@ -109,14 +119,19 @@ namespace Pulumi.Gcp.Compute
         public Output<int> SnapshotId { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// A reference to the disk used to create this snapshot.
         /// </summary>
         [Output("sourceDisk")]
         public Output<string> SourceDisk { get; private set; } = null!;
 
         /// <summary>
-        /// The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by
-        /// a customer-supplied encryption key.
+        /// -
+        /// (Optional)
+        /// The customer-supplied encryption key of the source snapshot. Required
+        /// if the source snapshot is protected by a customer-supplied encryption
+        /// key.  Structure is documented below.
         /// </summary>
         [Output("sourceDiskEncryptionKey")]
         public Output<Outputs.SnapshotSourceDiskEncryptionKey?> SourceDiskEncryptionKey { get; private set; } = null!;
@@ -132,6 +147,8 @@ namespace Pulumi.Gcp.Compute
         public Output<int> StorageBytes { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// A reference to the zone where the disk is hosted.
         /// </summary>
         [Output("zone")]
@@ -184,6 +201,8 @@ namespace Pulumi.Gcp.Compute
     public sealed class SnapshotArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Input("description")]
@@ -193,6 +212,8 @@ namespace Pulumi.Gcp.Compute
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Labels to apply to this Snapshot.
         /// </summary>
         public InputMap<string> Labels
@@ -202,11 +223,15 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource; provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -219,26 +244,35 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The customer-supplied encryption key of the snapshot. Required if the source snapshot is protected by a
-        /// customer-supplied encryption key.
+        /// -
+        /// (Optional)
+        /// The customer-supplied encryption key of the snapshot. Required if the
+        /// source snapshot is protected by a customer-supplied encryption key.  Structure is documented below.
         /// </summary>
         [Input("snapshotEncryptionKey")]
         public Input<Inputs.SnapshotSnapshotEncryptionKeyArgs>? SnapshotEncryptionKey { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// A reference to the disk used to create this snapshot.
         /// </summary>
         [Input("sourceDisk", required: true)]
         public Input<string> SourceDisk { get; set; } = null!;
 
         /// <summary>
-        /// The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by
-        /// a customer-supplied encryption key.
+        /// -
+        /// (Optional)
+        /// The customer-supplied encryption key of the source snapshot. Required
+        /// if the source snapshot is protected by a customer-supplied encryption
+        /// key.  Structure is documented below.
         /// </summary>
         [Input("sourceDiskEncryptionKey")]
         public Input<Inputs.SnapshotSourceDiskEncryptionKeyArgs>? SourceDiskEncryptionKey { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// A reference to the zone where the disk is hosted.
         /// </summary>
         [Input("zone")]
@@ -258,6 +292,8 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? CreationTimestamp { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Input("description")]
@@ -279,6 +315,8 @@ namespace Pulumi.Gcp.Compute
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Labels to apply to this Snapshot.
         /// </summary>
         public InputMap<string> Labels
@@ -302,11 +340,15 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource; provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -325,8 +367,10 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? SelfLink { get; set; }
 
         /// <summary>
-        /// The customer-supplied encryption key of the snapshot. Required if the source snapshot is protected by a
-        /// customer-supplied encryption key.
+        /// -
+        /// (Optional)
+        /// The customer-supplied encryption key of the snapshot. Required if the
+        /// source snapshot is protected by a customer-supplied encryption key.  Structure is documented below.
         /// </summary>
         [Input("snapshotEncryptionKey")]
         public Input<Inputs.SnapshotSnapshotEncryptionKeyGetArgs>? SnapshotEncryptionKey { get; set; }
@@ -338,14 +382,19 @@ namespace Pulumi.Gcp.Compute
         public Input<int>? SnapshotId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// A reference to the disk used to create this snapshot.
         /// </summary>
         [Input("sourceDisk")]
         public Input<string>? SourceDisk { get; set; }
 
         /// <summary>
-        /// The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by
-        /// a customer-supplied encryption key.
+        /// -
+        /// (Optional)
+        /// The customer-supplied encryption key of the source snapshot. Required
+        /// if the source snapshot is protected by a customer-supplied encryption
+        /// key.  Structure is documented below.
         /// </summary>
         [Input("sourceDiskEncryptionKey")]
         public Input<Inputs.SnapshotSourceDiskEncryptionKeyGetArgs>? SourceDiskEncryptionKey { get; set; }
@@ -361,6 +410,8 @@ namespace Pulumi.Gcp.Compute
         public Input<int>? StorageBytes { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// A reference to the zone where the disk is hosted.
         /// </summary>
         [Input("zone")]
@@ -376,9 +427,20 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class SnapshotSnapshotEncryptionKeyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a 256-bit customer-supplied encryption key, encoded in
+        /// RFC 4648 base64 to either encrypt or decrypt this resource.
+        /// </summary>
         [Input("rawKey", required: true)]
         public Input<string> RawKey { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
+        /// encryption key that protects this resource.
+        /// </summary>
         [Input("sha256")]
         public Input<string>? Sha256 { get; set; }
 
@@ -389,9 +451,20 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class SnapshotSnapshotEncryptionKeyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a 256-bit customer-supplied encryption key, encoded in
+        /// RFC 4648 base64 to either encrypt or decrypt this resource.
+        /// </summary>
         [Input("rawKey", required: true)]
         public Input<string> RawKey { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
+        /// encryption key that protects this resource.
+        /// </summary>
         [Input("sha256")]
         public Input<string>? Sha256 { get; set; }
 
@@ -402,6 +475,12 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class SnapshotSourceDiskEncryptionKeyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a 256-bit customer-supplied encryption key, encoded in
+        /// RFC 4648 base64 to either encrypt or decrypt this resource.
+        /// </summary>
         [Input("rawKey")]
         public Input<string>? RawKey { get; set; }
 
@@ -412,6 +491,12 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class SnapshotSourceDiskEncryptionKeyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a 256-bit customer-supplied encryption key, encoded in
+        /// RFC 4648 base64 to either encrypt or decrypt this resource.
+        /// </summary>
         [Input("rawKey")]
         public Input<string>? RawKey { get; set; }
 
@@ -427,7 +512,18 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class SnapshotSnapshotEncryptionKey
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a 256-bit customer-supplied encryption key, encoded in
+        /// RFC 4648 base64 to either encrypt or decrypt this resource.
+        /// </summary>
         public readonly string RawKey;
+        /// <summary>
+        /// -
+        /// The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
+        /// encryption key that protects this resource.
+        /// </summary>
         public readonly string Sha256;
 
         [OutputConstructor]
@@ -443,6 +539,12 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class SnapshotSourceDiskEncryptionKey
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a 256-bit customer-supplied encryption key, encoded in
+        /// RFC 4648 base64 to either encrypt or decrypt this resource.
+        /// </summary>
         public readonly string? RawKey;
 
         [OutputConstructor]

@@ -31,17 +31,23 @@ namespace Pulumi.Gcp.Compute
         public Output<string> CreationTimestamp { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -60,10 +66,14 @@ namespace Pulumi.Gcp.Compute
         public Output<int> ProxyId { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the QUIC override policy for this resource. This determines whether the load balancer will attempt
-        /// to negotiate QUIC with clients or not. Can specify one of NONE, ENABLE, or DISABLE. If NONE is specified,
-        /// uses the QUIC policy with no user overrides, which is equivalent to DISABLE. Not specifying this field is
-        /// equivalent to specifying NONE.
+        /// -
+        /// (Optional)
+        /// Specifies the QUIC override policy for this resource. This determines
+        /// whether the load balancer will attempt to negotiate QUIC with clients
+        /// or not. Can specify one of NONE, ENABLE, or DISABLE. If NONE is
+        /// specified, uses the QUIC policy with no user overrides, which is
+        /// equivalent to DISABLE. Not specifying this field is equivalent to
+        /// specifying NONE.
         /// </summary>
         [Output("quicOverride")]
         public Output<string?> QuicOverride { get; private set; } = null!;
@@ -75,21 +85,30 @@ namespace Pulumi.Gcp.Compute
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
-        /// A list of SslCertificate resources that are used to authenticate connections between users and the load
-        /// balancer. At least one SSL certificate must be specified.
+        /// -
+        /// (Required)
+        /// A list of SslCertificate resources that are used to authenticate
+        /// connections between users and the load balancer. At least one SSL
+        /// certificate must be specified.
         /// </summary>
         [Output("sslCertificates")]
         public Output<ImmutableArray<string>> SslCertificates { get; private set; } = null!;
 
         /// <summary>
-        /// A reference to the SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not
-        /// set, the TargetHttpsProxy resource will not have any SSL policy configured.
+        /// -
+        /// (Optional)
+        /// A reference to the SslPolicy resource that will be associated with
+        /// the TargetHttpsProxy resource. If not set, the TargetHttpsProxy
+        /// resource will not have any SSL policy configured.
         /// </summary>
         [Output("sslPolicy")]
         public Output<string?> SslPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// A reference to the UrlMap resource that defines the mapping from URL to the BackendService.
+        /// -
+        /// (Required)
+        /// A reference to the UrlMap resource that defines the mapping from URL
+        /// to the BackendService.
         /// </summary>
         [Output("urlMap")]
         public Output<string> UrlMap { get; private set; } = null!;
@@ -141,17 +160,23 @@ namespace Pulumi.Gcp.Compute
     public sealed class TargetHttpsProxyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -164,10 +189,14 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// Specifies the QUIC override policy for this resource. This determines whether the load balancer will attempt
-        /// to negotiate QUIC with clients or not. Can specify one of NONE, ENABLE, or DISABLE. If NONE is specified,
-        /// uses the QUIC policy with no user overrides, which is equivalent to DISABLE. Not specifying this field is
-        /// equivalent to specifying NONE.
+        /// -
+        /// (Optional)
+        /// Specifies the QUIC override policy for this resource. This determines
+        /// whether the load balancer will attempt to negotiate QUIC with clients
+        /// or not. Can specify one of NONE, ENABLE, or DISABLE. If NONE is
+        /// specified, uses the QUIC policy with no user overrides, which is
+        /// equivalent to DISABLE. Not specifying this field is equivalent to
+        /// specifying NONE.
         /// </summary>
         [Input("quicOverride")]
         public Input<string>? QuicOverride { get; set; }
@@ -176,8 +205,11 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _sslCertificates;
 
         /// <summary>
-        /// A list of SslCertificate resources that are used to authenticate connections between users and the load
-        /// balancer. At least one SSL certificate must be specified.
+        /// -
+        /// (Required)
+        /// A list of SslCertificate resources that are used to authenticate
+        /// connections between users and the load balancer. At least one SSL
+        /// certificate must be specified.
         /// </summary>
         public InputList<string> SslCertificates
         {
@@ -186,14 +218,20 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// A reference to the SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not
-        /// set, the TargetHttpsProxy resource will not have any SSL policy configured.
+        /// -
+        /// (Optional)
+        /// A reference to the SslPolicy resource that will be associated with
+        /// the TargetHttpsProxy resource. If not set, the TargetHttpsProxy
+        /// resource will not have any SSL policy configured.
         /// </summary>
         [Input("sslPolicy")]
         public Input<string>? SslPolicy { get; set; }
 
         /// <summary>
-        /// A reference to the UrlMap resource that defines the mapping from URL to the BackendService.
+        /// -
+        /// (Required)
+        /// A reference to the UrlMap resource that defines the mapping from URL
+        /// to the BackendService.
         /// </summary>
         [Input("urlMap", required: true)]
         public Input<string> UrlMap { get; set; } = null!;
@@ -212,17 +250,23 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? CreationTimestamp { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -241,10 +285,14 @@ namespace Pulumi.Gcp.Compute
         public Input<int>? ProxyId { get; set; }
 
         /// <summary>
-        /// Specifies the QUIC override policy for this resource. This determines whether the load balancer will attempt
-        /// to negotiate QUIC with clients or not. Can specify one of NONE, ENABLE, or DISABLE. If NONE is specified,
-        /// uses the QUIC policy with no user overrides, which is equivalent to DISABLE. Not specifying this field is
-        /// equivalent to specifying NONE.
+        /// -
+        /// (Optional)
+        /// Specifies the QUIC override policy for this resource. This determines
+        /// whether the load balancer will attempt to negotiate QUIC with clients
+        /// or not. Can specify one of NONE, ENABLE, or DISABLE. If NONE is
+        /// specified, uses the QUIC policy with no user overrides, which is
+        /// equivalent to DISABLE. Not specifying this field is equivalent to
+        /// specifying NONE.
         /// </summary>
         [Input("quicOverride")]
         public Input<string>? QuicOverride { get; set; }
@@ -259,8 +307,11 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _sslCertificates;
 
         /// <summary>
-        /// A list of SslCertificate resources that are used to authenticate connections between users and the load
-        /// balancer. At least one SSL certificate must be specified.
+        /// -
+        /// (Required)
+        /// A list of SslCertificate resources that are used to authenticate
+        /// connections between users and the load balancer. At least one SSL
+        /// certificate must be specified.
         /// </summary>
         public InputList<string> SslCertificates
         {
@@ -269,14 +320,20 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// A reference to the SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not
-        /// set, the TargetHttpsProxy resource will not have any SSL policy configured.
+        /// -
+        /// (Optional)
+        /// A reference to the SslPolicy resource that will be associated with
+        /// the TargetHttpsProxy resource. If not set, the TargetHttpsProxy
+        /// resource will not have any SSL policy configured.
         /// </summary>
         [Input("sslPolicy")]
         public Input<string>? SslPolicy { get; set; }
 
         /// <summary>
-        /// A reference to the UrlMap resource that defines the mapping from URL to the BackendService.
+        /// -
+        /// (Required)
+        /// A reference to the UrlMap resource that defines the mapping from URL
+        /// to the BackendService.
         /// </summary>
         [Input("urlMap")]
         public Input<string>? UrlMap { get; set; }

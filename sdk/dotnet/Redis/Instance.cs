@@ -24,22 +24,32 @@ namespace Pulumi.Gcp.Redis
     public partial class Instance : Pulumi.CustomResource
     {
         /// <summary>
-        /// Only applicable to STANDARD_HA tier which protects the instance against zonal failures by provisioning it
-        /// across two zones. If provided, it must be a different zone from the one provided in [locationId].
+        /// -
+        /// (Optional)
+        /// Only applicable to STANDARD_HA tier which protects the instance
+        /// against zonal failures by provisioning it across two zones.
+        /// If provided, it must be a different zone from the one provided in
+        /// [locationId].
         /// </summary>
         [Output("alternativeLocationId")]
         public Output<string> AlternativeLocationId { get; private set; } = null!;
 
         /// <summary>
-        /// The full name of the Google Compute Engine network to which the instance is connected. If left unspecified,
-        /// the default network will be used.
+        /// -
+        /// (Optional)
+        /// The full name of the Google Compute Engine network to which the
+        /// instance is connected. If left unspecified, the default network
+        /// will be used.
         /// </summary>
         [Output("authorizedNetwork")]
         public Output<string> AuthorizedNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// The connection mode of the Redis instance. Can be either 'DIRECT_PEERING' or 'PRIVATE_SERVICE_ACCESS'. The
-        /// default connect mode if not provided is 'DIRECT_PEERING'.
+        /// -
+        /// (Optional)
+        /// The connection mode of the Redis instance. Can be either
+        /// `DIRECT_PEERING` or `PRIVATE_SERVICE_ACCESS`. The default
+        /// connect mode if not provided is `DIRECT_PEERING`.
         /// </summary>
         [Output("connectMode")]
         public Output<string?> ConnectMode { get; private set; } = null!;
@@ -59,6 +69,8 @@ namespace Pulumi.Gcp.Redis
         public Output<string> CurrentLocationId { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An arbitrary and optional user-provided name for the instance.
         /// </summary>
         [Output("displayName")]
@@ -71,26 +83,36 @@ namespace Pulumi.Gcp.Redis
         public Output<string> Host { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Resource labels to represent user provided metadata.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// The zone where the instance will be provisioned. If not provided, the service will choose a zone for the
-        /// instance. For STANDARD_HA tier, instances will be created across two zones for protection against zonal
-        /// failures. If [alternativeLocationId] is also provided, it must be different from [locationId].
+        /// -
+        /// (Optional)
+        /// The zone where the instance will be provisioned. If not provided,
+        /// the service will choose a zone for the instance. For STANDARD_HA tier,
+        /// instances will be created across two zones for protection against
+        /// zonal failures. If [alternativeLocationId] is also provided, it must
+        /// be different from [locationId].
         /// </summary>
         [Output("locationId")]
         public Output<string> LocationId { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Redis memory size in GiB.
         /// </summary>
         [Output("memorySizeGb")]
         public Output<int> MemorySizeGb { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The ID of the instance or a fully qualified identifier for the instance.
         /// </summary>
         [Output("name")]
@@ -110,37 +132,52 @@ namespace Pulumi.Gcp.Redis
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// Redis configuration parameters, according to http://redis.io/topics/config. Please check Memorystore
-        /// documentation for the list of supported parameters:
+        /// -
+        /// (Optional)
+        /// Redis configuration parameters, according to http://redis.io/topics/config.
+        /// Please check Memorystore documentation for the list of supported parameters:
         /// https://cloud.google.com/memorystore/docs/redis/reference/rest/v1/projects.locations.instances#Instance.FIELDS.redis_configs
         /// </summary>
         [Output("redisConfigs")]
         public Output<ImmutableDictionary<string, string>?> RedisConfigs { get; private set; } = null!;
 
         /// <summary>
-        /// The version of Redis software. If not provided, latest supported version will be used. Currently, the
-        /// supported values are: - REDIS_4_0 for Redis 4.0 compatibility - REDIS_3_2 for Redis 3.2 compatibility
+        /// -
+        /// (Optional)
+        /// The version of Redis software. If not provided, latest supported
+        /// version will be used. Currently, the supported values are:
+        /// - REDIS_4_0 for Redis 4.0 compatibility
+        /// - REDIS_3_2 for Redis 3.2 compatibility
         /// </summary>
         [Output("redisVersion")]
         public Output<string> RedisVersion { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The name of the Redis region of the instance.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The CIDR range of internal addresses that are reserved for this instance. If not provided, the service will
-        /// choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique and
-        /// non-overlapping with existing subnets in an authorized network.
+        /// -
+        /// (Optional)
+        /// The CIDR range of internal addresses that are reserved for this
+        /// instance. If not provided, the service will choose an unused /29
+        /// block, for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be
+        /// unique and non-overlapping with existing subnets in an authorized
+        /// network.
         /// </summary>
         [Output("reservedIpRange")]
         public Output<string> ReservedIpRange { get; private set; } = null!;
 
         /// <summary>
-        /// The service tier of the instance. Must be one of these values: - BASIC: standalone instance - STANDARD_HA:
-        /// highly available primary/replica instances
+        /// -
+        /// (Optional)
+        /// The service tier of the instance. Must be one of these values:
+        /// - BASIC: standalone instance
+        /// - STANDARD_HA: highly available primary/replica instances
         /// </summary>
         [Output("tier")]
         public Output<string?> Tier { get; private set; } = null!;
@@ -192,27 +229,39 @@ namespace Pulumi.Gcp.Redis
     public sealed class InstanceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Only applicable to STANDARD_HA tier which protects the instance against zonal failures by provisioning it
-        /// across two zones. If provided, it must be a different zone from the one provided in [locationId].
+        /// -
+        /// (Optional)
+        /// Only applicable to STANDARD_HA tier which protects the instance
+        /// against zonal failures by provisioning it across two zones.
+        /// If provided, it must be a different zone from the one provided in
+        /// [locationId].
         /// </summary>
         [Input("alternativeLocationId")]
         public Input<string>? AlternativeLocationId { get; set; }
 
         /// <summary>
-        /// The full name of the Google Compute Engine network to which the instance is connected. If left unspecified,
-        /// the default network will be used.
+        /// -
+        /// (Optional)
+        /// The full name of the Google Compute Engine network to which the
+        /// instance is connected. If left unspecified, the default network
+        /// will be used.
         /// </summary>
         [Input("authorizedNetwork")]
         public Input<string>? AuthorizedNetwork { get; set; }
 
         /// <summary>
-        /// The connection mode of the Redis instance. Can be either 'DIRECT_PEERING' or 'PRIVATE_SERVICE_ACCESS'. The
-        /// default connect mode if not provided is 'DIRECT_PEERING'.
+        /// -
+        /// (Optional)
+        /// The connection mode of the Redis instance. Can be either
+        /// `DIRECT_PEERING` or `PRIVATE_SERVICE_ACCESS`. The default
+        /// connect mode if not provided is `DIRECT_PEERING`.
         /// </summary>
         [Input("connectMode")]
         public Input<string>? ConnectMode { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An arbitrary and optional user-provided name for the instance.
         /// </summary>
         [Input("displayName")]
@@ -222,6 +271,8 @@ namespace Pulumi.Gcp.Redis
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Resource labels to represent user provided metadata.
         /// </summary>
         public InputMap<string> Labels
@@ -231,20 +282,28 @@ namespace Pulumi.Gcp.Redis
         }
 
         /// <summary>
-        /// The zone where the instance will be provisioned. If not provided, the service will choose a zone for the
-        /// instance. For STANDARD_HA tier, instances will be created across two zones for protection against zonal
-        /// failures. If [alternativeLocationId] is also provided, it must be different from [locationId].
+        /// -
+        /// (Optional)
+        /// The zone where the instance will be provisioned. If not provided,
+        /// the service will choose a zone for the instance. For STANDARD_HA tier,
+        /// instances will be created across two zones for protection against
+        /// zonal failures. If [alternativeLocationId] is also provided, it must
+        /// be different from [locationId].
         /// </summary>
         [Input("locationId")]
         public Input<string>? LocationId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Redis memory size in GiB.
         /// </summary>
         [Input("memorySizeGb", required: true)]
         public Input<int> MemorySizeGb { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The ID of the instance or a fully qualified identifier for the instance.
         /// </summary>
         [Input("name")]
@@ -261,8 +320,10 @@ namespace Pulumi.Gcp.Redis
         private InputMap<string>? _redisConfigs;
 
         /// <summary>
-        /// Redis configuration parameters, according to http://redis.io/topics/config. Please check Memorystore
-        /// documentation for the list of supported parameters:
+        /// -
+        /// (Optional)
+        /// Redis configuration parameters, according to http://redis.io/topics/config.
+        /// Please check Memorystore documentation for the list of supported parameters:
         /// https://cloud.google.com/memorystore/docs/redis/reference/rest/v1/projects.locations.instances#Instance.FIELDS.redis_configs
         /// </summary>
         public InputMap<string> RedisConfigs
@@ -272,29 +333,42 @@ namespace Pulumi.Gcp.Redis
         }
 
         /// <summary>
-        /// The version of Redis software. If not provided, latest supported version will be used. Currently, the
-        /// supported values are: - REDIS_4_0 for Redis 4.0 compatibility - REDIS_3_2 for Redis 3.2 compatibility
+        /// -
+        /// (Optional)
+        /// The version of Redis software. If not provided, latest supported
+        /// version will be used. Currently, the supported values are:
+        /// - REDIS_4_0 for Redis 4.0 compatibility
+        /// - REDIS_3_2 for Redis 3.2 compatibility
         /// </summary>
         [Input("redisVersion")]
         public Input<string>? RedisVersion { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The name of the Redis region of the instance.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The CIDR range of internal addresses that are reserved for this instance. If not provided, the service will
-        /// choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique and
-        /// non-overlapping with existing subnets in an authorized network.
+        /// -
+        /// (Optional)
+        /// The CIDR range of internal addresses that are reserved for this
+        /// instance. If not provided, the service will choose an unused /29
+        /// block, for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be
+        /// unique and non-overlapping with existing subnets in an authorized
+        /// network.
         /// </summary>
         [Input("reservedIpRange")]
         public Input<string>? ReservedIpRange { get; set; }
 
         /// <summary>
-        /// The service tier of the instance. Must be one of these values: - BASIC: standalone instance - STANDARD_HA:
-        /// highly available primary/replica instances
+        /// -
+        /// (Optional)
+        /// The service tier of the instance. Must be one of these values:
+        /// - BASIC: standalone instance
+        /// - STANDARD_HA: highly available primary/replica instances
         /// </summary>
         [Input("tier")]
         public Input<string>? Tier { get; set; }
@@ -307,22 +381,32 @@ namespace Pulumi.Gcp.Redis
     public sealed class InstanceState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Only applicable to STANDARD_HA tier which protects the instance against zonal failures by provisioning it
-        /// across two zones. If provided, it must be a different zone from the one provided in [locationId].
+        /// -
+        /// (Optional)
+        /// Only applicable to STANDARD_HA tier which protects the instance
+        /// against zonal failures by provisioning it across two zones.
+        /// If provided, it must be a different zone from the one provided in
+        /// [locationId].
         /// </summary>
         [Input("alternativeLocationId")]
         public Input<string>? AlternativeLocationId { get; set; }
 
         /// <summary>
-        /// The full name of the Google Compute Engine network to which the instance is connected. If left unspecified,
-        /// the default network will be used.
+        /// -
+        /// (Optional)
+        /// The full name of the Google Compute Engine network to which the
+        /// instance is connected. If left unspecified, the default network
+        /// will be used.
         /// </summary>
         [Input("authorizedNetwork")]
         public Input<string>? AuthorizedNetwork { get; set; }
 
         /// <summary>
-        /// The connection mode of the Redis instance. Can be either 'DIRECT_PEERING' or 'PRIVATE_SERVICE_ACCESS'. The
-        /// default connect mode if not provided is 'DIRECT_PEERING'.
+        /// -
+        /// (Optional)
+        /// The connection mode of the Redis instance. Can be either
+        /// `DIRECT_PEERING` or `PRIVATE_SERVICE_ACCESS`. The default
+        /// connect mode if not provided is `DIRECT_PEERING`.
         /// </summary>
         [Input("connectMode")]
         public Input<string>? ConnectMode { get; set; }
@@ -342,6 +426,8 @@ namespace Pulumi.Gcp.Redis
         public Input<string>? CurrentLocationId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An arbitrary and optional user-provided name for the instance.
         /// </summary>
         [Input("displayName")]
@@ -357,6 +443,8 @@ namespace Pulumi.Gcp.Redis
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Resource labels to represent user provided metadata.
         /// </summary>
         public InputMap<string> Labels
@@ -366,20 +454,28 @@ namespace Pulumi.Gcp.Redis
         }
 
         /// <summary>
-        /// The zone where the instance will be provisioned. If not provided, the service will choose a zone for the
-        /// instance. For STANDARD_HA tier, instances will be created across two zones for protection against zonal
-        /// failures. If [alternativeLocationId] is also provided, it must be different from [locationId].
+        /// -
+        /// (Optional)
+        /// The zone where the instance will be provisioned. If not provided,
+        /// the service will choose a zone for the instance. For STANDARD_HA tier,
+        /// instances will be created across two zones for protection against
+        /// zonal failures. If [alternativeLocationId] is also provided, it must
+        /// be different from [locationId].
         /// </summary>
         [Input("locationId")]
         public Input<string>? LocationId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Redis memory size in GiB.
         /// </summary>
         [Input("memorySizeGb")]
         public Input<int>? MemorySizeGb { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The ID of the instance or a fully qualified identifier for the instance.
         /// </summary>
         [Input("name")]
@@ -402,8 +498,10 @@ namespace Pulumi.Gcp.Redis
         private InputMap<string>? _redisConfigs;
 
         /// <summary>
-        /// Redis configuration parameters, according to http://redis.io/topics/config. Please check Memorystore
-        /// documentation for the list of supported parameters:
+        /// -
+        /// (Optional)
+        /// Redis configuration parameters, according to http://redis.io/topics/config.
+        /// Please check Memorystore documentation for the list of supported parameters:
         /// https://cloud.google.com/memorystore/docs/redis/reference/rest/v1/projects.locations.instances#Instance.FIELDS.redis_configs
         /// </summary>
         public InputMap<string> RedisConfigs
@@ -413,29 +511,42 @@ namespace Pulumi.Gcp.Redis
         }
 
         /// <summary>
-        /// The version of Redis software. If not provided, latest supported version will be used. Currently, the
-        /// supported values are: - REDIS_4_0 for Redis 4.0 compatibility - REDIS_3_2 for Redis 3.2 compatibility
+        /// -
+        /// (Optional)
+        /// The version of Redis software. If not provided, latest supported
+        /// version will be used. Currently, the supported values are:
+        /// - REDIS_4_0 for Redis 4.0 compatibility
+        /// - REDIS_3_2 for Redis 3.2 compatibility
         /// </summary>
         [Input("redisVersion")]
         public Input<string>? RedisVersion { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The name of the Redis region of the instance.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The CIDR range of internal addresses that are reserved for this instance. If not provided, the service will
-        /// choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique and
-        /// non-overlapping with existing subnets in an authorized network.
+        /// -
+        /// (Optional)
+        /// The CIDR range of internal addresses that are reserved for this
+        /// instance. If not provided, the service will choose an unused /29
+        /// block, for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be
+        /// unique and non-overlapping with existing subnets in an authorized
+        /// network.
         /// </summary>
         [Input("reservedIpRange")]
         public Input<string>? ReservedIpRange { get; set; }
 
         /// <summary>
-        /// The service tier of the instance. Must be one of these values: - BASIC: standalone instance - STANDARD_HA:
-        /// highly available primary/replica instances
+        /// -
+        /// (Optional)
+        /// The service tier of the instance. Must be one of these values:
+        /// - BASIC: standalone instance
+        /// - STANDARD_HA: highly available primary/replica instances
         /// </summary>
         [Input("tier")]
         public Input<string>? Tier { get; set; }

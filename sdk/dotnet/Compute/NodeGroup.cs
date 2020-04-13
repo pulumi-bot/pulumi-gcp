@@ -29,8 +29,9 @@ namespace Pulumi.Gcp.Compute
     public partial class NodeGroup : Pulumi.CustomResource
     {
         /// <summary>
-        /// If you use sole-tenant nodes for your workloads, you can use the node group autoscaler to automatically
-        /// manage the sizes of your node groups.
+        /// -
+        /// If you use sole-tenant nodes for your workloads, you can use the node
+        /// group autoscaler to automatically manage the sizes of your node groups.  Structure is documented below.
         /// </summary>
         [Output("autoscalingPolicy")]
         public Output<Outputs.NodeGroupAutoscalingPolicy> AutoscalingPolicy { get; private set; } = null!;
@@ -42,18 +43,24 @@ namespace Pulumi.Gcp.Compute
         public Output<string> CreationTimestamp { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional textual description of the resource.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Name of the resource.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The URL of the node template to which this node group belongs.
         /// </summary>
         [Output("nodeTemplate")]
@@ -73,12 +80,16 @@ namespace Pulumi.Gcp.Compute
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The total number of nodes in the node group.
         /// </summary>
         [Output("size")]
         public Output<int> Size { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Zone where this node group is located
         /// </summary>
         [Output("zone")]
@@ -131,25 +142,32 @@ namespace Pulumi.Gcp.Compute
     public sealed class NodeGroupArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If you use sole-tenant nodes for your workloads, you can use the node group autoscaler to automatically
-        /// manage the sizes of your node groups.
+        /// -
+        /// If you use sole-tenant nodes for your workloads, you can use the node
+        /// group autoscaler to automatically manage the sizes of your node groups.  Structure is documented below.
         /// </summary>
         [Input("autoscalingPolicy")]
         public Input<Inputs.NodeGroupAutoscalingPolicyArgs>? AutoscalingPolicy { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional textual description of the resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Name of the resource.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The URL of the node template to which this node group belongs.
         /// </summary>
         [Input("nodeTemplate", required: true)]
@@ -163,12 +181,16 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The total number of nodes in the node group.
         /// </summary>
         [Input("size", required: true)]
         public Input<int> Size { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Zone where this node group is located
         /// </summary>
         [Input("zone")]
@@ -182,8 +204,9 @@ namespace Pulumi.Gcp.Compute
     public sealed class NodeGroupState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If you use sole-tenant nodes for your workloads, you can use the node group autoscaler to automatically
-        /// manage the sizes of your node groups.
+        /// -
+        /// If you use sole-tenant nodes for your workloads, you can use the node
+        /// group autoscaler to automatically manage the sizes of your node groups.  Structure is documented below.
         /// </summary>
         [Input("autoscalingPolicy")]
         public Input<Inputs.NodeGroupAutoscalingPolicyGetArgs>? AutoscalingPolicy { get; set; }
@@ -195,18 +218,24 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? CreationTimestamp { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional textual description of the resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Name of the resource.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The URL of the node template to which this node group belongs.
         /// </summary>
         [Input("nodeTemplate")]
@@ -226,12 +255,16 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? SelfLink { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The total number of nodes in the node group.
         /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Zone where this node group is located
         /// </summary>
         [Input("zone")]
@@ -247,12 +280,34 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class NodeGroupAutoscalingPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Maximum size of the node group. Set to a value less than or equal
+        /// to 100 and greater than or equal to min-nodes.
+        /// </summary>
         [Input("maxNodes")]
         public Input<int>? MaxNodes { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum size of the node group. Must be less
+        /// than or equal to max-nodes. The default value is 0.
+        /// </summary>
         [Input("minNodes")]
         public Input<int>? MinNodes { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The autoscaling mode. Set to one of the following:
+        /// - OFF: Disables the autoscaler.
+        /// - ON: Enables scaling in and scaling out.
+        /// - ONLY_SCALE_OUT: Enables only scaling out.
+        /// You must use this mode if your node groups are configured to
+        /// restart their hosted VMs on minimal servers.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
@@ -263,12 +318,34 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class NodeGroupAutoscalingPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Maximum size of the node group. Set to a value less than or equal
+        /// to 100 and greater than or equal to min-nodes.
+        /// </summary>
         [Input("maxNodes")]
         public Input<int>? MaxNodes { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum size of the node group. Must be less
+        /// than or equal to max-nodes. The default value is 0.
+        /// </summary>
         [Input("minNodes")]
         public Input<int>? MinNodes { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The autoscaling mode. Set to one of the following:
+        /// - OFF: Disables the autoscaler.
+        /// - ON: Enables scaling in and scaling out.
+        /// - ONLY_SCALE_OUT: Enables only scaling out.
+        /// You must use this mode if your node groups are configured to
+        /// restart their hosted VMs on minimal servers.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
@@ -284,8 +361,30 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class NodeGroupAutoscalingPolicy
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Maximum size of the node group. Set to a value less than or equal
+        /// to 100 and greater than or equal to min-nodes.
+        /// </summary>
         public readonly int MaxNodes;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum size of the node group. Must be less
+        /// than or equal to max-nodes. The default value is 0.
+        /// </summary>
         public readonly int MinNodes;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The autoscaling mode. Set to one of the following:
+        /// - OFF: Disables the autoscaler.
+        /// - ON: Enables scaling in and scaling out.
+        /// - ONLY_SCALE_OUT: Enables only scaling out.
+        /// You must use this mode if your node groups are configured to
+        /// restart their hosted VMs on minimal servers.
+        /// </summary>
         public readonly string Mode;
 
         [OutputConstructor]

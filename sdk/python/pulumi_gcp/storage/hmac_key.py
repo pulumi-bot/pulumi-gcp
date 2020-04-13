@@ -25,10 +25,14 @@ class HmacKey(pulumi.CustomResource):
     """
     service_account_email: pulumi.Output[str]
     """
+    -
+    (Required)
     The email address of the key's associated service account.
     """
     state: pulumi.Output[str]
     """
+    -
+    (Optional)
     The state of the key. Can be set to one of ACTIVE, INACTIVE.
     """
     time_created: pulumi.Output[str]
@@ -56,14 +60,16 @@ class HmacKey(pulumi.CustomResource):
         state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
         On import, the `secret` value will not be retrieved.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/storage_hmac_key.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] service_account_email: The email address of the key's associated service account.
-        :param pulumi.Input[str] state: The state of the key. Can be set to one of ACTIVE, INACTIVE.
+        :param pulumi.Input[str] service_account_email: -
+               (Required)
+               The email address of the key's associated service account.
+        :param pulumi.Input[str] state: -
+               (Optional)
+               The state of the key. Can be set to one of ACTIVE, INACTIVE.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -110,8 +116,12 @@ class HmacKey(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] secret: HMAC secret key material.
-        :param pulumi.Input[str] service_account_email: The email address of the key's associated service account.
-        :param pulumi.Input[str] state: The state of the key. Can be set to one of ACTIVE, INACTIVE.
+        :param pulumi.Input[str] service_account_email: -
+               (Required)
+               The email address of the key's associated service account.
+        :param pulumi.Input[str] state: -
+               (Optional)
+               The state of the key. Can be set to one of ACTIVE, INACTIVE.
         :param pulumi.Input[str] time_created: 'The creation time of the HMAC key in RFC 3339 format. '
         :param pulumi.Input[str] updated: 'The last modification time of the HMAC key metadata in RFC 3339 format.'
         """

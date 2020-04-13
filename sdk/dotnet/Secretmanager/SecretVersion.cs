@@ -29,6 +29,8 @@ namespace Pulumi.Gcp.SecretManager
         public Output<string> DestroyTime { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The current state of the SecretVersion.
         /// </summary>
         [Output("enabled")]
@@ -42,12 +44,16 @@ namespace Pulumi.Gcp.SecretManager
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Secret Manager secret resource
         /// </summary>
         [Output("secret")]
         public Output<string> Secret { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The secret data. Must be no larger than 64KiB.
         /// </summary>
         [Output("secretData")]
@@ -100,18 +106,24 @@ namespace Pulumi.Gcp.SecretManager
     public sealed class SecretVersionArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// The current state of the SecretVersion.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Secret Manager secret resource
         /// </summary>
         [Input("secret", required: true)]
         public Input<string> Secret { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The secret data. Must be no larger than 64KiB.
         /// </summary>
         [Input("secretData")]
@@ -137,6 +149,8 @@ namespace Pulumi.Gcp.SecretManager
         public Input<string>? DestroyTime { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The current state of the SecretVersion.
         /// </summary>
         [Input("enabled")]
@@ -150,12 +164,16 @@ namespace Pulumi.Gcp.SecretManager
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Secret Manager secret resource
         /// </summary>
         [Input("secret")]
         public Input<string>? Secret { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The secret data. Must be no larger than 64KiB.
         /// </summary>
         [Input("secretData")]

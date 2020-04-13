@@ -23,7 +23,10 @@ namespace Pulumi.Gcp.Compute
     public partial class GlobalForwardingRule : Pulumi.CustomResource
     {
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -46,14 +49,20 @@ namespace Pulumi.Gcp.Compute
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP. When the load
-        /// balancing scheme is INTERNAL_SELF_MANAGED, only TCP is valid.
+        /// -
+        /// (Optional)
+        /// The IP protocol to which this rule applies. Valid options are TCP,
+        /// UDP, ESP, AH, SCTP or ICMP. When the load balancing scheme is
+        /// INTERNAL_SELF_MANAGED, only TCP is valid.
         /// </summary>
         [Output("ipProtocol")]
         public Output<string> IpProtocol { get; private set; } = null!;
 
         /// <summary>
-        /// The IP Version that will be used by this global forwarding rule. Valid options are IPV4 or IPV6.
+        /// -
+        /// (Optional)
+        /// The IP Version that will be used by this global forwarding rule.
+        /// Valid options are IPV4 or IPV6.
         /// </summary>
         [Output("ipVersion")]
         public Output<string?> IpVersion { get; private set; } = null!;
@@ -71,33 +80,45 @@ namespace Pulumi.Gcp.Compute
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// This signifies what the GlobalForwardingRule will be used for. The value of INTERNAL_SELF_MANAGED means that
-        /// this will be used for Internal Global HTTP(S) LB. The value of EXTERNAL means that this will be used for
-        /// External Global Load Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy) NOTE: Currently global
-        /// forwarding rules cannot be used for INTERNAL load balancing.
+        /// -
+        /// (Optional)
+        /// This signifies what the GlobalForwardingRule will be used for.
+        /// The value of INTERNAL_SELF_MANAGED means that this will be used for
+        /// Internal Global HTTP(S) LB. The value of EXTERNAL means that this
+        /// will be used for External Global Load Balancing (HTTP(S) LB,
+        /// External TCP/UDP LB, SSL Proxy)
+        /// NOTE: Currently global forwarding rules cannot be used for INTERNAL
+        /// load balancing.
         /// </summary>
         [Output("loadBalancingScheme")]
         public Output<string?> LoadBalancingScheme { get; private set; } = null!;
 
         /// <summary>
-        /// Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set xDS compliant
-        /// clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. If a match takes place,
-        /// the relevant routing configuration is made available to those proxies. For each metadataFilter in this list,
-        /// if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the
-        /// corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of
-        /// its filterLabels must match with corresponding labels in the provided metadata. metadataFilters specified
-        /// here can be overridden by those specified in the UrlMap that this ForwardingRule references. metadataFilters
-        /// only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
+        /// -
+        /// (Optional)
+        /// Opaque filter criteria used by Loadbalancer to restrict routing
+        /// configuration to a limited set xDS compliant clients. In their xDS
+        /// requests to Loadbalancer, xDS clients present node metadata. If a
+        /// match takes place, the relevant routing configuration is made available
+        /// to those proxies.
+        /// For each metadataFilter in this list, if its filterMatchCriteria is set
+        /// to MATCH_ANY, at least one of the filterLabels must match the
+        /// corresponding label provided in the metadata. If its filterMatchCriteria
+        /// is set to MATCH_ALL, then all of its filterLabels must match with
+        /// corresponding labels in the provided metadata.
+        /// metadataFilters specified here can be overridden by those specified in
+        /// the UrlMap that this ForwardingRule references.
+        /// metadataFilters only applies to Loadbalancers that have their
+        /// loadBalancingScheme set to INTERNAL_SELF_MANAGED.  Structure is documented below.
         /// </summary>
         [Output("metadataFilters")]
         public Output<ImmutableArray<Outputs.GlobalForwardingRuleMetadataFilters>> MetadataFilters { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the metadata label. The length must be between
+        /// 1 and 1024 characters, inclusive.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -111,13 +132,24 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Network { get; private set; } = null!;
 
         /// <summary>
-        /// This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy,
-        /// TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance. Applicable only when IPProtocol is TCP, UDP,
-        /// or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding
-        /// rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges. Some types of forwarding
-        /// target have constraints on the acceptable ports: * TargetHttpProxy: 80, 8080 * TargetHttpsProxy: 443 *
-        /// TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 * TargetSslProxy: 25, 43,
-        /// 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 * TargetVpnGateway: 500, 4500
+        /// -
+        /// (Optional)
+        /// This field is used along with the target field for TargetHttpProxy,
+        /// TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway,
+        /// TargetPool, TargetInstance.
+        /// Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets
+        /// addressed to ports in the specified range will be forwarded to target.
+        /// Forwarding rules with the same [IPAddress, IPProtocol] pair must have
+        /// disjoint port ranges.
+        /// Some types of forwarding target have constraints on the acceptable
+        /// ports:
+        /// * TargetHttpProxy: 80, 8080
+        /// * TargetHttpsProxy: 443
+        /// * TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995,
+        /// 1883, 5222
+        /// * TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995,
+        /// 1883, 5222
+        /// * TargetVpnGateway: 500, 4500
         /// </summary>
         [Output("portRange")]
         public Output<string?> PortRange { get; private set; } = null!;
@@ -136,9 +168,12 @@ namespace Pulumi.Gcp.Compute
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
-        /// The URL of the target resource to receive the matched traffic. The forwarded traffic must be of a type
-        /// appropriate to the target object. For INTERNAL_SELF_MANAGED load balancing, only HTTP and HTTPS targets are
-        /// valid.
+        /// -
+        /// (Required)
+        /// The URL of the target resource to receive the matched traffic.
+        /// The forwarded traffic must be of a type appropriate to the target object.
+        /// For INTERNAL_SELF_MANAGED load balancing, only HTTP and HTTPS targets
+        /// are valid.
         /// </summary>
         [Output("target")]
         public Output<string> Target { get; private set; } = null!;
@@ -190,7 +225,10 @@ namespace Pulumi.Gcp.Compute
     public sealed class GlobalForwardingRuleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -213,14 +251,20 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP. When the load
-        /// balancing scheme is INTERNAL_SELF_MANAGED, only TCP is valid.
+        /// -
+        /// (Optional)
+        /// The IP protocol to which this rule applies. Valid options are TCP,
+        /// UDP, ESP, AH, SCTP or ICMP. When the load balancing scheme is
+        /// INTERNAL_SELF_MANAGED, only TCP is valid.
         /// </summary>
         [Input("ipProtocol")]
         public Input<string>? IpProtocol { get; set; }
 
         /// <summary>
-        /// The IP Version that will be used by this global forwarding rule. Valid options are IPV4 or IPV6.
+        /// -
+        /// (Optional)
+        /// The IP Version that will be used by this global forwarding rule.
+        /// Valid options are IPV4 or IPV6.
         /// </summary>
         [Input("ipVersion")]
         public Input<string>? IpVersion { get; set; }
@@ -238,10 +282,15 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// This signifies what the GlobalForwardingRule will be used for. The value of INTERNAL_SELF_MANAGED means that
-        /// this will be used for Internal Global HTTP(S) LB. The value of EXTERNAL means that this will be used for
-        /// External Global Load Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy) NOTE: Currently global
-        /// forwarding rules cannot be used for INTERNAL load balancing.
+        /// -
+        /// (Optional)
+        /// This signifies what the GlobalForwardingRule will be used for.
+        /// The value of INTERNAL_SELF_MANAGED means that this will be used for
+        /// Internal Global HTTP(S) LB. The value of EXTERNAL means that this
+        /// will be used for External Global Load Balancing (HTTP(S) LB,
+        /// External TCP/UDP LB, SSL Proxy)
+        /// NOTE: Currently global forwarding rules cannot be used for INTERNAL
+        /// load balancing.
         /// </summary>
         [Input("loadBalancingScheme")]
         public Input<string>? LoadBalancingScheme { get; set; }
@@ -250,14 +299,22 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.GlobalForwardingRuleMetadataFiltersArgs>? _metadataFilters;
 
         /// <summary>
-        /// Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set xDS compliant
-        /// clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. If a match takes place,
-        /// the relevant routing configuration is made available to those proxies. For each metadataFilter in this list,
-        /// if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the
-        /// corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of
-        /// its filterLabels must match with corresponding labels in the provided metadata. metadataFilters specified
-        /// here can be overridden by those specified in the UrlMap that this ForwardingRule references. metadataFilters
-        /// only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
+        /// -
+        /// (Optional)
+        /// Opaque filter criteria used by Loadbalancer to restrict routing
+        /// configuration to a limited set xDS compliant clients. In their xDS
+        /// requests to Loadbalancer, xDS clients present node metadata. If a
+        /// match takes place, the relevant routing configuration is made available
+        /// to those proxies.
+        /// For each metadataFilter in this list, if its filterMatchCriteria is set
+        /// to MATCH_ANY, at least one of the filterLabels must match the
+        /// corresponding label provided in the metadata. If its filterMatchCriteria
+        /// is set to MATCH_ALL, then all of its filterLabels must match with
+        /// corresponding labels in the provided metadata.
+        /// metadataFilters specified here can be overridden by those specified in
+        /// the UrlMap that this ForwardingRule references.
+        /// metadataFilters only applies to Loadbalancers that have their
+        /// loadBalancingScheme set to INTERNAL_SELF_MANAGED.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.GlobalForwardingRuleMetadataFiltersArgs> MetadataFilters
         {
@@ -266,11 +323,10 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the metadata label. The length must be between
+        /// 1 and 1024 characters, inclusive.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -284,13 +340,24 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Network { get; set; }
 
         /// <summary>
-        /// This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy,
-        /// TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance. Applicable only when IPProtocol is TCP, UDP,
-        /// or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding
-        /// rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges. Some types of forwarding
-        /// target have constraints on the acceptable ports: * TargetHttpProxy: 80, 8080 * TargetHttpsProxy: 443 *
-        /// TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 * TargetSslProxy: 25, 43,
-        /// 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 * TargetVpnGateway: 500, 4500
+        /// -
+        /// (Optional)
+        /// This field is used along with the target field for TargetHttpProxy,
+        /// TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway,
+        /// TargetPool, TargetInstance.
+        /// Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets
+        /// addressed to ports in the specified range will be forwarded to target.
+        /// Forwarding rules with the same [IPAddress, IPProtocol] pair must have
+        /// disjoint port ranges.
+        /// Some types of forwarding target have constraints on the acceptable
+        /// ports:
+        /// * TargetHttpProxy: 80, 8080
+        /// * TargetHttpsProxy: 443
+        /// * TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995,
+        /// 1883, 5222
+        /// * TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995,
+        /// 1883, 5222
+        /// * TargetVpnGateway: 500, 4500
         /// </summary>
         [Input("portRange")]
         public Input<string>? PortRange { get; set; }
@@ -303,9 +370,12 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The URL of the target resource to receive the matched traffic. The forwarded traffic must be of a type
-        /// appropriate to the target object. For INTERNAL_SELF_MANAGED load balancing, only HTTP and HTTPS targets are
-        /// valid.
+        /// -
+        /// (Required)
+        /// The URL of the target resource to receive the matched traffic.
+        /// The forwarded traffic must be of a type appropriate to the target object.
+        /// For INTERNAL_SELF_MANAGED load balancing, only HTTP and HTTPS targets
+        /// are valid.
         /// </summary>
         [Input("target", required: true)]
         public Input<string> Target { get; set; } = null!;
@@ -318,7 +388,10 @@ namespace Pulumi.Gcp.Compute
     public sealed class GlobalForwardingRuleState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -341,14 +414,20 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// The IP protocol to which this rule applies. Valid options are TCP, UDP, ESP, AH, SCTP or ICMP. When the load
-        /// balancing scheme is INTERNAL_SELF_MANAGED, only TCP is valid.
+        /// -
+        /// (Optional)
+        /// The IP protocol to which this rule applies. Valid options are TCP,
+        /// UDP, ESP, AH, SCTP or ICMP. When the load balancing scheme is
+        /// INTERNAL_SELF_MANAGED, only TCP is valid.
         /// </summary>
         [Input("ipProtocol")]
         public Input<string>? IpProtocol { get; set; }
 
         /// <summary>
-        /// The IP Version that will be used by this global forwarding rule. Valid options are IPV4 or IPV6.
+        /// -
+        /// (Optional)
+        /// The IP Version that will be used by this global forwarding rule.
+        /// Valid options are IPV4 or IPV6.
         /// </summary>
         [Input("ipVersion")]
         public Input<string>? IpVersion { get; set; }
@@ -372,10 +451,15 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// This signifies what the GlobalForwardingRule will be used for. The value of INTERNAL_SELF_MANAGED means that
-        /// this will be used for Internal Global HTTP(S) LB. The value of EXTERNAL means that this will be used for
-        /// External Global Load Balancing (HTTP(S) LB, External TCP/UDP LB, SSL Proxy) NOTE: Currently global
-        /// forwarding rules cannot be used for INTERNAL load balancing.
+        /// -
+        /// (Optional)
+        /// This signifies what the GlobalForwardingRule will be used for.
+        /// The value of INTERNAL_SELF_MANAGED means that this will be used for
+        /// Internal Global HTTP(S) LB. The value of EXTERNAL means that this
+        /// will be used for External Global Load Balancing (HTTP(S) LB,
+        /// External TCP/UDP LB, SSL Proxy)
+        /// NOTE: Currently global forwarding rules cannot be used for INTERNAL
+        /// load balancing.
         /// </summary>
         [Input("loadBalancingScheme")]
         public Input<string>? LoadBalancingScheme { get; set; }
@@ -384,14 +468,22 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.GlobalForwardingRuleMetadataFiltersGetArgs>? _metadataFilters;
 
         /// <summary>
-        /// Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set xDS compliant
-        /// clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. If a match takes place,
-        /// the relevant routing configuration is made available to those proxies. For each metadataFilter in this list,
-        /// if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the
-        /// corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of
-        /// its filterLabels must match with corresponding labels in the provided metadata. metadataFilters specified
-        /// here can be overridden by those specified in the UrlMap that this ForwardingRule references. metadataFilters
-        /// only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
+        /// -
+        /// (Optional)
+        /// Opaque filter criteria used by Loadbalancer to restrict routing
+        /// configuration to a limited set xDS compliant clients. In their xDS
+        /// requests to Loadbalancer, xDS clients present node metadata. If a
+        /// match takes place, the relevant routing configuration is made available
+        /// to those proxies.
+        /// For each metadataFilter in this list, if its filterMatchCriteria is set
+        /// to MATCH_ANY, at least one of the filterLabels must match the
+        /// corresponding label provided in the metadata. If its filterMatchCriteria
+        /// is set to MATCH_ALL, then all of its filterLabels must match with
+        /// corresponding labels in the provided metadata.
+        /// metadataFilters specified here can be overridden by those specified in
+        /// the UrlMap that this ForwardingRule references.
+        /// metadataFilters only applies to Loadbalancers that have their
+        /// loadBalancingScheme set to INTERNAL_SELF_MANAGED.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.GlobalForwardingRuleMetadataFiltersGetArgs> MetadataFilters
         {
@@ -400,11 +492,10 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the metadata label. The length must be between
+        /// 1 and 1024 characters, inclusive.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -418,13 +509,24 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Network { get; set; }
 
         /// <summary>
-        /// This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy,
-        /// TargetTcpProxy, TargetVpnGateway, TargetPool, TargetInstance. Applicable only when IPProtocol is TCP, UDP,
-        /// or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding
-        /// rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges. Some types of forwarding
-        /// target have constraints on the acceptable ports: * TargetHttpProxy: 80, 8080 * TargetHttpsProxy: 443 *
-        /// TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 * TargetSslProxy: 25, 43,
-        /// 110, 143, 195, 443, 465, 587, 700, 993, 995, 1883, 5222 * TargetVpnGateway: 500, 4500
+        /// -
+        /// (Optional)
+        /// This field is used along with the target field for TargetHttpProxy,
+        /// TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway,
+        /// TargetPool, TargetInstance.
+        /// Applicable only when IPProtocol is TCP, UDP, or SCTP, only packets
+        /// addressed to ports in the specified range will be forwarded to target.
+        /// Forwarding rules with the same [IPAddress, IPProtocol] pair must have
+        /// disjoint port ranges.
+        /// Some types of forwarding target have constraints on the acceptable
+        /// ports:
+        /// * TargetHttpProxy: 80, 8080
+        /// * TargetHttpsProxy: 443
+        /// * TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995,
+        /// 1883, 5222
+        /// * TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995,
+        /// 1883, 5222
+        /// * TargetVpnGateway: 500, 4500
         /// </summary>
         [Input("portRange")]
         public Input<string>? PortRange { get; set; }
@@ -443,9 +545,12 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? SelfLink { get; set; }
 
         /// <summary>
-        /// The URL of the target resource to receive the matched traffic. The forwarded traffic must be of a type
-        /// appropriate to the target object. For INTERNAL_SELF_MANAGED load balancing, only HTTP and HTTPS targets are
-        /// valid.
+        /// -
+        /// (Required)
+        /// The URL of the target resource to receive the matched traffic.
+        /// The forwarded traffic must be of a type appropriate to the target object.
+        /// For INTERNAL_SELF_MANAGED load balancing, only HTTP and HTTPS targets
+        /// are valid.
         /// </summary>
         [Input("target")]
         public Input<string>? Target { get; set; }
@@ -462,12 +567,30 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("filterLabels", required: true)]
         private InputList<GlobalForwardingRuleMetadataFiltersFilterLabelsArgs>? _filterLabels;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of label value pairs that must match labels in the
+        /// provided metadata based on filterMatchCriteria
+        /// This list must not be empty and can have at the most 64 entries.  Structure is documented below.
+        /// </summary>
         public InputList<GlobalForwardingRuleMetadataFiltersFilterLabelsArgs> FilterLabels
         {
             get => _filterLabels ?? (_filterLabels = new InputList<GlobalForwardingRuleMetadataFiltersFilterLabelsArgs>());
             set => _filterLabels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies how individual filterLabel matches within the list of
+        /// filterLabels contribute towards the overall metadataFilter match.
+        /// MATCH_ANY - At least one of the filterLabels must have a matching
+        /// label in the provided metadata.
+        /// MATCH_ALL - All filterLabels must have matching labels in the
+        /// provided metadata.
+        /// </summary>
         [Input("filterMatchCriteria", required: true)]
         public Input<string> FilterMatchCriteria { get; set; } = null!;
 
@@ -478,9 +601,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class GlobalForwardingRuleMetadataFiltersFilterLabelsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the metadata label. The length must be between
+        /// 1 and 1024 characters, inclusive.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value that the label must match. The value has a maximum
+        /// length of 1024 characters.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 
@@ -491,9 +626,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class GlobalForwardingRuleMetadataFiltersFilterLabelsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the metadata label. The length must be between
+        /// 1 and 1024 characters, inclusive.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value that the label must match. The value has a maximum
+        /// length of 1024 characters.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 
@@ -506,12 +653,30 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("filterLabels", required: true)]
         private InputList<GlobalForwardingRuleMetadataFiltersFilterLabelsGetArgs>? _filterLabels;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of label value pairs that must match labels in the
+        /// provided metadata based on filterMatchCriteria
+        /// This list must not be empty and can have at the most 64 entries.  Structure is documented below.
+        /// </summary>
         public InputList<GlobalForwardingRuleMetadataFiltersFilterLabelsGetArgs> FilterLabels
         {
             get => _filterLabels ?? (_filterLabels = new InputList<GlobalForwardingRuleMetadataFiltersFilterLabelsGetArgs>());
             set => _filterLabels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies how individual filterLabel matches within the list of
+        /// filterLabels contribute towards the overall metadataFilter match.
+        /// MATCH_ANY - At least one of the filterLabels must have a matching
+        /// label in the provided metadata.
+        /// MATCH_ALL - All filterLabels must have matching labels in the
+        /// provided metadata.
+        /// </summary>
         [Input("filterMatchCriteria", required: true)]
         public Input<string> FilterMatchCriteria { get; set; } = null!;
 
@@ -527,7 +692,24 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class GlobalForwardingRuleMetadataFilters
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of label value pairs that must match labels in the
+        /// provided metadata based on filterMatchCriteria
+        /// This list must not be empty and can have at the most 64 entries.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<GlobalForwardingRuleMetadataFiltersFilterLabels> FilterLabels;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies how individual filterLabel matches within the list of
+        /// filterLabels contribute towards the overall metadataFilter match.
+        /// MATCH_ANY - At least one of the filterLabels must have a matching
+        /// label in the provided metadata.
+        /// MATCH_ALL - All filterLabels must have matching labels in the
+        /// provided metadata.
+        /// </summary>
         public readonly string FilterMatchCriteria;
 
         [OutputConstructor]
@@ -543,7 +725,19 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class GlobalForwardingRuleMetadataFiltersFilterLabels
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the metadata label. The length must be between
+        /// 1 and 1024 characters, inclusive.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value that the label must match. The value has a maximum
+        /// length of 1024 characters.
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

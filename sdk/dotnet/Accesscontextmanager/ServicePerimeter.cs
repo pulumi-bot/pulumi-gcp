@@ -38,46 +38,67 @@ namespace Pulumi.Gcp.AccessContextManager
         public Output<string> CreateTime { get; private set; } = null!;
 
         /// <summary>
-        /// Description of the ServicePerimeter and its use. Does not affect behavior.
+        /// -
+        /// (Optional)
+        /// Description of the ServicePerimeter and its use. Does not affect
+        /// behavior.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Resource name for the ServicePerimeter. The short_name component must begin with a letter and only include
-        /// alphanumeric and '_'. Format: accessPolicies/{policy_id}/servicePerimeters/{short_name}
+        /// -
+        /// (Required)
+        /// Resource name for the ServicePerimeter. The short_name component must
+        /// begin with a letter and only include alphanumeric and '_'.
+        /// Format: accessPolicies/{policy_id}/servicePerimeters/{short_name}
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The AccessPolicy this ServicePerimeter lives in. Format: accessPolicies/{policy_id}
+        /// -
+        /// (Required)
+        /// The AccessPolicy this ServicePerimeter lives in.
+        /// Format: accessPolicies/{policy_id}
         /// </summary>
         [Output("parent")]
         public Output<string> Parent { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the type of the Perimeter. There are two types: regular and bridge. Regular Service Perimeter
-        /// contains resources, access levels, and restricted services. Every resource can be in at most ONE regular
-        /// Service Perimeter. In addition to being in a regular service perimeter, a resource can also be in zero or
-        /// more perimeter bridges. A perimeter bridge only contains resources. Cross project operations are permitted
-        /// if all effected resources share some perimeter (whether bridge or regular). Perimeter Bridge does not
-        /// contain access levels or services: those are governed entirely by the regular perimeter that resource is in.
-        /// Perimeter Bridges are typically useful when building more complex topologies with many independent
-        /// perimeters that need to share some data with a common perimeter, but should not be able to share data among
+        /// -
+        /// (Optional)
+        /// Specifies the type of the Perimeter. There are two types: regular and
+        /// bridge. Regular Service Perimeter contains resources, access levels,
+        /// and restricted services. Every resource can be in at most
+        /// ONE regular Service Perimeter.
+        /// In addition to being in a regular service perimeter, a resource can also
+        /// be in zero or more perimeter bridges. A perimeter bridge only contains
+        /// resources. Cross project operations are permitted if all effected
+        /// resources share some perimeter (whether bridge or regular). Perimeter
+        /// Bridge does not contain access levels or services: those are governed
+        /// entirely by the regular perimeter that resource is in.
+        /// Perimeter Bridges are typically useful when building more complex
+        /// topologies with many independent perimeters that need to share some data
+        /// with a common perimeter, but should not be able to share data among
         /// themselves.
         /// </summary>
         [Output("perimeterType")]
         public Output<string?> PerimeterType { get; private set; } = null!;
 
         /// <summary>
-        /// ServicePerimeter configuration. Specifies sets of resources, restricted services and access levels that
-        /// determine perimeter content and boundaries.
+        /// -
+        /// (Optional)
+        /// ServicePerimeter configuration. Specifies sets of resources,
+        /// restricted services and access levels that determine
+        /// perimeter content and boundaries.  Structure is documented below.
         /// </summary>
         [Output("status")]
         public Output<Outputs.ServicePerimeterStatus?> Status { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human readable title. Must be unique within the Policy.
         /// </summary>
         [Output("title")]
@@ -136,46 +157,67 @@ namespace Pulumi.Gcp.AccessContextManager
     public sealed class ServicePerimeterArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Description of the ServicePerimeter and its use. Does not affect behavior.
+        /// -
+        /// (Optional)
+        /// Description of the ServicePerimeter and its use. Does not affect
+        /// behavior.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Resource name for the ServicePerimeter. The short_name component must begin with a letter and only include
-        /// alphanumeric and '_'. Format: accessPolicies/{policy_id}/servicePerimeters/{short_name}
+        /// -
+        /// (Required)
+        /// Resource name for the ServicePerimeter. The short_name component must
+        /// begin with a letter and only include alphanumeric and '_'.
+        /// Format: accessPolicies/{policy_id}/servicePerimeters/{short_name}
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The AccessPolicy this ServicePerimeter lives in. Format: accessPolicies/{policy_id}
+        /// -
+        /// (Required)
+        /// The AccessPolicy this ServicePerimeter lives in.
+        /// Format: accessPolicies/{policy_id}
         /// </summary>
         [Input("parent", required: true)]
         public Input<string> Parent { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the type of the Perimeter. There are two types: regular and bridge. Regular Service Perimeter
-        /// contains resources, access levels, and restricted services. Every resource can be in at most ONE regular
-        /// Service Perimeter. In addition to being in a regular service perimeter, a resource can also be in zero or
-        /// more perimeter bridges. A perimeter bridge only contains resources. Cross project operations are permitted
-        /// if all effected resources share some perimeter (whether bridge or regular). Perimeter Bridge does not
-        /// contain access levels or services: those are governed entirely by the regular perimeter that resource is in.
-        /// Perimeter Bridges are typically useful when building more complex topologies with many independent
-        /// perimeters that need to share some data with a common perimeter, but should not be able to share data among
+        /// -
+        /// (Optional)
+        /// Specifies the type of the Perimeter. There are two types: regular and
+        /// bridge. Regular Service Perimeter contains resources, access levels,
+        /// and restricted services. Every resource can be in at most
+        /// ONE regular Service Perimeter.
+        /// In addition to being in a regular service perimeter, a resource can also
+        /// be in zero or more perimeter bridges. A perimeter bridge only contains
+        /// resources. Cross project operations are permitted if all effected
+        /// resources share some perimeter (whether bridge or regular). Perimeter
+        /// Bridge does not contain access levels or services: those are governed
+        /// entirely by the regular perimeter that resource is in.
+        /// Perimeter Bridges are typically useful when building more complex
+        /// topologies with many independent perimeters that need to share some data
+        /// with a common perimeter, but should not be able to share data among
         /// themselves.
         /// </summary>
         [Input("perimeterType")]
         public Input<string>? PerimeterType { get; set; }
 
         /// <summary>
-        /// ServicePerimeter configuration. Specifies sets of resources, restricted services and access levels that
-        /// determine perimeter content and boundaries.
+        /// -
+        /// (Optional)
+        /// ServicePerimeter configuration. Specifies sets of resources,
+        /// restricted services and access levels that determine
+        /// perimeter content and boundaries.  Structure is documented below.
         /// </summary>
         [Input("status")]
         public Input<Inputs.ServicePerimeterStatusArgs>? Status { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human readable title. Must be unique within the Policy.
         /// </summary>
         [Input("title", required: true)]
@@ -195,46 +237,67 @@ namespace Pulumi.Gcp.AccessContextManager
         public Input<string>? CreateTime { get; set; }
 
         /// <summary>
-        /// Description of the ServicePerimeter and its use. Does not affect behavior.
+        /// -
+        /// (Optional)
+        /// Description of the ServicePerimeter and its use. Does not affect
+        /// behavior.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Resource name for the ServicePerimeter. The short_name component must begin with a letter and only include
-        /// alphanumeric and '_'. Format: accessPolicies/{policy_id}/servicePerimeters/{short_name}
+        /// -
+        /// (Required)
+        /// Resource name for the ServicePerimeter. The short_name component must
+        /// begin with a letter and only include alphanumeric and '_'.
+        /// Format: accessPolicies/{policy_id}/servicePerimeters/{short_name}
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The AccessPolicy this ServicePerimeter lives in. Format: accessPolicies/{policy_id}
+        /// -
+        /// (Required)
+        /// The AccessPolicy this ServicePerimeter lives in.
+        /// Format: accessPolicies/{policy_id}
         /// </summary>
         [Input("parent")]
         public Input<string>? Parent { get; set; }
 
         /// <summary>
-        /// Specifies the type of the Perimeter. There are two types: regular and bridge. Regular Service Perimeter
-        /// contains resources, access levels, and restricted services. Every resource can be in at most ONE regular
-        /// Service Perimeter. In addition to being in a regular service perimeter, a resource can also be in zero or
-        /// more perimeter bridges. A perimeter bridge only contains resources. Cross project operations are permitted
-        /// if all effected resources share some perimeter (whether bridge or regular). Perimeter Bridge does not
-        /// contain access levels or services: those are governed entirely by the regular perimeter that resource is in.
-        /// Perimeter Bridges are typically useful when building more complex topologies with many independent
-        /// perimeters that need to share some data with a common perimeter, but should not be able to share data among
+        /// -
+        /// (Optional)
+        /// Specifies the type of the Perimeter. There are two types: regular and
+        /// bridge. Regular Service Perimeter contains resources, access levels,
+        /// and restricted services. Every resource can be in at most
+        /// ONE regular Service Perimeter.
+        /// In addition to being in a regular service perimeter, a resource can also
+        /// be in zero or more perimeter bridges. A perimeter bridge only contains
+        /// resources. Cross project operations are permitted if all effected
+        /// resources share some perimeter (whether bridge or regular). Perimeter
+        /// Bridge does not contain access levels or services: those are governed
+        /// entirely by the regular perimeter that resource is in.
+        /// Perimeter Bridges are typically useful when building more complex
+        /// topologies with many independent perimeters that need to share some data
+        /// with a common perimeter, but should not be able to share data among
         /// themselves.
         /// </summary>
         [Input("perimeterType")]
         public Input<string>? PerimeterType { get; set; }
 
         /// <summary>
-        /// ServicePerimeter configuration. Specifies sets of resources, restricted services and access levels that
-        /// determine perimeter content and boundaries.
+        /// -
+        /// (Optional)
+        /// ServicePerimeter configuration. Specifies sets of resources,
+        /// restricted services and access levels that determine
+        /// perimeter content and boundaries.  Structure is documented below.
         /// </summary>
         [Input("status")]
         public Input<Inputs.ServicePerimeterStatusGetArgs>? Status { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human readable title. Must be unique within the Policy.
         /// </summary>
         [Input("title")]
@@ -258,6 +321,20 @@ namespace Pulumi.Gcp.AccessContextManager
     {
         [Input("accessLevels")]
         private InputList<string>? _accessLevels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of AccessLevel resource names that allow resources within
+        /// the ServicePerimeter to be accessed from the internet.
+        /// AccessLevels listed must be in the same policy as this
+        /// ServicePerimeter. Referencing a nonexistent AccessLevel is a
+        /// syntax error. If no AccessLevel names are listed, resources within
+        /// the perimeter can only be accessed via GCP calls with request
+        /// origins within the perimeter. For Service Perimeter Bridge, must
+        /// be empty.
+        /// Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
+        /// </summary>
         public InputList<string> AccessLevels
         {
             get => _accessLevels ?? (_accessLevels = new InputList<string>());
@@ -266,6 +343,14 @@ namespace Pulumi.Gcp.AccessContextManager
 
         [Input("resources")]
         private InputList<string>? _resources;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of GCP resources that are inside of the service perimeter.
+        /// Currently only projects are allowed.
+        /// Format: projects/{project_number}
+        /// </summary>
         public InputList<string> Resources
         {
             get => _resources ?? (_resources = new InputList<string>());
@@ -274,12 +359,28 @@ namespace Pulumi.Gcp.AccessContextManager
 
         [Input("restrictedServices")]
         private InputList<string>? _restrictedServices;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// GCP services that are subject to the Service Perimeter
+        /// restrictions. Must contain a list of services. For example, if
+        /// `storage.googleapis.com` is specified, access to the storage
+        /// buckets inside the perimeter must meet the perimeter's access
+        /// restrictions.
+        /// </summary>
         public InputList<string> RestrictedServices
         {
             get => _restrictedServices ?? (_restrictedServices = new InputList<string>());
             set => _restrictedServices = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how APIs are allowed to communicate within the Service
+        /// Perimeter.  Structure is documented below.
+        /// </summary>
         [Input("vpcAccessibleServices")]
         public Input<ServicePerimeterStatusVpcAccessibleServicesArgs>? VpcAccessibleServices { get; set; }
 
@@ -292,6 +393,20 @@ namespace Pulumi.Gcp.AccessContextManager
     {
         [Input("accessLevels")]
         private InputList<string>? _accessLevels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of AccessLevel resource names that allow resources within
+        /// the ServicePerimeter to be accessed from the internet.
+        /// AccessLevels listed must be in the same policy as this
+        /// ServicePerimeter. Referencing a nonexistent AccessLevel is a
+        /// syntax error. If no AccessLevel names are listed, resources within
+        /// the perimeter can only be accessed via GCP calls with request
+        /// origins within the perimeter. For Service Perimeter Bridge, must
+        /// be empty.
+        /// Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
+        /// </summary>
         public InputList<string> AccessLevels
         {
             get => _accessLevels ?? (_accessLevels = new InputList<string>());
@@ -300,6 +415,14 @@ namespace Pulumi.Gcp.AccessContextManager
 
         [Input("resources")]
         private InputList<string>? _resources;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of GCP resources that are inside of the service perimeter.
+        /// Currently only projects are allowed.
+        /// Format: projects/{project_number}
+        /// </summary>
         public InputList<string> Resources
         {
             get => _resources ?? (_resources = new InputList<string>());
@@ -308,12 +431,28 @@ namespace Pulumi.Gcp.AccessContextManager
 
         [Input("restrictedServices")]
         private InputList<string>? _restrictedServices;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// GCP services that are subject to the Service Perimeter
+        /// restrictions. Must contain a list of services. For example, if
+        /// `storage.googleapis.com` is specified, access to the storage
+        /// buckets inside the perimeter must meet the perimeter's access
+        /// restrictions.
+        /// </summary>
         public InputList<string> RestrictedServices
         {
             get => _restrictedServices ?? (_restrictedServices = new InputList<string>());
             set => _restrictedServices = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how APIs are allowed to communicate within the Service
+        /// Perimeter.  Structure is documented below.
+        /// </summary>
         [Input("vpcAccessibleServices")]
         public Input<ServicePerimeterStatusVpcAccessibleServicesGetArgs>? VpcAccessibleServices { get; set; }
 
@@ -326,12 +465,25 @@ namespace Pulumi.Gcp.AccessContextManager
     {
         [Input("allowedServices")]
         private InputList<string>? _allowedServices;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of APIs usable within the Service Perimeter.
+        /// Must be empty unless `enableRestriction` is True.
+        /// </summary>
         public InputList<string> AllowedServices
         {
             get => _allowedServices ?? (_allowedServices = new InputList<string>());
             set => _allowedServices = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to restrict API calls within the Service Perimeter to the
+        /// list of APIs specified in 'allowedServices'.
+        /// </summary>
         [Input("enableRestriction")]
         public Input<bool>? EnableRestriction { get; set; }
 
@@ -344,12 +496,25 @@ namespace Pulumi.Gcp.AccessContextManager
     {
         [Input("allowedServices")]
         private InputList<string>? _allowedServices;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of APIs usable within the Service Perimeter.
+        /// Must be empty unless `enableRestriction` is True.
+        /// </summary>
         public InputList<string> AllowedServices
         {
             get => _allowedServices ?? (_allowedServices = new InputList<string>());
             set => _allowedServices = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to restrict API calls within the Service Perimeter to the
+        /// list of APIs specified in 'allowedServices'.
+        /// </summary>
         [Input("enableRestriction")]
         public Input<bool>? EnableRestriction { get; set; }
 
@@ -365,9 +530,44 @@ namespace Pulumi.Gcp.AccessContextManager
     [OutputType]
     public sealed class ServicePerimeterStatus
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of AccessLevel resource names that allow resources within
+        /// the ServicePerimeter to be accessed from the internet.
+        /// AccessLevels listed must be in the same policy as this
+        /// ServicePerimeter. Referencing a nonexistent AccessLevel is a
+        /// syntax error. If no AccessLevel names are listed, resources within
+        /// the perimeter can only be accessed via GCP calls with request
+        /// origins within the perimeter. For Service Perimeter Bridge, must
+        /// be empty.
+        /// Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
+        /// </summary>
         public readonly ImmutableArray<string> AccessLevels;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of GCP resources that are inside of the service perimeter.
+        /// Currently only projects are allowed.
+        /// Format: projects/{project_number}
+        /// </summary>
         public readonly ImmutableArray<string> Resources;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// GCP services that are subject to the Service Perimeter
+        /// restrictions. Must contain a list of services. For example, if
+        /// `storage.googleapis.com` is specified, access to the storage
+        /// buckets inside the perimeter must meet the perimeter's access
+        /// restrictions.
+        /// </summary>
         public readonly ImmutableArray<string> RestrictedServices;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how APIs are allowed to communicate within the Service
+        /// Perimeter.  Structure is documented below.
+        /// </summary>
         public readonly ServicePerimeterStatusVpcAccessibleServices? VpcAccessibleServices;
 
         [OutputConstructor]
@@ -387,7 +587,19 @@ namespace Pulumi.Gcp.AccessContextManager
     [OutputType]
     public sealed class ServicePerimeterStatusVpcAccessibleServices
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of APIs usable within the Service Perimeter.
+        /// Must be empty unless `enableRestriction` is True.
+        /// </summary>
         public readonly ImmutableArray<string> AllowedServices;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to restrict API calls within the Service Perimeter to the
+        /// list of APIs specified in 'allowedServices'.
+        /// </summary>
         public readonly bool? EnableRestriction;
 
         [OutputConstructor]

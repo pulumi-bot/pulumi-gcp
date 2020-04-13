@@ -17,18 +17,25 @@ namespace Pulumi.Gcp.CloudTasks
     public partial class Queue : Pulumi.CustomResource
     {
         /// <summary>
-        /// Overrides for task-level appEngineRouting. These settings apply only to App Engine tasks in this queue
+        /// -
+        /// (Optional)
+        /// Overrides for task-level appEngineRouting. These settings apply only
+        /// to App Engine tasks in this queue  Structure is documented below.
         /// </summary>
         [Output("appEngineRoutingOverride")]
         public Output<Outputs.QueueAppEngineRoutingOverride?> AppEngineRoutingOverride { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The location of the queue
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The queue name.
         /// </summary>
         [Output("name")]
@@ -42,16 +49,23 @@ namespace Pulumi.Gcp.CloudTasks
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// Rate limits for task dispatches. The queue's actual dispatch rate is the result of: * Number of tasks in the
-        /// queue * User-specified throttling: rateLimits, retryConfig, and the queue's state. * System throttling due
-        /// to 429 (Too Many Requests) or 503 (Service Unavailable) responses from the worker, high error rates, or to
-        /// smooth sudden large traffic spikes.
+        /// -
+        /// (Optional)
+        /// Rate limits for task dispatches.
+        /// The queue's actual dispatch rate is the result of:
+        /// * Number of tasks in the queue
+        /// * User-specified throttling: rateLimits, retryConfig, and the queue's state.
+        /// * System throttling due to 429 (Too Many Requests) or 503 (Service
+        /// Unavailable) responses from the worker, high error rates, or to
+        /// smooth sudden large traffic spikes.  Structure is documented below.
         /// </summary>
         [Output("rateLimits")]
         public Output<Outputs.QueueRateLimits> RateLimits { get; private set; } = null!;
 
         /// <summary>
-        /// Settings that determine the retry behavior.
+        /// -
+        /// (Optional)
+        /// Settings that determine the retry behavior.  Structure is documented below.
         /// </summary>
         [Output("retryConfig")]
         public Output<Outputs.QueueRetryConfig> RetryConfig { get; private set; } = null!;
@@ -103,18 +117,25 @@ namespace Pulumi.Gcp.CloudTasks
     public sealed class QueueArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Overrides for task-level appEngineRouting. These settings apply only to App Engine tasks in this queue
+        /// -
+        /// (Optional)
+        /// Overrides for task-level appEngineRouting. These settings apply only
+        /// to App Engine tasks in this queue  Structure is documented below.
         /// </summary>
         [Input("appEngineRoutingOverride")]
         public Input<Inputs.QueueAppEngineRoutingOverrideArgs>? AppEngineRoutingOverride { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The location of the queue
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The queue name.
         /// </summary>
         [Input("name")]
@@ -128,16 +149,23 @@ namespace Pulumi.Gcp.CloudTasks
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// Rate limits for task dispatches. The queue's actual dispatch rate is the result of: * Number of tasks in the
-        /// queue * User-specified throttling: rateLimits, retryConfig, and the queue's state. * System throttling due
-        /// to 429 (Too Many Requests) or 503 (Service Unavailable) responses from the worker, high error rates, or to
-        /// smooth sudden large traffic spikes.
+        /// -
+        /// (Optional)
+        /// Rate limits for task dispatches.
+        /// The queue's actual dispatch rate is the result of:
+        /// * Number of tasks in the queue
+        /// * User-specified throttling: rateLimits, retryConfig, and the queue's state.
+        /// * System throttling due to 429 (Too Many Requests) or 503 (Service
+        /// Unavailable) responses from the worker, high error rates, or to
+        /// smooth sudden large traffic spikes.  Structure is documented below.
         /// </summary>
         [Input("rateLimits")]
         public Input<Inputs.QueueRateLimitsArgs>? RateLimits { get; set; }
 
         /// <summary>
-        /// Settings that determine the retry behavior.
+        /// -
+        /// (Optional)
+        /// Settings that determine the retry behavior.  Structure is documented below.
         /// </summary>
         [Input("retryConfig")]
         public Input<Inputs.QueueRetryConfigArgs>? RetryConfig { get; set; }
@@ -150,18 +178,25 @@ namespace Pulumi.Gcp.CloudTasks
     public sealed class QueueState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Overrides for task-level appEngineRouting. These settings apply only to App Engine tasks in this queue
+        /// -
+        /// (Optional)
+        /// Overrides for task-level appEngineRouting. These settings apply only
+        /// to App Engine tasks in this queue  Structure is documented below.
         /// </summary>
         [Input("appEngineRoutingOverride")]
         public Input<Inputs.QueueAppEngineRoutingOverrideGetArgs>? AppEngineRoutingOverride { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The location of the queue
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The queue name.
         /// </summary>
         [Input("name")]
@@ -175,16 +210,23 @@ namespace Pulumi.Gcp.CloudTasks
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// Rate limits for task dispatches. The queue's actual dispatch rate is the result of: * Number of tasks in the
-        /// queue * User-specified throttling: rateLimits, retryConfig, and the queue's state. * System throttling due
-        /// to 429 (Too Many Requests) or 503 (Service Unavailable) responses from the worker, high error rates, or to
-        /// smooth sudden large traffic spikes.
+        /// -
+        /// (Optional)
+        /// Rate limits for task dispatches.
+        /// The queue's actual dispatch rate is the result of:
+        /// * Number of tasks in the queue
+        /// * User-specified throttling: rateLimits, retryConfig, and the queue's state.
+        /// * System throttling due to 429 (Too Many Requests) or 503 (Service
+        /// Unavailable) responses from the worker, high error rates, or to
+        /// smooth sudden large traffic spikes.  Structure is documented below.
         /// </summary>
         [Input("rateLimits")]
         public Input<Inputs.QueueRateLimitsGetArgs>? RateLimits { get; set; }
 
         /// <summary>
-        /// Settings that determine the retry behavior.
+        /// -
+        /// (Optional)
+        /// Settings that determine the retry behavior.  Structure is documented below.
         /// </summary>
         [Input("retryConfig")]
         public Input<Inputs.QueueRetryConfigGetArgs>? RetryConfig { get; set; }
@@ -199,15 +241,37 @@ namespace Pulumi.Gcp.CloudTasks
 
     public sealed class QueueAppEngineRoutingOverrideArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// The host that the task is sent to.
+        /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App instance.
+        /// By default, the task is sent to an instance which is available when the task is attempted.
+        /// </summary>
         [Input("instance")]
         public Input<string>? Instance { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App service.
+        /// By default, the task is sent to the service which is the default service when the task is attempted.
+        /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App version.
+        /// By default, the task is sent to the version which is the default version when the task is attempted.
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 
@@ -218,15 +282,37 @@ namespace Pulumi.Gcp.CloudTasks
 
     public sealed class QueueAppEngineRoutingOverrideGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// The host that the task is sent to.
+        /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App instance.
+        /// By default, the task is sent to an instance which is available when the task is attempted.
+        /// </summary>
         [Input("instance")]
         public Input<string>? Instance { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App service.
+        /// By default, the task is sent to the service which is the default service when the task is attempted.
+        /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App version.
+        /// By default, the task is sent to the version which is the default version when the task is attempted.
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 
@@ -237,12 +323,34 @@ namespace Pulumi.Gcp.CloudTasks
 
     public sealed class QueueRateLimitsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// The max burst size.
+        /// Max burst size limits how fast tasks in queue are processed when many tasks are
+        /// in the queue and the rate is high. This field allows the queue to have a high
+        /// rate so processing starts shortly after a task is enqueued, but still limits
+        /// resource usage when many tasks are enqueued in a short period of time.
+        /// </summary>
         [Input("maxBurstSize")]
         public Input<int>? MaxBurstSize { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of concurrent tasks that Cloud Tasks allows to
+        /// be dispatched for this queue. After this threshold has been
+        /// reached, Cloud Tasks stops dispatching tasks until the number of
+        /// concurrent requests decreases.
+        /// </summary>
         [Input("maxConcurrentDispatches")]
         public Input<int>? MaxConcurrentDispatches { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum rate at which tasks are dispatched from this queue.
+        /// If unspecified when the queue is created, Cloud Tasks will pick the default.
+        /// </summary>
         [Input("maxDispatchesPerSecond")]
         public Input<double>? MaxDispatchesPerSecond { get; set; }
 
@@ -253,12 +361,34 @@ namespace Pulumi.Gcp.CloudTasks
 
     public sealed class QueueRateLimitsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// The max burst size.
+        /// Max burst size limits how fast tasks in queue are processed when many tasks are
+        /// in the queue and the rate is high. This field allows the queue to have a high
+        /// rate so processing starts shortly after a task is enqueued, but still limits
+        /// resource usage when many tasks are enqueued in a short period of time.
+        /// </summary>
         [Input("maxBurstSize")]
         public Input<int>? MaxBurstSize { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of concurrent tasks that Cloud Tasks allows to
+        /// be dispatched for this queue. After this threshold has been
+        /// reached, Cloud Tasks stops dispatching tasks until the number of
+        /// concurrent requests decreases.
+        /// </summary>
         [Input("maxConcurrentDispatches")]
         public Input<int>? MaxConcurrentDispatches { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum rate at which tasks are dispatched from this queue.
+        /// If unspecified when the queue is created, Cloud Tasks will pick the default.
+        /// </summary>
         [Input("maxDispatchesPerSecond")]
         public Input<double>? MaxDispatchesPerSecond { get; set; }
 
@@ -269,18 +399,61 @@ namespace Pulumi.Gcp.CloudTasks
 
     public sealed class QueueRetryConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of attempts per task.
+        /// Cloud Tasks will attempt the task maxAttempts times (that is, if
+        /// the first attempt fails, then there will be maxAttempts - 1
+        /// retries). Must be &gt;= -1.
+        /// If unspecified when the queue is created, Cloud Tasks will pick
+        /// the default.
+        /// -1 indicates unlimited attempts.
+        /// </summary>
         [Input("maxAttempts")]
         public Input<int>? MaxAttempts { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A task will be scheduled for retry between minBackoff and
+        /// maxBackoff duration after it fails, if the queue's RetryConfig
+        /// specifies that the task should be retried.
+        /// </summary>
         [Input("maxBackoff")]
         public Input<string>? MaxBackoff { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The time between retries will double maxDoublings times.
+        /// A task's retry interval starts at minBackoff, then doubles maxDoublings times,
+        /// then increases linearly, and finally retries retries at intervals of maxBackoff
+        /// up to maxAttempts times.
+        /// </summary>
         [Input("maxDoublings")]
         public Input<int>? MaxDoublings { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If positive, maxRetryDuration specifies the time limit for
+        /// retrying a failed task, measured from when the task was first
+        /// attempted. Once maxRetryDuration time has passed and the task has
+        /// been attempted maxAttempts times, no further attempts will be
+        /// made and the task will be deleted.
+        /// If zero, then the task age is unlimited.
+        /// </summary>
         [Input("maxRetryDuration")]
         public Input<string>? MaxRetryDuration { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A task will be scheduled for retry between minBackoff and
+        /// maxBackoff duration after it fails, if the queue's RetryConfig
+        /// specifies that the task should be retried.
+        /// </summary>
         [Input("minBackoff")]
         public Input<string>? MinBackoff { get; set; }
 
@@ -291,18 +464,61 @@ namespace Pulumi.Gcp.CloudTasks
 
     public sealed class QueueRetryConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of attempts per task.
+        /// Cloud Tasks will attempt the task maxAttempts times (that is, if
+        /// the first attempt fails, then there will be maxAttempts - 1
+        /// retries). Must be &gt;= -1.
+        /// If unspecified when the queue is created, Cloud Tasks will pick
+        /// the default.
+        /// -1 indicates unlimited attempts.
+        /// </summary>
         [Input("maxAttempts")]
         public Input<int>? MaxAttempts { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A task will be scheduled for retry between minBackoff and
+        /// maxBackoff duration after it fails, if the queue's RetryConfig
+        /// specifies that the task should be retried.
+        /// </summary>
         [Input("maxBackoff")]
         public Input<string>? MaxBackoff { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The time between retries will double maxDoublings times.
+        /// A task's retry interval starts at minBackoff, then doubles maxDoublings times,
+        /// then increases linearly, and finally retries retries at intervals of maxBackoff
+        /// up to maxAttempts times.
+        /// </summary>
         [Input("maxDoublings")]
         public Input<int>? MaxDoublings { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If positive, maxRetryDuration specifies the time limit for
+        /// retrying a failed task, measured from when the task was first
+        /// attempted. Once maxRetryDuration time has passed and the task has
+        /// been attempted maxAttempts times, no further attempts will be
+        /// made and the task will be deleted.
+        /// If zero, then the task age is unlimited.
+        /// </summary>
         [Input("maxRetryDuration")]
         public Input<string>? MaxRetryDuration { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A task will be scheduled for retry between minBackoff and
+        /// maxBackoff duration after it fails, if the queue's RetryConfig
+        /// specifies that the task should be retried.
+        /// </summary>
         [Input("minBackoff")]
         public Input<string>? MinBackoff { get; set; }
 
@@ -318,9 +534,31 @@ namespace Pulumi.Gcp.CloudTasks
     [OutputType]
     public sealed class QueueAppEngineRoutingOverride
     {
+        /// <summary>
+        /// -
+        /// The host that the task is sent to.
+        /// </summary>
         public readonly string Host;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App instance.
+        /// By default, the task is sent to an instance which is available when the task is attempted.
+        /// </summary>
         public readonly string? Instance;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App service.
+        /// By default, the task is sent to the service which is the default service when the task is attempted.
+        /// </summary>
         public readonly string? Service;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App version.
+        /// By default, the task is sent to the version which is the default version when the task is attempted.
+        /// </summary>
         public readonly string? Version;
 
         [OutputConstructor]
@@ -340,8 +578,30 @@ namespace Pulumi.Gcp.CloudTasks
     [OutputType]
     public sealed class QueueRateLimits
     {
+        /// <summary>
+        /// -
+        /// The max burst size.
+        /// Max burst size limits how fast tasks in queue are processed when many tasks are
+        /// in the queue and the rate is high. This field allows the queue to have a high
+        /// rate so processing starts shortly after a task is enqueued, but still limits
+        /// resource usage when many tasks are enqueued in a short period of time.
+        /// </summary>
         public readonly int MaxBurstSize;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum number of concurrent tasks that Cloud Tasks allows to
+        /// be dispatched for this queue. After this threshold has been
+        /// reached, Cloud Tasks stops dispatching tasks until the number of
+        /// concurrent requests decreases.
+        /// </summary>
         public readonly int MaxConcurrentDispatches;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The maximum rate at which tasks are dispatched from this queue.
+        /// If unspecified when the queue is created, Cloud Tasks will pick the default.
+        /// </summary>
         public readonly double MaxDispatchesPerSecond;
 
         [OutputConstructor]
@@ -359,10 +619,53 @@ namespace Pulumi.Gcp.CloudTasks
     [OutputType]
     public sealed class QueueRetryConfig
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of attempts per task.
+        /// Cloud Tasks will attempt the task maxAttempts times (that is, if
+        /// the first attempt fails, then there will be maxAttempts - 1
+        /// retries). Must be &gt;= -1.
+        /// If unspecified when the queue is created, Cloud Tasks will pick
+        /// the default.
+        /// -1 indicates unlimited attempts.
+        /// </summary>
         public readonly int MaxAttempts;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A task will be scheduled for retry between minBackoff and
+        /// maxBackoff duration after it fails, if the queue's RetryConfig
+        /// specifies that the task should be retried.
+        /// </summary>
         public readonly string MaxBackoff;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The time between retries will double maxDoublings times.
+        /// A task's retry interval starts at minBackoff, then doubles maxDoublings times,
+        /// then increases linearly, and finally retries retries at intervals of maxBackoff
+        /// up to maxAttempts times.
+        /// </summary>
         public readonly int MaxDoublings;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If positive, maxRetryDuration specifies the time limit for
+        /// retrying a failed task, measured from when the task was first
+        /// attempted. Once maxRetryDuration time has passed and the task has
+        /// been attempted maxAttempts times, no further attempts will be
+        /// made and the task will be deleted.
+        /// If zero, then the task age is unlimited.
+        /// </summary>
         public readonly string MaxRetryDuration;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A task will be scheduled for retry between minBackoff and
+        /// maxBackoff duration after it fails, if the queue's RetryConfig
+        /// specifies that the task should be retried.
+        /// </summary>
         public readonly string MinBackoff;
 
         [OutputConstructor]

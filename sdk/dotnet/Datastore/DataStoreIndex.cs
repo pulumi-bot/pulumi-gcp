@@ -24,7 +24,10 @@ namespace Pulumi.Gcp.Datastore
     public partial class DataStoreIndex : Pulumi.CustomResource
     {
         /// <summary>
-        /// Policy for including ancestors in the index. Either 'ALL_ANCESTORS' or 'NONE', the default is 'NONE'.
+        /// -
+        /// (Optional)
+        /// Policy for including ancestors in the index.  Either `ALL_ANCESTORS` or `NONE`,
+        /// the default is `NONE`.
         /// </summary>
         [Output("ancestor")]
         public Output<string?> Ancestor { get; private set; } = null!;
@@ -36,6 +39,8 @@ namespace Pulumi.Gcp.Datastore
         public Output<string> IndexId { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The entity kind which the index applies to.
         /// </summary>
         [Output("kind")]
@@ -49,7 +54,9 @@ namespace Pulumi.Gcp.Datastore
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// An ordered list of properties to index on.
+        /// -
+        /// (Optional)
+        /// An ordered list of properties to index on.  Structure is documented below.
         /// </summary>
         [Output("properties")]
         public Output<ImmutableArray<Outputs.DataStoreIndexProperties>> Properties { get; private set; } = null!;
@@ -101,12 +108,17 @@ namespace Pulumi.Gcp.Datastore
     public sealed class DataStoreIndexArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Policy for including ancestors in the index. Either 'ALL_ANCESTORS' or 'NONE', the default is 'NONE'.
+        /// -
+        /// (Optional)
+        /// Policy for including ancestors in the index.  Either `ALL_ANCESTORS` or `NONE`,
+        /// the default is `NONE`.
         /// </summary>
         [Input("ancestor")]
         public Input<string>? Ancestor { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The entity kind which the index applies to.
         /// </summary>
         [Input("kind", required: true)]
@@ -123,7 +135,9 @@ namespace Pulumi.Gcp.Datastore
         private InputList<Inputs.DataStoreIndexPropertiesArgs>? _properties;
 
         /// <summary>
-        /// An ordered list of properties to index on.
+        /// -
+        /// (Optional)
+        /// An ordered list of properties to index on.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.DataStoreIndexPropertiesArgs> Properties
         {
@@ -139,7 +153,10 @@ namespace Pulumi.Gcp.Datastore
     public sealed class DataStoreIndexState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Policy for including ancestors in the index. Either 'ALL_ANCESTORS' or 'NONE', the default is 'NONE'.
+        /// -
+        /// (Optional)
+        /// Policy for including ancestors in the index.  Either `ALL_ANCESTORS` or `NONE`,
+        /// the default is `NONE`.
         /// </summary>
         [Input("ancestor")]
         public Input<string>? Ancestor { get; set; }
@@ -151,6 +168,8 @@ namespace Pulumi.Gcp.Datastore
         public Input<string>? IndexId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The entity kind which the index applies to.
         /// </summary>
         [Input("kind")]
@@ -167,7 +186,9 @@ namespace Pulumi.Gcp.Datastore
         private InputList<Inputs.DataStoreIndexPropertiesGetArgs>? _properties;
 
         /// <summary>
-        /// An ordered list of properties to index on.
+        /// -
+        /// (Optional)
+        /// An ordered list of properties to index on.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.DataStoreIndexPropertiesGetArgs> Properties
         {
@@ -185,9 +206,19 @@ namespace Pulumi.Gcp.Datastore
 
     public sealed class DataStoreIndexPropertiesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The direction the index should optimize for sorting. Possible values are ASCENDING and DESCENDING.
+        /// </summary>
         [Input("direction", required: true)]
         public Input<string> Direction { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The property name to index.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -198,9 +229,19 @@ namespace Pulumi.Gcp.Datastore
 
     public sealed class DataStoreIndexPropertiesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The direction the index should optimize for sorting. Possible values are ASCENDING and DESCENDING.
+        /// </summary>
         [Input("direction", required: true)]
         public Input<string> Direction { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The property name to index.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
@@ -216,7 +257,17 @@ namespace Pulumi.Gcp.Datastore
     [OutputType]
     public sealed class DataStoreIndexProperties
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The direction the index should optimize for sorting. Possible values are ASCENDING and DESCENDING.
+        /// </summary>
         public readonly string Direction;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The property name to index.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

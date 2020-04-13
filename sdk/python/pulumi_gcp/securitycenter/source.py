@@ -12,13 +12,19 @@ from .. import utilities, tables
 class Source(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
+    -
+    (Optional)
     The description of the source (max of 1024 characters).
     """
     display_name: pulumi.Output[str]
     """
-    The source’s display name. A source’s display name must be unique amongst its siblings, for example, two sources
-    with the same parent can't share the same display name. The display name must start and end with a letter or digit, may
-    contain letters, digits, spaces, hyphens, and underscores, and can be no longer than 32 characters.
+    -
+    (Required)
+    The source’s display name. A source’s display name must be unique
+    amongst its siblings, for example, two sources with the same parent
+    can't share the same display name. The display name must start and end
+    with a letter or digit, may contain letters, digits, spaces, hyphens,
+    and underscores, and can be no longer than 32 characters.
     """
     name: pulumi.Output[str]
     """
@@ -26,7 +32,10 @@ class Source(pulumi.CustomResource):
     """
     organization: pulumi.Output[str]
     """
-    The organization whose Cloud Security Command Center the Source lives in.
+    -
+    (Required)
+    The organization whose Cloud Security Command Center the Source
+    lives in.
     """
     def __init__(__self__, resource_name, opts=None, description=None, display_name=None, organization=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -42,15 +51,22 @@ class Source(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/binary-authorization/)
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/scc_source.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: The description of the source (max of 1024 characters).
-        :param pulumi.Input[str] display_name: The source’s display name. A source’s display name must be unique amongst its siblings, for example, two sources
-               with the same parent can't share the same display name. The display name must start and end with a letter or digit, may
-               contain letters, digits, spaces, hyphens, and underscores, and can be no longer than 32 characters.
-        :param pulumi.Input[str] organization: The organization whose Cloud Security Command Center the Source lives in.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               The description of the source (max of 1024 characters).
+        :param pulumi.Input[str] display_name: -
+               (Required)
+               The source’s display name. A source’s display name must be unique
+               amongst its siblings, for example, two sources with the same parent
+               can't share the same display name. The display name must start and end
+               with a letter or digit, may contain letters, digits, spaces, hyphens,
+               and underscores, and can be no longer than 32 characters.
+        :param pulumi.Input[str] organization: -
+               (Required)
+               The organization whose Cloud Security Command Center the Source
+               lives in.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -92,12 +108,21 @@ class Source(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: The description of the source (max of 1024 characters).
-        :param pulumi.Input[str] display_name: The source’s display name. A source’s display name must be unique amongst its siblings, for example, two sources
-               with the same parent can't share the same display name. The display name must start and end with a letter or digit, may
-               contain letters, digits, spaces, hyphens, and underscores, and can be no longer than 32 characters.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               The description of the source (max of 1024 characters).
+        :param pulumi.Input[str] display_name: -
+               (Required)
+               The source’s display name. A source’s display name must be unique
+               amongst its siblings, for example, two sources with the same parent
+               can't share the same display name. The display name must start and end
+               with a letter or digit, may contain letters, digits, spaces, hyphens,
+               and underscores, and can be no longer than 32 characters.
         :param pulumi.Input[str] name: The resource name of this source, in the format 'organizations/{{organization}}/sources/{{source}}'.
-        :param pulumi.Input[str] organization: The organization whose Cloud Security Command Center the Source lives in.
+        :param pulumi.Input[str] organization: -
+               (Required)
+               The organization whose Cloud Security Command Center the Source
+               lives in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

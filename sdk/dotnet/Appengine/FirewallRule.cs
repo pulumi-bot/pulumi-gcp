@@ -25,21 +25,29 @@ namespace Pulumi.Gcp.AppEngine
     public partial class FirewallRule : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The action to take if this rule matches.
         /// </summary>
         [Output("action")]
         public Output<string> Action { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional string description of this rule.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// A positive integer that defines the order of rule evaluation. Rules with the lowest priority are evaluated
-        /// first. A default rule at priority Int32.MaxValue matches all IPv4 and IPv6 traffic when no previous rule
-        /// matches. Only the action of this rule can be modified by the user.
+        /// -
+        /// (Optional)
+        /// A positive integer that defines the order of rule evaluation.
+        /// Rules with the lowest priority are evaluated first.
+        /// A default rule at priority Int32.MaxValue matches all IPv4 and
+        /// IPv6 traffic when no previous rule matches. Only the action of
+        /// this rule can be modified by the user.
         /// </summary>
         [Output("priority")]
         public Output<int?> Priority { get; private set; } = null!;
@@ -52,6 +60,8 @@ namespace Pulumi.Gcp.AppEngine
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// IP address or range, defined using CIDR notation, of requests that this rule applies to.
         /// </summary>
         [Output("sourceRange")]
@@ -104,21 +114,29 @@ namespace Pulumi.Gcp.AppEngine
     public sealed class FirewallRuleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The action to take if this rule matches.
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional string description of this rule.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// A positive integer that defines the order of rule evaluation. Rules with the lowest priority are evaluated
-        /// first. A default rule at priority Int32.MaxValue matches all IPv4 and IPv6 traffic when no previous rule
-        /// matches. Only the action of this rule can be modified by the user.
+        /// -
+        /// (Optional)
+        /// A positive integer that defines the order of rule evaluation.
+        /// Rules with the lowest priority are evaluated first.
+        /// A default rule at priority Int32.MaxValue matches all IPv4 and
+        /// IPv6 traffic when no previous rule matches. Only the action of
+        /// this rule can be modified by the user.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -131,6 +149,8 @@ namespace Pulumi.Gcp.AppEngine
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// IP address or range, defined using CIDR notation, of requests that this rule applies to.
         /// </summary>
         [Input("sourceRange", required: true)]
@@ -144,21 +164,29 @@ namespace Pulumi.Gcp.AppEngine
     public sealed class FirewallRuleState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The action to take if this rule matches.
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional string description of this rule.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// A positive integer that defines the order of rule evaluation. Rules with the lowest priority are evaluated
-        /// first. A default rule at priority Int32.MaxValue matches all IPv4 and IPv6 traffic when no previous rule
-        /// matches. Only the action of this rule can be modified by the user.
+        /// -
+        /// (Optional)
+        /// A positive integer that defines the order of rule evaluation.
+        /// Rules with the lowest priority are evaluated first.
+        /// A default rule at priority Int32.MaxValue matches all IPv4 and
+        /// IPv6 traffic when no previous rule matches. Only the action of
+        /// this rule can be modified by the user.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -171,6 +199,8 @@ namespace Pulumi.Gcp.AppEngine
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// IP address or range, defined using CIDR notation, of requests that this rule applies to.
         /// </summary>
         [Input("sourceRange")]

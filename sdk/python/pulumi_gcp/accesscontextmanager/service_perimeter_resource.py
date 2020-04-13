@@ -12,12 +12,17 @@ from .. import utilities, tables
 class ServicePerimeterResource(pulumi.CustomResource):
     perimeter_name: pulumi.Output[str]
     """
+    -
+    (Required)
     The name of the Service Perimeter to add this resource to.
     """
     resource: pulumi.Output[str]
     """
-    A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format:
-    projects/{project_number}
+    -
+    (Required)
+    A GCP resource that is inside of the service perimeter.
+    Currently only projects are allowed.
+    Format: projects/{project_number}
     """
     def __init__(__self__, resource_name, opts=None, perimeter_name=None, resource=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -37,13 +42,16 @@ class ServicePerimeterResource(pulumi.CustomResource):
         * How-to Guides
             * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/access_context_manager_service_perimeter_resource.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] perimeter_name: The name of the Service Perimeter to add this resource to.
-        :param pulumi.Input[str] resource: A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format:
-               projects/{project_number}
+        :param pulumi.Input[str] perimeter_name: -
+               (Required)
+               The name of the Service Perimeter to add this resource to.
+        :param pulumi.Input[str] resource: -
+               (Required)
+               A GCP resource that is inside of the service perimeter.
+               Currently only projects are allowed.
+               Format: projects/{project_number}
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -83,9 +91,14 @@ class ServicePerimeterResource(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] perimeter_name: The name of the Service Perimeter to add this resource to.
-        :param pulumi.Input[str] resource: A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format:
-               projects/{project_number}
+        :param pulumi.Input[str] perimeter_name: -
+               (Required)
+               The name of the Service Perimeter to add this resource to.
+        :param pulumi.Input[str] resource: -
+               (Required)
+               A GCP resource that is inside of the service perimeter.
+               Currently only projects are allowed.
+               Format: projects/{project_number}
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

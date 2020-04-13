@@ -51,27 +51,39 @@ namespace Pulumi.Gcp.Compute
         public Output<string> CreationTimestamp { get; private set; } = null!;
 
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Size of the image when restored onto a persistent disk (in GB).
         /// </summary>
         [Output("diskSizeGb")]
         public Output<int> DiskSizeGb { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the image family to which this image belongs. You can create disks by specifying an image family
-        /// instead of a specific image name. The image family always returns its latest image that is not deprecated.
-        /// The name of the image family must comply with RFC1035.
+        /// -
+        /// (Optional)
+        /// The name of the image family to which this image belongs. You can
+        /// create disks by specifying an image family instead of a specific
+        /// image name. The image family always returns its latest image that is
+        /// not deprecated. The name of the image family must comply with
+        /// RFC1035.
         /// </summary>
         [Output("family")]
         public Output<string?> Family { get; private set; } = null!;
 
         /// <summary>
-        /// A list of features to enable on the guest operating system. Applicable only for bootable images.
+        /// -
+        /// (Optional)
+        /// A list of features to enable on the guest operating system.
+        /// Applicable only for bootable images.  Structure is documented below.
         /// </summary>
         [Output("guestOsFeatures")]
         public Output<ImmutableArray<Outputs.ImageGuestOsFeatures>> GuestOsFeatures { get; private set; } = null!;
@@ -83,23 +95,31 @@ namespace Pulumi.Gcp.Compute
         public Output<string> LabelFingerprint { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Labels to apply to this Image.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Any applicable license URI.
         /// </summary>
         [Output("licenses")]
         public Output<ImmutableArray<string>> Licenses { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource; provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z?` which means
+        /// the first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the
+        /// last character, which cannot be a dash.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -112,7 +132,9 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// The parameters of the raw disk image.
+        /// -
+        /// (Optional)
+        /// The parameters of the raw disk image.  Structure is documented below.
         /// </summary>
         [Output("rawDisk")]
         public Output<Outputs.ImageRawDisk?> RawDisk { get; private set; } = null!;
@@ -124,8 +146,11 @@ namespace Pulumi.Gcp.Compute
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
-        /// The source disk to create this image based on. You must provide either this property or the rawDisk.source
-        /// property but not both to create an image.
+        /// -
+        /// (Optional)
+        /// The source disk to create this image based on.
+        /// You must provide either this property or the
+        /// rawDisk.source property but not both to create an image.
         /// </summary>
         [Output("sourceDisk")]
         public Output<string?> SourceDisk { get; private set; } = null!;
@@ -177,21 +202,30 @@ namespace Pulumi.Gcp.Compute
     public sealed class ImageArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Size of the image when restored onto a persistent disk (in GB).
         /// </summary>
         [Input("diskSizeGb")]
         public Input<int>? DiskSizeGb { get; set; }
 
         /// <summary>
-        /// The name of the image family to which this image belongs. You can create disks by specifying an image family
-        /// instead of a specific image name. The image family always returns its latest image that is not deprecated.
-        /// The name of the image family must comply with RFC1035.
+        /// -
+        /// (Optional)
+        /// The name of the image family to which this image belongs. You can
+        /// create disks by specifying an image family instead of a specific
+        /// image name. The image family always returns its latest image that is
+        /// not deprecated. The name of the image family must comply with
+        /// RFC1035.
         /// </summary>
         [Input("family")]
         public Input<string>? Family { get; set; }
@@ -200,7 +234,10 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.ImageGuestOsFeaturesArgs>? _guestOsFeatures;
 
         /// <summary>
-        /// A list of features to enable on the guest operating system. Applicable only for bootable images.
+        /// -
+        /// (Optional)
+        /// A list of features to enable on the guest operating system.
+        /// Applicable only for bootable images.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.ImageGuestOsFeaturesArgs> GuestOsFeatures
         {
@@ -212,6 +249,8 @@ namespace Pulumi.Gcp.Compute
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Labels to apply to this Image.
         /// </summary>
         public InputMap<string> Labels
@@ -224,6 +263,8 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _licenses;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Any applicable license URI.
         /// </summary>
         public InputList<string> Licenses
@@ -233,11 +274,15 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource; provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z?` which means
+        /// the first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the
+        /// last character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -250,14 +295,19 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The parameters of the raw disk image.
+        /// -
+        /// (Optional)
+        /// The parameters of the raw disk image.  Structure is documented below.
         /// </summary>
         [Input("rawDisk")]
         public Input<Inputs.ImageRawDiskArgs>? RawDisk { get; set; }
 
         /// <summary>
-        /// The source disk to create this image based on. You must provide either this property or the rawDisk.source
-        /// property but not both to create an image.
+        /// -
+        /// (Optional)
+        /// The source disk to create this image based on.
+        /// You must provide either this property or the
+        /// rawDisk.source property but not both to create an image.
         /// </summary>
         [Input("sourceDisk")]
         public Input<string>? SourceDisk { get; set; }
@@ -282,21 +332,30 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? CreationTimestamp { get; set; }
 
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Size of the image when restored onto a persistent disk (in GB).
         /// </summary>
         [Input("diskSizeGb")]
         public Input<int>? DiskSizeGb { get; set; }
 
         /// <summary>
-        /// The name of the image family to which this image belongs. You can create disks by specifying an image family
-        /// instead of a specific image name. The image family always returns its latest image that is not deprecated.
-        /// The name of the image family must comply with RFC1035.
+        /// -
+        /// (Optional)
+        /// The name of the image family to which this image belongs. You can
+        /// create disks by specifying an image family instead of a specific
+        /// image name. The image family always returns its latest image that is
+        /// not deprecated. The name of the image family must comply with
+        /// RFC1035.
         /// </summary>
         [Input("family")]
         public Input<string>? Family { get; set; }
@@ -305,7 +364,10 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.ImageGuestOsFeaturesGetArgs>? _guestOsFeatures;
 
         /// <summary>
-        /// A list of features to enable on the guest operating system. Applicable only for bootable images.
+        /// -
+        /// (Optional)
+        /// A list of features to enable on the guest operating system.
+        /// Applicable only for bootable images.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.ImageGuestOsFeaturesGetArgs> GuestOsFeatures
         {
@@ -323,6 +385,8 @@ namespace Pulumi.Gcp.Compute
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Labels to apply to this Image.
         /// </summary>
         public InputMap<string> Labels
@@ -335,6 +399,8 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _licenses;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Any applicable license URI.
         /// </summary>
         public InputList<string> Licenses
@@ -344,11 +410,15 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource; provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z?` which means
+        /// the first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the
+        /// last character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -361,7 +431,9 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The parameters of the raw disk image.
+        /// -
+        /// (Optional)
+        /// The parameters of the raw disk image.  Structure is documented below.
         /// </summary>
         [Input("rawDisk")]
         public Input<Inputs.ImageRawDiskGetArgs>? RawDisk { get; set; }
@@ -373,8 +445,11 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? SelfLink { get; set; }
 
         /// <summary>
-        /// The source disk to create this image based on. You must provide either this property or the rawDisk.source
-        /// property but not both to create an image.
+        /// -
+        /// (Optional)
+        /// The source disk to create this image based on.
+        /// You must provide either this property or the
+        /// rawDisk.source property but not both to create an image.
         /// </summary>
         [Input("sourceDisk")]
         public Input<string>? SourceDisk { get; set; }
@@ -389,6 +464,11 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ImageGuestOsFeaturesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The type of supported feature. Read [Enabling guest operating system features](https://cloud.google.com/compute/docs/images/create-delete-deprecate-private-images#guest-os-features) to see a list of available options.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -399,6 +479,11 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ImageGuestOsFeaturesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The type of supported feature. Read [Enabling guest operating system features](https://cloud.google.com/compute/docs/images/create-delete-deprecate-private-images#guest-os-features) to see a list of available options.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
@@ -409,12 +494,33 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ImageRawDiskArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The format used to encode and transmit the block device, which
+        /// should be TAR. This is just a container and transmission format
+        /// and not a runtime format. Provided by the client when the disk
+        /// image is created.
+        /// </summary>
         [Input("containerType")]
         public Input<string>? ContainerType { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional SHA1 checksum of the disk image before unpackaging.
+        /// This is provided by the client when the disk image is created.
+        /// </summary>
         [Input("sha1")]
         public Input<string>? Sha1 { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full Google Cloud Storage URL where disk storage is stored
+        /// You must provide either this property or the sourceDisk property
+        /// but not both.
+        /// </summary>
         [Input("source", required: true)]
         public Input<string> Source { get; set; } = null!;
 
@@ -425,12 +531,33 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class ImageRawDiskGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The format used to encode and transmit the block device, which
+        /// should be TAR. This is just a container and transmission format
+        /// and not a runtime format. Provided by the client when the disk
+        /// image is created.
+        /// </summary>
         [Input("containerType")]
         public Input<string>? ContainerType { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional SHA1 checksum of the disk image before unpackaging.
+        /// This is provided by the client when the disk image is created.
+        /// </summary>
         [Input("sha1")]
         public Input<string>? Sha1 { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full Google Cloud Storage URL where disk storage is stored
+        /// You must provide either this property or the sourceDisk property
+        /// but not both.
+        /// </summary>
         [Input("source", required: true)]
         public Input<string> Source { get; set; } = null!;
 
@@ -446,6 +573,11 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ImageGuestOsFeatures
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The type of supported feature. Read [Enabling guest operating system features](https://cloud.google.com/compute/docs/images/create-delete-deprecate-private-images#guest-os-features) to see a list of available options.
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]
@@ -458,8 +590,29 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class ImageRawDisk
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The format used to encode and transmit the block device, which
+        /// should be TAR. This is just a container and transmission format
+        /// and not a runtime format. Provided by the client when the disk
+        /// image is created.
+        /// </summary>
         public readonly string? ContainerType;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional SHA1 checksum of the disk image before unpackaging.
+        /// This is provided by the client when the disk image is created.
+        /// </summary>
         public readonly string? Sha1;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full Google Cloud Storage URL where disk storage is stored
+        /// You must provide either this property or the sourceDisk property
+        /// but not both.
+        /// </summary>
         public readonly string Source;
 
         [OutputConstructor]

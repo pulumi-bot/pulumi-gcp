@@ -12,21 +12,36 @@ from .. import utilities, tables
 class GameServerDeploymentRollout(pulumi.CustomResource):
     default_game_server_config: pulumi.Output[str]
     """
-    This field points to the game server config that is applied by default to all realms and clusters. For example,
-    'projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config'.
+    -
+    (Required)
+    This field points to the game server config that is
+    applied by default to all realms and clusters. For example,
+    `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
     """
     deployment_id: pulumi.Output[str]
     """
+    -
+    (Required)
     The deployment to rollout the new config to. Only 1 rollout must be associated with each deployment.
     """
     game_server_config_overrides: pulumi.Output[list]
     """
-    The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the order
-    they are listed. As soon as a match is found for a cluster, the rest of the list is not processed.
+    -
+    (Optional)
+    The game_server_config_overrides contains the per game server config
+    overrides. The overrides are processed in the order they are listed. As
+    soon as a match is found for a cluster, the rest of the list is not
+    processed.  Structure is documented below.
 
-      * `configVersion` (`str`)
-      * `realmsSelector` (`dict`)
-        * `realms` (`list`)
+      * `configVersion` (`str`) - -
+        (Optional)
+        Version of the configuration.
+      * `realmsSelector` (`dict`) - -
+        (Optional)
+        Selection by realms.  Structure is documented below.
+        * `realms` (`list`) - -
+          (Optional)
+          List of realms to match against.
     """
     name: pulumi.Output[str]
     """
@@ -49,23 +64,36 @@ class GameServerDeploymentRollout(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/game-servers/docs)
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/game_services_game_server_deployment_rollout.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] default_game_server_config: This field points to the game server config that is applied by default to all realms and clusters. For example,
-               'projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config'.
-        :param pulumi.Input[str] deployment_id: The deployment to rollout the new config to. Only 1 rollout must be associated with each deployment.
-        :param pulumi.Input[list] game_server_config_overrides: The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the order
-               they are listed. As soon as a match is found for a cluster, the rest of the list is not processed.
+        :param pulumi.Input[str] default_game_server_config: -
+               (Required)
+               This field points to the game server config that is
+               applied by default to all realms and clusters. For example,
+               `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
+        :param pulumi.Input[str] deployment_id: -
+               (Required)
+               The deployment to rollout the new config to. Only 1 rollout must be associated with each deployment.
+        :param pulumi.Input[list] game_server_config_overrides: -
+               (Optional)
+               The game_server_config_overrides contains the per game server config
+               overrides. The overrides are processed in the order they are listed. As
+               soon as a match is found for a cluster, the rest of the list is not
+               processed.  Structure is documented below.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
 
         The **game_server_config_overrides** object supports the following:
 
-          * `configVersion` (`pulumi.Input[str]`)
-          * `realmsSelector` (`pulumi.Input[dict]`)
-            * `realms` (`pulumi.Input[list]`)
+          * `configVersion` (`pulumi.Input[str]`) - -
+            (Optional)
+            Version of the configuration.
+          * `realmsSelector` (`pulumi.Input[dict]`) - -
+            (Optional)
+            Selection by realms.  Structure is documented below.
+            * `realms` (`pulumi.Input[list]`) - -
+              (Optional)
+              List of realms to match against.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -108,11 +136,20 @@ class GameServerDeploymentRollout(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] default_game_server_config: This field points to the game server config that is applied by default to all realms and clusters. For example,
-               'projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config'.
-        :param pulumi.Input[str] deployment_id: The deployment to rollout the new config to. Only 1 rollout must be associated with each deployment.
-        :param pulumi.Input[list] game_server_config_overrides: The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the order
-               they are listed. As soon as a match is found for a cluster, the rest of the list is not processed.
+        :param pulumi.Input[str] default_game_server_config: -
+               (Required)
+               This field points to the game server config that is
+               applied by default to all realms and clusters. For example,
+               `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
+        :param pulumi.Input[str] deployment_id: -
+               (Required)
+               The deployment to rollout the new config to. Only 1 rollout must be associated with each deployment.
+        :param pulumi.Input[list] game_server_config_overrides: -
+               (Optional)
+               The game_server_config_overrides contains the per game server config
+               overrides. The overrides are processed in the order they are listed. As
+               soon as a match is found for a cluster, the rest of the list is not
+               processed.  Structure is documented below.
         :param pulumi.Input[str] name: The resource id of the game server deployment eg:
                'projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout'.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
@@ -120,9 +157,15 @@ class GameServerDeploymentRollout(pulumi.CustomResource):
 
         The **game_server_config_overrides** object supports the following:
 
-          * `configVersion` (`pulumi.Input[str]`)
-          * `realmsSelector` (`pulumi.Input[dict]`)
-            * `realms` (`pulumi.Input[list]`)
+          * `configVersion` (`pulumi.Input[str]`) - -
+            (Optional)
+            Version of the configuration.
+          * `realmsSelector` (`pulumi.Input[dict]`) - -
+            (Optional)
+            Selection by realms.  Structure is documented below.
+            * `realms` (`pulumi.Input[list]`) - -
+              (Optional)
+              List of realms to match against.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

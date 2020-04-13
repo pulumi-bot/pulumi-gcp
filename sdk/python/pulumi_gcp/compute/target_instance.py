@@ -16,24 +16,39 @@ class TargetInstance(pulumi.CustomResource):
     """
     description: pulumi.Output[str]
     """
+    -
+    (Optional)
     An optional description of this resource.
     """
     instance: pulumi.Output[str]
     """
-    The Compute instance VM handling traffic for this target instance. Accepts the instance self-link, relative path (e.g.
-    'projects/project/zones/zone/instances/instance') or name. If name is given, the zone will default to the given zone or
-    the provider-default zone and the project will default to the provider-level project.
+    -
+    (Required)
+    The Compute instance VM handling traffic for this target instance.
+    Accepts the instance self-link, relative path
+    (e.g. `projects/project/zones/zone/instances/instance`) or name. If
+    name is given, the zone will default to the given zone or
+    the provider-default zone and the project will default to the
+    provider-level project.
     """
     name: pulumi.Output[str]
     """
-    Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-    comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-    '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-    must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+    -
+    (Required)
+    Name of the resource. Provided by the client when the resource is
+    created. The name must be 1-63 characters long, and comply with
+    RFC1035. Specifically, the name must be 1-63 characters long and match
+    the regular expression `a-z?` which means the
+    first character must be a lowercase letter, and all following
+    characters must be a dash, lowercase letter, or digit, except the last
+    character, which cannot be a dash.
     """
     nat_policy: pulumi.Output[str]
     """
-    NAT option controlling how IPs are NAT'ed to the instance. Currently only NO_NAT (default value) is supported.
+    -
+    (Optional)
+    NAT option controlling how IPs are NAT'ed to the instance.
+    Currently only NO_NAT (default value) is supported.
     """
     project: pulumi.Output[str]
     """
@@ -46,6 +61,8 @@ class TargetInstance(pulumi.CustomResource):
     """
     zone: pulumi.Output[str]
     """
+    -
+    (Optional)
     URL of the zone where the target instance resides.
     """
     def __init__(__self__, resource_name, opts=None, description=None, instance=None, name=None, nat_policy=None, project=None, zone=None, __props__=None, __name__=None, __opts__=None):
@@ -64,22 +81,37 @@ class TargetInstance(pulumi.CustomResource):
         * How-to Guides
             * [Using Protocol Forwarding](https://cloud.google.com/compute/docs/protocol-forwarding)
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_target_instance.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[str] instance: The Compute instance VM handling traffic for this target instance. Accepts the instance self-link, relative path (e.g.
-               'projects/project/zones/zone/instances/instance') or name. If name is given, the zone will default to the given zone or
-               the provider-default zone and the project will default to the provider-level project.
-        :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-               comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-               '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-               must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-        :param pulumi.Input[str] nat_policy: NAT option controlling how IPs are NAT'ed to the instance. Currently only NO_NAT (default value) is supported.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               An optional description of this resource.
+        :param pulumi.Input[str] instance: -
+               (Required)
+               The Compute instance VM handling traffic for this target instance.
+               Accepts the instance self-link, relative path
+               (e.g. `projects/project/zones/zone/instances/instance`) or name. If
+               name is given, the zone will default to the given zone or
+               the provider-default zone and the project will default to the
+               provider-level project.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Name of the resource. Provided by the client when the resource is
+               created. The name must be 1-63 characters long, and comply with
+               RFC1035. Specifically, the name must be 1-63 characters long and match
+               the regular expression `a-z?` which means the
+               first character must be a lowercase letter, and all following
+               characters must be a dash, lowercase letter, or digit, except the last
+               character, which cannot be a dash.
+        :param pulumi.Input[str] nat_policy: -
+               (Optional)
+               NAT option controlling how IPs are NAT'ed to the instance.
+               Currently only NO_NAT (default value) is supported.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] zone: URL of the zone where the target instance resides.
+        :param pulumi.Input[str] zone: -
+               (Optional)
+               URL of the zone where the target instance resides.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -124,19 +156,36 @@ class TargetInstance(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
-        :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[str] instance: The Compute instance VM handling traffic for this target instance. Accepts the instance self-link, relative path (e.g.
-               'projects/project/zones/zone/instances/instance') or name. If name is given, the zone will default to the given zone or
-               the provider-default zone and the project will default to the provider-level project.
-        :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-               comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-               '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-               must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-        :param pulumi.Input[str] nat_policy: NAT option controlling how IPs are NAT'ed to the instance. Currently only NO_NAT (default value) is supported.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               An optional description of this resource.
+        :param pulumi.Input[str] instance: -
+               (Required)
+               The Compute instance VM handling traffic for this target instance.
+               Accepts the instance self-link, relative path
+               (e.g. `projects/project/zones/zone/instances/instance`) or name. If
+               name is given, the zone will default to the given zone or
+               the provider-default zone and the project will default to the
+               provider-level project.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Name of the resource. Provided by the client when the resource is
+               created. The name must be 1-63 characters long, and comply with
+               RFC1035. Specifically, the name must be 1-63 characters long and match
+               the regular expression `a-z?` which means the
+               first character must be a lowercase letter, and all following
+               characters must be a dash, lowercase letter, or digit, except the last
+               character, which cannot be a dash.
+        :param pulumi.Input[str] nat_policy: -
+               (Optional)
+               NAT option controlling how IPs are NAT'ed to the instance.
+               Currently only NO_NAT (default value) is supported.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[str] zone: URL of the zone where the target instance resides.
+        :param pulumi.Input[str] zone: -
+               (Optional)
+               URL of the zone where the target instance resides.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

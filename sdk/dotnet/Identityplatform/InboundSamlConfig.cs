@@ -21,27 +21,35 @@ namespace Pulumi.Gcp.IdentityPlatform
     public partial class InboundSamlConfig : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Human friendly display name.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If this config allows users to sign in with the provider.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// SAML IdP configuration when the project acts as the relying party
+        /// -
+        /// (Required)
+        /// SAML IdP configuration when the project acts as the relying party  Structure is documented below.
         /// </summary>
         [Output("idpConfig")]
         public Output<Outputs.InboundSamlConfigIdpConfig> IdpConfig { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the InboundSamlConfig resource. Must start with 'saml.' and can only have alphanumeric
-        /// characters, hyphens, underscores or periods. The part after 'saml.' must also start with a lowercase letter,
-        /// end with an alphanumeric character, and have at least 2 characters.
+        /// -
+        /// (Required)
+        /// The name of the InboundSamlConfig resource. Must start with 'saml.' and can only have alphanumeric characters,
+        /// hyphens, underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an
+        /// alphanumeric character, and have at least 2 characters.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -54,8 +62,10 @@ namespace Pulumi.Gcp.IdentityPlatform
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// SAML SP (Service Provider) configuration when the project acts as the relying party to receive and accept an
-        /// authentication assertion issued by a SAML identity provider.
+        /// -
+        /// (Required)
+        /// SAML SP (Service Provider) configuration when the project acts as the relying party to receive
+        /// and accept an authentication assertion issued by a SAML identity provider.  Structure is documented below.
         /// </summary>
         [Output("spConfig")]
         public Output<Outputs.InboundSamlConfigSpConfig> SpConfig { get; private set; } = null!;
@@ -107,27 +117,35 @@ namespace Pulumi.Gcp.IdentityPlatform
     public sealed class InboundSamlConfigArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Human friendly display name.
         /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If this config allows users to sign in with the provider.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// SAML IdP configuration when the project acts as the relying party
+        /// -
+        /// (Required)
+        /// SAML IdP configuration when the project acts as the relying party  Structure is documented below.
         /// </summary>
         [Input("idpConfig", required: true)]
         public Input<Inputs.InboundSamlConfigIdpConfigArgs> IdpConfig { get; set; } = null!;
 
         /// <summary>
-        /// The name of the InboundSamlConfig resource. Must start with 'saml.' and can only have alphanumeric
-        /// characters, hyphens, underscores or periods. The part after 'saml.' must also start with a lowercase letter,
-        /// end with an alphanumeric character, and have at least 2 characters.
+        /// -
+        /// (Required)
+        /// The name of the InboundSamlConfig resource. Must start with 'saml.' and can only have alphanumeric characters,
+        /// hyphens, underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an
+        /// alphanumeric character, and have at least 2 characters.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -140,8 +158,10 @@ namespace Pulumi.Gcp.IdentityPlatform
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// SAML SP (Service Provider) configuration when the project acts as the relying party to receive and accept an
-        /// authentication assertion issued by a SAML identity provider.
+        /// -
+        /// (Required)
+        /// SAML SP (Service Provider) configuration when the project acts as the relying party to receive
+        /// and accept an authentication assertion issued by a SAML identity provider.  Structure is documented below.
         /// </summary>
         [Input("spConfig", required: true)]
         public Input<Inputs.InboundSamlConfigSpConfigArgs> SpConfig { get; set; } = null!;
@@ -154,27 +174,35 @@ namespace Pulumi.Gcp.IdentityPlatform
     public sealed class InboundSamlConfigState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Human friendly display name.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If this config allows users to sign in with the provider.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// SAML IdP configuration when the project acts as the relying party
+        /// -
+        /// (Required)
+        /// SAML IdP configuration when the project acts as the relying party  Structure is documented below.
         /// </summary>
         [Input("idpConfig")]
         public Input<Inputs.InboundSamlConfigIdpConfigGetArgs>? IdpConfig { get; set; }
 
         /// <summary>
-        /// The name of the InboundSamlConfig resource. Must start with 'saml.' and can only have alphanumeric
-        /// characters, hyphens, underscores or periods. The part after 'saml.' must also start with a lowercase letter,
-        /// end with an alphanumeric character, and have at least 2 characters.
+        /// -
+        /// (Required)
+        /// The name of the InboundSamlConfig resource. Must start with 'saml.' and can only have alphanumeric characters,
+        /// hyphens, underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an
+        /// alphanumeric character, and have at least 2 characters.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -187,8 +215,10 @@ namespace Pulumi.Gcp.IdentityPlatform
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// SAML SP (Service Provider) configuration when the project acts as the relying party to receive and accept an
-        /// authentication assertion issued by a SAML identity provider.
+        /// -
+        /// (Required)
+        /// SAML SP (Service Provider) configuration when the project acts as the relying party to receive
+        /// and accept an authentication assertion issued by a SAML identity provider.  Structure is documented below.
         /// </summary>
         [Input("spConfig")]
         public Input<Inputs.InboundSamlConfigSpConfigGetArgs>? SpConfig { get; set; }
@@ -205,18 +235,39 @@ namespace Pulumi.Gcp.IdentityPlatform
     {
         [Input("idpCertificates", required: true)]
         private InputList<InboundSamlConfigIdpConfigIdpCertificatesArgs>? _idpCertificates;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The IdP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+        /// </summary>
         public InputList<InboundSamlConfigIdpConfigIdpCertificatesArgs> IdpCertificates
         {
             get => _idpCertificates ?? (_idpCertificates = new InputList<InboundSamlConfigIdpConfigIdpCertificatesArgs>());
             set => _idpCertificates = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Unique identifier for all SAML entities
+        /// </summary>
         [Input("idpEntityId", required: true)]
         public Input<string> IdpEntityId { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Indicates if outbounding SAMLRequest should be signed.
+        /// </summary>
         [Input("signRequest")]
         public Input<bool>? SignRequest { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// URL to send Authentication request to.
+        /// </summary>
         [Input("ssoUrl", required: true)]
         public Input<string> SsoUrl { get; set; } = null!;
 
@@ -229,18 +280,39 @@ namespace Pulumi.Gcp.IdentityPlatform
     {
         [Input("idpCertificates", required: true)]
         private InputList<InboundSamlConfigIdpConfigIdpCertificatesGetArgs>? _idpCertificates;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The IdP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+        /// </summary>
         public InputList<InboundSamlConfigIdpConfigIdpCertificatesGetArgs> IdpCertificates
         {
             get => _idpCertificates ?? (_idpCertificates = new InputList<InboundSamlConfigIdpConfigIdpCertificatesGetArgs>());
             set => _idpCertificates = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Unique identifier for all SAML entities
+        /// </summary>
         [Input("idpEntityId", required: true)]
         public Input<string> IdpEntityId { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Indicates if outbounding SAMLRequest should be signed.
+        /// </summary>
         [Input("signRequest")]
         public Input<bool>? SignRequest { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// URL to send Authentication request to.
+        /// </summary>
         [Input("ssoUrl", required: true)]
         public Input<string> SsoUrl { get; set; } = null!;
 
@@ -251,6 +323,10 @@ namespace Pulumi.Gcp.IdentityPlatform
 
     public sealed class InboundSamlConfigIdpConfigIdpCertificatesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// The x509 certificate
+        /// </summary>
         [Input("x509Certificate")]
         public Input<string>? X509Certificate { get; set; }
 
@@ -261,6 +337,10 @@ namespace Pulumi.Gcp.IdentityPlatform
 
     public sealed class InboundSamlConfigIdpConfigIdpCertificatesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// The x509 certificate
+        /// </summary>
         [Input("x509Certificate")]
         public Input<string>? X509Certificate { get; set; }
 
@@ -271,17 +351,32 @@ namespace Pulumi.Gcp.IdentityPlatform
 
     public sealed class InboundSamlConfigSpConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Callback URI where responses from IDP are handled. Must start with `https://`.
+        /// </summary>
         [Input("callbackUri")]
         public Input<string>? CallbackUri { get; set; }
 
         [Input("spCertificates")]
         private InputList<InboundSamlConfigSpConfigSpCertificatesArgs>? _spCertificates;
+
+        /// <summary>
+        /// -
+        /// The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+        /// </summary>
         public InputList<InboundSamlConfigSpConfigSpCertificatesArgs> SpCertificates
         {
             get => _spCertificates ?? (_spCertificates = new InputList<InboundSamlConfigSpConfigSpCertificatesArgs>());
             set => _spCertificates = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Unique identifier for all SAML entities.
+        /// </summary>
         [Input("spEntityId")]
         public Input<string>? SpEntityId { get; set; }
 
@@ -292,17 +387,32 @@ namespace Pulumi.Gcp.IdentityPlatform
 
     public sealed class InboundSamlConfigSpConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Callback URI where responses from IDP are handled. Must start with `https://`.
+        /// </summary>
         [Input("callbackUri")]
         public Input<string>? CallbackUri { get; set; }
 
         [Input("spCertificates")]
         private InputList<InboundSamlConfigSpConfigSpCertificatesGetArgs>? _spCertificates;
+
+        /// <summary>
+        /// -
+        /// The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+        /// </summary>
         public InputList<InboundSamlConfigSpConfigSpCertificatesGetArgs> SpCertificates
         {
             get => _spCertificates ?? (_spCertificates = new InputList<InboundSamlConfigSpConfigSpCertificatesGetArgs>());
             set => _spCertificates = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Unique identifier for all SAML entities.
+        /// </summary>
         [Input("spEntityId")]
         public Input<string>? SpEntityId { get; set; }
 
@@ -313,6 +423,10 @@ namespace Pulumi.Gcp.IdentityPlatform
 
     public sealed class InboundSamlConfigSpConfigSpCertificatesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// The x509 certificate
+        /// </summary>
         [Input("x509Certificate")]
         public Input<string>? X509Certificate { get; set; }
 
@@ -323,6 +437,10 @@ namespace Pulumi.Gcp.IdentityPlatform
 
     public sealed class InboundSamlConfigSpConfigSpCertificatesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// The x509 certificate
+        /// </summary>
         [Input("x509Certificate")]
         public Input<string>? X509Certificate { get; set; }
 
@@ -338,9 +456,29 @@ namespace Pulumi.Gcp.IdentityPlatform
     [OutputType]
     public sealed class InboundSamlConfigIdpConfig
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The IdP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<InboundSamlConfigIdpConfigIdpCertificates> IdpCertificates;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Unique identifier for all SAML entities
+        /// </summary>
         public readonly string IdpEntityId;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Indicates if outbounding SAMLRequest should be signed.
+        /// </summary>
         public readonly bool? SignRequest;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// URL to send Authentication request to.
+        /// </summary>
         public readonly string SsoUrl;
 
         [OutputConstructor]
@@ -360,6 +498,10 @@ namespace Pulumi.Gcp.IdentityPlatform
     [OutputType]
     public sealed class InboundSamlConfigIdpConfigIdpCertificates
     {
+        /// <summary>
+        /// -
+        /// The x509 certificate
+        /// </summary>
         public readonly string? X509Certificate;
 
         [OutputConstructor]
@@ -372,8 +514,22 @@ namespace Pulumi.Gcp.IdentityPlatform
     [OutputType]
     public sealed class InboundSamlConfigSpConfig
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Callback URI where responses from IDP are handled. Must start with `https://`.
+        /// </summary>
         public readonly string? CallbackUri;
+        /// <summary>
+        /// -
+        /// The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<InboundSamlConfigSpConfigSpCertificates> SpCertificates;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Unique identifier for all SAML entities.
+        /// </summary>
         public readonly string? SpEntityId;
 
         [OutputConstructor]
@@ -391,6 +547,10 @@ namespace Pulumi.Gcp.IdentityPlatform
     [OutputType]
     public sealed class InboundSamlConfigSpConfigSpCertificates
     {
+        /// <summary>
+        /// -
+        /// The x509 certificate
+        /// </summary>
         public readonly string X509Certificate;
 
         [OutputConstructor]

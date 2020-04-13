@@ -17,13 +17,18 @@ namespace Pulumi.Gcp.Dataproc
     public partial class AutoscalingPolicy : Pulumi.CustomResource
     {
         /// <summary>
-        /// Basic algorithm for autoscaling.
+        /// -
+        /// (Optional)
+        /// Basic algorithm for autoscaling.  Structure is documented below.
         /// </summary>
         [Output("basicAlgorithm")]
         public Output<Outputs.AutoscalingPolicyBasicAlgorithm?> BasicAlgorithm { get; private set; } = null!;
 
         /// <summary>
-        /// The location where the autoscaling poicy should reside. The default value is 'global'.
+        /// -
+        /// (Optional)
+        /// The  location where the autoscaling poicy should reside.
+        /// The default value is `global`.
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
@@ -35,8 +40,11 @@ namespace Pulumi.Gcp.Dataproc
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The policy id. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-).
-        /// Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters.
+        /// -
+        /// (Required)
+        /// The policy id. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+        /// and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between
+        /// 3 and 50 characters.
         /// </summary>
         [Output("policyId")]
         public Output<string> PolicyId { get; private set; } = null!;
@@ -49,13 +57,17 @@ namespace Pulumi.Gcp.Dataproc
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// Describes how the autoscaler will operate for secondary workers.
+        /// -
+        /// (Optional)
+        /// Describes how the autoscaler will operate for secondary workers.  Structure is documented below.
         /// </summary>
         [Output("secondaryWorkerConfig")]
         public Output<Outputs.AutoscalingPolicySecondaryWorkerConfig?> SecondaryWorkerConfig { get; private set; } = null!;
 
         /// <summary>
-        /// Describes how the autoscaler will operate for primary workers.
+        /// -
+        /// (Optional)
+        /// Describes how the autoscaler will operate for primary workers.  Structure is documented below.
         /// </summary>
         [Output("workerConfig")]
         public Output<Outputs.AutoscalingPolicyWorkerConfig?> WorkerConfig { get; private set; } = null!;
@@ -107,20 +119,28 @@ namespace Pulumi.Gcp.Dataproc
     public sealed class AutoscalingPolicyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Basic algorithm for autoscaling.
+        /// -
+        /// (Optional)
+        /// Basic algorithm for autoscaling.  Structure is documented below.
         /// </summary>
         [Input("basicAlgorithm")]
         public Input<Inputs.AutoscalingPolicyBasicAlgorithmArgs>? BasicAlgorithm { get; set; }
 
         /// <summary>
-        /// The location where the autoscaling poicy should reside. The default value is 'global'.
+        /// -
+        /// (Optional)
+        /// The  location where the autoscaling poicy should reside.
+        /// The default value is `global`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// The policy id. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-).
-        /// Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters.
+        /// -
+        /// (Required)
+        /// The policy id. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+        /// and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between
+        /// 3 and 50 characters.
         /// </summary>
         [Input("policyId", required: true)]
         public Input<string> PolicyId { get; set; } = null!;
@@ -133,13 +153,17 @@ namespace Pulumi.Gcp.Dataproc
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// Describes how the autoscaler will operate for secondary workers.
+        /// -
+        /// (Optional)
+        /// Describes how the autoscaler will operate for secondary workers.  Structure is documented below.
         /// </summary>
         [Input("secondaryWorkerConfig")]
         public Input<Inputs.AutoscalingPolicySecondaryWorkerConfigArgs>? SecondaryWorkerConfig { get; set; }
 
         /// <summary>
-        /// Describes how the autoscaler will operate for primary workers.
+        /// -
+        /// (Optional)
+        /// Describes how the autoscaler will operate for primary workers.  Structure is documented below.
         /// </summary>
         [Input("workerConfig")]
         public Input<Inputs.AutoscalingPolicyWorkerConfigArgs>? WorkerConfig { get; set; }
@@ -152,13 +176,18 @@ namespace Pulumi.Gcp.Dataproc
     public sealed class AutoscalingPolicyState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Basic algorithm for autoscaling.
+        /// -
+        /// (Optional)
+        /// Basic algorithm for autoscaling.  Structure is documented below.
         /// </summary>
         [Input("basicAlgorithm")]
         public Input<Inputs.AutoscalingPolicyBasicAlgorithmGetArgs>? BasicAlgorithm { get; set; }
 
         /// <summary>
-        /// The location where the autoscaling poicy should reside. The default value is 'global'.
+        /// -
+        /// (Optional)
+        /// The  location where the autoscaling poicy should reside.
+        /// The default value is `global`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
@@ -170,8 +199,11 @@ namespace Pulumi.Gcp.Dataproc
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The policy id. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-).
-        /// Cannot begin or end with underscore or hyphen. Must consist of between 3 and 50 characters.
+        /// -
+        /// (Required)
+        /// The policy id. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+        /// and hyphens (-). Cannot begin or end with underscore or hyphen. Must consist of between
+        /// 3 and 50 characters.
         /// </summary>
         [Input("policyId")]
         public Input<string>? PolicyId { get; set; }
@@ -184,13 +216,17 @@ namespace Pulumi.Gcp.Dataproc
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// Describes how the autoscaler will operate for secondary workers.
+        /// -
+        /// (Optional)
+        /// Describes how the autoscaler will operate for secondary workers.  Structure is documented below.
         /// </summary>
         [Input("secondaryWorkerConfig")]
         public Input<Inputs.AutoscalingPolicySecondaryWorkerConfigGetArgs>? SecondaryWorkerConfig { get; set; }
 
         /// <summary>
-        /// Describes how the autoscaler will operate for primary workers.
+        /// -
+        /// (Optional)
+        /// Describes how the autoscaler will operate for primary workers.  Structure is documented below.
         /// </summary>
         [Input("workerConfig")]
         public Input<Inputs.AutoscalingPolicyWorkerConfigGetArgs>? WorkerConfig { get; set; }
@@ -205,9 +241,21 @@ namespace Pulumi.Gcp.Dataproc
 
     public sealed class AutoscalingPolicyBasicAlgorithmArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Duration between scaling events. A scaling period starts after the
+        /// update operation from the previous event has completed.
+        /// Bounds: [2m, 1d]. Default: 2m.
+        /// </summary>
         [Input("cooldownPeriod")]
         public Input<string>? CooldownPeriod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// YARN autoscaling configuration.  Structure is documented below.
+        /// </summary>
         [Input("yarnConfig", required: true)]
         public Input<AutoscalingPolicyBasicAlgorithmYarnConfigArgs> YarnConfig { get; set; } = null!;
 
@@ -218,9 +266,21 @@ namespace Pulumi.Gcp.Dataproc
 
     public sealed class AutoscalingPolicyBasicAlgorithmGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Duration between scaling events. A scaling period starts after the
+        /// update operation from the previous event has completed.
+        /// Bounds: [2m, 1d]. Default: 2m.
+        /// </summary>
         [Input("cooldownPeriod")]
         public Input<string>? CooldownPeriod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// YARN autoscaling configuration.  Structure is documented below.
+        /// </summary>
         [Input("yarnConfig", required: true)]
         public Input<AutoscalingPolicyBasicAlgorithmYarnConfigGetArgs> YarnConfig { get; set; } = null!;
 
@@ -231,18 +291,64 @@ namespace Pulumi.Gcp.Dataproc
 
     public sealed class AutoscalingPolicyBasicAlgorithmYarnConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Timeout for YARN graceful decommissioning of Node Managers. Specifies the
+        /// duration to wait for jobs to complete before forcefully removing workers
+        /// (and potentially interrupting jobs). Only applicable to downscaling operations.
+        /// Bounds: [0s, 1d].
+        /// </summary>
         [Input("gracefulDecommissionTimeout", required: true)]
         public Input<string> GracefulDecommissionTimeout { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of average pending memory in the last cooldown period for which to
+        /// remove workers. A scale-down factor of 1 will result in scaling down so that there
+        /// is no available memory remaining after the update (more aggressive scaling).
+        /// A scale-down factor of 0 disables removing workers, which can be beneficial for
+        /// autoscaling a single job.
+        /// Bounds: [0.0, 1.0].
+        /// </summary>
         [Input("scaleDownFactor", required: true)]
         public Input<double> ScaleDownFactor { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum scale-down threshold as a fraction of total cluster size before scaling occurs.
+        /// For example, in a 20-worker cluster, a threshold of 0.1 means the autoscaler must
+        /// recommend at least a 2 worker scale-down for the cluster to scale. A threshold of 0
+        /// means the autoscaler will scale down on any recommended change.
+        /// Bounds: [0.0, 1.0]. Default: 0.0.
+        /// </summary>
         [Input("scaleDownMinWorkerFraction")]
         public Input<double>? ScaleDownMinWorkerFraction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of average pending memory in the last cooldown period for which to
+        /// add workers. A scale-up factor of 1.0 will result in scaling up so that there
+        /// is no pending memory remaining after the update (more aggressive scaling).
+        /// A scale-up factor closer to 0 will result in a smaller magnitude of scaling up
+        /// (less aggressive scaling).
+        /// Bounds: [0.0, 1.0].
+        /// </summary>
         [Input("scaleUpFactor", required: true)]
         public Input<double> ScaleUpFactor { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum scale-up threshold as a fraction of total cluster size before scaling
+        /// occurs. For example, in a 20-worker cluster, a threshold of 0.1 means the autoscaler
+        /// must recommend at least a 2-worker scale-up for the cluster to scale. A threshold of
+        /// 0 means the autoscaler will scale up on any recommended change.
+        /// Bounds: [0.0, 1.0]. Default: 0.0.
+        /// </summary>
         [Input("scaleUpMinWorkerFraction")]
         public Input<double>? ScaleUpMinWorkerFraction { get; set; }
 
@@ -253,18 +359,64 @@ namespace Pulumi.Gcp.Dataproc
 
     public sealed class AutoscalingPolicyBasicAlgorithmYarnConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Timeout for YARN graceful decommissioning of Node Managers. Specifies the
+        /// duration to wait for jobs to complete before forcefully removing workers
+        /// (and potentially interrupting jobs). Only applicable to downscaling operations.
+        /// Bounds: [0s, 1d].
+        /// </summary>
         [Input("gracefulDecommissionTimeout", required: true)]
         public Input<string> GracefulDecommissionTimeout { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of average pending memory in the last cooldown period for which to
+        /// remove workers. A scale-down factor of 1 will result in scaling down so that there
+        /// is no available memory remaining after the update (more aggressive scaling).
+        /// A scale-down factor of 0 disables removing workers, which can be beneficial for
+        /// autoscaling a single job.
+        /// Bounds: [0.0, 1.0].
+        /// </summary>
         [Input("scaleDownFactor", required: true)]
         public Input<double> ScaleDownFactor { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum scale-down threshold as a fraction of total cluster size before scaling occurs.
+        /// For example, in a 20-worker cluster, a threshold of 0.1 means the autoscaler must
+        /// recommend at least a 2 worker scale-down for the cluster to scale. A threshold of 0
+        /// means the autoscaler will scale down on any recommended change.
+        /// Bounds: [0.0, 1.0]. Default: 0.0.
+        /// </summary>
         [Input("scaleDownMinWorkerFraction")]
         public Input<double>? ScaleDownMinWorkerFraction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of average pending memory in the last cooldown period for which to
+        /// add workers. A scale-up factor of 1.0 will result in scaling up so that there
+        /// is no pending memory remaining after the update (more aggressive scaling).
+        /// A scale-up factor closer to 0 will result in a smaller magnitude of scaling up
+        /// (less aggressive scaling).
+        /// Bounds: [0.0, 1.0].
+        /// </summary>
         [Input("scaleUpFactor", required: true)]
         public Input<double> ScaleUpFactor { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum scale-up threshold as a fraction of total cluster size before scaling
+        /// occurs. For example, in a 20-worker cluster, a threshold of 0.1 means the autoscaler
+        /// must recommend at least a 2-worker scale-up for the cluster to scale. A threshold of
+        /// 0 means the autoscaler will scale up on any recommended change.
+        /// Bounds: [0.0, 1.0]. Default: 0.0.
+        /// </summary>
         [Input("scaleUpMinWorkerFraction")]
         public Input<double>? ScaleUpMinWorkerFraction { get; set; }
 
@@ -275,12 +427,40 @@ namespace Pulumi.Gcp.Dataproc
 
     public sealed class AutoscalingPolicySecondaryWorkerConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum number of instances for this group. Note that by default, clusters will not use
+        /// secondary workers. Required for secondary workers if the minimum secondary instances is set.
+        /// Bounds: [minInstances, ). Defaults to 0.
+        /// </summary>
         [Input("maxInstances")]
         public Input<int>? MaxInstances { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum number of instances for this group. Bounds: [0, maxInstances]. Defaults to 0.
+        /// </summary>
         [Input("minInstances")]
         public Input<int>? MinInstances { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Weight for the instance group, which is used to determine the fraction of total workers
+        /// in the cluster from this instance group. For example, if primary workers have weight 2,
+        /// and secondary workers have weight 1, the cluster will have approximately 2 primary workers
+        /// for each secondary worker.
+        /// The cluster may not reach the specified balance if constrained by min/max bounds or other
+        /// autoscaling settings. For example, if maxInstances for secondary workers is 0, then only
+        /// primary workers will be added. The cluster can also be out of balance when created.
+        /// If weight is not set on any instance group, the cluster will default to equal weight for
+        /// all groups: the cluster will attempt to maintain an equal number of workers in each group
+        /// within the configured size bounds for each group. If weight is set for one group only,
+        /// the cluster will default to zero weight on the unset group. For example if weight is set
+        /// only on primary workers, the cluster will use primary workers only and no secondary workers.
+        /// </summary>
         [Input("weight")]
         public Input<int>? Weight { get; set; }
 
@@ -291,12 +471,40 @@ namespace Pulumi.Gcp.Dataproc
 
     public sealed class AutoscalingPolicySecondaryWorkerConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum number of instances for this group. Note that by default, clusters will not use
+        /// secondary workers. Required for secondary workers if the minimum secondary instances is set.
+        /// Bounds: [minInstances, ). Defaults to 0.
+        /// </summary>
         [Input("maxInstances")]
         public Input<int>? MaxInstances { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum number of instances for this group. Bounds: [0, maxInstances]. Defaults to 0.
+        /// </summary>
         [Input("minInstances")]
         public Input<int>? MinInstances { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Weight for the instance group, which is used to determine the fraction of total workers
+        /// in the cluster from this instance group. For example, if primary workers have weight 2,
+        /// and secondary workers have weight 1, the cluster will have approximately 2 primary workers
+        /// for each secondary worker.
+        /// The cluster may not reach the specified balance if constrained by min/max bounds or other
+        /// autoscaling settings. For example, if maxInstances for secondary workers is 0, then only
+        /// primary workers will be added. The cluster can also be out of balance when created.
+        /// If weight is not set on any instance group, the cluster will default to equal weight for
+        /// all groups: the cluster will attempt to maintain an equal number of workers in each group
+        /// within the configured size bounds for each group. If weight is set for one group only,
+        /// the cluster will default to zero weight on the unset group. For example if weight is set
+        /// only on primary workers, the cluster will use primary workers only and no secondary workers.
+        /// </summary>
         [Input("weight")]
         public Input<int>? Weight { get; set; }
 
@@ -307,12 +515,40 @@ namespace Pulumi.Gcp.Dataproc
 
     public sealed class AutoscalingPolicyWorkerConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum number of instances for this group. Note that by default, clusters will not use
+        /// secondary workers. Required for secondary workers if the minimum secondary instances is set.
+        /// Bounds: [minInstances, ). Defaults to 0.
+        /// </summary>
         [Input("maxInstances", required: true)]
         public Input<int> MaxInstances { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum number of instances for this group. Bounds: [0, maxInstances]. Defaults to 0.
+        /// </summary>
         [Input("minInstances")]
         public Input<int>? MinInstances { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Weight for the instance group, which is used to determine the fraction of total workers
+        /// in the cluster from this instance group. For example, if primary workers have weight 2,
+        /// and secondary workers have weight 1, the cluster will have approximately 2 primary workers
+        /// for each secondary worker.
+        /// The cluster may not reach the specified balance if constrained by min/max bounds or other
+        /// autoscaling settings. For example, if maxInstances for secondary workers is 0, then only
+        /// primary workers will be added. The cluster can also be out of balance when created.
+        /// If weight is not set on any instance group, the cluster will default to equal weight for
+        /// all groups: the cluster will attempt to maintain an equal number of workers in each group
+        /// within the configured size bounds for each group. If weight is set for one group only,
+        /// the cluster will default to zero weight on the unset group. For example if weight is set
+        /// only on primary workers, the cluster will use primary workers only and no secondary workers.
+        /// </summary>
         [Input("weight")]
         public Input<int>? Weight { get; set; }
 
@@ -323,12 +559,40 @@ namespace Pulumi.Gcp.Dataproc
 
     public sealed class AutoscalingPolicyWorkerConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum number of instances for this group. Note that by default, clusters will not use
+        /// secondary workers. Required for secondary workers if the minimum secondary instances is set.
+        /// Bounds: [minInstances, ). Defaults to 0.
+        /// </summary>
         [Input("maxInstances", required: true)]
         public Input<int> MaxInstances { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum number of instances for this group. Bounds: [0, maxInstances]. Defaults to 0.
+        /// </summary>
         [Input("minInstances")]
         public Input<int>? MinInstances { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Weight for the instance group, which is used to determine the fraction of total workers
+        /// in the cluster from this instance group. For example, if primary workers have weight 2,
+        /// and secondary workers have weight 1, the cluster will have approximately 2 primary workers
+        /// for each secondary worker.
+        /// The cluster may not reach the specified balance if constrained by min/max bounds or other
+        /// autoscaling settings. For example, if maxInstances for secondary workers is 0, then only
+        /// primary workers will be added. The cluster can also be out of balance when created.
+        /// If weight is not set on any instance group, the cluster will default to equal weight for
+        /// all groups: the cluster will attempt to maintain an equal number of workers in each group
+        /// within the configured size bounds for each group. If weight is set for one group only,
+        /// the cluster will default to zero weight on the unset group. For example if weight is set
+        /// only on primary workers, the cluster will use primary workers only and no secondary workers.
+        /// </summary>
         [Input("weight")]
         public Input<int>? Weight { get; set; }
 
@@ -344,7 +608,19 @@ namespace Pulumi.Gcp.Dataproc
     [OutputType]
     public sealed class AutoscalingPolicyBasicAlgorithm
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Duration between scaling events. A scaling period starts after the
+        /// update operation from the previous event has completed.
+        /// Bounds: [2m, 1d]. Default: 2m.
+        /// </summary>
         public readonly string? CooldownPeriod;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// YARN autoscaling configuration.  Structure is documented below.
+        /// </summary>
         public readonly AutoscalingPolicyBasicAlgorithmYarnConfig YarnConfig;
 
         [OutputConstructor]
@@ -360,10 +636,56 @@ namespace Pulumi.Gcp.Dataproc
     [OutputType]
     public sealed class AutoscalingPolicyBasicAlgorithmYarnConfig
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Timeout for YARN graceful decommissioning of Node Managers. Specifies the
+        /// duration to wait for jobs to complete before forcefully removing workers
+        /// (and potentially interrupting jobs). Only applicable to downscaling operations.
+        /// Bounds: [0s, 1d].
+        /// </summary>
         public readonly string GracefulDecommissionTimeout;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of average pending memory in the last cooldown period for which to
+        /// remove workers. A scale-down factor of 1 will result in scaling down so that there
+        /// is no available memory remaining after the update (more aggressive scaling).
+        /// A scale-down factor of 0 disables removing workers, which can be beneficial for
+        /// autoscaling a single job.
+        /// Bounds: [0.0, 1.0].
+        /// </summary>
         public readonly double ScaleDownFactor;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum scale-down threshold as a fraction of total cluster size before scaling occurs.
+        /// For example, in a 20-worker cluster, a threshold of 0.1 means the autoscaler must
+        /// recommend at least a 2 worker scale-down for the cluster to scale. A threshold of 0
+        /// means the autoscaler will scale down on any recommended change.
+        /// Bounds: [0.0, 1.0]. Default: 0.0.
+        /// </summary>
         public readonly double? ScaleDownMinWorkerFraction;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fraction of average pending memory in the last cooldown period for which to
+        /// add workers. A scale-up factor of 1.0 will result in scaling up so that there
+        /// is no pending memory remaining after the update (more aggressive scaling).
+        /// A scale-up factor closer to 0 will result in a smaller magnitude of scaling up
+        /// (less aggressive scaling).
+        /// Bounds: [0.0, 1.0].
+        /// </summary>
         public readonly double ScaleUpFactor;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum scale-up threshold as a fraction of total cluster size before scaling
+        /// occurs. For example, in a 20-worker cluster, a threshold of 0.1 means the autoscaler
+        /// must recommend at least a 2-worker scale-up for the cluster to scale. A threshold of
+        /// 0 means the autoscaler will scale up on any recommended change.
+        /// Bounds: [0.0, 1.0]. Default: 0.0.
+        /// </summary>
         public readonly double? ScaleUpMinWorkerFraction;
 
         [OutputConstructor]
@@ -385,8 +707,36 @@ namespace Pulumi.Gcp.Dataproc
     [OutputType]
     public sealed class AutoscalingPolicySecondaryWorkerConfig
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum number of instances for this group. Note that by default, clusters will not use
+        /// secondary workers. Required for secondary workers if the minimum secondary instances is set.
+        /// Bounds: [minInstances, ). Defaults to 0.
+        /// </summary>
         public readonly int? MaxInstances;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum number of instances for this group. Bounds: [0, maxInstances]. Defaults to 0.
+        /// </summary>
         public readonly int? MinInstances;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Weight for the instance group, which is used to determine the fraction of total workers
+        /// in the cluster from this instance group. For example, if primary workers have weight 2,
+        /// and secondary workers have weight 1, the cluster will have approximately 2 primary workers
+        /// for each secondary worker.
+        /// The cluster may not reach the specified balance if constrained by min/max bounds or other
+        /// autoscaling settings. For example, if maxInstances for secondary workers is 0, then only
+        /// primary workers will be added. The cluster can also be out of balance when created.
+        /// If weight is not set on any instance group, the cluster will default to equal weight for
+        /// all groups: the cluster will attempt to maintain an equal number of workers in each group
+        /// within the configured size bounds for each group. If weight is set for one group only,
+        /// the cluster will default to zero weight on the unset group. For example if weight is set
+        /// only on primary workers, the cluster will use primary workers only and no secondary workers.
+        /// </summary>
         public readonly int? Weight;
 
         [OutputConstructor]
@@ -404,8 +754,36 @@ namespace Pulumi.Gcp.Dataproc
     [OutputType]
     public sealed class AutoscalingPolicyWorkerConfig
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum number of instances for this group. Note that by default, clusters will not use
+        /// secondary workers. Required for secondary workers if the minimum secondary instances is set.
+        /// Bounds: [minInstances, ). Defaults to 0.
+        /// </summary>
         public readonly int MaxInstances;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum number of instances for this group. Bounds: [0, maxInstances]. Defaults to 0.
+        /// </summary>
         public readonly int? MinInstances;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Weight for the instance group, which is used to determine the fraction of total workers
+        /// in the cluster from this instance group. For example, if primary workers have weight 2,
+        /// and secondary workers have weight 1, the cluster will have approximately 2 primary workers
+        /// for each secondary worker.
+        /// The cluster may not reach the specified balance if constrained by min/max bounds or other
+        /// autoscaling settings. For example, if maxInstances for secondary workers is 0, then only
+        /// primary workers will be added. The cluster can also be out of balance when created.
+        /// If weight is not set on any instance group, the cluster will default to equal weight for
+        /// all groups: the cluster will attempt to maintain an equal number of workers in each group
+        /// within the configured size bounds for each group. If weight is set for one group only,
+        /// the cluster will default to zero weight on the unset group. For example if weight is set
+        /// only on primary workers, the cluster will use primary workers only and no secondary workers.
+        /// </summary>
         public readonly int? Weight;
 
         [OutputConstructor]

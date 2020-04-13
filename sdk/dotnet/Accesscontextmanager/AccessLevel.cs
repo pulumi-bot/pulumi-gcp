@@ -25,31 +25,43 @@ namespace Pulumi.Gcp.AccessContextManager
     public partial class AccessLevel : Pulumi.CustomResource
     {
         /// <summary>
-        /// A set of predefined conditions for the access level and a combining function.
+        /// -
+        /// (Optional)
+        /// A set of predefined conditions for the access level and a combining function.  Structure is documented below.
         /// </summary>
         [Output("basic")]
         public Output<Outputs.AccessLevelBasic?> Basic { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Description of the AccessLevel and its use. Does not affect behavior.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Resource name for the Access Level. The short_name component must begin with a letter and only include
-        /// alphanumeric and '_'. Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+        /// -
+        /// (Required)
+        /// Resource name for the Access Level. The short_name component must begin
+        /// with a letter and only include alphanumeric and '_'.
+        /// Format: accessPolicies/{policy_id}/accessLevels/{short_name}
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The AccessPolicy this AccessLevel lives in. Format: accessPolicies/{policy_id}
+        /// -
+        /// (Required)
+        /// The AccessPolicy this AccessLevel lives in.
+        /// Format: accessPolicies/{policy_id}
         /// </summary>
         [Output("parent")]
         public Output<string> Parent { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human readable title. Must be unique within the Policy.
         /// </summary>
         [Output("title")]
@@ -102,31 +114,43 @@ namespace Pulumi.Gcp.AccessContextManager
     public sealed class AccessLevelArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A set of predefined conditions for the access level and a combining function.
+        /// -
+        /// (Optional)
+        /// A set of predefined conditions for the access level and a combining function.  Structure is documented below.
         /// </summary>
         [Input("basic")]
         public Input<Inputs.AccessLevelBasicArgs>? Basic { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Description of the AccessLevel and its use. Does not affect behavior.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Resource name for the Access Level. The short_name component must begin with a letter and only include
-        /// alphanumeric and '_'. Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+        /// -
+        /// (Required)
+        /// Resource name for the Access Level. The short_name component must begin
+        /// with a letter and only include alphanumeric and '_'.
+        /// Format: accessPolicies/{policy_id}/accessLevels/{short_name}
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The AccessPolicy this AccessLevel lives in. Format: accessPolicies/{policy_id}
+        /// -
+        /// (Required)
+        /// The AccessPolicy this AccessLevel lives in.
+        /// Format: accessPolicies/{policy_id}
         /// </summary>
         [Input("parent", required: true)]
         public Input<string> Parent { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human readable title. Must be unique within the Policy.
         /// </summary>
         [Input("title", required: true)]
@@ -140,31 +164,43 @@ namespace Pulumi.Gcp.AccessContextManager
     public sealed class AccessLevelState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A set of predefined conditions for the access level and a combining function.
+        /// -
+        /// (Optional)
+        /// A set of predefined conditions for the access level and a combining function.  Structure is documented below.
         /// </summary>
         [Input("basic")]
         public Input<Inputs.AccessLevelBasicGetArgs>? Basic { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Description of the AccessLevel and its use. Does not affect behavior.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Resource name for the Access Level. The short_name component must begin with a letter and only include
-        /// alphanumeric and '_'. Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+        /// -
+        /// (Required)
+        /// Resource name for the Access Level. The short_name component must begin
+        /// with a letter and only include alphanumeric and '_'.
+        /// Format: accessPolicies/{policy_id}/accessLevels/{short_name}
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The AccessPolicy this AccessLevel lives in. Format: accessPolicies/{policy_id}
+        /// -
+        /// (Required)
+        /// The AccessPolicy this AccessLevel lives in.
+        /// Format: accessPolicies/{policy_id}
         /// </summary>
         [Input("parent")]
         public Input<string>? Parent { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human readable title. Must be unique within the Policy.
         /// </summary>
         [Input("title")]
@@ -180,11 +216,26 @@ namespace Pulumi.Gcp.AccessContextManager
 
     public sealed class AccessLevelBasicArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// How the conditions list should be combined to determine if a request
+        /// is granted this AccessLevel. If AND is used, each Condition in
+        /// conditions must be satisfied for the AccessLevel to be applied. If
+        /// OR is used, at least one Condition in conditions must be satisfied
+        /// for the AccessLevel to be applied. Defaults to AND if unspecified.
+        /// </summary>
         [Input("combiningFunction")]
         public Input<string>? CombiningFunction { get; set; }
 
         [Input("conditions", required: true)]
         private InputList<AccessLevelBasicConditionsArgs>? _conditions;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// A set of requirements for the AccessLevel to be granted.  Structure is documented below.
+        /// </summary>
         public InputList<AccessLevelBasicConditionsArgs> Conditions
         {
             get => _conditions ?? (_conditions = new InputList<AccessLevelBasicConditionsArgs>());
@@ -198,11 +249,33 @@ namespace Pulumi.Gcp.AccessContextManager
 
     public sealed class AccessLevelBasicConditionsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Device specific restrictions, all restrictions must hold for
+        /// the Condition to be true. If not specified, all devices are
+        /// allowed.  Structure is documented below.
+        /// </summary>
         [Input("devicePolicy")]
         public Input<AccessLevelBasicConditionsDevicePolicyArgs>? DevicePolicy { get; set; }
 
         [Input("ipSubnetworks")]
         private InputList<string>? _ipSubnetworks;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of CIDR block IP subnetwork specification. May be IPv4
+        /// or IPv6.
+        /// Note that for a CIDR IP address block, the specified IP address
+        /// portion must be properly truncated (i.e. all the host bits must
+        /// be zero) or the input is considered malformed. For example,
+        /// "192.0.2.0/24" is accepted but "192.0.2.1/24" is not. Similarly,
+        /// for IPv6, "2001:db8::/32" is accepted whereas "2001:db8::1/32"
+        /// is not. The originating IP of a request must be in one of the
+        /// listed subnets in order for this Condition to be true.
+        /// If empty, all IP addresses are allowed.
+        /// </summary>
         public InputList<string> IpSubnetworks
         {
             get => _ipSubnetworks ?? (_ipSubnetworks = new InputList<string>());
@@ -211,17 +284,44 @@ namespace Pulumi.Gcp.AccessContextManager
 
         [Input("members")]
         private InputList<string>? _members;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An allowed list of members (users, service accounts).
+        /// Using groups is not supported yet.
+        /// The signed-in user originating the request must be a part of one
+        /// of the provided members. If not specified, a request may come
+        /// from any user (logged in/not logged in, not present in any
+        /// groups, etc.).
+        /// Formats: `user:{emailid}`, `serviceAccount:{emailid}`
+        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to negate the Condition. If true, the Condition becomes
+        /// a NAND over its non-empty fields, each field must be false for
+        /// the Condition overall to be satisfied. Defaults to false.
+        /// </summary>
         [Input("negate")]
         public Input<bool>? Negate { get; set; }
 
         [Input("regions")]
         private InputList<string>? _regions;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The request must originate from one of the provided
+        /// countries/regions.
+        /// Format: A valid ISO 3166-1 alpha-2 code.
+        /// </summary>
         public InputList<string> Regions
         {
             get => _regions ?? (_regions = new InputList<string>());
@@ -230,6 +330,16 @@ namespace Pulumi.Gcp.AccessContextManager
 
         [Input("requiredAccessLevels")]
         private InputList<string>? _requiredAccessLevels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of other access levels defined in the same Policy,
+        /// referenced by resource name. Referencing an AccessLevel which
+        /// does not exist is an error. All access levels listed must be
+        /// granted for the Condition to be true.
+        /// Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+        /// </summary>
         public InputList<string> RequiredAccessLevels
         {
             get => _requiredAccessLevels ?? (_requiredAccessLevels = new InputList<string>());
@@ -245,6 +355,13 @@ namespace Pulumi.Gcp.AccessContextManager
     {
         [Input("allowedDeviceManagementLevels")]
         private InputList<string>? _allowedDeviceManagementLevels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of allowed device management levels.
+        /// An empty list allows all management levels.
+        /// </summary>
         public InputList<string> AllowedDeviceManagementLevels
         {
             get => _allowedDeviceManagementLevels ?? (_allowedDeviceManagementLevels = new InputList<string>());
@@ -253,6 +370,13 @@ namespace Pulumi.Gcp.AccessContextManager
 
         [Input("allowedEncryptionStatuses")]
         private InputList<string>? _allowedEncryptionStatuses;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of allowed encryptions statuses.
+        /// An empty list allows all statuses.
+        /// </summary>
         public InputList<string> AllowedEncryptionStatuses
         {
             get => _allowedEncryptionStatuses ?? (_allowedEncryptionStatuses = new InputList<string>());
@@ -261,18 +385,41 @@ namespace Pulumi.Gcp.AccessContextManager
 
         [Input("osConstraints")]
         private InputList<AccessLevelBasicConditionsDevicePolicyOsConstraintsArgs>? _osConstraints;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of allowed OS versions.
+        /// An empty list allows all types and all versions.  Structure is documented below.
+        /// </summary>
         public InputList<AccessLevelBasicConditionsDevicePolicyOsConstraintsArgs> OsConstraints
         {
             get => _osConstraints ?? (_osConstraints = new InputList<AccessLevelBasicConditionsDevicePolicyOsConstraintsArgs>());
             set => _osConstraints = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether the device needs to be approved by the customer admin.
+        /// </summary>
         [Input("requireAdminApproval")]
         public Input<bool>? RequireAdminApproval { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether the device needs to be corp owned.
+        /// </summary>
         [Input("requireCorpOwned")]
         public Input<bool>? RequireCorpOwned { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether or not screenlock is required for the DevicePolicy
+        /// to be true. Defaults to false.
+        /// </summary>
         [Input("requireScreenLock")]
         public Input<bool>? RequireScreenLock { get; set; }
 
@@ -285,6 +432,13 @@ namespace Pulumi.Gcp.AccessContextManager
     {
         [Input("allowedDeviceManagementLevels")]
         private InputList<string>? _allowedDeviceManagementLevels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of allowed device management levels.
+        /// An empty list allows all management levels.
+        /// </summary>
         public InputList<string> AllowedDeviceManagementLevels
         {
             get => _allowedDeviceManagementLevels ?? (_allowedDeviceManagementLevels = new InputList<string>());
@@ -293,6 +447,13 @@ namespace Pulumi.Gcp.AccessContextManager
 
         [Input("allowedEncryptionStatuses")]
         private InputList<string>? _allowedEncryptionStatuses;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of allowed encryptions statuses.
+        /// An empty list allows all statuses.
+        /// </summary>
         public InputList<string> AllowedEncryptionStatuses
         {
             get => _allowedEncryptionStatuses ?? (_allowedEncryptionStatuses = new InputList<string>());
@@ -301,18 +462,41 @@ namespace Pulumi.Gcp.AccessContextManager
 
         [Input("osConstraints")]
         private InputList<AccessLevelBasicConditionsDevicePolicyOsConstraintsGetArgs>? _osConstraints;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of allowed OS versions.
+        /// An empty list allows all types and all versions.  Structure is documented below.
+        /// </summary>
         public InputList<AccessLevelBasicConditionsDevicePolicyOsConstraintsGetArgs> OsConstraints
         {
             get => _osConstraints ?? (_osConstraints = new InputList<AccessLevelBasicConditionsDevicePolicyOsConstraintsGetArgs>());
             set => _osConstraints = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether the device needs to be approved by the customer admin.
+        /// </summary>
         [Input("requireAdminApproval")]
         public Input<bool>? RequireAdminApproval { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether the device needs to be corp owned.
+        /// </summary>
         [Input("requireCorpOwned")]
         public Input<bool>? RequireCorpOwned { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether or not screenlock is required for the DevicePolicy
+        /// to be true. Defaults to false.
+        /// </summary>
         [Input("requireScreenLock")]
         public Input<bool>? RequireScreenLock { get; set; }
 
@@ -323,9 +507,21 @@ namespace Pulumi.Gcp.AccessContextManager
 
     public sealed class AccessLevelBasicConditionsDevicePolicyOsConstraintsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum allowed OS version. If not set, any version
+        /// of this OS satisfies the constraint.
+        /// Format: "major.minor.patch" such as "10.5.301", "9.2.1".
+        /// </summary>
         [Input("minimumVersion")]
         public Input<string>? MinimumVersion { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The operating system type of the device.
+        /// </summary>
         [Input("osType", required: true)]
         public Input<string> OsType { get; set; } = null!;
 
@@ -336,9 +532,21 @@ namespace Pulumi.Gcp.AccessContextManager
 
     public sealed class AccessLevelBasicConditionsDevicePolicyOsConstraintsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum allowed OS version. If not set, any version
+        /// of this OS satisfies the constraint.
+        /// Format: "major.minor.patch" such as "10.5.301", "9.2.1".
+        /// </summary>
         [Input("minimumVersion")]
         public Input<string>? MinimumVersion { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The operating system type of the device.
+        /// </summary>
         [Input("osType", required: true)]
         public Input<string> OsType { get; set; } = null!;
 
@@ -349,11 +557,33 @@ namespace Pulumi.Gcp.AccessContextManager
 
     public sealed class AccessLevelBasicConditionsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Device specific restrictions, all restrictions must hold for
+        /// the Condition to be true. If not specified, all devices are
+        /// allowed.  Structure is documented below.
+        /// </summary>
         [Input("devicePolicy")]
         public Input<AccessLevelBasicConditionsDevicePolicyGetArgs>? DevicePolicy { get; set; }
 
         [Input("ipSubnetworks")]
         private InputList<string>? _ipSubnetworks;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of CIDR block IP subnetwork specification. May be IPv4
+        /// or IPv6.
+        /// Note that for a CIDR IP address block, the specified IP address
+        /// portion must be properly truncated (i.e. all the host bits must
+        /// be zero) or the input is considered malformed. For example,
+        /// "192.0.2.0/24" is accepted but "192.0.2.1/24" is not. Similarly,
+        /// for IPv6, "2001:db8::/32" is accepted whereas "2001:db8::1/32"
+        /// is not. The originating IP of a request must be in one of the
+        /// listed subnets in order for this Condition to be true.
+        /// If empty, all IP addresses are allowed.
+        /// </summary>
         public InputList<string> IpSubnetworks
         {
             get => _ipSubnetworks ?? (_ipSubnetworks = new InputList<string>());
@@ -362,17 +592,44 @@ namespace Pulumi.Gcp.AccessContextManager
 
         [Input("members")]
         private InputList<string>? _members;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An allowed list of members (users, service accounts).
+        /// Using groups is not supported yet.
+        /// The signed-in user originating the request must be a part of one
+        /// of the provided members. If not specified, a request may come
+        /// from any user (logged in/not logged in, not present in any
+        /// groups, etc.).
+        /// Formats: `user:{emailid}`, `serviceAccount:{emailid}`
+        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to negate the Condition. If true, the Condition becomes
+        /// a NAND over its non-empty fields, each field must be false for
+        /// the Condition overall to be satisfied. Defaults to false.
+        /// </summary>
         [Input("negate")]
         public Input<bool>? Negate { get; set; }
 
         [Input("regions")]
         private InputList<string>? _regions;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The request must originate from one of the provided
+        /// countries/regions.
+        /// Format: A valid ISO 3166-1 alpha-2 code.
+        /// </summary>
         public InputList<string> Regions
         {
             get => _regions ?? (_regions = new InputList<string>());
@@ -381,6 +638,16 @@ namespace Pulumi.Gcp.AccessContextManager
 
         [Input("requiredAccessLevels")]
         private InputList<string>? _requiredAccessLevels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of other access levels defined in the same Policy,
+        /// referenced by resource name. Referencing an AccessLevel which
+        /// does not exist is an error. All access levels listed must be
+        /// granted for the Condition to be true.
+        /// Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+        /// </summary>
         public InputList<string> RequiredAccessLevels
         {
             get => _requiredAccessLevels ?? (_requiredAccessLevels = new InputList<string>());
@@ -394,11 +661,26 @@ namespace Pulumi.Gcp.AccessContextManager
 
     public sealed class AccessLevelBasicGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// How the conditions list should be combined to determine if a request
+        /// is granted this AccessLevel. If AND is used, each Condition in
+        /// conditions must be satisfied for the AccessLevel to be applied. If
+        /// OR is used, at least one Condition in conditions must be satisfied
+        /// for the AccessLevel to be applied. Defaults to AND if unspecified.
+        /// </summary>
         [Input("combiningFunction")]
         public Input<string>? CombiningFunction { get; set; }
 
         [Input("conditions", required: true)]
         private InputList<AccessLevelBasicConditionsGetArgs>? _conditions;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// A set of requirements for the AccessLevel to be granted.  Structure is documented below.
+        /// </summary>
         public InputList<AccessLevelBasicConditionsGetArgs> Conditions
         {
             get => _conditions ?? (_conditions = new InputList<AccessLevelBasicConditionsGetArgs>());
@@ -417,7 +699,21 @@ namespace Pulumi.Gcp.AccessContextManager
     [OutputType]
     public sealed class AccessLevelBasic
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// How the conditions list should be combined to determine if a request
+        /// is granted this AccessLevel. If AND is used, each Condition in
+        /// conditions must be satisfied for the AccessLevel to be applied. If
+        /// OR is used, at least one Condition in conditions must be satisfied
+        /// for the AccessLevel to be applied. Defaults to AND if unspecified.
+        /// </summary>
         public readonly string? CombiningFunction;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// A set of requirements for the AccessLevel to be granted.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<AccessLevelBasicConditions> Conditions;
 
         [OutputConstructor]
@@ -433,11 +729,66 @@ namespace Pulumi.Gcp.AccessContextManager
     [OutputType]
     public sealed class AccessLevelBasicConditions
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Device specific restrictions, all restrictions must hold for
+        /// the Condition to be true. If not specified, all devices are
+        /// allowed.  Structure is documented below.
+        /// </summary>
         public readonly AccessLevelBasicConditionsDevicePolicy? DevicePolicy;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of CIDR block IP subnetwork specification. May be IPv4
+        /// or IPv6.
+        /// Note that for a CIDR IP address block, the specified IP address
+        /// portion must be properly truncated (i.e. all the host bits must
+        /// be zero) or the input is considered malformed. For example,
+        /// "192.0.2.0/24" is accepted but "192.0.2.1/24" is not. Similarly,
+        /// for IPv6, "2001:db8::/32" is accepted whereas "2001:db8::1/32"
+        /// is not. The originating IP of a request must be in one of the
+        /// listed subnets in order for this Condition to be true.
+        /// If empty, all IP addresses are allowed.
+        /// </summary>
         public readonly ImmutableArray<string> IpSubnetworks;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An allowed list of members (users, service accounts).
+        /// Using groups is not supported yet.
+        /// The signed-in user originating the request must be a part of one
+        /// of the provided members. If not specified, a request may come
+        /// from any user (logged in/not logged in, not present in any
+        /// groups, etc.).
+        /// Formats: `user:{emailid}`, `serviceAccount:{emailid}`
+        /// </summary>
         public readonly ImmutableArray<string> Members;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to negate the Condition. If true, the Condition becomes
+        /// a NAND over its non-empty fields, each field must be false for
+        /// the Condition overall to be satisfied. Defaults to false.
+        /// </summary>
         public readonly bool? Negate;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The request must originate from one of the provided
+        /// countries/regions.
+        /// Format: A valid ISO 3166-1 alpha-2 code.
+        /// </summary>
         public readonly ImmutableArray<string> Regions;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of other access levels defined in the same Policy,
+        /// referenced by resource name. Referencing an AccessLevel which
+        /// does not exist is an error. All access levels listed must be
+        /// granted for the Condition to be true.
+        /// Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+        /// </summary>
         public readonly ImmutableArray<string> RequiredAccessLevels;
 
         [OutputConstructor]
@@ -461,11 +812,45 @@ namespace Pulumi.Gcp.AccessContextManager
     [OutputType]
     public sealed class AccessLevelBasicConditionsDevicePolicy
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of allowed device management levels.
+        /// An empty list allows all management levels.
+        /// </summary>
         public readonly ImmutableArray<string> AllowedDeviceManagementLevels;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of allowed encryptions statuses.
+        /// An empty list allows all statuses.
+        /// </summary>
         public readonly ImmutableArray<string> AllowedEncryptionStatuses;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of allowed OS versions.
+        /// An empty list allows all types and all versions.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<AccessLevelBasicConditionsDevicePolicyOsConstraints> OsConstraints;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether the device needs to be approved by the customer admin.
+        /// </summary>
         public readonly bool? RequireAdminApproval;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether the device needs to be corp owned.
+        /// </summary>
         public readonly bool? RequireCorpOwned;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether or not screenlock is required for the DevicePolicy
+        /// to be true. Defaults to false.
+        /// </summary>
         public readonly bool? RequireScreenLock;
 
         [OutputConstructor]
@@ -489,7 +874,19 @@ namespace Pulumi.Gcp.AccessContextManager
     [OutputType]
     public sealed class AccessLevelBasicConditionsDevicePolicyOsConstraints
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum allowed OS version. If not set, any version
+        /// of this OS satisfies the constraint.
+        /// Format: "major.minor.patch" such as "10.5.301", "9.2.1".
+        /// </summary>
         public readonly string? MinimumVersion;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The operating system type of the device.
+        /// </summary>
         public readonly string OsType;
 
         [OutputConstructor]

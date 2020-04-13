@@ -15,6 +15,8 @@ namespace Pulumi.Gcp.Organizations
     /// documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
     /// [API](https://cloud.google.com/resource-manager/reference/rest/v1/organizations/setOrgPolicy).
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_organization_policy.html.markdown.
     /// </summary>
     public partial class Policy : Pulumi.CustomResource
@@ -290,6 +292,9 @@ namespace Pulumi.Gcp.Organizations
 
     public sealed class PolicyListPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// or `deny` - (Optional) One or the other must be set.
+        /// </summary>
         [Input("allow")]
         public Input<PolicyListPolicyAllowArgs>? Allow { get; set; }
 
@@ -366,6 +371,9 @@ namespace Pulumi.Gcp.Organizations
 
     public sealed class PolicyListPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// or `deny` - (Optional) One or the other must be set.
+        /// </summary>
         [Input("allow")]
         public Input<PolicyListPolicyAllowGetArgs>? Allow { get; set; }
 
@@ -438,6 +446,9 @@ namespace Pulumi.Gcp.Organizations
     [OutputType]
     public sealed class PolicyListPolicy
     {
+        /// <summary>
+        /// or `deny` - (Optional) One or the other must be set.
+        /// </summary>
         public readonly PolicyListPolicyAllow? Allow;
         public readonly PolicyListPolicyDeny? Deny;
         /// <summary>

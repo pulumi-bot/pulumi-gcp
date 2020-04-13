@@ -24,7 +24,9 @@ namespace Pulumi.Gcp.Compute
     public partial class Router : Pulumi.CustomResource
     {
         /// <summary>
-        /// BGP information specific to this router.
+        /// -
+        /// (Optional)
+        /// BGP information specific to this router.  Structure is documented below.
         /// </summary>
         [Output("bgp")]
         public Output<Outputs.RouterBgp?> Bgp { get; private set; } = null!;
@@ -36,21 +38,29 @@ namespace Pulumi.Gcp.Compute
         public Output<string> CreationTimestamp { get; private set; } = null!;
 
         /// <summary>
-        /// An optional description of this resource.
+        /// -
+        /// (Optional)
+        /// User-specified description for the IP range.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name
-        /// must be 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the
-        /// first character must be a lowercase letter, and all following characters must be a dash, lowercase letter,
-        /// or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. The name must be 1-63 characters long, and
+        /// comply with RFC1035. Specifically, the name must be 1-63 characters
+        /// long and match the regular expression `a-z?`
+        /// which means the first character must be a lowercase letter, and all
+        /// following characters must be a dash, lowercase letter, or digit,
+        /// except the last character, which cannot be a dash.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// A reference to the network to which this router belongs.
         /// </summary>
         [Output("network")]
@@ -64,6 +74,8 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Region where the router resides.
         /// </summary>
         [Output("region")]
@@ -122,27 +134,37 @@ namespace Pulumi.Gcp.Compute
     public sealed class RouterArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// BGP information specific to this router.
+        /// -
+        /// (Optional)
+        /// BGP information specific to this router.  Structure is documented below.
         /// </summary>
         [Input("bgp")]
         public Input<Inputs.RouterBgpArgs>? Bgp { get; set; }
 
         /// <summary>
-        /// An optional description of this resource.
+        /// -
+        /// (Optional)
+        /// User-specified description for the IP range.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name
-        /// must be 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the
-        /// first character must be a lowercase letter, and all following characters must be a dash, lowercase letter,
-        /// or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. The name must be 1-63 characters long, and
+        /// comply with RFC1035. Specifically, the name must be 1-63 characters
+        /// long and match the regular expression `a-z?`
+        /// which means the first character must be a lowercase letter, and all
+        /// following characters must be a dash, lowercase letter, or digit,
+        /// except the last character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// A reference to the network to which this router belongs.
         /// </summary>
         [Input("network", required: true)]
@@ -156,6 +178,8 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Region where the router resides.
         /// </summary>
         [Input("region")]
@@ -169,7 +193,9 @@ namespace Pulumi.Gcp.Compute
     public sealed class RouterState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// BGP information specific to this router.
+        /// -
+        /// (Optional)
+        /// BGP information specific to this router.  Structure is documented below.
         /// </summary>
         [Input("bgp")]
         public Input<Inputs.RouterBgpGetArgs>? Bgp { get; set; }
@@ -181,21 +207,29 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? CreationTimestamp { get; set; }
 
         /// <summary>
-        /// An optional description of this resource.
+        /// -
+        /// (Optional)
+        /// User-specified description for the IP range.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name
-        /// must be 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the
-        /// first character must be a lowercase letter, and all following characters must be a dash, lowercase letter,
-        /// or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. The name must be 1-63 characters long, and
+        /// comply with RFC1035. Specifically, the name must be 1-63 characters
+        /// long and match the regular expression `a-z?`
+        /// which means the first character must be a lowercase letter, and all
+        /// following characters must be a dash, lowercase letter, or digit,
+        /// except the last character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// A reference to the network to which this router belongs.
         /// </summary>
         [Input("network")]
@@ -209,6 +243,8 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Region where the router resides.
         /// </summary>
         [Input("region")]
@@ -230,9 +266,20 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class RouterBgpAdvertisedIpRangesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-specified description for the IP range.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The IP range to advertise. The value must be a
+        /// CIDR-formatted string.
+        /// </summary>
         [Input("range", required: true)]
         public Input<string> Range { get; set; } = null!;
 
@@ -243,9 +290,20 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class RouterBgpAdvertisedIpRangesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-specified description for the IP range.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The IP range to advertise. The value must be a
+        /// CIDR-formatted string.
+        /// </summary>
         [Input("range", required: true)]
         public Input<string> Range { get; set; } = null!;
 
@@ -256,11 +314,28 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class RouterBgpArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-specified flag to indicate which mode to use for advertisement.
+        /// Valid values of this enum field are: DEFAULT, CUSTOM
+        /// </summary>
         [Input("advertiseMode")]
         public Input<string>? AdvertiseMode { get; set; }
 
         [Input("advertisedGroups")]
         private InputList<string>? _advertisedGroups;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-specified list of prefix groups to advertise in custom mode.
+        /// This field can only be populated if advertiseMode is CUSTOM and
+        /// is advertised to all peers of the router. These groups will be
+        /// advertised in addition to any specified prefixes. Leave this field
+        /// blank to advertise no custom groups.
+        /// This enum field has the one valid value: ALL_SUBNETS
+        /// </summary>
         public InputList<string> AdvertisedGroups
         {
             get => _advertisedGroups ?? (_advertisedGroups = new InputList<string>());
@@ -269,12 +344,30 @@ namespace Pulumi.Gcp.Compute
 
         [Input("advertisedIpRanges")]
         private InputList<RouterBgpAdvertisedIpRangesArgs>? _advertisedIpRanges;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-specified list of individual IP ranges to advertise in
+        /// custom mode. This field can only be populated if advertiseMode
+        /// is CUSTOM and is advertised to all peers of the router. These IP
+        /// ranges will be advertised in addition to any specified groups.
+        /// Leave this field blank to advertise no custom IP ranges.  Structure is documented below.
+        /// </summary>
         public InputList<RouterBgpAdvertisedIpRangesArgs> AdvertisedIpRanges
         {
             get => _advertisedIpRanges ?? (_advertisedIpRanges = new InputList<RouterBgpAdvertisedIpRangesArgs>());
             set => _advertisedIpRanges = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Local BGP Autonomous System Number (ASN). Must be an RFC6996
+        /// private ASN, either 16-bit or 32-bit. The value will be fixed for
+        /// this router resource. All VPN tunnels that link to this router
+        /// will have the same local ASN.
+        /// </summary>
         [Input("asn", required: true)]
         public Input<int> Asn { get; set; } = null!;
 
@@ -285,11 +378,28 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class RouterBgpGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-specified flag to indicate which mode to use for advertisement.
+        /// Valid values of this enum field are: DEFAULT, CUSTOM
+        /// </summary>
         [Input("advertiseMode")]
         public Input<string>? AdvertiseMode { get; set; }
 
         [Input("advertisedGroups")]
         private InputList<string>? _advertisedGroups;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-specified list of prefix groups to advertise in custom mode.
+        /// This field can only be populated if advertiseMode is CUSTOM and
+        /// is advertised to all peers of the router. These groups will be
+        /// advertised in addition to any specified prefixes. Leave this field
+        /// blank to advertise no custom groups.
+        /// This enum field has the one valid value: ALL_SUBNETS
+        /// </summary>
         public InputList<string> AdvertisedGroups
         {
             get => _advertisedGroups ?? (_advertisedGroups = new InputList<string>());
@@ -298,12 +408,30 @@ namespace Pulumi.Gcp.Compute
 
         [Input("advertisedIpRanges")]
         private InputList<RouterBgpAdvertisedIpRangesGetArgs>? _advertisedIpRanges;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-specified list of individual IP ranges to advertise in
+        /// custom mode. This field can only be populated if advertiseMode
+        /// is CUSTOM and is advertised to all peers of the router. These IP
+        /// ranges will be advertised in addition to any specified groups.
+        /// Leave this field blank to advertise no custom IP ranges.  Structure is documented below.
+        /// </summary>
         public InputList<RouterBgpAdvertisedIpRangesGetArgs> AdvertisedIpRanges
         {
             get => _advertisedIpRanges ?? (_advertisedIpRanges = new InputList<RouterBgpAdvertisedIpRangesGetArgs>());
             set => _advertisedIpRanges = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Local BGP Autonomous System Number (ASN). Must be an RFC6996
+        /// private ASN, either 16-bit or 32-bit. The value will be fixed for
+        /// this router resource. All VPN tunnels that link to this router
+        /// will have the same local ASN.
+        /// </summary>
         [Input("asn", required: true)]
         public Input<int> Asn { get; set; } = null!;
 
@@ -319,9 +447,42 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class RouterBgp
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-specified flag to indicate which mode to use for advertisement.
+        /// Valid values of this enum field are: DEFAULT, CUSTOM
+        /// </summary>
         public readonly string? AdvertiseMode;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-specified list of prefix groups to advertise in custom mode.
+        /// This field can only be populated if advertiseMode is CUSTOM and
+        /// is advertised to all peers of the router. These groups will be
+        /// advertised in addition to any specified prefixes. Leave this field
+        /// blank to advertise no custom groups.
+        /// This enum field has the one valid value: ALL_SUBNETS
+        /// </summary>
         public readonly ImmutableArray<string> AdvertisedGroups;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-specified list of individual IP ranges to advertise in
+        /// custom mode. This field can only be populated if advertiseMode
+        /// is CUSTOM and is advertised to all peers of the router. These IP
+        /// ranges will be advertised in addition to any specified groups.
+        /// Leave this field blank to advertise no custom IP ranges.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<RouterBgpAdvertisedIpRanges> AdvertisedIpRanges;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Local BGP Autonomous System Number (ASN). Must be an RFC6996
+        /// private ASN, either 16-bit or 32-bit. The value will be fixed for
+        /// this router resource. All VPN tunnels that link to this router
+        /// will have the same local ASN.
+        /// </summary>
         public readonly int Asn;
 
         [OutputConstructor]
@@ -341,7 +502,18 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class RouterBgpAdvertisedIpRanges
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-specified description for the IP range.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The IP range to advertise. The value must be a
+        /// CIDR-formatted string.
+        /// </summary>
         public readonly string Range;
 
         [OutputConstructor]

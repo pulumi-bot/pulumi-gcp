@@ -26,15 +26,21 @@ namespace Pulumi.Gcp.Monitoring
     public partial class AlertPolicy : Pulumi.CustomResource
     {
         /// <summary>
-        /// How to combine the results of multiple conditions to determine if an incident should be opened.
+        /// -
+        /// (Required)
+        /// How to combine the results of multiple conditions to
+        /// determine if an incident should be opened.
         /// </summary>
         [Output("combiner")]
         public Output<string> Combiner { get; private set; } = null!;
 
         /// <summary>
-        /// A list of conditions for the policy. The conditions are combined by AND or OR according to the combiner
-        /// field. If the combined conditions evaluate to true, then an incident is created. A policy can have from one
-        /// to six conditions.
+        /// -
+        /// (Required)
+        /// A list of conditions for the policy. The conditions are combined by
+        /// AND or OR according to the combiner field. If the combined conditions
+        /// evaluate to true, then an incident is created. A policy can have from
+        /// one to six conditions.  Structure is documented below.
         /// </summary>
         [Output("conditions")]
         public Output<ImmutableArray<Outputs.AlertPolicyConditions>> Conditions { get; private set; } = null!;
@@ -47,40 +53,58 @@ namespace Pulumi.Gcp.Monitoring
         public Output<Outputs.AlertPolicyCreationRecord> CreationRecord { get; private set; } = null!;
 
         /// <summary>
-        /// A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid
-        /// confusion, don't use the same display name for multiple policies in the same project. The name is limited to
-        /// 512 Unicode characters.
+        /// -
+        /// (Required)
+        /// A short name or phrase used to identify the
+        /// condition in dashboards, notifications, and
+        /// incidents. To avoid confusion, don't use the same
+        /// display name for multiple conditions in the same
+        /// policy.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid
-        /// confusion, don't use the same display name for multiple policies in the same project. The name is limited to
-        /// 512 Unicode characters.
+        /// -
+        /// (Optional)
+        /// A short name or phrase used to identify the policy in dashboards,
+        /// notifications, and incidents. To avoid confusion, don't use the same
+        /// display name for multiple policies in the same project. The name is
+        /// limited to 512 Unicode characters.  Structure is documented below.
         /// </summary>
         [Output("documentation")]
         public Output<Outputs.AlertPolicyDocumentation?> Documentation { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether or not the policy is enabled. The default is true.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
-        /// The unique resource name for this policy. Its syntax is:
-        /// projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+        /// -
+        /// The unique resource name for this condition.
+        /// Its syntax is:
+        /// projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+        /// [CONDITION_ID] is assigned by Stackdriver Monitoring when
+        /// the condition is created as part of a new or updated alerting
+        /// policy.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Identifies the notification channels to which notifications should be sent when incidents are opened or
-        /// closed or when new violations occur on an already opened incident. Each element of this array corresponds to
-        /// the name field in each of the NotificationChannel objects that are returned from the
-        /// notificationChannels.list method. The syntax of the entries in this field is
-        /// 'projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]'
+        /// -
+        /// (Optional)
+        /// Identifies the notification channels to which notifications should be
+        /// sent when incidents are opened or closed or when new violations occur
+        /// on an already opened incident. Each element of this array corresponds
+        /// to the name field in each of the NotificationChannel objects that are
+        /// returned from the notificationChannels.list method. The syntax of the
+        /// entries in this field is
+        /// `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]`
         /// </summary>
         [Output("notificationChannels")]
         public Output<ImmutableArray<string>> NotificationChannels { get; private set; } = null!;
@@ -93,10 +117,13 @@ namespace Pulumi.Gcp.Monitoring
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// This field is intended to be used for organizing and identifying the AlertPolicy objects.The field can
-        /// contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is
-        /// smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must
-        /// begin with a letter.
+        /// -
+        /// (Optional)
+        /// This field is intended to be used for organizing and identifying the AlertPolicy
+        /// objects.The field can contain up to 64 entries. Each key and value is limited
+        /// to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values
+        /// can contain only lowercase letters, numerals, underscores, and dashes. Keys
+        /// must begin with a letter.
         /// </summary>
         [Output("userLabels")]
         public Output<ImmutableDictionary<string, string>?> UserLabels { get; private set; } = null!;
@@ -148,7 +175,10 @@ namespace Pulumi.Gcp.Monitoring
     public sealed class AlertPolicyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// How to combine the results of multiple conditions to determine if an incident should be opened.
+        /// -
+        /// (Required)
+        /// How to combine the results of multiple conditions to
+        /// determine if an incident should be opened.
         /// </summary>
         [Input("combiner", required: true)]
         public Input<string> Combiner { get; set; } = null!;
@@ -157,9 +187,12 @@ namespace Pulumi.Gcp.Monitoring
         private InputList<Inputs.AlertPolicyConditionsArgs>? _conditions;
 
         /// <summary>
-        /// A list of conditions for the policy. The conditions are combined by AND or OR according to the combiner
-        /// field. If the combined conditions evaluate to true, then an incident is created. A policy can have from one
-        /// to six conditions.
+        /// -
+        /// (Required)
+        /// A list of conditions for the policy. The conditions are combined by
+        /// AND or OR according to the combiner field. If the combined conditions
+        /// evaluate to true, then an incident is created. A policy can have from
+        /// one to six conditions.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.AlertPolicyConditionsArgs> Conditions
         {
@@ -168,22 +201,31 @@ namespace Pulumi.Gcp.Monitoring
         }
 
         /// <summary>
-        /// A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid
-        /// confusion, don't use the same display name for multiple policies in the same project. The name is limited to
-        /// 512 Unicode characters.
+        /// -
+        /// (Required)
+        /// A short name or phrase used to identify the
+        /// condition in dashboards, notifications, and
+        /// incidents. To avoid confusion, don't use the same
+        /// display name for multiple conditions in the same
+        /// policy.
         /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
 
         /// <summary>
-        /// A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid
-        /// confusion, don't use the same display name for multiple policies in the same project. The name is limited to
-        /// 512 Unicode characters.
+        /// -
+        /// (Optional)
+        /// A short name or phrase used to identify the policy in dashboards,
+        /// notifications, and incidents. To avoid confusion, don't use the same
+        /// display name for multiple policies in the same project. The name is
+        /// limited to 512 Unicode characters.  Structure is documented below.
         /// </summary>
         [Input("documentation")]
         public Input<Inputs.AlertPolicyDocumentationArgs>? Documentation { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether or not the policy is enabled. The default is true.
         /// </summary>
         [Input("enabled")]
@@ -193,11 +235,15 @@ namespace Pulumi.Gcp.Monitoring
         private InputList<string>? _notificationChannels;
 
         /// <summary>
-        /// Identifies the notification channels to which notifications should be sent when incidents are opened or
-        /// closed or when new violations occur on an already opened incident. Each element of this array corresponds to
-        /// the name field in each of the NotificationChannel objects that are returned from the
-        /// notificationChannels.list method. The syntax of the entries in this field is
-        /// 'projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]'
+        /// -
+        /// (Optional)
+        /// Identifies the notification channels to which notifications should be
+        /// sent when incidents are opened or closed or when new violations occur
+        /// on an already opened incident. Each element of this array corresponds
+        /// to the name field in each of the NotificationChannel objects that are
+        /// returned from the notificationChannels.list method. The syntax of the
+        /// entries in this field is
+        /// `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]`
         /// </summary>
         public InputList<string> NotificationChannels
         {
@@ -216,10 +262,13 @@ namespace Pulumi.Gcp.Monitoring
         private InputMap<string>? _userLabels;
 
         /// <summary>
-        /// This field is intended to be used for organizing and identifying the AlertPolicy objects.The field can
-        /// contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is
-        /// smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must
-        /// begin with a letter.
+        /// -
+        /// (Optional)
+        /// This field is intended to be used for organizing and identifying the AlertPolicy
+        /// objects.The field can contain up to 64 entries. Each key and value is limited
+        /// to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values
+        /// can contain only lowercase letters, numerals, underscores, and dashes. Keys
+        /// must begin with a letter.
         /// </summary>
         public InputMap<string> UserLabels
         {
@@ -235,7 +284,10 @@ namespace Pulumi.Gcp.Monitoring
     public sealed class AlertPolicyState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// How to combine the results of multiple conditions to determine if an incident should be opened.
+        /// -
+        /// (Required)
+        /// How to combine the results of multiple conditions to
+        /// determine if an incident should be opened.
         /// </summary>
         [Input("combiner")]
         public Input<string>? Combiner { get; set; }
@@ -244,9 +296,12 @@ namespace Pulumi.Gcp.Monitoring
         private InputList<Inputs.AlertPolicyConditionsGetArgs>? _conditions;
 
         /// <summary>
-        /// A list of conditions for the policy. The conditions are combined by AND or OR according to the combiner
-        /// field. If the combined conditions evaluate to true, then an incident is created. A policy can have from one
-        /// to six conditions.
+        /// -
+        /// (Required)
+        /// A list of conditions for the policy. The conditions are combined by
+        /// AND or OR according to the combiner field. If the combined conditions
+        /// evaluate to true, then an incident is created. A policy can have from
+        /// one to six conditions.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.AlertPolicyConditionsGetArgs> Conditions
         {
@@ -262,30 +317,44 @@ namespace Pulumi.Gcp.Monitoring
         public Input<Inputs.AlertPolicyCreationRecordGetArgs>? CreationRecord { get; set; }
 
         /// <summary>
-        /// A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid
-        /// confusion, don't use the same display name for multiple policies in the same project. The name is limited to
-        /// 512 Unicode characters.
+        /// -
+        /// (Required)
+        /// A short name or phrase used to identify the
+        /// condition in dashboards, notifications, and
+        /// incidents. To avoid confusion, don't use the same
+        /// display name for multiple conditions in the same
+        /// policy.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid
-        /// confusion, don't use the same display name for multiple policies in the same project. The name is limited to
-        /// 512 Unicode characters.
+        /// -
+        /// (Optional)
+        /// A short name or phrase used to identify the policy in dashboards,
+        /// notifications, and incidents. To avoid confusion, don't use the same
+        /// display name for multiple policies in the same project. The name is
+        /// limited to 512 Unicode characters.  Structure is documented below.
         /// </summary>
         [Input("documentation")]
         public Input<Inputs.AlertPolicyDocumentationGetArgs>? Documentation { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether or not the policy is enabled. The default is true.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// The unique resource name for this policy. Its syntax is:
-        /// projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
+        /// -
+        /// The unique resource name for this condition.
+        /// Its syntax is:
+        /// projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+        /// [CONDITION_ID] is assigned by Stackdriver Monitoring when
+        /// the condition is created as part of a new or updated alerting
+        /// policy.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -294,11 +363,15 @@ namespace Pulumi.Gcp.Monitoring
         private InputList<string>? _notificationChannels;
 
         /// <summary>
-        /// Identifies the notification channels to which notifications should be sent when incidents are opened or
-        /// closed or when new violations occur on an already opened incident. Each element of this array corresponds to
-        /// the name field in each of the NotificationChannel objects that are returned from the
-        /// notificationChannels.list method. The syntax of the entries in this field is
-        /// 'projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]'
+        /// -
+        /// (Optional)
+        /// Identifies the notification channels to which notifications should be
+        /// sent when incidents are opened or closed or when new violations occur
+        /// on an already opened incident. Each element of this array corresponds
+        /// to the name field in each of the NotificationChannel objects that are
+        /// returned from the notificationChannels.list method. The syntax of the
+        /// entries in this field is
+        /// `projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]`
         /// </summary>
         public InputList<string> NotificationChannels
         {
@@ -317,10 +390,13 @@ namespace Pulumi.Gcp.Monitoring
         private InputMap<string>? _userLabels;
 
         /// <summary>
-        /// This field is intended to be used for organizing and identifying the AlertPolicy objects.The field can
-        /// contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is
-        /// smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must
-        /// begin with a letter.
+        /// -
+        /// (Optional)
+        /// This field is intended to be used for organizing and identifying the AlertPolicy
+        /// objects.The field can contain up to 64 entries. Each key and value is limited
+        /// to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values
+        /// can contain only lowercase letters, numerals, underscores, and dashes. Keys
+        /// must begin with a letter.
         /// </summary>
         public InputMap<string> UserLabels
         {
@@ -338,15 +414,45 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class AlertPolicyConditionsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A condition that checks that a time series
+        /// continues to receive new data points.  Structure is documented below.
+        /// </summary>
         [Input("conditionAbsent")]
         public Input<AlertPolicyConditionsConditionAbsentArgs>? ConditionAbsent { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A condition that compares a time series against a
+        /// threshold.  Structure is documented below.
+        /// </summary>
         [Input("conditionThreshold")]
         public Input<AlertPolicyConditionsConditionThresholdArgs>? ConditionThreshold { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// A short name or phrase used to identify the
+        /// condition in dashboards, notifications, and
+        /// incidents. To avoid confusion, don't use the same
+        /// display name for multiple conditions in the same
+        /// policy.
+        /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// The unique resource name for this condition.
+        /// Its syntax is:
+        /// projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+        /// [CONDITION_ID] is assigned by Stackdriver Monitoring when
+        /// the condition is created as part of a new or updated alerting
+        /// policy.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -357,20 +463,110 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class AlertPolicyConditionsConditionAbsentAggregationsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The alignment period for per-time
+        /// series alignment. If present,
+        /// alignmentPeriod must be at least
+        /// 60 seconds. After per-time series
+        /// alignment, each time series will
+        /// contain data points only on the
+        /// period boundaries. If
+        /// perSeriesAligner is not specified
+        /// or equals ALIGN_NONE, then this
+        /// field is ignored. If
+        /// perSeriesAligner is specified and
+        /// does not equal ALIGN_NONE, then
+        /// this field must be defined;
+        /// otherwise an error is returned.
+        /// </summary>
         [Input("alignmentPeriod")]
         public Input<string>? AlignmentPeriod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to combine
+        /// time series. Not all reducer
+        /// functions may be applied to all
+        /// time series, depending on the
+        /// metric type and the value type of
+        /// the original time series.
+        /// Reduction may change the metric
+        /// type of value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         [Input("crossSeriesReducer")]
         public Input<string>? CrossSeriesReducer { get; set; }
 
         [Input("groupByFields")]
         private InputList<string>? _groupByFields;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of fields to preserve when
+        /// crossSeriesReducer is specified.
+        /// The groupByFields determine how
+        /// the time series are partitioned
+        /// into subsets prior to applying the
+        /// aggregation function. Each subset
+        /// contains time series that have the
+        /// same value for each of the
+        /// grouping fields. Each individual
+        /// time series is a member of exactly
+        /// one subset. The crossSeriesReducer
+        /// is applied to each subset of time
+        /// series. It is not possible to
+        /// reduce across different resource
+        /// types, so this field implicitly
+        /// contains resource.type. Fields not
+        /// specified in groupByFields are
+        /// aggregated away. If groupByFields
+        /// is not specified and all the time
+        /// series have the same resource
+        /// type, then the time series are
+        /// aggregated into a single output
+        /// time series. If crossSeriesReducer
+        /// is not defined, this field is
+        /// ignored.
+        /// </summary>
         public InputList<string> GroupByFields
         {
             get => _groupByFields ?? (_groupByFields = new InputList<string>());
             set => _groupByFields = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to align
+        /// individual time series. Not all
+        /// alignment functions may be applied
+        /// to all time series, depending on
+        /// the metric type and value type of
+        /// the original time series.
+        /// Alignment may change the metric
+        /// type or the value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         [Input("perSeriesAligner")]
         public Input<string>? PerSeriesAligner { get; set; }
 
@@ -381,20 +577,110 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class AlertPolicyConditionsConditionAbsentAggregationsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The alignment period for per-time
+        /// series alignment. If present,
+        /// alignmentPeriod must be at least
+        /// 60 seconds. After per-time series
+        /// alignment, each time series will
+        /// contain data points only on the
+        /// period boundaries. If
+        /// perSeriesAligner is not specified
+        /// or equals ALIGN_NONE, then this
+        /// field is ignored. If
+        /// perSeriesAligner is specified and
+        /// does not equal ALIGN_NONE, then
+        /// this field must be defined;
+        /// otherwise an error is returned.
+        /// </summary>
         [Input("alignmentPeriod")]
         public Input<string>? AlignmentPeriod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to combine
+        /// time series. Not all reducer
+        /// functions may be applied to all
+        /// time series, depending on the
+        /// metric type and the value type of
+        /// the original time series.
+        /// Reduction may change the metric
+        /// type of value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         [Input("crossSeriesReducer")]
         public Input<string>? CrossSeriesReducer { get; set; }
 
         [Input("groupByFields")]
         private InputList<string>? _groupByFields;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of fields to preserve when
+        /// crossSeriesReducer is specified.
+        /// The groupByFields determine how
+        /// the time series are partitioned
+        /// into subsets prior to applying the
+        /// aggregation function. Each subset
+        /// contains time series that have the
+        /// same value for each of the
+        /// grouping fields. Each individual
+        /// time series is a member of exactly
+        /// one subset. The crossSeriesReducer
+        /// is applied to each subset of time
+        /// series. It is not possible to
+        /// reduce across different resource
+        /// types, so this field implicitly
+        /// contains resource.type. Fields not
+        /// specified in groupByFields are
+        /// aggregated away. If groupByFields
+        /// is not specified and all the time
+        /// series have the same resource
+        /// type, then the time series are
+        /// aggregated into a single output
+        /// time series. If crossSeriesReducer
+        /// is not defined, this field is
+        /// ignored.
+        /// </summary>
         public InputList<string> GroupByFields
         {
             get => _groupByFields ?? (_groupByFields = new InputList<string>());
             set => _groupByFields = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to align
+        /// individual time series. Not all
+        /// alignment functions may be applied
+        /// to all time series, depending on
+        /// the metric type and value type of
+        /// the original time series.
+        /// Alignment may change the metric
+        /// type or the value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         [Input("perSeriesAligner")]
         public Input<string>? PerSeriesAligner { get; set; }
 
@@ -407,18 +693,83 @@ namespace Pulumi.Gcp.Monitoring
     {
         [Input("aggregations")]
         private InputList<AlertPolicyConditionsConditionAbsentAggregationsArgs>? _aggregations;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the alignment of data points in
+        /// individual time series as well as how to
+        /// combine the retrieved time series together
+        /// (such as when aggregating multiple streams
+        /// on each resource to a single stream for each
+        /// resource or when aggregating streams across
+        /// all members of a group of resources).
+        /// Multiple aggregations are applied in the
+        /// order specified.This field is similar to the
+        /// one in the MetricService.ListTimeSeries
+        /// request. It is advisable to use the
+        /// ListTimeSeries method when debugging this
+        /// field.  Structure is documented below.
+        /// </summary>
         public InputList<AlertPolicyConditionsConditionAbsentAggregationsArgs> Aggregations
         {
             get => _aggregations ?? (_aggregations = new InputList<AlertPolicyConditionsConditionAbsentAggregationsArgs>());
             set => _aggregations = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The amount of time that a time series must
+        /// violate the threshold to be considered
+        /// failing. Currently, only values that are a
+        /// multiple of a minute--e.g., 0, 60, 120, or
+        /// 300 seconds--are supported. If an invalid
+        /// value is given, an error will be returned.
+        /// When choosing a duration, it is useful to
+        /// keep in mind the frequency of the underlying
+        /// time series data (which may also be affected
+        /// by any alignments specified in the
+        /// aggregations field); a good duration is long
+        /// enough so that a single outlier does not
+        /// generate spurious alerts, but short enough
+        /// that unhealthy states are detected and
+        /// alerted on quickly.
+        /// </summary>
         [Input("duration", required: true)]
         public Input<string> Duration { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A filter that identifies which time series
+        /// should be compared with the threshold.The
+        /// filter is similar to the one that is
+        /// specified in the
+        /// MetricService.ListTimeSeries request (that
+        /// call is useful to verify the time series
+        /// that will be retrieved / processed) and must
+        /// specify the metric type and optionally may
+        /// contain restrictions on resource type,
+        /// resource labels, and metric labels. This
+        /// field may not exceed 2048 Unicode characters
+        /// in length.
+        /// </summary>
         [Input("filter")]
         public Input<string>? Filter { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number/percent of time series for which
+        /// the comparison must hold in order for the
+        /// condition to trigger. If unspecified, then
+        /// the condition will trigger if the comparison
+        /// is true for any of the time series that have
+        /// been identified by filter and aggregations,
+        /// or by the ratio, if denominator_filter and
+        /// denominator_aggregations are specified.  Structure is documented below.
+        /// </summary>
         [Input("trigger")]
         public Input<AlertPolicyConditionsConditionAbsentTriggerArgs>? Trigger { get; set; }
 
@@ -431,18 +782,83 @@ namespace Pulumi.Gcp.Monitoring
     {
         [Input("aggregations")]
         private InputList<AlertPolicyConditionsConditionAbsentAggregationsGetArgs>? _aggregations;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the alignment of data points in
+        /// individual time series as well as how to
+        /// combine the retrieved time series together
+        /// (such as when aggregating multiple streams
+        /// on each resource to a single stream for each
+        /// resource or when aggregating streams across
+        /// all members of a group of resources).
+        /// Multiple aggregations are applied in the
+        /// order specified.This field is similar to the
+        /// one in the MetricService.ListTimeSeries
+        /// request. It is advisable to use the
+        /// ListTimeSeries method when debugging this
+        /// field.  Structure is documented below.
+        /// </summary>
         public InputList<AlertPolicyConditionsConditionAbsentAggregationsGetArgs> Aggregations
         {
             get => _aggregations ?? (_aggregations = new InputList<AlertPolicyConditionsConditionAbsentAggregationsGetArgs>());
             set => _aggregations = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The amount of time that a time series must
+        /// violate the threshold to be considered
+        /// failing. Currently, only values that are a
+        /// multiple of a minute--e.g., 0, 60, 120, or
+        /// 300 seconds--are supported. If an invalid
+        /// value is given, an error will be returned.
+        /// When choosing a duration, it is useful to
+        /// keep in mind the frequency of the underlying
+        /// time series data (which may also be affected
+        /// by any alignments specified in the
+        /// aggregations field); a good duration is long
+        /// enough so that a single outlier does not
+        /// generate spurious alerts, but short enough
+        /// that unhealthy states are detected and
+        /// alerted on quickly.
+        /// </summary>
         [Input("duration", required: true)]
         public Input<string> Duration { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A filter that identifies which time series
+        /// should be compared with the threshold.The
+        /// filter is similar to the one that is
+        /// specified in the
+        /// MetricService.ListTimeSeries request (that
+        /// call is useful to verify the time series
+        /// that will be retrieved / processed) and must
+        /// specify the metric type and optionally may
+        /// contain restrictions on resource type,
+        /// resource labels, and metric labels. This
+        /// field may not exceed 2048 Unicode characters
+        /// in length.
+        /// </summary>
         [Input("filter")]
         public Input<string>? Filter { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number/percent of time series for which
+        /// the comparison must hold in order for the
+        /// condition to trigger. If unspecified, then
+        /// the condition will trigger if the comparison
+        /// is true for any of the time series that have
+        /// been identified by filter and aggregations,
+        /// or by the ratio, if denominator_filter and
+        /// denominator_aggregations are specified.  Structure is documented below.
+        /// </summary>
         [Input("trigger")]
         public Input<AlertPolicyConditionsConditionAbsentTriggerGetArgs>? Trigger { get; set; }
 
@@ -453,9 +869,23 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class AlertPolicyConditionsConditionAbsentTriggerArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The absolute number of time series
+        /// that must fail the predicate for the
+        /// condition to be triggered.
+        /// </summary>
         [Input("count")]
         public Input<int>? Count { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of time series that
+        /// must fail the predicate for the
+        /// condition to be triggered.
+        /// </summary>
         [Input("percent")]
         public Input<double>? Percent { get; set; }
 
@@ -466,9 +896,23 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class AlertPolicyConditionsConditionAbsentTriggerGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The absolute number of time series
+        /// that must fail the predicate for the
+        /// condition to be triggered.
+        /// </summary>
         [Input("count")]
         public Input<int>? Count { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of time series that
+        /// must fail the predicate for the
+        /// condition to be triggered.
+        /// </summary>
         [Input("percent")]
         public Input<double>? Percent { get; set; }
 
@@ -479,20 +923,110 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class AlertPolicyConditionsConditionThresholdAggregationsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The alignment period for per-time
+        /// series alignment. If present,
+        /// alignmentPeriod must be at least
+        /// 60 seconds. After per-time series
+        /// alignment, each time series will
+        /// contain data points only on the
+        /// period boundaries. If
+        /// perSeriesAligner is not specified
+        /// or equals ALIGN_NONE, then this
+        /// field is ignored. If
+        /// perSeriesAligner is specified and
+        /// does not equal ALIGN_NONE, then
+        /// this field must be defined;
+        /// otherwise an error is returned.
+        /// </summary>
         [Input("alignmentPeriod")]
         public Input<string>? AlignmentPeriod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to combine
+        /// time series. Not all reducer
+        /// functions may be applied to all
+        /// time series, depending on the
+        /// metric type and the value type of
+        /// the original time series.
+        /// Reduction may change the metric
+        /// type of value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         [Input("crossSeriesReducer")]
         public Input<string>? CrossSeriesReducer { get; set; }
 
         [Input("groupByFields")]
         private InputList<string>? _groupByFields;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of fields to preserve when
+        /// crossSeriesReducer is specified.
+        /// The groupByFields determine how
+        /// the time series are partitioned
+        /// into subsets prior to applying the
+        /// aggregation function. Each subset
+        /// contains time series that have the
+        /// same value for each of the
+        /// grouping fields. Each individual
+        /// time series is a member of exactly
+        /// one subset. The crossSeriesReducer
+        /// is applied to each subset of time
+        /// series. It is not possible to
+        /// reduce across different resource
+        /// types, so this field implicitly
+        /// contains resource.type. Fields not
+        /// specified in groupByFields are
+        /// aggregated away. If groupByFields
+        /// is not specified and all the time
+        /// series have the same resource
+        /// type, then the time series are
+        /// aggregated into a single output
+        /// time series. If crossSeriesReducer
+        /// is not defined, this field is
+        /// ignored.
+        /// </summary>
         public InputList<string> GroupByFields
         {
             get => _groupByFields ?? (_groupByFields = new InputList<string>());
             set => _groupByFields = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to align
+        /// individual time series. Not all
+        /// alignment functions may be applied
+        /// to all time series, depending on
+        /// the metric type and value type of
+        /// the original time series.
+        /// Alignment may change the metric
+        /// type or the value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         [Input("perSeriesAligner")]
         public Input<string>? PerSeriesAligner { get; set; }
 
@@ -503,20 +1037,110 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class AlertPolicyConditionsConditionThresholdAggregationsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The alignment period for per-time
+        /// series alignment. If present,
+        /// alignmentPeriod must be at least
+        /// 60 seconds. After per-time series
+        /// alignment, each time series will
+        /// contain data points only on the
+        /// period boundaries. If
+        /// perSeriesAligner is not specified
+        /// or equals ALIGN_NONE, then this
+        /// field is ignored. If
+        /// perSeriesAligner is specified and
+        /// does not equal ALIGN_NONE, then
+        /// this field must be defined;
+        /// otherwise an error is returned.
+        /// </summary>
         [Input("alignmentPeriod")]
         public Input<string>? AlignmentPeriod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to combine
+        /// time series. Not all reducer
+        /// functions may be applied to all
+        /// time series, depending on the
+        /// metric type and the value type of
+        /// the original time series.
+        /// Reduction may change the metric
+        /// type of value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         [Input("crossSeriesReducer")]
         public Input<string>? CrossSeriesReducer { get; set; }
 
         [Input("groupByFields")]
         private InputList<string>? _groupByFields;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of fields to preserve when
+        /// crossSeriesReducer is specified.
+        /// The groupByFields determine how
+        /// the time series are partitioned
+        /// into subsets prior to applying the
+        /// aggregation function. Each subset
+        /// contains time series that have the
+        /// same value for each of the
+        /// grouping fields. Each individual
+        /// time series is a member of exactly
+        /// one subset. The crossSeriesReducer
+        /// is applied to each subset of time
+        /// series. It is not possible to
+        /// reduce across different resource
+        /// types, so this field implicitly
+        /// contains resource.type. Fields not
+        /// specified in groupByFields are
+        /// aggregated away. If groupByFields
+        /// is not specified and all the time
+        /// series have the same resource
+        /// type, then the time series are
+        /// aggregated into a single output
+        /// time series. If crossSeriesReducer
+        /// is not defined, this field is
+        /// ignored.
+        /// </summary>
         public InputList<string> GroupByFields
         {
             get => _groupByFields ?? (_groupByFields = new InputList<string>());
             set => _groupByFields = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to align
+        /// individual time series. Not all
+        /// alignment functions may be applied
+        /// to all time series, depending on
+        /// the metric type and value type of
+        /// the original time series.
+        /// Alignment may change the metric
+        /// type or the value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         [Input("perSeriesAligner")]
         public Input<string>? PerSeriesAligner { get; set; }
 
@@ -529,35 +1153,158 @@ namespace Pulumi.Gcp.Monitoring
     {
         [Input("aggregations")]
         private InputList<AlertPolicyConditionsConditionThresholdAggregationsArgs>? _aggregations;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the alignment of data points in
+        /// individual time series as well as how to
+        /// combine the retrieved time series together
+        /// (such as when aggregating multiple streams
+        /// on each resource to a single stream for each
+        /// resource or when aggregating streams across
+        /// all members of a group of resources).
+        /// Multiple aggregations are applied in the
+        /// order specified.This field is similar to the
+        /// one in the MetricService.ListTimeSeries
+        /// request. It is advisable to use the
+        /// ListTimeSeries method when debugging this
+        /// field.  Structure is documented below.
+        /// </summary>
         public InputList<AlertPolicyConditionsConditionThresholdAggregationsArgs> Aggregations
         {
             get => _aggregations ?? (_aggregations = new InputList<AlertPolicyConditionsConditionThresholdAggregationsArgs>());
             set => _aggregations = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The comparison to apply between the time
+        /// series (indicated by filter and aggregation)
+        /// and the threshold (indicated by
+        /// threshold_value). The comparison is applied
+        /// on each time series, with the time series on
+        /// the left-hand side and the threshold on the
+        /// right-hand side. Only COMPARISON_LT and
+        /// COMPARISON_GT are supported currently.
+        /// </summary>
         [Input("comparison", required: true)]
         public Input<string> Comparison { get; set; } = null!;
 
         [Input("denominatorAggregations")]
         private InputList<AlertPolicyConditionsConditionThresholdDenominatorAggregationsArgs>? _denominatorAggregations;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the alignment of data points in
+        /// individual time series selected by
+        /// denominatorFilter as well as how to combine
+        /// the retrieved time series together (such as
+        /// when aggregating multiple streams on each
+        /// resource to a single stream for each
+        /// resource or when aggregating streams across
+        /// all members of a group of resources).When
+        /// computing ratios, the aggregations and
+        /// denominator_aggregations fields must use the
+        /// same alignment period and produce time
+        /// series that have the same periodicity and
+        /// labels.This field is similar to the one in
+        /// the MetricService.ListTimeSeries request. It
+        /// is advisable to use the ListTimeSeries
+        /// method when debugging this field.  Structure is documented below.
+        /// </summary>
         public InputList<AlertPolicyConditionsConditionThresholdDenominatorAggregationsArgs> DenominatorAggregations
         {
             get => _denominatorAggregations ?? (_denominatorAggregations = new InputList<AlertPolicyConditionsConditionThresholdDenominatorAggregationsArgs>());
             set => _denominatorAggregations = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A filter that identifies a time series that
+        /// should be used as the denominator of a ratio
+        /// that will be compared with the threshold. If
+        /// a denominator_filter is specified, the time
+        /// series specified by the filter field will be
+        /// used as the numerator.The filter is similar
+        /// to the one that is specified in the
+        /// MetricService.ListTimeSeries request (that
+        /// call is useful to verify the time series
+        /// that will be retrieved / processed) and must
+        /// specify the metric type and optionally may
+        /// contain restrictions on resource type,
+        /// resource labels, and metric labels. This
+        /// field may not exceed 2048 Unicode characters
+        /// in length.
+        /// </summary>
         [Input("denominatorFilter")]
         public Input<string>? DenominatorFilter { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The amount of time that a time series must
+        /// violate the threshold to be considered
+        /// failing. Currently, only values that are a
+        /// multiple of a minute--e.g., 0, 60, 120, or
+        /// 300 seconds--are supported. If an invalid
+        /// value is given, an error will be returned.
+        /// When choosing a duration, it is useful to
+        /// keep in mind the frequency of the underlying
+        /// time series data (which may also be affected
+        /// by any alignments specified in the
+        /// aggregations field); a good duration is long
+        /// enough so that a single outlier does not
+        /// generate spurious alerts, but short enough
+        /// that unhealthy states are detected and
+        /// alerted on quickly.
+        /// </summary>
         [Input("duration", required: true)]
         public Input<string> Duration { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A filter that identifies which time series
+        /// should be compared with the threshold.The
+        /// filter is similar to the one that is
+        /// specified in the
+        /// MetricService.ListTimeSeries request (that
+        /// call is useful to verify the time series
+        /// that will be retrieved / processed) and must
+        /// specify the metric type and optionally may
+        /// contain restrictions on resource type,
+        /// resource labels, and metric labels. This
+        /// field may not exceed 2048 Unicode characters
+        /// in length.
+        /// </summary>
         [Input("filter")]
         public Input<string>? Filter { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A value against which to compare the time
+        /// series.
+        /// </summary>
         [Input("thresholdValue")]
         public Input<double>? ThresholdValue { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number/percent of time series for which
+        /// the comparison must hold in order for the
+        /// condition to trigger. If unspecified, then
+        /// the condition will trigger if the comparison
+        /// is true for any of the time series that have
+        /// been identified by filter and aggregations,
+        /// or by the ratio, if denominator_filter and
+        /// denominator_aggregations are specified.  Structure is documented below.
+        /// </summary>
         [Input("trigger")]
         public Input<AlertPolicyConditionsConditionThresholdTriggerArgs>? Trigger { get; set; }
 
@@ -568,20 +1315,110 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class AlertPolicyConditionsConditionThresholdDenominatorAggregationsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The alignment period for per-time
+        /// series alignment. If present,
+        /// alignmentPeriod must be at least
+        /// 60 seconds. After per-time series
+        /// alignment, each time series will
+        /// contain data points only on the
+        /// period boundaries. If
+        /// perSeriesAligner is not specified
+        /// or equals ALIGN_NONE, then this
+        /// field is ignored. If
+        /// perSeriesAligner is specified and
+        /// does not equal ALIGN_NONE, then
+        /// this field must be defined;
+        /// otherwise an error is returned.
+        /// </summary>
         [Input("alignmentPeriod")]
         public Input<string>? AlignmentPeriod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to combine
+        /// time series. Not all reducer
+        /// functions may be applied to all
+        /// time series, depending on the
+        /// metric type and the value type of
+        /// the original time series.
+        /// Reduction may change the metric
+        /// type of value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         [Input("crossSeriesReducer")]
         public Input<string>? CrossSeriesReducer { get; set; }
 
         [Input("groupByFields")]
         private InputList<string>? _groupByFields;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of fields to preserve when
+        /// crossSeriesReducer is specified.
+        /// The groupByFields determine how
+        /// the time series are partitioned
+        /// into subsets prior to applying the
+        /// aggregation function. Each subset
+        /// contains time series that have the
+        /// same value for each of the
+        /// grouping fields. Each individual
+        /// time series is a member of exactly
+        /// one subset. The crossSeriesReducer
+        /// is applied to each subset of time
+        /// series. It is not possible to
+        /// reduce across different resource
+        /// types, so this field implicitly
+        /// contains resource.type. Fields not
+        /// specified in groupByFields are
+        /// aggregated away. If groupByFields
+        /// is not specified and all the time
+        /// series have the same resource
+        /// type, then the time series are
+        /// aggregated into a single output
+        /// time series. If crossSeriesReducer
+        /// is not defined, this field is
+        /// ignored.
+        /// </summary>
         public InputList<string> GroupByFields
         {
             get => _groupByFields ?? (_groupByFields = new InputList<string>());
             set => _groupByFields = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to align
+        /// individual time series. Not all
+        /// alignment functions may be applied
+        /// to all time series, depending on
+        /// the metric type and value type of
+        /// the original time series.
+        /// Alignment may change the metric
+        /// type or the value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         [Input("perSeriesAligner")]
         public Input<string>? PerSeriesAligner { get; set; }
 
@@ -592,20 +1429,110 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class AlertPolicyConditionsConditionThresholdDenominatorAggregationsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The alignment period for per-time
+        /// series alignment. If present,
+        /// alignmentPeriod must be at least
+        /// 60 seconds. After per-time series
+        /// alignment, each time series will
+        /// contain data points only on the
+        /// period boundaries. If
+        /// perSeriesAligner is not specified
+        /// or equals ALIGN_NONE, then this
+        /// field is ignored. If
+        /// perSeriesAligner is specified and
+        /// does not equal ALIGN_NONE, then
+        /// this field must be defined;
+        /// otherwise an error is returned.
+        /// </summary>
         [Input("alignmentPeriod")]
         public Input<string>? AlignmentPeriod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to combine
+        /// time series. Not all reducer
+        /// functions may be applied to all
+        /// time series, depending on the
+        /// metric type and the value type of
+        /// the original time series.
+        /// Reduction may change the metric
+        /// type of value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         [Input("crossSeriesReducer")]
         public Input<string>? CrossSeriesReducer { get; set; }
 
         [Input("groupByFields")]
         private InputList<string>? _groupByFields;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of fields to preserve when
+        /// crossSeriesReducer is specified.
+        /// The groupByFields determine how
+        /// the time series are partitioned
+        /// into subsets prior to applying the
+        /// aggregation function. Each subset
+        /// contains time series that have the
+        /// same value for each of the
+        /// grouping fields. Each individual
+        /// time series is a member of exactly
+        /// one subset. The crossSeriesReducer
+        /// is applied to each subset of time
+        /// series. It is not possible to
+        /// reduce across different resource
+        /// types, so this field implicitly
+        /// contains resource.type. Fields not
+        /// specified in groupByFields are
+        /// aggregated away. If groupByFields
+        /// is not specified and all the time
+        /// series have the same resource
+        /// type, then the time series are
+        /// aggregated into a single output
+        /// time series. If crossSeriesReducer
+        /// is not defined, this field is
+        /// ignored.
+        /// </summary>
         public InputList<string> GroupByFields
         {
             get => _groupByFields ?? (_groupByFields = new InputList<string>());
             set => _groupByFields = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to align
+        /// individual time series. Not all
+        /// alignment functions may be applied
+        /// to all time series, depending on
+        /// the metric type and value type of
+        /// the original time series.
+        /// Alignment may change the metric
+        /// type or the value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         [Input("perSeriesAligner")]
         public Input<string>? PerSeriesAligner { get; set; }
 
@@ -618,35 +1545,158 @@ namespace Pulumi.Gcp.Monitoring
     {
         [Input("aggregations")]
         private InputList<AlertPolicyConditionsConditionThresholdAggregationsGetArgs>? _aggregations;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the alignment of data points in
+        /// individual time series as well as how to
+        /// combine the retrieved time series together
+        /// (such as when aggregating multiple streams
+        /// on each resource to a single stream for each
+        /// resource or when aggregating streams across
+        /// all members of a group of resources).
+        /// Multiple aggregations are applied in the
+        /// order specified.This field is similar to the
+        /// one in the MetricService.ListTimeSeries
+        /// request. It is advisable to use the
+        /// ListTimeSeries method when debugging this
+        /// field.  Structure is documented below.
+        /// </summary>
         public InputList<AlertPolicyConditionsConditionThresholdAggregationsGetArgs> Aggregations
         {
             get => _aggregations ?? (_aggregations = new InputList<AlertPolicyConditionsConditionThresholdAggregationsGetArgs>());
             set => _aggregations = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The comparison to apply between the time
+        /// series (indicated by filter and aggregation)
+        /// and the threshold (indicated by
+        /// threshold_value). The comparison is applied
+        /// on each time series, with the time series on
+        /// the left-hand side and the threshold on the
+        /// right-hand side. Only COMPARISON_LT and
+        /// COMPARISON_GT are supported currently.
+        /// </summary>
         [Input("comparison", required: true)]
         public Input<string> Comparison { get; set; } = null!;
 
         [Input("denominatorAggregations")]
         private InputList<AlertPolicyConditionsConditionThresholdDenominatorAggregationsGetArgs>? _denominatorAggregations;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the alignment of data points in
+        /// individual time series selected by
+        /// denominatorFilter as well as how to combine
+        /// the retrieved time series together (such as
+        /// when aggregating multiple streams on each
+        /// resource to a single stream for each
+        /// resource or when aggregating streams across
+        /// all members of a group of resources).When
+        /// computing ratios, the aggregations and
+        /// denominator_aggregations fields must use the
+        /// same alignment period and produce time
+        /// series that have the same periodicity and
+        /// labels.This field is similar to the one in
+        /// the MetricService.ListTimeSeries request. It
+        /// is advisable to use the ListTimeSeries
+        /// method when debugging this field.  Structure is documented below.
+        /// </summary>
         public InputList<AlertPolicyConditionsConditionThresholdDenominatorAggregationsGetArgs> DenominatorAggregations
         {
             get => _denominatorAggregations ?? (_denominatorAggregations = new InputList<AlertPolicyConditionsConditionThresholdDenominatorAggregationsGetArgs>());
             set => _denominatorAggregations = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A filter that identifies a time series that
+        /// should be used as the denominator of a ratio
+        /// that will be compared with the threshold. If
+        /// a denominator_filter is specified, the time
+        /// series specified by the filter field will be
+        /// used as the numerator.The filter is similar
+        /// to the one that is specified in the
+        /// MetricService.ListTimeSeries request (that
+        /// call is useful to verify the time series
+        /// that will be retrieved / processed) and must
+        /// specify the metric type and optionally may
+        /// contain restrictions on resource type,
+        /// resource labels, and metric labels. This
+        /// field may not exceed 2048 Unicode characters
+        /// in length.
+        /// </summary>
         [Input("denominatorFilter")]
         public Input<string>? DenominatorFilter { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The amount of time that a time series must
+        /// violate the threshold to be considered
+        /// failing. Currently, only values that are a
+        /// multiple of a minute--e.g., 0, 60, 120, or
+        /// 300 seconds--are supported. If an invalid
+        /// value is given, an error will be returned.
+        /// When choosing a duration, it is useful to
+        /// keep in mind the frequency of the underlying
+        /// time series data (which may also be affected
+        /// by any alignments specified in the
+        /// aggregations field); a good duration is long
+        /// enough so that a single outlier does not
+        /// generate spurious alerts, but short enough
+        /// that unhealthy states are detected and
+        /// alerted on quickly.
+        /// </summary>
         [Input("duration", required: true)]
         public Input<string> Duration { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A filter that identifies which time series
+        /// should be compared with the threshold.The
+        /// filter is similar to the one that is
+        /// specified in the
+        /// MetricService.ListTimeSeries request (that
+        /// call is useful to verify the time series
+        /// that will be retrieved / processed) and must
+        /// specify the metric type and optionally may
+        /// contain restrictions on resource type,
+        /// resource labels, and metric labels. This
+        /// field may not exceed 2048 Unicode characters
+        /// in length.
+        /// </summary>
         [Input("filter")]
         public Input<string>? Filter { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A value against which to compare the time
+        /// series.
+        /// </summary>
         [Input("thresholdValue")]
         public Input<double>? ThresholdValue { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number/percent of time series for which
+        /// the comparison must hold in order for the
+        /// condition to trigger. If unspecified, then
+        /// the condition will trigger if the comparison
+        /// is true for any of the time series that have
+        /// been identified by filter and aggregations,
+        /// or by the ratio, if denominator_filter and
+        /// denominator_aggregations are specified.  Structure is documented below.
+        /// </summary>
         [Input("trigger")]
         public Input<AlertPolicyConditionsConditionThresholdTriggerGetArgs>? Trigger { get; set; }
 
@@ -657,9 +1707,23 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class AlertPolicyConditionsConditionThresholdTriggerArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The absolute number of time series
+        /// that must fail the predicate for the
+        /// condition to be triggered.
+        /// </summary>
         [Input("count")]
         public Input<int>? Count { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of time series that
+        /// must fail the predicate for the
+        /// condition to be triggered.
+        /// </summary>
         [Input("percent")]
         public Input<double>? Percent { get; set; }
 
@@ -670,9 +1734,23 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class AlertPolicyConditionsConditionThresholdTriggerGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The absolute number of time series
+        /// that must fail the predicate for the
+        /// condition to be triggered.
+        /// </summary>
         [Input("count")]
         public Input<int>? Count { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of time series that
+        /// must fail the predicate for the
+        /// condition to be triggered.
+        /// </summary>
         [Input("percent")]
         public Input<double>? Percent { get; set; }
 
@@ -683,15 +1761,45 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class AlertPolicyConditionsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A condition that checks that a time series
+        /// continues to receive new data points.  Structure is documented below.
+        /// </summary>
         [Input("conditionAbsent")]
         public Input<AlertPolicyConditionsConditionAbsentGetArgs>? ConditionAbsent { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A condition that compares a time series against a
+        /// threshold.  Structure is documented below.
+        /// </summary>
         [Input("conditionThreshold")]
         public Input<AlertPolicyConditionsConditionThresholdGetArgs>? ConditionThreshold { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// A short name or phrase used to identify the
+        /// condition in dashboards, notifications, and
+        /// incidents. To avoid confusion, don't use the same
+        /// display name for multiple conditions in the same
+        /// policy.
+        /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// The unique resource name for this condition.
+        /// Its syntax is:
+        /// projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+        /// [CONDITION_ID] is assigned by Stackdriver Monitoring when
+        /// the condition is created as part of a new or updated alerting
+        /// policy.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -715,9 +1823,23 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class AlertPolicyDocumentationArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The text of the documentation, interpreted according to mimeType.
+        /// The content may not exceed 8,192 Unicode characters and may not
+        /// exceed more than 10,240 bytes when encoded in UTF-8 format,
+        /// whichever is smaller.
+        /// </summary>
         [Input("content")]
         public Input<string>? Content { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The format of the content field. Presently, only the value
+        /// "text/markdown" is supported.
+        /// </summary>
         [Input("mimeType")]
         public Input<string>? MimeType { get; set; }
 
@@ -728,9 +1850,23 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class AlertPolicyDocumentationGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The text of the documentation, interpreted according to mimeType.
+        /// The content may not exceed 8,192 Unicode characters and may not
+        /// exceed more than 10,240 bytes when encoded in UTF-8 format,
+        /// whichever is smaller.
+        /// </summary>
         [Input("content")]
         public Input<string>? Content { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The format of the content field. Presently, only the value
+        /// "text/markdown" is supported.
+        /// </summary>
         [Input("mimeType")]
         public Input<string>? MimeType { get; set; }
 
@@ -746,9 +1882,39 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class AlertPolicyConditions
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A condition that checks that a time series
+        /// continues to receive new data points.  Structure is documented below.
+        /// </summary>
         public readonly AlertPolicyConditionsConditionAbsent? ConditionAbsent;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A condition that compares a time series against a
+        /// threshold.  Structure is documented below.
+        /// </summary>
         public readonly AlertPolicyConditionsConditionThreshold? ConditionThreshold;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// A short name or phrase used to identify the
+        /// condition in dashboards, notifications, and
+        /// incidents. To avoid confusion, don't use the same
+        /// display name for multiple conditions in the same
+        /// policy.
+        /// </summary>
         public readonly string DisplayName;
+        /// <summary>
+        /// -
+        /// The unique resource name for this condition.
+        /// Its syntax is:
+        /// projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+        /// [CONDITION_ID] is assigned by Stackdriver Monitoring when
+        /// the condition is created as part of a new or updated alerting
+        /// policy.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]
@@ -768,9 +1934,73 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class AlertPolicyConditionsConditionAbsent
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the alignment of data points in
+        /// individual time series as well as how to
+        /// combine the retrieved time series together
+        /// (such as when aggregating multiple streams
+        /// on each resource to a single stream for each
+        /// resource or when aggregating streams across
+        /// all members of a group of resources).
+        /// Multiple aggregations are applied in the
+        /// order specified.This field is similar to the
+        /// one in the MetricService.ListTimeSeries
+        /// request. It is advisable to use the
+        /// ListTimeSeries method when debugging this
+        /// field.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<AlertPolicyConditionsConditionAbsentAggregations> Aggregations;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The amount of time that a time series must
+        /// violate the threshold to be considered
+        /// failing. Currently, only values that are a
+        /// multiple of a minute--e.g., 0, 60, 120, or
+        /// 300 seconds--are supported. If an invalid
+        /// value is given, an error will be returned.
+        /// When choosing a duration, it is useful to
+        /// keep in mind the frequency of the underlying
+        /// time series data (which may also be affected
+        /// by any alignments specified in the
+        /// aggregations field); a good duration is long
+        /// enough so that a single outlier does not
+        /// generate spurious alerts, but short enough
+        /// that unhealthy states are detected and
+        /// alerted on quickly.
+        /// </summary>
         public readonly string Duration;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A filter that identifies which time series
+        /// should be compared with the threshold.The
+        /// filter is similar to the one that is
+        /// specified in the
+        /// MetricService.ListTimeSeries request (that
+        /// call is useful to verify the time series
+        /// that will be retrieved / processed) and must
+        /// specify the metric type and optionally may
+        /// contain restrictions on resource type,
+        /// resource labels, and metric labels. This
+        /// field may not exceed 2048 Unicode characters
+        /// in length.
+        /// </summary>
         public readonly string? Filter;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number/percent of time series for which
+        /// the comparison must hold in order for the
+        /// condition to trigger. If unspecified, then
+        /// the condition will trigger if the comparison
+        /// is true for any of the time series that have
+        /// been identified by filter and aggregations,
+        /// or by the ratio, if denominator_filter and
+        /// denominator_aggregations are specified.  Structure is documented below.
+        /// </summary>
         public readonly AlertPolicyConditionsConditionAbsentTrigger? Trigger;
 
         [OutputConstructor]
@@ -790,9 +2020,98 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class AlertPolicyConditionsConditionAbsentAggregations
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The alignment period for per-time
+        /// series alignment. If present,
+        /// alignmentPeriod must be at least
+        /// 60 seconds. After per-time series
+        /// alignment, each time series will
+        /// contain data points only on the
+        /// period boundaries. If
+        /// perSeriesAligner is not specified
+        /// or equals ALIGN_NONE, then this
+        /// field is ignored. If
+        /// perSeriesAligner is specified and
+        /// does not equal ALIGN_NONE, then
+        /// this field must be defined;
+        /// otherwise an error is returned.
+        /// </summary>
         public readonly string? AlignmentPeriod;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to combine
+        /// time series. Not all reducer
+        /// functions may be applied to all
+        /// time series, depending on the
+        /// metric type and the value type of
+        /// the original time series.
+        /// Reduction may change the metric
+        /// type of value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         public readonly string? CrossSeriesReducer;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of fields to preserve when
+        /// crossSeriesReducer is specified.
+        /// The groupByFields determine how
+        /// the time series are partitioned
+        /// into subsets prior to applying the
+        /// aggregation function. Each subset
+        /// contains time series that have the
+        /// same value for each of the
+        /// grouping fields. Each individual
+        /// time series is a member of exactly
+        /// one subset. The crossSeriesReducer
+        /// is applied to each subset of time
+        /// series. It is not possible to
+        /// reduce across different resource
+        /// types, so this field implicitly
+        /// contains resource.type. Fields not
+        /// specified in groupByFields are
+        /// aggregated away. If groupByFields
+        /// is not specified and all the time
+        /// series have the same resource
+        /// type, then the time series are
+        /// aggregated into a single output
+        /// time series. If crossSeriesReducer
+        /// is not defined, this field is
+        /// ignored.
+        /// </summary>
         public readonly ImmutableArray<string> GroupByFields;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to align
+        /// individual time series. Not all
+        /// alignment functions may be applied
+        /// to all time series, depending on
+        /// the metric type and value type of
+        /// the original time series.
+        /// Alignment may change the metric
+        /// type or the value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         public readonly string? PerSeriesAligner;
 
         [OutputConstructor]
@@ -812,7 +2131,21 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class AlertPolicyConditionsConditionAbsentTrigger
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The absolute number of time series
+        /// that must fail the predicate for the
+        /// condition to be triggered.
+        /// </summary>
         public readonly int? Count;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of time series that
+        /// must fail the predicate for the
+        /// condition to be triggered.
+        /// </summary>
         public readonly double? Percent;
 
         [OutputConstructor]
@@ -828,13 +2161,134 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class AlertPolicyConditionsConditionThreshold
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the alignment of data points in
+        /// individual time series as well as how to
+        /// combine the retrieved time series together
+        /// (such as when aggregating multiple streams
+        /// on each resource to a single stream for each
+        /// resource or when aggregating streams across
+        /// all members of a group of resources).
+        /// Multiple aggregations are applied in the
+        /// order specified.This field is similar to the
+        /// one in the MetricService.ListTimeSeries
+        /// request. It is advisable to use the
+        /// ListTimeSeries method when debugging this
+        /// field.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<AlertPolicyConditionsConditionThresholdAggregations> Aggregations;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The comparison to apply between the time
+        /// series (indicated by filter and aggregation)
+        /// and the threshold (indicated by
+        /// threshold_value). The comparison is applied
+        /// on each time series, with the time series on
+        /// the left-hand side and the threshold on the
+        /// right-hand side. Only COMPARISON_LT and
+        /// COMPARISON_GT are supported currently.
+        /// </summary>
         public readonly string Comparison;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the alignment of data points in
+        /// individual time series selected by
+        /// denominatorFilter as well as how to combine
+        /// the retrieved time series together (such as
+        /// when aggregating multiple streams on each
+        /// resource to a single stream for each
+        /// resource or when aggregating streams across
+        /// all members of a group of resources).When
+        /// computing ratios, the aggregations and
+        /// denominator_aggregations fields must use the
+        /// same alignment period and produce time
+        /// series that have the same periodicity and
+        /// labels.This field is similar to the one in
+        /// the MetricService.ListTimeSeries request. It
+        /// is advisable to use the ListTimeSeries
+        /// method when debugging this field.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<AlertPolicyConditionsConditionThresholdDenominatorAggregations> DenominatorAggregations;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A filter that identifies a time series that
+        /// should be used as the denominator of a ratio
+        /// that will be compared with the threshold. If
+        /// a denominator_filter is specified, the time
+        /// series specified by the filter field will be
+        /// used as the numerator.The filter is similar
+        /// to the one that is specified in the
+        /// MetricService.ListTimeSeries request (that
+        /// call is useful to verify the time series
+        /// that will be retrieved / processed) and must
+        /// specify the metric type and optionally may
+        /// contain restrictions on resource type,
+        /// resource labels, and metric labels. This
+        /// field may not exceed 2048 Unicode characters
+        /// in length.
+        /// </summary>
         public readonly string? DenominatorFilter;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The amount of time that a time series must
+        /// violate the threshold to be considered
+        /// failing. Currently, only values that are a
+        /// multiple of a minute--e.g., 0, 60, 120, or
+        /// 300 seconds--are supported. If an invalid
+        /// value is given, an error will be returned.
+        /// When choosing a duration, it is useful to
+        /// keep in mind the frequency of the underlying
+        /// time series data (which may also be affected
+        /// by any alignments specified in the
+        /// aggregations field); a good duration is long
+        /// enough so that a single outlier does not
+        /// generate spurious alerts, but short enough
+        /// that unhealthy states are detected and
+        /// alerted on quickly.
+        /// </summary>
         public readonly string Duration;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A filter that identifies which time series
+        /// should be compared with the threshold.The
+        /// filter is similar to the one that is
+        /// specified in the
+        /// MetricService.ListTimeSeries request (that
+        /// call is useful to verify the time series
+        /// that will be retrieved / processed) and must
+        /// specify the metric type and optionally may
+        /// contain restrictions on resource type,
+        /// resource labels, and metric labels. This
+        /// field may not exceed 2048 Unicode characters
+        /// in length.
+        /// </summary>
         public readonly string? Filter;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A value against which to compare the time
+        /// series.
+        /// </summary>
         public readonly double? ThresholdValue;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number/percent of time series for which
+        /// the comparison must hold in order for the
+        /// condition to trigger. If unspecified, then
+        /// the condition will trigger if the comparison
+        /// is true for any of the time series that have
+        /// been identified by filter and aggregations,
+        /// or by the ratio, if denominator_filter and
+        /// denominator_aggregations are specified.  Structure is documented below.
+        /// </summary>
         public readonly AlertPolicyConditionsConditionThresholdTrigger? Trigger;
 
         [OutputConstructor]
@@ -862,9 +2316,98 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class AlertPolicyConditionsConditionThresholdAggregations
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The alignment period for per-time
+        /// series alignment. If present,
+        /// alignmentPeriod must be at least
+        /// 60 seconds. After per-time series
+        /// alignment, each time series will
+        /// contain data points only on the
+        /// period boundaries. If
+        /// perSeriesAligner is not specified
+        /// or equals ALIGN_NONE, then this
+        /// field is ignored. If
+        /// perSeriesAligner is specified and
+        /// does not equal ALIGN_NONE, then
+        /// this field must be defined;
+        /// otherwise an error is returned.
+        /// </summary>
         public readonly string? AlignmentPeriod;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to combine
+        /// time series. Not all reducer
+        /// functions may be applied to all
+        /// time series, depending on the
+        /// metric type and the value type of
+        /// the original time series.
+        /// Reduction may change the metric
+        /// type of value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         public readonly string? CrossSeriesReducer;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of fields to preserve when
+        /// crossSeriesReducer is specified.
+        /// The groupByFields determine how
+        /// the time series are partitioned
+        /// into subsets prior to applying the
+        /// aggregation function. Each subset
+        /// contains time series that have the
+        /// same value for each of the
+        /// grouping fields. Each individual
+        /// time series is a member of exactly
+        /// one subset. The crossSeriesReducer
+        /// is applied to each subset of time
+        /// series. It is not possible to
+        /// reduce across different resource
+        /// types, so this field implicitly
+        /// contains resource.type. Fields not
+        /// specified in groupByFields are
+        /// aggregated away. If groupByFields
+        /// is not specified and all the time
+        /// series have the same resource
+        /// type, then the time series are
+        /// aggregated into a single output
+        /// time series. If crossSeriesReducer
+        /// is not defined, this field is
+        /// ignored.
+        /// </summary>
         public readonly ImmutableArray<string> GroupByFields;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to align
+        /// individual time series. Not all
+        /// alignment functions may be applied
+        /// to all time series, depending on
+        /// the metric type and value type of
+        /// the original time series.
+        /// Alignment may change the metric
+        /// type or the value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         public readonly string? PerSeriesAligner;
 
         [OutputConstructor]
@@ -884,9 +2427,98 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class AlertPolicyConditionsConditionThresholdDenominatorAggregations
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The alignment period for per-time
+        /// series alignment. If present,
+        /// alignmentPeriod must be at least
+        /// 60 seconds. After per-time series
+        /// alignment, each time series will
+        /// contain data points only on the
+        /// period boundaries. If
+        /// perSeriesAligner is not specified
+        /// or equals ALIGN_NONE, then this
+        /// field is ignored. If
+        /// perSeriesAligner is specified and
+        /// does not equal ALIGN_NONE, then
+        /// this field must be defined;
+        /// otherwise an error is returned.
+        /// </summary>
         public readonly string? AlignmentPeriod;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to combine
+        /// time series. Not all reducer
+        /// functions may be applied to all
+        /// time series, depending on the
+        /// metric type and the value type of
+        /// the original time series.
+        /// Reduction may change the metric
+        /// type of value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         public readonly string? CrossSeriesReducer;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of fields to preserve when
+        /// crossSeriesReducer is specified.
+        /// The groupByFields determine how
+        /// the time series are partitioned
+        /// into subsets prior to applying the
+        /// aggregation function. Each subset
+        /// contains time series that have the
+        /// same value for each of the
+        /// grouping fields. Each individual
+        /// time series is a member of exactly
+        /// one subset. The crossSeriesReducer
+        /// is applied to each subset of time
+        /// series. It is not possible to
+        /// reduce across different resource
+        /// types, so this field implicitly
+        /// contains resource.type. Fields not
+        /// specified in groupByFields are
+        /// aggregated away. If groupByFields
+        /// is not specified and all the time
+        /// series have the same resource
+        /// type, then the time series are
+        /// aggregated into a single output
+        /// time series. If crossSeriesReducer
+        /// is not defined, this field is
+        /// ignored.
+        /// </summary>
         public readonly ImmutableArray<string> GroupByFields;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The approach to be used to align
+        /// individual time series. Not all
+        /// alignment functions may be applied
+        /// to all time series, depending on
+        /// the metric type and value type of
+        /// the original time series.
+        /// Alignment may change the metric
+        /// type or the value type of the time
+        /// series.Time series data must be
+        /// aligned in order to perform cross-
+        /// time series reduction. If
+        /// crossSeriesReducer is specified,
+        /// then perSeriesAligner must be
+        /// specified and not equal ALIGN_NONE
+        /// and alignmentPeriod must be
+        /// specified; otherwise, an error is
+        /// returned.
+        /// </summary>
         public readonly string? PerSeriesAligner;
 
         [OutputConstructor]
@@ -906,7 +2538,21 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class AlertPolicyConditionsConditionThresholdTrigger
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The absolute number of time series
+        /// that must fail the predicate for the
+        /// condition to be triggered.
+        /// </summary>
         public readonly int? Count;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of time series that
+        /// must fail the predicate for the
+        /// condition to be triggered.
+        /// </summary>
         public readonly double? Percent;
 
         [OutputConstructor]
@@ -938,7 +2584,21 @@ namespace Pulumi.Gcp.Monitoring
     [OutputType]
     public sealed class AlertPolicyDocumentation
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The text of the documentation, interpreted according to mimeType.
+        /// The content may not exceed 8,192 Unicode characters and may not
+        /// exceed more than 10,240 bytes when encoded in UTF-8 format,
+        /// whichever is smaller.
+        /// </summary>
         public readonly string? Content;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The format of the content field. Presently, only the value
+        /// "text/markdown" is supported.
+        /// </summary>
         public readonly string? MimeType;
 
         [OutputConstructor]

@@ -27,18 +27,25 @@ namespace Pulumi.Gcp.Compute
     public partial class InstanceGroupNamedPort : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the instance group.
         /// </summary>
         [Output("group")]
         public Output<string> Group { get; private set; } = null!;
 
         /// <summary>
-        /// The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
+        /// -
+        /// (Required)
+        /// The name for this named port. The name must be 1-63 characters
+        /// long, and comply with RFC1035.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The port number, which can be a value between 1 and 65535.
         /// </summary>
         [Output("port")]
@@ -52,6 +59,8 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The zone of the instance group.
         /// </summary>
         [Output("zone")]
@@ -104,18 +113,25 @@ namespace Pulumi.Gcp.Compute
     public sealed class InstanceGroupNamedPortArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the instance group.
         /// </summary>
         [Input("group", required: true)]
         public Input<string> Group { get; set; } = null!;
 
         /// <summary>
-        /// The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
+        /// -
+        /// (Required)
+        /// The name for this named port. The name must be 1-63 characters
+        /// long, and comply with RFC1035.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The port number, which can be a value between 1 and 65535.
         /// </summary>
         [Input("port", required: true)]
@@ -129,6 +145,8 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The zone of the instance group.
         /// </summary>
         [Input("zone")]
@@ -142,18 +160,25 @@ namespace Pulumi.Gcp.Compute
     public sealed class InstanceGroupNamedPortState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the instance group.
         /// </summary>
         [Input("group")]
         public Input<string>? Group { get; set; }
 
         /// <summary>
-        /// The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
+        /// -
+        /// (Required)
+        /// The name for this named port. The name must be 1-63 characters
+        /// long, and comply with RFC1035.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The port number, which can be a value between 1 and 65535.
         /// </summary>
         [Input("port")]
@@ -167,6 +192,8 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The zone of the instance group.
         /// </summary>
         [Input("zone")]

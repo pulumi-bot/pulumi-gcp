@@ -349,6 +349,9 @@ namespace Pulumi.Gcp.Dataproc
         [Input("loggingConfig")]
         public Input<JobHadoopConfigLoggingConfigArgs>? LoggingConfig { get; set; }
 
+        /// <summary>
+        /// The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jar_file_uris`. Conflicts with `main_jar_file_uri`
+        /// </summary>
         [Input("mainClass")]
         public Input<string>? MainClass { get; set; }
 
@@ -428,6 +431,9 @@ namespace Pulumi.Gcp.Dataproc
         [Input("loggingConfig")]
         public Input<JobHadoopConfigLoggingConfigGetArgs>? LoggingConfig { get; set; }
 
+        /// <summary>
+        /// The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jar_file_uris`. Conflicts with `main_jar_file_uri`
+        /// </summary>
         [Input("mainClass")]
         public Input<string>? MainClass { get; set; }
 
@@ -525,6 +531,11 @@ namespace Pulumi.Gcp.Dataproc
 
         [Input("queryLists")]
         private InputList<string>? _queryLists;
+
+        /// <summary>
+        /// The list of SQL queries or statements to execute as part of the job.
+        /// Conflicts with `query_file_uri`
+        /// </summary>
         public InputList<string> QueryLists
         {
             get => _queryLists ?? (_queryLists = new InputList<string>());
@@ -589,6 +600,11 @@ namespace Pulumi.Gcp.Dataproc
 
         [Input("queryLists")]
         private InputList<string>? _queryLists;
+
+        /// <summary>
+        /// The list of SQL queries or statements to execute as part of the job.
+        /// Conflicts with `query_file_uri`
+        /// </summary>
         public InputList<string> QueryLists
         {
             get => _queryLists ?? (_queryLists = new InputList<string>());
@@ -656,6 +672,11 @@ namespace Pulumi.Gcp.Dataproc
 
         [Input("queryLists")]
         private InputList<string>? _queryLists;
+
+        /// <summary>
+        /// The list of SQL queries or statements to execute as part of the job.
+        /// Conflicts with `query_file_uri`
+        /// </summary>
         public InputList<string> QueryLists
         {
             get => _queryLists ?? (_queryLists = new InputList<string>());
@@ -723,6 +744,11 @@ namespace Pulumi.Gcp.Dataproc
 
         [Input("queryLists")]
         private InputList<string>? _queryLists;
+
+        /// <summary>
+        /// The list of SQL queries or statements to execute as part of the job.
+        /// Conflicts with `query_file_uri`
+        /// </summary>
         public InputList<string> QueryLists
         {
             get => _queryLists ?? (_queryLists = new InputList<string>());
@@ -855,6 +881,9 @@ namespace Pulumi.Gcp.Dataproc
         [Input("loggingConfig")]
         public Input<JobPysparkConfigLoggingConfigArgs>? LoggingConfig { get; set; }
 
+        /// <summary>
+        /// The HCFS URI of the main Python file to use as the driver. Must be a .py file.
+        /// </summary>
         [Input("mainPythonFileUri", required: true)]
         public Input<string> MainPythonFileUri { get; set; } = null!;
 
@@ -940,6 +969,9 @@ namespace Pulumi.Gcp.Dataproc
         [Input("loggingConfig")]
         public Input<JobPysparkConfigLoggingConfigGetArgs>? LoggingConfig { get; set; }
 
+        /// <summary>
+        /// The HCFS URI of the main Python file to use as the driver. Must be a .py file.
+        /// </summary>
         [Input("mainPythonFileUri", required: true)]
         public Input<string> MainPythonFileUri { get; set; } = null!;
 
@@ -1095,6 +1127,9 @@ namespace Pulumi.Gcp.Dataproc
         [Input("loggingConfig")]
         public Input<JobSparkConfigLoggingConfigArgs>? LoggingConfig { get; set; }
 
+        /// <summary>
+        /// The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jar_file_uris`. Conflicts with `main_jar_file_uri`
+        /// </summary>
         [Input("mainClass")]
         public Input<string>? MainClass { get; set; }
 
@@ -1174,6 +1209,9 @@ namespace Pulumi.Gcp.Dataproc
         [Input("loggingConfig")]
         public Input<JobSparkConfigLoggingConfigGetArgs>? LoggingConfig { get; set; }
 
+        /// <summary>
+        /// The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jar_file_uris`. Conflicts with `main_jar_file_uri`
+        /// </summary>
         [Input("mainClass")]
         public Input<string>? MainClass { get; set; }
 
@@ -1268,6 +1306,11 @@ namespace Pulumi.Gcp.Dataproc
 
         [Input("queryLists")]
         private InputList<string>? _queryLists;
+
+        /// <summary>
+        /// The list of SQL queries or statements to execute as part of the job.
+        /// Conflicts with `query_file_uri`
+        /// </summary>
         public InputList<string> QueryLists
         {
             get => _queryLists ?? (_queryLists = new InputList<string>());
@@ -1329,6 +1372,11 @@ namespace Pulumi.Gcp.Dataproc
 
         [Input("queryLists")]
         private InputList<string>? _queryLists;
+
+        /// <summary>
+        /// The list of SQL queries or statements to execute as part of the job.
+        /// Conflicts with `query_file_uri`
+        /// </summary>
         public InputList<string> QueryLists
         {
             get => _queryLists ?? (_queryLists = new InputList<string>());
@@ -1425,6 +1473,9 @@ namespace Pulumi.Gcp.Dataproc
         /// </summary>
         public readonly ImmutableArray<string> JarFileUris;
         public readonly JobHadoopConfigLoggingConfig LoggingConfig;
+        /// <summary>
+        /// The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jar_file_uris`. Conflicts with `main_jar_file_uri`
+        /// </summary>
         public readonly string? MainClass;
         /// <summary>
         /// The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `main_class`
@@ -1489,6 +1540,10 @@ namespace Pulumi.Gcp.Dataproc
         /// Conflicts with `query_list`
         /// </summary>
         public readonly string? QueryFileUri;
+        /// <summary>
+        /// The list of SQL queries or statements to execute as part of the job.
+        /// Conflicts with `query_file_uri`
+        /// </summary>
         public readonly ImmutableArray<string> QueryLists;
         /// <summary>
         /// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
@@ -1534,6 +1589,10 @@ namespace Pulumi.Gcp.Dataproc
         /// Conflicts with `query_list`
         /// </summary>
         public readonly string? QueryFileUri;
+        /// <summary>
+        /// The list of SQL queries or statements to execute as part of the job.
+        /// Conflicts with `query_file_uri`
+        /// </summary>
         public readonly ImmutableArray<string> QueryLists;
         /// <summary>
         /// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
@@ -1608,6 +1667,9 @@ namespace Pulumi.Gcp.Dataproc
         /// </summary>
         public readonly ImmutableArray<string> JarFileUris;
         public readonly JobPysparkConfigLoggingConfig LoggingConfig;
+        /// <summary>
+        /// The HCFS URI of the main Python file to use as the driver. Must be a .py file.
+        /// </summary>
         public readonly string MainPythonFileUri;
         /// <summary>
         /// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
@@ -1696,6 +1758,9 @@ namespace Pulumi.Gcp.Dataproc
         /// </summary>
         public readonly ImmutableArray<string> JarFileUris;
         public readonly JobSparkConfigLoggingConfig LoggingConfig;
+        /// <summary>
+        /// The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jar_file_uris`. Conflicts with `main_jar_file_uri`
+        /// </summary>
         public readonly string? MainClass;
         /// <summary>
         /// The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `main_class`
@@ -1757,6 +1822,10 @@ namespace Pulumi.Gcp.Dataproc
         /// Conflicts with `query_list`
         /// </summary>
         public readonly string? QueryFileUri;
+        /// <summary>
+        /// The list of SQL queries or statements to execute as part of the job.
+        /// Conflicts with `query_file_uri`
+        /// </summary>
         public readonly ImmutableArray<string> QueryLists;
         /// <summary>
         /// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).

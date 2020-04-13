@@ -27,20 +27,29 @@ namespace Pulumi.Gcp.Monitoring
     public partial class Group : Pulumi.CustomResource
     {
         /// <summary>
-        /// A user-assigned name for this group, used only for display purposes.
+        /// -
+        /// (Required)
+        /// A user-assigned name for this group, used only for display
+        /// purposes.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// The filter used to determine which monitored resources belong to this group.
+        /// -
+        /// (Required)
+        /// The filter used to determine which monitored resources
+        /// belong to this group.
         /// </summary>
         [Output("filter")]
         public Output<string> Filter { get; private set; } = null!;
 
         /// <summary>
-        /// If true, the members of this group are considered to be a cluster. The system can perform additional
-        /// analysis on groups that are clusters.
+        /// -
+        /// (Optional)
+        /// If true, the members of this group are considered to be a
+        /// cluster. The system can perform additional analysis on
+        /// groups that are clusters.
         /// </summary>
         [Output("isCluster")]
         public Output<bool?> IsCluster { get; private set; } = null!;
@@ -52,9 +61,11 @@ namespace Pulumi.Gcp.Monitoring
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The name of the group's parent, if it has one. The format is
-        /// "projects/{project_id_or_number}/groups/{group_id}". For groups with no parent, parentName is the empty
-        /// string, "".
+        /// "projects/{project_id_or_number}/groups/{group_id}". For
+        /// groups with no parent, parentName is the empty string, "".
         /// </summary>
         [Output("parentName")]
         public Output<string?> ParentName { get; private set; } = null!;
@@ -113,28 +124,39 @@ namespace Pulumi.Gcp.Monitoring
     public sealed class GroupArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A user-assigned name for this group, used only for display purposes.
+        /// -
+        /// (Required)
+        /// A user-assigned name for this group, used only for display
+        /// purposes.
         /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
 
         /// <summary>
-        /// The filter used to determine which monitored resources belong to this group.
+        /// -
+        /// (Required)
+        /// The filter used to determine which monitored resources
+        /// belong to this group.
         /// </summary>
         [Input("filter", required: true)]
         public Input<string> Filter { get; set; } = null!;
 
         /// <summary>
-        /// If true, the members of this group are considered to be a cluster. The system can perform additional
-        /// analysis on groups that are clusters.
+        /// -
+        /// (Optional)
+        /// If true, the members of this group are considered to be a
+        /// cluster. The system can perform additional analysis on
+        /// groups that are clusters.
         /// </summary>
         [Input("isCluster")]
         public Input<bool>? IsCluster { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The name of the group's parent, if it has one. The format is
-        /// "projects/{project_id_or_number}/groups/{group_id}". For groups with no parent, parentName is the empty
-        /// string, "".
+        /// "projects/{project_id_or_number}/groups/{group_id}". For
+        /// groups with no parent, parentName is the empty string, "".
         /// </summary>
         [Input("parentName")]
         public Input<string>? ParentName { get; set; }
@@ -154,20 +176,29 @@ namespace Pulumi.Gcp.Monitoring
     public sealed class GroupState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A user-assigned name for this group, used only for display purposes.
+        /// -
+        /// (Required)
+        /// A user-assigned name for this group, used only for display
+        /// purposes.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// The filter used to determine which monitored resources belong to this group.
+        /// -
+        /// (Required)
+        /// The filter used to determine which monitored resources
+        /// belong to this group.
         /// </summary>
         [Input("filter")]
         public Input<string>? Filter { get; set; }
 
         /// <summary>
-        /// If true, the members of this group are considered to be a cluster. The system can perform additional
-        /// analysis on groups that are clusters.
+        /// -
+        /// (Optional)
+        /// If true, the members of this group are considered to be a
+        /// cluster. The system can perform additional analysis on
+        /// groups that are clusters.
         /// </summary>
         [Input("isCluster")]
         public Input<bool>? IsCluster { get; set; }
@@ -179,9 +210,11 @@ namespace Pulumi.Gcp.Monitoring
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The name of the group's parent, if it has one. The format is
-        /// "projects/{project_id_or_number}/groups/{group_id}". For groups with no parent, parentName is the empty
-        /// string, "".
+        /// "projects/{project_id_or_number}/groups/{group_id}". For
+        /// groups with no parent, parentName is the empty string, "".
         /// </summary>
         [Input("parentName")]
         public Input<string>? ParentName { get; set; }

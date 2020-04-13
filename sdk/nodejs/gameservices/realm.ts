@@ -45,6 +45,8 @@ export class Realm extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Optional)
      * Human readable description of the realm.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -53,10 +55,14 @@ export class Realm extends pulumi.CustomResource {
      */
     public /*out*/ readonly etag!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * The labels associated with this realm. Each label is a key-value pair.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * -
+     * (Optional)
      * Location of the Realm.
      */
     public readonly location!: pulumi.Output<string | undefined>;
@@ -71,12 +77,17 @@ export class Realm extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * GCP region of the Realm.
      */
     public readonly realmId!: pulumi.Output<string>;
     /**
-     * Required. Time zone where all realm-specific policies are evaluated. The value of this field must be from the IANA
-     * time zone database: https://www.iana.org/time-zones.
+     * -
+     * (Required)
+     * Required. Time zone where all realm-specific policies are evaluated. The value of
+     * this field must be from the IANA time zone database:
+     * https://www.iana.org/time-zones.
      */
     public readonly timeZone!: pulumi.Output<string>;
 
@@ -133,6 +144,8 @@ export class Realm extends pulumi.CustomResource {
  */
 export interface RealmState {
     /**
+     * -
+     * (Optional)
      * Human readable description of the realm.
      */
     readonly description?: pulumi.Input<string>;
@@ -141,10 +154,14 @@ export interface RealmState {
      */
     readonly etag?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The labels associated with this realm. Each label is a key-value pair.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * -
+     * (Optional)
      * Location of the Realm.
      */
     readonly location?: pulumi.Input<string>;
@@ -159,12 +176,17 @@ export interface RealmState {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * GCP region of the Realm.
      */
     readonly realmId?: pulumi.Input<string>;
     /**
-     * Required. Time zone where all realm-specific policies are evaluated. The value of this field must be from the IANA
-     * time zone database: https://www.iana.org/time-zones.
+     * -
+     * (Required)
+     * Required. Time zone where all realm-specific policies are evaluated. The value of
+     * this field must be from the IANA time zone database:
+     * https://www.iana.org/time-zones.
      */
     readonly timeZone?: pulumi.Input<string>;
 }
@@ -174,14 +196,20 @@ export interface RealmState {
  */
 export interface RealmArgs {
     /**
+     * -
+     * (Optional)
      * Human readable description of the realm.
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The labels associated with this realm. Each label is a key-value pair.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * -
+     * (Optional)
      * Location of the Realm.
      */
     readonly location?: pulumi.Input<string>;
@@ -191,12 +219,17 @@ export interface RealmArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * GCP region of the Realm.
      */
     readonly realmId: pulumi.Input<string>;
     /**
-     * Required. Time zone where all realm-specific policies are evaluated. The value of this field must be from the IANA
-     * time zone database: https://www.iana.org/time-zones.
+     * -
+     * (Required)
+     * Required. Time zone where all realm-specific policies are evaluated. The value of
+     * this field must be from the IANA time zone database:
+     * https://www.iana.org/time-zones.
      */
     readonly timeZone: pulumi.Input<string>;
 }

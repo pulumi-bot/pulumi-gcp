@@ -23,6 +23,8 @@ namespace Pulumi.Gcp.GameServices
     public partial class Realm : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human readable description of the realm.
         /// </summary>
         [Output("description")]
@@ -35,12 +37,16 @@ namespace Pulumi.Gcp.GameServices
         public Output<string> Etag { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The labels associated with this realm. Each label is a key-value pair.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Realm.
         /// </summary>
         [Output("location")]
@@ -61,14 +67,19 @@ namespace Pulumi.Gcp.GameServices
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// GCP region of the Realm.
         /// </summary>
         [Output("realmId")]
         public Output<string> RealmId { get; private set; } = null!;
 
         /// <summary>
-        /// Required. Time zone where all realm-specific policies are evaluated. The value of this field must be from
-        /// the IANA time zone database: https://www.iana.org/time-zones.
+        /// -
+        /// (Required)
+        /// Required. Time zone where all realm-specific policies are evaluated. The value of
+        /// this field must be from the IANA time zone database:
+        /// https://www.iana.org/time-zones.
         /// </summary>
         [Output("timeZone")]
         public Output<string> TimeZone { get; private set; } = null!;
@@ -120,6 +131,8 @@ namespace Pulumi.Gcp.GameServices
     public sealed class RealmArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human readable description of the realm.
         /// </summary>
         [Input("description")]
@@ -129,6 +142,8 @@ namespace Pulumi.Gcp.GameServices
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The labels associated with this realm. Each label is a key-value pair.
         /// </summary>
         public InputMap<string> Labels
@@ -138,6 +153,8 @@ namespace Pulumi.Gcp.GameServices
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Realm.
         /// </summary>
         [Input("location")]
@@ -151,14 +168,19 @@ namespace Pulumi.Gcp.GameServices
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// GCP region of the Realm.
         /// </summary>
         [Input("realmId", required: true)]
         public Input<string> RealmId { get; set; } = null!;
 
         /// <summary>
-        /// Required. Time zone where all realm-specific policies are evaluated. The value of this field must be from
-        /// the IANA time zone database: https://www.iana.org/time-zones.
+        /// -
+        /// (Required)
+        /// Required. Time zone where all realm-specific policies are evaluated. The value of
+        /// this field must be from the IANA time zone database:
+        /// https://www.iana.org/time-zones.
         /// </summary>
         [Input("timeZone", required: true)]
         public Input<string> TimeZone { get; set; } = null!;
@@ -171,6 +193,8 @@ namespace Pulumi.Gcp.GameServices
     public sealed class RealmState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human readable description of the realm.
         /// </summary>
         [Input("description")]
@@ -186,6 +210,8 @@ namespace Pulumi.Gcp.GameServices
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The labels associated with this realm. Each label is a key-value pair.
         /// </summary>
         public InputMap<string> Labels
@@ -195,6 +221,8 @@ namespace Pulumi.Gcp.GameServices
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Realm.
         /// </summary>
         [Input("location")]
@@ -215,14 +243,19 @@ namespace Pulumi.Gcp.GameServices
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// GCP region of the Realm.
         /// </summary>
         [Input("realmId")]
         public Input<string>? RealmId { get; set; }
 
         /// <summary>
-        /// Required. Time zone where all realm-specific policies are evaluated. The value of this field must be from
-        /// the IANA time zone database: https://www.iana.org/time-zones.
+        /// -
+        /// (Required)
+        /// Required. Time zone where all realm-specific policies are evaluated. The value of
+        /// this field must be from the IANA time zone database:
+        /// https://www.iana.org/time-zones.
         /// </summary>
         [Input("timeZone")]
         public Input<string>? TimeZone { get; set; }

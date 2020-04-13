@@ -12,20 +12,37 @@ from .. import utilities, tables
 class TenantDefaultSupportedIdpConfig(pulumi.CustomResource):
     client_id: pulumi.Output[str]
     """
+    -
+    (Required)
     OAuth client ID
     """
     client_secret: pulumi.Output[str]
     """
+    -
+    (Required)
     OAuth client secret
     """
     enabled: pulumi.Output[bool]
     """
+    -
+    (Optional)
     If this IDP allows the user to sign in
     """
     idp_id: pulumi.Output[str]
     """
-    ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' * 'google.com' *
-    'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+    -
+    (Required)
+    ID of the IDP. Possible values include:
+    * `apple.com`
+    * `facebook.com`
+    * `gc.apple.com`
+    * `github.com`
+    * `google.com`
+    * `linkedin.com`
+    * `microsoft.com`
+    * `playgames.google.com`
+    * `twitter.com`
+    * `yahoo.com`
     """
     name: pulumi.Output[str]
     """
@@ -38,6 +55,8 @@ class TenantDefaultSupportedIdpConfig(pulumi.CustomResource):
     """
     tenant: pulumi.Output[str]
     """
+    -
+    (Required)
     The name of the tenant where this DefaultSupportedIdpConfig resource exists
     """
     def __init__(__self__, resource_name, opts=None, client_id=None, client_secret=None, enabled=None, idp_id=None, project=None, tenant=None, __props__=None, __name__=None, __opts__=None):
@@ -48,18 +67,35 @@ class TenantDefaultSupportedIdpConfig(pulumi.CustomResource):
         [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
         the marketplace prior to using this resource.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/identity_platform_tenant_default_supported_idp_config.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: OAuth client ID
-        :param pulumi.Input[str] client_secret: OAuth client secret
-        :param pulumi.Input[bool] enabled: If this IDP allows the user to sign in
-        :param pulumi.Input[str] idp_id: ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' * 'google.com' *
-               'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+        :param pulumi.Input[str] client_id: -
+               (Required)
+               OAuth client ID
+        :param pulumi.Input[str] client_secret: -
+               (Required)
+               OAuth client secret
+        :param pulumi.Input[bool] enabled: -
+               (Optional)
+               If this IDP allows the user to sign in
+        :param pulumi.Input[str] idp_id: -
+               (Required)
+               ID of the IDP. Possible values include:
+               * `apple.com`
+               * `facebook.com`
+               * `gc.apple.com`
+               * `github.com`
+               * `google.com`
+               * `linkedin.com`
+               * `microsoft.com`
+               * `playgames.google.com`
+               * `twitter.com`
+               * `yahoo.com`
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] tenant: The name of the tenant where this DefaultSupportedIdpConfig resource exists
+        :param pulumi.Input[str] tenant: -
+               (Required)
+               The name of the tenant where this DefaultSupportedIdpConfig resource exists
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -108,15 +144,34 @@ class TenantDefaultSupportedIdpConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: OAuth client ID
-        :param pulumi.Input[str] client_secret: OAuth client secret
-        :param pulumi.Input[bool] enabled: If this IDP allows the user to sign in
-        :param pulumi.Input[str] idp_id: ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' * 'google.com' *
-               'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+        :param pulumi.Input[str] client_id: -
+               (Required)
+               OAuth client ID
+        :param pulumi.Input[str] client_secret: -
+               (Required)
+               OAuth client secret
+        :param pulumi.Input[bool] enabled: -
+               (Optional)
+               If this IDP allows the user to sign in
+        :param pulumi.Input[str] idp_id: -
+               (Required)
+               ID of the IDP. Possible values include:
+               * `apple.com`
+               * `facebook.com`
+               * `gc.apple.com`
+               * `github.com`
+               * `google.com`
+               * `linkedin.com`
+               * `microsoft.com`
+               * `playgames.google.com`
+               * `twitter.com`
+               * `yahoo.com`
         :param pulumi.Input[str] name: The name of the default supported IDP config resource
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] tenant: The name of the tenant where this DefaultSupportedIdpConfig resource exists
+        :param pulumi.Input[str] tenant: -
+               (Required)
+               The name of the tenant where this DefaultSupportedIdpConfig resource exists
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

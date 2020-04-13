@@ -21,25 +21,34 @@ namespace Pulumi.Gcp.Sql
     public partial class SourceRepresentationInstance : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The MySQL version running on your source database server: MYSQL_5_6 or MYSQL_5_7.
         /// </summary>
         [Output("databaseVersion")]
         public Output<string> DatabaseVersion { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The externally accessible IPv4 address for the source database server.
         /// </summary>
         [Output("host")]
         public Output<string> Host { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the source representation instance. Use any valid Cloud SQL instance name.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The externally accessible port for the source database server. Defaults to 3306.
+        /// -
+        /// (Optional)
+        /// The externally accessible port for the source database server.
+        /// Defaults to 3306.
         /// </summary>
         [Output("port")]
         public Output<int?> Port { get; private set; } = null!;
@@ -52,7 +61,10 @@ namespace Pulumi.Gcp.Sql
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// The Region in which the created instance should reside. If it is not provided, the provider region is used.
+        /// -
+        /// (Optional)
+        /// The Region in which the created instance should reside.
+        /// If it is not provided, the provider region is used.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -104,25 +116,34 @@ namespace Pulumi.Gcp.Sql
     public sealed class SourceRepresentationInstanceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The MySQL version running on your source database server: MYSQL_5_6 or MYSQL_5_7.
         /// </summary>
         [Input("databaseVersion", required: true)]
         public Input<string> DatabaseVersion { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The externally accessible IPv4 address for the source database server.
         /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the source representation instance. Use any valid Cloud SQL instance name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The externally accessible port for the source database server. Defaults to 3306.
+        /// -
+        /// (Optional)
+        /// The externally accessible port for the source database server.
+        /// Defaults to 3306.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
@@ -135,7 +156,10 @@ namespace Pulumi.Gcp.Sql
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The Region in which the created instance should reside. If it is not provided, the provider region is used.
+        /// -
+        /// (Optional)
+        /// The Region in which the created instance should reside.
+        /// If it is not provided, the provider region is used.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -148,25 +172,34 @@ namespace Pulumi.Gcp.Sql
     public sealed class SourceRepresentationInstanceState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The MySQL version running on your source database server: MYSQL_5_6 or MYSQL_5_7.
         /// </summary>
         [Input("databaseVersion")]
         public Input<string>? DatabaseVersion { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The externally accessible IPv4 address for the source database server.
         /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the source representation instance. Use any valid Cloud SQL instance name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The externally accessible port for the source database server. Defaults to 3306.
+        /// -
+        /// (Optional)
+        /// The externally accessible port for the source database server.
+        /// Defaults to 3306.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
@@ -179,7 +212,10 @@ namespace Pulumi.Gcp.Sql
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The Region in which the created instance should reside. If it is not provided, the provider region is used.
+        /// -
+        /// (Optional)
+        /// The Region in which the created instance should reside.
+        /// If it is not provided, the provider region is used.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

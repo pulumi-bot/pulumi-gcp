@@ -24,30 +24,40 @@ namespace Pulumi.Gcp.VpcAccess
     public partial class Connector : Pulumi.CustomResource
     {
         /// <summary>
-        /// The range of internal addresses that follows RFC 4632 notation. Example: '10.132.0.0/28'.
+        /// -
+        /// (Required)
+        /// The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.
         /// </summary>
         [Output("ipCidrRange")]
         public Output<string> IpCidrRange { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum throughput of the connector in Mbps, must be greater than 'min_throughput'. Default is 1000.
+        /// -
+        /// (Optional)
+        /// Maximum throughput of the connector in Mbps, must be greater than `min_throughput`. Default is 1000.
         /// </summary>
         [Output("maxThroughput")]
         public Output<int?> MaxThroughput { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Minimum throughput of the connector in Mbps. Default and min is 200.
         /// </summary>
         [Output("minThroughput")]
         public Output<int?> MinThroughput { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the resource (Max 25 characters).
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name of a VPC network.
         /// </summary>
         [Output("network")]
@@ -61,6 +71,8 @@ namespace Pulumi.Gcp.VpcAccess
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Region where the VPC Access connector resides
         /// </summary>
         [Output("region")]
@@ -125,30 +137,40 @@ namespace Pulumi.Gcp.VpcAccess
     public sealed class ConnectorArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The range of internal addresses that follows RFC 4632 notation. Example: '10.132.0.0/28'.
+        /// -
+        /// (Required)
+        /// The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.
         /// </summary>
         [Input("ipCidrRange", required: true)]
         public Input<string> IpCidrRange { get; set; } = null!;
 
         /// <summary>
-        /// Maximum throughput of the connector in Mbps, must be greater than 'min_throughput'. Default is 1000.
+        /// -
+        /// (Optional)
+        /// Maximum throughput of the connector in Mbps, must be greater than `min_throughput`. Default is 1000.
         /// </summary>
         [Input("maxThroughput")]
         public Input<int>? MaxThroughput { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Minimum throughput of the connector in Mbps. Default and min is 200.
         /// </summary>
         [Input("minThroughput")]
         public Input<int>? MinThroughput { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the resource (Max 25 characters).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name of a VPC network.
         /// </summary>
         [Input("network", required: true)]
@@ -162,6 +184,8 @@ namespace Pulumi.Gcp.VpcAccess
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Region where the VPC Access connector resides
         /// </summary>
         [Input("region", required: true)]
@@ -175,30 +199,40 @@ namespace Pulumi.Gcp.VpcAccess
     public sealed class ConnectorState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The range of internal addresses that follows RFC 4632 notation. Example: '10.132.0.0/28'.
+        /// -
+        /// (Required)
+        /// The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.
         /// </summary>
         [Input("ipCidrRange")]
         public Input<string>? IpCidrRange { get; set; }
 
         /// <summary>
-        /// Maximum throughput of the connector in Mbps, must be greater than 'min_throughput'. Default is 1000.
+        /// -
+        /// (Optional)
+        /// Maximum throughput of the connector in Mbps, must be greater than `min_throughput`. Default is 1000.
         /// </summary>
         [Input("maxThroughput")]
         public Input<int>? MaxThroughput { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Minimum throughput of the connector in Mbps. Default and min is 200.
         /// </summary>
         [Input("minThroughput")]
         public Input<int>? MinThroughput { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the resource (Max 25 characters).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name of a VPC network.
         /// </summary>
         [Input("network")]
@@ -212,6 +246,8 @@ namespace Pulumi.Gcp.VpcAccess
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Region where the VPC Access connector resides
         /// </summary>
         [Input("region")]

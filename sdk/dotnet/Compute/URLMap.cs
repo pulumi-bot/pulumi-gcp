@@ -29,13 +29,17 @@ namespace Pulumi.Gcp.Compute
         public Output<string> CreationTimestamp { get; private set; } = null!;
 
         /// <summary>
-        /// The backend service or backend bucket to use when none of the given rules match.
+        /// -
+        /// (Optional)
+        /// The backend service or backend bucket to use when none of the given paths match.
         /// </summary>
         [Output("defaultService")]
         public Output<string?> DefaultService { get; private set; } = null!;
 
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// Description of this test case.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -48,14 +52,19 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Fingerprint { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies changes to request and response headers that need to take effect for the selected backendService.
-        /// The headerAction specified here take effect after headerAction specified under pathMatcher.
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
         /// </summary>
         [Output("headerAction")]
         public Output<Outputs.URLMapHeaderAction?> HeaderAction { get; private set; } = null!;
 
         /// <summary>
-        /// The list of HostRules to use against the URL.
+        /// -
+        /// (Optional)
+        /// The list of HostRules to use against the URL.  Structure is documented below.
         /// </summary>
         [Output("hostRules")]
         public Output<ImmutableArray<Outputs.URLMapHostRules>> HostRules { get; private set; } = null!;
@@ -67,17 +76,19 @@ namespace Pulumi.Gcp.Compute
         public Output<int> MapId { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// The name of the query parameter to match. The query parameter must exist in the
+        /// request, in the absence of which the request match fails.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The list of named PathMatchers to use against the URL.
+        /// -
+        /// (Required)
+        /// The name of the PathMatcher to use to match the path portion of the URL if the
+        /// hostRule matches the URL's host portion.
         /// </summary>
         [Output("pathMatchers")]
         public Output<ImmutableArray<Outputs.URLMapPathMatchers>> PathMatchers { get; private set; } = null!;
@@ -96,8 +107,11 @@ namespace Pulumi.Gcp.Compute
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
-        /// The list of expected URL mapping tests. Request to update this UrlMap will succeed only if all of the test
-        /// cases pass. You can specify a maximum of 100 tests per UrlMap.
+        /// -
+        /// (Optional)
+        /// The list of expected URL mapping tests. Request to update this UrlMap will
+        /// succeed only if all of the test cases pass. You can specify a maximum of 100
+        /// tests per UrlMap.  Structure is documented below.
         /// </summary>
         [Output("tests")]
         public Output<ImmutableArray<Outputs.URLMapTests>> Tests { get; private set; } = null!;
@@ -149,20 +163,27 @@ namespace Pulumi.Gcp.Compute
     public sealed class URLMapArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The backend service or backend bucket to use when none of the given rules match.
+        /// -
+        /// (Optional)
+        /// The backend service or backend bucket to use when none of the given paths match.
         /// </summary>
         [Input("defaultService")]
         public Input<string>? DefaultService { get; set; }
 
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// Description of this test case.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Specifies changes to request and response headers that need to take effect for the selected backendService.
-        /// The headerAction specified here take effect after headerAction specified under pathMatcher.
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
         /// </summary>
         [Input("headerAction")]
         public Input<Inputs.URLMapHeaderActionArgs>? HeaderAction { get; set; }
@@ -171,7 +192,9 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.URLMapHostRulesArgs>? _hostRules;
 
         /// <summary>
-        /// The list of HostRules to use against the URL.
+        /// -
+        /// (Optional)
+        /// The list of HostRules to use against the URL.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.URLMapHostRulesArgs> HostRules
         {
@@ -180,11 +203,10 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// The name of the query parameter to match. The query parameter must exist in the
+        /// request, in the absence of which the request match fails.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -193,7 +215,10 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.URLMapPathMatchersArgs>? _pathMatchers;
 
         /// <summary>
-        /// The list of named PathMatchers to use against the URL.
+        /// -
+        /// (Required)
+        /// The name of the PathMatcher to use to match the path portion of the URL if the
+        /// hostRule matches the URL's host portion.
         /// </summary>
         public InputList<Inputs.URLMapPathMatchersArgs> PathMatchers
         {
@@ -212,8 +237,11 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.URLMapTestsArgs>? _tests;
 
         /// <summary>
-        /// The list of expected URL mapping tests. Request to update this UrlMap will succeed only if all of the test
-        /// cases pass. You can specify a maximum of 100 tests per UrlMap.
+        /// -
+        /// (Optional)
+        /// The list of expected URL mapping tests. Request to update this UrlMap will
+        /// succeed only if all of the test cases pass. You can specify a maximum of 100
+        /// tests per UrlMap.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.URLMapTestsArgs> Tests
         {
@@ -235,13 +263,17 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? CreationTimestamp { get; set; }
 
         /// <summary>
-        /// The backend service or backend bucket to use when none of the given rules match.
+        /// -
+        /// (Optional)
+        /// The backend service or backend bucket to use when none of the given paths match.
         /// </summary>
         [Input("defaultService")]
         public Input<string>? DefaultService { get; set; }
 
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// Description of this test case.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -254,8 +286,11 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Fingerprint { get; set; }
 
         /// <summary>
-        /// Specifies changes to request and response headers that need to take effect for the selected backendService.
-        /// The headerAction specified here take effect after headerAction specified under pathMatcher.
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
         /// </summary>
         [Input("headerAction")]
         public Input<Inputs.URLMapHeaderActionGetArgs>? HeaderAction { get; set; }
@@ -264,7 +299,9 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.URLMapHostRulesGetArgs>? _hostRules;
 
         /// <summary>
-        /// The list of HostRules to use against the URL.
+        /// -
+        /// (Optional)
+        /// The list of HostRules to use against the URL.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.URLMapHostRulesGetArgs> HostRules
         {
@@ -279,11 +316,10 @@ namespace Pulumi.Gcp.Compute
         public Input<int>? MapId { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters
-        /// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-        /// expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-        /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
-        /// a dash.
+        /// -
+        /// (Required)
+        /// The name of the query parameter to match. The query parameter must exist in the
+        /// request, in the absence of which the request match fails.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -292,7 +328,10 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.URLMapPathMatchersGetArgs>? _pathMatchers;
 
         /// <summary>
-        /// The list of named PathMatchers to use against the URL.
+        /// -
+        /// (Required)
+        /// The name of the PathMatcher to use to match the path portion of the URL if the
+        /// hostRule matches the URL's host portion.
         /// </summary>
         public InputList<Inputs.URLMapPathMatchersGetArgs> PathMatchers
         {
@@ -317,8 +356,11 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.URLMapTestsGetArgs>? _tests;
 
         /// <summary>
-        /// The list of expected URL mapping tests. Request to update this UrlMap will succeed only if all of the test
-        /// cases pass. You can specify a maximum of 100 tests per UrlMap.
+        /// -
+        /// (Optional)
+        /// The list of expected URL mapping tests. Request to update this UrlMap will
+        /// succeed only if all of the test cases pass. You can specify a maximum of 100
+        /// tests per UrlMap.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.URLMapTestsGetArgs> Tests
         {
@@ -338,6 +380,13 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("requestHeadersToAdds")]
         private InputList<URLMapHeaderActionRequestHeadersToAddsArgs>? _requestHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapHeaderActionRequestHeadersToAddsArgs> RequestHeadersToAdds
         {
             get => _requestHeadersToAdds ?? (_requestHeadersToAdds = new InputList<URLMapHeaderActionRequestHeadersToAddsArgs>());
@@ -346,6 +395,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("requestHeadersToRemoves")]
         private InputList<string>? _requestHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public InputList<string> RequestHeadersToRemoves
         {
             get => _requestHeadersToRemoves ?? (_requestHeadersToRemoves = new InputList<string>());
@@ -354,6 +410,12 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToAdds")]
         private InputList<URLMapHeaderActionResponseHeadersToAddsArgs>? _responseHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapHeaderActionResponseHeadersToAddsArgs> ResponseHeadersToAdds
         {
             get => _responseHeadersToAdds ?? (_responseHeadersToAdds = new InputList<URLMapHeaderActionResponseHeadersToAddsArgs>());
@@ -362,6 +424,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToRemoves")]
         private InputList<string>? _responseHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public InputList<string> ResponseHeadersToRemoves
         {
             get => _responseHeadersToRemoves ?? (_responseHeadersToRemoves = new InputList<string>());
@@ -377,6 +446,13 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("requestHeadersToAdds")]
         private InputList<URLMapHeaderActionRequestHeadersToAddsGetArgs>? _requestHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapHeaderActionRequestHeadersToAddsGetArgs> RequestHeadersToAdds
         {
             get => _requestHeadersToAdds ?? (_requestHeadersToAdds = new InputList<URLMapHeaderActionRequestHeadersToAddsGetArgs>());
@@ -385,6 +461,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("requestHeadersToRemoves")]
         private InputList<string>? _requestHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public InputList<string> RequestHeadersToRemoves
         {
             get => _requestHeadersToRemoves ?? (_requestHeadersToRemoves = new InputList<string>());
@@ -393,6 +476,12 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToAdds")]
         private InputList<URLMapHeaderActionResponseHeadersToAddsGetArgs>? _responseHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapHeaderActionResponseHeadersToAddsGetArgs> ResponseHeadersToAdds
         {
             get => _responseHeadersToAdds ?? (_responseHeadersToAdds = new InputList<URLMapHeaderActionResponseHeadersToAddsGetArgs>());
@@ -401,6 +490,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToRemoves")]
         private InputList<string>? _responseHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public InputList<string> ResponseHeadersToRemoves
         {
             get => _responseHeadersToRemoves ?? (_responseHeadersToRemoves = new InputList<string>());
@@ -414,12 +510,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapHeaderActionRequestHeadersToAddsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -430,12 +543,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapHeaderActionRequestHeadersToAddsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -446,12 +576,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapHeaderActionResponseHeadersToAddsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -462,12 +609,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapHeaderActionResponseHeadersToAddsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -478,17 +642,36 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapHostRulesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Description of this test case.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         [Input("hosts", required: true)]
         private InputList<string>? _hosts;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of host patterns to match. They must be valid hostnames, except * will
+        /// match any string of ([a-z0-9-.]*). In that case, * must be the first character
+        /// and must be followed in the pattern by either - or ..
+        /// </summary>
         public InputList<string> Hosts
         {
             get => _hosts ?? (_hosts = new InputList<string>());
             set => _hosts = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the PathMatcher to use to match the path portion of the URL if the
+        /// hostRule matches the URL's host portion.
+        /// </summary>
         [Input("pathMatcher", required: true)]
         public Input<string> PathMatcher { get; set; } = null!;
 
@@ -499,17 +682,36 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapHostRulesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Description of this test case.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         [Input("hosts", required: true)]
         private InputList<string>? _hosts;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of host patterns to match. They must be valid hostnames, except * will
+        /// match any string of ([a-z0-9-.]*). In that case, * must be the first character
+        /// and must be followed in the pattern by either - or ..
+        /// </summary>
         public InputList<string> Hosts
         {
             get => _hosts ?? (_hosts = new InputList<string>());
             set => _hosts = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the PathMatcher to use to match the path portion of the URL if the
+        /// hostRule matches the URL's host portion.
+        /// </summary>
         [Input("pathMatcher", required: true)]
         public Input<string> PathMatcher { get; set; } = null!;
 
@@ -520,20 +722,54 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The backend service or backend bucket to use when none of the given paths match.
+        /// </summary>
         [Input("defaultService")]
         public Input<string>? DefaultService { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Description of this test case.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
+        /// </summary>
         [Input("headerAction")]
         public Input<URLMapPathMatchersHeaderActionArgs>? HeaderAction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the query parameter to match. The query parameter must exist in the
+        /// request, in the absence of which the request match fails.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("pathRules")]
         private InputList<URLMapPathMatchersPathRulesArgs>? _pathRules;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of path rules. Use this list instead of routeRules when routing based
+        /// on simple path matching is all that's required. The order by which path rules
+        /// are specified does not matter. Matches are always done on the longest-path-first
+        /// basis. For example: a pathRule with a path /a/b/c/* will match before /a/b/*
+        /// irrespective of the order in which those paths appear in this list. Within a
+        /// given pathMatcher, only one of pathRules or routeRules must be set.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersPathRulesArgs> PathRules
         {
             get => _pathRules ?? (_pathRules = new InputList<URLMapPathMatchersPathRulesArgs>());
@@ -542,6 +778,17 @@ namespace Pulumi.Gcp.Compute
 
         [Input("routeRules")]
         private InputList<URLMapPathMatchersRouteRulesArgs>? _routeRules;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of ordered HTTP route rules. Use this list instead of pathRules when
+        /// advanced route matching and routing actions are desired. The order of specifying
+        /// routeRules matters: the first rule that matches will cause its specified routing
+        /// action to take effect. Within a given pathMatcher, only one of pathRules or
+        /// routeRules must be set. routeRules are not supported in UrlMaps intended for
+        /// External load balancers.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesArgs> RouteRules
         {
             get => _routeRules ?? (_routeRules = new InputList<URLMapPathMatchersRouteRulesArgs>());
@@ -555,20 +802,54 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The backend service or backend bucket to use when none of the given paths match.
+        /// </summary>
         [Input("defaultService")]
         public Input<string>? DefaultService { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Description of this test case.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
+        /// </summary>
         [Input("headerAction")]
         public Input<URLMapPathMatchersHeaderActionGetArgs>? HeaderAction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the query parameter to match. The query parameter must exist in the
+        /// request, in the absence of which the request match fails.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("pathRules")]
         private InputList<URLMapPathMatchersPathRulesGetArgs>? _pathRules;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of path rules. Use this list instead of routeRules when routing based
+        /// on simple path matching is all that's required. The order by which path rules
+        /// are specified does not matter. Matches are always done on the longest-path-first
+        /// basis. For example: a pathRule with a path /a/b/c/* will match before /a/b/*
+        /// irrespective of the order in which those paths appear in this list. Within a
+        /// given pathMatcher, only one of pathRules or routeRules must be set.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersPathRulesGetArgs> PathRules
         {
             get => _pathRules ?? (_pathRules = new InputList<URLMapPathMatchersPathRulesGetArgs>());
@@ -577,6 +858,17 @@ namespace Pulumi.Gcp.Compute
 
         [Input("routeRules")]
         private InputList<URLMapPathMatchersRouteRulesGetArgs>? _routeRules;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of ordered HTTP route rules. Use this list instead of pathRules when
+        /// advanced route matching and routing actions are desired. The order of specifying
+        /// routeRules matters: the first rule that matches will cause its specified routing
+        /// action to take effect. Within a given pathMatcher, only one of pathRules or
+        /// routeRules must be set. routeRules are not supported in UrlMaps intended for
+        /// External load balancers.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesGetArgs> RouteRules
         {
             get => _routeRules ?? (_routeRules = new InputList<URLMapPathMatchersRouteRulesGetArgs>());
@@ -592,6 +884,13 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("requestHeadersToAdds")]
         private InputList<URLMapPathMatchersHeaderActionRequestHeadersToAddsArgs>? _requestHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersHeaderActionRequestHeadersToAddsArgs> RequestHeadersToAdds
         {
             get => _requestHeadersToAdds ?? (_requestHeadersToAdds = new InputList<URLMapPathMatchersHeaderActionRequestHeadersToAddsArgs>());
@@ -600,6 +899,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("requestHeadersToRemoves")]
         private InputList<string>? _requestHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public InputList<string> RequestHeadersToRemoves
         {
             get => _requestHeadersToRemoves ?? (_requestHeadersToRemoves = new InputList<string>());
@@ -608,6 +914,12 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToAdds")]
         private InputList<URLMapPathMatchersHeaderActionResponseHeadersToAddsArgs>? _responseHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersHeaderActionResponseHeadersToAddsArgs> ResponseHeadersToAdds
         {
             get => _responseHeadersToAdds ?? (_responseHeadersToAdds = new InputList<URLMapPathMatchersHeaderActionResponseHeadersToAddsArgs>());
@@ -616,6 +928,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToRemoves")]
         private InputList<string>? _responseHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public InputList<string> ResponseHeadersToRemoves
         {
             get => _responseHeadersToRemoves ?? (_responseHeadersToRemoves = new InputList<string>());
@@ -631,6 +950,13 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("requestHeadersToAdds")]
         private InputList<URLMapPathMatchersHeaderActionRequestHeadersToAddsGetArgs>? _requestHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersHeaderActionRequestHeadersToAddsGetArgs> RequestHeadersToAdds
         {
             get => _requestHeadersToAdds ?? (_requestHeadersToAdds = new InputList<URLMapPathMatchersHeaderActionRequestHeadersToAddsGetArgs>());
@@ -639,6 +965,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("requestHeadersToRemoves")]
         private InputList<string>? _requestHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public InputList<string> RequestHeadersToRemoves
         {
             get => _requestHeadersToRemoves ?? (_requestHeadersToRemoves = new InputList<string>());
@@ -647,6 +980,12 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToAdds")]
         private InputList<URLMapPathMatchersHeaderActionResponseHeadersToAddsGetArgs>? _responseHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersHeaderActionResponseHeadersToAddsGetArgs> ResponseHeadersToAdds
         {
             get => _responseHeadersToAdds ?? (_responseHeadersToAdds = new InputList<URLMapPathMatchersHeaderActionResponseHeadersToAddsGetArgs>());
@@ -655,6 +994,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToRemoves")]
         private InputList<string>? _responseHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public InputList<string> ResponseHeadersToRemoves
         {
             get => _responseHeadersToRemoves ?? (_responseHeadersToRemoves = new InputList<string>());
@@ -668,12 +1014,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersHeaderActionRequestHeadersToAddsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -684,12 +1047,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersHeaderActionRequestHeadersToAddsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -700,12 +1080,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersHeaderActionResponseHeadersToAddsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -716,12 +1113,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersHeaderActionResponseHeadersToAddsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -734,18 +1148,49 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("paths", required: true)]
         private InputList<string>? _paths;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of path patterns to match. Each must start with / and the only place a
+        /// * is allowed is at the end following a /. The string fed to the path matcher
+        /// does not include any text after the first ? or #, and those chars are not
+        /// allowed here.
+        /// </summary>
         public InputList<string> Paths
         {
             get => _paths ?? (_paths = new InputList<string>());
             set => _paths = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In response to a matching matchRule, the load balancer performs advanced routing
+        /// actions like URL rewrites, header transformations, etc. prior to forwarding the
+        /// request to the selected backend. If  routeAction specifies any
+        /// weightedBackendServices, service must not be set. Conversely if service is set,
+        /// routeAction cannot contain any  weightedBackendServices. Only one of routeAction
+        /// or urlRedirect must be set.  Structure is documented below.
+        /// </summary>
         [Input("routeAction")]
         public Input<URLMapPathMatchersPathRulesRouteActionArgs>? RouteAction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The backend service or backend bucket link that should be matched by this test.
+        /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// When this rule is matched, the request is redirected to a URL specified by
+        /// urlRedirect. If urlRedirect is specified, service or routeAction must not be
+        /// set.  Structure is documented below.
+        /// </summary>
         [Input("urlRedirect")]
         public Input<URLMapPathMatchersPathRulesUrlRedirectArgs>? UrlRedirect { get; set; }
 
@@ -758,18 +1203,49 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("paths", required: true)]
         private InputList<string>? _paths;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of path patterns to match. Each must start with / and the only place a
+        /// * is allowed is at the end following a /. The string fed to the path matcher
+        /// does not include any text after the first ? or #, and those chars are not
+        /// allowed here.
+        /// </summary>
         public InputList<string> Paths
         {
             get => _paths ?? (_paths = new InputList<string>());
             set => _paths = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In response to a matching matchRule, the load balancer performs advanced routing
+        /// actions like URL rewrites, header transformations, etc. prior to forwarding the
+        /// request to the selected backend. If  routeAction specifies any
+        /// weightedBackendServices, service must not be set. Conversely if service is set,
+        /// routeAction cannot contain any  weightedBackendServices. Only one of routeAction
+        /// or urlRedirect must be set.  Structure is documented below.
+        /// </summary>
         [Input("routeAction")]
         public Input<URLMapPathMatchersPathRulesRouteActionGetArgs>? RouteAction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The backend service or backend bucket link that should be matched by this test.
+        /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// When this rule is matched, the request is redirected to a URL specified by
+        /// urlRedirect. If urlRedirect is specified, service or routeAction must not be
+        /// set.  Structure is documented below.
+        /// </summary>
         [Input("urlRedirect")]
         public Input<URLMapPathMatchersPathRulesUrlRedirectGetArgs>? UrlRedirect { get; set; }
 
@@ -780,26 +1256,83 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for allowing client side cross-origin requests. Please see W3C
+        /// Recommendation for Cross Origin Resource Sharing  Structure is documented below.
+        /// </summary>
         [Input("corsPolicy")]
         public Input<URLMapPathMatchersPathRulesRouteActionCorsPolicyArgs>? CorsPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for fault injection introduced into traffic to test the
+        /// resiliency of clients to backend service failure. As part of fault injection,
+        /// when clients send requests to a backend service, delays can be introduced by
+        /// Loadbalancer on a percentage of requests before sending those request to the
+        /// backend service. Similarly requests from clients can be aborted by the
+        /// Loadbalancer for a percentage of requests. timeout and retry_policy will be
+        /// ignored by clients that are configured with a fault_injection_policy.  Structure is documented below.
+        /// </summary>
         [Input("faultInjectionPolicy")]
         public Input<URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyArgs>? FaultInjectionPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the policy on how requests intended for the route's backends are
+        /// shadowed to a separate mirrored backend service. Loadbalancer does not wait for
+        /// responses from the shadow service. Prior to sending traffic to the shadow
+        /// service, the host / authority header is suffixed with -shadow.  Structure is documented below.
+        /// </summary>
         [Input("requestMirrorPolicy")]
         public Input<URLMapPathMatchersPathRulesRouteActionRequestMirrorPolicyArgs>? RequestMirrorPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the retry policy associated with this route.  Structure is documented below.
+        /// </summary>
         [Input("retryPolicy")]
         public Input<URLMapPathMatchersPathRulesRouteActionRetryPolicyArgs>? RetryPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the timeout for the selected route. Timeout is computed from the time
+        /// the request is has been fully processed (i.e. end-of-stream) up until the
+        /// response has been completely processed. Timeout includes all retries. If not
+        /// specified, the default value is 15 seconds.  Structure is documented below.
+        /// </summary>
         [Input("timeout")]
         public Input<URLMapPathMatchersPathRulesRouteActionTimeoutArgs>? Timeout { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The spec to modify the URL of the request, prior to forwarding the request to
+        /// the matched service  Structure is documented below.
+        /// </summary>
         [Input("urlRewrite")]
         public Input<URLMapPathMatchersPathRulesRouteActionUrlRewriteArgs>? UrlRewrite { get; set; }
 
         [Input("weightedBackendServices")]
         private InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesArgs>? _weightedBackendServices;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of weighted backend services to send traffic to when a route match
+        /// occurs. The weights determine the fraction of traffic that flows to their
+        /// corresponding backend service. If all traffic needs to go to a single backend
+        /// service, there must be one  weightedBackendService with weight set to a non 0
+        /// number. Once a backendService is identified and before forwarding the request to
+        /// the backend service, advanced routing actions like Url rewrites and header
+        /// transformations are applied depending on additional settings specified in this
+        /// HttpRouteAction.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesArgs> WeightedBackendServices
         {
             get => _weightedBackendServices ?? (_weightedBackendServices = new InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesArgs>());
@@ -813,11 +1346,24 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionCorsPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In response to a preflight request, setting this to true indicates that the
+        /// actual request can include user credentials. This translates to the Access-
+        /// Control-Allow-Credentials header. Defaults to false.
+        /// </summary>
         [Input("allowCredentials")]
         public Input<bool>? AllowCredentials { get; set; }
 
         [Input("allowHeaders")]
         private InputList<string>? _allowHeaders;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Allow-Headers header.
+        /// </summary>
         public InputList<string> AllowHeaders
         {
             get => _allowHeaders ?? (_allowHeaders = new InputList<string>());
@@ -826,6 +1372,12 @@ namespace Pulumi.Gcp.Compute
 
         [Input("allowMethods")]
         private InputList<string>? _allowMethods;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Allow-Methods header.
+        /// </summary>
         public InputList<string> AllowMethods
         {
             get => _allowMethods ?? (_allowMethods = new InputList<string>());
@@ -834,6 +1386,14 @@ namespace Pulumi.Gcp.Compute
 
         [Input("allowOriginRegexes")]
         private InputList<string>? _allowOriginRegexes;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the regualar expression patterns that match allowed origins. For
+        /// regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+        /// An origin is allowed if it matches either allow_origins or allow_origin_regex.
+        /// </summary>
         public InputList<string> AllowOriginRegexes
         {
             get => _allowOriginRegexes ?? (_allowOriginRegexes = new InputList<string>());
@@ -842,23 +1402,48 @@ namespace Pulumi.Gcp.Compute
 
         [Input("allowOrigins")]
         private InputList<string>? _allowOrigins;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the list of origins that will be allowed to do CORS requests. An
+        /// origin is allowed if it matches either allow_origins or allow_origin_regex.
+        /// </summary>
         public InputList<string> AllowOrigins
         {
             get => _allowOrigins ?? (_allowOrigins = new InputList<string>());
             set => _allowOrigins = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, specifies the CORS policy is disabled.
+        /// which indicates that the CORS policy is in effect. Defaults to false.
+        /// </summary>
         [Input("disabled", required: true)]
         public Input<bool> Disabled { get; set; } = null!;
 
         [Input("exposeHeaders")]
         private InputList<string>? _exposeHeaders;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Expose-Headers header.
+        /// </summary>
         public InputList<string> ExposeHeaders
         {
             get => _exposeHeaders ?? (_exposeHeaders = new InputList<string>());
             set => _exposeHeaders = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how long the results of a preflight request can be cached. This
+        /// translates to the content for the Access-Control-Max-Age header.
+        /// </summary>
         [Input("maxAge")]
         public Input<int>? MaxAge { get; set; }
 
@@ -869,11 +1454,24 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionCorsPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In response to a preflight request, setting this to true indicates that the
+        /// actual request can include user credentials. This translates to the Access-
+        /// Control-Allow-Credentials header. Defaults to false.
+        /// </summary>
         [Input("allowCredentials")]
         public Input<bool>? AllowCredentials { get; set; }
 
         [Input("allowHeaders")]
         private InputList<string>? _allowHeaders;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Allow-Headers header.
+        /// </summary>
         public InputList<string> AllowHeaders
         {
             get => _allowHeaders ?? (_allowHeaders = new InputList<string>());
@@ -882,6 +1480,12 @@ namespace Pulumi.Gcp.Compute
 
         [Input("allowMethods")]
         private InputList<string>? _allowMethods;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Allow-Methods header.
+        /// </summary>
         public InputList<string> AllowMethods
         {
             get => _allowMethods ?? (_allowMethods = new InputList<string>());
@@ -890,6 +1494,14 @@ namespace Pulumi.Gcp.Compute
 
         [Input("allowOriginRegexes")]
         private InputList<string>? _allowOriginRegexes;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the regualar expression patterns that match allowed origins. For
+        /// regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+        /// An origin is allowed if it matches either allow_origins or allow_origin_regex.
+        /// </summary>
         public InputList<string> AllowOriginRegexes
         {
             get => _allowOriginRegexes ?? (_allowOriginRegexes = new InputList<string>());
@@ -898,23 +1510,48 @@ namespace Pulumi.Gcp.Compute
 
         [Input("allowOrigins")]
         private InputList<string>? _allowOrigins;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the list of origins that will be allowed to do CORS requests. An
+        /// origin is allowed if it matches either allow_origins or allow_origin_regex.
+        /// </summary>
         public InputList<string> AllowOrigins
         {
             get => _allowOrigins ?? (_allowOrigins = new InputList<string>());
             set => _allowOrigins = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, specifies the CORS policy is disabled.
+        /// which indicates that the CORS policy is in effect. Defaults to false.
+        /// </summary>
         [Input("disabled", required: true)]
         public Input<bool> Disabled { get; set; } = null!;
 
         [Input("exposeHeaders")]
         private InputList<string>? _exposeHeaders;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Expose-Headers header.
+        /// </summary>
         public InputList<string> ExposeHeaders
         {
             get => _exposeHeaders ?? (_exposeHeaders = new InputList<string>());
             set => _exposeHeaders = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how long the results of a preflight request can be cached. This
+        /// translates to the content for the Access-Control-Max-Age header.
+        /// </summary>
         [Input("maxAge")]
         public Input<int>? MaxAge { get; set; }
 
@@ -925,9 +1562,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyAbortArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The HTTP status code used to abort the request. The value must be between 200
+        /// and 599 inclusive.
+        /// </summary>
         [Input("httpStatus", required: true)]
         public Input<int> HttpStatus { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of traffic (connections/operations/requests) on which delay will
+        /// be introduced as part of fault injection. The value must be between 0.0 and
+        /// 100.0 inclusive.
+        /// </summary>
         [Input("percentage", required: true)]
         public Input<double> Percentage { get; set; } = null!;
 
@@ -938,9 +1588,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyAbortGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The HTTP status code used to abort the request. The value must be between 200
+        /// and 599 inclusive.
+        /// </summary>
         [Input("httpStatus", required: true)]
         public Input<int> HttpStatus { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of traffic (connections/operations/requests) on which delay will
+        /// be introduced as part of fault injection. The value must be between 0.0 and
+        /// 100.0 inclusive.
+        /// </summary>
         [Input("percentage", required: true)]
         public Input<double> Percentage { get; set; } = null!;
 
@@ -951,9 +1614,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for how client requests are aborted as part of fault
+        /// injection.  Structure is documented below.
+        /// </summary>
         [Input("abort")]
         public Input<URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyAbortArgs>? Abort { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for how client requests are delayed as part of fault
+        /// injection, before being sent to a backend service.  Structure is documented below.
+        /// </summary>
         [Input("delay")]
         public Input<URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyDelayArgs>? Delay { get; set; }
 
@@ -964,9 +1639,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyDelayArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the value of the fixed delay interval.  Structure is documented below.
+        /// </summary>
         [Input("fixedDelay", required: true)]
         public Input<URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyDelayFixedDelayArgs> FixedDelay { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of traffic (connections/operations/requests) on which delay will
+        /// be introduced as part of fault injection. The value must be between 0.0 and
+        /// 100.0 inclusive.
+        /// </summary>
         [Input("percentage", required: true)]
         public Input<double> Percentage { get; set; } = null!;
 
@@ -977,9 +1664,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyDelayFixedDelayArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<string> Seconds { get; set; } = null!;
 
@@ -990,9 +1690,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyDelayFixedDelayGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<string> Seconds { get; set; } = null!;
 
@@ -1003,9 +1716,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyDelayGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the value of the fixed delay interval.  Structure is documented below.
+        /// </summary>
         [Input("fixedDelay", required: true)]
         public Input<URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyDelayFixedDelayGetArgs> FixedDelay { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of traffic (connections/operations/requests) on which delay will
+        /// be introduced as part of fault injection. The value must be between 0.0 and
+        /// 100.0 inclusive.
+        /// </summary>
         [Input("percentage", required: true)]
         public Input<double> Percentage { get; set; } = null!;
 
@@ -1016,9 +1741,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for how client requests are aborted as part of fault
+        /// injection.  Structure is documented below.
+        /// </summary>
         [Input("abort")]
         public Input<URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyAbortGetArgs>? Abort { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for how client requests are delayed as part of fault
+        /// injection, before being sent to a backend service.  Structure is documented below.
+        /// </summary>
         [Input("delay")]
         public Input<URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyDelayGetArgs>? Delay { get; set; }
 
@@ -1029,26 +1766,83 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for allowing client side cross-origin requests. Please see W3C
+        /// Recommendation for Cross Origin Resource Sharing  Structure is documented below.
+        /// </summary>
         [Input("corsPolicy")]
         public Input<URLMapPathMatchersPathRulesRouteActionCorsPolicyGetArgs>? CorsPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for fault injection introduced into traffic to test the
+        /// resiliency of clients to backend service failure. As part of fault injection,
+        /// when clients send requests to a backend service, delays can be introduced by
+        /// Loadbalancer on a percentage of requests before sending those request to the
+        /// backend service. Similarly requests from clients can be aborted by the
+        /// Loadbalancer for a percentage of requests. timeout and retry_policy will be
+        /// ignored by clients that are configured with a fault_injection_policy.  Structure is documented below.
+        /// </summary>
         [Input("faultInjectionPolicy")]
         public Input<URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyGetArgs>? FaultInjectionPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the policy on how requests intended for the route's backends are
+        /// shadowed to a separate mirrored backend service. Loadbalancer does not wait for
+        /// responses from the shadow service. Prior to sending traffic to the shadow
+        /// service, the host / authority header is suffixed with -shadow.  Structure is documented below.
+        /// </summary>
         [Input("requestMirrorPolicy")]
         public Input<URLMapPathMatchersPathRulesRouteActionRequestMirrorPolicyGetArgs>? RequestMirrorPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the retry policy associated with this route.  Structure is documented below.
+        /// </summary>
         [Input("retryPolicy")]
         public Input<URLMapPathMatchersPathRulesRouteActionRetryPolicyGetArgs>? RetryPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the timeout for the selected route. Timeout is computed from the time
+        /// the request is has been fully processed (i.e. end-of-stream) up until the
+        /// response has been completely processed. Timeout includes all retries. If not
+        /// specified, the default value is 15 seconds.  Structure is documented below.
+        /// </summary>
         [Input("timeout")]
         public Input<URLMapPathMatchersPathRulesRouteActionTimeoutGetArgs>? Timeout { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The spec to modify the URL of the request, prior to forwarding the request to
+        /// the matched service  Structure is documented below.
+        /// </summary>
         [Input("urlRewrite")]
         public Input<URLMapPathMatchersPathRulesRouteActionUrlRewriteGetArgs>? UrlRewrite { get; set; }
 
         [Input("weightedBackendServices")]
         private InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesGetArgs>? _weightedBackendServices;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of weighted backend services to send traffic to when a route match
+        /// occurs. The weights determine the fraction of traffic that flows to their
+        /// corresponding backend service. If all traffic needs to go to a single backend
+        /// service, there must be one  weightedBackendService with weight set to a non 0
+        /// number. Once a backendService is identified and before forwarding the request to
+        /// the backend service, advanced routing actions like Url rewrites and header
+        /// transformations are applied depending on additional settings specified in this
+        /// HttpRouteAction.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesGetArgs> WeightedBackendServices
         {
             get => _weightedBackendServices ?? (_weightedBackendServices = new InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesGetArgs>());
@@ -1062,6 +1856,13 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionRequestMirrorPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The default BackendService resource. Before
+        /// forwarding the request to backendService, the loadbalancer applies any relevant
+        /// headerActions specified as part of this backendServiceWeight.
+        /// </summary>
         [Input("backendService", required: true)]
         public Input<string> BackendService { get; set; } = null!;
 
@@ -1072,6 +1873,13 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionRequestMirrorPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The default BackendService resource. Before
+        /// forwarding the request to backendService, the loadbalancer applies any relevant
+        /// headerActions specified as part of this backendServiceWeight.
+        /// </summary>
         [Input("backendService", required: true)]
         public Input<string> BackendService { get; set; } = null!;
 
@@ -1082,14 +1890,52 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionRetryPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the allowed number retries. This number must be &gt; 0.
+        /// </summary>
         [Input("numRetries")]
         public Input<int>? NumRetries { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a non-zero timeout per retry attempt.
+        /// If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction
+        /// is not set, will use the largest timeout among all backend services associated with the route.  Structure is documented below.
+        /// </summary>
         [Input("perTryTimeout")]
         public Input<URLMapPathMatchersPathRulesRouteActionRetryPolicyPerTryTimeoutArgs>? PerTryTimeout { get; set; }
 
         [Input("retryConditions")]
         private InputList<string>? _retryConditions;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specfies one or more conditions when this retry rule applies. Valid values are:
+        /// - 5xx: Loadbalancer will attempt a retry if the backend service responds with
+        /// any 5xx response code, or if the backend service does not respond at all,
+        /// example: disconnects, reset, read timeout, connection failure, and refused
+        /// streams.
+        /// - gateway-error: Similar to 5xx, but only applies to response codes
+        /// 502, 503 or 504.
+        /// - connect-failure: Loadbalancer will retry on failures
+        /// connecting to backend services, for example due to connection timeouts.
+        /// - retriable-4xx: Loadbalancer will retry for retriable 4xx response codes.
+        /// Currently the only retriable error supported is 409.
+        /// - refused-stream: Loadbalancer will retry if the backend service resets the stream with a
+        /// REFUSED_STREAM error code. This reset type indicates that it is safe to retry.
+        /// - cancelled: Loadbalancer will retry if the gRPC status code in the response
+        /// header is set to cancelled
+        /// - deadline-exceeded: Loadbalancer will retry if the
+        /// gRPC status code in the response header is set to deadline-exceeded
+        /// - resource-exhausted: Loadbalancer will retry if the gRPC status code in the response
+        /// header is set to resource-exhausted
+        /// - unavailable: Loadbalancer will retry if the gRPC status code in
+        /// the response header is set to unavailable
+        /// </summary>
         public InputList<string> RetryConditions
         {
             get => _retryConditions ?? (_retryConditions = new InputList<string>());
@@ -1103,14 +1949,52 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionRetryPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the allowed number retries. This number must be &gt; 0.
+        /// </summary>
         [Input("numRetries")]
         public Input<int>? NumRetries { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a non-zero timeout per retry attempt.
+        /// If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction
+        /// is not set, will use the largest timeout among all backend services associated with the route.  Structure is documented below.
+        /// </summary>
         [Input("perTryTimeout")]
         public Input<URLMapPathMatchersPathRulesRouteActionRetryPolicyPerTryTimeoutGetArgs>? PerTryTimeout { get; set; }
 
         [Input("retryConditions")]
         private InputList<string>? _retryConditions;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specfies one or more conditions when this retry rule applies. Valid values are:
+        /// - 5xx: Loadbalancer will attempt a retry if the backend service responds with
+        /// any 5xx response code, or if the backend service does not respond at all,
+        /// example: disconnects, reset, read timeout, connection failure, and refused
+        /// streams.
+        /// - gateway-error: Similar to 5xx, but only applies to response codes
+        /// 502, 503 or 504.
+        /// - connect-failure: Loadbalancer will retry on failures
+        /// connecting to backend services, for example due to connection timeouts.
+        /// - retriable-4xx: Loadbalancer will retry for retriable 4xx response codes.
+        /// Currently the only retriable error supported is 409.
+        /// - refused-stream: Loadbalancer will retry if the backend service resets the stream with a
+        /// REFUSED_STREAM error code. This reset type indicates that it is safe to retry.
+        /// - cancelled: Loadbalancer will retry if the gRPC status code in the response
+        /// header is set to cancelled
+        /// - deadline-exceeded: Loadbalancer will retry if the
+        /// gRPC status code in the response header is set to deadline-exceeded
+        /// - resource-exhausted: Loadbalancer will retry if the gRPC status code in the response
+        /// header is set to resource-exhausted
+        /// - unavailable: Loadbalancer will retry if the gRPC status code in
+        /// the response header is set to unavailable
+        /// </summary>
         public InputList<string> RetryConditions
         {
             get => _retryConditions ?? (_retryConditions = new InputList<string>());
@@ -1124,9 +2008,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionRetryPolicyPerTryTimeoutArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<string> Seconds { get; set; } = null!;
 
@@ -1137,9 +2034,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionRetryPolicyPerTryTimeoutGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<string> Seconds { get; set; } = null!;
 
@@ -1150,9 +2060,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionTimeoutArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<string> Seconds { get; set; } = null!;
 
@@ -1163,9 +2086,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionTimeoutGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<string> Seconds { get; set; } = null!;
 
@@ -1176,9 +2112,23 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionUrlRewriteArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Prior to forwarding the request to the selected service, the request's host
+        /// header is replaced with contents of hostRewrite. The value must be between 1 and
+        /// 255 characters.
+        /// </summary>
         [Input("hostRewrite")]
         public Input<string>? HostRewrite { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Prior to forwarding the request to the selected backend service, the matching
+        /// portion of the request's path is replaced by pathPrefixRewrite. The value must
+        /// be between 1 and 1024 characters.
+        /// </summary>
         [Input("pathPrefixRewrite")]
         public Input<string>? PathPrefixRewrite { get; set; }
 
@@ -1189,9 +2139,23 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionUrlRewriteGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Prior to forwarding the request to the selected service, the request's host
+        /// header is replaced with contents of hostRewrite. The value must be between 1 and
+        /// 255 characters.
+        /// </summary>
         [Input("hostRewrite")]
         public Input<string>? HostRewrite { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Prior to forwarding the request to the selected backend service, the matching
+        /// portion of the request's path is replaced by pathPrefixRewrite. The value must
+        /// be between 1 and 1024 characters.
+        /// </summary>
         [Input("pathPrefixRewrite")]
         public Input<string>? PathPrefixRewrite { get; set; }
 
@@ -1202,12 +2166,36 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The default BackendService resource. Before
+        /// forwarding the request to backendService, the loadbalancer applies any relevant
+        /// headerActions specified as part of this backendServiceWeight.
+        /// </summary>
         [Input("backendService", required: true)]
         public Input<string> BackendService { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
+        /// </summary>
         [Input("headerAction")]
         public Input<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionArgs>? HeaderAction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the fraction of traffic sent to backendService, computed as weight /
+        /// (sum of all weightedBackendService weights in routeAction) . The selection of a
+        /// backend service is determined only for new traffic. Once a user's request has
+        /// been directed to a backendService, subsequent requests will be sent to the same
+        /// backendService as determined by the BackendService's session affinity policy.
+        /// The value must be between 0 and 1000
+        /// </summary>
         [Input("weight", required: true)]
         public Input<int> Weight { get; set; } = null!;
 
@@ -1218,12 +2206,36 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The default BackendService resource. Before
+        /// forwarding the request to backendService, the loadbalancer applies any relevant
+        /// headerActions specified as part of this backendServiceWeight.
+        /// </summary>
         [Input("backendService", required: true)]
         public Input<string> BackendService { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
+        /// </summary>
         [Input("headerAction")]
         public Input<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionGetArgs>? HeaderAction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the fraction of traffic sent to backendService, computed as weight /
+        /// (sum of all weightedBackendService weights in routeAction) . The selection of a
+        /// backend service is determined only for new traffic. Once a user's request has
+        /// been directed to a backendService, subsequent requests will be sent to the same
+        /// backendService as determined by the BackendService's session affinity policy.
+        /// The value must be between 0 and 1000
+        /// </summary>
         [Input("weight", required: true)]
         public Input<int> Weight { get; set; } = null!;
 
@@ -1236,6 +2248,13 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("requestHeadersToAdds")]
         private InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsArgs>? _requestHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsArgs> RequestHeadersToAdds
         {
             get => _requestHeadersToAdds ?? (_requestHeadersToAdds = new InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsArgs>());
@@ -1244,6 +2263,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("requestHeadersToRemoves")]
         private InputList<string>? _requestHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public InputList<string> RequestHeadersToRemoves
         {
             get => _requestHeadersToRemoves ?? (_requestHeadersToRemoves = new InputList<string>());
@@ -1252,6 +2278,12 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToAdds")]
         private InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsArgs>? _responseHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsArgs> ResponseHeadersToAdds
         {
             get => _responseHeadersToAdds ?? (_responseHeadersToAdds = new InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsArgs>());
@@ -1260,6 +2292,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToRemoves")]
         private InputList<string>? _responseHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public InputList<string> ResponseHeadersToRemoves
         {
             get => _responseHeadersToRemoves ?? (_responseHeadersToRemoves = new InputList<string>());
@@ -1275,6 +2314,13 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("requestHeadersToAdds")]
         private InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsGetArgs>? _requestHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsGetArgs> RequestHeadersToAdds
         {
             get => _requestHeadersToAdds ?? (_requestHeadersToAdds = new InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsGetArgs>());
@@ -1283,6 +2329,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("requestHeadersToRemoves")]
         private InputList<string>? _requestHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public InputList<string> RequestHeadersToRemoves
         {
             get => _requestHeadersToRemoves ?? (_requestHeadersToRemoves = new InputList<string>());
@@ -1291,6 +2344,12 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToAdds")]
         private InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsGetArgs>? _responseHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsGetArgs> ResponseHeadersToAdds
         {
             get => _responseHeadersToAdds ?? (_responseHeadersToAdds = new InputList<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsGetArgs>());
@@ -1299,6 +2358,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToRemoves")]
         private InputList<string>? _responseHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public InputList<string> ResponseHeadersToRemoves
         {
             get => _responseHeadersToRemoves ?? (_responseHeadersToRemoves = new InputList<string>());
@@ -1312,12 +2378,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -1328,12 +2411,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -1344,12 +2444,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -1360,12 +2477,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -1376,21 +2510,65 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesUrlRedirectArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The host that will be used in the redirect response instead of the one that was
+        /// supplied in the request. The value must be between 1 and 255 characters.
+        /// </summary>
         [Input("hostRedirect")]
         public Input<string>? HostRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to true, the URL scheme in the redirected request is set to https. If set
+        /// to false, the URL scheme of the redirected request will remain the same as that
+        /// of the request. This must only be set for UrlMaps used in TargetHttpProxys.
+        /// Setting this true for TargetHttpsProxy is not permitted. Defaults to false.
+        /// </summary>
         [Input("httpsRedirect")]
         public Input<bool>? HttpsRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The path that will be used in the redirect response instead of the one that was
+        /// supplied in the request. Only one of pathRedirect or prefixRedirect must be
+        /// specified. The value must be between 1 and 1024 characters.
+        /// </summary>
         [Input("pathRedirect")]
         public Input<string>? PathRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
+        /// retaining the remaining portion of the URL before redirecting the request.
+        /// </summary>
         [Input("prefixRedirect")]
         public Input<string>? PrefixRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The HTTP Status code to use for this RedirectAction. Supported values are:   -
+        /// MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.  -
+        /// FOUND, which corresponds to 302.  - SEE_OTHER which corresponds to 303.  -
+        /// TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method
+        /// will be retained.  - PERMANENT_REDIRECT, which corresponds to 308. In this case,
+        /// the request method will be retained.
+        /// </summary>
         [Input("redirectResponseCode")]
         public Input<string>? RedirectResponseCode { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to true, any accompanying query portion of the original URL is removed
+        /// prior to redirecting the request. If set to false, the query portion of the
+        /// original URL is retained. Defaults to false.
+        /// </summary>
         [Input("stripQuery", required: true)]
         public Input<bool> StripQuery { get; set; } = null!;
 
@@ -1401,21 +2579,65 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersPathRulesUrlRedirectGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The host that will be used in the redirect response instead of the one that was
+        /// supplied in the request. The value must be between 1 and 255 characters.
+        /// </summary>
         [Input("hostRedirect")]
         public Input<string>? HostRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to true, the URL scheme in the redirected request is set to https. If set
+        /// to false, the URL scheme of the redirected request will remain the same as that
+        /// of the request. This must only be set for UrlMaps used in TargetHttpProxys.
+        /// Setting this true for TargetHttpsProxy is not permitted. Defaults to false.
+        /// </summary>
         [Input("httpsRedirect")]
         public Input<bool>? HttpsRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The path that will be used in the redirect response instead of the one that was
+        /// supplied in the request. Only one of pathRedirect or prefixRedirect must be
+        /// specified. The value must be between 1 and 1024 characters.
+        /// </summary>
         [Input("pathRedirect")]
         public Input<string>? PathRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
+        /// retaining the remaining portion of the URL before redirecting the request.
+        /// </summary>
         [Input("prefixRedirect")]
         public Input<string>? PrefixRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The HTTP Status code to use for this RedirectAction. Supported values are:   -
+        /// MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.  -
+        /// FOUND, which corresponds to 302.  - SEE_OTHER which corresponds to 303.  -
+        /// TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method
+        /// will be retained.  - PERMANENT_REDIRECT, which corresponds to 308. In this case,
+        /// the request method will be retained.
+        /// </summary>
         [Input("redirectResponseCode")]
         public Input<string>? RedirectResponseCode { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to true, any accompanying query portion of the original URL is removed
+        /// prior to redirecting the request. If set to false, the query portion of the
+        /// original URL is retained. Defaults to false.
+        /// </summary>
         [Input("stripQuery", required: true)]
         public Input<bool> StripQuery { get; set; } = null!;
 
@@ -1426,26 +2648,78 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
+        /// </summary>
         [Input("headerAction")]
         public Input<URLMapPathMatchersRouteRulesHeaderActionArgs>? HeaderAction { get; set; }
 
         [Input("matchRules")]
         private InputList<URLMapPathMatchersRouteRulesMatchRulesArgs>? _matchRules;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The rules for determining a match.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesMatchRulesArgs> MatchRules
         {
             get => _matchRules ?? (_matchRules = new InputList<URLMapPathMatchersRouteRulesMatchRulesArgs>());
             set => _matchRules = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// For routeRules within a given pathMatcher, priority determines the order
+        /// in which load balancer will interpret routeRules. RouteRules are evaluated
+        /// in order of priority, from the lowest to highest number. The priority of
+        /// a rule decreases as its number increases (1, 2, 3, N+1). The first rule
+        /// that matches the request is applied.
+        /// You cannot configure two or more routeRules with the same priority.
+        /// Priority for each rule must be set to a number between 0 and
+        /// 2147483647 inclusive.
+        /// Priority numbers can have gaps, which enable you to add or remove rules
+        /// in the future without affecting the rest of the rules. For example,
+        /// 1, 2, 3, 4, 5, 9, 12, 16 is a valid series of priority numbers to which
+        /// you could add rules numbered from 6 to 8, 10 to 11, and 13 to 15 in the
+        /// future without any impact on existing rules.
+        /// </summary>
         [Input("priority", required: true)]
         public Input<int> Priority { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In response to a matching matchRule, the load balancer performs advanced routing
+        /// actions like URL rewrites, header transformations, etc. prior to forwarding the
+        /// request to the selected backend. If  routeAction specifies any
+        /// weightedBackendServices, service must not be set. Conversely if service is set,
+        /// routeAction cannot contain any  weightedBackendServices. Only one of routeAction
+        /// or urlRedirect must be set.  Structure is documented below.
+        /// </summary>
         [Input("routeAction")]
         public Input<URLMapPathMatchersRouteRulesRouteActionArgs>? RouteAction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The backend service or backend bucket link that should be matched by this test.
+        /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// When this rule is matched, the request is redirected to a URL specified by
+        /// urlRedirect. If urlRedirect is specified, service or routeAction must not be
+        /// set.  Structure is documented below.
+        /// </summary>
         [Input("urlRedirect")]
         public Input<URLMapPathMatchersRouteRulesUrlRedirectArgs>? UrlRedirect { get; set; }
 
@@ -1456,26 +2730,78 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
+        /// </summary>
         [Input("headerAction")]
         public Input<URLMapPathMatchersRouteRulesHeaderActionGetArgs>? HeaderAction { get; set; }
 
         [Input("matchRules")]
         private InputList<URLMapPathMatchersRouteRulesMatchRulesGetArgs>? _matchRules;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The rules for determining a match.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesMatchRulesGetArgs> MatchRules
         {
             get => _matchRules ?? (_matchRules = new InputList<URLMapPathMatchersRouteRulesMatchRulesGetArgs>());
             set => _matchRules = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// For routeRules within a given pathMatcher, priority determines the order
+        /// in which load balancer will interpret routeRules. RouteRules are evaluated
+        /// in order of priority, from the lowest to highest number. The priority of
+        /// a rule decreases as its number increases (1, 2, 3, N+1). The first rule
+        /// that matches the request is applied.
+        /// You cannot configure two or more routeRules with the same priority.
+        /// Priority for each rule must be set to a number between 0 and
+        /// 2147483647 inclusive.
+        /// Priority numbers can have gaps, which enable you to add or remove rules
+        /// in the future without affecting the rest of the rules. For example,
+        /// 1, 2, 3, 4, 5, 9, 12, 16 is a valid series of priority numbers to which
+        /// you could add rules numbered from 6 to 8, 10 to 11, and 13 to 15 in the
+        /// future without any impact on existing rules.
+        /// </summary>
         [Input("priority", required: true)]
         public Input<int> Priority { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In response to a matching matchRule, the load balancer performs advanced routing
+        /// actions like URL rewrites, header transformations, etc. prior to forwarding the
+        /// request to the selected backend. If  routeAction specifies any
+        /// weightedBackendServices, service must not be set. Conversely if service is set,
+        /// routeAction cannot contain any  weightedBackendServices. Only one of routeAction
+        /// or urlRedirect must be set.  Structure is documented below.
+        /// </summary>
         [Input("routeAction")]
         public Input<URLMapPathMatchersRouteRulesRouteActionGetArgs>? RouteAction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The backend service or backend bucket link that should be matched by this test.
+        /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// When this rule is matched, the request is redirected to a URL specified by
+        /// urlRedirect. If urlRedirect is specified, service or routeAction must not be
+        /// set.  Structure is documented below.
+        /// </summary>
         [Input("urlRedirect")]
         public Input<URLMapPathMatchersRouteRulesUrlRedirectGetArgs>? UrlRedirect { get; set; }
 
@@ -1488,6 +2814,13 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("requestHeadersToAdds")]
         private InputList<URLMapPathMatchersRouteRulesHeaderActionRequestHeadersToAddsArgs>? _requestHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesHeaderActionRequestHeadersToAddsArgs> RequestHeadersToAdds
         {
             get => _requestHeadersToAdds ?? (_requestHeadersToAdds = new InputList<URLMapPathMatchersRouteRulesHeaderActionRequestHeadersToAddsArgs>());
@@ -1496,6 +2829,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("requestHeadersToRemoves")]
         private InputList<string>? _requestHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public InputList<string> RequestHeadersToRemoves
         {
             get => _requestHeadersToRemoves ?? (_requestHeadersToRemoves = new InputList<string>());
@@ -1504,6 +2844,12 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToAdds")]
         private InputList<URLMapPathMatchersRouteRulesHeaderActionResponseHeadersToAddsArgs>? _responseHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesHeaderActionResponseHeadersToAddsArgs> ResponseHeadersToAdds
         {
             get => _responseHeadersToAdds ?? (_responseHeadersToAdds = new InputList<URLMapPathMatchersRouteRulesHeaderActionResponseHeadersToAddsArgs>());
@@ -1512,6 +2858,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToRemoves")]
         private InputList<string>? _responseHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public InputList<string> ResponseHeadersToRemoves
         {
             get => _responseHeadersToRemoves ?? (_responseHeadersToRemoves = new InputList<string>());
@@ -1527,6 +2880,13 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("requestHeadersToAdds")]
         private InputList<URLMapPathMatchersRouteRulesHeaderActionRequestHeadersToAddsGetArgs>? _requestHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesHeaderActionRequestHeadersToAddsGetArgs> RequestHeadersToAdds
         {
             get => _requestHeadersToAdds ?? (_requestHeadersToAdds = new InputList<URLMapPathMatchersRouteRulesHeaderActionRequestHeadersToAddsGetArgs>());
@@ -1535,6 +2895,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("requestHeadersToRemoves")]
         private InputList<string>? _requestHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public InputList<string> RequestHeadersToRemoves
         {
             get => _requestHeadersToRemoves ?? (_requestHeadersToRemoves = new InputList<string>());
@@ -1543,6 +2910,12 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToAdds")]
         private InputList<URLMapPathMatchersRouteRulesHeaderActionResponseHeadersToAddsGetArgs>? _responseHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesHeaderActionResponseHeadersToAddsGetArgs> ResponseHeadersToAdds
         {
             get => _responseHeadersToAdds ?? (_responseHeadersToAdds = new InputList<URLMapPathMatchersRouteRulesHeaderActionResponseHeadersToAddsGetArgs>());
@@ -1551,6 +2924,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToRemoves")]
         private InputList<string>? _responseHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public InputList<string> ResponseHeadersToRemoves
         {
             get => _responseHeadersToRemoves ?? (_responseHeadersToRemoves = new InputList<string>());
@@ -1564,12 +2944,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesHeaderActionRequestHeadersToAddsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -1580,12 +2977,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesHeaderActionRequestHeadersToAddsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -1596,12 +3010,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesHeaderActionResponseHeadersToAddsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -1612,12 +3043,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesHeaderActionResponseHeadersToAddsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -1628,39 +3076,99 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesMatchRulesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// For satifying the matchRule condition, the path of the request must exactly
+        /// match the value specified in fullPathMatch after removing any query parameters
+        /// and anchor that may be part of the original URL. FullPathMatch must be between 1
+        /// and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must
+        /// be specified.
+        /// </summary>
         [Input("fullPathMatch")]
         public Input<string>? FullPathMatch { get; set; }
 
         [Input("headerMatches")]
         private InputList<URLMapPathMatchersRouteRulesMatchRulesHeaderMatchesArgs>? _headerMatches;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a list of header match criteria, all of which must match corresponding
+        /// headers in the request.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesMatchRulesHeaderMatchesArgs> HeaderMatches
         {
             get => _headerMatches ?? (_headerMatches = new InputList<URLMapPathMatchersRouteRulesMatchRulesHeaderMatchesArgs>());
             set => _headerMatches = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies that prefixMatch and fullPathMatch matches are case sensitive.
+        /// Defaults to false.
+        /// </summary>
         [Input("ignoreCase")]
         public Input<bool>? IgnoreCase { get; set; }
 
         [Input("metadataFilters")]
         private InputList<URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersArgs>? _metadataFilters;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Opaque filter criteria used by Loadbalancer to restrict routing configuration to
+        /// a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
+        /// clients present node metadata. If a match takes place, the relevant routing
+        /// configuration is made available to those proxies. For each metadataFilter in
+        /// this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the
+        /// filterLabels must match the corresponding label provided in the metadata. If its
+        /// filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match
+        /// with corresponding labels in the provided metadata. metadataFilters specified
+        /// here can be overrides those specified in ForwardingRule that refers to this
+        /// UrlMap. metadataFilters only applies to Loadbalancers that have their
+        /// loadBalancingScheme set to INTERNAL_SELF_MANAGED.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersArgs> MetadataFilters
         {
             get => _metadataFilters ?? (_metadataFilters = new InputList<URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersArgs>());
             set => _metadataFilters = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the header must start with the contents of prefixMatch. Only one of
+        /// exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+        /// must be set.
+        /// </summary>
         [Input("prefixMatch")]
         public Input<string>? PrefixMatch { get; set; }
 
         [Input("queryParameterMatches")]
         private InputList<URLMapPathMatchersRouteRulesMatchRulesQueryParameterMatchesArgs>? _queryParameterMatches;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a list of query parameter match criteria, all of which must match
+        /// corresponding query parameters in the request.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesMatchRulesQueryParameterMatchesArgs> QueryParameterMatches
         {
             get => _queryParameterMatches ?? (_queryParameterMatches = new InputList<URLMapPathMatchersRouteRulesMatchRulesQueryParameterMatchesArgs>());
             set => _queryParameterMatches = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter matches the
+        /// regular expression specified by regexMatch. For the regular expression grammar,
+        /// please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
+        /// exactMatch and regexMatch must be set.
+        /// </summary>
         [Input("regexMatch")]
         public Input<string>? RegexMatch { get; set; }
 
@@ -1671,39 +3179,99 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesMatchRulesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// For satifying the matchRule condition, the path of the request must exactly
+        /// match the value specified in fullPathMatch after removing any query parameters
+        /// and anchor that may be part of the original URL. FullPathMatch must be between 1
+        /// and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must
+        /// be specified.
+        /// </summary>
         [Input("fullPathMatch")]
         public Input<string>? FullPathMatch { get; set; }
 
         [Input("headerMatches")]
         private InputList<URLMapPathMatchersRouteRulesMatchRulesHeaderMatchesGetArgs>? _headerMatches;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a list of header match criteria, all of which must match corresponding
+        /// headers in the request.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesMatchRulesHeaderMatchesGetArgs> HeaderMatches
         {
             get => _headerMatches ?? (_headerMatches = new InputList<URLMapPathMatchersRouteRulesMatchRulesHeaderMatchesGetArgs>());
             set => _headerMatches = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies that prefixMatch and fullPathMatch matches are case sensitive.
+        /// Defaults to false.
+        /// </summary>
         [Input("ignoreCase")]
         public Input<bool>? IgnoreCase { get; set; }
 
         [Input("metadataFilters")]
         private InputList<URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersGetArgs>? _metadataFilters;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Opaque filter criteria used by Loadbalancer to restrict routing configuration to
+        /// a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
+        /// clients present node metadata. If a match takes place, the relevant routing
+        /// configuration is made available to those proxies. For each metadataFilter in
+        /// this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the
+        /// filterLabels must match the corresponding label provided in the metadata. If its
+        /// filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match
+        /// with corresponding labels in the provided metadata. metadataFilters specified
+        /// here can be overrides those specified in ForwardingRule that refers to this
+        /// UrlMap. metadataFilters only applies to Loadbalancers that have their
+        /// loadBalancingScheme set to INTERNAL_SELF_MANAGED.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersGetArgs> MetadataFilters
         {
             get => _metadataFilters ?? (_metadataFilters = new InputList<URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersGetArgs>());
             set => _metadataFilters = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the header must start with the contents of prefixMatch. Only one of
+        /// exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+        /// must be set.
+        /// </summary>
         [Input("prefixMatch")]
         public Input<string>? PrefixMatch { get; set; }
 
         [Input("queryParameterMatches")]
         private InputList<URLMapPathMatchersRouteRulesMatchRulesQueryParameterMatchesGetArgs>? _queryParameterMatches;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a list of query parameter match criteria, all of which must match
+        /// corresponding query parameters in the request.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesMatchRulesQueryParameterMatchesGetArgs> QueryParameterMatches
         {
             get => _queryParameterMatches ?? (_queryParameterMatches = new InputList<URLMapPathMatchersRouteRulesMatchRulesQueryParameterMatchesGetArgs>());
             set => _queryParameterMatches = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter matches the
+        /// regular expression specified by regexMatch. For the regular expression grammar,
+        /// please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
+        /// exactMatch and regexMatch must be set.
+        /// </summary>
         [Input("regexMatch")]
         public Input<string>? RegexMatch { get; set; }
 
@@ -1714,27 +3282,85 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesMatchRulesHeaderMatchesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter exactly matches
+        /// the contents of exactMatch. Only one of presentMatch, exactMatch and regexMatch
+        /// must be set.
+        /// </summary>
         [Input("exactMatch")]
         public Input<string>? ExactMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to false, the headerMatch is considered a match if the match criteria
+        /// above are met. If set to true, the headerMatch is considered a match if the
+        /// match criteria above are NOT met. Defaults to false.
+        /// </summary>
         [Input("invertMatch")]
         public Input<bool>? InvertMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the header must start with the contents of prefixMatch. Only one of
+        /// exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+        /// must be set.
+        /// </summary>
         [Input("prefixMatch")]
         public Input<string>? PrefixMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies that the queryParameterMatch matches if the request contains the query
+        /// parameter, irrespective of whether the parameter has a value or not. Only one of
+        /// presentMatch, exactMatch and regexMatch must be set.
+        /// </summary>
         [Input("presentMatch")]
         public Input<bool>? PresentMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The header value must be an integer and its value must be in the range specified
+        /// in rangeMatch. If the header does not contain an integer, number or is empty,
+        /// the match fails. For example for a range [-5, 0]   - -3 will match.  - 0 will
+        /// not match.  - 0.25 will not match.  - -3someString will not match.   Only one of
+        /// exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+        /// must be set.  Structure is documented below.
+        /// </summary>
         [Input("rangeMatch")]
         public Input<URLMapPathMatchersRouteRulesMatchRulesHeaderMatchesRangeMatchArgs>? RangeMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter matches the
+        /// regular expression specified by regexMatch. For the regular expression grammar,
+        /// please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
+        /// exactMatch and regexMatch must be set.
+        /// </summary>
         [Input("regexMatch")]
         public Input<string>? RegexMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the header must end with the contents of suffixMatch. Only one of
+        /// exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+        /// must be set.
+        /// </summary>
         [Input("suffixMatch")]
         public Input<string>? SuffixMatch { get; set; }
 
@@ -1745,27 +3371,85 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesMatchRulesHeaderMatchesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter exactly matches
+        /// the contents of exactMatch. Only one of presentMatch, exactMatch and regexMatch
+        /// must be set.
+        /// </summary>
         [Input("exactMatch")]
         public Input<string>? ExactMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to false, the headerMatch is considered a match if the match criteria
+        /// above are met. If set to true, the headerMatch is considered a match if the
+        /// match criteria above are NOT met. Defaults to false.
+        /// </summary>
         [Input("invertMatch")]
         public Input<bool>? InvertMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the header must start with the contents of prefixMatch. Only one of
+        /// exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+        /// must be set.
+        /// </summary>
         [Input("prefixMatch")]
         public Input<string>? PrefixMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies that the queryParameterMatch matches if the request contains the query
+        /// parameter, irrespective of whether the parameter has a value or not. Only one of
+        /// presentMatch, exactMatch and regexMatch must be set.
+        /// </summary>
         [Input("presentMatch")]
         public Input<bool>? PresentMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The header value must be an integer and its value must be in the range specified
+        /// in rangeMatch. If the header does not contain an integer, number or is empty,
+        /// the match fails. For example for a range [-5, 0]   - -3 will match.  - 0 will
+        /// not match.  - 0.25 will not match.  - -3someString will not match.   Only one of
+        /// exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+        /// must be set.  Structure is documented below.
+        /// </summary>
         [Input("rangeMatch")]
         public Input<URLMapPathMatchersRouteRulesMatchRulesHeaderMatchesRangeMatchGetArgs>? RangeMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter matches the
+        /// regular expression specified by regexMatch. For the regular expression grammar,
+        /// please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
+        /// exactMatch and regexMatch must be set.
+        /// </summary>
         [Input("regexMatch")]
         public Input<string>? RegexMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the header must end with the contents of suffixMatch. Only one of
+        /// exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+        /// must be set.
+        /// </summary>
         [Input("suffixMatch")]
         public Input<string>? SuffixMatch { get; set; }
 
@@ -1776,9 +3460,19 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesMatchRulesHeaderMatchesRangeMatchArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The end of the range (exclusive).
+        /// </summary>
         [Input("rangeEnd", required: true)]
         public Input<int> RangeEnd { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The start of the range (inclusive).
+        /// </summary>
         [Input("rangeStart", required: true)]
         public Input<int> RangeStart { get; set; } = null!;
 
@@ -1789,9 +3483,19 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesMatchRulesHeaderMatchesRangeMatchGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The end of the range (exclusive).
+        /// </summary>
         [Input("rangeEnd", required: true)]
         public Input<int> RangeEnd { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The start of the range (inclusive).
+        /// </summary>
         [Input("rangeStart", required: true)]
         public Input<int> RangeStart { get; set; } = null!;
 
@@ -1804,12 +3508,30 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("filterLabels", required: true)]
         private InputList<URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersFilterLabelsArgs>? _filterLabels;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of label value pairs that must match labels in the provided metadata
+        /// based on filterMatchCriteria  This list must not be empty and can have at the
+        /// most 64 entries.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersFilterLabelsArgs> FilterLabels
         {
             get => _filterLabels ?? (_filterLabels = new InputList<URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersFilterLabelsArgs>());
             set => _filterLabels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies how individual filterLabel matches within the list of filterLabels
+        /// contribute towards the overall metadataFilter match. Supported values are:
+        /// - MATCH_ANY: At least one of the filterLabels must have a matching label in the
+        /// provided metadata.
+        /// - MATCH_ALL: All filterLabels must have matching labels in
+        /// the provided metadata.
+        /// </summary>
         [Input("filterMatchCriteria", required: true)]
         public Input<string> FilterMatchCriteria { get; set; } = null!;
 
@@ -1820,9 +3542,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersFilterLabelsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the query parameter to match. The query parameter must exist in the
+        /// request, in the absence of which the request match fails.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the label must match the specified value. value can have a maximum
+        /// length of 1024 characters.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 
@@ -1833,9 +3567,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersFilterLabelsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the query parameter to match. The query parameter must exist in the
+        /// request, in the absence of which the request match fails.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the label must match the specified value. value can have a maximum
+        /// length of 1024 characters.
+        /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;
 
@@ -1848,12 +3594,30 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("filterLabels", required: true)]
         private InputList<URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersFilterLabelsGetArgs>? _filterLabels;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of label value pairs that must match labels in the provided metadata
+        /// based on filterMatchCriteria  This list must not be empty and can have at the
+        /// most 64 entries.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersFilterLabelsGetArgs> FilterLabels
         {
             get => _filterLabels ?? (_filterLabels = new InputList<URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersFilterLabelsGetArgs>());
             set => _filterLabels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies how individual filterLabel matches within the list of filterLabels
+        /// contribute towards the overall metadataFilter match. Supported values are:
+        /// - MATCH_ANY: At least one of the filterLabels must have a matching label in the
+        /// provided metadata.
+        /// - MATCH_ALL: All filterLabels must have matching labels in
+        /// the provided metadata.
+        /// </summary>
         [Input("filterMatchCriteria", required: true)]
         public Input<string> FilterMatchCriteria { get; set; } = null!;
 
@@ -1864,15 +3628,43 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesMatchRulesQueryParameterMatchesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter exactly matches
+        /// the contents of exactMatch. Only one of presentMatch, exactMatch and regexMatch
+        /// must be set.
+        /// </summary>
         [Input("exactMatch")]
         public Input<string>? ExactMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the query parameter to match. The query parameter must exist in the
+        /// request, in the absence of which the request match fails.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies that the queryParameterMatch matches if the request contains the query
+        /// parameter, irrespective of whether the parameter has a value or not. Only one of
+        /// presentMatch, exactMatch and regexMatch must be set.
+        /// </summary>
         [Input("presentMatch")]
         public Input<bool>? PresentMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter matches the
+        /// regular expression specified by regexMatch. For the regular expression grammar,
+        /// please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
+        /// exactMatch and regexMatch must be set.
+        /// </summary>
         [Input("regexMatch")]
         public Input<string>? RegexMatch { get; set; }
 
@@ -1883,15 +3675,43 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesMatchRulesQueryParameterMatchesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter exactly matches
+        /// the contents of exactMatch. Only one of presentMatch, exactMatch and regexMatch
+        /// must be set.
+        /// </summary>
         [Input("exactMatch")]
         public Input<string>? ExactMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the query parameter to match. The query parameter must exist in the
+        /// request, in the absence of which the request match fails.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies that the queryParameterMatch matches if the request contains the query
+        /// parameter, irrespective of whether the parameter has a value or not. Only one of
+        /// presentMatch, exactMatch and regexMatch must be set.
+        /// </summary>
         [Input("presentMatch")]
         public Input<bool>? PresentMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter matches the
+        /// regular expression specified by regexMatch. For the regular expression grammar,
+        /// please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
+        /// exactMatch and regexMatch must be set.
+        /// </summary>
         [Input("regexMatch")]
         public Input<string>? RegexMatch { get; set; }
 
@@ -1902,26 +3722,83 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for allowing client side cross-origin requests. Please see W3C
+        /// Recommendation for Cross Origin Resource Sharing  Structure is documented below.
+        /// </summary>
         [Input("corsPolicy")]
         public Input<URLMapPathMatchersRouteRulesRouteActionCorsPolicyArgs>? CorsPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for fault injection introduced into traffic to test the
+        /// resiliency of clients to backend service failure. As part of fault injection,
+        /// when clients send requests to a backend service, delays can be introduced by
+        /// Loadbalancer on a percentage of requests before sending those request to the
+        /// backend service. Similarly requests from clients can be aborted by the
+        /// Loadbalancer for a percentage of requests. timeout and retry_policy will be
+        /// ignored by clients that are configured with a fault_injection_policy.  Structure is documented below.
+        /// </summary>
         [Input("faultInjectionPolicy")]
         public Input<URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyArgs>? FaultInjectionPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the policy on how requests intended for the route's backends are
+        /// shadowed to a separate mirrored backend service. Loadbalancer does not wait for
+        /// responses from the shadow service. Prior to sending traffic to the shadow
+        /// service, the host / authority header is suffixed with -shadow.  Structure is documented below.
+        /// </summary>
         [Input("requestMirrorPolicy")]
         public Input<URLMapPathMatchersRouteRulesRouteActionRequestMirrorPolicyArgs>? RequestMirrorPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the retry policy associated with this route.  Structure is documented below.
+        /// </summary>
         [Input("retryPolicy")]
         public Input<URLMapPathMatchersRouteRulesRouteActionRetryPolicyArgs>? RetryPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the timeout for the selected route. Timeout is computed from the time
+        /// the request is has been fully processed (i.e. end-of-stream) up until the
+        /// response has been completely processed. Timeout includes all retries. If not
+        /// specified, the default value is 15 seconds.  Structure is documented below.
+        /// </summary>
         [Input("timeout")]
         public Input<URLMapPathMatchersRouteRulesRouteActionTimeoutArgs>? Timeout { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The spec to modify the URL of the request, prior to forwarding the request to
+        /// the matched service  Structure is documented below.
+        /// </summary>
         [Input("urlRewrite")]
         public Input<URLMapPathMatchersRouteRulesRouteActionUrlRewriteArgs>? UrlRewrite { get; set; }
 
         [Input("weightedBackendServices")]
         private InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesArgs>? _weightedBackendServices;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of weighted backend services to send traffic to when a route match
+        /// occurs. The weights determine the fraction of traffic that flows to their
+        /// corresponding backend service. If all traffic needs to go to a single backend
+        /// service, there must be one  weightedBackendService with weight set to a non 0
+        /// number. Once a backendService is identified and before forwarding the request to
+        /// the backend service, advanced routing actions like Url rewrites and header
+        /// transformations are applied depending on additional settings specified in this
+        /// HttpRouteAction.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesArgs> WeightedBackendServices
         {
             get => _weightedBackendServices ?? (_weightedBackendServices = new InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesArgs>());
@@ -1935,11 +3812,24 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionCorsPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In response to a preflight request, setting this to true indicates that the
+        /// actual request can include user credentials. This translates to the Access-
+        /// Control-Allow-Credentials header. Defaults to false.
+        /// </summary>
         [Input("allowCredentials")]
         public Input<bool>? AllowCredentials { get; set; }
 
         [Input("allowHeaders")]
         private InputList<string>? _allowHeaders;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Allow-Headers header.
+        /// </summary>
         public InputList<string> AllowHeaders
         {
             get => _allowHeaders ?? (_allowHeaders = new InputList<string>());
@@ -1948,6 +3838,12 @@ namespace Pulumi.Gcp.Compute
 
         [Input("allowMethods")]
         private InputList<string>? _allowMethods;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Allow-Methods header.
+        /// </summary>
         public InputList<string> AllowMethods
         {
             get => _allowMethods ?? (_allowMethods = new InputList<string>());
@@ -1956,6 +3852,14 @@ namespace Pulumi.Gcp.Compute
 
         [Input("allowOriginRegexes")]
         private InputList<string>? _allowOriginRegexes;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the regualar expression patterns that match allowed origins. For
+        /// regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+        /// An origin is allowed if it matches either allow_origins or allow_origin_regex.
+        /// </summary>
         public InputList<string> AllowOriginRegexes
         {
             get => _allowOriginRegexes ?? (_allowOriginRegexes = new InputList<string>());
@@ -1964,23 +3868,48 @@ namespace Pulumi.Gcp.Compute
 
         [Input("allowOrigins")]
         private InputList<string>? _allowOrigins;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the list of origins that will be allowed to do CORS requests. An
+        /// origin is allowed if it matches either allow_origins or allow_origin_regex.
+        /// </summary>
         public InputList<string> AllowOrigins
         {
             get => _allowOrigins ?? (_allowOrigins = new InputList<string>());
             set => _allowOrigins = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, specifies the CORS policy is disabled.
+        /// which indicates that the CORS policy is in effect. Defaults to false.
+        /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }
 
         [Input("exposeHeaders")]
         private InputList<string>? _exposeHeaders;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Expose-Headers header.
+        /// </summary>
         public InputList<string> ExposeHeaders
         {
             get => _exposeHeaders ?? (_exposeHeaders = new InputList<string>());
             set => _exposeHeaders = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how long the results of a preflight request can be cached. This
+        /// translates to the content for the Access-Control-Max-Age header.
+        /// </summary>
         [Input("maxAge")]
         public Input<int>? MaxAge { get; set; }
 
@@ -1991,11 +3920,24 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionCorsPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In response to a preflight request, setting this to true indicates that the
+        /// actual request can include user credentials. This translates to the Access-
+        /// Control-Allow-Credentials header. Defaults to false.
+        /// </summary>
         [Input("allowCredentials")]
         public Input<bool>? AllowCredentials { get; set; }
 
         [Input("allowHeaders")]
         private InputList<string>? _allowHeaders;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Allow-Headers header.
+        /// </summary>
         public InputList<string> AllowHeaders
         {
             get => _allowHeaders ?? (_allowHeaders = new InputList<string>());
@@ -2004,6 +3946,12 @@ namespace Pulumi.Gcp.Compute
 
         [Input("allowMethods")]
         private InputList<string>? _allowMethods;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Allow-Methods header.
+        /// </summary>
         public InputList<string> AllowMethods
         {
             get => _allowMethods ?? (_allowMethods = new InputList<string>());
@@ -2012,6 +3960,14 @@ namespace Pulumi.Gcp.Compute
 
         [Input("allowOriginRegexes")]
         private InputList<string>? _allowOriginRegexes;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the regualar expression patterns that match allowed origins. For
+        /// regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+        /// An origin is allowed if it matches either allow_origins or allow_origin_regex.
+        /// </summary>
         public InputList<string> AllowOriginRegexes
         {
             get => _allowOriginRegexes ?? (_allowOriginRegexes = new InputList<string>());
@@ -2020,23 +3976,48 @@ namespace Pulumi.Gcp.Compute
 
         [Input("allowOrigins")]
         private InputList<string>? _allowOrigins;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the list of origins that will be allowed to do CORS requests. An
+        /// origin is allowed if it matches either allow_origins or allow_origin_regex.
+        /// </summary>
         public InputList<string> AllowOrigins
         {
             get => _allowOrigins ?? (_allowOrigins = new InputList<string>());
             set => _allowOrigins = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, specifies the CORS policy is disabled.
+        /// which indicates that the CORS policy is in effect. Defaults to false.
+        /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }
 
         [Input("exposeHeaders")]
         private InputList<string>? _exposeHeaders;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Expose-Headers header.
+        /// </summary>
         public InputList<string> ExposeHeaders
         {
             get => _exposeHeaders ?? (_exposeHeaders = new InputList<string>());
             set => _exposeHeaders = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how long the results of a preflight request can be cached. This
+        /// translates to the content for the Access-Control-Max-Age header.
+        /// </summary>
         [Input("maxAge")]
         public Input<int>? MaxAge { get; set; }
 
@@ -2047,9 +4028,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyAbortArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The HTTP status code used to abort the request. The value must be between 200
+        /// and 599 inclusive.
+        /// </summary>
         [Input("httpStatus")]
         public Input<int>? HttpStatus { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of traffic (connections/operations/requests) on which delay will
+        /// be introduced as part of fault injection. The value must be between 0.0 and
+        /// 100.0 inclusive.
+        /// </summary>
         [Input("percentage")]
         public Input<double>? Percentage { get; set; }
 
@@ -2060,9 +4054,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyAbortGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The HTTP status code used to abort the request. The value must be between 200
+        /// and 599 inclusive.
+        /// </summary>
         [Input("httpStatus")]
         public Input<int>? HttpStatus { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of traffic (connections/operations/requests) on which delay will
+        /// be introduced as part of fault injection. The value must be between 0.0 and
+        /// 100.0 inclusive.
+        /// </summary>
         [Input("percentage")]
         public Input<double>? Percentage { get; set; }
 
@@ -2073,9 +4080,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for how client requests are aborted as part of fault
+        /// injection.  Structure is documented below.
+        /// </summary>
         [Input("abort")]
         public Input<URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyAbortArgs>? Abort { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for how client requests are delayed as part of fault
+        /// injection, before being sent to a backend service.  Structure is documented below.
+        /// </summary>
         [Input("delay")]
         public Input<URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyDelayArgs>? Delay { get; set; }
 
@@ -2086,9 +4105,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyDelayArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the value of the fixed delay interval.  Structure is documented below.
+        /// </summary>
         [Input("fixedDelay")]
         public Input<URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelayArgs>? FixedDelay { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of traffic (connections/operations/requests) on which delay will
+        /// be introduced as part of fault injection. The value must be between 0.0 and
+        /// 100.0 inclusive.
+        /// </summary>
         [Input("percentage")]
         public Input<double>? Percentage { get; set; }
 
@@ -2099,9 +4130,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelayArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<string> Seconds { get; set; } = null!;
 
@@ -2112,9 +4156,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelayGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<string> Seconds { get; set; } = null!;
 
@@ -2125,9 +4182,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyDelayGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the value of the fixed delay interval.  Structure is documented below.
+        /// </summary>
         [Input("fixedDelay")]
         public Input<URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelayGetArgs>? FixedDelay { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of traffic (connections/operations/requests) on which delay will
+        /// be introduced as part of fault injection. The value must be between 0.0 and
+        /// 100.0 inclusive.
+        /// </summary>
         [Input("percentage")]
         public Input<double>? Percentage { get; set; }
 
@@ -2138,9 +4207,21 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for how client requests are aborted as part of fault
+        /// injection.  Structure is documented below.
+        /// </summary>
         [Input("abort")]
         public Input<URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyAbortGetArgs>? Abort { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for how client requests are delayed as part of fault
+        /// injection, before being sent to a backend service.  Structure is documented below.
+        /// </summary>
         [Input("delay")]
         public Input<URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyDelayGetArgs>? Delay { get; set; }
 
@@ -2151,26 +4232,83 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for allowing client side cross-origin requests. Please see W3C
+        /// Recommendation for Cross Origin Resource Sharing  Structure is documented below.
+        /// </summary>
         [Input("corsPolicy")]
         public Input<URLMapPathMatchersRouteRulesRouteActionCorsPolicyGetArgs>? CorsPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for fault injection introduced into traffic to test the
+        /// resiliency of clients to backend service failure. As part of fault injection,
+        /// when clients send requests to a backend service, delays can be introduced by
+        /// Loadbalancer on a percentage of requests before sending those request to the
+        /// backend service. Similarly requests from clients can be aborted by the
+        /// Loadbalancer for a percentage of requests. timeout and retry_policy will be
+        /// ignored by clients that are configured with a fault_injection_policy.  Structure is documented below.
+        /// </summary>
         [Input("faultInjectionPolicy")]
         public Input<URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyGetArgs>? FaultInjectionPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the policy on how requests intended for the route's backends are
+        /// shadowed to a separate mirrored backend service. Loadbalancer does not wait for
+        /// responses from the shadow service. Prior to sending traffic to the shadow
+        /// service, the host / authority header is suffixed with -shadow.  Structure is documented below.
+        /// </summary>
         [Input("requestMirrorPolicy")]
         public Input<URLMapPathMatchersRouteRulesRouteActionRequestMirrorPolicyGetArgs>? RequestMirrorPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the retry policy associated with this route.  Structure is documented below.
+        /// </summary>
         [Input("retryPolicy")]
         public Input<URLMapPathMatchersRouteRulesRouteActionRetryPolicyGetArgs>? RetryPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the timeout for the selected route. Timeout is computed from the time
+        /// the request is has been fully processed (i.e. end-of-stream) up until the
+        /// response has been completely processed. Timeout includes all retries. If not
+        /// specified, the default value is 15 seconds.  Structure is documented below.
+        /// </summary>
         [Input("timeout")]
         public Input<URLMapPathMatchersRouteRulesRouteActionTimeoutGetArgs>? Timeout { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The spec to modify the URL of the request, prior to forwarding the request to
+        /// the matched service  Structure is documented below.
+        /// </summary>
         [Input("urlRewrite")]
         public Input<URLMapPathMatchersRouteRulesRouteActionUrlRewriteGetArgs>? UrlRewrite { get; set; }
 
         [Input("weightedBackendServices")]
         private InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesGetArgs>? _weightedBackendServices;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of weighted backend services to send traffic to when a route match
+        /// occurs. The weights determine the fraction of traffic that flows to their
+        /// corresponding backend service. If all traffic needs to go to a single backend
+        /// service, there must be one  weightedBackendService with weight set to a non 0
+        /// number. Once a backendService is identified and before forwarding the request to
+        /// the backend service, advanced routing actions like Url rewrites and header
+        /// transformations are applied depending on additional settings specified in this
+        /// HttpRouteAction.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesGetArgs> WeightedBackendServices
         {
             get => _weightedBackendServices ?? (_weightedBackendServices = new InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesGetArgs>());
@@ -2184,6 +4322,13 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionRequestMirrorPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The default BackendService resource. Before
+        /// forwarding the request to backendService, the loadbalancer applies any relevant
+        /// headerActions specified as part of this backendServiceWeight.
+        /// </summary>
         [Input("backendService", required: true)]
         public Input<string> BackendService { get; set; } = null!;
 
@@ -2194,6 +4339,13 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionRequestMirrorPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The default BackendService resource. Before
+        /// forwarding the request to backendService, the loadbalancer applies any relevant
+        /// headerActions specified as part of this backendServiceWeight.
+        /// </summary>
         [Input("backendService", required: true)]
         public Input<string> BackendService { get; set; } = null!;
 
@@ -2204,14 +4356,52 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionRetryPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the allowed number retries. This number must be &gt; 0.
+        /// </summary>
         [Input("numRetries", required: true)]
         public Input<int> NumRetries { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a non-zero timeout per retry attempt.
+        /// If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction
+        /// is not set, will use the largest timeout among all backend services associated with the route.  Structure is documented below.
+        /// </summary>
         [Input("perTryTimeout")]
         public Input<URLMapPathMatchersRouteRulesRouteActionRetryPolicyPerTryTimeoutArgs>? PerTryTimeout { get; set; }
 
         [Input("retryConditions")]
         private InputList<string>? _retryConditions;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specfies one or more conditions when this retry rule applies. Valid values are:
+        /// - 5xx: Loadbalancer will attempt a retry if the backend service responds with
+        /// any 5xx response code, or if the backend service does not respond at all,
+        /// example: disconnects, reset, read timeout, connection failure, and refused
+        /// streams.
+        /// - gateway-error: Similar to 5xx, but only applies to response codes
+        /// 502, 503 or 504.
+        /// - connect-failure: Loadbalancer will retry on failures
+        /// connecting to backend services, for example due to connection timeouts.
+        /// - retriable-4xx: Loadbalancer will retry for retriable 4xx response codes.
+        /// Currently the only retriable error supported is 409.
+        /// - refused-stream: Loadbalancer will retry if the backend service resets the stream with a
+        /// REFUSED_STREAM error code. This reset type indicates that it is safe to retry.
+        /// - cancelled: Loadbalancer will retry if the gRPC status code in the response
+        /// header is set to cancelled
+        /// - deadline-exceeded: Loadbalancer will retry if the
+        /// gRPC status code in the response header is set to deadline-exceeded
+        /// - resource-exhausted: Loadbalancer will retry if the gRPC status code in the response
+        /// header is set to resource-exhausted
+        /// - unavailable: Loadbalancer will retry if the gRPC status code in
+        /// the response header is set to unavailable
+        /// </summary>
         public InputList<string> RetryConditions
         {
             get => _retryConditions ?? (_retryConditions = new InputList<string>());
@@ -2225,14 +4415,52 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionRetryPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the allowed number retries. This number must be &gt; 0.
+        /// </summary>
         [Input("numRetries", required: true)]
         public Input<int> NumRetries { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a non-zero timeout per retry attempt.
+        /// If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction
+        /// is not set, will use the largest timeout among all backend services associated with the route.  Structure is documented below.
+        /// </summary>
         [Input("perTryTimeout")]
         public Input<URLMapPathMatchersRouteRulesRouteActionRetryPolicyPerTryTimeoutGetArgs>? PerTryTimeout { get; set; }
 
         [Input("retryConditions")]
         private InputList<string>? _retryConditions;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specfies one or more conditions when this retry rule applies. Valid values are:
+        /// - 5xx: Loadbalancer will attempt a retry if the backend service responds with
+        /// any 5xx response code, or if the backend service does not respond at all,
+        /// example: disconnects, reset, read timeout, connection failure, and refused
+        /// streams.
+        /// - gateway-error: Similar to 5xx, but only applies to response codes
+        /// 502, 503 or 504.
+        /// - connect-failure: Loadbalancer will retry on failures
+        /// connecting to backend services, for example due to connection timeouts.
+        /// - retriable-4xx: Loadbalancer will retry for retriable 4xx response codes.
+        /// Currently the only retriable error supported is 409.
+        /// - refused-stream: Loadbalancer will retry if the backend service resets the stream with a
+        /// REFUSED_STREAM error code. This reset type indicates that it is safe to retry.
+        /// - cancelled: Loadbalancer will retry if the gRPC status code in the response
+        /// header is set to cancelled
+        /// - deadline-exceeded: Loadbalancer will retry if the
+        /// gRPC status code in the response header is set to deadline-exceeded
+        /// - resource-exhausted: Loadbalancer will retry if the gRPC status code in the response
+        /// header is set to resource-exhausted
+        /// - unavailable: Loadbalancer will retry if the gRPC status code in
+        /// the response header is set to unavailable
+        /// </summary>
         public InputList<string> RetryConditions
         {
             get => _retryConditions ?? (_retryConditions = new InputList<string>());
@@ -2246,9 +4474,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionRetryPolicyPerTryTimeoutArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<string> Seconds { get; set; } = null!;
 
@@ -2259,9 +4500,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionRetryPolicyPerTryTimeoutGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<string> Seconds { get; set; } = null!;
 
@@ -2272,9 +4526,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionTimeoutArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<string> Seconds { get; set; } = null!;
 
@@ -2285,9 +4552,22 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionTimeoutGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         [Input("seconds", required: true)]
         public Input<string> Seconds { get; set; } = null!;
 
@@ -2298,9 +4578,23 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionUrlRewriteArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Prior to forwarding the request to the selected service, the request's host
+        /// header is replaced with contents of hostRewrite. The value must be between 1 and
+        /// 255 characters.
+        /// </summary>
         [Input("hostRewrite")]
         public Input<string>? HostRewrite { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Prior to forwarding the request to the selected backend service, the matching
+        /// portion of the request's path is replaced by pathPrefixRewrite. The value must
+        /// be between 1 and 1024 characters.
+        /// </summary>
         [Input("pathPrefixRewrite")]
         public Input<string>? PathPrefixRewrite { get; set; }
 
@@ -2311,9 +4605,23 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionUrlRewriteGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Prior to forwarding the request to the selected service, the request's host
+        /// header is replaced with contents of hostRewrite. The value must be between 1 and
+        /// 255 characters.
+        /// </summary>
         [Input("hostRewrite")]
         public Input<string>? HostRewrite { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Prior to forwarding the request to the selected backend service, the matching
+        /// portion of the request's path is replaced by pathPrefixRewrite. The value must
+        /// be between 1 and 1024 characters.
+        /// </summary>
         [Input("pathPrefixRewrite")]
         public Input<string>? PathPrefixRewrite { get; set; }
 
@@ -2324,12 +4632,36 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The default BackendService resource. Before
+        /// forwarding the request to backendService, the loadbalancer applies any relevant
+        /// headerActions specified as part of this backendServiceWeight.
+        /// </summary>
         [Input("backendService", required: true)]
         public Input<string> BackendService { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
+        /// </summary>
         [Input("headerAction")]
         public Input<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionArgs>? HeaderAction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the fraction of traffic sent to backendService, computed as weight /
+        /// (sum of all weightedBackendService weights in routeAction) . The selection of a
+        /// backend service is determined only for new traffic. Once a user's request has
+        /// been directed to a backendService, subsequent requests will be sent to the same
+        /// backendService as determined by the BackendService's session affinity policy.
+        /// The value must be between 0 and 1000
+        /// </summary>
         [Input("weight", required: true)]
         public Input<int> Weight { get; set; } = null!;
 
@@ -2340,12 +4672,36 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The default BackendService resource. Before
+        /// forwarding the request to backendService, the loadbalancer applies any relevant
+        /// headerActions specified as part of this backendServiceWeight.
+        /// </summary>
         [Input("backendService", required: true)]
         public Input<string> BackendService { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
+        /// </summary>
         [Input("headerAction")]
         public Input<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionGetArgs>? HeaderAction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the fraction of traffic sent to backendService, computed as weight /
+        /// (sum of all weightedBackendService weights in routeAction) . The selection of a
+        /// backend service is determined only for new traffic. Once a user's request has
+        /// been directed to a backendService, subsequent requests will be sent to the same
+        /// backendService as determined by the BackendService's session affinity policy.
+        /// The value must be between 0 and 1000
+        /// </summary>
         [Input("weight", required: true)]
         public Input<int> Weight { get; set; } = null!;
 
@@ -2358,6 +4714,13 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("requestHeadersToAdds")]
         private InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsArgs>? _requestHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsArgs> RequestHeadersToAdds
         {
             get => _requestHeadersToAdds ?? (_requestHeadersToAdds = new InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsArgs>());
@@ -2366,6 +4729,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("requestHeadersToRemoves")]
         private InputList<string>? _requestHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public InputList<string> RequestHeadersToRemoves
         {
             get => _requestHeadersToRemoves ?? (_requestHeadersToRemoves = new InputList<string>());
@@ -2374,6 +4744,12 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToAdds")]
         private InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsArgs>? _responseHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsArgs> ResponseHeadersToAdds
         {
             get => _responseHeadersToAdds ?? (_responseHeadersToAdds = new InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsArgs>());
@@ -2382,6 +4758,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToRemoves")]
         private InputList<string>? _responseHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public InputList<string> ResponseHeadersToRemoves
         {
             get => _responseHeadersToRemoves ?? (_responseHeadersToRemoves = new InputList<string>());
@@ -2397,6 +4780,13 @@ namespace Pulumi.Gcp.Compute
     {
         [Input("requestHeadersToAdds")]
         private InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsGetArgs>? _requestHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsGetArgs> RequestHeadersToAdds
         {
             get => _requestHeadersToAdds ?? (_requestHeadersToAdds = new InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsGetArgs>());
@@ -2405,6 +4795,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("requestHeadersToRemoves")]
         private InputList<string>? _requestHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public InputList<string> RequestHeadersToRemoves
         {
             get => _requestHeadersToRemoves ?? (_requestHeadersToRemoves = new InputList<string>());
@@ -2413,6 +4810,12 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToAdds")]
         private InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsGetArgs>? _responseHeadersToAdds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsGetArgs> ResponseHeadersToAdds
         {
             get => _responseHeadersToAdds ?? (_responseHeadersToAdds = new InputList<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsGetArgs>());
@@ -2421,6 +4824,13 @@ namespace Pulumi.Gcp.Compute
 
         [Input("responseHeadersToRemoves")]
         private InputList<string>? _responseHeadersToRemoves;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public InputList<string> ResponseHeadersToRemoves
         {
             get => _responseHeadersToRemoves ?? (_responseHeadersToRemoves = new InputList<string>());
@@ -2434,12 +4844,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -2450,12 +4877,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAddsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -2466,12 +4910,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -2482,12 +4943,29 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAddsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 
@@ -2498,21 +4976,65 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesUrlRedirectArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The host that will be used in the redirect response instead of the one that was
+        /// supplied in the request. The value must be between 1 and 255 characters.
+        /// </summary>
         [Input("hostRedirect")]
         public Input<string>? HostRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to true, the URL scheme in the redirected request is set to https. If set
+        /// to false, the URL scheme of the redirected request will remain the same as that
+        /// of the request. This must only be set for UrlMaps used in TargetHttpProxys.
+        /// Setting this true for TargetHttpsProxy is not permitted. Defaults to false.
+        /// </summary>
         [Input("httpsRedirect")]
         public Input<bool>? HttpsRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The path that will be used in the redirect response instead of the one that was
+        /// supplied in the request. Only one of pathRedirect or prefixRedirect must be
+        /// specified. The value must be between 1 and 1024 characters.
+        /// </summary>
         [Input("pathRedirect")]
         public Input<string>? PathRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
+        /// retaining the remaining portion of the URL before redirecting the request.
+        /// </summary>
         [Input("prefixRedirect")]
         public Input<string>? PrefixRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The HTTP Status code to use for this RedirectAction. Supported values are:   -
+        /// MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.  -
+        /// FOUND, which corresponds to 302.  - SEE_OTHER which corresponds to 303.  -
+        /// TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method
+        /// will be retained.  - PERMANENT_REDIRECT, which corresponds to 308. In this case,
+        /// the request method will be retained.
+        /// </summary>
         [Input("redirectResponseCode")]
         public Input<string>? RedirectResponseCode { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to true, any accompanying query portion of the original URL is removed
+        /// prior to redirecting the request. If set to false, the query portion of the
+        /// original URL is retained. Defaults to false.
+        /// </summary>
         [Input("stripQuery")]
         public Input<bool>? StripQuery { get; set; }
 
@@ -2523,21 +5045,65 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapPathMatchersRouteRulesUrlRedirectGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The host that will be used in the redirect response instead of the one that was
+        /// supplied in the request. The value must be between 1 and 255 characters.
+        /// </summary>
         [Input("hostRedirect")]
         public Input<string>? HostRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to true, the URL scheme in the redirected request is set to https. If set
+        /// to false, the URL scheme of the redirected request will remain the same as that
+        /// of the request. This must only be set for UrlMaps used in TargetHttpProxys.
+        /// Setting this true for TargetHttpsProxy is not permitted. Defaults to false.
+        /// </summary>
         [Input("httpsRedirect")]
         public Input<bool>? HttpsRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The path that will be used in the redirect response instead of the one that was
+        /// supplied in the request. Only one of pathRedirect or prefixRedirect must be
+        /// specified. The value must be between 1 and 1024 characters.
+        /// </summary>
         [Input("pathRedirect")]
         public Input<string>? PathRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
+        /// retaining the remaining portion of the URL before redirecting the request.
+        /// </summary>
         [Input("prefixRedirect")]
         public Input<string>? PrefixRedirect { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The HTTP Status code to use for this RedirectAction. Supported values are:   -
+        /// MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.  -
+        /// FOUND, which corresponds to 302.  - SEE_OTHER which corresponds to 303.  -
+        /// TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method
+        /// will be retained.  - PERMANENT_REDIRECT, which corresponds to 308. In this case,
+        /// the request method will be retained.
+        /// </summary>
         [Input("redirectResponseCode")]
         public Input<string>? RedirectResponseCode { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to true, any accompanying query portion of the original URL is removed
+        /// prior to redirecting the request. If set to false, the query portion of the
+        /// original URL is retained. Defaults to false.
+        /// </summary>
         [Input("stripQuery")]
         public Input<bool>? StripQuery { get; set; }
 
@@ -2548,15 +5114,35 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapTestsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Description of this test case.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Host portion of the URL.
+        /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path portion of the URL.
+        /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The backend service or backend bucket link that should be matched by this test.
+        /// </summary>
         [Input("service", required: true)]
         public Input<string> Service { get; set; } = null!;
 
@@ -2567,15 +5153,35 @@ namespace Pulumi.Gcp.Compute
 
     public sealed class URLMapTestsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Description of this test case.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Host portion of the URL.
+        /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path portion of the URL.
+        /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The backend service or backend bucket link that should be matched by this test.
+        /// </summary>
         [Input("service", required: true)]
         public Input<string> Service { get; set; } = null!;
 
@@ -2591,9 +5197,32 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapHeaderAction
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapHeaderActionRequestHeadersToAdds> RequestHeadersToAdds;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public readonly ImmutableArray<string> RequestHeadersToRemoves;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapHeaderActionResponseHeadersToAdds> ResponseHeadersToAdds;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public readonly ImmutableArray<string> ResponseHeadersToRemoves;
 
         [OutputConstructor]
@@ -2613,8 +5242,25 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapHeaderActionRequestHeadersToAdds
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         public readonly string HeaderName;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         public readonly string HeaderValue;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         public readonly bool Replace;
 
         [OutputConstructor]
@@ -2632,8 +5278,25 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapHeaderActionResponseHeadersToAdds
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         public readonly string HeaderName;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         public readonly string HeaderValue;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         public readonly bool Replace;
 
         [OutputConstructor]
@@ -2651,8 +5314,26 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapHostRules
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Description of this test case.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of host patterns to match. They must be valid hostnames, except * will
+        /// match any string of ([a-z0-9-.]*). In that case, * must be the first character
+        /// and must be followed in the pattern by either - or ..
+        /// </summary>
         public readonly ImmutableArray<string> Hosts;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the PathMatcher to use to match the path portion of the URL if the
+        /// hostRule matches the URL's host portion.
+        /// </summary>
         public readonly string PathMatcher;
 
         [OutputConstructor]
@@ -2670,11 +5351,54 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchers
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The backend service or backend bucket to use when none of the given paths match.
+        /// </summary>
         public readonly string? DefaultService;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Description of this test case.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersHeaderAction? HeaderAction;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the query parameter to match. The query parameter must exist in the
+        /// request, in the absence of which the request match fails.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of path rules. Use this list instead of routeRules when routing based
+        /// on simple path matching is all that's required. The order by which path rules
+        /// are specified does not matter. Matches are always done on the longest-path-first
+        /// basis. For example: a pathRule with a path /a/b/c/* will match before /a/b/*
+        /// irrespective of the order in which those paths appear in this list. Within a
+        /// given pathMatcher, only one of pathRules or routeRules must be set.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersPathRules> PathRules;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of ordered HTTP route rules. Use this list instead of pathRules when
+        /// advanced route matching and routing actions are desired. The order of specifying
+        /// routeRules matters: the first rule that matches will cause its specified routing
+        /// action to take effect. Within a given pathMatcher, only one of pathRules or
+        /// routeRules must be set. routeRules are not supported in UrlMaps intended for
+        /// External load balancers.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersRouteRules> RouteRules;
 
         [OutputConstructor]
@@ -2698,9 +5422,32 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersHeaderAction
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersHeaderActionRequestHeadersToAdds> RequestHeadersToAdds;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public readonly ImmutableArray<string> RequestHeadersToRemoves;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersHeaderActionResponseHeadersToAdds> ResponseHeadersToAdds;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public readonly ImmutableArray<string> ResponseHeadersToRemoves;
 
         [OutputConstructor]
@@ -2720,8 +5467,25 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersHeaderActionRequestHeadersToAdds
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         public readonly string HeaderName;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         public readonly string HeaderValue;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         public readonly bool Replace;
 
         [OutputConstructor]
@@ -2739,8 +5503,25 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersHeaderActionResponseHeadersToAdds
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         public readonly string HeaderName;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         public readonly string HeaderValue;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         public readonly bool Replace;
 
         [OutputConstructor]
@@ -2758,9 +5539,39 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRules
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of path patterns to match. Each must start with / and the only place a
+        /// * is allowed is at the end following a /. The string fed to the path matcher
+        /// does not include any text after the first ? or #, and those chars are not
+        /// allowed here.
+        /// </summary>
         public readonly ImmutableArray<string> Paths;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In response to a matching matchRule, the load balancer performs advanced routing
+        /// actions like URL rewrites, header transformations, etc. prior to forwarding the
+        /// request to the selected backend. If  routeAction specifies any
+        /// weightedBackendServices, service must not be set. Conversely if service is set,
+        /// routeAction cannot contain any  weightedBackendServices. Only one of routeAction
+        /// or urlRedirect must be set.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersPathRulesRouteAction? RouteAction;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The backend service or backend bucket link that should be matched by this test.
+        /// </summary>
         public readonly string? Service;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// When this rule is matched, the request is redirected to a URL specified by
+        /// urlRedirect. If urlRedirect is specified, service or routeAction must not be
+        /// set.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersPathRulesUrlRedirect? UrlRedirect;
 
         [OutputConstructor]
@@ -2780,12 +5591,68 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteAction
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for allowing client side cross-origin requests. Please see W3C
+        /// Recommendation for Cross Origin Resource Sharing  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersPathRulesRouteActionCorsPolicy? CorsPolicy;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for fault injection introduced into traffic to test the
+        /// resiliency of clients to backend service failure. As part of fault injection,
+        /// when clients send requests to a backend service, delays can be introduced by
+        /// Loadbalancer on a percentage of requests before sending those request to the
+        /// backend service. Similarly requests from clients can be aborted by the
+        /// Loadbalancer for a percentage of requests. timeout and retry_policy will be
+        /// ignored by clients that are configured with a fault_injection_policy.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicy? FaultInjectionPolicy;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the policy on how requests intended for the route's backends are
+        /// shadowed to a separate mirrored backend service. Loadbalancer does not wait for
+        /// responses from the shadow service. Prior to sending traffic to the shadow
+        /// service, the host / authority header is suffixed with -shadow.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersPathRulesRouteActionRequestMirrorPolicy? RequestMirrorPolicy;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the retry policy associated with this route.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersPathRulesRouteActionRetryPolicy? RetryPolicy;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the timeout for the selected route. Timeout is computed from the time
+        /// the request is has been fully processed (i.e. end-of-stream) up until the
+        /// response has been completely processed. Timeout includes all retries. If not
+        /// specified, the default value is 15 seconds.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersPathRulesRouteActionTimeout? Timeout;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The spec to modify the URL of the request, prior to forwarding the request to
+        /// the matched service  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersPathRulesRouteActionUrlRewrite? UrlRewrite;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of weighted backend services to send traffic to when a route match
+        /// occurs. The weights determine the fraction of traffic that flows to their
+        /// corresponding backend service. If all traffic needs to go to a single backend
+        /// service, there must be one  weightedBackendService with weight set to a non 0
+        /// number. Once a backendService is identified and before forwarding the request to
+        /// the backend service, advanced routing actions like Url rewrites and header
+        /// transformations are applied depending on additional settings specified in this
+        /// HttpRouteAction.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersPathRulesRouteActionWeightedBackendServices> WeightedBackendServices;
 
         [OutputConstructor]
@@ -2811,13 +5678,60 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteActionCorsPolicy
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In response to a preflight request, setting this to true indicates that the
+        /// actual request can include user credentials. This translates to the Access-
+        /// Control-Allow-Credentials header. Defaults to false.
+        /// </summary>
         public readonly bool? AllowCredentials;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Allow-Headers header.
+        /// </summary>
         public readonly ImmutableArray<string> AllowHeaders;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Allow-Methods header.
+        /// </summary>
         public readonly ImmutableArray<string> AllowMethods;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the regualar expression patterns that match allowed origins. For
+        /// regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+        /// An origin is allowed if it matches either allow_origins or allow_origin_regex.
+        /// </summary>
         public readonly ImmutableArray<string> AllowOriginRegexes;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the list of origins that will be allowed to do CORS requests. An
+        /// origin is allowed if it matches either allow_origins or allow_origin_regex.
+        /// </summary>
         public readonly ImmutableArray<string> AllowOrigins;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, specifies the CORS policy is disabled.
+        /// which indicates that the CORS policy is in effect. Defaults to false.
+        /// </summary>
         public readonly bool Disabled;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Expose-Headers header.
+        /// </summary>
         public readonly ImmutableArray<string> ExposeHeaders;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how long the results of a preflight request can be cached. This
+        /// translates to the content for the Access-Control-Max-Age header.
+        /// </summary>
         public readonly int? MaxAge;
 
         [OutputConstructor]
@@ -2845,7 +5759,19 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicy
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for how client requests are aborted as part of fault
+        /// injection.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyAbort? Abort;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for how client requests are delayed as part of fault
+        /// injection, before being sent to a backend service.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyDelay? Delay;
 
         [OutputConstructor]
@@ -2861,7 +5787,20 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyAbort
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The HTTP status code used to abort the request. The value must be between 200
+        /// and 599 inclusive.
+        /// </summary>
         public readonly int HttpStatus;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of traffic (connections/operations/requests) on which delay will
+        /// be introduced as part of fault injection. The value must be between 0.0 and
+        /// 100.0 inclusive.
+        /// </summary>
         public readonly double Percentage;
 
         [OutputConstructor]
@@ -2877,7 +5816,19 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyDelay
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the value of the fixed delay interval.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyDelayFixedDelay FixedDelay;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of traffic (connections/operations/requests) on which delay will
+        /// be introduced as part of fault injection. The value must be between 0.0 and
+        /// 100.0 inclusive.
+        /// </summary>
         public readonly double Percentage;
 
         [OutputConstructor]
@@ -2893,7 +5844,20 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteActionFaultInjectionPolicyDelayFixedDelay
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         public readonly int? Nanos;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         public readonly string Seconds;
 
         [OutputConstructor]
@@ -2909,6 +5873,13 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteActionRequestMirrorPolicy
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The default BackendService resource. Before
+        /// forwarding the request to backendService, the loadbalancer applies any relevant
+        /// headerActions specified as part of this backendServiceWeight.
+        /// </summary>
         public readonly string BackendService;
 
         [OutputConstructor]
@@ -2921,8 +5892,45 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteActionRetryPolicy
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the allowed number retries. This number must be &gt; 0.
+        /// </summary>
         public readonly int? NumRetries;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a non-zero timeout per retry attempt.
+        /// If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction
+        /// is not set, will use the largest timeout among all backend services associated with the route.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersPathRulesRouteActionRetryPolicyPerTryTimeout? PerTryTimeout;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specfies one or more conditions when this retry rule applies. Valid values are:
+        /// - 5xx: Loadbalancer will attempt a retry if the backend service responds with
+        /// any 5xx response code, or if the backend service does not respond at all,
+        /// example: disconnects, reset, read timeout, connection failure, and refused
+        /// streams.
+        /// - gateway-error: Similar to 5xx, but only applies to response codes
+        /// 502, 503 or 504.
+        /// - connect-failure: Loadbalancer will retry on failures
+        /// connecting to backend services, for example due to connection timeouts.
+        /// - retriable-4xx: Loadbalancer will retry for retriable 4xx response codes.
+        /// Currently the only retriable error supported is 409.
+        /// - refused-stream: Loadbalancer will retry if the backend service resets the stream with a
+        /// REFUSED_STREAM error code. This reset type indicates that it is safe to retry.
+        /// - cancelled: Loadbalancer will retry if the gRPC status code in the response
+        /// header is set to cancelled
+        /// - deadline-exceeded: Loadbalancer will retry if the
+        /// gRPC status code in the response header is set to deadline-exceeded
+        /// - resource-exhausted: Loadbalancer will retry if the gRPC status code in the response
+        /// header is set to resource-exhausted
+        /// - unavailable: Loadbalancer will retry if the gRPC status code in
+        /// the response header is set to unavailable
+        /// </summary>
         public readonly ImmutableArray<string> RetryConditions;
 
         [OutputConstructor]
@@ -2940,7 +5948,20 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteActionRetryPolicyPerTryTimeout
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         public readonly int? Nanos;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         public readonly string Seconds;
 
         [OutputConstructor]
@@ -2956,7 +5977,20 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteActionTimeout
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         public readonly int? Nanos;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         public readonly string Seconds;
 
         [OutputConstructor]
@@ -2972,7 +6006,21 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteActionUrlRewrite
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Prior to forwarding the request to the selected service, the request's host
+        /// header is replaced with contents of hostRewrite. The value must be between 1 and
+        /// 255 characters.
+        /// </summary>
         public readonly string? HostRewrite;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Prior to forwarding the request to the selected backend service, the matching
+        /// portion of the request's path is replaced by pathPrefixRewrite. The value must
+        /// be between 1 and 1024 characters.
+        /// </summary>
         public readonly string? PathPrefixRewrite;
 
         [OutputConstructor]
@@ -2988,8 +6036,32 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteActionWeightedBackendServices
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The default BackendService resource. Before
+        /// forwarding the request to backendService, the loadbalancer applies any relevant
+        /// headerActions specified as part of this backendServiceWeight.
+        /// </summary>
         public readonly string BackendService;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderAction? HeaderAction;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the fraction of traffic sent to backendService, computed as weight /
+        /// (sum of all weightedBackendService weights in routeAction) . The selection of a
+        /// backend service is determined only for new traffic. Once a user's request has
+        /// been directed to a backendService, subsequent requests will be sent to the same
+        /// backendService as determined by the BackendService's session affinity policy.
+        /// The value must be between 0 and 1000
+        /// </summary>
         public readonly int Weight;
 
         [OutputConstructor]
@@ -3007,9 +6079,32 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderAction
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdds> RequestHeadersToAdds;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public readonly ImmutableArray<string> RequestHeadersToRemoves;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdds> ResponseHeadersToAdds;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public readonly ImmutableArray<string> ResponseHeadersToRemoves;
 
         [OutputConstructor]
@@ -3029,8 +6124,25 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdds
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         public readonly string HeaderName;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         public readonly string HeaderValue;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         public readonly bool Replace;
 
         [OutputConstructor]
@@ -3048,8 +6160,25 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdds
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         public readonly string HeaderName;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         public readonly string HeaderValue;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         public readonly bool Replace;
 
         [OutputConstructor]
@@ -3067,11 +6196,55 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersPathRulesUrlRedirect
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The host that will be used in the redirect response instead of the one that was
+        /// supplied in the request. The value must be between 1 and 255 characters.
+        /// </summary>
         public readonly string? HostRedirect;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to true, the URL scheme in the redirected request is set to https. If set
+        /// to false, the URL scheme of the redirected request will remain the same as that
+        /// of the request. This must only be set for UrlMaps used in TargetHttpProxys.
+        /// Setting this true for TargetHttpsProxy is not permitted. Defaults to false.
+        /// </summary>
         public readonly bool? HttpsRedirect;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The path that will be used in the redirect response instead of the one that was
+        /// supplied in the request. Only one of pathRedirect or prefixRedirect must be
+        /// specified. The value must be between 1 and 1024 characters.
+        /// </summary>
         public readonly string? PathRedirect;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
+        /// retaining the remaining portion of the URL before redirecting the request.
+        /// </summary>
         public readonly string? PrefixRedirect;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The HTTP Status code to use for this RedirectAction. Supported values are:   -
+        /// MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.  -
+        /// FOUND, which corresponds to 302.  - SEE_OTHER which corresponds to 303.  -
+        /// TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method
+        /// will be retained.  - PERMANENT_REDIRECT, which corresponds to 308. In this case,
+        /// the request method will be retained.
+        /// </summary>
         public readonly string? RedirectResponseCode;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to true, any accompanying query portion of the original URL is removed
+        /// prior to redirecting the request. If set to false, the query portion of the
+        /// original URL is retained. Defaults to false.
+        /// </summary>
         public readonly bool StripQuery;
 
         [OutputConstructor]
@@ -3095,11 +6268,62 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRules
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesHeaderAction? HeaderAction;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The rules for determining a match.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersRouteRulesMatchRules> MatchRules;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// For routeRules within a given pathMatcher, priority determines the order
+        /// in which load balancer will interpret routeRules. RouteRules are evaluated
+        /// in order of priority, from the lowest to highest number. The priority of
+        /// a rule decreases as its number increases (1, 2, 3, N+1). The first rule
+        /// that matches the request is applied.
+        /// You cannot configure two or more routeRules with the same priority.
+        /// Priority for each rule must be set to a number between 0 and
+        /// 2147483647 inclusive.
+        /// Priority numbers can have gaps, which enable you to add or remove rules
+        /// in the future without affecting the rest of the rules. For example,
+        /// 1, 2, 3, 4, 5, 9, 12, 16 is a valid series of priority numbers to which
+        /// you could add rules numbered from 6 to 8, 10 to 11, and 13 to 15 in the
+        /// future without any impact on existing rules.
+        /// </summary>
         public readonly int Priority;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In response to a matching matchRule, the load balancer performs advanced routing
+        /// actions like URL rewrites, header transformations, etc. prior to forwarding the
+        /// request to the selected backend. If  routeAction specifies any
+        /// weightedBackendServices, service must not be set. Conversely if service is set,
+        /// routeAction cannot contain any  weightedBackendServices. Only one of routeAction
+        /// or urlRedirect must be set.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesRouteAction? RouteAction;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The backend service or backend bucket link that should be matched by this test.
+        /// </summary>
         public readonly string? Service;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// When this rule is matched, the request is redirected to a URL specified by
+        /// urlRedirect. If urlRedirect is specified, service or routeAction must not be
+        /// set.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesUrlRedirect? UrlRedirect;
 
         [OutputConstructor]
@@ -3123,9 +6347,32 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesHeaderAction
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersRouteRulesHeaderActionRequestHeadersToAdds> RequestHeadersToAdds;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public readonly ImmutableArray<string> RequestHeadersToRemoves;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersRouteRulesHeaderActionResponseHeadersToAdds> ResponseHeadersToAdds;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public readonly ImmutableArray<string> ResponseHeadersToRemoves;
 
         [OutputConstructor]
@@ -3145,8 +6392,25 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesHeaderActionRequestHeadersToAdds
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         public readonly string HeaderName;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         public readonly string HeaderValue;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         public readonly bool Replace;
 
         [OutputConstructor]
@@ -3164,8 +6428,25 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesHeaderActionResponseHeadersToAdds
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         public readonly string HeaderName;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         public readonly string HeaderValue;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         public readonly bool Replace;
 
         [OutputConstructor]
@@ -3183,12 +6464,69 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesMatchRules
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// For satifying the matchRule condition, the path of the request must exactly
+        /// match the value specified in fullPathMatch after removing any query parameters
+        /// and anchor that may be part of the original URL. FullPathMatch must be between 1
+        /// and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must
+        /// be specified.
+        /// </summary>
         public readonly string? FullPathMatch;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a list of header match criteria, all of which must match corresponding
+        /// headers in the request.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersRouteRulesMatchRulesHeaderMatches> HeaderMatches;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies that prefixMatch and fullPathMatch matches are case sensitive.
+        /// Defaults to false.
+        /// </summary>
         public readonly bool? IgnoreCase;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Opaque filter criteria used by Loadbalancer to restrict routing configuration to
+        /// a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
+        /// clients present node metadata. If a match takes place, the relevant routing
+        /// configuration is made available to those proxies. For each metadataFilter in
+        /// this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the
+        /// filterLabels must match the corresponding label provided in the metadata. If its
+        /// filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match
+        /// with corresponding labels in the provided metadata. metadataFilters specified
+        /// here can be overrides those specified in ForwardingRule that refers to this
+        /// UrlMap. metadataFilters only applies to Loadbalancers that have their
+        /// loadBalancingScheme set to INTERNAL_SELF_MANAGED.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersRouteRulesMatchRulesMetadataFilters> MetadataFilters;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the header must start with the contents of prefixMatch. Only one of
+        /// exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+        /// must be set.
+        /// </summary>
         public readonly string? PrefixMatch;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a list of query parameter match criteria, all of which must match
+        /// corresponding query parameters in the request.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersRouteRulesMatchRulesQueryParameterMatches> QueryParameterMatches;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter matches the
+        /// regular expression specified by regexMatch. For the regular expression grammar,
+        /// please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
+        /// exactMatch and regexMatch must be set.
+        /// </summary>
         public readonly string? RegexMatch;
 
         [OutputConstructor]
@@ -3214,13 +6552,71 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesMatchRulesHeaderMatches
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter exactly matches
+        /// the contents of exactMatch. Only one of presentMatch, exactMatch and regexMatch
+        /// must be set.
+        /// </summary>
         public readonly string? ExactMatch;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         public readonly string HeaderName;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to false, the headerMatch is considered a match if the match criteria
+        /// above are met. If set to true, the headerMatch is considered a match if the
+        /// match criteria above are NOT met. Defaults to false.
+        /// </summary>
         public readonly bool? InvertMatch;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the header must start with the contents of prefixMatch. Only one of
+        /// exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+        /// must be set.
+        /// </summary>
         public readonly string? PrefixMatch;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies that the queryParameterMatch matches if the request contains the query
+        /// parameter, irrespective of whether the parameter has a value or not. Only one of
+        /// presentMatch, exactMatch and regexMatch must be set.
+        /// </summary>
         public readonly bool? PresentMatch;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The header value must be an integer and its value must be in the range specified
+        /// in rangeMatch. If the header does not contain an integer, number or is empty,
+        /// the match fails. For example for a range [-5, 0]   - -3 will match.  - 0 will
+        /// not match.  - 0.25 will not match.  - -3someString will not match.   Only one of
+        /// exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+        /// must be set.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesMatchRulesHeaderMatchesRangeMatch? RangeMatch;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter matches the
+        /// regular expression specified by regexMatch. For the regular expression grammar,
+        /// please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
+        /// exactMatch and regexMatch must be set.
+        /// </summary>
         public readonly string? RegexMatch;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the header must end with the contents of suffixMatch. Only one of
+        /// exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+        /// must be set.
+        /// </summary>
         public readonly string? SuffixMatch;
 
         [OutputConstructor]
@@ -3248,7 +6644,17 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesMatchRulesHeaderMatchesRangeMatch
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The end of the range (exclusive).
+        /// </summary>
         public readonly int RangeEnd;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The start of the range (inclusive).
+        /// </summary>
         public readonly int RangeStart;
 
         [OutputConstructor]
@@ -3264,7 +6670,24 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesMatchRulesMetadataFilters
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of label value pairs that must match labels in the provided metadata
+        /// based on filterMatchCriteria  This list must not be empty and can have at the
+        /// most 64 entries.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersFilterLabels> FilterLabels;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies how individual filterLabel matches within the list of filterLabels
+        /// contribute towards the overall metadataFilter match. Supported values are:
+        /// - MATCH_ANY: At least one of the filterLabels must have a matching label in the
+        /// provided metadata.
+        /// - MATCH_ALL: All filterLabels must have matching labels in
+        /// the provided metadata.
+        /// </summary>
         public readonly string FilterMatchCriteria;
 
         [OutputConstructor]
@@ -3280,7 +6703,19 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesMatchRulesMetadataFiltersFilterLabels
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the query parameter to match. The query parameter must exist in the
+        /// request, in the absence of which the request match fails.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the label must match the specified value. value can have a maximum
+        /// length of 1024 characters.
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]
@@ -3296,9 +6731,37 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesMatchRulesQueryParameterMatches
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter exactly matches
+        /// the contents of exactMatch. Only one of presentMatch, exactMatch and regexMatch
+        /// must be set.
+        /// </summary>
         public readonly string? ExactMatch;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the query parameter to match. The query parameter must exist in the
+        /// request, in the absence of which the request match fails.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies that the queryParameterMatch matches if the request contains the query
+        /// parameter, irrespective of whether the parameter has a value or not. Only one of
+        /// presentMatch, exactMatch and regexMatch must be set.
+        /// </summary>
         public readonly bool? PresentMatch;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The queryParameterMatch matches if the value of the parameter matches the
+        /// regular expression specified by regexMatch. For the regular expression grammar,
+        /// please see en.cppreference.com/w/cpp/regex/ecmascript  Only one of presentMatch,
+        /// exactMatch and regexMatch must be set.
+        /// </summary>
         public readonly string? RegexMatch;
 
         [OutputConstructor]
@@ -3318,12 +6781,68 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteAction
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for allowing client side cross-origin requests. Please see W3C
+        /// Recommendation for Cross Origin Resource Sharing  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesRouteActionCorsPolicy? CorsPolicy;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for fault injection introduced into traffic to test the
+        /// resiliency of clients to backend service failure. As part of fault injection,
+        /// when clients send requests to a backend service, delays can be introduced by
+        /// Loadbalancer on a percentage of requests before sending those request to the
+        /// backend service. Similarly requests from clients can be aborted by the
+        /// Loadbalancer for a percentage of requests. timeout and retry_policy will be
+        /// ignored by clients that are configured with a fault_injection_policy.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicy? FaultInjectionPolicy;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the policy on how requests intended for the route's backends are
+        /// shadowed to a separate mirrored backend service. Loadbalancer does not wait for
+        /// responses from the shadow service. Prior to sending traffic to the shadow
+        /// service, the host / authority header is suffixed with -shadow.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesRouteActionRequestMirrorPolicy? RequestMirrorPolicy;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the retry policy associated with this route.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesRouteActionRetryPolicy? RetryPolicy;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the timeout for the selected route. Timeout is computed from the time
+        /// the request is has been fully processed (i.e. end-of-stream) up until the
+        /// response has been completely processed. Timeout includes all retries. If not
+        /// specified, the default value is 15 seconds.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesRouteActionTimeout? Timeout;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The spec to modify the URL of the request, prior to forwarding the request to
+        /// the matched service  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesRouteActionUrlRewrite? UrlRewrite;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of weighted backend services to send traffic to when a route match
+        /// occurs. The weights determine the fraction of traffic that flows to their
+        /// corresponding backend service. If all traffic needs to go to a single backend
+        /// service, there must be one  weightedBackendService with weight set to a non 0
+        /// number. Once a backendService is identified and before forwarding the request to
+        /// the backend service, advanced routing actions like Url rewrites and header
+        /// transformations are applied depending on additional settings specified in this
+        /// HttpRouteAction.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServices> WeightedBackendServices;
 
         [OutputConstructor]
@@ -3349,13 +6868,60 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteActionCorsPolicy
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// In response to a preflight request, setting this to true indicates that the
+        /// actual request can include user credentials. This translates to the Access-
+        /// Control-Allow-Credentials header. Defaults to false.
+        /// </summary>
         public readonly bool? AllowCredentials;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Allow-Headers header.
+        /// </summary>
         public readonly ImmutableArray<string> AllowHeaders;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Allow-Methods header.
+        /// </summary>
         public readonly ImmutableArray<string> AllowMethods;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the regualar expression patterns that match allowed origins. For
+        /// regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+        /// An origin is allowed if it matches either allow_origins or allow_origin_regex.
+        /// </summary>
         public readonly ImmutableArray<string> AllowOriginRegexes;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the list of origins that will be allowed to do CORS requests. An
+        /// origin is allowed if it matches either allow_origins or allow_origin_regex.
+        /// </summary>
         public readonly ImmutableArray<string> AllowOrigins;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If true, specifies the CORS policy is disabled.
+        /// which indicates that the CORS policy is in effect. Defaults to false.
+        /// </summary>
         public readonly bool? Disabled;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the content for the Access-Control-Expose-Headers header.
+        /// </summary>
         public readonly ImmutableArray<string> ExposeHeaders;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how long the results of a preflight request can be cached. This
+        /// translates to the content for the Access-Control-Max-Age header.
+        /// </summary>
         public readonly int? MaxAge;
 
         [OutputConstructor]
@@ -3383,7 +6949,19 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicy
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for how client requests are aborted as part of fault
+        /// injection.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyAbort? Abort;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for how client requests are delayed as part of fault
+        /// injection, before being sent to a backend service.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyDelay? Delay;
 
         [OutputConstructor]
@@ -3399,7 +6977,20 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyAbort
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The HTTP status code used to abort the request. The value must be between 200
+        /// and 599 inclusive.
+        /// </summary>
         public readonly int? HttpStatus;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of traffic (connections/operations/requests) on which delay will
+        /// be introduced as part of fault injection. The value must be between 0.0 and
+        /// 100.0 inclusive.
+        /// </summary>
         public readonly double? Percentage;
 
         [OutputConstructor]
@@ -3415,7 +7006,19 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyDelay
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the value of the fixed delay interval.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelay? FixedDelay;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of traffic (connections/operations/requests) on which delay will
+        /// be introduced as part of fault injection. The value must be between 0.0 and
+        /// 100.0 inclusive.
+        /// </summary>
         public readonly double? Percentage;
 
         [OutputConstructor]
@@ -3431,7 +7034,20 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelay
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         public readonly int? Nanos;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         public readonly string Seconds;
 
         [OutputConstructor]
@@ -3447,6 +7063,13 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteActionRequestMirrorPolicy
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The default BackendService resource. Before
+        /// forwarding the request to backendService, the loadbalancer applies any relevant
+        /// headerActions specified as part of this backendServiceWeight.
+        /// </summary>
         public readonly string BackendService;
 
         [OutputConstructor]
@@ -3459,8 +7082,45 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteActionRetryPolicy
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the allowed number retries. This number must be &gt; 0.
+        /// </summary>
         public readonly int NumRetries;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a non-zero timeout per retry attempt.
+        /// If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction
+        /// is not set, will use the largest timeout among all backend services associated with the route.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesRouteActionRetryPolicyPerTryTimeout? PerTryTimeout;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specfies one or more conditions when this retry rule applies. Valid values are:
+        /// - 5xx: Loadbalancer will attempt a retry if the backend service responds with
+        /// any 5xx response code, or if the backend service does not respond at all,
+        /// example: disconnects, reset, read timeout, connection failure, and refused
+        /// streams.
+        /// - gateway-error: Similar to 5xx, but only applies to response codes
+        /// 502, 503 or 504.
+        /// - connect-failure: Loadbalancer will retry on failures
+        /// connecting to backend services, for example due to connection timeouts.
+        /// - retriable-4xx: Loadbalancer will retry for retriable 4xx response codes.
+        /// Currently the only retriable error supported is 409.
+        /// - refused-stream: Loadbalancer will retry if the backend service resets the stream with a
+        /// REFUSED_STREAM error code. This reset type indicates that it is safe to retry.
+        /// - cancelled: Loadbalancer will retry if the gRPC status code in the response
+        /// header is set to cancelled
+        /// - deadline-exceeded: Loadbalancer will retry if the
+        /// gRPC status code in the response header is set to deadline-exceeded
+        /// - resource-exhausted: Loadbalancer will retry if the gRPC status code in the response
+        /// header is set to resource-exhausted
+        /// - unavailable: Loadbalancer will retry if the gRPC status code in
+        /// the response header is set to unavailable
+        /// </summary>
         public readonly ImmutableArray<string> RetryConditions;
 
         [OutputConstructor]
@@ -3478,7 +7138,20 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteActionRetryPolicyPerTryTimeout
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         public readonly int? Nanos;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         public readonly string Seconds;
 
         [OutputConstructor]
@@ -3494,7 +7167,20 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteActionTimeout
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Span of time that's a fraction of a second at nanosecond resolution. Durations
+        /// less than one second are represented with a 0 `seconds` field and a positive
+        /// `nanos` field. Must be from 0 to 999,999,999 inclusive.
+        /// </summary>
         public readonly int? Nanos;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+        /// inclusive.
+        /// </summary>
         public readonly string Seconds;
 
         [OutputConstructor]
@@ -3510,7 +7196,21 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteActionUrlRewrite
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Prior to forwarding the request to the selected service, the request's host
+        /// header is replaced with contents of hostRewrite. The value must be between 1 and
+        /// 255 characters.
+        /// </summary>
         public readonly string? HostRewrite;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Prior to forwarding the request to the selected backend service, the matching
+        /// portion of the request's path is replaced by pathPrefixRewrite. The value must
+        /// be between 1 and 1024 characters.
+        /// </summary>
         public readonly string? PathPrefixRewrite;
 
         [OutputConstructor]
@@ -3526,8 +7226,32 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteActionWeightedBackendServices
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The default BackendService resource. Before
+        /// forwarding the request to backendService, the loadbalancer applies any relevant
+        /// headerActions specified as part of this backendServiceWeight.
+        /// </summary>
         public readonly string BackendService;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. headerAction specified here take effect before
+        /// headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap.  Structure is documented below.
+        /// </summary>
         public readonly URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderAction? HeaderAction;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the fraction of traffic sent to backendService, computed as weight /
+        /// (sum of all weightedBackendService weights in routeAction) . The selection of a
+        /// backend service is determined only for new traffic. Once a user's request has
+        /// been directed to a backendService, subsequent requests will be sent to the same
+        /// backendService as determined by the BackendService's session affinity policy.
+        /// The value must be between 0 and 1000
+        /// </summary>
         public readonly int Weight;
 
         [OutputConstructor]
@@ -3545,9 +7269,32 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderAction
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdds> RequestHeadersToAdds;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public readonly ImmutableArray<string> RequestHeadersToRemoves;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdds> ResponseHeadersToAdds;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public readonly ImmutableArray<string> ResponseHeadersToRemoves;
 
         [OutputConstructor]
@@ -3567,8 +7314,25 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdds
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         public readonly string HeaderName;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         public readonly string HeaderValue;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         public readonly bool Replace;
 
         [OutputConstructor]
@@ -3586,8 +7350,25 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdds
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         public readonly string HeaderName;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         public readonly string HeaderValue;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         public readonly bool Replace;
 
         [OutputConstructor]
@@ -3605,11 +7386,55 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapPathMatchersRouteRulesUrlRedirect
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The host that will be used in the redirect response instead of the one that was
+        /// supplied in the request. The value must be between 1 and 255 characters.
+        /// </summary>
         public readonly string? HostRedirect;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to true, the URL scheme in the redirected request is set to https. If set
+        /// to false, the URL scheme of the redirected request will remain the same as that
+        /// of the request. This must only be set for UrlMaps used in TargetHttpProxys.
+        /// Setting this true for TargetHttpsProxy is not permitted. Defaults to false.
+        /// </summary>
         public readonly bool? HttpsRedirect;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The path that will be used in the redirect response instead of the one that was
+        /// supplied in the request. Only one of pathRedirect or prefixRedirect must be
+        /// specified. The value must be between 1 and 1024 characters.
+        /// </summary>
         public readonly string? PathRedirect;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
+        /// retaining the remaining portion of the URL before redirecting the request.
+        /// </summary>
         public readonly string? PrefixRedirect;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The HTTP Status code to use for this RedirectAction. Supported values are:   -
+        /// MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.  -
+        /// FOUND, which corresponds to 302.  - SEE_OTHER which corresponds to 303.  -
+        /// TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method
+        /// will be retained.  - PERMANENT_REDIRECT, which corresponds to 308. In this case,
+        /// the request method will be retained.
+        /// </summary>
         public readonly string? RedirectResponseCode;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to true, any accompanying query portion of the original URL is removed
+        /// prior to redirecting the request. If set to false, the query portion of the
+        /// original URL is retained. Defaults to false.
+        /// </summary>
         public readonly bool? StripQuery;
 
         [OutputConstructor]
@@ -3633,9 +7458,29 @@ namespace Pulumi.Gcp.Compute
     [OutputType]
     public sealed class URLMapTests
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Description of this test case.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Host portion of the URL.
+        /// </summary>
         public readonly string Host;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path portion of the URL.
+        /// </summary>
         public readonly string Path;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The backend service or backend bucket link that should be matched by this test.
+        /// </summary>
         public readonly string Service;
 
         [OutputConstructor]

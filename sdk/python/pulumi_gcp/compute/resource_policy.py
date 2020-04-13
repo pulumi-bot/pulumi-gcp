@@ -12,10 +12,15 @@ from .. import utilities, tables
 class ResourcePolicy(pulumi.CustomResource):
     name: pulumi.Output[str]
     """
-    The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63
-    characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-    expression '[a-z]([-a-z0-9]*[a-z0-9])'? which means the first character must be a lowercase letter, and all following
-    characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+    -
+    (Required)
+    The name of the resource, provided by the client when initially creating
+    the resource. The resource name must be 1-63 characters long, and comply
+    with RFC1035. Specifically, the name must be 1-63 characters long and
+    match the regular expression `a-z`? which means the
+    first character must be a lowercase letter, and all following characters
+    must be a dash, lowercase letter, or digit, except the last character,
+    which cannot be a dash.
     """
     project: pulumi.Output[str]
     """
@@ -24,6 +29,8 @@ class ResourcePolicy(pulumi.CustomResource):
     """
     region: pulumi.Output[str]
     """
+    -
+    (Optional)
     Region where resource policy resides.
     """
     self_link: pulumi.Output[str]
@@ -32,72 +39,165 @@ class ResourcePolicy(pulumi.CustomResource):
     """
     snapshot_schedule_policy: pulumi.Output[dict]
     """
-    Policy for creating snapshots of persistent disks.
+    -
+    (Optional)
+    Policy for creating snapshots of persistent disks.  Structure is documented below.
 
-      * `retention_policy` (`dict`)
-        * `maxRetentionDays` (`float`)
-        * `onSourceDiskDelete` (`str`)
+      * `retention_policy` (`dict`) - -
+        (Optional)
+        Retention policy applied to snapshots created by this resource policy.  Structure is documented below.
+        * `maxRetentionDays` (`float`) - -
+          (Required)
+          Maximum age of the snapshot that is allowed to be kept.
+        * `onSourceDiskDelete` (`str`) - -
+          (Optional)
+          Specifies the behavior to apply to scheduled snapshots when
+          the source disk is deleted.
+          Valid options are KEEP_AUTO_SNAPSHOTS and APPLY_RETENTION_POLICY
 
-      * `schedule` (`dict`)
-        * `dailySchedule` (`dict`)
-          * `daysInCycle` (`float`)
-          * `startTime` (`str`)
+      * `schedule` (`dict`) - -
+        (Required)
+        Contains one of an `hourlySchedule`, `dailySchedule`, or `weeklySchedule`.  Structure is documented below.
+        * `dailySchedule` (`dict`) - -
+          (Optional)
+          The policy will execute every nth day at the specified time.  Structure is documented below.
+          * `daysInCycle` (`float`) - -
+            (Required)
+            The number of days between snapshots.
+          * `startTime` (`str`) - -
+            (Required)
+            Time within the window to start the operations.
+            It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
 
-        * `hourlySchedule` (`dict`)
-          * `hoursInCycle` (`float`)
-          * `startTime` (`str`)
+        * `hourlySchedule` (`dict`) - -
+          (Optional)
+          The policy will execute every nth hour starting at the specified time.  Structure is documented below.
+          * `hoursInCycle` (`float`) - -
+            (Required)
+            The number of hours between snapshots.
+          * `startTime` (`str`) - -
+            (Required)
+            Time within the window to start the operations.
+            It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
 
-        * `weeklySchedule` (`dict`)
-          * `dayOfWeeks` (`list`)
-            * `day` (`str`)
-            * `startTime` (`str`)
+        * `weeklySchedule` (`dict`) - -
+          (Optional)
+          Allows specifying a snapshot time for each day of the week.  Structure is documented below.
+          * `dayOfWeeks` (`list`) - -
+            (Required)
+            May contain up to seven (one for each day of the week) snapshot times.  Structure is documented below.
+            * `day` (`str`) - -
+              (Required)
+              The day of the week to create the snapshot. e.g. MONDAY
+            * `startTime` (`str`) - -
+              (Required)
+              Time within the window to start the operations.
+              It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
 
-      * `snapshotProperties` (`dict`)
-        * `guestFlush` (`bool`)
-        * `labels` (`dict`)
-        * `storageLocations` (`str`)
+      * `snapshotProperties` (`dict`) - -
+        (Optional)
+        Properties with which the snapshots are created, such as labels.  Structure is documented below.
+        * `guestFlush` (`bool`) - -
+          (Optional)
+          Whether to perform a 'guest aware' snapshot.
+        * `labels` (`dict`) - -
+          (Optional)
+          A set of key-value pairs.
+        * `storageLocations` (`str`) - -
+          (Optional)
+          Cloud Storage bucket location to store the auto snapshot
+          (regional or multi-regional)
     """
     def __init__(__self__, resource_name, opts=None, name=None, project=None, region=None, snapshot_schedule_policy=None, __props__=None, __name__=None, __opts__=None):
         """
         A policy that can be attached to a resource to specify or schedule actions on that resource.
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_resource_policy.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63
-               characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-               expression '[a-z]([-a-z0-9]*[a-z0-9])'? which means the first character must be a lowercase letter, and all following
-               characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the resource, provided by the client when initially creating
+               the resource. The resource name must be 1-63 characters long, and comply
+               with RFC1035. Specifically, the name must be 1-63 characters long and
+               match the regular expression `a-z`? which means the
+               first character must be a lowercase letter, and all following characters
+               must be a dash, lowercase letter, or digit, except the last character,
+               which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] region: Region where resource policy resides.
-        :param pulumi.Input[dict] snapshot_schedule_policy: Policy for creating snapshots of persistent disks.
+        :param pulumi.Input[str] region: -
+               (Optional)
+               Region where resource policy resides.
+        :param pulumi.Input[dict] snapshot_schedule_policy: -
+               (Optional)
+               Policy for creating snapshots of persistent disks.  Structure is documented below.
 
         The **snapshot_schedule_policy** object supports the following:
 
-          * `retention_policy` (`pulumi.Input[dict]`)
-            * `maxRetentionDays` (`pulumi.Input[float]`)
-            * `onSourceDiskDelete` (`pulumi.Input[str]`)
+          * `retention_policy` (`pulumi.Input[dict]`) - -
+            (Optional)
+            Retention policy applied to snapshots created by this resource policy.  Structure is documented below.
+            * `maxRetentionDays` (`pulumi.Input[float]`) - -
+              (Required)
+              Maximum age of the snapshot that is allowed to be kept.
+            * `onSourceDiskDelete` (`pulumi.Input[str]`) - -
+              (Optional)
+              Specifies the behavior to apply to scheduled snapshots when
+              the source disk is deleted.
+              Valid options are KEEP_AUTO_SNAPSHOTS and APPLY_RETENTION_POLICY
 
-          * `schedule` (`pulumi.Input[dict]`)
-            * `dailySchedule` (`pulumi.Input[dict]`)
-              * `daysInCycle` (`pulumi.Input[float]`)
-              * `startTime` (`pulumi.Input[str]`)
+          * `schedule` (`pulumi.Input[dict]`) - -
+            (Required)
+            Contains one of an `hourlySchedule`, `dailySchedule`, or `weeklySchedule`.  Structure is documented below.
+            * `dailySchedule` (`pulumi.Input[dict]`) - -
+              (Optional)
+              The policy will execute every nth day at the specified time.  Structure is documented below.
+              * `daysInCycle` (`pulumi.Input[float]`) - -
+                (Required)
+                The number of days between snapshots.
+              * `startTime` (`pulumi.Input[str]`) - -
+                (Required)
+                Time within the window to start the operations.
+                It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
 
-            * `hourlySchedule` (`pulumi.Input[dict]`)
-              * `hoursInCycle` (`pulumi.Input[float]`)
-              * `startTime` (`pulumi.Input[str]`)
+            * `hourlySchedule` (`pulumi.Input[dict]`) - -
+              (Optional)
+              The policy will execute every nth hour starting at the specified time.  Structure is documented below.
+              * `hoursInCycle` (`pulumi.Input[float]`) - -
+                (Required)
+                The number of hours between snapshots.
+              * `startTime` (`pulumi.Input[str]`) - -
+                (Required)
+                Time within the window to start the operations.
+                It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
 
-            * `weeklySchedule` (`pulumi.Input[dict]`)
-              * `dayOfWeeks` (`pulumi.Input[list]`)
-                * `day` (`pulumi.Input[str]`)
-                * `startTime` (`pulumi.Input[str]`)
+            * `weeklySchedule` (`pulumi.Input[dict]`) - -
+              (Optional)
+              Allows specifying a snapshot time for each day of the week.  Structure is documented below.
+              * `dayOfWeeks` (`pulumi.Input[list]`) - -
+                (Required)
+                May contain up to seven (one for each day of the week) snapshot times.  Structure is documented below.
+                * `day` (`pulumi.Input[str]`) - -
+                  (Required)
+                  The day of the week to create the snapshot. e.g. MONDAY
+                * `startTime` (`pulumi.Input[str]`) - -
+                  (Required)
+                  Time within the window to start the operations.
+                  It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
 
-          * `snapshotProperties` (`pulumi.Input[dict]`)
-            * `guestFlush` (`pulumi.Input[bool]`)
-            * `labels` (`pulumi.Input[dict]`)
-            * `storageLocations` (`pulumi.Input[str]`)
+          * `snapshotProperties` (`pulumi.Input[dict]`) - -
+            (Optional)
+            Properties with which the snapshots are created, such as labels.  Structure is documented below.
+            * `guestFlush` (`pulumi.Input[bool]`) - -
+              (Optional)
+              Whether to perform a 'guest aware' snapshot.
+            * `labels` (`pulumi.Input[dict]`) - -
+              (Optional)
+              A set of key-value pairs.
+            * `storageLocations` (`pulumi.Input[str]`) - -
+              (Optional)
+              Cloud Storage bucket location to store the auto snapshot
+              (regional or multi-regional)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -136,40 +236,91 @@ class ResourcePolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63
-               characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-               expression '[a-z]([-a-z0-9]*[a-z0-9])'? which means the first character must be a lowercase letter, and all following
-               characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the resource, provided by the client when initially creating
+               the resource. The resource name must be 1-63 characters long, and comply
+               with RFC1035. Specifically, the name must be 1-63 characters long and
+               match the regular expression `a-z`? which means the
+               first character must be a lowercase letter, and all following characters
+               must be a dash, lowercase letter, or digit, except the last character,
+               which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] region: Region where resource policy resides.
+        :param pulumi.Input[str] region: -
+               (Optional)
+               Region where resource policy resides.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[dict] snapshot_schedule_policy: Policy for creating snapshots of persistent disks.
+        :param pulumi.Input[dict] snapshot_schedule_policy: -
+               (Optional)
+               Policy for creating snapshots of persistent disks.  Structure is documented below.
 
         The **snapshot_schedule_policy** object supports the following:
 
-          * `retention_policy` (`pulumi.Input[dict]`)
-            * `maxRetentionDays` (`pulumi.Input[float]`)
-            * `onSourceDiskDelete` (`pulumi.Input[str]`)
+          * `retention_policy` (`pulumi.Input[dict]`) - -
+            (Optional)
+            Retention policy applied to snapshots created by this resource policy.  Structure is documented below.
+            * `maxRetentionDays` (`pulumi.Input[float]`) - -
+              (Required)
+              Maximum age of the snapshot that is allowed to be kept.
+            * `onSourceDiskDelete` (`pulumi.Input[str]`) - -
+              (Optional)
+              Specifies the behavior to apply to scheduled snapshots when
+              the source disk is deleted.
+              Valid options are KEEP_AUTO_SNAPSHOTS and APPLY_RETENTION_POLICY
 
-          * `schedule` (`pulumi.Input[dict]`)
-            * `dailySchedule` (`pulumi.Input[dict]`)
-              * `daysInCycle` (`pulumi.Input[float]`)
-              * `startTime` (`pulumi.Input[str]`)
+          * `schedule` (`pulumi.Input[dict]`) - -
+            (Required)
+            Contains one of an `hourlySchedule`, `dailySchedule`, or `weeklySchedule`.  Structure is documented below.
+            * `dailySchedule` (`pulumi.Input[dict]`) - -
+              (Optional)
+              The policy will execute every nth day at the specified time.  Structure is documented below.
+              * `daysInCycle` (`pulumi.Input[float]`) - -
+                (Required)
+                The number of days between snapshots.
+              * `startTime` (`pulumi.Input[str]`) - -
+                (Required)
+                Time within the window to start the operations.
+                It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
 
-            * `hourlySchedule` (`pulumi.Input[dict]`)
-              * `hoursInCycle` (`pulumi.Input[float]`)
-              * `startTime` (`pulumi.Input[str]`)
+            * `hourlySchedule` (`pulumi.Input[dict]`) - -
+              (Optional)
+              The policy will execute every nth hour starting at the specified time.  Structure is documented below.
+              * `hoursInCycle` (`pulumi.Input[float]`) - -
+                (Required)
+                The number of hours between snapshots.
+              * `startTime` (`pulumi.Input[str]`) - -
+                (Required)
+                Time within the window to start the operations.
+                It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
 
-            * `weeklySchedule` (`pulumi.Input[dict]`)
-              * `dayOfWeeks` (`pulumi.Input[list]`)
-                * `day` (`pulumi.Input[str]`)
-                * `startTime` (`pulumi.Input[str]`)
+            * `weeklySchedule` (`pulumi.Input[dict]`) - -
+              (Optional)
+              Allows specifying a snapshot time for each day of the week.  Structure is documented below.
+              * `dayOfWeeks` (`pulumi.Input[list]`) - -
+                (Required)
+                May contain up to seven (one for each day of the week) snapshot times.  Structure is documented below.
+                * `day` (`pulumi.Input[str]`) - -
+                  (Required)
+                  The day of the week to create the snapshot. e.g. MONDAY
+                * `startTime` (`pulumi.Input[str]`) - -
+                  (Required)
+                  Time within the window to start the operations.
+                  It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
 
-          * `snapshotProperties` (`pulumi.Input[dict]`)
-            * `guestFlush` (`pulumi.Input[bool]`)
-            * `labels` (`pulumi.Input[dict]`)
-            * `storageLocations` (`pulumi.Input[str]`)
+          * `snapshotProperties` (`pulumi.Input[dict]`) - -
+            (Optional)
+            Properties with which the snapshots are created, such as labels.  Structure is documented below.
+            * `guestFlush` (`pulumi.Input[bool]`) - -
+              (Optional)
+              Whether to perform a 'guest aware' snapshot.
+            * `labels` (`pulumi.Input[dict]`) - -
+              (Optional)
+              A set of key-value pairs.
+            * `storageLocations` (`pulumi.Input[str]`) - -
+              (Optional)
+              Cloud Storage bucket location to store the auto snapshot
+              (regional or multi-regional)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

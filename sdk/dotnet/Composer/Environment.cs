@@ -33,16 +33,41 @@ namespace Pulumi.Gcp.Composer
     ///   * **Environments create Google Cloud Storage buckets that do not get cleaned up automatically** on environment 
     ///     deletion. [More about Composer's use of Cloud Storage](https://cloud.google.com/composer/docs/concepts/cloud-storage).
     /// 
+    /// 
+    /// 
     /// &gt; This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/composer_environment.html.markdown.
     /// </summary>
     public partial class Environment : Pulumi.CustomResource
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Configuration parameters for this environment  Structure is documented below.
+        /// </summary>
         [Output("config")]
         public Output<Outputs.EnvironmentConfig> Config { get; private set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-defined labels for this environment. The labels map can contain
+        /// no more than 64 entries. Entries of the labels map are UTF8 strings
+        /// that comply with the following restrictions:
+        /// Label keys must be between 1 and 63 characters long and must conform
+        /// to the following regular expression: `a-z?`.
+        /// Label values must be between 0 and 63 characters long and must
+        /// conform to the regular expression `(a-z?)?`.
+        /// No more than 64 labels can be associated with a given environment.
+        /// Both keys and values must be &lt;= 128 bytes in size.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the environment
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -53,6 +78,11 @@ namespace Pulumi.Gcp.Composer
         [Output("project")]
         public Output<string> Project { get; private set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The location or Compute Engine region for the environment.
+        /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
 
@@ -102,17 +132,41 @@ namespace Pulumi.Gcp.Composer
 
     public sealed class EnvironmentArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Configuration parameters for this environment  Structure is documented below.
+        /// </summary>
         [Input("config")]
         public Input<Inputs.EnvironmentConfigArgs>? Config { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-defined labels for this environment. The labels map can contain
+        /// no more than 64 entries. Entries of the labels map are UTF8 strings
+        /// that comply with the following restrictions:
+        /// Label keys must be between 1 and 63 characters long and must conform
+        /// to the following regular expression: `a-z?`.
+        /// Label values must be between 0 and 63 characters long and must
+        /// conform to the regular expression `(a-z?)?`.
+        /// No more than 64 labels can be associated with a given environment.
+        /// Both keys and values must be &lt;= 128 bytes in size.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the environment
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -123,6 +177,11 @@ namespace Pulumi.Gcp.Composer
         [Input("project")]
         public Input<string>? Project { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The location or Compute Engine region for the environment.
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
@@ -133,17 +192,41 @@ namespace Pulumi.Gcp.Composer
 
     public sealed class EnvironmentState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Configuration parameters for this environment  Structure is documented below.
+        /// </summary>
         [Input("config")]
         public Input<Inputs.EnvironmentConfigGetArgs>? Config { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// User-defined labels for this environment. The labels map can contain
+        /// no more than 64 entries. Entries of the labels map are UTF8 strings
+        /// that comply with the following restrictions:
+        /// Label keys must be between 1 and 63 characters long and must conform
+        /// to the following regular expression: `a-z?`.
+        /// Label values must be between 0 and 63 characters long and must
+        /// conform to the regular expression `(a-z?)?`.
+        /// No more than 64 labels can be associated with a given environment.
+        /// Both keys and values must be &lt;= 128 bytes in size.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the environment
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -154,6 +237,11 @@ namespace Pulumi.Gcp.Composer
         [Input("project")]
         public Input<string>? Project { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The location or Compute Engine region for the environment.
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
@@ -176,15 +264,36 @@ namespace Pulumi.Gcp.Composer
         [Input("gkeCluster")]
         public Input<string>? GkeCluster { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The configuration used for the Kubernetes Engine cluster.  Structure is documented below.
+        /// </summary>
         [Input("nodeConfig")]
         public Input<EnvironmentConfigNodeConfigArgs>? NodeConfig { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of nodes in the Kubernetes Engine cluster that
+        /// will be used to run this environment.
+        /// </summary>
         [Input("nodeCount")]
         public Input<int>? NodeCount { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The configuration used for the Private IP Cloud Composer environment. Structure is documented below.
+        /// </summary>
         [Input("privateEnvironmentConfig")]
         public Input<EnvironmentConfigPrivateEnvironmentConfigArgs>? PrivateEnvironmentConfig { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The configuration settings for software inside the environment.  Structure is documented below.
+        /// </summary>
         [Input("softwareConfig")]
         public Input<EnvironmentConfigSoftwareConfigArgs>? SoftwareConfig { get; set; }
 
@@ -204,15 +313,36 @@ namespace Pulumi.Gcp.Composer
         [Input("gkeCluster")]
         public Input<string>? GkeCluster { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The configuration used for the Kubernetes Engine cluster.  Structure is documented below.
+        /// </summary>
         [Input("nodeConfig")]
         public Input<EnvironmentConfigNodeConfigGetArgs>? NodeConfig { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of nodes in the Kubernetes Engine cluster that
+        /// will be used to run this environment.
+        /// </summary>
         [Input("nodeCount")]
         public Input<int>? NodeCount { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The configuration used for the Private IP Cloud Composer environment. Structure is documented below.
+        /// </summary>
         [Input("privateEnvironmentConfig")]
         public Input<EnvironmentConfigPrivateEnvironmentConfigGetArgs>? PrivateEnvironmentConfig { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The configuration settings for software inside the environment.  Structure is documented below.
+        /// </summary>
         [Input("softwareConfig")]
         public Input<EnvironmentConfigSoftwareConfigGetArgs>? SoftwareConfig { get; set; }
 
@@ -223,40 +353,110 @@ namespace Pulumi.Gcp.Composer
 
     public sealed class EnvironmentConfigNodeConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The disk size in GB used for node VMs. Minimum size is 20GB.
+        /// If unspecified, defaults to 100GB. Cannot be updated.
+        /// </summary>
         [Input("diskSizeGb")]
         public Input<int>? DiskSizeGb { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Configuration for controlling how IPs are allocated in the GKE cluster.
+        /// Structure is documented below.
+        /// Cannot be updated.
+        /// </summary>
         [Input("ipAllocationPolicy")]
         public Input<EnvironmentConfigNodeConfigIpAllocationPolicyArgs>? IpAllocationPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Compute Engine machine type used for cluster instances,
+        /// specified as a name or relative resource name. For example:
+        /// "projects/{project}/zones/{zone}/machineTypes/{machineType}". Must belong to the enclosing environment's project and
+        /// region/zone.
+        /// </summary>
         [Input("machineType")]
         public Input<string>? MachineType { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Compute Engine network to be used for machine
+        /// communications, specified as a self-link, relative resource name
+        /// (e.g. "projects/{project}/global/networks/{network}"), by name.
+        /// </summary>
         [Input("network")]
         public Input<string>? Network { get; set; }
 
         [Input("oauthScopes")]
         private InputList<string>? _oauthScopes;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of Google API scopes to be made available on all node
+        /// VMs. Cannot be updated. If empty, defaults to
+        /// `["https://www.googleapis.com/auth/cloud-platform"]`
+        /// </summary>
         public InputList<string> OauthScopes
         {
             get => _oauthScopes ?? (_oauthScopes = new InputList<string>());
             set => _oauthScopes = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Google Cloud Platform Service Account to be used by the
+        /// node VMs. If a service account is not specified, the "default"
+        /// Compute Engine service account is used. Cannot be updated. If given,
+        /// note that the service account must have `roles/composer.worker`
+        /// for any GCP resources created under the Cloud Composer Environment.
+        /// </summary>
         [Input("serviceAccount")]
         public Input<string>? ServiceAccount { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Compute Engine subnetwork to be used for machine
+        /// communications, , specified as a self-link, relative resource name (e.g.
+        /// "projects/{project}/regions/{region}/subnetworks/{subnetwork}"), or by name. If subnetwork is provided,
+        /// network must also be provided and the subnetwork must belong to the enclosing environment's project and region.
+        /// </summary>
         [Input("subnetwork")]
         public Input<string>? Subnetwork { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of instance tags applied to all node VMs. Tags are
+        /// used to identify valid sources or targets for network
+        /// firewalls. Each tag within the list must comply with RFC1035.
+        /// Cannot be updated.
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The Compute Engine zone in which to deploy the VMs running the
+        /// Apache Airflow software, specified as the zone name or
+        /// relative resource name (e.g. "projects/{project}/zones/{zone}"). Must belong to the enclosing environment's project
+        /// and region.
+        /// </summary>
         [Input("zone", required: true)]
         public Input<string> Zone { get; set; } = null!;
 
@@ -267,40 +467,110 @@ namespace Pulumi.Gcp.Composer
 
     public sealed class EnvironmentConfigNodeConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The disk size in GB used for node VMs. Minimum size is 20GB.
+        /// If unspecified, defaults to 100GB. Cannot be updated.
+        /// </summary>
         [Input("diskSizeGb")]
         public Input<int>? DiskSizeGb { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Configuration for controlling how IPs are allocated in the GKE cluster.
+        /// Structure is documented below.
+        /// Cannot be updated.
+        /// </summary>
         [Input("ipAllocationPolicy")]
         public Input<EnvironmentConfigNodeConfigIpAllocationPolicyGetArgs>? IpAllocationPolicy { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Compute Engine machine type used for cluster instances,
+        /// specified as a name or relative resource name. For example:
+        /// "projects/{project}/zones/{zone}/machineTypes/{machineType}". Must belong to the enclosing environment's project and
+        /// region/zone.
+        /// </summary>
         [Input("machineType")]
         public Input<string>? MachineType { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Compute Engine network to be used for machine
+        /// communications, specified as a self-link, relative resource name
+        /// (e.g. "projects/{project}/global/networks/{network}"), by name.
+        /// </summary>
         [Input("network")]
         public Input<string>? Network { get; set; }
 
         [Input("oauthScopes")]
         private InputList<string>? _oauthScopes;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of Google API scopes to be made available on all node
+        /// VMs. Cannot be updated. If empty, defaults to
+        /// `["https://www.googleapis.com/auth/cloud-platform"]`
+        /// </summary>
         public InputList<string> OauthScopes
         {
             get => _oauthScopes ?? (_oauthScopes = new InputList<string>());
             set => _oauthScopes = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Google Cloud Platform Service Account to be used by the
+        /// node VMs. If a service account is not specified, the "default"
+        /// Compute Engine service account is used. Cannot be updated. If given,
+        /// note that the service account must have `roles/composer.worker`
+        /// for any GCP resources created under the Cloud Composer Environment.
+        /// </summary>
         [Input("serviceAccount")]
         public Input<string>? ServiceAccount { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Compute Engine subnetwork to be used for machine
+        /// communications, , specified as a self-link, relative resource name (e.g.
+        /// "projects/{project}/regions/{region}/subnetworks/{subnetwork}"), or by name. If subnetwork is provided,
+        /// network must also be provided and the subnetwork must belong to the enclosing environment's project and region.
+        /// </summary>
         [Input("subnetwork")]
         public Input<string>? Subnetwork { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of instance tags applied to all node VMs. Tags are
+        /// used to identify valid sources or targets for network
+        /// firewalls. Each tag within the list must comply with RFC1035.
+        /// Cannot be updated.
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The Compute Engine zone in which to deploy the VMs running the
+        /// Apache Airflow software, specified as the zone name or
+        /// relative resource name (e.g. "projects/{project}/zones/{zone}"). Must belong to the enclosing environment's project
+        /// and region.
+        /// </summary>
         [Input("zone", required: true)]
         public Input<string> Zone { get; set; } = null!;
 
@@ -311,18 +581,58 @@ namespace Pulumi.Gcp.Composer
 
     public sealed class EnvironmentConfigNodeConfigIpAllocationPolicyArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The IP address range used to allocate IP addresses to pods in the cluster.
+        /// Set to blank to have GKE choose a range with the default size.
+        /// Set to /netmask (e.g. /14) to have GKE choose a range with a specific netmask.
+        /// Set to a CIDR notation (e.g. 10.96.0.0/14) from the RFC-1918 private networks
+        /// (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
+        /// Specify either `cluster_secondary_range_name` or `cluster_ipv4_cidr_block` but not both.
+        /// </summary>
         [Input("clusterIpv4CidrBlock")]
         public Input<string>? ClusterIpv4CidrBlock { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The name of the cluster's secondary range used to allocate IP addresses to pods.
+        /// Specify either `cluster_secondary_range_name` or `cluster_ipv4_cidr_block` but not both.
+        /// This field is applicable only when `use_ip_aliases` is true.
+        /// </summary>
         [Input("clusterSecondaryRangeName")]
         public Input<string>? ClusterSecondaryRangeName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The IP address range used to allocate IP addresses in this cluster.
+        /// Set to blank to have GKE choose a range with the default size.
+        /// Set to /netmask (e.g. /14) to have GKE choose a range with a specific netmask.
+        /// Set to a CIDR notation (e.g. 10.96.0.0/14) from the RFC-1918 private networks
+        /// (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
+        /// Specify either `services_secondary_range_name` or `services_ipv4_cidr_block` but not both.
+        /// </summary>
         [Input("servicesIpv4CidrBlock")]
         public Input<string>? ServicesIpv4CidrBlock { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The name of the services' secondary range used to allocate IP addresses to the cluster.
+        /// Specify either `services_secondary_range_name` or `services_ipv4_cidr_block` but not both.
+        /// This field is applicable only when `use_ip_aliases` is true.
+        /// </summary>
         [Input("servicesSecondaryRangeName")]
         public Input<string>? ServicesSecondaryRangeName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Whether or not to enable Alias IPs in the GKE cluster. If true, a VPC-native cluster is created.
+        /// Defaults to true if the `ip_allocation_block` is present in config.
+        /// </summary>
         [Input("useIpAliases", required: true)]
         public Input<bool> UseIpAliases { get; set; } = null!;
 
@@ -333,18 +643,58 @@ namespace Pulumi.Gcp.Composer
 
     public sealed class EnvironmentConfigNodeConfigIpAllocationPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The IP address range used to allocate IP addresses to pods in the cluster.
+        /// Set to blank to have GKE choose a range with the default size.
+        /// Set to /netmask (e.g. /14) to have GKE choose a range with a specific netmask.
+        /// Set to a CIDR notation (e.g. 10.96.0.0/14) from the RFC-1918 private networks
+        /// (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
+        /// Specify either `cluster_secondary_range_name` or `cluster_ipv4_cidr_block` but not both.
+        /// </summary>
         [Input("clusterIpv4CidrBlock")]
         public Input<string>? ClusterIpv4CidrBlock { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The name of the cluster's secondary range used to allocate IP addresses to pods.
+        /// Specify either `cluster_secondary_range_name` or `cluster_ipv4_cidr_block` but not both.
+        /// This field is applicable only when `use_ip_aliases` is true.
+        /// </summary>
         [Input("clusterSecondaryRangeName")]
         public Input<string>? ClusterSecondaryRangeName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The IP address range used to allocate IP addresses in this cluster.
+        /// Set to blank to have GKE choose a range with the default size.
+        /// Set to /netmask (e.g. /14) to have GKE choose a range with a specific netmask.
+        /// Set to a CIDR notation (e.g. 10.96.0.0/14) from the RFC-1918 private networks
+        /// (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
+        /// Specify either `services_secondary_range_name` or `services_ipv4_cidr_block` but not both.
+        /// </summary>
         [Input("servicesIpv4CidrBlock")]
         public Input<string>? ServicesIpv4CidrBlock { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The name of the services' secondary range used to allocate IP addresses to the cluster.
+        /// Specify either `services_secondary_range_name` or `services_ipv4_cidr_block` but not both.
+        /// This field is applicable only when `use_ip_aliases` is true.
+        /// </summary>
         [Input("servicesSecondaryRangeName")]
         public Input<string>? ServicesSecondaryRangeName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Whether or not to enable Alias IPs in the GKE cluster. If true, a VPC-native cluster is created.
+        /// Defaults to true if the `ip_allocation_block` is present in config.
+        /// </summary>
         [Input("useIpAliases", required: true)]
         public Input<bool> UseIpAliases { get; set; } = null!;
 
@@ -355,9 +705,22 @@ namespace Pulumi.Gcp.Composer
 
     public sealed class EnvironmentConfigPrivateEnvironmentConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// If true, access to the public endpoint of the GKE cluster is denied.
+        /// </summary>
         [Input("enablePrivateEndpoint")]
         public Input<bool>? EnablePrivateEndpoint { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The IP range in CIDR notation to use for the hosted master network. This range is used
+        /// for assigning internal IP addresses to the cluster master or set of masters and to the
+        /// internal load balancer virtual IP. This range must not overlap with any other ranges
+        /// in use within the cluster's network.
+        /// If left blank, the default value of '172.16.0.0/28' is used.
+        /// </summary>
         [Input("masterIpv4CidrBlock")]
         public Input<string>? MasterIpv4CidrBlock { get; set; }
 
@@ -368,9 +731,22 @@ namespace Pulumi.Gcp.Composer
 
     public sealed class EnvironmentConfigPrivateEnvironmentConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// If true, access to the public endpoint of the GKE cluster is denied.
+        /// </summary>
         [Input("enablePrivateEndpoint")]
         public Input<bool>? EnablePrivateEndpoint { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The IP range in CIDR notation to use for the hosted master network. This range is used
+        /// for assigning internal IP addresses to the cluster master or set of masters and to the
+        /// internal load balancer virtual IP. This range must not overlap with any other ranges
+        /// in use within the cluster's network.
+        /// If left blank, the default value of '172.16.0.0/28' is used.
+        /// </summary>
         [Input("masterIpv4CidrBlock")]
         public Input<string>? MasterIpv4CidrBlock { get; set; }
 
@@ -383,6 +759,12 @@ namespace Pulumi.Gcp.Composer
     {
         [Input("airflowConfigOverrides")]
         private InputMap<string>? _airflowConfigOverrides;
+
+        /// <summary>
+        /// -
+        /// (Optional) Apache Airflow configuration properties to override. Property keys contain the section and property names,
+        /// separated by a hyphen, for example "core-dags_are_paused_at_creation".
+        /// </summary>
         public InputMap<string> AirflowConfigOverrides
         {
             get => _airflowConfigOverrides ?? (_airflowConfigOverrides = new InputMap<string>());
@@ -391,6 +773,30 @@ namespace Pulumi.Gcp.Composer
 
         [Input("envVariables")]
         private InputMap<string>? _envVariables;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Additional environment variables to provide to the Apache Airflow scheduler, worker, and webserver processes.
+        /// Environment variable names must match the regular expression `[a-zA-Z_][a-zA-Z0-9_]*`.
+        /// They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression
+        /// `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names:
+        /// ```
+        /// AIRFLOW_HOME
+        /// C_FORCE_ROOT
+        /// CONTAINER_NAME
+        /// DAGS_FOLDER
+        /// GCP_PROJECT
+        /// GCS_BUCKET
+        /// GKE_CLUSTER_NAME
+        /// SQL_DATABASE
+        /// SQL_INSTANCE
+        /// SQL_PASSWORD
+        /// SQL_PROJECT
+        /// SQL_REGION
+        /// SQL_USER
+        /// ```
+        /// </summary>
         public InputMap<string> EnvVariables
         {
             get => _envVariables ?? (_envVariables = new InputMap<string>());
@@ -412,6 +818,15 @@ namespace Pulumi.Gcp.Composer
 
         [Input("pypiPackages")]
         private InputMap<string>? _pypiPackages;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Custom Python Package Index (PyPI) packages to be installed
+        /// in the environment. Keys refer to the lowercase package name (e.g. "numpy"). Values are the lowercase extras and
+        /// version specifier (e.g. "==1.12.0", "[devel,gcp_api]", "[devel]&gt;=1.8.2, &lt;1.9.2"). To specify a package without
+        /// pinning it to a version specifier, use the empty string as the value.
+        /// </summary>
         public InputMap<string> PypiPackages
         {
             get => _pypiPackages ?? (_pypiPackages = new InputMap<string>());
@@ -435,6 +850,12 @@ namespace Pulumi.Gcp.Composer
     {
         [Input("airflowConfigOverrides")]
         private InputMap<string>? _airflowConfigOverrides;
+
+        /// <summary>
+        /// -
+        /// (Optional) Apache Airflow configuration properties to override. Property keys contain the section and property names,
+        /// separated by a hyphen, for example "core-dags_are_paused_at_creation".
+        /// </summary>
         public InputMap<string> AirflowConfigOverrides
         {
             get => _airflowConfigOverrides ?? (_airflowConfigOverrides = new InputMap<string>());
@@ -443,6 +864,30 @@ namespace Pulumi.Gcp.Composer
 
         [Input("envVariables")]
         private InputMap<string>? _envVariables;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Additional environment variables to provide to the Apache Airflow scheduler, worker, and webserver processes.
+        /// Environment variable names must match the regular expression `[a-zA-Z_][a-zA-Z0-9_]*`.
+        /// They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression
+        /// `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names:
+        /// ```
+        /// AIRFLOW_HOME
+        /// C_FORCE_ROOT
+        /// CONTAINER_NAME
+        /// DAGS_FOLDER
+        /// GCP_PROJECT
+        /// GCS_BUCKET
+        /// GKE_CLUSTER_NAME
+        /// SQL_DATABASE
+        /// SQL_INSTANCE
+        /// SQL_PASSWORD
+        /// SQL_PROJECT
+        /// SQL_REGION
+        /// SQL_USER
+        /// ```
+        /// </summary>
         public InputMap<string> EnvVariables
         {
             get => _envVariables ?? (_envVariables = new InputMap<string>());
@@ -464,6 +909,15 @@ namespace Pulumi.Gcp.Composer
 
         [Input("pypiPackages")]
         private InputMap<string>? _pypiPackages;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Custom Python Package Index (PyPI) packages to be installed
+        /// in the environment. Keys refer to the lowercase package name (e.g. "numpy"). Values are the lowercase extras and
+        /// version specifier (e.g. "==1.12.0", "[devel,gcp_api]", "[devel]&gt;=1.8.2, &lt;1.9.2"). To specify a package without
+        /// pinning it to a version specifier, use the empty string as the value.
+        /// </summary>
         public InputMap<string> PypiPackages
         {
             get => _pypiPackages ?? (_pypiPackages = new InputMap<string>());
@@ -493,9 +947,30 @@ namespace Pulumi.Gcp.Composer
         public readonly string AirflowUri;
         public readonly string DagGcsPrefix;
         public readonly string GkeCluster;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The configuration used for the Kubernetes Engine cluster.  Structure is documented below.
+        /// </summary>
         public readonly EnvironmentConfigNodeConfig NodeConfig;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The number of nodes in the Kubernetes Engine cluster that
+        /// will be used to run this environment.
+        /// </summary>
         public readonly int NodeCount;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The configuration used for the Private IP Cloud Composer environment. Structure is documented below.
+        /// </summary>
         public readonly EnvironmentConfigPrivateEnvironmentConfig PrivateEnvironmentConfig;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The configuration settings for software inside the environment.  Structure is documented below.
+        /// </summary>
         public readonly EnvironmentConfigSoftwareConfig SoftwareConfig;
 
         [OutputConstructor]
@@ -521,14 +996,82 @@ namespace Pulumi.Gcp.Composer
     [OutputType]
     public sealed class EnvironmentConfigNodeConfig
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The disk size in GB used for node VMs. Minimum size is 20GB.
+        /// If unspecified, defaults to 100GB. Cannot be updated.
+        /// </summary>
         public readonly int DiskSizeGb;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Configuration for controlling how IPs are allocated in the GKE cluster.
+        /// Structure is documented below.
+        /// Cannot be updated.
+        /// </summary>
         public readonly EnvironmentConfigNodeConfigIpAllocationPolicy IpAllocationPolicy;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Compute Engine machine type used for cluster instances,
+        /// specified as a name or relative resource name. For example:
+        /// "projects/{project}/zones/{zone}/machineTypes/{machineType}". Must belong to the enclosing environment's project and
+        /// region/zone.
+        /// </summary>
         public readonly string MachineType;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Compute Engine network to be used for machine
+        /// communications, specified as a self-link, relative resource name
+        /// (e.g. "projects/{project}/global/networks/{network}"), by name.
+        /// </summary>
         public readonly string Network;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The set of Google API scopes to be made available on all node
+        /// VMs. Cannot be updated. If empty, defaults to
+        /// `["https://www.googleapis.com/auth/cloud-platform"]`
+        /// </summary>
         public readonly ImmutableArray<string> OauthScopes;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Google Cloud Platform Service Account to be used by the
+        /// node VMs. If a service account is not specified, the "default"
+        /// Compute Engine service account is used. Cannot be updated. If given,
+        /// note that the service account must have `roles/composer.worker`
+        /// for any GCP resources created under the Cloud Composer Environment.
+        /// </summary>
         public readonly string ServiceAccount;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Compute Engine subnetwork to be used for machine
+        /// communications, , specified as a self-link, relative resource name (e.g.
+        /// "projects/{project}/regions/{region}/subnetworks/{subnetwork}"), or by name. If subnetwork is provided,
+        /// network must also be provided and the subnetwork must belong to the enclosing environment's project and region.
+        /// </summary>
         public readonly string? Subnetwork;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of instance tags applied to all node VMs. Tags are
+        /// used to identify valid sources or targets for network
+        /// firewalls. Each tag within the list must comply with RFC1035.
+        /// Cannot be updated.
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The Compute Engine zone in which to deploy the VMs running the
+        /// Apache Airflow software, specified as the zone name or
+        /// relative resource name (e.g. "projects/{project}/zones/{zone}"). Must belong to the enclosing environment's project
+        /// and region.
+        /// </summary>
         public readonly string Zone;
 
         [OutputConstructor]
@@ -558,10 +1101,50 @@ namespace Pulumi.Gcp.Composer
     [OutputType]
     public sealed class EnvironmentConfigNodeConfigIpAllocationPolicy
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The IP address range used to allocate IP addresses to pods in the cluster.
+        /// Set to blank to have GKE choose a range with the default size.
+        /// Set to /netmask (e.g. /14) to have GKE choose a range with a specific netmask.
+        /// Set to a CIDR notation (e.g. 10.96.0.0/14) from the RFC-1918 private networks
+        /// (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
+        /// Specify either `cluster_secondary_range_name` or `cluster_ipv4_cidr_block` but not both.
+        /// </summary>
         public readonly string? ClusterIpv4CidrBlock;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The name of the cluster's secondary range used to allocate IP addresses to pods.
+        /// Specify either `cluster_secondary_range_name` or `cluster_ipv4_cidr_block` but not both.
+        /// This field is applicable only when `use_ip_aliases` is true.
+        /// </summary>
         public readonly string? ClusterSecondaryRangeName;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The IP address range used to allocate IP addresses in this cluster.
+        /// Set to blank to have GKE choose a range with the default size.
+        /// Set to /netmask (e.g. /14) to have GKE choose a range with a specific netmask.
+        /// Set to a CIDR notation (e.g. 10.96.0.0/14) from the RFC-1918 private networks
+        /// (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
+        /// Specify either `services_secondary_range_name` or `services_ipv4_cidr_block` but not both.
+        /// </summary>
         public readonly string? ServicesIpv4CidrBlock;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The name of the services' secondary range used to allocate IP addresses to the cluster.
+        /// Specify either `services_secondary_range_name` or `services_ipv4_cidr_block` but not both.
+        /// This field is applicable only when `use_ip_aliases` is true.
+        /// </summary>
         public readonly string? ServicesSecondaryRangeName;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Whether or not to enable Alias IPs in the GKE cluster. If true, a VPC-native cluster is created.
+        /// Defaults to true if the `ip_allocation_block` is present in config.
+        /// </summary>
         public readonly bool UseIpAliases;
 
         [OutputConstructor]
@@ -583,7 +1166,20 @@ namespace Pulumi.Gcp.Composer
     [OutputType]
     public sealed class EnvironmentConfigPrivateEnvironmentConfig
     {
+        /// <summary>
+        /// -
+        /// If true, access to the public endpoint of the GKE cluster is denied.
+        /// </summary>
         public readonly bool? EnablePrivateEndpoint;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The IP range in CIDR notation to use for the hosted master network. This range is used
+        /// for assigning internal IP addresses to the cluster master or set of masters and to the
+        /// internal load balancer virtual IP. This range must not overlap with any other ranges
+        /// in use within the cluster's network.
+        /// If left blank, the default value of '172.16.0.0/28' is used.
+        /// </summary>
         public readonly string? MasterIpv4CidrBlock;
 
         [OutputConstructor]
@@ -599,7 +1195,35 @@ namespace Pulumi.Gcp.Composer
     [OutputType]
     public sealed class EnvironmentConfigSoftwareConfig
     {
+        /// <summary>
+        /// -
+        /// (Optional) Apache Airflow configuration properties to override. Property keys contain the section and property names,
+        /// separated by a hyphen, for example "core-dags_are_paused_at_creation".
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? AirflowConfigOverrides;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Additional environment variables to provide to the Apache Airflow scheduler, worker, and webserver processes.
+        /// Environment variable names must match the regular expression `[a-zA-Z_][a-zA-Z0-9_]*`.
+        /// They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression
+        /// `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names:
+        /// ```
+        /// AIRFLOW_HOME
+        /// C_FORCE_ROOT
+        /// CONTAINER_NAME
+        /// DAGS_FOLDER
+        /// GCP_PROJECT
+        /// GCS_BUCKET
+        /// GKE_CLUSTER_NAME
+        /// SQL_DATABASE
+        /// SQL_INSTANCE
+        /// SQL_PASSWORD
+        /// SQL_PROJECT
+        /// SQL_REGION
+        /// SQL_USER
+        /// ```
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? EnvVariables;
         /// <summary>
         /// -
@@ -612,6 +1236,14 @@ namespace Pulumi.Gcp.Composer
         /// for allowed release names.
         /// </summary>
         public readonly string ImageVersion;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Custom Python Package Index (PyPI) packages to be installed
+        /// in the environment. Keys refer to the lowercase package name (e.g. "numpy"). Values are the lowercase extras and
+        /// version specifier (e.g. "==1.12.0", "[devel,gcp_api]", "[devel]&gt;=1.8.2, &lt;1.9.2"). To specify a package without
+        /// pinning it to a version specifier, use the empty string as the value.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? PypiPackages;
         /// <summary>
         /// -

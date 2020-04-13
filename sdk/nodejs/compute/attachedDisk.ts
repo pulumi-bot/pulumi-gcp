@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  *     * [Adding a persistent disk](https://cloud.google.com/compute/docs/disks/add-persistent-disk)
  * 
  * **Note:** When using `gcp.compute.AttachedDisk` you **must** use `lifecycle.ignore_changes = ["attachedDisk"]` on the `gcp.compute.Instance` resource that has the disks attached. Otherwise the two resources will fight for control of the attached disk block.
+ * 
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_attached_disk.html.markdown.
  */
@@ -49,11 +50,52 @@ export class AttachedDisk extends pulumi.CustomResource {
         return obj['__pulumiType'] === AttachedDisk.__pulumiType;
     }
 
+    /**
+     * -
+     * (Optional)
+     * Specifies a unique device name of your choice that is
+     * reflected into the /dev/disk/by-id/google-* tree of a Linux operating
+     * system running within the instance. This name can be used to
+     * reference the device for mounting, resizing, and so on, from within
+     * the instance.
+     */
     public readonly deviceName!: pulumi.Output<string>;
+    /**
+     * -
+     * (Required)
+     * `name` or `selfLink` of the disk that will be attached.
+     */
     public readonly disk!: pulumi.Output<string>;
+    /**
+     * -
+     * (Required)
+     * `name` or `selfLink` of the compute instance that the disk will be attached to.
+     * If the `selfLink` is provided then `zone` and `project` are extracted from the
+     * self link. If only the name is used then `zone` and `project` must be defined
+     * as properties on the resource or provider.
+     */
     public readonly instance!: pulumi.Output<string>;
+    /**
+     * -
+     * (Optional)
+     * The mode in which to attach this disk, either READ_WRITE or
+     * READ_ONLY. If not specified, the default is to attach the disk in
+     * READ_WRITE mode.
+     */
     public readonly mode!: pulumi.Output<string | undefined>;
+    /**
+     * -
+     * (Optional)
+     * The project that the referenced compute instance is a part of. If `instance` is referenced by its
+     * `selfLink` the project defined in the link will take precedence.
+     */
     public readonly project!: pulumi.Output<string>;
+    /**
+     * -
+     * (Optional)
+     * The zone that the referenced compute instance is located within. If `instance` is referenced by its
+     * `selfLink` the zone defined in the link will take precedence.
+     */
     public readonly zone!: pulumi.Output<string>;
 
     /**
@@ -104,11 +146,52 @@ export class AttachedDisk extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AttachedDisk resources.
  */
 export interface AttachedDiskState {
+    /**
+     * -
+     * (Optional)
+     * Specifies a unique device name of your choice that is
+     * reflected into the /dev/disk/by-id/google-* tree of a Linux operating
+     * system running within the instance. This name can be used to
+     * reference the device for mounting, resizing, and so on, from within
+     * the instance.
+     */
     readonly deviceName?: pulumi.Input<string>;
+    /**
+     * -
+     * (Required)
+     * `name` or `selfLink` of the disk that will be attached.
+     */
     readonly disk?: pulumi.Input<string>;
+    /**
+     * -
+     * (Required)
+     * `name` or `selfLink` of the compute instance that the disk will be attached to.
+     * If the `selfLink` is provided then `zone` and `project` are extracted from the
+     * self link. If only the name is used then `zone` and `project` must be defined
+     * as properties on the resource or provider.
+     */
     readonly instance?: pulumi.Input<string>;
+    /**
+     * -
+     * (Optional)
+     * The mode in which to attach this disk, either READ_WRITE or
+     * READ_ONLY. If not specified, the default is to attach the disk in
+     * READ_WRITE mode.
+     */
     readonly mode?: pulumi.Input<string>;
+    /**
+     * -
+     * (Optional)
+     * The project that the referenced compute instance is a part of. If `instance` is referenced by its
+     * `selfLink` the project defined in the link will take precedence.
+     */
     readonly project?: pulumi.Input<string>;
+    /**
+     * -
+     * (Optional)
+     * The zone that the referenced compute instance is located within. If `instance` is referenced by its
+     * `selfLink` the zone defined in the link will take precedence.
+     */
     readonly zone?: pulumi.Input<string>;
 }
 
@@ -116,10 +199,51 @@ export interface AttachedDiskState {
  * The set of arguments for constructing a AttachedDisk resource.
  */
 export interface AttachedDiskArgs {
+    /**
+     * -
+     * (Optional)
+     * Specifies a unique device name of your choice that is
+     * reflected into the /dev/disk/by-id/google-* tree of a Linux operating
+     * system running within the instance. This name can be used to
+     * reference the device for mounting, resizing, and so on, from within
+     * the instance.
+     */
     readonly deviceName?: pulumi.Input<string>;
+    /**
+     * -
+     * (Required)
+     * `name` or `selfLink` of the disk that will be attached.
+     */
     readonly disk: pulumi.Input<string>;
+    /**
+     * -
+     * (Required)
+     * `name` or `selfLink` of the compute instance that the disk will be attached to.
+     * If the `selfLink` is provided then `zone` and `project` are extracted from the
+     * self link. If only the name is used then `zone` and `project` must be defined
+     * as properties on the resource or provider.
+     */
     readonly instance: pulumi.Input<string>;
+    /**
+     * -
+     * (Optional)
+     * The mode in which to attach this disk, either READ_WRITE or
+     * READ_ONLY. If not specified, the default is to attach the disk in
+     * READ_WRITE mode.
+     */
     readonly mode?: pulumi.Input<string>;
+    /**
+     * -
+     * (Optional)
+     * The project that the referenced compute instance is a part of. If `instance` is referenced by its
+     * `selfLink` the project defined in the link will take precedence.
+     */
     readonly project?: pulumi.Input<string>;
+    /**
+     * -
+     * (Optional)
+     * The zone that the referenced compute instance is located within. If `instance` is referenced by its
+     * `selfLink` the zone defined in the link will take precedence.
+     */
     readonly zone?: pulumi.Input<string>;
 }

@@ -22,6 +22,8 @@ namespace Pulumi.Gcp.AppEngine
     public partial class EngineSplitTraffic : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// If set to true traffic will be migrated to this version.
         /// </summary>
         [Output("migrateTraffic")]
@@ -35,13 +37,17 @@ namespace Pulumi.Gcp.AppEngine
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the service these settings apply to.
         /// </summary>
         [Output("service")]
         public Output<string> Service { get; private set; } = null!;
 
         /// <summary>
-        /// Mapping that defines fractional HTTP traffic diversion to different versions within the service.
+        /// -
+        /// (Required)
+        /// Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
         /// </summary>
         [Output("split")]
         public Output<Outputs.EngineSplitTrafficSplit> Split { get; private set; } = null!;
@@ -93,6 +99,8 @@ namespace Pulumi.Gcp.AppEngine
     public sealed class EngineSplitTrafficArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// If set to true traffic will be migrated to this version.
         /// </summary>
         [Input("migrateTraffic")]
@@ -106,13 +114,17 @@ namespace Pulumi.Gcp.AppEngine
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the service these settings apply to.
         /// </summary>
         [Input("service", required: true)]
         public Input<string> Service { get; set; } = null!;
 
         /// <summary>
-        /// Mapping that defines fractional HTTP traffic diversion to different versions within the service.
+        /// -
+        /// (Required)
+        /// Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
         /// </summary>
         [Input("split", required: true)]
         public Input<Inputs.EngineSplitTrafficSplitArgs> Split { get; set; } = null!;
@@ -125,6 +137,8 @@ namespace Pulumi.Gcp.AppEngine
     public sealed class EngineSplitTrafficState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// If set to true traffic will be migrated to this version.
         /// </summary>
         [Input("migrateTraffic")]
@@ -138,13 +152,17 @@ namespace Pulumi.Gcp.AppEngine
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the service these settings apply to.
         /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
 
         /// <summary>
-        /// Mapping that defines fractional HTTP traffic diversion to different versions within the service.
+        /// -
+        /// (Required)
+        /// Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
         /// </summary>
         [Input("split")]
         public Input<Inputs.EngineSplitTrafficSplitGetArgs>? Split { get; set; }
@@ -161,12 +179,23 @@ namespace Pulumi.Gcp.AppEngine
     {
         [Input("allocations", required: true)]
         private InputMap<string>? _allocations;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Mapping from version IDs within the service to fractional (0.000, 1] allocations of traffic for that version. Each version can be specified only once, but some versions in the service may not have any traffic allocation. Services that have traffic allocated cannot be deleted until either the service is deleted or their traffic allocation is removed. Allocations must sum to 1. Up to two decimal place precision is supported for IP-based splits and up to three decimal places is supported for cookie-based splits.
+        /// </summary>
         public InputMap<string> Allocations
         {
             get => _allocations ?? (_allocations = new InputMap<string>());
             set => _allocations = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Mechanism used to determine which version a request is sent to. The traffic selection algorithm will be stable for either type until allocations are changed.
+        /// </summary>
         [Input("shardBy")]
         public Input<string>? ShardBy { get; set; }
 
@@ -179,12 +208,23 @@ namespace Pulumi.Gcp.AppEngine
     {
         [Input("allocations", required: true)]
         private InputMap<string>? _allocations;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Mapping from version IDs within the service to fractional (0.000, 1] allocations of traffic for that version. Each version can be specified only once, but some versions in the service may not have any traffic allocation. Services that have traffic allocated cannot be deleted until either the service is deleted or their traffic allocation is removed. Allocations must sum to 1. Up to two decimal place precision is supported for IP-based splits and up to three decimal places is supported for cookie-based splits.
+        /// </summary>
         public InputMap<string> Allocations
         {
             get => _allocations ?? (_allocations = new InputMap<string>());
             set => _allocations = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Mechanism used to determine which version a request is sent to. The traffic selection algorithm will be stable for either type until allocations are changed.
+        /// </summary>
         [Input("shardBy")]
         public Input<string>? ShardBy { get; set; }
 
@@ -200,7 +240,17 @@ namespace Pulumi.Gcp.AppEngine
     [OutputType]
     public sealed class EngineSplitTrafficSplit
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Mapping from version IDs within the service to fractional (0.000, 1] allocations of traffic for that version. Each version can be specified only once, but some versions in the service may not have any traffic allocation. Services that have traffic allocated cannot be deleted until either the service is deleted or their traffic allocation is removed. Allocations must sum to 1. Up to two decimal place precision is supported for IP-based splits and up to three decimal places is supported for cookie-based splits.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Allocations;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Mechanism used to determine which version a request is sent to. The traffic selection algorithm will be stable for either type until allocations are changed.
+        /// </summary>
         public readonly string? ShardBy;
 
         [OutputConstructor]

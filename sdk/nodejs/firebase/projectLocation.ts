@@ -32,8 +32,10 @@ export class ProjectLocation extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of the default GCP resource location for the Project. The location must be one of the available GCP resource
-     * locations.
+     * -
+     * (Required)
+     * The ID of the default GCP resource location for the Project. The location must be one of the available GCP
+     * resource locations.
      */
     public readonly locationId!: pulumi.Output<string>;
     /**
@@ -80,8 +82,10 @@ export class ProjectLocation extends pulumi.CustomResource {
  */
 export interface ProjectLocationState {
     /**
-     * The ID of the default GCP resource location for the Project. The location must be one of the available GCP resource
-     * locations.
+     * -
+     * (Required)
+     * The ID of the default GCP resource location for the Project. The location must be one of the available GCP
+     * resource locations.
      */
     readonly locationId?: pulumi.Input<string>;
     /**
@@ -96,8 +100,10 @@ export interface ProjectLocationState {
  */
 export interface ProjectLocationArgs {
     /**
-     * The ID of the default GCP resource location for the Project. The location must be one of the available GCP resource
-     * locations.
+     * -
+     * (Required)
+     * The ID of the default GCP resource location for the Project. The location must be one of the available GCP
+     * resource locations.
      */
     readonly locationId: pulumi.Input<string>;
     /**

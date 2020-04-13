@@ -24,8 +24,10 @@ namespace Pulumi.Gcp.SourceRepo
     public partial class Repository : Pulumi.CustomResource
     {
         /// <summary>
-        /// Resource name of the repository, of the form '{{repo}}'. The repo name may contain slashes. eg,
-        /// 'name/with/slash'
+        /// -
+        /// (Required)
+        /// Resource name of the repository, of the form `{{repo}}`.
+        /// The repo name may contain slashes. eg, `name/with/slash`
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -38,7 +40,10 @@ namespace Pulumi.Gcp.SourceRepo
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// How this repository publishes a change in the repository through Cloud Pub/Sub. Keyed by the topic names.
+        /// -
+        /// (Optional)
+        /// How this repository publishes a change in the repository through Cloud Pub/Sub.
+        /// Keyed by the topic names.  Structure is documented below.
         /// </summary>
         [Output("pubsubConfigs")]
         public Output<ImmutableArray<Outputs.RepositoryPubsubConfigs>> PubsubConfigs { get; private set; } = null!;
@@ -102,8 +107,10 @@ namespace Pulumi.Gcp.SourceRepo
     public sealed class RepositoryArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Resource name of the repository, of the form '{{repo}}'. The repo name may contain slashes. eg,
-        /// 'name/with/slash'
+        /// -
+        /// (Required)
+        /// Resource name of the repository, of the form `{{repo}}`.
+        /// The repo name may contain slashes. eg, `name/with/slash`
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -119,7 +126,10 @@ namespace Pulumi.Gcp.SourceRepo
         private InputList<Inputs.RepositoryPubsubConfigsArgs>? _pubsubConfigs;
 
         /// <summary>
-        /// How this repository publishes a change in the repository through Cloud Pub/Sub. Keyed by the topic names.
+        /// -
+        /// (Optional)
+        /// How this repository publishes a change in the repository through Cloud Pub/Sub.
+        /// Keyed by the topic names.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.RepositoryPubsubConfigsArgs> PubsubConfigs
         {
@@ -135,8 +145,10 @@ namespace Pulumi.Gcp.SourceRepo
     public sealed class RepositoryState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Resource name of the repository, of the form '{{repo}}'. The repo name may contain slashes. eg,
-        /// 'name/with/slash'
+        /// -
+        /// (Required)
+        /// Resource name of the repository, of the form `{{repo}}`.
+        /// The repo name may contain slashes. eg, `name/with/slash`
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -152,7 +164,10 @@ namespace Pulumi.Gcp.SourceRepo
         private InputList<Inputs.RepositoryPubsubConfigsGetArgs>? _pubsubConfigs;
 
         /// <summary>
-        /// How this repository publishes a change in the repository through Cloud Pub/Sub. Keyed by the topic names.
+        /// -
+        /// (Optional)
+        /// How this repository publishes a change in the repository through Cloud Pub/Sub.
+        /// Keyed by the topic names.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.RepositoryPubsubConfigsGetArgs> PubsubConfigs
         {
@@ -182,9 +197,24 @@ namespace Pulumi.Gcp.SourceRepo
 
     public sealed class RepositoryPubsubConfigsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The format of the Cloud Pub/Sub messages.
+        /// - PROTOBUF: The message payload is a serialized protocol buffer of SourceRepoEvent.
+        /// - JSON: The message payload is a JSON string of SourceRepoEvent.
+        /// </summary>
         [Input("messageFormat", required: true)]
         public Input<string> MessageFormat { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Email address of the service account used for publishing Cloud Pub/Sub messages.
+        /// This service account needs to be in the same project as the PubsubConfig. When added,
+        /// the caller needs to have iam.serviceAccounts.actAs permission on this service account.
+        /// If unspecified, it defaults to the compute engine default service account.
+        /// </summary>
         [Input("serviceAccountEmail")]
         public Input<string>? ServiceAccountEmail { get; set; }
 
@@ -201,9 +231,24 @@ namespace Pulumi.Gcp.SourceRepo
 
     public sealed class RepositoryPubsubConfigsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The format of the Cloud Pub/Sub messages.
+        /// - PROTOBUF: The message payload is a serialized protocol buffer of SourceRepoEvent.
+        /// - JSON: The message payload is a JSON string of SourceRepoEvent.
+        /// </summary>
         [Input("messageFormat", required: true)]
         public Input<string> MessageFormat { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Email address of the service account used for publishing Cloud Pub/Sub messages.
+        /// This service account needs to be in the same project as the PubsubConfig. When added,
+        /// the caller needs to have iam.serviceAccounts.actAs permission on this service account.
+        /// If unspecified, it defaults to the compute engine default service account.
+        /// </summary>
         [Input("serviceAccountEmail")]
         public Input<string>? ServiceAccountEmail { get; set; }
 
@@ -225,7 +270,22 @@ namespace Pulumi.Gcp.SourceRepo
     [OutputType]
     public sealed class RepositoryPubsubConfigs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The format of the Cloud Pub/Sub messages.
+        /// - PROTOBUF: The message payload is a serialized protocol buffer of SourceRepoEvent.
+        /// - JSON: The message payload is a JSON string of SourceRepoEvent.
+        /// </summary>
         public readonly string MessageFormat;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Email address of the service account used for publishing Cloud Pub/Sub messages.
+        /// This service account needs to be in the same project as the PubsubConfig. When added,
+        /// the caller needs to have iam.serviceAccounts.actAs permission on this service account.
+        /// If unspecified, it defaults to the compute engine default service account.
+        /// </summary>
         public readonly string ServiceAccountEmail;
         /// <summary>
         /// The identifier for this object. Format specified above.

@@ -16,6 +16,8 @@ class Instance(pulumi.CustomResource):
     """
     description: pulumi.Output[str]
     """
+    -
+    (Optional)
     A description of the instance.
     """
     etag: pulumi.Output[str]
@@ -24,27 +26,52 @@ class Instance(pulumi.CustomResource):
     """
     file_shares: pulumi.Output[dict]
     """
-    File system shares on the instance. For this version, only a single file share is supported.
+    -
+    (Required)
+    File system shares on the instance. For this version, only a
+    single file share is supported.  Structure is documented below.
 
-      * `capacityGb` (`float`)
-      * `name` (`str`)
+      * `capacityGb` (`float`) - -
+        (Required)
+        File share capacity in GiB. This must be at least 1024 GiB
+        for the standard tier, or 2560 GiB for the premium tier.
+      * `name` (`str`) - -
+        (Required)
+        The name of the fileshare (16 characters or less)
     """
     labels: pulumi.Output[dict]
     """
+    -
+    (Optional)
     Resource labels to represent user-provided metadata.
     """
     name: pulumi.Output[str]
     """
-    The resource name of the instance.
+    -
+    (Required)
+    The name of the fileshare (16 characters or less)
     """
     networks: pulumi.Output[list]
     """
-    VPC networks to which the instance is connected. For this version, only a single network is supported.
+    -
+    (Required)
+    VPC networks to which the instance is connected. For this version,
+    only a single network is supported.  Structure is documented below.
 
-      * `ip_addresses` (`list`)
-      * `modes` (`list`)
-      * `network` (`str`)
-      * `reserved_ip_range` (`str`)
+      * `ip_addresses` (`list`) - -
+        A list of IPv4 or IPv6 addresses.
+      * `modes` (`list`) - -
+        (Required)
+        IP versions for which the instance has
+        IP addresses assigned.
+      * `network` (`str`) - -
+        (Required)
+        The name of the GCE VPC network to which the
+        instance is connected.
+      * `reserved_ip_range` (`str`) - -
+        (Optional)
+        A /29 CIDR block that identifies the range of IP
+        addresses reserved for this instance.
     """
     project: pulumi.Output[str]
     """
@@ -53,10 +80,14 @@ class Instance(pulumi.CustomResource):
     """
     tier: pulumi.Output[str]
     """
+    -
+    (Required)
     The service tier of the instance.
     """
     zone: pulumi.Output[str]
     """
+    -
+    (Required)
     The name of the Filestore zone of the instance.
     """
     def __init__(__self__, resource_name, opts=None, description=None, file_shares=None, labels=None, name=None, networks=None, project=None, tier=None, zone=None, __props__=None, __name__=None, __opts__=None):
@@ -72,31 +103,60 @@ class Instance(pulumi.CustomResource):
             * [Use with Kubernetes](https://cloud.google.com/filestore/docs/accessing-fileshares)
             * [Copying Data In/Out](https://cloud.google.com/filestore/docs/copying-data)
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/filestore_instance.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: A description of the instance.
-        :param pulumi.Input[dict] file_shares: File system shares on the instance. For this version, only a single file share is supported.
-        :param pulumi.Input[dict] labels: Resource labels to represent user-provided metadata.
-        :param pulumi.Input[str] name: The resource name of the instance.
-        :param pulumi.Input[list] networks: VPC networks to which the instance is connected. For this version, only a single network is supported.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               A description of the instance.
+        :param pulumi.Input[dict] file_shares: -
+               (Required)
+               File system shares on the instance. For this version, only a
+               single file share is supported.  Structure is documented below.
+        :param pulumi.Input[dict] labels: -
+               (Optional)
+               Resource labels to represent user-provided metadata.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the fileshare (16 characters or less)
+        :param pulumi.Input[list] networks: -
+               (Required)
+               VPC networks to which the instance is connected. For this version,
+               only a single network is supported.  Structure is documented below.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] tier: The service tier of the instance.
-        :param pulumi.Input[str] zone: The name of the Filestore zone of the instance.
+        :param pulumi.Input[str] tier: -
+               (Required)
+               The service tier of the instance.
+        :param pulumi.Input[str] zone: -
+               (Required)
+               The name of the Filestore zone of the instance.
 
         The **file_shares** object supports the following:
 
-          * `capacityGb` (`pulumi.Input[float]`)
-          * `name` (`pulumi.Input[str]`)
+          * `capacityGb` (`pulumi.Input[float]`) - -
+            (Required)
+            File share capacity in GiB. This must be at least 1024 GiB
+            for the standard tier, or 2560 GiB for the premium tier.
+          * `name` (`pulumi.Input[str]`) - -
+            (Required)
+            The name of the fileshare (16 characters or less)
 
         The **networks** object supports the following:
 
-          * `ip_addresses` (`pulumi.Input[list]`)
-          * `modes` (`pulumi.Input[list]`)
-          * `network` (`pulumi.Input[str]`)
-          * `reserved_ip_range` (`pulumi.Input[str]`)
+          * `ip_addresses` (`pulumi.Input[list]`) - -
+            A list of IPv4 or IPv6 addresses.
+          * `modes` (`pulumi.Input[list]`) - -
+            (Required)
+            IP versions for which the instance has
+            IP addresses assigned.
+          * `network` (`pulumi.Input[str]`) - -
+            (Required)
+            The name of the GCE VPC network to which the
+            instance is connected.
+          * `reserved_ip_range` (`pulumi.Input[str]`) - -
+            (Optional)
+            A /29 CIDR block that identifies the range of IP
+            addresses reserved for this instance.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -149,28 +209,59 @@ class Instance(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] create_time: Creation timestamp in RFC3339 text format.
-        :param pulumi.Input[str] description: A description of the instance.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               A description of the instance.
         :param pulumi.Input[str] etag: Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other.
-        :param pulumi.Input[dict] file_shares: File system shares on the instance. For this version, only a single file share is supported.
-        :param pulumi.Input[dict] labels: Resource labels to represent user-provided metadata.
-        :param pulumi.Input[str] name: The resource name of the instance.
-        :param pulumi.Input[list] networks: VPC networks to which the instance is connected. For this version, only a single network is supported.
+        :param pulumi.Input[dict] file_shares: -
+               (Required)
+               File system shares on the instance. For this version, only a
+               single file share is supported.  Structure is documented below.
+        :param pulumi.Input[dict] labels: -
+               (Optional)
+               Resource labels to represent user-provided metadata.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the fileshare (16 characters or less)
+        :param pulumi.Input[list] networks: -
+               (Required)
+               VPC networks to which the instance is connected. For this version,
+               only a single network is supported.  Structure is documented below.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] tier: The service tier of the instance.
-        :param pulumi.Input[str] zone: The name of the Filestore zone of the instance.
+        :param pulumi.Input[str] tier: -
+               (Required)
+               The service tier of the instance.
+        :param pulumi.Input[str] zone: -
+               (Required)
+               The name of the Filestore zone of the instance.
 
         The **file_shares** object supports the following:
 
-          * `capacityGb` (`pulumi.Input[float]`)
-          * `name` (`pulumi.Input[str]`)
+          * `capacityGb` (`pulumi.Input[float]`) - -
+            (Required)
+            File share capacity in GiB. This must be at least 1024 GiB
+            for the standard tier, or 2560 GiB for the premium tier.
+          * `name` (`pulumi.Input[str]`) - -
+            (Required)
+            The name of the fileshare (16 characters or less)
 
         The **networks** object supports the following:
 
-          * `ip_addresses` (`pulumi.Input[list]`)
-          * `modes` (`pulumi.Input[list]`)
-          * `network` (`pulumi.Input[str]`)
-          * `reserved_ip_range` (`pulumi.Input[str]`)
+          * `ip_addresses` (`pulumi.Input[list]`) - -
+            A list of IPv4 or IPv6 addresses.
+          * `modes` (`pulumi.Input[list]`) - -
+            (Required)
+            IP versions for which the instance has
+            IP addresses assigned.
+          * `network` (`pulumi.Input[str]`) - -
+            (Required)
+            The name of the GCE VPC network to which the
+            instance is connected.
+          * `reserved_ip_range` (`pulumi.Input[str]`) - -
+            (Optional)
+            A /29 CIDR block that identifies the range of IP
+            addresses reserved for this instance.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

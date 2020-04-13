@@ -32,13 +32,17 @@ namespace Pulumi.Gcp.Dns
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The DNS name of this managed zone, for instance "example.com.".
         /// </summary>
         [Output("dnsName")]
         public Output<string> DnsName { get; private set; } = null!;
 
         /// <summary>
-        /// DNSSEC configuration
+        /// -
+        /// (Optional)
+        /// DNSSEC configuration  Structure is documented below.
         /// </summary>
         [Output("dnssecConfig")]
         public Output<Outputs.ManagedZoneDnssecConfig?> DnssecConfig { get; private set; } = null!;
@@ -51,13 +55,18 @@ namespace Pulumi.Gcp.Dns
         public Output<Outputs.ManagedZoneForwardingConfig?> ForwardingConfig { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// A set of key/value label pairs to assign to this ManagedZone.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// User assigned name for this resource. Must be unique within the project.
+        /// -
+        /// (Required)
+        /// User assigned name for this resource.
+        /// Must be unique within the project.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -76,7 +85,10 @@ namespace Pulumi.Gcp.Dns
         public Output<Outputs.ManagedZonePeeringConfig?> PeeringConfig { get; private set; } = null!;
 
         /// <summary>
-        /// For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+        /// -
+        /// (Optional)
+        /// For privately visible zones, the set of Virtual Private Cloud
+        /// resources that the zone is visible from.  Structure is documented below.
         /// </summary>
         [Output("privateVisibilityConfig")]
         public Output<Outputs.ManagedZonePrivateVisibilityConfig?> PrivateVisibilityConfig { get; private set; } = null!;
@@ -97,8 +109,11 @@ namespace Pulumi.Gcp.Dns
         public Output<bool?> ReverseLookup { get; private set; } = null!;
 
         /// <summary>
-        /// The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to
-        /// Virtual Private Cloud resources. Must be one of: 'public', 'private'.
+        /// -
+        /// (Optional)
+        /// The zone's visibility: public zones are exposed to the Internet,
+        /// while private zones are visible only to Virtual Private Cloud resources.
+        /// Must be one of: `public`, `private`.
         /// </summary>
         [Output("visibility")]
         public Output<string?> Visibility { get; private set; } = null!;
@@ -156,13 +171,17 @@ namespace Pulumi.Gcp.Dns
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The DNS name of this managed zone, for instance "example.com.".
         /// </summary>
         [Input("dnsName", required: true)]
         public Input<string> DnsName { get; set; } = null!;
 
         /// <summary>
-        /// DNSSEC configuration
+        /// -
+        /// (Optional)
+        /// DNSSEC configuration  Structure is documented below.
         /// </summary>
         [Input("dnssecConfig")]
         public Input<Inputs.ManagedZoneDnssecConfigArgs>? DnssecConfig { get; set; }
@@ -178,6 +197,8 @@ namespace Pulumi.Gcp.Dns
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// A set of key/value label pairs to assign to this ManagedZone.
         /// </summary>
         public InputMap<string> Labels
@@ -187,7 +208,10 @@ namespace Pulumi.Gcp.Dns
         }
 
         /// <summary>
-        /// User assigned name for this resource. Must be unique within the project.
+        /// -
+        /// (Required)
+        /// User assigned name for this resource.
+        /// Must be unique within the project.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -200,7 +224,10 @@ namespace Pulumi.Gcp.Dns
         public Input<Inputs.ManagedZonePeeringConfigArgs>? PeeringConfig { get; set; }
 
         /// <summary>
-        /// For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+        /// -
+        /// (Optional)
+        /// For privately visible zones, the set of Virtual Private Cloud
+        /// resources that the zone is visible from.  Structure is documented below.
         /// </summary>
         [Input("privateVisibilityConfig")]
         public Input<Inputs.ManagedZonePrivateVisibilityConfigArgs>? PrivateVisibilityConfig { get; set; }
@@ -221,8 +248,11 @@ namespace Pulumi.Gcp.Dns
         public Input<bool>? ReverseLookup { get; set; }
 
         /// <summary>
-        /// The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to
-        /// Virtual Private Cloud resources. Must be one of: 'public', 'private'.
+        /// -
+        /// (Optional)
+        /// The zone's visibility: public zones are exposed to the Internet,
+        /// while private zones are visible only to Virtual Private Cloud resources.
+        /// Must be one of: `public`, `private`.
         /// </summary>
         [Input("visibility")]
         public Input<string>? Visibility { get; set; }
@@ -242,13 +272,17 @@ namespace Pulumi.Gcp.Dns
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The DNS name of this managed zone, for instance "example.com.".
         /// </summary>
         [Input("dnsName")]
         public Input<string>? DnsName { get; set; }
 
         /// <summary>
-        /// DNSSEC configuration
+        /// -
+        /// (Optional)
+        /// DNSSEC configuration  Structure is documented below.
         /// </summary>
         [Input("dnssecConfig")]
         public Input<Inputs.ManagedZoneDnssecConfigGetArgs>? DnssecConfig { get; set; }
@@ -264,6 +298,8 @@ namespace Pulumi.Gcp.Dns
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// A set of key/value label pairs to assign to this ManagedZone.
         /// </summary>
         public InputMap<string> Labels
@@ -273,7 +309,10 @@ namespace Pulumi.Gcp.Dns
         }
 
         /// <summary>
-        /// User assigned name for this resource. Must be unique within the project.
+        /// -
+        /// (Required)
+        /// User assigned name for this resource.
+        /// Must be unique within the project.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -298,7 +337,10 @@ namespace Pulumi.Gcp.Dns
         public Input<Inputs.ManagedZonePeeringConfigGetArgs>? PeeringConfig { get; set; }
 
         /// <summary>
-        /// For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+        /// -
+        /// (Optional)
+        /// For privately visible zones, the set of Virtual Private Cloud
+        /// resources that the zone is visible from.  Structure is documented below.
         /// </summary>
         [Input("privateVisibilityConfig")]
         public Input<Inputs.ManagedZonePrivateVisibilityConfigGetArgs>? PrivateVisibilityConfig { get; set; }
@@ -319,8 +361,11 @@ namespace Pulumi.Gcp.Dns
         public Input<bool>? ReverseLookup { get; set; }
 
         /// <summary>
-        /// The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to
-        /// Virtual Private Cloud resources. Must be one of: 'public', 'private'.
+        /// -
+        /// (Optional)
+        /// The zone's visibility: public zones are exposed to the Internet,
+        /// while private zones are visible only to Virtual Private Cloud resources.
+        /// Must be one of: `public`, `private`.
         /// </summary>
         [Input("visibility")]
         public Input<string>? Visibility { get; set; }
@@ -338,18 +383,43 @@ namespace Pulumi.Gcp.Dns
     {
         [Input("defaultKeySpecs")]
         private InputList<ManagedZoneDnssecConfigDefaultKeySpecsArgs>? _defaultKeySpecs;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies parameters that will be used for generating initial DnsKeys
+        /// for this ManagedZone. If you provide a spec for keySigning or zoneSigning,
+        /// you must also provide one for the other.
+        /// default_key_specs can only be updated when the state is `off`.  Structure is documented below.
+        /// </summary>
         public InputList<ManagedZoneDnssecConfigDefaultKeySpecsArgs> DefaultKeySpecs
         {
             get => _defaultKeySpecs ?? (_defaultKeySpecs = new InputList<ManagedZoneDnssecConfigDefaultKeySpecsArgs>());
             set => _defaultKeySpecs = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Identifies what kind of resource this is
+        /// </summary>
         [Input("kind")]
         public Input<string>? Kind { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the mechanism used to provide authenticated denial-of-existence responses.
+        /// non_existence can only be updated when the state is `off`.
+        /// </summary>
         [Input("nonExistence")]
         public Input<string>? NonExistence { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies whether DNSSEC is enabled, and what mode it is in
+        /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
 
@@ -360,15 +430,40 @@ namespace Pulumi.Gcp.Dns
 
     public sealed class ManagedZoneDnssecConfigDefaultKeySpecsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// String mnemonic specifying the DNSSEC algorithm of this key
+        /// </summary>
         [Input("algorithm")]
         public Input<string>? Algorithm { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Length of the keys in bits
+        /// </summary>
         [Input("keyLength")]
         public Input<int>? KeyLength { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies whether this is a key signing key (KSK) or a zone
+        /// signing key (ZSK). Key signing keys have the Secure Entry
+        /// Point flag set and, when active, will only be used to sign
+        /// resource record sets of type DNSKEY. Zone signing keys do
+        /// not have the Secure Entry Point flag set and will be used
+        /// to sign all other types of resource record sets.
+        /// </summary>
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Identifies what kind of resource this is
+        /// </summary>
         [Input("kind")]
         public Input<string>? Kind { get; set; }
 
@@ -379,15 +474,40 @@ namespace Pulumi.Gcp.Dns
 
     public sealed class ManagedZoneDnssecConfigDefaultKeySpecsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// String mnemonic specifying the DNSSEC algorithm of this key
+        /// </summary>
         [Input("algorithm")]
         public Input<string>? Algorithm { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Length of the keys in bits
+        /// </summary>
         [Input("keyLength")]
         public Input<int>? KeyLength { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies whether this is a key signing key (KSK) or a zone
+        /// signing key (ZSK). Key signing keys have the Secure Entry
+        /// Point flag set and, when active, will only be used to sign
+        /// resource record sets of type DNSKEY. Zone signing keys do
+        /// not have the Secure Entry Point flag set and will be used
+        /// to sign all other types of resource record sets.
+        /// </summary>
         [Input("keyType")]
         public Input<string>? KeyType { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Identifies what kind of resource this is
+        /// </summary>
         [Input("kind")]
         public Input<string>? Kind { get; set; }
 
@@ -400,18 +520,43 @@ namespace Pulumi.Gcp.Dns
     {
         [Input("defaultKeySpecs")]
         private InputList<ManagedZoneDnssecConfigDefaultKeySpecsGetArgs>? _defaultKeySpecs;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies parameters that will be used for generating initial DnsKeys
+        /// for this ManagedZone. If you provide a spec for keySigning or zoneSigning,
+        /// you must also provide one for the other.
+        /// default_key_specs can only be updated when the state is `off`.  Structure is documented below.
+        /// </summary>
         public InputList<ManagedZoneDnssecConfigDefaultKeySpecsGetArgs> DefaultKeySpecs
         {
             get => _defaultKeySpecs ?? (_defaultKeySpecs = new InputList<ManagedZoneDnssecConfigDefaultKeySpecsGetArgs>());
             set => _defaultKeySpecs = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Identifies what kind of resource this is
+        /// </summary>
         [Input("kind")]
         public Input<string>? Kind { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the mechanism used to provide authenticated denial-of-existence responses.
+        /// non_existence can only be updated when the state is `off`.
+        /// </summary>
         [Input("nonExistence")]
         public Input<string>? NonExistence { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies whether DNSSEC is enabled, and what mode it is in
+        /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
 
@@ -424,6 +569,14 @@ namespace Pulumi.Gcp.Dns
     {
         [Input("targetNameServers", required: true)]
         private InputList<ManagedZoneForwardingConfigTargetNameServersArgs>? _targetNameServers;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// List of target name servers to forward to. Cloud DNS will
+        /// select the best available name server if more than
+        /// one target is given.  Structure is documented below.
+        /// </summary>
         public InputList<ManagedZoneForwardingConfigTargetNameServersArgs> TargetNameServers
         {
             get => _targetNameServers ?? (_targetNameServers = new InputList<ManagedZoneForwardingConfigTargetNameServersArgs>());
@@ -439,6 +592,14 @@ namespace Pulumi.Gcp.Dns
     {
         [Input("targetNameServers", required: true)]
         private InputList<ManagedZoneForwardingConfigTargetNameServersGetArgs>? _targetNameServers;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// List of target name servers to forward to. Cloud DNS will
+        /// select the best available name server if more than
+        /// one target is given.  Structure is documented below.
+        /// </summary>
         public InputList<ManagedZoneForwardingConfigTargetNameServersGetArgs> TargetNameServers
         {
             get => _targetNameServers ?? (_targetNameServers = new InputList<ManagedZoneForwardingConfigTargetNameServersGetArgs>());
@@ -452,9 +613,21 @@ namespace Pulumi.Gcp.Dns
 
     public sealed class ManagedZoneForwardingConfigTargetNameServersArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Forwarding path for this TargetNameServer. If unset or `default` Cloud DNS will make forwarding
+        /// decision based on address ranges, i.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go
+        /// to the Internet. When set to `private`, Cloud DNS will always send queries through VPC for this target
+        /// </summary>
         [Input("forwardingPath")]
         public Input<string>? ForwardingPath { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// IPv4 address of a target name server.
+        /// </summary>
         [Input("ipv4Address", required: true)]
         public Input<string> Ipv4Address { get; set; } = null!;
 
@@ -465,9 +638,21 @@ namespace Pulumi.Gcp.Dns
 
     public sealed class ManagedZoneForwardingConfigTargetNameServersGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Forwarding path for this TargetNameServer. If unset or `default` Cloud DNS will make forwarding
+        /// decision based on address ranges, i.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go
+        /// to the Internet. When set to `private`, Cloud DNS will always send queries through VPC for this target
+        /// </summary>
         [Input("forwardingPath")]
         public Input<string>? ForwardingPath { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// IPv4 address of a target name server.
+        /// </summary>
         [Input("ipv4Address", required: true)]
         public Input<string> Ipv4Address { get; set; } = null!;
 
@@ -478,6 +663,11 @@ namespace Pulumi.Gcp.Dns
 
     public sealed class ManagedZonePeeringConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The network with which to peer.  Structure is documented below.
+        /// </summary>
         [Input("targetNetwork", required: true)]
         public Input<ManagedZonePeeringConfigTargetNetworkArgs> TargetNetwork { get; set; } = null!;
 
@@ -488,6 +678,11 @@ namespace Pulumi.Gcp.Dns
 
     public sealed class ManagedZonePeeringConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The network with which to peer.  Structure is documented below.
+        /// </summary>
         [Input("targetNetwork", required: true)]
         public Input<ManagedZonePeeringConfigTargetNetworkGetArgs> TargetNetwork { get; set; } = null!;
 
@@ -498,6 +693,13 @@ namespace Pulumi.Gcp.Dns
 
     public sealed class ManagedZonePeeringConfigTargetNetworkArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fully qualified URL of the VPC network to forward queries to.
+        /// This should be formatted like
+        /// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
+        /// </summary>
         [Input("networkUrl", required: true)]
         public Input<string> NetworkUrl { get; set; } = null!;
 
@@ -508,6 +710,13 @@ namespace Pulumi.Gcp.Dns
 
     public sealed class ManagedZonePeeringConfigTargetNetworkGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fully qualified URL of the VPC network to forward queries to.
+        /// This should be formatted like
+        /// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
+        /// </summary>
         [Input("networkUrl", required: true)]
         public Input<string> NetworkUrl { get; set; } = null!;
 
@@ -548,6 +757,13 @@ namespace Pulumi.Gcp.Dns
 
     public sealed class ManagedZonePrivateVisibilityConfigNetworksArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fully qualified URL of the VPC network to forward queries to.
+        /// This should be formatted like
+        /// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
+        /// </summary>
         [Input("networkUrl", required: true)]
         public Input<string> NetworkUrl { get; set; } = null!;
 
@@ -558,6 +774,13 @@ namespace Pulumi.Gcp.Dns
 
     public sealed class ManagedZonePrivateVisibilityConfigNetworksGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fully qualified URL of the VPC network to forward queries to.
+        /// This should be formatted like
+        /// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
+        /// </summary>
         [Input("networkUrl", required: true)]
         public Input<string> NetworkUrl { get; set; } = null!;
 
@@ -573,9 +796,33 @@ namespace Pulumi.Gcp.Dns
     [OutputType]
     public sealed class ManagedZoneDnssecConfig
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies parameters that will be used for generating initial DnsKeys
+        /// for this ManagedZone. If you provide a spec for keySigning or zoneSigning,
+        /// you must also provide one for the other.
+        /// default_key_specs can only be updated when the state is `off`.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<ManagedZoneDnssecConfigDefaultKeySpecs> DefaultKeySpecs;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Identifies what kind of resource this is
+        /// </summary>
         public readonly string? Kind;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the mechanism used to provide authenticated denial-of-existence responses.
+        /// non_existence can only be updated when the state is `off`.
+        /// </summary>
         public readonly string NonExistence;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies whether DNSSEC is enabled, and what mode it is in
+        /// </summary>
         public readonly string? State;
 
         [OutputConstructor]
@@ -595,9 +842,34 @@ namespace Pulumi.Gcp.Dns
     [OutputType]
     public sealed class ManagedZoneDnssecConfigDefaultKeySpecs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// String mnemonic specifying the DNSSEC algorithm of this key
+        /// </summary>
         public readonly string? Algorithm;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Length of the keys in bits
+        /// </summary>
         public readonly int? KeyLength;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies whether this is a key signing key (KSK) or a zone
+        /// signing key (ZSK). Key signing keys have the Secure Entry
+        /// Point flag set and, when active, will only be used to sign
+        /// resource record sets of type DNSKEY. Zone signing keys do
+        /// not have the Secure Entry Point flag set and will be used
+        /// to sign all other types of resource record sets.
+        /// </summary>
         public readonly string? KeyType;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Identifies what kind of resource this is
+        /// </summary>
         public readonly string? Kind;
 
         [OutputConstructor]
@@ -617,6 +889,13 @@ namespace Pulumi.Gcp.Dns
     [OutputType]
     public sealed class ManagedZoneForwardingConfig
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// List of target name servers to forward to. Cloud DNS will
+        /// select the best available name server if more than
+        /// one target is given.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<ManagedZoneForwardingConfigTargetNameServers> TargetNameServers;
 
         [OutputConstructor]
@@ -629,7 +908,19 @@ namespace Pulumi.Gcp.Dns
     [OutputType]
     public sealed class ManagedZoneForwardingConfigTargetNameServers
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Forwarding path for this TargetNameServer. If unset or `default` Cloud DNS will make forwarding
+        /// decision based on address ranges, i.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go
+        /// to the Internet. When set to `private`, Cloud DNS will always send queries through VPC for this target
+        /// </summary>
         public readonly string? ForwardingPath;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// IPv4 address of a target name server.
+        /// </summary>
         public readonly string Ipv4Address;
 
         [OutputConstructor]
@@ -645,6 +936,11 @@ namespace Pulumi.Gcp.Dns
     [OutputType]
     public sealed class ManagedZonePeeringConfig
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The network with which to peer.  Structure is documented below.
+        /// </summary>
         public readonly ManagedZonePeeringConfigTargetNetwork TargetNetwork;
 
         [OutputConstructor]
@@ -657,6 +953,13 @@ namespace Pulumi.Gcp.Dns
     [OutputType]
     public sealed class ManagedZonePeeringConfigTargetNetwork
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fully qualified URL of the VPC network to forward queries to.
+        /// This should be formatted like
+        /// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
+        /// </summary>
         public readonly string NetworkUrl;
 
         [OutputConstructor]
@@ -681,6 +984,13 @@ namespace Pulumi.Gcp.Dns
     [OutputType]
     public sealed class ManagedZonePrivateVisibilityConfigNetworks
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The fully qualified URL of the VPC network to forward queries to.
+        /// This should be formatted like
+        /// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
+        /// </summary>
         public readonly string NetworkUrl;
 
         [OutputConstructor]

@@ -53,12 +53,17 @@ export class ServicePerimeterResource extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Required)
      * The name of the Service Perimeter to add this resource to.
      */
     public readonly perimeterName!: pulumi.Output<string>;
     /**
-     * A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format:
-     * projects/{project_number}
+     * -
+     * (Required)
+     * A GCP resource that is inside of the service perimeter.
+     * Currently only projects are allowed.
+     * Format: projects/{project_number}
      */
     public readonly resource!: pulumi.Output<string>;
 
@@ -103,12 +108,17 @@ export class ServicePerimeterResource extends pulumi.CustomResource {
  */
 export interface ServicePerimeterResourceState {
     /**
+     * -
+     * (Required)
      * The name of the Service Perimeter to add this resource to.
      */
     readonly perimeterName?: pulumi.Input<string>;
     /**
-     * A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format:
-     * projects/{project_number}
+     * -
+     * (Required)
+     * A GCP resource that is inside of the service perimeter.
+     * Currently only projects are allowed.
+     * Format: projects/{project_number}
      */
     readonly resource?: pulumi.Input<string>;
 }
@@ -118,12 +128,17 @@ export interface ServicePerimeterResourceState {
  */
 export interface ServicePerimeterResourceArgs {
     /**
+     * -
+     * (Required)
      * The name of the Service Perimeter to add this resource to.
      */
     readonly perimeterName: pulumi.Input<string>;
     /**
-     * A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format:
-     * projects/{project_number}
+     * -
+     * (Required)
+     * A GCP resource that is inside of the service perimeter.
+     * Currently only projects are allowed.
+     * Format: projects/{project_number}
      */
     readonly resource: pulumi.Input<string>;
 }

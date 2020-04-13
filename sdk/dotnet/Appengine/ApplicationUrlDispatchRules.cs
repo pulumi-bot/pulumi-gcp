@@ -22,7 +22,9 @@ namespace Pulumi.Gcp.AppEngine
     public partial class ApplicationUrlDispatchRules : Pulumi.CustomResource
     {
         /// <summary>
-        /// Rules to match an HTTP request and dispatch that request to a service.
+        /// -
+        /// (Required)
+        /// Rules to match an HTTP request and dispatch that request to a service.  Structure is documented below.
         /// </summary>
         [Output("dispatchRules")]
         public Output<ImmutableArray<Outputs.ApplicationUrlDispatchRulesDispatchRules>> DispatchRules { get; private set; } = null!;
@@ -84,7 +86,9 @@ namespace Pulumi.Gcp.AppEngine
         private InputList<Inputs.ApplicationUrlDispatchRulesDispatchRulesArgs>? _dispatchRules;
 
         /// <summary>
-        /// Rules to match an HTTP request and dispatch that request to a service.
+        /// -
+        /// (Required)
+        /// Rules to match an HTTP request and dispatch that request to a service.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.ApplicationUrlDispatchRulesDispatchRulesArgs> DispatchRules
         {
@@ -110,7 +114,9 @@ namespace Pulumi.Gcp.AppEngine
         private InputList<Inputs.ApplicationUrlDispatchRulesDispatchRulesGetArgs>? _dispatchRules;
 
         /// <summary>
-        /// Rules to match an HTTP request and dispatch that request to a service.
+        /// -
+        /// (Required)
+        /// Rules to match an HTTP request and dispatch that request to a service.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.ApplicationUrlDispatchRulesDispatchRulesGetArgs> DispatchRules
         {
@@ -135,12 +141,30 @@ namespace Pulumi.Gcp.AppEngine
 
     public sealed class ApplicationUrlDispatchRulesDispatchRulesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Domain name to match against. The wildcard "*" is supported if specified before a period: "*.".
+        /// Defaults to matching all domains: "*".
+        /// </summary>
         [Input("domain")]
         public Input<string>? Domain { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Pathname within the host. Must start with a "/". A single "*" can be included at the end of the path.
+        /// The sum of the lengths of the domain and path may not exceed 100 characters.
+        /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Pathname within the host. Must start with a "/". A single "*" can be included at the end of the path.
+        /// The sum of the lengths of the domain and path may not exceed 100 characters.
+        /// </summary>
         [Input("service", required: true)]
         public Input<string> Service { get; set; } = null!;
 
@@ -151,12 +175,30 @@ namespace Pulumi.Gcp.AppEngine
 
     public sealed class ApplicationUrlDispatchRulesDispatchRulesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Domain name to match against. The wildcard "*" is supported if specified before a period: "*.".
+        /// Defaults to matching all domains: "*".
+        /// </summary>
         [Input("domain")]
         public Input<string>? Domain { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Pathname within the host. Must start with a "/". A single "*" can be included at the end of the path.
+        /// The sum of the lengths of the domain and path may not exceed 100 characters.
+        /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Pathname within the host. Must start with a "/". A single "*" can be included at the end of the path.
+        /// The sum of the lengths of the domain and path may not exceed 100 characters.
+        /// </summary>
         [Input("service", required: true)]
         public Input<string> Service { get; set; } = null!;
 
@@ -172,8 +214,26 @@ namespace Pulumi.Gcp.AppEngine
     [OutputType]
     public sealed class ApplicationUrlDispatchRulesDispatchRules
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Domain name to match against. The wildcard "*" is supported if specified before a period: "*.".
+        /// Defaults to matching all domains: "*".
+        /// </summary>
         public readonly string? Domain;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Pathname within the host. Must start with a "/". A single "*" can be included at the end of the path.
+        /// The sum of the lengths of the domain and path may not exceed 100 characters.
+        /// </summary>
         public readonly string Path;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Pathname within the host. Must start with a "/". A single "*" can be included at the end of the path.
+        /// The sum of the lengths of the domain and path may not exceed 100 characters.
+        /// </summary>
         public readonly string Service;
 
         [OutputConstructor]

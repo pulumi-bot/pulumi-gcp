@@ -16,42 +16,93 @@ class ServicePerimeter(pulumi.CustomResource):
     """
     description: pulumi.Output[str]
     """
-    Description of the ServicePerimeter and its use. Does not affect behavior.
+    -
+    (Optional)
+    Description of the ServicePerimeter and its use. Does not affect
+    behavior.
     """
     name: pulumi.Output[str]
     """
-    Resource name for the ServicePerimeter. The short_name component must begin with a letter and only include alphanumeric
-    and '_'. Format: accessPolicies/{policy_id}/servicePerimeters/{short_name}
+    -
+    (Required)
+    Resource name for the ServicePerimeter. The short_name component must
+    begin with a letter and only include alphanumeric and '_'.
+    Format: accessPolicies/{policy_id}/servicePerimeters/{short_name}
     """
     parent: pulumi.Output[str]
     """
-    The AccessPolicy this ServicePerimeter lives in. Format: accessPolicies/{policy_id}
+    -
+    (Required)
+    The AccessPolicy this ServicePerimeter lives in.
+    Format: accessPolicies/{policy_id}
     """
     perimeter_type: pulumi.Output[str]
     """
-    Specifies the type of the Perimeter. There are two types: regular and bridge. Regular Service Perimeter contains
-    resources, access levels, and restricted services. Every resource can be in at most ONE regular Service Perimeter. In
-    addition to being in a regular service perimeter, a resource can also be in zero or more perimeter bridges. A perimeter
-    bridge only contains resources. Cross project operations are permitted if all effected resources share some perimeter
-    (whether bridge or regular). Perimeter Bridge does not contain access levels or services: those are governed entirely by
-    the regular perimeter that resource is in. Perimeter Bridges are typically useful when building more complex topologies
-    with many independent perimeters that need to share some data with a common perimeter, but should not be able to share
-    data among themselves.
+    -
+    (Optional)
+    Specifies the type of the Perimeter. There are two types: regular and
+    bridge. Regular Service Perimeter contains resources, access levels,
+    and restricted services. Every resource can be in at most
+    ONE regular Service Perimeter.
+    In addition to being in a regular service perimeter, a resource can also
+    be in zero or more perimeter bridges. A perimeter bridge only contains
+    resources. Cross project operations are permitted if all effected
+    resources share some perimeter (whether bridge or regular). Perimeter
+    Bridge does not contain access levels or services: those are governed
+    entirely by the regular perimeter that resource is in.
+    Perimeter Bridges are typically useful when building more complex
+    topologies with many independent perimeters that need to share some data
+    with a common perimeter, but should not be able to share data among
+    themselves.
     """
     status: pulumi.Output[dict]
     """
-    ServicePerimeter configuration. Specifies sets of resources, restricted services and access levels that determine
-    perimeter content and boundaries.
+    -
+    (Optional)
+    ServicePerimeter configuration. Specifies sets of resources,
+    restricted services and access levels that determine
+    perimeter content and boundaries.  Structure is documented below.
 
-      * `accessLevels` (`list`)
-      * `resources` (`list`)
-      * `restrictedServices` (`list`)
-      * `vpcAccessibleServices` (`dict`)
-        * `allowedServices` (`list`)
-        * `enableRestriction` (`bool`)
+      * `accessLevels` (`list`) - -
+        (Optional)
+        A list of AccessLevel resource names that allow resources within
+        the ServicePerimeter to be accessed from the internet.
+        AccessLevels listed must be in the same policy as this
+        ServicePerimeter. Referencing a nonexistent AccessLevel is a
+        syntax error. If no AccessLevel names are listed, resources within
+        the perimeter can only be accessed via GCP calls with request
+        origins within the perimeter. For Service Perimeter Bridge, must
+        be empty.
+        Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
+      * `resources` (`list`) - -
+        (Optional)
+        A list of GCP resources that are inside of the service perimeter.
+        Currently only projects are allowed.
+        Format: projects/{project_number}
+      * `restrictedServices` (`list`) - -
+        (Optional)
+        GCP services that are subject to the Service Perimeter
+        restrictions. Must contain a list of services. For example, if
+        `storage.googleapis.com` is specified, access to the storage
+        buckets inside the perimeter must meet the perimeter's access
+        restrictions.
+      * `vpcAccessibleServices` (`dict`) - -
+        (Optional)
+        Specifies how APIs are allowed to communicate within the Service
+        Perimeter.  Structure is documented below.
+        * `allowedServices` (`list`) - -
+          (Optional)
+          The list of APIs usable within the Service Perimeter.
+          Must be empty unless `enableRestriction` is True.
+        * `enableRestriction` (`bool`) - -
+          (Optional)
+          Whether to restrict API calls within the Service Perimeter to the
+          list of APIs specified in 'allowedServices'.
     """
     title: pulumi.Output[str]
     """
+    -
+    (Required)
     Human readable title. Must be unique within the Policy.
     """
     update_time: pulumi.Output[str]
@@ -77,34 +128,83 @@ class ServicePerimeter(pulumi.CustomResource):
         * How-to Guides
             * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
 
-        > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/access_context_manager_service_perimeter.html.markdown.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Description of the ServicePerimeter and its use. Does not affect behavior.
-        :param pulumi.Input[str] name: Resource name for the ServicePerimeter. The short_name component must begin with a letter and only include alphanumeric
-               and '_'. Format: accessPolicies/{policy_id}/servicePerimeters/{short_name}
-        :param pulumi.Input[str] parent: The AccessPolicy this ServicePerimeter lives in. Format: accessPolicies/{policy_id}
-        :param pulumi.Input[str] perimeter_type: Specifies the type of the Perimeter. There are two types: regular and bridge. Regular Service Perimeter contains
-               resources, access levels, and restricted services. Every resource can be in at most ONE regular Service Perimeter. In
-               addition to being in a regular service perimeter, a resource can also be in zero or more perimeter bridges. A perimeter
-               bridge only contains resources. Cross project operations are permitted if all effected resources share some perimeter
-               (whether bridge or regular). Perimeter Bridge does not contain access levels or services: those are governed entirely by
-               the regular perimeter that resource is in. Perimeter Bridges are typically useful when building more complex topologies
-               with many independent perimeters that need to share some data with a common perimeter, but should not be able to share
-               data among themselves.
-        :param pulumi.Input[dict] status: ServicePerimeter configuration. Specifies sets of resources, restricted services and access levels that determine
-               perimeter content and boundaries.
-        :param pulumi.Input[str] title: Human readable title. Must be unique within the Policy.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               Description of the ServicePerimeter and its use. Does not affect
+               behavior.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Resource name for the ServicePerimeter. The short_name component must
+               begin with a letter and only include alphanumeric and '_'.
+               Format: accessPolicies/{policy_id}/servicePerimeters/{short_name}
+        :param pulumi.Input[str] parent: -
+               (Required)
+               The AccessPolicy this ServicePerimeter lives in.
+               Format: accessPolicies/{policy_id}
+        :param pulumi.Input[str] perimeter_type: -
+               (Optional)
+               Specifies the type of the Perimeter. There are two types: regular and
+               bridge. Regular Service Perimeter contains resources, access levels,
+               and restricted services. Every resource can be in at most
+               ONE regular Service Perimeter.
+               In addition to being in a regular service perimeter, a resource can also
+               be in zero or more perimeter bridges. A perimeter bridge only contains
+               resources. Cross project operations are permitted if all effected
+               resources share some perimeter (whether bridge or regular). Perimeter
+               Bridge does not contain access levels or services: those are governed
+               entirely by the regular perimeter that resource is in.
+               Perimeter Bridges are typically useful when building more complex
+               topologies with many independent perimeters that need to share some data
+               with a common perimeter, but should not be able to share data among
+               themselves.
+        :param pulumi.Input[dict] status: -
+               (Optional)
+               ServicePerimeter configuration. Specifies sets of resources,
+               restricted services and access levels that determine
+               perimeter content and boundaries.  Structure is documented below.
+        :param pulumi.Input[str] title: -
+               (Required)
+               Human readable title. Must be unique within the Policy.
 
         The **status** object supports the following:
 
-          * `accessLevels` (`pulumi.Input[list]`)
-          * `resources` (`pulumi.Input[list]`)
-          * `restrictedServices` (`pulumi.Input[list]`)
-          * `vpcAccessibleServices` (`pulumi.Input[dict]`)
-            * `allowedServices` (`pulumi.Input[list]`)
-            * `enableRestriction` (`pulumi.Input[bool]`)
+          * `accessLevels` (`pulumi.Input[list]`) - -
+            (Optional)
+            A list of AccessLevel resource names that allow resources within
+            the ServicePerimeter to be accessed from the internet.
+            AccessLevels listed must be in the same policy as this
+            ServicePerimeter. Referencing a nonexistent AccessLevel is a
+            syntax error. If no AccessLevel names are listed, resources within
+            the perimeter can only be accessed via GCP calls with request
+            origins within the perimeter. For Service Perimeter Bridge, must
+            be empty.
+            Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
+          * `resources` (`pulumi.Input[list]`) - -
+            (Optional)
+            A list of GCP resources that are inside of the service perimeter.
+            Currently only projects are allowed.
+            Format: projects/{project_number}
+          * `restrictedServices` (`pulumi.Input[list]`) - -
+            (Optional)
+            GCP services that are subject to the Service Perimeter
+            restrictions. Must contain a list of services. For example, if
+            `storage.googleapis.com` is specified, access to the storage
+            buckets inside the perimeter must meet the perimeter's access
+            restrictions.
+          * `vpcAccessibleServices` (`pulumi.Input[dict]`) - -
+            (Optional)
+            Specifies how APIs are allowed to communicate within the Service
+            Perimeter.  Structure is documented below.
+            * `allowedServices` (`pulumi.Input[list]`) - -
+              (Optional)
+              The list of APIs usable within the Service Perimeter.
+              Must be empty unless `enableRestriction` is True.
+            * `enableRestriction` (`pulumi.Input[bool]`) - -
+              (Optional)
+              Whether to restrict API calls within the Service Perimeter to the
+              list of APIs specified in 'allowedServices'.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -151,31 +251,82 @@ class ServicePerimeter(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] create_time: Time the AccessPolicy was created in UTC.
-        :param pulumi.Input[str] description: Description of the ServicePerimeter and its use. Does not affect behavior.
-        :param pulumi.Input[str] name: Resource name for the ServicePerimeter. The short_name component must begin with a letter and only include alphanumeric
-               and '_'. Format: accessPolicies/{policy_id}/servicePerimeters/{short_name}
-        :param pulumi.Input[str] parent: The AccessPolicy this ServicePerimeter lives in. Format: accessPolicies/{policy_id}
-        :param pulumi.Input[str] perimeter_type: Specifies the type of the Perimeter. There are two types: regular and bridge. Regular Service Perimeter contains
-               resources, access levels, and restricted services. Every resource can be in at most ONE regular Service Perimeter. In
-               addition to being in a regular service perimeter, a resource can also be in zero or more perimeter bridges. A perimeter
-               bridge only contains resources. Cross project operations are permitted if all effected resources share some perimeter
-               (whether bridge or regular). Perimeter Bridge does not contain access levels or services: those are governed entirely by
-               the regular perimeter that resource is in. Perimeter Bridges are typically useful when building more complex topologies
-               with many independent perimeters that need to share some data with a common perimeter, but should not be able to share
-               data among themselves.
-        :param pulumi.Input[dict] status: ServicePerimeter configuration. Specifies sets of resources, restricted services and access levels that determine
-               perimeter content and boundaries.
-        :param pulumi.Input[str] title: Human readable title. Must be unique within the Policy.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               Description of the ServicePerimeter and its use. Does not affect
+               behavior.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Resource name for the ServicePerimeter. The short_name component must
+               begin with a letter and only include alphanumeric and '_'.
+               Format: accessPolicies/{policy_id}/servicePerimeters/{short_name}
+        :param pulumi.Input[str] parent: -
+               (Required)
+               The AccessPolicy this ServicePerimeter lives in.
+               Format: accessPolicies/{policy_id}
+        :param pulumi.Input[str] perimeter_type: -
+               (Optional)
+               Specifies the type of the Perimeter. There are two types: regular and
+               bridge. Regular Service Perimeter contains resources, access levels,
+               and restricted services. Every resource can be in at most
+               ONE regular Service Perimeter.
+               In addition to being in a regular service perimeter, a resource can also
+               be in zero or more perimeter bridges. A perimeter bridge only contains
+               resources. Cross project operations are permitted if all effected
+               resources share some perimeter (whether bridge or regular). Perimeter
+               Bridge does not contain access levels or services: those are governed
+               entirely by the regular perimeter that resource is in.
+               Perimeter Bridges are typically useful when building more complex
+               topologies with many independent perimeters that need to share some data
+               with a common perimeter, but should not be able to share data among
+               themselves.
+        :param pulumi.Input[dict] status: -
+               (Optional)
+               ServicePerimeter configuration. Specifies sets of resources,
+               restricted services and access levels that determine
+               perimeter content and boundaries.  Structure is documented below.
+        :param pulumi.Input[str] title: -
+               (Required)
+               Human readable title. Must be unique within the Policy.
         :param pulumi.Input[str] update_time: Time the AccessPolicy was updated in UTC.
 
         The **status** object supports the following:
 
-          * `accessLevels` (`pulumi.Input[list]`)
-          * `resources` (`pulumi.Input[list]`)
-          * `restrictedServices` (`pulumi.Input[list]`)
-          * `vpcAccessibleServices` (`pulumi.Input[dict]`)
-            * `allowedServices` (`pulumi.Input[list]`)
-            * `enableRestriction` (`pulumi.Input[bool]`)
+          * `accessLevels` (`pulumi.Input[list]`) - -
+            (Optional)
+            A list of AccessLevel resource names that allow resources within
+            the ServicePerimeter to be accessed from the internet.
+            AccessLevels listed must be in the same policy as this
+            ServicePerimeter. Referencing a nonexistent AccessLevel is a
+            syntax error. If no AccessLevel names are listed, resources within
+            the perimeter can only be accessed via GCP calls with request
+            origins within the perimeter. For Service Perimeter Bridge, must
+            be empty.
+            Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
+          * `resources` (`pulumi.Input[list]`) - -
+            (Optional)
+            A list of GCP resources that are inside of the service perimeter.
+            Currently only projects are allowed.
+            Format: projects/{project_number}
+          * `restrictedServices` (`pulumi.Input[list]`) - -
+            (Optional)
+            GCP services that are subject to the Service Perimeter
+            restrictions. Must contain a list of services. For example, if
+            `storage.googleapis.com` is specified, access to the storage
+            buckets inside the perimeter must meet the perimeter's access
+            restrictions.
+          * `vpcAccessibleServices` (`pulumi.Input[dict]`) - -
+            (Optional)
+            Specifies how APIs are allowed to communicate within the Service
+            Perimeter.  Structure is documented below.
+            * `allowedServices` (`pulumi.Input[list]`) - -
+              (Optional)
+              The list of APIs usable within the Service Perimeter.
+              Must be empty unless `enableRestriction` is True.
+            * `enableRestriction` (`pulumi.Input[bool]`) - -
+              (Optional)
+              Whether to restrict API calls within the Service Perimeter to the
+              list of APIs specified in 'allowedServices'.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -23,31 +23,43 @@ namespace Pulumi.Gcp.Billing
     public partial class Budget : Pulumi.CustomResource
     {
         /// <summary>
-        /// Defines notifications that are sent on every update to the billing account's spend, regardless of the
-        /// thresholds defined using threshold rules.
+        /// -
+        /// (Optional)
+        /// Defines notifications that are sent on every update to the
+        /// billing account's spend, regardless of the thresholds defined
+        /// using threshold rules.  Structure is documented below.
         /// </summary>
         [Output("allUpdatesRule")]
         public Output<Outputs.BudgetAllUpdatesRule?> AllUpdatesRule { get; private set; } = null!;
 
         /// <summary>
-        /// The budgeted amount for each usage period.
+        /// -
+        /// (Required)
+        /// The budgeted amount for each usage period.  Structure is documented below.
         /// </summary>
         [Output("amount")]
         public Output<Outputs.BudgetAmount> Amount { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// ID of the billing account to set a budget on.
         /// </summary>
         [Output("billingAccount")]
         public Output<string> BillingAccount { get; private set; } = null!;
 
         /// <summary>
-        /// Filters that define which resources are used to compute the actual spend against the budget.
+        /// -
+        /// (Optional)
+        /// Filters that define which resources are used to compute the actual
+        /// spend against the budget.  Structure is documented below.
         /// </summary>
         [Output("budgetFilter")]
         public Output<Outputs.BudgetBudgetFilter?> BudgetFilter { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// User data for display name in UI. Must be &lt;= 60 chars.
         /// </summary>
         [Output("displayName")]
@@ -61,8 +73,11 @@ namespace Pulumi.Gcp.Billing
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Rules that trigger alerts (notifications of thresholds being crossed) when spend exceeds the specified
-        /// percentages of the budget.
+        /// -
+        /// (Required)
+        /// Rules that trigger alerts (notifications of thresholds being
+        /// crossed) when spend exceeds the specified percentages of the
+        /// budget.  Structure is documented below.
         /// </summary>
         [Output("thresholdRules")]
         public Output<ImmutableArray<Outputs.BudgetThresholdRules>> ThresholdRules { get; private set; } = null!;
@@ -114,31 +129,43 @@ namespace Pulumi.Gcp.Billing
     public sealed class BudgetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defines notifications that are sent on every update to the billing account's spend, regardless of the
-        /// thresholds defined using threshold rules.
+        /// -
+        /// (Optional)
+        /// Defines notifications that are sent on every update to the
+        /// billing account's spend, regardless of the thresholds defined
+        /// using threshold rules.  Structure is documented below.
         /// </summary>
         [Input("allUpdatesRule")]
         public Input<Inputs.BudgetAllUpdatesRuleArgs>? AllUpdatesRule { get; set; }
 
         /// <summary>
-        /// The budgeted amount for each usage period.
+        /// -
+        /// (Required)
+        /// The budgeted amount for each usage period.  Structure is documented below.
         /// </summary>
         [Input("amount", required: true)]
         public Input<Inputs.BudgetAmountArgs> Amount { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// ID of the billing account to set a budget on.
         /// </summary>
         [Input("billingAccount", required: true)]
         public Input<string> BillingAccount { get; set; } = null!;
 
         /// <summary>
-        /// Filters that define which resources are used to compute the actual spend against the budget.
+        /// -
+        /// (Optional)
+        /// Filters that define which resources are used to compute the actual
+        /// spend against the budget.  Structure is documented below.
         /// </summary>
         [Input("budgetFilter")]
         public Input<Inputs.BudgetBudgetFilterArgs>? BudgetFilter { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// User data for display name in UI. Must be &lt;= 60 chars.
         /// </summary>
         [Input("displayName")]
@@ -148,8 +175,11 @@ namespace Pulumi.Gcp.Billing
         private InputList<Inputs.BudgetThresholdRulesArgs>? _thresholdRules;
 
         /// <summary>
-        /// Rules that trigger alerts (notifications of thresholds being crossed) when spend exceeds the specified
-        /// percentages of the budget.
+        /// -
+        /// (Required)
+        /// Rules that trigger alerts (notifications of thresholds being
+        /// crossed) when spend exceeds the specified percentages of the
+        /// budget.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.BudgetThresholdRulesArgs> ThresholdRules
         {
@@ -165,31 +195,43 @@ namespace Pulumi.Gcp.Billing
     public sealed class BudgetState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Defines notifications that are sent on every update to the billing account's spend, regardless of the
-        /// thresholds defined using threshold rules.
+        /// -
+        /// (Optional)
+        /// Defines notifications that are sent on every update to the
+        /// billing account's spend, regardless of the thresholds defined
+        /// using threshold rules.  Structure is documented below.
         /// </summary>
         [Input("allUpdatesRule")]
         public Input<Inputs.BudgetAllUpdatesRuleGetArgs>? AllUpdatesRule { get; set; }
 
         /// <summary>
-        /// The budgeted amount for each usage period.
+        /// -
+        /// (Required)
+        /// The budgeted amount for each usage period.  Structure is documented below.
         /// </summary>
         [Input("amount")]
         public Input<Inputs.BudgetAmountGetArgs>? Amount { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// ID of the billing account to set a budget on.
         /// </summary>
         [Input("billingAccount")]
         public Input<string>? BillingAccount { get; set; }
 
         /// <summary>
-        /// Filters that define which resources are used to compute the actual spend against the budget.
+        /// -
+        /// (Optional)
+        /// Filters that define which resources are used to compute the actual
+        /// spend against the budget.  Structure is documented below.
         /// </summary>
         [Input("budgetFilter")]
         public Input<Inputs.BudgetBudgetFilterGetArgs>? BudgetFilter { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// User data for display name in UI. Must be &lt;= 60 chars.
         /// </summary>
         [Input("displayName")]
@@ -206,8 +248,11 @@ namespace Pulumi.Gcp.Billing
         private InputList<Inputs.BudgetThresholdRulesGetArgs>? _thresholdRules;
 
         /// <summary>
-        /// Rules that trigger alerts (notifications of thresholds being crossed) when spend exceeds the specified
-        /// percentages of the budget.
+        /// -
+        /// (Required)
+        /// Rules that trigger alerts (notifications of thresholds being
+        /// crossed) when spend exceeds the specified percentages of the
+        /// budget.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.BudgetThresholdRulesGetArgs> ThresholdRules
         {
@@ -225,9 +270,24 @@ namespace Pulumi.Gcp.Billing
 
     public sealed class BudgetAllUpdatesRuleArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the Cloud Pub/Sub topic where budget related
+        /// messages will be published, in the form
+        /// projects/{project_id}/topics/{topic_id}. Updates are sent
+        /// at regular intervals to the topic.
+        /// </summary>
         [Input("pubsubTopic", required: true)]
         public Input<string> PubsubTopic { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The schema version of the notification. Only "1.0" is
+        /// accepted. It represents the JSON schema as defined in
+        /// https://cloud.google.com/billing/docs/how-to/budgets#notification_format.
+        /// </summary>
         [Input("schemaVersion")]
         public Input<string>? SchemaVersion { get; set; }
 
@@ -238,9 +298,24 @@ namespace Pulumi.Gcp.Billing
 
     public sealed class BudgetAllUpdatesRuleGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the Cloud Pub/Sub topic where budget related
+        /// messages will be published, in the form
+        /// projects/{project_id}/topics/{topic_id}. Updates are sent
+        /// at regular intervals to the topic.
+        /// </summary>
         [Input("pubsubTopic", required: true)]
         public Input<string> PubsubTopic { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The schema version of the notification. Only "1.0" is
+        /// accepted. It represents the JSON schema as defined in
+        /// https://cloud.google.com/billing/docs/how-to/budgets#notification_format.
+        /// </summary>
         [Input("schemaVersion")]
         public Input<string>? SchemaVersion { get; set; }
 
@@ -251,6 +326,13 @@ namespace Pulumi.Gcp.Billing
 
     public sealed class BudgetAmountArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// A specified amount to use as the budget. currencyCode is
+        /// optional. If specified, it must match the currency of the
+        /// billing account. The currencyCode is provided on output.  Structure is documented below.
+        /// </summary>
         [Input("specifiedAmount", required: true)]
         public Input<BudgetAmountSpecifiedAmountArgs> SpecifiedAmount { get; set; } = null!;
 
@@ -261,6 +343,13 @@ namespace Pulumi.Gcp.Billing
 
     public sealed class BudgetAmountGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// A specified amount to use as the budget. currencyCode is
+        /// optional. If specified, it must match the currency of the
+        /// billing account. The currencyCode is provided on output.  Structure is documented below.
+        /// </summary>
         [Input("specifiedAmount", required: true)]
         public Input<BudgetAmountSpecifiedAmountGetArgs> SpecifiedAmount { get; set; } = null!;
 
@@ -271,12 +360,34 @@ namespace Pulumi.Gcp.Billing
 
     public sealed class BudgetAmountSpecifiedAmountArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The 3-letter currency code defined in ISO 4217.
+        /// </summary>
         [Input("currencyCode")]
         public Input<string>? CurrencyCode { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of nano (10^-9) units of the amount.
+        /// The value must be between -999,999,999 and +999,999,999
+        /// inclusive. If units is positive, nanos must be positive or
+        /// zero. If units is zero, nanos can be positive, zero, or
+        /// negative. If units is negative, nanos must be negative or
+        /// zero. For example $-1.75 is represented as units=-1 and
+        /// nanos=-750,000,000.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The whole units of the amount. For example if currencyCode
+        /// is "USD", then 1 unit is one US dollar.
+        /// </summary>
         [Input("units")]
         public Input<string>? Units { get; set; }
 
@@ -287,12 +398,34 @@ namespace Pulumi.Gcp.Billing
 
     public sealed class BudgetAmountSpecifiedAmountGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The 3-letter currency code defined in ISO 4217.
+        /// </summary>
         [Input("currencyCode")]
         public Input<string>? CurrencyCode { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of nano (10^-9) units of the amount.
+        /// The value must be between -999,999,999 and +999,999,999
+        /// inclusive. If units is positive, nanos must be positive or
+        /// zero. If units is zero, nanos can be positive, zero, or
+        /// negative. If units is negative, nanos must be negative or
+        /// zero. For example $-1.75 is represented as units=-1 and
+        /// nanos=-750,000,000.
+        /// </summary>
         [Input("nanos")]
         public Input<int>? Nanos { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The whole units of the amount. For example if currencyCode
+        /// is "USD", then 1 unit is one US dollar.
+        /// </summary>
         [Input("units")]
         public Input<string>? Units { get; set; }
 
@@ -303,11 +436,28 @@ namespace Pulumi.Gcp.Billing
 
     public sealed class BudgetBudgetFilterArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how credits should be treated when determining spend
+        /// for threshold calculations.
+        /// </summary>
         [Input("creditTypesTreatment")]
         public Input<string>? CreditTypesTreatment { get; set; }
 
         [Input("projects")]
         private InputList<string>? _projects;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A set of projects of the form projects/{project_id},
+        /// specifying that usage from only this set of projects should be
+        /// included in the budget. If omitted, the report will include
+        /// all usage for the billing account, regardless of which project
+        /// the usage occurred on. Only zero or one project can be
+        /// specified currently.
+        /// </summary>
         public InputList<string> Projects
         {
             get => _projects ?? (_projects = new InputList<string>());
@@ -316,6 +466,17 @@ namespace Pulumi.Gcp.Billing
 
         [Input("services")]
         private InputList<string>? _services;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A set of services of the form services/{service_id},
+        /// specifying that usage from only this set of services should be
+        /// included in the budget. If omitted, the report will include
+        /// usage for all the services. The service names are available
+        /// through the Catalog API:
+        /// https://cloud.google.com/billing/v1/how-tos/catalog-api.
+        /// </summary>
         public InputList<string> Services
         {
             get => _services ?? (_services = new InputList<string>());
@@ -329,11 +490,28 @@ namespace Pulumi.Gcp.Billing
 
     public sealed class BudgetBudgetFilterGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how credits should be treated when determining spend
+        /// for threshold calculations.
+        /// </summary>
         [Input("creditTypesTreatment")]
         public Input<string>? CreditTypesTreatment { get; set; }
 
         [Input("projects")]
         private InputList<string>? _projects;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A set of projects of the form projects/{project_id},
+        /// specifying that usage from only this set of projects should be
+        /// included in the budget. If omitted, the report will include
+        /// all usage for the billing account, regardless of which project
+        /// the usage occurred on. Only zero or one project can be
+        /// specified currently.
+        /// </summary>
         public InputList<string> Projects
         {
             get => _projects ?? (_projects = new InputList<string>());
@@ -342,6 +520,17 @@ namespace Pulumi.Gcp.Billing
 
         [Input("services")]
         private InputList<string>? _services;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A set of services of the form services/{service_id},
+        /// specifying that usage from only this set of services should be
+        /// included in the budget. If omitted, the report will include
+        /// usage for all the services. The service names are available
+        /// through the Catalog API:
+        /// https://cloud.google.com/billing/v1/how-tos/catalog-api.
+        /// </summary>
         public InputList<string> Services
         {
             get => _services ?? (_services = new InputList<string>());
@@ -355,9 +544,21 @@ namespace Pulumi.Gcp.Billing
 
     public sealed class BudgetThresholdRulesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The type of basis used to determine if spend has passed
+        /// the threshold.
+        /// </summary>
         [Input("spendBasis")]
         public Input<string>? SpendBasis { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Send an alert when this threshold is exceeded. This is a
+        /// 1.0-based percentage, so 0.5 = 50%. Must be &gt;= 0.
+        /// </summary>
         [Input("thresholdPercent", required: true)]
         public Input<double> ThresholdPercent { get; set; } = null!;
 
@@ -368,9 +569,21 @@ namespace Pulumi.Gcp.Billing
 
     public sealed class BudgetThresholdRulesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The type of basis used to determine if spend has passed
+        /// the threshold.
+        /// </summary>
         [Input("spendBasis")]
         public Input<string>? SpendBasis { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Send an alert when this threshold is exceeded. This is a
+        /// 1.0-based percentage, so 0.5 = 50%. Must be &gt;= 0.
+        /// </summary>
         [Input("thresholdPercent", required: true)]
         public Input<double> ThresholdPercent { get; set; } = null!;
 
@@ -386,7 +599,22 @@ namespace Pulumi.Gcp.Billing
     [OutputType]
     public sealed class BudgetAllUpdatesRule
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the Cloud Pub/Sub topic where budget related
+        /// messages will be published, in the form
+        /// projects/{project_id}/topics/{topic_id}. Updates are sent
+        /// at regular intervals to the topic.
+        /// </summary>
         public readonly string PubsubTopic;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The schema version of the notification. Only "1.0" is
+        /// accepted. It represents the JSON schema as defined in
+        /// https://cloud.google.com/billing/docs/how-to/budgets#notification_format.
+        /// </summary>
         public readonly string? SchemaVersion;
 
         [OutputConstructor]
@@ -402,6 +630,13 @@ namespace Pulumi.Gcp.Billing
     [OutputType]
     public sealed class BudgetAmount
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// A specified amount to use as the budget. currencyCode is
+        /// optional. If specified, it must match the currency of the
+        /// billing account. The currencyCode is provided on output.  Structure is documented below.
+        /// </summary>
         public readonly BudgetAmountSpecifiedAmount SpecifiedAmount;
 
         [OutputConstructor]
@@ -414,8 +649,30 @@ namespace Pulumi.Gcp.Billing
     [OutputType]
     public sealed class BudgetAmountSpecifiedAmount
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The 3-letter currency code defined in ISO 4217.
+        /// </summary>
         public readonly string? CurrencyCode;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of nano (10^-9) units of the amount.
+        /// The value must be between -999,999,999 and +999,999,999
+        /// inclusive. If units is positive, nanos must be positive or
+        /// zero. If units is zero, nanos can be positive, zero, or
+        /// negative. If units is negative, nanos must be negative or
+        /// zero. For example $-1.75 is represented as units=-1 and
+        /// nanos=-750,000,000.
+        /// </summary>
         public readonly int? Nanos;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The whole units of the amount. For example if currencyCode
+        /// is "USD", then 1 unit is one US dollar.
+        /// </summary>
         public readonly string? Units;
 
         [OutputConstructor]
@@ -433,8 +690,34 @@ namespace Pulumi.Gcp.Billing
     [OutputType]
     public sealed class BudgetBudgetFilter
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how credits should be treated when determining spend
+        /// for threshold calculations.
+        /// </summary>
         public readonly string? CreditTypesTreatment;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A set of projects of the form projects/{project_id},
+        /// specifying that usage from only this set of projects should be
+        /// included in the budget. If omitted, the report will include
+        /// all usage for the billing account, regardless of which project
+        /// the usage occurred on. Only zero or one project can be
+        /// specified currently.
+        /// </summary>
         public readonly ImmutableArray<string> Projects;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A set of services of the form services/{service_id},
+        /// specifying that usage from only this set of services should be
+        /// included in the budget. If omitted, the report will include
+        /// usage for all the services. The service names are available
+        /// through the Catalog API:
+        /// https://cloud.google.com/billing/v1/how-tos/catalog-api.
+        /// </summary>
         public readonly ImmutableArray<string> Services;
 
         [OutputConstructor]
@@ -452,7 +735,19 @@ namespace Pulumi.Gcp.Billing
     [OutputType]
     public sealed class BudgetThresholdRules
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The type of basis used to determine if spend has passed
+        /// the threshold.
+        /// </summary>
         public readonly string? SpendBasis;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Send an alert when this threshold is exceeded. This is a
+        /// 1.0-based percentage, so 0.5 = 50%. Must be &gt;= 0.
+        /// </summary>
         public readonly double ThresholdPercent;
 
         [OutputConstructor]
