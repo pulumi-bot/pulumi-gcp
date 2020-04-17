@@ -30,8 +30,7 @@ type IAMCustomRole struct {
 	// A human-readable description for the role.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The numeric ID of the organization in which you want to create a custom role.
-	OrgId pulumi.StringOutput `pulumi:"orgId"`
-	// The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+	OrgId       pulumi.StringOutput      `pulumi:"orgId"`
 	Permissions pulumi.StringArrayOutput `pulumi:"permissions"`
 	// The role id to use for this role.
 	RoleId pulumi.StringOutput `pulumi:"roleId"`
@@ -88,8 +87,7 @@ type iamcustomRoleState struct {
 	// A human-readable description for the role.
 	Description *string `pulumi:"description"`
 	// The numeric ID of the organization in which you want to create a custom role.
-	OrgId *string `pulumi:"orgId"`
-	// The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+	OrgId       *string  `pulumi:"orgId"`
 	Permissions []string `pulumi:"permissions"`
 	// The role id to use for this role.
 	RoleId *string `pulumi:"roleId"`
@@ -107,8 +105,7 @@ type IAMCustomRoleState struct {
 	// A human-readable description for the role.
 	Description pulumi.StringPtrInput
 	// The numeric ID of the organization in which you want to create a custom role.
-	OrgId pulumi.StringPtrInput
-	// The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+	OrgId       pulumi.StringPtrInput
 	Permissions pulumi.StringArrayInput
 	// The role id to use for this role.
 	RoleId pulumi.StringPtrInput
@@ -128,8 +125,7 @@ type iamcustomRoleArgs struct {
 	// A human-readable description for the role.
 	Description *string `pulumi:"description"`
 	// The numeric ID of the organization in which you want to create a custom role.
-	OrgId string `pulumi:"orgId"`
-	// The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+	OrgId       string   `pulumi:"orgId"`
 	Permissions []string `pulumi:"permissions"`
 	// The role id to use for this role.
 	RoleId string `pulumi:"roleId"`
@@ -146,8 +142,7 @@ type IAMCustomRoleArgs struct {
 	// A human-readable description for the role.
 	Description pulumi.StringPtrInput
 	// The numeric ID of the organization in which you want to create a custom role.
-	OrgId pulumi.StringInput
-	// The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+	OrgId       pulumi.StringInput
 	Permissions pulumi.StringArrayInput
 	// The role id to use for this role.
 	RoleId pulumi.StringInput

@@ -13,18 +13,8 @@ namespace Pulumi.Gcp.Dataproc.Outputs
     [OutputType]
     public sealed class ClusterClusterConfigWorkerConfig
     {
-        /// <summary>
-        /// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
-        /// </summary>
         public readonly ImmutableArray<Outputs.ClusterClusterConfigWorkerConfigAccelerator> Accelerators;
-        /// <summary>
-        /// Disk Config
-        /// </summary>
         public readonly Outputs.ClusterClusterConfigWorkerConfigDiskConfig? DiskConfig;
-        /// <summary>
-        /// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
-        /// for more information.
-        /// </summary>
         public readonly string? ImageUri;
         public readonly ImmutableArray<string> InstanceNames;
         /// <summary>
@@ -40,6 +30,10 @@ namespace Pulumi.Gcp.Dataproc.Outputs
         /// for details about which CPU families are available (and defaulted) for each zone.
         /// </summary>
         public readonly string? MinCpuPlatform;
+        /// <summary>
+        /// Specifies the number of preemptible nodes to create.
+        /// Defaults to 0.
+        /// </summary>
         public readonly int? NumInstances;
 
         [OutputConstructor]

@@ -27,8 +27,7 @@ type IAMCustomRole struct {
 	// (Optional) The current deleted state of the role.
 	Deleted pulumi.BoolOutput `pulumi:"deleted"`
 	// A human-readable description for the role.
-	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+	Description pulumi.StringPtrOutput   `pulumi:"description"`
 	Permissions pulumi.StringArrayOutput `pulumi:"permissions"`
 	// The project that the service account will be created in.
 	// Defaults to the provider project configuration.
@@ -83,8 +82,7 @@ type iamcustomRoleState struct {
 	// (Optional) The current deleted state of the role.
 	Deleted *bool `pulumi:"deleted"`
 	// A human-readable description for the role.
-	Description *string `pulumi:"description"`
-	// The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+	Description *string  `pulumi:"description"`
 	Permissions []string `pulumi:"permissions"`
 	// The project that the service account will be created in.
 	// Defaults to the provider project configuration.
@@ -104,7 +102,6 @@ type IAMCustomRoleState struct {
 	Deleted pulumi.BoolPtrInput
 	// A human-readable description for the role.
 	Description pulumi.StringPtrInput
-	// The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
 	Permissions pulumi.StringArrayInput
 	// The project that the service account will be created in.
 	// Defaults to the provider project configuration.
@@ -125,8 +122,7 @@ func (IAMCustomRoleState) ElementType() reflect.Type {
 
 type iamcustomRoleArgs struct {
 	// A human-readable description for the role.
-	Description *string `pulumi:"description"`
-	// The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+	Description *string  `pulumi:"description"`
 	Permissions []string `pulumi:"permissions"`
 	// The project that the service account will be created in.
 	// Defaults to the provider project configuration.
@@ -145,7 +141,6 @@ type iamcustomRoleArgs struct {
 type IAMCustomRoleArgs struct {
 	// A human-readable description for the role.
 	Description pulumi.StringPtrInput
-	// The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
 	Permissions pulumi.StringArrayInput
 	// The project that the service account will be created in.
 	// Defaults to the provider project configuration.

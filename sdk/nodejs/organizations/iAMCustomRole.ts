@@ -81,9 +81,6 @@ export class IAMCustomRole extends pulumi.CustomResource {
      * The numeric ID of the organization in which you want to create a custom role.
      */
     public readonly orgId!: pulumi.Output<string>;
-    /**
-     * The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
-     */
     public readonly permissions!: pulumi.Output<string[]>;
     /**
      * The role id to use for this role.
@@ -168,9 +165,6 @@ export interface IAMCustomRoleState {
      * The numeric ID of the organization in which you want to create a custom role.
      */
     readonly orgId?: pulumi.Input<string>;
-    /**
-     * The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
-     */
     readonly permissions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The role id to use for this role.
@@ -200,9 +194,6 @@ export interface IAMCustomRoleArgs {
      * The numeric ID of the organization in which you want to create a custom role.
      */
     readonly orgId: pulumi.Input<string>;
-    /**
-     * The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
-     */
     readonly permissions: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The role id to use for this role.

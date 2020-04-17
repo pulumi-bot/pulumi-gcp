@@ -40,9 +40,6 @@ namespace Pulumi.Gcp.ServiceAccount
         [Input("project")]
         public string? Project { get; set; }
 
-        /// <summary>
-        /// The output format of the public key requested. X509_PEM is the default output format.
-        /// </summary>
         [Input("publicKeyType")]
         public string? PublicKeyType { get; set; }
 

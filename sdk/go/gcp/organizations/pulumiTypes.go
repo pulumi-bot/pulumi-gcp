@@ -1125,10 +1125,8 @@ func (o PolicyRestorePolicyPtrOutput) Default() pulumi.BoolOutput {
 }
 
 type GetIAMPolicyAuditConfig struct {
-	// A nested block that defines the operations you'd like to log.
 	AuditLogConfigs []GetIAMPolicyAuditConfigAuditLogConfig `pulumi:"auditLogConfigs"`
-	// Defines a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
-	Service string `pulumi:"service"`
+	Service         string                                  `pulumi:"service"`
 }
 
 // GetIAMPolicyAuditConfigInput is an input type that accepts GetIAMPolicyAuditConfigArgs and GetIAMPolicyAuditConfigOutput values.
@@ -1144,10 +1142,8 @@ type GetIAMPolicyAuditConfigInput interface {
 }
 
 type GetIAMPolicyAuditConfigArgs struct {
-	// A nested block that defines the operations you'd like to log.
 	AuditLogConfigs GetIAMPolicyAuditConfigAuditLogConfigArrayInput `pulumi:"auditLogConfigs"`
-	// Defines a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
-	Service pulumi.StringInput `pulumi:"service"`
+	Service         pulumi.StringInput                              `pulumi:"service"`
 }
 
 func (GetIAMPolicyAuditConfigArgs) ElementType() reflect.Type {
@@ -1202,12 +1198,10 @@ func (o GetIAMPolicyAuditConfigOutput) ToGetIAMPolicyAuditConfigOutputWithContex
 	return o
 }
 
-// A nested block that defines the operations you'd like to log.
 func (o GetIAMPolicyAuditConfigOutput) AuditLogConfigs() GetIAMPolicyAuditConfigAuditLogConfigArrayOutput {
 	return o.ApplyT(func(v GetIAMPolicyAuditConfig) []GetIAMPolicyAuditConfigAuditLogConfig { return v.AuditLogConfigs }).(GetIAMPolicyAuditConfigAuditLogConfigArrayOutput)
 }
 
-// Defines a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
 func (o GetIAMPolicyAuditConfigOutput) Service() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIAMPolicyAuditConfig) string { return v.Service }).(pulumi.StringOutput)
 }
@@ -1233,10 +1227,8 @@ func (o GetIAMPolicyAuditConfigArrayOutput) Index(i pulumi.IntInput) GetIAMPolic
 }
 
 type GetIAMPolicyAuditConfigAuditLogConfig struct {
-	// Specifies the identities that are exempt from these types of logging operations. Follows the same format of the `members` array for `binding`.
 	ExemptedMembers []string `pulumi:"exemptedMembers"`
-	// Defines the logging level. `DATA_READ`, `DATA_WRITE` and `ADMIN_READ` capture different types of events. See [the audit configuration documentation](https://cloud.google.com/resource-manager/reference/rest/Shared.Types/AuditConfig) for more details.
-	LogType string `pulumi:"logType"`
+	LogType         string   `pulumi:"logType"`
 }
 
 // GetIAMPolicyAuditConfigAuditLogConfigInput is an input type that accepts GetIAMPolicyAuditConfigAuditLogConfigArgs and GetIAMPolicyAuditConfigAuditLogConfigOutput values.
@@ -1252,10 +1244,8 @@ type GetIAMPolicyAuditConfigAuditLogConfigInput interface {
 }
 
 type GetIAMPolicyAuditConfigAuditLogConfigArgs struct {
-	// Specifies the identities that are exempt from these types of logging operations. Follows the same format of the `members` array for `binding`.
 	ExemptedMembers pulumi.StringArrayInput `pulumi:"exemptedMembers"`
-	// Defines the logging level. `DATA_READ`, `DATA_WRITE` and `ADMIN_READ` capture different types of events. See [the audit configuration documentation](https://cloud.google.com/resource-manager/reference/rest/Shared.Types/AuditConfig) for more details.
-	LogType pulumi.StringInput `pulumi:"logType"`
+	LogType         pulumi.StringInput      `pulumi:"logType"`
 }
 
 func (GetIAMPolicyAuditConfigAuditLogConfigArgs) ElementType() reflect.Type {
@@ -1310,12 +1300,10 @@ func (o GetIAMPolicyAuditConfigAuditLogConfigOutput) ToGetIAMPolicyAuditConfigAu
 	return o
 }
 
-// Specifies the identities that are exempt from these types of logging operations. Follows the same format of the `members` array for `binding`.
 func (o GetIAMPolicyAuditConfigAuditLogConfigOutput) ExemptedMembers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetIAMPolicyAuditConfigAuditLogConfig) []string { return v.ExemptedMembers }).(pulumi.StringArrayOutput)
 }
 
-// Defines the logging level. `DATA_READ`, `DATA_WRITE` and `ADMIN_READ` capture different types of events. See [the audit configuration documentation](https://cloud.google.com/resource-manager/reference/rest/Shared.Types/AuditConfig) for more details.
 func (o GetIAMPolicyAuditConfigAuditLogConfigOutput) LogType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIAMPolicyAuditConfigAuditLogConfig) string { return v.LogType }).(pulumi.StringOutput)
 }

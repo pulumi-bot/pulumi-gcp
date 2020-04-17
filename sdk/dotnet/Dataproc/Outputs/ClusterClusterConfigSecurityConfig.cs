@@ -13,9 +13,6 @@ namespace Pulumi.Gcp.Dataproc.Outputs
     [OutputType]
     public sealed class ClusterClusterConfigSecurityConfig
     {
-        /// <summary>
-        /// Kerberos Configuration
-        /// </summary>
         public readonly Outputs.ClusterClusterConfigSecurityConfigKerberosConfig KerberosConfig;
 
         [OutputConstructor]

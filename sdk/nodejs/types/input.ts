@@ -1022,23 +1022,8 @@ export namespace composer {
     export interface EnvironmentConfigSoftwareConfig {
         airflowConfigOverrides?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         envVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-        /**
-         * -
-         * The version of the software running in the environment. This encapsulates both the version of Cloud Composer
-         * functionality and the version of Apache Airflow. It must match the regular expression
-         * `composer-[0-9]+\.[0-9]+(\.[0-9]+)?-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`.
-         * The Cloud Composer portion of the version is a semantic version.
-         * The portion of the image version following 'airflow-' is an official Apache Airflow repository release name.
-         * See [documentation](https://cloud.google.com/composer/docs/reference/rest/v1beta1/projects.locations.environments#softwareconfig)
-         * for allowed release names.
-         */
         imageVersion?: pulumi.Input<string>;
         pypiPackages?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-        /**
-         * -
-         * The major version of Python used to run the Apache Airflow scheduler, worker, and webserver processes.
-         * Can be set to '2' or '3'. If not specified, the default is '2'. Cannot be updated.
-         */
         pythonVersion?: pulumi.Input<string>;
     }
 }
@@ -1779,15 +1764,15 @@ export namespace compute {
 
     export interface InstanceShieldedInstanceConfig {
         /**
-         * -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
+         * Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
          */
         enableIntegrityMonitoring?: pulumi.Input<boolean>;
         /**
-         * -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
+         * Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
          */
         enableSecureBoot?: pulumi.Input<boolean>;
         /**
-         * -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
+         * Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
          */
         enableVtpm?: pulumi.Input<boolean>;
     }
@@ -2016,15 +2001,15 @@ export namespace compute {
 
     export interface InstanceTemplateShieldedInstanceConfig {
         /**
-         * -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
+         * Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
          */
         enableIntegrityMonitoring?: pulumi.Input<boolean>;
         /**
-         * -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
+         * Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
          */
         enableSecureBoot?: pulumi.Input<boolean>;
         /**
-         * -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
+         * Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
          */
         enableVtpm?: pulumi.Input<boolean>;
     }
@@ -3617,10 +3602,6 @@ export namespace container {
     }
 
     export interface ClusterNodeConfigSandboxConfig {
-        /**
-         * Which sandbox to use for pods in the node pool.
-         * Accepted values are:
-         */
         sandboxType: pulumi.Input<string>;
     }
 
@@ -3636,29 +3617,12 @@ export namespace container {
     }
 
     export interface ClusterNodeConfigTaint {
-        /**
-         * Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
-         */
         effect: pulumi.Input<string>;
-        /**
-         * Key for taint.
-         */
         key: pulumi.Input<string>;
-        /**
-         * Value for taint.
-         */
         value: pulumi.Input<string>;
     }
 
     export interface ClusterNodeConfigWorkloadMetadataConfig {
-        /**
-         * How to expose the node metadata to the workload running on the node.
-         * Accepted values are:
-         * * UNSPECIFIED: Not Set
-         * * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-         * * EXPOSE: Expose all VM metadata to pods.
-         * * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
-         */
         nodeMetadata: pulumi.Input<string>;
     }
 
@@ -3837,10 +3801,6 @@ export namespace container {
     }
 
     export interface ClusterNodePoolNodeConfigSandboxConfig {
-        /**
-         * Which sandbox to use for pods in the node pool.
-         * Accepted values are:
-         */
         sandboxType: pulumi.Input<string>;
     }
 
@@ -3856,29 +3816,12 @@ export namespace container {
     }
 
     export interface ClusterNodePoolNodeConfigTaint {
-        /**
-         * Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
-         */
         effect: pulumi.Input<string>;
-        /**
-         * Key for taint.
-         */
         key: pulumi.Input<string>;
-        /**
-         * Value for taint.
-         */
         value: pulumi.Input<string>;
     }
 
     export interface ClusterNodePoolNodeConfigWorkloadMetadataConfig {
-        /**
-         * How to expose the node metadata to the workload running on the node.
-         * Accepted values are:
-         * * UNSPECIFIED: Not Set
-         * * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-         * * EXPOSE: Expose all VM metadata to pods.
-         * * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
-         */
         nodeMetadata: pulumi.Input<string>;
     }
 
@@ -4113,46 +4056,15 @@ export namespace dataproc {
     }
 
     export interface ClusterClusterConfig {
-        /**
-         * The autoscaling policy config associated with the cluster.
-         * Structure defined below.
-         */
         autoscalingConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigAutoscalingConfig>;
         bucket?: pulumi.Input<string>;
-        /**
-         * The Customer managed encryption keys settings for the cluster.
-         * Structure defined below.
-         */
         encryptionConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigEncryptionConfig>;
-        /**
-         * Common config settings for resources of Google Compute Engine cluster
-         * instances, applicable to all instances in the cluster. Structure defined below.
-         */
         gceClusterConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigGceClusterConfig>;
-        /**
-         * Commands to execute on each node after config is completed.
-         * You can specify multiple versions of these. Structure defined below.
-         */
         initializationActions?: pulumi.Input<pulumi.Input<inputs.dataproc.ClusterClusterConfigInitializationAction>[]>;
         lifecycleConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigLifecycleConfig>;
-        /**
-         * The Google Compute Engine config settings for the master instances
-         * in a cluster.. Structure defined below.
-         */
         masterConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigMasterConfig>;
-        /**
-         * The Google Compute Engine config settings for the additional (aka
-         * preemptible) instances in a cluster. Structure defined below.
-         */
         preemptibleWorkerConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigPreemptibleWorkerConfig>;
-        /**
-         * Security related configuration. Structure defined below.
-         */
         securityConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigSecurityConfig>;
-        /**
-         * The config settings for software inside the cluster.
-         * Structure defined below.
-         */
         softwareConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigSoftwareConfig>;
         /**
          * The Cloud Storage staging bucket used to stage files,
@@ -4164,10 +4076,6 @@ export namespace dataproc {
          * option.
          */
         stagingBucket?: pulumi.Input<string>;
-        /**
-         * The Google Compute Engine config settings for the worker instances
-         * in a cluster.. Structure defined below.
-         */
         workerConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigWorkerConfig>;
     }
 
@@ -4242,6 +4150,10 @@ export namespace dataproc {
     }
 
     export interface ClusterClusterConfigInitializationAction {
+        /**
+         * The script to be executed during initialization of the cluster.
+         * The script must be a GCS file with a gs:// prefix.
+         */
         script: pulumi.Input<string>;
         /**
          * The maximum duration (in seconds) which `script` is
@@ -4267,18 +4179,8 @@ export namespace dataproc {
     }
 
     export interface ClusterClusterConfigMasterConfig {
-        /**
-         * The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
-         */
         accelerators?: pulumi.Input<pulumi.Input<inputs.dataproc.ClusterClusterConfigMasterConfigAccelerator>[]>;
-        /**
-         * Disk Config
-         */
         diskConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigMasterConfigDiskConfig>;
-        /**
-         * The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
-         * for more information.
-         */
         imageUri?: pulumi.Input<string>;
         instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
         /**
@@ -4294,6 +4196,10 @@ export namespace dataproc {
          * for details about which CPU families are available (and defaulted) for each zone.
          */
         minCpuPlatform?: pulumi.Input<string>;
+        /**
+         * Specifies the number of preemptible nodes to create.
+         * Defaults to 0.
+         */
         numInstances?: pulumi.Input<number>;
     }
 
@@ -4329,11 +4235,12 @@ export namespace dataproc {
     }
 
     export interface ClusterClusterConfigPreemptibleWorkerConfig {
-        /**
-         * Disk Config
-         */
         diskConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigPreemptibleWorkerConfigDiskConfig>;
         instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the number of preemptible nodes to create.
+         * Defaults to 0.
+         */
         numInstances?: pulumi.Input<number>;
     }
 
@@ -4358,9 +4265,6 @@ export namespace dataproc {
     }
 
     export interface ClusterClusterConfigSecurityConfig {
-        /**
-         * Kerberos Configuration
-         */
         kerberosConfig: pulumi.Input<inputs.dataproc.ClusterClusterConfigSecurityConfigKerberosConfig>;
     }
 
@@ -4476,18 +4380,8 @@ export namespace dataproc {
     }
 
     export interface ClusterClusterConfigWorkerConfig {
-        /**
-         * The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
-         */
         accelerators?: pulumi.Input<pulumi.Input<inputs.dataproc.ClusterClusterConfigWorkerConfigAccelerator>[]>;
-        /**
-         * Disk Config
-         */
         diskConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigWorkerConfigDiskConfig>;
-        /**
-         * The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
-         * for more information.
-         */
         imageUri?: pulumi.Input<string>;
         instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
         /**
@@ -4503,6 +4397,10 @@ export namespace dataproc {
          * for details about which CPU families are available (and defaulted) for each zone.
          */
         minCpuPlatform?: pulumi.Input<string>;
+        /**
+         * Specifies the number of preemptible nodes to create.
+         * Defaults to 0.
+         */
         numInstances?: pulumi.Input<number>;
     }
 
@@ -4567,6 +4465,9 @@ export namespace dataproc {
          */
         jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
         loggingConfig?: pulumi.Input<inputs.dataproc.JobHadoopConfigLoggingConfig>;
+        /**
+         * The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jarFileUris`. Conflicts with `mainJarFileUri`
+         */
         mainClass?: pulumi.Input<string>;
         /**
          * The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
@@ -4600,6 +4501,10 @@ export namespace dataproc {
          * Conflicts with `queryList`
          */
         queryFileUri?: pulumi.Input<string>;
+        /**
+         * The list of SQL queries or statements to execute as part of the job.
+         * Conflicts with `queryFileUri`
+         */
         queryLists?: pulumi.Input<pulumi.Input<string>[]>;
         /**
          * Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
@@ -4638,6 +4543,10 @@ export namespace dataproc {
          * Conflicts with `queryList`
          */
         queryFileUri?: pulumi.Input<string>;
+        /**
+         * The list of SQL queries or statements to execute as part of the job.
+         * Conflicts with `queryFileUri`
+         */
         queryLists?: pulumi.Input<pulumi.Input<string>[]>;
         /**
          * Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
@@ -4672,6 +4581,9 @@ export namespace dataproc {
          */
         jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
         loggingConfig?: pulumi.Input<inputs.dataproc.JobPysparkConfigLoggingConfig>;
+        /**
+         * The HCFS URI of the main Python file to use as the driver. Must be a .py file.
+         */
         mainPythonFileUri: pulumi.Input<string>;
         /**
          * A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
@@ -4713,6 +4625,9 @@ export namespace dataproc {
          */
         jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
         loggingConfig?: pulumi.Input<inputs.dataproc.JobSparkConfigLoggingConfig>;
+        /**
+         * The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jarFileUris`. Conflicts with `mainJarFileUri`
+         */
         mainClass?: pulumi.Input<string>;
         /**
          * The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
@@ -4743,6 +4658,10 @@ export namespace dataproc {
          * Conflicts with `queryList`
          */
         queryFileUri?: pulumi.Input<string>;
+        /**
+         * The list of SQL queries or statements to execute as part of the job.
+         * Conflicts with `queryFileUri`
+         */
         queryLists?: pulumi.Input<pulumi.Input<string>[]>;
         /**
          * Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
@@ -5641,24 +5560,12 @@ export namespace monitoring {
 
 export namespace organizations {
     export interface GetIAMPolicyAuditConfig {
-        /**
-         * A nested block that defines the operations you'd like to log.
-         */
         auditLogConfigs: inputs.organizations.GetIAMPolicyAuditConfigAuditLogConfig[];
-        /**
-         * Defines a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
-         */
         service: string;
     }
 
     export interface GetIAMPolicyAuditConfigAuditLogConfig {
-        /**
-         * Specifies the identities that are exempt from these types of logging operations. Follows the same format of the `members` array for `binding`.
-         */
         exemptedMembers?: string[];
-        /**
-         * Defines the logging level. `DATA_READ`, `DATA_WRITE` and `ADMIN_READ` capture different types of events. See [the audit configuration documentation](https://cloud.google.com/resource-manager/reference/rest/Shared.Types/AuditConfig) for more details.
-         */
         logType: string;
     }
 

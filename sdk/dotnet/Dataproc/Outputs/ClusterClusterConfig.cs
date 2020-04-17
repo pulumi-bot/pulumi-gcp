@@ -13,46 +13,15 @@ namespace Pulumi.Gcp.Dataproc.Outputs
     [OutputType]
     public sealed class ClusterClusterConfig
     {
-        /// <summary>
-        /// The autoscaling policy config associated with the cluster.
-        /// Structure defined below.
-        /// </summary>
         public readonly Outputs.ClusterClusterConfigAutoscalingConfig? AutoscalingConfig;
         public readonly string? Bucket;
-        /// <summary>
-        /// The Customer managed encryption keys settings for the cluster.
-        /// Structure defined below.
-        /// </summary>
         public readonly Outputs.ClusterClusterConfigEncryptionConfig? EncryptionConfig;
-        /// <summary>
-        /// Common config settings for resources of Google Compute Engine cluster
-        /// instances, applicable to all instances in the cluster. Structure defined below.
-        /// </summary>
         public readonly Outputs.ClusterClusterConfigGceClusterConfig? GceClusterConfig;
-        /// <summary>
-        /// Commands to execute on each node after config is completed.
-        /// You can specify multiple versions of these. Structure defined below.
-        /// </summary>
         public readonly ImmutableArray<Outputs.ClusterClusterConfigInitializationAction> InitializationActions;
         public readonly Outputs.ClusterClusterConfigLifecycleConfig? LifecycleConfig;
-        /// <summary>
-        /// The Google Compute Engine config settings for the master instances
-        /// in a cluster.. Structure defined below.
-        /// </summary>
         public readonly Outputs.ClusterClusterConfigMasterConfig? MasterConfig;
-        /// <summary>
-        /// The Google Compute Engine config settings for the additional (aka
-        /// preemptible) instances in a cluster. Structure defined below.
-        /// </summary>
         public readonly Outputs.ClusterClusterConfigPreemptibleWorkerConfig? PreemptibleWorkerConfig;
-        /// <summary>
-        /// Security related configuration. Structure defined below.
-        /// </summary>
         public readonly Outputs.ClusterClusterConfigSecurityConfig? SecurityConfig;
-        /// <summary>
-        /// The config settings for software inside the cluster.
-        /// Structure defined below.
-        /// </summary>
         public readonly Outputs.ClusterClusterConfigSoftwareConfig? SoftwareConfig;
         /// <summary>
         /// The Cloud Storage staging bucket used to stage files,
@@ -64,10 +33,6 @@ namespace Pulumi.Gcp.Dataproc.Outputs
         /// option.
         /// </summary>
         public readonly string? StagingBucket;
-        /// <summary>
-        /// The Google Compute Engine config settings for the worker instances
-        /// in a cluster.. Structure defined below.
-        /// </summary>
         public readonly Outputs.ClusterClusterConfigWorkerConfig? WorkerConfig;
 
         [OutputConstructor]

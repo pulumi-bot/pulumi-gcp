@@ -64,7 +64,6 @@ def get_account_key(name=None,project=None,public_key_type=None,opts=None):
            is the email address or unique id of the service account.
     :param str project: The ID of the project that the service account will be created in.
            Defaults to the provider project configuration.
-    :param str public_key_type: The output format of the public key requested. X509_PEM is the default output format.
     """
     __args__ = dict()
 

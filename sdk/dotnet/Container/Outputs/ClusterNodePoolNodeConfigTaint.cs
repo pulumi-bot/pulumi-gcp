@@ -13,17 +13,8 @@ namespace Pulumi.Gcp.Container.Outputs
     [OutputType]
     public sealed class ClusterNodePoolNodeConfigTaint
     {
-        /// <summary>
-        /// Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
-        /// </summary>
         public readonly string Effect;
-        /// <summary>
-        /// Key for taint.
-        /// </summary>
         public readonly string Key;
-        /// <summary>
-        /// Value for taint.
-        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

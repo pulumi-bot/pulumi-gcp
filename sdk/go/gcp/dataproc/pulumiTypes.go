@@ -508,31 +508,16 @@ func (o AutoscalingPolicyWorkerConfigPtrOutput) Weight() pulumi.IntPtrOutput {
 }
 
 type ClusterClusterConfig struct {
-	// The autoscaling policy config associated with the cluster.
-	// Structure defined below.
-	AutoscalingConfig *ClusterClusterConfigAutoscalingConfig `pulumi:"autoscalingConfig"`
-	Bucket            *string                                `pulumi:"bucket"`
-	// The Customer managed encryption keys settings for the cluster.
-	// Structure defined below.
-	EncryptionConfig *ClusterClusterConfigEncryptionConfig `pulumi:"encryptionConfig"`
-	// Common config settings for resources of Google Compute Engine cluster
-	// instances, applicable to all instances in the cluster. Structure defined below.
-	GceClusterConfig *ClusterClusterConfigGceClusterConfig `pulumi:"gceClusterConfig"`
-	// Commands to execute on each node after config is completed.
-	// You can specify multiple versions of these. Structure defined below.
-	InitializationActions []ClusterClusterConfigInitializationAction `pulumi:"initializationActions"`
-	LifecycleConfig       *ClusterClusterConfigLifecycleConfig       `pulumi:"lifecycleConfig"`
-	// The Google Compute Engine config settings for the master instances
-	// in a cluster.. Structure defined below.
-	MasterConfig *ClusterClusterConfigMasterConfig `pulumi:"masterConfig"`
-	// The Google Compute Engine config settings for the additional (aka
-	// preemptible) instances in a cluster. Structure defined below.
+	AutoscalingConfig       *ClusterClusterConfigAutoscalingConfig       `pulumi:"autoscalingConfig"`
+	Bucket                  *string                                      `pulumi:"bucket"`
+	EncryptionConfig        *ClusterClusterConfigEncryptionConfig        `pulumi:"encryptionConfig"`
+	GceClusterConfig        *ClusterClusterConfigGceClusterConfig        `pulumi:"gceClusterConfig"`
+	InitializationActions   []ClusterClusterConfigInitializationAction   `pulumi:"initializationActions"`
+	LifecycleConfig         *ClusterClusterConfigLifecycleConfig         `pulumi:"lifecycleConfig"`
+	MasterConfig            *ClusterClusterConfigMasterConfig            `pulumi:"masterConfig"`
 	PreemptibleWorkerConfig *ClusterClusterConfigPreemptibleWorkerConfig `pulumi:"preemptibleWorkerConfig"`
-	// Security related configuration. Structure defined below.
-	SecurityConfig *ClusterClusterConfigSecurityConfig `pulumi:"securityConfig"`
-	// The config settings for software inside the cluster.
-	// Structure defined below.
-	SoftwareConfig *ClusterClusterConfigSoftwareConfig `pulumi:"softwareConfig"`
+	SecurityConfig          *ClusterClusterConfigSecurityConfig          `pulumi:"securityConfig"`
+	SoftwareConfig          *ClusterClusterConfigSoftwareConfig          `pulumi:"softwareConfig"`
 	// The Cloud Storage staging bucket used to stage files,
 	// such as Hadoop jars, between client machines and the cluster.
 	// Note: If you don't explicitly specify a `stagingBucket`
@@ -540,10 +525,8 @@ type ClusterClusterConfig struct {
 	// an auto generated bucket which is solely dedicated to your cluster; it may be shared
 	// with other clusters in the same region/zone also choosing to use the auto generation
 	// option.
-	StagingBucket *string `pulumi:"stagingBucket"`
-	// The Google Compute Engine config settings for the worker instances
-	// in a cluster.. Structure defined below.
-	WorkerConfig *ClusterClusterConfigWorkerConfig `pulumi:"workerConfig"`
+	StagingBucket *string                           `pulumi:"stagingBucket"`
+	WorkerConfig  *ClusterClusterConfigWorkerConfig `pulumi:"workerConfig"`
 }
 
 // ClusterClusterConfigInput is an input type that accepts ClusterClusterConfigArgs and ClusterClusterConfigOutput values.
@@ -559,31 +542,16 @@ type ClusterClusterConfigInput interface {
 }
 
 type ClusterClusterConfigArgs struct {
-	// The autoscaling policy config associated with the cluster.
-	// Structure defined below.
-	AutoscalingConfig ClusterClusterConfigAutoscalingConfigPtrInput `pulumi:"autoscalingConfig"`
-	Bucket            pulumi.StringPtrInput                         `pulumi:"bucket"`
-	// The Customer managed encryption keys settings for the cluster.
-	// Structure defined below.
-	EncryptionConfig ClusterClusterConfigEncryptionConfigPtrInput `pulumi:"encryptionConfig"`
-	// Common config settings for resources of Google Compute Engine cluster
-	// instances, applicable to all instances in the cluster. Structure defined below.
-	GceClusterConfig ClusterClusterConfigGceClusterConfigPtrInput `pulumi:"gceClusterConfig"`
-	// Commands to execute on each node after config is completed.
-	// You can specify multiple versions of these. Structure defined below.
-	InitializationActions ClusterClusterConfigInitializationActionArrayInput `pulumi:"initializationActions"`
-	LifecycleConfig       ClusterClusterConfigLifecycleConfigPtrInput        `pulumi:"lifecycleConfig"`
-	// The Google Compute Engine config settings for the master instances
-	// in a cluster.. Structure defined below.
-	MasterConfig ClusterClusterConfigMasterConfigPtrInput `pulumi:"masterConfig"`
-	// The Google Compute Engine config settings for the additional (aka
-	// preemptible) instances in a cluster. Structure defined below.
+	AutoscalingConfig       ClusterClusterConfigAutoscalingConfigPtrInput       `pulumi:"autoscalingConfig"`
+	Bucket                  pulumi.StringPtrInput                               `pulumi:"bucket"`
+	EncryptionConfig        ClusterClusterConfigEncryptionConfigPtrInput        `pulumi:"encryptionConfig"`
+	GceClusterConfig        ClusterClusterConfigGceClusterConfigPtrInput        `pulumi:"gceClusterConfig"`
+	InitializationActions   ClusterClusterConfigInitializationActionArrayInput  `pulumi:"initializationActions"`
+	LifecycleConfig         ClusterClusterConfigLifecycleConfigPtrInput         `pulumi:"lifecycleConfig"`
+	MasterConfig            ClusterClusterConfigMasterConfigPtrInput            `pulumi:"masterConfig"`
 	PreemptibleWorkerConfig ClusterClusterConfigPreemptibleWorkerConfigPtrInput `pulumi:"preemptibleWorkerConfig"`
-	// Security related configuration. Structure defined below.
-	SecurityConfig ClusterClusterConfigSecurityConfigPtrInput `pulumi:"securityConfig"`
-	// The config settings for software inside the cluster.
-	// Structure defined below.
-	SoftwareConfig ClusterClusterConfigSoftwareConfigPtrInput `pulumi:"softwareConfig"`
+	SecurityConfig          ClusterClusterConfigSecurityConfigPtrInput          `pulumi:"securityConfig"`
+	SoftwareConfig          ClusterClusterConfigSoftwareConfigPtrInput          `pulumi:"softwareConfig"`
 	// The Cloud Storage staging bucket used to stage files,
 	// such as Hadoop jars, between client machines and the cluster.
 	// Note: If you don't explicitly specify a `stagingBucket`
@@ -591,10 +559,8 @@ type ClusterClusterConfigArgs struct {
 	// an auto generated bucket which is solely dedicated to your cluster; it may be shared
 	// with other clusters in the same region/zone also choosing to use the auto generation
 	// option.
-	StagingBucket pulumi.StringPtrInput `pulumi:"stagingBucket"`
-	// The Google Compute Engine config settings for the worker instances
-	// in a cluster.. Structure defined below.
-	WorkerConfig ClusterClusterConfigWorkerConfigPtrInput `pulumi:"workerConfig"`
+	StagingBucket pulumi.StringPtrInput                    `pulumi:"stagingBucket"`
+	WorkerConfig  ClusterClusterConfigWorkerConfigPtrInput `pulumi:"workerConfig"`
 }
 
 func (ClusterClusterConfigArgs) ElementType() reflect.Type {
@@ -674,9 +640,6 @@ func (o ClusterClusterConfigOutput) ToClusterClusterConfigPtrOutputWithContext(c
 		return &v
 	}).(ClusterClusterConfigPtrOutput)
 }
-
-// The autoscaling policy config associated with the cluster.
-// Structure defined below.
 func (o ClusterClusterConfigOutput) AutoscalingConfig() ClusterClusterConfigAutoscalingConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigAutoscalingConfig { return v.AutoscalingConfig }).(ClusterClusterConfigAutoscalingConfigPtrOutput)
 }
@@ -685,20 +648,14 @@ func (o ClusterClusterConfigOutput) Bucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *string { return v.Bucket }).(pulumi.StringPtrOutput)
 }
 
-// The Customer managed encryption keys settings for the cluster.
-// Structure defined below.
 func (o ClusterClusterConfigOutput) EncryptionConfig() ClusterClusterConfigEncryptionConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigEncryptionConfig { return v.EncryptionConfig }).(ClusterClusterConfigEncryptionConfigPtrOutput)
 }
 
-// Common config settings for resources of Google Compute Engine cluster
-// instances, applicable to all instances in the cluster. Structure defined below.
 func (o ClusterClusterConfigOutput) GceClusterConfig() ClusterClusterConfigGceClusterConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigGceClusterConfig { return v.GceClusterConfig }).(ClusterClusterConfigGceClusterConfigPtrOutput)
 }
 
-// Commands to execute on each node after config is completed.
-// You can specify multiple versions of these. Structure defined below.
 func (o ClusterClusterConfigOutput) InitializationActions() ClusterClusterConfigInitializationActionArrayOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) []ClusterClusterConfigInitializationAction {
 		return v.InitializationActions
@@ -709,27 +666,20 @@ func (o ClusterClusterConfigOutput) LifecycleConfig() ClusterClusterConfigLifecy
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigLifecycleConfig { return v.LifecycleConfig }).(ClusterClusterConfigLifecycleConfigPtrOutput)
 }
 
-// The Google Compute Engine config settings for the master instances
-// in a cluster.. Structure defined below.
 func (o ClusterClusterConfigOutput) MasterConfig() ClusterClusterConfigMasterConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigMasterConfig { return v.MasterConfig }).(ClusterClusterConfigMasterConfigPtrOutput)
 }
 
-// The Google Compute Engine config settings for the additional (aka
-// preemptible) instances in a cluster. Structure defined below.
 func (o ClusterClusterConfigOutput) PreemptibleWorkerConfig() ClusterClusterConfigPreemptibleWorkerConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigPreemptibleWorkerConfig {
 		return v.PreemptibleWorkerConfig
 	}).(ClusterClusterConfigPreemptibleWorkerConfigPtrOutput)
 }
 
-// Security related configuration. Structure defined below.
 func (o ClusterClusterConfigOutput) SecurityConfig() ClusterClusterConfigSecurityConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigSecurityConfig { return v.SecurityConfig }).(ClusterClusterConfigSecurityConfigPtrOutput)
 }
 
-// The config settings for software inside the cluster.
-// Structure defined below.
 func (o ClusterClusterConfigOutput) SoftwareConfig() ClusterClusterConfigSoftwareConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigSoftwareConfig { return v.SoftwareConfig }).(ClusterClusterConfigSoftwareConfigPtrOutput)
 }
@@ -745,8 +695,6 @@ func (o ClusterClusterConfigOutput) StagingBucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *string { return v.StagingBucket }).(pulumi.StringPtrOutput)
 }
 
-// The Google Compute Engine config settings for the worker instances
-// in a cluster.. Structure defined below.
 func (o ClusterClusterConfigOutput) WorkerConfig() ClusterClusterConfigWorkerConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigWorkerConfig { return v.WorkerConfig }).(ClusterClusterConfigWorkerConfigPtrOutput)
 }
@@ -769,8 +717,6 @@ func (o ClusterClusterConfigPtrOutput) Elem() ClusterClusterConfigOutput {
 	return o.ApplyT(func(v *ClusterClusterConfig) ClusterClusterConfig { return *v }).(ClusterClusterConfigOutput)
 }
 
-// The autoscaling policy config associated with the cluster.
-// Structure defined below.
 func (o ClusterClusterConfigPtrOutput) AutoscalingConfig() ClusterClusterConfigAutoscalingConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigAutoscalingConfig { return v.AutoscalingConfig }).(ClusterClusterConfigAutoscalingConfigPtrOutput)
 }
@@ -779,20 +725,14 @@ func (o ClusterClusterConfigPtrOutput) Bucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *string { return v.Bucket }).(pulumi.StringPtrOutput)
 }
 
-// The Customer managed encryption keys settings for the cluster.
-// Structure defined below.
 func (o ClusterClusterConfigPtrOutput) EncryptionConfig() ClusterClusterConfigEncryptionConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigEncryptionConfig { return v.EncryptionConfig }).(ClusterClusterConfigEncryptionConfigPtrOutput)
 }
 
-// Common config settings for resources of Google Compute Engine cluster
-// instances, applicable to all instances in the cluster. Structure defined below.
 func (o ClusterClusterConfigPtrOutput) GceClusterConfig() ClusterClusterConfigGceClusterConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigGceClusterConfig { return v.GceClusterConfig }).(ClusterClusterConfigGceClusterConfigPtrOutput)
 }
 
-// Commands to execute on each node after config is completed.
-// You can specify multiple versions of these. Structure defined below.
 func (o ClusterClusterConfigPtrOutput) InitializationActions() ClusterClusterConfigInitializationActionArrayOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) []ClusterClusterConfigInitializationAction {
 		return v.InitializationActions
@@ -803,27 +743,20 @@ func (o ClusterClusterConfigPtrOutput) LifecycleConfig() ClusterClusterConfigLif
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigLifecycleConfig { return v.LifecycleConfig }).(ClusterClusterConfigLifecycleConfigPtrOutput)
 }
 
-// The Google Compute Engine config settings for the master instances
-// in a cluster.. Structure defined below.
 func (o ClusterClusterConfigPtrOutput) MasterConfig() ClusterClusterConfigMasterConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigMasterConfig { return v.MasterConfig }).(ClusterClusterConfigMasterConfigPtrOutput)
 }
 
-// The Google Compute Engine config settings for the additional (aka
-// preemptible) instances in a cluster. Structure defined below.
 func (o ClusterClusterConfigPtrOutput) PreemptibleWorkerConfig() ClusterClusterConfigPreemptibleWorkerConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigPreemptibleWorkerConfig {
 		return v.PreemptibleWorkerConfig
 	}).(ClusterClusterConfigPreemptibleWorkerConfigPtrOutput)
 }
 
-// Security related configuration. Structure defined below.
 func (o ClusterClusterConfigPtrOutput) SecurityConfig() ClusterClusterConfigSecurityConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigSecurityConfig { return v.SecurityConfig }).(ClusterClusterConfigSecurityConfigPtrOutput)
 }
 
-// The config settings for software inside the cluster.
-// Structure defined below.
 func (o ClusterClusterConfigPtrOutput) SoftwareConfig() ClusterClusterConfigSoftwareConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigSoftwareConfig { return v.SoftwareConfig }).(ClusterClusterConfigSoftwareConfigPtrOutput)
 }
@@ -839,8 +772,6 @@ func (o ClusterClusterConfigPtrOutput) StagingBucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *string { return v.StagingBucket }).(pulumi.StringPtrOutput)
 }
 
-// The Google Compute Engine config settings for the worker instances
-// in a cluster.. Structure defined below.
 func (o ClusterClusterConfigPtrOutput) WorkerConfig() ClusterClusterConfigWorkerConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *ClusterClusterConfigWorkerConfig { return v.WorkerConfig }).(ClusterClusterConfigWorkerConfigPtrOutput)
 }
@@ -1412,6 +1343,8 @@ func (o ClusterClusterConfigGceClusterConfigPtrOutput) Zone() pulumi.StringPtrOu
 }
 
 type ClusterClusterConfigInitializationAction struct {
+	// The script to be executed during initialization of the cluster.
+	// The script must be a GCS file with a gs:// prefix.
 	Script string `pulumi:"script"`
 	// The maximum duration (in seconds) which `script` is
 	// allowed to take to execute its action. GCP will default to a predetermined
@@ -1432,6 +1365,8 @@ type ClusterClusterConfigInitializationActionInput interface {
 }
 
 type ClusterClusterConfigInitializationActionArgs struct {
+	// The script to be executed during initialization of the cluster.
+	// The script must be a GCS file with a gs:// prefix.
 	Script pulumi.StringInput `pulumi:"script"`
 	// The maximum duration (in seconds) which `script` is
 	// allowed to take to execute its action. GCP will default to a predetermined
@@ -1491,6 +1426,8 @@ func (o ClusterClusterConfigInitializationActionOutput) ToClusterClusterConfigIn
 	return o
 }
 
+// The script to be executed during initialization of the cluster.
+// The script must be a GCS file with a gs:// prefix.
 func (o ClusterClusterConfigInitializationActionOutput) Script() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterClusterConfigInitializationAction) string { return v.Script }).(pulumi.StringOutput)
 }
@@ -1687,14 +1624,10 @@ func (o ClusterClusterConfigLifecycleConfigPtrOutput) IdleStartTime() pulumi.Str
 }
 
 type ClusterClusterConfigMasterConfig struct {
-	// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
-	Accelerators []ClusterClusterConfigMasterConfigAccelerator `pulumi:"accelerators"`
-	// Disk Config
-	DiskConfig *ClusterClusterConfigMasterConfigDiskConfig `pulumi:"diskConfig"`
-	// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
-	// for more information.
-	ImageUri      *string  `pulumi:"imageUri"`
-	InstanceNames []string `pulumi:"instanceNames"`
+	Accelerators  []ClusterClusterConfigMasterConfigAccelerator `pulumi:"accelerators"`
+	DiskConfig    *ClusterClusterConfigMasterConfigDiskConfig   `pulumi:"diskConfig"`
+	ImageUri      *string                                       `pulumi:"imageUri"`
+	InstanceNames []string                                      `pulumi:"instanceNames"`
 	// The name of a Google Compute Engine machine type
 	// to create for the worker nodes. If not specified, GCP will default to a predetermined
 	// computed value (currently `n1-standard-4`).
@@ -1704,7 +1637,9 @@ type ClusterClusterConfigMasterConfig struct {
 	// for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
 	// for details about which CPU families are available (and defaulted) for each zone.
 	MinCpuPlatform *string `pulumi:"minCpuPlatform"`
-	NumInstances   *int    `pulumi:"numInstances"`
+	// Specifies the number of preemptible nodes to create.
+	// Defaults to 0.
+	NumInstances *int `pulumi:"numInstances"`
 }
 
 // ClusterClusterConfigMasterConfigInput is an input type that accepts ClusterClusterConfigMasterConfigArgs and ClusterClusterConfigMasterConfigOutput values.
@@ -1720,14 +1655,10 @@ type ClusterClusterConfigMasterConfigInput interface {
 }
 
 type ClusterClusterConfigMasterConfigArgs struct {
-	// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
-	Accelerators ClusterClusterConfigMasterConfigAcceleratorArrayInput `pulumi:"accelerators"`
-	// Disk Config
-	DiskConfig ClusterClusterConfigMasterConfigDiskConfigPtrInput `pulumi:"diskConfig"`
-	// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
-	// for more information.
-	ImageUri      pulumi.StringPtrInput   `pulumi:"imageUri"`
-	InstanceNames pulumi.StringArrayInput `pulumi:"instanceNames"`
+	Accelerators  ClusterClusterConfigMasterConfigAcceleratorArrayInput `pulumi:"accelerators"`
+	DiskConfig    ClusterClusterConfigMasterConfigDiskConfigPtrInput    `pulumi:"diskConfig"`
+	ImageUri      pulumi.StringPtrInput                                 `pulumi:"imageUri"`
+	InstanceNames pulumi.StringArrayInput                               `pulumi:"instanceNames"`
 	// The name of a Google Compute Engine machine type
 	// to create for the worker nodes. If not specified, GCP will default to a predetermined
 	// computed value (currently `n1-standard-4`).
@@ -1737,7 +1668,9 @@ type ClusterClusterConfigMasterConfigArgs struct {
 	// for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
 	// for details about which CPU families are available (and defaulted) for each zone.
 	MinCpuPlatform pulumi.StringPtrInput `pulumi:"minCpuPlatform"`
-	NumInstances   pulumi.IntPtrInput    `pulumi:"numInstances"`
+	// Specifies the number of preemptible nodes to create.
+	// Defaults to 0.
+	NumInstances pulumi.IntPtrInput `pulumi:"numInstances"`
 }
 
 func (ClusterClusterConfigMasterConfigArgs) ElementType() reflect.Type {
@@ -1817,23 +1750,18 @@ func (o ClusterClusterConfigMasterConfigOutput) ToClusterClusterConfigMasterConf
 		return &v
 	}).(ClusterClusterConfigMasterConfigPtrOutput)
 }
-
-// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
 func (o ClusterClusterConfigMasterConfigOutput) Accelerators() ClusterClusterConfigMasterConfigAcceleratorArrayOutput {
 	return o.ApplyT(func(v ClusterClusterConfigMasterConfig) []ClusterClusterConfigMasterConfigAccelerator {
 		return v.Accelerators
 	}).(ClusterClusterConfigMasterConfigAcceleratorArrayOutput)
 }
 
-// Disk Config
 func (o ClusterClusterConfigMasterConfigOutput) DiskConfig() ClusterClusterConfigMasterConfigDiskConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigMasterConfig) *ClusterClusterConfigMasterConfigDiskConfig {
 		return v.DiskConfig
 	}).(ClusterClusterConfigMasterConfigDiskConfigPtrOutput)
 }
 
-// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
-// for more information.
 func (o ClusterClusterConfigMasterConfigOutput) ImageUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigMasterConfig) *string { return v.ImageUri }).(pulumi.StringPtrOutput)
 }
@@ -1857,6 +1785,8 @@ func (o ClusterClusterConfigMasterConfigOutput) MinCpuPlatform() pulumi.StringPt
 	return o.ApplyT(func(v ClusterClusterConfigMasterConfig) *string { return v.MinCpuPlatform }).(pulumi.StringPtrOutput)
 }
 
+// Specifies the number of preemptible nodes to create.
+// Defaults to 0.
 func (o ClusterClusterConfigMasterConfigOutput) NumInstances() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigMasterConfig) *int { return v.NumInstances }).(pulumi.IntPtrOutput)
 }
@@ -1879,22 +1809,18 @@ func (o ClusterClusterConfigMasterConfigPtrOutput) Elem() ClusterClusterConfigMa
 	return o.ApplyT(func(v *ClusterClusterConfigMasterConfig) ClusterClusterConfigMasterConfig { return *v }).(ClusterClusterConfigMasterConfigOutput)
 }
 
-// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
 func (o ClusterClusterConfigMasterConfigPtrOutput) Accelerators() ClusterClusterConfigMasterConfigAcceleratorArrayOutput {
 	return o.ApplyT(func(v ClusterClusterConfigMasterConfig) []ClusterClusterConfigMasterConfigAccelerator {
 		return v.Accelerators
 	}).(ClusterClusterConfigMasterConfigAcceleratorArrayOutput)
 }
 
-// Disk Config
 func (o ClusterClusterConfigMasterConfigPtrOutput) DiskConfig() ClusterClusterConfigMasterConfigDiskConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigMasterConfig) *ClusterClusterConfigMasterConfigDiskConfig {
 		return v.DiskConfig
 	}).(ClusterClusterConfigMasterConfigDiskConfigPtrOutput)
 }
 
-// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
-// for more information.
 func (o ClusterClusterConfigMasterConfigPtrOutput) ImageUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigMasterConfig) *string { return v.ImageUri }).(pulumi.StringPtrOutput)
 }
@@ -1918,6 +1844,8 @@ func (o ClusterClusterConfigMasterConfigPtrOutput) MinCpuPlatform() pulumi.Strin
 	return o.ApplyT(func(v ClusterClusterConfigMasterConfig) *string { return v.MinCpuPlatform }).(pulumi.StringPtrOutput)
 }
 
+// Specifies the number of preemptible nodes to create.
+// Defaults to 0.
 func (o ClusterClusterConfigMasterConfigPtrOutput) NumInstances() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigMasterConfig) *int { return v.NumInstances }).(pulumi.IntPtrOutput)
 }
@@ -2209,10 +2137,11 @@ func (o ClusterClusterConfigMasterConfigDiskConfigPtrOutput) NumLocalSsds() pulu
 }
 
 type ClusterClusterConfigPreemptibleWorkerConfig struct {
-	// Disk Config
 	DiskConfig    *ClusterClusterConfigPreemptibleWorkerConfigDiskConfig `pulumi:"diskConfig"`
 	InstanceNames []string                                               `pulumi:"instanceNames"`
-	NumInstances  *int                                                   `pulumi:"numInstances"`
+	// Specifies the number of preemptible nodes to create.
+	// Defaults to 0.
+	NumInstances *int `pulumi:"numInstances"`
 }
 
 // ClusterClusterConfigPreemptibleWorkerConfigInput is an input type that accepts ClusterClusterConfigPreemptibleWorkerConfigArgs and ClusterClusterConfigPreemptibleWorkerConfigOutput values.
@@ -2228,10 +2157,11 @@ type ClusterClusterConfigPreemptibleWorkerConfigInput interface {
 }
 
 type ClusterClusterConfigPreemptibleWorkerConfigArgs struct {
-	// Disk Config
 	DiskConfig    ClusterClusterConfigPreemptibleWorkerConfigDiskConfigPtrInput `pulumi:"diskConfig"`
 	InstanceNames pulumi.StringArrayInput                                       `pulumi:"instanceNames"`
-	NumInstances  pulumi.IntPtrInput                                            `pulumi:"numInstances"`
+	// Specifies the number of preemptible nodes to create.
+	// Defaults to 0.
+	NumInstances pulumi.IntPtrInput `pulumi:"numInstances"`
 }
 
 func (ClusterClusterConfigPreemptibleWorkerConfigArgs) ElementType() reflect.Type {
@@ -2311,8 +2241,6 @@ func (o ClusterClusterConfigPreemptibleWorkerConfigOutput) ToClusterClusterConfi
 		return &v
 	}).(ClusterClusterConfigPreemptibleWorkerConfigPtrOutput)
 }
-
-// Disk Config
 func (o ClusterClusterConfigPreemptibleWorkerConfigOutput) DiskConfig() ClusterClusterConfigPreemptibleWorkerConfigDiskConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigPreemptibleWorkerConfig) *ClusterClusterConfigPreemptibleWorkerConfigDiskConfig {
 		return v.DiskConfig
@@ -2323,6 +2251,8 @@ func (o ClusterClusterConfigPreemptibleWorkerConfigOutput) InstanceNames() pulum
 	return o.ApplyT(func(v ClusterClusterConfigPreemptibleWorkerConfig) []string { return v.InstanceNames }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the number of preemptible nodes to create.
+// Defaults to 0.
 func (o ClusterClusterConfigPreemptibleWorkerConfigOutput) NumInstances() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigPreemptibleWorkerConfig) *int { return v.NumInstances }).(pulumi.IntPtrOutput)
 }
@@ -2347,7 +2277,6 @@ func (o ClusterClusterConfigPreemptibleWorkerConfigPtrOutput) Elem() ClusterClus
 	}).(ClusterClusterConfigPreemptibleWorkerConfigOutput)
 }
 
-// Disk Config
 func (o ClusterClusterConfigPreemptibleWorkerConfigPtrOutput) DiskConfig() ClusterClusterConfigPreemptibleWorkerConfigDiskConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigPreemptibleWorkerConfig) *ClusterClusterConfigPreemptibleWorkerConfigDiskConfig {
 		return v.DiskConfig
@@ -2358,6 +2287,8 @@ func (o ClusterClusterConfigPreemptibleWorkerConfigPtrOutput) InstanceNames() pu
 	return o.ApplyT(func(v ClusterClusterConfigPreemptibleWorkerConfig) []string { return v.InstanceNames }).(pulumi.StringArrayOutput)
 }
 
+// Specifies the number of preemptible nodes to create.
+// Defaults to 0.
 func (o ClusterClusterConfigPreemptibleWorkerConfigPtrOutput) NumInstances() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigPreemptibleWorkerConfig) *int { return v.NumInstances }).(pulumi.IntPtrOutput)
 }
@@ -2541,7 +2472,6 @@ func (o ClusterClusterConfigPreemptibleWorkerConfigDiskConfigPtrOutput) NumLocal
 }
 
 type ClusterClusterConfigSecurityConfig struct {
-	// Kerberos Configuration
 	KerberosConfig ClusterClusterConfigSecurityConfigKerberosConfig `pulumi:"kerberosConfig"`
 }
 
@@ -2558,7 +2488,6 @@ type ClusterClusterConfigSecurityConfigInput interface {
 }
 
 type ClusterClusterConfigSecurityConfigArgs struct {
-	// Kerberos Configuration
 	KerberosConfig ClusterClusterConfigSecurityConfigKerberosConfigInput `pulumi:"kerberosConfig"`
 }
 
@@ -2639,8 +2568,6 @@ func (o ClusterClusterConfigSecurityConfigOutput) ToClusterClusterConfigSecurity
 		return &v
 	}).(ClusterClusterConfigSecurityConfigPtrOutput)
 }
-
-// Kerberos Configuration
 func (o ClusterClusterConfigSecurityConfigOutput) KerberosConfig() ClusterClusterConfigSecurityConfigKerberosConfigOutput {
 	return o.ApplyT(func(v ClusterClusterConfigSecurityConfig) ClusterClusterConfigSecurityConfigKerberosConfig {
 		return v.KerberosConfig
@@ -2665,7 +2592,6 @@ func (o ClusterClusterConfigSecurityConfigPtrOutput) Elem() ClusterClusterConfig
 	return o.ApplyT(func(v *ClusterClusterConfigSecurityConfig) ClusterClusterConfigSecurityConfig { return *v }).(ClusterClusterConfigSecurityConfigOutput)
 }
 
-// Kerberos Configuration
 func (o ClusterClusterConfigSecurityConfigPtrOutput) KerberosConfig() ClusterClusterConfigSecurityConfigKerberosConfigOutput {
 	return o.ApplyT(func(v ClusterClusterConfigSecurityConfig) ClusterClusterConfigSecurityConfigKerberosConfig {
 		return v.KerberosConfig
@@ -3132,14 +3058,10 @@ func (o ClusterClusterConfigSoftwareConfigPtrOutput) Properties() pulumi.MapOutp
 }
 
 type ClusterClusterConfigWorkerConfig struct {
-	// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
-	Accelerators []ClusterClusterConfigWorkerConfigAccelerator `pulumi:"accelerators"`
-	// Disk Config
-	DiskConfig *ClusterClusterConfigWorkerConfigDiskConfig `pulumi:"diskConfig"`
-	// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
-	// for more information.
-	ImageUri      *string  `pulumi:"imageUri"`
-	InstanceNames []string `pulumi:"instanceNames"`
+	Accelerators  []ClusterClusterConfigWorkerConfigAccelerator `pulumi:"accelerators"`
+	DiskConfig    *ClusterClusterConfigWorkerConfigDiskConfig   `pulumi:"diskConfig"`
+	ImageUri      *string                                       `pulumi:"imageUri"`
+	InstanceNames []string                                      `pulumi:"instanceNames"`
 	// The name of a Google Compute Engine machine type
 	// to create for the worker nodes. If not specified, GCP will default to a predetermined
 	// computed value (currently `n1-standard-4`).
@@ -3149,7 +3071,9 @@ type ClusterClusterConfigWorkerConfig struct {
 	// for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
 	// for details about which CPU families are available (and defaulted) for each zone.
 	MinCpuPlatform *string `pulumi:"minCpuPlatform"`
-	NumInstances   *int    `pulumi:"numInstances"`
+	// Specifies the number of preemptible nodes to create.
+	// Defaults to 0.
+	NumInstances *int `pulumi:"numInstances"`
 }
 
 // ClusterClusterConfigWorkerConfigInput is an input type that accepts ClusterClusterConfigWorkerConfigArgs and ClusterClusterConfigWorkerConfigOutput values.
@@ -3165,14 +3089,10 @@ type ClusterClusterConfigWorkerConfigInput interface {
 }
 
 type ClusterClusterConfigWorkerConfigArgs struct {
-	// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
-	Accelerators ClusterClusterConfigWorkerConfigAcceleratorArrayInput `pulumi:"accelerators"`
-	// Disk Config
-	DiskConfig ClusterClusterConfigWorkerConfigDiskConfigPtrInput `pulumi:"diskConfig"`
-	// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
-	// for more information.
-	ImageUri      pulumi.StringPtrInput   `pulumi:"imageUri"`
-	InstanceNames pulumi.StringArrayInput `pulumi:"instanceNames"`
+	Accelerators  ClusterClusterConfigWorkerConfigAcceleratorArrayInput `pulumi:"accelerators"`
+	DiskConfig    ClusterClusterConfigWorkerConfigDiskConfigPtrInput    `pulumi:"diskConfig"`
+	ImageUri      pulumi.StringPtrInput                                 `pulumi:"imageUri"`
+	InstanceNames pulumi.StringArrayInput                               `pulumi:"instanceNames"`
 	// The name of a Google Compute Engine machine type
 	// to create for the worker nodes. If not specified, GCP will default to a predetermined
 	// computed value (currently `n1-standard-4`).
@@ -3182,7 +3102,9 @@ type ClusterClusterConfigWorkerConfigArgs struct {
 	// for each zone. See [the guide](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
 	// for details about which CPU families are available (and defaulted) for each zone.
 	MinCpuPlatform pulumi.StringPtrInput `pulumi:"minCpuPlatform"`
-	NumInstances   pulumi.IntPtrInput    `pulumi:"numInstances"`
+	// Specifies the number of preemptible nodes to create.
+	// Defaults to 0.
+	NumInstances pulumi.IntPtrInput `pulumi:"numInstances"`
 }
 
 func (ClusterClusterConfigWorkerConfigArgs) ElementType() reflect.Type {
@@ -3262,23 +3184,18 @@ func (o ClusterClusterConfigWorkerConfigOutput) ToClusterClusterConfigWorkerConf
 		return &v
 	}).(ClusterClusterConfigWorkerConfigPtrOutput)
 }
-
-// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
 func (o ClusterClusterConfigWorkerConfigOutput) Accelerators() ClusterClusterConfigWorkerConfigAcceleratorArrayOutput {
 	return o.ApplyT(func(v ClusterClusterConfigWorkerConfig) []ClusterClusterConfigWorkerConfigAccelerator {
 		return v.Accelerators
 	}).(ClusterClusterConfigWorkerConfigAcceleratorArrayOutput)
 }
 
-// Disk Config
 func (o ClusterClusterConfigWorkerConfigOutput) DiskConfig() ClusterClusterConfigWorkerConfigDiskConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigWorkerConfig) *ClusterClusterConfigWorkerConfigDiskConfig {
 		return v.DiskConfig
 	}).(ClusterClusterConfigWorkerConfigDiskConfigPtrOutput)
 }
 
-// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
-// for more information.
 func (o ClusterClusterConfigWorkerConfigOutput) ImageUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigWorkerConfig) *string { return v.ImageUri }).(pulumi.StringPtrOutput)
 }
@@ -3302,6 +3219,8 @@ func (o ClusterClusterConfigWorkerConfigOutput) MinCpuPlatform() pulumi.StringPt
 	return o.ApplyT(func(v ClusterClusterConfigWorkerConfig) *string { return v.MinCpuPlatform }).(pulumi.StringPtrOutput)
 }
 
+// Specifies the number of preemptible nodes to create.
+// Defaults to 0.
 func (o ClusterClusterConfigWorkerConfigOutput) NumInstances() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigWorkerConfig) *int { return v.NumInstances }).(pulumi.IntPtrOutput)
 }
@@ -3324,22 +3243,18 @@ func (o ClusterClusterConfigWorkerConfigPtrOutput) Elem() ClusterClusterConfigWo
 	return o.ApplyT(func(v *ClusterClusterConfigWorkerConfig) ClusterClusterConfigWorkerConfig { return *v }).(ClusterClusterConfigWorkerConfigOutput)
 }
 
-// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
 func (o ClusterClusterConfigWorkerConfigPtrOutput) Accelerators() ClusterClusterConfigWorkerConfigAcceleratorArrayOutput {
 	return o.ApplyT(func(v ClusterClusterConfigWorkerConfig) []ClusterClusterConfigWorkerConfigAccelerator {
 		return v.Accelerators
 	}).(ClusterClusterConfigWorkerConfigAcceleratorArrayOutput)
 }
 
-// Disk Config
 func (o ClusterClusterConfigWorkerConfigPtrOutput) DiskConfig() ClusterClusterConfigWorkerConfigDiskConfigPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigWorkerConfig) *ClusterClusterConfigWorkerConfigDiskConfig {
 		return v.DiskConfig
 	}).(ClusterClusterConfigWorkerConfigDiskConfigPtrOutput)
 }
 
-// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
-// for more information.
 func (o ClusterClusterConfigWorkerConfigPtrOutput) ImageUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigWorkerConfig) *string { return v.ImageUri }).(pulumi.StringPtrOutput)
 }
@@ -3363,6 +3278,8 @@ func (o ClusterClusterConfigWorkerConfigPtrOutput) MinCpuPlatform() pulumi.Strin
 	return o.ApplyT(func(v ClusterClusterConfigWorkerConfig) *string { return v.MinCpuPlatform }).(pulumi.StringPtrOutput)
 }
 
+// Specifies the number of preemptible nodes to create.
+// Defaults to 0.
 func (o ClusterClusterConfigWorkerConfigPtrOutput) NumInstances() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfigWorkerConfig) *int { return v.NumInstances }).(pulumi.IntPtrOutput)
 }
@@ -3949,7 +3866,8 @@ type JobHadoopConfig struct {
 	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris   []string                      `pulumi:"jarFileUris"`
 	LoggingConfig *JobHadoopConfigLoggingConfig `pulumi:"loggingConfig"`
-	MainClass     *string                       `pulumi:"mainClass"`
+	// The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jarFileUris`. Conflicts with `mainJarFileUri`
+	MainClass *string `pulumi:"mainClass"`
 	// The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
 	MainJarFileUri *string `pulumi:"mainJarFileUri"`
 	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
@@ -3978,7 +3896,8 @@ type JobHadoopConfigArgs struct {
 	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris   pulumi.StringArrayInput              `pulumi:"jarFileUris"`
 	LoggingConfig JobHadoopConfigLoggingConfigPtrInput `pulumi:"loggingConfig"`
-	MainClass     pulumi.StringPtrInput                `pulumi:"mainClass"`
+	// The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jarFileUris`. Conflicts with `mainJarFileUri`
+	MainClass pulumi.StringPtrInput `pulumi:"mainClass"`
 	// The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
 	MainJarFileUri pulumi.StringPtrInput `pulumi:"mainJarFileUri"`
 	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
@@ -4087,6 +4006,7 @@ func (o JobHadoopConfigOutput) LoggingConfig() JobHadoopConfigLoggingConfigPtrOu
 	return o.ApplyT(func(v JobHadoopConfig) *JobHadoopConfigLoggingConfig { return v.LoggingConfig }).(JobHadoopConfigLoggingConfigPtrOutput)
 }
 
+// The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jarFileUris`. Conflicts with `mainJarFileUri`
 func (o JobHadoopConfigOutput) MainClass() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobHadoopConfig) *string { return v.MainClass }).(pulumi.StringPtrOutput)
 }
@@ -4143,6 +4063,7 @@ func (o JobHadoopConfigPtrOutput) LoggingConfig() JobHadoopConfigLoggingConfigPt
 	return o.ApplyT(func(v JobHadoopConfig) *JobHadoopConfigLoggingConfig { return v.LoggingConfig }).(JobHadoopConfigLoggingConfigPtrOutput)
 }
 
+// The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jarFileUris`. Conflicts with `mainJarFileUri`
 func (o JobHadoopConfigPtrOutput) MainClass() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobHadoopConfig) *string { return v.MainClass }).(pulumi.StringPtrOutput)
 }
@@ -4289,8 +4210,10 @@ type JobHiveConfig struct {
 	Properties map[string]string `pulumi:"properties"`
 	// The HCFS URI of the script that contains SQL queries.
 	// Conflicts with `queryList`
-	QueryFileUri *string  `pulumi:"queryFileUri"`
-	QueryLists   []string `pulumi:"queryLists"`
+	QueryFileUri *string `pulumi:"queryFileUri"`
+	// The list of SQL queries or statements to execute as part of the job.
+	// Conflicts with `queryFileUri`
+	QueryLists []string `pulumi:"queryLists"`
 	// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 	ScriptVariables map[string]string `pulumi:"scriptVariables"`
 }
@@ -4316,8 +4239,10 @@ type JobHiveConfigArgs struct {
 	Properties pulumi.StringMapInput `pulumi:"properties"`
 	// The HCFS URI of the script that contains SQL queries.
 	// Conflicts with `queryList`
-	QueryFileUri pulumi.StringPtrInput   `pulumi:"queryFileUri"`
-	QueryLists   pulumi.StringArrayInput `pulumi:"queryLists"`
+	QueryFileUri pulumi.StringPtrInput `pulumi:"queryFileUri"`
+	// The list of SQL queries or statements to execute as part of the job.
+	// Conflicts with `queryFileUri`
+	QueryLists pulumi.StringArrayInput `pulumi:"queryLists"`
 	// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 	ScriptVariables pulumi.StringMapInput `pulumi:"scriptVariables"`
 }
@@ -4421,6 +4346,8 @@ func (o JobHiveConfigOutput) QueryFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobHiveConfig) *string { return v.QueryFileUri }).(pulumi.StringPtrOutput)
 }
 
+// The list of SQL queries or statements to execute as part of the job.
+// Conflicts with `queryFileUri`
 func (o JobHiveConfigOutput) QueryLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v JobHiveConfig) []string { return v.QueryLists }).(pulumi.StringArrayOutput)
 }
@@ -4469,6 +4396,8 @@ func (o JobHiveConfigPtrOutput) QueryFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobHiveConfig) *string { return v.QueryFileUri }).(pulumi.StringPtrOutput)
 }
 
+// The list of SQL queries or statements to execute as part of the job.
+// Conflicts with `queryFileUri`
 func (o JobHiveConfigPtrOutput) QueryLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v JobHiveConfig) []string { return v.QueryLists }).(pulumi.StringArrayOutput)
 }
@@ -4774,8 +4703,10 @@ type JobPigConfig struct {
 	Properties map[string]string `pulumi:"properties"`
 	// The HCFS URI of the script that contains SQL queries.
 	// Conflicts with `queryList`
-	QueryFileUri *string  `pulumi:"queryFileUri"`
-	QueryLists   []string `pulumi:"queryLists"`
+	QueryFileUri *string `pulumi:"queryFileUri"`
+	// The list of SQL queries or statements to execute as part of the job.
+	// Conflicts with `queryFileUri`
+	QueryLists []string `pulumi:"queryLists"`
 	// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 	ScriptVariables map[string]string `pulumi:"scriptVariables"`
 }
@@ -4802,8 +4733,10 @@ type JobPigConfigArgs struct {
 	Properties pulumi.StringMapInput `pulumi:"properties"`
 	// The HCFS URI of the script that contains SQL queries.
 	// Conflicts with `queryList`
-	QueryFileUri pulumi.StringPtrInput   `pulumi:"queryFileUri"`
-	QueryLists   pulumi.StringArrayInput `pulumi:"queryLists"`
+	QueryFileUri pulumi.StringPtrInput `pulumi:"queryFileUri"`
+	// The list of SQL queries or statements to execute as part of the job.
+	// Conflicts with `queryFileUri`
+	QueryLists pulumi.StringArrayInput `pulumi:"queryLists"`
 	// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 	ScriptVariables pulumi.StringMapInput `pulumi:"scriptVariables"`
 }
@@ -4911,6 +4844,8 @@ func (o JobPigConfigOutput) QueryFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobPigConfig) *string { return v.QueryFileUri }).(pulumi.StringPtrOutput)
 }
 
+// The list of SQL queries or statements to execute as part of the job.
+// Conflicts with `queryFileUri`
 func (o JobPigConfigOutput) QueryLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v JobPigConfig) []string { return v.QueryLists }).(pulumi.StringArrayOutput)
 }
@@ -4963,6 +4898,8 @@ func (o JobPigConfigPtrOutput) QueryFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobPigConfig) *string { return v.QueryFileUri }).(pulumi.StringPtrOutput)
 }
 
+// The list of SQL queries or statements to execute as part of the job.
+// Conflicts with `queryFileUri`
 func (o JobPigConfigPtrOutput) QueryLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v JobPigConfig) []string { return v.QueryLists }).(pulumi.StringArrayOutput)
 }
@@ -5236,9 +5173,10 @@ type JobPysparkConfig struct {
 	// HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
 	FileUris []string `pulumi:"fileUris"`
 	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
-	JarFileUris       []string                       `pulumi:"jarFileUris"`
-	LoggingConfig     *JobPysparkConfigLoggingConfig `pulumi:"loggingConfig"`
-	MainPythonFileUri string                         `pulumi:"mainPythonFileUri"`
+	JarFileUris   []string                       `pulumi:"jarFileUris"`
+	LoggingConfig *JobPysparkConfigLoggingConfig `pulumi:"loggingConfig"`
+	// The HCFS URI of the main Python file to use as the driver. Must be a .py file.
+	MainPythonFileUri string `pulumi:"mainPythonFileUri"`
 	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 	Properties map[string]string `pulumi:"properties"`
 	// HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip.
@@ -5265,9 +5203,10 @@ type JobPysparkConfigArgs struct {
 	// HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
 	FileUris pulumi.StringArrayInput `pulumi:"fileUris"`
 	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
-	JarFileUris       pulumi.StringArrayInput               `pulumi:"jarFileUris"`
-	LoggingConfig     JobPysparkConfigLoggingConfigPtrInput `pulumi:"loggingConfig"`
-	MainPythonFileUri pulumi.StringInput                    `pulumi:"mainPythonFileUri"`
+	JarFileUris   pulumi.StringArrayInput               `pulumi:"jarFileUris"`
+	LoggingConfig JobPysparkConfigLoggingConfigPtrInput `pulumi:"loggingConfig"`
+	// The HCFS URI of the main Python file to use as the driver. Must be a .py file.
+	MainPythonFileUri pulumi.StringInput `pulumi:"mainPythonFileUri"`
 	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
 	Properties pulumi.StringMapInput `pulumi:"properties"`
 	// HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip.
@@ -5376,6 +5315,7 @@ func (o JobPysparkConfigOutput) LoggingConfig() JobPysparkConfigLoggingConfigPtr
 	return o.ApplyT(func(v JobPysparkConfig) *JobPysparkConfigLoggingConfig { return v.LoggingConfig }).(JobPysparkConfigLoggingConfigPtrOutput)
 }
 
+// The HCFS URI of the main Python file to use as the driver. Must be a .py file.
 func (o JobPysparkConfigOutput) MainPythonFileUri() pulumi.StringOutput {
 	return o.ApplyT(func(v JobPysparkConfig) string { return v.MainPythonFileUri }).(pulumi.StringOutput)
 }
@@ -5432,6 +5372,7 @@ func (o JobPysparkConfigPtrOutput) LoggingConfig() JobPysparkConfigLoggingConfig
 	return o.ApplyT(func(v JobPysparkConfig) *JobPysparkConfigLoggingConfig { return v.LoggingConfig }).(JobPysparkConfigLoggingConfigPtrOutput)
 }
 
+// The HCFS URI of the main Python file to use as the driver. Must be a .py file.
 func (o JobPysparkConfigPtrOutput) MainPythonFileUri() pulumi.StringOutput {
 	return o.ApplyT(func(v JobPysparkConfig) string { return v.MainPythonFileUri }).(pulumi.StringOutput)
 }
@@ -5825,7 +5766,8 @@ type JobSparkConfig struct {
 	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris   []string                     `pulumi:"jarFileUris"`
 	LoggingConfig *JobSparkConfigLoggingConfig `pulumi:"loggingConfig"`
-	MainClass     *string                      `pulumi:"mainClass"`
+	// The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jarFileUris`. Conflicts with `mainJarFileUri`
+	MainClass *string `pulumi:"mainClass"`
 	// The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
 	MainJarFileUri *string `pulumi:"mainJarFileUri"`
 	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
@@ -5854,7 +5796,8 @@ type JobSparkConfigArgs struct {
 	// HCFS URIs of jar files to be added to the Spark CLASSPATH.
 	JarFileUris   pulumi.StringArrayInput             `pulumi:"jarFileUris"`
 	LoggingConfig JobSparkConfigLoggingConfigPtrInput `pulumi:"loggingConfig"`
-	MainClass     pulumi.StringPtrInput               `pulumi:"mainClass"`
+	// The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jarFileUris`. Conflicts with `mainJarFileUri`
+	MainClass pulumi.StringPtrInput `pulumi:"mainClass"`
 	// The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
 	MainJarFileUri pulumi.StringPtrInput `pulumi:"mainJarFileUri"`
 	// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
@@ -5963,6 +5906,7 @@ func (o JobSparkConfigOutput) LoggingConfig() JobSparkConfigLoggingConfigPtrOutp
 	return o.ApplyT(func(v JobSparkConfig) *JobSparkConfigLoggingConfig { return v.LoggingConfig }).(JobSparkConfigLoggingConfigPtrOutput)
 }
 
+// The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jarFileUris`. Conflicts with `mainJarFileUri`
 func (o JobSparkConfigOutput) MainClass() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobSparkConfig) *string { return v.MainClass }).(pulumi.StringPtrOutput)
 }
@@ -6019,6 +5963,7 @@ func (o JobSparkConfigPtrOutput) LoggingConfig() JobSparkConfigLoggingConfigPtrO
 	return o.ApplyT(func(v JobSparkConfig) *JobSparkConfigLoggingConfig { return v.LoggingConfig }).(JobSparkConfigLoggingConfigPtrOutput)
 }
 
+// The name of the driver's main class. The jar file containing the class must be in the default CLASSPATH or specified in `jarFileUris`. Conflicts with `mainJarFileUri`
 func (o JobSparkConfigPtrOutput) MainClass() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobSparkConfig) *string { return v.MainClass }).(pulumi.StringPtrOutput)
 }
@@ -6164,8 +6109,10 @@ type JobSparksqlConfig struct {
 	Properties map[string]string `pulumi:"properties"`
 	// The HCFS URI of the script that contains SQL queries.
 	// Conflicts with `queryList`
-	QueryFileUri *string  `pulumi:"queryFileUri"`
-	QueryLists   []string `pulumi:"queryLists"`
+	QueryFileUri *string `pulumi:"queryFileUri"`
+	// The list of SQL queries or statements to execute as part of the job.
+	// Conflicts with `queryFileUri`
+	QueryLists []string `pulumi:"queryLists"`
 	// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 	ScriptVariables map[string]string `pulumi:"scriptVariables"`
 }
@@ -6190,8 +6137,10 @@ type JobSparksqlConfigArgs struct {
 	Properties pulumi.StringMapInput `pulumi:"properties"`
 	// The HCFS URI of the script that contains SQL queries.
 	// Conflicts with `queryList`
-	QueryFileUri pulumi.StringPtrInput   `pulumi:"queryFileUri"`
-	QueryLists   pulumi.StringArrayInput `pulumi:"queryLists"`
+	QueryFileUri pulumi.StringPtrInput `pulumi:"queryFileUri"`
+	// The list of SQL queries or statements to execute as part of the job.
+	// Conflicts with `queryFileUri`
+	QueryLists pulumi.StringArrayInput `pulumi:"queryLists"`
 	// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
 	ScriptVariables pulumi.StringMapInput `pulumi:"scriptVariables"`
 }
@@ -6294,6 +6243,8 @@ func (o JobSparksqlConfigOutput) QueryFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobSparksqlConfig) *string { return v.QueryFileUri }).(pulumi.StringPtrOutput)
 }
 
+// The list of SQL queries or statements to execute as part of the job.
+// Conflicts with `queryFileUri`
 func (o JobSparksqlConfigOutput) QueryLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v JobSparksqlConfig) []string { return v.QueryLists }).(pulumi.StringArrayOutput)
 }
@@ -6341,6 +6292,8 @@ func (o JobSparksqlConfigPtrOutput) QueryFileUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobSparksqlConfig) *string { return v.QueryFileUri }).(pulumi.StringPtrOutput)
 }
 
+// The list of SQL queries or statements to execute as part of the job.
+// Conflicts with `queryFileUri`
 func (o JobSparksqlConfigPtrOutput) QueryLists() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v JobSparksqlConfig) []string { return v.QueryLists }).(pulumi.StringArrayOutput)
 }

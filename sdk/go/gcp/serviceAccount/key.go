@@ -23,12 +23,10 @@ type Key struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The private key in JSON format, base64 encoded. This is what you normally get as a file when creating
 	// service account keys through the CLI or web console. This is only populated when creating a new key.
-	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
-	// The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
+	PrivateKey     pulumi.StringOutput    `pulumi:"privateKey"`
 	PrivateKeyType pulumi.StringPtrOutput `pulumi:"privateKeyType"`
 	// The public key, base64 encoded
-	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
-	// The output format of the public key requested. X509_PEM is the default output format.
+	PublicKey     pulumi.StringOutput    `pulumi:"publicKey"`
 	PublicKeyType pulumi.StringPtrOutput `pulumi:"publicKeyType"`
 	// The Service account id of the Key Pair. This can be a string in the format
 	// `{ACCOUNT}` or `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`, where `{ACCOUNT}` is the email address or
@@ -81,12 +79,10 @@ type keyState struct {
 	Name *string `pulumi:"name"`
 	// The private key in JSON format, base64 encoded. This is what you normally get as a file when creating
 	// service account keys through the CLI or web console. This is only populated when creating a new key.
-	PrivateKey *string `pulumi:"privateKey"`
-	// The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
+	PrivateKey     *string `pulumi:"privateKey"`
 	PrivateKeyType *string `pulumi:"privateKeyType"`
 	// The public key, base64 encoded
-	PublicKey *string `pulumi:"publicKey"`
-	// The output format of the public key requested. X509_PEM is the default output format.
+	PublicKey     *string `pulumi:"publicKey"`
 	PublicKeyType *string `pulumi:"publicKeyType"`
 	// The Service account id of the Key Pair. This can be a string in the format
 	// `{ACCOUNT}` or `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`, where `{ACCOUNT}` is the email address or
@@ -109,12 +105,10 @@ type KeyState struct {
 	Name pulumi.StringPtrInput
 	// The private key in JSON format, base64 encoded. This is what you normally get as a file when creating
 	// service account keys through the CLI or web console. This is only populated when creating a new key.
-	PrivateKey pulumi.StringPtrInput
-	// The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
+	PrivateKey     pulumi.StringPtrInput
 	PrivateKeyType pulumi.StringPtrInput
 	// The public key, base64 encoded
-	PublicKey pulumi.StringPtrInput
-	// The output format of the public key requested. X509_PEM is the default output format.
+	PublicKey     pulumi.StringPtrInput
 	PublicKeyType pulumi.StringPtrInput
 	// The Service account id of the Key Pair. This can be a string in the format
 	// `{ACCOUNT}` or `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`, where `{ACCOUNT}` is the email address or
@@ -136,11 +130,9 @@ type keyArgs struct {
 	// Valid values are listed at
 	// [ServiceAccountPrivateKeyType](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys#ServiceAccountKeyAlgorithm)
 	// (only used on create)
-	KeyAlgorithm *string `pulumi:"keyAlgorithm"`
-	// The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
+	KeyAlgorithm   *string `pulumi:"keyAlgorithm"`
 	PrivateKeyType *string `pulumi:"privateKeyType"`
-	// The output format of the public key requested. X509_PEM is the default output format.
-	PublicKeyType *string `pulumi:"publicKeyType"`
+	PublicKeyType  *string `pulumi:"publicKeyType"`
 	// The Service account id of the Key Pair. This can be a string in the format
 	// `{ACCOUNT}` or `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`, where `{ACCOUNT}` is the email address or
 	// unique id of the service account. If the `{ACCOUNT}` syntax is used, the project will be inferred from the account.
@@ -153,11 +145,9 @@ type KeyArgs struct {
 	// Valid values are listed at
 	// [ServiceAccountPrivateKeyType](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys#ServiceAccountKeyAlgorithm)
 	// (only used on create)
-	KeyAlgorithm pulumi.StringPtrInput
-	// The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
+	KeyAlgorithm   pulumi.StringPtrInput
 	PrivateKeyType pulumi.StringPtrInput
-	// The output format of the public key requested. X509_PEM is the default output format.
-	PublicKeyType pulumi.StringPtrInput
+	PublicKeyType  pulumi.StringPtrInput
 	// The Service account id of the Key Pair. This can be a string in the format
 	// `{ACCOUNT}` or `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`, where `{ACCOUNT}` is the email address or
 	// unique id of the service account. If the `{ACCOUNT}` syntax is used, the project will be inferred from the account.

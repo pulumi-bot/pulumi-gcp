@@ -36,9 +36,6 @@ namespace Pulumi.Gcp.Projects
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
-        /// <summary>
-        /// The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
-        /// </summary>
         [Output("permissions")]
         public Output<ImmutableArray<string>> Permissions { get; private set; } = null!;
 
@@ -123,10 +120,6 @@ namespace Pulumi.Gcp.Projects
 
         [Input("permissions", required: true)]
         private InputList<string>? _permissions;
-
-        /// <summary>
-        /// The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
-        /// </summary>
         public InputList<string> Permissions
         {
             get => _permissions ?? (_permissions = new InputList<string>());
@@ -181,10 +174,6 @@ namespace Pulumi.Gcp.Projects
 
         [Input("permissions")]
         private InputList<string>? _permissions;
-
-        /// <summary>
-        /// The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
-        /// </summary>
         public InputList<string> Permissions
         {
             get => _permissions ?? (_permissions = new InputList<string>());

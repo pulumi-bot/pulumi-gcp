@@ -216,9 +216,9 @@ class InstanceTemplate(pulumi.CustomResource):
     Enable [Shielded VM](https://cloud.google.com/security/shielded-cloud/shielded-vm) on this instance. Shielded VM provides verifiable integrity to prevent against malware and rootkits. Defaults to disabled. Structure is documented below.
     **Note**: `shielded_instance_config` can only be used with boot images with shielded vm support. See the complete list [here](https://cloud.google.com/compute/docs/images#shielded-images).
 
-      * `enableIntegrityMonitoring` (`bool`) - -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
-      * `enableSecureBoot` (`bool`) - -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
-      * `enableVtpm` (`bool`) - -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
+      * `enableIntegrityMonitoring` (`bool`) - Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
+      * `enableSecureBoot` (`bool`) - Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
+      * `enableVtpm` (`bool`) - Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
     """
     tags: pulumi.Output[list]
     """
@@ -395,9 +395,9 @@ class InstanceTemplate(pulumi.CustomResource):
 
         The **shielded_instance_config** object supports the following:
 
-          * `enableIntegrityMonitoring` (`pulumi.Input[bool]`) - -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
-          * `enableSecureBoot` (`pulumi.Input[bool]`) - -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
-          * `enableVtpm` (`pulumi.Input[bool]`) - -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
+          * `enableIntegrityMonitoring` (`pulumi.Input[bool]`) - Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
+          * `enableSecureBoot` (`pulumi.Input[bool]`) - Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
+          * `enableVtpm` (`pulumi.Input[bool]`) - Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -616,9 +616,9 @@ class InstanceTemplate(pulumi.CustomResource):
 
         The **shielded_instance_config** object supports the following:
 
-          * `enableIntegrityMonitoring` (`pulumi.Input[bool]`) - -- Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
-          * `enableSecureBoot` (`pulumi.Input[bool]`) - -- Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
-          * `enableVtpm` (`pulumi.Input[bool]`) - -- Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
+          * `enableIntegrityMonitoring` (`pulumi.Input[bool]`) - Compare the most recent boot measurements to the integrity policy baseline and return a pair of pass/fail results depending on whether they match or not. Defaults to true.
+          * `enableSecureBoot` (`pulumi.Input[bool]`) - Verify the digital signature of all boot components, and halt the boot process if signature verification fails. Defaults to false.
+          * `enableVtpm` (`pulumi.Input[bool]`) - Use a virtualized trusted platform module, which is a specialized computer chip you can use to encrypt objects like keys and certificates. Defaults to true.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

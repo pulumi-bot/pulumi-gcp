@@ -36,9 +36,6 @@ namespace Pulumi.Gcp.ServiceAccount
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
 
-        /// <summary>
-        /// The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
-        /// </summary>
         [Output("privateKeyType")]
         public Output<string?> PrivateKeyType { get; private set; } = null!;
 
@@ -48,9 +45,6 @@ namespace Pulumi.Gcp.ServiceAccount
         [Output("publicKey")]
         public Output<string> PublicKey { get; private set; } = null!;
 
-        /// <summary>
-        /// The output format of the public key requested. X509_PEM is the default output format.
-        /// </summary>
         [Output("publicKeyType")]
         public Output<string?> PublicKeyType { get; private set; } = null!;
 
@@ -130,15 +124,9 @@ namespace Pulumi.Gcp.ServiceAccount
         [Input("keyAlgorithm")]
         public Input<string>? KeyAlgorithm { get; set; }
 
-        /// <summary>
-        /// The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
-        /// </summary>
         [Input("privateKeyType")]
         public Input<string>? PrivateKeyType { get; set; }
 
-        /// <summary>
-        /// The output format of the public key requested. X509_PEM is the default output format.
-        /// </summary>
         [Input("publicKeyType")]
         public Input<string>? PublicKeyType { get; set; }
 
@@ -179,9 +167,6 @@ namespace Pulumi.Gcp.ServiceAccount
         [Input("privateKey")]
         public Input<string>? PrivateKey { get; set; }
 
-        /// <summary>
-        /// The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
-        /// </summary>
         [Input("privateKeyType")]
         public Input<string>? PrivateKeyType { get; set; }
 
@@ -191,9 +176,6 @@ namespace Pulumi.Gcp.ServiceAccount
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
 
-        /// <summary>
-        /// The output format of the public key requested. X509_PEM is the default output format.
-        /// </summary>
         [Input("publicKeyType")]
         public Input<string>? PublicKeyType { get; set; }
 

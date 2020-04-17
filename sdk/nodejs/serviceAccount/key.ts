@@ -54,17 +54,11 @@ export class Key extends pulumi.CustomResource {
      * service account keys through the CLI or web console. This is only populated when creating a new key.
      */
     public /*out*/ readonly privateKey!: pulumi.Output<string>;
-    /**
-     * The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
-     */
     public readonly privateKeyType!: pulumi.Output<string | undefined>;
     /**
      * The public key, base64 encoded
      */
     public /*out*/ readonly publicKey!: pulumi.Output<string>;
-    /**
-     * The output format of the public key requested. X509_PEM is the default output format.
-     */
     public readonly publicKeyType!: pulumi.Output<string | undefined>;
     /**
      * The Service account id of the Key Pair. This can be a string in the format
@@ -149,17 +143,11 @@ export interface KeyState {
      * service account keys through the CLI or web console. This is only populated when creating a new key.
      */
     readonly privateKey?: pulumi.Input<string>;
-    /**
-     * The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
-     */
     readonly privateKeyType?: pulumi.Input<string>;
     /**
      * The public key, base64 encoded
      */
     readonly publicKey?: pulumi.Input<string>;
-    /**
-     * The output format of the public key requested. X509_PEM is the default output format.
-     */
     readonly publicKeyType?: pulumi.Input<string>;
     /**
      * The Service account id of the Key Pair. This can be a string in the format
@@ -189,13 +177,7 @@ export interface KeyArgs {
      * (only used on create)
      */
     readonly keyAlgorithm?: pulumi.Input<string>;
-    /**
-     * The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
-     */
     readonly privateKeyType?: pulumi.Input<string>;
-    /**
-     * The output format of the public key requested. X509_PEM is the default output format.
-     */
     readonly publicKeyType?: pulumi.Input<string>;
     /**
      * The Service account id of the Key Pair. This can be a string in the format

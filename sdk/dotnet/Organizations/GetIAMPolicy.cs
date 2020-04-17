@@ -36,6 +36,10 @@ namespace Pulumi.Gcp.Organizations
 
         /// <summary>
         /// A nested configuration block that defines logging additional configuration for your project.
+        /// * `service` (Required) Defines a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
+        /// * `audit_log_configs` (Required) A nested block that defines the operations you'd like to log.
+        /// * `log_type` (Required) Defines the logging level. `DATA_READ`, `DATA_WRITE` and `ADMIN_READ` capture different types of events. See [the audit configuration documentation](https://cloud.google.com/resource-manager/reference/rest/Shared.Types/AuditConfig) for more details.
+        /// * `exempted_members` (Optional) Specifies the identities that are exempt from these types of logging operations. Follows the same format of the `members` array for `binding`.
         /// </summary>
         public List<Inputs.GetIAMPolicyAuditConfigArgs> AuditConfigs
         {

@@ -32,6 +32,7 @@ namespace Pulumi.Gcp.ServiceAccount
 
         /// <summary>
         /// Delegate chain of approvals needed to perform full impersonation. Specify the fully qualified service account name.  (e.g. `["projects/-/serviceAccounts/delegate-svc-account@project-id.iam.gserviceaccount.com"]`)
+        /// * `lifetime` (Optional) Lifetime of the impersonated token (defaults to its max: `3600s`).
         /// </summary>
         public List<string> Delegates
         {
@@ -39,9 +40,6 @@ namespace Pulumi.Gcp.ServiceAccount
             set => _delegates = value;
         }
 
-        /// <summary>
-        /// Lifetime of the impersonated token (defaults to its max: `3600s`).
-        /// </summary>
         [Input("lifetime")]
         public string? Lifetime { get; set; }
 

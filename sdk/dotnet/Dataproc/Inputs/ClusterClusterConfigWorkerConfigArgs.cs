@@ -14,26 +14,15 @@ namespace Pulumi.Gcp.Dataproc.Inputs
     {
         [Input("accelerators")]
         private InputList<Inputs.ClusterClusterConfigWorkerConfigAcceleratorArgs>? _accelerators;
-
-        /// <summary>
-        /// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
-        /// </summary>
         public InputList<Inputs.ClusterClusterConfigWorkerConfigAcceleratorArgs> Accelerators
         {
             get => _accelerators ?? (_accelerators = new InputList<Inputs.ClusterClusterConfigWorkerConfigAcceleratorArgs>());
             set => _accelerators = value;
         }
 
-        /// <summary>
-        /// Disk Config
-        /// </summary>
         [Input("diskConfig")]
         public Input<Inputs.ClusterClusterConfigWorkerConfigDiskConfigArgs>? DiskConfig { get; set; }
 
-        /// <summary>
-        /// The URI for the image to use for this worker.  See [the guide](https://cloud.google.com/dataproc/docs/guides/dataproc-images)
-        /// for more information.
-        /// </summary>
         [Input("imageUri")]
         public Input<string>? ImageUri { get; set; }
 
@@ -62,6 +51,10 @@ namespace Pulumi.Gcp.Dataproc.Inputs
         [Input("minCpuPlatform")]
         public Input<string>? MinCpuPlatform { get; set; }
 
+        /// <summary>
+        /// Specifies the number of preemptible nodes to create.
+        /// Defaults to 0.
+        /// </summary>
         [Input("numInstances")]
         public Input<int>? NumInstances { get; set; }
 

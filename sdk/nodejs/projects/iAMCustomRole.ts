@@ -76,9 +76,6 @@ export class IAMCustomRole extends pulumi.CustomResource {
      * A human-readable description for the role.
      */
     public readonly description!: pulumi.Output<string | undefined>;
-    /**
-     * The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
-     */
     public readonly permissions!: pulumi.Output<string[]>;
     /**
      * The project that the service account will be created in.
@@ -161,9 +158,6 @@ export interface IAMCustomRoleState {
      * A human-readable description for the role.
      */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
-     */
     readonly permissions?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The project that the service account will be created in.
@@ -194,9 +188,6 @@ export interface IAMCustomRoleArgs {
      * A human-readable description for the role.
      */
     readonly description?: pulumi.Input<string>;
-    /**
-     * The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
-     */
     readonly permissions: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The project that the service account will be created in.

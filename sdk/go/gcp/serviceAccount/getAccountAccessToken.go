@@ -23,9 +23,9 @@ func GetAccountAccessToken(ctx *pulumi.Context, args *GetAccountAccessTokenArgs,
 // A collection of arguments for invoking getAccountAccessToken.
 type GetAccountAccessTokenArgs struct {
 	// Delegate chain of approvals needed to perform full impersonation. Specify the fully qualified service account name.  (e.g. `["projects/-/serviceAccounts/delegate-svc-account@project-id.iam.gserviceaccount.com"]`)
+	// * `lifetime` (Optional) Lifetime of the impersonated token (defaults to its max: `3600s`).
 	Delegates []string `pulumi:"delegates"`
-	// Lifetime of the impersonated token (defaults to its max: `3600s`).
-	Lifetime *string `pulumi:"lifetime"`
+	Lifetime  *string  `pulumi:"lifetime"`
 	// The scopes the new credential should have (e.g. `["storage-ro", "cloud-platform"]`)
 	Scopes []string `pulumi:"scopes"`
 	// The service account _to_ impersonate (e.g. `service_B@your-project-id.iam.gserviceaccount.com`)

@@ -13,10 +13,6 @@ namespace Pulumi.Gcp.Container.Outputs
     [OutputType]
     public sealed class ClusterNodePoolNodeConfigSandboxConfig
     {
-        /// <summary>
-        /// Which sandbox to use for pods in the node pool.
-        /// Accepted values are:
-        /// </summary>
         public readonly string SandboxType;
 
         [OutputConstructor]

@@ -43,9 +43,6 @@ export interface GetAccountKeyArgs {
      * Defaults to the provider project configuration.
      */
     readonly project?: string;
-    /**
-     * The output format of the public key requested. X509_PEM is the default output format.
-     */
     readonly publicKeyType?: string;
 }
 

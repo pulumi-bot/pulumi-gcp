@@ -12,9 +12,6 @@ namespace Pulumi.Gcp.Dataproc.Inputs
 
     public sealed class ClusterClusterConfigSecurityConfigArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Kerberos Configuration
-        /// </summary>
         [Input("kerberosConfig", required: true)]
         public Input<Inputs.ClusterClusterConfigSecurityConfigKerberosConfigArgs> KerberosConfig { get; set; } = null!;
 

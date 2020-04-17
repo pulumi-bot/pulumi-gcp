@@ -14,19 +14,12 @@ namespace Pulumi.Gcp.Organizations.Inputs
     {
         [Input("auditLogConfigs", required: true)]
         private List<Inputs.GetIAMPolicyAuditConfigAuditLogConfigArgs>? _auditLogConfigs;
-
-        /// <summary>
-        /// A nested block that defines the operations you'd like to log.
-        /// </summary>
         public List<Inputs.GetIAMPolicyAuditConfigAuditLogConfigArgs> AuditLogConfigs
         {
             get => _auditLogConfigs ?? (_auditLogConfigs = new List<Inputs.GetIAMPolicyAuditConfigAuditLogConfigArgs>());
             set => _auditLogConfigs = value;
         }
 
-        /// <summary>
-        /// Defines a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
-        /// </summary>
         [Input("service", required: true)]
         public string Service { get; set; } = null!;
 

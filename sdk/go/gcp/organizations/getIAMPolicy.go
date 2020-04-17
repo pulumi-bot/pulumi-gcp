@@ -30,6 +30,10 @@ func LookupIAMPolicy(ctx *pulumi.Context, args *LookupIAMPolicyArgs, opts ...pul
 // A collection of arguments for invoking getIAMPolicy.
 type LookupIAMPolicyArgs struct {
 	// A nested configuration block that defines logging additional configuration for your project.
+	// * `service` (Required) Defines a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
+	// * `auditLogConfigs` (Required) A nested block that defines the operations you'd like to log.
+	// * `logType` (Required) Defines the logging level. `DATA_READ`, `DATA_WRITE` and `ADMIN_READ` capture different types of events. See [the audit configuration documentation](https://cloud.google.com/resource-manager/reference/rest/Shared.Types/AuditConfig) for more details.
+	// * `exemptedMembers` (Optional) Specifies the identities that are exempt from these types of logging operations. Follows the same format of the `members` array for `binding`.
 	AuditConfigs []GetIAMPolicyAuditConfig `pulumi:"auditConfigs"`
 	// A nested configuration block (described below)
 	// defining a binding to be included in the policy document. Multiple

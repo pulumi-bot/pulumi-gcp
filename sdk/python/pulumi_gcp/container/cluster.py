@@ -366,8 +366,7 @@ class Cluster(pulumi.CustomResource):
         for more information. Defaults to false.
       * `sandboxConfig` (`dict`) - [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `image_type = "COS_CONTAINERD"` and `node_version = "1.12.7-gke.17"` or later to use it.
         Structure is documented below.
-        * `sandboxType` (`str`) - Which sandbox to use for pods in the node pool.
-          Accepted values are:
+        * `sandboxType` (`str`)
 
       * `service_account` (`str`) - The service account to be used by the Node VMs.
         If not specified, the "default" service account is used.
@@ -388,18 +387,13 @@ class Cluster(pulumi.CustomResource):
         Kubernetes (eg. through `kubectl`), and it's recommended that you do not use
         this field to manage taints. If you do, `lifecycle.ignore_changes` is
         recommended. Structure is documented below.
-        * `effect` (`str`) - Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
-        * `key` (`str`) - Key for taint.
-        * `value` (`str`) - Value for taint.
+        * `effect` (`str`)
+        * `key` (`str`)
+        * `value` (`str`)
 
       * `workloadMetadataConfig` (`dict`) - Metadata configuration to expose to workloads on the node pool.
         Structure is documented below.
-        * `nodeMetadata` (`str`) - How to expose the node metadata to the workload running on the node.
-          Accepted values are:
-          * UNSPECIFIED: Not Set
-          * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-          * EXPOSE: Expose all VM metadata to pods.
-          * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
+        * `nodeMetadata` (`str`)
     """
     node_locations: pulumi.Output[list]
     """
@@ -479,8 +473,7 @@ class Cluster(pulumi.CustomResource):
           for more information. Defaults to false.
         * `sandboxConfig` (`dict`) - [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `image_type = "COS_CONTAINERD"` and `node_version = "1.12.7-gke.17"` or later to use it.
           Structure is documented below.
-          * `sandboxType` (`str`) - Which sandbox to use for pods in the node pool.
-            Accepted values are:
+          * `sandboxType` (`str`)
 
         * `service_account` (`str`) - The service account to be used by the Node VMs.
           If not specified, the "default" service account is used.
@@ -501,18 +494,13 @@ class Cluster(pulumi.CustomResource):
           Kubernetes (eg. through `kubectl`), and it's recommended that you do not use
           this field to manage taints. If you do, `lifecycle.ignore_changes` is
           recommended. Structure is documented below.
-          * `effect` (`str`) - Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
-          * `key` (`str`) - Key for taint.
-          * `value` (`str`) - Value for taint.
+          * `effect` (`str`)
+          * `key` (`str`)
+          * `value` (`str`)
 
         * `workloadMetadataConfig` (`dict`) - Metadata configuration to expose to workloads on the node pool.
           Structure is documented below.
-          * `nodeMetadata` (`str`) - How to expose the node metadata to the workload running on the node.
-            Accepted values are:
-            * UNSPECIFIED: Not Set
-            * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-            * EXPOSE: Expose all VM metadata to pods.
-            * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
+          * `nodeMetadata` (`str`)
 
       * `node_count` (`float`)
       * `node_locations` (`list`) - The list of zones in which the cluster's nodes
@@ -989,8 +977,7 @@ class Cluster(pulumi.CustomResource):
             for more information. Defaults to false.
           * `sandboxConfig` (`pulumi.Input[dict]`) - [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `image_type = "COS_CONTAINERD"` and `node_version = "1.12.7-gke.17"` or later to use it.
             Structure is documented below.
-            * `sandboxType` (`pulumi.Input[str]`) - Which sandbox to use for pods in the node pool.
-              Accepted values are:
+            * `sandboxType` (`pulumi.Input[str]`)
 
           * `service_account` (`pulumi.Input[str]`) - The service account to be used by the Node VMs.
             If not specified, the "default" service account is used.
@@ -1011,18 +998,13 @@ class Cluster(pulumi.CustomResource):
             Kubernetes (eg. through `kubectl`), and it's recommended that you do not use
             this field to manage taints. If you do, `lifecycle.ignore_changes` is
             recommended. Structure is documented below.
-            * `effect` (`pulumi.Input[str]`) - Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
-            * `key` (`pulumi.Input[str]`) - Key for taint.
-            * `value` (`pulumi.Input[str]`) - Value for taint.
+            * `effect` (`pulumi.Input[str]`)
+            * `key` (`pulumi.Input[str]`)
+            * `value` (`pulumi.Input[str]`)
 
           * `workloadMetadataConfig` (`pulumi.Input[dict]`) - Metadata configuration to expose to workloads on the node pool.
             Structure is documented below.
-            * `nodeMetadata` (`pulumi.Input[str]`) - How to expose the node metadata to the workload running on the node.
-              Accepted values are:
-              * UNSPECIFIED: Not Set
-              * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-              * EXPOSE: Expose all VM metadata to pods.
-              * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
+            * `nodeMetadata` (`pulumi.Input[str]`)
 
         The **node_pools** object supports the following:
 
@@ -1088,8 +1070,7 @@ class Cluster(pulumi.CustomResource):
               for more information. Defaults to false.
             * `sandboxConfig` (`pulumi.Input[dict]`) - [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `image_type = "COS_CONTAINERD"` and `node_version = "1.12.7-gke.17"` or later to use it.
               Structure is documented below.
-              * `sandboxType` (`pulumi.Input[str]`) - Which sandbox to use for pods in the node pool.
-                Accepted values are:
+              * `sandboxType` (`pulumi.Input[str]`)
 
             * `service_account` (`pulumi.Input[str]`) - The service account to be used by the Node VMs.
               If not specified, the "default" service account is used.
@@ -1110,18 +1091,13 @@ class Cluster(pulumi.CustomResource):
               Kubernetes (eg. through `kubectl`), and it's recommended that you do not use
               this field to manage taints. If you do, `lifecycle.ignore_changes` is
               recommended. Structure is documented below.
-              * `effect` (`pulumi.Input[str]`) - Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
-              * `key` (`pulumi.Input[str]`) - Key for taint.
-              * `value` (`pulumi.Input[str]`) - Value for taint.
+              * `effect` (`pulumi.Input[str]`)
+              * `key` (`pulumi.Input[str]`)
+              * `value` (`pulumi.Input[str]`)
 
             * `workloadMetadataConfig` (`pulumi.Input[dict]`) - Metadata configuration to expose to workloads on the node pool.
               Structure is documented below.
-              * `nodeMetadata` (`pulumi.Input[str]`) - How to expose the node metadata to the workload running on the node.
-                Accepted values are:
-                * UNSPECIFIED: Not Set
-                * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-                * EXPOSE: Expose all VM metadata to pods.
-                * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
+              * `nodeMetadata` (`pulumi.Input[str]`)
 
           * `node_count` (`pulumi.Input[float]`)
           * `node_locations` (`pulumi.Input[list]`) - The list of zones in which the cluster's nodes
@@ -1608,8 +1584,7 @@ class Cluster(pulumi.CustomResource):
             for more information. Defaults to false.
           * `sandboxConfig` (`pulumi.Input[dict]`) - [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `image_type = "COS_CONTAINERD"` and `node_version = "1.12.7-gke.17"` or later to use it.
             Structure is documented below.
-            * `sandboxType` (`pulumi.Input[str]`) - Which sandbox to use for pods in the node pool.
-              Accepted values are:
+            * `sandboxType` (`pulumi.Input[str]`)
 
           * `service_account` (`pulumi.Input[str]`) - The service account to be used by the Node VMs.
             If not specified, the "default" service account is used.
@@ -1630,18 +1605,13 @@ class Cluster(pulumi.CustomResource):
             Kubernetes (eg. through `kubectl`), and it's recommended that you do not use
             this field to manage taints. If you do, `lifecycle.ignore_changes` is
             recommended. Structure is documented below.
-            * `effect` (`pulumi.Input[str]`) - Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
-            * `key` (`pulumi.Input[str]`) - Key for taint.
-            * `value` (`pulumi.Input[str]`) - Value for taint.
+            * `effect` (`pulumi.Input[str]`)
+            * `key` (`pulumi.Input[str]`)
+            * `value` (`pulumi.Input[str]`)
 
           * `workloadMetadataConfig` (`pulumi.Input[dict]`) - Metadata configuration to expose to workloads on the node pool.
             Structure is documented below.
-            * `nodeMetadata` (`pulumi.Input[str]`) - How to expose the node metadata to the workload running on the node.
-              Accepted values are:
-              * UNSPECIFIED: Not Set
-              * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-              * EXPOSE: Expose all VM metadata to pods.
-              * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
+            * `nodeMetadata` (`pulumi.Input[str]`)
 
         The **node_pools** object supports the following:
 
@@ -1707,8 +1677,7 @@ class Cluster(pulumi.CustomResource):
               for more information. Defaults to false.
             * `sandboxConfig` (`pulumi.Input[dict]`) - [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `image_type = "COS_CONTAINERD"` and `node_version = "1.12.7-gke.17"` or later to use it.
               Structure is documented below.
-              * `sandboxType` (`pulumi.Input[str]`) - Which sandbox to use for pods in the node pool.
-                Accepted values are:
+              * `sandboxType` (`pulumi.Input[str]`)
 
             * `service_account` (`pulumi.Input[str]`) - The service account to be used by the Node VMs.
               If not specified, the "default" service account is used.
@@ -1729,18 +1698,13 @@ class Cluster(pulumi.CustomResource):
               Kubernetes (eg. through `kubectl`), and it's recommended that you do not use
               this field to manage taints. If you do, `lifecycle.ignore_changes` is
               recommended. Structure is documented below.
-              * `effect` (`pulumi.Input[str]`) - Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
-              * `key` (`pulumi.Input[str]`) - Key for taint.
-              * `value` (`pulumi.Input[str]`) - Value for taint.
+              * `effect` (`pulumi.Input[str]`)
+              * `key` (`pulumi.Input[str]`)
+              * `value` (`pulumi.Input[str]`)
 
             * `workloadMetadataConfig` (`pulumi.Input[dict]`) - Metadata configuration to expose to workloads on the node pool.
               Structure is documented below.
-              * `nodeMetadata` (`pulumi.Input[str]`) - How to expose the node metadata to the workload running on the node.
-                Accepted values are:
-                * UNSPECIFIED: Not Set
-                * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-                * EXPOSE: Expose all VM metadata to pods.
-                * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
+              * `nodeMetadata` (`pulumi.Input[str]`)
 
           * `node_count` (`pulumi.Input[float]`)
           * `node_locations` (`pulumi.Input[list]`) - The list of zones in which the cluster's nodes

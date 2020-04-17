@@ -23,9 +23,6 @@ class IAMCustomRole(pulumi.CustomResource):
     The numeric ID of the organization in which you want to create a custom role.
     """
     permissions: pulumi.Output[list]
-    """
-    The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
-    """
     role_id: pulumi.Output[str]
     """
     The role id to use for this role.
@@ -60,7 +57,6 @@ class IAMCustomRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A human-readable description for the role.
         :param pulumi.Input[str] org_id: The numeric ID of the organization in which you want to create a custom role.
-        :param pulumi.Input[list] permissions: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
         :param pulumi.Input[str] role_id: The role id to use for this role.
         :param pulumi.Input[str] stage: The current launch stage of the role.
                Defaults to `GA`.
@@ -117,7 +113,6 @@ class IAMCustomRole(pulumi.CustomResource):
         :param pulumi.Input[bool] deleted: (Optional) The current deleted state of the role.
         :param pulumi.Input[str] description: A human-readable description for the role.
         :param pulumi.Input[str] org_id: The numeric ID of the organization in which you want to create a custom role.
-        :param pulumi.Input[list] permissions: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
         :param pulumi.Input[str] role_id: The role id to use for this role.
         :param pulumi.Input[str] stage: The current launch stage of the role.
                Defaults to `GA`.

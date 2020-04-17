@@ -3837,8 +3837,6 @@ func (o ClusterNodeConfigGuestAcceleratorArrayOutput) Index(i pulumi.IntInput) C
 }
 
 type ClusterNodeConfigSandboxConfig struct {
-	// Which sandbox to use for pods in the node pool.
-	// Accepted values are:
 	SandboxType string `pulumi:"sandboxType"`
 }
 
@@ -3855,8 +3853,6 @@ type ClusterNodeConfigSandboxConfigInput interface {
 }
 
 type ClusterNodeConfigSandboxConfigArgs struct {
-	// Which sandbox to use for pods in the node pool.
-	// Accepted values are:
 	SandboxType pulumi.StringInput `pulumi:"sandboxType"`
 }
 
@@ -3937,9 +3933,6 @@ func (o ClusterNodeConfigSandboxConfigOutput) ToClusterNodeConfigSandboxConfigPt
 		return &v
 	}).(ClusterNodeConfigSandboxConfigPtrOutput)
 }
-
-// Which sandbox to use for pods in the node pool.
-// Accepted values are:
 func (o ClusterNodeConfigSandboxConfigOutput) SandboxType() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterNodeConfigSandboxConfig) string { return v.SandboxType }).(pulumi.StringOutput)
 }
@@ -3962,8 +3955,6 @@ func (o ClusterNodeConfigSandboxConfigPtrOutput) Elem() ClusterNodeConfigSandbox
 	return o.ApplyT(func(v *ClusterNodeConfigSandboxConfig) ClusterNodeConfigSandboxConfig { return *v }).(ClusterNodeConfigSandboxConfigOutput)
 }
 
-// Which sandbox to use for pods in the node pool.
-// Accepted values are:
 func (o ClusterNodeConfigSandboxConfigPtrOutput) SandboxType() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterNodeConfigSandboxConfig) string { return v.SandboxType }).(pulumi.StringOutput)
 }
@@ -4111,12 +4102,9 @@ func (o ClusterNodeConfigShieldedInstanceConfigPtrOutput) EnableSecureBoot() pul
 }
 
 type ClusterNodeConfigTaint struct {
-	// Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
 	Effect string `pulumi:"effect"`
-	// Key for taint.
-	Key string `pulumi:"key"`
-	// Value for taint.
-	Value string `pulumi:"value"`
+	Key    string `pulumi:"key"`
+	Value  string `pulumi:"value"`
 }
 
 // ClusterNodeConfigTaintInput is an input type that accepts ClusterNodeConfigTaintArgs and ClusterNodeConfigTaintOutput values.
@@ -4132,12 +4120,9 @@ type ClusterNodeConfigTaintInput interface {
 }
 
 type ClusterNodeConfigTaintArgs struct {
-	// Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
 	Effect pulumi.StringInput `pulumi:"effect"`
-	// Key for taint.
-	Key pulumi.StringInput `pulumi:"key"`
-	// Value for taint.
-	Value pulumi.StringInput `pulumi:"value"`
+	Key    pulumi.StringInput `pulumi:"key"`
+	Value  pulumi.StringInput `pulumi:"value"`
 }
 
 func (ClusterNodeConfigTaintArgs) ElementType() reflect.Type {
@@ -4192,17 +4177,14 @@ func (o ClusterNodeConfigTaintOutput) ToClusterNodeConfigTaintOutputWithContext(
 	return o
 }
 
-// Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
 func (o ClusterNodeConfigTaintOutput) Effect() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterNodeConfigTaint) string { return v.Effect }).(pulumi.StringOutput)
 }
 
-// Key for taint.
 func (o ClusterNodeConfigTaintOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterNodeConfigTaint) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// Value for taint.
 func (o ClusterNodeConfigTaintOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterNodeConfigTaint) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -4228,12 +4210,6 @@ func (o ClusterNodeConfigTaintArrayOutput) Index(i pulumi.IntInput) ClusterNodeC
 }
 
 type ClusterNodeConfigWorkloadMetadataConfig struct {
-	// How to expose the node metadata to the workload running on the node.
-	// Accepted values are:
-	// * UNSPECIFIED: Not Set
-	// * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-	// * EXPOSE: Expose all VM metadata to pods.
-	// * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
 	NodeMetadata string `pulumi:"nodeMetadata"`
 }
 
@@ -4250,12 +4226,6 @@ type ClusterNodeConfigWorkloadMetadataConfigInput interface {
 }
 
 type ClusterNodeConfigWorkloadMetadataConfigArgs struct {
-	// How to expose the node metadata to the workload running on the node.
-	// Accepted values are:
-	// * UNSPECIFIED: Not Set
-	// * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-	// * EXPOSE: Expose all VM metadata to pods.
-	// * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
 	NodeMetadata pulumi.StringInput `pulumi:"nodeMetadata"`
 }
 
@@ -4336,13 +4306,6 @@ func (o ClusterNodeConfigWorkloadMetadataConfigOutput) ToClusterNodeConfigWorklo
 		return &v
 	}).(ClusterNodeConfigWorkloadMetadataConfigPtrOutput)
 }
-
-// How to expose the node metadata to the workload running on the node.
-// Accepted values are:
-// * UNSPECIFIED: Not Set
-// * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-// * EXPOSE: Expose all VM metadata to pods.
-// * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
 func (o ClusterNodeConfigWorkloadMetadataConfigOutput) NodeMetadata() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterNodeConfigWorkloadMetadataConfig) string { return v.NodeMetadata }).(pulumi.StringOutput)
 }
@@ -4365,12 +4328,6 @@ func (o ClusterNodeConfigWorkloadMetadataConfigPtrOutput) Elem() ClusterNodeConf
 	return o.ApplyT(func(v *ClusterNodeConfigWorkloadMetadataConfig) ClusterNodeConfigWorkloadMetadataConfig { return *v }).(ClusterNodeConfigWorkloadMetadataConfigOutput)
 }
 
-// How to expose the node metadata to the workload running on the node.
-// Accepted values are:
-// * UNSPECIFIED: Not Set
-// * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-// * EXPOSE: Expose all VM metadata to pods.
-// * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
 func (o ClusterNodeConfigWorkloadMetadataConfigPtrOutput) NodeMetadata() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterNodeConfigWorkloadMetadataConfig) string { return v.NodeMetadata }).(pulumi.StringOutput)
 }
@@ -5483,8 +5440,6 @@ func (o ClusterNodePoolNodeConfigGuestAcceleratorArrayOutput) Index(i pulumi.Int
 }
 
 type ClusterNodePoolNodeConfigSandboxConfig struct {
-	// Which sandbox to use for pods in the node pool.
-	// Accepted values are:
 	SandboxType string `pulumi:"sandboxType"`
 }
 
@@ -5501,8 +5456,6 @@ type ClusterNodePoolNodeConfigSandboxConfigInput interface {
 }
 
 type ClusterNodePoolNodeConfigSandboxConfigArgs struct {
-	// Which sandbox to use for pods in the node pool.
-	// Accepted values are:
 	SandboxType pulumi.StringInput `pulumi:"sandboxType"`
 }
 
@@ -5583,9 +5536,6 @@ func (o ClusterNodePoolNodeConfigSandboxConfigOutput) ToClusterNodePoolNodeConfi
 		return &v
 	}).(ClusterNodePoolNodeConfigSandboxConfigPtrOutput)
 }
-
-// Which sandbox to use for pods in the node pool.
-// Accepted values are:
 func (o ClusterNodePoolNodeConfigSandboxConfigOutput) SandboxType() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterNodePoolNodeConfigSandboxConfig) string { return v.SandboxType }).(pulumi.StringOutput)
 }
@@ -5608,8 +5558,6 @@ func (o ClusterNodePoolNodeConfigSandboxConfigPtrOutput) Elem() ClusterNodePoolN
 	return o.ApplyT(func(v *ClusterNodePoolNodeConfigSandboxConfig) ClusterNodePoolNodeConfigSandboxConfig { return *v }).(ClusterNodePoolNodeConfigSandboxConfigOutput)
 }
 
-// Which sandbox to use for pods in the node pool.
-// Accepted values are:
 func (o ClusterNodePoolNodeConfigSandboxConfigPtrOutput) SandboxType() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterNodePoolNodeConfigSandboxConfig) string { return v.SandboxType }).(pulumi.StringOutput)
 }
@@ -5759,12 +5707,9 @@ func (o ClusterNodePoolNodeConfigShieldedInstanceConfigPtrOutput) EnableSecureBo
 }
 
 type ClusterNodePoolNodeConfigTaint struct {
-	// Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
 	Effect string `pulumi:"effect"`
-	// Key for taint.
-	Key string `pulumi:"key"`
-	// Value for taint.
-	Value string `pulumi:"value"`
+	Key    string `pulumi:"key"`
+	Value  string `pulumi:"value"`
 }
 
 // ClusterNodePoolNodeConfigTaintInput is an input type that accepts ClusterNodePoolNodeConfigTaintArgs and ClusterNodePoolNodeConfigTaintOutput values.
@@ -5780,12 +5725,9 @@ type ClusterNodePoolNodeConfigTaintInput interface {
 }
 
 type ClusterNodePoolNodeConfigTaintArgs struct {
-	// Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
 	Effect pulumi.StringInput `pulumi:"effect"`
-	// Key for taint.
-	Key pulumi.StringInput `pulumi:"key"`
-	// Value for taint.
-	Value pulumi.StringInput `pulumi:"value"`
+	Key    pulumi.StringInput `pulumi:"key"`
+	Value  pulumi.StringInput `pulumi:"value"`
 }
 
 func (ClusterNodePoolNodeConfigTaintArgs) ElementType() reflect.Type {
@@ -5840,17 +5782,14 @@ func (o ClusterNodePoolNodeConfigTaintOutput) ToClusterNodePoolNodeConfigTaintOu
 	return o
 }
 
-// Effect for taint. Accepted values are `NO_SCHEDULE`, `PREFER_NO_SCHEDULE`, and `NO_EXECUTE`.
 func (o ClusterNodePoolNodeConfigTaintOutput) Effect() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterNodePoolNodeConfigTaint) string { return v.Effect }).(pulumi.StringOutput)
 }
 
-// Key for taint.
 func (o ClusterNodePoolNodeConfigTaintOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterNodePoolNodeConfigTaint) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// Value for taint.
 func (o ClusterNodePoolNodeConfigTaintOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterNodePoolNodeConfigTaint) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -5876,12 +5815,6 @@ func (o ClusterNodePoolNodeConfigTaintArrayOutput) Index(i pulumi.IntInput) Clus
 }
 
 type ClusterNodePoolNodeConfigWorkloadMetadataConfig struct {
-	// How to expose the node metadata to the workload running on the node.
-	// Accepted values are:
-	// * UNSPECIFIED: Not Set
-	// * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-	// * EXPOSE: Expose all VM metadata to pods.
-	// * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
 	NodeMetadata string `pulumi:"nodeMetadata"`
 }
 
@@ -5898,12 +5831,6 @@ type ClusterNodePoolNodeConfigWorkloadMetadataConfigInput interface {
 }
 
 type ClusterNodePoolNodeConfigWorkloadMetadataConfigArgs struct {
-	// How to expose the node metadata to the workload running on the node.
-	// Accepted values are:
-	// * UNSPECIFIED: Not Set
-	// * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-	// * EXPOSE: Expose all VM metadata to pods.
-	// * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
 	NodeMetadata pulumi.StringInput `pulumi:"nodeMetadata"`
 }
 
@@ -5984,13 +5911,6 @@ func (o ClusterNodePoolNodeConfigWorkloadMetadataConfigOutput) ToClusterNodePool
 		return &v
 	}).(ClusterNodePoolNodeConfigWorkloadMetadataConfigPtrOutput)
 }
-
-// How to expose the node metadata to the workload running on the node.
-// Accepted values are:
-// * UNSPECIFIED: Not Set
-// * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-// * EXPOSE: Expose all VM metadata to pods.
-// * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
 func (o ClusterNodePoolNodeConfigWorkloadMetadataConfigOutput) NodeMetadata() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterNodePoolNodeConfigWorkloadMetadataConfig) string { return v.NodeMetadata }).(pulumi.StringOutput)
 }
@@ -6015,12 +5935,6 @@ func (o ClusterNodePoolNodeConfigWorkloadMetadataConfigPtrOutput) Elem() Cluster
 	}).(ClusterNodePoolNodeConfigWorkloadMetadataConfigOutput)
 }
 
-// How to expose the node metadata to the workload running on the node.
-// Accepted values are:
-// * UNSPECIFIED: Not Set
-// * SECURE: Prevent workloads not in hostNetwork from accessing certain VM metadata, specifically kube-env, which contains Kubelet credentials, and the instance identity token. See [Metadata Concealment](https://cloud.google.com/kubernetes-engine/docs/how-to/metadata-proxy) documentation.
-// * EXPOSE: Expose all VM metadata to pods.
-// * GKE_METADATA_SERVER: Enables [workload identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the node.
 func (o ClusterNodePoolNodeConfigWorkloadMetadataConfigPtrOutput) NodeMetadata() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterNodePoolNodeConfigWorkloadMetadataConfig) string { return v.NodeMetadata }).(pulumi.StringOutput)
 }

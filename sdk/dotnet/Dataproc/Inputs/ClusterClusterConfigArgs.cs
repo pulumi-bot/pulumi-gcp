@@ -12,37 +12,20 @@ namespace Pulumi.Gcp.Dataproc.Inputs
 
     public sealed class ClusterClusterConfigArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The autoscaling policy config associated with the cluster.
-        /// Structure defined below.
-        /// </summary>
         [Input("autoscalingConfig")]
         public Input<Inputs.ClusterClusterConfigAutoscalingConfigArgs>? AutoscalingConfig { get; set; }
 
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }
 
-        /// <summary>
-        /// The Customer managed encryption keys settings for the cluster.
-        /// Structure defined below.
-        /// </summary>
         [Input("encryptionConfig")]
         public Input<Inputs.ClusterClusterConfigEncryptionConfigArgs>? EncryptionConfig { get; set; }
 
-        /// <summary>
-        /// Common config settings for resources of Google Compute Engine cluster
-        /// instances, applicable to all instances in the cluster. Structure defined below.
-        /// </summary>
         [Input("gceClusterConfig")]
         public Input<Inputs.ClusterClusterConfigGceClusterConfigArgs>? GceClusterConfig { get; set; }
 
         [Input("initializationActions")]
         private InputList<Inputs.ClusterClusterConfigInitializationActionArgs>? _initializationActions;
-
-        /// <summary>
-        /// Commands to execute on each node after config is completed.
-        /// You can specify multiple versions of these. Structure defined below.
-        /// </summary>
         public InputList<Inputs.ClusterClusterConfigInitializationActionArgs> InitializationActions
         {
             get => _initializationActions ?? (_initializationActions = new InputList<Inputs.ClusterClusterConfigInitializationActionArgs>());
@@ -52,30 +35,15 @@ namespace Pulumi.Gcp.Dataproc.Inputs
         [Input("lifecycleConfig")]
         public Input<Inputs.ClusterClusterConfigLifecycleConfigArgs>? LifecycleConfig { get; set; }
 
-        /// <summary>
-        /// The Google Compute Engine config settings for the master instances
-        /// in a cluster.. Structure defined below.
-        /// </summary>
         [Input("masterConfig")]
         public Input<Inputs.ClusterClusterConfigMasterConfigArgs>? MasterConfig { get; set; }
 
-        /// <summary>
-        /// The Google Compute Engine config settings for the additional (aka
-        /// preemptible) instances in a cluster. Structure defined below.
-        /// </summary>
         [Input("preemptibleWorkerConfig")]
         public Input<Inputs.ClusterClusterConfigPreemptibleWorkerConfigArgs>? PreemptibleWorkerConfig { get; set; }
 
-        /// <summary>
-        /// Security related configuration. Structure defined below.
-        /// </summary>
         [Input("securityConfig")]
         public Input<Inputs.ClusterClusterConfigSecurityConfigArgs>? SecurityConfig { get; set; }
 
-        /// <summary>
-        /// The config settings for software inside the cluster.
-        /// Structure defined below.
-        /// </summary>
         [Input("softwareConfig")]
         public Input<Inputs.ClusterClusterConfigSoftwareConfigArgs>? SoftwareConfig { get; set; }
 
@@ -91,10 +59,6 @@ namespace Pulumi.Gcp.Dataproc.Inputs
         [Input("stagingBucket")]
         public Input<string>? StagingBucket { get; set; }
 
-        /// <summary>
-        /// The Google Compute Engine config settings for the worker instances
-        /// in a cluster.. Structure defined below.
-        /// </summary>
         [Input("workerConfig")]
         public Input<Inputs.ClusterClusterConfigWorkerConfigArgs>? WorkerConfig { get; set; }
 

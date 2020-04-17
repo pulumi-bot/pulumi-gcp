@@ -27,17 +27,11 @@ class Key(pulumi.CustomResource):
     service account keys through the CLI or web console. This is only populated when creating a new key.
     """
     private_key_type: pulumi.Output[str]
-    """
-    The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
-    """
     public_key: pulumi.Output[str]
     """
     The public key, base64 encoded
     """
     public_key_type: pulumi.Output[str]
-    """
-    The output format of the public key requested. X509_PEM is the default output format.
-    """
     service_account_id: pulumi.Output[str]
     """
     The Service account id of the Key Pair. This can be a string in the format
@@ -63,8 +57,6 @@ class Key(pulumi.CustomResource):
                Valid values are listed at
                [ServiceAccountPrivateKeyType](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys#ServiceAccountKeyAlgorithm)
                (only used on create)
-        :param pulumi.Input[str] private_key_type: The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
-        :param pulumi.Input[str] public_key_type: The output format of the public key requested. X509_PEM is the default output format.
         :param pulumi.Input[str] service_account_id: The Service account id of the Key Pair. This can be a string in the format
                `{ACCOUNT}` or `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`, where `{ACCOUNT}` is the email address or
                unique id of the service account. If the `{ACCOUNT}` syntax is used, the project will be inferred from the account.
@@ -119,9 +111,7 @@ class Key(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name used for this key pair
         :param pulumi.Input[str] private_key: The private key in JSON format, base64 encoded. This is what you normally get as a file when creating
                service account keys through the CLI or web console. This is only populated when creating a new key.
-        :param pulumi.Input[str] private_key_type: The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.
         :param pulumi.Input[str] public_key: The public key, base64 encoded
-        :param pulumi.Input[str] public_key_type: The output format of the public key requested. X509_PEM is the default output format.
         :param pulumi.Input[str] service_account_id: The Service account id of the Key Pair. This can be a string in the format
                `{ACCOUNT}` or `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`, where `{ACCOUNT}` is the email address or
                unique id of the service account. If the `{ACCOUNT}` syntax is used, the project will be inferred from the account.

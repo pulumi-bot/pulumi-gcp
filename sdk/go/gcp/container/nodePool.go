@@ -58,10 +58,7 @@ type NodePool struct {
 	NodeLocations pulumi.StringArrayOutput `pulumi:"nodeLocations"`
 	// The ID of the project in which to create the node pool. If blank,
 	// the provider-configured project will be used.
-	Project pulumi.StringOutput `pulumi:"project"`
-	// Specify node upgrade settings to change how many nodes GKE attempts to
-	// upgrade at once. The number of nodes upgraded simultaneously is the sum of `maxSurge` and `maxUnavailable`.
-	// The maximum number of nodes upgraded simultaneously is limited to 20.
+	Project         pulumi.StringOutput           `pulumi:"project"`
 	UpgradeSettings NodePoolUpgradeSettingsOutput `pulumi:"upgradeSettings"`
 	// The Kubernetes version for the nodes in this pool. Note that if this field
 	// and `autoUpgrade` are both specified, they will fight each other for what the node version should
@@ -145,10 +142,7 @@ type nodePoolState struct {
 	NodeLocations []string `pulumi:"nodeLocations"`
 	// The ID of the project in which to create the node pool. If blank,
 	// the provider-configured project will be used.
-	Project *string `pulumi:"project"`
-	// Specify node upgrade settings to change how many nodes GKE attempts to
-	// upgrade at once. The number of nodes upgraded simultaneously is the sum of `maxSurge` and `maxUnavailable`.
-	// The maximum number of nodes upgraded simultaneously is limited to 20.
+	Project         *string                  `pulumi:"project"`
 	UpgradeSettings *NodePoolUpgradeSettings `pulumi:"upgradeSettings"`
 	// The Kubernetes version for the nodes in this pool. Note that if this field
 	// and `autoUpgrade` are both specified, they will fight each other for what the node version should
@@ -202,10 +196,7 @@ type NodePoolState struct {
 	NodeLocations pulumi.StringArrayInput
 	// The ID of the project in which to create the node pool. If blank,
 	// the provider-configured project will be used.
-	Project pulumi.StringPtrInput
-	// Specify node upgrade settings to change how many nodes GKE attempts to
-	// upgrade at once. The number of nodes upgraded simultaneously is the sum of `maxSurge` and `maxUnavailable`.
-	// The maximum number of nodes upgraded simultaneously is limited to 20.
+	Project         pulumi.StringPtrInput
 	UpgradeSettings NodePoolUpgradeSettingsPtrInput
 	// The Kubernetes version for the nodes in this pool. Note that if this field
 	// and `autoUpgrade` are both specified, they will fight each other for what the node version should
@@ -261,10 +252,7 @@ type nodePoolArgs struct {
 	NodeLocations []string `pulumi:"nodeLocations"`
 	// The ID of the project in which to create the node pool. If blank,
 	// the provider-configured project will be used.
-	Project *string `pulumi:"project"`
-	// Specify node upgrade settings to change how many nodes GKE attempts to
-	// upgrade at once. The number of nodes upgraded simultaneously is the sum of `maxSurge` and `maxUnavailable`.
-	// The maximum number of nodes upgraded simultaneously is limited to 20.
+	Project         *string                  `pulumi:"project"`
 	UpgradeSettings *NodePoolUpgradeSettings `pulumi:"upgradeSettings"`
 	// The Kubernetes version for the nodes in this pool. Note that if this field
 	// and `autoUpgrade` are both specified, they will fight each other for what the node version should
@@ -317,10 +305,7 @@ type NodePoolArgs struct {
 	NodeLocations pulumi.StringArrayInput
 	// The ID of the project in which to create the node pool. If blank,
 	// the provider-configured project will be used.
-	Project pulumi.StringPtrInput
-	// Specify node upgrade settings to change how many nodes GKE attempts to
-	// upgrade at once. The number of nodes upgraded simultaneously is the sum of `maxSurge` and `maxUnavailable`.
-	// The maximum number of nodes upgraded simultaneously is limited to 20.
+	Project         pulumi.StringPtrInput
 	UpgradeSettings NodePoolUpgradeSettingsPtrInput
 	// The Kubernetes version for the nodes in this pool. Note that if this field
 	// and `autoUpgrade` are both specified, they will fight each other for what the node version should

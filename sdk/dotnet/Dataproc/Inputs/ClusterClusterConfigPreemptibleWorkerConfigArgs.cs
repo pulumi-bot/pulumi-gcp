@@ -12,9 +12,6 @@ namespace Pulumi.Gcp.Dataproc.Inputs
 
     public sealed class ClusterClusterConfigPreemptibleWorkerConfigArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Disk Config
-        /// </summary>
         [Input("diskConfig")]
         public Input<Inputs.ClusterClusterConfigPreemptibleWorkerConfigDiskConfigArgs>? DiskConfig { get; set; }
 
@@ -26,6 +23,10 @@ namespace Pulumi.Gcp.Dataproc.Inputs
             set => _instanceNames = value;
         }
 
+        /// <summary>
+        /// Specifies the number of preemptible nodes to create.
+        /// Defaults to 0.
+        /// </summary>
         [Input("numInstances")]
         public Input<int>? NumInstances { get; set; }
 
