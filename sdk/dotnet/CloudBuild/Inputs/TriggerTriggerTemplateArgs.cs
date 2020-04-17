@@ -12,21 +12,57 @@ namespace Pulumi.Gcp.CloudBuild.Inputs
 
     public sealed class TriggerTriggerTemplateArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the branch to build. Exactly one a of branch name, tag, or commit SHA must be provided.
+        /// This field is a regular expression.
+        /// </summary>
         [Input("branchName")]
         public Input<string>? BranchName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Explicit commit SHA to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+        /// </summary>
         [Input("commitSha")]
         public Input<string>? CommitSha { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Directory, relative to the source root, in which to run the build.
+        /// This must be a relative path. If a step's dir is specified and
+        /// is an absolute path, this value is ignored for that step's
+        /// execution.
+        /// </summary>
         [Input("dir")]
         public Input<string>? Dir { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// ID of the project that owns the Cloud Source Repository. If
+        /// omitted, the project ID requesting the build is assumed.
+        /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the Cloud Source Repository. If omitted, the name "default" is assumed.
+        /// </summary>
         [Input("repoName")]
         public Input<string>? RepoName { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the tag to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+        /// This field is a regular expression.
+        /// </summary>
         [Input("tagName")]
         public Input<string>? TagName { get; set; }
 

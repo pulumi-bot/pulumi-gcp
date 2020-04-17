@@ -19,21 +19,22 @@ class Instance(pulumi.CustomResource):
     """
     Additional disks to attach to the instance. Can be repeated multiple times for multiple disks. Structure is documented below.
 
-      * `device_name` (`str`) - Name with which the attached disk will be accessible
-        under `/dev/disk/by-id/google-*`
+      * `device_name` (`str`) - Name with which attached disk will be accessible.
+        On the instance, this device will be `/dev/disk/by-id/google-{{device_name}}`.
       * `diskEncryptionKeyRaw` (`str`) - A 256-bit [customer-supplied encryption key]
         (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
         encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
-        to encrypt this disk. Only one of `kms_key_self_link` and `disk_encryption_key_raw` may be set.
+        to encrypt this disk. Only one of `kms_key_self_link` and `disk_encryption_key_raw`
+        may be set.
       * `diskEncryptionKeySha256` (`str`)
       * `kmsKeySelfLink` (`str`) - The self_link of the encryption key that is
         stored in Google Cloud KMS to encrypt this disk. Only one of `kms_key_self_link`
         and `disk_encryption_key_raw` may be set.
-      * `mode` (`str`) - Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
-        If you have a persistent disk with data that you want to share
-        between multiple instances, detach it from any read-write instances and
-        attach it to one or more instances in read-only mode.
-      * `source` (`str`) - The name or self_link of the disk to attach to this instance.
+      * `mode` (`str`) - The mode in which to attach this disk, either `READ_WRITE`
+        or `READ_ONLY`. If not specified, the default is to attach the disk in `READ_WRITE` mode.
+      * `source` (`str`) - The name or self_link of the existing disk (such as those managed by
+        `compute.Disk`) or disk image. To create an instance from a snapshot, first create a
+        `compute.Disk` from a snapshot and reference it here.
     """
     boot_disk: pulumi.Output[dict]
     """
@@ -42,12 +43,13 @@ class Instance(pulumi.CustomResource):
 
       * `autoDelete` (`bool`) - Whether the disk will be auto-deleted when the instance
         is deleted. Defaults to true.
-      * `device_name` (`str`) - Name with which the attached disk will be accessible
-        under `/dev/disk/by-id/google-*`
+      * `device_name` (`str`) - Name with which attached disk will be accessible.
+        On the instance, this device will be `/dev/disk/by-id/google-{{device_name}}`.
       * `diskEncryptionKeyRaw` (`str`) - A 256-bit [customer-supplied encryption key]
         (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
         encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
-        to encrypt this disk. Only one of `kms_key_self_link` and `disk_encryption_key_raw` may be set.
+        to encrypt this disk. Only one of `kms_key_self_link` and `disk_encryption_key_raw`
+        may be set.
       * `diskEncryptionKeySha256` (`str`)
       * `initializeParams` (`dict`) - Parameters for a new disk that will be created
         alongside the new instance. Either `initialize_params` or `source` must be set.
@@ -64,16 +66,16 @@ class Instance(pulumi.CustomResource):
         * `labels` (`dict`) - A map of key/value label pairs to assign to the instance.
         * `size` (`float`) - The size of the image in gigabytes. If not specified, it
           will inherit the size of its base image.
-        * `type` (`str`) - The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+        * `type` (`str`) - The GCE disk type. May be set to pd-standard or pd-ssd.
 
       * `kmsKeySelfLink` (`str`) - The self_link of the encryption key that is
         stored in Google Cloud KMS to encrypt this disk. Only one of `kms_key_self_link`
         and `disk_encryption_key_raw` may be set.
-      * `mode` (`str`) - Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
-        If you have a persistent disk with data that you want to share
-        between multiple instances, detach it from any read-write instances and
-        attach it to one or more instances in read-only mode.
-      * `source` (`str`) - The name or self_link of the disk to attach to this instance.
+      * `mode` (`str`) - The mode in which to attach this disk, either `READ_WRITE`
+        or `READ_ONLY`. If not specified, the default is to attach the disk in `READ_WRITE` mode.
+      * `source` (`str`) - The name or self_link of the existing disk (such as those managed by
+        `compute.Disk`) or disk image. To create an instance from a snapshot, first create a
+        `compute.Disk` from a snapshot and reference it here.
     """
     can_ip_forward: pulumi.Output[bool]
     """
@@ -111,7 +113,7 @@ class Instance(pulumi.CustomResource):
     **Note:** GPU accelerators can only be used with `on_host_maintenance` option set to TERMINATE.
 
       * `count` (`float`) - The number of the guest accelerator cards exposed to this instance.
-      * `type` (`str`) - The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+      * `type` (`str`) - The GCE disk type. May be set to pd-standard or pd-ssd.
     """
     hostname: pulumi.Output[str]
     """
@@ -363,32 +365,34 @@ class Instance(pulumi.CustomResource):
 
         The **attached_disks** object supports the following:
 
-          * `device_name` (`pulumi.Input[str]`) - Name with which the attached disk will be accessible
-            under `/dev/disk/by-id/google-*`
+          * `device_name` (`pulumi.Input[str]`) - Name with which attached disk will be accessible.
+            On the instance, this device will be `/dev/disk/by-id/google-{{device_name}}`.
           * `diskEncryptionKeyRaw` (`pulumi.Input[str]`) - A 256-bit [customer-supplied encryption key]
             (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
             encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
-            to encrypt this disk. Only one of `kms_key_self_link` and `disk_encryption_key_raw` may be set.
+            to encrypt this disk. Only one of `kms_key_self_link` and `disk_encryption_key_raw`
+            may be set.
           * `diskEncryptionKeySha256` (`pulumi.Input[str]`)
           * `kmsKeySelfLink` (`pulumi.Input[str]`) - The self_link of the encryption key that is
             stored in Google Cloud KMS to encrypt this disk. Only one of `kms_key_self_link`
             and `disk_encryption_key_raw` may be set.
-          * `mode` (`pulumi.Input[str]`) - Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
-            If you have a persistent disk with data that you want to share
-            between multiple instances, detach it from any read-write instances and
-            attach it to one or more instances in read-only mode.
-          * `source` (`pulumi.Input[str]`) - The name or self_link of the disk to attach to this instance.
+          * `mode` (`pulumi.Input[str]`) - The mode in which to attach this disk, either `READ_WRITE`
+            or `READ_ONLY`. If not specified, the default is to attach the disk in `READ_WRITE` mode.
+          * `source` (`pulumi.Input[str]`) - The name or self_link of the existing disk (such as those managed by
+            `compute.Disk`) or disk image. To create an instance from a snapshot, first create a
+            `compute.Disk` from a snapshot and reference it here.
 
         The **boot_disk** object supports the following:
 
           * `autoDelete` (`pulumi.Input[bool]`) - Whether the disk will be auto-deleted when the instance
             is deleted. Defaults to true.
-          * `device_name` (`pulumi.Input[str]`) - Name with which the attached disk will be accessible
-            under `/dev/disk/by-id/google-*`
+          * `device_name` (`pulumi.Input[str]`) - Name with which attached disk will be accessible.
+            On the instance, this device will be `/dev/disk/by-id/google-{{device_name}}`.
           * `diskEncryptionKeyRaw` (`pulumi.Input[str]`) - A 256-bit [customer-supplied encryption key]
             (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
             encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
-            to encrypt this disk. Only one of `kms_key_self_link` and `disk_encryption_key_raw` may be set.
+            to encrypt this disk. Only one of `kms_key_self_link` and `disk_encryption_key_raw`
+            may be set.
           * `diskEncryptionKeySha256` (`pulumi.Input[str]`)
           * `initializeParams` (`pulumi.Input[dict]`) - Parameters for a new disk that will be created
             alongside the new instance. Either `initialize_params` or `source` must be set.
@@ -405,21 +409,21 @@ class Instance(pulumi.CustomResource):
             * `labels` (`pulumi.Input[dict]`) - A map of key/value label pairs to assign to the instance.
             * `size` (`pulumi.Input[float]`) - The size of the image in gigabytes. If not specified, it
               will inherit the size of its base image.
-            * `type` (`pulumi.Input[str]`) - The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+            * `type` (`pulumi.Input[str]`) - The GCE disk type. May be set to pd-standard or pd-ssd.
 
           * `kmsKeySelfLink` (`pulumi.Input[str]`) - The self_link of the encryption key that is
             stored in Google Cloud KMS to encrypt this disk. Only one of `kms_key_self_link`
             and `disk_encryption_key_raw` may be set.
-          * `mode` (`pulumi.Input[str]`) - Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
-            If you have a persistent disk with data that you want to share
-            between multiple instances, detach it from any read-write instances and
-            attach it to one or more instances in read-only mode.
-          * `source` (`pulumi.Input[str]`) - The name or self_link of the disk to attach to this instance.
+          * `mode` (`pulumi.Input[str]`) - The mode in which to attach this disk, either `READ_WRITE`
+            or `READ_ONLY`. If not specified, the default is to attach the disk in `READ_WRITE` mode.
+          * `source` (`pulumi.Input[str]`) - The name or self_link of the existing disk (such as those managed by
+            `compute.Disk`) or disk image. To create an instance from a snapshot, first create a
+            `compute.Disk` from a snapshot and reference it here.
 
         The **guest_accelerators** object supports the following:
 
           * `count` (`pulumi.Input[float]`) - The number of the guest accelerator cards exposed to this instance.
-          * `type` (`pulumi.Input[str]`) - The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+          * `type` (`pulumi.Input[str]`) - The GCE disk type. May be set to pd-standard or pd-ssd.
 
         The **network_interfaces** object supports the following:
 
@@ -640,32 +644,34 @@ class Instance(pulumi.CustomResource):
 
         The **attached_disks** object supports the following:
 
-          * `device_name` (`pulumi.Input[str]`) - Name with which the attached disk will be accessible
-            under `/dev/disk/by-id/google-*`
+          * `device_name` (`pulumi.Input[str]`) - Name with which attached disk will be accessible.
+            On the instance, this device will be `/dev/disk/by-id/google-{{device_name}}`.
           * `diskEncryptionKeyRaw` (`pulumi.Input[str]`) - A 256-bit [customer-supplied encryption key]
             (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
             encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
-            to encrypt this disk. Only one of `kms_key_self_link` and `disk_encryption_key_raw` may be set.
+            to encrypt this disk. Only one of `kms_key_self_link` and `disk_encryption_key_raw`
+            may be set.
           * `diskEncryptionKeySha256` (`pulumi.Input[str]`)
           * `kmsKeySelfLink` (`pulumi.Input[str]`) - The self_link of the encryption key that is
             stored in Google Cloud KMS to encrypt this disk. Only one of `kms_key_self_link`
             and `disk_encryption_key_raw` may be set.
-          * `mode` (`pulumi.Input[str]`) - Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
-            If you have a persistent disk with data that you want to share
-            between multiple instances, detach it from any read-write instances and
-            attach it to one or more instances in read-only mode.
-          * `source` (`pulumi.Input[str]`) - The name or self_link of the disk to attach to this instance.
+          * `mode` (`pulumi.Input[str]`) - The mode in which to attach this disk, either `READ_WRITE`
+            or `READ_ONLY`. If not specified, the default is to attach the disk in `READ_WRITE` mode.
+          * `source` (`pulumi.Input[str]`) - The name or self_link of the existing disk (such as those managed by
+            `compute.Disk`) or disk image. To create an instance from a snapshot, first create a
+            `compute.Disk` from a snapshot and reference it here.
 
         The **boot_disk** object supports the following:
 
           * `autoDelete` (`pulumi.Input[bool]`) - Whether the disk will be auto-deleted when the instance
             is deleted. Defaults to true.
-          * `device_name` (`pulumi.Input[str]`) - Name with which the attached disk will be accessible
-            under `/dev/disk/by-id/google-*`
+          * `device_name` (`pulumi.Input[str]`) - Name with which attached disk will be accessible.
+            On the instance, this device will be `/dev/disk/by-id/google-{{device_name}}`.
           * `diskEncryptionKeyRaw` (`pulumi.Input[str]`) - A 256-bit [customer-supplied encryption key]
             (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
             encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
-            to encrypt this disk. Only one of `kms_key_self_link` and `disk_encryption_key_raw` may be set.
+            to encrypt this disk. Only one of `kms_key_self_link` and `disk_encryption_key_raw`
+            may be set.
           * `diskEncryptionKeySha256` (`pulumi.Input[str]`)
           * `initializeParams` (`pulumi.Input[dict]`) - Parameters for a new disk that will be created
             alongside the new instance. Either `initialize_params` or `source` must be set.
@@ -682,21 +688,21 @@ class Instance(pulumi.CustomResource):
             * `labels` (`pulumi.Input[dict]`) - A map of key/value label pairs to assign to the instance.
             * `size` (`pulumi.Input[float]`) - The size of the image in gigabytes. If not specified, it
               will inherit the size of its base image.
-            * `type` (`pulumi.Input[str]`) - The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+            * `type` (`pulumi.Input[str]`) - The GCE disk type. May be set to pd-standard or pd-ssd.
 
           * `kmsKeySelfLink` (`pulumi.Input[str]`) - The self_link of the encryption key that is
             stored in Google Cloud KMS to encrypt this disk. Only one of `kms_key_self_link`
             and `disk_encryption_key_raw` may be set.
-          * `mode` (`pulumi.Input[str]`) - Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
-            If you have a persistent disk with data that you want to share
-            between multiple instances, detach it from any read-write instances and
-            attach it to one or more instances in read-only mode.
-          * `source` (`pulumi.Input[str]`) - The name or self_link of the disk to attach to this instance.
+          * `mode` (`pulumi.Input[str]`) - The mode in which to attach this disk, either `READ_WRITE`
+            or `READ_ONLY`. If not specified, the default is to attach the disk in `READ_WRITE` mode.
+          * `source` (`pulumi.Input[str]`) - The name or self_link of the existing disk (such as those managed by
+            `compute.Disk`) or disk image. To create an instance from a snapshot, first create a
+            `compute.Disk` from a snapshot and reference it here.
 
         The **guest_accelerators** object supports the following:
 
           * `count` (`pulumi.Input[float]`) - The number of the guest accelerator cards exposed to this instance.
-          * `type` (`pulumi.Input[str]`) - The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+          * `type` (`pulumi.Input[str]`) - The GCE disk type. May be set to pd-standard or pd-ssd.
 
         The **network_interfaces** object supports the following:
 

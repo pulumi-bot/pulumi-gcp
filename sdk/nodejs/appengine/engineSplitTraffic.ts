@@ -44,6 +44,8 @@ export class EngineSplitTraffic extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Optional)
      * If set to true traffic will be migrated to this version.
      */
     public readonly migrateTraffic!: pulumi.Output<boolean | undefined>;
@@ -53,11 +55,15 @@ export class EngineSplitTraffic extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The name of the service these settings apply to.
      */
     public readonly service!: pulumi.Output<string>;
     /**
-     * Mapping that defines fractional HTTP traffic diversion to different versions within the service.
+     * -
+     * (Required)
+     * Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
      */
     public readonly split!: pulumi.Output<outputs.appengine.EngineSplitTrafficSplit>;
 
@@ -106,6 +112,8 @@ export class EngineSplitTraffic extends pulumi.CustomResource {
  */
 export interface EngineSplitTrafficState {
     /**
+     * -
+     * (Optional)
      * If set to true traffic will be migrated to this version.
      */
     readonly migrateTraffic?: pulumi.Input<boolean>;
@@ -115,11 +123,15 @@ export interface EngineSplitTrafficState {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The name of the service these settings apply to.
      */
     readonly service?: pulumi.Input<string>;
     /**
-     * Mapping that defines fractional HTTP traffic diversion to different versions within the service.
+     * -
+     * (Required)
+     * Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
      */
     readonly split?: pulumi.Input<inputs.appengine.EngineSplitTrafficSplit>;
 }
@@ -129,6 +141,8 @@ export interface EngineSplitTrafficState {
  */
 export interface EngineSplitTrafficArgs {
     /**
+     * -
+     * (Optional)
      * If set to true traffic will be migrated to this version.
      */
     readonly migrateTraffic?: pulumi.Input<boolean>;
@@ -138,11 +152,15 @@ export interface EngineSplitTrafficArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The name of the service these settings apply to.
      */
     readonly service: pulumi.Input<string>;
     /**
-     * Mapping that defines fractional HTTP traffic diversion to different versions within the service.
+     * -
+     * (Required)
+     * Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
      */
     readonly split: pulumi.Input<inputs.appengine.EngineSplitTrafficSplit>;
 }

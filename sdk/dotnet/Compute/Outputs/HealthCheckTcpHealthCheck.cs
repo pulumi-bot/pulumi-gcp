@@ -13,11 +13,58 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class HealthCheckTcpHealthCheck
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The TCP port number for the HTTP health check request.
+        /// The default value is 80.
+        /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Port name as defined in InstanceGroup#NamedPort#name. If both port and
+        /// port_name are defined, port takes precedence.
+        /// </summary>
         public readonly string? PortName;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies how port is selected for health checking, can be one of the
+        /// following values:
+        /// * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+        /// * `USE_NAMED_PORT`: The `portName` is used for health checking.
+        /// * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+        /// network endpoint is used for health checking. For other backends, the
+        /// port or named port specified in the Backend Service is used for health
+        /// checking.
+        /// If not specified, HTTP health check follows behavior specified in `port` and
+        /// `portName` fields.
+        /// </summary>
         public readonly string? PortSpecification;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the type of proxy header to append before sending data to the
+        /// backend, either NONE or PROXY_V1. The default is NONE.
+        /// </summary>
         public readonly string? ProxyHeader;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The application data to send once the TCP connection has been
+        /// established (default value is empty). If both request and response are
+        /// empty, the connection establishment alone will indicate health. The request
+        /// data can only be ASCII.
+        /// </summary>
         public readonly string? Request;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The bytes to match against the beginning of the response data. If left empty
+        /// (the default value), any response will indicate health. The response data
+        /// can only be ASCII.
+        /// </summary>
         public readonly string? Response;
 
         [OutputConstructor]

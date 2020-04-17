@@ -13,6 +13,14 @@ namespace Pulumi.Gcp.CloudRun.Outputs
     [OutputType]
     public sealed class ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReference
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name must be unique within a namespace, within a Cloud Run region.
+        /// Is required when creating resources. Name is primarily intended
+        /// for creation idempotence and configuration definition. Cannot be updated.
+        /// More info: http://kubernetes.io/docs/user-guide/identifiers#names
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

@@ -15,15 +15,36 @@ namespace Pulumi.Gcp.Compute.Inputs
         [Input("filter")]
         public Input<string>? Filter { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the resource. The name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("singleInstanceAssignment")]
         public Input<double>? SingleInstanceAssignment { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// URL of the managed instance group that this autoscaler will scale.
+        /// </summary>
         [Input("target")]
         public Input<double>? Target { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Defines how target utilization value is expressed for a
+        /// Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND,
+        /// or DELTA_PER_MINUTE.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 

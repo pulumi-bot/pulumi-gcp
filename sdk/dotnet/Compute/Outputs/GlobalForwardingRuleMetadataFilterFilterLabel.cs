@@ -13,7 +13,24 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class GlobalForwardingRuleMetadataFilterFilterLabel
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the resource; provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value that the label must match. The value has a maximum
+        /// length of 1024 characters.
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

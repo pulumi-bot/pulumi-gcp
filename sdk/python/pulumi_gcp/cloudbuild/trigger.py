@@ -12,27 +12,102 @@ from .. import utilities, tables
 class Trigger(pulumi.CustomResource):
     build: pulumi.Output[dict]
     """
-    Contents of the build template. Either a filename or build template must be provided.
+    -
+    (Optional)
+    Contents of the build template. Either a filename or build template must be provided.  Structure is documented below.
 
-      * `images` (`list`)
-      * `steps` (`list`)
-        * `args` (`list`)
-        * `dir` (`str`)
-        * `entrypoint` (`str`)
-        * `envs` (`list`)
-        * `id` (`str`) - an identifier for the resource with format `projects/{{project}}/triggers/{{trigger_id}}`
-        * `name` (`str`)
-        * `secretEnvs` (`list`)
-        * `timeout` (`str`)
-        * `timing` (`str`)
-        * `volumes` (`list`)
-          * `name` (`str`)
-          * `path` (`str`)
+      * `images` (`list`) - -
+        (Optional)
+        A list of images to be pushed upon the successful completion of all build steps.
+        The images are pushed using the builder service account's credentials.
+        The digests of the pushed images will be stored in the Build resource's results field.
+        If any of the images fail to be pushed, the build status is marked FAILURE.
+      * `steps` (`list`) - -
+        (Required)
+        The operations to be performed on the workspace.  Structure is documented below.
+        * `args` (`list`) - -
+          (Optional)
+          A list of arguments that will be presented to the step when it is started.
+          If the image used to run the step's container has an entrypoint, the args
+          are used as arguments to that entrypoint. If the image does not define an
+          entrypoint, the first element in args is used as the entrypoint, and the
+          remainder will be used as arguments.
+        * `dir` (`str`) - -
+          (Optional)
+          Directory, relative to the source root, in which to run the build.
+          This must be a relative path. If a step's dir is specified and
+          is an absolute path, this value is ignored for that step's
+          execution.
+        * `entrypoint` (`str`) - -
+          (Optional)
+          Entrypoint to be used instead of the build step image's
+          default entrypoint.
+          If unset, the image's default entrypoint is used
+        * `envs` (`list`) - -
+          (Optional)
+          A list of environment variable definitions to be used when
+          running a step.
+          The elements are of the form "KEY=VALUE" for the environment variable
+          "KEY" being given the value "VALUE".
+        * `id` (`str`) - -
+          (Optional)
+          Unique identifier for this build step, used in `wait_for` to
+          reference this build step as a dependency.
+        * `name` (`str`) - -
+          (Optional)
+          Name of the trigger. Must be unique within the project.
+        * `secretEnvs` (`list`) - -
+          (Optional)
+          A list of environment variables which are encrypted using
+          a Cloud Key
+          Management Service crypto key. These values must be specified in
+          the build's `Secret`.
+        * `timeout` (`str`) - -
+          (Optional)
+          Amount of time that this build should be allowed to run, to second granularity.
+          If this amount of time elapses, work on the build will cease and the build status will be TIMEOUT.
+          This timeout must be equal to or greater than the sum of the timeouts for build steps within the build.
+          The expected format is the number of seconds followed by s.
+          Default time is ten minutes (600s).
+        * `timing` (`str`) - -
+          (Optional)
+          Output only. Stores timing information for executing this
+          build step.
+        * `volumes` (`list`) - -
+          (Optional)
+          List of volumes to mount into the build step.
+          Each volume is created as an empty volume prior to execution of the
+          build step. Upon completion of the build, volumes and their contents
+          are discarded.
+          Using a named volume in only one step is not valid as it is
+          indicative of a build request with an incorrect configuration.  Structure is documented below.
+          * `name` (`str`) - -
+            (Optional)
+            Name of the trigger. Must be unique within the project.
+          * `path` (`str`) - -
+            (Required)
+            Path at which to mount the volume.
+            Paths must be absolute and cannot conflict with other volume paths on
+            the same build step or with certain reserved volume paths.
 
-        * `waitFors` (`list`)
+        * `waitFors` (`list`) - -
+          (Optional)
+          The ID(s) of the step(s) that this build step depends on.
+          This build step will not start until all the build steps in `wait_for`
+          have completed successfully. If `wait_for` is empty, this build step
+          will start when all previous build steps in the `Build.Steps` list
+          have completed successfully.
 
-      * `tags` (`list`)
-      * `timeout` (`str`)
+      * `tags` (`list`) - -
+        (Optional)
+        Tags for annotation of a Build. These are not docker tags.
+      * `timeout` (`str`) - -
+        (Optional)
+        Amount of time that this build should be allowed to run, to second granularity.
+        If this amount of time elapses, work on the build will cease and the build status will be TIMEOUT.
+        This timeout must be equal to or greater than the sum of the timeouts for build steps within the build.
+        The expected format is the number of seconds followed by s.
+        Default time is ten minutes (600s).
     """
     create_time: pulumi.Output[str]
     """
@@ -40,49 +115,86 @@ class Trigger(pulumi.CustomResource):
     """
     description: pulumi.Output[str]
     """
+    -
+    (Optional)
     Human-readable description of the trigger.
     """
     disabled: pulumi.Output[bool]
     """
+    -
+    (Optional)
     Whether the trigger is disabled or not. If true, the trigger will never result in a build.
     """
     filename: pulumi.Output[str]
     """
-    Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must
-    be provided.
+    -
+    (Optional)
+    Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must be provided.
     """
     github: pulumi.Output[dict]
     """
-    Describes the configuration of a trigger that creates a build whenever a GitHub event is received. One of
-    'trigger_template' or 'github' must be provided.
+    -
+    (Optional)
+    Describes the configuration of a trigger that creates a build whenever a GitHub event is received.
+    One of `trigger_template` or `github` must be provided.  Structure is documented below.
 
-      * `name` (`str`)
-      * `owner` (`str`)
-      * `pullRequest` (`dict`)
-        * `branch` (`str`)
-        * `commentControl` (`str`)
+      * `name` (`str`) - -
+        (Optional)
+        Name of the trigger. Must be unique within the project.
+      * `owner` (`str`) - -
+        (Optional)
+        Owner of the repository. For example: The owner for
+        https://github.com/googlecloudplatform/cloud-builders is "googlecloudplatform".
+      * `pullRequest` (`dict`) - -
+        (Optional)
+        filter to match changes in pull requests.  Specify only one of pullRequest or push.  Structure is documented below.
+        * `branch` (`str`) - -
+          (Required)
+          Regex of branches to match.
+        * `commentControl` (`str`) - -
+          (Optional)
+          Whether to block builds on a "/gcbrun" comment from a repository owner or collaborator.
 
-      * `push` (`dict`)
-        * `branch` (`str`)
-        * `tag` (`str`)
+      * `push` (`dict`) - -
+        (Optional)
+        filter to match changes in refs, like branches or tags.  Specify only one of pullRequest or push.  Structure is documented below.
+        * `branch` (`str`) - -
+          (Required)
+          Regex of branches to match.
+        * `tag` (`str`) - -
+          (Optional)
+          Regex of tags to match.  Specify only one of branch or tag.
     """
     ignored_files: pulumi.Output[list]
     """
-    ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match extended with
-    support for '**'. If ignoredFiles and changed files are both empty, then they are not used to determine whether or not
-    to trigger a build. If ignoredFiles is not empty, then we ignore any files that match any of the ignored_file globs. If
-    the change has no files that are outside of the ignoredFiles globs, then we do not trigger a build.
+    -
+    (Optional)
+    ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
+    extended with support for `**`.
+    If ignoredFiles and changed files are both empty, then they are not
+    used to determine whether or not to trigger a build.
+    If ignoredFiles is not empty, then we ignore any files that match any
+    of the ignored_file globs. If the change has no files that are outside
+    of the ignoredFiles globs, then we do not trigger a build.
     """
     included_files: pulumi.Output[list]
     """
-    ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match extended with
-    support for '**'. If any of the files altered in the commit pass the ignoredFiles filter and includedFiles is empty,
-    then as far as this filter is concerned, we should trigger the build. If any of the files altered in the commit pass the
-    ignoredFiles filter and includedFiles is not empty, then we make sure that at least one of those files matches a
-    includedFiles glob. If not, then we do not trigger a build.
+    -
+    (Optional)
+    ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
+    extended with support for `**`.
+    If any of the files altered in the commit pass the ignoredFiles filter
+    and includedFiles is empty, then as far as this filter is concerned, we
+    should trigger the build.
+    If any of the files altered in the commit pass the ignoredFiles filter
+    and includedFiles is not empty, then we make sure that at least one of
+    those files matches a includedFiles glob. If not, then we do not trigger
+    a build.
     """
     name: pulumi.Output[str]
     """
+    -
+    (Optional)
     Name of the trigger. Must be unique within the project.
     """
     project: pulumi.Output[str]
@@ -92,6 +204,8 @@ class Trigger(pulumi.CustomResource):
     """
     substitutions: pulumi.Output[dict]
     """
+    -
+    (Optional)
     Substitutions data for Build resource.
     """
     trigger_id: pulumi.Output[str]
@@ -100,16 +214,38 @@ class Trigger(pulumi.CustomResource):
     """
     trigger_template: pulumi.Output[dict]
     """
-    Template describing the types of source changes to trigger a build. Branch and tag names in trigger templates are
-    interpreted as regular expressions. Any branch or tag change that matches that regular expression will trigger a build.
-    One of 'trigger_template' or 'github' must be provided.
+    -
+    (Optional)
+    Template describing the types of source changes to trigger a build.
+    Branch and tag names in trigger templates are interpreted as regular
+    expressions. Any branch or tag change that matches that regular
+    expression will trigger a build.
+    One of `trigger_template` or `github` must be provided.  Structure is documented below.
 
-      * `branchName` (`str`)
-      * `commitSha` (`str`)
-      * `dir` (`str`)
-      * `project_id` (`str`)
-      * `repoName` (`str`)
-      * `tagName` (`str`)
+      * `branchName` (`str`) - -
+        (Optional)
+        Name of the branch to build. Exactly one a of branch name, tag, or commit SHA must be provided.
+        This field is a regular expression.
+      * `commitSha` (`str`) - -
+        (Optional)
+        Explicit commit SHA to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+      * `dir` (`str`) - -
+        (Optional)
+        Directory, relative to the source root, in which to run the build.
+        This must be a relative path. If a step's dir is specified and
+        is an absolute path, this value is ignored for that step's
+        execution.
+      * `project_id` (`str`) - -
+        (Optional)
+        ID of the project that owns the Cloud Source Repository. If
+        omitted, the project ID requesting the build is assumed.
+      * `repoName` (`str`) - -
+        (Optional)
+        Name of the Cloud Source Repository. If omitted, the name "default" is assumed.
+      * `tagName` (`str`) - -
+        (Optional)
+        Name of the tag to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+        This field is a regular expression.
     """
     def __init__(__self__, resource_name, opts=None, build=None, description=None, disabled=None, filename=None, github=None, ignored_files=None, included_files=None, name=None, project=None, substitutions=None, trigger_template=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -124,72 +260,208 @@ class Trigger(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] build: Contents of the build template. Either a filename or build template must be provided.
-        :param pulumi.Input[str] description: Human-readable description of the trigger.
-        :param pulumi.Input[bool] disabled: Whether the trigger is disabled or not. If true, the trigger will never result in a build.
-        :param pulumi.Input[str] filename: Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must
-               be provided.
-        :param pulumi.Input[dict] github: Describes the configuration of a trigger that creates a build whenever a GitHub event is received. One of
-               'trigger_template' or 'github' must be provided.
-        :param pulumi.Input[list] ignored_files: ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match extended with
-               support for '**'. If ignoredFiles and changed files are both empty, then they are not used to determine whether or not
-               to trigger a build. If ignoredFiles is not empty, then we ignore any files that match any of the ignored_file globs. If
-               the change has no files that are outside of the ignoredFiles globs, then we do not trigger a build.
-        :param pulumi.Input[list] included_files: ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match extended with
-               support for '**'. If any of the files altered in the commit pass the ignoredFiles filter and includedFiles is empty,
-               then as far as this filter is concerned, we should trigger the build. If any of the files altered in the commit pass the
-               ignoredFiles filter and includedFiles is not empty, then we make sure that at least one of those files matches a
-               includedFiles glob. If not, then we do not trigger a build.
-        :param pulumi.Input[str] name: Name of the trigger. Must be unique within the project.
+        :param pulumi.Input[dict] build: -
+               (Optional)
+               Contents of the build template. Either a filename or build template must be provided.  Structure is documented below.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               Human-readable description of the trigger.
+        :param pulumi.Input[bool] disabled: -
+               (Optional)
+               Whether the trigger is disabled or not. If true, the trigger will never result in a build.
+        :param pulumi.Input[str] filename: -
+               (Optional)
+               Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must be provided.
+        :param pulumi.Input[dict] github: -
+               (Optional)
+               Describes the configuration of a trigger that creates a build whenever a GitHub event is received.
+               One of `trigger_template` or `github` must be provided.  Structure is documented below.
+        :param pulumi.Input[list] ignored_files: -
+               (Optional)
+               ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
+               extended with support for `**`.
+               If ignoredFiles and changed files are both empty, then they are not
+               used to determine whether or not to trigger a build.
+               If ignoredFiles is not empty, then we ignore any files that match any
+               of the ignored_file globs. If the change has no files that are outside
+               of the ignoredFiles globs, then we do not trigger a build.
+        :param pulumi.Input[list] included_files: -
+               (Optional)
+               ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
+               extended with support for `**`.
+               If any of the files altered in the commit pass the ignoredFiles filter
+               and includedFiles is empty, then as far as this filter is concerned, we
+               should trigger the build.
+               If any of the files altered in the commit pass the ignoredFiles filter
+               and includedFiles is not empty, then we make sure that at least one of
+               those files matches a includedFiles glob. If not, then we do not trigger
+               a build.
+        :param pulumi.Input[str] name: -
+               (Optional)
+               Name of the trigger. Must be unique within the project.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] substitutions: Substitutions data for Build resource.
-        :param pulumi.Input[dict] trigger_template: Template describing the types of source changes to trigger a build. Branch and tag names in trigger templates are
-               interpreted as regular expressions. Any branch or tag change that matches that regular expression will trigger a build.
-               One of 'trigger_template' or 'github' must be provided.
+        :param pulumi.Input[dict] substitutions: -
+               (Optional)
+               Substitutions data for Build resource.
+        :param pulumi.Input[dict] trigger_template: -
+               (Optional)
+               Template describing the types of source changes to trigger a build.
+               Branch and tag names in trigger templates are interpreted as regular
+               expressions. Any branch or tag change that matches that regular
+               expression will trigger a build.
+               One of `trigger_template` or `github` must be provided.  Structure is documented below.
 
         The **build** object supports the following:
 
-          * `images` (`pulumi.Input[list]`)
-          * `steps` (`pulumi.Input[list]`)
-            * `args` (`pulumi.Input[list]`)
-            * `dir` (`pulumi.Input[str]`)
-            * `entrypoint` (`pulumi.Input[str]`)
-            * `envs` (`pulumi.Input[list]`)
-            * `id` (`pulumi.Input[str]`) - an identifier for the resource with format `projects/{{project}}/triggers/{{trigger_id}}`
-            * `name` (`pulumi.Input[str]`)
-            * `secretEnvs` (`pulumi.Input[list]`)
-            * `timeout` (`pulumi.Input[str]`)
-            * `timing` (`pulumi.Input[str]`)
-            * `volumes` (`pulumi.Input[list]`)
-              * `name` (`pulumi.Input[str]`)
-              * `path` (`pulumi.Input[str]`)
+          * `images` (`pulumi.Input[list]`) - -
+            (Optional)
+            A list of images to be pushed upon the successful completion of all build steps.
+            The images are pushed using the builder service account's credentials.
+            The digests of the pushed images will be stored in the Build resource's results field.
+            If any of the images fail to be pushed, the build status is marked FAILURE.
+          * `steps` (`pulumi.Input[list]`) - -
+            (Required)
+            The operations to be performed on the workspace.  Structure is documented below.
+            * `args` (`pulumi.Input[list]`) - -
+              (Optional)
+              A list of arguments that will be presented to the step when it is started.
+              If the image used to run the step's container has an entrypoint, the args
+              are used as arguments to that entrypoint. If the image does not define an
+              entrypoint, the first element in args is used as the entrypoint, and the
+              remainder will be used as arguments.
+            * `dir` (`pulumi.Input[str]`) - -
+              (Optional)
+              Directory, relative to the source root, in which to run the build.
+              This must be a relative path. If a step's dir is specified and
+              is an absolute path, this value is ignored for that step's
+              execution.
+            * `entrypoint` (`pulumi.Input[str]`) - -
+              (Optional)
+              Entrypoint to be used instead of the build step image's
+              default entrypoint.
+              If unset, the image's default entrypoint is used
+            * `envs` (`pulumi.Input[list]`) - -
+              (Optional)
+              A list of environment variable definitions to be used when
+              running a step.
+              The elements are of the form "KEY=VALUE" for the environment variable
+              "KEY" being given the value "VALUE".
+            * `id` (`pulumi.Input[str]`) - -
+              (Optional)
+              Unique identifier for this build step, used in `wait_for` to
+              reference this build step as a dependency.
+            * `name` (`pulumi.Input[str]`) - -
+              (Optional)
+              Name of the trigger. Must be unique within the project.
+            * `secretEnvs` (`pulumi.Input[list]`) - -
+              (Optional)
+              A list of environment variables which are encrypted using
+              a Cloud Key
+              Management Service crypto key. These values must be specified in
+              the build's `Secret`.
+            * `timeout` (`pulumi.Input[str]`) - -
+              (Optional)
+              Amount of time that this build should be allowed to run, to second granularity.
+              If this amount of time elapses, work on the build will cease and the build status will be TIMEOUT.
+              This timeout must be equal to or greater than the sum of the timeouts for build steps within the build.
+              The expected format is the number of seconds followed by s.
+              Default time is ten minutes (600s).
+            * `timing` (`pulumi.Input[str]`) - -
+              (Optional)
+              Output only. Stores timing information for executing this
+              build step.
+            * `volumes` (`pulumi.Input[list]`) - -
+              (Optional)
+              List of volumes to mount into the build step.
+              Each volume is created as an empty volume prior to execution of the
+              build step. Upon completion of the build, volumes and their contents
+              are discarded.
+              Using a named volume in only one step is not valid as it is
+              indicative of a build request with an incorrect configuration.  Structure is documented below.
+              * `name` (`pulumi.Input[str]`) - -
+                (Optional)
+                Name of the trigger. Must be unique within the project.
+              * `path` (`pulumi.Input[str]`) - -
+                (Required)
+                Path at which to mount the volume.
+                Paths must be absolute and cannot conflict with other volume paths on
+                the same build step or with certain reserved volume paths.
 
-            * `waitFors` (`pulumi.Input[list]`)
+            * `waitFors` (`pulumi.Input[list]`) - -
+              (Optional)
+              The ID(s) of the step(s) that this build step depends on.
+              This build step will not start until all the build steps in `wait_for`
+              have completed successfully. If `wait_for` is empty, this build step
+              will start when all previous build steps in the `Build.Steps` list
+              have completed successfully.
 
-          * `tags` (`pulumi.Input[list]`)
-          * `timeout` (`pulumi.Input[str]`)
+          * `tags` (`pulumi.Input[list]`) - -
+            (Optional)
+            Tags for annotation of a Build. These are not docker tags.
+          * `timeout` (`pulumi.Input[str]`) - -
+            (Optional)
+            Amount of time that this build should be allowed to run, to second granularity.
+            If this amount of time elapses, work on the build will cease and the build status will be TIMEOUT.
+            This timeout must be equal to or greater than the sum of the timeouts for build steps within the build.
+            The expected format is the number of seconds followed by s.
+            Default time is ten minutes (600s).
 
         The **github** object supports the following:
 
-          * `name` (`pulumi.Input[str]`)
-          * `owner` (`pulumi.Input[str]`)
-          * `pullRequest` (`pulumi.Input[dict]`)
-            * `branch` (`pulumi.Input[str]`)
-            * `commentControl` (`pulumi.Input[str]`)
+          * `name` (`pulumi.Input[str]`) - -
+            (Optional)
+            Name of the trigger. Must be unique within the project.
+          * `owner` (`pulumi.Input[str]`) - -
+            (Optional)
+            Owner of the repository. For example: The owner for
+            https://github.com/googlecloudplatform/cloud-builders is "googlecloudplatform".
+          * `pullRequest` (`pulumi.Input[dict]`) - -
+            (Optional)
+            filter to match changes in pull requests.  Specify only one of pullRequest or push.  Structure is documented below.
+            * `branch` (`pulumi.Input[str]`) - -
+              (Required)
+              Regex of branches to match.
+            * `commentControl` (`pulumi.Input[str]`) - -
+              (Optional)
+              Whether to block builds on a "/gcbrun" comment from a repository owner or collaborator.
 
-          * `push` (`pulumi.Input[dict]`)
-            * `branch` (`pulumi.Input[str]`)
-            * `tag` (`pulumi.Input[str]`)
+          * `push` (`pulumi.Input[dict]`) - -
+            (Optional)
+            filter to match changes in refs, like branches or tags.  Specify only one of pullRequest or push.  Structure is documented below.
+            * `branch` (`pulumi.Input[str]`) - -
+              (Required)
+              Regex of branches to match.
+            * `tag` (`pulumi.Input[str]`) - -
+              (Optional)
+              Regex of tags to match.  Specify only one of branch or tag.
 
         The **trigger_template** object supports the following:
 
-          * `branchName` (`pulumi.Input[str]`)
-          * `commitSha` (`pulumi.Input[str]`)
-          * `dir` (`pulumi.Input[str]`)
-          * `project_id` (`pulumi.Input[str]`)
-          * `repoName` (`pulumi.Input[str]`)
-          * `tagName` (`pulumi.Input[str]`)
+          * `branchName` (`pulumi.Input[str]`) - -
+            (Optional)
+            Name of the branch to build. Exactly one a of branch name, tag, or commit SHA must be provided.
+            This field is a regular expression.
+          * `commitSha` (`pulumi.Input[str]`) - -
+            (Optional)
+            Explicit commit SHA to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+          * `dir` (`pulumi.Input[str]`) - -
+            (Optional)
+            Directory, relative to the source root, in which to run the build.
+            This must be a relative path. If a step's dir is specified and
+            is an absolute path, this value is ignored for that step's
+            execution.
+          * `project_id` (`pulumi.Input[str]`) - -
+            (Optional)
+            ID of the project that owns the Cloud Source Repository. If
+            omitted, the project ID requesting the build is assumed.
+          * `repoName` (`pulumi.Input[str]`) - -
+            (Optional)
+            Name of the Cloud Source Repository. If omitted, the name "default" is assumed.
+          * `tagName` (`pulumi.Input[str]`) - -
+            (Optional)
+            Name of the tag to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+            This field is a regular expression.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -236,74 +508,210 @@ class Trigger(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] build: Contents of the build template. Either a filename or build template must be provided.
+        :param pulumi.Input[dict] build: -
+               (Optional)
+               Contents of the build template. Either a filename or build template must be provided.  Structure is documented below.
         :param pulumi.Input[str] create_time: Time when the trigger was created.
-        :param pulumi.Input[str] description: Human-readable description of the trigger.
-        :param pulumi.Input[bool] disabled: Whether the trigger is disabled or not. If true, the trigger will never result in a build.
-        :param pulumi.Input[str] filename: Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must
-               be provided.
-        :param pulumi.Input[dict] github: Describes the configuration of a trigger that creates a build whenever a GitHub event is received. One of
-               'trigger_template' or 'github' must be provided.
-        :param pulumi.Input[list] ignored_files: ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match extended with
-               support for '**'. If ignoredFiles and changed files are both empty, then they are not used to determine whether or not
-               to trigger a build. If ignoredFiles is not empty, then we ignore any files that match any of the ignored_file globs. If
-               the change has no files that are outside of the ignoredFiles globs, then we do not trigger a build.
-        :param pulumi.Input[list] included_files: ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match extended with
-               support for '**'. If any of the files altered in the commit pass the ignoredFiles filter and includedFiles is empty,
-               then as far as this filter is concerned, we should trigger the build. If any of the files altered in the commit pass the
-               ignoredFiles filter and includedFiles is not empty, then we make sure that at least one of those files matches a
-               includedFiles glob. If not, then we do not trigger a build.
-        :param pulumi.Input[str] name: Name of the trigger. Must be unique within the project.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               Human-readable description of the trigger.
+        :param pulumi.Input[bool] disabled: -
+               (Optional)
+               Whether the trigger is disabled or not. If true, the trigger will never result in a build.
+        :param pulumi.Input[str] filename: -
+               (Optional)
+               Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must be provided.
+        :param pulumi.Input[dict] github: -
+               (Optional)
+               Describes the configuration of a trigger that creates a build whenever a GitHub event is received.
+               One of `trigger_template` or `github` must be provided.  Structure is documented below.
+        :param pulumi.Input[list] ignored_files: -
+               (Optional)
+               ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
+               extended with support for `**`.
+               If ignoredFiles and changed files are both empty, then they are not
+               used to determine whether or not to trigger a build.
+               If ignoredFiles is not empty, then we ignore any files that match any
+               of the ignored_file globs. If the change has no files that are outside
+               of the ignoredFiles globs, then we do not trigger a build.
+        :param pulumi.Input[list] included_files: -
+               (Optional)
+               ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
+               extended with support for `**`.
+               If any of the files altered in the commit pass the ignoredFiles filter
+               and includedFiles is empty, then as far as this filter is concerned, we
+               should trigger the build.
+               If any of the files altered in the commit pass the ignoredFiles filter
+               and includedFiles is not empty, then we make sure that at least one of
+               those files matches a includedFiles glob. If not, then we do not trigger
+               a build.
+        :param pulumi.Input[str] name: -
+               (Optional)
+               Name of the trigger. Must be unique within the project.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] substitutions: Substitutions data for Build resource.
+        :param pulumi.Input[dict] substitutions: -
+               (Optional)
+               Substitutions data for Build resource.
         :param pulumi.Input[str] trigger_id: The unique identifier for the trigger.
-        :param pulumi.Input[dict] trigger_template: Template describing the types of source changes to trigger a build. Branch and tag names in trigger templates are
-               interpreted as regular expressions. Any branch or tag change that matches that regular expression will trigger a build.
-               One of 'trigger_template' or 'github' must be provided.
+        :param pulumi.Input[dict] trigger_template: -
+               (Optional)
+               Template describing the types of source changes to trigger a build.
+               Branch and tag names in trigger templates are interpreted as regular
+               expressions. Any branch or tag change that matches that regular
+               expression will trigger a build.
+               One of `trigger_template` or `github` must be provided.  Structure is documented below.
 
         The **build** object supports the following:
 
-          * `images` (`pulumi.Input[list]`)
-          * `steps` (`pulumi.Input[list]`)
-            * `args` (`pulumi.Input[list]`)
-            * `dir` (`pulumi.Input[str]`)
-            * `entrypoint` (`pulumi.Input[str]`)
-            * `envs` (`pulumi.Input[list]`)
-            * `id` (`pulumi.Input[str]`) - an identifier for the resource with format `projects/{{project}}/triggers/{{trigger_id}}`
-            * `name` (`pulumi.Input[str]`)
-            * `secretEnvs` (`pulumi.Input[list]`)
-            * `timeout` (`pulumi.Input[str]`)
-            * `timing` (`pulumi.Input[str]`)
-            * `volumes` (`pulumi.Input[list]`)
-              * `name` (`pulumi.Input[str]`)
-              * `path` (`pulumi.Input[str]`)
+          * `images` (`pulumi.Input[list]`) - -
+            (Optional)
+            A list of images to be pushed upon the successful completion of all build steps.
+            The images are pushed using the builder service account's credentials.
+            The digests of the pushed images will be stored in the Build resource's results field.
+            If any of the images fail to be pushed, the build status is marked FAILURE.
+          * `steps` (`pulumi.Input[list]`) - -
+            (Required)
+            The operations to be performed on the workspace.  Structure is documented below.
+            * `args` (`pulumi.Input[list]`) - -
+              (Optional)
+              A list of arguments that will be presented to the step when it is started.
+              If the image used to run the step's container has an entrypoint, the args
+              are used as arguments to that entrypoint. If the image does not define an
+              entrypoint, the first element in args is used as the entrypoint, and the
+              remainder will be used as arguments.
+            * `dir` (`pulumi.Input[str]`) - -
+              (Optional)
+              Directory, relative to the source root, in which to run the build.
+              This must be a relative path. If a step's dir is specified and
+              is an absolute path, this value is ignored for that step's
+              execution.
+            * `entrypoint` (`pulumi.Input[str]`) - -
+              (Optional)
+              Entrypoint to be used instead of the build step image's
+              default entrypoint.
+              If unset, the image's default entrypoint is used
+            * `envs` (`pulumi.Input[list]`) - -
+              (Optional)
+              A list of environment variable definitions to be used when
+              running a step.
+              The elements are of the form "KEY=VALUE" for the environment variable
+              "KEY" being given the value "VALUE".
+            * `id` (`pulumi.Input[str]`) - -
+              (Optional)
+              Unique identifier for this build step, used in `wait_for` to
+              reference this build step as a dependency.
+            * `name` (`pulumi.Input[str]`) - -
+              (Optional)
+              Name of the trigger. Must be unique within the project.
+            * `secretEnvs` (`pulumi.Input[list]`) - -
+              (Optional)
+              A list of environment variables which are encrypted using
+              a Cloud Key
+              Management Service crypto key. These values must be specified in
+              the build's `Secret`.
+            * `timeout` (`pulumi.Input[str]`) - -
+              (Optional)
+              Amount of time that this build should be allowed to run, to second granularity.
+              If this amount of time elapses, work on the build will cease and the build status will be TIMEOUT.
+              This timeout must be equal to or greater than the sum of the timeouts for build steps within the build.
+              The expected format is the number of seconds followed by s.
+              Default time is ten minutes (600s).
+            * `timing` (`pulumi.Input[str]`) - -
+              (Optional)
+              Output only. Stores timing information for executing this
+              build step.
+            * `volumes` (`pulumi.Input[list]`) - -
+              (Optional)
+              List of volumes to mount into the build step.
+              Each volume is created as an empty volume prior to execution of the
+              build step. Upon completion of the build, volumes and their contents
+              are discarded.
+              Using a named volume in only one step is not valid as it is
+              indicative of a build request with an incorrect configuration.  Structure is documented below.
+              * `name` (`pulumi.Input[str]`) - -
+                (Optional)
+                Name of the trigger. Must be unique within the project.
+              * `path` (`pulumi.Input[str]`) - -
+                (Required)
+                Path at which to mount the volume.
+                Paths must be absolute and cannot conflict with other volume paths on
+                the same build step or with certain reserved volume paths.
 
-            * `waitFors` (`pulumi.Input[list]`)
+            * `waitFors` (`pulumi.Input[list]`) - -
+              (Optional)
+              The ID(s) of the step(s) that this build step depends on.
+              This build step will not start until all the build steps in `wait_for`
+              have completed successfully. If `wait_for` is empty, this build step
+              will start when all previous build steps in the `Build.Steps` list
+              have completed successfully.
 
-          * `tags` (`pulumi.Input[list]`)
-          * `timeout` (`pulumi.Input[str]`)
+          * `tags` (`pulumi.Input[list]`) - -
+            (Optional)
+            Tags for annotation of a Build. These are not docker tags.
+          * `timeout` (`pulumi.Input[str]`) - -
+            (Optional)
+            Amount of time that this build should be allowed to run, to second granularity.
+            If this amount of time elapses, work on the build will cease and the build status will be TIMEOUT.
+            This timeout must be equal to or greater than the sum of the timeouts for build steps within the build.
+            The expected format is the number of seconds followed by s.
+            Default time is ten minutes (600s).
 
         The **github** object supports the following:
 
-          * `name` (`pulumi.Input[str]`)
-          * `owner` (`pulumi.Input[str]`)
-          * `pullRequest` (`pulumi.Input[dict]`)
-            * `branch` (`pulumi.Input[str]`)
-            * `commentControl` (`pulumi.Input[str]`)
+          * `name` (`pulumi.Input[str]`) - -
+            (Optional)
+            Name of the trigger. Must be unique within the project.
+          * `owner` (`pulumi.Input[str]`) - -
+            (Optional)
+            Owner of the repository. For example: The owner for
+            https://github.com/googlecloudplatform/cloud-builders is "googlecloudplatform".
+          * `pullRequest` (`pulumi.Input[dict]`) - -
+            (Optional)
+            filter to match changes in pull requests.  Specify only one of pullRequest or push.  Structure is documented below.
+            * `branch` (`pulumi.Input[str]`) - -
+              (Required)
+              Regex of branches to match.
+            * `commentControl` (`pulumi.Input[str]`) - -
+              (Optional)
+              Whether to block builds on a "/gcbrun" comment from a repository owner or collaborator.
 
-          * `push` (`pulumi.Input[dict]`)
-            * `branch` (`pulumi.Input[str]`)
-            * `tag` (`pulumi.Input[str]`)
+          * `push` (`pulumi.Input[dict]`) - -
+            (Optional)
+            filter to match changes in refs, like branches or tags.  Specify only one of pullRequest or push.  Structure is documented below.
+            * `branch` (`pulumi.Input[str]`) - -
+              (Required)
+              Regex of branches to match.
+            * `tag` (`pulumi.Input[str]`) - -
+              (Optional)
+              Regex of tags to match.  Specify only one of branch or tag.
 
         The **trigger_template** object supports the following:
 
-          * `branchName` (`pulumi.Input[str]`)
-          * `commitSha` (`pulumi.Input[str]`)
-          * `dir` (`pulumi.Input[str]`)
-          * `project_id` (`pulumi.Input[str]`)
-          * `repoName` (`pulumi.Input[str]`)
-          * `tagName` (`pulumi.Input[str]`)
+          * `branchName` (`pulumi.Input[str]`) - -
+            (Optional)
+            Name of the branch to build. Exactly one a of branch name, tag, or commit SHA must be provided.
+            This field is a regular expression.
+          * `commitSha` (`pulumi.Input[str]`) - -
+            (Optional)
+            Explicit commit SHA to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+          * `dir` (`pulumi.Input[str]`) - -
+            (Optional)
+            Directory, relative to the source root, in which to run the build.
+            This must be a relative path. If a step's dir is specified and
+            is an absolute path, this value is ignored for that step's
+            execution.
+          * `project_id` (`pulumi.Input[str]`) - -
+            (Optional)
+            ID of the project that owns the Cloud Source Repository. If
+            omitted, the project ID requesting the build is assumed.
+          * `repoName` (`pulumi.Input[str]`) - -
+            (Optional)
+            Name of the Cloud Source Repository. If omitted, the name "default" is assumed.
+          * `tagName` (`pulumi.Input[str]`) - -
+            (Optional)
+            Name of the tag to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+            This field is a regular expression.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -20,6 +20,8 @@ class SecretVersion(pulumi.CustomResource):
     """
     enabled: pulumi.Output[bool]
     """
+    -
+    (Optional)
     The current state of the SecretVersion.
     """
     name: pulumi.Output[str]
@@ -28,10 +30,14 @@ class SecretVersion(pulumi.CustomResource):
     """
     secret: pulumi.Output[str]
     """
+    -
+    (Required)
     Secret Manager secret resource
     """
     secret_data: pulumi.Output[str]
     """
+    -
+    (Optional)
     The secret data. Must be no larger than 64KiB.
     """
     def __init__(__self__, resource_name, opts=None, enabled=None, secret=None, secret_data=None, __props__=None, __name__=None, __opts__=None):
@@ -40,9 +46,15 @@ class SecretVersion(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] enabled: The current state of the SecretVersion.
-        :param pulumi.Input[str] secret: Secret Manager secret resource
-        :param pulumi.Input[str] secret_data: The secret data. Must be no larger than 64KiB.
+        :param pulumi.Input[bool] enabled: -
+               (Optional)
+               The current state of the SecretVersion.
+        :param pulumi.Input[str] secret: -
+               (Required)
+               Secret Manager secret resource
+        :param pulumi.Input[str] secret_data: -
+               (Optional)
+               The secret data. Must be no larger than 64KiB.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -86,10 +98,16 @@ class SecretVersion(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] create_time: The time at which the Secret was created.
         :param pulumi.Input[str] destroy_time: The time at which the Secret was destroyed. Only present if state is DESTROYED.
-        :param pulumi.Input[bool] enabled: The current state of the SecretVersion.
+        :param pulumi.Input[bool] enabled: -
+               (Optional)
+               The current state of the SecretVersion.
         :param pulumi.Input[str] name: The resource name of the SecretVersion. Format: 'projects/{{project}}/secrets/{{secret_id}}/versions/{{version}}'
-        :param pulumi.Input[str] secret: Secret Manager secret resource
-        :param pulumi.Input[str] secret_data: The secret data. Must be no larger than 64KiB.
+        :param pulumi.Input[str] secret: -
+               (Required)
+               Secret Manager secret resource
+        :param pulumi.Input[str] secret_data: -
+               (Optional)
+               The secret data. Must be no larger than 64KiB.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

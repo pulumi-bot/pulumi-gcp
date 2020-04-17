@@ -13,14 +13,26 @@ namespace Pulumi.Gcp.AppEngine.Inputs
     public sealed class StandardAppVersionDeploymentFileGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The identifier for this object. Format specified above.
+        /// -
+        /// (Optional)
+        /// Name of the library. Example "django".
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// SHA1 checksum of the file
+        /// </summary>
         [Input("sha1Sum")]
         public Input<string>? Sha1Sum { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Source URL
+        /// </summary>
         [Input("sourceUrl", required: true)]
         public Input<string> SourceUrl { get; set; } = null!;
 

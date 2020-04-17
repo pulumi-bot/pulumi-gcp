@@ -413,8 +413,8 @@ func (o ClusterAddonsConfigCloudrunConfigPtrOutput) Disabled() pulumi.BoolOutput
 }
 
 type ClusterAddonsConfigDnsCacheConfig struct {
-	// Enable the PodSecurityPolicy controller for this cluster.
-	// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+	// Whether node auto-provisioning is enabled. Resource
+	// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 	Enabled bool `pulumi:"enabled"`
 }
 
@@ -431,8 +431,8 @@ type ClusterAddonsConfigDnsCacheConfigInput interface {
 }
 
 type ClusterAddonsConfigDnsCacheConfigArgs struct {
-	// Enable the PodSecurityPolicy controller for this cluster.
-	// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+	// Whether node auto-provisioning is enabled. Resource
+	// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 }
 
@@ -514,8 +514,8 @@ func (o ClusterAddonsConfigDnsCacheConfigOutput) ToClusterAddonsConfigDnsCacheCo
 	}).(ClusterAddonsConfigDnsCacheConfigPtrOutput)
 }
 
-// Enable the PodSecurityPolicy controller for this cluster.
-// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+// Whether node auto-provisioning is enabled. Resource
+// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 func (o ClusterAddonsConfigDnsCacheConfigOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v ClusterAddonsConfigDnsCacheConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -538,8 +538,8 @@ func (o ClusterAddonsConfigDnsCacheConfigPtrOutput) Elem() ClusterAddonsConfigDn
 	return o.ApplyT(func(v *ClusterAddonsConfigDnsCacheConfig) ClusterAddonsConfigDnsCacheConfig { return *v }).(ClusterAddonsConfigDnsCacheConfigOutput)
 }
 
-// Enable the PodSecurityPolicy controller for this cluster.
-// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+// Whether node auto-provisioning is enabled. Resource
+// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 func (o ClusterAddonsConfigDnsCacheConfigPtrOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v ClusterAddonsConfigDnsCacheConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -1225,8 +1225,8 @@ type ClusterClusterAutoscaling struct {
 	// feature, which lets you choose whether the cluster autoscaler should optimize for resource utilization or resource availability
 	// when deciding to remove nodes from a cluster. Can be `BALANCED` or `OPTIMIZE_UTILIZATION`. Defaults to `BALANCED`.
 	AutoscalingProfile *string `pulumi:"autoscalingProfile"`
-	// Enable the PodSecurityPolicy controller for this cluster.
-	// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+	// Whether node auto-provisioning is enabled. Resource
+	// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 	Enabled bool `pulumi:"enabled"`
 	// Global constraints for machine resources in the
 	// cluster. Configuring the `cpu` and `memory` types is required if node
@@ -1256,8 +1256,8 @@ type ClusterClusterAutoscalingArgs struct {
 	// feature, which lets you choose whether the cluster autoscaler should optimize for resource utilization or resource availability
 	// when deciding to remove nodes from a cluster. Can be `BALANCED` or `OPTIMIZE_UTILIZATION`. Defaults to `BALANCED`.
 	AutoscalingProfile pulumi.StringPtrInput `pulumi:"autoscalingProfile"`
-	// Enable the PodSecurityPolicy controller for this cluster.
-	// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+	// Whether node auto-provisioning is enabled. Resource
+	// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// Global constraints for machine resources in the
 	// cluster. Configuring the `cpu` and `memory` types is required if node
@@ -1360,8 +1360,8 @@ func (o ClusterClusterAutoscalingOutput) AutoscalingProfile() pulumi.StringPtrOu
 	return o.ApplyT(func(v ClusterClusterAutoscaling) *string { return v.AutoscalingProfile }).(pulumi.StringPtrOutput)
 }
 
-// Enable the PodSecurityPolicy controller for this cluster.
-// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+// Whether node auto-provisioning is enabled. Resource
+// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 func (o ClusterClusterAutoscalingOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v ClusterClusterAutoscaling) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -1408,8 +1408,8 @@ func (o ClusterClusterAutoscalingPtrOutput) AutoscalingProfile() pulumi.StringPt
 	return o.ApplyT(func(v ClusterClusterAutoscaling) *string { return v.AutoscalingProfile }).(pulumi.StringPtrOutput)
 }
 
-// Enable the PodSecurityPolicy controller for this cluster.
-// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+// Whether node auto-provisioning is enabled. Resource
+// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 func (o ClusterClusterAutoscalingPtrOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v ClusterClusterAutoscaling) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -1423,16 +1423,9 @@ func (o ClusterClusterAutoscalingPtrOutput) ResourceLimits() ClusterClusterAutos
 }
 
 type ClusterClusterAutoscalingAutoProvisioningDefaults struct {
-	// The set of Google API scopes to be made available
-	// on all of the node VMs under the "default" service account. These can be
-	// either FQDNs, or scope aliases. The following scopes are necessary to ensure
-	// the correct functioning of the cluster:
+	// Scopes that are used by NAP when creating node pools.
 	OauthScopes []string `pulumi:"oauthScopes"`
-	// The service account to be used by the Node VMs.
-	// If not specified, the "default" service account is used.
-	// In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-	// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-	// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+	// The Google Cloud Platform Service Account to be used by the node VMs.
 	ServiceAccount *string `pulumi:"serviceAccount"`
 }
 
@@ -1449,16 +1442,9 @@ type ClusterClusterAutoscalingAutoProvisioningDefaultsInput interface {
 }
 
 type ClusterClusterAutoscalingAutoProvisioningDefaultsArgs struct {
-	// The set of Google API scopes to be made available
-	// on all of the node VMs under the "default" service account. These can be
-	// either FQDNs, or scope aliases. The following scopes are necessary to ensure
-	// the correct functioning of the cluster:
+	// Scopes that are used by NAP when creating node pools.
 	OauthScopes pulumi.StringArrayInput `pulumi:"oauthScopes"`
-	// The service account to be used by the Node VMs.
-	// If not specified, the "default" service account is used.
-	// In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-	// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-	// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+	// The Google Cloud Platform Service Account to be used by the node VMs.
 	ServiceAccount pulumi.StringPtrInput `pulumi:"serviceAccount"`
 }
 
@@ -1540,19 +1526,12 @@ func (o ClusterClusterAutoscalingAutoProvisioningDefaultsOutput) ToClusterCluste
 	}).(ClusterClusterAutoscalingAutoProvisioningDefaultsPtrOutput)
 }
 
-// The set of Google API scopes to be made available
-// on all of the node VMs under the "default" service account. These can be
-// either FQDNs, or scope aliases. The following scopes are necessary to ensure
-// the correct functioning of the cluster:
+// Scopes that are used by NAP when creating node pools.
 func (o ClusterClusterAutoscalingAutoProvisioningDefaultsOutput) OauthScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterClusterAutoscalingAutoProvisioningDefaults) []string { return v.OauthScopes }).(pulumi.StringArrayOutput)
 }
 
-// The service account to be used by the Node VMs.
-// If not specified, the "default" service account is used.
-// In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+// The Google Cloud Platform Service Account to be used by the node VMs.
 func (o ClusterClusterAutoscalingAutoProvisioningDefaultsOutput) ServiceAccount() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterClusterAutoscalingAutoProvisioningDefaults) *string { return v.ServiceAccount }).(pulumi.StringPtrOutput)
 }
@@ -1577,19 +1556,12 @@ func (o ClusterClusterAutoscalingAutoProvisioningDefaultsPtrOutput) Elem() Clust
 	}).(ClusterClusterAutoscalingAutoProvisioningDefaultsOutput)
 }
 
-// The set of Google API scopes to be made available
-// on all of the node VMs under the "default" service account. These can be
-// either FQDNs, or scope aliases. The following scopes are necessary to ensure
-// the correct functioning of the cluster:
+// Scopes that are used by NAP when creating node pools.
 func (o ClusterClusterAutoscalingAutoProvisioningDefaultsPtrOutput) OauthScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterClusterAutoscalingAutoProvisioningDefaults) []string { return v.OauthScopes }).(pulumi.StringArrayOutput)
 }
 
-// The service account to be used by the Node VMs.
-// If not specified, the "default" service account is used.
-// In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+// The Google Cloud Platform Service Account to be used by the node VMs.
 func (o ClusterClusterAutoscalingAutoProvisioningDefaultsPtrOutput) ServiceAccount() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterClusterAutoscalingAutoProvisioningDefaults) *string { return v.ServiceAccount }).(pulumi.StringPtrOutput)
 }
@@ -3081,8 +3053,8 @@ func (o ClusterMasterAuthorizedNetworksConfigCidrBlockArrayOutput) Index(i pulum
 }
 
 type ClusterNetworkPolicy struct {
-	// Enable the PodSecurityPolicy controller for this cluster.
-	// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+	// Whether node auto-provisioning is enabled. Resource
+	// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 	Enabled bool `pulumi:"enabled"`
 	// The selected network policy provider. Defaults to PROVIDER_UNSPECIFIED.
 	Provider *string `pulumi:"provider"`
@@ -3101,8 +3073,8 @@ type ClusterNetworkPolicyInput interface {
 }
 
 type ClusterNetworkPolicyArgs struct {
-	// Enable the PodSecurityPolicy controller for this cluster.
-	// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+	// Whether node auto-provisioning is enabled. Resource
+	// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 	// The selected network policy provider. Defaults to PROVIDER_UNSPECIFIED.
 	Provider pulumi.StringPtrInput `pulumi:"provider"`
@@ -3186,8 +3158,8 @@ func (o ClusterNetworkPolicyOutput) ToClusterNetworkPolicyPtrOutputWithContext(c
 	}).(ClusterNetworkPolicyPtrOutput)
 }
 
-// Enable the PodSecurityPolicy controller for this cluster.
-// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+// Whether node auto-provisioning is enabled. Resource
+// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 func (o ClusterNetworkPolicyOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v ClusterNetworkPolicy) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -3215,8 +3187,8 @@ func (o ClusterNetworkPolicyPtrOutput) Elem() ClusterNetworkPolicyOutput {
 	return o.ApplyT(func(v *ClusterNetworkPolicy) ClusterNetworkPolicy { return *v }).(ClusterNetworkPolicyOutput)
 }
 
-// Enable the PodSecurityPolicy controller for this cluster.
-// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+// Whether node auto-provisioning is enabled. Resource
+// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 func (o ClusterNetworkPolicyPtrOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v ClusterNetworkPolicy) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -3262,10 +3234,7 @@ type ClusterNodeConfig struct {
 	// [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
 	// for more information.
 	MinCpuPlatform *string `pulumi:"minCpuPlatform"`
-	// The set of Google API scopes to be made available
-	// on all of the node VMs under the "default" service account. These can be
-	// either FQDNs, or scope aliases. The following scopes are necessary to ensure
-	// the correct functioning of the cluster:
+	// Scopes that are used by NAP when creating node pools.
 	OauthScopes []string `pulumi:"oauthScopes"`
 	// A boolean that represents whether or not the underlying node VMs
 	// are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
@@ -3274,11 +3243,7 @@ type ClusterNodeConfig struct {
 	// [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `imageType = "COS_CONTAINERD"` and `nodeVersion = "1.12.7-gke.17"` or later to use it.
 	// Structure is documented below.
 	SandboxConfig *ClusterNodeConfigSandboxConfig `pulumi:"sandboxConfig"`
-	// The service account to be used by the Node VMs.
-	// If not specified, the "default" service account is used.
-	// In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-	// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-	// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+	// The Google Cloud Platform Service Account to be used by the node VMs.
 	ServiceAccount *string `pulumi:"serviceAccount"`
 	// Shielded Instance options. Structure is documented below.
 	ShieldedInstanceConfig *ClusterNodeConfigShieldedInstanceConfig `pulumi:"shieldedInstanceConfig"`
@@ -3347,10 +3312,7 @@ type ClusterNodeConfigArgs struct {
 	// [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
 	// for more information.
 	MinCpuPlatform pulumi.StringPtrInput `pulumi:"minCpuPlatform"`
-	// The set of Google API scopes to be made available
-	// on all of the node VMs under the "default" service account. These can be
-	// either FQDNs, or scope aliases. The following scopes are necessary to ensure
-	// the correct functioning of the cluster:
+	// Scopes that are used by NAP when creating node pools.
 	OauthScopes pulumi.StringArrayInput `pulumi:"oauthScopes"`
 	// A boolean that represents whether or not the underlying node VMs
 	// are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
@@ -3359,11 +3321,7 @@ type ClusterNodeConfigArgs struct {
 	// [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `imageType = "COS_CONTAINERD"` and `nodeVersion = "1.12.7-gke.17"` or later to use it.
 	// Structure is documented below.
 	SandboxConfig ClusterNodeConfigSandboxConfigPtrInput `pulumi:"sandboxConfig"`
-	// The service account to be used by the Node VMs.
-	// If not specified, the "default" service account is used.
-	// In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-	// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-	// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+	// The Google Cloud Platform Service Account to be used by the node VMs.
 	ServiceAccount pulumi.StringPtrInput `pulumi:"serviceAccount"`
 	// Shielded Instance options. Structure is documented below.
 	ShieldedInstanceConfig ClusterNodeConfigShieldedInstanceConfigPtrInput `pulumi:"shieldedInstanceConfig"`
@@ -3527,10 +3485,7 @@ func (o ClusterNodeConfigOutput) MinCpuPlatform() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterNodeConfig) *string { return v.MinCpuPlatform }).(pulumi.StringPtrOutput)
 }
 
-// The set of Google API scopes to be made available
-// on all of the node VMs under the "default" service account. These can be
-// either FQDNs, or scope aliases. The following scopes are necessary to ensure
-// the correct functioning of the cluster:
+// Scopes that are used by NAP when creating node pools.
 func (o ClusterNodeConfigOutput) OauthScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterNodeConfig) []string { return v.OauthScopes }).(pulumi.StringArrayOutput)
 }
@@ -3548,11 +3503,7 @@ func (o ClusterNodeConfigOutput) SandboxConfig() ClusterNodeConfigSandboxConfigP
 	return o.ApplyT(func(v ClusterNodeConfig) *ClusterNodeConfigSandboxConfig { return v.SandboxConfig }).(ClusterNodeConfigSandboxConfigPtrOutput)
 }
 
-// The service account to be used by the Node VMs.
-// If not specified, the "default" service account is used.
-// In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+// The Google Cloud Platform Service Account to be used by the node VMs.
 func (o ClusterNodeConfigOutput) ServiceAccount() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterNodeConfig) *string { return v.ServiceAccount }).(pulumi.StringPtrOutput)
 }
@@ -3669,10 +3620,7 @@ func (o ClusterNodeConfigPtrOutput) MinCpuPlatform() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterNodeConfig) *string { return v.MinCpuPlatform }).(pulumi.StringPtrOutput)
 }
 
-// The set of Google API scopes to be made available
-// on all of the node VMs under the "default" service account. These can be
-// either FQDNs, or scope aliases. The following scopes are necessary to ensure
-// the correct functioning of the cluster:
+// Scopes that are used by NAP when creating node pools.
 func (o ClusterNodeConfigPtrOutput) OauthScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterNodeConfig) []string { return v.OauthScopes }).(pulumi.StringArrayOutput)
 }
@@ -3690,11 +3638,7 @@ func (o ClusterNodeConfigPtrOutput) SandboxConfig() ClusterNodeConfigSandboxConf
 	return o.ApplyT(func(v ClusterNodeConfig) *ClusterNodeConfigSandboxConfig { return v.SandboxConfig }).(ClusterNodeConfigSandboxConfigPtrOutput)
 }
 
-// The service account to be used by the Node VMs.
-// If not specified, the "default" service account is used.
-// In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+// The Google Cloud Platform Service Account to be used by the node VMs.
 func (o ClusterNodeConfigPtrOutput) ServiceAccount() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterNodeConfig) *string { return v.ServiceAccount }).(pulumi.StringPtrOutput)
 }
@@ -4896,10 +4840,7 @@ type ClusterNodePoolNodeConfig struct {
 	// [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
 	// for more information.
 	MinCpuPlatform *string `pulumi:"minCpuPlatform"`
-	// The set of Google API scopes to be made available
-	// on all of the node VMs under the "default" service account. These can be
-	// either FQDNs, or scope aliases. The following scopes are necessary to ensure
-	// the correct functioning of the cluster:
+	// Scopes that are used by NAP when creating node pools.
 	OauthScopes []string `pulumi:"oauthScopes"`
 	// A boolean that represents whether or not the underlying node VMs
 	// are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
@@ -4908,11 +4849,7 @@ type ClusterNodePoolNodeConfig struct {
 	// [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `imageType = "COS_CONTAINERD"` and `nodeVersion = "1.12.7-gke.17"` or later to use it.
 	// Structure is documented below.
 	SandboxConfig *ClusterNodePoolNodeConfigSandboxConfig `pulumi:"sandboxConfig"`
-	// The service account to be used by the Node VMs.
-	// If not specified, the "default" service account is used.
-	// In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-	// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-	// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+	// The Google Cloud Platform Service Account to be used by the node VMs.
 	ServiceAccount *string `pulumi:"serviceAccount"`
 	// Shielded Instance options. Structure is documented below.
 	ShieldedInstanceConfig *ClusterNodePoolNodeConfigShieldedInstanceConfig `pulumi:"shieldedInstanceConfig"`
@@ -4981,10 +4918,7 @@ type ClusterNodePoolNodeConfigArgs struct {
 	// [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
 	// for more information.
 	MinCpuPlatform pulumi.StringPtrInput `pulumi:"minCpuPlatform"`
-	// The set of Google API scopes to be made available
-	// on all of the node VMs under the "default" service account. These can be
-	// either FQDNs, or scope aliases. The following scopes are necessary to ensure
-	// the correct functioning of the cluster:
+	// Scopes that are used by NAP when creating node pools.
 	OauthScopes pulumi.StringArrayInput `pulumi:"oauthScopes"`
 	// A boolean that represents whether or not the underlying node VMs
 	// are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
@@ -4993,11 +4927,7 @@ type ClusterNodePoolNodeConfigArgs struct {
 	// [GKE Sandbox](https://cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods) configuration. When enabling this feature you must specify `imageType = "COS_CONTAINERD"` and `nodeVersion = "1.12.7-gke.17"` or later to use it.
 	// Structure is documented below.
 	SandboxConfig ClusterNodePoolNodeConfigSandboxConfigPtrInput `pulumi:"sandboxConfig"`
-	// The service account to be used by the Node VMs.
-	// If not specified, the "default" service account is used.
-	// In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-	// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-	// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+	// The Google Cloud Platform Service Account to be used by the node VMs.
 	ServiceAccount pulumi.StringPtrInput `pulumi:"serviceAccount"`
 	// Shielded Instance options. Structure is documented below.
 	ShieldedInstanceConfig ClusterNodePoolNodeConfigShieldedInstanceConfigPtrInput `pulumi:"shieldedInstanceConfig"`
@@ -5163,10 +5093,7 @@ func (o ClusterNodePoolNodeConfigOutput) MinCpuPlatform() pulumi.StringPtrOutput
 	return o.ApplyT(func(v ClusterNodePoolNodeConfig) *string { return v.MinCpuPlatform }).(pulumi.StringPtrOutput)
 }
 
-// The set of Google API scopes to be made available
-// on all of the node VMs under the "default" service account. These can be
-// either FQDNs, or scope aliases. The following scopes are necessary to ensure
-// the correct functioning of the cluster:
+// Scopes that are used by NAP when creating node pools.
 func (o ClusterNodePoolNodeConfigOutput) OauthScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterNodePoolNodeConfig) []string { return v.OauthScopes }).(pulumi.StringArrayOutput)
 }
@@ -5184,11 +5111,7 @@ func (o ClusterNodePoolNodeConfigOutput) SandboxConfig() ClusterNodePoolNodeConf
 	return o.ApplyT(func(v ClusterNodePoolNodeConfig) *ClusterNodePoolNodeConfigSandboxConfig { return v.SandboxConfig }).(ClusterNodePoolNodeConfigSandboxConfigPtrOutput)
 }
 
-// The service account to be used by the Node VMs.
-// If not specified, the "default" service account is used.
-// In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+// The Google Cloud Platform Service Account to be used by the node VMs.
 func (o ClusterNodePoolNodeConfigOutput) ServiceAccount() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterNodePoolNodeConfig) *string { return v.ServiceAccount }).(pulumi.StringPtrOutput)
 }
@@ -5311,10 +5234,7 @@ func (o ClusterNodePoolNodeConfigPtrOutput) MinCpuPlatform() pulumi.StringPtrOut
 	return o.ApplyT(func(v ClusterNodePoolNodeConfig) *string { return v.MinCpuPlatform }).(pulumi.StringPtrOutput)
 }
 
-// The set of Google API scopes to be made available
-// on all of the node VMs under the "default" service account. These can be
-// either FQDNs, or scope aliases. The following scopes are necessary to ensure
-// the correct functioning of the cluster:
+// Scopes that are used by NAP when creating node pools.
 func (o ClusterNodePoolNodeConfigPtrOutput) OauthScopes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterNodePoolNodeConfig) []string { return v.OauthScopes }).(pulumi.StringArrayOutput)
 }
@@ -5332,11 +5252,7 @@ func (o ClusterNodePoolNodeConfigPtrOutput) SandboxConfig() ClusterNodePoolNodeC
 	return o.ApplyT(func(v ClusterNodePoolNodeConfig) *ClusterNodePoolNodeConfigSandboxConfig { return v.SandboxConfig }).(ClusterNodePoolNodeConfigSandboxConfigPtrOutput)
 }
 
-// The service account to be used by the Node VMs.
-// If not specified, the "default" service account is used.
-// In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+// The Google Cloud Platform Service Account to be used by the node VMs.
 func (o ClusterNodePoolNodeConfigPtrOutput) ServiceAccount() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterNodePoolNodeConfig) *string { return v.ServiceAccount }).(pulumi.StringPtrOutput)
 }
@@ -6159,8 +6075,8 @@ func (o ClusterNodePoolUpgradeSettingsPtrOutput) MaxUnavailable() pulumi.IntOutp
 }
 
 type ClusterPodSecurityPolicyConfig struct {
-	// Enable the PodSecurityPolicy controller for this cluster.
-	// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+	// Whether node auto-provisioning is enabled. Resource
+	// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 	Enabled bool `pulumi:"enabled"`
 }
 
@@ -6177,8 +6093,8 @@ type ClusterPodSecurityPolicyConfigInput interface {
 }
 
 type ClusterPodSecurityPolicyConfigArgs struct {
-	// Enable the PodSecurityPolicy controller for this cluster.
-	// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+	// Whether node auto-provisioning is enabled. Resource
+	// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 }
 
@@ -6260,8 +6176,8 @@ func (o ClusterPodSecurityPolicyConfigOutput) ToClusterPodSecurityPolicyConfigPt
 	}).(ClusterPodSecurityPolicyConfigPtrOutput)
 }
 
-// Enable the PodSecurityPolicy controller for this cluster.
-// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+// Whether node auto-provisioning is enabled. Resource
+// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 func (o ClusterPodSecurityPolicyConfigOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v ClusterPodSecurityPolicyConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -6284,8 +6200,8 @@ func (o ClusterPodSecurityPolicyConfigPtrOutput) Elem() ClusterPodSecurityPolicy
 	return o.ApplyT(func(v *ClusterPodSecurityPolicyConfig) ClusterPodSecurityPolicyConfig { return *v }).(ClusterPodSecurityPolicyConfigOutput)
 }
 
-// Enable the PodSecurityPolicy controller for this cluster.
-// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+// Whether node auto-provisioning is enabled. Resource
+// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 func (o ClusterPodSecurityPolicyConfigPtrOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v ClusterPodSecurityPolicyConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -6915,8 +6831,8 @@ func (o ClusterResourceUsageExportConfigBigqueryDestinationOutput) DatasetId() p
 }
 
 type ClusterVerticalPodAutoscaling struct {
-	// Enable the PodSecurityPolicy controller for this cluster.
-	// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+	// Whether node auto-provisioning is enabled. Resource
+	// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 	Enabled bool `pulumi:"enabled"`
 }
 
@@ -6933,8 +6849,8 @@ type ClusterVerticalPodAutoscalingInput interface {
 }
 
 type ClusterVerticalPodAutoscalingArgs struct {
-	// Enable the PodSecurityPolicy controller for this cluster.
-	// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+	// Whether node auto-provisioning is enabled. Resource
+	// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
 }
 
@@ -7016,8 +6932,8 @@ func (o ClusterVerticalPodAutoscalingOutput) ToClusterVerticalPodAutoscalingPtrO
 	}).(ClusterVerticalPodAutoscalingPtrOutput)
 }
 
-// Enable the PodSecurityPolicy controller for this cluster.
-// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+// Whether node auto-provisioning is enabled. Resource
+// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 func (o ClusterVerticalPodAutoscalingOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v ClusterVerticalPodAutoscaling) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
@@ -7040,8 +6956,8 @@ func (o ClusterVerticalPodAutoscalingPtrOutput) Elem() ClusterVerticalPodAutosca
 	return o.ApplyT(func(v *ClusterVerticalPodAutoscaling) ClusterVerticalPodAutoscaling { return *v }).(ClusterVerticalPodAutoscalingOutput)
 }
 
-// Enable the PodSecurityPolicy controller for this cluster.
-// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+// Whether node auto-provisioning is enabled. Resource
+// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 func (o ClusterVerticalPodAutoscalingPtrOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v ClusterVerticalPodAutoscaling) bool { return v.Enabled }).(pulumi.BoolOutput)
 }

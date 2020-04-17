@@ -14,7 +14,7 @@ namespace Pulumi.Gcp.Kms.Outputs
     public sealed class RegistryEventNotificationConfigItem
     {
         /// <summary>
-        /// PubSub topic name to publish device state updates.
+        /// PubSub topic name to publish device events.
         /// </summary>
         public readonly string PubsubTopicName;
         /// <summary>

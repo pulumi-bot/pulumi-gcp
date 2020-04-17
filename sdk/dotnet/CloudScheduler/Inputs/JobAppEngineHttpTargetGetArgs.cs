@@ -12,23 +12,57 @@ namespace Pulumi.Gcp.CloudScheduler.Inputs
 
     public sealed class JobAppEngineHttpTargetGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App Engine Routing setting for the job.  Structure is documented below.
+        /// </summary>
         [Input("appEngineRouting")]
         public Input<Inputs.JobAppEngineHttpTargetAppEngineRoutingGetArgs>? AppEngineRouting { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// HTTP request body.
+        /// A request body is allowed only if the HTTP method is POST or PUT.
+        /// It will result in invalid argument error to set a body on a job with an incompatible HttpMethod.
+        /// </summary>
         [Input("body")]
         public Input<string>? Body { get; set; }
 
         [Input("headers")]
         private InputMap<string>? _headers;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// HTTP request headers.
+        /// This map contains the header field names and values.
+        /// Headers can be set when the job is created.
+        /// </summary>
         public InputMap<string> Headers
         {
             get => _headers ?? (_headers = new InputMap<string>());
             set => _headers = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Which HTTP method to use for the request.
+        /// </summary>
         [Input("httpMethod")]
         public Input<string>? HttpMethod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The relative URI.
+        /// The relative URL must begin with "/" and must be a valid HTTP relative URL.
+        /// It can contain a path, query string arguments, and \# fragments.
+        /// If the relative URL is empty, then the root path "/" will be used.
+        /// No spaces are allowed, and the maximum length allowed is 2083 characters
+        /// </summary>
         [Input("relativeUri", required: true)]
         public Input<string> RelativeUri { get; set; } = null!;
 

@@ -19,13 +19,18 @@ namespace Pulumi.Gcp.Compute.Inputs
         public Input<string> InstanceTemplate { get; set; } = null!;
 
         /// <summary>
-        /// - Version name.
+        /// The name of the instance group manager. Must be 1-63
+        /// characters long and comply with
+        /// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+        /// include lowercase letters, numbers, and hyphens.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+        /// The target number of running instances for this managed
+        /// instance group. This value should always be explicitly set unless this resource is attached to
+        /// an autoscaler, in which case it should never be set. Defaults to `0`.
         /// </summary>
         [Input("targetSize")]
         public Input<Inputs.RegionInstanceGroupManagerVersionTargetSizeArgs>? TargetSize { get; set; }

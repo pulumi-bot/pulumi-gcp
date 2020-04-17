@@ -20,14 +20,26 @@ import (
 type GameServerCluster struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// Required. The resource name of the game server cluster
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
-	// Game server cluster connection information. This information is used to manage game server clusters.
+	// -
+	// (Required)
+	// Game server cluster connection information. This information is used to
+	// manage game server clusters.  Structure is documented below.
 	ConnectionInfo GameServerClusterConnectionInfoOutput `pulumi:"connectionInfo"`
+	// -
+	// (Optional)
 	// Human readable description of the cluster.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The labels associated with this game server cluster. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server cluster. Each label is a
+	// key-value pair.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// -
+	// (Optional)
 	// Location of the Cluster.
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// The resource id of the game server cluster, eg:
@@ -37,6 +49,8 @@ type GameServerCluster struct {
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
+	// -
+	// (Required)
 	// The realm id of the game server realm.
 	RealmId pulumi.StringOutput `pulumi:"realmId"`
 }
@@ -78,14 +92,26 @@ func GetGameServerCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GameServerCluster resources.
 type gameServerClusterState struct {
+	// -
+	// (Required)
 	// Required. The resource name of the game server cluster
 	ClusterId *string `pulumi:"clusterId"`
-	// Game server cluster connection information. This information is used to manage game server clusters.
+	// -
+	// (Required)
+	// Game server cluster connection information. This information is used to
+	// manage game server clusters.  Structure is documented below.
 	ConnectionInfo *GameServerClusterConnectionInfo `pulumi:"connectionInfo"`
+	// -
+	// (Optional)
 	// Human readable description of the cluster.
 	Description *string `pulumi:"description"`
-	// The labels associated with this game server cluster. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server cluster. Each label is a
+	// key-value pair.
 	Labels map[string]string `pulumi:"labels"`
+	// -
+	// (Optional)
 	// Location of the Cluster.
 	Location *string `pulumi:"location"`
 	// The resource id of the game server cluster, eg:
@@ -95,19 +121,33 @@ type gameServerClusterState struct {
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Required)
 	// The realm id of the game server realm.
 	RealmId *string `pulumi:"realmId"`
 }
 
 type GameServerClusterState struct {
+	// -
+	// (Required)
 	// Required. The resource name of the game server cluster
 	ClusterId pulumi.StringPtrInput
-	// Game server cluster connection information. This information is used to manage game server clusters.
+	// -
+	// (Required)
+	// Game server cluster connection information. This information is used to
+	// manage game server clusters.  Structure is documented below.
 	ConnectionInfo GameServerClusterConnectionInfoPtrInput
+	// -
+	// (Optional)
 	// Human readable description of the cluster.
 	Description pulumi.StringPtrInput
-	// The labels associated with this game server cluster. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server cluster. Each label is a
+	// key-value pair.
 	Labels pulumi.StringMapInput
+	// -
+	// (Optional)
 	// Location of the Cluster.
 	Location pulumi.StringPtrInput
 	// The resource id of the game server cluster, eg:
@@ -117,6 +157,8 @@ type GameServerClusterState struct {
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The realm id of the game server realm.
 	RealmId pulumi.StringPtrInput
 }
@@ -126,38 +168,66 @@ func (GameServerClusterState) ElementType() reflect.Type {
 }
 
 type gameServerClusterArgs struct {
+	// -
+	// (Required)
 	// Required. The resource name of the game server cluster
 	ClusterId string `pulumi:"clusterId"`
-	// Game server cluster connection information. This information is used to manage game server clusters.
+	// -
+	// (Required)
+	// Game server cluster connection information. This information is used to
+	// manage game server clusters.  Structure is documented below.
 	ConnectionInfo GameServerClusterConnectionInfo `pulumi:"connectionInfo"`
+	// -
+	// (Optional)
 	// Human readable description of the cluster.
 	Description *string `pulumi:"description"`
-	// The labels associated with this game server cluster. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server cluster. Each label is a
+	// key-value pair.
 	Labels map[string]string `pulumi:"labels"`
+	// -
+	// (Optional)
 	// Location of the Cluster.
 	Location *string `pulumi:"location"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Required)
 	// The realm id of the game server realm.
 	RealmId string `pulumi:"realmId"`
 }
 
 // The set of arguments for constructing a GameServerCluster resource.
 type GameServerClusterArgs struct {
+	// -
+	// (Required)
 	// Required. The resource name of the game server cluster
 	ClusterId pulumi.StringInput
-	// Game server cluster connection information. This information is used to manage game server clusters.
+	// -
+	// (Required)
+	// Game server cluster connection information. This information is used to
+	// manage game server clusters.  Structure is documented below.
 	ConnectionInfo GameServerClusterConnectionInfoInput
+	// -
+	// (Optional)
 	// Human readable description of the cluster.
 	Description pulumi.StringPtrInput
-	// The labels associated with this game server cluster. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server cluster. Each label is a
+	// key-value pair.
 	Labels pulumi.StringMapInput
+	// -
+	// (Optional)
 	// Location of the Cluster.
 	Location pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The realm id of the game server realm.
 	RealmId pulumi.StringInput
 }

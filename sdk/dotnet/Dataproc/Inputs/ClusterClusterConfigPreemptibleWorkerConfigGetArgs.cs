@@ -26,6 +26,10 @@ namespace Pulumi.Gcp.Dataproc.Inputs
             set => _instanceNames = value;
         }
 
+        /// <summary>
+        /// Specifies the number of master nodes to create.
+        /// If not specified, GCP will default to a predetermined computed value (currently 1).
+        /// </summary>
         [Input("numInstances")]
         public Input<int>? NumInstances { get; set; }
 

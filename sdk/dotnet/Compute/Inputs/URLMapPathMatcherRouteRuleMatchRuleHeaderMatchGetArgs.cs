@@ -12,27 +12,86 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class URLMapPathMatcherRouteRuleMatchRuleHeaderMatchGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value should exactly match contents of exactMatch. Only one of exactMatch,
+        /// prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+        /// </summary>
         [Input("exactMatch")]
         public Input<string>? ExactMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set to false, the headerMatch is considered a match if the match criteria
+        /// above are met. If set to true, the headerMatch is considered a match if the
+        /// match criteria above are NOT met. Defaults to false.
+        /// </summary>
         [Input("invertMatch")]
         public Input<bool>? InvertMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// For satifying the matchRule condition, the request's path must begin with the
+        /// specified prefixMatch. prefixMatch must begin with a /. The value must be
+        /// between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or
+        /// regexMatch must be specified.
+        /// </summary>
         [Input("prefixMatch")]
         public Input<string>? PrefixMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A header with the contents of headerName must exist. The match takes place
+        /// whether or not the request's header has a value or not. Only one of exactMatch,
+        /// prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+        /// </summary>
         [Input("presentMatch")]
         public Input<bool>? PresentMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The header value must be an integer and its value must be in the range specified
+        /// in rangeMatch. If the header does not contain an integer, number or is empty,
+        /// the match fails. For example for a range [-5, 0]   - -3 will match.  - 0 will
+        /// not match.  - 0.25 will not match.  - -3someString will not match.   Only one of
+        /// exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+        /// must be set.  Structure is documented below.
+        /// </summary>
         [Input("rangeMatch")]
         public Input<Inputs.URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatchGetArgs>? RangeMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// For satifying the matchRule condition, the path of the request must satisfy the
+        /// regular expression specified in regexMatch after removing any query parameters
+        /// and anchor supplied with the original URL. For regular expression grammar please
+        /// see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch,
+        /// fullPathMatch or regexMatch must be specified.
+        /// </summary>
         [Input("regexMatch")]
         public Input<string>? RegexMatch { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value of the header must end with the contents of suffixMatch. Only one of
+        /// exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+        /// must be set.
+        /// </summary>
         [Input("suffixMatch")]
         public Input<string>? SuffixMatch { get; set; }
 

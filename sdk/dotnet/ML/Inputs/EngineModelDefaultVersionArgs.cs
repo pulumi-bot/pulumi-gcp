@@ -12,6 +12,11 @@ namespace Pulumi.Gcp.ML.Inputs
 
     public sealed class EngineModelDefaultVersionArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name specified for the model.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 

@@ -26,8 +26,8 @@ namespace Pulumi.Gcp.Container.Outputs
         /// </summary>
         public readonly string? AutoscalingProfile;
         /// <summary>
-        /// Enable the PodSecurityPolicy controller for this cluster.
-        /// If enabled, pods must be valid under a PodSecurityPolicy to be created.
+        /// Whether node auto-provisioning is enabled. Resource
+        /// limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
         /// </summary>
         public readonly bool Enabled;
         /// <summary>

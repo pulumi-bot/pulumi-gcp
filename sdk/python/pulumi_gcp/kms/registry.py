@@ -23,7 +23,7 @@ class Registry(pulumi.CustomResource):
     List of configurations for event notification, such as
     PubSub topics to publish device events to. Structure is documented below.
 
-      * `pubsub_topic_name` (`str`) - PubSub topic name to publish device state updates.
+      * `pubsub_topic_name` (`str`) - PubSub topic name to publish device events.
       * `subfolderMatches` (`str`) - If the subfolder name matches this string
         exactly, this configuration will be used. The string must not include the
         leading '/' character. If empty, all strings are matched. Empty value can
@@ -59,7 +59,7 @@ class Registry(pulumi.CustomResource):
     """
     A PubSub topic to publish device state updates. Structure is documented below.
 
-      * `pubsub_topic_name` (`str`) - PubSub topic name to publish device state updates.
+      * `pubsub_topic_name` (`str`) - PubSub topic name to publish device events.
     """
     def __init__(__self__, resource_name, opts=None, credentials=None, event_notification_configs=None, http_config=None, log_level=None, mqtt_config=None, name=None, project=None, region=None, state_notification_config=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -91,7 +91,7 @@ class Registry(pulumi.CustomResource):
 
         The **event_notification_configs** object supports the following:
 
-          * `pubsub_topic_name` (`pulumi.Input[str]`) - PubSub topic name to publish device state updates.
+          * `pubsub_topic_name` (`pulumi.Input[str]`) - PubSub topic name to publish device events.
           * `subfolderMatches` (`pulumi.Input[str]`) - If the subfolder name matches this string
             exactly, this configuration will be used. The string must not include the
             leading '/' character. If empty, all strings are matched. Empty value can
@@ -107,7 +107,7 @@ class Registry(pulumi.CustomResource):
 
         The **state_notification_config** object supports the following:
 
-          * `pubsub_topic_name` (`pulumi.Input[str]`) - PubSub topic name to publish device state updates.
+          * `pubsub_topic_name` (`pulumi.Input[str]`) - PubSub topic name to publish device events.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -169,7 +169,7 @@ class Registry(pulumi.CustomResource):
 
         The **event_notification_configs** object supports the following:
 
-          * `pubsub_topic_name` (`pulumi.Input[str]`) - PubSub topic name to publish device state updates.
+          * `pubsub_topic_name` (`pulumi.Input[str]`) - PubSub topic name to publish device events.
           * `subfolderMatches` (`pulumi.Input[str]`) - If the subfolder name matches this string
             exactly, this configuration will be used. The string must not include the
             leading '/' character. If empty, all strings are matched. Empty value can
@@ -185,7 +185,7 @@ class Registry(pulumi.CustomResource):
 
         The **state_notification_config** object supports the following:
 
-          * `pubsub_topic_name` (`pulumi.Input[str]`) - PubSub topic name to publish device state updates.
+          * `pubsub_topic_name` (`pulumi.Input[str]`) - PubSub topic name to publish device events.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

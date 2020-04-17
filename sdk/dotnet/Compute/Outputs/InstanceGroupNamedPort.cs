@@ -14,7 +14,10 @@ namespace Pulumi.Gcp.Compute.Outputs
     public sealed class InstanceGroupNamedPort
     {
         /// <summary>
-        /// The name which the port will be mapped to.
+        /// The name of the instance group. Must be 1-63
+        /// characters long and comply with
+        /// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+        /// include lowercase letters, numbers, and hyphens.
         /// </summary>
         public readonly string Name;
         /// <summary>

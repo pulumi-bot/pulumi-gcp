@@ -13,9 +13,30 @@ namespace Pulumi.Gcp.CloudBuild.Outputs
     [OutputType]
     public sealed class TriggerGithub
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the trigger. Must be unique within the project.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Owner of the repository. For example: The owner for
+        /// https://github.com/googlecloudplatform/cloud-builders is "googlecloudplatform".
+        /// </summary>
         public readonly string? Owner;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// filter to match changes in pull requests.  Specify only one of pullRequest or push.  Structure is documented below.
+        /// </summary>
         public readonly Outputs.TriggerGithubPullRequest? PullRequest;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// filter to match changes in refs, like branches or tags.  Specify only one of pullRequest or push.  Structure is documented below.
+        /// </summary>
         public readonly Outputs.TriggerGithubPush? Push;
 
         [OutputConstructor]

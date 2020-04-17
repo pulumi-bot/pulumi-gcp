@@ -16,8 +16,11 @@ class Subnetwork(pulumi.CustomResource):
     """
     description: pulumi.Output[str]
     """
-    An optional description of this resource. Provide this property when you create the resource. This field can be set only
-    at resource creation time.
+    -
+    (Optional)
+    An optional description of this resource. Provide this property when
+    you create the resource. This field can be set only at resource
+    creation time.
     """
     fingerprint: pulumi.Output[str]
     """
@@ -29,34 +32,67 @@ class Subnetwork(pulumi.CustomResource):
     """
     ip_cidr_range: pulumi.Output[str]
     """
-    The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork.
-    For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is
-    supported.
+    -
+    (Required)
+    The range of internal addresses that are owned by this subnetwork.
+    Provide this property when you create the subnetwork. For example,
+    10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and
+    non-overlapping within a network. Only IPv4 is supported.
     """
     log_config: pulumi.Output[dict]
     """
-    Denotes the logging options for the subnetwork flow logs. If logging is enabled logs will be exported to Stackdriver.
-    This field cannot be set if the 'purpose' of this subnetwork is 'INTERNAL_HTTPS_LOAD_BALANCER'
+    -
+    (Optional)
+    Denotes the logging options for the subnetwork flow logs. If logging is enabled
+    logs will be exported to Stackdriver. This field cannot be set if the `purpose` of this
+    subnetwork is `INTERNAL_HTTPS_LOAD_BALANCER`  Structure is documented below.
 
-      * `aggregationInterval` (`str`)
-      * `flowSampling` (`float`)
-      * `metadata` (`str`)
+      * `aggregationInterval` (`str`) - -
+        (Optional)
+        Can only be specified if VPC flow logging for this subnetwork is enabled.
+        Toggles the aggregation interval for collecting flow logs. Increasing the
+        interval time will reduce the amount of generated flow logs for long
+        lasting connections. Default is an interval of 5 seconds per connection.
+        Possible values are INTERVAL_5_SEC, INTERVAL_30_SEC, INTERVAL_1_MIN,
+        INTERVAL_5_MIN, INTERVAL_10_MIN, INTERVAL_15_MIN
+      * `flowSampling` (`float`) - -
+        (Optional)
+        Can only be specified if VPC flow logging for this subnetwork is enabled.
+        The value of the field must be in [0, 1]. Set the sampling rate of VPC
+        flow logs within the subnetwork where 1.0 means all collected logs are
+        reported and 0.0 means no logs are reported. Default is 0.5 which means
+        half of all collected logs are reported.
+      * `metadata` (`str`) - -
+        (Optional)
+        Can only be specified if VPC flow logging for this subnetwork is enabled.
+        Configures whether metadata fields should be added to the reported VPC
+        flow logs. Default is `INCLUDE_ALL_METADATA`.
     """
     name: pulumi.Output[str]
     """
-    The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters
-    long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-    '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-    must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+    -
+    (Required)
+    The name of the resource, provided by the client when initially
+    creating the resource. The name must be 1-63 characters long, and
+    comply with RFC1035. Specifically, the name must be 1-63 characters
+    long and match the regular expression `a-z?` which
+    means the first character must be a lowercase letter, and all
+    following characters must be a dash, lowercase letter, or digit,
+    except the last character, which cannot be a dash.
     """
     network: pulumi.Output[str]
     """
-    The network this subnet belongs to. Only networks that are in the distributed mode can have subnetworks.
+    -
+    (Required)
+    The network this subnet belongs to.
+    Only networks that are in the distributed mode can have subnetworks.
     """
     private_ip_google_access: pulumi.Output[bool]
     """
-    When enabled, VMs in this subnetwork without external IP addresses can access Google APIs and services by using Private
-    Google Access.
+    -
+    (Optional)
+    When enabled, VMs in this subnetwork without external IP addresses can
+    access Google APIs and services by using Private Google Access.
     """
     project: pulumi.Output[str]
     """
@@ -71,6 +107,8 @@ class Subnetwork(pulumi.CustomResource):
     """
     region: pulumi.Output[str]
     """
+    -
+    (Optional)
     URL of the GCP region for this subnetwork.
     """
     role: pulumi.Output[str]
@@ -88,8 +126,18 @@ class Subnetwork(pulumi.CustomResource):
     syntax: 'example=[]' For more details about this behavior, see [this
     section](https://www.terraform.io/docs/configuration/attr-as-blocks.html#defining-a-fixed-object-collection-value).
 
-      * `ip_cidr_range` (`str`)
-      * `rangeName` (`str`)
+      * `ip_cidr_range` (`str`) - -
+        (Required)
+        The range of internal addresses that are owned by this subnetwork.
+        Provide this property when you create the subnetwork. For example,
+        10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and
+        non-overlapping within a network. Only IPv4 is supported.
+      * `rangeName` (`str`) - -
+        (Required)
+        The name associated with this subnetwork secondary range, used
+        when adding an alias IP range to a VM instance. The name must
+        be 1-63 characters long, and comply with RFC1035. The name
+        must be unique within the subnetwork.
     """
     self_link: pulumi.Output[str]
     """
@@ -130,26 +178,47 @@ class Subnetwork(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: An optional description of this resource. Provide this property when you create the resource. This field can be set only
-               at resource creation time.
-        :param pulumi.Input[str] ip_cidr_range: The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork.
-               For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is
-               supported.
-        :param pulumi.Input[dict] log_config: Denotes the logging options for the subnetwork flow logs. If logging is enabled logs will be exported to Stackdriver.
-               This field cannot be set if the 'purpose' of this subnetwork is 'INTERNAL_HTTPS_LOAD_BALANCER'
-        :param pulumi.Input[str] name: The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters
-               long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-               '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-               must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-        :param pulumi.Input[str] network: The network this subnet belongs to. Only networks that are in the distributed mode can have subnetworks.
-        :param pulumi.Input[bool] private_ip_google_access: When enabled, VMs in this subnetwork without external IP addresses can access Google APIs and services by using Private
-               Google Access.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               An optional description of this resource. Provide this property when
+               you create the resource. This field can be set only at resource
+               creation time.
+        :param pulumi.Input[str] ip_cidr_range: -
+               (Required)
+               The range of internal addresses that are owned by this subnetwork.
+               Provide this property when you create the subnetwork. For example,
+               10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and
+               non-overlapping within a network. Only IPv4 is supported.
+        :param pulumi.Input[dict] log_config: -
+               (Optional)
+               Denotes the logging options for the subnetwork flow logs. If logging is enabled
+               logs will be exported to Stackdriver. This field cannot be set if the `purpose` of this
+               subnetwork is `INTERNAL_HTTPS_LOAD_BALANCER`  Structure is documented below.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the resource, provided by the client when initially
+               creating the resource. The name must be 1-63 characters long, and
+               comply with RFC1035. Specifically, the name must be 1-63 characters
+               long and match the regular expression `a-z?` which
+               means the first character must be a lowercase letter, and all
+               following characters must be a dash, lowercase letter, or digit,
+               except the last character, which cannot be a dash.
+        :param pulumi.Input[str] network: -
+               (Required)
+               The network this subnet belongs to.
+               Only networks that are in the distributed mode can have subnetworks.
+        :param pulumi.Input[bool] private_ip_google_access: -
+               (Optional)
+               When enabled, VMs in this subnetwork without external IP addresses can
+               access Google APIs and services by using Private Google Access.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] purpose: The purpose of the resource. This field can be either PRIVATE or INTERNAL_HTTPS_LOAD_BALANCER. A subnetwork with purpose
                set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing.
                If unspecified, the purpose defaults to PRIVATE. If set to INTERNAL_HTTPS_LOAD_BALANCER you must also set the role.
-        :param pulumi.Input[str] region: URL of the GCP region for this subnetwork.
+        :param pulumi.Input[str] region: -
+               (Optional)
+               URL of the GCP region for this subnetwork.
         :param pulumi.Input[str] role: The role of subnetwork. Currently, this field is only used when purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be
                set to ACTIVE or BACKUP. An ACTIVE subnetwork is one that is currently being used for Internal HTTP(S) Load Balancing. A
                BACKUP subnetwork is one that is ready to be promoted to ACTIVE or is currently draining.
@@ -162,14 +231,41 @@ class Subnetwork(pulumi.CustomResource):
 
         The **log_config** object supports the following:
 
-          * `aggregationInterval` (`pulumi.Input[str]`)
-          * `flowSampling` (`pulumi.Input[float]`)
-          * `metadata` (`pulumi.Input[str]`)
+          * `aggregationInterval` (`pulumi.Input[str]`) - -
+            (Optional)
+            Can only be specified if VPC flow logging for this subnetwork is enabled.
+            Toggles the aggregation interval for collecting flow logs. Increasing the
+            interval time will reduce the amount of generated flow logs for long
+            lasting connections. Default is an interval of 5 seconds per connection.
+            Possible values are INTERVAL_5_SEC, INTERVAL_30_SEC, INTERVAL_1_MIN,
+            INTERVAL_5_MIN, INTERVAL_10_MIN, INTERVAL_15_MIN
+          * `flowSampling` (`pulumi.Input[float]`) - -
+            (Optional)
+            Can only be specified if VPC flow logging for this subnetwork is enabled.
+            The value of the field must be in [0, 1]. Set the sampling rate of VPC
+            flow logs within the subnetwork where 1.0 means all collected logs are
+            reported and 0.0 means no logs are reported. Default is 0.5 which means
+            half of all collected logs are reported.
+          * `metadata` (`pulumi.Input[str]`) - -
+            (Optional)
+            Can only be specified if VPC flow logging for this subnetwork is enabled.
+            Configures whether metadata fields should be added to the reported VPC
+            flow logs. Default is `INCLUDE_ALL_METADATA`.
 
         The **secondary_ip_ranges** object supports the following:
 
-          * `ip_cidr_range` (`pulumi.Input[str]`)
-          * `rangeName` (`pulumi.Input[str]`)
+          * `ip_cidr_range` (`pulumi.Input[str]`) - -
+            (Required)
+            The range of internal addresses that are owned by this subnetwork.
+            Provide this property when you create the subnetwork. For example,
+            10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and
+            non-overlapping within a network. Only IPv4 is supported.
+          * `rangeName` (`pulumi.Input[str]`) - -
+            (Required)
+            The name associated with this subnetwork secondary range, used
+            when adding an alias IP range to a VM instance. The name must
+            be 1-63 characters long, and comply with RFC1035. The name
+            must be unique within the subnetwork.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -223,28 +319,49 @@ class Subnetwork(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
-        :param pulumi.Input[str] description: An optional description of this resource. Provide this property when you create the resource. This field can be set only
-               at resource creation time.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               An optional description of this resource. Provide this property when
+               you create the resource. This field can be set only at resource
+               creation time.
         :param pulumi.Input[str] fingerprint: Fingerprint of this resource. This field is used internally during updates of this resource.
         :param pulumi.Input[str] gateway_address: The gateway address for default routes to reach destination addresses outside this subnetwork.
-        :param pulumi.Input[str] ip_cidr_range: The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork.
-               For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is
-               supported.
-        :param pulumi.Input[dict] log_config: Denotes the logging options for the subnetwork flow logs. If logging is enabled logs will be exported to Stackdriver.
-               This field cannot be set if the 'purpose' of this subnetwork is 'INTERNAL_HTTPS_LOAD_BALANCER'
-        :param pulumi.Input[str] name: The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters
-               long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-               '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-               must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-        :param pulumi.Input[str] network: The network this subnet belongs to. Only networks that are in the distributed mode can have subnetworks.
-        :param pulumi.Input[bool] private_ip_google_access: When enabled, VMs in this subnetwork without external IP addresses can access Google APIs and services by using Private
-               Google Access.
+        :param pulumi.Input[str] ip_cidr_range: -
+               (Required)
+               The range of internal addresses that are owned by this subnetwork.
+               Provide this property when you create the subnetwork. For example,
+               10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and
+               non-overlapping within a network. Only IPv4 is supported.
+        :param pulumi.Input[dict] log_config: -
+               (Optional)
+               Denotes the logging options for the subnetwork flow logs. If logging is enabled
+               logs will be exported to Stackdriver. This field cannot be set if the `purpose` of this
+               subnetwork is `INTERNAL_HTTPS_LOAD_BALANCER`  Structure is documented below.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the resource, provided by the client when initially
+               creating the resource. The name must be 1-63 characters long, and
+               comply with RFC1035. Specifically, the name must be 1-63 characters
+               long and match the regular expression `a-z?` which
+               means the first character must be a lowercase letter, and all
+               following characters must be a dash, lowercase letter, or digit,
+               except the last character, which cannot be a dash.
+        :param pulumi.Input[str] network: -
+               (Required)
+               The network this subnet belongs to.
+               Only networks that are in the distributed mode can have subnetworks.
+        :param pulumi.Input[bool] private_ip_google_access: -
+               (Optional)
+               When enabled, VMs in this subnetwork without external IP addresses can
+               access Google APIs and services by using Private Google Access.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] purpose: The purpose of the resource. This field can be either PRIVATE or INTERNAL_HTTPS_LOAD_BALANCER. A subnetwork with purpose
                set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing.
                If unspecified, the purpose defaults to PRIVATE. If set to INTERNAL_HTTPS_LOAD_BALANCER you must also set the role.
-        :param pulumi.Input[str] region: URL of the GCP region for this subnetwork.
+        :param pulumi.Input[str] region: -
+               (Optional)
+               URL of the GCP region for this subnetwork.
         :param pulumi.Input[str] role: The role of subnetwork. Currently, this field is only used when purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be
                set to ACTIVE or BACKUP. An ACTIVE subnetwork is one that is currently being used for Internal HTTP(S) Load Balancing. A
                BACKUP subnetwork is one that is ready to be promoted to ACTIVE or is currently draining.
@@ -258,14 +375,41 @@ class Subnetwork(pulumi.CustomResource):
 
         The **log_config** object supports the following:
 
-          * `aggregationInterval` (`pulumi.Input[str]`)
-          * `flowSampling` (`pulumi.Input[float]`)
-          * `metadata` (`pulumi.Input[str]`)
+          * `aggregationInterval` (`pulumi.Input[str]`) - -
+            (Optional)
+            Can only be specified if VPC flow logging for this subnetwork is enabled.
+            Toggles the aggregation interval for collecting flow logs. Increasing the
+            interval time will reduce the amount of generated flow logs for long
+            lasting connections. Default is an interval of 5 seconds per connection.
+            Possible values are INTERVAL_5_SEC, INTERVAL_30_SEC, INTERVAL_1_MIN,
+            INTERVAL_5_MIN, INTERVAL_10_MIN, INTERVAL_15_MIN
+          * `flowSampling` (`pulumi.Input[float]`) - -
+            (Optional)
+            Can only be specified if VPC flow logging for this subnetwork is enabled.
+            The value of the field must be in [0, 1]. Set the sampling rate of VPC
+            flow logs within the subnetwork where 1.0 means all collected logs are
+            reported and 0.0 means no logs are reported. Default is 0.5 which means
+            half of all collected logs are reported.
+          * `metadata` (`pulumi.Input[str]`) - -
+            (Optional)
+            Can only be specified if VPC flow logging for this subnetwork is enabled.
+            Configures whether metadata fields should be added to the reported VPC
+            flow logs. Default is `INCLUDE_ALL_METADATA`.
 
         The **secondary_ip_ranges** object supports the following:
 
-          * `ip_cidr_range` (`pulumi.Input[str]`)
-          * `rangeName` (`pulumi.Input[str]`)
+          * `ip_cidr_range` (`pulumi.Input[str]`) - -
+            (Required)
+            The range of internal addresses that are owned by this subnetwork.
+            Provide this property when you create the subnetwork. For example,
+            10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and
+            non-overlapping within a network. Only IPv4 is supported.
+          * `rangeName` (`pulumi.Input[str]`) - -
+            (Required)
+            The name associated with this subnetwork secondary range, used
+            when adding an alias IP range to a VM instance. The name must
+            be 1-63 characters long, and comply with RFC1035. The name
+            must be unique within the subnetwork.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

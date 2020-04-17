@@ -13,14 +13,26 @@ namespace Pulumi.Gcp.AppEngine.Inputs
     public sealed class FlexibleAppVersionDeploymentFileGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The identifier for this object. Format specified above.
+        /// -
+        /// (Required)
+        /// Google Compute Engine network where the virtual machines are created. Specify the short name, not the resource path.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// SHA1 checksum of the file
+        /// </summary>
         [Input("sha1Sum")]
         public Input<string>? Sha1Sum { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Source URL
+        /// </summary>
         [Input("sourceUrl", required: true)]
         public Input<string> SourceUrl { get; set; } = null!;
 

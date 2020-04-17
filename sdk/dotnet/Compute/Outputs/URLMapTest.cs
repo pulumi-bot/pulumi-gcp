@@ -13,9 +13,30 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class URLMapTest
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when you create
+        /// the resource.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Host portion of the URL.
+        /// </summary>
         public readonly string Host;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path portion of the URL.
+        /// </summary>
         public readonly string Path;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The backend service or backend bucket to use if any of the given paths match.
+        /// </summary>
         public readonly string Service;
 
         [OutputConstructor]

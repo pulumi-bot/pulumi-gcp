@@ -14,6 +14,13 @@ namespace Pulumi.Gcp.GameServices.Inputs
     {
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The labels associated with this game server config. Each label is a
+        /// key-value pair.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());

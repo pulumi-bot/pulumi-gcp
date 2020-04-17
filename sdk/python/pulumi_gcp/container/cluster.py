@@ -24,8 +24,8 @@ class Cluster(pulumi.CustomResource):
       * `dnsCacheConfig` (`dict`) - .
         The status of the NodeLocal DNSCache addon. It is disabled by default.
         Set `enabled = true` to enable.
-        * `enabled` (`bool`) - Enable the PodSecurityPolicy controller for this cluster.
-          If enabled, pods must be valid under a PodSecurityPolicy to be created.
+        * `enabled` (`bool`) - Whether node auto-provisioning is enabled. Resource
+          limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 
       * `horizontalPodAutoscaling` (`dict`) - The status of the Horizontal Pod Autoscaling
         addon, which increases or decreases the number of replica pods a replication controller
@@ -76,22 +76,15 @@ class Cluster(pulumi.CustomResource):
 
       * `autoProvisioningDefaults` (`dict`) - Contains defaults for a node pool created by NAP.
         Structure is documented below.
-        * `oauthScopes` (`list`) - The set of Google API scopes to be made available
-          on all of the node VMs under the "default" service account. These can be
-          either FQDNs, or scope aliases. The following scopes are necessary to ensure
-          the correct functioning of the cluster:
-        * `service_account` (`str`) - The service account to be used by the Node VMs.
-          If not specified, the "default" service account is used.
-          In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
-          [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-          [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+        * `oauthScopes` (`list`) - Scopes that are used by NAP when creating node pools.
+        * `service_account` (`str`) - The Google Cloud Platform Service Account to be used by the node VMs.
 
       * `autoscalingProfile` (`str`) - Configuration
         options for the [Autoscaling profile](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#autoscaling_profiles)
         feature, which lets you choose whether the cluster autoscaler should optimize for resource utilization or resource availability
         when deciding to remove nodes from a cluster. Can be `BALANCED` or `OPTIMIZE_UTILIZATION`. Defaults to `BALANCED`.
-      * `enabled` (`bool`) - Enable the PodSecurityPolicy controller for this cluster.
-        If enabled, pods must be valid under a PodSecurityPolicy to be created.
+      * `enabled` (`bool`) - Whether node auto-provisioning is enabled. Resource
+        limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
       * `resourceLimits` (`list`) - Global constraints for machine resources in the
         cluster. Configuring the `cpu` and `memory` types is required if node
         auto-provisioning is enabled. These limits will apply to node pool autoscaling
@@ -317,8 +310,8 @@ class Cluster(pulumi.CustomResource):
     [NetworkPolicy](https://kubernetes.io/docs/concepts/services-networking/networkpolicies/)
     feature. Structure is documented below.
 
-      * `enabled` (`bool`) - Enable the PodSecurityPolicy controller for this cluster.
-        If enabled, pods must be valid under a PodSecurityPolicy to be created.
+      * `enabled` (`bool`) - Whether node auto-provisioning is enabled. Resource
+        limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
       * `provider` (`str`) - The selected network policy provider. Defaults to PROVIDER_UNSPECIFIED.
     """
     node_config: pulumi.Output[dict]
@@ -357,10 +350,7 @@ class Cluster(pulumi.CustomResource):
         values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
         [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
         for more information.
-      * `oauthScopes` (`list`) - The set of Google API scopes to be made available
-        on all of the node VMs under the "default" service account. These can be
-        either FQDNs, or scope aliases. The following scopes are necessary to ensure
-        the correct functioning of the cluster:
+      * `oauthScopes` (`list`) - Scopes that are used by NAP when creating node pools.
       * `preemptible` (`bool`) - A boolean that represents whether or not the underlying node VMs
         are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
         for more information. Defaults to false.
@@ -369,11 +359,7 @@ class Cluster(pulumi.CustomResource):
         * `sandboxType` (`str`) - Which sandbox to use for pods in the node pool.
           Accepted values are:
 
-      * `service_account` (`str`) - The service account to be used by the Node VMs.
-        If not specified, the "default" service account is used.
-        In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
-        [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-        [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+      * `service_account` (`str`) - The Google Cloud Platform Service Account to be used by the node VMs.
       * `shielded_instance_config` (`dict`) - Shielded Instance options. Structure is documented below.
         * `enableIntegrityMonitoring` (`bool`) - Defines if the instance has integrity monitoring enabled.
         * `enableSecureBoot` (`bool`) - Defines if the instance has Secure Boot enabled.
@@ -470,10 +456,7 @@ class Cluster(pulumi.CustomResource):
           values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
           [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
           for more information.
-        * `oauthScopes` (`list`) - The set of Google API scopes to be made available
-          on all of the node VMs under the "default" service account. These can be
-          either FQDNs, or scope aliases. The following scopes are necessary to ensure
-          the correct functioning of the cluster:
+        * `oauthScopes` (`list`) - Scopes that are used by NAP when creating node pools.
         * `preemptible` (`bool`) - A boolean that represents whether or not the underlying node VMs
           are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
           for more information. Defaults to false.
@@ -482,11 +465,7 @@ class Cluster(pulumi.CustomResource):
           * `sandboxType` (`str`) - Which sandbox to use for pods in the node pool.
             Accepted values are:
 
-        * `service_account` (`str`) - The service account to be used by the Node VMs.
-          If not specified, the "default" service account is used.
-          In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
-          [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-          [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+        * `service_account` (`str`) - The Google Cloud Platform Service Account to be used by the node VMs.
         * `shielded_instance_config` (`dict`) - Shielded Instance options. Structure is documented below.
           * `enableIntegrityMonitoring` (`bool`) - Defines if the instance has integrity monitoring enabled.
           * `enableSecureBoot` (`bool`) - Defines if the instance has Secure Boot enabled.
@@ -543,8 +522,8 @@ class Cluster(pulumi.CustomResource):
     [PodSecurityPolicy](https://cloud.google.com/kubernetes-engine/docs/how-to/pod-security-policies) feature.
     Structure is documented below.
 
-      * `enabled` (`bool`) - Enable the PodSecurityPolicy controller for this cluster.
-        If enabled, pods must be valid under a PodSecurityPolicy to be created.
+      * `enabled` (`bool`) - Whether node auto-provisioning is enabled. Resource
+        limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
     """
     private_cluster_config: pulumi.Output[dict]
     """
@@ -640,8 +619,8 @@ class Cluster(pulumi.CustomResource):
     Vertical Pod Autoscaling automatically adjusts the resources of pods controlled by it.
     Structure is documented below.
 
-      * `enabled` (`bool`) - Enable the PodSecurityPolicy controller for this cluster.
-        If enabled, pods must be valid under a PodSecurityPolicy to be created.
+      * `enabled` (`bool`) - Whether node auto-provisioning is enabled. Resource
+        limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
     """
     workload_identity_config: pulumi.Output[dict]
     """
@@ -817,8 +796,8 @@ class Cluster(pulumi.CustomResource):
           * `dnsCacheConfig` (`pulumi.Input[dict]`) - .
             The status of the NodeLocal DNSCache addon. It is disabled by default.
             Set `enabled = true` to enable.
-            * `enabled` (`pulumi.Input[bool]`) - Enable the PodSecurityPolicy controller for this cluster.
-              If enabled, pods must be valid under a PodSecurityPolicy to be created.
+            * `enabled` (`pulumi.Input[bool]`) - Whether node auto-provisioning is enabled. Resource
+              limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 
           * `horizontalPodAutoscaling` (`pulumi.Input[dict]`) - The status of the Horizontal Pod Autoscaling
             addon, which increases or decreases the number of replica pods a replication controller
@@ -858,22 +837,15 @@ class Cluster(pulumi.CustomResource):
 
           * `autoProvisioningDefaults` (`pulumi.Input[dict]`) - Contains defaults for a node pool created by NAP.
             Structure is documented below.
-            * `oauthScopes` (`pulumi.Input[list]`) - The set of Google API scopes to be made available
-              on all of the node VMs under the "default" service account. These can be
-              either FQDNs, or scope aliases. The following scopes are necessary to ensure
-              the correct functioning of the cluster:
-            * `service_account` (`pulumi.Input[str]`) - The service account to be used by the Node VMs.
-              If not specified, the "default" service account is used.
-              In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
-              [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-              [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+            * `oauthScopes` (`pulumi.Input[list]`) - Scopes that are used by NAP when creating node pools.
+            * `service_account` (`pulumi.Input[str]`) - The Google Cloud Platform Service Account to be used by the node VMs.
 
           * `autoscalingProfile` (`pulumi.Input[str]`) - Configuration
             options for the [Autoscaling profile](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#autoscaling_profiles)
             feature, which lets you choose whether the cluster autoscaler should optimize for resource utilization or resource availability
             when deciding to remove nodes from a cluster. Can be `BALANCED` or `OPTIMIZE_UTILIZATION`. Defaults to `BALANCED`.
-          * `enabled` (`pulumi.Input[bool]`) - Enable the PodSecurityPolicy controller for this cluster.
-            If enabled, pods must be valid under a PodSecurityPolicy to be created.
+          * `enabled` (`pulumi.Input[bool]`) - Whether node auto-provisioning is enabled. Resource
+            limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
           * `resourceLimits` (`pulumi.Input[list]`) - Global constraints for machine resources in the
             cluster. Configuring the `cpu` and `memory` types is required if node
             auto-provisioning is enabled. These limits will apply to node pool autoscaling
@@ -946,8 +918,8 @@ class Cluster(pulumi.CustomResource):
 
         The **network_policy** object supports the following:
 
-          * `enabled` (`pulumi.Input[bool]`) - Enable the PodSecurityPolicy controller for this cluster.
-            If enabled, pods must be valid under a PodSecurityPolicy to be created.
+          * `enabled` (`pulumi.Input[bool]`) - Whether node auto-provisioning is enabled. Resource
+            limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
           * `provider` (`pulumi.Input[str]`) - The selected network policy provider. Defaults to PROVIDER_UNSPECIFIED.
 
         The **node_config** object supports the following:
@@ -980,10 +952,7 @@ class Cluster(pulumi.CustomResource):
             values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
             [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
             for more information.
-          * `oauthScopes` (`pulumi.Input[list]`) - The set of Google API scopes to be made available
-            on all of the node VMs under the "default" service account. These can be
-            either FQDNs, or scope aliases. The following scopes are necessary to ensure
-            the correct functioning of the cluster:
+          * `oauthScopes` (`pulumi.Input[list]`) - Scopes that are used by NAP when creating node pools.
           * `preemptible` (`pulumi.Input[bool]`) - A boolean that represents whether or not the underlying node VMs
             are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
             for more information. Defaults to false.
@@ -992,11 +961,7 @@ class Cluster(pulumi.CustomResource):
             * `sandboxType` (`pulumi.Input[str]`) - Which sandbox to use for pods in the node pool.
               Accepted values are:
 
-          * `service_account` (`pulumi.Input[str]`) - The service account to be used by the Node VMs.
-            If not specified, the "default" service account is used.
-            In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
-            [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-            [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+          * `service_account` (`pulumi.Input[str]`) - The Google Cloud Platform Service Account to be used by the node VMs.
           * `shielded_instance_config` (`pulumi.Input[dict]`) - Shielded Instance options. Structure is documented below.
             * `enableIntegrityMonitoring` (`pulumi.Input[bool]`) - Defines if the instance has integrity monitoring enabled.
             * `enableSecureBoot` (`pulumi.Input[bool]`) - Defines if the instance has Secure Boot enabled.
@@ -1079,10 +1044,7 @@ class Cluster(pulumi.CustomResource):
               values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
               [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
               for more information.
-            * `oauthScopes` (`pulumi.Input[list]`) - The set of Google API scopes to be made available
-              on all of the node VMs under the "default" service account. These can be
-              either FQDNs, or scope aliases. The following scopes are necessary to ensure
-              the correct functioning of the cluster:
+            * `oauthScopes` (`pulumi.Input[list]`) - Scopes that are used by NAP when creating node pools.
             * `preemptible` (`pulumi.Input[bool]`) - A boolean that represents whether or not the underlying node VMs
               are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
               for more information. Defaults to false.
@@ -1091,11 +1053,7 @@ class Cluster(pulumi.CustomResource):
               * `sandboxType` (`pulumi.Input[str]`) - Which sandbox to use for pods in the node pool.
                 Accepted values are:
 
-            * `service_account` (`pulumi.Input[str]`) - The service account to be used by the Node VMs.
-              If not specified, the "default" service account is used.
-              In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
-              [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-              [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+            * `service_account` (`pulumi.Input[str]`) - The Google Cloud Platform Service Account to be used by the node VMs.
             * `shielded_instance_config` (`pulumi.Input[dict]`) - Shielded Instance options. Structure is documented below.
               * `enableIntegrityMonitoring` (`pulumi.Input[bool]`) - Defines if the instance has integrity monitoring enabled.
               * `enableSecureBoot` (`pulumi.Input[bool]`) - Defines if the instance has Secure Boot enabled.
@@ -1136,8 +1094,8 @@ class Cluster(pulumi.CustomResource):
 
         The **pod_security_policy_config** object supports the following:
 
-          * `enabled` (`pulumi.Input[bool]`) - Enable the PodSecurityPolicy controller for this cluster.
-            If enabled, pods must be valid under a PodSecurityPolicy to be created.
+          * `enabled` (`pulumi.Input[bool]`) - Whether node auto-provisioning is enabled. Resource
+            limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 
         The **private_cluster_config** object supports the following:
 
@@ -1184,8 +1142,8 @@ class Cluster(pulumi.CustomResource):
 
         The **vertical_pod_autoscaling** object supports the following:
 
-          * `enabled` (`pulumi.Input[bool]`) - Enable the PodSecurityPolicy controller for this cluster.
-            If enabled, pods must be valid under a PodSecurityPolicy to be created.
+          * `enabled` (`pulumi.Input[bool]`) - Whether node auto-provisioning is enabled. Resource
+            limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 
         The **workload_identity_config** object supports the following:
 
@@ -1436,8 +1394,8 @@ class Cluster(pulumi.CustomResource):
           * `dnsCacheConfig` (`pulumi.Input[dict]`) - .
             The status of the NodeLocal DNSCache addon. It is disabled by default.
             Set `enabled = true` to enable.
-            * `enabled` (`pulumi.Input[bool]`) - Enable the PodSecurityPolicy controller for this cluster.
-              If enabled, pods must be valid under a PodSecurityPolicy to be created.
+            * `enabled` (`pulumi.Input[bool]`) - Whether node auto-provisioning is enabled. Resource
+              limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 
           * `horizontalPodAutoscaling` (`pulumi.Input[dict]`) - The status of the Horizontal Pod Autoscaling
             addon, which increases or decreases the number of replica pods a replication controller
@@ -1477,22 +1435,15 @@ class Cluster(pulumi.CustomResource):
 
           * `autoProvisioningDefaults` (`pulumi.Input[dict]`) - Contains defaults for a node pool created by NAP.
             Structure is documented below.
-            * `oauthScopes` (`pulumi.Input[list]`) - The set of Google API scopes to be made available
-              on all of the node VMs under the "default" service account. These can be
-              either FQDNs, or scope aliases. The following scopes are necessary to ensure
-              the correct functioning of the cluster:
-            * `service_account` (`pulumi.Input[str]`) - The service account to be used by the Node VMs.
-              If not specified, the "default" service account is used.
-              In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
-              [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-              [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+            * `oauthScopes` (`pulumi.Input[list]`) - Scopes that are used by NAP when creating node pools.
+            * `service_account` (`pulumi.Input[str]`) - The Google Cloud Platform Service Account to be used by the node VMs.
 
           * `autoscalingProfile` (`pulumi.Input[str]`) - Configuration
             options for the [Autoscaling profile](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler#autoscaling_profiles)
             feature, which lets you choose whether the cluster autoscaler should optimize for resource utilization or resource availability
             when deciding to remove nodes from a cluster. Can be `BALANCED` or `OPTIMIZE_UTILIZATION`. Defaults to `BALANCED`.
-          * `enabled` (`pulumi.Input[bool]`) - Enable the PodSecurityPolicy controller for this cluster.
-            If enabled, pods must be valid under a PodSecurityPolicy to be created.
+          * `enabled` (`pulumi.Input[bool]`) - Whether node auto-provisioning is enabled. Resource
+            limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
           * `resourceLimits` (`pulumi.Input[list]`) - Global constraints for machine resources in the
             cluster. Configuring the `cpu` and `memory` types is required if node
             auto-provisioning is enabled. These limits will apply to node pool autoscaling
@@ -1565,8 +1516,8 @@ class Cluster(pulumi.CustomResource):
 
         The **network_policy** object supports the following:
 
-          * `enabled` (`pulumi.Input[bool]`) - Enable the PodSecurityPolicy controller for this cluster.
-            If enabled, pods must be valid under a PodSecurityPolicy to be created.
+          * `enabled` (`pulumi.Input[bool]`) - Whether node auto-provisioning is enabled. Resource
+            limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
           * `provider` (`pulumi.Input[str]`) - The selected network policy provider. Defaults to PROVIDER_UNSPECIFIED.
 
         The **node_config** object supports the following:
@@ -1599,10 +1550,7 @@ class Cluster(pulumi.CustomResource):
             values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
             [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
             for more information.
-          * `oauthScopes` (`pulumi.Input[list]`) - The set of Google API scopes to be made available
-            on all of the node VMs under the "default" service account. These can be
-            either FQDNs, or scope aliases. The following scopes are necessary to ensure
-            the correct functioning of the cluster:
+          * `oauthScopes` (`pulumi.Input[list]`) - Scopes that are used by NAP when creating node pools.
           * `preemptible` (`pulumi.Input[bool]`) - A boolean that represents whether or not the underlying node VMs
             are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
             for more information. Defaults to false.
@@ -1611,11 +1559,7 @@ class Cluster(pulumi.CustomResource):
             * `sandboxType` (`pulumi.Input[str]`) - Which sandbox to use for pods in the node pool.
               Accepted values are:
 
-          * `service_account` (`pulumi.Input[str]`) - The service account to be used by the Node VMs.
-            If not specified, the "default" service account is used.
-            In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
-            [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-            [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+          * `service_account` (`pulumi.Input[str]`) - The Google Cloud Platform Service Account to be used by the node VMs.
           * `shielded_instance_config` (`pulumi.Input[dict]`) - Shielded Instance options. Structure is documented below.
             * `enableIntegrityMonitoring` (`pulumi.Input[bool]`) - Defines if the instance has integrity monitoring enabled.
             * `enableSecureBoot` (`pulumi.Input[bool]`) - Defines if the instance has Secure Boot enabled.
@@ -1698,10 +1642,7 @@ class Cluster(pulumi.CustomResource):
               values are the friendly names of CPU platforms, such as `Intel Haswell`. See the
               [official documentation](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
               for more information.
-            * `oauthScopes` (`pulumi.Input[list]`) - The set of Google API scopes to be made available
-              on all of the node VMs under the "default" service account. These can be
-              either FQDNs, or scope aliases. The following scopes are necessary to ensure
-              the correct functioning of the cluster:
+            * `oauthScopes` (`pulumi.Input[list]`) - Scopes that are used by NAP when creating node pools.
             * `preemptible` (`pulumi.Input[bool]`) - A boolean that represents whether or not the underlying node VMs
               are preemptible. See the [official documentation](https://cloud.google.com/container-engine/docs/preemptible-vm)
               for more information. Defaults to false.
@@ -1710,11 +1651,7 @@ class Cluster(pulumi.CustomResource):
               * `sandboxType` (`pulumi.Input[str]`) - Which sandbox to use for pods in the node pool.
                 Accepted values are:
 
-            * `service_account` (`pulumi.Input[str]`) - The service account to be used by the Node VMs.
-              If not specified, the "default" service account is used.
-              In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
-              [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-              [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+            * `service_account` (`pulumi.Input[str]`) - The Google Cloud Platform Service Account to be used by the node VMs.
             * `shielded_instance_config` (`pulumi.Input[dict]`) - Shielded Instance options. Structure is documented below.
               * `enableIntegrityMonitoring` (`pulumi.Input[bool]`) - Defines if the instance has integrity monitoring enabled.
               * `enableSecureBoot` (`pulumi.Input[bool]`) - Defines if the instance has Secure Boot enabled.
@@ -1755,8 +1692,8 @@ class Cluster(pulumi.CustomResource):
 
         The **pod_security_policy_config** object supports the following:
 
-          * `enabled` (`pulumi.Input[bool]`) - Enable the PodSecurityPolicy controller for this cluster.
-            If enabled, pods must be valid under a PodSecurityPolicy to be created.
+          * `enabled` (`pulumi.Input[bool]`) - Whether node auto-provisioning is enabled. Resource
+            limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 
         The **private_cluster_config** object supports the following:
 
@@ -1803,8 +1740,8 @@ class Cluster(pulumi.CustomResource):
 
         The **vertical_pod_autoscaling** object supports the following:
 
-          * `enabled` (`pulumi.Input[bool]`) - Enable the PodSecurityPolicy controller for this cluster.
-            If enabled, pods must be valid under a PodSecurityPolicy to be created.
+          * `enabled` (`pulumi.Input[bool]`) - Whether node auto-provisioning is enabled. Resource
+            limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
 
         The **workload_identity_config** object supports the following:
 

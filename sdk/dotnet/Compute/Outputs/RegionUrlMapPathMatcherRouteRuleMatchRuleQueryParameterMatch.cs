@@ -13,9 +13,42 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatch
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The value should exactly match contents of exactMatch. Only one of exactMatch,
+        /// prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+        /// </summary>
         public readonly string? ExactMatch;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A header with the contents of headerName must exist. The match takes place
+        /// whether or not the request's header has a value or not. Only one of exactMatch,
+        /// prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+        /// </summary>
         public readonly bool? PresentMatch;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// For satifying the matchRule condition, the path of the request must satisfy the
+        /// regular expression specified in regexMatch after removing any query parameters
+        /// and anchor supplied with the original URL. For regular expression grammar please
+        /// see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch,
+        /// fullPathMatch or regexMatch must be specified.
+        /// </summary>
         public readonly string? RegexMatch;
 
         [OutputConstructor]

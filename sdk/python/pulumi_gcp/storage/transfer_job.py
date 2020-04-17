@@ -68,13 +68,13 @@ class TransferJob(pulumi.CustomResource):
           * `accessKeyId` (`str`) - AWS Key ID.
           * `secretAccessKey` (`str`) - AWS Secret Access Key.
 
-        * `bucket_name` (`str`) - S3 Bucket name.
+        * `bucket_name` (`str`) - Google Cloud Storage bucket name.
 
       * `gcsDataSink` (`dict`) - A Google Cloud Storage data sink. Structure documented below.
-        * `bucket_name` (`str`) - S3 Bucket name.
+        * `bucket_name` (`str`) - Google Cloud Storage bucket name.
 
       * `gcsDataSource` (`dict`) - A Google Cloud Storage data source. Structure documented below.
-        * `bucket_name` (`str`) - S3 Bucket name.
+        * `bucket_name` (`str`) - Google Cloud Storage bucket name.
 
       * `httpDataSource` (`dict`) - An HTTP URL data source. Structure documented below.
         * `listUrl` (`str`) - The URL that points to the file that stores the object list entries. This file must allow public access. Currently, only URLs with HTTP and HTTPS schemes are supported.
@@ -139,13 +139,13 @@ class TransferJob(pulumi.CustomResource):
               * `accessKeyId` (`pulumi.Input[str]`) - AWS Key ID.
               * `secretAccessKey` (`pulumi.Input[str]`) - AWS Secret Access Key.
 
-            * `bucket_name` (`pulumi.Input[str]`) - S3 Bucket name.
+            * `bucket_name` (`pulumi.Input[str]`) - Google Cloud Storage bucket name.
 
           * `gcsDataSink` (`pulumi.Input[dict]`) - A Google Cloud Storage data sink. Structure documented below.
-            * `bucket_name` (`pulumi.Input[str]`) - S3 Bucket name.
+            * `bucket_name` (`pulumi.Input[str]`) - Google Cloud Storage bucket name.
 
           * `gcsDataSource` (`pulumi.Input[dict]`) - A Google Cloud Storage data source. Structure documented below.
-            * `bucket_name` (`pulumi.Input[str]`) - S3 Bucket name.
+            * `bucket_name` (`pulumi.Input[str]`) - Google Cloud Storage bucket name.
 
           * `httpDataSource` (`pulumi.Input[dict]`) - An HTTP URL data source. Structure documented below.
             * `listUrl` (`pulumi.Input[str]`) - The URL that points to the file that stores the object list entries. This file must allow public access. Currently, only URLs with HTTP and HTTPS schemes are supported.
@@ -246,13 +246,13 @@ class TransferJob(pulumi.CustomResource):
               * `accessKeyId` (`pulumi.Input[str]`) - AWS Key ID.
               * `secretAccessKey` (`pulumi.Input[str]`) - AWS Secret Access Key.
 
-            * `bucket_name` (`pulumi.Input[str]`) - S3 Bucket name.
+            * `bucket_name` (`pulumi.Input[str]`) - Google Cloud Storage bucket name.
 
           * `gcsDataSink` (`pulumi.Input[dict]`) - A Google Cloud Storage data sink. Structure documented below.
-            * `bucket_name` (`pulumi.Input[str]`) - S3 Bucket name.
+            * `bucket_name` (`pulumi.Input[str]`) - Google Cloud Storage bucket name.
 
           * `gcsDataSource` (`pulumi.Input[dict]`) - A Google Cloud Storage data source. Structure documented below.
-            * `bucket_name` (`pulumi.Input[str]`) - S3 Bucket name.
+            * `bucket_name` (`pulumi.Input[str]`) - Google Cloud Storage bucket name.
 
           * `httpDataSource` (`pulumi.Input[dict]`) - An HTTP URL data source. Structure documented below.
             * `listUrl` (`pulumi.Input[str]`) - The URL that points to the file that stores the object list entries. This file must allow public access. Currently, only URLs with HTTP and HTTPS schemes are supported.

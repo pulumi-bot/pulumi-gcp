@@ -13,7 +13,18 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class RouterBgpAdvertisedIpRange
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional description of this resource.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The IP range to advertise. The value must be a
+        /// CIDR-formatted string.
+        /// </summary>
         public readonly string Range;
 
         [OutputConstructor]

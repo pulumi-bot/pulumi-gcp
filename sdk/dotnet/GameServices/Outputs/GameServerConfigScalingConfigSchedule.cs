@@ -13,9 +13,35 @@ namespace Pulumi.Gcp.GameServices.Outputs
     [OutputType]
     public sealed class GameServerConfigScalingConfigSchedule
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The duration for the cron job event. The duration of the event is effective
+        /// after the cron job's start time.
+        /// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
+        /// </summary>
         public readonly string? CronJobDuration;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The cron definition of the scheduled event. See
+        /// https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as
+        /// defined by the realm.
+        /// </summary>
         public readonly string? CronSpec;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The end time of the event.
+        /// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+        /// </summary>
         public readonly string? EndTime;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The start time of the event.
+        /// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+        /// </summary>
         public readonly string? StartTime;
 
         [OutputConstructor]

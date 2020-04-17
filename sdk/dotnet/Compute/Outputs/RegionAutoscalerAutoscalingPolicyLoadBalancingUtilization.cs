@@ -13,6 +13,11 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class RegionAutoscalerAutoscalingPolicyLoadBalancingUtilization
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// URL of the managed instance group that this autoscaler will scale.
+        /// </summary>
         public readonly double Target;
 
         [OutputConstructor]

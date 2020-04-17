@@ -12,14 +12,32 @@ namespace Pulumi.Gcp.GameServices.Inputs
 
     public sealed class GameServerConfigScalingConfigGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fleet autoscaler spec, which is sent to Agones.
+        /// Example spec can be found :
+        /// https://agones.dev/site/docs/reference/fleetautoscaler/
+        /// </summary>
         [Input("fleetAutoscalerSpec", required: true)]
         public Input<string> FleetAutoscalerSpec { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the FleetConfig.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("schedules")]
         private InputList<Inputs.GameServerConfigScalingConfigScheduleGetArgs>? _schedules;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The schedules to which this scaling config applies.  Structure is documented below.
+        /// </summary>
         public InputList<Inputs.GameServerConfigScalingConfigScheduleGetArgs> Schedules
         {
             get => _schedules ?? (_schedules = new InputList<Inputs.GameServerConfigScalingConfigScheduleGetArgs>());
@@ -28,6 +46,14 @@ namespace Pulumi.Gcp.GameServices.Inputs
 
         [Input("selectors")]
         private InputList<Inputs.GameServerConfigScalingConfigSelectorGetArgs>? _selectors;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Labels used to identify the clusters to which this scaling config
+        /// applies. A cluster is subject to this scaling config if its labels match
+        /// any of the selector entries.  Structure is documented below.
+        /// </summary>
         public InputList<Inputs.GameServerConfigScalingConfigSelectorGetArgs> Selectors
         {
             get => _selectors ?? (_selectors = new InputList<Inputs.GameServerConfigScalingConfigSelectorGetArgs>());

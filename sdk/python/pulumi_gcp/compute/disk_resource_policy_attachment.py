@@ -12,11 +12,16 @@ from .. import utilities, tables
 class DiskResourcePolicyAttachment(pulumi.CustomResource):
     disk: pulumi.Output[str]
     """
+    -
+    (Required)
     The name of the disk in which the resource policies are attached to.
     """
     name: pulumi.Output[str]
     """
-    The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+    -
+    (Required)
+    The resource policy to be attached to the disk for scheduling snapshot
+    creation. Do not specify the self link.
     """
     project: pulumi.Output[str]
     """
@@ -25,6 +30,8 @@ class DiskResourcePolicyAttachment(pulumi.CustomResource):
     """
     zone: pulumi.Output[str]
     """
+    -
+    (Optional)
     A reference to the zone where the disk resides.
     """
     def __init__(__self__, resource_name, opts=None, disk=None, name=None, project=None, zone=None, __props__=None, __name__=None, __opts__=None):
@@ -36,11 +43,18 @@ class DiskResourcePolicyAttachment(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] disk: The name of the disk in which the resource policies are attached to.
-        :param pulumi.Input[str] name: The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+        :param pulumi.Input[str] disk: -
+               (Required)
+               The name of the disk in which the resource policies are attached to.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The resource policy to be attached to the disk for scheduling snapshot
+               creation. Do not specify the self link.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] zone: A reference to the zone where the disk resides.
+        :param pulumi.Input[str] zone: -
+               (Optional)
+               A reference to the zone where the disk resides.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -80,11 +94,18 @@ class DiskResourcePolicyAttachment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] disk: The name of the disk in which the resource policies are attached to.
-        :param pulumi.Input[str] name: The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+        :param pulumi.Input[str] disk: -
+               (Required)
+               The name of the disk in which the resource policies are attached to.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The resource policy to be attached to the disk for scheduling snapshot
+               creation. Do not specify the self link.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] zone: A reference to the zone where the disk resides.
+        :param pulumi.Input[str] zone: -
+               (Optional)
+               A reference to the zone where the disk resides.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

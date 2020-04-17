@@ -32,6 +32,11 @@ namespace Pulumi.Gcp.Monitoring
 
     public sealed class GetNotificationChannelArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The display name for this notification channel.
+        /// </summary>
         [Input("displayName")]
         public string? DisplayName { get; set; }
 

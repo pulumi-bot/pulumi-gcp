@@ -12,9 +12,19 @@ namespace Pulumi.Gcp.DeploymentManager.Inputs
 
     public sealed class DeploymentTargetImportGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full YAML contents of your configuration file.
+        /// </summary>
         [Input("content")]
         public Input<string>? Content { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Unique name for the deployment
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

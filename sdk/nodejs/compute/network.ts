@@ -56,9 +56,13 @@ export class Network extends pulumi.CustomResource {
     }
 
     /**
-     * When set to 'true', the network is created in "auto subnet mode" and it will create a subnet for each region
-     * automatically across the '10.128.0.0/9' address range. When set to 'false', the network is created in "custom subnet
-     * mode" so the user can explicitly connect subnetwork resources.
+     * -
+     * (Optional)
+     * When set to `true`, the network is created in "auto subnet mode" and
+     * it will create a subnet for each region automatically across the
+     * `10.128.0.0/9` address range.
+     * When set to `false`, the network is created in "custom subnet mode" so
+     * the user can explicitly connect subnetwork resources.
      */
     public readonly autoCreateSubnetworks!: pulumi.Output<boolean | undefined>;
     /**
@@ -67,7 +71,10 @@ export class Network extends pulumi.CustomResource {
      */
     public readonly deleteDefaultRoutesOnCreate!: pulumi.Output<boolean | undefined>;
     /**
-     * An optional description of this resource. The resource must be recreated to modify this field.
+     * -
+     * (Optional)
+     * An optional description of this resource. The resource must be
+     * recreated to modify this field.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
@@ -75,10 +82,15 @@ export class Network extends pulumi.CustomResource {
      */
     public /*out*/ readonly gatewayIpv4!: pulumi.Output<string>;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035. Specifically, the name must be 1-63 characters long and match
+     * the regular expression `a-z?` which means the
+     * first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -87,9 +99,13 @@ export class Network extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
-     * The network-wide routing mode to use. If set to 'REGIONAL', this network's cloud routers will only advertise routes
-     * with subnetworks of this network in the same region as the router. If set to 'GLOBAL', this network's cloud routers
-     * will advertise routes with all subnetworks of this network, across regions.
+     * -
+     * (Optional)
+     * The network-wide routing mode to use. If set to `REGIONAL`, this
+     * network's cloud routers will only advertise routes with subnetworks
+     * of this network in the same region as the router. If set to `GLOBAL`,
+     * this network's cloud routers will advertise routes with all
+     * subnetworks of this network, across regions.
      */
     public readonly routingMode!: pulumi.Output<string>;
     /**
@@ -144,9 +160,13 @@ export class Network extends pulumi.CustomResource {
  */
 export interface NetworkState {
     /**
-     * When set to 'true', the network is created in "auto subnet mode" and it will create a subnet for each region
-     * automatically across the '10.128.0.0/9' address range. When set to 'false', the network is created in "custom subnet
-     * mode" so the user can explicitly connect subnetwork resources.
+     * -
+     * (Optional)
+     * When set to `true`, the network is created in "auto subnet mode" and
+     * it will create a subnet for each region automatically across the
+     * `10.128.0.0/9` address range.
+     * When set to `false`, the network is created in "custom subnet mode" so
+     * the user can explicitly connect subnetwork resources.
      */
     readonly autoCreateSubnetworks?: pulumi.Input<boolean>;
     /**
@@ -155,7 +175,10 @@ export interface NetworkState {
      */
     readonly deleteDefaultRoutesOnCreate?: pulumi.Input<boolean>;
     /**
-     * An optional description of this resource. The resource must be recreated to modify this field.
+     * -
+     * (Optional)
+     * An optional description of this resource. The resource must be
+     * recreated to modify this field.
      */
     readonly description?: pulumi.Input<string>;
     /**
@@ -163,10 +186,15 @@ export interface NetworkState {
      */
     readonly gatewayIpv4?: pulumi.Input<string>;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035. Specifically, the name must be 1-63 characters long and match
+     * the regular expression `a-z?` which means the
+     * first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -175,9 +203,13 @@ export interface NetworkState {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * The network-wide routing mode to use. If set to 'REGIONAL', this network's cloud routers will only advertise routes
-     * with subnetworks of this network in the same region as the router. If set to 'GLOBAL', this network's cloud routers
-     * will advertise routes with all subnetworks of this network, across regions.
+     * -
+     * (Optional)
+     * The network-wide routing mode to use. If set to `REGIONAL`, this
+     * network's cloud routers will only advertise routes with subnetworks
+     * of this network in the same region as the router. If set to `GLOBAL`,
+     * this network's cloud routers will advertise routes with all
+     * subnetworks of this network, across regions.
      */
     readonly routingMode?: pulumi.Input<string>;
     /**
@@ -191,9 +223,13 @@ export interface NetworkState {
  */
 export interface NetworkArgs {
     /**
-     * When set to 'true', the network is created in "auto subnet mode" and it will create a subnet for each region
-     * automatically across the '10.128.0.0/9' address range. When set to 'false', the network is created in "custom subnet
-     * mode" so the user can explicitly connect subnetwork resources.
+     * -
+     * (Optional)
+     * When set to `true`, the network is created in "auto subnet mode" and
+     * it will create a subnet for each region automatically across the
+     * `10.128.0.0/9` address range.
+     * When set to `false`, the network is created in "custom subnet mode" so
+     * the user can explicitly connect subnetwork resources.
      */
     readonly autoCreateSubnetworks?: pulumi.Input<boolean>;
     /**
@@ -202,14 +238,22 @@ export interface NetworkArgs {
      */
     readonly deleteDefaultRoutesOnCreate?: pulumi.Input<boolean>;
     /**
-     * An optional description of this resource. The resource must be recreated to modify this field.
+     * -
+     * (Optional)
+     * An optional description of this resource. The resource must be
+     * recreated to modify this field.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035. Specifically, the name must be 1-63 characters long and match
+     * the regular expression `a-z?` which means the
+     * first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -218,9 +262,13 @@ export interface NetworkArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * The network-wide routing mode to use. If set to 'REGIONAL', this network's cloud routers will only advertise routes
-     * with subnetworks of this network in the same region as the router. If set to 'GLOBAL', this network's cloud routers
-     * will advertise routes with all subnetworks of this network, across regions.
+     * -
+     * (Optional)
+     * The network-wide routing mode to use. If set to `REGIONAL`, this
+     * network's cloud routers will only advertise routes with subnetworks
+     * of this network in the same region as the router. If set to `GLOBAL`,
+     * this network's cloud routers will advertise routes with all
+     * subnetworks of this network, across regions.
      */
     readonly routingMode?: pulumi.Input<string>;
 }

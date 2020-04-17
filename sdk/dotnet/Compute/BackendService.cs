@@ -27,21 +27,29 @@ namespace Pulumi.Gcp.Compute
     public partial class BackendService : Pulumi.CustomResource
     {
         /// <summary>
-        /// Lifetime of cookies in seconds if session_affinity is GENERATED_COOKIE. If set to 0, the cookie is non-persistent and
-        /// lasts only until the end of the browser session (or equivalent). The maximum allowed value for TTL is one day. When the
-        /// load balancing scheme is INTERNAL, this field is not used.
+        /// -
+        /// (Optional)
+        /// Lifetime of cookies in seconds if session_affinity is
+        /// GENERATED_COOKIE. If set to 0, the cookie is non-persistent and lasts
+        /// only until the end of the browser session (or equivalent). The
+        /// maximum allowed value for TTL is one day.
+        /// When the load balancing scheme is INTERNAL, this field is not used.
         /// </summary>
         [Output("affinityCookieTtlSec")]
         public Output<int?> AffinityCookieTtlSec { get; private set; } = null!;
 
         /// <summary>
-        /// The set of backends that serve this BackendService.
+        /// -
+        /// (Optional)
+        /// The set of backends that serve this BackendService.  Structure is documented below.
         /// </summary>
         [Output("backends")]
         public Output<ImmutableArray<Outputs.BackendServiceBackend>> Backends { get; private set; } = null!;
 
         /// <summary>
-        /// Cloud CDN configuration for this BackendService.
+        /// -
+        /// (Optional)
+        /// Cloud CDN configuration for this BackendService.  Structure is documented below.
         /// </summary>
         [Output("cdnPolicy")]
         public Output<Outputs.BackendServiceCdnPolicy> CdnPolicy { get; private set; } = null!;
@@ -54,7 +62,10 @@ namespace Pulumi.Gcp.Compute
         public Output<Outputs.BackendServiceCircuitBreakers?> CircuitBreakers { get; private set; } = null!;
 
         /// <summary>
-        /// Time for which instance will be drained (not accept new connections, but still work to finish started).
+        /// -
+        /// (Optional)
+        /// Time for which instance will be drained (not accept new
+        /// connections, but still work to finish started).
         /// </summary>
         [Output("connectionDrainingTimeoutSec")]
         public Output<int?> ConnectionDrainingTimeoutSec { get; private set; } = null!;
@@ -82,12 +93,16 @@ namespace Pulumi.Gcp.Compute
         public Output<ImmutableArray<string>> CustomRequestHeaders { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If true, enable Cloud CDN for this BackendService.
         /// </summary>
         [Output("enableCdn")]
@@ -100,23 +115,31 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Fingerprint { get; private set; } = null!;
 
         /// <summary>
-        /// The set of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently
-        /// at most one health check can be specified, and a health check is required. For internal load balancing, a URL to a
-        /// HealthCheck resource must be specified instead.
+        /// -
+        /// (Required)
+        /// The set of URLs to the HttpHealthCheck or HttpsHealthCheck resource
+        /// for health checking this BackendService. Currently at most one health
+        /// check can be specified, and a health check is required.
+        /// For internal load balancing, a URL to a HealthCheck resource must be specified instead.
         /// </summary>
         [Output("healthChecks")]
         public Output<string> HealthChecks { get; private set; } = null!;
 
         /// <summary>
-        /// Settings for enabling Cloud Identity Aware Proxy
+        /// -
+        /// (Optional)
+        /// Settings for enabling Cloud Identity Aware Proxy  Structure is documented below.
         /// </summary>
         [Output("iap")]
         public Output<Outputs.BackendServiceIap?> Iap { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether the backend service will be used with internal or external load balancing. A backend service created
-        /// for one type of load balancing cannot be used with the other. Must be 'EXTERNAL' or 'INTERNAL_SELF_MANAGED' for a global
-        /// backend service. Defaults to 'EXTERNAL'.
+        /// -
+        /// (Optional)
+        /// Indicates whether the backend service will be used with internal or
+        /// external load balancing. A backend service created for one type of
+        /// load balancing cannot be used with the other. Must be `EXTERNAL` or
+        /// `INTERNAL_SELF_MANAGED` for a global backend service. Defaults to `EXTERNAL`.
         /// </summary>
         [Output("loadBalancingScheme")]
         public Output<string?> LoadBalancingScheme { get; private set; } = null!;
@@ -145,10 +168,15 @@ namespace Pulumi.Gcp.Compute
         public Output<Outputs.BackendServiceLogConfig> LogConfig { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-        /// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-        /// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-        /// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -161,8 +189,11 @@ namespace Pulumi.Gcp.Compute
         public Output<Outputs.BackendServiceOutlierDetection?> OutlierDetection { get; private set; } = null!;
 
         /// <summary>
-        /// Name of backend port. The same name should appear in the instance groups referenced by this service. Required when the
-        /// load balancing scheme is EXTERNAL.
+        /// -
+        /// (Optional)
+        /// Name of backend port. The same name should appear in the instance
+        /// groups referenced by this service. Required when the load balancing
+        /// scheme is EXTERNAL.
         /// </summary>
         [Output("portName")]
         public Output<string> PortName { get; private set; } = null!;
@@ -175,14 +206,19 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// The protocol this BackendService uses to communicate with backends. Possible values are HTTP, HTTPS, HTTP2, TCP, and
-        /// SSL. The default is HTTP. **NOTE**: HTTP2 is only valid for beta HTTP/2 load balancer types and may result in errors if
-        /// used with the GA API.
+        /// -
+        /// (Optional)
+        /// The protocol this BackendService uses to communicate with backends.
+        /// Possible values are HTTP, HTTPS, HTTP2, TCP, and SSL. The default is
+        /// HTTP. **NOTE**: HTTP2 is only valid for beta HTTP/2 load balancer
+        /// types and may result in errors if used with the GA API.
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The security policy associated with this backend service.
         /// </summary>
         [Output("securityPolicy")]
@@ -195,14 +231,19 @@ namespace Pulumi.Gcp.Compute
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
-        /// Type of session affinity to use. The default is NONE. Session affinity is not applicable if the protocol is UDP.
+        /// -
+        /// (Optional)
+        /// Type of session affinity to use. The default is NONE. Session affinity is
+        /// not applicable if the protocol is UDP.
         /// </summary>
         [Output("sessionAffinity")]
         public Output<string> SessionAffinity { get; private set; } = null!;
 
         /// <summary>
-        /// How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds. Valid range is
-        /// [1, 86400].
+        /// -
+        /// (Optional)
+        /// How many seconds to wait for the backend before considering it a
+        /// failed request. Default is 30 seconds. Valid range is [1, 86400].
         /// </summary>
         [Output("timeoutSec")]
         public Output<int> TimeoutSec { get; private set; } = null!;
@@ -254,9 +295,13 @@ namespace Pulumi.Gcp.Compute
     public sealed class BackendServiceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Lifetime of cookies in seconds if session_affinity is GENERATED_COOKIE. If set to 0, the cookie is non-persistent and
-        /// lasts only until the end of the browser session (or equivalent). The maximum allowed value for TTL is one day. When the
-        /// load balancing scheme is INTERNAL, this field is not used.
+        /// -
+        /// (Optional)
+        /// Lifetime of cookies in seconds if session_affinity is
+        /// GENERATED_COOKIE. If set to 0, the cookie is non-persistent and lasts
+        /// only until the end of the browser session (or equivalent). The
+        /// maximum allowed value for TTL is one day.
+        /// When the load balancing scheme is INTERNAL, this field is not used.
         /// </summary>
         [Input("affinityCookieTtlSec")]
         public Input<int>? AffinityCookieTtlSec { get; set; }
@@ -265,7 +310,9 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.BackendServiceBackendArgs>? _backends;
 
         /// <summary>
-        /// The set of backends that serve this BackendService.
+        /// -
+        /// (Optional)
+        /// The set of backends that serve this BackendService.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.BackendServiceBackendArgs> Backends
         {
@@ -274,7 +321,9 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// Cloud CDN configuration for this BackendService.
+        /// -
+        /// (Optional)
+        /// Cloud CDN configuration for this BackendService.  Structure is documented below.
         /// </summary>
         [Input("cdnPolicy")]
         public Input<Inputs.BackendServiceCdnPolicyArgs>? CdnPolicy { get; set; }
@@ -287,7 +336,10 @@ namespace Pulumi.Gcp.Compute
         public Input<Inputs.BackendServiceCircuitBreakersArgs>? CircuitBreakers { get; set; }
 
         /// <summary>
-        /// Time for which instance will be drained (not accept new connections, but still work to finish started).
+        /// -
+        /// (Optional)
+        /// Time for which instance will be drained (not accept new
+        /// connections, but still work to finish started).
         /// </summary>
         [Input("connectionDrainingTimeoutSec")]
         public Input<int>? ConnectionDrainingTimeoutSec { get; set; }
@@ -315,35 +367,47 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If true, enable Cloud CDN for this BackendService.
         /// </summary>
         [Input("enableCdn")]
         public Input<bool>? EnableCdn { get; set; }
 
         /// <summary>
-        /// The set of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently
-        /// at most one health check can be specified, and a health check is required. For internal load balancing, a URL to a
-        /// HealthCheck resource must be specified instead.
+        /// -
+        /// (Required)
+        /// The set of URLs to the HttpHealthCheck or HttpsHealthCheck resource
+        /// for health checking this BackendService. Currently at most one health
+        /// check can be specified, and a health check is required.
+        /// For internal load balancing, a URL to a HealthCheck resource must be specified instead.
         /// </summary>
         [Input("healthChecks", required: true)]
         public Input<string> HealthChecks { get; set; } = null!;
 
         /// <summary>
-        /// Settings for enabling Cloud Identity Aware Proxy
+        /// -
+        /// (Optional)
+        /// Settings for enabling Cloud Identity Aware Proxy  Structure is documented below.
         /// </summary>
         [Input("iap")]
         public Input<Inputs.BackendServiceIapArgs>? Iap { get; set; }
 
         /// <summary>
-        /// Indicates whether the backend service will be used with internal or external load balancing. A backend service created
-        /// for one type of load balancing cannot be used with the other. Must be 'EXTERNAL' or 'INTERNAL_SELF_MANAGED' for a global
-        /// backend service. Defaults to 'EXTERNAL'.
+        /// -
+        /// (Optional)
+        /// Indicates whether the backend service will be used with internal or
+        /// external load balancing. A backend service created for one type of
+        /// load balancing cannot be used with the other. Must be `EXTERNAL` or
+        /// `INTERNAL_SELF_MANAGED` for a global backend service. Defaults to `EXTERNAL`.
         /// </summary>
         [Input("loadBalancingScheme")]
         public Input<string>? LoadBalancingScheme { get; set; }
@@ -372,10 +436,15 @@ namespace Pulumi.Gcp.Compute
         public Input<Inputs.BackendServiceLogConfigArgs>? LogConfig { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-        /// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-        /// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-        /// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -388,8 +457,11 @@ namespace Pulumi.Gcp.Compute
         public Input<Inputs.BackendServiceOutlierDetectionArgs>? OutlierDetection { get; set; }
 
         /// <summary>
-        /// Name of backend port. The same name should appear in the instance groups referenced by this service. Required when the
-        /// load balancing scheme is EXTERNAL.
+        /// -
+        /// (Optional)
+        /// Name of backend port. The same name should appear in the instance
+        /// groups referenced by this service. Required when the load balancing
+        /// scheme is EXTERNAL.
         /// </summary>
         [Input("portName")]
         public Input<string>? PortName { get; set; }
@@ -402,28 +474,38 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The protocol this BackendService uses to communicate with backends. Possible values are HTTP, HTTPS, HTTP2, TCP, and
-        /// SSL. The default is HTTP. **NOTE**: HTTP2 is only valid for beta HTTP/2 load balancer types and may result in errors if
-        /// used with the GA API.
+        /// -
+        /// (Optional)
+        /// The protocol this BackendService uses to communicate with backends.
+        /// Possible values are HTTP, HTTPS, HTTP2, TCP, and SSL. The default is
+        /// HTTP. **NOTE**: HTTP2 is only valid for beta HTTP/2 load balancer
+        /// types and may result in errors if used with the GA API.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The security policy associated with this backend service.
         /// </summary>
         [Input("securityPolicy")]
         public Input<string>? SecurityPolicy { get; set; }
 
         /// <summary>
-        /// Type of session affinity to use. The default is NONE. Session affinity is not applicable if the protocol is UDP.
+        /// -
+        /// (Optional)
+        /// Type of session affinity to use. The default is NONE. Session affinity is
+        /// not applicable if the protocol is UDP.
         /// </summary>
         [Input("sessionAffinity")]
         public Input<string>? SessionAffinity { get; set; }
 
         /// <summary>
-        /// How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds. Valid range is
-        /// [1, 86400].
+        /// -
+        /// (Optional)
+        /// How many seconds to wait for the backend before considering it a
+        /// failed request. Default is 30 seconds. Valid range is [1, 86400].
         /// </summary>
         [Input("timeoutSec")]
         public Input<int>? TimeoutSec { get; set; }
@@ -436,9 +518,13 @@ namespace Pulumi.Gcp.Compute
     public sealed class BackendServiceState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Lifetime of cookies in seconds if session_affinity is GENERATED_COOKIE. If set to 0, the cookie is non-persistent and
-        /// lasts only until the end of the browser session (or equivalent). The maximum allowed value for TTL is one day. When the
-        /// load balancing scheme is INTERNAL, this field is not used.
+        /// -
+        /// (Optional)
+        /// Lifetime of cookies in seconds if session_affinity is
+        /// GENERATED_COOKIE. If set to 0, the cookie is non-persistent and lasts
+        /// only until the end of the browser session (or equivalent). The
+        /// maximum allowed value for TTL is one day.
+        /// When the load balancing scheme is INTERNAL, this field is not used.
         /// </summary>
         [Input("affinityCookieTtlSec")]
         public Input<int>? AffinityCookieTtlSec { get; set; }
@@ -447,7 +533,9 @@ namespace Pulumi.Gcp.Compute
         private InputList<Inputs.BackendServiceBackendGetArgs>? _backends;
 
         /// <summary>
-        /// The set of backends that serve this BackendService.
+        /// -
+        /// (Optional)
+        /// The set of backends that serve this BackendService.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.BackendServiceBackendGetArgs> Backends
         {
@@ -456,7 +544,9 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
-        /// Cloud CDN configuration for this BackendService.
+        /// -
+        /// (Optional)
+        /// Cloud CDN configuration for this BackendService.  Structure is documented below.
         /// </summary>
         [Input("cdnPolicy")]
         public Input<Inputs.BackendServiceCdnPolicyGetArgs>? CdnPolicy { get; set; }
@@ -469,7 +559,10 @@ namespace Pulumi.Gcp.Compute
         public Input<Inputs.BackendServiceCircuitBreakersGetArgs>? CircuitBreakers { get; set; }
 
         /// <summary>
-        /// Time for which instance will be drained (not accept new connections, but still work to finish started).
+        /// -
+        /// (Optional)
+        /// Time for which instance will be drained (not accept new
+        /// connections, but still work to finish started).
         /// </summary>
         [Input("connectionDrainingTimeoutSec")]
         public Input<int>? ConnectionDrainingTimeoutSec { get; set; }
@@ -503,12 +596,16 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// An optional description of this resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If true, enable Cloud CDN for this BackendService.
         /// </summary>
         [Input("enableCdn")]
@@ -521,23 +618,31 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Fingerprint { get; set; }
 
         /// <summary>
-        /// The set of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently
-        /// at most one health check can be specified, and a health check is required. For internal load balancing, a URL to a
-        /// HealthCheck resource must be specified instead.
+        /// -
+        /// (Required)
+        /// The set of URLs to the HttpHealthCheck or HttpsHealthCheck resource
+        /// for health checking this BackendService. Currently at most one health
+        /// check can be specified, and a health check is required.
+        /// For internal load balancing, a URL to a HealthCheck resource must be specified instead.
         /// </summary>
         [Input("healthChecks")]
         public Input<string>? HealthChecks { get; set; }
 
         /// <summary>
-        /// Settings for enabling Cloud Identity Aware Proxy
+        /// -
+        /// (Optional)
+        /// Settings for enabling Cloud Identity Aware Proxy  Structure is documented below.
         /// </summary>
         [Input("iap")]
         public Input<Inputs.BackendServiceIapGetArgs>? Iap { get; set; }
 
         /// <summary>
-        /// Indicates whether the backend service will be used with internal or external load balancing. A backend service created
-        /// for one type of load balancing cannot be used with the other. Must be 'EXTERNAL' or 'INTERNAL_SELF_MANAGED' for a global
-        /// backend service. Defaults to 'EXTERNAL'.
+        /// -
+        /// (Optional)
+        /// Indicates whether the backend service will be used with internal or
+        /// external load balancing. A backend service created for one type of
+        /// load balancing cannot be used with the other. Must be `EXTERNAL` or
+        /// `INTERNAL_SELF_MANAGED` for a global backend service. Defaults to `EXTERNAL`.
         /// </summary>
         [Input("loadBalancingScheme")]
         public Input<string>? LoadBalancingScheme { get; set; }
@@ -566,10 +671,15 @@ namespace Pulumi.Gcp.Compute
         public Input<Inputs.BackendServiceLogConfigGetArgs>? LogConfig { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-        /// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-        /// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-        /// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -582,8 +692,11 @@ namespace Pulumi.Gcp.Compute
         public Input<Inputs.BackendServiceOutlierDetectionGetArgs>? OutlierDetection { get; set; }
 
         /// <summary>
-        /// Name of backend port. The same name should appear in the instance groups referenced by this service. Required when the
-        /// load balancing scheme is EXTERNAL.
+        /// -
+        /// (Optional)
+        /// Name of backend port. The same name should appear in the instance
+        /// groups referenced by this service. Required when the load balancing
+        /// scheme is EXTERNAL.
         /// </summary>
         [Input("portName")]
         public Input<string>? PortName { get; set; }
@@ -596,14 +709,19 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The protocol this BackendService uses to communicate with backends. Possible values are HTTP, HTTPS, HTTP2, TCP, and
-        /// SSL. The default is HTTP. **NOTE**: HTTP2 is only valid for beta HTTP/2 load balancer types and may result in errors if
-        /// used with the GA API.
+        /// -
+        /// (Optional)
+        /// The protocol this BackendService uses to communicate with backends.
+        /// Possible values are HTTP, HTTPS, HTTP2, TCP, and SSL. The default is
+        /// HTTP. **NOTE**: HTTP2 is only valid for beta HTTP/2 load balancer
+        /// types and may result in errors if used with the GA API.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The security policy associated with this backend service.
         /// </summary>
         [Input("securityPolicy")]
@@ -616,14 +734,19 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? SelfLink { get; set; }
 
         /// <summary>
-        /// Type of session affinity to use. The default is NONE. Session affinity is not applicable if the protocol is UDP.
+        /// -
+        /// (Optional)
+        /// Type of session affinity to use. The default is NONE. Session affinity is
+        /// not applicable if the protocol is UDP.
         /// </summary>
         [Input("sessionAffinity")]
         public Input<string>? SessionAffinity { get; set; }
 
         /// <summary>
-        /// How many seconds to wait for the backend before considering it a failed request. Default is 30 seconds. Valid range is
-        /// [1, 86400].
+        /// -
+        /// (Optional)
+        /// How many seconds to wait for the backend before considering it a
+        /// failed request. Default is 30 seconds. Valid range is [1, 86400].
         /// </summary>
         [Input("timeoutSec")]
         public Input<int>? TimeoutSec { get; set; }

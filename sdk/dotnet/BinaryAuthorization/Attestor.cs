@@ -22,18 +22,25 @@ namespace Pulumi.Gcp.BinaryAuthorization
     public partial class Attestor : Pulumi.CustomResource
     {
         /// <summary>
-        /// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.
+        /// -
+        /// (Required)
+        /// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.  Structure is documented below.
         /// </summary>
         [Output("attestationAuthorityNote")]
         public Output<Outputs.AttestorAttestationAuthorityNote> AttestationAuthorityNote { get; private set; } = null!;
 
         /// <summary>
-        /// A descriptive comment. This field may be updated. The field may be displayed in chooser dialogs.
+        /// -
+        /// (Optional)
+        /// A descriptive comment. This field may be updated. The field may be
+        /// displayed in chooser dialogs.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The resource name.
         /// </summary>
         [Output("name")]
@@ -93,18 +100,25 @@ namespace Pulumi.Gcp.BinaryAuthorization
     public sealed class AttestorArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.
+        /// -
+        /// (Required)
+        /// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.  Structure is documented below.
         /// </summary>
         [Input("attestationAuthorityNote", required: true)]
         public Input<Inputs.AttestorAttestationAuthorityNoteArgs> AttestationAuthorityNote { get; set; } = null!;
 
         /// <summary>
-        /// A descriptive comment. This field may be updated. The field may be displayed in chooser dialogs.
+        /// -
+        /// (Optional)
+        /// A descriptive comment. This field may be updated. The field may be
+        /// displayed in chooser dialogs.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The resource name.
         /// </summary>
         [Input("name")]
@@ -125,18 +139,25 @@ namespace Pulumi.Gcp.BinaryAuthorization
     public sealed class AttestorState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.
+        /// -
+        /// (Required)
+        /// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.  Structure is documented below.
         /// </summary>
         [Input("attestationAuthorityNote")]
         public Input<Inputs.AttestorAttestationAuthorityNoteGetArgs>? AttestationAuthorityNote { get; set; }
 
         /// <summary>
-        /// A descriptive comment. This field may be updated. The field may be displayed in chooser dialogs.
+        /// -
+        /// (Optional)
+        /// A descriptive comment. This field may be updated. The field may be
+        /// displayed in chooser dialogs.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The resource name.
         /// </summary>
         [Input("name")]

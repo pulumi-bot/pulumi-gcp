@@ -12,6 +12,11 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class AutoscalerAutoscalingPolicyLoadBalancingUtilizationGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// URL of the managed instance group that this autoscaler will scale.
+        /// </summary>
         [Input("target", required: true)]
         public Input<double> Target { get; set; } = null!;
 

@@ -21,22 +21,34 @@ import (
 type Router struct {
 	pulumi.CustomResourceState
 
-	// BGP information specific to this router.
+	// -
+	// (Optional)
+	// BGP information specific to this router.  Structure is documented below.
 	Bgp RouterBgpPtrOutput `pulumi:"bgp"`
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringOutput `pulumi:"creationTimestamp"`
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be
-	// 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must
-	// be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last
-	// character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. The name must be 1-63 characters long, and
+	// comply with RFC1035. Specifically, the name must be 1-63 characters
+	// long and match the regular expression `a-z?`
+	// which means the first character must be a lowercase letter, and all
+	// following characters must be a dash, lowercase letter, or digit,
+	// except the last character, which cannot be a dash.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// -
+	// (Required)
 	// A reference to the network to which this router belongs.
 	Network pulumi.StringOutput `pulumi:"network"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
+	// -
+	// (Optional)
 	// Region where the router resides.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The URI of the created resource.
@@ -74,22 +86,34 @@ func GetRouter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Router resources.
 type routerState struct {
-	// BGP information specific to this router.
+	// -
+	// (Optional)
+	// BGP information specific to this router.  Structure is documented below.
 	Bgp *RouterBgp `pulumi:"bgp"`
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp *string `pulumi:"creationTimestamp"`
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description *string `pulumi:"description"`
-	// Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be
-	// 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must
-	// be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last
-	// character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. The name must be 1-63 characters long, and
+	// comply with RFC1035. Specifically, the name must be 1-63 characters
+	// long and match the regular expression `a-z?`
+	// which means the first character must be a lowercase letter, and all
+	// following characters must be a dash, lowercase letter, or digit,
+	// except the last character, which cannot be a dash.
 	Name *string `pulumi:"name"`
+	// -
+	// (Required)
 	// A reference to the network to which this router belongs.
 	Network *string `pulumi:"network"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Optional)
 	// Region where the router resides.
 	Region *string `pulumi:"region"`
 	// The URI of the created resource.
@@ -97,22 +121,34 @@ type routerState struct {
 }
 
 type RouterState struct {
-	// BGP information specific to this router.
+	// -
+	// (Optional)
+	// BGP information specific to this router.  Structure is documented below.
 	Bgp RouterBgpPtrInput
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrInput
-	// Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be
-	// 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must
-	// be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last
-	// character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. The name must be 1-63 characters long, and
+	// comply with RFC1035. Specifically, the name must be 1-63 characters
+	// long and match the regular expression `a-z?`
+	// which means the first character must be a lowercase letter, and all
+	// following characters must be a dash, lowercase letter, or digit,
+	// except the last character, which cannot be a dash.
 	Name pulumi.StringPtrInput
+	// -
+	// (Required)
 	// A reference to the network to which this router belongs.
 	Network pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// Region where the router resides.
 	Region pulumi.StringPtrInput
 	// The URI of the created resource.
@@ -124,40 +160,64 @@ func (RouterState) ElementType() reflect.Type {
 }
 
 type routerArgs struct {
-	// BGP information specific to this router.
+	// -
+	// (Optional)
+	// BGP information specific to this router.  Structure is documented below.
 	Bgp *RouterBgp `pulumi:"bgp"`
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description *string `pulumi:"description"`
-	// Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be
-	// 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must
-	// be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last
-	// character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. The name must be 1-63 characters long, and
+	// comply with RFC1035. Specifically, the name must be 1-63 characters
+	// long and match the regular expression `a-z?`
+	// which means the first character must be a lowercase letter, and all
+	// following characters must be a dash, lowercase letter, or digit,
+	// except the last character, which cannot be a dash.
 	Name *string `pulumi:"name"`
+	// -
+	// (Required)
 	// A reference to the network to which this router belongs.
 	Network string `pulumi:"network"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Optional)
 	// Region where the router resides.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a Router resource.
 type RouterArgs struct {
-	// BGP information specific to this router.
+	// -
+	// (Optional)
+	// BGP information specific to this router.  Structure is documented below.
 	Bgp RouterBgpPtrInput
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrInput
-	// Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be
-	// 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must
-	// be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last
-	// character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. The name must be 1-63 characters long, and
+	// comply with RFC1035. Specifically, the name must be 1-63 characters
+	// long and match the regular expression `a-z?`
+	// which means the first character must be a lowercase letter, and all
+	// following characters must be a dash, lowercase letter, or digit,
+	// except the last character, which cannot be a dash.
 	Name pulumi.StringPtrInput
+	// -
+	// (Required)
 	// A reference to the network to which this router belongs.
 	Network pulumi.StringInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// Region where the router resides.
 	Region pulumi.StringPtrInput
 }

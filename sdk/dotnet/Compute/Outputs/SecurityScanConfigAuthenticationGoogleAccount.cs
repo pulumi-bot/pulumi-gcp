@@ -13,7 +13,18 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class SecurityScanConfigAuthenticationGoogleAccount
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The password of the Google account. The credential is stored encrypted
+        /// in GCP.
+        /// </summary>
         public readonly string Password;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The user name of the Google account.
+        /// </summary>
         public readonly string Username;
 
         [OutputConstructor]

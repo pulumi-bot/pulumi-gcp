@@ -18,22 +18,26 @@ namespace Pulumi.Gcp.Dataproc.Outputs
         /// </summary>
         public readonly bool? ContinueOnFailure;
         /// <summary>
-        /// HCFS URIs of jar files to be added to the Spark CLASSPATH.
+        /// HCFS URIs of jar files to add to the CLASSPATHs of the Python driver and tasks.
         /// </summary>
         public readonly ImmutableArray<string> JarFileUris;
         public readonly Outputs.JobPigConfigLoggingConfig? LoggingConfig;
         /// <summary>
-        /// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
+        /// A mapping of property names to values, used to configure PySpark. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in `/etc/spark/conf/spark-defaults.conf` and classes in user code.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Properties;
         /// <summary>
-        /// The HCFS URI of the script that contains SQL queries.
+        /// HCFS URI of file containing Hive script to execute as the job.
         /// Conflicts with `query_list`
         /// </summary>
         public readonly string? QueryFileUri;
+        /// <summary>
+        /// The list of Hive queries or statements to execute as part of the job.
+        /// Conflicts with `query_file_uri`
+        /// </summary>
         public readonly ImmutableArray<string> QueryLists;
         /// <summary>
-        /// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
+        /// Mapping of query variable names to values (equivalent to the Hive command: `SET name="value";`).
         /// </summary>
         public readonly ImmutableDictionary<string, string>? ScriptVariables;
 

@@ -16,7 +16,7 @@ namespace Pulumi.Gcp.Dataproc.Inputs
         private InputList<string>? _jarFileUris;
 
         /// <summary>
-        /// HCFS URIs of jar files to be added to the Spark CLASSPATH.
+        /// HCFS URIs of jar files to add to the CLASSPATHs of the Python driver and tasks.
         /// </summary>
         public InputList<string> JarFileUris
         {
@@ -31,7 +31,7 @@ namespace Pulumi.Gcp.Dataproc.Inputs
         private InputMap<string>? _properties;
 
         /// <summary>
-        /// A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
+        /// A mapping of property names to values, used to configure PySpark. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in `/etc/spark/conf/spark-defaults.conf` and classes in user code.
         /// </summary>
         public InputMap<string> Properties
         {
@@ -40,7 +40,7 @@ namespace Pulumi.Gcp.Dataproc.Inputs
         }
 
         /// <summary>
-        /// The HCFS URI of the script that contains SQL queries.
+        /// HCFS URI of file containing Hive script to execute as the job.
         /// Conflicts with `query_list`
         /// </summary>
         [Input("queryFileUri")]
@@ -48,6 +48,11 @@ namespace Pulumi.Gcp.Dataproc.Inputs
 
         [Input("queryLists")]
         private InputList<string>? _queryLists;
+
+        /// <summary>
+        /// The list of Hive queries or statements to execute as part of the job.
+        /// Conflicts with `query_file_uri`
+        /// </summary>
         public InputList<string> QueryLists
         {
             get => _queryLists ?? (_queryLists = new InputList<string>());
@@ -58,7 +63,7 @@ namespace Pulumi.Gcp.Dataproc.Inputs
         private InputMap<string>? _scriptVariables;
 
         /// <summary>
-        /// Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
+        /// Mapping of query variable names to values (equivalent to the Hive command: `SET name="value";`).
         /// </summary>
         public InputMap<string> ScriptVariables
         {

@@ -11,42 +11,204 @@ export interface ProviderBatching {
 
 export namespace accesscontextmanager {
     export interface AccessLevelBasic {
+        /**
+         * -
+         * (Optional)
+         * How the conditions list should be combined to determine if a request
+         * is granted this AccessLevel. If AND is used, each Condition in
+         * conditions must be satisfied for the AccessLevel to be applied. If
+         * OR is used, at least one Condition in conditions must be satisfied
+         * for the AccessLevel to be applied. Defaults to AND if unspecified.
+         */
         combiningFunction?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * A set of requirements for the AccessLevel to be granted.  Structure is documented below.
+         */
         conditions: pulumi.Input<pulumi.Input<inputs.accesscontextmanager.AccessLevelBasicCondition>[]>;
     }
 
     export interface AccessLevelBasicCondition {
+        /**
+         * -
+         * (Optional)
+         * Device specific restrictions, all restrictions must hold for
+         * the Condition to be true. If not specified, all devices are
+         * allowed.  Structure is documented below.
+         */
         devicePolicy?: pulumi.Input<inputs.accesscontextmanager.AccessLevelBasicConditionDevicePolicy>;
+        /**
+         * -
+         * (Optional)
+         * A list of CIDR block IP subnetwork specification. May be IPv4
+         * or IPv6.
+         * Note that for a CIDR IP address block, the specified IP address
+         * portion must be properly truncated (i.e. all the host bits must
+         * be zero) or the input is considered malformed. For example,
+         * "192.0.2.0/24" is accepted but "192.0.2.1/24" is not. Similarly,
+         * for IPv6, "2001:db8::/32" is accepted whereas "2001:db8::1/32"
+         * is not. The originating IP of a request must be in one of the
+         * listed subnets in order for this Condition to be true.
+         * If empty, all IP addresses are allowed.
+         */
         ipSubnetworks?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * An allowed list of members (users, service accounts).
+         * Using groups is not supported yet.
+         * The signed-in user originating the request must be a part of one
+         * of the provided members. If not specified, a request may come
+         * from any user (logged in/not logged in, not present in any
+         * groups, etc.).
+         * Formats: `user:{emailid}`, `serviceAccount:{emailid}`
+         */
         members?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Whether to negate the Condition. If true, the Condition becomes
+         * a NAND over its non-empty fields, each field must be false for
+         * the Condition overall to be satisfied. Defaults to false.
+         */
         negate?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * The request must originate from one of the provided
+         * countries/regions.
+         * Format: A valid ISO 3166-1 alpha-2 code.
+         */
         regions?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of other access levels defined in the same Policy,
+         * referenced by resource name. Referencing an AccessLevel which
+         * does not exist is an error. All access levels listed must be
+         * granted for the Condition to be true.
+         * Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+         */
         requiredAccessLevels?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface AccessLevelBasicConditionDevicePolicy {
+        /**
+         * -
+         * (Optional)
+         * A list of allowed device management levels.
+         * An empty list allows all management levels.
+         */
         allowedDeviceManagementLevels?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of allowed encryptions statuses.
+         * An empty list allows all statuses.
+         */
         allowedEncryptionStatuses?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of allowed OS versions.
+         * An empty list allows all types and all versions.  Structure is documented below.
+         */
         osConstraints?: pulumi.Input<pulumi.Input<inputs.accesscontextmanager.AccessLevelBasicConditionDevicePolicyOsConstraint>[]>;
+        /**
+         * -
+         * (Optional)
+         * Whether the device needs to be approved by the customer admin.
+         */
         requireAdminApproval?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Whether the device needs to be corp owned.
+         */
         requireCorpOwned?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Whether or not screenlock is required for the DevicePolicy
+         * to be true. Defaults to false.
+         */
         requireScreenLock?: pulumi.Input<boolean>;
     }
 
     export interface AccessLevelBasicConditionDevicePolicyOsConstraint {
+        /**
+         * -
+         * (Optional)
+         * The minimum allowed OS version. If not set, any version
+         * of this OS satisfies the constraint.
+         * Format: "major.minor.patch" such as "10.5.301", "9.2.1".
+         */
         minimumVersion?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The operating system type of the device.
+         */
         osType: pulumi.Input<string>;
     }
 
     export interface ServicePerimeterStatus {
+        /**
+         * -
+         * (Optional)
+         * A list of AccessLevel resource names that allow resources within
+         * the ServicePerimeter to be accessed from the internet.
+         * AccessLevels listed must be in the same policy as this
+         * ServicePerimeter. Referencing a nonexistent AccessLevel is a
+         * syntax error. If no AccessLevel names are listed, resources within
+         * the perimeter can only be accessed via GCP calls with request
+         * origins within the perimeter. For Service Perimeter Bridge, must
+         * be empty.
+         * Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
+         */
         accessLevels?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of GCP resources that are inside of the service perimeter.
+         * Currently only projects are allowed.
+         * Format: projects/{project_number}
+         */
         resources?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * GCP services that are subject to the Service Perimeter
+         * restrictions. Must contain a list of services. For example, if
+         * `storage.googleapis.com` is specified, access to the storage
+         * buckets inside the perimeter must meet the perimeter's access
+         * restrictions.
+         */
         restrictedServices?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how APIs are allowed to communicate within the Service
+         * Perimeter.  Structure is documented below.
+         */
         vpcAccessibleServices?: pulumi.Input<inputs.accesscontextmanager.ServicePerimeterStatusVpcAccessibleServices>;
     }
 
     export interface ServicePerimeterStatusVpcAccessibleServices {
+        /**
+         * -
+         * (Optional)
+         * The list of APIs usable within the Service Perimeter.
+         * Must be empty unless `enableRestriction` is True.
+         */
         allowedServices?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Whether to restrict API calls within the Service Perimeter to the
+         * list of APIs specified in 'allowedServices'.
+         */
         enableRestriction?: pulumi.Input<boolean>;
     }
 }
@@ -73,8 +235,26 @@ export namespace appengine {
     }
 
     export interface ApplicationUrlDispatchRulesDispatchRule {
+        /**
+         * -
+         * (Optional)
+         * Domain name to match against. The wildcard "*" is supported if specified before a period: "*.".
+         * Defaults to matching all domains: "*".
+         */
         domain?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Pathname within the host. Must start with a "/". A single "*" can be included at the end of the path.
+         * The sum of the lengths of the domain and path may not exceed 100 characters.
+         */
         path: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Pathname within the host. Must start with a "/". A single "*" can be included at the end of the path.
+         * The sum of the lengths of the domain and path may not exceed 100 characters.
+         */
         service: pulumi.Input<string>;
     }
 
@@ -85,243 +265,851 @@ export namespace appengine {
     }
 
     export interface DomainMappingSslSettings {
+        /**
+         * -
+         * (Optional)
+         * ID of the AuthorizedCertificate resource configuring SSL for the application. Clearing this field will
+         * remove SSL support.
+         * By default, a managed certificate is automatically created for every domain mapping. To omit SSL support
+         * or to configure SSL manually, specify `SslManagementType.MANUAL` on a `CREATE` or `UPDATE` request. You must be
+         * authorized to administer the `AuthorizedCertificate` resource to manually map it to a DomainMapping resource.
+         * Example: 12345.
+         */
         certificateId?: pulumi.Input<string>;
+        /**
+         * -
+         * ID of the managed `AuthorizedCertificate` resource currently being provisioned, if applicable. Until the new
+         * managed certificate has been successfully provisioned, the previous SSL state will be preserved. Once the
+         * provisioning process completes, the `certificateId` field will reflect the new managed certificate and this
+         * field will be left empty. To remove SSL support while there is still a pending managed certificate, clear the
+         * `certificateId` field with an update request.
+         */
         pendingManagedCertificateId?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * SSL management type for this domain. If `AUTOMATIC`, a managed certificate is automatically provisioned.
+         * If `MANUAL`, `certificateId` must be manually specified in order to configure SSL for this domain.
+         */
         sslManagementType: pulumi.Input<string>;
     }
 
     export interface EngineSplitTrafficSplit {
+        /**
+         * -
+         * (Required)
+         * Mapping from version IDs within the service to fractional (0.000, 1] allocations of traffic for that version. Each version can be specified only once, but some versions in the service may not have any traffic allocation. Services that have traffic allocated cannot be deleted until either the service is deleted or their traffic allocation is removed. Allocations must sum to 1. Up to two decimal place precision is supported for IP-based splits and up to three decimal places is supported for cookie-based splits.
+         */
         allocations: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * (Optional)
+         * Mechanism used to determine which version a request is sent to. The traffic selection algorithm will be stable for either type until allocations are changed.
+         */
         shardBy?: pulumi.Input<string>;
     }
 
     export interface FlexibleAppVersionApiConfig {
+        /**
+         * -
+         * (Optional)
+         * Action to take when users access resources that require authentication. Defaults to "AUTH_FAIL_ACTION_REDIRECT".
+         */
         authFailAction?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Level of login required to access this resource. Defaults to "LOGIN_OPTIONAL".
+         */
         login?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Path to the script from the application root directory.
+         */
         script: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Security (HTTPS) enforcement for this URL.
+         */
         securityLevel?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * URL to serve the endpoint at.
+         */
         url?: pulumi.Input<string>;
     }
 
     export interface FlexibleAppVersionAutomaticScaling {
+        /**
+         * -
+         * (Optional)
+         * The time period that the Autoscaler should wait before it starts collecting information from a new instance.
+         * This prevents the autoscaler from collecting information when the instance is initializing,
+         * during which the collected usage would not be reliable. Default: 120s
+         */
         coolDownPeriod?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Target scaling by CPU usage.  Structure is documented below.
+         */
         cpuUtilization: pulumi.Input<inputs.appengine.FlexibleAppVersionAutomaticScalingCpuUtilization>;
+        /**
+         * -
+         * (Optional)
+         * Target scaling by disk usage.  Structure is documented below.
+         */
         diskUtilization?: pulumi.Input<inputs.appengine.FlexibleAppVersionAutomaticScalingDiskUtilization>;
+        /**
+         * -
+         * (Optional)
+         * Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance.
+         * Defaults to a runtime-specific value.
+         */
         maxConcurrentRequests?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Maximum number of idle instances that should be maintained for this version.
+         */
         maxIdleInstances?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Maximum amount of time that a request should wait in the pending queue before starting a new instance to handle it.
+         */
         maxPendingLatency?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Maximum number of instances that should be started to handle requests for this version. Default: 20
+         */
         maxTotalInstances?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Minimum number of idle instances that should be maintained for this version. Only applicable for the default version of a service.
+         */
         minIdleInstances?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Minimum amount of time a request should wait in the pending queue before starting a new instance to handle it.
+         */
         minPendingLatency?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Minimum number of running instances that should be maintained for this version. Default: 2
+         */
         minTotalInstances?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Target scaling by network usage.  Structure is documented below.
+         */
         networkUtilization?: pulumi.Input<inputs.appengine.FlexibleAppVersionAutomaticScalingNetworkUtilization>;
+        /**
+         * -
+         * (Optional)
+         * Target scaling by request utilization.  Structure is documented below.
+         */
         requestUtilization?: pulumi.Input<inputs.appengine.FlexibleAppVersionAutomaticScalingRequestUtilization>;
     }
 
     export interface FlexibleAppVersionAutomaticScalingCpuUtilization {
+        /**
+         * -
+         * (Optional)
+         * Period of time over which CPU utilization is calculated.
+         */
         aggregationWindowLength?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Target CPU utilization ratio to maintain when scaling. Must be between 0 and 1.
+         */
         targetUtilization: pulumi.Input<number>;
     }
 
     export interface FlexibleAppVersionAutomaticScalingDiskUtilization {
+        /**
+         * -
+         * (Optional)
+         * Target bytes read per second.
+         */
         targetReadBytesPerSecond?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Target ops read per seconds.
+         */
         targetReadOpsPerSecond?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Target bytes written per second.
+         */
         targetWriteBytesPerSecond?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Target ops written per second.
+         */
         targetWriteOpsPerSecond?: pulumi.Input<number>;
     }
 
     export interface FlexibleAppVersionAutomaticScalingNetworkUtilization {
+        /**
+         * -
+         * (Optional)
+         * Target bytes received per second.
+         */
         targetReceivedBytesPerSecond?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Target packets received per second.
+         */
         targetReceivedPacketsPerSecond?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Target bytes sent per second.
+         */
         targetSentBytesPerSecond?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Target packets sent per second.
+         */
         targetSentPacketsPerSecond?: pulumi.Input<number>;
     }
 
     export interface FlexibleAppVersionAutomaticScalingRequestUtilization {
+        /**
+         * -
+         * (Optional)
+         * Target number of concurrent requests.
+         */
         targetConcurrentRequests?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Target requests per second.
+         */
         targetRequestCountPerSecond?: pulumi.Input<string>;
     }
 
     export interface FlexibleAppVersionDeployment {
+        /**
+         * -
+         * (Optional)
+         * Options for the build operations performed as a part of the version deployment. Only applicable when creating a version using source code directly.  Structure is documented below.
+         */
         cloudBuildOptions?: pulumi.Input<inputs.appengine.FlexibleAppVersionDeploymentCloudBuildOptions>;
+        /**
+         * -
+         * (Optional)
+         * The Docker image for the container that runs the version.  Structure is documented below.
+         */
         container?: pulumi.Input<inputs.appengine.FlexibleAppVersionDeploymentContainer>;
+        /**
+         * -
+         * (Optional)
+         * Manifest of the files stored in Google Cloud Storage that are included as part of this version.
+         * All files must be readable using the credentials supplied with this call.  Structure is documented below.
+         */
         files?: pulumi.Input<pulumi.Input<inputs.appengine.FlexibleAppVersionDeploymentFile>[]>;
+        /**
+         * -
+         * (Optional)
+         * Zip File  Structure is documented below.
+         */
         zip?: pulumi.Input<inputs.appengine.FlexibleAppVersionDeploymentZip>;
     }
 
     export interface FlexibleAppVersionDeploymentCloudBuildOptions {
+        /**
+         * -
+         * (Required)
+         * Path to the yaml file used in deployment, used to determine runtime configuration details.
+         */
         appYamlPath: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The Cloud Build timeout used as part of any dependent builds performed by version creation. Defaults to 10 minutes.
+         * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
+         */
         cloudBuildTimeout?: pulumi.Input<string>;
     }
 
     export interface FlexibleAppVersionDeploymentContainer {
+        /**
+         * -
+         * (Required)
+         * URI to the hosted container image in Google Container Registry. The URI must be fully qualified and include a tag or digest.
+         * Examples: "gcr.io/my-project/image:tag" or "gcr.io/my-project/image@digest"
+         */
         image: pulumi.Input<string>;
     }
 
     export interface FlexibleAppVersionDeploymentFile {
         /**
-         * The identifier for this object. Format specified above.
+         * -
+         * (Required)
+         * Google Compute Engine network where the virtual machines are created. Specify the short name, not the resource path.
          */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * SHA1 checksum of the file
+         */
         sha1Sum?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Source URL
+         */
         sourceUrl: pulumi.Input<string>;
     }
 
     export interface FlexibleAppVersionDeploymentZip {
+        /**
+         * -
+         * (Optional)
+         * files count
+         */
         filesCount?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Source URL
+         */
         sourceUrl: pulumi.Input<string>;
     }
 
     export interface FlexibleAppVersionEndpointsApiService {
+        /**
+         * -
+         * (Optional)
+         * Endpoints service configuration ID as specified by the Service Management API. For example "2016-09-19r1".
+         * By default, the rollout strategy for Endpoints is "FIXED". This means that Endpoints starts up with a particular configuration ID.
+         * When a new configuration is rolled out, Endpoints must be given the new configuration ID. The configId field is used to give the configuration ID
+         * and is required in this case.
+         * Endpoints also has a rollout strategy called "MANAGED". When using this, Endpoints fetches the latest configuration and does not need
+         * the configuration ID. In this case, configId must be omitted.
+         */
         configId?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Enable or disable trace sampling. By default, this is set to false for enabled.
+         */
         disableTraceSampling?: pulumi.Input<boolean>;
         /**
-         * The identifier for this object. Format specified above.
+         * -
+         * (Required)
+         * Google Compute Engine network where the virtual machines are created. Specify the short name, not the resource path.
          */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Endpoints rollout strategy. If FIXED, configId must be specified. If MANAGED, configId must be omitted. Default is "FIXED".
+         */
         rolloutStrategy?: pulumi.Input<string>;
     }
 
     export interface FlexibleAppVersionEntrypoint {
+        /**
+         * -
+         * (Required)
+         * The format should be a shell command that can be fed to bash -c.
+         */
         shell: pulumi.Input<string>;
     }
 
     export interface FlexibleAppVersionLivenessCheck {
+        /**
+         * -
+         * (Optional)
+         * Interval between health checks.  Default: "5s".
+         */
         checkInterval?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Number of consecutive failed checks required before removing traffic. Default: 2.
+         */
         failureThreshold?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Host header to send when performing a HTTP Readiness check. Example: "myapp.appspot.com"
+         */
         host?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The initial delay before starting to execute the checks. Default: "300s"
+         */
         initialDelay?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The request path.
+         */
         path: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Number of consecutive successful checks required before receiving traffic. Default: 2.
+         */
         successThreshold?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Time before the check is considered failed. Default: "4s"
+         */
         timeout?: pulumi.Input<string>;
     }
 
     export interface FlexibleAppVersionManualScaling {
+        /**
+         * -
+         * (Required)
+         * Number of instances to assign to the service at the start. This number can later be altered by using the Modules API set_num_instances() function.
+         */
         instances: pulumi.Input<number>;
     }
 
     export interface FlexibleAppVersionNetwork {
+        /**
+         * -
+         * (Optional)
+         * List of ports, or port pairs, to forward from the virtual machine to the application container.
+         */
         forwardedPorts?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Tag to apply to the instance during creation.
+         */
         instanceTag?: pulumi.Input<string>;
         /**
-         * The identifier for this object. Format specified above.
+         * -
+         * (Required)
+         * Google Compute Engine network where the virtual machines are created. Specify the short name, not the resource path.
          */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Enable session affinity.
+         */
         sessionAffinity?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Google Cloud Platform sub-network where the virtual machines are created. Specify the short name, not the resource path.
+         * If the network that the instance is being created in is a Legacy network, then the IP address is allocated from the IPv4Range.
+         * If the network that the instance is being created in is an auto Subnet Mode Network, then only network name should be specified (not the subnetworkName) and the IP address is created from the IPCidrRange of the subnetwork that exists in that zone for that network.
+         * If the network that the instance is being created in is a custom Subnet Mode Network, then the subnetworkName must be specified and the IP address is created from the IPCidrRange of the subnetwork.
+         * If specified, the subnetwork must exist in the same region as the App Engine flexible environment application.
+         */
         subnetwork?: pulumi.Input<string>;
     }
 
     export interface FlexibleAppVersionReadinessCheck {
+        /**
+         * -
+         * (Optional)
+         * A maximum time limit on application initialization, measured from moment the application successfully
+         * replies to a healthcheck until it is ready to serve traffic. Default: "300s"
+         */
         appStartTimeout?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Interval between health checks.  Default: "5s".
+         */
         checkInterval?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Number of consecutive failed checks required before removing traffic. Default: 2.
+         */
         failureThreshold?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Host header to send when performing a HTTP Readiness check. Example: "myapp.appspot.com"
+         */
         host?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The request path.
+         */
         path: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Number of consecutive successful checks required before receiving traffic. Default: 2.
+         */
         successThreshold?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Time before the check is considered failed. Default: "4s"
+         */
         timeout?: pulumi.Input<string>;
     }
 
     export interface FlexibleAppVersionResources {
+        /**
+         * -
+         * (Optional)
+         * Number of CPU cores needed.
+         */
         cpu?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Disk size (GB) needed.
+         */
         diskGb?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Memory (GB) needed.
+         */
         memoryGb?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * List of ports, or port pairs, to forward from the virtual machine to the application container.  Structure is documented below.
+         */
         volumes?: pulumi.Input<pulumi.Input<inputs.appengine.FlexibleAppVersionResourcesVolume>[]>;
     }
 
     export interface FlexibleAppVersionResourcesVolume {
         /**
-         * The identifier for this object. Format specified above.
+         * -
+         * (Required)
+         * Google Compute Engine network where the virtual machines are created. Specify the short name, not the resource path.
          */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Volume size in gigabytes.
+         */
         sizeGb: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Underlying volume type, e.g. 'tmpfs'.
+         */
         volumeType: pulumi.Input<string>;
     }
 
     export interface FlexibleAppVersionVpcAccessConnector {
         /**
-         * The identifier for this object. Format specified above.
+         * -
+         * (Required)
+         * Google Compute Engine network where the virtual machines are created. Specify the short name, not the resource path.
          */
         name: pulumi.Input<string>;
     }
 
     export interface StandardAppVersionDeployment {
+        /**
+         * -
+         * (Optional)
+         * Manifest of the files stored in Google Cloud Storage that are included as part of this version.
+         * All files must be readable using the credentials supplied with this call.  Structure is documented below.
+         */
         files?: pulumi.Input<pulumi.Input<inputs.appengine.StandardAppVersionDeploymentFile>[]>;
+        /**
+         * -
+         * (Optional)
+         * Zip File  Structure is documented below.
+         */
         zip?: pulumi.Input<inputs.appengine.StandardAppVersionDeploymentZip>;
     }
 
     export interface StandardAppVersionDeploymentFile {
         /**
-         * The identifier for this object. Format specified above.
+         * -
+         * (Optional)
+         * Name of the library. Example "django".
          */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * SHA1 checksum of the file
+         */
         sha1Sum?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Source URL
+         */
         sourceUrl: pulumi.Input<string>;
     }
 
     export interface StandardAppVersionDeploymentZip {
+        /**
+         * -
+         * (Optional)
+         * files count
+         */
         filesCount?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Source URL
+         */
         sourceUrl: pulumi.Input<string>;
     }
 
     export interface StandardAppVersionEntrypoint {
+        /**
+         * -
+         * (Required)
+         * The format should be a shell command that can be fed to bash -c.
+         */
         shell: pulumi.Input<string>;
     }
 
     export interface StandardAppVersionHandler {
+        /**
+         * -
+         * (Optional)
+         * Actions to take when the user is not logged in.
+         */
         authFailAction?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Methods to restrict access to a URL based on login status.
+         */
         login?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * 30x code to use when performing redirects for the secure field.
+         */
         redirectHttpResponseCode?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Executes a script to handle the requests that match this URL pattern.
+         * Only the auto value is supported for Node.js in the App Engine standard environment, for example "script:" "auto".  Structure is documented below.
+         */
         script?: pulumi.Input<inputs.appengine.StandardAppVersionHandlerScript>;
+        /**
+         * -
+         * (Optional)
+         * Security (HTTPS) enforcement for this URL.
+         */
         securityLevel?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Files served directly to the user for a given URL, such as images, CSS stylesheets, or JavaScript source files. Static file handlers describe which files in the application directory are static files, and which URLs serve them.  Structure is documented below.
+         */
         staticFiles?: pulumi.Input<inputs.appengine.StandardAppVersionHandlerStaticFiles>;
+        /**
+         * -
+         * (Optional)
+         * URL prefix. Uses regular expression syntax, which means regexp special characters must be escaped, but should not contain groupings.
+         * All URLs that begin with this prefix are handled by this handler, using the portion of the URL after the prefix as part of the file path.
+         */
         urlRegex?: pulumi.Input<string>;
     }
 
     export interface StandardAppVersionHandlerScript {
+        /**
+         * -
+         * (Required)
+         * Path to the script from the application root directory.
+         */
         scriptPath: pulumi.Input<string>;
     }
 
     export interface StandardAppVersionHandlerStaticFiles {
+        /**
+         * -
+         * (Optional)
+         * Whether files should also be uploaded as code data. By default, files declared in static file handlers are uploaded as static data and are only served to end users; they cannot be read by the application. If enabled, uploads are charged against both your code and static data storage resource quotas.
+         */
         applicationReadable?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Time a static file served by this handler should be cached by web proxies and browsers.
+         * A duration in seconds with up to nine fractional digits, terminated by 's'. Example "3.5s".
+         */
         expiration?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * HTTP headers to use for all responses from these URLs.
+         * An object containing a list of "key:value" value pairs.".
+         */
         httpHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * (Optional)
+         * MIME type used to serve all files served by this handler.
+         * Defaults to file-specific MIME types, which are derived from each file's filename extension.
+         */
         mimeType?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Path to the static files matched by the URL pattern, from the application root directory. The path can refer to text matched in groupings in the URL pattern.
+         */
         path?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Whether this handler should match the request if the file referenced by the handler does not exist.
+         */
         requireMatchingFile?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Regular expression that matches the file paths for all files that should be referenced by this handler.
+         */
         uploadPathRegex?: pulumi.Input<string>;
     }
 
     export interface StandardAppVersionLibrary {
         /**
-         * The identifier for this object. Format specified above.
+         * -
+         * (Optional)
+         * Name of the library. Example "django".
          */
         name?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Version of the library to select, or "latest".
+         */
         version?: pulumi.Input<string>;
     }
 }
 
 export namespace bigquery {
     export interface AppProfileSingleClusterRouting {
+        /**
+         * -
+         * (Optional)
+         * If true, CheckAndMutateRow and ReadModifyWriteRow requests are allowed by this app profile.
+         * It is unsafe to send these requests to the same table/row/column in multiple clusters.
+         */
         allowTransactionalWrites?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Required)
+         * The cluster to which read/write requests should be routed.
+         */
         clusterId: pulumi.Input<string>;
     }
 
     export interface DatasetAccess {
+        /**
+         * -
+         * (Optional)
+         * A domain to grant access to. Any users signed in with the
+         * domain specified will be granted the specified access
+         */
         domain?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * An email address of a Google Group to grant access to.
+         */
         groupByEmail?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Describes the rights granted to the user specified by the other
+         * member of the access object. Primitive, Predefined and custom
+         * roles are supported. Predefined roles that have equivalent
+         * primitive roles are swapped by the API to their Primitive
+         * counterparts, and will show a diff post-create. See
+         * [official docs](https://cloud.google.com/bigquery/docs/access-control).
+         */
         role?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A special group to grant access to. Possible values include:
+         */
         specialGroup?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * An email address of a user to grant access to. For example:
+         * fred@example.com
+         */
         userByEmail?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A view from a different dataset to grant access to. Queries
+         * executed against that view will have read access to tables in
+         * this dataset. The role field is not required when this field is
+         * set. If that view is updated by any user, access to the view
+         * needs to be granted again via an update operation.  Structure is documented below.
+         */
         view?: pulumi.Input<inputs.bigquery.DatasetAccessView>;
     }
 
     export interface DatasetAccessView {
+        /**
+         * -
+         * (Required)
+         * A unique ID for this dataset, without the project name. The ID
+         * must contain only letters (a-z, A-Z), numbers (0-9), or
+         * underscores (_). The maximum length is 1,024 characters.
+         */
         datasetId: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The ID of the project containing this table.
+         */
         projectId: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The ID of the table. The ID must contain only letters (a-z,
+         * A-Z), numbers (0-9), or underscores (_). The maximum length
+         * is 1,024 characters.
+         */
         tableId: pulumi.Input<string>;
     }
 
     export interface DatasetDefaultEncryptionConfiguration {
+        /**
+         * -
+         * (Required)
+         * Describes the Cloud KMS encryption key that will be used to protect destination
+         * BigQuery table. The BigQuery Service Account associated with your project requires
+         * access to this encryption key.
+         */
         kmsKeyName: pulumi.Input<string>;
     }
 
@@ -419,36 +1207,39 @@ export namespace bigquery {
          */
         quote: pulumi.Input<string>;
         /**
-         * The number of rows at the top of the sheet
-         * that BigQuery will skip when reading the data. At least one of `range` or
-         * `skipLeadingRows` must be set.
+         * The number of rows at the top of a CSV
+         * file that BigQuery will skip when reading the data.
          */
         skipLeadingRows?: pulumi.Input<number>;
     }
 
     export interface TableExternalDataConfigurationGoogleSheetsOptions {
         /**
-         * Information required to partition based on ranges.
-         * Structure is documented below.
+         * Range of a sheet to query from. Only used when
+         * non-empty. At least one of `range` or `skipLeadingRows` must be set.
+         * Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+         * For example: "sheet1!A1:B20"
          */
         range?: pulumi.Input<string>;
         /**
-         * The number of rows at the top of the sheet
-         * that BigQuery will skip when reading the data. At least one of `range` or
-         * `skipLeadingRows` must be set.
+         * The number of rows at the top of a CSV
+         * file that BigQuery will skip when reading the data.
          */
         skipLeadingRows?: pulumi.Input<number>;
     }
 
     export interface TableRangePartitioning {
         /**
-         * The field used to determine how to create a range-based
-         * partition.
+         * The field used to determine how to create a time-based
+         * partition. If time-based partitioning is enabled without this value, the
+         * table is partitioned based on the load time.
          */
         field: pulumi.Input<string>;
         /**
-         * Information required to partition based on ranges.
-         * Structure is documented below.
+         * Range of a sheet to query from. Only used when
+         * non-empty. At least one of `range` or `skipLeadingRows` must be set.
+         * Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+         * For example: "sheet1!A1:B20"
          */
         range: pulumi.Input<inputs.bigquery.TableRangePartitioningRange>;
     }
@@ -475,8 +1266,9 @@ export namespace bigquery {
          */
         expirationMs?: pulumi.Input<number>;
         /**
-         * The field used to determine how to create a range-based
-         * partition.
+         * The field used to determine how to create a time-based
+         * partition. If time-based partitioning is enabled without this value, the
+         * table is partitioned based on the load time.
          */
         field?: pulumi.Input<string>;
         /**
@@ -578,51 +1370,216 @@ export namespace billing {
     }
 
     export interface BudgetAllUpdatesRule {
+        /**
+         * -
+         * (Required)
+         * The name of the Cloud Pub/Sub topic where budget related
+         * messages will be published, in the form
+         * projects/{project_id}/topics/{topic_id}. Updates are sent
+         * at regular intervals to the topic.
+         */
         pubsubTopic: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The schema version of the notification. Only "1.0" is
+         * accepted. It represents the JSON schema as defined in
+         * https://cloud.google.com/billing/docs/how-to/budgets#notification_format.
+         */
         schemaVersion?: pulumi.Input<string>;
     }
 
     export interface BudgetAmount {
+        /**
+         * -
+         * (Required)
+         * A specified amount to use as the budget. currencyCode is
+         * optional. If specified, it must match the currency of the
+         * billing account. The currencyCode is provided on output.  Structure is documented below.
+         */
         specifiedAmount: pulumi.Input<inputs.billing.BudgetAmountSpecifiedAmount>;
     }
 
     export interface BudgetAmountSpecifiedAmount {
+        /**
+         * -
+         * (Optional)
+         * The 3-letter currency code defined in ISO 4217.
+         */
         currencyCode?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Number of nano (10^-9) units of the amount.
+         * The value must be between -999,999,999 and +999,999,999
+         * inclusive. If units is positive, nanos must be positive or
+         * zero. If units is zero, nanos can be positive, zero, or
+         * negative. If units is negative, nanos must be negative or
+         * zero. For example $-1.75 is represented as units=-1 and
+         * nanos=-750,000,000.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The whole units of the amount. For example if currencyCode
+         * is "USD", then 1 unit is one US dollar.
+         */
         units?: pulumi.Input<string>;
     }
 
     export interface BudgetBudgetFilter {
+        /**
+         * -
+         * (Optional)
+         * Specifies how credits should be treated when determining spend
+         * for threshold calculations.
+         */
         creditTypesTreatment?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A set of projects of the form projects/{project_id},
+         * specifying that usage from only this set of projects should be
+         * included in the budget. If omitted, the report will include
+         * all usage for the billing account, regardless of which project
+         * the usage occurred on. Only zero or one project can be
+         * specified currently.
+         */
         projects?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * A set of services of the form services/{service_id},
+         * specifying that usage from only this set of services should be
+         * included in the budget. If omitted, the report will include
+         * usage for all the services. The service names are available
+         * through the Catalog API:
+         * https://cloud.google.com/billing/v1/how-tos/catalog-api.
+         */
         services?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface BudgetThresholdRule {
+        /**
+         * -
+         * (Optional)
+         * The type of basis used to determine if spend has passed
+         * the threshold.
+         */
         spendBasis?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Send an alert when this threshold is exceeded. This is a
+         * 1.0-based percentage, so 0.5 = 50%. Must be >= 0.
+         */
         thresholdPercent: pulumi.Input<number>;
     }
 }
 
 export namespace binaryauthorization {
     export interface AttestorAttestationAuthorityNote {
+        /**
+         * -
+         * This field will contain the service account email address that
+         * this Attestor will use as the principal when querying Container
+         * Analysis. Attestor administrators must grant this service account
+         * the IAM role needed to read attestations from the noteReference in
+         * Container Analysis (containeranalysis.notes.occurrences.viewer).
+         * This email address is fixed for the lifetime of the Attestor, but
+         * callers should not make any other assumptions about the service
+         * account email; future versions may use an email based on a
+         * different naming pattern.
+         */
         delegationServiceAccountEmail?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The resource name of a ATTESTATION_AUTHORITY Note, created by the
+         * user. If the Note is in a different project from the Attestor, it
+         * should be specified in the format `projects/*&#47;notes/*` (or the legacy
+         * `providers/*&#47;notes/*`). This field may not be updated.
+         * An attestation by this attestor is stored as a Container Analysis
+         * ATTESTATION_AUTHORITY Occurrence that names a container image
+         * and that links to this Note.
+         */
         noteReference: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Public keys that verify attestations signed by this attestor. This
+         * field may be updated.
+         * If this field is non-empty, one of the specified public keys must
+         * verify that an attestation was signed by this attestor for the
+         * image specified in the admission request.
+         * If this field is empty, this attestor always returns that no valid
+         * attestations exist.  Structure is documented below.
+         */
         publicKeys?: pulumi.Input<pulumi.Input<inputs.binaryauthorization.AttestorAttestationAuthorityNotePublicKey>[]>;
     }
 
     export interface AttestorAttestationAuthorityNotePublicKey {
+        /**
+         * -
+         * (Optional)
+         * ASCII-armored representation of a PGP public key, as the
+         * entire output by the command
+         * `gpg --export --armor foo@example.com` (either LF or CRLF
+         * line endings). When using this field, id should be left
+         * blank. The BinAuthz API handlers will calculate the ID
+         * and fill it in automatically. BinAuthz computes this ID
+         * as the OpenPGP RFC4880 V4 fingerprint, represented as
+         * upper-case hex. If id is provided by the caller, it will
+         * be overwritten by the API-calculated ID.
+         */
         asciiArmoredPgpPublicKey?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A descriptive comment. This field may be updated.
+         */
         comment?: pulumi.Input<string>;
         /**
-         * an identifier for the resource with format `projects/{{project}}/attestors/{{name}}`
+         * -
+         * (Optional)
+         * The ID of this public key. Signatures verified by BinAuthz
+         * must include the ID of the public key that can be used to
+         * verify them, and that ID must match the contents of this
+         * field exactly. Additional restrictions on this field can
+         * be imposed based on which public key type is encapsulated.
+         * See the documentation on publicKey cases below for details.
          */
         id?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A raw PKIX SubjectPublicKeyInfo format public key.
+         * NOTE: id may be explicitly provided by the caller when using this
+         * type of public key, but it MUST be a valid RFC3986 URI. If id is left
+         * blank, a default one will be computed based on the digest of the DER
+         * encoding of the public key.  Structure is documented below.
+         */
         pkixPublicKey?: pulumi.Input<inputs.binaryauthorization.AttestorAttestationAuthorityNotePublicKeyPkixPublicKey>;
     }
 
     export interface AttestorAttestationAuthorityNotePublicKeyPkixPublicKey {
+        /**
+         * -
+         * (Optional)
+         * A PEM-encoded public key, as described in
+         * `https://tools.ietf.org/html/rfc7468#section-13`
+         */
         publicKeyPem?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The signature algorithm used to verify a message against
+         * a signature using this key. These signature algorithm must
+         * match the structure and any object identifiers encoded in
+         * publicKeyPem (i.e. this algorithm must match that of the
+         * public key).
+         */
         signatureAlgorithm?: pulumi.Input<string>;
     }
 
@@ -639,6 +1596,14 @@ export namespace binaryauthorization {
     }
 
     export interface PolicyAdmissionWhitelistPattern {
+        /**
+         * -
+         * (Required)
+         * An image name pattern to whitelist, in the form
+         * `registry/path/to/image`. This supports a trailing * as a
+         * wildcard, but this is allowed only in text after the registry/
+         * part.
+         */
         namePattern: pulumi.Input<string>;
     }
 
@@ -647,71 +1612,313 @@ export namespace binaryauthorization {
          * The identifier for this object. Format specified above.
          */
         cluster: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The action when a pod creation is denied by the admission rule.
+         */
         enforcementMode: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * How this admission rule will be evaluated.
+         */
         evaluationMode: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The resource names of the attestors that must attest to a
+         * container image. If the attestor is in a different project from the
+         * policy, it should be specified in the format `projects/*&#47;attestors/*`.
+         * Each attestor must exist before a policy can reference it. To add an
+         * attestor to a policy the principal issuing the policy change
+         * request must be able to read the attestor resource.
+         * Note: this field must be non-empty when the evaluationMode field
+         * specifies REQUIRE_ATTESTATION, otherwise it must be empty.
+         */
         requireAttestationsBies?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface PolicyDefaultAdmissionRule {
+        /**
+         * -
+         * (Required)
+         * The action when a pod creation is denied by the admission rule.
+         */
         enforcementMode: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * How this admission rule will be evaluated.
+         */
         evaluationMode: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The resource names of the attestors that must attest to a
+         * container image. If the attestor is in a different project from the
+         * policy, it should be specified in the format `projects/*&#47;attestors/*`.
+         * Each attestor must exist before a policy can reference it. To add an
+         * attestor to a policy the principal issuing the policy change
+         * request must be able to read the attestor resource.
+         * Note: this field must be non-empty when the evaluationMode field
+         * specifies REQUIRE_ATTESTATION, otherwise it must be empty.
+         */
         requireAttestationsBies?: pulumi.Input<pulumi.Input<string>[]>;
     }
 }
 
 export namespace cloudbuild {
     export interface TriggerBuild {
+        /**
+         * -
+         * (Optional)
+         * A list of images to be pushed upon the successful completion of all build steps.
+         * The images are pushed using the builder service account's credentials.
+         * The digests of the pushed images will be stored in the Build resource's results field.
+         * If any of the images fail to be pushed, the build status is marked FAILURE.
+         */
         images?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Required)
+         * The operations to be performed on the workspace.  Structure is documented below.
+         */
         steps: pulumi.Input<pulumi.Input<inputs.cloudbuild.TriggerBuildStep>[]>;
+        /**
+         * -
+         * (Optional)
+         * Tags for annotation of a Build. These are not docker tags.
+         */
         tags?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Amount of time that this build should be allowed to run, to second granularity.
+         * If this amount of time elapses, work on the build will cease and the build status will be TIMEOUT.
+         * This timeout must be equal to or greater than the sum of the timeouts for build steps within the build.
+         * The expected format is the number of seconds followed by s.
+         * Default time is ten minutes (600s).
+         */
         timeout?: pulumi.Input<string>;
     }
 
     export interface TriggerBuildStep {
+        /**
+         * -
+         * (Optional)
+         * A list of arguments that will be presented to the step when it is started.
+         * If the image used to run the step's container has an entrypoint, the args
+         * are used as arguments to that entrypoint. If the image does not define an
+         * entrypoint, the first element in args is used as the entrypoint, and the
+         * remainder will be used as arguments.
+         */
         args?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Directory, relative to the source root, in which to run the build.
+         * This must be a relative path. If a step's dir is specified and
+         * is an absolute path, this value is ignored for that step's
+         * execution.
+         */
         dir?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Entrypoint to be used instead of the build step image's
+         * default entrypoint.
+         * If unset, the image's default entrypoint is used
+         */
         entrypoint?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A list of environment variable definitions to be used when
+         * running a step.
+         * The elements are of the form "KEY=VALUE" for the environment variable
+         * "KEY" being given the value "VALUE".
+         */
         envs?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * an identifier for the resource with format `projects/{{project}}/triggers/{{trigger_id}}`
+         * -
+         * (Optional)
+         * Unique identifier for this build step, used in `waitFor` to
+         * reference this build step as a dependency.
          */
         id?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Name of the trigger. Must be unique within the project.
+         */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A list of environment variables which are encrypted using
+         * a Cloud Key
+         * Management Service crypto key. These values must be specified in
+         * the build's `Secret`.
+         */
         secretEnvs?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Amount of time that this build should be allowed to run, to second granularity.
+         * If this amount of time elapses, work on the build will cease and the build status will be TIMEOUT.
+         * This timeout must be equal to or greater than the sum of the timeouts for build steps within the build.
+         * The expected format is the number of seconds followed by s.
+         * Default time is ten minutes (600s).
+         */
         timeout?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Output only. Stores timing information for executing this
+         * build step.
+         */
         timing?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * List of volumes to mount into the build step.
+         * Each volume is created as an empty volume prior to execution of the
+         * build step. Upon completion of the build, volumes and their contents
+         * are discarded.
+         * Using a named volume in only one step is not valid as it is
+         * indicative of a build request with an incorrect configuration.  Structure is documented below.
+         */
         volumes?: pulumi.Input<pulumi.Input<inputs.cloudbuild.TriggerBuildStepVolume>[]>;
+        /**
+         * -
+         * (Optional)
+         * The ID(s) of the step(s) that this build step depends on.
+         * This build step will not start until all the build steps in `waitFor`
+         * have completed successfully. If `waitFor` is empty, this build step
+         * will start when all previous build steps in the `Build.Steps` list
+         * have completed successfully.
+         */
         waitFors?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface TriggerBuildStepVolume {
+        /**
+         * -
+         * (Optional)
+         * Name of the trigger. Must be unique within the project.
+         */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Path at which to mount the volume.
+         * Paths must be absolute and cannot conflict with other volume paths on
+         * the same build step or with certain reserved volume paths.
+         */
         path: pulumi.Input<string>;
     }
 
     export interface TriggerGithub {
+        /**
+         * -
+         * (Optional)
+         * Name of the trigger. Must be unique within the project.
+         */
         name?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Owner of the repository. For example: The owner for
+         * https://github.com/googlecloudplatform/cloud-builders is "googlecloudplatform".
+         */
         owner?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * filter to match changes in pull requests.  Specify only one of pullRequest or push.  Structure is documented below.
+         */
         pullRequest?: pulumi.Input<inputs.cloudbuild.TriggerGithubPullRequest>;
+        /**
+         * -
+         * (Optional)
+         * filter to match changes in refs, like branches or tags.  Specify only one of pullRequest or push.  Structure is documented below.
+         */
         push?: pulumi.Input<inputs.cloudbuild.TriggerGithubPush>;
     }
 
     export interface TriggerGithubPullRequest {
+        /**
+         * -
+         * (Required)
+         * Regex of branches to match.
+         */
         branch: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Whether to block builds on a "/gcbrun" comment from a repository owner or collaborator.
+         */
         commentControl?: pulumi.Input<string>;
     }
 
     export interface TriggerGithubPush {
+        /**
+         * -
+         * (Required)
+         * Regex of branches to match.
+         */
         branch?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Regex of tags to match.  Specify only one of branch or tag.
+         */
         tag?: pulumi.Input<string>;
     }
 
     export interface TriggerTriggerTemplate {
+        /**
+         * -
+         * (Optional)
+         * Name of the branch to build. Exactly one a of branch name, tag, or commit SHA must be provided.
+         * This field is a regular expression.
+         */
         branchName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Explicit commit SHA to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+         */
         commitSha?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Directory, relative to the source root, in which to run the build.
+         * This must be a relative path. If a step's dir is specified and
+         * is an absolute path, this value is ignored for that step's
+         * execution.
+         */
         dir?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * ID of the project that owns the Cloud Source Repository. If
+         * omitted, the project ID requesting the build is assumed.
+         */
         projectId?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Name of the Cloud Source Repository. If omitted, the name "default" is assumed.
+         */
         repoName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Name of the tag to build. Exactly one of a branch name, tag, or commit SHA must be provided.
+         * This field is a regular expression.
+         */
         tagName?: pulumi.Input<string>;
     }
 }
@@ -765,18 +1972,82 @@ export namespace cloudfunctions {
 
 export namespace cloudrun {
     export interface DomainMappingMetadata {
+        /**
+         * -
+         * (Optional)
+         * Annotations is a key value map stored with a resource that
+         * may be set by external tools to store and retrieve arbitrary metadata. More
+         * info: http://kubernetes.io/docs/user-guide/annotations
+         */
         annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * A sequence number representing a specific generation of the desired state.
+         */
         generation?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Map of string keys and values that can be used to organize and categorize
+         * (scope and select) objects. May match selectors of replication controllers
+         * and routes.
+         * More info: http://kubernetes.io/docs/user-guide/labels
+         */
         labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * (Required)
+         * In Cloud Run the namespace must be equal to either the
+         * project ID or project number.
+         */
         namespace: pulumi.Input<string>;
+        /**
+         * -
+         * An opaque value that represents the internal version of this object that
+         * can be used by clients to determine when objects have changed. May be used
+         * for optimistic concurrency, change detection, and the watch operation on a
+         * resource or set of resources. They may only be valid for a
+         * particular resource or set of resources.
+         * More info:
+         * https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
+         */
         resourceVersion?: pulumi.Input<string>;
+        /**
+         * -
+         * SelfLink is a URL representing this object.
+         */
         selfLink?: pulumi.Input<string>;
+        /**
+         * -
+         * UID is a unique id generated by the server on successful creation of a resource and is not
+         * allowed to change on PUT operations.
+         * More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+         */
         uid?: pulumi.Input<string>;
     }
 
     export interface DomainMappingSpec {
+        /**
+         * -
+         * (Optional)
+         * The mode of the certificate.
+         */
         certificateMode?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * If set, the mapping will override any mapping set before this spec was set.
+         * It is recommended that the user leaves this empty to receive an error
+         * warning about a potential conflict and only set it once the respective UI
+         * has given such a warning.
+         */
         forceOverride?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Required)
+         * The name of the Cloud Run Service that this DomainMapping applies to.
+         * The route must exist.
+         */
         routeName: pulumi.Input<string>;
     }
 
@@ -795,6 +2066,11 @@ export namespace cloudrun {
     }
 
     export interface DomainMappingStatusResourceRecord {
+        /**
+         * -
+         * (Required)
+         * Name should be a verified domain
+         */
         name?: pulumi.Input<string>;
         rrdata?: pulumi.Input<string>;
         type?: pulumi.Input<string>;
@@ -813,12 +2089,57 @@ export namespace cloudrun {
     }
 
     export interface ServiceMetadata {
+        /**
+         * -
+         * (Optional)
+         * Annotations is a key value map stored with a resource that
+         * may be set by external tools to store and retrieve arbitrary metadata. More
+         * info: http://kubernetes.io/docs/user-guide/annotations
+         */
         annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * A sequence number representing a specific generation of the desired state.
+         */
         generation?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Map of string keys and values that can be used to organize and categorize
+         * (scope and select) objects. May match selectors of replication controllers
+         * and routes.
+         * More info: http://kubernetes.io/docs/user-guide/labels
+         */
         labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * (Optional)
+         * In Cloud Run the namespace must be equal to either the
+         * project ID or project number. It will default to the resource's project.
+         */
         namespace?: pulumi.Input<string>;
+        /**
+         * -
+         * An opaque value that represents the internal version of this object that
+         * can be used by clients to determine when objects have changed. May be used
+         * for optimistic concurrency, change detection, and the watch operation on a
+         * resource or set of resources. They may only be valid for a
+         * particular resource or set of resources.
+         * More info:
+         * https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
+         */
         resourceVersion?: pulumi.Input<string>;
+        /**
+         * -
+         * SelfLink is a URL representing this object.
+         */
         selfLink?: pulumi.Input<string>;
+        /**
+         * -
+         * UID is a unique id generated by the server on successful creation of a resource and is not
+         * allowed to change on PUT operations.
+         * More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+         */
         uid?: pulumi.Input<string>;
     }
 
@@ -838,147 +2159,668 @@ export namespace cloudrun {
     }
 
     export interface ServiceTemplate {
+        /**
+         * -
+         * (Optional)
+         * Optional metadata for this Revision, including labels and annotations.
+         * Name will be generated by the Configuration. To set minimum instances
+         * for this revision, use the "autoscaling.knative.dev/minScale" annotation
+         * key. To set maximum instances for this revision, use the
+         * "autoscaling.knative.dev/maxScale" annotation key. To set Cloud SQL
+         * connections for the revision, use the "run.googleapis.com/cloudsql-instances"
+         * annotation key.  Structure is documented below.
+         */
         metadata?: pulumi.Input<inputs.cloudrun.ServiceTemplateMetadata>;
+        /**
+         * -
+         * (Required)
+         * RevisionSpec holds the desired state of the Revision (from the client).  Structure is documented below.
+         */
         spec?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpec>;
     }
 
     export interface ServiceTemplateMetadata {
+        /**
+         * -
+         * (Optional)
+         * Annotations is a key value map stored with a resource that
+         * may be set by external tools to store and retrieve arbitrary metadata. More
+         * info: http://kubernetes.io/docs/user-guide/annotations
+         */
         annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * A sequence number representing a specific generation of the desired state.
+         */
         generation?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Map of string keys and values that can be used to organize and categorize
+         * (scope and select) objects. May match selectors of replication controllers
+         * and routes.
+         * More info: http://kubernetes.io/docs/user-guide/labels
+         */
         labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * (Required)
+         * Name must be unique within a namespace, within a Cloud Run region.
+         * Is required when creating resources. Name is primarily intended
+         * for creation idempotence and configuration definition. Cannot be updated.
+         * More info: http://kubernetes.io/docs/user-guide/identifiers#names
+         */
         name?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * In Cloud Run the namespace must be equal to either the
+         * project ID or project number. It will default to the resource's project.
+         */
         namespace?: pulumi.Input<string>;
+        /**
+         * -
+         * An opaque value that represents the internal version of this object that
+         * can be used by clients to determine when objects have changed. May be used
+         * for optimistic concurrency, change detection, and the watch operation on a
+         * resource or set of resources. They may only be valid for a
+         * particular resource or set of resources.
+         * More info:
+         * https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency
+         */
         resourceVersion?: pulumi.Input<string>;
+        /**
+         * -
+         * SelfLink is a URL representing this object.
+         */
         selfLink?: pulumi.Input<string>;
+        /**
+         * -
+         * UID is a unique id generated by the server on successful creation of a resource and is not
+         * allowed to change on PUT operations.
+         * More info: http://kubernetes.io/docs/user-guide/identifiers#uids
+         */
         uid?: pulumi.Input<string>;
     }
 
     export interface ServiceTemplateSpec {
+        /**
+         * -
+         * (Optional)
+         * ContainerConcurrency specifies the maximum allowed in-flight (concurrent)
+         * requests per container of the Revision. Values are:
+         * - `0` thread-safe, the system should manage the max concurrency. This is
+         * the default value.
+         * - `1` not-thread-safe. Single concurrency
+         * - `2-N` thread-safe, max concurrency of N
+         */
         containerConcurrency?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Container defines the unit of execution for this Revision.
+         * In the context of a Revision, we disallow a number of the fields of
+         * this Container, including: name, ports, and volumeMounts.
+         * The runtime contract is documented here:
+         * https://github.com/knative/serving/blob/master/docs/runtime-contract.md  Structure is documented below.
+         */
         containers?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainer>[]>;
+        /**
+         * -
+         * (Optional)
+         * Email address of the IAM service account associated with the revision of the
+         * service. The service account represents the identity of the running revision,
+         * and determines what permissions the revision has. If not provided, the revision
+         * will use the project's default service account.
+         */
         serviceAccountName?: pulumi.Input<string>;
+        /**
+         * -
+         * ServingState holds a value describing the state the resources
+         * are in for this Revision.
+         * It is expected
+         * that the system will manipulate this based on routability and load.
+         */
         servingState?: pulumi.Input<string>;
     }
 
     export interface ServiceTemplateSpecContainer {
+        /**
+         * -
+         * (Optional)
+         * Arguments to the entrypoint.
+         * The docker image's CMD is used if this is not provided.
+         * Variable references $(VAR_NAME) are expanded using the container's
+         * environment. If a variable cannot be resolved, the reference in the input
+         * string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
+         * double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
+         * regardless of whether the variable exists or not.
+         * More info:
+         * https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+         */
         args?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Entrypoint array. Not executed within a shell.
+         * The docker image's ENTRYPOINT is used if this is not provided.
+         * Variable references $(VAR_NAME) are expanded using the container's
+         * environment. If a variable cannot be resolved, the reference in the input
+         * string will be unchanged. The $(VAR_NAME) syntax can be escaped with a
+         * double $$, ie: $$(VAR_NAME). Escaped references will never be expanded,
+         * regardless of whether the variable exists or not.
+         * More info:
+         * https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+         */
         commands?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * List of environment variables to set in the container.  Structure is documented below.
+         */
         envs?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnv>[]>;
+        /**
+         * -
+         * (Optional, Deprecated)
+         * List of sources to populate environment variables in the container.
+         * All invalid keys will be reported as an event when the container is starting.
+         * When a key exists in multiple sources, the value associated with the last source will
+         * take precedence. Values defined by an Env with a duplicate key will take
+         * precedence.  Structure is documented below.
+         */
         envFroms?: pulumi.Input<pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFrom>[]>;
+        /**
+         * -
+         * (Required)
+         * Docker image name. This is most often a reference to a container located
+         * in the container registry, such as gcr.io/cloudrun/hello
+         * More info: https://kubernetes.io/docs/concepts/containers/images
+         */
         image: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Compute Resources required by this container. Used to set values such as max memory
+         * More info:
+         * https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources  Structure is documented below.
+         */
         resources?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerResources>;
+        /**
+         * -
+         * (Optional, Deprecated)
+         * Container's working directory.
+         * If not specified, the container runtime's default will be used, which
+         * might be configured in the container image.
+         */
         workingDir?: pulumi.Input<string>;
     }
 
     export interface ServiceTemplateSpecContainerEnv {
+        /**
+         * -
+         * (Required)
+         * Name must be unique within a namespace, within a Cloud Run region.
+         * Is required when creating resources. Name is primarily intended
+         * for creation idempotence and configuration definition. Cannot be updated.
+         * More info: http://kubernetes.io/docs/user-guide/identifiers#names
+         */
         name?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Variable references $(VAR_NAME) are expanded
+         * using the previous defined environment variables in the container and
+         * any route environment variables. If a variable cannot be resolved,
+         * the reference in the input string will be unchanged. The $(VAR_NAME)
+         * syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped
+         * references will never be expanded, regardless of whether the variable
+         * exists or not.
+         * Defaults to "".
+         */
         value?: pulumi.Input<string>;
     }
 
     export interface ServiceTemplateSpecContainerEnvFrom {
+        /**
+         * -
+         * (Optional)
+         * The ConfigMap to select from.  Structure is documented below.
+         */
         configMapRef?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFromConfigMapRef>;
+        /**
+         * -
+         * (Optional)
+         * An optional identifier to prepend to each key in the ConfigMap.
+         */
         prefix?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The Secret to select from.  Structure is documented below.
+         */
         secretRef?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFromSecretRef>;
     }
 
     export interface ServiceTemplateSpecContainerEnvFromConfigMapRef {
+        /**
+         * -
+         * (Optional)
+         * The ConfigMap to select from.  Structure is documented below.
+         */
         localObjectReference?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReference>;
+        /**
+         * -
+         * (Optional)
+         * Specify whether the ConfigMap must be defined
+         */
         optional?: pulumi.Input<boolean>;
     }
 
     export interface ServiceTemplateSpecContainerEnvFromConfigMapRefLocalObjectReference {
+        /**
+         * -
+         * (Required)
+         * Name must be unique within a namespace, within a Cloud Run region.
+         * Is required when creating resources. Name is primarily intended
+         * for creation idempotence and configuration definition. Cannot be updated.
+         * More info: http://kubernetes.io/docs/user-guide/identifiers#names
+         */
         name: pulumi.Input<string>;
     }
 
     export interface ServiceTemplateSpecContainerEnvFromSecretRef {
+        /**
+         * -
+         * (Optional)
+         * The ConfigMap to select from.  Structure is documented below.
+         */
         localObjectReference?: pulumi.Input<inputs.cloudrun.ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReference>;
+        /**
+         * -
+         * (Optional)
+         * Specify whether the ConfigMap must be defined
+         */
         optional?: pulumi.Input<boolean>;
     }
 
     export interface ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReference {
+        /**
+         * -
+         * (Required)
+         * Name must be unique within a namespace, within a Cloud Run region.
+         * Is required when creating resources. Name is primarily intended
+         * for creation idempotence and configuration definition. Cannot be updated.
+         * More info: http://kubernetes.io/docs/user-guide/identifiers#names
+         */
         name: pulumi.Input<string>;
     }
 
     export interface ServiceTemplateSpecContainerResources {
+        /**
+         * -
+         * (Optional)
+         * Limits describes the maximum amount of compute resources allowed.
+         * The values of the map is string form of the 'quantity' k8s type:
+         * https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+         */
         limits?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * (Optional)
+         * Requests describes the minimum amount of compute resources required.
+         * If Requests is omitted for a container, it defaults to Limits if that is
+         * explicitly specified, otherwise to an implementation-defined value.
+         * The values of the map is string form of the 'quantity' k8s type:
+         * https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+         */
         requests?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     }
 
     export interface ServiceTraffic {
+        /**
+         * -
+         * (Optional)
+         * LatestRevision may be optionally provided to indicate that the latest ready
+         * Revision of the Configuration should be used for this traffic target. When
+         * provided LatestRevision must be true if RevisionName is empty; it must be
+         * false when RevisionName is non-empty.
+         */
         latestRevision?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Required)
+         * Percent specifies percent of the traffic to this Revision or Configuration.
+         */
         percent: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * RevisionName of a specific revision to which to send this portion of traffic.
+         */
         revisionName?: pulumi.Input<string>;
     }
 }
 
 export namespace cloudscheduler {
     export interface JobAppEngineHttpTarget {
+        /**
+         * -
+         * (Optional)
+         * App Engine Routing setting for the job.  Structure is documented below.
+         */
         appEngineRouting?: pulumi.Input<inputs.cloudscheduler.JobAppEngineHttpTargetAppEngineRouting>;
+        /**
+         * -
+         * (Optional)
+         * HTTP request body.
+         * A request body is allowed only if the HTTP method is POST or PUT.
+         * It will result in invalid argument error to set a body on a job with an incompatible HttpMethod.
+         */
         body?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * HTTP request headers.
+         * This map contains the header field names and values.
+         * Headers can be set when the job is created.
+         */
         headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * (Optional)
+         * Which HTTP method to use for the request.
+         */
         httpMethod?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The relative URI.
+         * The relative URL must begin with "/" and must be a valid HTTP relative URL.
+         * It can contain a path, query string arguments, and \# fragments.
+         * If the relative URL is empty, then the root path "/" will be used.
+         * No spaces are allowed, and the maximum length allowed is 2083 characters
+         */
         relativeUri: pulumi.Input<string>;
     }
 
     export interface JobAppEngineHttpTargetAppEngineRouting {
+        /**
+         * -
+         * (Optional)
+         * App instance.
+         * By default, the job is sent to an instance which is available when the job is attempted.
+         */
         instance?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * App service.
+         * By default, the job is sent to the service which is the default service when the job is attempted.
+         */
         service?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * App version.
+         * By default, the job is sent to the version which is the default version when the job is attempted.
+         */
         version?: pulumi.Input<string>;
     }
 
     export interface JobHttpTarget {
+        /**
+         * -
+         * (Optional)
+         * HTTP request body.
+         * A request body is allowed only if the HTTP method is POST or PUT.
+         * It will result in invalid argument error to set a body on a job with an incompatible HttpMethod.
+         */
         body?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * HTTP request headers.
+         * This map contains the header field names and values.
+         * Headers can be set when the job is created.
+         */
         headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * (Optional)
+         * Which HTTP method to use for the request.
+         */
         httpMethod?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Contains information needed for generating an OAuth token.
+         * This type of authorization should be used when sending requests to a GCP endpoint.  Structure is documented below.
+         */
         oauthToken?: pulumi.Input<inputs.cloudscheduler.JobHttpTargetOauthToken>;
+        /**
+         * -
+         * (Optional)
+         * Contains information needed for generating an OpenID Connect token.
+         * This type of authorization should be used when sending requests to third party endpoints or Cloud Run.  Structure is documented below.
+         */
         oidcToken?: pulumi.Input<inputs.cloudscheduler.JobHttpTargetOidcToken>;
+        /**
+         * -
+         * (Required)
+         * The full URI path that the request will be sent to.
+         */
         uri: pulumi.Input<string>;
     }
 
     export interface JobHttpTargetOauthToken {
+        /**
+         * -
+         * (Optional)
+         * OAuth scope to be used for generating OAuth access token. If not specified,
+         * "https://www.googleapis.com/auth/cloud-platform" will be used.
+         */
         scope?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Service account email to be used for generating OAuth token.
+         * The service account must be within the same project as the job.
+         */
         serviceAccountEmail: pulumi.Input<string>;
     }
 
     export interface JobHttpTargetOidcToken {
+        /**
+         * -
+         * (Optional)
+         * Audience to be used when generating OIDC token. If not specified,
+         * the URI specified in target will be used.
+         */
         audience?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Service account email to be used for generating OAuth token.
+         * The service account must be within the same project as the job.
+         */
         serviceAccountEmail: pulumi.Input<string>;
     }
 
     export interface JobPubsubTarget {
+        /**
+         * -
+         * (Optional)
+         * Attributes for PubsubMessage.
+         * Pubsub message must contain either non-empty data, or at least one attribute.
+         */
         attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * (Optional)
+         * The message payload for PubsubMessage.
+         * Pubsub message must contain either non-empty data, or at least one attribute.
+         */
         data?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The full resource name for the Cloud Pub/Sub topic to which
+         * messages will be published when a job is delivered. ~>**NOTE**:
+         * The topic name must be in the same format as required by PubSub's
+         * PublishRequest.name, e.g. `projects/my-project/topics/my-topic`.
+         */
         topicName: pulumi.Input<string>;
     }
 
     export interface JobRetryConfig {
+        /**
+         * -
+         * (Optional)
+         * The maximum amount of time to wait before retrying a job after it fails.
+         * A duration in seconds with up to nine fractional digits, terminated by 's'.
+         */
         maxBackoffDuration?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The time between retries will double maxDoublings times.
+         * A job's retry interval starts at minBackoffDuration,
+         * then doubles maxDoublings times, then increases linearly,
+         * and finally retries retries at intervals of maxBackoffDuration up to retryCount times.
+         */
         maxDoublings?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The time limit for retrying a failed job, measured from time when an execution was first attempted.
+         * If specified with retryCount, the job will be retried until both limits are reached.
+         * A duration in seconds with up to nine fractional digits, terminated by 's'.
+         */
         maxRetryDuration?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The minimum amount of time to wait before retrying a job after it fails.
+         * A duration in seconds with up to nine fractional digits, terminated by 's'.
+         */
         minBackoffDuration?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The number of attempts that the system will make to run a
+         * job using the exponential backoff procedure described by maxDoublings.
+         * Values greater than 5 and negative values are not allowed.
+         */
         retryCount?: pulumi.Input<number>;
     }
 }
 
 export namespace cloudtasks {
     export interface QueueAppEngineRoutingOverride {
+        /**
+         * -
+         * The host that the task is sent to.
+         */
         host?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * App instance.
+         * By default, the task is sent to an instance which is available when the task is attempted.
+         */
         instance?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * App service.
+         * By default, the task is sent to the service which is the default service when the task is attempted.
+         */
         service?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * App version.
+         * By default, the task is sent to the version which is the default version when the task is attempted.
+         */
         version?: pulumi.Input<string>;
     }
 
     export interface QueueRateLimits {
+        /**
+         * -
+         * The max burst size.
+         * Max burst size limits how fast tasks in queue are processed when many tasks are
+         * in the queue and the rate is high. This field allows the queue to have a high
+         * rate so processing starts shortly after a task is enqueued, but still limits
+         * resource usage when many tasks are enqueued in a short period of time.
+         */
         maxBurstSize?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The maximum number of concurrent tasks that Cloud Tasks allows to
+         * be dispatched for this queue. After this threshold has been
+         * reached, Cloud Tasks stops dispatching tasks until the number of
+         * concurrent requests decreases.
+         */
         maxConcurrentDispatches?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The maximum rate at which tasks are dispatched from this queue.
+         * If unspecified when the queue is created, Cloud Tasks will pick the default.
+         */
         maxDispatchesPerSecond?: pulumi.Input<number>;
     }
 
     export interface QueueRetryConfig {
+        /**
+         * -
+         * (Optional)
+         * Number of attempts per task.
+         * Cloud Tasks will attempt the task maxAttempts times (that is, if
+         * the first attempt fails, then there will be maxAttempts - 1
+         * retries). Must be >= -1.
+         * If unspecified when the queue is created, Cloud Tasks will pick
+         * the default.
+         * -1 indicates unlimited attempts.
+         */
         maxAttempts?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * A task will be scheduled for retry between minBackoff and
+         * maxBackoff duration after it fails, if the queue's RetryConfig
+         * specifies that the task should be retried.
+         */
         maxBackoff?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The time between retries will double maxDoublings times.
+         * A task's retry interval starts at minBackoff, then doubles maxDoublings times,
+         * then increases linearly, and finally retries retries at intervals of maxBackoff
+         * up to maxAttempts times.
+         */
         maxDoublings?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * If positive, maxRetryDuration specifies the time limit for
+         * retrying a failed task, measured from when the task was first
+         * attempted. Once maxRetryDuration time has passed and the task has
+         * been attempted maxAttempts times, no further attempts will be
+         * made and the task will be deleted.
+         * If zero, then the task age is unlimited.
+         */
         maxRetryDuration?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A task will be scheduled for retry between minBackoff and
+         * maxBackoff duration after it fails, if the queue's RetryConfig
+         * specifies that the task should be retried.
+         */
         minBackoff?: pulumi.Input<string>;
     }
 }
@@ -988,39 +2830,209 @@ export namespace composer {
         airflowUri?: pulumi.Input<string>;
         dagGcsPrefix?: pulumi.Input<string>;
         gkeCluster?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The configuration used for the Kubernetes Engine cluster.  Structure is documented below.
+         */
         nodeConfig?: pulumi.Input<inputs.composer.EnvironmentConfigNodeConfig>;
+        /**
+         * -
+         * (Optional)
+         * The number of nodes in the Kubernetes Engine cluster that
+         * will be used to run this environment.
+         */
         nodeCount?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The configuration used for the Private IP Cloud Composer environment. Structure is documented below.
+         */
         privateEnvironmentConfig?: pulumi.Input<inputs.composer.EnvironmentConfigPrivateEnvironmentConfig>;
+        /**
+         * -
+         * (Optional)
+         * The configuration settings for software inside the environment.  Structure is documented below.
+         */
         softwareConfig?: pulumi.Input<inputs.composer.EnvironmentConfigSoftwareConfig>;
     }
 
     export interface EnvironmentConfigNodeConfig {
+        /**
+         * -
+         * (Optional)
+         * The disk size in GB used for node VMs. Minimum size is 20GB.
+         * If unspecified, defaults to 100GB. Cannot be updated.
+         */
         diskSizeGb?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Configuration for controlling how IPs are allocated in the GKE cluster.
+         * Structure is documented below.
+         * Cannot be updated.
+         */
         ipAllocationPolicy?: pulumi.Input<inputs.composer.EnvironmentConfigNodeConfigIpAllocationPolicy>;
+        /**
+         * -
+         * (Optional)
+         * The Compute Engine machine type used for cluster instances,
+         * specified as a name or relative resource name. For example:
+         * "projects/{project}/zones/{zone}/machineTypes/{machineType}". Must belong to the enclosing environment's project and
+         * region/zone.
+         */
         machineType?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The Compute Engine network to be used for machine
+         * communications, specified as a self-link, relative resource name
+         * (e.g. "projects/{project}/global/networks/{network}"), by name.
+         */
         network?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The set of Google API scopes to be made available on all node
+         * VMs. Cannot be updated. If empty, defaults to
+         * `["https://www.googleapis.com/auth/cloud-platform"]`
+         */
         oauthScopes?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * The Google Cloud Platform Service Account to be used by the
+         * node VMs. If a service account is not specified, the "default"
+         * Compute Engine service account is used. Cannot be updated. If given,
+         * note that the service account must have `roles/composer.worker`
+         * for any GCP resources created under the Cloud Composer Environment.
+         */
         serviceAccount?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The Compute Engine subnetwork to be used for machine
+         * communications, , specified as a self-link, relative resource name (e.g.
+         * "projects/{project}/regions/{region}/subnetworks/{subnetwork}"), or by name. If subnetwork is provided,
+         * network must also be provided and the subnetwork must belong to the enclosing environment's project and region.
+         */
         subnetwork?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The list of instance tags applied to all node VMs. Tags are
+         * used to identify valid sources or targets for network
+         * firewalls. Each tag within the list must comply with RFC1035.
+         * Cannot be updated.
+         */
         tags?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Required)
+         * The Compute Engine zone in which to deploy the VMs running the
+         * Apache Airflow software, specified as the zone name or
+         * relative resource name (e.g. "projects/{project}/zones/{zone}"). Must belong to the enclosing environment's project
+         * and region.
+         */
         zone: pulumi.Input<string>;
     }
 
     export interface EnvironmentConfigNodeConfigIpAllocationPolicy {
+        /**
+         * -
+         * (Optional)
+         * The IP address range used to allocate IP addresses to pods in the cluster.
+         * Set to blank to have GKE choose a range with the default size.
+         * Set to /netmask (e.g. /14) to have GKE choose a range with a specific netmask.
+         * Set to a CIDR notation (e.g. 10.96.0.0/14) from the RFC-1918 private networks
+         * (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
+         * Specify either `clusterSecondaryRangeName` or `clusterIpv4CidrBlock` but not both.
+         */
         clusterIpv4CidrBlock?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The name of the cluster's secondary range used to allocate IP addresses to pods.
+         * Specify either `clusterSecondaryRangeName` or `clusterIpv4CidrBlock` but not both.
+         * This field is applicable only when `useIpAliases` is true.
+         */
         clusterSecondaryRangeName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The IP address range used to allocate IP addresses in this cluster.
+         * Set to blank to have GKE choose a range with the default size.
+         * Set to /netmask (e.g. /14) to have GKE choose a range with a specific netmask.
+         * Set to a CIDR notation (e.g. 10.96.0.0/14) from the RFC-1918 private networks
+         * (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
+         * Specify either `servicesSecondaryRangeName` or `servicesIpv4CidrBlock` but not both.
+         */
         servicesIpv4CidrBlock?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The name of the services' secondary range used to allocate IP addresses to the cluster.
+         * Specify either `servicesSecondaryRangeName` or `servicesIpv4CidrBlock` but not both.
+         * This field is applicable only when `useIpAliases` is true.
+         */
         servicesSecondaryRangeName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Whether or not to enable Alias IPs in the GKE cluster. If true, a VPC-native cluster is created.
+         * Defaults to true if the `ipAllocationBlock` is present in config.
+         */
         useIpAliases: pulumi.Input<boolean>;
     }
 
     export interface EnvironmentConfigPrivateEnvironmentConfig {
+        /**
+         * -
+         * If true, access to the public endpoint of the GKE cluster is denied.
+         */
         enablePrivateEndpoint?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * The IP range in CIDR notation to use for the hosted master network. This range is used
+         * for assigning internal IP addresses to the cluster master or set of masters and to the
+         * internal load balancer virtual IP. This range must not overlap with any other ranges
+         * in use within the cluster's network.
+         * If left blank, the default value of '172.16.0.0/28' is used.
+         */
         masterIpv4CidrBlock?: pulumi.Input<string>;
     }
 
     export interface EnvironmentConfigSoftwareConfig {
+        /**
+         * -
+         * (Optional) Apache Airflow configuration properties to override. Property keys contain the section and property names,
+         * separated by a hyphen, for example "core-dags_are_paused_at_creation".
+         */
         airflowConfigOverrides?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * (Optional)
+         * Additional environment variables to provide to the Apache Airflow scheduler, worker, and webserver processes.
+         * Environment variable names must match the regular expression `[a-zA-Z_][a-zA-Z0-9_]*`.
+         * They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression
+         * `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names:
+         * ```
+         * AIRFLOW_HOME
+         * C_FORCE_ROOT
+         * CONTAINER_NAME
+         * DAGS_FOLDER
+         * GCP_PROJECT
+         * GCS_BUCKET
+         * GKE_CLUSTER_NAME
+         * SQL_DATABASE
+         * SQL_INSTANCE
+         * SQL_PASSWORD
+         * SQL_PROJECT
+         * SQL_REGION
+         * SQL_USER
+         * ```
+         */
         envVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * -
@@ -1033,6 +3045,14 @@ export namespace composer {
          * for allowed release names.
          */
         imageVersion?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Custom Python Package Index (PyPI) packages to be installed
+         * in the environment. Keys refer to the lowercase package name (e.g. "numpy"). Values are the lowercase extras and
+         * version specifier (e.g. "==1.12.0", "[devel,gcp_api]", "[devel]>=1.8.2, <1.9.2"). To specify a package without
+         * pinning it to a version specifier, use the empty string as the value.
+         */
         pypiPackages?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
          * -
@@ -1045,195 +3065,912 @@ export namespace composer {
 
 export namespace compute {
     export interface AutoscalarAutoscalingPolicy {
+        /**
+         * -
+         * (Optional)
+         * The number of seconds that the autoscaler should wait before it
+         * starts collecting information from a new instance. This prevents
+         * the autoscaler from collecting information when the instance is
+         * initializing, during which the collected usage would not be
+         * reliable. The default time autoscaler waits is 60 seconds.
+         * Virtual machine initialization times might vary because of
+         * numerous factors. We recommend that you test how long an
+         * instance may take to initialize. To do this, create an instance
+         * and time the startup process.
+         */
         cooldownPeriod?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Defines the CPU utilization policy that allows the autoscaler to
+         * scale based on the average CPU utilization of a managed instance
+         * group.  Structure is documented below.
+         */
         cpuUtilization?: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyCpuUtilization>;
+        /**
+         * -
+         * (Optional)
+         * Configuration parameters of autoscaling based on a load balancer.  Structure is documented below.
+         */
         loadBalancingUtilization?: pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyLoadBalancingUtilization>;
+        /**
+         * -
+         * (Required)
+         * The maximum number of instances that the autoscaler can scale up
+         * to. This is required when creating or updating an autoscaler. The
+         * maximum number of replicas should not be lower than minimal number
+         * of replicas.
+         */
         maxReplicas: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Configuration parameters of autoscaling based on a custom metric.  Structure is documented below.
+         */
         metrics?: pulumi.Input<pulumi.Input<inputs.compute.AutoscalarAutoscalingPolicyMetric>[]>;
+        /**
+         * -
+         * (Required)
+         * The minimum number of replicas that the autoscaler can scale down
+         * to. This cannot be less than 0. If not provided, autoscaler will
+         * choose a default value depending on maximum number of instances
+         * allowed.
+         */
         minReplicas: pulumi.Input<number>;
     }
 
     export interface AutoscalarAutoscalingPolicyCpuUtilization {
+        /**
+         * -
+         * (Required)
+         * URL of the managed instance group that this autoscaler will scale.
+         */
         target: pulumi.Input<number>;
     }
 
     export interface AutoscalarAutoscalingPolicyLoadBalancingUtilization {
+        /**
+         * -
+         * (Required)
+         * URL of the managed instance group that this autoscaler will scale.
+         */
         target: pulumi.Input<number>;
     }
 
     export interface AutoscalarAutoscalingPolicyMetric {
         filter?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Name of the resource. The name must be 1-63 characters long and match
+         * the regular expression `a-z?` which means the
+         * first character must be a lowercase letter, and all following
+         * characters must be a dash, lowercase letter, or digit, except the last
+         * character, which cannot be a dash.
+         */
         name: pulumi.Input<string>;
         singleInstanceAssignment?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * URL of the managed instance group that this autoscaler will scale.
+         */
         target?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Defines how target utilization value is expressed for a
+         * Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND,
+         * or DELTA_PER_MINUTE.
+         */
         type?: pulumi.Input<string>;
     }
 
     export interface AutoscalerAutoscalingPolicy {
+        /**
+         * -
+         * (Optional)
+         * The number of seconds that the autoscaler should wait before it
+         * starts collecting information from a new instance. This prevents
+         * the autoscaler from collecting information when the instance is
+         * initializing, during which the collected usage would not be
+         * reliable. The default time autoscaler waits is 60 seconds.
+         * Virtual machine initialization times might vary because of
+         * numerous factors. We recommend that you test how long an
+         * instance may take to initialize. To do this, create an instance
+         * and time the startup process.
+         */
         cooldownPeriod?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Defines the CPU utilization policy that allows the autoscaler to
+         * scale based on the average CPU utilization of a managed instance
+         * group.  Structure is documented below.
+         */
         cpuUtilization?: pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyCpuUtilization>;
+        /**
+         * -
+         * (Optional)
+         * Configuration parameters of autoscaling based on a load balancer.  Structure is documented below.
+         */
         loadBalancingUtilization?: pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyLoadBalancingUtilization>;
+        /**
+         * -
+         * (Required)
+         * The maximum number of instances that the autoscaler can scale up
+         * to. This is required when creating or updating an autoscaler. The
+         * maximum number of replicas should not be lower than minimal number
+         * of replicas.
+         */
         maxReplicas: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Configuration parameters of autoscaling based on a custom metric.  Structure is documented below.
+         */
         metrics?: pulumi.Input<pulumi.Input<inputs.compute.AutoscalerAutoscalingPolicyMetric>[]>;
+        /**
+         * -
+         * (Required)
+         * The minimum number of replicas that the autoscaler can scale down
+         * to. This cannot be less than 0. If not provided, autoscaler will
+         * choose a default value depending on maximum number of instances
+         * allowed.
+         */
         minReplicas: pulumi.Input<number>;
     }
 
     export interface AutoscalerAutoscalingPolicyCpuUtilization {
+        /**
+         * -
+         * (Required)
+         * URL of the managed instance group that this autoscaler will scale.
+         */
         target: pulumi.Input<number>;
     }
 
     export interface AutoscalerAutoscalingPolicyLoadBalancingUtilization {
+        /**
+         * -
+         * (Required)
+         * URL of the managed instance group that this autoscaler will scale.
+         */
         target: pulumi.Input<number>;
     }
 
     export interface AutoscalerAutoscalingPolicyMetric {
         filter?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Name of the resource. The name must be 1-63 characters long and match
+         * the regular expression `a-z?` which means the
+         * first character must be a lowercase letter, and all following
+         * characters must be a dash, lowercase letter, or digit, except the last
+         * character, which cannot be a dash.
+         */
         name: pulumi.Input<string>;
         singleInstanceAssignment?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * URL of the managed instance group that this autoscaler will scale.
+         */
         target?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Defines how target utilization value is expressed for a
+         * Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND,
+         * or DELTA_PER_MINUTE.
+         */
         type?: pulumi.Input<string>;
     }
 
     export interface BackendBucketCdnPolicy {
+        /**
+         * -
+         * (Required)
+         * Maximum number of seconds the response to a signed URL request will
+         * be considered fresh. After this time period,
+         * the response will be revalidated before being served.
+         * When serving responses to signed URL requests,
+         * Cloud CDN will internally behave as though
+         * all responses from this backend had a "Cache-Control: public,
+         * max-age=[TTL]" header, regardless of any existing Cache-Control
+         * header. The actual headers served in responses will not be altered.
+         */
         signedUrlCacheMaxAgeSec: pulumi.Input<number>;
     }
 
     export interface BackendServiceBackend {
+        /**
+         * -
+         * (Optional)
+         * Specifies the balancing mode for this backend.
+         * For global HTTP(S) or TCP/SSL load balancing, the default is
+         * UTILIZATION. Valid values are UTILIZATION, RATE (for HTTP(S))
+         * and CONNECTION (for TCP/SSL).
+         */
         balancingMode?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A multiplier applied to the group's maximum servicing capacity
+         * (based on UTILIZATION, RATE or CONNECTION).
+         * Default value is 1, which means the group will serve up to 100%
+         * of its configured capacity (depending on balancingMode). A
+         * setting of 0 means the group is completely drained, offering
+         * 0% of its available Capacity. Valid range is [0.0,1.0].
+         */
         capacityScaler?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * An optional description of this resource.
+         */
         description?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The fully-qualified URL of an Instance Group or Network Endpoint
+         * Group resource. In case of instance group this defines the list
+         * of instances that serve traffic. Member virtual machine
+         * instances from each instance group must live in the same zone as
+         * the instance group itself. No two backends in a backend service
+         * are allowed to use same Instance Group resource.
+         * For Network Endpoint Groups this defines list of endpoints. All
+         * endpoints of Network Endpoint Group must be hosted on instances
+         * located in the same zone as the Network Endpoint Group.
+         * Backend services cannot mix Instance Group and
+         * Network Endpoint Group backends.
+         * Note that you must specify an Instance Group or Network Endpoint
+         * Group resource using the fully-qualified URL, rather than a
+         * partial URL.
+         */
         group: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The max number of simultaneous connections for the group. Can
+         * be used with either CONNECTION or UTILIZATION balancing modes.
+         * For CONNECTION mode, either maxConnections or one
+         * of maxConnectionsPerInstance or maxConnectionsPerEndpoint,
+         * as appropriate for group type, must be set.
+         */
         maxConnections?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The max number of simultaneous connections that a single backend
+         * network endpoint can handle. This is used to calculate the
+         * capacity of the group. Can be used in either CONNECTION or
+         * UTILIZATION balancing modes.
+         * For CONNECTION mode, either
+         * maxConnections or maxConnectionsPerEndpoint must be set.
+         */
         maxConnectionsPerEndpoint?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The max number of simultaneous connections that a single
+         * backend instance can handle. This is used to calculate the
+         * capacity of the group. Can be used in either CONNECTION or
+         * UTILIZATION balancing modes.
+         * For CONNECTION mode, either maxConnections or
+         * maxConnectionsPerInstance must be set.
+         */
         maxConnectionsPerInstance?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The max requests per second (RPS) of the group.
+         * Can be used with either RATE or UTILIZATION balancing modes,
+         * but required if RATE mode. For RATE mode, either maxRate or one
+         * of maxRatePerInstance or maxRatePerEndpoint, as appropriate for
+         * group type, must be set.
+         */
         maxRate?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The max requests per second (RPS) that a single backend network
+         * endpoint can handle. This is used to calculate the capacity of
+         * the group. Can be used in either balancing mode. For RATE mode,
+         * either maxRate or maxRatePerEndpoint must be set.
+         */
         maxRatePerEndpoint?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The max requests per second (RPS) that a single backend
+         * instance can handle. This is used to calculate the capacity of
+         * the group. Can be used in either balancing mode. For RATE mode,
+         * either maxRate or maxRatePerInstance must be set.
+         */
         maxRatePerInstance?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Used when balancingMode is UTILIZATION. This ratio defines the
+         * CPU utilization target for the group. The default is 0.8. Valid
+         * range is [0.0, 1.0].
+         */
         maxUtilization?: pulumi.Input<number>;
     }
 
     export interface BackendServiceCdnPolicy {
+        /**
+         * -
+         * (Optional)
+         * The CacheKeyPolicy for this CdnPolicy.  Structure is documented below.
+         */
         cacheKeyPolicy?: pulumi.Input<inputs.compute.BackendServiceCdnPolicyCacheKeyPolicy>;
+        /**
+         * -
+         * (Optional)
+         * Maximum number of seconds the response to a signed URL request
+         * will be considered fresh, defaults to 1hr (3600s). After this
+         * time period, the response will be revalidated before
+         * being served.
+         * When serving responses to signed URL requests, Cloud CDN will
+         * internally behave as though all responses from this backend had a
+         * "Cache-Control: public, max-age=[TTL]" header, regardless of any
+         * existing Cache-Control header. The actual headers served in
+         * responses will not be altered.
+         */
         signedUrlCacheMaxAgeSec?: pulumi.Input<number>;
     }
 
     export interface BackendServiceCdnPolicyCacheKeyPolicy {
+        /**
+         * -
+         * (Optional)
+         * If true requests to different hosts will be cached separately.
+         */
         includeHost?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * If true, http and https requests will be cached separately.
+         */
         includeProtocol?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * If true, include query string parameters in the cache key
+         * according to queryStringWhitelist and
+         * query_string_blacklist. If neither is set, the entire query
+         * string will be included.
+         * If false, the query string will be excluded from the cache
+         * key entirely.
+         */
         includeQueryString?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Names of query string parameters to exclude in cache keys.
+         * All other parameters will be included. Either specify
+         * queryStringWhitelist or query_string_blacklist, not both.
+         * '&' and '=' will be percent encoded and not treated as
+         * delimiters.
+         */
         queryStringBlacklists?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Names of query string parameters to include in cache keys.
+         * All other parameters will be excluded. Either specify
+         * queryStringWhitelist or query_string_blacklist, not both.
+         * '&' and '=' will be percent encoded and not treated as
+         * delimiters.
+         */
         queryStringWhitelists?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface BackendServiceCircuitBreakers {
+        /**
+         * -
+         * (Optional)
+         * The timeout for new network connections to hosts.  Structure is documented below.
+         */
         connectTimeout?: pulumi.Input<inputs.compute.BackendServiceCircuitBreakersConnectTimeout>;
+        /**
+         * -
+         * (Optional)
+         * The max number of simultaneous connections for the group. Can
+         * be used with either CONNECTION or UTILIZATION balancing modes.
+         * For CONNECTION mode, either maxConnections or one
+         * of maxConnectionsPerInstance or maxConnectionsPerEndpoint,
+         * as appropriate for group type, must be set.
+         */
         maxConnections?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The maximum number of pending requests to the backend cluster.
+         * Defaults to 1024.
+         */
         maxPendingRequests?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The maximum number of parallel requests to the backend cluster.
+         * Defaults to 1024.
+         */
         maxRequests?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Maximum requests for a single backend connection. This parameter
+         * is respected by both the HTTP/1.1 and HTTP/2 implementations. If
+         * not specified, there is no limit. Setting this parameter to 1
+         * will effectively disable keep alive.
+         */
         maxRequestsPerConnection?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The maximum number of parallel retries to the backend cluster.
+         * Defaults to 3.
+         */
         maxRetries?: pulumi.Input<number>;
     }
 
     export interface BackendServiceCircuitBreakersConnectTimeout {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond
+         * resolution. Durations less than one second are represented
+         * with a 0 seconds field and a positive nanos field. Must
+         * be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second.
+         * Must be from 0 to 315,576,000,000 inclusive.
+         */
         seconds: pulumi.Input<number>;
     }
 
     export interface BackendServiceConsistentHash {
+        /**
+         * -
+         * (Optional)
+         * Hash is based on HTTP Cookie. This field describes a HTTP cookie
+         * that will be used as the hash key for the consistent hash load
+         * balancer. If the cookie is not present, it will be generated.
+         * This field is applicable if the sessionAffinity is set to HTTP_COOKIE.  Structure is documented below.
+         */
         httpCookie?: pulumi.Input<inputs.compute.BackendServiceConsistentHashHttpCookie>;
+        /**
+         * -
+         * (Optional)
+         * The hash based on the value of the specified header field.
+         * This field is applicable if the sessionAffinity is set to HEADER_FIELD.
+         */
         httpHeaderName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The minimum number of virtual nodes to use for the hash ring.
+         * Larger ring sizes result in more granular load
+         * distributions. If the number of hosts in the load balancing pool
+         * is larger than the ring size, each host will be assigned a single
+         * virtual node.
+         * Defaults to 1024.
+         */
         minimumRingSize?: pulumi.Input<number>;
     }
 
     export interface BackendServiceConsistentHashHttpCookie {
+        /**
+         * -
+         * (Required)
+         * Name of the resource. Provided by the client when the resource is
+         * created. The name must be 1-63 characters long, and comply with
+         * RFC1035. Specifically, the name must be 1-63 characters long and match
+         * the regular expression `a-z?` which means the
+         * first character must be a lowercase letter, and all following
+         * characters must be a dash, lowercase letter, or digit, except the last
+         * character, which cannot be a dash.
+         */
         name?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Path to set for the cookie.
+         */
         path?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Lifetime of the cookie.  Structure is documented below.
+         */
         ttl?: pulumi.Input<inputs.compute.BackendServiceConsistentHashHttpCookieTtl>;
     }
 
     export interface BackendServiceConsistentHashHttpCookieTtl {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond
+         * resolution. Durations less than one second are represented
+         * with a 0 seconds field and a positive nanos field. Must
+         * be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second.
+         * Must be from 0 to 315,576,000,000 inclusive.
+         */
         seconds: pulumi.Input<number>;
     }
 
     export interface BackendServiceIap {
+        /**
+         * -
+         * (Required)
+         * OAuth2 Client ID for IAP
+         */
         oauth2ClientId: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * OAuth2 Client Secret for IAP
+         */
         oauth2ClientSecret: pulumi.Input<string>;
+        /**
+         * -
+         * OAuth2 Client Secret SHA-256 for IAP
+         */
         oauth2ClientSecretSha256?: pulumi.Input<string>;
     }
 
     export interface BackendServiceLogConfig {
+        /**
+         * -
+         * (Optional)
+         * Whether to enable logging for the load balancer traffic served by this backend service.
+         */
         enable?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * This field can only be specified if logging is enabled for this backend service. The value of
+         * the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer
+         * where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported.
+         * The default value is 1.0.
+         */
         sampleRate?: pulumi.Input<number>;
     }
 
     export interface BackendServiceOutlierDetection {
+        /**
+         * -
+         * (Optional)
+         * The base time that a host is ejected for. The real time is equal to the base
+         * time multiplied by the number of times the host has been ejected. Defaults to
+         * 30000ms or 30s.  Structure is documented below.
+         */
         baseEjectionTime?: pulumi.Input<inputs.compute.BackendServiceOutlierDetectionBaseEjectionTime>;
+        /**
+         * -
+         * (Optional)
+         * Number of errors before a host is ejected from the connection pool. When the
+         * backend host is accessed over HTTP, a 5xx return code qualifies as an error.
+         * Defaults to 5.
+         */
         consecutiveErrors?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The number of consecutive gateway failures (502, 503, 504 status or connection
+         * errors that are mapped to one of those status codes) before a consecutive
+         * gateway failure ejection occurs. Defaults to 5.
+         */
         consecutiveGatewayFailure?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The percentage chance that a host will be actually ejected when an outlier
+         * status is detected through consecutive 5xx. This setting can be used to disable
+         * ejection or to ramp it up slowly. Defaults to 100.
+         */
         enforcingConsecutiveErrors?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The percentage chance that a host will be actually ejected when an outlier
+         * status is detected through consecutive gateway failures. This setting can be
+         * used to disable ejection or to ramp it up slowly. Defaults to 0.
+         */
         enforcingConsecutiveGatewayFailure?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The percentage chance that a host will be actually ejected when an outlier
+         * status is detected through success rate statistics. This setting can be used to
+         * disable ejection or to ramp it up slowly. Defaults to 100.
+         */
         enforcingSuccessRate?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Time interval between ejection sweep analysis. This can result in both new
+         * ejections as well as hosts being returned to service. Defaults to 10 seconds.  Structure is documented below.
+         */
         interval?: pulumi.Input<inputs.compute.BackendServiceOutlierDetectionInterval>;
+        /**
+         * -
+         * (Optional)
+         * Maximum percentage of hosts in the load balancing pool for the backend service
+         * that can be ejected. Defaults to 10%.
+         */
         maxEjectionPercent?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The number of hosts in a cluster that must have enough request volume to detect
+         * success rate outliers. If the number of hosts is less than this setting, outlier
+         * detection via success rate statistics is not performed for any host in the
+         * cluster. Defaults to 5.
+         */
         successRateMinimumHosts?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The minimum number of total requests that must be collected in one interval (as
+         * defined by the interval duration above) to include this host in success rate
+         * based outlier detection. If the volume is lower than this setting, outlier
+         * detection via success rate statistics is not performed for that host. Defaults
+         * to 100.
+         */
         successRateRequestVolume?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * This factor is used to determine the ejection threshold for success rate outlier
+         * ejection. The ejection threshold is the difference between the mean success
+         * rate, and the product of this factor and the standard deviation of the mean
+         * success rate: mean - (stdev * success_rate_stdev_factor). This factor is divided
+         * by a thousand to get a double. That is, if the desired factor is 1.9, the
+         * runtime value should be 1900. Defaults to 1900.
+         */
         successRateStdevFactor?: pulumi.Input<number>;
     }
 
     export interface BackendServiceOutlierDetectionBaseEjectionTime {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond
+         * resolution. Durations less than one second are represented
+         * with a 0 seconds field and a positive nanos field. Must
+         * be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second.
+         * Must be from 0 to 315,576,000,000 inclusive.
+         */
         seconds: pulumi.Input<number>;
     }
 
     export interface BackendServiceOutlierDetectionInterval {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond
+         * resolution. Durations less than one second are represented
+         * with a 0 seconds field and a positive nanos field. Must
+         * be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second.
+         * Must be from 0 to 315,576,000,000 inclusive.
+         */
         seconds: pulumi.Input<number>;
     }
 
     export interface DiskDiskEncryptionKey {
+        /**
+         * -
+         * (Optional)
+         * The self link of the encryption key used to encrypt the disk. Also called KmsKeyName
+         * in the cloud console. Your project's Compute Engine System service account
+         * (`service-{{PROJECT_NUMBER}}@compute-system.iam.gserviceaccount.com`) must have
+         * `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
+         * See https://cloud.google.com/compute/docs/disks/customer-managed-encryption#encrypt_a_new_persistent_disk_with_your_own_keys
+         */
         kmsKeySelfLink?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies a 256-bit customer-supplied encryption key, encoded in
+         * RFC 4648 base64 to either encrypt or decrypt this resource.
+         */
         rawKey?: pulumi.Input<string>;
+        /**
+         * -
+         * The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
+         * encryption key that protects this resource.
+         */
         sha256?: pulumi.Input<string>;
     }
 
     export interface DiskSourceImageEncryptionKey {
+        /**
+         * -
+         * (Optional)
+         * The self link of the encryption key used to encrypt the disk. Also called KmsKeyName
+         * in the cloud console. Your project's Compute Engine System service account
+         * (`service-{{PROJECT_NUMBER}}@compute-system.iam.gserviceaccount.com`) must have
+         * `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
+         * See https://cloud.google.com/compute/docs/disks/customer-managed-encryption#encrypt_a_new_persistent_disk_with_your_own_keys
+         */
         kmsKeySelfLink?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies a 256-bit customer-supplied encryption key, encoded in
+         * RFC 4648 base64 to either encrypt or decrypt this resource.
+         */
         rawKey?: pulumi.Input<string>;
+        /**
+         * -
+         * The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
+         * encryption key that protects this resource.
+         */
         sha256?: pulumi.Input<string>;
     }
 
     export interface DiskSourceSnapshotEncryptionKey {
+        /**
+         * -
+         * (Optional)
+         * The self link of the encryption key used to encrypt the disk. Also called KmsKeyName
+         * in the cloud console. Your project's Compute Engine System service account
+         * (`service-{{PROJECT_NUMBER}}@compute-system.iam.gserviceaccount.com`) must have
+         * `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
+         * See https://cloud.google.com/compute/docs/disks/customer-managed-encryption#encrypt_a_new_persistent_disk_with_your_own_keys
+         */
         kmsKeySelfLink?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies a 256-bit customer-supplied encryption key, encoded in
+         * RFC 4648 base64 to either encrypt or decrypt this resource.
+         */
         rawKey?: pulumi.Input<string>;
+        /**
+         * -
+         * The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
+         * encryption key that protects this resource.
+         */
         sha256?: pulumi.Input<string>;
     }
 
     export interface ExternalVpnGatewayInterface {
         /**
-         * an identifier for the resource with format `projects/{{project}}/global/externalVpnGateways/{{name}}`
+         * -
+         * (Optional)
+         * The numberic ID for this interface. Allowed values are based on the redundancy type
+         * of this external VPN gateway
+         * * `0 - SINGLE_IP_INTERNALLY_REDUNDANT`
+         * * `0, 1 - TWO_IPS_REDUNDANCY`
+         * * `0, 1, 2, 3 - FOUR_IPS_REDUNDANCY`
          */
         id?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * IP address of the interface in the external VPN gateway.
+         * Only IPv4 is supported. This IP address can be either from
+         * your on-premise gateway or another Cloud provider’s VPN gateway,
+         * it cannot be an IP address from Google Compute Engine.
+         */
         ipAddress?: pulumi.Input<string>;
     }
 
     export interface FirewallAllow {
+        /**
+         * -
+         * (Optional)
+         * An optional list of ports to which this rule applies. This field
+         * is only applicable for UDP or TCP protocol. Each entry must be
+         * either an integer or a range. If not specified, this rule
+         * applies to connections through any port.
+         * Example inputs include: ["22"], ["80","443"], and
+         * ["12345-12349"].
+         */
         ports?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Required)
+         * The IP protocol to which this rule applies. The protocol type is
+         * required when creating a firewall rule. This value can either be
+         * one of the following well known protocol strings (tcp, udp,
+         * icmp, esp, ah, sctp), or the IP protocol number.
+         */
         protocol: pulumi.Input<string>;
     }
 
     export interface FirewallDeny {
+        /**
+         * -
+         * (Optional)
+         * An optional list of ports to which this rule applies. This field
+         * is only applicable for UDP or TCP protocol. Each entry must be
+         * either an integer or a range. If not specified, this rule
+         * applies to connections through any port.
+         * Example inputs include: ["22"], ["80","443"], and
+         * ["12345-12349"].
+         */
         ports?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Required)
+         * The IP protocol to which this rule applies. The protocol type is
+         * required when creating a firewall rule. This value can either be
+         * one of the following well known protocol strings (tcp, udp,
+         * icmp, esp, ah, sctp), or the IP protocol number.
+         */
         protocol: pulumi.Input<string>;
     }
 
     export interface GlobalForwardingRuleMetadataFilter {
+        /**
+         * -
+         * (Required)
+         * The list of label value pairs that must match labels in the
+         * provided metadata based on filterMatchCriteria
+         * This list must not be empty and can have at the most 64 entries.  Structure is documented below.
+         */
         filterLabels: pulumi.Input<pulumi.Input<inputs.compute.GlobalForwardingRuleMetadataFilterFilterLabel>[]>;
+        /**
+         * -
+         * (Required)
+         * Specifies how individual filterLabel matches within the list of
+         * filterLabels contribute towards the overall metadataFilter match.
+         * MATCH_ANY - At least one of the filterLabels must have a matching
+         * label in the provided metadata.
+         * MATCH_ALL - All filterLabels must have matching labels in the
+         * provided metadata.
+         */
         filterMatchCriteria: pulumi.Input<string>;
     }
 
     export interface GlobalForwardingRuleMetadataFilterFilterLabel {
+        /**
+         * -
+         * (Required)
+         * Name of the resource; provided by the client when the resource is
+         * created. The name must be 1-63 characters long, and comply with
+         * RFC1035. Specifically, the name must be 1-63 characters long and match
+         * the regular expression `a-z?` which means the
+         * first character must be a lowercase letter, and all following
+         * characters must be a dash, lowercase letter, or digit, except the last
+         * character, which cannot be a dash.
+         */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value that the label must match. The value has a maximum
+         * length of 1024 characters.
+         */
         value: pulumi.Input<string>;
     }
 
@@ -1246,74 +3983,351 @@ export namespace compute {
     }
 
     export interface HealthCheckHttp2HealthCheck {
+        /**
+         * -
+         * (Optional)
+         * The value of the host header in the HTTP health check request.
+         * If left empty (default value), the public IP on behalf of which this health
+         * check is performed will be used.
+         */
         host?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The TCP port number for the HTTP health check request.
+         * The default value is 80.
+         */
         port?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+         * portName are defined, port takes precedence.
+         */
         portName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how port is selected for health checking, can be one of the
+         * following values:
+         * * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+         * * `USE_NAMED_PORT`: The `portName` is used for health checking.
+         * * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+         * network endpoint is used for health checking. For other backends, the
+         * port or named port specified in the Backend Service is used for health
+         * checking.
+         * If not specified, HTTP health check follows behavior specified in `port` and
+         * `portName` fields.
+         */
         portSpecification?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the type of proxy header to append before sending data to the
+         * backend, either NONE or PROXY_V1. The default is NONE.
+         */
         proxyHeader?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The request path of the HTTP health check request.
+         * The default value is /.
+         */
         requestPath?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The bytes to match against the beginning of the response data. If left empty
+         * (the default value), any response will indicate health. The response data
+         * can only be ASCII.
+         */
         response?: pulumi.Input<string>;
     }
 
     export interface HealthCheckHttpHealthCheck {
+        /**
+         * -
+         * (Optional)
+         * The value of the host header in the HTTP health check request.
+         * If left empty (default value), the public IP on behalf of which this health
+         * check is performed will be used.
+         */
         host?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The TCP port number for the HTTP health check request.
+         * The default value is 80.
+         */
         port?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+         * portName are defined, port takes precedence.
+         */
         portName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how port is selected for health checking, can be one of the
+         * following values:
+         * * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+         * * `USE_NAMED_PORT`: The `portName` is used for health checking.
+         * * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+         * network endpoint is used for health checking. For other backends, the
+         * port or named port specified in the Backend Service is used for health
+         * checking.
+         * If not specified, HTTP health check follows behavior specified in `port` and
+         * `portName` fields.
+         */
         portSpecification?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the type of proxy header to append before sending data to the
+         * backend, either NONE or PROXY_V1. The default is NONE.
+         */
         proxyHeader?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The request path of the HTTP health check request.
+         * The default value is /.
+         */
         requestPath?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The bytes to match against the beginning of the response data. If left empty
+         * (the default value), any response will indicate health. The response data
+         * can only be ASCII.
+         */
         response?: pulumi.Input<string>;
     }
 
     export interface HealthCheckHttpsHealthCheck {
+        /**
+         * -
+         * (Optional)
+         * The value of the host header in the HTTP health check request.
+         * If left empty (default value), the public IP on behalf of which this health
+         * check is performed will be used.
+         */
         host?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The TCP port number for the HTTP health check request.
+         * The default value is 80.
+         */
         port?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+         * portName are defined, port takes precedence.
+         */
         portName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how port is selected for health checking, can be one of the
+         * following values:
+         * * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+         * * `USE_NAMED_PORT`: The `portName` is used for health checking.
+         * * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+         * network endpoint is used for health checking. For other backends, the
+         * port or named port specified in the Backend Service is used for health
+         * checking.
+         * If not specified, HTTP health check follows behavior specified in `port` and
+         * `portName` fields.
+         */
         portSpecification?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the type of proxy header to append before sending data to the
+         * backend, either NONE or PROXY_V1. The default is NONE.
+         */
         proxyHeader?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The request path of the HTTP health check request.
+         * The default value is /.
+         */
         requestPath?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The bytes to match against the beginning of the response data. If left empty
+         * (the default value), any response will indicate health. The response data
+         * can only be ASCII.
+         */
         response?: pulumi.Input<string>;
     }
 
     export interface HealthCheckSslHealthCheck {
+        /**
+         * -
+         * (Optional)
+         * The TCP port number for the HTTP health check request.
+         * The default value is 80.
+         */
         port?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+         * portName are defined, port takes precedence.
+         */
         portName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how port is selected for health checking, can be one of the
+         * following values:
+         * * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+         * * `USE_NAMED_PORT`: The `portName` is used for health checking.
+         * * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+         * network endpoint is used for health checking. For other backends, the
+         * port or named port specified in the Backend Service is used for health
+         * checking.
+         * If not specified, HTTP health check follows behavior specified in `port` and
+         * `portName` fields.
+         */
         portSpecification?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the type of proxy header to append before sending data to the
+         * backend, either NONE or PROXY_V1. The default is NONE.
+         */
         proxyHeader?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The application data to send once the TCP connection has been
+         * established (default value is empty). If both request and response are
+         * empty, the connection establishment alone will indicate health. The request
+         * data can only be ASCII.
+         */
         request?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The bytes to match against the beginning of the response data. If left empty
+         * (the default value), any response will indicate health. The response data
+         * can only be ASCII.
+         */
         response?: pulumi.Input<string>;
     }
 
     export interface HealthCheckTcpHealthCheck {
+        /**
+         * -
+         * (Optional)
+         * The TCP port number for the HTTP health check request.
+         * The default value is 80.
+         */
         port?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+         * portName are defined, port takes precedence.
+         */
         portName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how port is selected for health checking, can be one of the
+         * following values:
+         * * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+         * * `USE_NAMED_PORT`: The `portName` is used for health checking.
+         * * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+         * network endpoint is used for health checking. For other backends, the
+         * port or named port specified in the Backend Service is used for health
+         * checking.
+         * If not specified, HTTP health check follows behavior specified in `port` and
+         * `portName` fields.
+         */
         portSpecification?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the type of proxy header to append before sending data to the
+         * backend, either NONE or PROXY_V1. The default is NONE.
+         */
         proxyHeader?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The application data to send once the TCP connection has been
+         * established (default value is empty). If both request and response are
+         * empty, the connection establishment alone will indicate health. The request
+         * data can only be ASCII.
+         */
         request?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The bytes to match against the beginning of the response data. If left empty
+         * (the default value), any response will indicate health. The response data
+         * can only be ASCII.
+         */
         response?: pulumi.Input<string>;
     }
 
     export interface ImageGuestOsFeature {
+        /**
+         * -
+         * (Required)
+         * The type of supported feature. Read [Enabling guest operating system features](https://cloud.google.com/compute/docs/images/create-delete-deprecate-private-images#guest-os-features) to see a list of available options.
+         */
         type: pulumi.Input<string>;
     }
 
     export interface ImageRawDisk {
+        /**
+         * -
+         * (Optional)
+         * The format used to encode and transmit the block device, which
+         * should be TAR. This is just a container and transmission format
+         * and not a runtime format. Provided by the client when the disk
+         * image is created.
+         */
         containerType?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * An optional SHA1 checksum of the disk image before unpackaging.
+         * This is provided by the client when the disk image is created.
+         */
         sha1?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The full Google Cloud Storage URL where disk storage is stored
+         * You must provide either this property or the sourceDisk property
+         * but not both.
+         */
         source: pulumi.Input<string>;
     }
 
     export interface InstanceAttachedDisk {
         /**
-         * Name with which the attached disk will be accessible
-         * under `/dev/disk/by-id/google-*`
+         * Name with which attached disk will be accessible.
+         * On the instance, this device will be `/dev/disk/by-id/google-{{device_name}}`.
          */
         deviceName?: pulumi.Input<string>;
         /**
          * A 256-bit [customer-supplied encryption key]
          * (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
          * encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
-         * to encrypt this disk. Only one of `kmsKeySelfLink` and `diskEncryptionKeyRaw` may be set.
+         * to encrypt this disk. Only one of `kmsKeySelfLink` and `diskEncryptionKeyRaw`
+         * may be set.
          */
         diskEncryptionKeyRaw?: pulumi.Input<string>;
         diskEncryptionKeySha256?: pulumi.Input<string>;
@@ -1324,14 +4338,14 @@ export namespace compute {
          */
         kmsKeySelfLink?: pulumi.Input<string>;
         /**
-         * Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
-         * If you have a persistent disk with data that you want to share
-         * between multiple instances, detach it from any read-write instances and
-         * attach it to one or more instances in read-only mode.
+         * The mode in which to attach this disk, either `READ_WRITE`
+         * or `READ_ONLY`. If not specified, the default is to attach the disk in `READ_WRITE` mode.
          */
         mode?: pulumi.Input<string>;
         /**
-         * The name or selfLink of the disk to attach to this instance.
+         * The name or selfLink of the existing disk (such as those managed by
+         * `gcp.compute.Disk`) or disk image. To create an instance from a snapshot, first create a
+         * `gcp.compute.Disk` from a snapshot and reference it here.
          */
         source: pulumi.Input<string>;
     }
@@ -1343,15 +4357,16 @@ export namespace compute {
          */
         autoDelete?: pulumi.Input<boolean>;
         /**
-         * Name with which the attached disk will be accessible
-         * under `/dev/disk/by-id/google-*`
+         * Name with which attached disk will be accessible.
+         * On the instance, this device will be `/dev/disk/by-id/google-{{device_name}}`.
          */
         deviceName?: pulumi.Input<string>;
         /**
          * A 256-bit [customer-supplied encryption key]
          * (https://cloud.google.com/compute/docs/disks/customer-supplied-encryption),
          * encoded in [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
-         * to encrypt this disk. Only one of `kmsKeySelfLink` and `diskEncryptionKeyRaw` may be set.
+         * to encrypt this disk. Only one of `kmsKeySelfLink` and `diskEncryptionKeyRaw`
+         * may be set.
          */
         diskEncryptionKeyRaw?: pulumi.Input<string>;
         diskEncryptionKeySha256?: pulumi.Input<string>;
@@ -1368,14 +4383,14 @@ export namespace compute {
          */
         kmsKeySelfLink?: pulumi.Input<string>;
         /**
-         * Either "READ_ONLY" or "READ_WRITE", defaults to "READ_WRITE"
-         * If you have a persistent disk with data that you want to share
-         * between multiple instances, detach it from any read-write instances and
-         * attach it to one or more instances in read-only mode.
+         * The mode in which to attach this disk, either `READ_WRITE`
+         * or `READ_ONLY`. If not specified, the default is to attach the disk in `READ_WRITE` mode.
          */
         mode?: pulumi.Input<string>;
         /**
-         * The name or selfLink of the disk to attach to this instance.
+         * The name or selfLink of the existing disk (such as those managed by
+         * `gcp.compute.Disk`) or disk image. To create an instance from a snapshot, first create a
+         * `gcp.compute.Disk` from a snapshot and reference it here.
          */
         source?: pulumi.Input<string>;
     }
@@ -1403,7 +4418,7 @@ export namespace compute {
          */
         size?: pulumi.Input<number>;
         /**
-         * The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+         * The GCE disk type. May be set to pd-standard or pd-ssd.
          */
         type?: pulumi.Input<string>;
     }
@@ -1507,7 +4522,10 @@ export namespace compute {
 
     export interface InstanceGroupManagerNamedPort {
         /**
-         * - Version name.
+         * The name of the instance group manager. Must be 1-63
+         * characters long and comply with
+         * [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+         * include lowercase letters, numbers, and hyphens.
          */
         name: pulumi.Input<string>;
         /**
@@ -1555,11 +4573,16 @@ export namespace compute {
          */
         instanceTemplate: pulumi.Input<string>;
         /**
-         * - Version name.
+         * The name of the instance group manager. Must be 1-63
+         * characters long and comply with
+         * [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+         * include lowercase letters, numbers, and hyphens.
          */
         name?: pulumi.Input<string>;
         /**
-         * - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+         * The target number of running instances for this managed
+         * instance group. This value should always be explicitly set unless this resource is attached to
+         * an autoscaler, in which case it should never be set. Defaults to `0`.
          */
         targetSize?: pulumi.Input<inputs.compute.InstanceGroupManagerVersionTargetSize>;
     }
@@ -1579,7 +4602,10 @@ export namespace compute {
 
     export interface InstanceGroupNamedPort {
         /**
-         * The name which the port will be mapped to.
+         * The name of the instance group. Must be 1-63
+         * characters long and comply with
+         * [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+         * include lowercase letters, numbers, and hyphens.
          */
         name: pulumi.Input<string>;
         /**
@@ -1594,7 +4620,7 @@ export namespace compute {
          */
         count: pulumi.Input<number>;
         /**
-         * The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+         * The GCE disk type. May be set to pd-standard or pd-ssd.
          */
         type: pulumi.Input<string>;
     }
@@ -1859,7 +4885,8 @@ export namespace compute {
          */
         sourceImage?: pulumi.Input<string>;
         /**
-         * The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+         * The type of GCE disk, can be either `"SCRATCH"` or
+         * `"PERSISTENT"`.
          */
         type?: pulumi.Input<string>;
     }
@@ -1877,7 +4904,8 @@ export namespace compute {
          */
         count: pulumi.Input<number>;
         /**
-         * The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+         * The type of GCE disk, can be either `"SCRATCH"` or
+         * `"PERSISTENT"`.
          */
         type: pulumi.Input<string>;
     }
@@ -2034,6 +5062,12 @@ export namespace compute {
     }
 
     export interface ManagedSslCertificateManaged {
+        /**
+         * -
+         * (Required)
+         * Domains for which a managed SSL certificate will be valid.  Currently,
+         * there can be up to 100 domains in this list.
+         */
         domains: pulumi.Input<pulumi.Input<string>[]>;
     }
 
@@ -2042,211 +5076,1089 @@ export namespace compute {
     }
 
     export interface NodeGroupAutoscalingPolicy {
+        /**
+         * -
+         * (Required)
+         * Maximum size of the node group. Set to a value less than or equal
+         * to 100 and greater than or equal to min-nodes.
+         */
         maxNodes?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Minimum size of the node group. Must be less
+         * than or equal to max-nodes. The default value is 0.
+         */
         minNodes?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * The autoscaling mode. Set to one of the following:
+         * - OFF: Disables the autoscaler.
+         * - ON: Enables scaling in and scaling out.
+         * - ONLY_SCALE_OUT: Enables only scaling out.
+         * You must use this mode if your node groups are configured to
+         * restart their hosted VMs on minimal servers.
+         */
         mode?: pulumi.Input<string>;
     }
 
     export interface NodeTemplateNodeTypeFlexibility {
+        /**
+         * -
+         * (Optional)
+         * Number of virtual CPUs to use.
+         */
         cpus?: pulumi.Input<string>;
+        /**
+         * -
+         * Use local SSD
+         */
         localSsd?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Physical memory available to the node, defined in MB.
+         */
         memory?: pulumi.Input<string>;
     }
 
     export interface NodeTemplateServerBinding {
+        /**
+         * -
+         * (Required)
+         * Type of server binding policy. If `RESTART_NODE_ON_ANY_SERVER`,
+         * nodes using this template will restart on any physical server
+         * following a maintenance event.
+         * If `RESTART_NODE_ON_MINIMAL_SERVER`, nodes using this template
+         * will restart on the same physical server following a maintenance
+         * event, instead of being live migrated to or restarted on a new
+         * physical server. This option may be useful if you are using
+         * software licenses tied to the underlying server characteristics
+         * such as physical sockets or cores, to avoid the need for
+         * additional licenses when maintenance occurs. However, VMs on such
+         * nodes will experience outages while maintenance is applied.
+         */
         type: pulumi.Input<string>;
     }
 
     export interface PacketMirroringCollectorIlb {
+        /**
+         * -
+         * (Required)
+         * The full selfLink URL of the network where this rule is active.
+         */
         url: pulumi.Input<string>;
     }
 
     export interface PacketMirroringFilter {
+        /**
+         * -
+         * (Optional)
+         * IP CIDR ranges that apply as a filter on the source (ingress) or
+         * destination (egress) IP in the IP header. Only IPv4 is supported.
+         */
         cidrRanges?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Protocols that apply as a filter on mirrored traffic.
+         */
         ipProtocols?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface PacketMirroringMirroredResources {
+        /**
+         * -
+         * (Optional)
+         * All the listed instances will be mirrored.  Specify at most 50.  Structure is documented below.
+         */
         instances?: pulumi.Input<pulumi.Input<inputs.compute.PacketMirroringMirroredResourcesInstance>[]>;
+        /**
+         * -
+         * (Optional)
+         * All instances in one of these subnetworks will be mirrored.  Structure is documented below.
+         */
         subnetworks?: pulumi.Input<pulumi.Input<inputs.compute.PacketMirroringMirroredResourcesSubnetwork>[]>;
+        /**
+         * -
+         * (Optional)
+         * All instances with these tags will be mirrored.
+         */
         tags?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface PacketMirroringMirroredResourcesInstance {
+        /**
+         * -
+         * (Required)
+         * The full selfLink URL of the network where this rule is active.
+         */
         url: pulumi.Input<string>;
     }
 
     export interface PacketMirroringMirroredResourcesSubnetwork {
+        /**
+         * -
+         * (Required)
+         * The full selfLink URL of the network where this rule is active.
+         */
         url: pulumi.Input<string>;
     }
 
     export interface PacketMirroringNetwork {
+        /**
+         * -
+         * (Required)
+         * The full selfLink URL of the network where this rule is active.
+         */
         url: pulumi.Input<string>;
     }
 
     export interface RegionAutoscalerAutoscalingPolicy {
+        /**
+         * -
+         * (Optional)
+         * The number of seconds that the autoscaler should wait before it
+         * starts collecting information from a new instance. This prevents
+         * the autoscaler from collecting information when the instance is
+         * initializing, during which the collected usage would not be
+         * reliable. The default time autoscaler waits is 60 seconds.
+         * Virtual machine initialization times might vary because of
+         * numerous factors. We recommend that you test how long an
+         * instance may take to initialize. To do this, create an instance
+         * and time the startup process.
+         */
         cooldownPeriod?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Defines the CPU utilization policy that allows the autoscaler to
+         * scale based on the average CPU utilization of a managed instance
+         * group.  Structure is documented below.
+         */
         cpuUtilization?: pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyCpuUtilization>;
+        /**
+         * -
+         * (Optional)
+         * Configuration parameters of autoscaling based on a load balancer.  Structure is documented below.
+         */
         loadBalancingUtilization?: pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyLoadBalancingUtilization>;
+        /**
+         * -
+         * (Required)
+         * The maximum number of instances that the autoscaler can scale up
+         * to. This is required when creating or updating an autoscaler. The
+         * maximum number of replicas should not be lower than minimal number
+         * of replicas.
+         */
         maxReplicas: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Configuration parameters of autoscaling based on a custom metric.  Structure is documented below.
+         */
         metrics?: pulumi.Input<pulumi.Input<inputs.compute.RegionAutoscalerAutoscalingPolicyMetric>[]>;
+        /**
+         * -
+         * (Required)
+         * The minimum number of replicas that the autoscaler can scale down
+         * to. This cannot be less than 0. If not provided, autoscaler will
+         * choose a default value depending on maximum number of instances
+         * allowed.
+         */
         minReplicas: pulumi.Input<number>;
     }
 
     export interface RegionAutoscalerAutoscalingPolicyCpuUtilization {
+        /**
+         * -
+         * (Required)
+         * URL of the managed instance group that this autoscaler will scale.
+         */
         target: pulumi.Input<number>;
     }
 
     export interface RegionAutoscalerAutoscalingPolicyLoadBalancingUtilization {
+        /**
+         * -
+         * (Required)
+         * URL of the managed instance group that this autoscaler will scale.
+         */
         target: pulumi.Input<number>;
     }
 
     export interface RegionAutoscalerAutoscalingPolicyMetric {
+        /**
+         * -
+         * (Optional)
+         * A filter string to be used as the filter string for
+         * a Stackdriver Monitoring TimeSeries.list API call.
+         * This filter is used to select a specific TimeSeries for
+         * the purpose of autoscaling and to determine whether the metric
+         * is exporting per-instance or per-group data.
+         * You can only use the AND operator for joining selectors.
+         * You can only use direct equality comparison operator (=) without
+         * any functions for each selector.
+         * You can specify the metric in both the filter string and in the
+         * metric field. However, if specified in both places, the metric must
+         * be identical.
+         * The monitored resource type determines what kind of values are
+         * expected for the metric. If it is a gce_instance, the autoscaler
+         * expects the metric to include a separate TimeSeries for each
+         * instance in a group. In such a case, you cannot filter on resource
+         * labels.
+         * If the resource type is any other value, the autoscaler expects
+         * this metric to contain values that apply to the entire autoscaled
+         * instance group and resource label filtering can be performed to
+         * point autoscaler at the correct TimeSeries to scale upon.
+         * This is called a per-group metric for the purpose of autoscaling.
+         * If not specified, the type defaults to gce_instance.
+         * You should provide a filter that is selective enough to pick just
+         * one TimeSeries for the autoscaled group or for each of the instances
+         * (if you are using gceInstance resource type). If multiple
+         * TimeSeries are returned upon the query execution, the autoscaler
+         * will sum their respective values to obtain its scaling value.
+         */
         filter?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Name of the resource. The name must be 1-63 characters long and match
+         * the regular expression `a-z?` which means the
+         * first character must be a lowercase letter, and all following
+         * characters must be a dash, lowercase letter, or digit, except the last
+         * character, which cannot be a dash.
+         */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * If scaling is based on a per-group metric value that represents the
+         * total amount of work to be done or resource usage, set this value to
+         * an amount assigned for a single instance of the scaled group.
+         * The autoscaler will keep the number of instances proportional to the
+         * value of this metric, the metric itself should not change value due
+         * to group resizing.
+         * For example, a good metric to use with the target is
+         * `pubsub.googleapis.com/subscription/num_undelivered_messages`
+         * or a custom metric exporting the total number of requests coming to
+         * your instances.
+         * A bad example would be a metric exporting an average or median
+         * latency, since this value can't include a chunk assignable to a
+         * single instance, it could be better used with utilizationTarget
+         * instead.
+         */
         singleInstanceAssignment?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * URL of the managed instance group that this autoscaler will scale.
+         */
         target?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Defines how target utilization value is expressed for a
+         * Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND,
+         * or DELTA_PER_MINUTE.
+         */
         type?: pulumi.Input<string>;
     }
 
     export interface RegionBackendServiceBackend {
+        /**
+         * -
+         * (Optional)
+         * Specifies the balancing mode for this backend. Defaults to CONNECTION.
+         */
         balancingMode?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A multiplier applied to the group's maximum servicing capacity
+         * (based on UTILIZATION, RATE or CONNECTION).
+         * ~>**NOTE**: This field cannot be set for
+         * INTERNAL region backend services (default loadBalancingScheme),
+         * but is required for non-INTERNAL backend service. The total
+         * capacityScaler for all backends must be non-zero.
+         * A setting of 0 means the group is completely drained, offering
+         * 0% of its available Capacity. Valid range is [0.0,1.0].
+         */
         capacityScaler?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * An optional description of this resource.
+         */
         description?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * This field designates whether this is a failover backend. More
+         * than one failover backend can be configured for a given RegionBackendService.
+         */
         failover?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Required)
+         * The fully-qualified URL of an Instance Group or Network Endpoint
+         * Group resource. In case of instance group this defines the list
+         * of instances that serve traffic. Member virtual machine
+         * instances from each instance group must live in the same zone as
+         * the instance group itself. No two backends in a backend service
+         * are allowed to use same Instance Group resource.
+         * For Network Endpoint Groups this defines list of endpoints. All
+         * endpoints of Network Endpoint Group must be hosted on instances
+         * located in the same zone as the Network Endpoint Group.
+         * Backend services cannot mix Instance Group and
+         * Network Endpoint Group backends.
+         * When the `loadBalancingScheme` is INTERNAL, only instance groups
+         * are supported.
+         * Note that you must specify an Instance Group or Network Endpoint
+         * Group resource using the fully-qualified URL, rather than a
+         * partial URL.
+         */
         group: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The max number of simultaneous connections for the group. Can
+         * be used with either CONNECTION or UTILIZATION balancing modes.
+         * Cannot be set for INTERNAL backend services.
+         * For CONNECTION mode, either maxConnections or one
+         * of maxConnectionsPerInstance or maxConnectionsPerEndpoint,
+         * as appropriate for group type, must be set.
+         */
         maxConnections?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The max number of simultaneous connections that a single backend
+         * network endpoint can handle. Cannot be set
+         * for INTERNAL backend services.
+         * This is used to calculate the capacity of the group. Can be
+         * used in either CONNECTION or UTILIZATION balancing modes. For
+         * CONNECTION mode, either maxConnections or
+         * maxConnectionsPerEndpoint must be set.
+         */
         maxConnectionsPerEndpoint?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The max number of simultaneous connections that a single
+         * backend instance can handle. Cannot be set for INTERNAL backend
+         * services.
+         * This is used to calculate the capacity of the group.
+         * Can be used in either CONNECTION or UTILIZATION balancing modes.
+         * For CONNECTION mode, either maxConnections or
+         * maxConnectionsPerInstance must be set.
+         */
         maxConnectionsPerInstance?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The max requests per second (RPS) of the group. Cannot be set
+         * for INTERNAL backend services.
+         * Can be used with either RATE or UTILIZATION balancing modes,
+         * but required if RATE mode. Either maxRate or one
+         * of maxRatePerInstance or maxRatePerEndpoint, as appropriate for
+         * group type, must be set.
+         */
         maxRate?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The max requests per second (RPS) that a single backend network
+         * endpoint can handle. This is used to calculate the capacity of
+         * the group. Can be used in either balancing mode. For RATE mode,
+         * either maxRate or maxRatePerEndpoint must be set. Cannot be set
+         * for INTERNAL backend services.
+         */
         maxRatePerEndpoint?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The max requests per second (RPS) that a single backend
+         * instance can handle. This is used to calculate the capacity of
+         * the group. Can be used in either balancing mode. For RATE mode,
+         * either maxRate or maxRatePerInstance must be set. Cannot be set
+         * for INTERNAL backend services.
+         */
         maxRatePerInstance?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Used when balancingMode is UTILIZATION. This ratio defines the
+         * CPU utilization target for the group. Valid range is [0.0, 1.0].
+         * Cannot be set for INTERNAL backend services.
+         */
         maxUtilization?: pulumi.Input<number>;
     }
 
     export interface RegionBackendServiceCircuitBreakers {
+        /**
+         * -
+         * (Optional)
+         * The timeout for new network connections to hosts.  Structure is documented below.
+         */
         connectTimeout?: pulumi.Input<inputs.compute.RegionBackendServiceCircuitBreakersConnectTimeout>;
+        /**
+         * -
+         * (Optional)
+         * The max number of simultaneous connections for the group. Can
+         * be used with either CONNECTION or UTILIZATION balancing modes.
+         * Cannot be set for INTERNAL backend services.
+         * For CONNECTION mode, either maxConnections or one
+         * of maxConnectionsPerInstance or maxConnectionsPerEndpoint,
+         * as appropriate for group type, must be set.
+         */
         maxConnections?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The maximum number of pending requests to the backend cluster.
+         * Defaults to 1024.
+         */
         maxPendingRequests?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The maximum number of parallel requests to the backend cluster.
+         * Defaults to 1024.
+         */
         maxRequests?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Maximum requests for a single backend connection. This parameter
+         * is respected by both the HTTP/1.1 and HTTP/2 implementations. If
+         * not specified, there is no limit. Setting this parameter to 1
+         * will effectively disable keep alive.
+         */
         maxRequestsPerConnection?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The maximum number of parallel retries to the backend cluster.
+         * Defaults to 3.
+         */
         maxRetries?: pulumi.Input<number>;
     }
 
     export interface RegionBackendServiceCircuitBreakersConnectTimeout {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond
+         * resolution. Durations less than one second are represented
+         * with a 0 seconds field and a positive nanos field. Must
+         * be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second.
+         * Must be from 0 to 315,576,000,000 inclusive.
+         */
         seconds: pulumi.Input<number>;
     }
 
     export interface RegionBackendServiceConsistentHash {
+        /**
+         * -
+         * (Optional)
+         * Hash is based on HTTP Cookie. This field describes a HTTP cookie
+         * that will be used as the hash key for the consistent hash load
+         * balancer. If the cookie is not present, it will be generated.
+         * This field is applicable if the sessionAffinity is set to HTTP_COOKIE.  Structure is documented below.
+         */
         httpCookie?: pulumi.Input<inputs.compute.RegionBackendServiceConsistentHashHttpCookie>;
+        /**
+         * -
+         * (Optional)
+         * The hash based on the value of the specified header field.
+         * This field is applicable if the sessionAffinity is set to HEADER_FIELD.
+         */
         httpHeaderName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The minimum number of virtual nodes to use for the hash ring.
+         * Larger ring sizes result in more granular load
+         * distributions. If the number of hosts in the load balancing pool
+         * is larger than the ring size, each host will be assigned a single
+         * virtual node.
+         * Defaults to 1024.
+         */
         minimumRingSize?: pulumi.Input<number>;
     }
 
     export interface RegionBackendServiceConsistentHashHttpCookie {
+        /**
+         * -
+         * (Required)
+         * Name of the resource. Provided by the client when the resource is
+         * created. The name must be 1-63 characters long, and comply with
+         * RFC1035. Specifically, the name must be 1-63 characters long and match
+         * the regular expression `a-z?` which means the
+         * first character must be a lowercase letter, and all following
+         * characters must be a dash, lowercase letter, or digit, except the last
+         * character, which cannot be a dash.
+         */
         name?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Path to set for the cookie.
+         */
         path?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Lifetime of the cookie.  Structure is documented below.
+         */
         ttl?: pulumi.Input<inputs.compute.RegionBackendServiceConsistentHashHttpCookieTtl>;
     }
 
     export interface RegionBackendServiceConsistentHashHttpCookieTtl {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond
+         * resolution. Durations less than one second are represented
+         * with a 0 seconds field and a positive nanos field. Must
+         * be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second.
+         * Must be from 0 to 315,576,000,000 inclusive.
+         */
         seconds: pulumi.Input<number>;
     }
 
     export interface RegionBackendServiceFailoverPolicy {
+        /**
+         * -
+         * (Optional)
+         * On failover or failback, this field indicates whether connection drain
+         * will be honored. Setting this to true has the following effect: connections
+         * to the old active pool are not drained. Connections to the new active pool
+         * use the timeout of 10 min (currently fixed). Setting to false has the
+         * following effect: both old and new connections will have a drain timeout
+         * of 10 min.
+         * This can be set to true only if the protocol is TCP.
+         * The default is false.
+         */
         disableConnectionDrainOnFailover?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * This option is used only when no healthy VMs are detected in the primary
+         * and backup instance groups. When set to true, traffic is dropped. When
+         * set to false, new connections are sent across all VMs in the primary group.
+         * The default is false.
+         */
         dropTrafficIfUnhealthy?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * The value of the field must be in [0, 1]. If the ratio of the healthy
+         * VMs in the primary backend is at or below this number, traffic arriving
+         * at the load-balanced IP will be directed to the failover backend.
+         * In case where 'failoverRatio' is not set or all the VMs in the backup
+         * backend are unhealthy, the traffic will be directed back to the primary
+         * backend in the "force" mode, where traffic will be spread to the healthy
+         * VMs with the best effort, or to all VMs when no VM is healthy.
+         * This field is only used with l4 load balancing.
+         */
         failoverRatio?: pulumi.Input<number>;
     }
 
     export interface RegionBackendServiceLogConfig {
+        /**
+         * -
+         * (Optional)
+         * Whether to enable logging for the load balancer traffic served by this backend service.
+         */
         enable?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * This field can only be specified if logging is enabled for this backend service. The value of
+         * the field must be in [0, 1]. This configures the sampling rate of requests to the load balancer
+         * where 1.0 means all logged requests are reported and 0.0 means no logged requests are reported.
+         * The default value is 1.0.
+         */
         sampleRate?: pulumi.Input<number>;
     }
 
     export interface RegionBackendServiceOutlierDetection {
+        /**
+         * -
+         * (Optional)
+         * The base time that a host is ejected for. The real time is equal to the base
+         * time multiplied by the number of times the host has been ejected. Defaults to
+         * 30000ms or 30s.  Structure is documented below.
+         */
         baseEjectionTime?: pulumi.Input<inputs.compute.RegionBackendServiceOutlierDetectionBaseEjectionTime>;
+        /**
+         * -
+         * (Optional)
+         * Number of errors before a host is ejected from the connection pool. When the
+         * backend host is accessed over HTTP, a 5xx return code qualifies as an error.
+         * Defaults to 5.
+         */
         consecutiveErrors?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The number of consecutive gateway failures (502, 503, 504 status or connection
+         * errors that are mapped to one of those status codes) before a consecutive
+         * gateway failure ejection occurs. Defaults to 5.
+         */
         consecutiveGatewayFailure?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The percentage chance that a host will be actually ejected when an outlier
+         * status is detected through consecutive 5xx. This setting can be used to disable
+         * ejection or to ramp it up slowly. Defaults to 100.
+         */
         enforcingConsecutiveErrors?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The percentage chance that a host will be actually ejected when an outlier
+         * status is detected through consecutive gateway failures. This setting can be
+         * used to disable ejection or to ramp it up slowly. Defaults to 0.
+         */
         enforcingConsecutiveGatewayFailure?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The percentage chance that a host will be actually ejected when an outlier
+         * status is detected through success rate statistics. This setting can be used to
+         * disable ejection or to ramp it up slowly. Defaults to 100.
+         */
         enforcingSuccessRate?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Time interval between ejection sweep analysis. This can result in both new
+         * ejections as well as hosts being returned to service. Defaults to 10 seconds.  Structure is documented below.
+         */
         interval?: pulumi.Input<inputs.compute.RegionBackendServiceOutlierDetectionInterval>;
+        /**
+         * -
+         * (Optional)
+         * Maximum percentage of hosts in the load balancing pool for the backend service
+         * that can be ejected. Defaults to 10%.
+         */
         maxEjectionPercent?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The number of hosts in a cluster that must have enough request volume to detect
+         * success rate outliers. If the number of hosts is less than this setting, outlier
+         * detection via success rate statistics is not performed for any host in the
+         * cluster. Defaults to 5.
+         */
         successRateMinimumHosts?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The minimum number of total requests that must be collected in one interval (as
+         * defined by the interval duration above) to include this host in success rate
+         * based outlier detection. If the volume is lower than this setting, outlier
+         * detection via success rate statistics is not performed for that host. Defaults
+         * to 100.
+         */
         successRateRequestVolume?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * This factor is used to determine the ejection threshold for success rate outlier
+         * ejection. The ejection threshold is the difference between the mean success
+         * rate, and the product of this factor and the standard deviation of the mean
+         * success rate: mean - (stdev * success_rate_stdev_factor). This factor is divided
+         * by a thousand to get a double. That is, if the desired factor is 1.9, the
+         * runtime value should be 1900. Defaults to 1900.
+         */
         successRateStdevFactor?: pulumi.Input<number>;
     }
 
     export interface RegionBackendServiceOutlierDetectionBaseEjectionTime {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond
+         * resolution. Durations less than one second are represented
+         * with a 0 seconds field and a positive nanos field. Must
+         * be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second.
+         * Must be from 0 to 315,576,000,000 inclusive.
+         */
         seconds: pulumi.Input<number>;
     }
 
     export interface RegionBackendServiceOutlierDetectionInterval {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond
+         * resolution. Durations less than one second are represented
+         * with a 0 seconds field and a positive nanos field. Must
+         * be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second.
+         * Must be from 0 to 315,576,000,000 inclusive.
+         */
         seconds: pulumi.Input<number>;
     }
 
     export interface RegionDiskDiskEncryptionKey {
         kmsKeyName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies a 256-bit customer-supplied encryption key, encoded in
+         * RFC 4648 base64 to either encrypt or decrypt this resource.
+         */
         rawKey?: pulumi.Input<string>;
+        /**
+         * -
+         * The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
+         * encryption key that protects this resource.
+         */
         sha256?: pulumi.Input<string>;
     }
 
     export interface RegionDiskSourceSnapshotEncryptionKey {
         kmsKeyName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies a 256-bit customer-supplied encryption key, encoded in
+         * RFC 4648 base64 to either encrypt or decrypt this resource.
+         */
         rawKey?: pulumi.Input<string>;
+        /**
+         * -
+         * The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
+         * encryption key that protects this resource.
+         */
         sha256?: pulumi.Input<string>;
     }
 
     export interface RegionHealthCheckHttp2HealthCheck {
+        /**
+         * -
+         * (Optional)
+         * The value of the host header in the HTTP health check request.
+         * If left empty (default value), the public IP on behalf of which this health
+         * check is performed will be used.
+         */
         host?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The TCP port number for the HTTP health check request.
+         * The default value is 80.
+         */
         port?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+         * portName are defined, port takes precedence.
+         */
         portName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how port is selected for health checking, can be one of the
+         * following values:
+         * * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+         * * `USE_NAMED_PORT`: The `portName` is used for health checking.
+         * * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+         * network endpoint is used for health checking. For other backends, the
+         * port or named port specified in the Backend Service is used for health
+         * checking.
+         * If not specified, HTTP health check follows behavior specified in `port` and
+         * `portName` fields.
+         */
         portSpecification?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the type of proxy header to append before sending data to the
+         * backend, either NONE or PROXY_V1. The default is NONE.
+         */
         proxyHeader?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The request path of the HTTP health check request.
+         * The default value is /.
+         */
         requestPath?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The bytes to match against the beginning of the response data. If left empty
+         * (the default value), any response will indicate health. The response data
+         * can only be ASCII.
+         */
         response?: pulumi.Input<string>;
     }
 
     export interface RegionHealthCheckHttpHealthCheck {
+        /**
+         * -
+         * (Optional)
+         * The value of the host header in the HTTP health check request.
+         * If left empty (default value), the public IP on behalf of which this health
+         * check is performed will be used.
+         */
         host?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The TCP port number for the HTTP health check request.
+         * The default value is 80.
+         */
         port?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+         * portName are defined, port takes precedence.
+         */
         portName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how port is selected for health checking, can be one of the
+         * following values:
+         * * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+         * * `USE_NAMED_PORT`: The `portName` is used for health checking.
+         * * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+         * network endpoint is used for health checking. For other backends, the
+         * port or named port specified in the Backend Service is used for health
+         * checking.
+         * If not specified, HTTP health check follows behavior specified in `port` and
+         * `portName` fields.
+         */
         portSpecification?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the type of proxy header to append before sending data to the
+         * backend, either NONE or PROXY_V1. The default is NONE.
+         */
         proxyHeader?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The request path of the HTTP health check request.
+         * The default value is /.
+         */
         requestPath?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The bytes to match against the beginning of the response data. If left empty
+         * (the default value), any response will indicate health. The response data
+         * can only be ASCII.
+         */
         response?: pulumi.Input<string>;
     }
 
     export interface RegionHealthCheckHttpsHealthCheck {
+        /**
+         * -
+         * (Optional)
+         * The value of the host header in the HTTP health check request.
+         * If left empty (default value), the public IP on behalf of which this health
+         * check is performed will be used.
+         */
         host?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The TCP port number for the HTTP health check request.
+         * The default value is 80.
+         */
         port?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+         * portName are defined, port takes precedence.
+         */
         portName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how port is selected for health checking, can be one of the
+         * following values:
+         * * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+         * * `USE_NAMED_PORT`: The `portName` is used for health checking.
+         * * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+         * network endpoint is used for health checking. For other backends, the
+         * port or named port specified in the Backend Service is used for health
+         * checking.
+         * If not specified, HTTP health check follows behavior specified in `port` and
+         * `portName` fields.
+         */
         portSpecification?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the type of proxy header to append before sending data to the
+         * backend, either NONE or PROXY_V1. The default is NONE.
+         */
         proxyHeader?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The request path of the HTTP health check request.
+         * The default value is /.
+         */
         requestPath?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The bytes to match against the beginning of the response data. If left empty
+         * (the default value), any response will indicate health. The response data
+         * can only be ASCII.
+         */
         response?: pulumi.Input<string>;
     }
 
     export interface RegionHealthCheckSslHealthCheck {
+        /**
+         * -
+         * (Optional)
+         * The TCP port number for the HTTP health check request.
+         * The default value is 80.
+         */
         port?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+         * portName are defined, port takes precedence.
+         */
         portName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how port is selected for health checking, can be one of the
+         * following values:
+         * * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+         * * `USE_NAMED_PORT`: The `portName` is used for health checking.
+         * * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+         * network endpoint is used for health checking. For other backends, the
+         * port or named port specified in the Backend Service is used for health
+         * checking.
+         * If not specified, HTTP health check follows behavior specified in `port` and
+         * `portName` fields.
+         */
         portSpecification?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the type of proxy header to append before sending data to the
+         * backend, either NONE or PROXY_V1. The default is NONE.
+         */
         proxyHeader?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The application data to send once the TCP connection has been
+         * established (default value is empty). If both request and response are
+         * empty, the connection establishment alone will indicate health. The request
+         * data can only be ASCII.
+         */
         request?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The bytes to match against the beginning of the response data. If left empty
+         * (the default value), any response will indicate health. The response data
+         * can only be ASCII.
+         */
         response?: pulumi.Input<string>;
     }
 
     export interface RegionHealthCheckTcpHealthCheck {
+        /**
+         * -
+         * (Optional)
+         * The TCP port number for the HTTP health check request.
+         * The default value is 80.
+         */
         port?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Port name as defined in InstanceGroup#NamedPort#name. If both port and
+         * portName are defined, port takes precedence.
+         */
         portName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how port is selected for health checking, can be one of the
+         * following values:
+         * * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
+         * * `USE_NAMED_PORT`: The `portName` is used for health checking.
+         * * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
+         * network endpoint is used for health checking. For other backends, the
+         * port or named port specified in the Backend Service is used for health
+         * checking.
+         * If not specified, HTTP health check follows behavior specified in `port` and
+         * `portName` fields.
+         */
         portSpecification?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the type of proxy header to append before sending data to the
+         * backend, either NONE or PROXY_V1. The default is NONE.
+         */
         proxyHeader?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The application data to send once the TCP connection has been
+         * established (default value is empty). If both request and response are
+         * empty, the connection establishment alone will indicate health. The request
+         * data can only be ASCII.
+         */
         request?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The bytes to match against the beginning of the response data. If left empty
+         * (the default value), any response will indicate health. The response data
+         * can only be ASCII.
+         */
         response?: pulumi.Input<string>;
     }
 
@@ -2264,7 +6176,10 @@ export namespace compute {
 
     export interface RegionInstanceGroupManagerNamedPort {
         /**
-         * - Version name.
+         * The name of the instance group manager. Must be 1-63
+         * characters long and comply with
+         * [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+         * include lowercase letters, numbers, and hyphens.
          */
         name: pulumi.Input<string>;
         /**
@@ -2316,11 +6231,16 @@ export namespace compute {
          */
         instanceTemplate: pulumi.Input<string>;
         /**
-         * - Version name.
+         * The name of the instance group manager. Must be 1-63
+         * characters long and comply with
+         * [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+         * include lowercase letters, numbers, and hyphens.
          */
         name?: pulumi.Input<string>;
         /**
-         * - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+         * The target number of running instances for this managed
+         * instance group. This value should always be explicitly set unless this resource is attached to
+         * an autoscaler, in which case it should never be set. Defaults to `0`.
          */
         targetSize?: pulumi.Input<inputs.compute.RegionInstanceGroupManagerVersionTargetSize>;
     }
@@ -2339,394 +6259,1795 @@ export namespace compute {
     }
 
     export interface RegionUrlMapHostRule {
+        /**
+         * -
+         * (Optional)
+         * An optional description of this resource. Provide this property when
+         * you create the resource.
+         */
         description?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The list of host patterns to match. They must be valid
+         * hostnames, except * will match any string of ([a-z0-9-.]*). In
+         * that case, * must be the first character and must be followed in
+         * the pattern by either - or ..
+         */
         hosts: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * The list of named PathMatchers to use against the URL.  Structure is documented below.
+         */
         pathMatcher: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcher {
+        /**
+         * -
+         * (Required)
+         * A reference to RegionBackendService resource if none of the hostRules match.
+         */
         defaultService: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * An optional description of this resource. Provide this property when
+         * you create the resource.
+         */
         description?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Name of the resource. Provided by the client when the resource is
+         * created. The name must be 1-63 characters long, and comply with
+         * RFC1035. Specifically, the name must be 1-63 characters long and match
+         * the regular expression `a-z?` which means the
+         * first character must be a lowercase letter, and all following
+         * characters must be a dash, lowercase letter, or digit, except the last
+         * character, which cannot be a dash.
+         */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The list of path rules. Use this list instead of routeRules when routing based
+         * on simple path matching is all that's required. The order by which path rules
+         * are specified does not matter. Matches are always done on the longest-path-first
+         * basis. For example: a pathRule with a path /a/b/c/* will match before /a/b/*
+         * irrespective of the order in which those paths appear in this list. Within a
+         * given pathMatcher, only one of pathRules or routeRules must be set.  Structure is documented below.
+         */
         pathRules?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRule>[]>;
+        /**
+         * -
+         * (Optional)
+         * The list of ordered HTTP route rules. Use this list instead of pathRules when
+         * advanced route matching and routing actions are desired. The order of specifying
+         * routeRules matters: the first rule that matches will cause its specified routing
+         * action to take effect. Within a given pathMatcher, only one of pathRules or
+         * routeRules must be set. routeRules are not supported in UrlMaps intended for
+         * External load balancers.  Structure is documented below.
+         */
         routeRules?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRule>[]>;
     }
 
     export interface RegionUrlMapPathMatcherPathRule {
+        /**
+         * -
+         * (Required)
+         * The list of path patterns to match. Each must start with / and the only place a
+         * * is allowed is at the end following a /. The string fed to the path matcher
+         * does not include any text after the first ? or #, and those chars are not
+         * allowed here.
+         */
         paths: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * In response to a matching matchRule, the load balancer performs advanced routing
+         * actions like URL rewrites, header transformations, etc. prior to forwarding the
+         * request to the selected backend. If  routeAction specifies any
+         * weightedBackendServices, service must not be set. Conversely if service is set,
+         * routeAction cannot contain any  weightedBackendServices. Only one of routeAction
+         * or urlRedirect must be set.  Structure is documented below.
+         */
         routeAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteAction>;
+        /**
+         * -
+         * (Optional)
+         * The region backend service resource to which traffic is
+         * directed if this rule is matched. If routeAction is additionally specified,
+         * advanced routing actions like URL Rewrites, etc. take effect prior to sending
+         * the request to the backend. However, if service is specified, routeAction cannot
+         * contain any weightedBackendService s. Conversely, if routeAction specifies any
+         * weightedBackendServices, service must not be specified. Only one of urlRedirect,
+         * service or routeAction.weightedBackendService must be set.
+         */
         service?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * When this rule is matched, the request is redirected to a URL specified by
+         * urlRedirect. If urlRedirect is specified, service or routeAction must not be
+         * set.  Structure is documented below.
+         */
         urlRedirect?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleUrlRedirect>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteAction {
+        /**
+         * -
+         * (Optional)
+         * The specification for allowing client side cross-origin requests. Please see W3C
+         * Recommendation for Cross Origin Resource Sharing  Structure is documented below.
+         */
         corsPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy>;
+        /**
+         * -
+         * (Optional)
+         * The specification for fault injection introduced into traffic to test the
+         * resiliency of clients to backend service failure. As part of fault injection,
+         * when clients send requests to a backend service, delays can be introduced by
+         * Loadbalancer on a percentage of requests before sending those request to the
+         * backend service. Similarly requests from clients can be aborted by the
+         * Loadbalancer for a percentage of requests. timeout and retryPolicy will be
+         * ignored by clients that are configured with a fault_injection_policy.  Structure is documented below.
+         */
         faultInjectionPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the policy on how requests intended for the route's backends are
+         * shadowed to a separate mirrored backend service. Loadbalancer does not wait for
+         * responses from the shadow service. Prior to sending traffic to the shadow
+         * service, the host / authority header is suffixed with -shadow.  Structure is documented below.
+         */
         requestMirrorPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the retry policy associated with this route.  Structure is documented below.
+         */
         retryPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the timeout for the selected route. Timeout is computed from the time
+         * the request is has been fully processed (i.e. end-of-stream) up until the
+         * response has been completely processed. Timeout includes all retries. If not
+         * specified, the default value is 15 seconds.  Structure is documented below.
+         */
         timeout?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionTimeout>;
+        /**
+         * -
+         * (Optional)
+         * The spec to modify the URL of the request, prior to forwarding the request to
+         * the matched service  Structure is documented below.
+         */
         urlRewrite?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionUrlRewrite>;
+        /**
+         * -
+         * (Optional)
+         * A list of weighted backend services to send traffic to when a route match
+         * occurs. The weights determine the fraction of traffic that flows to their
+         * corresponding backend service. If all traffic needs to go to a single backend
+         * service, there must be one  weightedBackendService with weight set to a non 0
+         * number. Once a backendService is identified and before forwarding the request to
+         * the backend service, advanced routing actions like Url rewrites and header
+         * transformations are applied depending on additional settings specified in this
+         * HttpRouteAction.  Structure is documented below.
+         */
         weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendService>[]>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy {
+        /**
+         * -
+         * (Optional)
+         * In response to a preflight request, setting this to true indicates that the
+         * actual request can include user credentials. This translates to the Access-
+         * Control-Allow-Credentials header. Defaults to false.
+         */
         allowCredentials?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the content for the Access-Control-Allow-Headers header.
+         */
         allowHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the content for the Access-Control-Allow-Methods header.
+         */
         allowMethods?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the regualar expression patterns that match allowed origins. For
+         * regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+         * An origin is allowed if it matches either allowOrigins or allow_origin_regex.
+         */
         allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the list of origins that will be allowed to do CORS requests. An
+         * origin is allowed if it matches either allowOrigins or allow_origin_regex.
+         */
         allowOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * If true, specifies the CORS policy is disabled.
+         * which indicates that the CORS policy is in effect. Defaults to false.
+         */
         disabled: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the content for the Access-Control-Expose-Headers header.
+         */
         exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how long the results of a preflight request can be cached. This
+         * translates to the content for the Access-Control-Max-Age header.
+         */
         maxAge?: pulumi.Input<number>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy {
+        /**
+         * -
+         * (Optional)
+         * The specification for how client requests are aborted as part of fault
+         * injection.  Structure is documented below.
+         */
         abort?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort>;
+        /**
+         * -
+         * (Optional)
+         * The specification for how client requests are delayed as part of fault
+         * injection, before being sent to a backend service.  Structure is documented below.
+         */
         delay?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort {
+        /**
+         * -
+         * (Optional)
+         * The HTTP status code used to abort the request. The value must be between 200
+         * and 599 inclusive.
+         */
         httpStatus: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The percentage of traffic (connections/operations/requests) which will be
+         * aborted as part of fault injection. The value must be between 0.0 and 100.0
+         * inclusive.
+         */
         percentage: pulumi.Input<number>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay {
+        /**
+         * -
+         * (Optional)
+         * Specifies the value of the fixed delay interval.  Structure is documented below.
+         */
         fixedDelay: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay>;
+        /**
+         * -
+         * (Optional)
+         * The percentage of traffic (connections/operations/requests) which will be
+         * aborted as part of fault injection. The value must be between 0.0 and 100.0
+         * inclusive.
+         */
         percentage: pulumi.Input<number>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond resolution. Durations
+         * less than one second are represented with a 0 `seconds` field and a positive
+         * `nanos` field. Must be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+         * inclusive.
+         */
         seconds: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy {
+        /**
+         * -
+         * (Required)
+         * The RegionBackendService resource being mirrored to.
+         */
         backendService: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy {
+        /**
+         * -
+         * (Required)
+         * Specifies the allowed number retries. This number must be > 0.
+         */
         numRetries?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Specifies a non-zero timeout per retry attempt.  Structure is documented below.
+         */
         perTryTimeout?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout>;
+        /**
+         * -
+         * (Optional)
+         * Specfies one or more conditions when this retry rule applies. Valid values are:
+         * - 5xx: Loadbalancer will attempt a retry if the backend service responds with
+         * any 5xx response code, or if the backend service does not respond at all,
+         * example: disconnects, reset, read timeout, connection failure, and refused
+         * streams.
+         * - gateway-error: Similar to 5xx, but only applies to response codes
+         * 502, 503 or 504.
+         * - connect-failure: Loadbalancer will retry on failures
+         * connecting to backend services, for example due to connection timeouts.
+         * - retriable-4xx: Loadbalancer will retry for retriable 4xx response codes.
+         * Currently the only retriable error supported is 409.
+         * - refused-stream: Loadbalancer will retry if the backend service resets the stream with a
+         * REFUSED_STREAM error code. This reset type indicates that it is safe to retry.
+         * - cancelled: Loadbalancer will retry if the gRPC status code in the response
+         * header is set to cancelled
+         * - deadline-exceeded: Loadbalancer will retry if the
+         * gRPC status code in the response header is set to deadline-exceeded
+         * - resource-exhausted: Loadbalancer will retry if the gRPC status code in the response
+         * header is set to resource-exhausted
+         * - unavailable: Loadbalancer will retry if the gRPC status code in
+         * the response header is set to unavailable
+         */
         retryConditions?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond resolution. Durations
+         * less than one second are represented with a 0 `seconds` field and a positive
+         * `nanos` field. Must be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+         * inclusive.
+         */
         seconds: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionTimeout {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond resolution. Durations
+         * less than one second are represented with a 0 `seconds` field and a positive
+         * `nanos` field. Must be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+         * inclusive.
+         */
         seconds: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionUrlRewrite {
+        /**
+         * -
+         * (Optional)
+         * Prior to forwarding the request to the selected service, the request's host
+         * header is replaced with contents of hostRewrite. The value must be between 1 and
+         * 255 characters.
+         */
         hostRewrite?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Prior to forwarding the request to the selected backend service, the matching
+         * portion of the request's path is replaced by pathPrefixRewrite. The value must
+         * be between 1 and 1024 characters.
+         */
         pathPrefixRewrite?: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendService {
+        /**
+         * -
+         * (Required)
+         * The RegionBackendService resource being mirrored to.
+         */
         backendService: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies changes to request and response headers that need to take effect for
+         * the selected backendService. The headerAction specified here are applied before
+         * the matching pathMatchers[].headerAction and after pathMatchers[].routeRules[].r
+         * outeAction.weightedBackendService.backendServiceWeightAction[].headerAction  Structure is documented below.
+         */
         headerAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction>;
+        /**
+         * -
+         * (Required)
+         * Specifies the fraction of traffic sent to backendService, computed as weight /
+         * (sum of all weightedBackendService weights in routeAction) . The selection of a
+         * backend service is determined only for new traffic. Once a user's request has
+         * been directed to a backendService, subsequent requests will be sent to the same
+         * backendService as determined by the BackendService's session affinity policy.
+         * The value must be between 0 and 1000
+         */
         weight: pulumi.Input<number>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction {
+        /**
+         * -
+         * (Optional)
+         * Headers to add to a matching request prior to forwarding the request to the
+         * backendService.  Structure is documented below.
+         */
         requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the request
+         * prior to forwarding the request to the backendService.
+         */
         requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+         */
         responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the response
+         * prior to sending the response back to the client.
+         */
         responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface RegionUrlMapPathMatcherPathRuleUrlRedirect {
+        /**
+         * -
+         * (Optional)
+         * The host that will be used in the redirect response instead of the one that was
+         * supplied in the request. The value must be between 1 and 255 characters.
+         */
         hostRedirect?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * If set to true, the URL scheme in the redirected request is set to https. If set
+         * to false, the URL scheme of the redirected request will remain the same as that
+         * of the request. This must only be set for UrlMaps used in TargetHttpProxys.
+         * Setting this true for TargetHttpsProxy is not permitted. Defaults to false.
+         */
         httpsRedirect?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * The path that will be used in the redirect response instead of the one that was
+         * supplied in the request. Only one of pathRedirect or prefixRedirect must be
+         * specified. The value must be between 1 and 1024 characters.
+         */
         pathRedirect?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
+         * retaining the remaining portion of the URL before redirecting the request.
+         */
         prefixRedirect?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The HTTP Status code to use for this RedirectAction. Supported values are:   -
+         * MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.  -
+         * FOUND, which corresponds to 302.  - SEE_OTHER which corresponds to 303.  -
+         * TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method
+         * will be retained.  - PERMANENT_REDIRECT, which corresponds to 308. In this case,
+         * the request method will be retained.
+         */
         redirectResponseCode?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * If set to true, any accompanying query portion of the original URL is removed
+         * prior to redirecting the request. If set to false, the query portion of the
+         * original URL is retained. Defaults to false.
+         */
         stripQuery: pulumi.Input<boolean>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRule {
+        /**
+         * -
+         * (Optional)
+         * Specifies changes to request and response headers that need to take effect for
+         * the selected backendService. The headerAction specified here are applied before
+         * the matching pathMatchers[].headerAction and after pathMatchers[].routeRules[].r
+         * outeAction.weightedBackendService.backendServiceWeightAction[].headerAction  Structure is documented below.
+         */
         headerAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleHeaderAction>;
+        /**
+         * -
+         * (Optional)
+         * The rules for determining a match.  Structure is documented below.
+         */
         matchRules?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRule>[]>;
+        /**
+         * -
+         * (Required)
+         * For routeRules within a given pathMatcher, priority determines the order
+         * in which load balancer will interpret routeRules. RouteRules are evaluated
+         * in order of priority, from the lowest to highest number. The priority of
+         * a rule decreases as its number increases (1, 2, 3, N+1). The first rule
+         * that matches the request is applied.
+         * You cannot configure two or more routeRules with the same priority.
+         * Priority for each rule must be set to a number between 0 and
+         * 2147483647 inclusive.
+         * Priority numbers can have gaps, which enable you to add or remove rules
+         * in the future without affecting the rest of the rules. For example,
+         * 1, 2, 3, 4, 5, 9, 12, 16 is a valid series of priority numbers to which
+         * you could add rules numbered from 6 to 8, 10 to 11, and 13 to 15 in the
+         * future without any impact on existing rules.
+         */
         priority: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * In response to a matching matchRule, the load balancer performs advanced routing
+         * actions like URL rewrites, header transformations, etc. prior to forwarding the
+         * request to the selected backend. If  routeAction specifies any
+         * weightedBackendServices, service must not be set. Conversely if service is set,
+         * routeAction cannot contain any  weightedBackendServices. Only one of routeAction
+         * or urlRedirect must be set.  Structure is documented below.
+         */
         routeAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteAction>;
+        /**
+         * -
+         * (Optional)
+         * The region backend service resource to which traffic is
+         * directed if this rule is matched. If routeAction is additionally specified,
+         * advanced routing actions like URL Rewrites, etc. take effect prior to sending
+         * the request to the backend. However, if service is specified, routeAction cannot
+         * contain any weightedBackendService s. Conversely, if routeAction specifies any
+         * weightedBackendServices, service must not be specified. Only one of urlRedirect,
+         * service or routeAction.weightedBackendService must be set.
+         */
         service?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * When this rule is matched, the request is redirected to a URL specified by
+         * urlRedirect. If urlRedirect is specified, service or routeAction must not be
+         * set.  Structure is documented below.
+         */
         urlRedirect?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleUrlRedirect>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleHeaderAction {
+        /**
+         * -
+         * (Optional)
+         * Headers to add to a matching request prior to forwarding the request to the
+         * backendService.  Structure is documented below.
+         */
         requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the request
+         * prior to forwarding the request to the backendService.
+         */
         requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+         */
         responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the response
+         * prior to sending the response back to the client.
+         */
         responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleMatchRule {
+        /**
+         * -
+         * (Optional)
+         * For satifying the matchRule condition, the path of the request must exactly
+         * match the value specified in fullPathMatch after removing any query parameters
+         * and anchor that may be part of the original URL. FullPathMatch must be between 1
+         * and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must
+         * be specified.
+         */
         fullPathMatch?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies a list of header match criteria, all of which must match corresponding
+         * headers in the request.  Structure is documented below.
+         */
         headerMatches?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatch>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies that prefixMatch and fullPathMatch matches are case sensitive.
+         * Defaults to false.
+         */
         ignoreCase?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Opaque filter criteria used by Loadbalancer to restrict routing configuration to
+         * a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
+         * clients present node metadata. If a match takes place, the relevant routing
+         * configuration is made available to those proxies. For each metadataFilter in
+         * this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the
+         * filterLabels must match the corresponding label provided in the metadata. If its
+         * filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match
+         * with corresponding labels in the provided metadata. metadataFilters specified
+         * here can be overrides those specified in ForwardingRule that refers to this
+         * UrlMap. metadataFilters only applies to Loadbalancers that have their
+         * loadBalancingScheme set to INTERNAL_SELF_MANAGED.  Structure is documented below.
+         */
         metadataFilters?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilter>[]>;
+        /**
+         * -
+         * (Optional)
+         * For satifying the matchRule condition, the request's path must begin with the
+         * specified prefixMatch. prefixMatch must begin with a /. The value must be
+         * between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or
+         * regexMatch must be specified.
+         */
         prefixMatch?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies a list of query parameter match criteria, all of which must match
+         * corresponding query parameters in the request.  Structure is documented below.
+         */
         queryParameterMatches?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatch>[]>;
+        /**
+         * -
+         * (Optional)
+         * For satifying the matchRule condition, the path of the request must satisfy the
+         * regular expression specified in regexMatch after removing any query parameters
+         * and anchor supplied with the original URL. For regular expression grammar please
+         * see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch,
+         * fullPathMatch or regexMatch must be specified.
+         */
         regexMatch?: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatch {
+        /**
+         * -
+         * (Optional)
+         * The value should exactly match contents of exactMatch. Only one of exactMatch,
+         * prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+         */
         exactMatch?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * If set to false, the headerMatch is considered a match if the match criteria
+         * above are met. If set to true, the headerMatch is considered a match if the
+         * match criteria above are NOT met. Defaults to false.
+         */
         invertMatch?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * For satifying the matchRule condition, the request's path must begin with the
+         * specified prefixMatch. prefixMatch must begin with a /. The value must be
+         * between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or
+         * regexMatch must be specified.
+         */
         prefixMatch?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A header with the contents of headerName must exist. The match takes place
+         * whether or not the request's header has a value or not. Only one of exactMatch,
+         * prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+         */
         presentMatch?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * The header value must be an integer and its value must be in the range specified
+         * in rangeMatch. If the header does not contain an integer, number or is empty,
+         * the match fails. For example for a range [-5, 0]   - -3 will match.  - 0 will
+         * not match.  - 0.25 will not match.  - -3someString will not match.   Only one of
+         * exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+         * must be set.  Structure is documented below.
+         */
         rangeMatch?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch>;
+        /**
+         * -
+         * (Optional)
+         * For satifying the matchRule condition, the path of the request must satisfy the
+         * regular expression specified in regexMatch after removing any query parameters
+         * and anchor supplied with the original URL. For regular expression grammar please
+         * see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch,
+         * fullPathMatch or regexMatch must be specified.
+         */
         regexMatch?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The value of the header must end with the contents of suffixMatch. Only one of
+         * exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+         * must be set.
+         */
         suffixMatch?: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch {
+        /**
+         * -
+         * (Required)
+         * The end of the range (exclusive).
+         */
         rangeEnd: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * The start of the range (inclusive).
+         */
         rangeStart: pulumi.Input<number>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilter {
+        /**
+         * -
+         * (Required)
+         * The list of label value pairs that must match labels in the provided metadata
+         * based on filterMatchCriteria  This list must not be empty and can have at the
+         * most 64 entries.  Structure is documented below.
+         */
         filterLabels: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabel>[]>;
+        /**
+         * -
+         * (Required)
+         * Specifies how individual filterLabel matches within the list of filterLabels
+         * contribute towards the overall metadataFilter match. Supported values are:
+         * - MATCH_ANY: At least one of the filterLabels must have a matching label in the
+         * provided metadata.
+         * - MATCH_ALL: All filterLabels must have matching labels in
+         * the provided metadata.
+         */
         filterMatchCriteria: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabel {
+        /**
+         * -
+         * (Required)
+         * Name of the resource. Provided by the client when the resource is
+         * created. The name must be 1-63 characters long, and comply with
+         * RFC1035. Specifically, the name must be 1-63 characters long and match
+         * the regular expression `a-z?` which means the
+         * first character must be a lowercase letter, and all following
+         * characters must be a dash, lowercase letter, or digit, except the last
+         * character, which cannot be a dash.
+         */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the label must match the specified value. value can have a maximum
+         * length of 1024 characters.
+         */
         value: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleMatchRuleQueryParameterMatch {
+        /**
+         * -
+         * (Optional)
+         * The value should exactly match contents of exactMatch. Only one of exactMatch,
+         * prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+         */
         exactMatch?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Name of the resource. Provided by the client when the resource is
+         * created. The name must be 1-63 characters long, and comply with
+         * RFC1035. Specifically, the name must be 1-63 characters long and match
+         * the regular expression `a-z?` which means the
+         * first character must be a lowercase letter, and all following
+         * characters must be a dash, lowercase letter, or digit, except the last
+         * character, which cannot be a dash.
+         */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A header with the contents of headerName must exist. The match takes place
+         * whether or not the request's header has a value or not. Only one of exactMatch,
+         * prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+         */
         presentMatch?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * For satifying the matchRule condition, the path of the request must satisfy the
+         * regular expression specified in regexMatch after removing any query parameters
+         * and anchor supplied with the original URL. For regular expression grammar please
+         * see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch,
+         * fullPathMatch or regexMatch must be specified.
+         */
         regexMatch?: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteAction {
+        /**
+         * -
+         * (Optional)
+         * The specification for allowing client side cross-origin requests. Please see W3C
+         * Recommendation for Cross Origin Resource Sharing  Structure is documented below.
+         */
         corsPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicy>;
+        /**
+         * -
+         * (Optional)
+         * The specification for fault injection introduced into traffic to test the
+         * resiliency of clients to backend service failure. As part of fault injection,
+         * when clients send requests to a backend service, delays can be introduced by
+         * Loadbalancer on a percentage of requests before sending those request to the
+         * backend service. Similarly requests from clients can be aborted by the
+         * Loadbalancer for a percentage of requests. timeout and retryPolicy will be
+         * ignored by clients that are configured with a fault_injection_policy.  Structure is documented below.
+         */
         faultInjectionPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicy>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the policy on how requests intended for the route's backends are
+         * shadowed to a separate mirrored backend service. Loadbalancer does not wait for
+         * responses from the shadow service. Prior to sending traffic to the shadow
+         * service, the host / authority header is suffixed with -shadow.  Structure is documented below.
+         */
         requestMirrorPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicy>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the retry policy associated with this route.  Structure is documented below.
+         */
         retryPolicy?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicy>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the timeout for the selected route. Timeout is computed from the time
+         * the request is has been fully processed (i.e. end-of-stream) up until the
+         * response has been completely processed. Timeout includes all retries. If not
+         * specified, the default value is 15 seconds.  Structure is documented below.
+         */
         timeout?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionTimeout>;
+        /**
+         * -
+         * (Optional)
+         * The spec to modify the URL of the request, prior to forwarding the request to
+         * the matched service  Structure is documented below.
+         */
         urlRewrite?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewrite>;
+        /**
+         * -
+         * (Optional)
+         * A list of weighted backend services to send traffic to when a route match
+         * occurs. The weights determine the fraction of traffic that flows to their
+         * corresponding backend service. If all traffic needs to go to a single backend
+         * service, there must be one  weightedBackendService with weight set to a non 0
+         * number. Once a backendService is identified and before forwarding the request to
+         * the backend service, advanced routing actions like Url rewrites and header
+         * transformations are applied depending on additional settings specified in this
+         * HttpRouteAction.  Structure is documented below.
+         */
         weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendService>[]>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionCorsPolicy {
+        /**
+         * -
+         * (Optional)
+         * In response to a preflight request, setting this to true indicates that the
+         * actual request can include user credentials. This translates to the Access-
+         * Control-Allow-Credentials header. Defaults to false.
+         */
         allowCredentials?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the content for the Access-Control-Allow-Headers header.
+         */
         allowHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the content for the Access-Control-Allow-Methods header.
+         */
         allowMethods?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the regualar expression patterns that match allowed origins. For
+         * regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+         * An origin is allowed if it matches either allowOrigins or allow_origin_regex.
+         */
         allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the list of origins that will be allowed to do CORS requests. An
+         * origin is allowed if it matches either allowOrigins or allow_origin_regex.
+         */
         allowOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * If true, specifies the CORS policy is disabled.
+         * which indicates that the CORS policy is in effect. Defaults to false.
+         */
         disabled?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the content for the Access-Control-Expose-Headers header.
+         */
         exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how long the results of a preflight request can be cached. This
+         * translates to the content for the Access-Control-Max-Age header.
+         */
         maxAge?: pulumi.Input<number>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicy {
+        /**
+         * -
+         * (Optional)
+         * The specification for how client requests are aborted as part of fault
+         * injection.  Structure is documented below.
+         */
         abort?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort>;
+        /**
+         * -
+         * (Optional)
+         * The specification for how client requests are delayed as part of fault
+         * injection, before being sent to a backend service.  Structure is documented below.
+         */
         delay?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelay>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort {
+        /**
+         * -
+         * (Optional)
+         * The HTTP status code used to abort the request. The value must be between 200
+         * and 599 inclusive.
+         */
         httpStatus?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The percentage of traffic (connections/operations/requests) which will be
+         * aborted as part of fault injection. The value must be between 0.0 and 100.0
+         * inclusive.
+         */
         percentage?: pulumi.Input<number>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelay {
+        /**
+         * -
+         * (Optional)
+         * Specifies the value of the fixed delay interval.  Structure is documented below.
+         */
         fixedDelay?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelay>;
+        /**
+         * -
+         * (Optional)
+         * The percentage of traffic (connections/operations/requests) which will be
+         * aborted as part of fault injection. The value must be between 0.0 and 100.0
+         * inclusive.
+         */
         percentage?: pulumi.Input<number>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelay {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond resolution. Durations
+         * less than one second are represented with a 0 `seconds` field and a positive
+         * `nanos` field. Must be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+         * inclusive.
+         */
         seconds: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicy {
+        /**
+         * -
+         * (Required)
+         * The RegionBackendService resource being mirrored to.
+         */
         backendService: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicy {
+        /**
+         * -
+         * (Required)
+         * Specifies the allowed number retries. This number must be > 0.
+         */
         numRetries: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Specifies a non-zero timeout per retry attempt.  Structure is documented below.
+         */
         perTryTimeout?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout>;
+        /**
+         * -
+         * (Optional)
+         * Specfies one or more conditions when this retry rule applies. Valid values are:
+         * - 5xx: Loadbalancer will attempt a retry if the backend service responds with
+         * any 5xx response code, or if the backend service does not respond at all,
+         * example: disconnects, reset, read timeout, connection failure, and refused
+         * streams.
+         * - gateway-error: Similar to 5xx, but only applies to response codes
+         * 502, 503 or 504.
+         * - connect-failure: Loadbalancer will retry on failures
+         * connecting to backend services, for example due to connection timeouts.
+         * - retriable-4xx: Loadbalancer will retry for retriable 4xx response codes.
+         * Currently the only retriable error supported is 409.
+         * - refused-stream: Loadbalancer will retry if the backend service resets the stream with a
+         * REFUSED_STREAM error code. This reset type indicates that it is safe to retry.
+         * - cancelled: Loadbalancer will retry if the gRPC status code in the response
+         * header is set to cancelled
+         * - deadline-exceeded: Loadbalancer will retry if the
+         * gRPC status code in the response header is set to deadline-exceeded
+         * - resource-exhausted: Loadbalancer will retry if the gRPC status code in the response
+         * header is set to resource-exhausted
+         * - unavailable: Loadbalancer will retry if the gRPC status code in
+         * the response header is set to unavailable
+         */
         retryConditions?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond resolution. Durations
+         * less than one second are represented with a 0 `seconds` field and a positive
+         * `nanos` field. Must be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+         * inclusive.
+         */
         seconds: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionTimeout {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond resolution. Durations
+         * less than one second are represented with a 0 `seconds` field and a positive
+         * `nanos` field. Must be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+         * inclusive.
+         */
         seconds: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionUrlRewrite {
+        /**
+         * -
+         * (Optional)
+         * Prior to forwarding the request to the selected service, the request's host
+         * header is replaced with contents of hostRewrite. The value must be between 1 and
+         * 255 characters.
+         */
         hostRewrite?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Prior to forwarding the request to the selected backend service, the matching
+         * portion of the request's path is replaced by pathPrefixRewrite. The value must
+         * be between 1 and 1024 characters.
+         */
         pathPrefixRewrite?: pulumi.Input<string>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendService {
+        /**
+         * -
+         * (Required)
+         * The RegionBackendService resource being mirrored to.
+         */
         backendService: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies changes to request and response headers that need to take effect for
+         * the selected backendService. The headerAction specified here are applied before
+         * the matching pathMatchers[].headerAction and after pathMatchers[].routeRules[].r
+         * outeAction.weightedBackendService.backendServiceWeightAction[].headerAction  Structure is documented below.
+         */
         headerAction?: pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction>;
+        /**
+         * -
+         * (Required)
+         * Specifies the fraction of traffic sent to backendService, computed as weight /
+         * (sum of all weightedBackendService weights in routeAction) . The selection of a
+         * backend service is determined only for new traffic. Once a user's request has
+         * been directed to a backendService, subsequent requests will be sent to the same
+         * backendService as determined by the BackendService's session affinity policy.
+         * The value must be between 0 and 1000
+         */
         weight: pulumi.Input<number>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction {
+        /**
+         * -
+         * (Optional)
+         * Headers to add to a matching request prior to forwarding the request to the
+         * backendService.  Structure is documented below.
+         */
         requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the request
+         * prior to forwarding the request to the backendService.
+         */
         requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+         */
         responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the response
+         * prior to sending the response back to the client.
+         */
         responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface RegionUrlMapPathMatcherRouteRuleUrlRedirect {
+        /**
+         * -
+         * (Optional)
+         * The host that will be used in the redirect response instead of the one that was
+         * supplied in the request. The value must be between 1 and 255 characters.
+         */
         hostRedirect?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * If set to true, the URL scheme in the redirected request is set to https. If set
+         * to false, the URL scheme of the redirected request will remain the same as that
+         * of the request. This must only be set for UrlMaps used in TargetHttpProxys.
+         * Setting this true for TargetHttpsProxy is not permitted. Defaults to false.
+         */
         httpsRedirect?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * The path that will be used in the redirect response instead of the one that was
+         * supplied in the request. Only one of pathRedirect or prefixRedirect must be
+         * specified. The value must be between 1 and 1024 characters.
+         */
         pathRedirect?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
+         * retaining the remaining portion of the URL before redirecting the request.
+         */
         prefixRedirect?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The HTTP Status code to use for this RedirectAction. Supported values are:   -
+         * MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.  -
+         * FOUND, which corresponds to 302.  - SEE_OTHER which corresponds to 303.  -
+         * TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method
+         * will be retained.  - PERMANENT_REDIRECT, which corresponds to 308. In this case,
+         * the request method will be retained.
+         */
         redirectResponseCode?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * If set to true, any accompanying query portion of the original URL is removed
+         * prior to redirecting the request. If set to false, the query portion of the
+         * original URL is retained. Defaults to false.
+         */
         stripQuery?: pulumi.Input<boolean>;
     }
 
     export interface RegionUrlMapTest {
+        /**
+         * -
+         * (Optional)
+         * An optional description of this resource. Provide this property when
+         * you create the resource.
+         */
         description?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Host portion of the URL.
+         */
         host: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Path portion of the URL.
+         */
         path: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The region backend service resource to which traffic is
+         * directed if this rule is matched. If routeAction is additionally specified,
+         * advanced routing actions like URL Rewrites, etc. take effect prior to sending
+         * the request to the backend. However, if service is specified, routeAction cannot
+         * contain any weightedBackendService s. Conversely, if routeAction specifies any
+         * weightedBackendServices, service must not be specified. Only one of urlRedirect,
+         * service or routeAction.weightedBackendService must be set.
+         */
         service: pulumi.Input<string>;
     }
 
     export interface ReservationSpecificReservation {
+        /**
+         * -
+         * (Required)
+         * The number of resources that are allocated.
+         */
         count: pulumi.Input<number>;
+        /**
+         * -
+         * How many instances are in use.
+         */
         inUseCount?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * The instance properties for the reservation.  Structure is documented below.
+         */
         instanceProperties: pulumi.Input<inputs.compute.ReservationSpecificReservationInstanceProperties>;
     }
 
     export interface ReservationSpecificReservationInstanceProperties {
+        /**
+         * -
+         * (Optional)
+         * Guest accelerator type and count.  Structure is documented below.
+         */
         guestAccelerators?: pulumi.Input<pulumi.Input<inputs.compute.ReservationSpecificReservationInstancePropertiesGuestAccelerator>[]>;
+        /**
+         * -
+         * (Optional)
+         * The amount of local ssd to reserve with each instance. This
+         * reserves disks of type `local-ssd`.  Structure is documented below.
+         */
         localSsds?: pulumi.Input<pulumi.Input<inputs.compute.ReservationSpecificReservationInstancePropertiesLocalSsd>[]>;
+        /**
+         * -
+         * (Required)
+         * The name of the machine type to reserve.
+         */
         machineType: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The minimum CPU platform for the reservation. For example,
+         * `"Intel Skylake"`. See
+         * the CPU platform availability reference](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform#availablezones)
+         * for information on available CPU platforms.
+         */
         minCpuPlatform?: pulumi.Input<string>;
     }
 
     export interface ReservationSpecificReservationInstancePropertiesGuestAccelerator {
+        /**
+         * -
+         * (Required)
+         * The number of the guest accelerator cards exposed to
+         * this instance.
+         */
         acceleratorCount: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * The full or partial URL of the accelerator type to
+         * attach to this instance. For example:
+         * `projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100`
+         * If you are creating an instance template, specify only the accelerator name.
+         */
         acceleratorType: pulumi.Input<string>;
     }
 
     export interface ReservationSpecificReservationInstancePropertiesLocalSsd {
+        /**
+         * -
+         * (Required)
+         * The size of the disk in base-2 GB.
+         */
         diskSizeGb: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The disk interface to use for attaching this disk, one
+         * of `SCSI` or `NVME`. The default is `SCSI`.
+         */
         interface?: pulumi.Input<string>;
     }
 
     export interface ResourcePolicySnapshotSchedulePolicy {
+        /**
+         * -
+         * (Optional)
+         * Retention policy applied to snapshots created by this resource policy.  Structure is documented below.
+         */
         retentionPolicy?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicyRetentionPolicy>;
+        /**
+         * -
+         * (Required)
+         * Contains one of an `hourlySchedule`, `dailySchedule`, or `weeklySchedule`.  Structure is documented below.
+         */
         schedule: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicySchedule>;
+        /**
+         * -
+         * (Optional)
+         * Properties with which the snapshots are created, such as labels.  Structure is documented below.
+         */
         snapshotProperties?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicySnapshotProperties>;
     }
 
     export interface ResourcePolicySnapshotSchedulePolicyRetentionPolicy {
+        /**
+         * -
+         * (Required)
+         * Maximum age of the snapshot that is allowed to be kept.
+         */
         maxRetentionDays: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the behavior to apply to scheduled snapshots when
+         * the source disk is deleted.
+         * Valid options are KEEP_AUTO_SNAPSHOTS and APPLY_RETENTION_POLICY
+         */
         onSourceDiskDelete?: pulumi.Input<string>;
     }
 
     export interface ResourcePolicySnapshotSchedulePolicySchedule {
+        /**
+         * -
+         * (Optional)
+         * The policy will execute every nth day at the specified time.  Structure is documented below.
+         */
         dailySchedule?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicyScheduleDailySchedule>;
+        /**
+         * -
+         * (Optional)
+         * The policy will execute every nth hour starting at the specified time.  Structure is documented below.
+         */
         hourlySchedule?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule>;
+        /**
+         * -
+         * (Optional)
+         * Allows specifying a snapshot time for each day of the week.  Structure is documented below.
+         */
         weeklySchedule?: pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedule>;
     }
 
     export interface ResourcePolicySnapshotSchedulePolicyScheduleDailySchedule {
+        /**
+         * -
+         * (Required)
+         * The number of days between snapshots.
+         */
         daysInCycle: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Time within the window to start the operations.
+         * It must be in an hourly format "HH:MM",
+         * where HH : [00-23] and MM : [00] GMT.
+         * eg: 21:00
+         */
         startTime: pulumi.Input<string>;
     }
 
     export interface ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule {
+        /**
+         * -
+         * (Required)
+         * The number of hours between snapshots.
+         */
         hoursInCycle: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Time within the window to start the operations.
+         * It must be in an hourly format "HH:MM",
+         * where HH : [00-23] and MM : [00] GMT.
+         * eg: 21:00
+         */
         startTime: pulumi.Input<string>;
     }
 
     export interface ResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedule {
+        /**
+         * -
+         * (Required)
+         * May contain up to seven (one for each day of the week) snapshot times.  Structure is documented below.
+         */
         dayOfWeeks: pulumi.Input<pulumi.Input<inputs.compute.ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeek>[]>;
     }
 
     export interface ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeek {
+        /**
+         * -
+         * (Required)
+         * The day of the week to create the snapshot. e.g. MONDAY
+         */
         day: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Time within the window to start the operations.
+         * It must be in an hourly format "HH:MM",
+         * where HH : [00-23] and MM : [00] GMT.
+         * eg: 21:00
+         */
         startTime: pulumi.Input<string>;
     }
 
     export interface ResourcePolicySnapshotSchedulePolicySnapshotProperties {
+        /**
+         * -
+         * (Optional)
+         * Whether to perform a 'guest aware' snapshot.
+         */
         guestFlush?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * A set of key-value pairs.
+         */
         labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * (Optional)
+         * Cloud Storage bucket location to store the auto snapshot
+         * (regional or multi-regional)
+         */
         storageLocations?: pulumi.Input<string>;
     }
 
     export interface RouterBgp {
+        /**
+         * -
+         * (Optional)
+         * User-specified flag to indicate which mode to use for advertisement.
+         * Valid values of this enum field are: DEFAULT, CUSTOM
+         */
         advertiseMode?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * User-specified list of prefix groups to advertise in custom mode.
+         * This field can only be populated if advertiseMode is CUSTOM and
+         * is advertised to all peers of the router. These groups will be
+         * advertised in addition to any specified prefixes. Leave this field
+         * blank to advertise no custom groups.
+         * This enum field has the one valid value: ALL_SUBNETS
+         */
         advertisedGroups?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * User-specified list of individual IP ranges to advertise in
+         * custom mode. This field can only be populated if advertiseMode
+         * is CUSTOM and is advertised to all peers of the router. These IP
+         * ranges will be advertised in addition to any specified groups.
+         * Leave this field blank to advertise no custom IP ranges.  Structure is documented below.
+         */
         advertisedIpRanges?: pulumi.Input<pulumi.Input<inputs.compute.RouterBgpAdvertisedIpRange>[]>;
+        /**
+         * -
+         * (Required)
+         * Local BGP Autonomous System Number (ASN). Must be an RFC6996
+         * private ASN, either 16-bit or 32-bit. The value will be fixed for
+         * this router resource. All VPN tunnels that link to this router
+         * will have the same local ASN.
+         */
         asn: pulumi.Input<number>;
     }
 
     export interface RouterBgpAdvertisedIpRange {
+        /**
+         * -
+         * (Optional)
+         * An optional description of this resource.
+         */
         description?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The IP range to advertise. The value must be a
+         * CIDR-formatted string.
+         */
         range: pulumi.Input<string>;
     }
 
     export interface RouterNatLogConfig {
+        /**
+         * -
+         * (Required)
+         * Indicates whether or not to export logs.
+         */
         enable: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Required)
+         * Specifies the desired filtering of logs on this NAT. Valid
+         * values are: `"ERRORS_ONLY"`, `"TRANSLATIONS_ONLY"`, `"ALL"`
+         */
         filter: pulumi.Input<string>;
     }
 
     export interface RouterNatSubnetwork {
+        /**
+         * -
+         * (Required)
+         * Name of the NAT service. The name must be 1-63 characters long and
+         * comply with RFC1035.
+         */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * List of the secondary ranges of the subnetwork that are allowed
+         * to use NAT. This can be populated only if
+         * `LIST_OF_SECONDARY_IP_RANGES` is one of the values in
+         * sourceIpRangesToNat
+         */
         secondaryIpRangeNames?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Required)
+         * List of options for which source IPs in the subnetwork
+         * should have NAT enabled. Supported values include:
+         * `ALL_IP_RANGES`, `LIST_OF_SECONDARY_IP_RANGES`,
+         * `PRIMARY_IP_RANGE`.
+         */
         sourceIpRangesToNats: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface RouterPeerAdvertisedIpRange {
+        /**
+         * -
+         * (Optional)
+         * User-specified description for the IP range.
+         */
         description?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The IP range to advertise. The value must be a
+         * CIDR-formatted string.
+         */
         range: pulumi.Input<string>;
     }
 
@@ -2738,7 +8059,7 @@ export namespace compute {
          */
         action: pulumi.Input<string>;
         /**
-         * An optional description of this rule. Max size is 64.
+         * An optional description of this security policy. Max size is 2048.
          */
         description?: pulumi.Input<string>;
         /**
@@ -2797,32 +8118,98 @@ export namespace compute {
     }
 
     export interface SecurityScanConfigAuthentication {
+        /**
+         * -
+         * (Optional)
+         * Describes authentication configuration that uses a custom account.  Structure is documented below.
+         */
         customAccount?: pulumi.Input<inputs.compute.SecurityScanConfigAuthenticationCustomAccount>;
+        /**
+         * -
+         * (Optional)
+         * Describes authentication configuration that uses a Google account.  Structure is documented below.
+         */
         googleAccount?: pulumi.Input<inputs.compute.SecurityScanConfigAuthenticationGoogleAccount>;
     }
 
     export interface SecurityScanConfigAuthenticationCustomAccount {
+        /**
+         * -
+         * (Required)
+         * The login form URL of the website.
+         */
         loginUrl: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The password of the Google account. The credential is stored encrypted
+         * in GCP.
+         */
         password: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The user name of the Google account.
+         */
         username: pulumi.Input<string>;
     }
 
     export interface SecurityScanConfigAuthenticationGoogleAccount {
+        /**
+         * -
+         * (Required)
+         * The password of the Google account. The credential is stored encrypted
+         * in GCP.
+         */
         password: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The user name of the Google account.
+         */
         username: pulumi.Input<string>;
     }
 
     export interface SecurityScanConfigSchedule {
+        /**
+         * -
+         * (Required)
+         * The duration of time between executions in days
+         */
         intervalDurationDays: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * A timestamp indicates when the next run will be scheduled. The value is refreshed
+         * by the server after each run. If unspecified, it will default to current server time,
+         * which means the scan will be scheduled to start immediately.
+         */
         scheduleTime?: pulumi.Input<string>;
     }
 
     export interface SnapshotSnapshotEncryptionKey {
+        /**
+         * -
+         * (Required)
+         * Specifies a 256-bit customer-supplied encryption key, encoded in
+         * RFC 4648 base64 to either encrypt or decrypt this resource.
+         */
         rawKey: pulumi.Input<string>;
+        /**
+         * -
+         * The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
+         * encryption key that protects this resource.
+         */
         sha256?: pulumi.Input<string>;
     }
 
     export interface SnapshotSourceDiskEncryptionKey {
+        /**
+         * -
+         * (Required)
+         * Specifies a 256-bit customer-supplied encryption key, encoded in
+         * RFC 4648 base64 to either encrypt or decrypt this resource.
+         */
         rawKey?: pulumi.Input<string>;
     }
 
@@ -2857,351 +8244,1639 @@ export namespace compute {
     }
 
     export interface SubnetworkLogConfig {
+        /**
+         * -
+         * (Optional)
+         * Can only be specified if VPC flow logging for this subnetwork is enabled.
+         * Toggles the aggregation interval for collecting flow logs. Increasing the
+         * interval time will reduce the amount of generated flow logs for long
+         * lasting connections. Default is an interval of 5 seconds per connection.
+         * Possible values are INTERVAL_5_SEC, INTERVAL_30_SEC, INTERVAL_1_MIN,
+         * INTERVAL_5_MIN, INTERVAL_10_MIN, INTERVAL_15_MIN
+         */
         aggregationInterval?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Can only be specified if VPC flow logging for this subnetwork is enabled.
+         * The value of the field must be in [0, 1]. Set the sampling rate of VPC
+         * flow logs within the subnetwork where 1.0 means all collected logs are
+         * reported and 0.0 means no logs are reported. Default is 0.5 which means
+         * half of all collected logs are reported.
+         */
         flowSampling?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Can only be specified if VPC flow logging for this subnetwork is enabled.
+         * Configures whether metadata fields should be added to the reported VPC
+         * flow logs. Default is `INCLUDE_ALL_METADATA`.
+         */
         metadata?: pulumi.Input<string>;
     }
 
     export interface SubnetworkSecondaryIpRange {
+        /**
+         * -
+         * (Required)
+         * The range of internal addresses that are owned by this subnetwork.
+         * Provide this property when you create the subnetwork. For example,
+         * 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and
+         * non-overlapping within a network. Only IPv4 is supported.
+         */
         ipCidrRange: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The name associated with this subnetwork secondary range, used
+         * when adding an alias IP range to a VM instance. The name must
+         * be 1-63 characters long, and comply with RFC1035. The name
+         * must be unique within the subnetwork.
+         */
         rangeName: pulumi.Input<string>;
     }
 
     export interface URLMapHeaderAction {
+        /**
+         * -
+         * (Optional)
+         * Headers to add to a matching request prior to forwarding the request to the
+         * backendService.  Structure is documented below.
+         */
         requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapHeaderActionRequestHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the request
+         * prior to forwarding the request to the backendService.
+         */
         requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+         */
         responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapHeaderActionResponseHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the response
+         * prior to sending the response back to the client.
+         */
         responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface URLMapHeaderActionRequestHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface URLMapHeaderActionResponseHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface URLMapHostRule {
+        /**
+         * -
+         * (Optional)
+         * An optional description of this resource. Provide this property when you create
+         * the resource.
+         */
         description?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The list of host patterns to match. They must be valid hostnames, except * will
+         * match any string of ([a-z0-9-.]*). In that case, * must be the first character
+         * and must be followed in the pattern by either - or ..
+         */
         hosts: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * The list of named PathMatchers to use against the URL.  Structure is documented below.
+         */
         pathMatcher: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcher {
+        /**
+         * -
+         * (Optional)
+         * The backend service or backend bucket to use when none of the given rules match.
+         */
         defaultService?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * An optional description of this resource. Provide this property when you create
+         * the resource.
+         */
         description?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies changes to request and response headers that need to take effect for
+         * the selected backendService. The headerAction specified here take effect after
+         * headerAction specified under pathMatcher.  Structure is documented below.
+         */
         headerAction?: pulumi.Input<inputs.compute.URLMapPathMatcherHeaderAction>;
+        /**
+         * -
+         * (Required)
+         * Name of the resource. Provided by the client when the resource is created. The
+         * name must be 1-63 characters long, and comply with RFC1035. Specifically, the
+         * name must be 1-63 characters long and match the regular expression
+         * `a-z?` which means the first character must be a lowercase
+         * letter, and all following characters must be a dash, lowercase letter, or digit,
+         * except the last character, which cannot be a dash.
+         */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The list of path rules. Use this list instead of routeRules when routing based
+         * on simple path matching is all that's required. The order by which path rules
+         * are specified does not matter. Matches are always done on the longest-path-first
+         * basis. For example: a pathRule with a path /a/b/c/* will match before /a/b/*
+         * irrespective of the order in which those paths appear in this list. Within a
+         * given pathMatcher, only one of pathRules or routeRules must be set.  Structure is documented below.
+         */
         pathRules?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherPathRule>[]>;
+        /**
+         * -
+         * (Optional)
+         * The list of ordered HTTP route rules. Use this list instead of pathRules when
+         * advanced route matching and routing actions are desired. The order of specifying
+         * routeRules matters: the first rule that matches will cause its specified routing
+         * action to take effect. Within a given pathMatcher, only one of pathRules or
+         * routeRules must be set. routeRules are not supported in UrlMaps intended for
+         * External load balancers.  Structure is documented below.
+         */
         routeRules?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRule>[]>;
     }
 
     export interface URLMapPathMatcherHeaderAction {
+        /**
+         * -
+         * (Optional)
+         * Headers to add to a matching request prior to forwarding the request to the
+         * backendService.  Structure is documented below.
+         */
         requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherHeaderActionRequestHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the request
+         * prior to forwarding the request to the backendService.
+         */
         requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+         */
         responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherHeaderActionResponseHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the response
+         * prior to sending the response back to the client.
+         */
         responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface URLMapPathMatcherHeaderActionRequestHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface URLMapPathMatcherHeaderActionResponseHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface URLMapPathMatcherPathRule {
+        /**
+         * -
+         * (Required)
+         * The list of path patterns to match. Each must start with / and the only place a
+         * * is allowed is at the end following a /. The string fed to the path matcher
+         * does not include any text after the first ? or #, and those chars are not
+         * allowed here.
+         */
         paths: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * In response to a matching path, the load balancer performs advanced routing
+         * actions like URL rewrites, header transformations, etc. prior to forwarding the
+         * request to the selected backend. If routeAction specifies any
+         * weightedBackendServices, service must not be set. Conversely if service is set,
+         * routeAction cannot contain any  weightedBackendServices. Only one of routeAction
+         * or urlRedirect must be set.  Structure is documented below.
+         */
         routeAction?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteAction>;
+        /**
+         * -
+         * (Optional)
+         * The backend service or backend bucket to use if any of the given paths match.
+         */
         service?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * When a path pattern is matched, the request is redirected to a URL specified by
+         * urlRedirect. If urlRedirect is specified, service or routeAction must not be
+         * set.  Structure is documented below.
+         */
         urlRedirect?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleUrlRedirect>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteAction {
+        /**
+         * -
+         * (Optional)
+         * The specification for allowing client side cross-origin requests. Please see W3C
+         * Recommendation for Cross Origin Resource Sharing  Structure is documented below.
+         */
         corsPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionCorsPolicy>;
+        /**
+         * -
+         * (Optional)
+         * The specification for fault injection introduced into traffic to test the
+         * resiliency of clients to backend service failure. As part of fault injection,
+         * when clients send requests to a backend service, delays can be introduced by
+         * Loadbalancer on a percentage of requests before sending those request to the
+         * backend service. Similarly requests from clients can be aborted by the
+         * Loadbalancer for a percentage of requests. timeout and retryPolicy will be
+         * ignored by clients that are configured with a fault_injection_policy.  Structure is documented below.
+         */
         faultInjectionPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicy>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the policy on how requests intended for the route's backends are
+         * shadowed to a separate mirrored backend service. Loadbalancer does not wait for
+         * responses from the shadow service. Prior to sending traffic to the shadow
+         * service, the host / authority header is suffixed with -shadow.  Structure is documented below.
+         */
         requestMirrorPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicy>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the retry policy associated with this route.  Structure is documented below.
+         */
         retryPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionRetryPolicy>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the timeout for the selected route. Timeout is computed from the time
+         * the request is has been fully processed (i.e. end-of-stream) up until the
+         * response has been completely processed. Timeout includes all retries. If not
+         * specified, the default value is 15 seconds.  Structure is documented below.
+         */
         timeout?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionTimeout>;
+        /**
+         * -
+         * (Optional)
+         * The spec to modify the URL of the request, prior to forwarding the request to
+         * the matched service  Structure is documented below.
+         */
         urlRewrite?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionUrlRewrite>;
+        /**
+         * -
+         * (Optional)
+         * A list of weighted backend services to send traffic to when a route match
+         * occurs. The weights determine the fraction of traffic that flows to their
+         * corresponding backend service. If all traffic needs to go to a single backend
+         * service, there must be one  weightedBackendService with weight set to a non 0
+         * number. Once a backendService is identified and before forwarding the request to
+         * the backend service, advanced routing actions like Url rewrites and header
+         * transformations are applied depending on additional settings specified in this
+         * HttpRouteAction.  Structure is documented below.
+         */
         weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionWeightedBackendService>[]>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionCorsPolicy {
+        /**
+         * -
+         * (Optional)
+         * In response to a preflight request, setting this to true indicates that the
+         * actual request can include user credentials. This translates to the Access-
+         * Control-Allow-Credentials header. Defaults to false.
+         */
         allowCredentials?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the content for the Access-Control-Allow-Headers header.
+         */
         allowHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the content for the Access-Control-Allow-Methods header.
+         */
         allowMethods?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the regualar expression patterns that match allowed origins. For
+         * regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+         * An origin is allowed if it matches either allowOrigins or allow_origin_regex.
+         */
         allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the list of origins that will be allowed to do CORS requests. An
+         * origin is allowed if it matches either allowOrigins or allow_origin_regex.
+         */
         allowOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Required)
+         * If true, specifies the CORS policy is disabled.
+         */
         disabled: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the content for the Access-Control-Expose-Headers header.
+         */
         exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how long the results of a preflight request can be cached. This
+         * translates to the content for the Access-Control-Max-Age header.
+         */
         maxAge?: pulumi.Input<number>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicy {
+        /**
+         * -
+         * (Optional)
+         * The specification for how client requests are aborted as part of fault
+         * injection.  Structure is documented below.
+         */
         abort?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort>;
+        /**
+         * -
+         * (Optional)
+         * The specification for how client requests are delayed as part of fault
+         * injection, before being sent to a backend service.  Structure is documented below.
+         */
         delay?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort {
+        /**
+         * -
+         * (Required)
+         * The HTTP status code used to abort the request. The value must be between 200
+         * and 599 inclusive.
+         */
         httpStatus: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * The percentage of traffic (connections/operations/requests) which will be
+         * aborted as part of fault injection. The value must be between 0.0 and 100.0
+         * inclusive.
+         */
         percentage: pulumi.Input<number>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay {
+        /**
+         * -
+         * (Required)
+         * Specifies the value of the fixed delay interval.  Structure is documented below.
+         */
         fixedDelay: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay>;
+        /**
+         * -
+         * (Required)
+         * The percentage of traffic (connections/operations/requests) which will be
+         * aborted as part of fault injection. The value must be between 0.0 and 100.0
+         * inclusive.
+         */
         percentage: pulumi.Input<number>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond resolution. Durations
+         * less than one second are represented with a 0 `seconds` field and a positive
+         * `nanos` field. Must be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+         * inclusive.
+         */
         seconds: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicy {
+        /**
+         * -
+         * (Required)
+         * The BackendService resource being mirrored to.
+         */
         backendService: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionRetryPolicy {
+        /**
+         * -
+         * (Optional)
+         * Specifies the allowed number retries. This number must be > 0.
+         */
         numRetries?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Specifies a non-zero timeout per retry attempt.  Structure is documented below.
+         */
         perTryTimeout?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout>;
+        /**
+         * -
+         * (Optional)
+         * Specifies one or more conditions when this retry rule applies. Valid values are:
+         * - 5xx: Loadbalancer will attempt a retry if the backend service responds with
+         * any 5xx response code, or if the backend service does not respond at all,
+         * example: disconnects, reset, read timeout, connection failure, and refused
+         * streams.
+         * - gateway-error: Similar to 5xx, but only applies to response codes
+         * 502, 503 or 504.
+         * - connect-failure: Loadbalancer will retry on failures
+         * connecting to backend services, for example due to connection timeouts.
+         * - retriable-4xx: Loadbalancer will retry for retriable 4xx response codes.
+         * Currently the only retriable error supported is 409.
+         * - refused-stream: Loadbalancer will retry if the backend service resets the stream with a
+         * REFUSED_STREAM error code. This reset type indicates that it is safe to retry.
+         * - cancelled: Loadbalancer will retry if the gRPC status code in the response
+         * header is set to cancelled
+         * - deadline-exceeded: Loadbalancer will retry if the
+         * gRPC status code in the response header is set to deadline-exceeded
+         * - resource-exhausted: Loadbalancer will retry if the gRPC status code in the response
+         * header is set to resource-exhausted
+         * - unavailable: Loadbalancer will retry if
+         * the gRPC status code in the response header is set to unavailable
+         */
         retryConditions?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond resolution. Durations
+         * less than one second are represented with a 0 `seconds` field and a positive
+         * `nanos` field. Must be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+         * inclusive.
+         */
         seconds: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionTimeout {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond resolution. Durations
+         * less than one second are represented with a 0 `seconds` field and a positive
+         * `nanos` field. Must be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+         * inclusive.
+         */
         seconds: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionUrlRewrite {
+        /**
+         * -
+         * (Optional)
+         * Prior to forwarding the request to the selected service, the request's host
+         * header is replaced with contents of hostRewrite. The value must be between 1 and
+         * 255 characters.
+         */
         hostRewrite?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Prior to forwarding the request to the selected backend service, the matching
+         * portion of the request's path is replaced by pathPrefixRewrite. The value must
+         * be between 1 and 1024 characters.
+         */
         pathPrefixRewrite?: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionWeightedBackendService {
+        /**
+         * -
+         * (Required)
+         * The BackendService resource being mirrored to.
+         */
         backendService: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies changes to request and response headers that need to take effect for
+         * the selected backendService. The headerAction specified here take effect after
+         * headerAction specified under pathMatcher.  Structure is documented below.
+         */
         headerAction?: pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction>;
+        /**
+         * -
+         * (Required)
+         * Specifies the fraction of traffic sent to backendService, computed as weight /
+         * (sum of all weightedBackendService weights in routeAction) . The selection of a
+         * backend service is determined only for new traffic. Once a user's request has
+         * been directed to a backendService, subsequent requests will be sent to the same
+         * backendService as determined by the BackendService's session affinity policy.
+         * The value must be between 0 and 1000
+         */
         weight: pulumi.Input<number>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderAction {
+        /**
+         * -
+         * (Optional)
+         * Headers to add to a matching request prior to forwarding the request to the
+         * backendService.  Structure is documented below.
+         */
         requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the request
+         * prior to forwarding the request to the backendService.
+         */
         requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+         */
         responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the response
+         * prior to sending the response back to the client.
+         */
         responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface URLMapPathMatcherPathRuleUrlRedirect {
+        /**
+         * -
+         * (Optional)
+         * The host that will be used in the redirect response instead of the one that was
+         * supplied in the request. The value must be between 1 and 255 characters.
+         */
         hostRedirect?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * If set to true, the URL scheme in the redirected request is set to https. If set
+         * to false, the URL scheme of the redirected request will remain the same as that
+         * of the request. This must only be set for UrlMaps used in TargetHttpProxys.
+         * Setting this true for TargetHttpsProxy is not permitted. Defaults to false.
+         */
         httpsRedirect?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * The path that will be used in the redirect response instead of the one that was
+         * supplied in the request. Only one of pathRedirect or prefixRedirect must be
+         * specified. The value must be between 1 and 1024 characters.
+         */
         pathRedirect?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
+         * retaining the remaining portion of the URL before redirecting the request.
+         */
         prefixRedirect?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The HTTP Status code to use for this RedirectAction. Supported values are:
+         * - MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.
+         * - FOUND, which corresponds to 302.
+         * - SEE_OTHER which corresponds to 303.
+         * - TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method
+         * will be retained.
+         * - PERMANENT_REDIRECT, which corresponds to 308. In this case,
+         * the request method will be retained.
+         */
         redirectResponseCode?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If set to true, any accompanying query portion of the original URL is removed
+         * prior to redirecting the request. If set to false, the query portion of the
+         * original URL is retained.
+         */
         stripQuery: pulumi.Input<boolean>;
     }
 
     export interface URLMapPathMatcherRouteRule {
+        /**
+         * -
+         * (Optional)
+         * Specifies changes to request and response headers that need to take effect for
+         * the selected backendService. The headerAction specified here take effect after
+         * headerAction specified under pathMatcher.  Structure is documented below.
+         */
         headerAction?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleHeaderAction>;
+        /**
+         * -
+         * (Optional)
+         * The rules for determining a match.  Structure is documented below.
+         */
         matchRules?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRule>[]>;
+        /**
+         * -
+         * (Required)
+         * For routeRules within a given pathMatcher, priority determines the order
+         * in which load balancer will interpret routeRules. RouteRules are evaluated
+         * in order of priority, from the lowest to highest number. The priority of
+         * a rule decreases as its number increases (1, 2, 3, N+1). The first rule
+         * that matches the request is applied.
+         * You cannot configure two or more routeRules with the same priority.
+         * Priority for each rule must be set to a number between 0 and
+         * 2147483647 inclusive.
+         * Priority numbers can have gaps, which enable you to add or remove rules
+         * in the future without affecting the rest of the rules. For example,
+         * 1, 2, 3, 4, 5, 9, 12, 16 is a valid series of priority numbers to which
+         * you could add rules numbered from 6 to 8, 10 to 11, and 13 to 15 in the
+         * future without any impact on existing rules.
+         */
         priority: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * In response to a matching path, the load balancer performs advanced routing
+         * actions like URL rewrites, header transformations, etc. prior to forwarding the
+         * request to the selected backend. If routeAction specifies any
+         * weightedBackendServices, service must not be set. Conversely if service is set,
+         * routeAction cannot contain any  weightedBackendServices. Only one of routeAction
+         * or urlRedirect must be set.  Structure is documented below.
+         */
         routeAction?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteAction>;
+        /**
+         * -
+         * (Optional)
+         * The backend service or backend bucket to use if any of the given paths match.
+         */
         service?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * When a path pattern is matched, the request is redirected to a URL specified by
+         * urlRedirect. If urlRedirect is specified, service or routeAction must not be
+         * set.  Structure is documented below.
+         */
         urlRedirect?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleUrlRedirect>;
     }
 
     export interface URLMapPathMatcherRouteRuleHeaderAction {
+        /**
+         * -
+         * (Optional)
+         * Headers to add to a matching request prior to forwarding the request to the
+         * backendService.  Structure is documented below.
+         */
         requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the request
+         * prior to forwarding the request to the backendService.
+         */
         requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+         */
         responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the response
+         * prior to sending the response back to the client.
+         */
         responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface URLMapPathMatcherRouteRuleMatchRule {
+        /**
+         * -
+         * (Optional)
+         * For satifying the matchRule condition, the path of the request must exactly
+         * match the value specified in fullPathMatch after removing any query parameters
+         * and anchor that may be part of the original URL. FullPathMatch must be between 1
+         * and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must
+         * be specified.
+         */
         fullPathMatch?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies a list of header match criteria, all of which must match corresponding
+         * headers in the request.  Structure is documented below.
+         */
         headerMatches?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRuleHeaderMatch>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies that prefixMatch and fullPathMatch matches are case sensitive.
+         * Defaults to false.
+         */
         ignoreCase?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Opaque filter criteria used by Loadbalancer to restrict routing configuration to
+         * a limited set xDS compliant clients. In their xDS requests to Loadbalancer, xDS
+         * clients present node metadata. If a match takes place, the relevant routing
+         * configuration is made available to those proxies. For each metadataFilter in
+         * this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the
+         * filterLabels must match the corresponding label provided in the metadata. If its
+         * filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match
+         * with corresponding labels in the provided metadata. metadataFilters specified
+         * here can be overrides those specified in ForwardingRule that refers to this
+         * UrlMap. metadataFilters only applies to Loadbalancers that have their
+         * loadBalancingScheme set to INTERNAL_SELF_MANAGED.  Structure is documented below.
+         */
         metadataFilters?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRuleMetadataFilter>[]>;
+        /**
+         * -
+         * (Optional)
+         * For satifying the matchRule condition, the request's path must begin with the
+         * specified prefixMatch. prefixMatch must begin with a /. The value must be
+         * between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or
+         * regexMatch must be specified.
+         */
         prefixMatch?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies a list of query parameter match criteria, all of which must match
+         * corresponding query parameters in the request.  Structure is documented below.
+         */
         queryParameterMatches?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatch>[]>;
+        /**
+         * -
+         * (Optional)
+         * For satifying the matchRule condition, the path of the request must satisfy the
+         * regular expression specified in regexMatch after removing any query parameters
+         * and anchor supplied with the original URL. For regular expression grammar please
+         * see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch,
+         * fullPathMatch or regexMatch must be specified.
+         */
         regexMatch?: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherRouteRuleMatchRuleHeaderMatch {
+        /**
+         * -
+         * (Optional)
+         * The value should exactly match contents of exactMatch. Only one of exactMatch,
+         * prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+         */
         exactMatch?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * If set to false, the headerMatch is considered a match if the match criteria
+         * above are met. If set to true, the headerMatch is considered a match if the
+         * match criteria above are NOT met. Defaults to false.
+         */
         invertMatch?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * For satifying the matchRule condition, the request's path must begin with the
+         * specified prefixMatch. prefixMatch must begin with a /. The value must be
+         * between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or
+         * regexMatch must be specified.
+         */
         prefixMatch?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A header with the contents of headerName must exist. The match takes place
+         * whether or not the request's header has a value or not. Only one of exactMatch,
+         * prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+         */
         presentMatch?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * The header value must be an integer and its value must be in the range specified
+         * in rangeMatch. If the header does not contain an integer, number or is empty,
+         * the match fails. For example for a range [-5, 0]   - -3 will match.  - 0 will
+         * not match.  - 0.25 will not match.  - -3someString will not match.   Only one of
+         * exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+         * must be set.  Structure is documented below.
+         */
         rangeMatch?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch>;
+        /**
+         * -
+         * (Optional)
+         * For satifying the matchRule condition, the path of the request must satisfy the
+         * regular expression specified in regexMatch after removing any query parameters
+         * and anchor supplied with the original URL. For regular expression grammar please
+         * see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch,
+         * fullPathMatch or regexMatch must be specified.
+         */
         regexMatch?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The value of the header must end with the contents of suffixMatch. Only one of
+         * exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch
+         * must be set.
+         */
         suffixMatch?: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch {
+        /**
+         * -
+         * (Required)
+         * The end of the range (exclusive).
+         */
         rangeEnd: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * The start of the range (inclusive).
+         */
         rangeStart: pulumi.Input<number>;
     }
 
     export interface URLMapPathMatcherRouteRuleMatchRuleMetadataFilter {
+        /**
+         * -
+         * (Required)
+         * The list of label value pairs that must match labels in the provided metadata
+         * based on filterMatchCriteria  This list must not be empty and can have at the
+         * most 64 entries.  Structure is documented below.
+         */
         filterLabels: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabel>[]>;
+        /**
+         * -
+         * (Required)
+         * Specifies how individual filterLabel matches within the list of filterLabels
+         * contribute towards the overall metadataFilter match. Supported values are:
+         * - MATCH_ANY: At least one of the filterLabels must have a matching label in the
+         * provided metadata.
+         * - MATCH_ALL: All filterLabels must have matching labels in
+         * the provided metadata.
+         */
         filterMatchCriteria: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabel {
+        /**
+         * -
+         * (Required)
+         * Name of the resource. Provided by the client when the resource is created. The
+         * name must be 1-63 characters long, and comply with RFC1035. Specifically, the
+         * name must be 1-63 characters long and match the regular expression
+         * `a-z?` which means the first character must be a lowercase
+         * letter, and all following characters must be a dash, lowercase letter, or digit,
+         * except the last character, which cannot be a dash.
+         */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the label must match the specified value. value can have a maximum
+         * length of 1024 characters.
+         */
         value: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatch {
+        /**
+         * -
+         * (Optional)
+         * The value should exactly match contents of exactMatch. Only one of exactMatch,
+         * prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+         */
         exactMatch?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Name of the resource. Provided by the client when the resource is created. The
+         * name must be 1-63 characters long, and comply with RFC1035. Specifically, the
+         * name must be 1-63 characters long and match the regular expression
+         * `a-z?` which means the first character must be a lowercase
+         * letter, and all following characters must be a dash, lowercase letter, or digit,
+         * except the last character, which cannot be a dash.
+         */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A header with the contents of headerName must exist. The match takes place
+         * whether or not the request's header has a value or not. Only one of exactMatch,
+         * prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
+         */
         presentMatch?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * For satifying the matchRule condition, the path of the request must satisfy the
+         * regular expression specified in regexMatch after removing any query parameters
+         * and anchor supplied with the original URL. For regular expression grammar please
+         * see en.cppreference.com/w/cpp/regex/ecmascript  Only one of prefixMatch,
+         * fullPathMatch or regexMatch must be specified.
+         */
         regexMatch?: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteAction {
+        /**
+         * -
+         * (Optional)
+         * The specification for allowing client side cross-origin requests. Please see W3C
+         * Recommendation for Cross Origin Resource Sharing  Structure is documented below.
+         */
         corsPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionCorsPolicy>;
+        /**
+         * -
+         * (Optional)
+         * The specification for fault injection introduced into traffic to test the
+         * resiliency of clients to backend service failure. As part of fault injection,
+         * when clients send requests to a backend service, delays can be introduced by
+         * Loadbalancer on a percentage of requests before sending those request to the
+         * backend service. Similarly requests from clients can be aborted by the
+         * Loadbalancer for a percentage of requests. timeout and retryPolicy will be
+         * ignored by clients that are configured with a fault_injection_policy.  Structure is documented below.
+         */
         faultInjectionPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicy>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the policy on how requests intended for the route's backends are
+         * shadowed to a separate mirrored backend service. Loadbalancer does not wait for
+         * responses from the shadow service. Prior to sending traffic to the shadow
+         * service, the host / authority header is suffixed with -shadow.  Structure is documented below.
+         */
         requestMirrorPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicy>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the retry policy associated with this route.  Structure is documented below.
+         */
         retryPolicy?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionRetryPolicy>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the timeout for the selected route. Timeout is computed from the time
+         * the request is has been fully processed (i.e. end-of-stream) up until the
+         * response has been completely processed. Timeout includes all retries. If not
+         * specified, the default value is 15 seconds.  Structure is documented below.
+         */
         timeout?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionTimeout>;
+        /**
+         * -
+         * (Optional)
+         * The spec to modify the URL of the request, prior to forwarding the request to
+         * the matched service  Structure is documented below.
+         */
         urlRewrite?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionUrlRewrite>;
+        /**
+         * -
+         * (Optional)
+         * A list of weighted backend services to send traffic to when a route match
+         * occurs. The weights determine the fraction of traffic that flows to their
+         * corresponding backend service. If all traffic needs to go to a single backend
+         * service, there must be one  weightedBackendService with weight set to a non 0
+         * number. Once a backendService is identified and before forwarding the request to
+         * the backend service, advanced routing actions like Url rewrites and header
+         * transformations are applied depending on additional settings specified in this
+         * HttpRouteAction.  Structure is documented below.
+         */
         weightedBackendServices?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionWeightedBackendService>[]>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionCorsPolicy {
+        /**
+         * -
+         * (Optional)
+         * In response to a preflight request, setting this to true indicates that the
+         * actual request can include user credentials. This translates to the Access-
+         * Control-Allow-Credentials header. Defaults to false.
+         */
         allowCredentials?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the content for the Access-Control-Allow-Headers header.
+         */
         allowHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the content for the Access-Control-Allow-Methods header.
+         */
         allowMethods?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the regualar expression patterns that match allowed origins. For
+         * regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+         * An origin is allowed if it matches either allowOrigins or allow_origin_regex.
+         */
         allowOriginRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the list of origins that will be allowed to do CORS requests. An
+         * origin is allowed if it matches either allowOrigins or allow_origin_regex.
+         */
         allowOrigins?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Required)
+         * If true, specifies the CORS policy is disabled.
+         */
         disabled?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the content for the Access-Control-Expose-Headers header.
+         */
         exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Specifies how long the results of a preflight request can be cached. This
+         * translates to the content for the Access-Control-Max-Age header.
+         */
         maxAge?: pulumi.Input<number>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicy {
+        /**
+         * -
+         * (Optional)
+         * The specification for how client requests are aborted as part of fault
+         * injection.  Structure is documented below.
+         */
         abort?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort>;
+        /**
+         * -
+         * (Optional)
+         * The specification for how client requests are delayed as part of fault
+         * injection, before being sent to a backend service.  Structure is documented below.
+         */
         delay?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelay>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort {
+        /**
+         * -
+         * (Required)
+         * The HTTP status code used to abort the request. The value must be between 200
+         * and 599 inclusive.
+         */
         httpStatus?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * The percentage of traffic (connections/operations/requests) which will be
+         * aborted as part of fault injection. The value must be between 0.0 and 100.0
+         * inclusive.
+         */
         percentage?: pulumi.Input<number>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelay {
+        /**
+         * -
+         * (Required)
+         * Specifies the value of the fixed delay interval.  Structure is documented below.
+         */
         fixedDelay?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelay>;
+        /**
+         * -
+         * (Required)
+         * The percentage of traffic (connections/operations/requests) which will be
+         * aborted as part of fault injection. The value must be between 0.0 and 100.0
+         * inclusive.
+         */
         percentage?: pulumi.Input<number>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelayFixedDelay {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond resolution. Durations
+         * less than one second are represented with a 0 `seconds` field and a positive
+         * `nanos` field. Must be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+         * inclusive.
+         */
         seconds: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionRequestMirrorPolicy {
+        /**
+         * -
+         * (Required)
+         * The BackendService resource being mirrored to.
+         */
         backendService: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionRetryPolicy {
+        /**
+         * -
+         * (Optional)
+         * Specifies the allowed number retries. This number must be > 0.
+         */
         numRetries: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Specifies a non-zero timeout per retry attempt.  Structure is documented below.
+         */
         perTryTimeout?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout>;
+        /**
+         * -
+         * (Optional)
+         * Specifies one or more conditions when this retry rule applies. Valid values are:
+         * - 5xx: Loadbalancer will attempt a retry if the backend service responds with
+         * any 5xx response code, or if the backend service does not respond at all,
+         * example: disconnects, reset, read timeout, connection failure, and refused
+         * streams.
+         * - gateway-error: Similar to 5xx, but only applies to response codes
+         * 502, 503 or 504.
+         * - connect-failure: Loadbalancer will retry on failures
+         * connecting to backend services, for example due to connection timeouts.
+         * - retriable-4xx: Loadbalancer will retry for retriable 4xx response codes.
+         * Currently the only retriable error supported is 409.
+         * - refused-stream: Loadbalancer will retry if the backend service resets the stream with a
+         * REFUSED_STREAM error code. This reset type indicates that it is safe to retry.
+         * - cancelled: Loadbalancer will retry if the gRPC status code in the response
+         * header is set to cancelled
+         * - deadline-exceeded: Loadbalancer will retry if the
+         * gRPC status code in the response header is set to deadline-exceeded
+         * - resource-exhausted: Loadbalancer will retry if the gRPC status code in the response
+         * header is set to resource-exhausted
+         * - unavailable: Loadbalancer will retry if
+         * the gRPC status code in the response header is set to unavailable
+         */
         retryConditions?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionRetryPolicyPerTryTimeout {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond resolution. Durations
+         * less than one second are represented with a 0 `seconds` field and a positive
+         * `nanos` field. Must be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+         * inclusive.
+         */
         seconds: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionTimeout {
+        /**
+         * -
+         * (Optional)
+         * Span of time that's a fraction of a second at nanosecond resolution. Durations
+         * less than one second are represented with a 0 `seconds` field and a positive
+         * `nanos` field. Must be from 0 to 999,999,999 inclusive.
+         */
         nanos?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000
+         * inclusive.
+         */
         seconds: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionUrlRewrite {
+        /**
+         * -
+         * (Optional)
+         * Prior to forwarding the request to the selected service, the request's host
+         * header is replaced with contents of hostRewrite. The value must be between 1 and
+         * 255 characters.
+         */
         hostRewrite?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Prior to forwarding the request to the selected backend service, the matching
+         * portion of the request's path is replaced by pathPrefixRewrite. The value must
+         * be between 1 and 1024 characters.
+         */
         pathPrefixRewrite?: pulumi.Input<string>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionWeightedBackendService {
+        /**
+         * -
+         * (Required)
+         * The BackendService resource being mirrored to.
+         */
         backendService: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies changes to request and response headers that need to take effect for
+         * the selected backendService. The headerAction specified here take effect after
+         * headerAction specified under pathMatcher.  Structure is documented below.
+         */
         headerAction?: pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction>;
+        /**
+         * -
+         * (Required)
+         * Specifies the fraction of traffic sent to backendService, computed as weight /
+         * (sum of all weightedBackendService weights in routeAction) . The selection of a
+         * backend service is determined only for new traffic. Once a user's request has
+         * been directed to a backendService, subsequent requests will be sent to the same
+         * backendService as determined by the BackendService's session affinity policy.
+         * The value must be between 0 and 1000
+         */
         weight: pulumi.Input<number>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderAction {
+        /**
+         * -
+         * (Optional)
+         * Headers to add to a matching request prior to forwarding the request to the
+         * backendService.  Structure is documented below.
+         */
         requestHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the request
+         * prior to forwarding the request to the backendService.
+         */
         requestHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+         */
         responseHeadersToAdds?: pulumi.Input<pulumi.Input<inputs.compute.URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd>[]>;
+        /**
+         * -
+         * (Optional)
+         * A list of header names for headers that need to be removed from the response
+         * prior to sending the response back to the client.
+         */
         responseHeadersToRemoves?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface URLMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd {
+        /**
+         * -
+         * (Required)
+         * The name of the header.
+         */
         headerName: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The value of the header to add.
+         */
         headerValue: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If false, headerValue is appended to any values that already exist for the
+         * header. If true, headerValue is set for the header, discarding any values that
+         * were set for that header.
+         */
         replace: pulumi.Input<boolean>;
     }
 
     export interface URLMapPathMatcherRouteRuleUrlRedirect {
+        /**
+         * -
+         * (Optional)
+         * The host that will be used in the redirect response instead of the one that was
+         * supplied in the request. The value must be between 1 and 255 characters.
+         */
         hostRedirect?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * If set to true, the URL scheme in the redirected request is set to https. If set
+         * to false, the URL scheme of the redirected request will remain the same as that
+         * of the request. This must only be set for UrlMaps used in TargetHttpProxys.
+         * Setting this true for TargetHttpsProxy is not permitted. Defaults to false.
+         */
         httpsRedirect?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * The path that will be used in the redirect response instead of the one that was
+         * supplied in the request. Only one of pathRedirect or prefixRedirect must be
+         * specified. The value must be between 1 and 1024 characters.
+         */
         pathRedirect?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch,
+         * retaining the remaining portion of the URL before redirecting the request.
+         */
         prefixRedirect?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The HTTP Status code to use for this RedirectAction. Supported values are:
+         * - MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.
+         * - FOUND, which corresponds to 302.
+         * - SEE_OTHER which corresponds to 303.
+         * - TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method
+         * will be retained.
+         * - PERMANENT_REDIRECT, which corresponds to 308. In this case,
+         * the request method will be retained.
+         */
         redirectResponseCode?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * If set to true, any accompanying query portion of the original URL is removed
+         * prior to redirecting the request. If set to false, the query portion of the
+         * original URL is retained.
+         */
         stripQuery?: pulumi.Input<boolean>;
     }
 
     export interface URLMapTest {
+        /**
+         * -
+         * (Optional)
+         * An optional description of this resource. Provide this property when you create
+         * the resource.
+         */
         description?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Host portion of the URL.
+         */
         host: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Path portion of the URL.
+         */
         path: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The backend service or backend bucket to use if any of the given paths match.
+         */
         service: pulumi.Input<string>;
     }
 }
@@ -3261,8 +9936,8 @@ export namespace container {
 
     export interface ClusterAddonsConfigDnsCacheConfig {
         /**
-         * Enable the PodSecurityPolicy controller for this cluster.
-         * If enabled, pods must be valid under a PodSecurityPolicy to be created.
+         * Whether node auto-provisioning is enabled. Resource
+         * limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
          */
         enabled: pulumi.Input<boolean>;
     }
@@ -3324,8 +9999,8 @@ export namespace container {
          */
         autoscalingProfile?: pulumi.Input<string>;
         /**
-         * Enable the PodSecurityPolicy controller for this cluster.
-         * If enabled, pods must be valid under a PodSecurityPolicy to be created.
+         * Whether node auto-provisioning is enabled. Resource
+         * limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
          */
         enabled: pulumi.Input<boolean>;
         /**
@@ -3339,18 +10014,11 @@ export namespace container {
 
     export interface ClusterClusterAutoscalingAutoProvisioningDefaults {
         /**
-         * The set of Google API scopes to be made available
-         * on all of the node VMs under the "default" service account. These can be
-         * either FQDNs, or scope aliases. The following scopes are necessary to ensure
-         * the correct functioning of the cluster:
+         * Scopes that are used by NAP when creating node pools.
          */
         oauthScopes?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The service account to be used by the Node VMs.
-         * If not specified, the "default" service account is used.
-         * In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-         * [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-         * [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+         * The Google Cloud Platform Service Account to be used by the node VMs.
          */
         serviceAccount?: pulumi.Input<string>;
     }
@@ -3486,8 +10154,8 @@ export namespace container {
 
     export interface ClusterNetworkPolicy {
         /**
-         * Enable the PodSecurityPolicy controller for this cluster.
-         * If enabled, pods must be valid under a PodSecurityPolicy to be created.
+         * Whether node auto-provisioning is enabled. Resource
+         * limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
          */
         enabled: pulumi.Input<boolean>;
         /**
@@ -3553,10 +10221,7 @@ export namespace container {
          */
         minCpuPlatform?: pulumi.Input<string>;
         /**
-         * The set of Google API scopes to be made available
-         * on all of the node VMs under the "default" service account. These can be
-         * either FQDNs, or scope aliases. The following scopes are necessary to ensure
-         * the correct functioning of the cluster:
+         * Scopes that are used by NAP when creating node pools.
          */
         oauthScopes?: pulumi.Input<pulumi.Input<string>[]>;
         /**
@@ -3571,11 +10236,7 @@ export namespace container {
          */
         sandboxConfig?: pulumi.Input<inputs.container.ClusterNodeConfigSandboxConfig>;
         /**
-         * The service account to be used by the Node VMs.
-         * If not specified, the "default" service account is used.
-         * In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-         * [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-         * [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+         * The Google Cloud Platform Service Account to be used by the node VMs.
          */
         serviceAccount?: pulumi.Input<string>;
         /**
@@ -3773,10 +10434,7 @@ export namespace container {
          */
         minCpuPlatform?: pulumi.Input<string>;
         /**
-         * The set of Google API scopes to be made available
-         * on all of the node VMs under the "default" service account. These can be
-         * either FQDNs, or scope aliases. The following scopes are necessary to ensure
-         * the correct functioning of the cluster:
+         * Scopes that are used by NAP when creating node pools.
          */
         oauthScopes?: pulumi.Input<pulumi.Input<string>[]>;
         /**
@@ -3791,11 +10449,7 @@ export namespace container {
          */
         sandboxConfig?: pulumi.Input<inputs.container.ClusterNodePoolNodeConfigSandboxConfig>;
         /**
-         * The service account to be used by the Node VMs.
-         * If not specified, the "default" service account is used.
-         * In order to use the configured `oauthScopes` for logging and monitoring, the service account being used needs the
-         * [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-         * [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+         * The Google Cloud Platform Service Account to be used by the node VMs.
          */
         serviceAccount?: pulumi.Input<string>;
         /**
@@ -3889,8 +10543,8 @@ export namespace container {
 
     export interface ClusterPodSecurityPolicyConfig {
         /**
-         * Enable the PodSecurityPolicy controller for this cluster.
-         * If enabled, pods must be valid under a PodSecurityPolicy to be created.
+         * Whether node auto-provisioning is enabled. Resource
+         * limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
          */
         enabled: pulumi.Input<boolean>;
     }
@@ -3972,8 +10626,8 @@ export namespace container {
 
     export interface ClusterVerticalPodAutoscaling {
         /**
-         * Enable the PodSecurityPolicy controller for this cluster.
-         * If enabled, pods must be valid under a PodSecurityPolicy to be created.
+         * Whether node auto-provisioning is enabled. Resource
+         * limits for `cpu` and `memory` must be defined to enable node auto-provisioning.
          */
         enabled: pulumi.Input<boolean>;
     }
@@ -4071,44 +10725,185 @@ export namespace container {
 
 export namespace containeranalysis {
     export interface NoteAttestationAuthority {
+        /**
+         * -
+         * (Required)
+         * This submessage provides human-readable hints about the purpose of
+         * the AttestationAuthority. Because the name of a Note acts as its
+         * resource reference, it is important to disambiguate the canonical
+         * name of the Note (which might be a UUID for security purposes)
+         * from "readable" names more suitable for debug output. Note that
+         * these hints should NOT be used to look up AttestationAuthorities
+         * in security sensitive contexts, such as when looking up
+         * Attestations to verify.  Structure is documented below.
+         */
         hint: pulumi.Input<inputs.containeranalysis.NoteAttestationAuthorityHint>;
     }
 
     export interface NoteAttestationAuthorityHint {
+        /**
+         * -
+         * (Required)
+         * The human readable name of this Attestation Authority, for
+         * example "qa".
+         */
         humanReadableName: pulumi.Input<string>;
     }
 }
 
 export namespace datafusion {
     export interface InstanceNetworkConfig {
+        /**
+         * -
+         * (Required)
+         * The IP range in CIDR notation to use for the managed Data Fusion instance
+         * nodes. This range must not overlap with any other ranges used in the Data Fusion instance network.
+         */
         ipAllocation: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Name of the network in the project with which the tenant project
+         * will be peered for executing pipelines. In case of shared VPC where the network resides in another host
+         * project the network should specified in the form of projects/{host-project-id}/global/networks/{network}
+         */
         network: pulumi.Input<string>;
     }
 }
 
 export namespace dataproc {
     export interface AutoscalingPolicyBasicAlgorithm {
+        /**
+         * -
+         * (Optional)
+         * Duration between scaling events. A scaling period starts after the
+         * update operation from the previous event has completed.
+         * Bounds: [2m, 1d]. Default: 2m.
+         */
         cooldownPeriod?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * YARN autoscaling configuration.  Structure is documented below.
+         */
         yarnConfig: pulumi.Input<inputs.dataproc.AutoscalingPolicyBasicAlgorithmYarnConfig>;
     }
 
     export interface AutoscalingPolicyBasicAlgorithmYarnConfig {
+        /**
+         * -
+         * (Required)
+         * Timeout for YARN graceful decommissioning of Node Managers. Specifies the
+         * duration to wait for jobs to complete before forcefully removing workers
+         * (and potentially interrupting jobs). Only applicable to downscaling operations.
+         * Bounds: [0s, 1d].
+         */
         gracefulDecommissionTimeout: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Fraction of average pending memory in the last cooldown period for which to
+         * remove workers. A scale-down factor of 1 will result in scaling down so that there
+         * is no available memory remaining after the update (more aggressive scaling).
+         * A scale-down factor of 0 disables removing workers, which can be beneficial for
+         * autoscaling a single job.
+         * Bounds: [0.0, 1.0].
+         */
         scaleDownFactor: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Minimum scale-down threshold as a fraction of total cluster size before scaling occurs.
+         * For example, in a 20-worker cluster, a threshold of 0.1 means the autoscaler must
+         * recommend at least a 2 worker scale-down for the cluster to scale. A threshold of 0
+         * means the autoscaler will scale down on any recommended change.
+         * Bounds: [0.0, 1.0]. Default: 0.0.
+         */
         scaleDownMinWorkerFraction?: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * Fraction of average pending memory in the last cooldown period for which to
+         * add workers. A scale-up factor of 1.0 will result in scaling up so that there
+         * is no pending memory remaining after the update (more aggressive scaling).
+         * A scale-up factor closer to 0 will result in a smaller magnitude of scaling up
+         * (less aggressive scaling).
+         * Bounds: [0.0, 1.0].
+         */
         scaleUpFactor: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Minimum scale-up threshold as a fraction of total cluster size before scaling
+         * occurs. For example, in a 20-worker cluster, a threshold of 0.1 means the autoscaler
+         * must recommend at least a 2-worker scale-up for the cluster to scale. A threshold of
+         * 0 means the autoscaler will scale up on any recommended change.
+         * Bounds: [0.0, 1.0]. Default: 0.0.
+         */
         scaleUpMinWorkerFraction?: pulumi.Input<number>;
     }
 
     export interface AutoscalingPolicySecondaryWorkerConfig {
+        /**
+         * -
+         * (Required)
+         * Maximum number of instances for this group.
+         */
         maxInstances?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Minimum number of instances for this group. Bounds: [2, maxInstances]. Defaults to 2.
+         */
         minInstances?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Weight for the instance group, which is used to determine the fraction of total workers
+         * in the cluster from this instance group. For example, if primary workers have weight 2,
+         * and secondary workers have weight 1, the cluster will have approximately 2 primary workers
+         * for each secondary worker.
+         * The cluster may not reach the specified balance if constrained by min/max bounds or other
+         * autoscaling settings. For example, if maxInstances for secondary workers is 0, then only
+         * primary workers will be added. The cluster can also be out of balance when created.
+         * If weight is not set on any instance group, the cluster will default to equal weight for
+         * all groups: the cluster will attempt to maintain an equal number of workers in each group
+         * within the configured size bounds for each group. If weight is set for one group only,
+         * the cluster will default to zero weight on the unset group. For example if weight is set
+         * only on primary workers, the cluster will use primary workers only and no secondary workers.
+         */
         weight?: pulumi.Input<number>;
     }
 
     export interface AutoscalingPolicyWorkerConfig {
+        /**
+         * -
+         * (Required)
+         * Maximum number of instances for this group.
+         */
         maxInstances: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Minimum number of instances for this group. Bounds: [2, maxInstances]. Defaults to 2.
+         */
         minInstances?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Weight for the instance group, which is used to determine the fraction of total workers
+         * in the cluster from this instance group. For example, if primary workers have weight 2,
+         * and secondary workers have weight 1, the cluster will have approximately 2 primary workers
+         * for each secondary worker.
+         * The cluster may not reach the specified balance if constrained by min/max bounds or other
+         * autoscaling settings. For example, if maxInstances for secondary workers is 0, then only
+         * primary workers will be added. The cluster can also be out of balance when created.
+         * If weight is not set on any instance group, the cluster will default to equal weight for
+         * all groups: the cluster will attempt to maintain an equal number of workers in each group
+         * within the configured size bounds for each group. If weight is set for one group only,
+         * the cluster will default to zero weight on the unset group. For example if weight is set
+         * only on primary workers, the cluster will use primary workers only and no secondary workers.
+         */
         weight?: pulumi.Input<number>;
     }
 
@@ -4134,6 +10929,10 @@ export namespace dataproc {
          * You can specify multiple versions of these. Structure defined below.
          */
         initializationActions?: pulumi.Input<pulumi.Input<inputs.dataproc.ClusterClusterConfigInitializationAction>[]>;
+        /**
+         * The settings for auto deletion cluster schedule.
+         * Structure defined below.
+         */
         lifecycleConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigLifecycleConfig>;
         /**
          * The Google Compute Engine config settings for the master instances
@@ -4242,6 +11041,10 @@ export namespace dataproc {
     }
 
     export interface ClusterClusterConfigInitializationAction {
+        /**
+         * The script to be executed during initialization of the cluster.
+         * The script must be a GCS file with a gs:// prefix.
+         */
         script: pulumi.Input<string>;
         /**
          * The maximum duration (in seconds) which `script` is
@@ -4268,7 +11071,7 @@ export namespace dataproc {
 
     export interface ClusterClusterConfigMasterConfig {
         /**
-         * The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
+         * The Compute Engine accelerator (GPU) configuration for these instances. Can be specified multiple times.
          */
         accelerators?: pulumi.Input<pulumi.Input<inputs.dataproc.ClusterClusterConfigMasterConfigAccelerator>[]>;
         /**
@@ -4283,7 +11086,7 @@ export namespace dataproc {
         instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
         /**
          * The name of a Google Compute Engine machine type
-         * to create for the worker nodes. If not specified, GCP will default to a predetermined
+         * to create for the master. If not specified, GCP will default to a predetermined
          * computed value (currently `n1-standard-4`).
          */
         machineType?: pulumi.Input<string>;
@@ -4294,6 +11097,10 @@ export namespace dataproc {
          * for details about which CPU families are available (and defaulted) for each zone.
          */
         minCpuPlatform?: pulumi.Input<string>;
+        /**
+         * Specifies the number of master nodes to create.
+         * If not specified, GCP will default to a predetermined computed value (currently 1).
+         */
         numInstances?: pulumi.Input<number>;
     }
 
@@ -4310,20 +11117,21 @@ export namespace dataproc {
 
     export interface ClusterClusterConfigMasterConfigDiskConfig {
         /**
-         * Size of the primary disk attached to each preemptible worker node, specified
-         * in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+         * Size of the primary disk attached to each node, specified
+         * in GB. The primary disk contains the boot volume and system libraries, and the
+         * smallest allowed disk size is 10GB. GCP will default to a predetermined
          * computed value if not set (currently 500GB). Note: If SSDs are not
          * attached, it also contains the HDFS data blocks and Hadoop working directories.
          */
         bootDiskSizeGb?: pulumi.Input<number>;
         /**
-         * The disk type of the primary disk attached to each preemptible worker node.
+         * The disk type of the primary disk attached to each node.
          * One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
          */
         bootDiskType?: pulumi.Input<string>;
         /**
          * The amount of local SSD disks that will be
-         * attached to each preemptible worker node. Defaults to 0.
+         * attached to each master cluster node. Defaults to 0.
          */
         numLocalSsds?: pulumi.Input<number>;
     }
@@ -4334,25 +11142,30 @@ export namespace dataproc {
          */
         diskConfig?: pulumi.Input<inputs.dataproc.ClusterClusterConfigPreemptibleWorkerConfigDiskConfig>;
         instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Specifies the number of master nodes to create.
+         * If not specified, GCP will default to a predetermined computed value (currently 1).
+         */
         numInstances?: pulumi.Input<number>;
     }
 
     export interface ClusterClusterConfigPreemptibleWorkerConfigDiskConfig {
         /**
-         * Size of the primary disk attached to each preemptible worker node, specified
-         * in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+         * Size of the primary disk attached to each node, specified
+         * in GB. The primary disk contains the boot volume and system libraries, and the
+         * smallest allowed disk size is 10GB. GCP will default to a predetermined
          * computed value if not set (currently 500GB). Note: If SSDs are not
          * attached, it also contains the HDFS data blocks and Hadoop working directories.
          */
         bootDiskSizeGb?: pulumi.Input<number>;
         /**
-         * The disk type of the primary disk attached to each preemptible worker node.
+         * The disk type of the primary disk attached to each node.
          * One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
          */
         bootDiskType?: pulumi.Input<string>;
         /**
          * The amount of local SSD disks that will be
-         * attached to each preemptible worker node. Defaults to 0.
+         * attached to each master cluster node. Defaults to 0.
          */
         numLocalSsds?: pulumi.Input<number>;
     }
@@ -4477,7 +11290,7 @@ export namespace dataproc {
 
     export interface ClusterClusterConfigWorkerConfig {
         /**
-         * The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
+         * The Compute Engine accelerator (GPU) configuration for these instances. Can be specified multiple times.
          */
         accelerators?: pulumi.Input<pulumi.Input<inputs.dataproc.ClusterClusterConfigWorkerConfigAccelerator>[]>;
         /**
@@ -4492,7 +11305,7 @@ export namespace dataproc {
         instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
         /**
          * The name of a Google Compute Engine machine type
-         * to create for the worker nodes. If not specified, GCP will default to a predetermined
+         * to create for the master. If not specified, GCP will default to a predetermined
          * computed value (currently `n1-standard-4`).
          */
         machineType?: pulumi.Input<string>;
@@ -4503,6 +11316,10 @@ export namespace dataproc {
          * for details about which CPU families are available (and defaulted) for each zone.
          */
         minCpuPlatform?: pulumi.Input<string>;
+        /**
+         * Specifies the number of master nodes to create.
+         * If not specified, GCP will default to a predetermined computed value (currently 1).
+         */
         numInstances?: pulumi.Input<number>;
     }
 
@@ -4519,20 +11336,21 @@ export namespace dataproc {
 
     export interface ClusterClusterConfigWorkerConfigDiskConfig {
         /**
-         * Size of the primary disk attached to each preemptible worker node, specified
-         * in GB. The smallest allowed disk size is 10GB. GCP will default to a predetermined
+         * Size of the primary disk attached to each node, specified
+         * in GB. The primary disk contains the boot volume and system libraries, and the
+         * smallest allowed disk size is 10GB. GCP will default to a predetermined
          * computed value if not set (currently 500GB). Note: If SSDs are not
          * attached, it also contains the HDFS data blocks and Hadoop working directories.
          */
         bootDiskSizeGb?: pulumi.Input<number>;
         /**
-         * The disk type of the primary disk attached to each preemptible worker node.
+         * The disk type of the primary disk attached to each node.
          * One of `"pd-ssd"` or `"pd-standard"`. Defaults to `"pd-standard"`.
          */
         bootDiskType?: pulumi.Input<string>;
         /**
          * The amount of local SSD disks that will be
-         * attached to each preemptible worker node. Defaults to 0.
+         * attached to each master cluster node. Defaults to 0.
          */
         numLocalSsds?: pulumi.Input<number>;
     }
@@ -4555,25 +11373,30 @@ export namespace dataproc {
          */
         archiveUris?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
+         * The arguments to pass to the driver.
          */
         args?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
+         * HCFS URIs of files to be copied to the working directory of Python drivers and distributed tasks. Useful for naively parallel tasks.
          */
         fileUris?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * HCFS URIs of jar files to be added to the Spark CLASSPATH.
+         * HCFS URIs of jar files to add to the CLASSPATHs of the Python driver and tasks.
          */
         jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
         loggingConfig?: pulumi.Input<inputs.dataproc.JobHadoopConfigLoggingConfig>;
+        /**
+         * The class containing the main method of the driver. Must be in a
+         * provided jar or jar that is already on the classpath. Conflicts with `mainJarFileUri`
+         */
         mainClass?: pulumi.Input<string>;
         /**
-         * The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
+         * The HCFS URI of jar file containing
+         * the driver jar. Conflicts with `mainClass`
          */
         mainJarFileUri?: pulumi.Input<string>;
         /**
-         * A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
+         * A mapping of property names to values, used to configure PySpark. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in `/etc/spark/conf/spark-defaults.conf` and classes in user code.
          */
         properties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     }
@@ -4588,21 +11411,25 @@ export namespace dataproc {
          */
         continueOnFailure?: pulumi.Input<boolean>;
         /**
-         * HCFS URIs of jar files to be added to the Spark CLASSPATH.
+         * HCFS URIs of jar files to add to the CLASSPATHs of the Python driver and tasks.
          */
         jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
+         * A mapping of property names to values, used to configure PySpark. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in `/etc/spark/conf/spark-defaults.conf` and classes in user code.
          */
         properties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
-         * The HCFS URI of the script that contains SQL queries.
+         * HCFS URI of file containing Hive script to execute as the job.
          * Conflicts with `queryList`
          */
         queryFileUri?: pulumi.Input<string>;
+        /**
+         * The list of Hive queries or statements to execute as part of the job.
+         * Conflicts with `queryFileUri`
+         */
         queryLists?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
+         * Mapping of query variable names to values (equivalent to the Hive command: `SET name="value";`).
          */
         scriptVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     }
@@ -4625,22 +11452,26 @@ export namespace dataproc {
          */
         continueOnFailure?: pulumi.Input<boolean>;
         /**
-         * HCFS URIs of jar files to be added to the Spark CLASSPATH.
+         * HCFS URIs of jar files to add to the CLASSPATHs of the Python driver and tasks.
          */
         jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
         loggingConfig?: pulumi.Input<inputs.dataproc.JobPigConfigLoggingConfig>;
         /**
-         * A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
+         * A mapping of property names to values, used to configure PySpark. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in `/etc/spark/conf/spark-defaults.conf` and classes in user code.
          */
         properties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
-         * The HCFS URI of the script that contains SQL queries.
+         * HCFS URI of file containing Hive script to execute as the job.
          * Conflicts with `queryList`
          */
         queryFileUri?: pulumi.Input<string>;
+        /**
+         * The list of Hive queries or statements to execute as part of the job.
+         * Conflicts with `queryFileUri`
+         */
         queryLists?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
+         * Mapping of query variable names to values (equivalent to the Hive command: `SET name="value";`).
          */
         scriptVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     }
@@ -4660,21 +11491,24 @@ export namespace dataproc {
          */
         archiveUris?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
+         * The arguments to pass to the driver.
          */
         args?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
+         * HCFS URIs of files to be copied to the working directory of Python drivers and distributed tasks. Useful for naively parallel tasks.
          */
         fileUris?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * HCFS URIs of jar files to be added to the Spark CLASSPATH.
+         * HCFS URIs of jar files to add to the CLASSPATHs of the Python driver and tasks.
          */
         jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
         loggingConfig?: pulumi.Input<inputs.dataproc.JobPysparkConfigLoggingConfig>;
+        /**
+         * The HCFS URI of the main Python file to use as the driver. Must be a .py file.
+         */
         mainPythonFileUri: pulumi.Input<string>;
         /**
-         * A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
+         * A mapping of property names to values, used to configure PySpark. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in `/etc/spark/conf/spark-defaults.conf` and classes in user code.
          */
         properties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
@@ -4701,25 +11535,30 @@ export namespace dataproc {
          */
         archiveUris?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The arguments to pass to the driver. Do not include arguments, such as -libjars or -Dfoo=bar, that can be set as job properties, since a collision may occur that causes an incorrect job submission.
+         * The arguments to pass to the driver.
          */
         args?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * HCFS URIs of files to be copied to the working directory of Hadoop drivers and distributed tasks. Useful for naively parallel tasks.
+         * HCFS URIs of files to be copied to the working directory of Python drivers and distributed tasks. Useful for naively parallel tasks.
          */
         fileUris?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * HCFS URIs of jar files to be added to the Spark CLASSPATH.
+         * HCFS URIs of jar files to add to the CLASSPATHs of the Python driver and tasks.
          */
         jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
         loggingConfig?: pulumi.Input<inputs.dataproc.JobSparkConfigLoggingConfig>;
+        /**
+         * The class containing the main method of the driver. Must be in a
+         * provided jar or jar that is already on the classpath. Conflicts with `mainJarFileUri`
+         */
         mainClass?: pulumi.Input<string>;
         /**
-         * The HCFS URI of the jar file containing the main class. Examples: 'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar' 'hdfs:/tmp/test-samples/custom-wordcount.jar' 'file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar'. Conflicts with `mainClass`
+         * The HCFS URI of jar file containing
+         * the driver jar. Conflicts with `mainClass`
          */
         mainJarFileUri?: pulumi.Input<string>;
         /**
-         * A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
+         * A mapping of property names to values, used to configure PySpark. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in `/etc/spark/conf/spark-defaults.conf` and classes in user code.
          */
         properties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     }
@@ -4730,22 +11569,26 @@ export namespace dataproc {
 
     export interface JobSparksqlConfig {
         /**
-         * HCFS URIs of jar files to be added to the Spark CLASSPATH.
+         * HCFS URIs of jar files to add to the CLASSPATHs of the Python driver and tasks.
          */
         jarFileUris?: pulumi.Input<pulumi.Input<string>[]>;
         loggingConfig?: pulumi.Input<inputs.dataproc.JobSparksqlConfigLoggingConfig>;
         /**
-         * A mapping of property names to values, used to configure Spark SQL's SparkConf. Properties that conflict with values set by the Cloud Dataproc API may be overwritten.
+         * A mapping of property names to values, used to configure PySpark. Properties that conflict with values set by the Cloud Dataproc API may be overwritten. Can include properties set in `/etc/spark/conf/spark-defaults.conf` and classes in user code.
          */
         properties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
         /**
-         * The HCFS URI of the script that contains SQL queries.
+         * HCFS URI of file containing Hive script to execute as the job.
          * Conflicts with `queryList`
          */
         queryFileUri?: pulumi.Input<string>;
+        /**
+         * The list of Hive queries or statements to execute as part of the job.
+         * Conflicts with `queryFileUri`
+         */
         queryLists?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * Mapping of query variable names to values (equivalent to the Spark SQL command: `SET name="value";`).
+         * Mapping of query variable names to values (equivalent to the Hive command: `SET name="value";`).
          */
         scriptVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     }
@@ -4764,61 +11607,188 @@ export namespace dataproc {
 
 export namespace datastore {
     export interface DataStoreIndexProperty {
+        /**
+         * -
+         * (Required)
+         * The direction the index should optimize for sorting. Possible values are ASCENDING and DESCENDING.
+         */
         direction: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The property name to index.
+         */
         name: pulumi.Input<string>;
     }
 }
 
 export namespace deploymentmanager {
     export interface DeploymentLabel {
+        /**
+         * -
+         * (Optional)
+         * Key for label.
+         */
         key?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Value of label.
+         */
         value?: pulumi.Input<string>;
     }
 
     export interface DeploymentTarget {
+        /**
+         * -
+         * (Required)
+         * The root configuration file to use for this deployment.  Structure is documented below.
+         */
         config: pulumi.Input<inputs.deploymentmanager.DeploymentTargetConfig>;
+        /**
+         * -
+         * (Optional)
+         * Specifies import files for this configuration. This can be
+         * used to import templates or other files. For example, you might
+         * import a text file in order to use the file in a template.  Structure is documented below.
+         */
         imports?: pulumi.Input<pulumi.Input<inputs.deploymentmanager.DeploymentTargetImport>[]>;
     }
 
     export interface DeploymentTargetConfig {
+        /**
+         * -
+         * (Required)
+         * The full YAML contents of your configuration file.
+         */
         content: pulumi.Input<string>;
     }
 
     export interface DeploymentTargetImport {
+        /**
+         * -
+         * (Required)
+         * The full YAML contents of your configuration file.
+         */
         content?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Unique name for the deployment
+         */
         name?: pulumi.Input<string>;
     }
 }
 
 export namespace dns {
     export interface ManagedZoneDnssecConfig {
+        /**
+         * -
+         * (Optional)
+         * Specifies parameters that will be used for generating initial DnsKeys
+         * for this ManagedZone. If you provide a spec for keySigning or zoneSigning,
+         * you must also provide one for the other.
+         * defaultKeySpecs can only be updated when the state is `off`.  Structure is documented below.
+         */
         defaultKeySpecs?: pulumi.Input<pulumi.Input<inputs.dns.ManagedZoneDnssecConfigDefaultKeySpec>[]>;
+        /**
+         * -
+         * (Optional)
+         * Identifies what kind of resource this is
+         */
         kind?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the mechanism used to provide authenticated denial-of-existence responses.
+         * nonExistence can only be updated when the state is `off`.
+         */
         nonExistence?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies whether DNSSEC is enabled, and what mode it is in
+         */
         state?: pulumi.Input<string>;
     }
 
     export interface ManagedZoneDnssecConfigDefaultKeySpec {
+        /**
+         * -
+         * (Optional)
+         * String mnemonic specifying the DNSSEC algorithm of this key
+         */
         algorithm?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Length of the keys in bits
+         */
         keyLength?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Specifies whether this is a key signing key (KSK) or a zone
+         * signing key (ZSK). Key signing keys have the Secure Entry
+         * Point flag set and, when active, will only be used to sign
+         * resource record sets of type DNSKEY. Zone signing keys do
+         * not have the Secure Entry Point flag set and will be used
+         * to sign all other types of resource record sets.
+         */
         keyType?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Identifies what kind of resource this is
+         */
         kind?: pulumi.Input<string>;
     }
 
     export interface ManagedZoneForwardingConfig {
+        /**
+         * -
+         * (Required)
+         * List of target name servers to forward to. Cloud DNS will
+         * select the best available name server if more than
+         * one target is given.  Structure is documented below.
+         */
         targetNameServers: pulumi.Input<pulumi.Input<inputs.dns.ManagedZoneForwardingConfigTargetNameServer>[]>;
     }
 
     export interface ManagedZoneForwardingConfigTargetNameServer {
+        /**
+         * -
+         * (Optional)
+         * Forwarding path for this TargetNameServer. If unset or `default` Cloud DNS will make forwarding
+         * decision based on address ranges, i.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go
+         * to the Internet. When set to `private`, Cloud DNS will always send queries through VPC for this target
+         */
         forwardingPath?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * IPv4 address of a target name server.
+         */
         ipv4Address: pulumi.Input<string>;
     }
 
     export interface ManagedZonePeeringConfig {
+        /**
+         * -
+         * (Required)
+         * The network with which to peer.  Structure is documented below.
+         */
         targetNetwork: pulumi.Input<inputs.dns.ManagedZonePeeringConfigTargetNetwork>;
     }
 
     export interface ManagedZonePeeringConfigTargetNetwork {
+        /**
+         * -
+         * (Required)
+         * The fully qualified URL of the VPC network to bind to.
+         * This should be formatted like
+         * `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
+         */
         networkUrl: pulumi.Input<string>;
     }
 
@@ -4827,18 +11797,44 @@ export namespace dns {
     }
 
     export interface ManagedZonePrivateVisibilityConfigNetwork {
+        /**
+         * -
+         * (Required)
+         * The fully qualified URL of the VPC network to bind to.
+         * This should be formatted like
+         * `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
+         */
         networkUrl: pulumi.Input<string>;
     }
 
     export interface PolicyAlternativeNameServerConfig {
+        /**
+         * -
+         * (Required)
+         * Sets an alternative name server for the associated networks. When specified,
+         * all DNS queries are forwarded to a name server that you choose. Names such as .internal
+         * are not available when an alternative name server is specified.  Structure is documented below.
+         */
         targetNameServers: pulumi.Input<pulumi.Input<inputs.dns.PolicyAlternativeNameServerConfigTargetNameServer>[]>;
     }
 
     export interface PolicyAlternativeNameServerConfigTargetNameServer {
+        /**
+         * -
+         * (Required)
+         * IPv4 address to forward to.
+         */
         ipv4Address: pulumi.Input<string>;
     }
 
     export interface PolicyNetwork {
+        /**
+         * -
+         * (Required)
+         * The fully qualified URL of the VPC network to bind to.
+         * This should be formatted like
+         * `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
+         */
         networkUrl: pulumi.Input<string>;
     }
 }
@@ -4878,22 +11874,72 @@ export namespace endpoints {
 
 export namespace filestore {
     export interface InstanceFileShares {
+        /**
+         * -
+         * (Required)
+         * File share capacity in GiB. This must be at least 1024 GiB
+         * for the standard tier, or 2560 GiB for the premium tier.
+         */
         capacityGb: pulumi.Input<number>;
+        /**
+         * -
+         * (Required)
+         * The resource name of the instance.
+         */
         name: pulumi.Input<string>;
     }
 
     export interface InstanceNetwork {
+        /**
+         * -
+         * A list of IPv4 or IPv6 addresses.
+         */
         ipAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Required)
+         * IP versions for which the instance has
+         * IP addresses assigned.
+         */
         modes: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Required)
+         * The name of the GCE VPC network to which the
+         * instance is connected.
+         */
         network: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A /29 CIDR block that identifies the range of IP
+         * addresses reserved for this instance.
+         */
         reservedIpRange?: pulumi.Input<string>;
     }
 }
 
 export namespace firestore {
     export interface IndexField {
+        /**
+         * -
+         * (Optional)
+         * Indicates that this field supports operations on arrayValues. Only one of `order` and `arrayConfig` can
+         * be specified.
+         */
         arrayConfig?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Name of the field.
+         */
         fieldPath?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Indicates that this field supports ordering by the specified order or comparing using =, <, <=, >, >=.
+         * Only one of `order` and `arrayConfig` can be specified.
+         */
         order?: pulumi.Input<string>;
     }
 }
@@ -4919,6 +11965,9 @@ export namespace folder {
     }
 
     export interface OrganizationPolicyListPolicy {
+        /**
+         * or `deny` - (Optional) One or the other must be set.
+         */
         allow?: pulumi.Input<inputs.folder.OrganizationPolicyListPolicyAllow>;
         deny?: pulumi.Input<inputs.folder.OrganizationPolicyListPolicyDeny>;
         /**
@@ -4964,43 +12013,154 @@ export namespace folder {
 
 export namespace gameservices {
     export interface GameServerClusterConnectionInfo {
+        /**
+         * -
+         * (Required)
+         * Reference of the GKE cluster where the game servers are installed.  Structure is documented below.
+         */
         gkeClusterReference: pulumi.Input<inputs.gameservices.GameServerClusterConnectionInfoGkeClusterReference>;
+        /**
+         * -
+         * (Required)
+         * Namespace designated on the game server cluster where the game server
+         * instances will be created. The namespace existence will be validated
+         * during creation.
+         */
         namespace: pulumi.Input<string>;
     }
 
     export interface GameServerClusterConnectionInfoGkeClusterReference {
+        /**
+         * -
+         * (Required)
+         * The full or partial name of a GKE cluster, using one of the following
+         * forms:
+         * * `projects/{project_id}/locations/{location}/clusters/{cluster_id}`
+         * * `locations/{location}/clusters/{cluster_id}`
+         * * `{cluster_id}`
+         * If project and location are not specified, the project and location of the
+         * GameServerCluster resource are used to generate the full name of the
+         * GKE cluster.
+         */
         cluster: pulumi.Input<string>;
     }
 
     export interface GameServerConfigFleetConfig {
+        /**
+         * -
+         * (Required)
+         * The fleet spec, which is sent to Agones to configure fleet.
+         * The spec can be passed as inline json but it is recommended to use a file reference
+         * instead. File references can contain the json or yaml format of the fleet spec. Eg:
+         * * fleetSpec = jsonencode(yamldecode(file("fleet_configs.yaml")))
+         * * fleetSpec = file("fleet_configs.json")
+         * The format of the spec can be found :
+         * `https://agones.dev/site/docs/reference/fleet/`.
+         */
         fleetSpec: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The name of the FleetConfig.
+         */
         name?: pulumi.Input<string>;
     }
 
     export interface GameServerConfigScalingConfig {
+        /**
+         * -
+         * (Required)
+         * Fleet autoscaler spec, which is sent to Agones.
+         * Example spec can be found :
+         * https://agones.dev/site/docs/reference/fleetautoscaler/
+         */
         fleetAutoscalerSpec: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The name of the FleetConfig.
+         */
         name: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The schedules to which this scaling config applies.  Structure is documented below.
+         */
         schedules?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerConfigScalingConfigSchedule>[]>;
+        /**
+         * -
+         * (Optional)
+         * Labels used to identify the clusters to which this scaling config
+         * applies. A cluster is subject to this scaling config if its labels match
+         * any of the selector entries.  Structure is documented below.
+         */
         selectors?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerConfigScalingConfigSelector>[]>;
     }
 
     export interface GameServerConfigScalingConfigSchedule {
+        /**
+         * -
+         * (Optional)
+         * The duration for the cron job event. The duration of the event is effective
+         * after the cron job's start time.
+         * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
+         */
         cronJobDuration?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The cron definition of the scheduled event. See
+         * https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as
+         * defined by the realm.
+         */
         cronSpec?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The end time of the event.
+         * A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+         */
         endTime?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The start time of the event.
+         * A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+         */
         startTime?: pulumi.Input<string>;
     }
 
     export interface GameServerConfigScalingConfigSelector {
+        /**
+         * -
+         * (Optional)
+         * The labels associated with this game server config. Each label is a
+         * key-value pair.
+         */
         labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     }
 
     export interface GameServerDeploymentRolloutGameServerConfigOverride {
+        /**
+         * -
+         * (Optional)
+         * Version of the configuration.
+         */
         configVersion?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Selection by realms.  Structure is documented below.
+         */
         realmsSelector?: pulumi.Input<inputs.gameservices.GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelector>;
     }
 
     export interface GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelector {
+        /**
+         * -
+         * (Optional)
+         * List of realms to match against.
+         */
         realms?: pulumi.Input<pulumi.Input<string>[]>;
     }
 }
@@ -5031,6 +12191,16 @@ export namespace healthcare {
     }
 
     export interface DicomStoreNotificationConfig {
+        /**
+         * -
+         * (Required)
+         * The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+         * PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+         * It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+         * was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+         * project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+         * Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
+         */
         pubsubTopic: pulumi.Input<string>;
     }
 
@@ -5047,6 +12217,16 @@ export namespace healthcare {
     }
 
     export interface FhirStoreNotificationConfig {
+        /**
+         * -
+         * (Required)
+         * The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+         * PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+         * It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+         * was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+         * project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+         * Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
+         */
         pubsubTopic: pulumi.Input<string>;
     }
 
@@ -5063,11 +12243,32 @@ export namespace healthcare {
     }
 
     export interface Hl7StoreNotificationConfig {
+        /**
+         * -
+         * (Required)
+         * The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+         * PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+         * It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+         * was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+         * project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+         * Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
+         */
         pubsubTopic: pulumi.Input<string>;
     }
 
     export interface Hl7StoreParserConfig {
+        /**
+         * -
+         * (Optional)
+         * Determines whether messages with no header are allowed.
+         */
         allowNullHeader?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Byte(s) to be used as the segment terminator. If this is unset, '\r' will be used as segment terminator.
+         * A base64-encoded string.
+         */
         segmentTerminator?: pulumi.Input<string>;
     }
 }
@@ -5286,44 +12487,132 @@ export namespace iap {
 
 export namespace identityplatform {
     export interface InboundSamlConfigIdpConfig {
+        /**
+         * -
+         * (Required)
+         * The IdP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+         */
         idpCertificates: pulumi.Input<pulumi.Input<inputs.identityplatform.InboundSamlConfigIdpConfigIdpCertificate>[]>;
+        /**
+         * -
+         * (Required)
+         * Unique identifier for all SAML entities
+         */
         idpEntityId: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Indicates if outbounding SAMLRequest should be signed.
+         */
         signRequest?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Required)
+         * URL to send Authentication request to.
+         */
         ssoUrl: pulumi.Input<string>;
     }
 
     export interface InboundSamlConfigIdpConfigIdpCertificate {
+        /**
+         * -
+         * (Optional)
+         * The IdP's x509 certificate.
+         */
         x509Certificate?: pulumi.Input<string>;
     }
 
     export interface InboundSamlConfigSpConfig {
+        /**
+         * -
+         * (Optional)
+         * Callback URI where responses from IDP are handled. Must start with `https://`.
+         */
         callbackUri?: pulumi.Input<string>;
+        /**
+         * -
+         * The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+         */
         spCertificates?: pulumi.Input<pulumi.Input<inputs.identityplatform.InboundSamlConfigSpConfigSpCertificate>[]>;
+        /**
+         * -
+         * (Optional)
+         * Unique identifier for all SAML entities.
+         */
         spEntityId?: pulumi.Input<string>;
     }
 
     export interface InboundSamlConfigSpConfigSpCertificate {
+        /**
+         * -
+         * (Optional)
+         * The IdP's x509 certificate.
+         */
         x509Certificate?: pulumi.Input<string>;
     }
 
     export interface TenantInboundSamlConfigIdpConfig {
+        /**
+         * -
+         * (Required)
+         * The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+         */
         idpCertificates: pulumi.Input<pulumi.Input<inputs.identityplatform.TenantInboundSamlConfigIdpConfigIdpCertificate>[]>;
+        /**
+         * -
+         * (Required)
+         * Unique identifier for all SAML entities
+         */
         idpEntityId: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Indicates if outbounding SAMLRequest should be signed.
+         */
         signRequest?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Required)
+         * URL to send Authentication request to.
+         */
         ssoUrl: pulumi.Input<string>;
     }
 
     export interface TenantInboundSamlConfigIdpConfigIdpCertificate {
+        /**
+         * -
+         * (Optional)
+         * The x509 certificate
+         */
         x509Certificate?: pulumi.Input<string>;
     }
 
     export interface TenantInboundSamlConfigSpConfig {
+        /**
+         * -
+         * (Required)
+         * Callback URI where responses from IDP are handled. Must start with `https://`.
+         */
         callbackUri: pulumi.Input<string>;
+        /**
+         * -
+         * The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+         */
         spCertificates?: pulumi.Input<pulumi.Input<inputs.identityplatform.TenantInboundSamlConfigSpConfigSpCertificate>[]>;
+        /**
+         * -
+         * (Required)
+         * Unique identifier for all SAML entities.
+         */
         spEntityId: pulumi.Input<string>;
     }
 
     export interface TenantInboundSamlConfigSpConfigSpCertificate {
+        /**
+         * -
+         * (Optional)
+         * The x509 certificate
+         */
         x509Certificate?: pulumi.Input<string>;
     }
 }
@@ -5360,7 +12649,18 @@ export namespace kms {
     }
 
     export interface CryptoKeyVersionTemplate {
+        /**
+         * -
+         * (Required)
+         * The algorithm to use when creating a version based on this template.
+         * See the [algorithm reference](https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm) for possible inputs.
+         */
         algorithm: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The protection level to use when creating a version based on this template.
+         */
         protectionLevel?: pulumi.Input<string>;
     }
 
@@ -5414,7 +12714,7 @@ export namespace kms {
 
     export interface RegistryEventNotificationConfigItem {
         /**
-         * PubSub topic name to publish device state updates.
+         * PubSub topic name to publish device events.
          */
         pubsubTopicName: pulumi.Input<string>;
         /**
@@ -5442,7 +12742,7 @@ export namespace kms {
 
     export interface RegistryStateNotificationConfig {
         /**
-         * PubSub topic name to publish device state updates.
+         * PubSub topic name to publish device events.
          */
         pubsubTopicName: pulumi.Input<string>;
     }
@@ -5470,38 +12770,143 @@ export namespace logging {
     }
 
     export interface MetricBucketOptions {
+        /**
+         * -
+         * (Optional)
+         * Specifies a set of buckets with arbitrary widths.  Structure is documented below.
+         */
         explicitBuckets?: pulumi.Input<inputs.logging.MetricBucketOptionsExplicitBuckets>;
+        /**
+         * -
+         * (Optional)
+         * Specifies an exponential sequence of buckets that have a width that is proportional to the value of
+         * the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket.  Structure is documented below.
+         */
         exponentialBuckets?: pulumi.Input<inputs.logging.MetricBucketOptionsExponentialBuckets>;
+        /**
+         * -
+         * (Optional)
+         * Specifies a linear sequence of buckets that all have the same width (except overflow and underflow).
+         * Each bucket represents a constant absolute uncertainty on the specific value in the bucket.  Structure is documented below.
+         */
         linearBuckets?: pulumi.Input<inputs.logging.MetricBucketOptionsLinearBuckets>;
     }
 
     export interface MetricBucketOptionsExplicitBuckets {
+        /**
+         * -
+         * (Required)
+         * The values must be monotonically increasing.
+         */
         bounds: pulumi.Input<pulumi.Input<number>[]>;
     }
 
     export interface MetricBucketOptionsExponentialBuckets {
+        /**
+         * -
+         * (Optional)
+         * Must be greater than 1.
+         */
         growthFactor?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Must be greater than 0.
+         */
         numFiniteBuckets?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Must be greater than 0.
+         */
         scale?: pulumi.Input<number>;
     }
 
     export interface MetricBucketOptionsLinearBuckets {
+        /**
+         * -
+         * (Optional)
+         * Must be greater than 0.
+         */
         numFiniteBuckets?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Lower bound of the first bucket.
+         */
         offset?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * Must be greater than 0.
+         */
         width?: pulumi.Input<number>;
     }
 
     export interface MetricMetricDescriptor {
+        /**
+         * -
+         * (Optional)
+         * A concise name for the metric, which can be displayed in user interfaces. Use sentence case
+         * without an ending period, for example "Request count". This field is optional but it is
+         * recommended to be set for any metrics associated with user-visible concepts, such as Quota.
+         */
         displayName?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The set of labels that can be used to describe a specific instance of this metric type. For
+         * example, the appengine.googleapis.com/http/server/response_latencies metric type has a label
+         * for the HTTP response code, response_code, so you can look at latencies for successful responses
+         * or just for responses that failed.  Structure is documented below.
+         */
         labels?: pulumi.Input<pulumi.Input<inputs.logging.MetricMetricDescriptorLabel>[]>;
+        /**
+         * -
+         * (Required)
+         * Whether the metric records instantaneous values, changes to a value, etc.
+         * Some combinations of metricKind and valueType might not be supported.
+         * For counter metrics, set this to DELTA.
+         */
         metricKind: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The unit in which the metric value is reported. It is only applicable if the valueType is
+         * `INT64`, `DOUBLE`, or `DISTRIBUTION`. The supported units are a subset of
+         * [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard
+         */
         unit?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Whether the measurement is an integer, a floating-point number, etc.
+         * Some combinations of metricKind and valueType might not be supported.
+         * For counter metrics, set this to INT64.
+         */
         valueType: pulumi.Input<string>;
     }
 
     export interface MetricMetricDescriptorLabel {
+        /**
+         * -
+         * (Optional)
+         * A human-readable description for the label.
+         */
         description?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The label key.
+         */
         key: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Whether the measurement is an integer, a floating-point number, etc.
+         * Some combinations of metricKind and valueType might not be supported.
+         * For counter metrics, set this to INT64.
+         */
         valueType?: pulumi.Input<string>;
     }
 
@@ -5528,64 +12933,546 @@ export namespace logging {
 
 export namespace ml {
     export interface EngineModelDefaultVersion {
+        /**
+         * -
+         * (Required)
+         * The name specified for the model.
+         */
         name: pulumi.Input<string>;
     }
 }
 
 export namespace monitoring {
     export interface AlertPolicyCondition {
+        /**
+         * -
+         * (Optional)
+         * A condition that checks that a time series
+         * continues to receive new data points.  Structure is documented below.
+         */
         conditionAbsent?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionAbsent>;
+        /**
+         * -
+         * (Optional)
+         * A condition that compares a time series against a
+         * threshold.  Structure is documented below.
+         */
         conditionThreshold?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionThreshold>;
+        /**
+         * -
+         * (Required)
+         * A short name or phrase used to identify the policy in
+         * dashboards, notifications, and incidents. To avoid confusion, don't use
+         * the same display name for multiple policies in the same project. The
+         * name is limited to 512 Unicode characters.
+         */
         displayName: pulumi.Input<string>;
+        /**
+         * -
+         * The unique resource name for this condition.
+         * Its syntax is:
+         * projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+         * [CONDITION_ID] is assigned by Stackdriver Monitoring when
+         * the condition is created as part of a new or updated alerting
+         * policy.
+         */
         name?: pulumi.Input<string>;
     }
 
     export interface AlertPolicyConditionConditionAbsent {
+        /**
+         * -
+         * (Optional)
+         * Specifies the alignment of data points in
+         * individual time series as well as how to
+         * combine the retrieved time series together
+         * (such as when aggregating multiple streams
+         * on each resource to a single stream for each
+         * resource or when aggregating streams across
+         * all members of a group of resources).
+         * Multiple aggregations are applied in the
+         * order specified.  Structure is documented below.
+         */
         aggregations?: pulumi.Input<pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionAbsentAggregation>[]>;
+        /**
+         * -
+         * (Required)
+         * The amount of time that a time series must
+         * fail to report new data to be considered
+         * failing. Currently, only values that are a
+         * multiple of a minute--e.g. 60s, 120s, or 300s
+         * --are supported.
+         */
         duration: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A filter that identifies which time series
+         * should be compared with the threshold.The
+         * filter is similar to the one that is
+         * specified in the
+         * MetricService.ListTimeSeries request (that
+         * call is useful to verify the time series
+         * that will be retrieved / processed) and must
+         * specify the metric type and optionally may
+         * contain restrictions on resource type,
+         * resource labels, and metric labels. This
+         * field may not exceed 2048 Unicode characters
+         * in length.
+         */
         filter?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The number/percent of time series for which
+         * the comparison must hold in order for the
+         * condition to trigger. If unspecified, then
+         * the condition will trigger if the comparison
+         * is true for any of the time series that have
+         * been identified by filter and aggregations.  Structure is documented below.
+         */
         trigger?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionAbsentTrigger>;
     }
 
     export interface AlertPolicyConditionConditionAbsentAggregation {
+        /**
+         * -
+         * (Optional)
+         * The alignment period for per-time
+         * series alignment. If present,
+         * alignmentPeriod must be at least
+         * 60 seconds. After per-time series
+         * alignment, each time series will
+         * contain data points only on the
+         * period boundaries. If
+         * perSeriesAligner is not specified
+         * or equals ALIGN_NONE, then this
+         * field is ignored. If
+         * perSeriesAligner is specified and
+         * does not equal ALIGN_NONE, then
+         * this field must be defined;
+         * otherwise an error is returned.
+         */
         alignmentPeriod?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The approach to be used to combine
+         * time series. Not all reducer
+         * functions may be applied to all
+         * time series, depending on the
+         * metric type and the value type of
+         * the original time series.
+         * Reduction may change the metric
+         * type of value type of the time
+         * series.Time series data must be
+         * aligned in order to perform cross-
+         * time series reduction. If
+         * crossSeriesReducer is specified,
+         * then perSeriesAligner must be
+         * specified and not equal ALIGN_NONE
+         * and alignmentPeriod must be
+         * specified; otherwise, an error is
+         * returned.
+         */
         crossSeriesReducer?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The set of fields to preserve when
+         * crossSeriesReducer is specified.
+         * The groupByFields determine how
+         * the time series are partitioned
+         * into subsets prior to applying the
+         * aggregation function. Each subset
+         * contains time series that have the
+         * same value for each of the
+         * grouping fields. Each individual
+         * time series is a member of exactly
+         * one subset. The crossSeriesReducer
+         * is applied to each subset of time
+         * series. It is not possible to
+         * reduce across different resource
+         * types, so this field implicitly
+         * contains resource.type. Fields not
+         * specified in groupByFields are
+         * aggregated away. If groupByFields
+         * is not specified and all the time
+         * series have the same resource
+         * type, then the time series are
+         * aggregated into a single output
+         * time series. If crossSeriesReducer
+         * is not defined, this field is
+         * ignored.
+         */
         groupByFields?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * The approach to be used to align
+         * individual time series. Not all
+         * alignment functions may be applied
+         * to all time series, depending on
+         * the metric type and value type of
+         * the original time series.
+         * Alignment may change the metric
+         * type or the value type of the time
+         * series.Time series data must be
+         * aligned in order to perform cross-
+         * time series reduction. If
+         * crossSeriesReducer is specified,
+         * then perSeriesAligner must be
+         * specified and not equal ALIGN_NONE
+         * and alignmentPeriod must be
+         * specified; otherwise, an error is
+         * returned.
+         */
         perSeriesAligner?: pulumi.Input<string>;
     }
 
     export interface AlertPolicyConditionConditionAbsentTrigger {
+        /**
+         * -
+         * (Optional)
+         * The absolute number of time series
+         * that must fail the predicate for the
+         * condition to be triggered.
+         */
         count?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The percentage of time series that
+         * must fail the predicate for the
+         * condition to be triggered.
+         */
         percent?: pulumi.Input<number>;
     }
 
     export interface AlertPolicyConditionConditionThreshold {
+        /**
+         * -
+         * (Optional)
+         * Specifies the alignment of data points in
+         * individual time series as well as how to
+         * combine the retrieved time series together
+         * (such as when aggregating multiple streams
+         * on each resource to a single stream for each
+         * resource or when aggregating streams across
+         * all members of a group of resources).
+         * Multiple aggregations are applied in the
+         * order specified.  Structure is documented below.
+         */
         aggregations?: pulumi.Input<pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionThresholdAggregation>[]>;
+        /**
+         * -
+         * (Required)
+         * The comparison to apply between the time
+         * series (indicated by filter and aggregation)
+         * and the threshold (indicated by
+         * threshold_value). The comparison is applied
+         * on each time series, with the time series on
+         * the left-hand side and the threshold on the
+         * right-hand side. Only COMPARISON_LT and
+         * COMPARISON_GT are supported currently.
+         */
         comparison: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Specifies the alignment of data points in
+         * individual time series selected by
+         * denominatorFilter as well as how to combine
+         * the retrieved time series together (such as
+         * when aggregating multiple streams on each
+         * resource to a single stream for each
+         * resource or when aggregating streams across
+         * all members of a group of resources).When
+         * computing ratios, the aggregations and
+         * denominatorAggregations fields must use the
+         * same alignment period and produce time
+         * series that have the same periodicity and
+         * labels.This field is similar to the one in
+         * the MetricService.ListTimeSeries request. It
+         * is advisable to use the ListTimeSeries
+         * method when debugging this field.  Structure is documented below.
+         */
         denominatorAggregations?: pulumi.Input<pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionThresholdDenominatorAggregation>[]>;
+        /**
+         * -
+         * (Optional)
+         * A filter that identifies a time series that
+         * should be used as the denominator of a ratio
+         * that will be compared with the threshold. If
+         * a denominatorFilter is specified, the time
+         * series specified by the filter field will be
+         * used as the numerator.The filter is similar
+         * to the one that is specified in the
+         * MetricService.ListTimeSeries request (that
+         * call is useful to verify the time series
+         * that will be retrieved / processed) and must
+         * specify the metric type and optionally may
+         * contain restrictions on resource type,
+         * resource labels, and metric labels. This
+         * field may not exceed 2048 Unicode characters
+         * in length.
+         */
         denominatorFilter?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The amount of time that a time series must
+         * fail to report new data to be considered
+         * failing. Currently, only values that are a
+         * multiple of a minute--e.g. 60s, 120s, or 300s
+         * --are supported.
+         */
         duration: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A filter that identifies which time series
+         * should be compared with the threshold.The
+         * filter is similar to the one that is
+         * specified in the
+         * MetricService.ListTimeSeries request (that
+         * call is useful to verify the time series
+         * that will be retrieved / processed) and must
+         * specify the metric type and optionally may
+         * contain restrictions on resource type,
+         * resource labels, and metric labels. This
+         * field may not exceed 2048 Unicode characters
+         * in length.
+         */
         filter?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * A value against which to compare the time
+         * series.
+         */
         thresholdValue?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The number/percent of time series for which
+         * the comparison must hold in order for the
+         * condition to trigger. If unspecified, then
+         * the condition will trigger if the comparison
+         * is true for any of the time series that have
+         * been identified by filter and aggregations.  Structure is documented below.
+         */
         trigger?: pulumi.Input<inputs.monitoring.AlertPolicyConditionConditionThresholdTrigger>;
     }
 
     export interface AlertPolicyConditionConditionThresholdAggregation {
+        /**
+         * -
+         * (Optional)
+         * The alignment period for per-time
+         * series alignment. If present,
+         * alignmentPeriod must be at least
+         * 60 seconds. After per-time series
+         * alignment, each time series will
+         * contain data points only on the
+         * period boundaries. If
+         * perSeriesAligner is not specified
+         * or equals ALIGN_NONE, then this
+         * field is ignored. If
+         * perSeriesAligner is specified and
+         * does not equal ALIGN_NONE, then
+         * this field must be defined;
+         * otherwise an error is returned.
+         */
         alignmentPeriod?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The approach to be used to combine
+         * time series. Not all reducer
+         * functions may be applied to all
+         * time series, depending on the
+         * metric type and the value type of
+         * the original time series.
+         * Reduction may change the metric
+         * type of value type of the time
+         * series.Time series data must be
+         * aligned in order to perform cross-
+         * time series reduction. If
+         * crossSeriesReducer is specified,
+         * then perSeriesAligner must be
+         * specified and not equal ALIGN_NONE
+         * and alignmentPeriod must be
+         * specified; otherwise, an error is
+         * returned.
+         */
         crossSeriesReducer?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The set of fields to preserve when
+         * crossSeriesReducer is specified.
+         * The groupByFields determine how
+         * the time series are partitioned
+         * into subsets prior to applying the
+         * aggregation function. Each subset
+         * contains time series that have the
+         * same value for each of the
+         * grouping fields. Each individual
+         * time series is a member of exactly
+         * one subset. The crossSeriesReducer
+         * is applied to each subset of time
+         * series. It is not possible to
+         * reduce across different resource
+         * types, so this field implicitly
+         * contains resource.type. Fields not
+         * specified in groupByFields are
+         * aggregated away. If groupByFields
+         * is not specified and all the time
+         * series have the same resource
+         * type, then the time series are
+         * aggregated into a single output
+         * time series. If crossSeriesReducer
+         * is not defined, this field is
+         * ignored.
+         */
         groupByFields?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * The approach to be used to align
+         * individual time series. Not all
+         * alignment functions may be applied
+         * to all time series, depending on
+         * the metric type and value type of
+         * the original time series.
+         * Alignment may change the metric
+         * type or the value type of the time
+         * series.Time series data must be
+         * aligned in order to perform cross-
+         * time series reduction. If
+         * crossSeriesReducer is specified,
+         * then perSeriesAligner must be
+         * specified and not equal ALIGN_NONE
+         * and alignmentPeriod must be
+         * specified; otherwise, an error is
+         * returned.
+         */
         perSeriesAligner?: pulumi.Input<string>;
     }
 
     export interface AlertPolicyConditionConditionThresholdDenominatorAggregation {
+        /**
+         * -
+         * (Optional)
+         * The alignment period for per-time
+         * series alignment. If present,
+         * alignmentPeriod must be at least
+         * 60 seconds. After per-time series
+         * alignment, each time series will
+         * contain data points only on the
+         * period boundaries. If
+         * perSeriesAligner is not specified
+         * or equals ALIGN_NONE, then this
+         * field is ignored. If
+         * perSeriesAligner is specified and
+         * does not equal ALIGN_NONE, then
+         * this field must be defined;
+         * otherwise an error is returned.
+         */
         alignmentPeriod?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The approach to be used to combine
+         * time series. Not all reducer
+         * functions may be applied to all
+         * time series, depending on the
+         * metric type and the value type of
+         * the original time series.
+         * Reduction may change the metric
+         * type of value type of the time
+         * series.Time series data must be
+         * aligned in order to perform cross-
+         * time series reduction. If
+         * crossSeriesReducer is specified,
+         * then perSeriesAligner must be
+         * specified and not equal ALIGN_NONE
+         * and alignmentPeriod must be
+         * specified; otherwise, an error is
+         * returned.
+         */
         crossSeriesReducer?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The set of fields to preserve when
+         * crossSeriesReducer is specified.
+         * The groupByFields determine how
+         * the time series are partitioned
+         * into subsets prior to applying the
+         * aggregation function. Each subset
+         * contains time series that have the
+         * same value for each of the
+         * grouping fields. Each individual
+         * time series is a member of exactly
+         * one subset. The crossSeriesReducer
+         * is applied to each subset of time
+         * series. It is not possible to
+         * reduce across different resource
+         * types, so this field implicitly
+         * contains resource.type. Fields not
+         * specified in groupByFields are
+         * aggregated away. If groupByFields
+         * is not specified and all the time
+         * series have the same resource
+         * type, then the time series are
+         * aggregated into a single output
+         * time series. If crossSeriesReducer
+         * is not defined, this field is
+         * ignored.
+         */
         groupByFields?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * -
+         * (Optional)
+         * The approach to be used to align
+         * individual time series. Not all
+         * alignment functions may be applied
+         * to all time series, depending on
+         * the metric type and value type of
+         * the original time series.
+         * Alignment may change the metric
+         * type or the value type of the time
+         * series.Time series data must be
+         * aligned in order to perform cross-
+         * time series reduction. If
+         * crossSeriesReducer is specified,
+         * then perSeriesAligner must be
+         * specified and not equal ALIGN_NONE
+         * and alignmentPeriod must be
+         * specified; otherwise, an error is
+         * returned.
+         */
         perSeriesAligner?: pulumi.Input<string>;
     }
 
     export interface AlertPolicyConditionConditionThresholdTrigger {
+        /**
+         * -
+         * (Optional)
+         * The absolute number of time series
+         * that must fail the predicate for the
+         * condition to be triggered.
+         */
         count?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * The percentage of time series that
+         * must fail the predicate for the
+         * condition to be triggered.
+         */
         percent?: pulumi.Input<number>;
     }
 
@@ -5595,46 +13482,150 @@ export namespace monitoring {
     }
 
     export interface AlertPolicyDocumentation {
+        /**
+         * -
+         * (Optional)
+         * The text of the documentation, interpreted according to mimeType.
+         * The content may not exceed 8,192 Unicode characters and may not
+         * exceed more than 10,240 bytes when encoded in UTF-8 format,
+         * whichever is smaller.
+         */
         content?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The format of the content field. Presently, only the value
+         * "text/markdown" is supported.
+         */
         mimeType?: pulumi.Input<string>;
     }
 
     export interface NotificationChannelSensitiveLabels {
+        /**
+         * -
+         * (Optional)
+         * An authorization token for a notification channel. Channel types that support this field include: slack
+         */
         authToken?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * An password for a notification channel. Channel types that support this field include: webhook_basicauth
+         */
         password?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * An servicekey token for a notification channel. Channel types that support this field include: pagerduty
+         */
         serviceKey?: pulumi.Input<string>;
     }
 
     export interface UptimeCheckConfigContentMatcher {
+        /**
+         * -
+         * (Required)
+         * String or regex content to match (max 1024 bytes)
+         */
         content: pulumi.Input<string>;
     }
 
     export interface UptimeCheckConfigHttpCheck {
+        /**
+         * -
+         * (Optional)
+         * The authentication information. Optional when creating an HTTP check; defaults to empty.  Structure is documented below.
+         */
         authInfo?: pulumi.Input<inputs.monitoring.UptimeCheckConfigHttpCheckAuthInfo>;
+        /**
+         * -
+         * (Optional)
+         * The list of headers to send as part of the uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100.
+         */
         headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * (Optional)
+         * Boolean specifying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if maskHeaders is set to True then the headers will be obscured with ******.
+         */
         maskHeaders?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * The path to the page to run the check against. Will be combined with the host (specified within the MonitoredResource) and port to construct the full URL. Optional (defaults to "/").
+         */
         path?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) and path to construct the full URL. Optional (defaults to 80 without SSL, or 443 with SSL).
+         */
         port?: pulumi.Input<number>;
+        /**
+         * -
+         * (Optional)
+         * If true, use HTTPS instead of HTTP to run the check.
+         */
         useSsl?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * Boolean specifying whether to include SSL certificate validation as a part of the Uptime check. Only applies to checks where monitoredResource is set to uptime_url. If useSsl is false, setting validateSsl to true has no effect.
+         */
         validateSsl?: pulumi.Input<boolean>;
     }
 
     export interface UptimeCheckConfigHttpCheckAuthInfo {
+        /**
+         * -
+         * (Required)
+         * The password to authenticate.
+         */
         password: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * The username to authenticate.
+         */
         username: pulumi.Input<string>;
     }
 
     export interface UptimeCheckConfigMonitoredResource {
+        /**
+         * -
+         * (Required)
+         * Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels "projectId", "instanceId", and "zone".
+         */
         labels: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * (Required)
+         * The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.monitoredResourceDescriptors#MonitoredResourceDescriptor) object. For example, the type of a Compute Engine VM instance is gce_instance. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).
+         */
         type: pulumi.Input<string>;
     }
 
     export interface UptimeCheckConfigResourceGroup {
+        /**
+         * -
+         * (Optional)
+         * The group of resources being monitored. Should be the `name` of a group
+         */
         groupId?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The resource type of the group members.
+         */
         resourceType?: pulumi.Input<string>;
     }
 
     export interface UptimeCheckConfigTcpCheck {
+        /**
+         * -
+         * (Optional)
+         * The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) and path to construct the full URL. Optional (defaults to 80 without SSL, or 443 with SSL).
+         */
         port: pulumi.Input<number>;
     }
 }
@@ -5725,6 +13716,9 @@ export namespace organizations {
     }
 
     export interface PolicyListPolicy {
+        /**
+         * or `deny` - (Optional) One or the other must be set.
+         */
         allow?: pulumi.Input<inputs.organizations.PolicyListPolicyAllow>;
         deny?: pulumi.Input<inputs.organizations.PolicyListPolicyDeny>;
         /**
@@ -5818,6 +13812,9 @@ export namespace projects {
     }
 
     export interface OrganizationPolicyListPolicy {
+        /**
+         * or `deny` - (Optional) One or the other must be set.
+         */
         allow?: pulumi.Input<inputs.projects.OrganizationPolicyListPolicyAllow>;
         deny?: pulumi.Input<inputs.projects.OrganizationPolicyListPolicyDeny>;
         /**
@@ -5863,11 +13860,45 @@ export namespace projects {
 
 export namespace pubsub {
     export interface SubscriptionDeadLetterPolicy {
+        /**
+         * -
+         * (Optional)
+         * The name of the topic to which dead letter messages should be published.
+         * Format is `projects/{project}/topics/{topic}`.
+         * The Cloud Pub/Sub service\naccount associated with the enclosing subscription's
+         * parent project (i.e.,
+         * service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have
+         * permission to Publish() to this topic.
+         * The operation will fail if the topic does not exist.
+         * Users should ensure that there is a subscription attached to this topic
+         * since messages published to a topic with no subscriptions are lost.
+         */
         deadLetterTopic?: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * The maximum number of delivery attempts for any message. The value must be
+         * between 5 and 100.
+         * The number of delivery attempts is defined as 1 + (the sum of number of
+         * NACKs and number of times the acknowledgement deadline has been exceeded for the message).
+         * A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that
+         * client libraries may automatically extend ack_deadlines.
+         * This field will be honored on a best effort basis.
+         * If this parameter is 0, a default value of 5 is used.
+         */
         maxDeliveryAttempts?: pulumi.Input<number>;
     }
 
     export interface SubscriptionExpirationPolicy {
+        /**
+         * -
+         * (Required)
+         * Specifies the "time-to-live" duration for an associated resource. The
+         * resource expires if it is not active for a period of ttl.
+         * If ttl is not set, the associated resource never expires.
+         * A duration in seconds with up to nine fractional digits, terminated by 's'.
+         * Example - "3.5s".
+         */
         ttl: pulumi.Input<string>;
     }
 
@@ -5884,13 +13915,66 @@ export namespace pubsub {
     }
 
     export interface SubscriptionPushConfig {
+        /**
+         * -
+         * (Optional)
+         * Endpoint configuration attributes.
+         * Every endpoint has a set of API supported attributes that can
+         * be used to control different aspects of the message delivery.
+         * The currently supported attribute is x-goog-version, which you
+         * can use to change the format of the pushed message. This
+         * attribute indicates the version of the data expected by
+         * the endpoint. This controls the shape of the pushed message
+         * (i.e., its fields and metadata). The endpoint version is
+         * based on the version of the Pub/Sub API.
+         * If not present during the subscriptions.create call,
+         * it will default to the version of the API used to make
+         * such call. If not present during a subscriptions.modifyPushConfig
+         * call, its value will not be changed. subscriptions.get
+         * calls will always return a valid version, even if the
+         * subscription was created without this attribute.
+         * The possible values for this attribute are:
+         * - v1beta1: uses the push format defined in the v1beta1 Pub/Sub API.
+         * - v1 or v1beta2: uses the push format defined in the v1 Pub/Sub API.
+         */
         attributes?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * -
+         * (Optional)
+         * If specified, Pub/Sub will generate and attach an OIDC JWT token as
+         * an Authorization header in the HTTP request for every pushed message.  Structure is documented below.
+         */
         oidcToken?: pulumi.Input<inputs.pubsub.SubscriptionPushConfigOidcToken>;
+        /**
+         * -
+         * (Required)
+         * A URL locating the endpoint to which messages should be pushed.
+         * For example, a Webhook endpoint might use
+         * "https://example.com/push".
+         */
         pushEndpoint: pulumi.Input<string>;
     }
 
     export interface SubscriptionPushConfigOidcToken {
+        /**
+         * -
+         * (Optional)
+         * Audience to be used when generating OIDC token. The audience claim
+         * identifies the recipients that the JWT is intended for. The audience
+         * value is a single case-sensitive string. Having multiple values (array)
+         * for the audience field is not supported. More info about the OIDC JWT
+         * token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
+         * Note: if not specified, the Push endpoint URL will be used.
+         */
         audience?: pulumi.Input<string>;
+        /**
+         * -
+         * (Required)
+         * Service account email to be used for generating the OIDC token.
+         * The caller (for subscriptions.create, subscriptions.patch, and
+         * subscriptions.modifyPushConfig RPCs) must have the
+         * iam.serviceAccounts.actAs permission for the service account.
+         */
         serviceAccountEmail: pulumi.Input<string>;
     }
 
@@ -5907,6 +13991,16 @@ export namespace pubsub {
     }
 
     export interface TopicMessageStoragePolicy {
+        /**
+         * -
+         * (Required)
+         * A list of IDs of GCP regions where messages that are published to
+         * the topic may be persisted in storage. Messages published by
+         * publishers running in non-allowed GCP regions (or running outside
+         * of GCP altogether) will be routed for storage in one of the
+         * allowed regions. An empty list means that no regions are allowed,
+         * and is not a valid configuration.
+         */
         allowedPersistenceRegions: pulumi.Input<pulumi.Input<string>[]>;
     }
 }
@@ -5939,15 +14033,35 @@ export namespace secretmanager {
     }
 
     export interface SecretReplication {
+        /**
+         * -
+         * (Optional)
+         * The Secret will automatically be replicated without any restrictions.
+         */
         automatic?: pulumi.Input<boolean>;
+        /**
+         * -
+         * (Optional)
+         * The Secret will automatically be replicated without any restrictions.  Structure is documented below.
+         */
         userManaged?: pulumi.Input<inputs.secretmanager.SecretReplicationUserManaged>;
     }
 
     export interface SecretReplicationUserManaged {
+        /**
+         * -
+         * (Required)
+         * The list of Replicas for this Secret. Cannot be empty.  Structure is documented below.
+         */
         replicas: pulumi.Input<pulumi.Input<inputs.secretmanager.SecretReplicationUserManagedReplica>[]>;
     }
 
     export interface SecretReplicationUserManagedReplica {
+        /**
+         * -
+         * (Required)
+         * The canonical IDs of the location to replicate data. For example: "us-east1".
+         */
         location: pulumi.Input<string>;
     }
 }
@@ -5998,7 +14112,22 @@ export namespace sourcerepo {
     }
 
     export interface RepositoryPubsubConfig {
+        /**
+         * -
+         * (Required)
+         * The format of the Cloud Pub/Sub messages.
+         * - PROTOBUF: The message payload is a serialized protocol buffer of SourceRepoEvent.
+         * - JSON: The message payload is a JSON string of SourceRepoEvent.
+         */
         messageFormat: pulumi.Input<string>;
+        /**
+         * -
+         * (Optional)
+         * Email address of the service account used for publishing Cloud Pub/Sub messages.
+         * This service account needs to be in the same project as the PubsubConfig. When added,
+         * the caller needs to have iam.serviceAccounts.actAs permission on this service account.
+         * If unspecified, it defaults to the compute engine default service account.
+         */
         serviceAccountEmail?: pulumi.Input<string>;
         /**
          * The identifier for this object. Format specified above.
@@ -6194,13 +14323,14 @@ export namespace sql {
 
     export interface DatabaseInstanceSettingsDatabaseFlag {
         /**
-         * A name for this whitelist entry.
+         * The name of the instance. If the name is left
+         * blank, the provider will randomly generate one when the instance is first
+         * created. This is done because after a name is used, it cannot be reused for
+         * up to [one week](https://cloud.google.com/sql/docs/delete-instance).
          */
         name: pulumi.Input<string>;
         /**
-         * A CIDR notation IPv4 or IPv6 address that is allowed to
-         * access this instance. Must be set even if other two attributes are not for
-         * the whitelist to become active.
+         * Value of the flag.
          */
         value: pulumi.Input<string>;
     }
@@ -6235,13 +14365,14 @@ export namespace sql {
          */
         expirationTime?: pulumi.Input<string>;
         /**
-         * A name for this whitelist entry.
+         * The name of the instance. If the name is left
+         * blank, the provider will randomly generate one when the instance is first
+         * created. This is done because after a name is used, it cannot be reused for
+         * up to [one week](https://cloud.google.com/sql/docs/delete-instance).
          */
         name?: pulumi.Input<string>;
         /**
-         * A CIDR notation IPv4 or IPv6 address that is allowed to
-         * access this instance. Must be set even if other two attributes are not for
-         * the whitelist to become active.
+         * Value of the flag.
          */
         value: pulumi.Input<string>;
     }
@@ -6343,7 +14474,7 @@ export namespace storage {
 
     export interface BucketLifecycleRuleAction {
         /**
-         * The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
+         * The [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of the new bucket. Supported values include: `STANDARD`, `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
          */
         storageClass?: pulumi.Input<string>;
         /**
@@ -6525,7 +14656,7 @@ export namespace storage {
          */
         awsAccessKey: pulumi.Input<inputs.storage.TransferJobTransferSpecAwsS3DataSourceAwsAccessKey>;
         /**
-         * S3 Bucket name.
+         * Google Cloud Storage bucket name.
          */
         bucketName: pulumi.Input<string>;
     }
@@ -6543,14 +14674,14 @@ export namespace storage {
 
     export interface TransferJobTransferSpecGcsDataSink {
         /**
-         * S3 Bucket name.
+         * Google Cloud Storage bucket name.
          */
         bucketName: pulumi.Input<string>;
     }
 
     export interface TransferJobTransferSpecGcsDataSource {
         /**
-         * S3 Bucket name.
+         * Google Cloud Storage bucket name.
          */
         bucketName: pulumi.Input<string>;
     }
@@ -6606,6 +14737,11 @@ export namespace tpu {
     }
 
     export interface NodeSchedulingConfig {
+        /**
+         * -
+         * (Required)
+         * Defines whether the TPU instance is preemptible.
+         */
         preemptible: pulumi.Input<boolean>;
     }
 }

@@ -14,7 +14,9 @@ namespace Pulumi.Gcp.AppEngine.Outputs
     public sealed class FlexibleAppVersionVpcAccessConnector
     {
         /// <summary>
-        /// The identifier for this object. Format specified above.
+        /// -
+        /// (Required)
+        /// Google Compute Engine network where the virtual machines are created. Specify the short name, not the resource path.
         /// </summary>
         public readonly string Name;
 

@@ -13,9 +13,33 @@ namespace Pulumi.Gcp.GameServices.Outputs
     [OutputType]
     public sealed class GameServerConfigScalingConfig
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Fleet autoscaler spec, which is sent to Agones.
+        /// Example spec can be found :
+        /// https://agones.dev/site/docs/reference/fleetautoscaler/
+        /// </summary>
         public readonly string FleetAutoscalerSpec;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the FleetConfig.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The schedules to which this scaling config applies.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GameServerConfigScalingConfigSchedule> Schedules;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Labels used to identify the clusters to which this scaling config
+        /// applies. A cluster is subject to this scaling config if its labels match
+        /// any of the selector entries.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GameServerConfigScalingConfigSelector> Selectors;
 
         [OutputConstructor]

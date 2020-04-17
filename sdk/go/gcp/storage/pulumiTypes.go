@@ -680,7 +680,7 @@ func (o BucketLifecycleRuleArrayOutput) Index(i pulumi.IntInput) BucketLifecycle
 }
 
 type BucketLifecycleRuleAction struct {
-	// The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
+	// The [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of the new bucket. Supported values include: `STANDARD`, `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
 	StorageClass *string `pulumi:"storageClass"`
 	// The type of the action of this Lifecycle Rule. Supported values include: `Delete` and `SetStorageClass`.
 	Type string `pulumi:"type"`
@@ -699,7 +699,7 @@ type BucketLifecycleRuleActionInput interface {
 }
 
 type BucketLifecycleRuleActionArgs struct {
-	// The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
+	// The [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of the new bucket. Supported values include: `STANDARD`, `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
 	StorageClass pulumi.StringPtrInput `pulumi:"storageClass"`
 	// The type of the action of this Lifecycle Rule. Supported values include: `Delete` and `SetStorageClass`.
 	Type pulumi.StringInput `pulumi:"type"`
@@ -731,7 +731,7 @@ func (o BucketLifecycleRuleActionOutput) ToBucketLifecycleRuleActionOutputWithCo
 	return o
 }
 
-// The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
+// The [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of the new bucket. Supported values include: `STANDARD`, `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
 func (o BucketLifecycleRuleActionOutput) StorageClass() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BucketLifecycleRuleAction) *string { return v.StorageClass }).(pulumi.StringPtrOutput)
 }
@@ -2416,7 +2416,7 @@ func (o TransferJobTransferSpecPtrOutput) TransferOptions() TransferJobTransferS
 type TransferJobTransferSpecAwsS3DataSource struct {
 	// AWS credentials block.
 	AwsAccessKey TransferJobTransferSpecAwsS3DataSourceAwsAccessKey `pulumi:"awsAccessKey"`
-	// S3 Bucket name.
+	// Google Cloud Storage bucket name.
 	BucketName string `pulumi:"bucketName"`
 }
 
@@ -2435,7 +2435,7 @@ type TransferJobTransferSpecAwsS3DataSourceInput interface {
 type TransferJobTransferSpecAwsS3DataSourceArgs struct {
 	// AWS credentials block.
 	AwsAccessKey TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyInput `pulumi:"awsAccessKey"`
-	// S3 Bucket name.
+	// Google Cloud Storage bucket name.
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
 }
 
@@ -2524,7 +2524,7 @@ func (o TransferJobTransferSpecAwsS3DataSourceOutput) AwsAccessKey() TransferJob
 	}).(TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyOutput)
 }
 
-// S3 Bucket name.
+// Google Cloud Storage bucket name.
 func (o TransferJobTransferSpecAwsS3DataSourceOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v TransferJobTransferSpecAwsS3DataSource) string { return v.BucketName }).(pulumi.StringOutput)
 }
@@ -2554,7 +2554,7 @@ func (o TransferJobTransferSpecAwsS3DataSourcePtrOutput) AwsAccessKey() Transfer
 	}).(TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyOutput)
 }
 
-// S3 Bucket name.
+// Google Cloud Storage bucket name.
 func (o TransferJobTransferSpecAwsS3DataSourcePtrOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v TransferJobTransferSpecAwsS3DataSource) string { return v.BucketName }).(pulumi.StringOutput)
 }
@@ -2622,7 +2622,7 @@ func (o TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyOutput) SecretAccessKe
 }
 
 type TransferJobTransferSpecGcsDataSink struct {
-	// S3 Bucket name.
+	// Google Cloud Storage bucket name.
 	BucketName string `pulumi:"bucketName"`
 }
 
@@ -2639,7 +2639,7 @@ type TransferJobTransferSpecGcsDataSinkInput interface {
 }
 
 type TransferJobTransferSpecGcsDataSinkArgs struct {
-	// S3 Bucket name.
+	// Google Cloud Storage bucket name.
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
 }
 
@@ -2721,7 +2721,7 @@ func (o TransferJobTransferSpecGcsDataSinkOutput) ToTransferJobTransferSpecGcsDa
 	}).(TransferJobTransferSpecGcsDataSinkPtrOutput)
 }
 
-// S3 Bucket name.
+// Google Cloud Storage bucket name.
 func (o TransferJobTransferSpecGcsDataSinkOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v TransferJobTransferSpecGcsDataSink) string { return v.BucketName }).(pulumi.StringOutput)
 }
@@ -2744,13 +2744,13 @@ func (o TransferJobTransferSpecGcsDataSinkPtrOutput) Elem() TransferJobTransferS
 	return o.ApplyT(func(v *TransferJobTransferSpecGcsDataSink) TransferJobTransferSpecGcsDataSink { return *v }).(TransferJobTransferSpecGcsDataSinkOutput)
 }
 
-// S3 Bucket name.
+// Google Cloud Storage bucket name.
 func (o TransferJobTransferSpecGcsDataSinkPtrOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v TransferJobTransferSpecGcsDataSink) string { return v.BucketName }).(pulumi.StringOutput)
 }
 
 type TransferJobTransferSpecGcsDataSource struct {
-	// S3 Bucket name.
+	// Google Cloud Storage bucket name.
 	BucketName string `pulumi:"bucketName"`
 }
 
@@ -2767,7 +2767,7 @@ type TransferJobTransferSpecGcsDataSourceInput interface {
 }
 
 type TransferJobTransferSpecGcsDataSourceArgs struct {
-	// S3 Bucket name.
+	// Google Cloud Storage bucket name.
 	BucketName pulumi.StringInput `pulumi:"bucketName"`
 }
 
@@ -2849,7 +2849,7 @@ func (o TransferJobTransferSpecGcsDataSourceOutput) ToTransferJobTransferSpecGcs
 	}).(TransferJobTransferSpecGcsDataSourcePtrOutput)
 }
 
-// S3 Bucket name.
+// Google Cloud Storage bucket name.
 func (o TransferJobTransferSpecGcsDataSourceOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v TransferJobTransferSpecGcsDataSource) string { return v.BucketName }).(pulumi.StringOutput)
 }
@@ -2872,7 +2872,7 @@ func (o TransferJobTransferSpecGcsDataSourcePtrOutput) Elem() TransferJobTransfe
 	return o.ApplyT(func(v *TransferJobTransferSpecGcsDataSource) TransferJobTransferSpecGcsDataSource { return *v }).(TransferJobTransferSpecGcsDataSourceOutput)
 }
 
-// S3 Bucket name.
+// Google Cloud Storage bucket name.
 func (o TransferJobTransferSpecGcsDataSourcePtrOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v TransferJobTransferSpecGcsDataSource) string { return v.BucketName }).(pulumi.StringOutput)
 }

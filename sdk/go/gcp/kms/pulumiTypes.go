@@ -323,7 +323,14 @@ func (o CryptoKeyIAMMemberConditionPtrOutput) Title() pulumi.StringOutput {
 }
 
 type CryptoKeyVersionTemplate struct {
-	Algorithm       string  `pulumi:"algorithm"`
+	// -
+	// (Required)
+	// The algorithm to use when creating a version based on this template.
+	// See the [algorithm reference](https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm) for possible inputs.
+	Algorithm string `pulumi:"algorithm"`
+	// -
+	// (Optional)
+	// The protection level to use when creating a version based on this template.
 	ProtectionLevel *string `pulumi:"protectionLevel"`
 }
 
@@ -340,7 +347,14 @@ type CryptoKeyVersionTemplateInput interface {
 }
 
 type CryptoKeyVersionTemplateArgs struct {
-	Algorithm       pulumi.StringInput    `pulumi:"algorithm"`
+	// -
+	// (Required)
+	// The algorithm to use when creating a version based on this template.
+	// See the [algorithm reference](https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm) for possible inputs.
+	Algorithm pulumi.StringInput `pulumi:"algorithm"`
+	// -
+	// (Optional)
+	// The protection level to use when creating a version based on this template.
 	ProtectionLevel pulumi.StringPtrInput `pulumi:"protectionLevel"`
 }
 
@@ -421,10 +435,18 @@ func (o CryptoKeyVersionTemplateOutput) ToCryptoKeyVersionTemplatePtrOutputWithC
 		return &v
 	}).(CryptoKeyVersionTemplatePtrOutput)
 }
+
+// -
+// (Required)
+// The algorithm to use when creating a version based on this template.
+// See the [algorithm reference](https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm) for possible inputs.
 func (o CryptoKeyVersionTemplateOutput) Algorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v CryptoKeyVersionTemplate) string { return v.Algorithm }).(pulumi.StringOutput)
 }
 
+// -
+// (Optional)
+// The protection level to use when creating a version based on this template.
 func (o CryptoKeyVersionTemplateOutput) ProtectionLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CryptoKeyVersionTemplate) *string { return v.ProtectionLevel }).(pulumi.StringPtrOutput)
 }
@@ -447,10 +469,17 @@ func (o CryptoKeyVersionTemplatePtrOutput) Elem() CryptoKeyVersionTemplateOutput
 	return o.ApplyT(func(v *CryptoKeyVersionTemplate) CryptoKeyVersionTemplate { return *v }).(CryptoKeyVersionTemplateOutput)
 }
 
+// -
+// (Required)
+// The algorithm to use when creating a version based on this template.
+// See the [algorithm reference](https://cloud.google.com/kms/docs/reference/rest/v1/CryptoKeyVersionAlgorithm) for possible inputs.
 func (o CryptoKeyVersionTemplatePtrOutput) Algorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v CryptoKeyVersionTemplate) string { return v.Algorithm }).(pulumi.StringOutput)
 }
 
+// -
+// (Optional)
+// The protection level to use when creating a version based on this template.
 func (o CryptoKeyVersionTemplatePtrOutput) ProtectionLevel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CryptoKeyVersionTemplate) *string { return v.ProtectionLevel }).(pulumi.StringPtrOutput)
 }
@@ -929,7 +958,7 @@ func (o RegistryCredentialPublicKeyCertificateOutput) Format() pulumi.StringOutp
 }
 
 type RegistryEventNotificationConfigItem struct {
-	// PubSub topic name to publish device state updates.
+	// PubSub topic name to publish device events.
 	PubsubTopicName string `pulumi:"pubsubTopicName"`
 	// If the subfolder name matches this string
 	// exactly, this configuration will be used. The string must not include the
@@ -951,7 +980,7 @@ type RegistryEventNotificationConfigItemInput interface {
 }
 
 type RegistryEventNotificationConfigItemArgs struct {
-	// PubSub topic name to publish device state updates.
+	// PubSub topic name to publish device events.
 	PubsubTopicName pulumi.StringInput `pulumi:"pubsubTopicName"`
 	// If the subfolder name matches this string
 	// exactly, this configuration will be used. The string must not include the
@@ -1012,7 +1041,7 @@ func (o RegistryEventNotificationConfigItemOutput) ToRegistryEventNotificationCo
 	return o
 }
 
-// PubSub topic name to publish device state updates.
+// PubSub topic name to publish device events.
 func (o RegistryEventNotificationConfigItemOutput) PubsubTopicName() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistryEventNotificationConfigItem) string { return v.PubsubTopicName }).(pulumi.StringOutput)
 }
@@ -1302,7 +1331,7 @@ func (o RegistryMqttConfigPtrOutput) MqttEnabledState() pulumi.StringOutput {
 }
 
 type RegistryStateNotificationConfig struct {
-	// PubSub topic name to publish device state updates.
+	// PubSub topic name to publish device events.
 	PubsubTopicName string `pulumi:"pubsubTopicName"`
 }
 
@@ -1319,7 +1348,7 @@ type RegistryStateNotificationConfigInput interface {
 }
 
 type RegistryStateNotificationConfigArgs struct {
-	// PubSub topic name to publish device state updates.
+	// PubSub topic name to publish device events.
 	PubsubTopicName pulumi.StringInput `pulumi:"pubsubTopicName"`
 }
 
@@ -1401,7 +1430,7 @@ func (o RegistryStateNotificationConfigOutput) ToRegistryStateNotificationConfig
 	}).(RegistryStateNotificationConfigPtrOutput)
 }
 
-// PubSub topic name to publish device state updates.
+// PubSub topic name to publish device events.
 func (o RegistryStateNotificationConfigOutput) PubsubTopicName() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistryStateNotificationConfig) string { return v.PubsubTopicName }).(pulumi.StringOutput)
 }
@@ -1424,7 +1453,7 @@ func (o RegistryStateNotificationConfigPtrOutput) Elem() RegistryStateNotificati
 	return o.ApplyT(func(v *RegistryStateNotificationConfig) RegistryStateNotificationConfig { return *v }).(RegistryStateNotificationConfigOutput)
 }
 
-// PubSub topic name to publish device state updates.
+// PubSub topic name to publish device events.
 func (o RegistryStateNotificationConfigPtrOutput) PubsubTopicName() pulumi.StringOutput {
 	return o.ApplyT(func(v RegistryStateNotificationConfig) string { return v.PubsubTopicName }).(pulumi.StringOutput)
 }

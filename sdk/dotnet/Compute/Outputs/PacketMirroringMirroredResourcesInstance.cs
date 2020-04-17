@@ -13,6 +13,11 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class PacketMirroringMirroredResourcesInstance
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full self_link URL of the network where this rule is active.
+        /// </summary>
         public readonly string Url;
 
         [OutputConstructor]

@@ -13,6 +13,11 @@ namespace Pulumi.Gcp.DeploymentManager.Outputs
     [OutputType]
     public sealed class DeploymentTargetConfig
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full YAML contents of your configuration file.
+        /// </summary>
         public readonly string Content;
 
         [OutputConstructor]

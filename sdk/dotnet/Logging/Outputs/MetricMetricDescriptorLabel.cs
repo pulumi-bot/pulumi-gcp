@@ -13,8 +13,25 @@ namespace Pulumi.Gcp.Logging.Outputs
     [OutputType]
     public sealed class MetricMetricDescriptorLabel
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A human-readable description for the label.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The label key.
+        /// </summary>
         public readonly string Key;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Whether the measurement is an integer, a floating-point number, etc.
+        /// Some combinations of metricKind and valueType might not be supported.
+        /// For counter metrics, set this to INT64.
+        /// </summary>
         public readonly string? ValueType;
 
         [OutputConstructor]

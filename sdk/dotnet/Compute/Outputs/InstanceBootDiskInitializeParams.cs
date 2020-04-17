@@ -35,7 +35,7 @@ namespace Pulumi.Gcp.Compute.Outputs
         /// </summary>
         public readonly int? Size;
         /// <summary>
-        /// The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+        /// The GCE disk type. May be set to pd-standard or pd-ssd.
         /// </summary>
         public readonly string? Type;
 

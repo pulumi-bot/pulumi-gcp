@@ -92,7 +92,10 @@ namespace Pulumi.Gcp.Sql
         public Output<string> MasterInstanceName { get; private set; } = null!;
 
         /// <summary>
-        /// A name for this whitelist entry.
+        /// The name of the instance. If the name is left
+        /// blank, the provider will randomly generate one when the instance is first
+        /// created. This is done because after a name is used, it cannot be reused for
+        /// up to [one week](https://cloud.google.com/sql/docs/delete-instance).
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -243,7 +246,10 @@ namespace Pulumi.Gcp.Sql
         public Input<string>? MasterInstanceName { get; set; }
 
         /// <summary>
-        /// A name for this whitelist entry.
+        /// The name of the instance. If the name is left
+        /// blank, the provider will randomly generate one when the instance is first
+        /// created. This is done because after a name is used, it cannot be reused for
+        /// up to [one week](https://cloud.google.com/sql/docs/delete-instance).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -348,7 +354,10 @@ namespace Pulumi.Gcp.Sql
         public Input<string>? MasterInstanceName { get; set; }
 
         /// <summary>
-        /// A name for this whitelist entry.
+        /// The name of the instance. If the name is left
+        /// blank, the provider will randomly generate one when the instance is first
+        /// created. This is done because after a name is used, it cannot be reused for
+        /// up to [one week](https://cloud.google.com/sql/docs/delete-instance).
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

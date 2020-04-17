@@ -13,11 +13,18 @@ namespace Pulumi.Gcp.AppEngine.Inputs
     public sealed class StandardAppVersionLibraryGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The identifier for this object. Format specified above.
+        /// -
+        /// (Optional)
+        /// Name of the library. Example "django".
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Version of the library to select, or "latest".
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 

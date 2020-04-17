@@ -22,21 +22,30 @@ namespace Pulumi.Gcp.GameServices
     public partial class GameServerDeploymentRollout : Pulumi.CustomResource
     {
         /// <summary>
-        /// This field points to the game server config that is applied by default to all realms and clusters. For example,
-        /// 'projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config'.
+        /// -
+        /// (Required)
+        /// This field points to the game server config that is
+        /// applied by default to all realms and clusters. For example,
+        /// `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
         /// </summary>
         [Output("defaultGameServerConfig")]
         public Output<string> DefaultGameServerConfig { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The deployment to rollout the new config to. Only 1 rollout must be associated with each deployment.
         /// </summary>
         [Output("deploymentId")]
         public Output<string> DeploymentId { get; private set; } = null!;
 
         /// <summary>
-        /// The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the order
-        /// they are listed. As soon as a match is found for a cluster, the rest of the list is not processed.
+        /// -
+        /// (Optional)
+        /// The game_server_config_overrides contains the per game server config
+        /// overrides. The overrides are processed in the order they are listed. As
+        /// soon as a match is found for a cluster, the rest of the list is not
+        /// processed.  Structure is documented below.
         /// </summary>
         [Output("gameServerConfigOverrides")]
         public Output<ImmutableArray<Outputs.GameServerDeploymentRolloutGameServerConfigOverride>> GameServerConfigOverrides { get; private set; } = null!;
@@ -102,13 +111,18 @@ namespace Pulumi.Gcp.GameServices
     public sealed class GameServerDeploymentRolloutArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// This field points to the game server config that is applied by default to all realms and clusters. For example,
-        /// 'projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config'.
+        /// -
+        /// (Required)
+        /// This field points to the game server config that is
+        /// applied by default to all realms and clusters. For example,
+        /// `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
         /// </summary>
         [Input("defaultGameServerConfig", required: true)]
         public Input<string> DefaultGameServerConfig { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The deployment to rollout the new config to. Only 1 rollout must be associated with each deployment.
         /// </summary>
         [Input("deploymentId", required: true)]
@@ -118,8 +132,12 @@ namespace Pulumi.Gcp.GameServices
         private InputList<Inputs.GameServerDeploymentRolloutGameServerConfigOverrideArgs>? _gameServerConfigOverrides;
 
         /// <summary>
-        /// The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the order
-        /// they are listed. As soon as a match is found for a cluster, the rest of the list is not processed.
+        /// -
+        /// (Optional)
+        /// The game_server_config_overrides contains the per game server config
+        /// overrides. The overrides are processed in the order they are listed. As
+        /// soon as a match is found for a cluster, the rest of the list is not
+        /// processed.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.GameServerDeploymentRolloutGameServerConfigOverrideArgs> GameServerConfigOverrides
         {
@@ -142,13 +160,18 @@ namespace Pulumi.Gcp.GameServices
     public sealed class GameServerDeploymentRolloutState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// This field points to the game server config that is applied by default to all realms and clusters. For example,
-        /// 'projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config'.
+        /// -
+        /// (Required)
+        /// This field points to the game server config that is
+        /// applied by default to all realms and clusters. For example,
+        /// `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
         /// </summary>
         [Input("defaultGameServerConfig")]
         public Input<string>? DefaultGameServerConfig { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The deployment to rollout the new config to. Only 1 rollout must be associated with each deployment.
         /// </summary>
         [Input("deploymentId")]
@@ -158,8 +181,12 @@ namespace Pulumi.Gcp.GameServices
         private InputList<Inputs.GameServerDeploymentRolloutGameServerConfigOverrideGetArgs>? _gameServerConfigOverrides;
 
         /// <summary>
-        /// The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the order
-        /// they are listed. As soon as a match is found for a cluster, the rest of the list is not processed.
+        /// -
+        /// (Optional)
+        /// The game_server_config_overrides contains the per game server config
+        /// overrides. The overrides are processed in the order they are listed. As
+        /// soon as a match is found for a cluster, the rest of the list is not
+        /// processed.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.GameServerDeploymentRolloutGameServerConfigOverrideGetArgs> GameServerConfigOverrides
         {

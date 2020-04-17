@@ -52,6 +52,8 @@ export class SecretCiphertext extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Optional)
      * The additional authenticated data used for integrity checks during encryption and decryption.
      */
     public readonly additionalAuthenticatedData!: pulumi.Output<string | undefined>;
@@ -60,11 +62,15 @@ export class SecretCiphertext extends pulumi.CustomResource {
      */
     public /*out*/ readonly ciphertext!: pulumi.Output<string>;
     /**
-     * The full name of the CryptoKey that will be used to encrypt the provided plaintext. Format:
-     * ''projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}''
+     * -
+     * (Required)
+     * The full name of the CryptoKey that will be used to encrypt the provided plaintext.
+     * Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}'`
      */
     public readonly cryptoKey!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The plaintext to be encrypted.
      */
     public readonly plaintext!: pulumi.Output<string>;
@@ -114,6 +120,8 @@ export class SecretCiphertext extends pulumi.CustomResource {
  */
 export interface SecretCiphertextState {
     /**
+     * -
+     * (Optional)
      * The additional authenticated data used for integrity checks during encryption and decryption.
      */
     readonly additionalAuthenticatedData?: pulumi.Input<string>;
@@ -122,11 +130,15 @@ export interface SecretCiphertextState {
      */
     readonly ciphertext?: pulumi.Input<string>;
     /**
-     * The full name of the CryptoKey that will be used to encrypt the provided plaintext. Format:
-     * ''projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}''
+     * -
+     * (Required)
+     * The full name of the CryptoKey that will be used to encrypt the provided plaintext.
+     * Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}'`
      */
     readonly cryptoKey?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The plaintext to be encrypted.
      */
     readonly plaintext?: pulumi.Input<string>;
@@ -137,15 +149,21 @@ export interface SecretCiphertextState {
  */
 export interface SecretCiphertextArgs {
     /**
+     * -
+     * (Optional)
      * The additional authenticated data used for integrity checks during encryption and decryption.
      */
     readonly additionalAuthenticatedData?: pulumi.Input<string>;
     /**
-     * The full name of the CryptoKey that will be used to encrypt the provided plaintext. Format:
-     * ''projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}''
+     * -
+     * (Required)
+     * The full name of the CryptoKey that will be used to encrypt the provided plaintext.
+     * Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}'`
      */
     readonly cryptoKey: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The plaintext to be encrypted.
      */
     readonly plaintext: pulumi.Input<string>;

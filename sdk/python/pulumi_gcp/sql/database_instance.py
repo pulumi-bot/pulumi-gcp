@@ -49,7 +49,10 @@ class DatabaseInstance(pulumi.CustomResource):
     """
     name: pulumi.Output[str]
     """
-    A name for this whitelist entry.
+    The name of the instance. If the name is left
+    blank, the provider will randomly generate one when the instance is first
+    created. This is done because after a name is used, it cannot be reused for
+    up to [one week](https://cloud.google.com/sql/docs/delete-instance).
     """
     private_ip_address: pulumi.Output[str]
     """
@@ -142,10 +145,11 @@ class DatabaseInstance(pulumi.CustomResource):
         Specific to read instances, indicates
         when crash-safe replication flags are enabled.
       * `databaseFlags` (`list`)
-        * `name` (`str`) - A name for this whitelist entry.
-        * `value` (`str`) - A CIDR notation IPv4 or IPv6 address that is allowed to
-          access this instance. Must be set even if other two attributes are not for
-          the whitelist to become active.
+        * `name` (`str`) - The name of the instance. If the name is left
+          blank, the provider will randomly generate one when the instance is first
+          created. This is done because after a name is used, it cannot be reused for
+          up to [one week](https://cloud.google.com/sql/docs/delete-instance).
+        * `value` (`str`) - Value of the flag.
 
       * `diskAutoresize` (`bool`) - Configuration to increase storage size automatically.  Note that future `pulumi apply` calls will attempt to resize the disk to the value specified in `disk_size` - if this is set, do not set `disk_size`.
       * `diskSize` (`float`) - The size of data disk, in GB. Size of a running instance cannot be reduced but can be increased.
@@ -154,10 +158,11 @@ class DatabaseInstance(pulumi.CustomResource):
         * `authorizedNetworks` (`list`)
           * `expiration_time` (`str`) - The [RFC 3339](https://tools.ietf.org/html/rfc3339)
             formatted date time string indicating when this whitelist expires.
-          * `name` (`str`) - A name for this whitelist entry.
-          * `value` (`str`) - A CIDR notation IPv4 or IPv6 address that is allowed to
-            access this instance. Must be set even if other two attributes are not for
-            the whitelist to become active.
+          * `name` (`str`) - The name of the instance. If the name is left
+            blank, the provider will randomly generate one when the instance is first
+            created. This is done because after a name is used, it cannot be reused for
+            up to [one week](https://cloud.google.com/sql/docs/delete-instance).
+          * `value` (`str`) - Value of the flag.
 
         * `ipv4Enabled` (`bool`) - Whether this Cloud SQL instance should be assigned
           a public IPV4 address. Either `ipv4_enabled` must be enabled or a
@@ -247,7 +252,10 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[str] master_instance_name: The name of the instance that will act as
                the master in the replication setup. Note, this requires the master to have
                `binary_log_enabled` set, as well as existing backups.
-        :param pulumi.Input[str] name: A name for this whitelist entry.
+        :param pulumi.Input[str] name: The name of the instance. If the name is left
+               blank, the provider will randomly generate one when the instance is first
+               created. This is done because after a name is used, it cannot be reused for
+               up to [one week](https://cloud.google.com/sql/docs/delete-instance).
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
         :param pulumi.Input[str] region: The region the instance will sit in. Note, Cloud SQL is not
@@ -311,10 +319,11 @@ class DatabaseInstance(pulumi.CustomResource):
             Specific to read instances, indicates
             when crash-safe replication flags are enabled.
           * `databaseFlags` (`pulumi.Input[list]`)
-            * `name` (`pulumi.Input[str]`) - A name for this whitelist entry.
-            * `value` (`pulumi.Input[str]`) - A CIDR notation IPv4 or IPv6 address that is allowed to
-              access this instance. Must be set even if other two attributes are not for
-              the whitelist to become active.
+            * `name` (`pulumi.Input[str]`) - The name of the instance. If the name is left
+              blank, the provider will randomly generate one when the instance is first
+              created. This is done because after a name is used, it cannot be reused for
+              up to [one week](https://cloud.google.com/sql/docs/delete-instance).
+            * `value` (`pulumi.Input[str]`) - Value of the flag.
 
           * `diskAutoresize` (`pulumi.Input[bool]`) - Configuration to increase storage size automatically.  Note that future `pulumi apply` calls will attempt to resize the disk to the value specified in `disk_size` - if this is set, do not set `disk_size`.
           * `diskSize` (`pulumi.Input[float]`) - The size of data disk, in GB. Size of a running instance cannot be reduced but can be increased.
@@ -323,10 +332,11 @@ class DatabaseInstance(pulumi.CustomResource):
             * `authorizedNetworks` (`pulumi.Input[list]`)
               * `expiration_time` (`pulumi.Input[str]`) - The [RFC 3339](https://tools.ietf.org/html/rfc3339)
                 formatted date time string indicating when this whitelist expires.
-              * `name` (`pulumi.Input[str]`) - A name for this whitelist entry.
-              * `value` (`pulumi.Input[str]`) - A CIDR notation IPv4 or IPv6 address that is allowed to
-                access this instance. Must be set even if other two attributes are not for
-                the whitelist to become active.
+              * `name` (`pulumi.Input[str]`) - The name of the instance. If the name is left
+                blank, the provider will randomly generate one when the instance is first
+                created. This is done because after a name is used, it cannot be reused for
+                up to [one week](https://cloud.google.com/sql/docs/delete-instance).
+              * `value` (`pulumi.Input[str]`) - Value of the flag.
 
             * `ipv4Enabled` (`pulumi.Input[bool]`) - Whether this Cloud SQL instance should be assigned
               a public IPV4 address. Either `ipv4_enabled` must be enabled or a
@@ -434,7 +444,10 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[str] master_instance_name: The name of the instance that will act as
                the master in the replication setup. Note, this requires the master to have
                `binary_log_enabled` set, as well as existing backups.
-        :param pulumi.Input[str] name: A name for this whitelist entry.
+        :param pulumi.Input[str] name: The name of the instance. If the name is left
+               blank, the provider will randomly generate one when the instance is first
+               created. This is done because after a name is used, it cannot be reused for
+               up to [one week](https://cloud.google.com/sql/docs/delete-instance).
         :param pulumi.Input[str] private_ip_address: The first private (`PRIVATE`) IPv4 address assigned. 
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
@@ -518,10 +531,11 @@ class DatabaseInstance(pulumi.CustomResource):
             Specific to read instances, indicates
             when crash-safe replication flags are enabled.
           * `databaseFlags` (`pulumi.Input[list]`)
-            * `name` (`pulumi.Input[str]`) - A name for this whitelist entry.
-            * `value` (`pulumi.Input[str]`) - A CIDR notation IPv4 or IPv6 address that is allowed to
-              access this instance. Must be set even if other two attributes are not for
-              the whitelist to become active.
+            * `name` (`pulumi.Input[str]`) - The name of the instance. If the name is left
+              blank, the provider will randomly generate one when the instance is first
+              created. This is done because after a name is used, it cannot be reused for
+              up to [one week](https://cloud.google.com/sql/docs/delete-instance).
+            * `value` (`pulumi.Input[str]`) - Value of the flag.
 
           * `diskAutoresize` (`pulumi.Input[bool]`) - Configuration to increase storage size automatically.  Note that future `pulumi apply` calls will attempt to resize the disk to the value specified in `disk_size` - if this is set, do not set `disk_size`.
           * `diskSize` (`pulumi.Input[float]`) - The size of data disk, in GB. Size of a running instance cannot be reduced but can be increased.
@@ -530,10 +544,11 @@ class DatabaseInstance(pulumi.CustomResource):
             * `authorizedNetworks` (`pulumi.Input[list]`)
               * `expiration_time` (`pulumi.Input[str]`) - The [RFC 3339](https://tools.ietf.org/html/rfc3339)
                 formatted date time string indicating when this whitelist expires.
-              * `name` (`pulumi.Input[str]`) - A name for this whitelist entry.
-              * `value` (`pulumi.Input[str]`) - A CIDR notation IPv4 or IPv6 address that is allowed to
-                access this instance. Must be set even if other two attributes are not for
-                the whitelist to become active.
+              * `name` (`pulumi.Input[str]`) - The name of the instance. If the name is left
+                blank, the provider will randomly generate one when the instance is first
+                created. This is done because after a name is used, it cannot be reused for
+                up to [one week](https://cloud.google.com/sql/docs/delete-instance).
+              * `value` (`pulumi.Input[str]`) - Value of the flag.
 
             * `ipv4Enabled` (`pulumi.Input[bool]`) - Whether this Cloud SQL instance should be assigned
               a public IPV4 address. Either `ipv4_enabled` must be enabled or a

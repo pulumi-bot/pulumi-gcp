@@ -21,7 +21,7 @@ namespace Pulumi.Gcp.Compute.Inputs
         public Input<string> Action { get; set; } = null!;
 
         /// <summary>
-        /// An optional description of this rule. Max size is 64.
+        /// An optional description of this security policy. Max size is 2048.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }

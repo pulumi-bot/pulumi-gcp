@@ -12,12 +12,29 @@ namespace Pulumi.Gcp.Logging.Inputs
 
     public sealed class MetricMetricDescriptorLabelArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A human-readable description for the label.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The label key.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Whether the measurement is an integer, a floating-point number, etc.
+        /// Some combinations of metricKind and valueType might not be supported.
+        /// For counter metrics, set this to INT64.
+        /// </summary>
         [Input("valueType")]
         public Input<string>? ValueType { get; set; }
 

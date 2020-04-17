@@ -11,8 +11,15 @@ import (
 )
 
 type AppProfileSingleClusterRouting struct {
-	AllowTransactionalWrites *bool  `pulumi:"allowTransactionalWrites"`
-	ClusterId                string `pulumi:"clusterId"`
+	// -
+	// (Optional)
+	// If true, CheckAndMutateRow and ReadModifyWriteRow requests are allowed by this app profile.
+	// It is unsafe to send these requests to the same table/row/column in multiple clusters.
+	AllowTransactionalWrites *bool `pulumi:"allowTransactionalWrites"`
+	// -
+	// (Required)
+	// The cluster to which read/write requests should be routed.
+	ClusterId string `pulumi:"clusterId"`
 }
 
 // AppProfileSingleClusterRoutingInput is an input type that accepts AppProfileSingleClusterRoutingArgs and AppProfileSingleClusterRoutingOutput values.
@@ -28,8 +35,15 @@ type AppProfileSingleClusterRoutingInput interface {
 }
 
 type AppProfileSingleClusterRoutingArgs struct {
+	// -
+	// (Optional)
+	// If true, CheckAndMutateRow and ReadModifyWriteRow requests are allowed by this app profile.
+	// It is unsafe to send these requests to the same table/row/column in multiple clusters.
 	AllowTransactionalWrites pulumi.BoolPtrInput `pulumi:"allowTransactionalWrites"`
-	ClusterId                pulumi.StringInput  `pulumi:"clusterId"`
+	// -
+	// (Required)
+	// The cluster to which read/write requests should be routed.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
 }
 
 func (AppProfileSingleClusterRoutingArgs) ElementType() reflect.Type {
@@ -109,10 +123,18 @@ func (o AppProfileSingleClusterRoutingOutput) ToAppProfileSingleClusterRoutingPt
 		return &v
 	}).(AppProfileSingleClusterRoutingPtrOutput)
 }
+
+// -
+// (Optional)
+// If true, CheckAndMutateRow and ReadModifyWriteRow requests are allowed by this app profile.
+// It is unsafe to send these requests to the same table/row/column in multiple clusters.
 func (o AppProfileSingleClusterRoutingOutput) AllowTransactionalWrites() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AppProfileSingleClusterRouting) *bool { return v.AllowTransactionalWrites }).(pulumi.BoolPtrOutput)
 }
 
+// -
+// (Required)
+// The cluster to which read/write requests should be routed.
 func (o AppProfileSingleClusterRoutingOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v AppProfileSingleClusterRouting) string { return v.ClusterId }).(pulumi.StringOutput)
 }
@@ -135,21 +157,57 @@ func (o AppProfileSingleClusterRoutingPtrOutput) Elem() AppProfileSingleClusterR
 	return o.ApplyT(func(v *AppProfileSingleClusterRouting) AppProfileSingleClusterRouting { return *v }).(AppProfileSingleClusterRoutingOutput)
 }
 
+// -
+// (Optional)
+// If true, CheckAndMutateRow and ReadModifyWriteRow requests are allowed by this app profile.
+// It is unsafe to send these requests to the same table/row/column in multiple clusters.
 func (o AppProfileSingleClusterRoutingPtrOutput) AllowTransactionalWrites() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AppProfileSingleClusterRouting) *bool { return v.AllowTransactionalWrites }).(pulumi.BoolPtrOutput)
 }
 
+// -
+// (Required)
+// The cluster to which read/write requests should be routed.
 func (o AppProfileSingleClusterRoutingPtrOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v AppProfileSingleClusterRouting) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
 type DatasetAccess struct {
-	Domain       *string            `pulumi:"domain"`
-	GroupByEmail *string            `pulumi:"groupByEmail"`
-	Role         *string            `pulumi:"role"`
-	SpecialGroup *string            `pulumi:"specialGroup"`
-	UserByEmail  *string            `pulumi:"userByEmail"`
-	View         *DatasetAccessView `pulumi:"view"`
+	// -
+	// (Optional)
+	// A domain to grant access to. Any users signed in with the
+	// domain specified will be granted the specified access
+	Domain *string `pulumi:"domain"`
+	// -
+	// (Optional)
+	// An email address of a Google Group to grant access to.
+	GroupByEmail *string `pulumi:"groupByEmail"`
+	// -
+	// (Optional)
+	// Describes the rights granted to the user specified by the other
+	// member of the access object. Primitive, Predefined and custom
+	// roles are supported. Predefined roles that have equivalent
+	// primitive roles are swapped by the API to their Primitive
+	// counterparts, and will show a diff post-create. See
+	// [official docs](https://cloud.google.com/bigquery/docs/access-control).
+	Role *string `pulumi:"role"`
+	// -
+	// (Optional)
+	// A special group to grant access to. Possible values include:
+	SpecialGroup *string `pulumi:"specialGroup"`
+	// -
+	// (Optional)
+	// An email address of a user to grant access to. For example:
+	// fred@example.com
+	UserByEmail *string `pulumi:"userByEmail"`
+	// -
+	// (Optional)
+	// A view from a different dataset to grant access to. Queries
+	// executed against that view will have read access to tables in
+	// this dataset. The role field is not required when this field is
+	// set. If that view is updated by any user, access to the view
+	// needs to be granted again via an update operation.  Structure is documented below.
+	View *DatasetAccessView `pulumi:"view"`
 }
 
 // DatasetAccessInput is an input type that accepts DatasetAccessArgs and DatasetAccessOutput values.
@@ -165,12 +223,41 @@ type DatasetAccessInput interface {
 }
 
 type DatasetAccessArgs struct {
-	Domain       pulumi.StringPtrInput     `pulumi:"domain"`
-	GroupByEmail pulumi.StringPtrInput     `pulumi:"groupByEmail"`
-	Role         pulumi.StringPtrInput     `pulumi:"role"`
-	SpecialGroup pulumi.StringPtrInput     `pulumi:"specialGroup"`
-	UserByEmail  pulumi.StringPtrInput     `pulumi:"userByEmail"`
-	View         DatasetAccessViewPtrInput `pulumi:"view"`
+	// -
+	// (Optional)
+	// A domain to grant access to. Any users signed in with the
+	// domain specified will be granted the specified access
+	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// -
+	// (Optional)
+	// An email address of a Google Group to grant access to.
+	GroupByEmail pulumi.StringPtrInput `pulumi:"groupByEmail"`
+	// -
+	// (Optional)
+	// Describes the rights granted to the user specified by the other
+	// member of the access object. Primitive, Predefined and custom
+	// roles are supported. Predefined roles that have equivalent
+	// primitive roles are swapped by the API to their Primitive
+	// counterparts, and will show a diff post-create. See
+	// [official docs](https://cloud.google.com/bigquery/docs/access-control).
+	Role pulumi.StringPtrInput `pulumi:"role"`
+	// -
+	// (Optional)
+	// A special group to grant access to. Possible values include:
+	SpecialGroup pulumi.StringPtrInput `pulumi:"specialGroup"`
+	// -
+	// (Optional)
+	// An email address of a user to grant access to. For example:
+	// fred@example.com
+	UserByEmail pulumi.StringPtrInput `pulumi:"userByEmail"`
+	// -
+	// (Optional)
+	// A view from a different dataset to grant access to. Queries
+	// executed against that view will have read access to tables in
+	// this dataset. The role field is not required when this field is
+	// set. If that view is updated by any user, access to the view
+	// needs to be granted again via an update operation.  Structure is documented below.
+	View DatasetAccessViewPtrInput `pulumi:"view"`
 }
 
 func (DatasetAccessArgs) ElementType() reflect.Type {
@@ -225,26 +312,55 @@ func (o DatasetAccessOutput) ToDatasetAccessOutputWithContext(ctx context.Contex
 	return o
 }
 
+// -
+// (Optional)
+// A domain to grant access to. Any users signed in with the
+// domain specified will be granted the specified access
 func (o DatasetAccessOutput) Domain() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatasetAccess) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// An email address of a Google Group to grant access to.
 func (o DatasetAccessOutput) GroupByEmail() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatasetAccess) *string { return v.GroupByEmail }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// Describes the rights granted to the user specified by the other
+// member of the access object. Primitive, Predefined and custom
+// roles are supported. Predefined roles that have equivalent
+// primitive roles are swapped by the API to their Primitive
+// counterparts, and will show a diff post-create. See
+// [official docs](https://cloud.google.com/bigquery/docs/access-control).
 func (o DatasetAccessOutput) Role() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatasetAccess) *string { return v.Role }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// A special group to grant access to. Possible values include:
 func (o DatasetAccessOutput) SpecialGroup() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatasetAccess) *string { return v.SpecialGroup }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// An email address of a user to grant access to. For example:
+// fred@example.com
 func (o DatasetAccessOutput) UserByEmail() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatasetAccess) *string { return v.UserByEmail }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// A view from a different dataset to grant access to. Queries
+// executed against that view will have read access to tables in
+// this dataset. The role field is not required when this field is
+// set. If that view is updated by any user, access to the view
+// needs to be granted again via an update operation.  Structure is documented below.
 func (o DatasetAccessOutput) View() DatasetAccessViewPtrOutput {
 	return o.ApplyT(func(v DatasetAccess) *DatasetAccessView { return v.View }).(DatasetAccessViewPtrOutput)
 }
@@ -270,9 +386,22 @@ func (o DatasetAccessArrayOutput) Index(i pulumi.IntInput) DatasetAccessOutput {
 }
 
 type DatasetAccessView struct {
+	// -
+	// (Required)
+	// A unique ID for this dataset, without the project name. The ID
+	// must contain only letters (a-z, A-Z), numbers (0-9), or
+	// underscores (_). The maximum length is 1,024 characters.
 	DatasetId string `pulumi:"datasetId"`
+	// -
+	// (Required)
+	// The ID of the project containing this table.
 	ProjectId string `pulumi:"projectId"`
-	TableId   string `pulumi:"tableId"`
+	// -
+	// (Required)
+	// The ID of the table. The ID must contain only letters (a-z,
+	// A-Z), numbers (0-9), or underscores (_). The maximum length
+	// is 1,024 characters.
+	TableId string `pulumi:"tableId"`
 }
 
 // DatasetAccessViewInput is an input type that accepts DatasetAccessViewArgs and DatasetAccessViewOutput values.
@@ -288,9 +417,22 @@ type DatasetAccessViewInput interface {
 }
 
 type DatasetAccessViewArgs struct {
+	// -
+	// (Required)
+	// A unique ID for this dataset, without the project name. The ID
+	// must contain only letters (a-z, A-Z), numbers (0-9), or
+	// underscores (_). The maximum length is 1,024 characters.
 	DatasetId pulumi.StringInput `pulumi:"datasetId"`
+	// -
+	// (Required)
+	// The ID of the project containing this table.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	TableId   pulumi.StringInput `pulumi:"tableId"`
+	// -
+	// (Required)
+	// The ID of the table. The ID must contain only letters (a-z,
+	// A-Z), numbers (0-9), or underscores (_). The maximum length
+	// is 1,024 characters.
+	TableId pulumi.StringInput `pulumi:"tableId"`
 }
 
 func (DatasetAccessViewArgs) ElementType() reflect.Type {
@@ -370,14 +512,28 @@ func (o DatasetAccessViewOutput) ToDatasetAccessViewPtrOutputWithContext(ctx con
 		return &v
 	}).(DatasetAccessViewPtrOutput)
 }
+
+// -
+// (Required)
+// A unique ID for this dataset, without the project name. The ID
+// must contain only letters (a-z, A-Z), numbers (0-9), or
+// underscores (_). The maximum length is 1,024 characters.
 func (o DatasetAccessViewOutput) DatasetId() pulumi.StringOutput {
 	return o.ApplyT(func(v DatasetAccessView) string { return v.DatasetId }).(pulumi.StringOutput)
 }
 
+// -
+// (Required)
+// The ID of the project containing this table.
 func (o DatasetAccessViewOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v DatasetAccessView) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// -
+// (Required)
+// The ID of the table. The ID must contain only letters (a-z,
+// A-Z), numbers (0-9), or underscores (_). The maximum length
+// is 1,024 characters.
 func (o DatasetAccessViewOutput) TableId() pulumi.StringOutput {
 	return o.ApplyT(func(v DatasetAccessView) string { return v.TableId }).(pulumi.StringOutput)
 }
@@ -400,19 +556,37 @@ func (o DatasetAccessViewPtrOutput) Elem() DatasetAccessViewOutput {
 	return o.ApplyT(func(v *DatasetAccessView) DatasetAccessView { return *v }).(DatasetAccessViewOutput)
 }
 
+// -
+// (Required)
+// A unique ID for this dataset, without the project name. The ID
+// must contain only letters (a-z, A-Z), numbers (0-9), or
+// underscores (_). The maximum length is 1,024 characters.
 func (o DatasetAccessViewPtrOutput) DatasetId() pulumi.StringOutput {
 	return o.ApplyT(func(v DatasetAccessView) string { return v.DatasetId }).(pulumi.StringOutput)
 }
 
+// -
+// (Required)
+// The ID of the project containing this table.
 func (o DatasetAccessViewPtrOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v DatasetAccessView) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// -
+// (Required)
+// The ID of the table. The ID must contain only letters (a-z,
+// A-Z), numbers (0-9), or underscores (_). The maximum length
+// is 1,024 characters.
 func (o DatasetAccessViewPtrOutput) TableId() pulumi.StringOutput {
 	return o.ApplyT(func(v DatasetAccessView) string { return v.TableId }).(pulumi.StringOutput)
 }
 
 type DatasetDefaultEncryptionConfiguration struct {
+	// -
+	// (Required)
+	// Describes the Cloud KMS encryption key that will be used to protect destination
+	// BigQuery table. The BigQuery Service Account associated with your project requires
+	// access to this encryption key.
 	KmsKeyName string `pulumi:"kmsKeyName"`
 }
 
@@ -429,6 +603,11 @@ type DatasetDefaultEncryptionConfigurationInput interface {
 }
 
 type DatasetDefaultEncryptionConfigurationArgs struct {
+	// -
+	// (Required)
+	// Describes the Cloud KMS encryption key that will be used to protect destination
+	// BigQuery table. The BigQuery Service Account associated with your project requires
+	// access to this encryption key.
 	KmsKeyName pulumi.StringInput `pulumi:"kmsKeyName"`
 }
 
@@ -509,6 +688,12 @@ func (o DatasetDefaultEncryptionConfigurationOutput) ToDatasetDefaultEncryptionC
 		return &v
 	}).(DatasetDefaultEncryptionConfigurationPtrOutput)
 }
+
+// -
+// (Required)
+// Describes the Cloud KMS encryption key that will be used to protect destination
+// BigQuery table. The BigQuery Service Account associated with your project requires
+// access to this encryption key.
 func (o DatasetDefaultEncryptionConfigurationOutput) KmsKeyName() pulumi.StringOutput {
 	return o.ApplyT(func(v DatasetDefaultEncryptionConfiguration) string { return v.KmsKeyName }).(pulumi.StringOutput)
 }
@@ -531,6 +716,11 @@ func (o DatasetDefaultEncryptionConfigurationPtrOutput) Elem() DatasetDefaultEnc
 	return o.ApplyT(func(v *DatasetDefaultEncryptionConfiguration) DatasetDefaultEncryptionConfiguration { return *v }).(DatasetDefaultEncryptionConfigurationOutput)
 }
 
+// -
+// (Required)
+// Describes the Cloud KMS encryption key that will be used to protect destination
+// BigQuery table. The BigQuery Service Account associated with your project requires
+// access to this encryption key.
 func (o DatasetDefaultEncryptionConfigurationPtrOutput) KmsKeyName() pulumi.StringOutput {
 	return o.ApplyT(func(v DatasetDefaultEncryptionConfiguration) string { return v.KmsKeyName }).(pulumi.StringOutput)
 }
@@ -994,9 +1184,8 @@ type TableExternalDataConfigurationCsvOptions struct {
 	// limitations with default values, this value is required to be
 	// explicitly set.
 	Quote string `pulumi:"quote"`
-	// The number of rows at the top of the sheet
-	// that BigQuery will skip when reading the data. At least one of `range` or
-	// `skipLeadingRows` must be set.
+	// The number of rows at the top of a CSV
+	// file that BigQuery will skip when reading the data.
 	SkipLeadingRows *int `pulumi:"skipLeadingRows"`
 }
 
@@ -1033,9 +1222,8 @@ type TableExternalDataConfigurationCsvOptionsArgs struct {
 	// limitations with default values, this value is required to be
 	// explicitly set.
 	Quote pulumi.StringInput `pulumi:"quote"`
-	// The number of rows at the top of the sheet
-	// that BigQuery will skip when reading the data. At least one of `range` or
-	// `skipLeadingRows` must be set.
+	// The number of rows at the top of a CSV
+	// file that BigQuery will skip when reading the data.
 	SkipLeadingRows pulumi.IntPtrInput `pulumi:"skipLeadingRows"`
 }
 
@@ -1152,9 +1340,8 @@ func (o TableExternalDataConfigurationCsvOptionsOutput) Quote() pulumi.StringOut
 	return o.ApplyT(func(v TableExternalDataConfigurationCsvOptions) string { return v.Quote }).(pulumi.StringOutput)
 }
 
-// The number of rows at the top of the sheet
-// that BigQuery will skip when reading the data. At least one of `range` or
-// `skipLeadingRows` must be set.
+// The number of rows at the top of a CSV
+// file that BigQuery will skip when reading the data.
 func (o TableExternalDataConfigurationCsvOptionsOutput) SkipLeadingRows() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v TableExternalDataConfigurationCsvOptions) *int { return v.SkipLeadingRows }).(pulumi.IntPtrOutput)
 }
@@ -1212,20 +1399,20 @@ func (o TableExternalDataConfigurationCsvOptionsPtrOutput) Quote() pulumi.String
 	return o.ApplyT(func(v TableExternalDataConfigurationCsvOptions) string { return v.Quote }).(pulumi.StringOutput)
 }
 
-// The number of rows at the top of the sheet
-// that BigQuery will skip when reading the data. At least one of `range` or
-// `skipLeadingRows` must be set.
+// The number of rows at the top of a CSV
+// file that BigQuery will skip when reading the data.
 func (o TableExternalDataConfigurationCsvOptionsPtrOutput) SkipLeadingRows() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v TableExternalDataConfigurationCsvOptions) *int { return v.SkipLeadingRows }).(pulumi.IntPtrOutput)
 }
 
 type TableExternalDataConfigurationGoogleSheetsOptions struct {
-	// Information required to partition based on ranges.
-	// Structure is documented below.
+	// Range of a sheet to query from. Only used when
+	// non-empty. At least one of `range` or `skipLeadingRows` must be set.
+	// Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+	// For example: "sheet1!A1:B20"
 	Range *string `pulumi:"range"`
-	// The number of rows at the top of the sheet
-	// that BigQuery will skip when reading the data. At least one of `range` or
-	// `skipLeadingRows` must be set.
+	// The number of rows at the top of a CSV
+	// file that BigQuery will skip when reading the data.
 	SkipLeadingRows *int `pulumi:"skipLeadingRows"`
 }
 
@@ -1242,12 +1429,13 @@ type TableExternalDataConfigurationGoogleSheetsOptionsInput interface {
 }
 
 type TableExternalDataConfigurationGoogleSheetsOptionsArgs struct {
-	// Information required to partition based on ranges.
-	// Structure is documented below.
+	// Range of a sheet to query from. Only used when
+	// non-empty. At least one of `range` or `skipLeadingRows` must be set.
+	// Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+	// For example: "sheet1!A1:B20"
 	Range pulumi.StringPtrInput `pulumi:"range"`
-	// The number of rows at the top of the sheet
-	// that BigQuery will skip when reading the data. At least one of `range` or
-	// `skipLeadingRows` must be set.
+	// The number of rows at the top of a CSV
+	// file that BigQuery will skip when reading the data.
 	SkipLeadingRows pulumi.IntPtrInput `pulumi:"skipLeadingRows"`
 }
 
@@ -1329,15 +1517,16 @@ func (o TableExternalDataConfigurationGoogleSheetsOptionsOutput) ToTableExternal
 	}).(TableExternalDataConfigurationGoogleSheetsOptionsPtrOutput)
 }
 
-// Information required to partition based on ranges.
-// Structure is documented below.
+// Range of a sheet to query from. Only used when
+// non-empty. At least one of `range` or `skipLeadingRows` must be set.
+// Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+// For example: "sheet1!A1:B20"
 func (o TableExternalDataConfigurationGoogleSheetsOptionsOutput) Range() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TableExternalDataConfigurationGoogleSheetsOptions) *string { return v.Range }).(pulumi.StringPtrOutput)
 }
 
-// The number of rows at the top of the sheet
-// that BigQuery will skip when reading the data. At least one of `range` or
-// `skipLeadingRows` must be set.
+// The number of rows at the top of a CSV
+// file that BigQuery will skip when reading the data.
 func (o TableExternalDataConfigurationGoogleSheetsOptionsOutput) SkipLeadingRows() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v TableExternalDataConfigurationGoogleSheetsOptions) *int { return v.SkipLeadingRows }).(pulumi.IntPtrOutput)
 }
@@ -1362,25 +1551,29 @@ func (o TableExternalDataConfigurationGoogleSheetsOptionsPtrOutput) Elem() Table
 	}).(TableExternalDataConfigurationGoogleSheetsOptionsOutput)
 }
 
-// Information required to partition based on ranges.
-// Structure is documented below.
+// Range of a sheet to query from. Only used when
+// non-empty. At least one of `range` or `skipLeadingRows` must be set.
+// Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+// For example: "sheet1!A1:B20"
 func (o TableExternalDataConfigurationGoogleSheetsOptionsPtrOutput) Range() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TableExternalDataConfigurationGoogleSheetsOptions) *string { return v.Range }).(pulumi.StringPtrOutput)
 }
 
-// The number of rows at the top of the sheet
-// that BigQuery will skip when reading the data. At least one of `range` or
-// `skipLeadingRows` must be set.
+// The number of rows at the top of a CSV
+// file that BigQuery will skip when reading the data.
 func (o TableExternalDataConfigurationGoogleSheetsOptionsPtrOutput) SkipLeadingRows() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v TableExternalDataConfigurationGoogleSheetsOptions) *int { return v.SkipLeadingRows }).(pulumi.IntPtrOutput)
 }
 
 type TableRangePartitioning struct {
-	// The field used to determine how to create a range-based
-	// partition.
+	// The field used to determine how to create a time-based
+	// partition. If time-based partitioning is enabled without this value, the
+	// table is partitioned based on the load time.
 	Field string `pulumi:"field"`
-	// Information required to partition based on ranges.
-	// Structure is documented below.
+	// Range of a sheet to query from. Only used when
+	// non-empty. At least one of `range` or `skipLeadingRows` must be set.
+	// Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+	// For example: "sheet1!A1:B20"
 	Range TableRangePartitioningRange `pulumi:"range"`
 }
 
@@ -1397,11 +1590,14 @@ type TableRangePartitioningInput interface {
 }
 
 type TableRangePartitioningArgs struct {
-	// The field used to determine how to create a range-based
-	// partition.
+	// The field used to determine how to create a time-based
+	// partition. If time-based partitioning is enabled without this value, the
+	// table is partitioned based on the load time.
 	Field pulumi.StringInput `pulumi:"field"`
-	// Information required to partition based on ranges.
-	// Structure is documented below.
+	// Range of a sheet to query from. Only used when
+	// non-empty. At least one of `range` or `skipLeadingRows` must be set.
+	// Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+	// For example: "sheet1!A1:B20"
 	Range TableRangePartitioningRangeInput `pulumi:"range"`
 }
 
@@ -1483,14 +1679,17 @@ func (o TableRangePartitioningOutput) ToTableRangePartitioningPtrOutputWithConte
 	}).(TableRangePartitioningPtrOutput)
 }
 
-// The field used to determine how to create a range-based
-// partition.
+// The field used to determine how to create a time-based
+// partition. If time-based partitioning is enabled without this value, the
+// table is partitioned based on the load time.
 func (o TableRangePartitioningOutput) Field() pulumi.StringOutput {
 	return o.ApplyT(func(v TableRangePartitioning) string { return v.Field }).(pulumi.StringOutput)
 }
 
-// Information required to partition based on ranges.
-// Structure is documented below.
+// Range of a sheet to query from. Only used when
+// non-empty. At least one of `range` or `skipLeadingRows` must be set.
+// Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+// For example: "sheet1!A1:B20"
 func (o TableRangePartitioningOutput) Range() TableRangePartitioningRangeOutput {
 	return o.ApplyT(func(v TableRangePartitioning) TableRangePartitioningRange { return v.Range }).(TableRangePartitioningRangeOutput)
 }
@@ -1513,14 +1712,17 @@ func (o TableRangePartitioningPtrOutput) Elem() TableRangePartitioningOutput {
 	return o.ApplyT(func(v *TableRangePartitioning) TableRangePartitioning { return *v }).(TableRangePartitioningOutput)
 }
 
-// The field used to determine how to create a range-based
-// partition.
+// The field used to determine how to create a time-based
+// partition. If time-based partitioning is enabled without this value, the
+// table is partitioned based on the load time.
 func (o TableRangePartitioningPtrOutput) Field() pulumi.StringOutput {
 	return o.ApplyT(func(v TableRangePartitioning) string { return v.Field }).(pulumi.StringOutput)
 }
 
-// Information required to partition based on ranges.
-// Structure is documented below.
+// Range of a sheet to query from. Only used when
+// non-empty. At least one of `range` or `skipLeadingRows` must be set.
+// Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+// For example: "sheet1!A1:B20"
 func (o TableRangePartitioningPtrOutput) Range() TableRangePartitioningRangeOutput {
 	return o.ApplyT(func(v TableRangePartitioning) TableRangePartitioningRange { return v.Range }).(TableRangePartitioningRangeOutput)
 }
@@ -1600,8 +1802,9 @@ type TableTimePartitioning struct {
 	// Number of milliseconds for which to keep the
 	// storage for a partition.
 	ExpirationMs *int `pulumi:"expirationMs"`
-	// The field used to determine how to create a range-based
-	// partition.
+	// The field used to determine how to create a time-based
+	// partition. If time-based partitioning is enabled without this value, the
+	// table is partitioned based on the load time.
 	Field *string `pulumi:"field"`
 	// If set to true, queries over this table
 	// require a partition filter that can be used for partition elimination to be
@@ -1628,8 +1831,9 @@ type TableTimePartitioningArgs struct {
 	// Number of milliseconds for which to keep the
 	// storage for a partition.
 	ExpirationMs pulumi.IntPtrInput `pulumi:"expirationMs"`
-	// The field used to determine how to create a range-based
-	// partition.
+	// The field used to determine how to create a time-based
+	// partition. If time-based partitioning is enabled without this value, the
+	// table is partitioned based on the load time.
 	Field pulumi.StringPtrInput `pulumi:"field"`
 	// If set to true, queries over this table
 	// require a partition filter that can be used for partition elimination to be
@@ -1724,8 +1928,9 @@ func (o TableTimePartitioningOutput) ExpirationMs() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v TableTimePartitioning) *int { return v.ExpirationMs }).(pulumi.IntPtrOutput)
 }
 
-// The field used to determine how to create a range-based
-// partition.
+// The field used to determine how to create a time-based
+// partition. If time-based partitioning is enabled without this value, the
+// table is partitioned based on the load time.
 func (o TableTimePartitioningOutput) Field() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TableTimePartitioning) *string { return v.Field }).(pulumi.StringPtrOutput)
 }
@@ -1767,8 +1972,9 @@ func (o TableTimePartitioningPtrOutput) ExpirationMs() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v TableTimePartitioning) *int { return v.ExpirationMs }).(pulumi.IntPtrOutput)
 }
 
-// The field used to determine how to create a range-based
-// partition.
+// The field used to determine how to create a time-based
+// partition. If time-based partitioning is enabled without this value, the
+// table is partitioned based on the load time.
 func (o TableTimePartitioningPtrOutput) Field() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TableTimePartitioning) *string { return v.Field }).(pulumi.StringPtrOutput)
 }

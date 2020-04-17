@@ -12,15 +12,42 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class RegionUrlMapTestGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Host portion of the URL.
+        /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path portion of the URL.
+        /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The region backend service resource to which traffic is
+        /// directed if this rule is matched. If routeAction is additionally specified,
+        /// advanced routing actions like URL Rewrites, etc. take effect prior to sending
+        /// the request to the backend. However, if service is specified, routeAction cannot
+        /// contain any weightedBackendService s. Conversely, if routeAction specifies any
+        /// weightedBackendServices, service must not be specified. Only one of urlRedirect,
+        /// service or routeAction.weightedBackendService must be set.
+        /// </summary>
         [Input("service", required: true)]
         public Input<string> Service { get; set; } = null!;
 

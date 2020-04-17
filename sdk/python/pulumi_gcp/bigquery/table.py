@@ -80,18 +80,18 @@ class Table(pulumi.CustomResource):
           The API-side default is `"`, specified in the provider escaped as `\"`. Due to
           limitations with default values, this value is required to be
           explicitly set.
-        * `skipLeadingRows` (`float`) - The number of rows at the top of the sheet
-          that BigQuery will skip when reading the data. At least one of `range` or
-          `skip_leading_rows` must be set.
+        * `skipLeadingRows` (`float`) - The number of rows at the top of a CSV
+          file that BigQuery will skip when reading the data.
 
       * `googleSheetsOptions` (`dict`) - Additional options if
         `source_format` is set to "GOOGLE_SHEETS". Structure is
         documented below.
-        * `range` (`str`) - Information required to partition based on ranges.
-          Structure is documented below.
-        * `skipLeadingRows` (`float`) - The number of rows at the top of the sheet
-          that BigQuery will skip when reading the data. At least one of `range` or
-          `skip_leading_rows` must be set.
+        * `range` (`str`) - Range of a sheet to query from. Only used when
+          non-empty. At least one of `range` or `skip_leading_rows` must be set.
+          Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+          For example: "sheet1!A1:B20"
+        * `skipLeadingRows` (`float`) - The number of rows at the top of a CSV
+          file that BigQuery will skip when reading the data.
 
       * `ignoreUnknownValues` (`bool`) - Indicates if BigQuery should
         allow extra values that are not represented in the table schema.
@@ -147,10 +147,13 @@ class Table(pulumi.CustomResource):
     If specified, configures range-based
     partitioning for this table. Structure is documented below.
 
-      * `field` (`str`) - The field used to determine how to create a range-based
-        partition.
-      * `range` (`dict`) - Information required to partition based on ranges.
-        Structure is documented below.
+      * `field` (`str`) - The field used to determine how to create a time-based
+        partition. If time-based partitioning is enabled without this value, the
+        table is partitioned based on the load time.
+      * `range` (`dict`) - Range of a sheet to query from. Only used when
+        non-empty. At least one of `range` or `skip_leading_rows` must be set.
+        Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+        For example: "sheet1!A1:B20"
         * `end` (`float`) - End of the range partitioning, exclusive.
         * `interval` (`float`) - The width of each range within the partition.
         * `start` (`float`) - Start of the range partitioning, inclusive.
@@ -185,8 +188,9 @@ class Table(pulumi.CustomResource):
 
       * `expirationMs` (`float`) - Number of milliseconds for which to keep the
         storage for a partition.
-      * `field` (`str`) - The field used to determine how to create a range-based
-        partition.
+      * `field` (`str`) - The field used to determine how to create a time-based
+        partition. If time-based partitioning is enabled without this value, the
+        table is partitioned based on the load time.
       * `requirePartitionFilter` (`bool`) - If set to true, queries over this table
         require a partition filter that can be used for partition elimination to be
         specified.
@@ -290,18 +294,18 @@ class Table(pulumi.CustomResource):
               The API-side default is `"`, specified in the provider escaped as `\"`. Due to
               limitations with default values, this value is required to be
               explicitly set.
-            * `skipLeadingRows` (`pulumi.Input[float]`) - The number of rows at the top of the sheet
-              that BigQuery will skip when reading the data. At least one of `range` or
-              `skip_leading_rows` must be set.
+            * `skipLeadingRows` (`pulumi.Input[float]`) - The number of rows at the top of a CSV
+              file that BigQuery will skip when reading the data.
 
           * `googleSheetsOptions` (`pulumi.Input[dict]`) - Additional options if
             `source_format` is set to "GOOGLE_SHEETS". Structure is
             documented below.
-            * `range` (`pulumi.Input[str]`) - Information required to partition based on ranges.
-              Structure is documented below.
-            * `skipLeadingRows` (`pulumi.Input[float]`) - The number of rows at the top of the sheet
-              that BigQuery will skip when reading the data. At least one of `range` or
-              `skip_leading_rows` must be set.
+            * `range` (`pulumi.Input[str]`) - Range of a sheet to query from. Only used when
+              non-empty. At least one of `range` or `skip_leading_rows` must be set.
+              Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+              For example: "sheet1!A1:B20"
+            * `skipLeadingRows` (`pulumi.Input[float]`) - The number of rows at the top of a CSV
+              file that BigQuery will skip when reading the data.
 
           * `ignoreUnknownValues` (`pulumi.Input[bool]`) - Indicates if BigQuery should
             allow extra values that are not represented in the table schema.
@@ -321,10 +325,13 @@ class Table(pulumi.CustomResource):
 
         The **range_partitioning** object supports the following:
 
-          * `field` (`pulumi.Input[str]`) - The field used to determine how to create a range-based
-            partition.
-          * `range` (`pulumi.Input[dict]`) - Information required to partition based on ranges.
-            Structure is documented below.
+          * `field` (`pulumi.Input[str]`) - The field used to determine how to create a time-based
+            partition. If time-based partitioning is enabled without this value, the
+            table is partitioned based on the load time.
+          * `range` (`pulumi.Input[dict]`) - Range of a sheet to query from. Only used when
+            non-empty. At least one of `range` or `skip_leading_rows` must be set.
+            Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+            For example: "sheet1!A1:B20"
             * `end` (`pulumi.Input[float]`) - End of the range partitioning, exclusive.
             * `interval` (`pulumi.Input[float]`) - The width of each range within the partition.
             * `start` (`pulumi.Input[float]`) - Start of the range partitioning, inclusive.
@@ -333,8 +340,9 @@ class Table(pulumi.CustomResource):
 
           * `expirationMs` (`pulumi.Input[float]`) - Number of milliseconds for which to keep the
             storage for a partition.
-          * `field` (`pulumi.Input[str]`) - The field used to determine how to create a range-based
-            partition.
+          * `field` (`pulumi.Input[str]`) - The field used to determine how to create a time-based
+            partition. If time-based partitioning is enabled without this value, the
+            table is partitioned based on the load time.
           * `requirePartitionFilter` (`pulumi.Input[bool]`) - If set to true, queries over this table
             require a partition filter that can be used for partition elimination to be
             specified.
@@ -488,18 +496,18 @@ class Table(pulumi.CustomResource):
               The API-side default is `"`, specified in the provider escaped as `\"`. Due to
               limitations with default values, this value is required to be
               explicitly set.
-            * `skipLeadingRows` (`pulumi.Input[float]`) - The number of rows at the top of the sheet
-              that BigQuery will skip when reading the data. At least one of `range` or
-              `skip_leading_rows` must be set.
+            * `skipLeadingRows` (`pulumi.Input[float]`) - The number of rows at the top of a CSV
+              file that BigQuery will skip when reading the data.
 
           * `googleSheetsOptions` (`pulumi.Input[dict]`) - Additional options if
             `source_format` is set to "GOOGLE_SHEETS". Structure is
             documented below.
-            * `range` (`pulumi.Input[str]`) - Information required to partition based on ranges.
-              Structure is documented below.
-            * `skipLeadingRows` (`pulumi.Input[float]`) - The number of rows at the top of the sheet
-              that BigQuery will skip when reading the data. At least one of `range` or
-              `skip_leading_rows` must be set.
+            * `range` (`pulumi.Input[str]`) - Range of a sheet to query from. Only used when
+              non-empty. At least one of `range` or `skip_leading_rows` must be set.
+              Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+              For example: "sheet1!A1:B20"
+            * `skipLeadingRows` (`pulumi.Input[float]`) - The number of rows at the top of a CSV
+              file that BigQuery will skip when reading the data.
 
           * `ignoreUnknownValues` (`pulumi.Input[bool]`) - Indicates if BigQuery should
             allow extra values that are not represented in the table schema.
@@ -519,10 +527,13 @@ class Table(pulumi.CustomResource):
 
         The **range_partitioning** object supports the following:
 
-          * `field` (`pulumi.Input[str]`) - The field used to determine how to create a range-based
-            partition.
-          * `range` (`pulumi.Input[dict]`) - Information required to partition based on ranges.
-            Structure is documented below.
+          * `field` (`pulumi.Input[str]`) - The field used to determine how to create a time-based
+            partition. If time-based partitioning is enabled without this value, the
+            table is partitioned based on the load time.
+          * `range` (`pulumi.Input[dict]`) - Range of a sheet to query from. Only used when
+            non-empty. At least one of `range` or `skip_leading_rows` must be set.
+            Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+            For example: "sheet1!A1:B20"
             * `end` (`pulumi.Input[float]`) - End of the range partitioning, exclusive.
             * `interval` (`pulumi.Input[float]`) - The width of each range within the partition.
             * `start` (`pulumi.Input[float]`) - Start of the range partitioning, inclusive.
@@ -531,8 +542,9 @@ class Table(pulumi.CustomResource):
 
           * `expirationMs` (`pulumi.Input[float]`) - Number of milliseconds for which to keep the
             storage for a partition.
-          * `field` (`pulumi.Input[str]`) - The field used to determine how to create a range-based
-            partition.
+          * `field` (`pulumi.Input[str]`) - The field used to determine how to create a time-based
+            partition. If time-based partitioning is enabled without this value, the
+            table is partitioned based on the load time.
           * `requirePartitionFilter` (`pulumi.Input[bool]`) - If set to true, queries over this table
             require a partition filter that can be used for partition elimination to be
             specified.

@@ -13,6 +13,11 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class RegionUrlMapPathMatcherRouteRuleRouteActionRequestMirrorPolicy
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The RegionBackendService resource being mirrored to.
+        /// </summary>
         public readonly string BackendService;
 
         [OutputConstructor]

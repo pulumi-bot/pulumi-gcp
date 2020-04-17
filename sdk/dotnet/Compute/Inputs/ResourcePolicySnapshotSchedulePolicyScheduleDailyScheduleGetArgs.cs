@@ -12,9 +12,22 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of days between snapshots.
+        /// </summary>
         [Input("daysInCycle", required: true)]
         public Input<int> DaysInCycle { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Time within the window to start the operations.
+        /// It must be in an hourly format "HH:MM",
+        /// where HH : [00-23] and MM : [00] GMT.
+        /// eg: 21:00
+        /// </summary>
         [Input("startTime", required: true)]
         public Input<string> StartTime { get; set; } = null!;
 

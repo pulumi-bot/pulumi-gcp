@@ -77,7 +77,10 @@ export class RegionInstanceGroupManager extends pulumi.CustomResource {
      */
     public /*out*/ readonly instanceGroup!: pulumi.Output<string>;
     /**
-     * - Version name.
+     * The name of the instance group manager. Must be 1-63
+     * characters long and comply with
+     * [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+     * include lowercase letters, numbers, and hyphens.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -105,7 +108,9 @@ export class RegionInstanceGroupManager extends pulumi.CustomResource {
      */
     public readonly targetPools!: pulumi.Output<string[] | undefined>;
     /**
-     * - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+     * The target number of running instances for this managed
+     * instance group. This value should always be explicitly set unless this resource is attached to
+     * an autoscaler, in which case it should never be set. Defaults to `0`.
      */
     public readonly targetSize!: pulumi.Output<number>;
     /**
@@ -230,7 +235,10 @@ export interface RegionInstanceGroupManagerState {
      */
     readonly instanceGroup?: pulumi.Input<string>;
     /**
-     * - Version name.
+     * The name of the instance group manager. Must be 1-63
+     * characters long and comply with
+     * [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+     * include lowercase letters, numbers, and hyphens.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -258,7 +266,9 @@ export interface RegionInstanceGroupManagerState {
      */
     readonly targetPools?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+     * The target number of running instances for this managed
+     * instance group. This value should always be explicitly set unless this resource is attached to
+     * an autoscaler, in which case it should never be set. Defaults to `0`.
      */
     readonly targetSize?: pulumi.Input<number>;
     /**
@@ -309,7 +319,10 @@ export interface RegionInstanceGroupManagerArgs {
      */
     readonly distributionPolicyZones?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * - Version name.
+     * The name of the instance group manager. Must be 1-63
+     * characters long and comply with
+     * [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+     * include lowercase letters, numbers, and hyphens.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -333,7 +346,9 @@ export interface RegionInstanceGroupManagerArgs {
      */
     readonly targetPools?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+     * The target number of running instances for this managed
+     * instance group. This value should always be explicitly set unless this resource is attached to
+     * an autoscaler, in which case it should never be set. Defaults to `0`.
      */
     readonly targetSize?: pulumi.Input<number>;
     /**

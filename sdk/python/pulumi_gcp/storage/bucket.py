@@ -45,7 +45,7 @@ class Bucket(pulumi.CustomResource):
     The bucket's [Lifecycle Rules](https://cloud.google.com/storage/docs/lifecycle#configuration) configuration. Multiple blocks of this type are permitted. Structure is documented below.
 
       * `action` (`dict`) - The Lifecycle Rule's action configuration. A single block of this type is supported. Structure is documented below.
-        * `storage_class` (`str`) - The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
+        * `storage_class` (`str`) - The [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of the new bucket. Supported values include: `STANDARD`, `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
         * `type` (`str`) - The type of the action of this Lifecycle Rule. Supported values include: `Delete` and `SetStorageClass`.
 
       * `condition` (`dict`) - The Lifecycle Rule's condition configuration. A single block of this type is supported. Structure is documented below.
@@ -93,7 +93,7 @@ class Bucket(pulumi.CustomResource):
     """
     storage_class: pulumi.Output[str]
     """
-    The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
+    The [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of the new bucket. Supported values include: `STANDARD`, `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
     """
     url: pulumi.Output[str]
     """
@@ -146,7 +146,7 @@ class Bucket(pulumi.CustomResource):
                is not provided, the provider project is used.
         :param pulumi.Input[bool] requester_pays: Enables [Requester Pays](https://cloud.google.com/storage/docs/requester-pays) on a storage bucket.
         :param pulumi.Input[dict] retention_policy: Configuration of the bucket's data retention policy for how long objects in the bucket should be retained. Structure is documented below.
-        :param pulumi.Input[str] storage_class: The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
+        :param pulumi.Input[str] storage_class: The [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of the new bucket. Supported values include: `STANDARD`, `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
         :param pulumi.Input[dict] versioning: The bucket's [Versioning](https://cloud.google.com/storage/docs/object-versioning) configuration.
         :param pulumi.Input[dict] website: Configuration if the bucket acts as a website. Structure is documented below.
 
@@ -164,7 +164,7 @@ class Bucket(pulumi.CustomResource):
         The **lifecycle_rules** object supports the following:
 
           * `action` (`pulumi.Input[dict]`) - The Lifecycle Rule's action configuration. A single block of this type is supported. Structure is documented below.
-            * `storage_class` (`pulumi.Input[str]`) - The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
+            * `storage_class` (`pulumi.Input[str]`) - The [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of the new bucket. Supported values include: `STANDARD`, `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
             * `type` (`pulumi.Input[str]`) - The type of the action of this Lifecycle Rule. Supported values include: `Delete` and `SetStorageClass`.
 
           * `condition` (`pulumi.Input[dict]`) - The Lifecycle Rule's condition configuration. A single block of this type is supported. Structure is documented below.
@@ -262,7 +262,7 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[bool] requester_pays: Enables [Requester Pays](https://cloud.google.com/storage/docs/requester-pays) on a storage bucket.
         :param pulumi.Input[dict] retention_policy: Configuration of the bucket's data retention policy for how long objects in the bucket should be retained. Structure is documented below.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[str] storage_class: The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
+        :param pulumi.Input[str] storage_class: The [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of the new bucket. Supported values include: `STANDARD`, `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
         :param pulumi.Input[str] url: The base URL of the bucket, in the format `gs://<bucket-name>`.
         :param pulumi.Input[dict] versioning: The bucket's [Versioning](https://cloud.google.com/storage/docs/object-versioning) configuration.
         :param pulumi.Input[dict] website: Configuration if the bucket acts as a website. Structure is documented below.
@@ -281,7 +281,7 @@ class Bucket(pulumi.CustomResource):
         The **lifecycle_rules** object supports the following:
 
           * `action` (`pulumi.Input[dict]`) - The Lifecycle Rule's action configuration. A single block of this type is supported. Structure is documented below.
-            * `storage_class` (`pulumi.Input[str]`) - The target [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of objects affected by this Lifecycle Rule. Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
+            * `storage_class` (`pulumi.Input[str]`) - The [Storage Class](https://cloud.google.com/storage/docs/storage-classes) of the new bucket. Supported values include: `STANDARD`, `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`.
             * `type` (`pulumi.Input[str]`) - The type of the action of this Lifecycle Rule. Supported values include: `Delete` and `SetStorageClass`.
 
           * `condition` (`pulumi.Input[dict]`) - The Lifecycle Rule's condition configuration. A single block of this type is supported. Structure is documented below.

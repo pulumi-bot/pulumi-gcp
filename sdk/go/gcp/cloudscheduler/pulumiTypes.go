@@ -11,11 +11,34 @@ import (
 )
 
 type JobAppEngineHttpTarget struct {
+	// -
+	// (Optional)
+	// App Engine Routing setting for the job.  Structure is documented below.
 	AppEngineRouting *JobAppEngineHttpTargetAppEngineRouting `pulumi:"appEngineRouting"`
-	Body             *string                                 `pulumi:"body"`
-	Headers          map[string]string                       `pulumi:"headers"`
-	HttpMethod       *string                                 `pulumi:"httpMethod"`
-	RelativeUri      string                                  `pulumi:"relativeUri"`
+	// -
+	// (Optional)
+	// HTTP request body.
+	// A request body is allowed only if the HTTP method is POST or PUT.
+	// It will result in invalid argument error to set a body on a job with an incompatible HttpMethod.
+	Body *string `pulumi:"body"`
+	// -
+	// (Optional)
+	// HTTP request headers.
+	// This map contains the header field names and values.
+	// Headers can be set when the job is created.
+	Headers map[string]string `pulumi:"headers"`
+	// -
+	// (Optional)
+	// Which HTTP method to use for the request.
+	HttpMethod *string `pulumi:"httpMethod"`
+	// -
+	// (Required)
+	// The relative URI.
+	// The relative URL must begin with "/" and must be a valid HTTP relative URL.
+	// It can contain a path, query string arguments, and \# fragments.
+	// If the relative URL is empty, then the root path "/" will be used.
+	// No spaces are allowed, and the maximum length allowed is 2083 characters
+	RelativeUri string `pulumi:"relativeUri"`
 }
 
 // JobAppEngineHttpTargetInput is an input type that accepts JobAppEngineHttpTargetArgs and JobAppEngineHttpTargetOutput values.
@@ -31,11 +54,34 @@ type JobAppEngineHttpTargetInput interface {
 }
 
 type JobAppEngineHttpTargetArgs struct {
+	// -
+	// (Optional)
+	// App Engine Routing setting for the job.  Structure is documented below.
 	AppEngineRouting JobAppEngineHttpTargetAppEngineRoutingPtrInput `pulumi:"appEngineRouting"`
-	Body             pulumi.StringPtrInput                          `pulumi:"body"`
-	Headers          pulumi.StringMapInput                          `pulumi:"headers"`
-	HttpMethod       pulumi.StringPtrInput                          `pulumi:"httpMethod"`
-	RelativeUri      pulumi.StringInput                             `pulumi:"relativeUri"`
+	// -
+	// (Optional)
+	// HTTP request body.
+	// A request body is allowed only if the HTTP method is POST or PUT.
+	// It will result in invalid argument error to set a body on a job with an incompatible HttpMethod.
+	Body pulumi.StringPtrInput `pulumi:"body"`
+	// -
+	// (Optional)
+	// HTTP request headers.
+	// This map contains the header field names and values.
+	// Headers can be set when the job is created.
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+	// -
+	// (Optional)
+	// Which HTTP method to use for the request.
+	HttpMethod pulumi.StringPtrInput `pulumi:"httpMethod"`
+	// -
+	// (Required)
+	// The relative URI.
+	// The relative URL must begin with "/" and must be a valid HTTP relative URL.
+	// It can contain a path, query string arguments, and \# fragments.
+	// If the relative URL is empty, then the root path "/" will be used.
+	// No spaces are allowed, and the maximum length allowed is 2083 characters
+	RelativeUri pulumi.StringInput `pulumi:"relativeUri"`
 }
 
 func (JobAppEngineHttpTargetArgs) ElementType() reflect.Type {
@@ -115,22 +161,46 @@ func (o JobAppEngineHttpTargetOutput) ToJobAppEngineHttpTargetPtrOutputWithConte
 		return &v
 	}).(JobAppEngineHttpTargetPtrOutput)
 }
+
+// -
+// (Optional)
+// App Engine Routing setting for the job.  Structure is documented below.
 func (o JobAppEngineHttpTargetOutput) AppEngineRouting() JobAppEngineHttpTargetAppEngineRoutingPtrOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTarget) *JobAppEngineHttpTargetAppEngineRouting { return v.AppEngineRouting }).(JobAppEngineHttpTargetAppEngineRoutingPtrOutput)
 }
 
+// -
+// (Optional)
+// HTTP request body.
+// A request body is allowed only if the HTTP method is POST or PUT.
+// It will result in invalid argument error to set a body on a job with an incompatible HttpMethod.
 func (o JobAppEngineHttpTargetOutput) Body() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTarget) *string { return v.Body }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// HTTP request headers.
+// This map contains the header field names and values.
+// Headers can be set when the job is created.
 func (o JobAppEngineHttpTargetOutput) Headers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTarget) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
 }
 
+// -
+// (Optional)
+// Which HTTP method to use for the request.
 func (o JobAppEngineHttpTargetOutput) HttpMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTarget) *string { return v.HttpMethod }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Required)
+// The relative URI.
+// The relative URL must begin with "/" and must be a valid HTTP relative URL.
+// It can contain a path, query string arguments, and \# fragments.
+// If the relative URL is empty, then the root path "/" will be used.
+// No spaces are allowed, and the maximum length allowed is 2083 characters
 func (o JobAppEngineHttpTargetOutput) RelativeUri() pulumi.StringOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTarget) string { return v.RelativeUri }).(pulumi.StringOutput)
 }
@@ -153,30 +223,65 @@ func (o JobAppEngineHttpTargetPtrOutput) Elem() JobAppEngineHttpTargetOutput {
 	return o.ApplyT(func(v *JobAppEngineHttpTarget) JobAppEngineHttpTarget { return *v }).(JobAppEngineHttpTargetOutput)
 }
 
+// -
+// (Optional)
+// App Engine Routing setting for the job.  Structure is documented below.
 func (o JobAppEngineHttpTargetPtrOutput) AppEngineRouting() JobAppEngineHttpTargetAppEngineRoutingPtrOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTarget) *JobAppEngineHttpTargetAppEngineRouting { return v.AppEngineRouting }).(JobAppEngineHttpTargetAppEngineRoutingPtrOutput)
 }
 
+// -
+// (Optional)
+// HTTP request body.
+// A request body is allowed only if the HTTP method is POST or PUT.
+// It will result in invalid argument error to set a body on a job with an incompatible HttpMethod.
 func (o JobAppEngineHttpTargetPtrOutput) Body() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTarget) *string { return v.Body }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// HTTP request headers.
+// This map contains the header field names and values.
+// Headers can be set when the job is created.
 func (o JobAppEngineHttpTargetPtrOutput) Headers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTarget) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
 }
 
+// -
+// (Optional)
+// Which HTTP method to use for the request.
 func (o JobAppEngineHttpTargetPtrOutput) HttpMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTarget) *string { return v.HttpMethod }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Required)
+// The relative URI.
+// The relative URL must begin with "/" and must be a valid HTTP relative URL.
+// It can contain a path, query string arguments, and \# fragments.
+// If the relative URL is empty, then the root path "/" will be used.
+// No spaces are allowed, and the maximum length allowed is 2083 characters
 func (o JobAppEngineHttpTargetPtrOutput) RelativeUri() pulumi.StringOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTarget) string { return v.RelativeUri }).(pulumi.StringOutput)
 }
 
 type JobAppEngineHttpTargetAppEngineRouting struct {
+	// -
+	// (Optional)
+	// App instance.
+	// By default, the job is sent to an instance which is available when the job is attempted.
 	Instance *string `pulumi:"instance"`
-	Service  *string `pulumi:"service"`
-	Version  *string `pulumi:"version"`
+	// -
+	// (Optional)
+	// App service.
+	// By default, the job is sent to the service which is the default service when the job is attempted.
+	Service *string `pulumi:"service"`
+	// -
+	// (Optional)
+	// App version.
+	// By default, the job is sent to the version which is the default version when the job is attempted.
+	Version *string `pulumi:"version"`
 }
 
 // JobAppEngineHttpTargetAppEngineRoutingInput is an input type that accepts JobAppEngineHttpTargetAppEngineRoutingArgs and JobAppEngineHttpTargetAppEngineRoutingOutput values.
@@ -192,9 +297,21 @@ type JobAppEngineHttpTargetAppEngineRoutingInput interface {
 }
 
 type JobAppEngineHttpTargetAppEngineRoutingArgs struct {
+	// -
+	// (Optional)
+	// App instance.
+	// By default, the job is sent to an instance which is available when the job is attempted.
 	Instance pulumi.StringPtrInput `pulumi:"instance"`
-	Service  pulumi.StringPtrInput `pulumi:"service"`
-	Version  pulumi.StringPtrInput `pulumi:"version"`
+	// -
+	// (Optional)
+	// App service.
+	// By default, the job is sent to the service which is the default service when the job is attempted.
+	Service pulumi.StringPtrInput `pulumi:"service"`
+	// -
+	// (Optional)
+	// App version.
+	// By default, the job is sent to the version which is the default version when the job is attempted.
+	Version pulumi.StringPtrInput `pulumi:"version"`
 }
 
 func (JobAppEngineHttpTargetAppEngineRoutingArgs) ElementType() reflect.Type {
@@ -274,14 +391,27 @@ func (o JobAppEngineHttpTargetAppEngineRoutingOutput) ToJobAppEngineHttpTargetAp
 		return &v
 	}).(JobAppEngineHttpTargetAppEngineRoutingPtrOutput)
 }
+
+// -
+// (Optional)
+// App instance.
+// By default, the job is sent to an instance which is available when the job is attempted.
 func (o JobAppEngineHttpTargetAppEngineRoutingOutput) Instance() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTargetAppEngineRouting) *string { return v.Instance }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// App service.
+// By default, the job is sent to the service which is the default service when the job is attempted.
 func (o JobAppEngineHttpTargetAppEngineRoutingOutput) Service() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTargetAppEngineRouting) *string { return v.Service }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// App version.
+// By default, the job is sent to the version which is the default version when the job is attempted.
 func (o JobAppEngineHttpTargetAppEngineRoutingOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTargetAppEngineRouting) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
@@ -304,25 +434,61 @@ func (o JobAppEngineHttpTargetAppEngineRoutingPtrOutput) Elem() JobAppEngineHttp
 	return o.ApplyT(func(v *JobAppEngineHttpTargetAppEngineRouting) JobAppEngineHttpTargetAppEngineRouting { return *v }).(JobAppEngineHttpTargetAppEngineRoutingOutput)
 }
 
+// -
+// (Optional)
+// App instance.
+// By default, the job is sent to an instance which is available when the job is attempted.
 func (o JobAppEngineHttpTargetAppEngineRoutingPtrOutput) Instance() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTargetAppEngineRouting) *string { return v.Instance }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// App service.
+// By default, the job is sent to the service which is the default service when the job is attempted.
 func (o JobAppEngineHttpTargetAppEngineRoutingPtrOutput) Service() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTargetAppEngineRouting) *string { return v.Service }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// App version.
+// By default, the job is sent to the version which is the default version when the job is attempted.
 func (o JobAppEngineHttpTargetAppEngineRoutingPtrOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobAppEngineHttpTargetAppEngineRouting) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
 
 type JobHttpTarget struct {
-	Body       *string                  `pulumi:"body"`
-	Headers    map[string]string        `pulumi:"headers"`
-	HttpMethod *string                  `pulumi:"httpMethod"`
+	// -
+	// (Optional)
+	// HTTP request body.
+	// A request body is allowed only if the HTTP method is POST or PUT.
+	// It will result in invalid argument error to set a body on a job with an incompatible HttpMethod.
+	Body *string `pulumi:"body"`
+	// -
+	// (Optional)
+	// HTTP request headers.
+	// This map contains the header field names and values.
+	// Headers can be set when the job is created.
+	Headers map[string]string `pulumi:"headers"`
+	// -
+	// (Optional)
+	// Which HTTP method to use for the request.
+	HttpMethod *string `pulumi:"httpMethod"`
+	// -
+	// (Optional)
+	// Contains information needed for generating an OAuth token.
+	// This type of authorization should be used when sending requests to a GCP endpoint.  Structure is documented below.
 	OauthToken *JobHttpTargetOauthToken `pulumi:"oauthToken"`
-	OidcToken  *JobHttpTargetOidcToken  `pulumi:"oidcToken"`
-	Uri        string                   `pulumi:"uri"`
+	// -
+	// (Optional)
+	// Contains information needed for generating an OpenID Connect token.
+	// This type of authorization should be used when sending requests to third party endpoints or Cloud Run.  Structure is documented below.
+	OidcToken *JobHttpTargetOidcToken `pulumi:"oidcToken"`
+	// -
+	// (Required)
+	// The full URI path that the request will be sent to.
+	Uri string `pulumi:"uri"`
 }
 
 // JobHttpTargetInput is an input type that accepts JobHttpTargetArgs and JobHttpTargetOutput values.
@@ -338,12 +504,36 @@ type JobHttpTargetInput interface {
 }
 
 type JobHttpTargetArgs struct {
-	Body       pulumi.StringPtrInput           `pulumi:"body"`
-	Headers    pulumi.StringMapInput           `pulumi:"headers"`
-	HttpMethod pulumi.StringPtrInput           `pulumi:"httpMethod"`
+	// -
+	// (Optional)
+	// HTTP request body.
+	// A request body is allowed only if the HTTP method is POST or PUT.
+	// It will result in invalid argument error to set a body on a job with an incompatible HttpMethod.
+	Body pulumi.StringPtrInput `pulumi:"body"`
+	// -
+	// (Optional)
+	// HTTP request headers.
+	// This map contains the header field names and values.
+	// Headers can be set when the job is created.
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+	// -
+	// (Optional)
+	// Which HTTP method to use for the request.
+	HttpMethod pulumi.StringPtrInput `pulumi:"httpMethod"`
+	// -
+	// (Optional)
+	// Contains information needed for generating an OAuth token.
+	// This type of authorization should be used when sending requests to a GCP endpoint.  Structure is documented below.
 	OauthToken JobHttpTargetOauthTokenPtrInput `pulumi:"oauthToken"`
-	OidcToken  JobHttpTargetOidcTokenPtrInput  `pulumi:"oidcToken"`
-	Uri        pulumi.StringInput              `pulumi:"uri"`
+	// -
+	// (Optional)
+	// Contains information needed for generating an OpenID Connect token.
+	// This type of authorization should be used when sending requests to third party endpoints or Cloud Run.  Structure is documented below.
+	OidcToken JobHttpTargetOidcTokenPtrInput `pulumi:"oidcToken"`
+	// -
+	// (Required)
+	// The full URI path that the request will be sent to.
+	Uri pulumi.StringInput `pulumi:"uri"`
 }
 
 func (JobHttpTargetArgs) ElementType() reflect.Type {
@@ -423,26 +613,51 @@ func (o JobHttpTargetOutput) ToJobHttpTargetPtrOutputWithContext(ctx context.Con
 		return &v
 	}).(JobHttpTargetPtrOutput)
 }
+
+// -
+// (Optional)
+// HTTP request body.
+// A request body is allowed only if the HTTP method is POST or PUT.
+// It will result in invalid argument error to set a body on a job with an incompatible HttpMethod.
 func (o JobHttpTargetOutput) Body() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobHttpTarget) *string { return v.Body }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// HTTP request headers.
+// This map contains the header field names and values.
+// Headers can be set when the job is created.
 func (o JobHttpTargetOutput) Headers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v JobHttpTarget) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
 }
 
+// -
+// (Optional)
+// Which HTTP method to use for the request.
 func (o JobHttpTargetOutput) HttpMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobHttpTarget) *string { return v.HttpMethod }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// Contains information needed for generating an OAuth token.
+// This type of authorization should be used when sending requests to a GCP endpoint.  Structure is documented below.
 func (o JobHttpTargetOutput) OauthToken() JobHttpTargetOauthTokenPtrOutput {
 	return o.ApplyT(func(v JobHttpTarget) *JobHttpTargetOauthToken { return v.OauthToken }).(JobHttpTargetOauthTokenPtrOutput)
 }
 
+// -
+// (Optional)
+// Contains information needed for generating an OpenID Connect token.
+// This type of authorization should be used when sending requests to third party endpoints or Cloud Run.  Structure is documented below.
 func (o JobHttpTargetOutput) OidcToken() JobHttpTargetOidcTokenPtrOutput {
 	return o.ApplyT(func(v JobHttpTarget) *JobHttpTargetOidcToken { return v.OidcToken }).(JobHttpTargetOidcTokenPtrOutput)
 }
 
+// -
+// (Required)
+// The full URI path that the request will be sent to.
 func (o JobHttpTargetOutput) Uri() pulumi.StringOutput {
 	return o.ApplyT(func(v JobHttpTarget) string { return v.Uri }).(pulumi.StringOutput)
 }
@@ -465,33 +680,65 @@ func (o JobHttpTargetPtrOutput) Elem() JobHttpTargetOutput {
 	return o.ApplyT(func(v *JobHttpTarget) JobHttpTarget { return *v }).(JobHttpTargetOutput)
 }
 
+// -
+// (Optional)
+// HTTP request body.
+// A request body is allowed only if the HTTP method is POST or PUT.
+// It will result in invalid argument error to set a body on a job with an incompatible HttpMethod.
 func (o JobHttpTargetPtrOutput) Body() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobHttpTarget) *string { return v.Body }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// HTTP request headers.
+// This map contains the header field names and values.
+// Headers can be set when the job is created.
 func (o JobHttpTargetPtrOutput) Headers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v JobHttpTarget) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
 }
 
+// -
+// (Optional)
+// Which HTTP method to use for the request.
 func (o JobHttpTargetPtrOutput) HttpMethod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobHttpTarget) *string { return v.HttpMethod }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// Contains information needed for generating an OAuth token.
+// This type of authorization should be used when sending requests to a GCP endpoint.  Structure is documented below.
 func (o JobHttpTargetPtrOutput) OauthToken() JobHttpTargetOauthTokenPtrOutput {
 	return o.ApplyT(func(v JobHttpTarget) *JobHttpTargetOauthToken { return v.OauthToken }).(JobHttpTargetOauthTokenPtrOutput)
 }
 
+// -
+// (Optional)
+// Contains information needed for generating an OpenID Connect token.
+// This type of authorization should be used when sending requests to third party endpoints or Cloud Run.  Structure is documented below.
 func (o JobHttpTargetPtrOutput) OidcToken() JobHttpTargetOidcTokenPtrOutput {
 	return o.ApplyT(func(v JobHttpTarget) *JobHttpTargetOidcToken { return v.OidcToken }).(JobHttpTargetOidcTokenPtrOutput)
 }
 
+// -
+// (Required)
+// The full URI path that the request will be sent to.
 func (o JobHttpTargetPtrOutput) Uri() pulumi.StringOutput {
 	return o.ApplyT(func(v JobHttpTarget) string { return v.Uri }).(pulumi.StringOutput)
 }
 
 type JobHttpTargetOauthToken struct {
-	Scope               *string `pulumi:"scope"`
-	ServiceAccountEmail string  `pulumi:"serviceAccountEmail"`
+	// -
+	// (Optional)
+	// OAuth scope to be used for generating OAuth access token. If not specified,
+	// "https://www.googleapis.com/auth/cloud-platform" will be used.
+	Scope *string `pulumi:"scope"`
+	// -
+	// (Required)
+	// Service account email to be used for generating OAuth token.
+	// The service account must be within the same project as the job.
+	ServiceAccountEmail string `pulumi:"serviceAccountEmail"`
 }
 
 // JobHttpTargetOauthTokenInput is an input type that accepts JobHttpTargetOauthTokenArgs and JobHttpTargetOauthTokenOutput values.
@@ -507,8 +754,16 @@ type JobHttpTargetOauthTokenInput interface {
 }
 
 type JobHttpTargetOauthTokenArgs struct {
-	Scope               pulumi.StringPtrInput `pulumi:"scope"`
-	ServiceAccountEmail pulumi.StringInput    `pulumi:"serviceAccountEmail"`
+	// -
+	// (Optional)
+	// OAuth scope to be used for generating OAuth access token. If not specified,
+	// "https://www.googleapis.com/auth/cloud-platform" will be used.
+	Scope pulumi.StringPtrInput `pulumi:"scope"`
+	// -
+	// (Required)
+	// Service account email to be used for generating OAuth token.
+	// The service account must be within the same project as the job.
+	ServiceAccountEmail pulumi.StringInput `pulumi:"serviceAccountEmail"`
 }
 
 func (JobHttpTargetOauthTokenArgs) ElementType() reflect.Type {
@@ -588,10 +843,19 @@ func (o JobHttpTargetOauthTokenOutput) ToJobHttpTargetOauthTokenPtrOutputWithCon
 		return &v
 	}).(JobHttpTargetOauthTokenPtrOutput)
 }
+
+// -
+// (Optional)
+// OAuth scope to be used for generating OAuth access token. If not specified,
+// "https://www.googleapis.com/auth/cloud-platform" will be used.
 func (o JobHttpTargetOauthTokenOutput) Scope() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobHttpTargetOauthToken) *string { return v.Scope }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Required)
+// Service account email to be used for generating OAuth token.
+// The service account must be within the same project as the job.
 func (o JobHttpTargetOauthTokenOutput) ServiceAccountEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v JobHttpTargetOauthToken) string { return v.ServiceAccountEmail }).(pulumi.StringOutput)
 }
@@ -614,17 +878,33 @@ func (o JobHttpTargetOauthTokenPtrOutput) Elem() JobHttpTargetOauthTokenOutput {
 	return o.ApplyT(func(v *JobHttpTargetOauthToken) JobHttpTargetOauthToken { return *v }).(JobHttpTargetOauthTokenOutput)
 }
 
+// -
+// (Optional)
+// OAuth scope to be used for generating OAuth access token. If not specified,
+// "https://www.googleapis.com/auth/cloud-platform" will be used.
 func (o JobHttpTargetOauthTokenPtrOutput) Scope() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobHttpTargetOauthToken) *string { return v.Scope }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Required)
+// Service account email to be used for generating OAuth token.
+// The service account must be within the same project as the job.
 func (o JobHttpTargetOauthTokenPtrOutput) ServiceAccountEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v JobHttpTargetOauthToken) string { return v.ServiceAccountEmail }).(pulumi.StringOutput)
 }
 
 type JobHttpTargetOidcToken struct {
-	Audience            *string `pulumi:"audience"`
-	ServiceAccountEmail string  `pulumi:"serviceAccountEmail"`
+	// -
+	// (Optional)
+	// Audience to be used when generating OIDC token. If not specified,
+	// the URI specified in target will be used.
+	Audience *string `pulumi:"audience"`
+	// -
+	// (Required)
+	// Service account email to be used for generating OAuth token.
+	// The service account must be within the same project as the job.
+	ServiceAccountEmail string `pulumi:"serviceAccountEmail"`
 }
 
 // JobHttpTargetOidcTokenInput is an input type that accepts JobHttpTargetOidcTokenArgs and JobHttpTargetOidcTokenOutput values.
@@ -640,8 +920,16 @@ type JobHttpTargetOidcTokenInput interface {
 }
 
 type JobHttpTargetOidcTokenArgs struct {
-	Audience            pulumi.StringPtrInput `pulumi:"audience"`
-	ServiceAccountEmail pulumi.StringInput    `pulumi:"serviceAccountEmail"`
+	// -
+	// (Optional)
+	// Audience to be used when generating OIDC token. If not specified,
+	// the URI specified in target will be used.
+	Audience pulumi.StringPtrInput `pulumi:"audience"`
+	// -
+	// (Required)
+	// Service account email to be used for generating OAuth token.
+	// The service account must be within the same project as the job.
+	ServiceAccountEmail pulumi.StringInput `pulumi:"serviceAccountEmail"`
 }
 
 func (JobHttpTargetOidcTokenArgs) ElementType() reflect.Type {
@@ -721,10 +1009,19 @@ func (o JobHttpTargetOidcTokenOutput) ToJobHttpTargetOidcTokenPtrOutputWithConte
 		return &v
 	}).(JobHttpTargetOidcTokenPtrOutput)
 }
+
+// -
+// (Optional)
+// Audience to be used when generating OIDC token. If not specified,
+// the URI specified in target will be used.
 func (o JobHttpTargetOidcTokenOutput) Audience() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobHttpTargetOidcToken) *string { return v.Audience }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Required)
+// Service account email to be used for generating OAuth token.
+// The service account must be within the same project as the job.
 func (o JobHttpTargetOidcTokenOutput) ServiceAccountEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v JobHttpTargetOidcToken) string { return v.ServiceAccountEmail }).(pulumi.StringOutput)
 }
@@ -747,18 +1044,40 @@ func (o JobHttpTargetOidcTokenPtrOutput) Elem() JobHttpTargetOidcTokenOutput {
 	return o.ApplyT(func(v *JobHttpTargetOidcToken) JobHttpTargetOidcToken { return *v }).(JobHttpTargetOidcTokenOutput)
 }
 
+// -
+// (Optional)
+// Audience to be used when generating OIDC token. If not specified,
+// the URI specified in target will be used.
 func (o JobHttpTargetOidcTokenPtrOutput) Audience() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobHttpTargetOidcToken) *string { return v.Audience }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Required)
+// Service account email to be used for generating OAuth token.
+// The service account must be within the same project as the job.
 func (o JobHttpTargetOidcTokenPtrOutput) ServiceAccountEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v JobHttpTargetOidcToken) string { return v.ServiceAccountEmail }).(pulumi.StringOutput)
 }
 
 type JobPubsubTarget struct {
+	// -
+	// (Optional)
+	// Attributes for PubsubMessage.
+	// Pubsub message must contain either non-empty data, or at least one attribute.
 	Attributes map[string]string `pulumi:"attributes"`
-	Data       *string           `pulumi:"data"`
-	TopicName  string            `pulumi:"topicName"`
+	// -
+	// (Optional)
+	// The message payload for PubsubMessage.
+	// Pubsub message must contain either non-empty data, or at least one attribute.
+	Data *string `pulumi:"data"`
+	// -
+	// (Required)
+	// The full resource name for the Cloud Pub/Sub topic to which
+	// messages will be published when a job is delivered. ~>**NOTE**:
+	// The topic name must be in the same format as required by PubSub's
+	// PublishRequest.name, e.g. `projects/my-project/topics/my-topic`.
+	TopicName string `pulumi:"topicName"`
 }
 
 // JobPubsubTargetInput is an input type that accepts JobPubsubTargetArgs and JobPubsubTargetOutput values.
@@ -774,9 +1093,23 @@ type JobPubsubTargetInput interface {
 }
 
 type JobPubsubTargetArgs struct {
+	// -
+	// (Optional)
+	// Attributes for PubsubMessage.
+	// Pubsub message must contain either non-empty data, or at least one attribute.
 	Attributes pulumi.StringMapInput `pulumi:"attributes"`
-	Data       pulumi.StringPtrInput `pulumi:"data"`
-	TopicName  pulumi.StringInput    `pulumi:"topicName"`
+	// -
+	// (Optional)
+	// The message payload for PubsubMessage.
+	// Pubsub message must contain either non-empty data, or at least one attribute.
+	Data pulumi.StringPtrInput `pulumi:"data"`
+	// -
+	// (Required)
+	// The full resource name for the Cloud Pub/Sub topic to which
+	// messages will be published when a job is delivered. ~>**NOTE**:
+	// The topic name must be in the same format as required by PubSub's
+	// PublishRequest.name, e.g. `projects/my-project/topics/my-topic`.
+	TopicName pulumi.StringInput `pulumi:"topicName"`
 }
 
 func (JobPubsubTargetArgs) ElementType() reflect.Type {
@@ -856,14 +1189,29 @@ func (o JobPubsubTargetOutput) ToJobPubsubTargetPtrOutputWithContext(ctx context
 		return &v
 	}).(JobPubsubTargetPtrOutput)
 }
+
+// -
+// (Optional)
+// Attributes for PubsubMessage.
+// Pubsub message must contain either non-empty data, or at least one attribute.
 func (o JobPubsubTargetOutput) Attributes() pulumi.StringMapOutput {
 	return o.ApplyT(func(v JobPubsubTarget) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
+// -
+// (Optional)
+// The message payload for PubsubMessage.
+// Pubsub message must contain either non-empty data, or at least one attribute.
 func (o JobPubsubTargetOutput) Data() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobPubsubTarget) *string { return v.Data }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Required)
+// The full resource name for the Cloud Pub/Sub topic to which
+// messages will be published when a job is delivered. ~>**NOTE**:
+// The topic name must be in the same format as required by PubSub's
+// PublishRequest.name, e.g. `projects/my-project/topics/my-topic`.
 func (o JobPubsubTargetOutput) TopicName() pulumi.StringOutput {
 	return o.ApplyT(func(v JobPubsubTarget) string { return v.TopicName }).(pulumi.StringOutput)
 }
@@ -886,24 +1234,62 @@ func (o JobPubsubTargetPtrOutput) Elem() JobPubsubTargetOutput {
 	return o.ApplyT(func(v *JobPubsubTarget) JobPubsubTarget { return *v }).(JobPubsubTargetOutput)
 }
 
+// -
+// (Optional)
+// Attributes for PubsubMessage.
+// Pubsub message must contain either non-empty data, or at least one attribute.
 func (o JobPubsubTargetPtrOutput) Attributes() pulumi.StringMapOutput {
 	return o.ApplyT(func(v JobPubsubTarget) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
+// -
+// (Optional)
+// The message payload for PubsubMessage.
+// Pubsub message must contain either non-empty data, or at least one attribute.
 func (o JobPubsubTargetPtrOutput) Data() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobPubsubTarget) *string { return v.Data }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Required)
+// The full resource name for the Cloud Pub/Sub topic to which
+// messages will be published when a job is delivered. ~>**NOTE**:
+// The topic name must be in the same format as required by PubSub's
+// PublishRequest.name, e.g. `projects/my-project/topics/my-topic`.
 func (o JobPubsubTargetPtrOutput) TopicName() pulumi.StringOutput {
 	return o.ApplyT(func(v JobPubsubTarget) string { return v.TopicName }).(pulumi.StringOutput)
 }
 
 type JobRetryConfig struct {
+	// -
+	// (Optional)
+	// The maximum amount of time to wait before retrying a job after it fails.
+	// A duration in seconds with up to nine fractional digits, terminated by 's'.
 	MaxBackoffDuration *string `pulumi:"maxBackoffDuration"`
-	MaxDoublings       *int    `pulumi:"maxDoublings"`
-	MaxRetryDuration   *string `pulumi:"maxRetryDuration"`
+	// -
+	// (Optional)
+	// The time between retries will double maxDoublings times.
+	// A job's retry interval starts at minBackoffDuration,
+	// then doubles maxDoublings times, then increases linearly,
+	// and finally retries retries at intervals of maxBackoffDuration up to retryCount times.
+	MaxDoublings *int `pulumi:"maxDoublings"`
+	// -
+	// (Optional)
+	// The time limit for retrying a failed job, measured from time when an execution was first attempted.
+	// If specified with retryCount, the job will be retried until both limits are reached.
+	// A duration in seconds with up to nine fractional digits, terminated by 's'.
+	MaxRetryDuration *string `pulumi:"maxRetryDuration"`
+	// -
+	// (Optional)
+	// The minimum amount of time to wait before retrying a job after it fails.
+	// A duration in seconds with up to nine fractional digits, terminated by 's'.
 	MinBackoffDuration *string `pulumi:"minBackoffDuration"`
-	RetryCount         *int    `pulumi:"retryCount"`
+	// -
+	// (Optional)
+	// The number of attempts that the system will make to run a
+	// job using the exponential backoff procedure described by maxDoublings.
+	// Values greater than 5 and negative values are not allowed.
+	RetryCount *int `pulumi:"retryCount"`
 }
 
 // JobRetryConfigInput is an input type that accepts JobRetryConfigArgs and JobRetryConfigOutput values.
@@ -919,11 +1305,35 @@ type JobRetryConfigInput interface {
 }
 
 type JobRetryConfigArgs struct {
+	// -
+	// (Optional)
+	// The maximum amount of time to wait before retrying a job after it fails.
+	// A duration in seconds with up to nine fractional digits, terminated by 's'.
 	MaxBackoffDuration pulumi.StringPtrInput `pulumi:"maxBackoffDuration"`
-	MaxDoublings       pulumi.IntPtrInput    `pulumi:"maxDoublings"`
-	MaxRetryDuration   pulumi.StringPtrInput `pulumi:"maxRetryDuration"`
+	// -
+	// (Optional)
+	// The time between retries will double maxDoublings times.
+	// A job's retry interval starts at minBackoffDuration,
+	// then doubles maxDoublings times, then increases linearly,
+	// and finally retries retries at intervals of maxBackoffDuration up to retryCount times.
+	MaxDoublings pulumi.IntPtrInput `pulumi:"maxDoublings"`
+	// -
+	// (Optional)
+	// The time limit for retrying a failed job, measured from time when an execution was first attempted.
+	// If specified with retryCount, the job will be retried until both limits are reached.
+	// A duration in seconds with up to nine fractional digits, terminated by 's'.
+	MaxRetryDuration pulumi.StringPtrInput `pulumi:"maxRetryDuration"`
+	// -
+	// (Optional)
+	// The minimum amount of time to wait before retrying a job after it fails.
+	// A duration in seconds with up to nine fractional digits, terminated by 's'.
 	MinBackoffDuration pulumi.StringPtrInput `pulumi:"minBackoffDuration"`
-	RetryCount         pulumi.IntPtrInput    `pulumi:"retryCount"`
+	// -
+	// (Optional)
+	// The number of attempts that the system will make to run a
+	// job using the exponential backoff procedure described by maxDoublings.
+	// Values greater than 5 and negative values are not allowed.
+	RetryCount pulumi.IntPtrInput `pulumi:"retryCount"`
 }
 
 func (JobRetryConfigArgs) ElementType() reflect.Type {
@@ -1003,22 +1413,47 @@ func (o JobRetryConfigOutput) ToJobRetryConfigPtrOutputWithContext(ctx context.C
 		return &v
 	}).(JobRetryConfigPtrOutput)
 }
+
+// -
+// (Optional)
+// The maximum amount of time to wait before retrying a job after it fails.
+// A duration in seconds with up to nine fractional digits, terminated by 's'.
 func (o JobRetryConfigOutput) MaxBackoffDuration() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobRetryConfig) *string { return v.MaxBackoffDuration }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The time between retries will double maxDoublings times.
+// A job's retry interval starts at minBackoffDuration,
+// then doubles maxDoublings times, then increases linearly,
+// and finally retries retries at intervals of maxBackoffDuration up to retryCount times.
 func (o JobRetryConfigOutput) MaxDoublings() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v JobRetryConfig) *int { return v.MaxDoublings }).(pulumi.IntPtrOutput)
 }
 
+// -
+// (Optional)
+// The time limit for retrying a failed job, measured from time when an execution was first attempted.
+// If specified with retryCount, the job will be retried until both limits are reached.
+// A duration in seconds with up to nine fractional digits, terminated by 's'.
 func (o JobRetryConfigOutput) MaxRetryDuration() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobRetryConfig) *string { return v.MaxRetryDuration }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The minimum amount of time to wait before retrying a job after it fails.
+// A duration in seconds with up to nine fractional digits, terminated by 's'.
 func (o JobRetryConfigOutput) MinBackoffDuration() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobRetryConfig) *string { return v.MinBackoffDuration }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The number of attempts that the system will make to run a
+// job using the exponential backoff procedure described by maxDoublings.
+// Values greater than 5 and negative values are not allowed.
 func (o JobRetryConfigOutput) RetryCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v JobRetryConfig) *int { return v.RetryCount }).(pulumi.IntPtrOutput)
 }
@@ -1041,22 +1476,46 @@ func (o JobRetryConfigPtrOutput) Elem() JobRetryConfigOutput {
 	return o.ApplyT(func(v *JobRetryConfig) JobRetryConfig { return *v }).(JobRetryConfigOutput)
 }
 
+// -
+// (Optional)
+// The maximum amount of time to wait before retrying a job after it fails.
+// A duration in seconds with up to nine fractional digits, terminated by 's'.
 func (o JobRetryConfigPtrOutput) MaxBackoffDuration() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobRetryConfig) *string { return v.MaxBackoffDuration }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The time between retries will double maxDoublings times.
+// A job's retry interval starts at minBackoffDuration,
+// then doubles maxDoublings times, then increases linearly,
+// and finally retries retries at intervals of maxBackoffDuration up to retryCount times.
 func (o JobRetryConfigPtrOutput) MaxDoublings() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v JobRetryConfig) *int { return v.MaxDoublings }).(pulumi.IntPtrOutput)
 }
 
+// -
+// (Optional)
+// The time limit for retrying a failed job, measured from time when an execution was first attempted.
+// If specified with retryCount, the job will be retried until both limits are reached.
+// A duration in seconds with up to nine fractional digits, terminated by 's'.
 func (o JobRetryConfigPtrOutput) MaxRetryDuration() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobRetryConfig) *string { return v.MaxRetryDuration }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The minimum amount of time to wait before retrying a job after it fails.
+// A duration in seconds with up to nine fractional digits, terminated by 's'.
 func (o JobRetryConfigPtrOutput) MinBackoffDuration() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v JobRetryConfig) *string { return v.MinBackoffDuration }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The number of attempts that the system will make to run a
+// job using the exponential backoff procedure described by maxDoublings.
+// Values greater than 5 and negative values are not allowed.
 func (o JobRetryConfigPtrOutput) RetryCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v JobRetryConfig) *int { return v.RetryCount }).(pulumi.IntPtrOutput)
 }

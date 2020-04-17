@@ -12,6 +12,14 @@ namespace Pulumi.Gcp.CloudRun.Inputs
 
     public sealed class ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReferenceGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name must be unique within a namespace, within a Cloud Run region.
+        /// Is required when creating resources. Name is primarily intended
+        /// for creation idempotence and configuration definition. Cannot be updated.
+        /// More info: http://kubernetes.io/docs/user-guide/identifiers#names
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 

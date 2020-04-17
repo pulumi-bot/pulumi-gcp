@@ -12,9 +12,21 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the value of the fixed delay interval.  Structure is documented below.
+        /// </summary>
         [Input("fixedDelay", required: true)]
         public Input<Inputs.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs> FixedDelay { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The percentage of traffic (connections/operations/requests) which will be
+        /// aborted as part of fault injection. The value must be between 0.0 and 100.0
+        /// inclusive.
+        /// </summary>
         [Input("percentage", required: true)]
         public Input<double> Percentage { get; set; } = null!;
 

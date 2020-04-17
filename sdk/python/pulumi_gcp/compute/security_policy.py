@@ -12,7 +12,7 @@ from .. import utilities, tables
 class SecurityPolicy(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
-    An optional description of this rule. Max size is 64.
+    An optional description of this security policy. Max size is 2048.
     """
     fingerprint: pulumi.Output[str]
     """
@@ -36,7 +36,7 @@ class SecurityPolicy(pulumi.CustomResource):
       * `action` (`str`) - Action to take when `match` matches the request. Valid values:
         * "allow" : allow access to target
         * "deny(status)" : deny access to target, returns the  HTTP response code specified (valid values are 403, 404 and 502)
-      * `description` (`str`) - An optional description of this rule. Max size is 64.
+      * `description` (`str`) - An optional description of this security policy. Max size is 2048.
       * `match` (`dict`) - A match condition that incoming traffic is evaluated against.
         If it evaluates to true, the corresponding `action` is enforced. Structure is documented below.
         * `config` (`dict`) - The configuration options available when specifying `versioned_expr`.
@@ -75,7 +75,7 @@ class SecurityPolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: An optional description of this rule. Max size is 64.
+        :param pulumi.Input[str] description: An optional description of this security policy. Max size is 2048.
         :param pulumi.Input[str] name: The name of the security policy.
         :param pulumi.Input[str] project: The project in which the resource belongs. If it
                is not provided, the provider project is used.
@@ -88,7 +88,7 @@ class SecurityPolicy(pulumi.CustomResource):
           * `action` (`pulumi.Input[str]`) - Action to take when `match` matches the request. Valid values:
             * "allow" : allow access to target
             * "deny(status)" : deny access to target, returns the  HTTP response code specified (valid values are 403, 404 and 502)
-          * `description` (`pulumi.Input[str]`) - An optional description of this rule. Max size is 64.
+          * `description` (`pulumi.Input[str]`) - An optional description of this security policy. Max size is 2048.
           * `match` (`pulumi.Input[dict]`) - A match condition that incoming traffic is evaluated against.
             If it evaluates to true, the corresponding `action` is enforced. Structure is documented below.
             * `config` (`pulumi.Input[dict]`) - The configuration options available when specifying `versioned_expr`.
@@ -151,7 +151,7 @@ class SecurityPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: An optional description of this rule. Max size is 64.
+        :param pulumi.Input[str] description: An optional description of this security policy. Max size is 2048.
         :param pulumi.Input[str] fingerprint: Fingerprint of this resource.
         :param pulumi.Input[str] name: The name of the security policy.
         :param pulumi.Input[str] project: The project in which the resource belongs. If it
@@ -166,7 +166,7 @@ class SecurityPolicy(pulumi.CustomResource):
           * `action` (`pulumi.Input[str]`) - Action to take when `match` matches the request. Valid values:
             * "allow" : allow access to target
             * "deny(status)" : deny access to target, returns the  HTTP response code specified (valid values are 403, 404 and 502)
-          * `description` (`pulumi.Input[str]`) - An optional description of this rule. Max size is 64.
+          * `description` (`pulumi.Input[str]`) - An optional description of this security policy. Max size is 2048.
           * `match` (`pulumi.Input[dict]`) - A match condition that incoming traffic is evaluated against.
             If it evaluates to true, the corresponding `action` is enforced. Structure is documented below.
             * `config` (`pulumi.Input[dict]`) - The configuration options available when specifying `versioned_expr`.

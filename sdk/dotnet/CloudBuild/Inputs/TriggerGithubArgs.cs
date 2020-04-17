@@ -12,15 +12,36 @@ namespace Pulumi.Gcp.CloudBuild.Inputs
 
     public sealed class TriggerGithubArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the trigger. Must be unique within the project.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Owner of the repository. For example: The owner for
+        /// https://github.com/googlecloudplatform/cloud-builders is "googlecloudplatform".
+        /// </summary>
         [Input("owner")]
         public Input<string>? Owner { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// filter to match changes in pull requests.  Specify only one of pullRequest or push.  Structure is documented below.
+        /// </summary>
         [Input("pullRequest")]
         public Input<Inputs.TriggerGithubPullRequestArgs>? PullRequest { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// filter to match changes in refs, like branches or tags.  Specify only one of pullRequest or push.  Structure is documented below.
+        /// </summary>
         [Input("push")]
         public Input<Inputs.TriggerGithubPushArgs>? Push { get; set; }
 

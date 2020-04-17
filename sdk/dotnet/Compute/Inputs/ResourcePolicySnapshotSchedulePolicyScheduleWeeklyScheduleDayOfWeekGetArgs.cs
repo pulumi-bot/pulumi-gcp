@@ -12,9 +12,22 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeekGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The day of the week to create the snapshot. e.g. MONDAY
+        /// </summary>
         [Input("day", required: true)]
         public Input<string> Day { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Time within the window to start the operations.
+        /// It must be in an hourly format "HH:MM",
+        /// where HH : [00-23] and MM : [00] GMT.
+        /// eg: 21:00
+        /// </summary>
         [Input("startTime", required: true)]
         public Input<string> StartTime { get; set; } = null!;
 

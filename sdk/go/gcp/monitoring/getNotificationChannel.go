@@ -30,6 +30,9 @@ func LookupNotificationChannel(ctx *pulumi.Context, args *LookupNotificationChan
 
 // A collection of arguments for invoking getNotificationChannel.
 type LookupNotificationChannelArgs struct {
+	// -
+	// (Optional)
+	// The display name for this notification channel.
 	DisplayName *string `pulumi:"displayName"`
 	// Labels (corresponding to the
 	// NotificationChannelDescriptor schema) to filter the notification channels by.

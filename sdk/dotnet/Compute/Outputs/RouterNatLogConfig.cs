@@ -13,7 +13,18 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class RouterNatLogConfig
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Indicates whether or not to export logs.
+        /// </summary>
         public readonly bool Enable;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the desired filtering of logs on this NAT. Valid
+        /// values are: `"ERRORS_ONLY"`, `"TRANSLATIONS_ONLY"`, `"ALL"`
+        /// </summary>
         public readonly string Filter;
 
         [OutputConstructor]

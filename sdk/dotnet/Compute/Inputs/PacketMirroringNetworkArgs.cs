@@ -12,6 +12,11 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class PacketMirroringNetworkArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full self_link URL of the network where this rule is active.
+        /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 

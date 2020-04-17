@@ -12,15 +12,36 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class URLMapTestArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when you create
+        /// the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Host portion of the URL.
+        /// </summary>
         [Input("host", required: true)]
         public Input<string> Host { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path portion of the URL.
+        /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The backend service or backend bucket to use if any of the given paths match.
+        /// </summary>
         [Input("service", required: true)]
         public Input<string> Service { get; set; } = null!;
 

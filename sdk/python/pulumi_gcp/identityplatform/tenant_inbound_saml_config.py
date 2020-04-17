@@ -12,28 +12,46 @@ from .. import utilities, tables
 class TenantInboundSamlConfig(pulumi.CustomResource):
     display_name: pulumi.Output[str]
     """
+    -
+    (Required)
     Human friendly display name.
     """
     enabled: pulumi.Output[bool]
     """
+    -
+    (Optional)
     If this config allows users to sign in with the provider.
     """
     idp_config: pulumi.Output[dict]
     """
-    SAML IdP configuration when the project acts as the relying party
+    -
+    (Required)
+    SAML IdP configuration when the project acts as the relying party  Structure is documented below.
 
-      * `idpCertificates` (`list`)
-        * `x509Certificate` (`str`)
+      * `idpCertificates` (`list`) - -
+        (Required)
+        The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+        * `x509Certificate` (`str`) - -
+          (Optional)
+          The x509 certificate
 
-      * `idpEntityId` (`str`)
-      * `signRequest` (`bool`)
-      * `ssoUrl` (`str`)
+      * `idpEntityId` (`str`) - -
+        (Required)
+        Unique identifier for all SAML entities
+      * `signRequest` (`bool`) - -
+        (Optional)
+        Indicates if outbounding SAMLRequest should be signed.
+      * `ssoUrl` (`str`) - -
+        (Required)
+        URL to send Authentication request to.
     """
     name: pulumi.Output[str]
     """
-    The name of the InboundSamlConfig resource. Must start with 'saml.' and can only have alphanumeric characters, hyphens,
-    underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an alphanumeric
-    character, and have at least 2 characters.
+    -
+    (Required)
+    The name of the InboundSamlConfig resource. Must start with 'saml.' and can only have alphanumeric characters,
+    hyphens, underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an
+    alphanumeric character, and have at least 2 characters.
     """
     project: pulumi.Output[str]
     """
@@ -42,17 +60,28 @@ class TenantInboundSamlConfig(pulumi.CustomResource):
     """
     sp_config: pulumi.Output[dict]
     """
-    SAML SP (Service Provider) configuration when the project acts as the relying party to receive and accept an
-    authentication assertion issued by a SAML identity provider.
+    -
+    (Required)
+    SAML SP (Service Provider) configuration when the project acts as the relying party to receive
+    and accept an authentication assertion issued by a SAML identity provider.  Structure is documented below.
 
-      * `callbackUri` (`str`)
-      * `spCertificates` (`list`)
-        * `x509Certificate` (`str`)
+      * `callbackUri` (`str`) - -
+        (Required)
+        Callback URI where responses from IDP are handled. Must start with `https://`.
+      * `spCertificates` (`list`) - -
+        The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+        * `x509Certificate` (`str`) - -
+          (Optional)
+          The x509 certificate
 
-      * `spEntityId` (`str`)
+      * `spEntityId` (`str`) - -
+        (Required)
+        Unique identifier for all SAML entities.
     """
     tenant: pulumi.Output[str]
     """
+    -
+    (Required)
     The name of the tenant where this inbound SAML config resource exists
     """
     def __init__(__self__, resource_name, opts=None, display_name=None, enabled=None, idp_config=None, name=None, project=None, sp_config=None, tenant=None, __props__=None, __name__=None, __opts__=None):
@@ -65,34 +94,63 @@ class TenantInboundSamlConfig(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] display_name: Human friendly display name.
-        :param pulumi.Input[bool] enabled: If this config allows users to sign in with the provider.
-        :param pulumi.Input[dict] idp_config: SAML IdP configuration when the project acts as the relying party
-        :param pulumi.Input[str] name: The name of the InboundSamlConfig resource. Must start with 'saml.' and can only have alphanumeric characters, hyphens,
-               underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an alphanumeric
-               character, and have at least 2 characters.
+        :param pulumi.Input[str] display_name: -
+               (Required)
+               Human friendly display name.
+        :param pulumi.Input[bool] enabled: -
+               (Optional)
+               If this config allows users to sign in with the provider.
+        :param pulumi.Input[dict] idp_config: -
+               (Required)
+               SAML IdP configuration when the project acts as the relying party  Structure is documented below.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the InboundSamlConfig resource. Must start with 'saml.' and can only have alphanumeric characters,
+               hyphens, underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an
+               alphanumeric character, and have at least 2 characters.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] sp_config: SAML SP (Service Provider) configuration when the project acts as the relying party to receive and accept an
-               authentication assertion issued by a SAML identity provider.
-        :param pulumi.Input[str] tenant: The name of the tenant where this inbound SAML config resource exists
+        :param pulumi.Input[dict] sp_config: -
+               (Required)
+               SAML SP (Service Provider) configuration when the project acts as the relying party to receive
+               and accept an authentication assertion issued by a SAML identity provider.  Structure is documented below.
+        :param pulumi.Input[str] tenant: -
+               (Required)
+               The name of the tenant where this inbound SAML config resource exists
 
         The **idp_config** object supports the following:
 
-          * `idpCertificates` (`pulumi.Input[list]`)
-            * `x509Certificate` (`pulumi.Input[str]`)
+          * `idpCertificates` (`pulumi.Input[list]`) - -
+            (Required)
+            The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+            * `x509Certificate` (`pulumi.Input[str]`) - -
+              (Optional)
+              The x509 certificate
 
-          * `idpEntityId` (`pulumi.Input[str]`)
-          * `signRequest` (`pulumi.Input[bool]`)
-          * `ssoUrl` (`pulumi.Input[str]`)
+          * `idpEntityId` (`pulumi.Input[str]`) - -
+            (Required)
+            Unique identifier for all SAML entities
+          * `signRequest` (`pulumi.Input[bool]`) - -
+            (Optional)
+            Indicates if outbounding SAMLRequest should be signed.
+          * `ssoUrl` (`pulumi.Input[str]`) - -
+            (Required)
+            URL to send Authentication request to.
 
         The **sp_config** object supports the following:
 
-          * `callbackUri` (`pulumi.Input[str]`)
-          * `spCertificates` (`pulumi.Input[list]`)
-            * `x509Certificate` (`pulumi.Input[str]`)
+          * `callbackUri` (`pulumi.Input[str]`) - -
+            (Required)
+            Callback URI where responses from IDP are handled. Must start with `https://`.
+          * `spCertificates` (`pulumi.Input[list]`) - -
+            The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+            * `x509Certificate` (`pulumi.Input[str]`) - -
+              (Optional)
+              The x509 certificate
 
-          * `spEntityId` (`pulumi.Input[str]`)
+          * `spEntityId` (`pulumi.Input[str]`) - -
+            (Required)
+            Unique identifier for all SAML entities.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -141,34 +199,63 @@ class TenantInboundSamlConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] display_name: Human friendly display name.
-        :param pulumi.Input[bool] enabled: If this config allows users to sign in with the provider.
-        :param pulumi.Input[dict] idp_config: SAML IdP configuration when the project acts as the relying party
-        :param pulumi.Input[str] name: The name of the InboundSamlConfig resource. Must start with 'saml.' and can only have alphanumeric characters, hyphens,
-               underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an alphanumeric
-               character, and have at least 2 characters.
+        :param pulumi.Input[str] display_name: -
+               (Required)
+               Human friendly display name.
+        :param pulumi.Input[bool] enabled: -
+               (Optional)
+               If this config allows users to sign in with the provider.
+        :param pulumi.Input[dict] idp_config: -
+               (Required)
+               SAML IdP configuration when the project acts as the relying party  Structure is documented below.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the InboundSamlConfig resource. Must start with 'saml.' and can only have alphanumeric characters,
+               hyphens, underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an
+               alphanumeric character, and have at least 2 characters.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] sp_config: SAML SP (Service Provider) configuration when the project acts as the relying party to receive and accept an
-               authentication assertion issued by a SAML identity provider.
-        :param pulumi.Input[str] tenant: The name of the tenant where this inbound SAML config resource exists
+        :param pulumi.Input[dict] sp_config: -
+               (Required)
+               SAML SP (Service Provider) configuration when the project acts as the relying party to receive
+               and accept an authentication assertion issued by a SAML identity provider.  Structure is documented below.
+        :param pulumi.Input[str] tenant: -
+               (Required)
+               The name of the tenant where this inbound SAML config resource exists
 
         The **idp_config** object supports the following:
 
-          * `idpCertificates` (`pulumi.Input[list]`)
-            * `x509Certificate` (`pulumi.Input[str]`)
+          * `idpCertificates` (`pulumi.Input[list]`) - -
+            (Required)
+            The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+            * `x509Certificate` (`pulumi.Input[str]`) - -
+              (Optional)
+              The x509 certificate
 
-          * `idpEntityId` (`pulumi.Input[str]`)
-          * `signRequest` (`pulumi.Input[bool]`)
-          * `ssoUrl` (`pulumi.Input[str]`)
+          * `idpEntityId` (`pulumi.Input[str]`) - -
+            (Required)
+            Unique identifier for all SAML entities
+          * `signRequest` (`pulumi.Input[bool]`) - -
+            (Optional)
+            Indicates if outbounding SAMLRequest should be signed.
+          * `ssoUrl` (`pulumi.Input[str]`) - -
+            (Required)
+            URL to send Authentication request to.
 
         The **sp_config** object supports the following:
 
-          * `callbackUri` (`pulumi.Input[str]`)
-          * `spCertificates` (`pulumi.Input[list]`)
-            * `x509Certificate` (`pulumi.Input[str]`)
+          * `callbackUri` (`pulumi.Input[str]`) - -
+            (Required)
+            Callback URI where responses from IDP are handled. Must start with `https://`.
+          * `spCertificates` (`pulumi.Input[list]`) - -
+            The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+            * `x509Certificate` (`pulumi.Input[str]`) - -
+              (Optional)
+              The x509 certificate
 
-          * `spEntityId` (`pulumi.Input[str]`)
+          * `spEntityId` (`pulumi.Input[str]`) - -
+            (Required)
+            Unique identifier for all SAML entities.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

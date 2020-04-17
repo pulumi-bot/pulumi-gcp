@@ -14,10 +14,22 @@ namespace Pulumi.Gcp.AppEngine.Outputs
     public sealed class StandardAppVersionDeploymentFile
     {
         /// <summary>
-        /// The identifier for this object. Format specified above.
+        /// -
+        /// (Optional)
+        /// Name of the library. Example "django".
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// SHA1 checksum of the file
+        /// </summary>
         public readonly string? Sha1Sum;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Source URL
+        /// </summary>
         public readonly string SourceUrl;
 
         [OutputConstructor]

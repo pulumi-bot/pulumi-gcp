@@ -17,7 +17,7 @@ namespace Pulumi.Gcp.Compute
     public partial class SecurityPolicy : Pulumi.CustomResource
     {
         /// <summary>
-        /// An optional description of this rule. Max size is 64.
+        /// An optional description of this security policy. Max size is 2048.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -102,7 +102,7 @@ namespace Pulumi.Gcp.Compute
     public sealed class SecurityPolicyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// An optional description of this rule. Max size is 64.
+        /// An optional description of this security policy. Max size is 2048.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -142,7 +142,7 @@ namespace Pulumi.Gcp.Compute
     public sealed class SecurityPolicyState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// An optional description of this rule. Max size is 64.
+        /// An optional description of this security policy. Max size is 2048.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }

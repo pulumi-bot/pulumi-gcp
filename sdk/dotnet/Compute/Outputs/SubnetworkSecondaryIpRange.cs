@@ -13,7 +13,23 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class SubnetworkSecondaryIpRange
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The range of internal addresses that are owned by this subnetwork.
+        /// Provide this property when you create the subnetwork. For example,
+        /// 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and
+        /// non-overlapping within a network. Only IPv4 is supported.
+        /// </summary>
         public readonly string IpCidrRange;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name associated with this subnetwork secondary range, used
+        /// when adding an alias IP range to a VM instance. The name must
+        /// be 1-63 characters long, and comply with RFC1035. The name
+        /// must be unique within the subnetwork.
+        /// </summary>
         public readonly string RangeName;
 
         [OutputConstructor]

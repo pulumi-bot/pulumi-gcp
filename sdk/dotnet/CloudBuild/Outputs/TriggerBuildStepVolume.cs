@@ -13,7 +13,19 @@ namespace Pulumi.Gcp.CloudBuild.Outputs
     [OutputType]
     public sealed class TriggerBuildStepVolume
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the trigger. Must be unique within the project.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path at which to mount the volume.
+        /// Paths must be absolute and cannot conflict with other volume paths on
+        /// the same build step or with certain reserved volume paths.
+        /// </summary>
         public readonly string Path;
 
         [OutputConstructor]

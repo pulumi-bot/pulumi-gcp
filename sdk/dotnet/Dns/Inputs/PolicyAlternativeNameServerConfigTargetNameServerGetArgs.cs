@@ -12,6 +12,11 @@ namespace Pulumi.Gcp.Dns.Inputs
 
     public sealed class PolicyAlternativeNameServerConfigTargetNameServerGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// IPv4 address to forward to.
+        /// </summary>
         [Input("ipv4Address", required: true)]
         public Input<string> Ipv4Address { get; set; } = null!;
 

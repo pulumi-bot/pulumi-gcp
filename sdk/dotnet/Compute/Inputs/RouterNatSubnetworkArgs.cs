@@ -12,11 +12,26 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class RouterNatSubnetworkArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the NAT service. The name must be 1-63 characters long and
+        /// comply with RFC1035.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("secondaryIpRangeNames")]
         private InputList<string>? _secondaryIpRangeNames;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// List of the secondary ranges of the subnetwork that are allowed
+        /// to use NAT. This can be populated only if
+        /// `LIST_OF_SECONDARY_IP_RANGES` is one of the values in
+        /// sourceIpRangesToNat
+        /// </summary>
         public InputList<string> SecondaryIpRangeNames
         {
             get => _secondaryIpRangeNames ?? (_secondaryIpRangeNames = new InputList<string>());
@@ -25,6 +40,15 @@ namespace Pulumi.Gcp.Compute.Inputs
 
         [Input("sourceIpRangesToNats", required: true)]
         private InputList<string>? _sourceIpRangesToNats;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// List of options for which source IPs in the subnetwork
+        /// should have NAT enabled. Supported values include:
+        /// `ALL_IP_RANGES`, `LIST_OF_SECONDARY_IP_RANGES`,
+        /// `PRIMARY_IP_RANGE`.
+        /// </summary>
         public InputList<string> SourceIpRangesToNats
         {
             get => _sourceIpRangesToNats ?? (_sourceIpRangesToNats = new InputList<string>());

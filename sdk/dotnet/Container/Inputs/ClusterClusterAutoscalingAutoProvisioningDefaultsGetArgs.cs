@@ -16,10 +16,7 @@ namespace Pulumi.Gcp.Container.Inputs
         private InputList<string>? _oauthScopes;
 
         /// <summary>
-        /// The set of Google API scopes to be made available
-        /// on all of the node VMs under the "default" service account. These can be
-        /// either FQDNs, or scope aliases. The following scopes are necessary to ensure
-        /// the correct functioning of the cluster:
+        /// Scopes that are used by NAP when creating node pools.
         /// </summary>
         public InputList<string> OauthScopes
         {
@@ -28,11 +25,7 @@ namespace Pulumi.Gcp.Container.Inputs
         }
 
         /// <summary>
-        /// The service account to be used by the Node VMs.
-        /// If not specified, the "default" service account is used.
-        /// In order to use the configured `oauth_scopes` for logging and monitoring, the service account being used needs the
-        /// [roles/logging.logWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_logging_roles) and
-        /// [roles/monitoring.metricWriter](https://cloud.google.com/iam/docs/understanding-roles#stackdriver_monitoring_roles) roles.
+        /// The Google Cloud Platform Service Account to be used by the node VMs.
         /// </summary>
         [Input("serviceAccount")]
         public Input<string>? ServiceAccount { get; set; }

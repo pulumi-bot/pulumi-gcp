@@ -13,14 +13,26 @@ namespace Pulumi.Gcp.AppEngine.Inputs
     public sealed class FlexibleAppVersionResourcesVolumeGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The identifier for this object. Format specified above.
+        /// -
+        /// (Required)
+        /// Google Compute Engine network where the virtual machines are created. Specify the short name, not the resource path.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Volume size in gigabytes.
+        /// </summary>
         [Input("sizeGb", required: true)]
         public Input<int> SizeGb { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Underlying volume type, e.g. 'tmpfs'.
+        /// </summary>
         [Input("volumeType", required: true)]
         public Input<string> VolumeType { get; set; } = null!;
 

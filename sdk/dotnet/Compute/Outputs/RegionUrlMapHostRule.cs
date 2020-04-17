@@ -13,8 +13,27 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class RegionUrlMapHostRule
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of host patterns to match. They must be valid
+        /// hostnames, except * will match any string of ([a-z0-9-.]*). In
+        /// that case, * must be the first character and must be followed in
+        /// the pattern by either - or ..
+        /// </summary>
         public readonly ImmutableArray<string> Hosts;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of named PathMatchers to use against the URL.  Structure is documented below.
+        /// </summary>
         public readonly string PathMatcher;
 
         [OutputConstructor]

@@ -20,7 +20,7 @@ namespace Pulumi.Gcp.Compute.Outputs
         /// </summary>
         public readonly string Action;
         /// <summary>
-        /// An optional description of this rule. Max size is 64.
+        /// An optional description of this security policy. Max size is 2048.
         /// </summary>
         public readonly string? Description;
         /// <summary>

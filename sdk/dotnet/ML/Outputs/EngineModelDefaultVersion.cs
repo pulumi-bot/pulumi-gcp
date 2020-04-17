@@ -13,6 +13,11 @@ namespace Pulumi.Gcp.ML.Outputs
     [OutputType]
     public sealed class EngineModelDefaultVersion
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name specified for the model.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

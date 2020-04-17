@@ -12,9 +12,21 @@ namespace Pulumi.Gcp.CloudBuild.Inputs
 
     public sealed class TriggerBuildStepVolumeArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the trigger. Must be unique within the project.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path at which to mount the volume.
+        /// Paths must be absolute and cannot conflict with other volume paths on
+        /// the same build step or with certain reserved volume paths.
+        /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 

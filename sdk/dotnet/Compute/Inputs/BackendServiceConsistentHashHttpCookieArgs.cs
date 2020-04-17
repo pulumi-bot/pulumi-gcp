@@ -12,12 +12,33 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class BackendServiceConsistentHashHttpCookieArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035. Specifically, the name must be 1-63 characters long and match
+        /// the regular expression `a-z?` which means the
+        /// first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the last
+        /// character, which cannot be a dash.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Path to set for the cookie.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Lifetime of the cookie.  Structure is documented below.
+        /// </summary>
         [Input("ttl")]
         public Input<Inputs.BackendServiceConsistentHashHttpCookieTtlArgs>? Ttl { get; set; }
 

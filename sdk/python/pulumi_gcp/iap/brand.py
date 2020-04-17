@@ -12,6 +12,8 @@ from .. import utilities, tables
 class Brand(pulumi.CustomResource):
     application_title: pulumi.Output[str]
     """
+    -
+    (Required)
     Application name displayed on OAuth consent screen.
     """
     name: pulumi.Output[str]
@@ -30,9 +32,13 @@ class Brand(pulumi.CustomResource):
     """
     support_email: pulumi.Output[str]
     """
-    Support email displayed on the OAuth consent screen. Can be either a user or group email. When a user email is
-    specified, the caller must be the user with the associated email address. When a group email is specified, the caller
-    can be either a user or a service account which is an owner of the specified group in Cloud Identity.
+    -
+    (Required)
+    Support email displayed on the OAuth consent screen. Can be either a
+    user or group email. When a user email is specified, the caller must
+    be the user with the associated email address. When a group email is
+    specified, the caller can be either a user or a service account which
+    is an owner of the specified group in Cloud Identity.
     """
     def __init__(__self__, resource_name, opts=None, application_title=None, project=None, support_email=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -47,12 +53,18 @@ class Brand(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] application_title: Application name displayed on OAuth consent screen.
+        :param pulumi.Input[str] application_title: -
+               (Required)
+               Application name displayed on OAuth consent screen.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] support_email: Support email displayed on the OAuth consent screen. Can be either a user or group email. When a user email is
-               specified, the caller must be the user with the associated email address. When a group email is specified, the caller
-               can be either a user or a service account which is an owner of the specified group in Cloud Identity.
+        :param pulumi.Input[str] support_email: -
+               (Required)
+               Support email displayed on the OAuth consent screen. Can be either a
+               user or group email. When a user email is specified, the caller must
+               be the user with the associated email address. When a group email is
+               specified, the caller can be either a user or a service account which
+               is an owner of the specified group in Cloud Identity.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -95,15 +107,21 @@ class Brand(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] application_title: Application name displayed on OAuth consent screen.
+        :param pulumi.Input[str] application_title: -
+               (Required)
+               Application name displayed on OAuth consent screen.
         :param pulumi.Input[str] name: Output only. Identifier of the brand, in the format 'projects/{project_number}/brands/{brand_id}'. NOTE: The brand
                identification corresponds to the project number as only one brand per project can be created.
         :param pulumi.Input[bool] org_internal_only: Whether the brand is only intended for usage inside the GSuite organization only.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] support_email: Support email displayed on the OAuth consent screen. Can be either a user or group email. When a user email is
-               specified, the caller must be the user with the associated email address. When a group email is specified, the caller
-               can be either a user or a service account which is an owner of the specified group in Cloud Identity.
+        :param pulumi.Input[str] support_email: -
+               (Required)
+               Support email displayed on the OAuth consent screen. Can be either a
+               user or group email. When a user email is specified, the caller must
+               be the user with the associated email address. When a group email is
+               specified, the caller can be either a user or a service account which
+               is an owner of the specified group in Cloud Identity.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

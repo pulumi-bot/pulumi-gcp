@@ -13,11 +13,47 @@ namespace Pulumi.Gcp.CloudScheduler.Outputs
     [OutputType]
     public sealed class JobHttpTarget
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// HTTP request body.
+        /// A request body is allowed only if the HTTP method is POST or PUT.
+        /// It will result in invalid argument error to set a body on a job with an incompatible HttpMethod.
+        /// </summary>
         public readonly string? Body;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// HTTP request headers.
+        /// This map contains the header field names and values.
+        /// Headers can be set when the job is created.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Headers;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Which HTTP method to use for the request.
+        /// </summary>
         public readonly string? HttpMethod;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Contains information needed for generating an OAuth token.
+        /// This type of authorization should be used when sending requests to a GCP endpoint.  Structure is documented below.
+        /// </summary>
         public readonly Outputs.JobHttpTargetOauthToken? OauthToken;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Contains information needed for generating an OpenID Connect token.
+        /// This type of authorization should be used when sending requests to third party endpoints or Cloud Run.  Structure is documented below.
+        /// </summary>
         public readonly Outputs.JobHttpTargetOidcToken? OidcToken;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full URI path that the request will be sent to.
+        /// </summary>
         public readonly string Uri;
 
         [OutputConstructor]

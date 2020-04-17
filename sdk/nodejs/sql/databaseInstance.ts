@@ -123,7 +123,10 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     public readonly masterInstanceName!: pulumi.Output<string>;
     /**
-     * A name for this whitelist entry.
+     * The name of the instance. If the name is left
+     * blank, the provider will randomly generate one when the instance is first
+     * created. This is done because after a name is used, it cannot be reused for
+     * up to [one week](https://cloud.google.com/sql/docs/delete-instance).
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -278,7 +281,10 @@ export interface DatabaseInstanceState {
      */
     readonly masterInstanceName?: pulumi.Input<string>;
     /**
-     * A name for this whitelist entry.
+     * The name of the instance. If the name is left
+     * blank, the provider will randomly generate one when the instance is first
+     * created. This is done because after a name is used, it cannot be reused for
+     * up to [one week](https://cloud.google.com/sql/docs/delete-instance).
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -361,7 +367,10 @@ export interface DatabaseInstanceArgs {
      */
     readonly masterInstanceName?: pulumi.Input<string>;
     /**
-     * A name for this whitelist entry.
+     * The name of the instance. If the name is left
+     * blank, the provider will randomly generate one when the instance is first
+     * created. This is done because after a name is used, it cannot be reused for
+     * up to [one week](https://cloud.google.com/sql/docs/delete-instance).
      */
     readonly name?: pulumi.Input<string>;
     /**

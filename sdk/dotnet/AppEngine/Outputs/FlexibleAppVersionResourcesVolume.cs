@@ -14,10 +14,22 @@ namespace Pulumi.Gcp.AppEngine.Outputs
     public sealed class FlexibleAppVersionResourcesVolume
     {
         /// <summary>
-        /// The identifier for this object. Format specified above.
+        /// -
+        /// (Required)
+        /// Google Compute Engine network where the virtual machines are created. Specify the short name, not the resource path.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Volume size in gigabytes.
+        /// </summary>
         public readonly int SizeGb;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Underlying volume type, e.g. 'tmpfs'.
+        /// </summary>
         public readonly string VolumeType;
 
         [OutputConstructor]

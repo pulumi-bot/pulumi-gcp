@@ -13,6 +13,12 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class SnapshotSourceDiskEncryptionKey
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies a 256-bit customer-supplied encryption key, encoded in
+        /// RFC 4648 base64 to either encrypt or decrypt this resource.
+        /// </summary>
         public readonly string? RawKey;
 
         [OutputConstructor]

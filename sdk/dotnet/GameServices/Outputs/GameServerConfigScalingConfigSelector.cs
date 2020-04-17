@@ -13,6 +13,12 @@ namespace Pulumi.Gcp.GameServices.Outputs
     [OutputType]
     public sealed class GameServerConfigScalingConfigSelector
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The labels associated with this game server config. Each label is a
+        /// key-value pair.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
 
         [OutputConstructor]

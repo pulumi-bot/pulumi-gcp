@@ -12,6 +12,11 @@ namespace Pulumi.Gcp.IdentityPlatform.Inputs
 
     public sealed class TenantInboundSamlConfigIdpConfigIdpCertificateArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The x509 certificate
+        /// </summary>
         [Input("x509Certificate")]
         public Input<string>? X509Certificate { get; set; }
 

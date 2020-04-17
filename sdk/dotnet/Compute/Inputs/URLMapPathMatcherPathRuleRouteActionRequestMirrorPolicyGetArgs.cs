@@ -12,6 +12,11 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The BackendService resource being mirrored to.
+        /// </summary>
         [Input("backendService", required: true)]
         public Input<string> BackendService { get; set; } = null!;
 

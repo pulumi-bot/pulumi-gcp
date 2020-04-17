@@ -18,6 +18,10 @@ namespace Pulumi.Gcp.Dataproc.Outputs
         /// </summary>
         public readonly Outputs.ClusterClusterConfigPreemptibleWorkerConfigDiskConfig? DiskConfig;
         public readonly ImmutableArray<string> InstanceNames;
+        /// <summary>
+        /// Specifies the number of master nodes to create.
+        /// If not specified, GCP will default to a predetermined computed value (currently 1).
+        /// </summary>
         public readonly int? NumInstances;
 
         [OutputConstructor]

@@ -13,9 +13,29 @@ namespace Pulumi.Gcp.AppEngine.Outputs
     [OutputType]
     public sealed class FlexibleAppVersionResources
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of CPU cores needed.
+        /// </summary>
         public readonly int? Cpu;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Disk size (GB) needed.
+        /// </summary>
         public readonly int? DiskGb;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Memory (GB) needed.
+        /// </summary>
         public readonly double? MemoryGb;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// List of ports, or port pairs, to forward from the virtual machine to the application container.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.FlexibleAppVersionResourcesVolume> Volumes;
 
         [OutputConstructor]

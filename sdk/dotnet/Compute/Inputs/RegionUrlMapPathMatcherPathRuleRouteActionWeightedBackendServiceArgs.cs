@@ -12,12 +12,35 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The RegionBackendService resource being mirrored to.
+        /// </summary>
         [Input("backendService", required: true)]
         public Input<string> BackendService { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies changes to request and response headers that need to take effect for
+        /// the selected backendService. The headerAction specified here are applied before
+        /// the matching pathMatchers[].headerAction and after pathMatchers[].routeRules[].r
+        /// outeAction.weightedBackendService.backendServiceWeightAction[].headerAction  Structure is documented below.
+        /// </summary>
         [Input("headerAction")]
         public Input<Inputs.RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs>? HeaderAction { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Specifies the fraction of traffic sent to backendService, computed as weight /
+        /// (sum of all weightedBackendService weights in routeAction) . The selection of a
+        /// backend service is determined only for new traffic. Once a user's request has
+        /// been directed to a backendService, subsequent requests will be sent to the same
+        /// backendService as determined by the BackendService's session affinity policy.
+        /// The value must be between 0 and 1000
+        /// </summary>
         [Input("weight", required: true)]
         public Input<int> Weight { get; set; } = null!;
 

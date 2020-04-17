@@ -45,29 +45,48 @@ type Subnetwork struct {
 
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringOutput `pulumi:"creationTimestamp"`
-	// An optional description of this resource. Provide this property when you create the resource. This field can be set only
-	// at resource creation time.
+	// -
+	// (Optional)
+	// An optional description of this resource. Provide this property when
+	// you create the resource. This field can be set only at resource
+	// creation time.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Fingerprint of this resource. This field is used internally during updates of this resource.
 	Fingerprint pulumi.StringOutput `pulumi:"fingerprint"`
 	// The gateway address for default routes to reach destination addresses outside this subnetwork.
 	GatewayAddress pulumi.StringOutput `pulumi:"gatewayAddress"`
-	// The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork.
-	// For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is
-	// supported.
+	// -
+	// (Required)
+	// The range of internal addresses that are owned by this subnetwork.
+	// Provide this property when you create the subnetwork. For example,
+	// 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and
+	// non-overlapping within a network. Only IPv4 is supported.
 	IpCidrRange pulumi.StringOutput `pulumi:"ipCidrRange"`
-	// Denotes the logging options for the subnetwork flow logs. If logging is enabled logs will be exported to Stackdriver.
-	// This field cannot be set if the 'purpose' of this subnetwork is 'INTERNAL_HTTPS_LOAD_BALANCER'
+	// -
+	// (Optional)
+	// Denotes the logging options for the subnetwork flow logs. If logging is enabled
+	// logs will be exported to Stackdriver. This field cannot be set if the `purpose` of this
+	// subnetwork is `INTERNAL_HTTPS_LOAD_BALANCER`  Structure is documented below.
 	LogConfig SubnetworkLogConfigPtrOutput `pulumi:"logConfig"`
-	// The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters
-	// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The name of the resource, provided by the client when initially
+	// creating the resource. The name must be 1-63 characters long, and
+	// comply with RFC1035. Specifically, the name must be 1-63 characters
+	// long and match the regular expression `a-z?` which
+	// means the first character must be a lowercase letter, and all
+	// following characters must be a dash, lowercase letter, or digit,
+	// except the last character, which cannot be a dash.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The network this subnet belongs to. Only networks that are in the distributed mode can have subnetworks.
+	// -
+	// (Required)
+	// The network this subnet belongs to.
+	// Only networks that are in the distributed mode can have subnetworks.
 	Network pulumi.StringOutput `pulumi:"network"`
-	// When enabled, VMs in this subnetwork without external IP addresses can access Google APIs and services by using Private
-	// Google Access.
+	// -
+	// (Optional)
+	// When enabled, VMs in this subnetwork without external IP addresses can
+	// access Google APIs and services by using Private Google Access.
 	PrivateIpGoogleAccess pulumi.BoolPtrOutput `pulumi:"privateIpGoogleAccess"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -76,6 +95,8 @@ type Subnetwork struct {
 	// set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing.
 	// If unspecified, the purpose defaults to PRIVATE. If set to INTERNAL_HTTPS_LOAD_BALANCER you must also set the role.
 	Purpose pulumi.StringOutput `pulumi:"purpose"`
+	// -
+	// (Optional)
 	// URL of the GCP region for this subnetwork.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The role of subnetwork. Currently, this field is only used when purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be
@@ -129,29 +150,48 @@ func GetSubnetwork(ctx *pulumi.Context,
 type subnetworkState struct {
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp *string `pulumi:"creationTimestamp"`
-	// An optional description of this resource. Provide this property when you create the resource. This field can be set only
-	// at resource creation time.
+	// -
+	// (Optional)
+	// An optional description of this resource. Provide this property when
+	// you create the resource. This field can be set only at resource
+	// creation time.
 	Description *string `pulumi:"description"`
 	// Fingerprint of this resource. This field is used internally during updates of this resource.
 	Fingerprint *string `pulumi:"fingerprint"`
 	// The gateway address for default routes to reach destination addresses outside this subnetwork.
 	GatewayAddress *string `pulumi:"gatewayAddress"`
-	// The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork.
-	// For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is
-	// supported.
+	// -
+	// (Required)
+	// The range of internal addresses that are owned by this subnetwork.
+	// Provide this property when you create the subnetwork. For example,
+	// 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and
+	// non-overlapping within a network. Only IPv4 is supported.
 	IpCidrRange *string `pulumi:"ipCidrRange"`
-	// Denotes the logging options for the subnetwork flow logs. If logging is enabled logs will be exported to Stackdriver.
-	// This field cannot be set if the 'purpose' of this subnetwork is 'INTERNAL_HTTPS_LOAD_BALANCER'
+	// -
+	// (Optional)
+	// Denotes the logging options for the subnetwork flow logs. If logging is enabled
+	// logs will be exported to Stackdriver. This field cannot be set if the `purpose` of this
+	// subnetwork is `INTERNAL_HTTPS_LOAD_BALANCER`  Structure is documented below.
 	LogConfig *SubnetworkLogConfig `pulumi:"logConfig"`
-	// The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters
-	// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The name of the resource, provided by the client when initially
+	// creating the resource. The name must be 1-63 characters long, and
+	// comply with RFC1035. Specifically, the name must be 1-63 characters
+	// long and match the regular expression `a-z?` which
+	// means the first character must be a lowercase letter, and all
+	// following characters must be a dash, lowercase letter, or digit,
+	// except the last character, which cannot be a dash.
 	Name *string `pulumi:"name"`
-	// The network this subnet belongs to. Only networks that are in the distributed mode can have subnetworks.
+	// -
+	// (Required)
+	// The network this subnet belongs to.
+	// Only networks that are in the distributed mode can have subnetworks.
 	Network *string `pulumi:"network"`
-	// When enabled, VMs in this subnetwork without external IP addresses can access Google APIs and services by using Private
-	// Google Access.
+	// -
+	// (Optional)
+	// When enabled, VMs in this subnetwork without external IP addresses can
+	// access Google APIs and services by using Private Google Access.
 	PrivateIpGoogleAccess *bool `pulumi:"privateIpGoogleAccess"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -160,6 +200,8 @@ type subnetworkState struct {
 	// set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing.
 	// If unspecified, the purpose defaults to PRIVATE. If set to INTERNAL_HTTPS_LOAD_BALANCER you must also set the role.
 	Purpose *string `pulumi:"purpose"`
+	// -
+	// (Optional)
 	// URL of the GCP region for this subnetwork.
 	Region *string `pulumi:"region"`
 	// The role of subnetwork. Currently, this field is only used when purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be
@@ -180,29 +222,48 @@ type subnetworkState struct {
 type SubnetworkState struct {
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringPtrInput
-	// An optional description of this resource. Provide this property when you create the resource. This field can be set only
-	// at resource creation time.
+	// -
+	// (Optional)
+	// An optional description of this resource. Provide this property when
+	// you create the resource. This field can be set only at resource
+	// creation time.
 	Description pulumi.StringPtrInput
 	// Fingerprint of this resource. This field is used internally during updates of this resource.
 	Fingerprint pulumi.StringPtrInput
 	// The gateway address for default routes to reach destination addresses outside this subnetwork.
 	GatewayAddress pulumi.StringPtrInput
-	// The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork.
-	// For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is
-	// supported.
+	// -
+	// (Required)
+	// The range of internal addresses that are owned by this subnetwork.
+	// Provide this property when you create the subnetwork. For example,
+	// 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and
+	// non-overlapping within a network. Only IPv4 is supported.
 	IpCidrRange pulumi.StringPtrInput
-	// Denotes the logging options for the subnetwork flow logs. If logging is enabled logs will be exported to Stackdriver.
-	// This field cannot be set if the 'purpose' of this subnetwork is 'INTERNAL_HTTPS_LOAD_BALANCER'
+	// -
+	// (Optional)
+	// Denotes the logging options for the subnetwork flow logs. If logging is enabled
+	// logs will be exported to Stackdriver. This field cannot be set if the `purpose` of this
+	// subnetwork is `INTERNAL_HTTPS_LOAD_BALANCER`  Structure is documented below.
 	LogConfig SubnetworkLogConfigPtrInput
-	// The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters
-	// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The name of the resource, provided by the client when initially
+	// creating the resource. The name must be 1-63 characters long, and
+	// comply with RFC1035. Specifically, the name must be 1-63 characters
+	// long and match the regular expression `a-z?` which
+	// means the first character must be a lowercase letter, and all
+	// following characters must be a dash, lowercase letter, or digit,
+	// except the last character, which cannot be a dash.
 	Name pulumi.StringPtrInput
-	// The network this subnet belongs to. Only networks that are in the distributed mode can have subnetworks.
+	// -
+	// (Required)
+	// The network this subnet belongs to.
+	// Only networks that are in the distributed mode can have subnetworks.
 	Network pulumi.StringPtrInput
-	// When enabled, VMs in this subnetwork without external IP addresses can access Google APIs and services by using Private
-	// Google Access.
+	// -
+	// (Optional)
+	// When enabled, VMs in this subnetwork without external IP addresses can
+	// access Google APIs and services by using Private Google Access.
 	PrivateIpGoogleAccess pulumi.BoolPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -211,6 +272,8 @@ type SubnetworkState struct {
 	// set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing.
 	// If unspecified, the purpose defaults to PRIVATE. If set to INTERNAL_HTTPS_LOAD_BALANCER you must also set the role.
 	Purpose pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// URL of the GCP region for this subnetwork.
 	Region pulumi.StringPtrInput
 	// The role of subnetwork. Currently, this field is only used when purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be
@@ -233,25 +296,44 @@ func (SubnetworkState) ElementType() reflect.Type {
 }
 
 type subnetworkArgs struct {
-	// An optional description of this resource. Provide this property when you create the resource. This field can be set only
-	// at resource creation time.
+	// -
+	// (Optional)
+	// An optional description of this resource. Provide this property when
+	// you create the resource. This field can be set only at resource
+	// creation time.
 	Description *string `pulumi:"description"`
-	// The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork.
-	// For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is
-	// supported.
+	// -
+	// (Required)
+	// The range of internal addresses that are owned by this subnetwork.
+	// Provide this property when you create the subnetwork. For example,
+	// 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and
+	// non-overlapping within a network. Only IPv4 is supported.
 	IpCidrRange string `pulumi:"ipCidrRange"`
-	// Denotes the logging options for the subnetwork flow logs. If logging is enabled logs will be exported to Stackdriver.
-	// This field cannot be set if the 'purpose' of this subnetwork is 'INTERNAL_HTTPS_LOAD_BALANCER'
+	// -
+	// (Optional)
+	// Denotes the logging options for the subnetwork flow logs. If logging is enabled
+	// logs will be exported to Stackdriver. This field cannot be set if the `purpose` of this
+	// subnetwork is `INTERNAL_HTTPS_LOAD_BALANCER`  Structure is documented below.
 	LogConfig *SubnetworkLogConfig `pulumi:"logConfig"`
-	// The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters
-	// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The name of the resource, provided by the client when initially
+	// creating the resource. The name must be 1-63 characters long, and
+	// comply with RFC1035. Specifically, the name must be 1-63 characters
+	// long and match the regular expression `a-z?` which
+	// means the first character must be a lowercase letter, and all
+	// following characters must be a dash, lowercase letter, or digit,
+	// except the last character, which cannot be a dash.
 	Name *string `pulumi:"name"`
-	// The network this subnet belongs to. Only networks that are in the distributed mode can have subnetworks.
+	// -
+	// (Required)
+	// The network this subnet belongs to.
+	// Only networks that are in the distributed mode can have subnetworks.
 	Network string `pulumi:"network"`
-	// When enabled, VMs in this subnetwork without external IP addresses can access Google APIs and services by using Private
-	// Google Access.
+	// -
+	// (Optional)
+	// When enabled, VMs in this subnetwork without external IP addresses can
+	// access Google APIs and services by using Private Google Access.
 	PrivateIpGoogleAccess *bool `pulumi:"privateIpGoogleAccess"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -260,6 +342,8 @@ type subnetworkArgs struct {
 	// set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing.
 	// If unspecified, the purpose defaults to PRIVATE. If set to INTERNAL_HTTPS_LOAD_BALANCER you must also set the role.
 	Purpose *string `pulumi:"purpose"`
+	// -
+	// (Optional)
 	// URL of the GCP region for this subnetwork.
 	Region *string `pulumi:"region"`
 	// The role of subnetwork. Currently, this field is only used when purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be
@@ -277,25 +361,44 @@ type subnetworkArgs struct {
 
 // The set of arguments for constructing a Subnetwork resource.
 type SubnetworkArgs struct {
-	// An optional description of this resource. Provide this property when you create the resource. This field can be set only
-	// at resource creation time.
+	// -
+	// (Optional)
+	// An optional description of this resource. Provide this property when
+	// you create the resource. This field can be set only at resource
+	// creation time.
 	Description pulumi.StringPtrInput
-	// The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork.
-	// For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network. Only IPv4 is
-	// supported.
+	// -
+	// (Required)
+	// The range of internal addresses that are owned by this subnetwork.
+	// Provide this property when you create the subnetwork. For example,
+	// 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and
+	// non-overlapping within a network. Only IPv4 is supported.
 	IpCidrRange pulumi.StringInput
-	// Denotes the logging options for the subnetwork flow logs. If logging is enabled logs will be exported to Stackdriver.
-	// This field cannot be set if the 'purpose' of this subnetwork is 'INTERNAL_HTTPS_LOAD_BALANCER'
+	// -
+	// (Optional)
+	// Denotes the logging options for the subnetwork flow logs. If logging is enabled
+	// logs will be exported to Stackdriver. This field cannot be set if the `purpose` of this
+	// subnetwork is `INTERNAL_HTTPS_LOAD_BALANCER`  Structure is documented below.
 	LogConfig SubnetworkLogConfigPtrInput
-	// The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters
-	// long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The name of the resource, provided by the client when initially
+	// creating the resource. The name must be 1-63 characters long, and
+	// comply with RFC1035. Specifically, the name must be 1-63 characters
+	// long and match the regular expression `a-z?` which
+	// means the first character must be a lowercase letter, and all
+	// following characters must be a dash, lowercase letter, or digit,
+	// except the last character, which cannot be a dash.
 	Name pulumi.StringPtrInput
-	// The network this subnet belongs to. Only networks that are in the distributed mode can have subnetworks.
+	// -
+	// (Required)
+	// The network this subnet belongs to.
+	// Only networks that are in the distributed mode can have subnetworks.
 	Network pulumi.StringInput
-	// When enabled, VMs in this subnetwork without external IP addresses can access Google APIs and services by using Private
-	// Google Access.
+	// -
+	// (Optional)
+	// When enabled, VMs in this subnetwork without external IP addresses can
+	// access Google APIs and services by using Private Google Access.
 	PrivateIpGoogleAccess pulumi.BoolPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -304,6 +407,8 @@ type SubnetworkArgs struct {
 	// set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing.
 	// If unspecified, the purpose defaults to PRIVATE. If set to INTERNAL_HTTPS_LOAD_BALANCER you must also set the role.
 	Purpose pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// URL of the GCP region for this subnetwork.
 	Region pulumi.StringPtrInput
 	// The role of subnetwork. Currently, this field is only used when purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be

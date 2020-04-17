@@ -69,7 +69,10 @@ type DatabaseInstance struct {
 	// the master in the replication setup. Note, this requires the master to have
 	// `binaryLogEnabled` set, as well as existing backups.
 	MasterInstanceName pulumi.StringOutput `pulumi:"masterInstanceName"`
-	// A name for this whitelist entry.
+	// The name of the instance. If the name is left
+	// blank, the provider will randomly generate one when the instance is first
+	// created. This is done because after a name is used, it cannot be reused for
+	// up to [one week](https://cloud.google.com/sql/docs/delete-instance).
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The first private (`PRIVATE`) IPv4 address assigned.
 	PrivateIpAddress pulumi.StringOutput `pulumi:"privateIpAddress"`
@@ -159,7 +162,10 @@ type databaseInstanceState struct {
 	// the master in the replication setup. Note, this requires the master to have
 	// `binaryLogEnabled` set, as well as existing backups.
 	MasterInstanceName *string `pulumi:"masterInstanceName"`
-	// A name for this whitelist entry.
+	// The name of the instance. If the name is left
+	// blank, the provider will randomly generate one when the instance is first
+	// created. This is done because after a name is used, it cannot be reused for
+	// up to [one week](https://cloud.google.com/sql/docs/delete-instance).
 	Name *string `pulumi:"name"`
 	// The first private (`PRIVATE`) IPv4 address assigned.
 	PrivateIpAddress *string `pulumi:"privateIpAddress"`
@@ -219,7 +225,10 @@ type DatabaseInstanceState struct {
 	// the master in the replication setup. Note, this requires the master to have
 	// `binaryLogEnabled` set, as well as existing backups.
 	MasterInstanceName pulumi.StringPtrInput
-	// A name for this whitelist entry.
+	// The name of the instance. If the name is left
+	// blank, the provider will randomly generate one when the instance is first
+	// created. This is done because after a name is used, it cannot be reused for
+	// up to [one week](https://cloud.google.com/sql/docs/delete-instance).
 	Name pulumi.StringPtrInput
 	// The first private (`PRIVATE`) IPv4 address assigned.
 	PrivateIpAddress pulumi.StringPtrInput
@@ -277,7 +286,10 @@ type databaseInstanceArgs struct {
 	// the master in the replication setup. Note, this requires the master to have
 	// `binaryLogEnabled` set, as well as existing backups.
 	MasterInstanceName *string `pulumi:"masterInstanceName"`
-	// A name for this whitelist entry.
+	// The name of the instance. If the name is left
+	// blank, the provider will randomly generate one when the instance is first
+	// created. This is done because after a name is used, it cannot be reused for
+	// up to [one week](https://cloud.google.com/sql/docs/delete-instance).
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs. If it
 	// is not provided, the provider project is used.
@@ -322,7 +334,10 @@ type DatabaseInstanceArgs struct {
 	// the master in the replication setup. Note, this requires the master to have
 	// `binaryLogEnabled` set, as well as existing backups.
 	MasterInstanceName pulumi.StringPtrInput
-	// A name for this whitelist entry.
+	// The name of the instance. If the name is left
+	// blank, the provider will randomly generate one when the instance is first
+	// created. This is done because after a name is used, it cannot be reused for
+	// up to [one week](https://cloud.google.com/sql/docs/delete-instance).
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs. If it
 	// is not provided, the provider project is used.

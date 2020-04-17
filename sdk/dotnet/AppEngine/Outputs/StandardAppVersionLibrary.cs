@@ -14,9 +14,16 @@ namespace Pulumi.Gcp.AppEngine.Outputs
     public sealed class StandardAppVersionLibrary
     {
         /// <summary>
-        /// The identifier for this object. Format specified above.
+        /// -
+        /// (Optional)
+        /// Name of the library. Example "django".
         /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Version of the library to select, or "latest".
+        /// </summary>
         public readonly string? Version;
 
         [OutputConstructor]

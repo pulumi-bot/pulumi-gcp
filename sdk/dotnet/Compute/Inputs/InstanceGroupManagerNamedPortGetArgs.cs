@@ -13,7 +13,10 @@ namespace Pulumi.Gcp.Compute.Inputs
     public sealed class InstanceGroupManagerNamedPortGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// - Version name.
+        /// The name of the instance group manager. Must be 1-63
+        /// characters long and comply with
+        /// [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+        /// include lowercase letters, numbers, and hyphens.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;

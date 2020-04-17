@@ -56,7 +56,8 @@ class InstanceTemplate(pulumi.CustomResource):
         `projects/{project}/global/images/family/{family}`, `global/images/{image}`,
         `global/images/family/{family}`, `family/{family}`, `{project}/{family}`,
         `{project}/{image}`, `{family}`, or `{image}`.
-      * `type` (`str`) - The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+      * `type` (`str`) - The type of GCE disk, can be either `"SCRATCH"` or
+        `"PERSISTENT"`.
     """
     enable_display: pulumi.Output[bool]
     """
@@ -68,7 +69,8 @@ class InstanceTemplate(pulumi.CustomResource):
     List of the type and count of accelerator cards attached to the instance. Structure documented below.
 
       * `count` (`float`) - The number of the guest accelerator cards exposed to this instance.
-      * `type` (`str`) - The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+      * `type` (`str`) - The type of GCE disk, can be either `"SCRATCH"` or
+        `"PERSISTENT"`.
     """
     instance_description: pulumi.Output[str]
     """
@@ -317,12 +319,14 @@ class InstanceTemplate(pulumi.CustomResource):
             `projects/{project}/global/images/family/{family}`, `global/images/{image}`,
             `global/images/family/{family}`, `family/{family}`, `{project}/{family}`,
             `{project}/{image}`, `{family}`, or `{image}`.
-          * `type` (`pulumi.Input[str]`) - The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+          * `type` (`pulumi.Input[str]`) - The type of GCE disk, can be either `"SCRATCH"` or
+            `"PERSISTENT"`.
 
         The **guest_accelerators** object supports the following:
 
           * `count` (`pulumi.Input[float]`) - The number of the guest accelerator cards exposed to this instance.
-          * `type` (`pulumi.Input[str]`) - The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+          * `type` (`pulumi.Input[str]`) - The type of GCE disk, can be either `"SCRATCH"` or
+            `"PERSISTENT"`.
 
         The **network_interfaces** object supports the following:
 
@@ -538,12 +542,14 @@ class InstanceTemplate(pulumi.CustomResource):
             `projects/{project}/global/images/family/{family}`, `global/images/{image}`,
             `global/images/family/{family}`, `family/{family}`, `{project}/{family}`,
             `{project}/{image}`, `{family}`, or `{image}`.
-          * `type` (`pulumi.Input[str]`) - The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+          * `type` (`pulumi.Input[str]`) - The type of GCE disk, can be either `"SCRATCH"` or
+            `"PERSISTENT"`.
 
         The **guest_accelerators** object supports the following:
 
           * `count` (`pulumi.Input[float]`) - The number of the guest accelerator cards exposed to this instance.
-          * `type` (`pulumi.Input[str]`) - The accelerator type resource to expose to this instance. E.g. `nvidia-tesla-k80`.
+          * `type` (`pulumi.Input[str]`) - The type of GCE disk, can be either `"SCRATCH"` or
+            `"PERSISTENT"`.
 
         The **network_interfaces** object supports the following:
 

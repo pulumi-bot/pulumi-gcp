@@ -13,15 +13,18 @@ namespace Pulumi.Gcp.BigQuery.Inputs
     public sealed class TableRangePartitioningGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The field used to determine how to create a range-based
-        /// partition.
+        /// The field used to determine how to create a time-based
+        /// partition. If time-based partitioning is enabled without this value, the
+        /// table is partitioned based on the load time.
         /// </summary>
         [Input("field", required: true)]
         public Input<string> Field { get; set; } = null!;
 
         /// <summary>
-        /// Information required to partition based on ranges.
-        /// Structure is documented below.
+        /// Range of a sheet to query from. Only used when
+        /// non-empty. At least one of `range` or `skip_leading_rows` must be set.
+        /// Typical format: "sheet_name!top_left_cell_id:bottom_right_cell_id"
+        /// For example: "sheet1!A1:B20"
         /// </summary>
         [Input("range", required: true)]
         public Input<Inputs.TableRangePartitioningRangeGetArgs> Range { get; set; } = null!;

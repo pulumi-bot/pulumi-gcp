@@ -16,7 +16,7 @@ namespace Pulumi.Gcp.Dataproc.Inputs
         private InputList<Inputs.ClusterClusterConfigWorkerConfigAcceleratorGetArgs>? _accelerators;
 
         /// <summary>
-        /// The Compute Engine accelerator configuration for these instances. Can be specified multiple times.
+        /// The Compute Engine accelerator (GPU) configuration for these instances. Can be specified multiple times.
         /// </summary>
         public InputList<Inputs.ClusterClusterConfigWorkerConfigAcceleratorGetArgs> Accelerators
         {
@@ -47,7 +47,7 @@ namespace Pulumi.Gcp.Dataproc.Inputs
 
         /// <summary>
         /// The name of a Google Compute Engine machine type
-        /// to create for the worker nodes. If not specified, GCP will default to a predetermined
+        /// to create for the master. If not specified, GCP will default to a predetermined
         /// computed value (currently `n1-standard-4`).
         /// </summary>
         [Input("machineType")]
@@ -62,6 +62,10 @@ namespace Pulumi.Gcp.Dataproc.Inputs
         [Input("minCpuPlatform")]
         public Input<string>? MinCpuPlatform { get; set; }
 
+        /// <summary>
+        /// Specifies the number of master nodes to create.
+        /// If not specified, GCP will default to a predetermined computed value (currently 1).
+        /// </summary>
         [Input("numInstances")]
         public Input<int>? NumInstances { get; set; }
 

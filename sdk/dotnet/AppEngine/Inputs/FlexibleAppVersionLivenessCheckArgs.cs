@@ -12,24 +12,59 @@ namespace Pulumi.Gcp.AppEngine.Inputs
 
     public sealed class FlexibleAppVersionLivenessCheckArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Interval between health checks.  Default: "5s".
+        /// </summary>
         [Input("checkInterval")]
         public Input<string>? CheckInterval { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of consecutive failed checks required before removing traffic. Default: 2.
+        /// </summary>
         [Input("failureThreshold")]
         public Input<double>? FailureThreshold { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Host header to send when performing a HTTP Readiness check. Example: "myapp.appspot.com"
+        /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The initial delay before starting to execute the checks. Default: "300s"
+        /// </summary>
         [Input("initialDelay")]
         public Input<string>? InitialDelay { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The request path.
+        /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of consecutive successful checks required before receiving traffic. Default: 2.
+        /// </summary>
         [Input("successThreshold")]
         public Input<double>? SuccessThreshold { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Time before the check is considered failed. Default: "4s"
+        /// </summary>
         [Input("timeout")]
         public Input<string>? Timeout { get; set; }
 

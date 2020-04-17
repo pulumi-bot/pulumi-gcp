@@ -1170,11 +1170,12 @@ func (o DatabaseInstanceSettingsBackupConfigurationPtrOutput) StartTime() pulumi
 }
 
 type DatabaseInstanceSettingsDatabaseFlag struct {
-	// A name for this whitelist entry.
+	// The name of the instance. If the name is left
+	// blank, the provider will randomly generate one when the instance is first
+	// created. This is done because after a name is used, it cannot be reused for
+	// up to [one week](https://cloud.google.com/sql/docs/delete-instance).
 	Name string `pulumi:"name"`
-	// A CIDR notation IPv4 or IPv6 address that is allowed to
-	// access this instance. Must be set even if other two attributes are not for
-	// the whitelist to become active.
+	// Value of the flag.
 	Value string `pulumi:"value"`
 }
 
@@ -1191,11 +1192,12 @@ type DatabaseInstanceSettingsDatabaseFlagInput interface {
 }
 
 type DatabaseInstanceSettingsDatabaseFlagArgs struct {
-	// A name for this whitelist entry.
+	// The name of the instance. If the name is left
+	// blank, the provider will randomly generate one when the instance is first
+	// created. This is done because after a name is used, it cannot be reused for
+	// up to [one week](https://cloud.google.com/sql/docs/delete-instance).
 	Name pulumi.StringInput `pulumi:"name"`
-	// A CIDR notation IPv4 or IPv6 address that is allowed to
-	// access this instance. Must be set even if other two attributes are not for
-	// the whitelist to become active.
+	// Value of the flag.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -1251,14 +1253,15 @@ func (o DatabaseInstanceSettingsDatabaseFlagOutput) ToDatabaseInstanceSettingsDa
 	return o
 }
 
-// A name for this whitelist entry.
+// The name of the instance. If the name is left
+// blank, the provider will randomly generate one when the instance is first
+// created. This is done because after a name is used, it cannot be reused for
+// up to [one week](https://cloud.google.com/sql/docs/delete-instance).
 func (o DatabaseInstanceSettingsDatabaseFlagOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v DatabaseInstanceSettingsDatabaseFlag) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// A CIDR notation IPv4 or IPv6 address that is allowed to
-// access this instance. Must be set even if other two attributes are not for
-// the whitelist to become active.
+// Value of the flag.
 func (o DatabaseInstanceSettingsDatabaseFlagOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v DatabaseInstanceSettingsDatabaseFlag) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -1484,11 +1487,12 @@ type DatabaseInstanceSettingsIpConfigurationAuthorizedNetwork struct {
 	// The [RFC 3339](https://tools.ietf.org/html/rfc3339)
 	// formatted date time string indicating when this whitelist expires.
 	ExpirationTime *string `pulumi:"expirationTime"`
-	// A name for this whitelist entry.
+	// The name of the instance. If the name is left
+	// blank, the provider will randomly generate one when the instance is first
+	// created. This is done because after a name is used, it cannot be reused for
+	// up to [one week](https://cloud.google.com/sql/docs/delete-instance).
 	Name *string `pulumi:"name"`
-	// A CIDR notation IPv4 or IPv6 address that is allowed to
-	// access this instance. Must be set even if other two attributes are not for
-	// the whitelist to become active.
+	// Value of the flag.
 	Value string `pulumi:"value"`
 }
 
@@ -1508,11 +1512,12 @@ type DatabaseInstanceSettingsIpConfigurationAuthorizedNetworkArgs struct {
 	// The [RFC 3339](https://tools.ietf.org/html/rfc3339)
 	// formatted date time string indicating when this whitelist expires.
 	ExpirationTime pulumi.StringPtrInput `pulumi:"expirationTime"`
-	// A name for this whitelist entry.
+	// The name of the instance. If the name is left
+	// blank, the provider will randomly generate one when the instance is first
+	// created. This is done because after a name is used, it cannot be reused for
+	// up to [one week](https://cloud.google.com/sql/docs/delete-instance).
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// A CIDR notation IPv4 or IPv6 address that is allowed to
-	// access this instance. Must be set even if other two attributes are not for
-	// the whitelist to become active.
+	// Value of the flag.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -1574,14 +1579,15 @@ func (o DatabaseInstanceSettingsIpConfigurationAuthorizedNetworkOutput) Expirati
 	return o.ApplyT(func(v DatabaseInstanceSettingsIpConfigurationAuthorizedNetwork) *string { return v.ExpirationTime }).(pulumi.StringPtrOutput)
 }
 
-// A name for this whitelist entry.
+// The name of the instance. If the name is left
+// blank, the provider will randomly generate one when the instance is first
+// created. This is done because after a name is used, it cannot be reused for
+// up to [one week](https://cloud.google.com/sql/docs/delete-instance).
 func (o DatabaseInstanceSettingsIpConfigurationAuthorizedNetworkOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseInstanceSettingsIpConfigurationAuthorizedNetwork) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// A CIDR notation IPv4 or IPv6 address that is allowed to
-// access this instance. Must be set even if other two attributes are not for
-// the whitelist to become active.
+// Value of the flag.
 func (o DatabaseInstanceSettingsIpConfigurationAuthorizedNetworkOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v DatabaseInstanceSettingsIpConfigurationAuthorizedNetwork) string { return v.Value }).(pulumi.StringOutput)
 }

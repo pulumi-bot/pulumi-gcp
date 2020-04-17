@@ -49,14 +49,20 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
     """
     name: pulumi.Output[str]
     """
-    - Version name.
+    The name of the instance group manager. Must be 1-63
+    characters long and comply with
+    [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+    include lowercase letters, numbers, and hyphens.
     """
     named_ports: pulumi.Output[list]
     """
     The named port configuration. See the section below
     for details on configuration.
 
-      * `name` (`str`) - - Version name.
+      * `name` (`str`) - The name of the instance group manager. Must be 1-63
+        characters long and comply with
+        [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+        include lowercase letters, numbers, and hyphens.
       * `port` (`float`) - The port number.
         - - -
     """
@@ -81,7 +87,9 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
     """
     target_size: pulumi.Output[float]
     """
-    - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+    The target number of running instances for this managed
+    instance group. This value should always be explicitly set unless this resource is attached to
+    an autoscaler, in which case it should never be set. Defaults to `0`.
     """
     update_policy: pulumi.Output[dict]
     """
@@ -104,8 +112,13 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
     Structure is documented below.
 
       * `instanceTemplate` (`str`) - - The full URL to an instance template from which all new instances of this version will be created.
-      * `name` (`str`) - - Version name.
-      * `target_size` (`dict`) - - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+      * `name` (`str`) - The name of the instance group manager. Must be 1-63
+        characters long and comply with
+        [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+        include lowercase letters, numbers, and hyphens.
+      * `target_size` (`dict`) - The target number of running instances for this managed
+        instance group. This value should always be explicitly set unless this resource is attached to
+        an autoscaler, in which case it should never be set. Defaults to `0`.
         * `fixed` (`float`) - , The number of instances which are managed for this version. Conflicts with `percent`.
         * `percent` (`float`) - , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
           Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,
@@ -141,7 +154,10 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         :param pulumi.Input[list] distribution_policy_zones: The distribution policy for this managed instance
                group. You can specify one or more values. For more information, see the [official documentation](https://cloud.google.com/compute/docs/instance-groups/distributing-instances-with-regional-instance-groups#selectingzones).
                - - -
-        :param pulumi.Input[str] name: - Version name.
+        :param pulumi.Input[str] name: The name of the instance group manager. Must be 1-63
+               characters long and comply with
+               [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+               include lowercase letters, numbers, and hyphens.
         :param pulumi.Input[list] named_ports: The named port configuration. See the section below
                for details on configuration.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
@@ -150,7 +166,9 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         :param pulumi.Input[list] target_pools: The full URL of all target pools to which new
                instances in the group are added. Updating the target pools attribute does
                not affect existing instances.
-        :param pulumi.Input[float] target_size: - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+        :param pulumi.Input[float] target_size: The target number of running instances for this managed
+               instance group. This value should always be explicitly set unless this resource is attached to
+               an autoscaler, in which case it should never be set. Defaults to `0`.
         :param pulumi.Input[dict] update_policy: The update policy for this managed instance group. Structure is documented below. For more information, see the [official documentation](https://cloud.google.com/compute/docs/instance-groups/updating-managed-instance-groups) and [API](https://cloud.google.com/compute/docs/reference/rest/beta/regionInstanceGroupManagers/patch)
         :param pulumi.Input[list] versions: Application versions managed by this instance group. Each
                version deals with a specific instance template, allowing canary release scenarios.
@@ -167,7 +185,10 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
 
         The **named_ports** object supports the following:
 
-          * `name` (`pulumi.Input[str]`) - - Version name.
+          * `name` (`pulumi.Input[str]`) - The name of the instance group manager. Must be 1-63
+            characters long and comply with
+            [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+            include lowercase letters, numbers, and hyphens.
           * `port` (`pulumi.Input[float]`) - The port number.
             - - -
 
@@ -186,8 +207,13 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         The **versions** object supports the following:
 
           * `instanceTemplate` (`pulumi.Input[str]`) - - The full URL to an instance template from which all new instances of this version will be created.
-          * `name` (`pulumi.Input[str]`) - - Version name.
-          * `target_size` (`pulumi.Input[dict]`) - - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+          * `name` (`pulumi.Input[str]`) - The name of the instance group manager. Must be 1-63
+            characters long and comply with
+            [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+            include lowercase letters, numbers, and hyphens.
+          * `target_size` (`pulumi.Input[dict]`) - The target number of running instances for this managed
+            instance group. This value should always be explicitly set unless this resource is attached to
+            an autoscaler, in which case it should never be set. Defaults to `0`.
             * `fixed` (`pulumi.Input[float]`) - , The number of instances which are managed for this version. Conflicts with `percent`.
             * `percent` (`pulumi.Input[float]`) - , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
               Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,
@@ -262,7 +288,10 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
                - - -
         :param pulumi.Input[str] fingerprint: The fingerprint of the instance group manager.
         :param pulumi.Input[str] instance_group: The full URL of the instance group created by the manager.
-        :param pulumi.Input[str] name: - Version name.
+        :param pulumi.Input[str] name: The name of the instance group manager. Must be 1-63
+               characters long and comply with
+               [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+               include lowercase letters, numbers, and hyphens.
         :param pulumi.Input[list] named_ports: The named port configuration. See the section below
                for details on configuration.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
@@ -272,7 +301,9 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         :param pulumi.Input[list] target_pools: The full URL of all target pools to which new
                instances in the group are added. Updating the target pools attribute does
                not affect existing instances.
-        :param pulumi.Input[float] target_size: - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+        :param pulumi.Input[float] target_size: The target number of running instances for this managed
+               instance group. This value should always be explicitly set unless this resource is attached to
+               an autoscaler, in which case it should never be set. Defaults to `0`.
         :param pulumi.Input[dict] update_policy: The update policy for this managed instance group. Structure is documented below. For more information, see the [official documentation](https://cloud.google.com/compute/docs/instance-groups/updating-managed-instance-groups) and [API](https://cloud.google.com/compute/docs/reference/rest/beta/regionInstanceGroupManagers/patch)
         :param pulumi.Input[list] versions: Application versions managed by this instance group. Each
                version deals with a specific instance template, allowing canary release scenarios.
@@ -289,7 +320,10 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
 
         The **named_ports** object supports the following:
 
-          * `name` (`pulumi.Input[str]`) - - Version name.
+          * `name` (`pulumi.Input[str]`) - The name of the instance group manager. Must be 1-63
+            characters long and comply with
+            [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+            include lowercase letters, numbers, and hyphens.
           * `port` (`pulumi.Input[float]`) - The port number.
             - - -
 
@@ -308,8 +342,13 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         The **versions** object supports the following:
 
           * `instanceTemplate` (`pulumi.Input[str]`) - - The full URL to an instance template from which all new instances of this version will be created.
-          * `name` (`pulumi.Input[str]`) - - Version name.
-          * `target_size` (`pulumi.Input[dict]`) - - The number of instances calculated as a fixed number or a percentage depending on the settings. Structure is documented below.
+          * `name` (`pulumi.Input[str]`) - The name of the instance group manager. Must be 1-63
+            characters long and comply with
+            [RFC1035](https://www.ietf.org/rfc/rfc1035.txt). Supported characters
+            include lowercase letters, numbers, and hyphens.
+          * `target_size` (`pulumi.Input[dict]`) - The target number of running instances for this managed
+            instance group. This value should always be explicitly set unless this resource is attached to
+            an autoscaler, in which case it should never be set. Defaults to `0`.
             * `fixed` (`pulumi.Input[float]`) - , The number of instances which are managed for this version. Conflicts with `percent`.
             * `percent` (`pulumi.Input[float]`) - , The number of instances (calculated as percentage) which are managed for this version. Conflicts with `fixed`.
               Note that when using `percent`, rounding will be in favor of explicitly set `target_size` values; a managed instance group with 2 instances and 2 `version`s,

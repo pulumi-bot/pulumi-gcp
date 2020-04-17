@@ -13,9 +13,38 @@ namespace Pulumi.Gcp.Monitoring.Outputs
     [OutputType]
     public sealed class AlertPolicyCondition
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A condition that checks that a time series
+        /// continues to receive new data points.  Structure is documented below.
+        /// </summary>
         public readonly Outputs.AlertPolicyConditionConditionAbsent? ConditionAbsent;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A condition that compares a time series against a
+        /// threshold.  Structure is documented below.
+        /// </summary>
         public readonly Outputs.AlertPolicyConditionConditionThreshold? ConditionThreshold;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// A short name or phrase used to identify the policy in
+        /// dashboards, notifications, and incidents. To avoid confusion, don't use
+        /// the same display name for multiple policies in the same project. The
+        /// name is limited to 512 Unicode characters.
+        /// </summary>
         public readonly string DisplayName;
+        /// <summary>
+        /// -
+        /// The unique resource name for this condition.
+        /// Its syntax is:
+        /// projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+        /// [CONDITION_ID] is assigned by Stackdriver Monitoring when
+        /// the condition is created as part of a new or updated alerting
+        /// policy.
+        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

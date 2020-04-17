@@ -13,7 +13,17 @@ namespace Pulumi.Gcp.DeploymentManager.Outputs
     [OutputType]
     public sealed class DeploymentTargetImport
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The full YAML contents of your configuration file.
+        /// </summary>
         public readonly string? Content;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Unique name for the deployment
+        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

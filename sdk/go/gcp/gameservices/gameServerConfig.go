@@ -20,25 +20,42 @@ import (
 type GameServerConfig struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// A unique id for the deployment config.
 	ConfigId pulumi.StringOutput `pulumi:"configId"`
+	// -
+	// (Required)
 	// A unique id for the deployment.
 	DeploymentId pulumi.StringOutput `pulumi:"deploymentId"`
+	// -
+	// (Optional)
 	// The description of the game server config.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+	// -
+	// (Required)
+	// The fleet config contains list of fleet specs. In the Single Cloud, there
+	// will be only one.  Structure is documented below.
 	FleetConfigs GameServerConfigFleetConfigArrayOutput `pulumi:"fleetConfigs"`
-	// The labels associated with this game server config. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server config. Each label is a
+	// key-value pair.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// -
+	// (Optional)
 	// Location of the Deployment.
 	Location pulumi.StringPtrOutput `pulumi:"location"`
-	// The resource name of the game server config, in the form:
-	// 'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
+	// -
+	// (Required)
+	// The name of the FleetConfig.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
-	// Optional. This contains the autoscaling settings.
+	// -
+	// (Optional)
+	// Optional. This contains the autoscaling settings.  Structure is documented below.
 	ScalingConfigs GameServerConfigScalingConfigArrayOutput `pulumi:"scalingConfigs"`
 }
 
@@ -79,48 +96,82 @@ func GetGameServerConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GameServerConfig resources.
 type gameServerConfigState struct {
+	// -
+	// (Required)
 	// A unique id for the deployment config.
 	ConfigId *string `pulumi:"configId"`
+	// -
+	// (Required)
 	// A unique id for the deployment.
 	DeploymentId *string `pulumi:"deploymentId"`
+	// -
+	// (Optional)
 	// The description of the game server config.
 	Description *string `pulumi:"description"`
-	// The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+	// -
+	// (Required)
+	// The fleet config contains list of fleet specs. In the Single Cloud, there
+	// will be only one.  Structure is documented below.
 	FleetConfigs []GameServerConfigFleetConfig `pulumi:"fleetConfigs"`
-	// The labels associated with this game server config. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server config. Each label is a
+	// key-value pair.
 	Labels map[string]string `pulumi:"labels"`
+	// -
+	// (Optional)
 	// Location of the Deployment.
 	Location *string `pulumi:"location"`
-	// The resource name of the game server config, in the form:
-	// 'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
+	// -
+	// (Required)
+	// The name of the FleetConfig.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// Optional. This contains the autoscaling settings.
+	// -
+	// (Optional)
+	// Optional. This contains the autoscaling settings.  Structure is documented below.
 	ScalingConfigs []GameServerConfigScalingConfig `pulumi:"scalingConfigs"`
 }
 
 type GameServerConfigState struct {
+	// -
+	// (Required)
 	// A unique id for the deployment config.
 	ConfigId pulumi.StringPtrInput
+	// -
+	// (Required)
 	// A unique id for the deployment.
 	DeploymentId pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// The description of the game server config.
 	Description pulumi.StringPtrInput
-	// The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+	// -
+	// (Required)
+	// The fleet config contains list of fleet specs. In the Single Cloud, there
+	// will be only one.  Structure is documented below.
 	FleetConfigs GameServerConfigFleetConfigArrayInput
-	// The labels associated with this game server config. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server config. Each label is a
+	// key-value pair.
 	Labels pulumi.StringMapInput
+	// -
+	// (Optional)
 	// Location of the Deployment.
 	Location pulumi.StringPtrInput
-	// The resource name of the game server config, in the form:
-	// 'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
+	// -
+	// (Required)
+	// The name of the FleetConfig.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// Optional. This contains the autoscaling settings.
+	// -
+	// (Optional)
+	// Optional. This contains the autoscaling settings.  Structure is documented below.
 	ScalingConfigs GameServerConfigScalingConfigArrayInput
 }
 
@@ -129,43 +180,75 @@ func (GameServerConfigState) ElementType() reflect.Type {
 }
 
 type gameServerConfigArgs struct {
+	// -
+	// (Required)
 	// A unique id for the deployment config.
 	ConfigId string `pulumi:"configId"`
+	// -
+	// (Required)
 	// A unique id for the deployment.
 	DeploymentId string `pulumi:"deploymentId"`
+	// -
+	// (Optional)
 	// The description of the game server config.
 	Description *string `pulumi:"description"`
-	// The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+	// -
+	// (Required)
+	// The fleet config contains list of fleet specs. In the Single Cloud, there
+	// will be only one.  Structure is documented below.
 	FleetConfigs []GameServerConfigFleetConfig `pulumi:"fleetConfigs"`
-	// The labels associated with this game server config. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server config. Each label is a
+	// key-value pair.
 	Labels map[string]string `pulumi:"labels"`
+	// -
+	// (Optional)
 	// Location of the Deployment.
 	Location *string `pulumi:"location"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// Optional. This contains the autoscaling settings.
+	// -
+	// (Optional)
+	// Optional. This contains the autoscaling settings.  Structure is documented below.
 	ScalingConfigs []GameServerConfigScalingConfig `pulumi:"scalingConfigs"`
 }
 
 // The set of arguments for constructing a GameServerConfig resource.
 type GameServerConfigArgs struct {
+	// -
+	// (Required)
 	// A unique id for the deployment config.
 	ConfigId pulumi.StringInput
+	// -
+	// (Required)
 	// A unique id for the deployment.
 	DeploymentId pulumi.StringInput
+	// -
+	// (Optional)
 	// The description of the game server config.
 	Description pulumi.StringPtrInput
-	// The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+	// -
+	// (Required)
+	// The fleet config contains list of fleet specs. In the Single Cloud, there
+	// will be only one.  Structure is documented below.
 	FleetConfigs GameServerConfigFleetConfigArrayInput
-	// The labels associated with this game server config. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server config. Each label is a
+	// key-value pair.
 	Labels pulumi.StringMapInput
+	// -
+	// (Optional)
 	// Location of the Deployment.
 	Location pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// Optional. This contains the autoscaling settings.
+	// -
+	// (Optional)
+	// Optional. This contains the autoscaling settings.  Structure is documented below.
 	ScalingConfigs GameServerConfigScalingConfigArrayInput
 }
 

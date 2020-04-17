@@ -12,9 +12,19 @@ namespace Pulumi.Gcp.CloudBuild.Inputs
 
     public sealed class TriggerGithubPullRequestArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Regex of branches to match.
+        /// </summary>
         [Input("branch", required: true)]
         public Input<string> Branch { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to block builds on a "/gcbrun" comment from a repository owner or collaborator.
+        /// </summary>
         [Input("commentControl")]
         public Input<string>? CommentControl { get; set; }
 

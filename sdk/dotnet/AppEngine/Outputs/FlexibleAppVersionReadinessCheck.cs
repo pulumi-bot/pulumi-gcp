@@ -13,12 +13,48 @@ namespace Pulumi.Gcp.AppEngine.Outputs
     [OutputType]
     public sealed class FlexibleAppVersionReadinessCheck
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A maximum time limit on application initialization, measured from moment the application successfully
+        /// replies to a healthcheck until it is ready to serve traffic. Default: "300s"
+        /// </summary>
         public readonly string? AppStartTimeout;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Interval between health checks.  Default: "5s".
+        /// </summary>
         public readonly string? CheckInterval;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of consecutive failed checks required before removing traffic. Default: 2.
+        /// </summary>
         public readonly double? FailureThreshold;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Host header to send when performing a HTTP Readiness check. Example: "myapp.appspot.com"
+        /// </summary>
         public readonly string? Host;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The request path.
+        /// </summary>
         public readonly string Path;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of consecutive successful checks required before receiving traffic. Default: 2.
+        /// </summary>
         public readonly double? SuccessThreshold;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Time before the check is considered failed. Default: "4s"
+        /// </summary>
         public readonly string? Timeout;
 
         [OutputConstructor]

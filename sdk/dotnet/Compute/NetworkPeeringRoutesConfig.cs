@@ -25,24 +25,32 @@ namespace Pulumi.Gcp.Compute
     public partial class NetworkPeeringRoutesConfig : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Whether to export the custom routes to the peer network.
         /// </summary>
         [Output("exportCustomRoutes")]
         public Output<bool> ExportCustomRoutes { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Whether to import the custom routes to the peer network.
         /// </summary>
         [Output("importCustomRoutes")]
         public Output<bool> ImportCustomRoutes { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the primary network for the peering.
         /// </summary>
         [Output("network")]
         public Output<string> Network { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name of the peering.
         /// </summary>
         [Output("peering")]
@@ -102,24 +110,32 @@ namespace Pulumi.Gcp.Compute
     public sealed class NetworkPeeringRoutesConfigArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Whether to export the custom routes to the peer network.
         /// </summary>
         [Input("exportCustomRoutes", required: true)]
         public Input<bool> ExportCustomRoutes { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Whether to import the custom routes to the peer network.
         /// </summary>
         [Input("importCustomRoutes", required: true)]
         public Input<bool> ImportCustomRoutes { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the primary network for the peering.
         /// </summary>
         [Input("network", required: true)]
         public Input<string> Network { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name of the peering.
         /// </summary>
         [Input("peering", required: true)]
@@ -140,24 +156,32 @@ namespace Pulumi.Gcp.Compute
     public sealed class NetworkPeeringRoutesConfigState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Whether to export the custom routes to the peer network.
         /// </summary>
         [Input("exportCustomRoutes")]
         public Input<bool>? ExportCustomRoutes { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Whether to import the custom routes to the peer network.
         /// </summary>
         [Input("importCustomRoutes")]
         public Input<bool>? ImportCustomRoutes { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the primary network for the peering.
         /// </summary>
         [Input("network")]
         public Input<string>? Network { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name of the peering.
         /// </summary>
         [Input("peering")]
