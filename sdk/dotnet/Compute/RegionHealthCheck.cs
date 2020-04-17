@@ -32,7 +32,10 @@ namespace Pulumi.Gcp.Compute
     public partial class RegionHealthCheck : Pulumi.CustomResource
     {
         /// <summary>
-        /// How often (in seconds) to send a health check. The default value is 5 seconds.
+        /// -
+        /// (Optional)
+        /// How often (in seconds) to send a health check. The default value is 5
+        /// seconds.
         /// </summary>
         [Output("checkIntervalSec")]
         public Output<int?> CheckIntervalSec { get; private set; } = null!;
@@ -44,40 +47,57 @@ namespace Pulumi.Gcp.Compute
         public Output<string> CreationTimestamp { get; private set; } = null!;
 
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+        /// -
+        /// (Optional)
+        /// A so-far unhealthy instance will be marked healthy after this many
+        /// consecutive successes. The default value is 2.
         /// </summary>
         [Output("healthyThreshold")]
         public Output<int?> HealthyThreshold { get; private set; } = null!;
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Output("http2HealthCheck")]
         public Output<Outputs.RegionHealthCheckHttp2HealthCheck?> Http2HealthCheck { get; private set; } = null!;
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Output("httpHealthCheck")]
         public Output<Outputs.RegionHealthCheckHttpHealthCheck?> HttpHealthCheck { get; private set; } = null!;
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Output("httpsHealthCheck")]
         public Output<Outputs.RegionHealthCheckHttpsHealthCheck?> HttpsHealthCheck { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-        /// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-        /// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-        /// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035.  Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z?` which means
+        /// the first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the
+        /// last character, which cannot be a dash.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -90,7 +110,10 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// The Region in which the created health check should reside. If it is not provided, the provider region is used.
+        /// -
+        /// (Optional)
+        /// The Region in which the created health check should reside.
+        /// If it is not provided, the provider region is used.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -102,20 +125,27 @@ namespace Pulumi.Gcp.Compute
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Output("sslHealthCheck")]
         public Output<Outputs.RegionHealthCheckSslHealthCheck?> SslHealthCheck { get; private set; } = null!;
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Output("tcpHealthCheck")]
         public Output<Outputs.RegionHealthCheckTcpHealthCheck?> TcpHealthCheck { get; private set; } = null!;
 
         /// <summary>
-        /// How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to
-        /// have greater value than checkIntervalSec.
+        /// -
+        /// (Optional)
+        /// How long (in seconds) to wait before claiming failure.
+        /// The default value is 5 seconds.  It is invalid for timeoutSec to have
+        /// greater value than checkIntervalSec.
         /// </summary>
         [Output("timeoutSec")]
         public Output<int?> TimeoutSec { get; private set; } = null!;
@@ -127,7 +157,10 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
+        /// -
+        /// (Optional)
+        /// A so-far healthy instance will be marked unhealthy after this many
+        /// consecutive failures. The default value is 2.
         /// </summary>
         [Output("unhealthyThreshold")]
         public Output<int?> UnhealthyThreshold { get; private set; } = null!;
@@ -179,46 +212,66 @@ namespace Pulumi.Gcp.Compute
     public sealed class RegionHealthCheckArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// How often (in seconds) to send a health check. The default value is 5 seconds.
+        /// -
+        /// (Optional)
+        /// How often (in seconds) to send a health check. The default value is 5
+        /// seconds.
         /// </summary>
         [Input("checkIntervalSec")]
         public Input<int>? CheckIntervalSec { get; set; }
 
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+        /// -
+        /// (Optional)
+        /// A so-far unhealthy instance will be marked healthy after this many
+        /// consecutive successes. The default value is 2.
         /// </summary>
         [Input("healthyThreshold")]
         public Input<int>? HealthyThreshold { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("http2HealthCheck")]
         public Input<Inputs.RegionHealthCheckHttp2HealthCheckArgs>? Http2HealthCheck { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("httpHealthCheck")]
         public Input<Inputs.RegionHealthCheckHttpHealthCheckArgs>? HttpHealthCheck { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("httpsHealthCheck")]
         public Input<Inputs.RegionHealthCheckHttpsHealthCheckArgs>? HttpsHealthCheck { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-        /// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-        /// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-        /// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035.  Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z?` which means
+        /// the first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the
+        /// last character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -231,32 +284,45 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The Region in which the created health check should reside. If it is not provided, the provider region is used.
+        /// -
+        /// (Optional)
+        /// The Region in which the created health check should reside.
+        /// If it is not provided, the provider region is used.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("sslHealthCheck")]
         public Input<Inputs.RegionHealthCheckSslHealthCheckArgs>? SslHealthCheck { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("tcpHealthCheck")]
         public Input<Inputs.RegionHealthCheckTcpHealthCheckArgs>? TcpHealthCheck { get; set; }
 
         /// <summary>
-        /// How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to
-        /// have greater value than checkIntervalSec.
+        /// -
+        /// (Optional)
+        /// How long (in seconds) to wait before claiming failure.
+        /// The default value is 5 seconds.  It is invalid for timeoutSec to have
+        /// greater value than checkIntervalSec.
         /// </summary>
         [Input("timeoutSec")]
         public Input<int>? TimeoutSec { get; set; }
 
         /// <summary>
-        /// A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
+        /// -
+        /// (Optional)
+        /// A so-far healthy instance will be marked unhealthy after this many
+        /// consecutive failures. The default value is 2.
         /// </summary>
         [Input("unhealthyThreshold")]
         public Input<int>? UnhealthyThreshold { get; set; }
@@ -269,7 +335,10 @@ namespace Pulumi.Gcp.Compute
     public sealed class RegionHealthCheckState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// How often (in seconds) to send a health check. The default value is 5 seconds.
+        /// -
+        /// (Optional)
+        /// How often (in seconds) to send a health check. The default value is 5
+        /// seconds.
         /// </summary>
         [Input("checkIntervalSec")]
         public Input<int>? CheckIntervalSec { get; set; }
@@ -281,40 +350,57 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? CreationTimestamp { get; set; }
 
         /// <summary>
-        /// An optional description of this resource. Provide this property when you create the resource.
+        /// -
+        /// (Optional)
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+        /// -
+        /// (Optional)
+        /// A so-far unhealthy instance will be marked healthy after this many
+        /// consecutive successes. The default value is 2.
         /// </summary>
         [Input("healthyThreshold")]
         public Input<int>? HealthyThreshold { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("http2HealthCheck")]
         public Input<Inputs.RegionHealthCheckHttp2HealthCheckGetArgs>? Http2HealthCheck { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("httpHealthCheck")]
         public Input<Inputs.RegionHealthCheckHttpHealthCheckGetArgs>? HttpHealthCheck { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("httpsHealthCheck")]
         public Input<Inputs.RegionHealthCheckHttpsHealthCheckGetArgs>? HttpsHealthCheck { get; set; }
 
         /// <summary>
-        /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-        /// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-        /// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-        /// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        /// -
+        /// (Required)
+        /// Name of the resource. Provided by the client when the resource is
+        /// created. The name must be 1-63 characters long, and comply with
+        /// RFC1035.  Specifically, the name must be 1-63 characters long and
+        /// match the regular expression `a-z?` which means
+        /// the first character must be a lowercase letter, and all following
+        /// characters must be a dash, lowercase letter, or digit, except the
+        /// last character, which cannot be a dash.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -327,7 +413,10 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The Region in which the created health check should reside. If it is not provided, the provider region is used.
+        /// -
+        /// (Optional)
+        /// The Region in which the created health check should reside.
+        /// If it is not provided, the provider region is used.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -339,20 +428,27 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? SelfLink { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("sslHealthCheck")]
         public Input<Inputs.RegionHealthCheckSslHealthCheckGetArgs>? SslHealthCheck { get; set; }
 
         /// <summary>
-        /// A nested object resource
+        /// -
+        /// (Optional)
+        /// A nested object resource  Structure is documented below.
         /// </summary>
         [Input("tcpHealthCheck")]
         public Input<Inputs.RegionHealthCheckTcpHealthCheckGetArgs>? TcpHealthCheck { get; set; }
 
         /// <summary>
-        /// How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to
-        /// have greater value than checkIntervalSec.
+        /// -
+        /// (Optional)
+        /// How long (in seconds) to wait before claiming failure.
+        /// The default value is 5 seconds.  It is invalid for timeoutSec to have
+        /// greater value than checkIntervalSec.
         /// </summary>
         [Input("timeoutSec")]
         public Input<int>? TimeoutSec { get; set; }
@@ -364,7 +460,10 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
+        /// -
+        /// (Optional)
+        /// A so-far healthy instance will be marked unhealthy after this many
+        /// consecutive failures. The default value is 2.
         /// </summary>
         [Input("unhealthyThreshold")]
         public Input<int>? UnhealthyThreshold { get; set; }

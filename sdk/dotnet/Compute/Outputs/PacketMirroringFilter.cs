@@ -13,7 +13,18 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class PacketMirroringFilter
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// IP CIDR ranges that apply as a filter on the source (ingress) or
+        /// destination (egress) IP in the IP header. Only IPv4 is supported.
+        /// </summary>
         public readonly ImmutableArray<string> CidrRanges;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Protocols that apply as a filter on mirrored traffic.
+        /// </summary>
         public readonly ImmutableArray<string> IpProtocols;
 
         [OutputConstructor]

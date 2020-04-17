@@ -21,24 +21,33 @@ namespace Pulumi.Gcp.GameServices
     public partial class GameServerDeployment : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment.
         /// </summary>
         [Output("deploymentId")]
         public Output<string> DeploymentId { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human readable description of the game server deployment.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The labels associated with this game server deployment. Each label is a key-value pair.
+        /// -
+        /// (Optional)
+        /// The labels associated with this game server deployment. Each label is a
+        /// key-value pair.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Deployment.
         /// </summary>
         [Output("location")]
@@ -106,12 +115,16 @@ namespace Pulumi.Gcp.GameServices
     public sealed class GameServerDeploymentArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment.
         /// </summary>
         [Input("deploymentId", required: true)]
         public Input<string> DeploymentId { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human readable description of the game server deployment.
         /// </summary>
         [Input("description")]
@@ -121,7 +134,10 @@ namespace Pulumi.Gcp.GameServices
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// The labels associated with this game server deployment. Each label is a key-value pair.
+        /// -
+        /// (Optional)
+        /// The labels associated with this game server deployment. Each label is a
+        /// key-value pair.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -130,6 +146,8 @@ namespace Pulumi.Gcp.GameServices
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Deployment.
         /// </summary>
         [Input("location")]
@@ -150,12 +168,16 @@ namespace Pulumi.Gcp.GameServices
     public sealed class GameServerDeploymentState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment.
         /// </summary>
         [Input("deploymentId")]
         public Input<string>? DeploymentId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human readable description of the game server deployment.
         /// </summary>
         [Input("description")]
@@ -165,7 +187,10 @@ namespace Pulumi.Gcp.GameServices
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// The labels associated with this game server deployment. Each label is a key-value pair.
+        /// -
+        /// (Optional)
+        /// The labels associated with this game server deployment. Each label is a
+        /// key-value pair.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -174,6 +199,8 @@ namespace Pulumi.Gcp.GameServices
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Deployment.
         /// </summary>
         [Input("location")]

@@ -23,31 +23,44 @@ import (
 type RegionSslCertificate struct {
 	pulumi.CustomResourceState
 
-	// The certificate in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at
-	// least one intermediate cert.
+	// -
+	// (Required)
+	// The certificate in PEM format.
+	// The certificate chain must be no greater than 5 certs long.
+	// The chain must include at least one intermediate cert.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// The unique identifier for the resource.
 	CertificateId pulumi.IntOutput `pulumi:"certificateId"`
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringOutput `pulumi:"creationTimestamp"`
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. These are in the same
-	// namespace as the managed SSL certificates.
+	// -
+	// (Optional)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035. Specifically, the name must be 1-63 characters long and match
+	// the regular expression `a-z?` which means the
+	// first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Creates a unique name beginning with the
 	// specified prefix. Conflicts with `name`.
 	NamePrefix pulumi.StringOutput `pulumi:"namePrefix"`
+	// -
+	// (Required)
 	// The write-only private key in PEM format.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
-	// The Region in which the created regional ssl certificate should reside. If it is not provided, the provider region is
-	// used.
+	// -
+	// (Optional)
+	// The Region in which the created regional ssl certificate should reside.
+	// If it is not provided, the provider region is used.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The URI of the created resource.
 	SelfLink pulumi.StringOutput `pulumi:"selfLink"`
@@ -87,62 +100,88 @@ func GetRegionSslCertificate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RegionSslCertificate resources.
 type regionSslCertificateState struct {
-	// The certificate in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at
-	// least one intermediate cert.
+	// -
+	// (Required)
+	// The certificate in PEM format.
+	// The certificate chain must be no greater than 5 certs long.
+	// The chain must include at least one intermediate cert.
 	Certificate *string `pulumi:"certificate"`
 	// The unique identifier for the resource.
 	CertificateId *int `pulumi:"certificateId"`
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp *string `pulumi:"creationTimestamp"`
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description *string `pulumi:"description"`
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. These are in the same
-	// namespace as the managed SSL certificates.
+	// -
+	// (Optional)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035. Specifically, the name must be 1-63 characters long and match
+	// the regular expression `a-z?` which means the
+	// first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name *string `pulumi:"name"`
 	// Creates a unique name beginning with the
 	// specified prefix. Conflicts with `name`.
 	NamePrefix *string `pulumi:"namePrefix"`
+	// -
+	// (Required)
 	// The write-only private key in PEM format.
 	PrivateKey *string `pulumi:"privateKey"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// The Region in which the created regional ssl certificate should reside. If it is not provided, the provider region is
-	// used.
+	// -
+	// (Optional)
+	// The Region in which the created regional ssl certificate should reside.
+	// If it is not provided, the provider region is used.
 	Region *string `pulumi:"region"`
 	// The URI of the created resource.
 	SelfLink *string `pulumi:"selfLink"`
 }
 
 type RegionSslCertificateState struct {
-	// The certificate in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at
-	// least one intermediate cert.
+	// -
+	// (Required)
+	// The certificate in PEM format.
+	// The certificate chain must be no greater than 5 certs long.
+	// The chain must include at least one intermediate cert.
 	Certificate pulumi.StringPtrInput
 	// The unique identifier for the resource.
 	CertificateId pulumi.IntPtrInput
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrInput
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. These are in the same
-	// namespace as the managed SSL certificates.
+	// -
+	// (Optional)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035. Specifically, the name must be 1-63 characters long and match
+	// the regular expression `a-z?` which means the
+	// first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name pulumi.StringPtrInput
 	// Creates a unique name beginning with the
 	// specified prefix. Conflicts with `name`.
 	NamePrefix pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The write-only private key in PEM format.
 	PrivateKey pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// The Region in which the created regional ssl certificate should reside. If it is not provided, the provider region is
-	// used.
+	// -
+	// (Optional)
+	// The Region in which the created regional ssl certificate should reside.
+	// If it is not provided, the provider region is used.
 	Region pulumi.StringPtrInput
 	// The URI of the created resource.
 	SelfLink pulumi.StringPtrInput
@@ -153,53 +192,79 @@ func (RegionSslCertificateState) ElementType() reflect.Type {
 }
 
 type regionSslCertificateArgs struct {
-	// The certificate in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at
-	// least one intermediate cert.
+	// -
+	// (Required)
+	// The certificate in PEM format.
+	// The certificate chain must be no greater than 5 certs long.
+	// The chain must include at least one intermediate cert.
 	Certificate string `pulumi:"certificate"`
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description *string `pulumi:"description"`
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. These are in the same
-	// namespace as the managed SSL certificates.
+	// -
+	// (Optional)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035. Specifically, the name must be 1-63 characters long and match
+	// the regular expression `a-z?` which means the
+	// first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name *string `pulumi:"name"`
 	// Creates a unique name beginning with the
 	// specified prefix. Conflicts with `name`.
 	NamePrefix *string `pulumi:"namePrefix"`
+	// -
+	// (Required)
 	// The write-only private key in PEM format.
 	PrivateKey string `pulumi:"privateKey"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// The Region in which the created regional ssl certificate should reside. If it is not provided, the provider region is
-	// used.
+	// -
+	// (Optional)
+	// The Region in which the created regional ssl certificate should reside.
+	// If it is not provided, the provider region is used.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a RegionSslCertificate resource.
 type RegionSslCertificateArgs struct {
-	// The certificate in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at
-	// least one intermediate cert.
+	// -
+	// (Required)
+	// The certificate in PEM format.
+	// The certificate chain must be no greater than 5 certs long.
+	// The chain must include at least one intermediate cert.
 	Certificate pulumi.StringInput
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrInput
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. These are in the same
-	// namespace as the managed SSL certificates.
+	// -
+	// (Optional)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035. Specifically, the name must be 1-63 characters long and match
+	// the regular expression `a-z?` which means the
+	// first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name pulumi.StringPtrInput
 	// Creates a unique name beginning with the
 	// specified prefix. Conflicts with `name`.
 	NamePrefix pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The write-only private key in PEM format.
 	PrivateKey pulumi.StringInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// The Region in which the created regional ssl certificate should reside. If it is not provided, the provider region is
-	// used.
+	// -
+	// (Optional)
+	// The Region in which the created regional ssl certificate should reside.
+	// If it is not provided, the provider region is used.
 	Region pulumi.StringPtrInput
 }
 

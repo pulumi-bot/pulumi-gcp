@@ -12,12 +12,27 @@ namespace Pulumi.Gcp.CloudRun.Inputs
 
     public sealed class ServiceTemplateSpecContainerEnvFromArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The ConfigMap to select from.  Structure is documented below.
+        /// </summary>
         [Input("configMapRef")]
         public Input<Inputs.ServiceTemplateSpecContainerEnvFromConfigMapRefArgs>? ConfigMapRef { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An optional identifier to prepend to each key in the ConfigMap.
+        /// </summary>
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret to select from.  Structure is documented below.
+        /// </summary>
         [Input("secretRef")]
         public Input<Inputs.ServiceTemplateSpecContainerEnvFromSecretRefArgs>? SecretRef { get; set; }
 

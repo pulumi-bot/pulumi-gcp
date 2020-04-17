@@ -13,7 +13,17 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class URLMapPathMatcherRouteRuleMatchRuleHeaderMatchRangeMatch
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The end of the range (exclusive).
+        /// </summary>
         public readonly int RangeEnd;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The start of the range (inclusive).
+        /// </summary>
         public readonly int RangeStart;
 
         [OutputConstructor]

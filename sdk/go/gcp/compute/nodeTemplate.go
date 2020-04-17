@@ -24,22 +24,38 @@ type NodeTemplate struct {
 
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringOutput `pulumi:"creationTimestamp"`
+	// -
+	// (Optional)
 	// An optional textual description of the resource.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// -
+	// (Optional)
 	// Name of the resource.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Labels to use for node affinity, which will be used in instance scheduling.
+	// -
+	// (Optional)
+	// Labels to use for node affinity, which will be used in
+	// instance scheduling.
 	NodeAffinityLabels pulumi.StringMapOutput `pulumi:"nodeAffinityLabels"`
-	// Node type to use for nodes group that are created from this template. Only one of nodeTypeFlexibility and nodeType can
-	// be specified.
+	// -
+	// (Optional)
+	// Node type to use for nodes group that are created from this template.
+	// Only one of nodeTypeFlexibility and nodeType can be specified.
 	NodeType pulumi.StringPtrOutput `pulumi:"nodeType"`
-	// Flexible properties for the desired node type. Node groups that use this node template will create nodes of a type that
-	// matches these properties. Only one of nodeTypeFlexibility and nodeType can be specified.
+	// -
+	// (Optional)
+	// Flexible properties for the desired node type. Node groups that
+	// use this node template will create nodes of a type that matches
+	// these properties. Only one of nodeTypeFlexibility and nodeType can
+	// be specified.  Structure is documented below.
 	NodeTypeFlexibility NodeTemplateNodeTypeFlexibilityPtrOutput `pulumi:"nodeTypeFlexibility"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
-	// Region where nodes using the node template will be created. If it is not provided, the provider region is used.
+	// -
+	// (Optional)
+	// Region where nodes using the node template will be created.
+	// If it is not provided, the provider region is used.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The URI of the created resource.
 	SelfLink pulumi.StringOutput `pulumi:"selfLink"`
@@ -78,22 +94,38 @@ func GetNodeTemplate(ctx *pulumi.Context,
 type nodeTemplateState struct {
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp *string `pulumi:"creationTimestamp"`
+	// -
+	// (Optional)
 	// An optional textual description of the resource.
 	Description *string `pulumi:"description"`
+	// -
+	// (Optional)
 	// Name of the resource.
 	Name *string `pulumi:"name"`
-	// Labels to use for node affinity, which will be used in instance scheduling.
+	// -
+	// (Optional)
+	// Labels to use for node affinity, which will be used in
+	// instance scheduling.
 	NodeAffinityLabels map[string]string `pulumi:"nodeAffinityLabels"`
-	// Node type to use for nodes group that are created from this template. Only one of nodeTypeFlexibility and nodeType can
-	// be specified.
+	// -
+	// (Optional)
+	// Node type to use for nodes group that are created from this template.
+	// Only one of nodeTypeFlexibility and nodeType can be specified.
 	NodeType *string `pulumi:"nodeType"`
-	// Flexible properties for the desired node type. Node groups that use this node template will create nodes of a type that
-	// matches these properties. Only one of nodeTypeFlexibility and nodeType can be specified.
+	// -
+	// (Optional)
+	// Flexible properties for the desired node type. Node groups that
+	// use this node template will create nodes of a type that matches
+	// these properties. Only one of nodeTypeFlexibility and nodeType can
+	// be specified.  Structure is documented below.
 	NodeTypeFlexibility *NodeTemplateNodeTypeFlexibility `pulumi:"nodeTypeFlexibility"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// Region where nodes using the node template will be created. If it is not provided, the provider region is used.
+	// -
+	// (Optional)
+	// Region where nodes using the node template will be created.
+	// If it is not provided, the provider region is used.
 	Region *string `pulumi:"region"`
 	// The URI of the created resource.
 	SelfLink *string `pulumi:"selfLink"`
@@ -105,22 +137,38 @@ type nodeTemplateState struct {
 type NodeTemplateState struct {
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// An optional textual description of the resource.
 	Description pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// Name of the resource.
 	Name pulumi.StringPtrInput
-	// Labels to use for node affinity, which will be used in instance scheduling.
+	// -
+	// (Optional)
+	// Labels to use for node affinity, which will be used in
+	// instance scheduling.
 	NodeAffinityLabels pulumi.StringMapInput
-	// Node type to use for nodes group that are created from this template. Only one of nodeTypeFlexibility and nodeType can
-	// be specified.
+	// -
+	// (Optional)
+	// Node type to use for nodes group that are created from this template.
+	// Only one of nodeTypeFlexibility and nodeType can be specified.
 	NodeType pulumi.StringPtrInput
-	// Flexible properties for the desired node type. Node groups that use this node template will create nodes of a type that
-	// matches these properties. Only one of nodeTypeFlexibility and nodeType can be specified.
+	// -
+	// (Optional)
+	// Flexible properties for the desired node type. Node groups that
+	// use this node template will create nodes of a type that matches
+	// these properties. Only one of nodeTypeFlexibility and nodeType can
+	// be specified.  Structure is documented below.
 	NodeTypeFlexibility NodeTemplateNodeTypeFlexibilityPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// Region where nodes using the node template will be created. If it is not provided, the provider region is used.
+	// -
+	// (Optional)
+	// Region where nodes using the node template will be created.
+	// If it is not provided, the provider region is used.
 	Region pulumi.StringPtrInput
 	// The URI of the created resource.
 	SelfLink pulumi.StringPtrInput
@@ -134,22 +182,38 @@ func (NodeTemplateState) ElementType() reflect.Type {
 }
 
 type nodeTemplateArgs struct {
+	// -
+	// (Optional)
 	// An optional textual description of the resource.
 	Description *string `pulumi:"description"`
+	// -
+	// (Optional)
 	// Name of the resource.
 	Name *string `pulumi:"name"`
-	// Labels to use for node affinity, which will be used in instance scheduling.
+	// -
+	// (Optional)
+	// Labels to use for node affinity, which will be used in
+	// instance scheduling.
 	NodeAffinityLabels map[string]string `pulumi:"nodeAffinityLabels"`
-	// Node type to use for nodes group that are created from this template. Only one of nodeTypeFlexibility and nodeType can
-	// be specified.
+	// -
+	// (Optional)
+	// Node type to use for nodes group that are created from this template.
+	// Only one of nodeTypeFlexibility and nodeType can be specified.
 	NodeType *string `pulumi:"nodeType"`
-	// Flexible properties for the desired node type. Node groups that use this node template will create nodes of a type that
-	// matches these properties. Only one of nodeTypeFlexibility and nodeType can be specified.
+	// -
+	// (Optional)
+	// Flexible properties for the desired node type. Node groups that
+	// use this node template will create nodes of a type that matches
+	// these properties. Only one of nodeTypeFlexibility and nodeType can
+	// be specified.  Structure is documented below.
 	NodeTypeFlexibility *NodeTemplateNodeTypeFlexibility `pulumi:"nodeTypeFlexibility"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// Region where nodes using the node template will be created. If it is not provided, the provider region is used.
+	// -
+	// (Optional)
+	// Region where nodes using the node template will be created.
+	// If it is not provided, the provider region is used.
 	Region *string `pulumi:"region"`
 	// The server binding policy for nodes using this template. Determines where the nodes should restart following a
 	// maintenance event.
@@ -158,22 +222,38 @@ type nodeTemplateArgs struct {
 
 // The set of arguments for constructing a NodeTemplate resource.
 type NodeTemplateArgs struct {
+	// -
+	// (Optional)
 	// An optional textual description of the resource.
 	Description pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// Name of the resource.
 	Name pulumi.StringPtrInput
-	// Labels to use for node affinity, which will be used in instance scheduling.
+	// -
+	// (Optional)
+	// Labels to use for node affinity, which will be used in
+	// instance scheduling.
 	NodeAffinityLabels pulumi.StringMapInput
-	// Node type to use for nodes group that are created from this template. Only one of nodeTypeFlexibility and nodeType can
-	// be specified.
+	// -
+	// (Optional)
+	// Node type to use for nodes group that are created from this template.
+	// Only one of nodeTypeFlexibility and nodeType can be specified.
 	NodeType pulumi.StringPtrInput
-	// Flexible properties for the desired node type. Node groups that use this node template will create nodes of a type that
-	// matches these properties. Only one of nodeTypeFlexibility and nodeType can be specified.
+	// -
+	// (Optional)
+	// Flexible properties for the desired node type. Node groups that
+	// use this node template will create nodes of a type that matches
+	// these properties. Only one of nodeTypeFlexibility and nodeType can
+	// be specified.  Structure is documented below.
 	NodeTypeFlexibility NodeTemplateNodeTypeFlexibilityPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// Region where nodes using the node template will be created. If it is not provided, the provider region is used.
+	// -
+	// (Optional)
+	// Region where nodes using the node template will be created.
+	// If it is not provided, the provider region is used.
 	Region pulumi.StringPtrInput
 	// The server binding policy for nodes using this template. Determines where the nodes should restart following a
 	// maintenance event.

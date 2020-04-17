@@ -17,6 +17,11 @@ namespace Pulumi.Gcp.AppEngine.Outputs
         /// The identifier for this object. Format specified above.
         /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Version of the library to select, or "latest".
+        /// </summary>
         public readonly string? Version;
 
         [OutputConstructor]

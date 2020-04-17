@@ -12,9 +12,21 @@ namespace Pulumi.Gcp.Dataproc.Inputs
 
     public sealed class AutoscalingPolicyBasicAlgorithmArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Duration between scaling events. A scaling period starts after the
+        /// update operation from the previous event has completed.
+        /// Bounds: [2m, 1d]. Default: 2m.
+        /// </summary>
         [Input("cooldownPeriod")]
         public Input<string>? CooldownPeriod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// YARN autoscaling configuration.  Structure is documented below.
+        /// </summary>
         [Input("yarnConfig", required: true)]
         public Input<Inputs.AutoscalingPolicyBasicAlgorithmYarnConfigArgs> YarnConfig { get; set; } = null!;
 

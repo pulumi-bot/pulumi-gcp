@@ -25,23 +25,39 @@ type Instance struct {
 
 	// Creation timestamp in RFC3339 text format.
 	CreateTime pulumi.StringOutput `pulumi:"createTime"`
+	// -
+	// (Optional)
 	// A description of the instance.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other.
 	Etag pulumi.StringOutput `pulumi:"etag"`
-	// File system shares on the instance. For this version, only a single file share is supported.
+	// -
+	// (Required)
+	// File system shares on the instance. For this version, only a
+	// single file share is supported.  Structure is documented below.
 	FileShares InstanceFileSharesOutput `pulumi:"fileShares"`
+	// -
+	// (Optional)
 	// Resource labels to represent user-provided metadata.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
-	// The resource name of the instance.
+	// -
+	// (Required)
+	// The name of the fileshare (16 characters or less)
 	Name pulumi.StringOutput `pulumi:"name"`
-	// VPC networks to which the instance is connected. For this version, only a single network is supported.
+	// -
+	// (Required)
+	// VPC networks to which the instance is connected. For this version,
+	// only a single network is supported.  Structure is documented below.
 	Networks InstanceNetworkArrayOutput `pulumi:"networks"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
+	// -
+	// (Required)
 	// The service tier of the instance.
 	Tier pulumi.StringOutput `pulumi:"tier"`
+	// -
+	// (Required)
 	// The name of the Filestore zone of the instance.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
@@ -88,23 +104,39 @@ func GetInstance(ctx *pulumi.Context,
 type instanceState struct {
 	// Creation timestamp in RFC3339 text format.
 	CreateTime *string `pulumi:"createTime"`
+	// -
+	// (Optional)
 	// A description of the instance.
 	Description *string `pulumi:"description"`
 	// Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other.
 	Etag *string `pulumi:"etag"`
-	// File system shares on the instance. For this version, only a single file share is supported.
+	// -
+	// (Required)
+	// File system shares on the instance. For this version, only a
+	// single file share is supported.  Structure is documented below.
 	FileShares *InstanceFileShares `pulumi:"fileShares"`
+	// -
+	// (Optional)
 	// Resource labels to represent user-provided metadata.
 	Labels map[string]string `pulumi:"labels"`
-	// The resource name of the instance.
+	// -
+	// (Required)
+	// The name of the fileshare (16 characters or less)
 	Name *string `pulumi:"name"`
-	// VPC networks to which the instance is connected. For this version, only a single network is supported.
+	// -
+	// (Required)
+	// VPC networks to which the instance is connected. For this version,
+	// only a single network is supported.  Structure is documented below.
 	Networks []InstanceNetwork `pulumi:"networks"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Required)
 	// The service tier of the instance.
 	Tier *string `pulumi:"tier"`
+	// -
+	// (Required)
 	// The name of the Filestore zone of the instance.
 	Zone *string `pulumi:"zone"`
 }
@@ -112,23 +144,39 @@ type instanceState struct {
 type InstanceState struct {
 	// Creation timestamp in RFC3339 text format.
 	CreateTime pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// A description of the instance.
 	Description pulumi.StringPtrInput
 	// Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other.
 	Etag pulumi.StringPtrInput
-	// File system shares on the instance. For this version, only a single file share is supported.
+	// -
+	// (Required)
+	// File system shares on the instance. For this version, only a
+	// single file share is supported.  Structure is documented below.
 	FileShares InstanceFileSharesPtrInput
+	// -
+	// (Optional)
 	// Resource labels to represent user-provided metadata.
 	Labels pulumi.StringMapInput
-	// The resource name of the instance.
+	// -
+	// (Required)
+	// The name of the fileshare (16 characters or less)
 	Name pulumi.StringPtrInput
-	// VPC networks to which the instance is connected. For this version, only a single network is supported.
+	// -
+	// (Required)
+	// VPC networks to which the instance is connected. For this version,
+	// only a single network is supported.  Structure is documented below.
 	Networks InstanceNetworkArrayInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The service tier of the instance.
 	Tier pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The name of the Filestore zone of the instance.
 	Zone pulumi.StringPtrInput
 }
@@ -138,42 +186,74 @@ func (InstanceState) ElementType() reflect.Type {
 }
 
 type instanceArgs struct {
+	// -
+	// (Optional)
 	// A description of the instance.
 	Description *string `pulumi:"description"`
-	// File system shares on the instance. For this version, only a single file share is supported.
+	// -
+	// (Required)
+	// File system shares on the instance. For this version, only a
+	// single file share is supported.  Structure is documented below.
 	FileShares InstanceFileShares `pulumi:"fileShares"`
+	// -
+	// (Optional)
 	// Resource labels to represent user-provided metadata.
 	Labels map[string]string `pulumi:"labels"`
-	// The resource name of the instance.
+	// -
+	// (Required)
+	// The name of the fileshare (16 characters or less)
 	Name *string `pulumi:"name"`
-	// VPC networks to which the instance is connected. For this version, only a single network is supported.
+	// -
+	// (Required)
+	// VPC networks to which the instance is connected. For this version,
+	// only a single network is supported.  Structure is documented below.
 	Networks []InstanceNetwork `pulumi:"networks"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Required)
 	// The service tier of the instance.
 	Tier string `pulumi:"tier"`
+	// -
+	// (Required)
 	// The name of the Filestore zone of the instance.
 	Zone string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a Instance resource.
 type InstanceArgs struct {
+	// -
+	// (Optional)
 	// A description of the instance.
 	Description pulumi.StringPtrInput
-	// File system shares on the instance. For this version, only a single file share is supported.
+	// -
+	// (Required)
+	// File system shares on the instance. For this version, only a
+	// single file share is supported.  Structure is documented below.
 	FileShares InstanceFileSharesInput
+	// -
+	// (Optional)
 	// Resource labels to represent user-provided metadata.
 	Labels pulumi.StringMapInput
-	// The resource name of the instance.
+	// -
+	// (Required)
+	// The name of the fileshare (16 characters or less)
 	Name pulumi.StringPtrInput
-	// VPC networks to which the instance is connected. For this version, only a single network is supported.
+	// -
+	// (Required)
+	// VPC networks to which the instance is connected. For this version,
+	// only a single network is supported.  Structure is documented below.
 	Networks InstanceNetworkArrayInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The service tier of the instance.
 	Tier pulumi.StringInput
+	// -
+	// (Required)
 	// The name of the Filestore zone of the instance.
 	Zone pulumi.StringInput
 }

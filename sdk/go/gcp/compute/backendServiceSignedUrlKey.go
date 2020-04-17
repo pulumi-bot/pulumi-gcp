@@ -21,10 +21,17 @@ import (
 type BackendServiceSignedUrlKey struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// The backend service this signed URL key belongs.
 	BackendService pulumi.StringOutput `pulumi:"backendService"`
-	// 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
+	// -
+	// (Required)
+	// 128-bit key value used for signing the URL. The key value must be a
+	// valid RFC 4648 Section 5 base64url encoded string.
 	KeyValue pulumi.StringOutput `pulumi:"keyValue"`
+	// -
+	// (Required)
 	// Name of the signed URL key.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
@@ -66,10 +73,17 @@ func GetBackendServiceSignedUrlKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BackendServiceSignedUrlKey resources.
 type backendServiceSignedUrlKeyState struct {
+	// -
+	// (Required)
 	// The backend service this signed URL key belongs.
 	BackendService *string `pulumi:"backendService"`
-	// 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
+	// -
+	// (Required)
+	// 128-bit key value used for signing the URL. The key value must be a
+	// valid RFC 4648 Section 5 base64url encoded string.
 	KeyValue *string `pulumi:"keyValue"`
+	// -
+	// (Required)
 	// Name of the signed URL key.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
@@ -78,10 +92,17 @@ type backendServiceSignedUrlKeyState struct {
 }
 
 type BackendServiceSignedUrlKeyState struct {
+	// -
+	// (Required)
 	// The backend service this signed URL key belongs.
 	BackendService pulumi.StringPtrInput
-	// 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
+	// -
+	// (Required)
+	// 128-bit key value used for signing the URL. The key value must be a
+	// valid RFC 4648 Section 5 base64url encoded string.
 	KeyValue pulumi.StringPtrInput
+	// -
+	// (Required)
 	// Name of the signed URL key.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
@@ -94,10 +115,17 @@ func (BackendServiceSignedUrlKeyState) ElementType() reflect.Type {
 }
 
 type backendServiceSignedUrlKeyArgs struct {
+	// -
+	// (Required)
 	// The backend service this signed URL key belongs.
 	BackendService string `pulumi:"backendService"`
-	// 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
+	// -
+	// (Required)
+	// 128-bit key value used for signing the URL. The key value must be a
+	// valid RFC 4648 Section 5 base64url encoded string.
 	KeyValue string `pulumi:"keyValue"`
+	// -
+	// (Required)
 	// Name of the signed URL key.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
@@ -107,10 +135,17 @@ type backendServiceSignedUrlKeyArgs struct {
 
 // The set of arguments for constructing a BackendServiceSignedUrlKey resource.
 type BackendServiceSignedUrlKeyArgs struct {
+	// -
+	// (Required)
 	// The backend service this signed URL key belongs.
 	BackendService pulumi.StringInput
-	// 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
+	// -
+	// (Required)
+	// 128-bit key value used for signing the URL. The key value must be a
+	// valid RFC 4648 Section 5 base64url encoded string.
 	KeyValue pulumi.StringInput
+	// -
+	// (Required)
 	// Name of the signed URL key.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.

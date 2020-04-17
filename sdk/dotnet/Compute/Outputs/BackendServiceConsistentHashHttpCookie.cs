@@ -13,8 +13,23 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class BackendServiceConsistentHashHttpCookie
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the cookie.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Path to set for the cookie.
+        /// </summary>
         public readonly string? Path;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Lifetime of the cookie.  Structure is documented below.
+        /// </summary>
         public readonly Outputs.BackendServiceConsistentHashHttpCookieTtl? Ttl;
 
         [OutputConstructor]

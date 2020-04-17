@@ -13,7 +13,18 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class ResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of hours between snapshots.
+        /// </summary>
         public readonly int HoursInCycle;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Time within the window to start the operations.
+        /// It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
+        /// </summary>
         public readonly string StartTime;
 
         [OutputConstructor]

@@ -12,45 +12,68 @@ from .. import utilities, tables
 class Route(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
-    An optional description of this resource. Provide this property when you create the resource.
+    -
+    (Optional)
+    An optional description of this resource. Provide this property
+    when you create the resource.
     """
     dest_range: pulumi.Output[str]
     """
-    The destination range of outgoing packets that this route applies to. Only IPv4 is supported.
+    -
+    (Required)
+    The destination range of outgoing packets that this route applies to.
+    Only IPv4 is supported.
     """
     name: pulumi.Output[str]
     """
-    Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-    comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-    '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-    must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+    -
+    (Required)
+    Name of the resource. Provided by the client when the resource is
+    created. The name must be 1-63 characters long, and comply with
+    RFC1035.  Specifically, the name must be 1-63 characters long and
+    match the regular expression `a-z?` which means
+    the first character must be a lowercase letter, and all following
+    characters must be a dash, lowercase letter, or digit, except the
+    last character, which cannot be a dash.
     """
     network: pulumi.Output[str]
     """
+    -
+    (Required)
     The network that this route applies to.
     """
     next_hop_gateway: pulumi.Output[str]
     """
-    URL to a gateway that should handle matching packets. Currently, you can only specify the internet gateway, using a full
-    or partial valid URL: *
-    'https://www.googleapis.com/compute/v1/projects/project/global/gateways/default-internet-gateway' *
-    'projects/project/global/gateways/default-internet-gateway' * 'global/gateways/default-internet-gateway' * The string
-    'default-internet-gateway'.
+    -
+    (Optional)
+    URL to a gateway that should handle matching packets.
+    Currently, you can only specify the internet gateway, using a full or
+    partial valid URL:
+    * `https://www.googleapis.com/compute/v1/projects/project/global/gateways/default-internet-gateway`
+    * `projects/project/global/gateways/default-internet-gateway`
+    * `global/gateways/default-internet-gateway`
+    * The string `default-internet-gateway`.
     """
     next_hop_ilb: pulumi.Output[str]
     """
-    The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets. You can only
-    specify the forwarding rule as a partial or full URL. For example, the following are all valid URLs:
+    -
+    (Optional)
+    The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets.
+    You can only specify the forwarding rule as a partial or full URL. For example, the following are all valid URLs:
     https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
-    regions/region/forwardingRules/forwardingRule Note that this can only be used when the destinationRange is a public
-    (non-RFC 1918) IP CIDR range.
+    regions/region/forwardingRules/forwardingRule
+    Note that this can only be used when the destinationRange is a public (non-RFC 1918) IP CIDR range.
     """
     next_hop_instance: pulumi.Output[str]
     """
-    URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: *
-    'https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance' *
-    'projects/project/zones/zone/instances/instance' * 'zones/zone/instances/instance' * Just the instance name, with the
-    zone in 'next_hop_instance_zone'.
+    -
+    (Optional)
+    URL to an instance that should handle matching packets.
+    You can specify this as a full or partial URL. For example:
+    * `https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance`
+    * `projects/project/zones/zone/instances/instance`
+    * `zones/zone/instances/instance`
+    * Just the instance name, with the zone in `next_hop_instance_zone`.
     """
     next_hop_instance_zone: pulumi.Output[str]
     """
@@ -61,6 +84,8 @@ class Route(pulumi.CustomResource):
     """
     next_hop_ip: pulumi.Output[str]
     """
+    -
+    (Optional)
     Network IP address of an instance that should handle matching packets.
     """
     next_hop_network: pulumi.Output[str]
@@ -69,12 +94,18 @@ class Route(pulumi.CustomResource):
     """
     next_hop_vpn_tunnel: pulumi.Output[str]
     """
+    -
+    (Optional)
     URL to a VpnTunnel that should handle matching packets.
     """
     priority: pulumi.Output[float]
     """
-    The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal
-    prefix length. In the case of two routes with equal prefix length, the one with the lowest-numbered priority value wins.
+    -
+    (Optional)
+    The priority of this route. Priority is used to break ties in cases
+    where there is more than one matching route of equal prefix length.
+    In the case of two routes with equal prefix length, the one with the
+    lowest-numbered priority value wins.
     Default value is 1000. Valid range is 0 through 65535.
     """
     project: pulumi.Output[str]
@@ -88,6 +119,8 @@ class Route(pulumi.CustomResource):
     """
     tags: pulumi.Output[list]
     """
+    -
+    (Optional)
     A list of instance tags to which this route applies.
     """
     def __init__(__self__, resource_name, opts=None, description=None, dest_range=None, name=None, network=None, next_hop_gateway=None, next_hop_ilb=None, next_hop_instance=None, next_hop_instance_zone=None, next_hop_ip=None, next_hop_vpn_tunnel=None, priority=None, project=None, tags=None, __props__=None, __name__=None, __opts__=None):
@@ -124,39 +157,72 @@ class Route(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: An optional description of this resource. Provide this property when you create the resource.
-        :param pulumi.Input[str] dest_range: The destination range of outgoing packets that this route applies to. Only IPv4 is supported.
-        :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-               comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-               '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-               must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-        :param pulumi.Input[str] network: The network that this route applies to.
-        :param pulumi.Input[str] next_hop_gateway: URL to a gateway that should handle matching packets. Currently, you can only specify the internet gateway, using a full
-               or partial valid URL: *
-               'https://www.googleapis.com/compute/v1/projects/project/global/gateways/default-internet-gateway' *
-               'projects/project/global/gateways/default-internet-gateway' * 'global/gateways/default-internet-gateway' * The string
-               'default-internet-gateway'.
-        :param pulumi.Input[str] next_hop_ilb: The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets. You can only
-               specify the forwarding rule as a partial or full URL. For example, the following are all valid URLs:
+        :param pulumi.Input[str] description: -
+               (Optional)
+               An optional description of this resource. Provide this property
+               when you create the resource.
+        :param pulumi.Input[str] dest_range: -
+               (Required)
+               The destination range of outgoing packets that this route applies to.
+               Only IPv4 is supported.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Name of the resource. Provided by the client when the resource is
+               created. The name must be 1-63 characters long, and comply with
+               RFC1035.  Specifically, the name must be 1-63 characters long and
+               match the regular expression `a-z?` which means
+               the first character must be a lowercase letter, and all following
+               characters must be a dash, lowercase letter, or digit, except the
+               last character, which cannot be a dash.
+        :param pulumi.Input[str] network: -
+               (Required)
+               The network that this route applies to.
+        :param pulumi.Input[str] next_hop_gateway: -
+               (Optional)
+               URL to a gateway that should handle matching packets.
+               Currently, you can only specify the internet gateway, using a full or
+               partial valid URL:
+               * `https://www.googleapis.com/compute/v1/projects/project/global/gateways/default-internet-gateway`
+               * `projects/project/global/gateways/default-internet-gateway`
+               * `global/gateways/default-internet-gateway`
+               * The string `default-internet-gateway`.
+        :param pulumi.Input[str] next_hop_ilb: -
+               (Optional)
+               The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets.
+               You can only specify the forwarding rule as a partial or full URL. For example, the following are all valid URLs:
                https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
-               regions/region/forwardingRules/forwardingRule Note that this can only be used when the destinationRange is a public
-               (non-RFC 1918) IP CIDR range.
-        :param pulumi.Input[str] next_hop_instance: URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: *
-               'https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance' *
-               'projects/project/zones/zone/instances/instance' * 'zones/zone/instances/instance' * Just the instance name, with the
-               zone in 'next_hop_instance_zone'.
+               regions/region/forwardingRules/forwardingRule
+               Note that this can only be used when the destinationRange is a public (non-RFC 1918) IP CIDR range.
+        :param pulumi.Input[str] next_hop_instance: -
+               (Optional)
+               URL to an instance that should handle matching packets.
+               You can specify this as a full or partial URL. For example:
+               * `https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance`
+               * `projects/project/zones/zone/instances/instance`
+               * `zones/zone/instances/instance`
+               * Just the instance name, with the zone in `next_hop_instance_zone`.
         :param pulumi.Input[str] next_hop_instance_zone: (Optional when `next_hop_instance` is
                specified)  The zone of the instance specified in
                `next_hop_instance`.  Omit if `next_hop_instance` is specified as
                a URL.
-        :param pulumi.Input[str] next_hop_ip: Network IP address of an instance that should handle matching packets.
-        :param pulumi.Input[str] next_hop_vpn_tunnel: URL to a VpnTunnel that should handle matching packets.
-        :param pulumi.Input[float] priority: The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal
-               prefix length. In the case of two routes with equal prefix length, the one with the lowest-numbered priority value wins.
+        :param pulumi.Input[str] next_hop_ip: -
+               (Optional)
+               Network IP address of an instance that should handle matching packets.
+        :param pulumi.Input[str] next_hop_vpn_tunnel: -
+               (Optional)
+               URL to a VpnTunnel that should handle matching packets.
+        :param pulumi.Input[float] priority: -
+               (Optional)
+               The priority of this route. Priority is used to break ties in cases
+               where there is more than one matching route of equal prefix length.
+               In the case of two routes with equal prefix length, the one with the
+               lowest-numbered priority value wins.
                Default value is 1000. Valid range is 0 through 65535.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[list] tags: A list of instance tags to which this route applies.
+        :param pulumi.Input[list] tags: -
+               (Optional)
+               A list of instance tags to which this route applies.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -209,41 +275,74 @@ class Route(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: An optional description of this resource. Provide this property when you create the resource.
-        :param pulumi.Input[str] dest_range: The destination range of outgoing packets that this route applies to. Only IPv4 is supported.
-        :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-               comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-               '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-               must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-        :param pulumi.Input[str] network: The network that this route applies to.
-        :param pulumi.Input[str] next_hop_gateway: URL to a gateway that should handle matching packets. Currently, you can only specify the internet gateway, using a full
-               or partial valid URL: *
-               'https://www.googleapis.com/compute/v1/projects/project/global/gateways/default-internet-gateway' *
-               'projects/project/global/gateways/default-internet-gateway' * 'global/gateways/default-internet-gateway' * The string
-               'default-internet-gateway'.
-        :param pulumi.Input[str] next_hop_ilb: The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets. You can only
-               specify the forwarding rule as a partial or full URL. For example, the following are all valid URLs:
+        :param pulumi.Input[str] description: -
+               (Optional)
+               An optional description of this resource. Provide this property
+               when you create the resource.
+        :param pulumi.Input[str] dest_range: -
+               (Required)
+               The destination range of outgoing packets that this route applies to.
+               Only IPv4 is supported.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Name of the resource. Provided by the client when the resource is
+               created. The name must be 1-63 characters long, and comply with
+               RFC1035.  Specifically, the name must be 1-63 characters long and
+               match the regular expression `a-z?` which means
+               the first character must be a lowercase letter, and all following
+               characters must be a dash, lowercase letter, or digit, except the
+               last character, which cannot be a dash.
+        :param pulumi.Input[str] network: -
+               (Required)
+               The network that this route applies to.
+        :param pulumi.Input[str] next_hop_gateway: -
+               (Optional)
+               URL to a gateway that should handle matching packets.
+               Currently, you can only specify the internet gateway, using a full or
+               partial valid URL:
+               * `https://www.googleapis.com/compute/v1/projects/project/global/gateways/default-internet-gateway`
+               * `projects/project/global/gateways/default-internet-gateway`
+               * `global/gateways/default-internet-gateway`
+               * The string `default-internet-gateway`.
+        :param pulumi.Input[str] next_hop_ilb: -
+               (Optional)
+               The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets.
+               You can only specify the forwarding rule as a partial or full URL. For example, the following are all valid URLs:
                https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule
-               regions/region/forwardingRules/forwardingRule Note that this can only be used when the destinationRange is a public
-               (non-RFC 1918) IP CIDR range.
-        :param pulumi.Input[str] next_hop_instance: URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: *
-               'https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance' *
-               'projects/project/zones/zone/instances/instance' * 'zones/zone/instances/instance' * Just the instance name, with the
-               zone in 'next_hop_instance_zone'.
+               regions/region/forwardingRules/forwardingRule
+               Note that this can only be used when the destinationRange is a public (non-RFC 1918) IP CIDR range.
+        :param pulumi.Input[str] next_hop_instance: -
+               (Optional)
+               URL to an instance that should handle matching packets.
+               You can specify this as a full or partial URL. For example:
+               * `https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance`
+               * `projects/project/zones/zone/instances/instance`
+               * `zones/zone/instances/instance`
+               * Just the instance name, with the zone in `next_hop_instance_zone`.
         :param pulumi.Input[str] next_hop_instance_zone: (Optional when `next_hop_instance` is
                specified)  The zone of the instance specified in
                `next_hop_instance`.  Omit if `next_hop_instance` is specified as
                a URL.
-        :param pulumi.Input[str] next_hop_ip: Network IP address of an instance that should handle matching packets.
+        :param pulumi.Input[str] next_hop_ip: -
+               (Optional)
+               Network IP address of an instance that should handle matching packets.
         :param pulumi.Input[str] next_hop_network: URL to a Network that should handle matching packets.
-        :param pulumi.Input[str] next_hop_vpn_tunnel: URL to a VpnTunnel that should handle matching packets.
-        :param pulumi.Input[float] priority: The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal
-               prefix length. In the case of two routes with equal prefix length, the one with the lowest-numbered priority value wins.
+        :param pulumi.Input[str] next_hop_vpn_tunnel: -
+               (Optional)
+               URL to a VpnTunnel that should handle matching packets.
+        :param pulumi.Input[float] priority: -
+               (Optional)
+               The priority of this route. Priority is used to break ties in cases
+               where there is more than one matching route of equal prefix length.
+               In the case of two routes with equal prefix length, the one with the
+               lowest-numbered priority value wins.
                Default value is 1000. Valid range is 0 through 65535.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[list] tags: A list of instance tags to which this route applies.
+        :param pulumi.Input[list] tags: -
+               (Optional)
+               A list of instance tags to which this route applies.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
