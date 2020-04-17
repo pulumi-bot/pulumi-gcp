@@ -22,7 +22,10 @@ func LookupImage(ctx *pulumi.Context, args *LookupImageArgs, opts ...pulumi.Invo
 type LookupImageArgs struct {
 	// The family name of the image.
 	Family *string `pulumi:"family"`
-	// The name of the image.
+	// or `family` - (Required) The name of a specific image or a family.
+	// Exactly one of `name` of `family` must be specified. If `name` is specified, it will fetch
+	// the corresponding image. If `family` is specified, it will returns the latest image
+	// that is part of an image family and is not deprecated.
 	Name *string `pulumi:"name"`
 	// The project in which the resource belongs. If it is not
 	// provided, the provider project is used. If you are using a

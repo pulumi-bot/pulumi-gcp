@@ -22,28 +22,38 @@ namespace Pulumi.Gcp.PubSub
     public partial class Topic : Pulumi.CustomResource
     {
         /// <summary>
-        /// The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. Your
-        /// project's PubSub service account ('service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com') must have
-        /// 'roles/cloudkms.cryptoKeyEncrypterDecrypter' to use this feature. The expected format is
-        /// 'projects/*/locations/*/keyRings/*/cryptoKeys/*'
+        /// -
+        /// (Optional)
+        /// The resource name of the Cloud KMS CryptoKey to be used to protect access
+        /// to messages published on this topic. Your project's PubSub service account
+        /// (`service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com`) must have
+        /// `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
+        /// The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`
         /// </summary>
         [Output("kmsKeyName")]
         public Output<string?> KmsKeyName { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// A set of key/value label pairs to assign to this Topic.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not
-        /// present, then no constraints are in effect.
+        /// -
+        /// (Optional)
+        /// Policy constraining the set of Google Cloud Platform regions where
+        /// messages published to the topic may be stored. If not present, then no
+        /// constraints are in effect.  Structure is documented below.
         /// </summary>
         [Output("messageStoragePolicy")]
         public Output<Outputs.TopicMessageStoragePolicy> MessageStoragePolicy { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name of the topic.
         /// </summary>
         [Output("name")]
@@ -103,10 +113,13 @@ namespace Pulumi.Gcp.PubSub
     public sealed class TopicArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. Your
-        /// project's PubSub service account ('service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com') must have
-        /// 'roles/cloudkms.cryptoKeyEncrypterDecrypter' to use this feature. The expected format is
-        /// 'projects/*/locations/*/keyRings/*/cryptoKeys/*'
+        /// -
+        /// (Optional)
+        /// The resource name of the Cloud KMS CryptoKey to be used to protect access
+        /// to messages published on this topic. Your project's PubSub service account
+        /// (`service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com`) must have
+        /// `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
+        /// The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`
         /// </summary>
         [Input("kmsKeyName")]
         public Input<string>? KmsKeyName { get; set; }
@@ -115,6 +128,8 @@ namespace Pulumi.Gcp.PubSub
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// A set of key/value label pairs to assign to this Topic.
         /// </summary>
         public InputMap<string> Labels
@@ -124,13 +139,18 @@ namespace Pulumi.Gcp.PubSub
         }
 
         /// <summary>
-        /// Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not
-        /// present, then no constraints are in effect.
+        /// -
+        /// (Optional)
+        /// Policy constraining the set of Google Cloud Platform regions where
+        /// messages published to the topic may be stored. If not present, then no
+        /// constraints are in effect.  Structure is documented below.
         /// </summary>
         [Input("messageStoragePolicy")]
         public Input<Inputs.TopicMessageStoragePolicyArgs>? MessageStoragePolicy { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name of the topic.
         /// </summary>
         [Input("name")]
@@ -151,10 +171,13 @@ namespace Pulumi.Gcp.PubSub
     public sealed class TopicState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. Your
-        /// project's PubSub service account ('service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com') must have
-        /// 'roles/cloudkms.cryptoKeyEncrypterDecrypter' to use this feature. The expected format is
-        /// 'projects/*/locations/*/keyRings/*/cryptoKeys/*'
+        /// -
+        /// (Optional)
+        /// The resource name of the Cloud KMS CryptoKey to be used to protect access
+        /// to messages published on this topic. Your project's PubSub service account
+        /// (`service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com`) must have
+        /// `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
+        /// The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`
         /// </summary>
         [Input("kmsKeyName")]
         public Input<string>? KmsKeyName { get; set; }
@@ -163,6 +186,8 @@ namespace Pulumi.Gcp.PubSub
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// A set of key/value label pairs to assign to this Topic.
         /// </summary>
         public InputMap<string> Labels
@@ -172,13 +197,18 @@ namespace Pulumi.Gcp.PubSub
         }
 
         /// <summary>
-        /// Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not
-        /// present, then no constraints are in effect.
+        /// -
+        /// (Optional)
+        /// Policy constraining the set of Google Cloud Platform regions where
+        /// messages published to the topic may be stored. If not present, then no
+        /// constraints are in effect.  Structure is documented below.
         /// </summary>
         [Input("messageStoragePolicy")]
         public Input<Inputs.TopicMessageStoragePolicyGetArgs>? MessageStoragePolicy { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name of the topic.
         /// </summary>
         [Input("name")]

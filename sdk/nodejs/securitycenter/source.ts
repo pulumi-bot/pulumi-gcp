@@ -61,13 +61,19 @@ export class Source extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Optional)
      * The description of the source (max of 1024 characters).
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The source’s display name. A source’s display name must be unique amongst its siblings, for example, two sources
-     * with the same parent can't share the same display name. The display name must start and end with a letter or digit,
-     * may contain letters, digits, spaces, hyphens, and underscores, and can be no longer than 32 characters.
+     * -
+     * (Required)
+     * The source’s display name. A source’s display name must be unique
+     * amongst its siblings, for example, two sources with the same parent
+     * can't share the same display name. The display name must start and end
+     * with a letter or digit, may contain letters, digits, spaces, hyphens,
+     * and underscores, and can be no longer than 32 characters.
      */
     public readonly displayName!: pulumi.Output<string>;
     /**
@@ -75,7 +81,10 @@ export class Source extends pulumi.CustomResource {
      */
     public /*out*/ readonly name!: pulumi.Output<string>;
     /**
-     * The organization whose Cloud Security Command Center the Source lives in.
+     * -
+     * (Required)
+     * The organization whose Cloud Security Command Center the Source
+     * lives in.
      */
     public readonly organization!: pulumi.Output<string>;
 
@@ -124,13 +133,19 @@ export class Source extends pulumi.CustomResource {
  */
 export interface SourceState {
     /**
+     * -
+     * (Optional)
      * The description of the source (max of 1024 characters).
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * The source’s display name. A source’s display name must be unique amongst its siblings, for example, two sources
-     * with the same parent can't share the same display name. The display name must start and end with a letter or digit,
-     * may contain letters, digits, spaces, hyphens, and underscores, and can be no longer than 32 characters.
+     * -
+     * (Required)
+     * The source’s display name. A source’s display name must be unique
+     * amongst its siblings, for example, two sources with the same parent
+     * can't share the same display name. The display name must start and end
+     * with a letter or digit, may contain letters, digits, spaces, hyphens,
+     * and underscores, and can be no longer than 32 characters.
      */
     readonly displayName?: pulumi.Input<string>;
     /**
@@ -138,7 +153,10 @@ export interface SourceState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The organization whose Cloud Security Command Center the Source lives in.
+     * -
+     * (Required)
+     * The organization whose Cloud Security Command Center the Source
+     * lives in.
      */
     readonly organization?: pulumi.Input<string>;
 }
@@ -148,17 +166,26 @@ export interface SourceState {
  */
 export interface SourceArgs {
     /**
+     * -
+     * (Optional)
      * The description of the source (max of 1024 characters).
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * The source’s display name. A source’s display name must be unique amongst its siblings, for example, two sources
-     * with the same parent can't share the same display name. The display name must start and end with a letter or digit,
-     * may contain letters, digits, spaces, hyphens, and underscores, and can be no longer than 32 characters.
+     * -
+     * (Required)
+     * The source’s display name. A source’s display name must be unique
+     * amongst its siblings, for example, two sources with the same parent
+     * can't share the same display name. The display name must start and end
+     * with a letter or digit, may contain letters, digits, spaces, hyphens,
+     * and underscores, and can be no longer than 32 characters.
      */
     readonly displayName: pulumi.Input<string>;
     /**
-     * The organization whose Cloud Security Command Center the Source lives in.
+     * -
+     * (Required)
+     * The organization whose Cloud Security Command Center the Source
+     * lives in.
      */
     readonly organization: pulumi.Input<string>;
 }

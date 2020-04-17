@@ -13,7 +13,19 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class GlobalForwardingRuleMetadataFilterFilterLabel
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the metadata label. The length must be between
+        /// 1 and 1024 characters, inclusive.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value that the label must match. The value has a maximum
+        /// length of 1024 characters.
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

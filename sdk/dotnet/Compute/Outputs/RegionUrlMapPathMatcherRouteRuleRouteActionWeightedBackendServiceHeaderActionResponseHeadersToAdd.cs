@@ -13,8 +13,25 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class RegionUrlMapPathMatcherRouteRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAdd
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         public readonly string HeaderName;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         public readonly string HeaderValue;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         public readonly bool Replace;
 
         [OutputConstructor]

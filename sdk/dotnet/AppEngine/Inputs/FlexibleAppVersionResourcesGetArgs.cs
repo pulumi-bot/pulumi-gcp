@@ -12,17 +12,38 @@ namespace Pulumi.Gcp.AppEngine.Inputs
 
     public sealed class FlexibleAppVersionResourcesGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of CPU cores needed.
+        /// </summary>
         [Input("cpu")]
         public Input<int>? Cpu { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Disk size (GB) needed.
+        /// </summary>
         [Input("diskGb")]
         public Input<int>? DiskGb { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Memory (GB) needed.
+        /// </summary>
         [Input("memoryGb")]
         public Input<double>? MemoryGb { get; set; }
 
         [Input("volumes")]
         private InputList<Inputs.FlexibleAppVersionResourcesVolumeGetArgs>? _volumes;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// List of ports, or port pairs, to forward from the virtual machine to the application container.  Structure is documented below.
+        /// </summary>
         public InputList<Inputs.FlexibleAppVersionResourcesVolumeGetArgs> Volumes
         {
             get => _volumes ?? (_volumes = new InputList<Inputs.FlexibleAppVersionResourcesVolumeGetArgs>());

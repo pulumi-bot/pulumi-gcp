@@ -12,9 +12,20 @@ namespace Pulumi.Gcp.CloudRun.Inputs
 
     public sealed class ServiceTemplateGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Metadata associated with this Service, including name, namespace, labels,
+        /// and annotations.  Structure is documented below.
+        /// </summary>
         [Input("metadata")]
         public Input<Inputs.ServiceTemplateMetadataGetArgs>? Metadata { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// RevisionSpec holds the desired state of the Revision (from the client).  Structure is documented below.
+        /// </summary>
         [Input("spec")]
         public Input<Inputs.ServiceTemplateSpecGetArgs>? Spec { get; set; }
 

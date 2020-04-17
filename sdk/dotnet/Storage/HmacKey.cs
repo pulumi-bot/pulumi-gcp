@@ -47,12 +47,16 @@ namespace Pulumi.Gcp.Storage
         public Output<string> Secret { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The email address of the key's associated service account.
         /// </summary>
         [Output("serviceAccountEmail")]
         public Output<string> ServiceAccountEmail { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The state of the key. Can be set to one of ACTIVE, INACTIVE.
         /// </summary>
         [Output("state")]
@@ -124,12 +128,16 @@ namespace Pulumi.Gcp.Storage
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The email address of the key's associated service account.
         /// </summary>
         [Input("serviceAccountEmail", required: true)]
         public Input<string> ServiceAccountEmail { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The state of the key. Can be set to one of ACTIVE, INACTIVE.
         /// </summary>
         [Input("state")]
@@ -162,12 +170,16 @@ namespace Pulumi.Gcp.Storage
         public Input<string>? Secret { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The email address of the key's associated service account.
         /// </summary>
         [Input("serviceAccountEmail")]
         public Input<string>? ServiceAccountEmail { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The state of the key. Can be set to one of ACTIVE, INACTIVE.
         /// </summary>
         [Input("state")]

@@ -11,9 +11,20 @@ import (
 )
 
 type IndexField struct {
+	// -
+	// (Optional)
+	// Indicates that this field supports operations on arrayValues. Only one of `order` and `arrayConfig` can
+	// be specified.
 	ArrayConfig *string `pulumi:"arrayConfig"`
-	FieldPath   *string `pulumi:"fieldPath"`
-	Order       *string `pulumi:"order"`
+	// -
+	// (Optional)
+	// Name of the field.
+	FieldPath *string `pulumi:"fieldPath"`
+	// -
+	// (Optional)
+	// Indicates that this field supports ordering by the specified order or comparing using =, <, <=, >, >=.
+	// Only one of `order` and `arrayConfig` can be specified.
+	Order *string `pulumi:"order"`
 }
 
 // IndexFieldInput is an input type that accepts IndexFieldArgs and IndexFieldOutput values.
@@ -29,9 +40,20 @@ type IndexFieldInput interface {
 }
 
 type IndexFieldArgs struct {
+	// -
+	// (Optional)
+	// Indicates that this field supports operations on arrayValues. Only one of `order` and `arrayConfig` can
+	// be specified.
 	ArrayConfig pulumi.StringPtrInput `pulumi:"arrayConfig"`
-	FieldPath   pulumi.StringPtrInput `pulumi:"fieldPath"`
-	Order       pulumi.StringPtrInput `pulumi:"order"`
+	// -
+	// (Optional)
+	// Name of the field.
+	FieldPath pulumi.StringPtrInput `pulumi:"fieldPath"`
+	// -
+	// (Optional)
+	// Indicates that this field supports ordering by the specified order or comparing using =, <, <=, >, >=.
+	// Only one of `order` and `arrayConfig` can be specified.
+	Order pulumi.StringPtrInput `pulumi:"order"`
 }
 
 func (IndexFieldArgs) ElementType() reflect.Type {
@@ -86,14 +108,25 @@ func (o IndexFieldOutput) ToIndexFieldOutputWithContext(ctx context.Context) Ind
 	return o
 }
 
+// -
+// (Optional)
+// Indicates that this field supports operations on arrayValues. Only one of `order` and `arrayConfig` can
+// be specified.
 func (o IndexFieldOutput) ArrayConfig() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IndexField) *string { return v.ArrayConfig }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// Name of the field.
 func (o IndexFieldOutput) FieldPath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IndexField) *string { return v.FieldPath }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// Indicates that this field supports ordering by the specified order or comparing using =, <, <=, >, >=.
+// Only one of `order` and `arrayConfig` can be specified.
 func (o IndexFieldOutput) Order() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IndexField) *string { return v.Order }).(pulumi.StringPtrOutput)
 }

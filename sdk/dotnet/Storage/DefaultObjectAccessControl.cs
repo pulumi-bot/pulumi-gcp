@@ -34,6 +34,8 @@ namespace Pulumi.Gcp.Storage
     public partial class DefaultObjectAccessControl : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the bucket.
         /// </summary>
         [Output("bucket")]
@@ -52,9 +54,17 @@ namespace Pulumi.Gcp.Storage
         public Output<string> Email { get; private set; } = null!;
 
         /// <summary>
-        /// The entity holding the permission, in one of the following forms: * user-{{userId}} * user-{{email}} (such as
-        /// "user-liz@example.com") * group-{{groupId}} * group-{{email}} (such as "group-example@googlegroups.com") *
-        /// domain-{{domain}} (such as "domain-example.com") * project-team-{{projectId}} * allUsers * allAuthenticatedUsers
+        /// -
+        /// (Required)
+        /// The entity holding the permission, in one of the following forms:
+        /// * user-{{userId}}
+        /// * user-{{email}} (such as "user-liz@example.com")
+        /// * group-{{groupId}}
+        /// * group-{{email}} (such as "group-example@googlegroups.com")
+        /// * domain-{{domain}} (such as "domain-example.com")
+        /// * project-team-{{projectId}}
+        /// * allUsers
+        /// * allAuthenticatedUsers
         /// </summary>
         [Output("entity")]
         public Output<string> Entity { get; private set; } = null!;
@@ -72,6 +82,8 @@ namespace Pulumi.Gcp.Storage
         public Output<int> Generation { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The name of the object, if applied to an object.
         /// </summary>
         [Output("object")]
@@ -84,6 +96,8 @@ namespace Pulumi.Gcp.Storage
         public Output<Outputs.DefaultObjectAccessControlProjectTeam> ProjectTeam { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The access permission for the entity.
         /// </summary>
         [Output("role")]
@@ -136,26 +150,40 @@ namespace Pulumi.Gcp.Storage
     public sealed class DefaultObjectAccessControlArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the bucket.
         /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
 
         /// <summary>
-        /// The entity holding the permission, in one of the following forms: * user-{{userId}} * user-{{email}} (such as
-        /// "user-liz@example.com") * group-{{groupId}} * group-{{email}} (such as "group-example@googlegroups.com") *
-        /// domain-{{domain}} (such as "domain-example.com") * project-team-{{projectId}} * allUsers * allAuthenticatedUsers
+        /// -
+        /// (Required)
+        /// The entity holding the permission, in one of the following forms:
+        /// * user-{{userId}}
+        /// * user-{{email}} (such as "user-liz@example.com")
+        /// * group-{{groupId}}
+        /// * group-{{email}} (such as "group-example@googlegroups.com")
+        /// * domain-{{domain}} (such as "domain-example.com")
+        /// * project-team-{{projectId}}
+        /// * allUsers
+        /// * allAuthenticatedUsers
         /// </summary>
         [Input("entity", required: true)]
         public Input<string> Entity { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The name of the object, if applied to an object.
         /// </summary>
         [Input("object")]
         public Input<string>? Object { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The access permission for the entity.
         /// </summary>
         [Input("role", required: true)]
@@ -169,6 +197,8 @@ namespace Pulumi.Gcp.Storage
     public sealed class DefaultObjectAccessControlState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the bucket.
         /// </summary>
         [Input("bucket")]
@@ -187,9 +217,17 @@ namespace Pulumi.Gcp.Storage
         public Input<string>? Email { get; set; }
 
         /// <summary>
-        /// The entity holding the permission, in one of the following forms: * user-{{userId}} * user-{{email}} (such as
-        /// "user-liz@example.com") * group-{{groupId}} * group-{{email}} (such as "group-example@googlegroups.com") *
-        /// domain-{{domain}} (such as "domain-example.com") * project-team-{{projectId}} * allUsers * allAuthenticatedUsers
+        /// -
+        /// (Required)
+        /// The entity holding the permission, in one of the following forms:
+        /// * user-{{userId}}
+        /// * user-{{email}} (such as "user-liz@example.com")
+        /// * group-{{groupId}}
+        /// * group-{{email}} (such as "group-example@googlegroups.com")
+        /// * domain-{{domain}} (such as "domain-example.com")
+        /// * project-team-{{projectId}}
+        /// * allUsers
+        /// * allAuthenticatedUsers
         /// </summary>
         [Input("entity")]
         public Input<string>? Entity { get; set; }
@@ -207,6 +245,8 @@ namespace Pulumi.Gcp.Storage
         public Input<int>? Generation { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The name of the object, if applied to an object.
         /// </summary>
         [Input("object")]
@@ -219,6 +259,8 @@ namespace Pulumi.Gcp.Storage
         public Input<Inputs.DefaultObjectAccessControlProjectTeamGetArgs>? ProjectTeam { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The access permission for the entity.
         /// </summary>
         [Input("role")]

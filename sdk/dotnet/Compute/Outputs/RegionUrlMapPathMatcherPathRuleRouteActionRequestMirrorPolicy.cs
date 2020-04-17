@@ -13,6 +13,13 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class RegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The default RegionBackendService resource. Before
+        /// forwarding the request to backendService, the loadbalancer applies any relevant
+        /// headerActions specified as part of this backendServiceWeight.
+        /// </summary>
         public readonly string BackendService;
 
         [OutputConstructor]

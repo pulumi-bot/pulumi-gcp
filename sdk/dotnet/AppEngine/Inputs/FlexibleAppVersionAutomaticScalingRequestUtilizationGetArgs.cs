@@ -12,9 +12,19 @@ namespace Pulumi.Gcp.AppEngine.Inputs
 
     public sealed class FlexibleAppVersionAutomaticScalingRequestUtilizationGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target number of concurrent requests.
+        /// </summary>
         [Input("targetConcurrentRequests")]
         public Input<double>? TargetConcurrentRequests { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target requests per second.
+        /// </summary>
         [Input("targetRequestCountPerSecond")]
         public Input<string>? TargetRequestCountPerSecond { get; set; }
 

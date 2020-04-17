@@ -21,31 +21,44 @@ namespace Pulumi.Gcp.Compute
     public partial class SecurityScanConfig : Pulumi.CustomResource
     {
         /// <summary>
-        /// The authentication configuration. If specified, service will use the authentication configuration during scanning.
+        /// -
+        /// (Optional)
+        /// The authentication configuration.
+        /// If specified, service will use the authentication configuration during scanning.  Structure is documented below.
         /// </summary>
         [Output("authentication")]
         public Output<Outputs.SecurityScanConfigAuthentication?> Authentication { get; private set; } = null!;
 
         /// <summary>
-        /// The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
+        /// -
+        /// (Optional)
+        /// The blacklist URL patterns as described in
+        /// https://cloud.google.com/security-scanner/docs/excluded-urls
         /// </summary>
         [Output("blacklistPatterns")]
         public Output<ImmutableArray<string>> BlacklistPatterns { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The user provider display name of the ScanConfig.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Controls export of scan configurations and results to Cloud Security Command Center.
         /// </summary>
         [Output("exportToSecurityCommandCenter")]
         public Output<string?> ExportToSecurityCommandCenter { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively. Defaults to 15.
+        /// -
+        /// (Optional)
+        /// The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
+        /// Defaults to 15.
         /// </summary>
         [Output("maxQps")]
         public Output<int?> MaxQps { get; private set; } = null!;
@@ -64,24 +77,32 @@ namespace Pulumi.Gcp.Compute
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// The schedule of the ScanConfig
+        /// -
+        /// (Optional)
+        /// The schedule of the ScanConfig  Structure is documented below.
         /// </summary>
         [Output("schedule")]
         public Output<Outputs.SecurityScanConfigSchedule?> Schedule { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The starting URLs from which the scanner finds site pages.
         /// </summary>
         [Output("startingUrls")]
         public Output<ImmutableArray<string>> StartingUrls { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
         /// </summary>
         [Output("targetPlatforms")]
         public Output<ImmutableArray<string>> TargetPlatforms { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Type of the user agents used for scanning
         /// </summary>
         [Output("userAgent")]
@@ -134,7 +155,10 @@ namespace Pulumi.Gcp.Compute
     public sealed class SecurityScanConfigArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The authentication configuration. If specified, service will use the authentication configuration during scanning.
+        /// -
+        /// (Optional)
+        /// The authentication configuration.
+        /// If specified, service will use the authentication configuration during scanning.  Structure is documented below.
         /// </summary>
         [Input("authentication")]
         public Input<Inputs.SecurityScanConfigAuthenticationArgs>? Authentication { get; set; }
@@ -143,7 +167,10 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _blacklistPatterns;
 
         /// <summary>
-        /// The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
+        /// -
+        /// (Optional)
+        /// The blacklist URL patterns as described in
+        /// https://cloud.google.com/security-scanner/docs/excluded-urls
         /// </summary>
         public InputList<string> BlacklistPatterns
         {
@@ -152,19 +179,26 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The user provider display name of the ScanConfig.
         /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Controls export of scan configurations and results to Cloud Security Command Center.
         /// </summary>
         [Input("exportToSecurityCommandCenter")]
         public Input<string>? ExportToSecurityCommandCenter { get; set; }
 
         /// <summary>
-        /// The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively. Defaults to 15.
+        /// -
+        /// (Optional)
+        /// The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
+        /// Defaults to 15.
         /// </summary>
         [Input("maxQps")]
         public Input<int>? MaxQps { get; set; }
@@ -177,7 +211,9 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The schedule of the ScanConfig
+        /// -
+        /// (Optional)
+        /// The schedule of the ScanConfig  Structure is documented below.
         /// </summary>
         [Input("schedule")]
         public Input<Inputs.SecurityScanConfigScheduleArgs>? Schedule { get; set; }
@@ -186,6 +222,8 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _startingUrls;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The starting URLs from which the scanner finds site pages.
         /// </summary>
         public InputList<string> StartingUrls
@@ -198,6 +236,8 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _targetPlatforms;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
         /// </summary>
         public InputList<string> TargetPlatforms
@@ -207,6 +247,8 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Type of the user agents used for scanning
         /// </summary>
         [Input("userAgent")]
@@ -220,7 +262,10 @@ namespace Pulumi.Gcp.Compute
     public sealed class SecurityScanConfigState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The authentication configuration. If specified, service will use the authentication configuration during scanning.
+        /// -
+        /// (Optional)
+        /// The authentication configuration.
+        /// If specified, service will use the authentication configuration during scanning.  Structure is documented below.
         /// </summary>
         [Input("authentication")]
         public Input<Inputs.SecurityScanConfigAuthenticationGetArgs>? Authentication { get; set; }
@@ -229,7 +274,10 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _blacklistPatterns;
 
         /// <summary>
-        /// The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
+        /// -
+        /// (Optional)
+        /// The blacklist URL patterns as described in
+        /// https://cloud.google.com/security-scanner/docs/excluded-urls
         /// </summary>
         public InputList<string> BlacklistPatterns
         {
@@ -238,19 +286,26 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The user provider display name of the ScanConfig.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Controls export of scan configurations and results to Cloud Security Command Center.
         /// </summary>
         [Input("exportToSecurityCommandCenter")]
         public Input<string>? ExportToSecurityCommandCenter { get; set; }
 
         /// <summary>
-        /// The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively. Defaults to 15.
+        /// -
+        /// (Optional)
+        /// The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
+        /// Defaults to 15.
         /// </summary>
         [Input("maxQps")]
         public Input<int>? MaxQps { get; set; }
@@ -269,7 +324,9 @@ namespace Pulumi.Gcp.Compute
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The schedule of the ScanConfig
+        /// -
+        /// (Optional)
+        /// The schedule of the ScanConfig  Structure is documented below.
         /// </summary>
         [Input("schedule")]
         public Input<Inputs.SecurityScanConfigScheduleGetArgs>? Schedule { get; set; }
@@ -278,6 +335,8 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _startingUrls;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The starting URLs from which the scanner finds site pages.
         /// </summary>
         public InputList<string> StartingUrls
@@ -290,6 +349,8 @@ namespace Pulumi.Gcp.Compute
         private InputList<string>? _targetPlatforms;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
         /// </summary>
         public InputList<string> TargetPlatforms
@@ -299,6 +360,8 @@ namespace Pulumi.Gcp.Compute
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Type of the user agents used for scanning
         /// </summary>
         [Input("userAgent")]
