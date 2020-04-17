@@ -21,6 +21,8 @@ import (
 type Brand struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// Application name displayed on OAuth consent screen.
 	ApplicationTitle pulumi.StringOutput `pulumi:"applicationTitle"`
 	// Output only. Identifier of the brand, in the format 'projects/{project_number}/brands/{brand_id}'. NOTE: The brand
@@ -31,9 +33,13 @@ type Brand struct {
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
-	// Support email displayed on the OAuth consent screen. Can be either a user or group email. When a user email is
-	// specified, the caller must be the user with the associated email address. When a group email is specified, the caller
-	// can be either a user or a service account which is an owner of the specified group in Cloud Identity.
+	// -
+	// (Required)
+	// Support email displayed on the OAuth consent screen. Can be either a
+	// user or group email. When a user email is specified, the caller must
+	// be the user with the associated email address. When a group email is
+	// specified, the caller can be either a user or a service account which
+	// is an owner of the specified group in Cloud Identity.
 	SupportEmail pulumi.StringOutput `pulumi:"supportEmail"`
 }
 
@@ -71,6 +77,8 @@ func GetBrand(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Brand resources.
 type brandState struct {
+	// -
+	// (Required)
 	// Application name displayed on OAuth consent screen.
 	ApplicationTitle *string `pulumi:"applicationTitle"`
 	// Output only. Identifier of the brand, in the format 'projects/{project_number}/brands/{brand_id}'. NOTE: The brand
@@ -81,13 +89,19 @@ type brandState struct {
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// Support email displayed on the OAuth consent screen. Can be either a user or group email. When a user email is
-	// specified, the caller must be the user with the associated email address. When a group email is specified, the caller
-	// can be either a user or a service account which is an owner of the specified group in Cloud Identity.
+	// -
+	// (Required)
+	// Support email displayed on the OAuth consent screen. Can be either a
+	// user or group email. When a user email is specified, the caller must
+	// be the user with the associated email address. When a group email is
+	// specified, the caller can be either a user or a service account which
+	// is an owner of the specified group in Cloud Identity.
 	SupportEmail *string `pulumi:"supportEmail"`
 }
 
 type BrandState struct {
+	// -
+	// (Required)
 	// Application name displayed on OAuth consent screen.
 	ApplicationTitle pulumi.StringPtrInput
 	// Output only. Identifier of the brand, in the format 'projects/{project_number}/brands/{brand_id}'. NOTE: The brand
@@ -98,9 +112,13 @@ type BrandState struct {
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// Support email displayed on the OAuth consent screen. Can be either a user or group email. When a user email is
-	// specified, the caller must be the user with the associated email address. When a group email is specified, the caller
-	// can be either a user or a service account which is an owner of the specified group in Cloud Identity.
+	// -
+	// (Required)
+	// Support email displayed on the OAuth consent screen. Can be either a
+	// user or group email. When a user email is specified, the caller must
+	// be the user with the associated email address. When a group email is
+	// specified, the caller can be either a user or a service account which
+	// is an owner of the specified group in Cloud Identity.
 	SupportEmail pulumi.StringPtrInput
 }
 
@@ -109,27 +127,39 @@ func (BrandState) ElementType() reflect.Type {
 }
 
 type brandArgs struct {
+	// -
+	// (Required)
 	// Application name displayed on OAuth consent screen.
 	ApplicationTitle string `pulumi:"applicationTitle"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// Support email displayed on the OAuth consent screen. Can be either a user or group email. When a user email is
-	// specified, the caller must be the user with the associated email address. When a group email is specified, the caller
-	// can be either a user or a service account which is an owner of the specified group in Cloud Identity.
+	// -
+	// (Required)
+	// Support email displayed on the OAuth consent screen. Can be either a
+	// user or group email. When a user email is specified, the caller must
+	// be the user with the associated email address. When a group email is
+	// specified, the caller can be either a user or a service account which
+	// is an owner of the specified group in Cloud Identity.
 	SupportEmail string `pulumi:"supportEmail"`
 }
 
 // The set of arguments for constructing a Brand resource.
 type BrandArgs struct {
+	// -
+	// (Required)
 	// Application name displayed on OAuth consent screen.
 	ApplicationTitle pulumi.StringInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// Support email displayed on the OAuth consent screen. Can be either a user or group email. When a user email is
-	// specified, the caller must be the user with the associated email address. When a group email is specified, the caller
-	// can be either a user or a service account which is an owner of the specified group in Cloud Identity.
+	// -
+	// (Required)
+	// Support email displayed on the OAuth consent screen. Can be either a
+	// user or group email. When a user email is specified, the caller must
+	// be the user with the associated email address. When a group email is
+	// specified, the caller can be either a user or a service account which
+	// is an owner of the specified group in Cloud Identity.
 	SupportEmail pulumi.StringInput
 }
 

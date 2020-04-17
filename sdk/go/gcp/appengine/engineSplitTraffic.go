@@ -19,14 +19,20 @@ import (
 type EngineSplitTraffic struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Optional)
 	// If set to true traffic will be migrated to this version.
 	MigrateTraffic pulumi.BoolPtrOutput `pulumi:"migrateTraffic"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
+	// -
+	// (Required)
 	// The name of the service these settings apply to.
 	Service pulumi.StringOutput `pulumi:"service"`
-	// Mapping that defines fractional HTTP traffic diversion to different versions within the service.
+	// -
+	// (Required)
+	// Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
 	Split EngineSplitTrafficSplitOutput `pulumi:"split"`
 }
 
@@ -64,26 +70,38 @@ func GetEngineSplitTraffic(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EngineSplitTraffic resources.
 type engineSplitTrafficState struct {
+	// -
+	// (Optional)
 	// If set to true traffic will be migrated to this version.
 	MigrateTraffic *bool `pulumi:"migrateTraffic"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Required)
 	// The name of the service these settings apply to.
 	Service *string `pulumi:"service"`
-	// Mapping that defines fractional HTTP traffic diversion to different versions within the service.
+	// -
+	// (Required)
+	// Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
 	Split *EngineSplitTrafficSplit `pulumi:"split"`
 }
 
 type EngineSplitTrafficState struct {
+	// -
+	// (Optional)
 	// If set to true traffic will be migrated to this version.
 	MigrateTraffic pulumi.BoolPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The name of the service these settings apply to.
 	Service pulumi.StringPtrInput
-	// Mapping that defines fractional HTTP traffic diversion to different versions within the service.
+	// -
+	// (Required)
+	// Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
 	Split EngineSplitTrafficSplitPtrInput
 }
 
@@ -92,27 +110,39 @@ func (EngineSplitTrafficState) ElementType() reflect.Type {
 }
 
 type engineSplitTrafficArgs struct {
+	// -
+	// (Optional)
 	// If set to true traffic will be migrated to this version.
 	MigrateTraffic *bool `pulumi:"migrateTraffic"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Required)
 	// The name of the service these settings apply to.
 	Service string `pulumi:"service"`
-	// Mapping that defines fractional HTTP traffic diversion to different versions within the service.
+	// -
+	// (Required)
+	// Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
 	Split EngineSplitTrafficSplit `pulumi:"split"`
 }
 
 // The set of arguments for constructing a EngineSplitTraffic resource.
 type EngineSplitTrafficArgs struct {
+	// -
+	// (Optional)
 	// If set to true traffic will be migrated to this version.
 	MigrateTraffic pulumi.BoolPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The name of the service these settings apply to.
 	Service pulumi.StringInput
-	// Mapping that defines fractional HTTP traffic diversion to different versions within the service.
+	// -
+	// (Required)
+	// Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
 	Split EngineSplitTrafficSplitInput
 }
 

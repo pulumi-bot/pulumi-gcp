@@ -17,13 +17,20 @@ import (
 type DiskResourcePolicyAttachment struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// The name of the disk in which the resource policies are attached to.
 	Disk pulumi.StringOutput `pulumi:"disk"`
-	// The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+	// -
+	// (Required)
+	// The resource policy to be attached to the disk for scheduling snapshot
+	// creation. Do not specify the self link.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
+	// -
+	// (Optional)
 	// A reference to the zone where the disk resides.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
@@ -59,25 +66,39 @@ func GetDiskResourcePolicyAttachment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DiskResourcePolicyAttachment resources.
 type diskResourcePolicyAttachmentState struct {
+	// -
+	// (Required)
 	// The name of the disk in which the resource policies are attached to.
 	Disk *string `pulumi:"disk"`
-	// The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+	// -
+	// (Required)
+	// The resource policy to be attached to the disk for scheduling snapshot
+	// creation. Do not specify the self link.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Optional)
 	// A reference to the zone where the disk resides.
 	Zone *string `pulumi:"zone"`
 }
 
 type DiskResourcePolicyAttachmentState struct {
+	// -
+	// (Required)
 	// The name of the disk in which the resource policies are attached to.
 	Disk pulumi.StringPtrInput
-	// The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+	// -
+	// (Required)
+	// The resource policy to be attached to the disk for scheduling snapshot
+	// creation. Do not specify the self link.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// A reference to the zone where the disk resides.
 	Zone pulumi.StringPtrInput
 }
@@ -87,26 +108,40 @@ func (DiskResourcePolicyAttachmentState) ElementType() reflect.Type {
 }
 
 type diskResourcePolicyAttachmentArgs struct {
+	// -
+	// (Required)
 	// The name of the disk in which the resource policies are attached to.
 	Disk string `pulumi:"disk"`
-	// The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+	// -
+	// (Required)
+	// The resource policy to be attached to the disk for scheduling snapshot
+	// creation. Do not specify the self link.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Optional)
 	// A reference to the zone where the disk resides.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a DiskResourcePolicyAttachment resource.
 type DiskResourcePolicyAttachmentArgs struct {
+	// -
+	// (Required)
 	// The name of the disk in which the resource policies are attached to.
 	Disk pulumi.StringInput
-	// The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+	// -
+	// (Required)
+	// The resource policy to be attached to the disk for scheduling snapshot
+	// creation. Do not specify the self link.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// A reference to the zone where the disk resides.
 	Zone pulumi.StringPtrInput
 }

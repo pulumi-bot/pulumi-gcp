@@ -13,7 +13,19 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class ResourcePolicySnapshotSchedulePolicyRetentionPolicy
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Maximum age of the snapshot that is allowed to be kept.
+        /// </summary>
         public readonly int MaxRetentionDays;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies the behavior to apply to scheduled snapshots when
+        /// the source disk is deleted.
+        /// Valid options are KEEP_AUTO_SNAPSHOTS and APPLY_RETENTION_POLICY
+        /// </summary>
         public readonly string? OnSourceDiskDelete;
 
         [OutputConstructor]

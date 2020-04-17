@@ -12,6 +12,8 @@ from .. import utilities, tables
 class BucketAccessControl(pulumi.CustomResource):
     bucket: pulumi.Output[str]
     """
+    -
+    (Required)
     The name of the bucket.
     """
     domain: pulumi.Output[str]
@@ -24,13 +26,28 @@ class BucketAccessControl(pulumi.CustomResource):
     """
     entity: pulumi.Output[str]
     """
-    The entity holding the permission, in one of the following forms: user-userId user-email group-groupId group-email
-    domain-domain project-team-projectId allUsers allAuthenticatedUsers Examples: The user liz@example.com would be
-    user-liz@example.com. The group example@googlegroups.com would be group-example@googlegroups.com. To refer to all
-    members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+    -
+    (Required)
+    The entity holding the permission, in one of the following forms:
+    user-userId
+    user-email
+    group-groupId
+    group-email
+    domain-domain
+    project-team-projectId
+    allUsers
+    allAuthenticatedUsers
+    Examples:
+    The user liz@example.com would be user-liz@example.com.
+    The group example@googlegroups.com would be
+    group-example@googlegroups.com.
+    To refer to all members of the Google Apps for Business domain
+    example.com, the entity would be domain-example.com.
     """
     role: pulumi.Output[str]
     """
+    -
+    (Optional)
     The access permission for the entity.
     """
     def __init__(__self__, resource_name, opts=None, bucket=None, entity=None, role=None, __props__=None, __name__=None, __opts__=None):
@@ -61,12 +78,29 @@ class BucketAccessControl(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] bucket: The name of the bucket.
-        :param pulumi.Input[str] entity: The entity holding the permission, in one of the following forms: user-userId user-email group-groupId group-email
-               domain-domain project-team-projectId allUsers allAuthenticatedUsers Examples: The user liz@example.com would be
-               user-liz@example.com. The group example@googlegroups.com would be group-example@googlegroups.com. To refer to all
-               members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
-        :param pulumi.Input[str] role: The access permission for the entity.
+        :param pulumi.Input[str] bucket: -
+               (Required)
+               The name of the bucket.
+        :param pulumi.Input[str] entity: -
+               (Required)
+               The entity holding the permission, in one of the following forms:
+               user-userId
+               user-email
+               group-groupId
+               group-email
+               domain-domain
+               project-team-projectId
+               allUsers
+               allAuthenticatedUsers
+               Examples:
+               The user liz@example.com would be user-liz@example.com.
+               The group example@googlegroups.com would be
+               group-example@googlegroups.com.
+               To refer to all members of the Google Apps for Business domain
+               example.com, the entity would be domain-example.com.
+        :param pulumi.Input[str] role: -
+               (Optional)
+               The access permission for the entity.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -109,14 +143,31 @@ class BucketAccessControl(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] bucket: The name of the bucket.
+        :param pulumi.Input[str] bucket: -
+               (Required)
+               The name of the bucket.
         :param pulumi.Input[str] domain: The domain associated with the entity.
         :param pulumi.Input[str] email: The email address associated with the entity.
-        :param pulumi.Input[str] entity: The entity holding the permission, in one of the following forms: user-userId user-email group-groupId group-email
-               domain-domain project-team-projectId allUsers allAuthenticatedUsers Examples: The user liz@example.com would be
-               user-liz@example.com. The group example@googlegroups.com would be group-example@googlegroups.com. To refer to all
-               members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
-        :param pulumi.Input[str] role: The access permission for the entity.
+        :param pulumi.Input[str] entity: -
+               (Required)
+               The entity holding the permission, in one of the following forms:
+               user-userId
+               user-email
+               group-groupId
+               group-email
+               domain-domain
+               project-team-projectId
+               allUsers
+               allAuthenticatedUsers
+               Examples:
+               The user liz@example.com would be user-liz@example.com.
+               The group example@googlegroups.com would be
+               group-example@googlegroups.com.
+               To refer to all members of the Google Apps for Business domain
+               example.com, the entity would be domain-example.com.
+        :param pulumi.Input[str] role: -
+               (Optional)
+               The access permission for the entity.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -22,20 +22,31 @@ type VPNGateway struct {
 
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringOutput `pulumi:"creationTimestamp"`
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The unique identifier for the resource.
 	GatewayId pulumi.IntOutput `pulumi:"gatewayId"`
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035.  Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z?` which means
+	// the first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// -
+	// (Required)
 	// The network this VPN gateway is accepting traffic for.
 	Network pulumi.StringOutput `pulumi:"network"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
+	// -
+	// (Optional)
 	// The region this gateway should sit in.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The URI of the created resource.
@@ -75,20 +86,31 @@ func GetVPNGateway(ctx *pulumi.Context,
 type vpngatewayState struct {
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp *string `pulumi:"creationTimestamp"`
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description *string `pulumi:"description"`
 	// The unique identifier for the resource.
 	GatewayId *int `pulumi:"gatewayId"`
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035.  Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z?` which means
+	// the first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name *string `pulumi:"name"`
+	// -
+	// (Required)
 	// The network this VPN gateway is accepting traffic for.
 	Network *string `pulumi:"network"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Optional)
 	// The region this gateway should sit in.
 	Region *string `pulumi:"region"`
 	// The URI of the created resource.
@@ -98,20 +120,31 @@ type vpngatewayState struct {
 type VPNGatewayState struct {
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrInput
 	// The unique identifier for the resource.
 	GatewayId pulumi.IntPtrInput
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035.  Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z?` which means
+	// the first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The network this VPN gateway is accepting traffic for.
 	Network pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// The region this gateway should sit in.
 	Region pulumi.StringPtrInput
 	// The URI of the created resource.
@@ -123,36 +156,58 @@ func (VPNGatewayState) ElementType() reflect.Type {
 }
 
 type vpngatewayArgs struct {
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description *string `pulumi:"description"`
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035.  Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z?` which means
+	// the first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name *string `pulumi:"name"`
+	// -
+	// (Required)
 	// The network this VPN gateway is accepting traffic for.
 	Network string `pulumi:"network"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Optional)
 	// The region this gateway should sit in.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a VPNGateway resource.
 type VPNGatewayArgs struct {
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrInput
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035.  Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z?` which means
+	// the first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The network this VPN gateway is accepting traffic for.
 	Network pulumi.StringInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// The region this gateway should sit in.
 	Region pulumi.StringPtrInput
 }

@@ -22,18 +22,25 @@ namespace Pulumi.Gcp.Compute
     public partial class BackendServiceSignedUrlKey : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The backend service this signed URL key belongs.
         /// </summary>
         [Output("backendService")]
         public Output<string> BackendService { get; private set; } = null!;
 
         /// <summary>
-        /// 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
+        /// -
+        /// (Required)
+        /// 128-bit key value used for signing the URL. The key value must be a
+        /// valid RFC 4648 Section 5 base64url encoded string.
         /// </summary>
         [Output("keyValue")]
         public Output<string> KeyValue { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name of the signed URL key.
         /// </summary>
         [Output("name")]
@@ -93,18 +100,25 @@ namespace Pulumi.Gcp.Compute
     public sealed class BackendServiceSignedUrlKeyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The backend service this signed URL key belongs.
         /// </summary>
         [Input("backendService", required: true)]
         public Input<string> BackendService { get; set; } = null!;
 
         /// <summary>
-        /// 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
+        /// -
+        /// (Required)
+        /// 128-bit key value used for signing the URL. The key value must be a
+        /// valid RFC 4648 Section 5 base64url encoded string.
         /// </summary>
         [Input("keyValue", required: true)]
         public Input<string> KeyValue { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name of the signed URL key.
         /// </summary>
         [Input("name")]
@@ -125,18 +139,25 @@ namespace Pulumi.Gcp.Compute
     public sealed class BackendServiceSignedUrlKeyState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The backend service this signed URL key belongs.
         /// </summary>
         [Input("backendService")]
         public Input<string>? BackendService { get; set; }
 
         /// <summary>
-        /// 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
+        /// -
+        /// (Required)
+        /// 128-bit key value used for signing the URL. The key value must be a
+        /// valid RFC 4648 Section 5 base64url encoded string.
         /// </summary>
         [Input("keyValue")]
         public Input<string>? KeyValue { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Name of the signed URL key.
         /// </summary>
         [Input("name")]

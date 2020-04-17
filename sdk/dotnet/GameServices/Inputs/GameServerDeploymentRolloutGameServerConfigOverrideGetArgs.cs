@@ -12,9 +12,19 @@ namespace Pulumi.Gcp.GameServices.Inputs
 
     public sealed class GameServerDeploymentRolloutGameServerConfigOverrideGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Version of the configuration.
+        /// </summary>
         [Input("configVersion")]
         public Input<string>? ConfigVersion { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Selection by realms.  Structure is documented below.
+        /// </summary>
         [Input("realmsSelector")]
         public Input<Inputs.GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorGetArgs>? RealmsSelector { get; set; }
 

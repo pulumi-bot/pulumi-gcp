@@ -12,12 +12,27 @@ namespace Pulumi.Gcp.Logging.Inputs
 
     public sealed class MetricBucketOptionsExponentialBucketsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 1.
+        /// </summary>
         [Input("growthFactor")]
         public Input<double>? GrowthFactor { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         [Input("numFiniteBuckets")]
         public Input<int>? NumFiniteBuckets { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         [Input("scale")]
         public Input<double>? Scale { get; set; }
 

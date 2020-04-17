@@ -39,7 +39,9 @@ export class Dataset extends pulumi.CustomResource {
     }
 
     /**
-     * An array of objects that define dataset access for one or more entities.
+     * -
+     * (Optional)
+     * An array of objects that define dataset access for one or more entities.  Structure is documented below.
      */
     public readonly accesses!: pulumi.Output<outputs.bigquery.DatasetAccess[]>;
     /**
@@ -47,35 +49,31 @@ export class Dataset extends pulumi.CustomResource {
      */
     public /*out*/ readonly creationTime!: pulumi.Output<number>;
     /**
-     * A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9),
-     * or underscores (_). The maximum length is 1,024 characters.
+     * -
+     * (Required)
+     * The ID of the dataset containing this table.
      */
     public readonly datasetId!: pulumi.Output<string>;
     /**
-     * The default encryption key for all tables in the dataset. Once this property is set, all newly-created partitioned
-     * tables in the dataset will have encryption key set to this value, unless table creation request (or query) overrides
-     * the key.
+     * -
+     * (Optional)
+     * The default encryption key for all tables in the dataset. Once this property is set,
+     * all newly-created partitioned tables in the dataset will have encryption key set to
+     * this value, unless table creation request (or query) overrides the key.  Structure is documented below.
      */
     public readonly defaultEncryptionConfiguration!: pulumi.Output<outputs.bigquery.DatasetDefaultEncryptionConfiguration | undefined>;
     /**
-     * The default partition expiration for all partitioned tables in the dataset, in milliseconds. Once this property is
-     * set, all newly-created partitioned tables in the dataset will have an 'expirationMs' property in the
-     * 'timePartitioning' settings set to this value, and changing the value will only affect new tables, not existing
-     * ones. The storage in a partition will have an expiration time of its partition time plus this value. Setting this
-     * property overrides the use of 'defaultTableExpirationMs' for partitioned tables: only one of
-     * 'defaultTableExpirationMs' and 'defaultPartitionExpirationMs' will be used for any new partitioned table. If you
-     * provide an explicit 'timePartitioning.expirationMs' when creating or updating a partitioned table, that value takes
-     * precedence over the default partition expiration time indicated by this property.
+     * -
+     * (Optional)
+     * The default partition expiration for all partitioned tables in
+     * the dataset, in milliseconds.
      */
     public readonly defaultPartitionExpirationMs!: pulumi.Output<number | undefined>;
     /**
-     * The default lifetime of all tables in the dataset, in milliseconds. The minimum value is 3600000 milliseconds (one
-     * hour). Once this property is set, all newly-created tables in the dataset will have an 'expirationTime' property set
-     * to the creation time plus the value in this property, and changing the value will only affect new tables, not
-     * existing ones. When the 'expirationTime' for a given table is reached, that table will be deleted automatically. If
-     * a table's 'expirationTime' is modified or removed before the table expires, or if you provide an explicit
-     * 'expirationTime' when creating a table, that value takes precedence over the default expiration time indicated by
-     * this property.
+     * -
+     * (Optional)
+     * The default lifetime of all tables in the dataset, in milliseconds.
+     * The minimum value is 3600000 milliseconds (one hour).
      */
     public readonly defaultTableExpirationMs!: pulumi.Output<number | undefined>;
     /**
@@ -85,6 +83,8 @@ export class Dataset extends pulumi.CustomResource {
      */
     public readonly deleteContentsOnDestroy!: pulumi.Output<boolean | undefined>;
     /**
+     * -
+     * (Optional)
      * A user-friendly description of the dataset
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -93,11 +93,16 @@ export class Dataset extends pulumi.CustomResource {
      */
     public /*out*/ readonly etag!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * A descriptive name for the dataset
      */
     public readonly friendlyName!: pulumi.Output<string | undefined>;
     /**
-     * The labels associated with this dataset. You can use these to organize and group your datasets
+     * -
+     * (Optional)
+     * The labels associated with this dataset. You can use these to
+     * organize and group your datasets
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -105,13 +110,10 @@ export class Dataset extends pulumi.CustomResource {
      */
     public /*out*/ readonly lastModifiedTime!: pulumi.Output<number>;
     /**
-     * The geographic location where the dataset should reside. See [official
-     * docs](https://cloud.google.com/bigquery/docs/dataset-locations). There are two types of locations, regional or
-     * multi-regional. A regional location is a specific geographic place, such as Tokyo, and a multi-regional location is
-     * a large geographic area, such as the United States, that contains at least two geographic places. Possible regional
-     * values include: 'asia-east1', 'asia-northeast1', 'asia-southeast1', 'australia-southeast1', 'europe-north1',
-     * 'europe-west2' and 'us-east4'. Possible multi-regional values: 'EU' and 'US'. The default value is multi-regional
-     * location 'US'. Changing this forces a new resource to be created.
+     * -
+     * (Optional)
+     * The geographic location where the dataset should reside.
+     * See [official docs](https://cloud.google.com/bigquery/docs/dataset-locations).
      */
     public readonly location!: pulumi.Output<string | undefined>;
     /**
@@ -188,7 +190,9 @@ export class Dataset extends pulumi.CustomResource {
  */
 export interface DatasetState {
     /**
-     * An array of objects that define dataset access for one or more entities.
+     * -
+     * (Optional)
+     * An array of objects that define dataset access for one or more entities.  Structure is documented below.
      */
     readonly accesses?: pulumi.Input<pulumi.Input<inputs.bigquery.DatasetAccess>[]>;
     /**
@@ -196,35 +200,31 @@ export interface DatasetState {
      */
     readonly creationTime?: pulumi.Input<number>;
     /**
-     * A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9),
-     * or underscores (_). The maximum length is 1,024 characters.
+     * -
+     * (Required)
+     * The ID of the dataset containing this table.
      */
     readonly datasetId?: pulumi.Input<string>;
     /**
-     * The default encryption key for all tables in the dataset. Once this property is set, all newly-created partitioned
-     * tables in the dataset will have encryption key set to this value, unless table creation request (or query) overrides
-     * the key.
+     * -
+     * (Optional)
+     * The default encryption key for all tables in the dataset. Once this property is set,
+     * all newly-created partitioned tables in the dataset will have encryption key set to
+     * this value, unless table creation request (or query) overrides the key.  Structure is documented below.
      */
     readonly defaultEncryptionConfiguration?: pulumi.Input<inputs.bigquery.DatasetDefaultEncryptionConfiguration>;
     /**
-     * The default partition expiration for all partitioned tables in the dataset, in milliseconds. Once this property is
-     * set, all newly-created partitioned tables in the dataset will have an 'expirationMs' property in the
-     * 'timePartitioning' settings set to this value, and changing the value will only affect new tables, not existing
-     * ones. The storage in a partition will have an expiration time of its partition time plus this value. Setting this
-     * property overrides the use of 'defaultTableExpirationMs' for partitioned tables: only one of
-     * 'defaultTableExpirationMs' and 'defaultPartitionExpirationMs' will be used for any new partitioned table. If you
-     * provide an explicit 'timePartitioning.expirationMs' when creating or updating a partitioned table, that value takes
-     * precedence over the default partition expiration time indicated by this property.
+     * -
+     * (Optional)
+     * The default partition expiration for all partitioned tables in
+     * the dataset, in milliseconds.
      */
     readonly defaultPartitionExpirationMs?: pulumi.Input<number>;
     /**
-     * The default lifetime of all tables in the dataset, in milliseconds. The minimum value is 3600000 milliseconds (one
-     * hour). Once this property is set, all newly-created tables in the dataset will have an 'expirationTime' property set
-     * to the creation time plus the value in this property, and changing the value will only affect new tables, not
-     * existing ones. When the 'expirationTime' for a given table is reached, that table will be deleted automatically. If
-     * a table's 'expirationTime' is modified or removed before the table expires, or if you provide an explicit
-     * 'expirationTime' when creating a table, that value takes precedence over the default expiration time indicated by
-     * this property.
+     * -
+     * (Optional)
+     * The default lifetime of all tables in the dataset, in milliseconds.
+     * The minimum value is 3600000 milliseconds (one hour).
      */
     readonly defaultTableExpirationMs?: pulumi.Input<number>;
     /**
@@ -234,6 +234,8 @@ export interface DatasetState {
      */
     readonly deleteContentsOnDestroy?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Optional)
      * A user-friendly description of the dataset
      */
     readonly description?: pulumi.Input<string>;
@@ -242,11 +244,16 @@ export interface DatasetState {
      */
     readonly etag?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * A descriptive name for the dataset
      */
     readonly friendlyName?: pulumi.Input<string>;
     /**
-     * The labels associated with this dataset. You can use these to organize and group your datasets
+     * -
+     * (Optional)
+     * The labels associated with this dataset. You can use these to
+     * organize and group your datasets
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -254,13 +261,10 @@ export interface DatasetState {
      */
     readonly lastModifiedTime?: pulumi.Input<number>;
     /**
-     * The geographic location where the dataset should reside. See [official
-     * docs](https://cloud.google.com/bigquery/docs/dataset-locations). There are two types of locations, regional or
-     * multi-regional. A regional location is a specific geographic place, such as Tokyo, and a multi-regional location is
-     * a large geographic area, such as the United States, that contains at least two geographic places. Possible regional
-     * values include: 'asia-east1', 'asia-northeast1', 'asia-southeast1', 'australia-southeast1', 'europe-north1',
-     * 'europe-west2' and 'us-east4'. Possible multi-regional values: 'EU' and 'US'. The default value is multi-regional
-     * location 'US'. Changing this forces a new resource to be created.
+     * -
+     * (Optional)
+     * The geographic location where the dataset should reside.
+     * See [official docs](https://cloud.google.com/bigquery/docs/dataset-locations).
      */
     readonly location?: pulumi.Input<string>;
     /**
@@ -279,39 +283,37 @@ export interface DatasetState {
  */
 export interface DatasetArgs {
     /**
-     * An array of objects that define dataset access for one or more entities.
+     * -
+     * (Optional)
+     * An array of objects that define dataset access for one or more entities.  Structure is documented below.
      */
     readonly accesses?: pulumi.Input<pulumi.Input<inputs.bigquery.DatasetAccess>[]>;
     /**
-     * A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9),
-     * or underscores (_). The maximum length is 1,024 characters.
+     * -
+     * (Required)
+     * The ID of the dataset containing this table.
      */
     readonly datasetId: pulumi.Input<string>;
     /**
-     * The default encryption key for all tables in the dataset. Once this property is set, all newly-created partitioned
-     * tables in the dataset will have encryption key set to this value, unless table creation request (or query) overrides
-     * the key.
+     * -
+     * (Optional)
+     * The default encryption key for all tables in the dataset. Once this property is set,
+     * all newly-created partitioned tables in the dataset will have encryption key set to
+     * this value, unless table creation request (or query) overrides the key.  Structure is documented below.
      */
     readonly defaultEncryptionConfiguration?: pulumi.Input<inputs.bigquery.DatasetDefaultEncryptionConfiguration>;
     /**
-     * The default partition expiration for all partitioned tables in the dataset, in milliseconds. Once this property is
-     * set, all newly-created partitioned tables in the dataset will have an 'expirationMs' property in the
-     * 'timePartitioning' settings set to this value, and changing the value will only affect new tables, not existing
-     * ones. The storage in a partition will have an expiration time of its partition time plus this value. Setting this
-     * property overrides the use of 'defaultTableExpirationMs' for partitioned tables: only one of
-     * 'defaultTableExpirationMs' and 'defaultPartitionExpirationMs' will be used for any new partitioned table. If you
-     * provide an explicit 'timePartitioning.expirationMs' when creating or updating a partitioned table, that value takes
-     * precedence over the default partition expiration time indicated by this property.
+     * -
+     * (Optional)
+     * The default partition expiration for all partitioned tables in
+     * the dataset, in milliseconds.
      */
     readonly defaultPartitionExpirationMs?: pulumi.Input<number>;
     /**
-     * The default lifetime of all tables in the dataset, in milliseconds. The minimum value is 3600000 milliseconds (one
-     * hour). Once this property is set, all newly-created tables in the dataset will have an 'expirationTime' property set
-     * to the creation time plus the value in this property, and changing the value will only affect new tables, not
-     * existing ones. When the 'expirationTime' for a given table is reached, that table will be deleted automatically. If
-     * a table's 'expirationTime' is modified or removed before the table expires, or if you provide an explicit
-     * 'expirationTime' when creating a table, that value takes precedence over the default expiration time indicated by
-     * this property.
+     * -
+     * (Optional)
+     * The default lifetime of all tables in the dataset, in milliseconds.
+     * The minimum value is 3600000 milliseconds (one hour).
      */
     readonly defaultTableExpirationMs?: pulumi.Input<number>;
     /**
@@ -321,25 +323,29 @@ export interface DatasetArgs {
      */
     readonly deleteContentsOnDestroy?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Optional)
      * A user-friendly description of the dataset
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * A descriptive name for the dataset
      */
     readonly friendlyName?: pulumi.Input<string>;
     /**
-     * The labels associated with this dataset. You can use these to organize and group your datasets
+     * -
+     * (Optional)
+     * The labels associated with this dataset. You can use these to
+     * organize and group your datasets
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The geographic location where the dataset should reside. See [official
-     * docs](https://cloud.google.com/bigquery/docs/dataset-locations). There are two types of locations, regional or
-     * multi-regional. A regional location is a specific geographic place, such as Tokyo, and a multi-regional location is
-     * a large geographic area, such as the United States, that contains at least two geographic places. Possible regional
-     * values include: 'asia-east1', 'asia-northeast1', 'asia-southeast1', 'australia-southeast1', 'europe-north1',
-     * 'europe-west2' and 'us-east4'. Possible multi-regional values: 'EU' and 'US'. The default value is multi-regional
-     * location 'US'. Changing this forces a new resource to be created.
+     * -
+     * (Optional)
+     * The geographic location where the dataset should reside.
+     * See [official docs](https://cloud.google.com/bigquery/docs/dataset-locations).
      */
     readonly location?: pulumi.Input<string>;
     /**

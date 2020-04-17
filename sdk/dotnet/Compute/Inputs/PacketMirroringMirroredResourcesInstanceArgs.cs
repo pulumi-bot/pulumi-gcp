@@ -12,6 +12,11 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class PacketMirroringMirroredResourcesInstanceArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The URL of the instances where this rule should be active.
+        /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 

@@ -73,16 +73,22 @@ export class Agent extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Optional)
      * API version displayed in Dialogflow console. If not specified, V2 API is assumed. Clients are free to query
-     * different service endpoints for different API versions. However, bots connectors and webhook calls will follow the
-     * specified API version. * API_VERSION_V1: Legacy V1 API. * API_VERSION_V2: V2 API. * API_VERSION_V2_BETA_1: V2beta1
-     * API.
+     * different service endpoints for different API versions. However, bots connectors and webhook calls will follow
+     * the specified API version.
+     * * API_VERSION_V1: Legacy V1 API.
+     * * API_VERSION_V2: V2 API.
+     * * API_VERSION_V2_BETA_1: V2beta1 API.
      */
     public readonly apiVersion!: pulumi.Output<string>;
     /**
-     * The URI of the agent's avatar, which are used throughout the Dialogflow console. When an image URL is entered into
-     * this field, the Dialogflow will save the image in the backend. The address of the backend image returned from the
-     * API will be shown in the [avatarUriBackend] field.
+     * -
+     * (Optional)
+     * The URI of the agent's avatar, which are used throughout the Dialogflow console. When an image URL is entered
+     * into this field, the Dialogflow will save the image in the backend. The address of the backend image returned
+     * from the API will be shown in the [avatarUriBackend] field.
      */
     public readonly avatarUri!: pulumi.Output<string | undefined>;
     /**
@@ -91,36 +97,48 @@ export class Agent extends pulumi.CustomResource {
      */
     public /*out*/ readonly avatarUriBackend!: pulumi.Output<string>;
     /**
-     * To filter out false positive results and still get variety in matched natural language inputs for your agent, you
-     * can tune the machine learning classification threshold. If the returned score value is less than the threshold
+     * -
+     * (Optional)
+     * To filter out false positive results and still get variety in matched natural language inputs for your agent,
+     * you can tune the machine learning classification threshold. If the returned score value is less than the threshold
      * value, then a fallback intent will be triggered or, if there are no fallback intents defined, no intent will be
      * triggered. The score values range from 0.0 (completely uncertain) to 1.0 (completely certain). If set to 0.0, the
      * default of 0.3 is used.
      */
     public readonly classificationThreshold!: pulumi.Output<number | undefined>;
     /**
-     * The default language of the agent as a language tag. [See Language
-     * Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language
-     * codes. This field cannot be updated after creation.
+     * -
+     * (Required)
+     * The default language of the agent as a language tag. [See Language Support](https://cloud.google.com/dialogflow/docs/reference/language)
+     * for a list of the currently supported language codes. This field cannot be updated after creation.
      */
     public readonly defaultLanguageCode!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * The description of this agent. The maximum length is 500 characters. If exceeded, the request is rejected.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Required)
      * The name of this agent.
      */
     public readonly displayName!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * Determines whether this agent should log conversation queries.
      */
     public readonly enableLogging!: pulumi.Output<boolean | undefined>;
     /**
-     * Determines how intents are detected from user queries. * MATCH_MODE_HYBRID: Best for agents with a small number of
-     * examples in intents and/or wide use of templates syntax and composite entities. * MATCH_MODE_ML_ONLY: Can be used
-     * for agents with a large number of examples in intents, especially the ones using @sys.any or very large developer
-     * entities.
+     * -
+     * (Optional)
+     * Determines how intents are detected from user queries.
+     * * MATCH_MODE_HYBRID: Best for agents with a small number of examples in intents and/or wide use of templates
+     * syntax and composite entities.
+     * * MATCH_MODE_ML_ONLY: Can be used for agents with a large number of examples in intents, especially the ones
+     * using @sys.any or very large developer entities.
      */
     public readonly matchMode!: pulumi.Output<string>;
     /**
@@ -129,17 +147,25 @@ export class Agent extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * The list of all languages supported by this agent (except for the defaultLanguageCode).
      */
     public readonly supportedLanguageCodes!: pulumi.Output<string[] | undefined>;
     /**
-     * The agent tier. If not specified, TIER_STANDARD is assumed. * TIER_STANDARD: Standard tier. * TIER_ENTERPRISE:
-     * Enterprise tier (Essentials). * TIER_ENTERPRISE_PLUS: Enterprise tier (Plus). NOTE: Due to consistency issues, the
-     * provider will not read this field from the API. Drift is possible between the Terraform state and Dialogflow if the
-     * agent tier is changed outside of Terraform.
+     * -
+     * (Optional)
+     * The agent tier. If not specified, TIER_STANDARD is assumed.
+     * * TIER_STANDARD: Standard tier.
+     * * TIER_ENTERPRISE: Enterprise tier (Essentials).
+     * * TIER_ENTERPRISE_PLUS: Enterprise tier (Plus).
+     * NOTE: Due to consistency issues, the provider will not read this field from the API. Drift is possible between
+     * the the provider state and Dialogflow if the agent tier is changed outside of the provider.
      */
     public readonly tier!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Required)
      * The time zone of this agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York,
      * Europe/Paris.
      */
@@ -211,16 +237,22 @@ export class Agent extends pulumi.CustomResource {
  */
 export interface AgentState {
     /**
+     * -
+     * (Optional)
      * API version displayed in Dialogflow console. If not specified, V2 API is assumed. Clients are free to query
-     * different service endpoints for different API versions. However, bots connectors and webhook calls will follow the
-     * specified API version. * API_VERSION_V1: Legacy V1 API. * API_VERSION_V2: V2 API. * API_VERSION_V2_BETA_1: V2beta1
-     * API.
+     * different service endpoints for different API versions. However, bots connectors and webhook calls will follow
+     * the specified API version.
+     * * API_VERSION_V1: Legacy V1 API.
+     * * API_VERSION_V2: V2 API.
+     * * API_VERSION_V2_BETA_1: V2beta1 API.
      */
     readonly apiVersion?: pulumi.Input<string>;
     /**
-     * The URI of the agent's avatar, which are used throughout the Dialogflow console. When an image URL is entered into
-     * this field, the Dialogflow will save the image in the backend. The address of the backend image returned from the
-     * API will be shown in the [avatarUriBackend] field.
+     * -
+     * (Optional)
+     * The URI of the agent's avatar, which are used throughout the Dialogflow console. When an image URL is entered
+     * into this field, the Dialogflow will save the image in the backend. The address of the backend image returned
+     * from the API will be shown in the [avatarUriBackend] field.
      */
     readonly avatarUri?: pulumi.Input<string>;
     /**
@@ -229,36 +261,48 @@ export interface AgentState {
      */
     readonly avatarUriBackend?: pulumi.Input<string>;
     /**
-     * To filter out false positive results and still get variety in matched natural language inputs for your agent, you
-     * can tune the machine learning classification threshold. If the returned score value is less than the threshold
+     * -
+     * (Optional)
+     * To filter out false positive results and still get variety in matched natural language inputs for your agent,
+     * you can tune the machine learning classification threshold. If the returned score value is less than the threshold
      * value, then a fallback intent will be triggered or, if there are no fallback intents defined, no intent will be
      * triggered. The score values range from 0.0 (completely uncertain) to 1.0 (completely certain). If set to 0.0, the
      * default of 0.3 is used.
      */
     readonly classificationThreshold?: pulumi.Input<number>;
     /**
-     * The default language of the agent as a language tag. [See Language
-     * Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language
-     * codes. This field cannot be updated after creation.
+     * -
+     * (Required)
+     * The default language of the agent as a language tag. [See Language Support](https://cloud.google.com/dialogflow/docs/reference/language)
+     * for a list of the currently supported language codes. This field cannot be updated after creation.
      */
     readonly defaultLanguageCode?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The description of this agent. The maximum length is 500 characters. If exceeded, the request is rejected.
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The name of this agent.
      */
     readonly displayName?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Determines whether this agent should log conversation queries.
      */
     readonly enableLogging?: pulumi.Input<boolean>;
     /**
-     * Determines how intents are detected from user queries. * MATCH_MODE_HYBRID: Best for agents with a small number of
-     * examples in intents and/or wide use of templates syntax and composite entities. * MATCH_MODE_ML_ONLY: Can be used
-     * for agents with a large number of examples in intents, especially the ones using @sys.any or very large developer
-     * entities.
+     * -
+     * (Optional)
+     * Determines how intents are detected from user queries.
+     * * MATCH_MODE_HYBRID: Best for agents with a small number of examples in intents and/or wide use of templates
+     * syntax and composite entities.
+     * * MATCH_MODE_ML_ONLY: Can be used for agents with a large number of examples in intents, especially the ones
+     * using @sys.any or very large developer entities.
      */
     readonly matchMode?: pulumi.Input<string>;
     /**
@@ -267,17 +311,25 @@ export interface AgentState {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The list of all languages supported by this agent (except for the defaultLanguageCode).
      */
     readonly supportedLanguageCodes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The agent tier. If not specified, TIER_STANDARD is assumed. * TIER_STANDARD: Standard tier. * TIER_ENTERPRISE:
-     * Enterprise tier (Essentials). * TIER_ENTERPRISE_PLUS: Enterprise tier (Plus). NOTE: Due to consistency issues, the
-     * provider will not read this field from the API. Drift is possible between the Terraform state and Dialogflow if the
-     * agent tier is changed outside of Terraform.
+     * -
+     * (Optional)
+     * The agent tier. If not specified, TIER_STANDARD is assumed.
+     * * TIER_STANDARD: Standard tier.
+     * * TIER_ENTERPRISE: Enterprise tier (Essentials).
+     * * TIER_ENTERPRISE_PLUS: Enterprise tier (Plus).
+     * NOTE: Due to consistency issues, the provider will not read this field from the API. Drift is possible between
+     * the the provider state and Dialogflow if the agent tier is changed outside of the provider.
      */
     readonly tier?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The time zone of this agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York,
      * Europe/Paris.
      */
@@ -289,49 +341,67 @@ export interface AgentState {
  */
 export interface AgentArgs {
     /**
+     * -
+     * (Optional)
      * API version displayed in Dialogflow console. If not specified, V2 API is assumed. Clients are free to query
-     * different service endpoints for different API versions. However, bots connectors and webhook calls will follow the
-     * specified API version. * API_VERSION_V1: Legacy V1 API. * API_VERSION_V2: V2 API. * API_VERSION_V2_BETA_1: V2beta1
-     * API.
+     * different service endpoints for different API versions. However, bots connectors and webhook calls will follow
+     * the specified API version.
+     * * API_VERSION_V1: Legacy V1 API.
+     * * API_VERSION_V2: V2 API.
+     * * API_VERSION_V2_BETA_1: V2beta1 API.
      */
     readonly apiVersion?: pulumi.Input<string>;
     /**
-     * The URI of the agent's avatar, which are used throughout the Dialogflow console. When an image URL is entered into
-     * this field, the Dialogflow will save the image in the backend. The address of the backend image returned from the
-     * API will be shown in the [avatarUriBackend] field.
+     * -
+     * (Optional)
+     * The URI of the agent's avatar, which are used throughout the Dialogflow console. When an image URL is entered
+     * into this field, the Dialogflow will save the image in the backend. The address of the backend image returned
+     * from the API will be shown in the [avatarUriBackend] field.
      */
     readonly avatarUri?: pulumi.Input<string>;
     /**
-     * To filter out false positive results and still get variety in matched natural language inputs for your agent, you
-     * can tune the machine learning classification threshold. If the returned score value is less than the threshold
+     * -
+     * (Optional)
+     * To filter out false positive results and still get variety in matched natural language inputs for your agent,
+     * you can tune the machine learning classification threshold. If the returned score value is less than the threshold
      * value, then a fallback intent will be triggered or, if there are no fallback intents defined, no intent will be
      * triggered. The score values range from 0.0 (completely uncertain) to 1.0 (completely certain). If set to 0.0, the
      * default of 0.3 is used.
      */
     readonly classificationThreshold?: pulumi.Input<number>;
     /**
-     * The default language of the agent as a language tag. [See Language
-     * Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language
-     * codes. This field cannot be updated after creation.
+     * -
+     * (Required)
+     * The default language of the agent as a language tag. [See Language Support](https://cloud.google.com/dialogflow/docs/reference/language)
+     * for a list of the currently supported language codes. This field cannot be updated after creation.
      */
     readonly defaultLanguageCode: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The description of this agent. The maximum length is 500 characters. If exceeded, the request is rejected.
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The name of this agent.
      */
     readonly displayName: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Determines whether this agent should log conversation queries.
      */
     readonly enableLogging?: pulumi.Input<boolean>;
     /**
-     * Determines how intents are detected from user queries. * MATCH_MODE_HYBRID: Best for agents with a small number of
-     * examples in intents and/or wide use of templates syntax and composite entities. * MATCH_MODE_ML_ONLY: Can be used
-     * for agents with a large number of examples in intents, especially the ones using @sys.any or very large developer
-     * entities.
+     * -
+     * (Optional)
+     * Determines how intents are detected from user queries.
+     * * MATCH_MODE_HYBRID: Best for agents with a small number of examples in intents and/or wide use of templates
+     * syntax and composite entities.
+     * * MATCH_MODE_ML_ONLY: Can be used for agents with a large number of examples in intents, especially the ones
+     * using @sys.any or very large developer entities.
      */
     readonly matchMode?: pulumi.Input<string>;
     /**
@@ -340,17 +410,25 @@ export interface AgentArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The list of all languages supported by this agent (except for the defaultLanguageCode).
      */
     readonly supportedLanguageCodes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The agent tier. If not specified, TIER_STANDARD is assumed. * TIER_STANDARD: Standard tier. * TIER_ENTERPRISE:
-     * Enterprise tier (Essentials). * TIER_ENTERPRISE_PLUS: Enterprise tier (Plus). NOTE: Due to consistency issues, the
-     * provider will not read this field from the API. Drift is possible between the Terraform state and Dialogflow if the
-     * agent tier is changed outside of Terraform.
+     * -
+     * (Optional)
+     * The agent tier. If not specified, TIER_STANDARD is assumed.
+     * * TIER_STANDARD: Standard tier.
+     * * TIER_ENTERPRISE: Enterprise tier (Essentials).
+     * * TIER_ENTERPRISE_PLUS: Enterprise tier (Plus).
+     * NOTE: Due to consistency issues, the provider will not read this field from the API. Drift is possible between
+     * the the provider state and Dialogflow if the agent tier is changed outside of the provider.
      */
     readonly tier?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The time zone of this agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York,
      * Europe/Paris.
      */

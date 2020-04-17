@@ -12,9 +12,21 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class SecurityScanConfigScheduleGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The duration of time between executions in days
+        /// </summary>
         [Input("intervalDurationDays", required: true)]
         public Input<int> IntervalDurationDays { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A timestamp indicates when the next run will be scheduled. The value is refreshed
+        /// by the server after each run. If unspecified, it will default to current server time,
+        /// which means the scan will be scheduled to start immediately.
+        /// </summary>
         [Input("scheduleTime")]
         public Input<string>? ScheduleTime { get; set; }
 

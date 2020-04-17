@@ -14,6 +14,12 @@ namespace Pulumi.Gcp.GameServices.Inputs
     {
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Set of labels to group by.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());

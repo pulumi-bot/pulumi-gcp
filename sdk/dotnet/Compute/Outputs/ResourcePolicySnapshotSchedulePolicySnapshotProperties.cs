@@ -13,8 +13,24 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class ResourcePolicySnapshotSchedulePolicySnapshotProperties
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to perform a 'guest aware' snapshot.
+        /// </summary>
         public readonly bool? GuestFlush;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A set of key-value pairs.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Cloud Storage bucket location to store the auto snapshot
+        /// (regional or multi-regional)
+        /// </summary>
         public readonly string? StorageLocations;
 
         [OutputConstructor]

@@ -13,9 +13,29 @@ namespace Pulumi.Gcp.AppEngine.Outputs
     [OutputType]
     public sealed class FlexibleAppVersionAutomaticScalingDiskUtilization
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target bytes read per second.
+        /// </summary>
         public readonly int? TargetReadBytesPerSecond;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target ops read per seconds.
+        /// </summary>
         public readonly int? TargetReadOpsPerSecond;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target bytes written per second.
+        /// </summary>
         public readonly int? TargetWriteBytesPerSecond;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target ops written per second.
+        /// </summary>
         public readonly int? TargetWriteOpsPerSecond;
 
         [OutputConstructor]

@@ -13,6 +13,13 @@ namespace Pulumi.Gcp.BigQuery.Outputs
     [OutputType]
     public sealed class DatasetDefaultEncryptionConfiguration
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Describes the Cloud KMS encryption key that will be used to protect destination
+        /// BigQuery table. The BigQuery Service Account associated with your project requires
+        /// access to this encryption key.
+        /// </summary>
         public readonly string KmsKeyName;
 
         [OutputConstructor]

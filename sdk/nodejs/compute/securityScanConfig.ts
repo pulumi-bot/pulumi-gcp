@@ -45,23 +45,36 @@ export class SecurityScanConfig extends pulumi.CustomResource {
     }
 
     /**
-     * The authentication configuration. If specified, service will use the authentication configuration during scanning.
+     * -
+     * (Optional)
+     * The authentication configuration.
+     * If specified, service will use the authentication configuration during scanning.  Structure is documented below.
      */
     public readonly authentication!: pulumi.Output<outputs.compute.SecurityScanConfigAuthentication | undefined>;
     /**
-     * The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
+     * -
+     * (Optional)
+     * The blacklist URL patterns as described in
+     * https://cloud.google.com/security-scanner/docs/excluded-urls
      */
     public readonly blacklistPatterns!: pulumi.Output<string[] | undefined>;
     /**
+     * -
+     * (Required)
      * The user provider display name of the ScanConfig.
      */
     public readonly displayName!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * Controls export of scan configurations and results to Cloud Security Command Center.
      */
     public readonly exportToSecurityCommandCenter!: pulumi.Output<string | undefined>;
     /**
-     * The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively. Defaults to 15.
+     * -
+     * (Optional)
+     * The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
+     * Defaults to 15.
      */
     public readonly maxQps!: pulumi.Output<number | undefined>;
     /**
@@ -74,18 +87,26 @@ export class SecurityScanConfig extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
-     * The schedule of the ScanConfig
+     * -
+     * (Optional)
+     * The schedule of the ScanConfig  Structure is documented below.
      */
     public readonly schedule!: pulumi.Output<outputs.compute.SecurityScanConfigSchedule | undefined>;
     /**
+     * -
+     * (Required)
      * The starting URLs from which the scanner finds site pages.
      */
     public readonly startingUrls!: pulumi.Output<string[]>;
     /**
+     * -
+     * (Optional)
      * Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
      */
     public readonly targetPlatforms!: pulumi.Output<string[] | undefined>;
     /**
+     * -
+     * (Optional)
      * Type of the user agents used for scanning
      */
     public readonly userAgent!: pulumi.Output<string | undefined>;
@@ -149,23 +170,36 @@ export class SecurityScanConfig extends pulumi.CustomResource {
  */
 export interface SecurityScanConfigState {
     /**
-     * The authentication configuration. If specified, service will use the authentication configuration during scanning.
+     * -
+     * (Optional)
+     * The authentication configuration.
+     * If specified, service will use the authentication configuration during scanning.  Structure is documented below.
      */
     readonly authentication?: pulumi.Input<inputs.compute.SecurityScanConfigAuthentication>;
     /**
-     * The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
+     * -
+     * (Optional)
+     * The blacklist URL patterns as described in
+     * https://cloud.google.com/security-scanner/docs/excluded-urls
      */
     readonly blacklistPatterns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * -
+     * (Required)
      * The user provider display name of the ScanConfig.
      */
     readonly displayName?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Controls export of scan configurations and results to Cloud Security Command Center.
      */
     readonly exportToSecurityCommandCenter?: pulumi.Input<string>;
     /**
-     * The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively. Defaults to 15.
+     * -
+     * (Optional)
+     * The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
+     * Defaults to 15.
      */
     readonly maxQps?: pulumi.Input<number>;
     /**
@@ -178,18 +212,26 @@ export interface SecurityScanConfigState {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * The schedule of the ScanConfig
+     * -
+     * (Optional)
+     * The schedule of the ScanConfig  Structure is documented below.
      */
     readonly schedule?: pulumi.Input<inputs.compute.SecurityScanConfigSchedule>;
     /**
+     * -
+     * (Required)
      * The starting URLs from which the scanner finds site pages.
      */
     readonly startingUrls?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * -
+     * (Optional)
      * Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
      */
     readonly targetPlatforms?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * -
+     * (Optional)
      * Type of the user agents used for scanning
      */
     readonly userAgent?: pulumi.Input<string>;
@@ -200,23 +242,36 @@ export interface SecurityScanConfigState {
  */
 export interface SecurityScanConfigArgs {
     /**
-     * The authentication configuration. If specified, service will use the authentication configuration during scanning.
+     * -
+     * (Optional)
+     * The authentication configuration.
+     * If specified, service will use the authentication configuration during scanning.  Structure is documented below.
      */
     readonly authentication?: pulumi.Input<inputs.compute.SecurityScanConfigAuthentication>;
     /**
-     * The blacklist URL patterns as described in https://cloud.google.com/security-scanner/docs/excluded-urls
+     * -
+     * (Optional)
+     * The blacklist URL patterns as described in
+     * https://cloud.google.com/security-scanner/docs/excluded-urls
      */
     readonly blacklistPatterns?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * -
+     * (Required)
      * The user provider display name of the ScanConfig.
      */
     readonly displayName: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Controls export of scan configurations and results to Cloud Security Command Center.
      */
     readonly exportToSecurityCommandCenter?: pulumi.Input<string>;
     /**
-     * The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively. Defaults to 15.
+     * -
+     * (Optional)
+     * The maximum QPS during scanning. A valid value ranges from 5 to 20 inclusively.
+     * Defaults to 15.
      */
     readonly maxQps?: pulumi.Input<number>;
     /**
@@ -225,18 +280,26 @@ export interface SecurityScanConfigArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * The schedule of the ScanConfig
+     * -
+     * (Optional)
+     * The schedule of the ScanConfig  Structure is documented below.
      */
     readonly schedule?: pulumi.Input<inputs.compute.SecurityScanConfigSchedule>;
     /**
+     * -
+     * (Required)
      * The starting URLs from which the scanner finds site pages.
      */
     readonly startingUrls: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * -
+     * (Optional)
      * Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be used as a default.
      */
     readonly targetPlatforms?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * -
+     * (Optional)
      * Type of the user agents used for scanning
      */
     readonly userAgent?: pulumi.Input<string>;

@@ -51,8 +51,9 @@ export class NodeGroup extends pulumi.CustomResource {
     }
 
     /**
-     * If you use sole-tenant nodes for your workloads, you can use the node group autoscaler to automatically manage the
-     * sizes of your node groups.
+     * -
+     * If you use sole-tenant nodes for your workloads, you can use the node
+     * group autoscaler to automatically manage the sizes of your node groups.  Structure is documented below.
      */
     public readonly autoscalingPolicy!: pulumi.Output<outputs.compute.NodeGroupAutoscalingPolicy>;
     /**
@@ -60,14 +61,20 @@ export class NodeGroup extends pulumi.CustomResource {
      */
     public /*out*/ readonly creationTimestamp!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * An optional textual description of the resource.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Optional)
      * Name of the resource.
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The URL of the node template to which this node group belongs.
      */
     public readonly nodeTemplate!: pulumi.Output<string>;
@@ -81,10 +88,14 @@ export class NodeGroup extends pulumi.CustomResource {
      */
     public /*out*/ readonly selfLink!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The total number of nodes in the node group.
      */
     public readonly size!: pulumi.Output<number>;
     /**
+     * -
+     * (Optional)
      * Zone where this node group is located
      */
     public readonly zone!: pulumi.Output<string>;
@@ -144,8 +155,9 @@ export class NodeGroup extends pulumi.CustomResource {
  */
 export interface NodeGroupState {
     /**
-     * If you use sole-tenant nodes for your workloads, you can use the node group autoscaler to automatically manage the
-     * sizes of your node groups.
+     * -
+     * If you use sole-tenant nodes for your workloads, you can use the node
+     * group autoscaler to automatically manage the sizes of your node groups.  Structure is documented below.
      */
     readonly autoscalingPolicy?: pulumi.Input<inputs.compute.NodeGroupAutoscalingPolicy>;
     /**
@@ -153,14 +165,20 @@ export interface NodeGroupState {
      */
     readonly creationTimestamp?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * An optional textual description of the resource.
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Name of the resource.
      */
     readonly name?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The URL of the node template to which this node group belongs.
      */
     readonly nodeTemplate?: pulumi.Input<string>;
@@ -174,10 +192,14 @@ export interface NodeGroupState {
      */
     readonly selfLink?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The total number of nodes in the node group.
      */
     readonly size?: pulumi.Input<number>;
     /**
+     * -
+     * (Optional)
      * Zone where this node group is located
      */
     readonly zone?: pulumi.Input<string>;
@@ -188,19 +210,26 @@ export interface NodeGroupState {
  */
 export interface NodeGroupArgs {
     /**
-     * If you use sole-tenant nodes for your workloads, you can use the node group autoscaler to automatically manage the
-     * sizes of your node groups.
+     * -
+     * If you use sole-tenant nodes for your workloads, you can use the node
+     * group autoscaler to automatically manage the sizes of your node groups.  Structure is documented below.
      */
     readonly autoscalingPolicy?: pulumi.Input<inputs.compute.NodeGroupAutoscalingPolicy>;
     /**
+     * -
+     * (Optional)
      * An optional textual description of the resource.
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Name of the resource.
      */
     readonly name?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The URL of the node template to which this node group belongs.
      */
     readonly nodeTemplate: pulumi.Input<string>;
@@ -210,10 +239,14 @@ export interface NodeGroupArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The total number of nodes in the node group.
      */
     readonly size: pulumi.Input<number>;
     /**
+     * -
+     * (Optional)
      * Zone where this node group is located
      */
     readonly zone?: pulumi.Input<string>;

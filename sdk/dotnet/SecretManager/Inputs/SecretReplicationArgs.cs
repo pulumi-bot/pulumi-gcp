@@ -12,9 +12,19 @@ namespace Pulumi.Gcp.SecretManager.Inputs
 
     public sealed class SecretReplicationArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret will automatically be replicated without any restrictions.
+        /// </summary>
         [Input("automatic")]
         public Input<bool>? Automatic { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret will automatically be replicated without any restrictions.  Structure is documented below.
+        /// </summary>
         [Input("userManaged")]
         public Input<Inputs.SecretReplicationUserManagedArgs>? UserManaged { get; set; }
 

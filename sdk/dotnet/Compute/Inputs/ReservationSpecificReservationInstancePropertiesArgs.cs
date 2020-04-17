@@ -14,6 +14,12 @@ namespace Pulumi.Gcp.Compute.Inputs
     {
         [Input("guestAccelerators")]
         private InputList<Inputs.ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs>? _guestAccelerators;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Guest accelerator type and count.  Structure is documented below.
+        /// </summary>
         public InputList<Inputs.ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs> GuestAccelerators
         {
             get => _guestAccelerators ?? (_guestAccelerators = new InputList<Inputs.ReservationSpecificReservationInstancePropertiesGuestAcceleratorArgs>());
@@ -22,15 +28,35 @@ namespace Pulumi.Gcp.Compute.Inputs
 
         [Input("localSsds")]
         private InputList<Inputs.ReservationSpecificReservationInstancePropertiesLocalSsdArgs>? _localSsds;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The amount of local ssd to reserve with each instance. This
+        /// reserves disks of type `local-ssd`.  Structure is documented below.
+        /// </summary>
         public InputList<Inputs.ReservationSpecificReservationInstancePropertiesLocalSsdArgs> LocalSsds
         {
             get => _localSsds ?? (_localSsds = new InputList<Inputs.ReservationSpecificReservationInstancePropertiesLocalSsdArgs>());
             set => _localSsds = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the machine type to reserve.
+        /// </summary>
         [Input("machineType", required: true)]
         public Input<string> MachineType { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum CPU platform for the reservation. For example,
+        /// `"Intel Skylake"`. See
+        /// the CPU platform availability reference](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform#availablezones)
+        /// for information on available CPU platforms.
+        /// </summary>
         [Input("minCpuPlatform")]
         public Input<string>? MinCpuPlatform { get; set; }
 

@@ -12,12 +12,26 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class ReservationSpecificReservationArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The number of resources that are allocated.
+        /// </summary>
         [Input("count", required: true)]
         public Input<int> Count { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// How many instances are in use.
+        /// </summary>
         [Input("inUseCount")]
         public Input<int>? InUseCount { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The instance properties for the reservation.  Structure is documented below.
+        /// </summary>
         [Input("instanceProperties", required: true)]
         public Input<Inputs.ReservationSpecificReservationInstancePropertiesArgs> InstanceProperties { get; set; } = null!;
 

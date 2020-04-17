@@ -24,15 +24,24 @@ import (
 type Source struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Optional)
 	// The description of the source (max of 1024 characters).
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The source’s display name. A source’s display name must be unique amongst its siblings, for example, two sources
-	// with the same parent can't share the same display name. The display name must start and end with a letter or digit, may
-	// contain letters, digits, spaces, hyphens, and underscores, and can be no longer than 32 characters.
+	// -
+	// (Required)
+	// The source’s display name. A source’s display name must be unique
+	// amongst its siblings, for example, two sources with the same parent
+	// can't share the same display name. The display name must start and end
+	// with a letter or digit, may contain letters, digits, spaces, hyphens,
+	// and underscores, and can be no longer than 32 characters.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// The resource name of this source, in the format 'organizations/{{organization}}/sources/{{source}}'.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The organization whose Cloud Security Command Center the Source lives in.
+	// -
+	// (Required)
+	// The organization whose Cloud Security Command Center the Source
+	// lives in.
 	Organization pulumi.StringOutput `pulumi:"organization"`
 }
 
@@ -70,28 +79,46 @@ func GetSource(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Source resources.
 type sourceState struct {
+	// -
+	// (Optional)
 	// The description of the source (max of 1024 characters).
 	Description *string `pulumi:"description"`
-	// The source’s display name. A source’s display name must be unique amongst its siblings, for example, two sources
-	// with the same parent can't share the same display name. The display name must start and end with a letter or digit, may
-	// contain letters, digits, spaces, hyphens, and underscores, and can be no longer than 32 characters.
+	// -
+	// (Required)
+	// The source’s display name. A source’s display name must be unique
+	// amongst its siblings, for example, two sources with the same parent
+	// can't share the same display name. The display name must start and end
+	// with a letter or digit, may contain letters, digits, spaces, hyphens,
+	// and underscores, and can be no longer than 32 characters.
 	DisplayName *string `pulumi:"displayName"`
 	// The resource name of this source, in the format 'organizations/{{organization}}/sources/{{source}}'.
 	Name *string `pulumi:"name"`
-	// The organization whose Cloud Security Command Center the Source lives in.
+	// -
+	// (Required)
+	// The organization whose Cloud Security Command Center the Source
+	// lives in.
 	Organization *string `pulumi:"organization"`
 }
 
 type SourceState struct {
+	// -
+	// (Optional)
 	// The description of the source (max of 1024 characters).
 	Description pulumi.StringPtrInput
-	// The source’s display name. A source’s display name must be unique amongst its siblings, for example, two sources
-	// with the same parent can't share the same display name. The display name must start and end with a letter or digit, may
-	// contain letters, digits, spaces, hyphens, and underscores, and can be no longer than 32 characters.
+	// -
+	// (Required)
+	// The source’s display name. A source’s display name must be unique
+	// amongst its siblings, for example, two sources with the same parent
+	// can't share the same display name. The display name must start and end
+	// with a letter or digit, may contain letters, digits, spaces, hyphens,
+	// and underscores, and can be no longer than 32 characters.
 	DisplayName pulumi.StringPtrInput
 	// The resource name of this source, in the format 'organizations/{{organization}}/sources/{{source}}'.
 	Name pulumi.StringPtrInput
-	// The organization whose Cloud Security Command Center the Source lives in.
+	// -
+	// (Required)
+	// The organization whose Cloud Security Command Center the Source
+	// lives in.
 	Organization pulumi.StringPtrInput
 }
 
@@ -100,25 +127,43 @@ func (SourceState) ElementType() reflect.Type {
 }
 
 type sourceArgs struct {
+	// -
+	// (Optional)
 	// The description of the source (max of 1024 characters).
 	Description *string `pulumi:"description"`
-	// The source’s display name. A source’s display name must be unique amongst its siblings, for example, two sources
-	// with the same parent can't share the same display name. The display name must start and end with a letter or digit, may
-	// contain letters, digits, spaces, hyphens, and underscores, and can be no longer than 32 characters.
+	// -
+	// (Required)
+	// The source’s display name. A source’s display name must be unique
+	// amongst its siblings, for example, two sources with the same parent
+	// can't share the same display name. The display name must start and end
+	// with a letter or digit, may contain letters, digits, spaces, hyphens,
+	// and underscores, and can be no longer than 32 characters.
 	DisplayName string `pulumi:"displayName"`
-	// The organization whose Cloud Security Command Center the Source lives in.
+	// -
+	// (Required)
+	// The organization whose Cloud Security Command Center the Source
+	// lives in.
 	Organization string `pulumi:"organization"`
 }
 
 // The set of arguments for constructing a Source resource.
 type SourceArgs struct {
+	// -
+	// (Optional)
 	// The description of the source (max of 1024 characters).
 	Description pulumi.StringPtrInput
-	// The source’s display name. A source’s display name must be unique amongst its siblings, for example, two sources
-	// with the same parent can't share the same display name. The display name must start and end with a letter or digit, may
-	// contain letters, digits, spaces, hyphens, and underscores, and can be no longer than 32 characters.
+	// -
+	// (Required)
+	// The source’s display name. A source’s display name must be unique
+	// amongst its siblings, for example, two sources with the same parent
+	// can't share the same display name. The display name must start and end
+	// with a letter or digit, may contain letters, digits, spaces, hyphens,
+	// and underscores, and can be no longer than 32 characters.
 	DisplayName pulumi.StringInput
-	// The organization whose Cloud Security Command Center the Source lives in.
+	// -
+	// (Required)
+	// The organization whose Cloud Security Command Center the Source
+	// lives in.
 	Organization pulumi.StringInput
 }
 

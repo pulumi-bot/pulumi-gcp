@@ -13,7 +13,19 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicy
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for how client requests are aborted as part of fault
+        /// injection.  Structure is documented below.
+        /// </summary>
         public readonly Outputs.URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyAbort? Abort;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The specification for how client requests are delayed as part of fault
+        /// injection, before being sent to a backend service.  Structure is documented below.
+        /// </summary>
         public readonly Outputs.URLMapPathMatcherRouteRuleRouteActionFaultInjectionPolicyDelay? Delay;
 
         [OutputConstructor]

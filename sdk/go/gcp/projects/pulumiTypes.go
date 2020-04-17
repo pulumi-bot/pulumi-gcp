@@ -559,6 +559,7 @@ func (o OrganizationPolicyBooleanPolicyPtrOutput) Enforced() pulumi.BoolOutput {
 }
 
 type OrganizationPolicyListPolicy struct {
+	// or `deny` - (Optional) One or the other must be set.
 	Allow *OrganizationPolicyListPolicyAllow `pulumi:"allow"`
 	Deny  *OrganizationPolicyListPolicyDeny  `pulumi:"deny"`
 	// If set to true, the values from the effective Policy of the parent resource
@@ -581,6 +582,7 @@ type OrganizationPolicyListPolicyInput interface {
 }
 
 type OrganizationPolicyListPolicyArgs struct {
+	// or `deny` - (Optional) One or the other must be set.
 	Allow OrganizationPolicyListPolicyAllowPtrInput `pulumi:"allow"`
 	Deny  OrganizationPolicyListPolicyDenyPtrInput  `pulumi:"deny"`
 	// If set to true, the values from the effective Policy of the parent resource
@@ -667,6 +669,8 @@ func (o OrganizationPolicyListPolicyOutput) ToOrganizationPolicyListPolicyPtrOut
 		return &v
 	}).(OrganizationPolicyListPolicyPtrOutput)
 }
+
+// or `deny` - (Optional) One or the other must be set.
 func (o OrganizationPolicyListPolicyOutput) Allow() OrganizationPolicyListPolicyAllowPtrOutput {
 	return o.ApplyT(func(v OrganizationPolicyListPolicy) *OrganizationPolicyListPolicyAllow { return v.Allow }).(OrganizationPolicyListPolicyAllowPtrOutput)
 }
@@ -704,6 +708,7 @@ func (o OrganizationPolicyListPolicyPtrOutput) Elem() OrganizationPolicyListPoli
 	return o.ApplyT(func(v *OrganizationPolicyListPolicy) OrganizationPolicyListPolicy { return *v }).(OrganizationPolicyListPolicyOutput)
 }
 
+// or `deny` - (Optional) One or the other must be set.
 func (o OrganizationPolicyListPolicyPtrOutput) Allow() OrganizationPolicyListPolicyAllowPtrOutput {
 	return o.ApplyT(func(v OrganizationPolicyListPolicy) *OrganizationPolicyListPolicyAllow { return v.Allow }).(OrganizationPolicyListPolicyAllowPtrOutput)
 }

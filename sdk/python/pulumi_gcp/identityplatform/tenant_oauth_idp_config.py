@@ -12,27 +12,39 @@ from .. import utilities, tables
 class TenantOauthIdpConfig(pulumi.CustomResource):
     client_id: pulumi.Output[str]
     """
+    -
+    (Required)
     The client id of an OAuth client.
     """
     client_secret: pulumi.Output[str]
     """
+    -
+    (Optional)
     The client secret of the OAuth client, to enable OIDC code flow.
     """
     display_name: pulumi.Output[str]
     """
+    -
+    (Required)
     Human friendly display name.
     """
     enabled: pulumi.Output[bool]
     """
+    -
+    (Optional)
     If this config allows users to sign in with the provider.
     """
     issuer: pulumi.Output[str]
     """
+    -
+    (Required)
     For OIDC Idps, the issuer identifier.
     """
     name: pulumi.Output[str]
     """
-    The name of the OauthIdpConfig. Must start with 'oidc.'.
+    -
+    (Required)
+    The name of the OauthIdpConfig. Must start with `oidc.`.
     """
     project: pulumi.Output[str]
     """
@@ -41,6 +53,8 @@ class TenantOauthIdpConfig(pulumi.CustomResource):
     """
     tenant: pulumi.Output[str]
     """
+    -
+    (Required)
     The name of the tenant where this OIDC IDP configuration resource exists
     """
     def __init__(__self__, resource_name, opts=None, client_id=None, client_secret=None, display_name=None, enabled=None, issuer=None, name=None, project=None, tenant=None, __props__=None, __name__=None, __opts__=None):
@@ -53,15 +67,29 @@ class TenantOauthIdpConfig(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: The client id of an OAuth client.
-        :param pulumi.Input[str] client_secret: The client secret of the OAuth client, to enable OIDC code flow.
-        :param pulumi.Input[str] display_name: Human friendly display name.
-        :param pulumi.Input[bool] enabled: If this config allows users to sign in with the provider.
-        :param pulumi.Input[str] issuer: For OIDC Idps, the issuer identifier.
-        :param pulumi.Input[str] name: The name of the OauthIdpConfig. Must start with 'oidc.'.
+        :param pulumi.Input[str] client_id: -
+               (Required)
+               The client id of an OAuth client.
+        :param pulumi.Input[str] client_secret: -
+               (Optional)
+               The client secret of the OAuth client, to enable OIDC code flow.
+        :param pulumi.Input[str] display_name: -
+               (Required)
+               Human friendly display name.
+        :param pulumi.Input[bool] enabled: -
+               (Optional)
+               If this config allows users to sign in with the provider.
+        :param pulumi.Input[str] issuer: -
+               (Required)
+               For OIDC Idps, the issuer identifier.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the OauthIdpConfig. Must start with `oidc.`.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] tenant: The name of the tenant where this OIDC IDP configuration resource exists
+        :param pulumi.Input[str] tenant: -
+               (Required)
+               The name of the tenant where this OIDC IDP configuration resource exists
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -111,15 +139,29 @@ class TenantOauthIdpConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] client_id: The client id of an OAuth client.
-        :param pulumi.Input[str] client_secret: The client secret of the OAuth client, to enable OIDC code flow.
-        :param pulumi.Input[str] display_name: Human friendly display name.
-        :param pulumi.Input[bool] enabled: If this config allows users to sign in with the provider.
-        :param pulumi.Input[str] issuer: For OIDC Idps, the issuer identifier.
-        :param pulumi.Input[str] name: The name of the OauthIdpConfig. Must start with 'oidc.'.
+        :param pulumi.Input[str] client_id: -
+               (Required)
+               The client id of an OAuth client.
+        :param pulumi.Input[str] client_secret: -
+               (Optional)
+               The client secret of the OAuth client, to enable OIDC code flow.
+        :param pulumi.Input[str] display_name: -
+               (Required)
+               Human friendly display name.
+        :param pulumi.Input[bool] enabled: -
+               (Optional)
+               If this config allows users to sign in with the provider.
+        :param pulumi.Input[str] issuer: -
+               (Required)
+               For OIDC Idps, the issuer identifier.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the OauthIdpConfig. Must start with `oidc.`.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] tenant: The name of the tenant where this OIDC IDP configuration resource exists
+        :param pulumi.Input[str] tenant: -
+               (Required)
+               The name of the tenant where this OIDC IDP configuration resource exists
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
