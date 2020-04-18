@@ -42,7 +42,7 @@ type LookupImageResult struct {
 	DiskSizeGb int `pulumi:"diskSizeGb"`
 	// The family name of the image.
 	Family string `pulumi:"family"`
-	// id is the provider-assigned unique ID for this managed resource.
+	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The [RFC 4648 base64](https://tools.ietf.org/html/rfc4648#section-4)
 	// encoded SHA-256 hash of the [customer-supplied encryption key](https://cloud.google.com/compute/docs/disks/customer-supplied-encryption)

@@ -75,7 +75,7 @@ namespace Pulumi.Gcp.Compute
         /// </summary>
         public readonly string Family;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         /// <summary>

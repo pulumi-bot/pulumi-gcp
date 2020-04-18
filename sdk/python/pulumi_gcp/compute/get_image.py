@@ -48,7 +48,7 @@ class GetImageResult:
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
         """
-        id is the provider-assigned unique ID for this managed resource.
+        The provider-assigned unique ID for this managed resource.
         """
         if image_encryption_key_sha256 and not isinstance(image_encryption_key_sha256, str):
             raise TypeError("Expected argument 'image_encryption_key_sha256' to be a str")
