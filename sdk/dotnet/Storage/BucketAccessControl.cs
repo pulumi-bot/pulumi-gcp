@@ -37,6 +37,8 @@ namespace Pulumi.Gcp.Storage
     public partial class BucketAccessControl : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the bucket.
         /// </summary>
         [Output("bucket")]
@@ -55,15 +57,30 @@ namespace Pulumi.Gcp.Storage
         public Output<string> Email { get; private set; } = null!;
 
         /// <summary>
-        /// The entity holding the permission, in one of the following forms: user-userId user-email group-groupId group-email
-        /// domain-domain project-team-projectId allUsers allAuthenticatedUsers Examples: The user liz@example.com would be
-        /// user-liz@example.com. The group example@googlegroups.com would be group-example@googlegroups.com. To refer to all
-        /// members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+        /// -
+        /// (Required)
+        /// The entity holding the permission, in one of the following forms:
+        /// user-userId
+        /// user-email
+        /// group-groupId
+        /// group-email
+        /// domain-domain
+        /// project-team-projectId
+        /// allUsers
+        /// allAuthenticatedUsers
+        /// Examples:
+        /// The user liz@example.com would be user-liz@example.com.
+        /// The group example@googlegroups.com would be
+        /// group-example@googlegroups.com.
+        /// To refer to all members of the Google Apps for Business domain
+        /// example.com, the entity would be domain-example.com.
         /// </summary>
         [Output("entity")]
         public Output<string> Entity { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The access permission for the entity.
         /// </summary>
         [Output("role")]
@@ -116,21 +133,38 @@ namespace Pulumi.Gcp.Storage
     public sealed class BucketAccessControlArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the bucket.
         /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
 
         /// <summary>
-        /// The entity holding the permission, in one of the following forms: user-userId user-email group-groupId group-email
-        /// domain-domain project-team-projectId allUsers allAuthenticatedUsers Examples: The user liz@example.com would be
-        /// user-liz@example.com. The group example@googlegroups.com would be group-example@googlegroups.com. To refer to all
-        /// members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+        /// -
+        /// (Required)
+        /// The entity holding the permission, in one of the following forms:
+        /// user-userId
+        /// user-email
+        /// group-groupId
+        /// group-email
+        /// domain-domain
+        /// project-team-projectId
+        /// allUsers
+        /// allAuthenticatedUsers
+        /// Examples:
+        /// The user liz@example.com would be user-liz@example.com.
+        /// The group example@googlegroups.com would be
+        /// group-example@googlegroups.com.
+        /// To refer to all members of the Google Apps for Business domain
+        /// example.com, the entity would be domain-example.com.
         /// </summary>
         [Input("entity", required: true)]
         public Input<string> Entity { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The access permission for the entity.
         /// </summary>
         [Input("role")]
@@ -144,6 +178,8 @@ namespace Pulumi.Gcp.Storage
     public sealed class BucketAccessControlState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the bucket.
         /// </summary>
         [Input("bucket")]
@@ -162,15 +198,30 @@ namespace Pulumi.Gcp.Storage
         public Input<string>? Email { get; set; }
 
         /// <summary>
-        /// The entity holding the permission, in one of the following forms: user-userId user-email group-groupId group-email
-        /// domain-domain project-team-projectId allUsers allAuthenticatedUsers Examples: The user liz@example.com would be
-        /// user-liz@example.com. The group example@googlegroups.com would be group-example@googlegroups.com. To refer to all
-        /// members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+        /// -
+        /// (Required)
+        /// The entity holding the permission, in one of the following forms:
+        /// user-userId
+        /// user-email
+        /// group-groupId
+        /// group-email
+        /// domain-domain
+        /// project-team-projectId
+        /// allUsers
+        /// allAuthenticatedUsers
+        /// Examples:
+        /// The user liz@example.com would be user-liz@example.com.
+        /// The group example@googlegroups.com would be
+        /// group-example@googlegroups.com.
+        /// To refer to all members of the Google Apps for Business domain
+        /// example.com, the entity would be domain-example.com.
         /// </summary>
         [Input("entity")]
         public Input<string>? Entity { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The access permission for the entity.
         /// </summary>
         [Input("role")]

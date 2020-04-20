@@ -55,32 +55,46 @@ export class CryptoKey extends pulumi.CustomResource {
     }
 
     /**
-     * The KeyRing that this key belongs to. Format: ''projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}''.
+     * -
+     * (Required)
+     * The KeyRing that this key belongs to.
+     * Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}'`.
      */
     public readonly keyRing!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * Labels with user-defined metadata to apply to this resource.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * -
+     * (Required)
      * The resource name for the CryptoKey.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The immutable purpose of this CryptoKey. See the [purpose
-     * reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose)
+     * -
+     * (Optional)
+     * The immutable purpose of this CryptoKey. See the
+     * [purpose reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose)
      * for possible inputs.
      */
     public readonly purpose!: pulumi.Output<string | undefined>;
     /**
-     * Every time this period passes, generate a new CryptoKeyVersion and set it as the primary. The first rotation will
-     * take place after the specified period. The rotation period has the format of a decimal number with up to 9
-     * fractional digits, followed by the letter 's' (seconds). It must be greater than a day (ie, 86400).
+     * -
+     * (Optional)
+     * Every time this period passes, generate a new CryptoKeyVersion and set it as the primary.
+     * The first rotation will take place after the specified period. The rotation period has
+     * the format of a decimal number with up to 9 fractional digits, followed by the
+     * letter `s` (seconds). It must be greater than a day (ie, 86400).
      */
     public readonly rotationPeriod!: pulumi.Output<string | undefined>;
     public /*out*/ readonly selfLink!: pulumi.Output<string>;
     /**
-     * A template describing settings for new crypto key versions.
+     * -
+     * (Optional)
+     * A template describing settings for new crypto key versions.  Structure is documented below.
      */
     public readonly versionTemplate!: pulumi.Output<outputs.kms.CryptoKeyVersionTemplate>;
 
@@ -132,32 +146,46 @@ export class CryptoKey extends pulumi.CustomResource {
  */
 export interface CryptoKeyState {
     /**
-     * The KeyRing that this key belongs to. Format: ''projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}''.
+     * -
+     * (Required)
+     * The KeyRing that this key belongs to.
+     * Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}'`.
      */
     readonly keyRing?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Labels with user-defined metadata to apply to this resource.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * -
+     * (Required)
      * The resource name for the CryptoKey.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The immutable purpose of this CryptoKey. See the [purpose
-     * reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose)
+     * -
+     * (Optional)
+     * The immutable purpose of this CryptoKey. See the
+     * [purpose reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose)
      * for possible inputs.
      */
     readonly purpose?: pulumi.Input<string>;
     /**
-     * Every time this period passes, generate a new CryptoKeyVersion and set it as the primary. The first rotation will
-     * take place after the specified period. The rotation period has the format of a decimal number with up to 9
-     * fractional digits, followed by the letter 's' (seconds). It must be greater than a day (ie, 86400).
+     * -
+     * (Optional)
+     * Every time this period passes, generate a new CryptoKeyVersion and set it as the primary.
+     * The first rotation will take place after the specified period. The rotation period has
+     * the format of a decimal number with up to 9 fractional digits, followed by the
+     * letter `s` (seconds). It must be greater than a day (ie, 86400).
      */
     readonly rotationPeriod?: pulumi.Input<string>;
     readonly selfLink?: pulumi.Input<string>;
     /**
-     * A template describing settings for new crypto key versions.
+     * -
+     * (Optional)
+     * A template describing settings for new crypto key versions.  Structure is documented below.
      */
     readonly versionTemplate?: pulumi.Input<inputs.kms.CryptoKeyVersionTemplate>;
 }
@@ -167,31 +195,45 @@ export interface CryptoKeyState {
  */
 export interface CryptoKeyArgs {
     /**
-     * The KeyRing that this key belongs to. Format: ''projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}''.
+     * -
+     * (Required)
+     * The KeyRing that this key belongs to.
+     * Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}'`.
      */
     readonly keyRing: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Labels with user-defined metadata to apply to this resource.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * -
+     * (Required)
      * The resource name for the CryptoKey.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The immutable purpose of this CryptoKey. See the [purpose
-     * reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose)
+     * -
+     * (Optional)
+     * The immutable purpose of this CryptoKey. See the
+     * [purpose reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose)
      * for possible inputs.
      */
     readonly purpose?: pulumi.Input<string>;
     /**
-     * Every time this period passes, generate a new CryptoKeyVersion and set it as the primary. The first rotation will
-     * take place after the specified period. The rotation period has the format of a decimal number with up to 9
-     * fractional digits, followed by the letter 's' (seconds). It must be greater than a day (ie, 86400).
+     * -
+     * (Optional)
+     * Every time this period passes, generate a new CryptoKeyVersion and set it as the primary.
+     * The first rotation will take place after the specified period. The rotation period has
+     * the format of a decimal number with up to 9 fractional digits, followed by the
+     * letter `s` (seconds). It must be greater than a day (ie, 86400).
      */
     readonly rotationPeriod?: pulumi.Input<string>;
     /**
-     * A template describing settings for new crypto key versions.
+     * -
+     * (Optional)
+     * A template describing settings for new crypto key versions.  Structure is documented below.
      */
     readonly versionTemplate?: pulumi.Input<inputs.kms.CryptoKeyVersionTemplate>;
 }

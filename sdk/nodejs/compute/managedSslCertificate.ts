@@ -71,6 +71,8 @@ export class ManagedSslCertificate extends pulumi.CustomResource {
      */
     public /*out*/ readonly creationTimestamp!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * An optional description of this resource.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -79,16 +81,22 @@ export class ManagedSslCertificate extends pulumi.CustomResource {
      */
     public /*out*/ readonly expireTime!: pulumi.Output<string>;
     /**
-     * Properties relevant to a managed certificate. These will be used if the certificate is managed (as indicated by a
-     * value of 'MANAGED' in 'type').
+     * -
+     * (Optional)
+     * Properties relevant to a managed certificate.  These will be used if the
+     * certificate is managed (as indicated by a value of `MANAGED` in `type`).  Structure is documented below.
      */
     public readonly managed!: pulumi.Output<outputs.compute.ManagedSslCertificateManaged | undefined>;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. These are
-     * in the same namespace as the managed SSL certificates.
+     * -
+     * (Optional)
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035. Specifically, the name must be 1-63 characters long and match
+     * the regular expression `a-z?` which means the
+     * first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -105,7 +113,10 @@ export class ManagedSslCertificate extends pulumi.CustomResource {
      */
     public /*out*/ readonly subjectAlternativeNames!: pulumi.Output<string[]>;
     /**
-     * Enum field whose value is always 'MANAGED' - used to signal to the API which type this is.
+     * -
+     * (Optional)
+     * Enum field whose value is always `MANAGED` - used to signal to the API
+     * which type this is.
      */
     public readonly type!: pulumi.Output<string | undefined>;
 
@@ -170,6 +181,8 @@ export interface ManagedSslCertificateState {
      */
     readonly creationTimestamp?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * An optional description of this resource.
      */
     readonly description?: pulumi.Input<string>;
@@ -178,16 +191,22 @@ export interface ManagedSslCertificateState {
      */
     readonly expireTime?: pulumi.Input<string>;
     /**
-     * Properties relevant to a managed certificate. These will be used if the certificate is managed (as indicated by a
-     * value of 'MANAGED' in 'type').
+     * -
+     * (Optional)
+     * Properties relevant to a managed certificate.  These will be used if the
+     * certificate is managed (as indicated by a value of `MANAGED` in `type`).  Structure is documented below.
      */
     readonly managed?: pulumi.Input<inputs.compute.ManagedSslCertificateManaged>;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. These are
-     * in the same namespace as the managed SSL certificates.
+     * -
+     * (Optional)
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035. Specifically, the name must be 1-63 characters long and match
+     * the regular expression `a-z?` which means the
+     * first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -204,7 +223,10 @@ export interface ManagedSslCertificateState {
      */
     readonly subjectAlternativeNames?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Enum field whose value is always 'MANAGED' - used to signal to the API which type this is.
+     * -
+     * (Optional)
+     * Enum field whose value is always `MANAGED` - used to signal to the API
+     * which type this is.
      */
     readonly type?: pulumi.Input<string>;
 }
@@ -218,20 +240,28 @@ export interface ManagedSslCertificateArgs {
      */
     readonly certificateId?: pulumi.Input<number>;
     /**
+     * -
+     * (Optional)
      * An optional description of this resource.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Properties relevant to a managed certificate. These will be used if the certificate is managed (as indicated by a
-     * value of 'MANAGED' in 'type').
+     * -
+     * (Optional)
+     * Properties relevant to a managed certificate.  These will be used if the
+     * certificate is managed (as indicated by a value of `MANAGED` in `type`).  Structure is documented below.
      */
     readonly managed?: pulumi.Input<inputs.compute.ManagedSslCertificateManaged>;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. These are
-     * in the same namespace as the managed SSL certificates.
+     * -
+     * (Optional)
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035. Specifically, the name must be 1-63 characters long and match
+     * the regular expression `a-z?` which means the
+     * first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -240,7 +270,10 @@ export interface ManagedSslCertificateArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * Enum field whose value is always 'MANAGED' - used to signal to the API which type this is.
+     * -
+     * (Optional)
+     * Enum field whose value is always `MANAGED` - used to signal to the API
+     * which type this is.
      */
     readonly type?: pulumi.Input<string>;
 }

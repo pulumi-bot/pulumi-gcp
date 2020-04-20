@@ -14,7 +14,18 @@ namespace Pulumi.Gcp.Compute.Outputs
     public sealed class RegionDiskDiskEncryptionKey
     {
         public readonly string? KmsKeyName;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Specifies a 256-bit customer-supplied encryption key, encoded in
+        /// RFC 4648 base64 to either encrypt or decrypt this resource.
+        /// </summary>
         public readonly string? RawKey;
+        /// <summary>
+        /// -
+        /// The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
+        /// encryption key that protects this resource.
+        /// </summary>
         public readonly string? Sha256;
 
         [OutputConstructor]

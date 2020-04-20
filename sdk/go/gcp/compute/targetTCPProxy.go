@@ -23,22 +23,33 @@ import (
 type TargetTCPProxy struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// A reference to the BackendService resource.
 	BackendService pulumi.StringOutput `pulumi:"backendService"`
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringOutput `pulumi:"creationTimestamp"`
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035. Specifically, the name must be 1-63 characters long and match
+	// the regular expression `a-z?` which means the
+	// first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
-	// Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is
-	// NONE.
+	// -
+	// (Optional)
+	// Specifies the type of proxy header to append before sending data to
+	// the backend, either NONE or PROXY_V1. The default is NONE.
 	ProxyHeader pulumi.StringPtrOutput `pulumi:"proxyHeader"`
 	// The unique identifier for the resource.
 	ProxyId pulumi.IntOutput `pulumi:"proxyId"`
@@ -77,22 +88,33 @@ func GetTargetTCPProxy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TargetTCPProxy resources.
 type targetTCPProxyState struct {
+	// -
+	// (Required)
 	// A reference to the BackendService resource.
 	BackendService *string `pulumi:"backendService"`
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp *string `pulumi:"creationTimestamp"`
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description *string `pulumi:"description"`
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035. Specifically, the name must be 1-63 characters long and match
+	// the regular expression `a-z?` which means the
+	// first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is
-	// NONE.
+	// -
+	// (Optional)
+	// Specifies the type of proxy header to append before sending data to
+	// the backend, either NONE or PROXY_V1. The default is NONE.
 	ProxyHeader *string `pulumi:"proxyHeader"`
 	// The unique identifier for the resource.
 	ProxyId *int `pulumi:"proxyId"`
@@ -101,22 +123,33 @@ type targetTCPProxyState struct {
 }
 
 type TargetTCPProxyState struct {
+	// -
+	// (Required)
 	// A reference to the BackendService resource.
 	BackendService pulumi.StringPtrInput
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrInput
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035. Specifically, the name must be 1-63 characters long and match
+	// the regular expression `a-z?` which means the
+	// first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is
-	// NONE.
+	// -
+	// (Optional)
+	// Specifies the type of proxy header to append before sending data to
+	// the backend, either NONE or PROXY_V1. The default is NONE.
 	ProxyHeader pulumi.StringPtrInput
 	// The unique identifier for the resource.
 	ProxyId pulumi.IntPtrInput
@@ -129,39 +162,61 @@ func (TargetTCPProxyState) ElementType() reflect.Type {
 }
 
 type targetTCPProxyArgs struct {
+	// -
+	// (Required)
 	// A reference to the BackendService resource.
 	BackendService string `pulumi:"backendService"`
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description *string `pulumi:"description"`
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035. Specifically, the name must be 1-63 characters long and match
+	// the regular expression `a-z?` which means the
+	// first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is
-	// NONE.
+	// -
+	// (Optional)
+	// Specifies the type of proxy header to append before sending data to
+	// the backend, either NONE or PROXY_V1. The default is NONE.
 	ProxyHeader *string `pulumi:"proxyHeader"`
 }
 
 // The set of arguments for constructing a TargetTCPProxy resource.
 type TargetTCPProxyArgs struct {
+	// -
+	// (Required)
 	// A reference to the BackendService resource.
 	BackendService pulumi.StringInput
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrInput
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035. Specifically, the name must be 1-63 characters long and match
+	// the regular expression `a-z?` which means the
+	// first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the last
+	// character, which cannot be a dash.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is
-	// NONE.
+	// -
+	// (Optional)
+	// Specifies the type of proxy header to append before sending data to
+	// the backend, either NONE or PROXY_V1. The default is NONE.
 	ProxyHeader pulumi.StringPtrInput
 }
 

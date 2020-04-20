@@ -12,9 +12,19 @@ namespace Pulumi.Gcp.AppEngine.Inputs
 
     public sealed class FlexibleAppVersionDeploymentZipGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// files count
+        /// </summary>
         [Input("filesCount")]
         public Input<int>? FilesCount { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Source URL
+        /// </summary>
         [Input("sourceUrl", required: true)]
         public Input<string> SourceUrl { get; set; } = null!;
 

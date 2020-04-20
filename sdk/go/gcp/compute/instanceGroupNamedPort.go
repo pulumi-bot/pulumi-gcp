@@ -24,15 +24,24 @@ import (
 type InstanceGroupNamedPort struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// The name of the instance group.
 	Group pulumi.StringOutput `pulumi:"group"`
-	// The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
+	// -
+	// (Required)
+	// The name for this named port. The name must be 1-63 characters
+	// long, and comply with RFC1035.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// -
+	// (Required)
 	// The port number, which can be a value between 1 and 65535.
 	Port pulumi.IntOutput `pulumi:"port"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
+	// -
+	// (Optional)
 	// The zone of the instance group.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
@@ -71,29 +80,47 @@ func GetInstanceGroupNamedPort(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstanceGroupNamedPort resources.
 type instanceGroupNamedPortState struct {
+	// -
+	// (Required)
 	// The name of the instance group.
 	Group *string `pulumi:"group"`
-	// The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
+	// -
+	// (Required)
+	// The name for this named port. The name must be 1-63 characters
+	// long, and comply with RFC1035.
 	Name *string `pulumi:"name"`
+	// -
+	// (Required)
 	// The port number, which can be a value between 1 and 65535.
 	Port *int `pulumi:"port"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Optional)
 	// The zone of the instance group.
 	Zone *string `pulumi:"zone"`
 }
 
 type InstanceGroupNamedPortState struct {
+	// -
+	// (Required)
 	// The name of the instance group.
 	Group pulumi.StringPtrInput
-	// The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
+	// -
+	// (Required)
+	// The name for this named port. The name must be 1-63 characters
+	// long, and comply with RFC1035.
 	Name pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The port number, which can be a value between 1 and 65535.
 	Port pulumi.IntPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// The zone of the instance group.
 	Zone pulumi.StringPtrInput
 }
@@ -103,30 +130,48 @@ func (InstanceGroupNamedPortState) ElementType() reflect.Type {
 }
 
 type instanceGroupNamedPortArgs struct {
+	// -
+	// (Required)
 	// The name of the instance group.
 	Group string `pulumi:"group"`
-	// The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
+	// -
+	// (Required)
+	// The name for this named port. The name must be 1-63 characters
+	// long, and comply with RFC1035.
 	Name *string `pulumi:"name"`
+	// -
+	// (Required)
 	// The port number, which can be a value between 1 and 65535.
 	Port int `pulumi:"port"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Optional)
 	// The zone of the instance group.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a InstanceGroupNamedPort resource.
 type InstanceGroupNamedPortArgs struct {
+	// -
+	// (Required)
 	// The name of the instance group.
 	Group pulumi.StringInput
-	// The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
+	// -
+	// (Required)
+	// The name for this named port. The name must be 1-63 characters
+	// long, and comply with RFC1035.
 	Name pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The port number, which can be a value between 1 and 65535.
 	Port pulumi.IntInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// The zone of the instance group.
 	Zone pulumi.StringPtrInput
 }

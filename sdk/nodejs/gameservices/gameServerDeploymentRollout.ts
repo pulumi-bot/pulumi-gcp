@@ -46,17 +46,26 @@ export class GameServerDeploymentRollout extends pulumi.CustomResource {
     }
 
     /**
-     * This field points to the game server config that is applied by default to all realms and clusters. For example,
-     * 'projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config'.
+     * -
+     * (Required)
+     * This field points to the game server config that is
+     * applied by default to all realms and clusters. For example,
+     * `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
      */
     public readonly defaultGameServerConfig!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The deployment to rollout the new config to. Only 1 rollout must be associated with each deployment.
      */
     public readonly deploymentId!: pulumi.Output<string>;
     /**
-     * The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the
-     * order they are listed. As soon as a match is found for a cluster, the rest of the list is not processed.
+     * -
+     * (Optional)
+     * The gameServerConfigOverrides contains the per game server config
+     * overrides. The overrides are processed in the order they are listed. As
+     * soon as a match is found for a cluster, the rest of the list is not
+     * processed.  Structure is documented below.
      */
     public readonly gameServerConfigOverrides!: pulumi.Output<outputs.gameservices.GameServerDeploymentRolloutGameServerConfigOverride[] | undefined>;
     /**
@@ -117,17 +126,26 @@ export class GameServerDeploymentRollout extends pulumi.CustomResource {
  */
 export interface GameServerDeploymentRolloutState {
     /**
-     * This field points to the game server config that is applied by default to all realms and clusters. For example,
-     * 'projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config'.
+     * -
+     * (Required)
+     * This field points to the game server config that is
+     * applied by default to all realms and clusters. For example,
+     * `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
      */
     readonly defaultGameServerConfig?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The deployment to rollout the new config to. Only 1 rollout must be associated with each deployment.
      */
     readonly deploymentId?: pulumi.Input<string>;
     /**
-     * The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the
-     * order they are listed. As soon as a match is found for a cluster, the rest of the list is not processed.
+     * -
+     * (Optional)
+     * The gameServerConfigOverrides contains the per game server config
+     * overrides. The overrides are processed in the order they are listed. As
+     * soon as a match is found for a cluster, the rest of the list is not
+     * processed.  Structure is documented below.
      */
     readonly gameServerConfigOverrides?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerDeploymentRolloutGameServerConfigOverride>[]>;
     /**
@@ -147,17 +165,26 @@ export interface GameServerDeploymentRolloutState {
  */
 export interface GameServerDeploymentRolloutArgs {
     /**
-     * This field points to the game server config that is applied by default to all realms and clusters. For example,
-     * 'projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config'.
+     * -
+     * (Required)
+     * This field points to the game server config that is
+     * applied by default to all realms and clusters. For example,
+     * `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
      */
     readonly defaultGameServerConfig: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The deployment to rollout the new config to. Only 1 rollout must be associated with each deployment.
      */
     readonly deploymentId: pulumi.Input<string>;
     /**
-     * The game_server_config_overrides contains the per game server config overrides. The overrides are processed in the
-     * order they are listed. As soon as a match is found for a cluster, the rest of the list is not processed.
+     * -
+     * (Optional)
+     * The gameServerConfigOverrides contains the per game server config
+     * overrides. The overrides are processed in the order they are listed. As
+     * soon as a match is found for a cluster, the rest of the list is not
+     * processed.  Structure is documented below.
      */
     readonly gameServerConfigOverrides?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerDeploymentRolloutGameServerConfigOverride>[]>;
     /**

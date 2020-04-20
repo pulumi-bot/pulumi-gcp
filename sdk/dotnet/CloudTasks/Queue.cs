@@ -15,18 +15,25 @@ namespace Pulumi.Gcp.CloudTasks
     public partial class Queue : Pulumi.CustomResource
     {
         /// <summary>
-        /// Overrides for task-level appEngineRouting. These settings apply only to App Engine tasks in this queue
+        /// -
+        /// (Optional)
+        /// Overrides for task-level appEngineRouting. These settings apply only
+        /// to App Engine tasks in this queue  Structure is documented below.
         /// </summary>
         [Output("appEngineRoutingOverride")]
         public Output<Outputs.QueueAppEngineRoutingOverride?> AppEngineRoutingOverride { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The location of the queue
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The queue name.
         /// </summary>
         [Output("name")]
@@ -40,16 +47,23 @@ namespace Pulumi.Gcp.CloudTasks
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// Rate limits for task dispatches. The queue's actual dispatch rate is the result of: * Number of tasks in the queue *
-        /// User-specified throttling: rateLimits, retryConfig, and the queue's state. * System throttling due to 429 (Too Many
-        /// Requests) or 503 (Service Unavailable) responses from the worker, high error rates, or to smooth sudden large traffic
-        /// spikes.
+        /// -
+        /// (Optional)
+        /// Rate limits for task dispatches.
+        /// The queue's actual dispatch rate is the result of:
+        /// * Number of tasks in the queue
+        /// * User-specified throttling: rateLimits, retryConfig, and the queue's state.
+        /// * System throttling due to 429 (Too Many Requests) or 503 (Service
+        /// Unavailable) responses from the worker, high error rates, or to
+        /// smooth sudden large traffic spikes.  Structure is documented below.
         /// </summary>
         [Output("rateLimits")]
         public Output<Outputs.QueueRateLimits> RateLimits { get; private set; } = null!;
 
         /// <summary>
-        /// Settings that determine the retry behavior.
+        /// -
+        /// (Optional)
+        /// Settings that determine the retry behavior.  Structure is documented below.
         /// </summary>
         [Output("retryConfig")]
         public Output<Outputs.QueueRetryConfig> RetryConfig { get; private set; } = null!;
@@ -101,18 +115,25 @@ namespace Pulumi.Gcp.CloudTasks
     public sealed class QueueArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Overrides for task-level appEngineRouting. These settings apply only to App Engine tasks in this queue
+        /// -
+        /// (Optional)
+        /// Overrides for task-level appEngineRouting. These settings apply only
+        /// to App Engine tasks in this queue  Structure is documented below.
         /// </summary>
         [Input("appEngineRoutingOverride")]
         public Input<Inputs.QueueAppEngineRoutingOverrideArgs>? AppEngineRoutingOverride { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The location of the queue
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The queue name.
         /// </summary>
         [Input("name")]
@@ -126,16 +147,23 @@ namespace Pulumi.Gcp.CloudTasks
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// Rate limits for task dispatches. The queue's actual dispatch rate is the result of: * Number of tasks in the queue *
-        /// User-specified throttling: rateLimits, retryConfig, and the queue's state. * System throttling due to 429 (Too Many
-        /// Requests) or 503 (Service Unavailable) responses from the worker, high error rates, or to smooth sudden large traffic
-        /// spikes.
+        /// -
+        /// (Optional)
+        /// Rate limits for task dispatches.
+        /// The queue's actual dispatch rate is the result of:
+        /// * Number of tasks in the queue
+        /// * User-specified throttling: rateLimits, retryConfig, and the queue's state.
+        /// * System throttling due to 429 (Too Many Requests) or 503 (Service
+        /// Unavailable) responses from the worker, high error rates, or to
+        /// smooth sudden large traffic spikes.  Structure is documented below.
         /// </summary>
         [Input("rateLimits")]
         public Input<Inputs.QueueRateLimitsArgs>? RateLimits { get; set; }
 
         /// <summary>
-        /// Settings that determine the retry behavior.
+        /// -
+        /// (Optional)
+        /// Settings that determine the retry behavior.  Structure is documented below.
         /// </summary>
         [Input("retryConfig")]
         public Input<Inputs.QueueRetryConfigArgs>? RetryConfig { get; set; }
@@ -148,18 +176,25 @@ namespace Pulumi.Gcp.CloudTasks
     public sealed class QueueState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Overrides for task-level appEngineRouting. These settings apply only to App Engine tasks in this queue
+        /// -
+        /// (Optional)
+        /// Overrides for task-level appEngineRouting. These settings apply only
+        /// to App Engine tasks in this queue  Structure is documented below.
         /// </summary>
         [Input("appEngineRoutingOverride")]
         public Input<Inputs.QueueAppEngineRoutingOverrideGetArgs>? AppEngineRoutingOverride { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The location of the queue
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The queue name.
         /// </summary>
         [Input("name")]
@@ -173,16 +208,23 @@ namespace Pulumi.Gcp.CloudTasks
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// Rate limits for task dispatches. The queue's actual dispatch rate is the result of: * Number of tasks in the queue *
-        /// User-specified throttling: rateLimits, retryConfig, and the queue's state. * System throttling due to 429 (Too Many
-        /// Requests) or 503 (Service Unavailable) responses from the worker, high error rates, or to smooth sudden large traffic
-        /// spikes.
+        /// -
+        /// (Optional)
+        /// Rate limits for task dispatches.
+        /// The queue's actual dispatch rate is the result of:
+        /// * Number of tasks in the queue
+        /// * User-specified throttling: rateLimits, retryConfig, and the queue's state.
+        /// * System throttling due to 429 (Too Many Requests) or 503 (Service
+        /// Unavailable) responses from the worker, high error rates, or to
+        /// smooth sudden large traffic spikes.  Structure is documented below.
         /// </summary>
         [Input("rateLimits")]
         public Input<Inputs.QueueRateLimitsGetArgs>? RateLimits { get; set; }
 
         /// <summary>
-        /// Settings that determine the retry behavior.
+        /// -
+        /// (Optional)
+        /// Settings that determine the retry behavior.  Structure is documented below.
         /// </summary>
         [Input("retryConfig")]
         public Input<Inputs.QueueRetryConfigGetArgs>? RetryConfig { get; set; }

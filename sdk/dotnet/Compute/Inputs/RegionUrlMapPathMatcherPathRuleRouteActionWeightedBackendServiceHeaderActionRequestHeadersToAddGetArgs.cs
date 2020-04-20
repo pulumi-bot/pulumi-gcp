@@ -12,12 +12,29 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class RegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the header.
+        /// </summary>
         [Input("headerName", required: true)]
         public Input<string> HeaderName { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The value of the header to add.
+        /// </summary>
         [Input("headerValue", required: true)]
         public Input<string> HeaderValue { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// If false, headerValue is appended to any values that already exist for the
+        /// header. If true, headerValue is set for the header, discarding any values that
+        /// were set for that header.
+        /// </summary>
         [Input("replace", required: true)]
         public Input<bool> Replace { get; set; } = null!;
 

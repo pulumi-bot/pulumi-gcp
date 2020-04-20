@@ -12,16 +12,25 @@ from .. import utilities, tables
 class Group(pulumi.CustomResource):
     display_name: pulumi.Output[str]
     """
-    A user-assigned name for this group, used only for display purposes.
+    -
+    (Required)
+    A user-assigned name for this group, used only for display
+    purposes.
     """
     filter: pulumi.Output[str]
     """
-    The filter used to determine which monitored resources belong to this group.
+    -
+    (Required)
+    The filter used to determine which monitored resources
+    belong to this group.
     """
     is_cluster: pulumi.Output[bool]
     """
-    If true, the members of this group are considered to be a cluster. The system can perform additional analysis on groups
-    that are clusters.
+    -
+    (Optional)
+    If true, the members of this group are considered to be a
+    cluster. The system can perform additional analysis on
+    groups that are clusters.
     """
     name: pulumi.Output[str]
     """
@@ -29,7 +38,10 @@ class Group(pulumi.CustomResource):
     """
     parent_name: pulumi.Output[str]
     """
-    The name of the group's parent, if it has one. The format is "projects/{project_id_or_number}/groups/{group_id}". For
+    -
+    (Optional)
+    The name of the group's parent, if it has one. The format is
+    "projects/{project_id_or_number}/groups/{group_id}". For
     groups with no parent, parentName is the empty string, "".
     """
     project: pulumi.Output[str]
@@ -53,11 +65,23 @@ class Group(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] display_name: A user-assigned name for this group, used only for display purposes.
-        :param pulumi.Input[str] filter: The filter used to determine which monitored resources belong to this group.
-        :param pulumi.Input[bool] is_cluster: If true, the members of this group are considered to be a cluster. The system can perform additional analysis on groups
-               that are clusters.
-        :param pulumi.Input[str] parent_name: The name of the group's parent, if it has one. The format is "projects/{project_id_or_number}/groups/{group_id}". For
+        :param pulumi.Input[str] display_name: -
+               (Required)
+               A user-assigned name for this group, used only for display
+               purposes.
+        :param pulumi.Input[str] filter: -
+               (Required)
+               The filter used to determine which monitored resources
+               belong to this group.
+        :param pulumi.Input[bool] is_cluster: -
+               (Optional)
+               If true, the members of this group are considered to be a
+               cluster. The system can perform additional analysis on
+               groups that are clusters.
+        :param pulumi.Input[str] parent_name: -
+               (Optional)
+               The name of the group's parent, if it has one. The format is
+               "projects/{project_id_or_number}/groups/{group_id}". For
                groups with no parent, parentName is the empty string, "".
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
@@ -104,12 +128,24 @@ class Group(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] display_name: A user-assigned name for this group, used only for display purposes.
-        :param pulumi.Input[str] filter: The filter used to determine which monitored resources belong to this group.
-        :param pulumi.Input[bool] is_cluster: If true, the members of this group are considered to be a cluster. The system can perform additional analysis on groups
-               that are clusters.
+        :param pulumi.Input[str] display_name: -
+               (Required)
+               A user-assigned name for this group, used only for display
+               purposes.
+        :param pulumi.Input[str] filter: -
+               (Required)
+               The filter used to determine which monitored resources
+               belong to this group.
+        :param pulumi.Input[bool] is_cluster: -
+               (Optional)
+               If true, the members of this group are considered to be a
+               cluster. The system can perform additional analysis on
+               groups that are clusters.
         :param pulumi.Input[str] name: A unique identifier for this group. The format is "projects/{project_id_or_number}/groups/{group_id}".
-        :param pulumi.Input[str] parent_name: The name of the group's parent, if it has one. The format is "projects/{project_id_or_number}/groups/{group_id}". For
+        :param pulumi.Input[str] parent_name: -
+               (Optional)
+               The name of the group's parent, if it has one. The format is
+               "projects/{project_id_or_number}/groups/{group_id}". For
                groups with no parent, parentName is the empty string, "".
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.

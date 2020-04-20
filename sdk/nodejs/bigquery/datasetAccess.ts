@@ -52,21 +52,29 @@ export class DatasetAccess extends pulumi.CustomResource {
     }
 
     /**
-     * A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9),
-     * or underscores (_). The maximum length is 1,024 characters.
+     * -
+     * (Required)
+     * The ID of the dataset containing this table.
      */
     public readonly datasetId!: pulumi.Output<string>;
     /**
-     * A domain to grant access to. Any users signed in with the domain specified will be granted the specified access
+     * -
+     * (Optional)
+     * A domain to grant access to. Any users signed in with the
+     * domain specified will be granted the specified access
      */
     public readonly domain!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Optional)
      * An email address of a Google Group to grant access to.
      */
     public readonly groupByEmail!: pulumi.Output<string | undefined>;
     /**
-     * Some other type of member that appears in the IAM Policy but isn't a user, group, domain, or special group. For
-     * example: 'allUsers'
+     * -
+     * (Optional)
+     * Some other type of member that appears in the IAM Policy but isn't a user,
+     * group, domain, or special group. For example: `allUsers`
      */
     public readonly iamMember!: pulumi.Output<string | undefined>;
     /**
@@ -75,26 +83,37 @@ export class DatasetAccess extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
-     * Describes the rights granted to the user specified by the other member of the access object. Primitive, Predefined
-     * and custom roles are supported. Predefined roles that have equivalent primitive roles are swapped by the API to
-     * their Primitive counterparts, and will show a diff post-create. See [official
-     * docs](https://cloud.google.com/bigquery/docs/access-control).
+     * -
+     * (Optional)
+     * Describes the rights granted to the user specified by the other
+     * member of the access object. Primitive, Predefined and custom
+     * roles are supported. Predefined roles that have equivalent
+     * primitive roles are swapped by the API to their Primitive
+     * counterparts, and will show a diff post-create. See
+     * [official docs](https://cloud.google.com/bigquery/docs/access-control).
      */
     public readonly role!: pulumi.Output<string | undefined>;
     /**
-     * A special group to grant access to. Possible values include: * 'projectOwners': Owners of the enclosing project. *
-     * 'projectReaders': Readers of the enclosing project. * 'projectWriters': Writers of the enclosing project. *
-     * 'allAuthenticatedUsers': All authenticated BigQuery users.
+     * -
+     * (Optional)
+     * A special group to grant access to. Possible values include:
      */
     public readonly specialGroup!: pulumi.Output<string | undefined>;
     /**
-     * An email address of a user to grant access to. For example: fred@example.com
+     * -
+     * (Optional)
+     * An email address of a user to grant access to. For example:
+     * fred@example.com
      */
     public readonly userByEmail!: pulumi.Output<string | undefined>;
     /**
-     * A view from a different dataset to grant access to. Queries executed against that view will have read access to
-     * tables in this dataset. The role field is not required when this field is set. If that view is updated by any user,
-     * access to the view needs to be granted again via an update operation.
+     * -
+     * (Optional)
+     * A view from a different dataset to grant access to. Queries
+     * executed against that view will have read access to tables in
+     * this dataset. The role field is not required when this field is
+     * set. If that view is updated by any user, access to the view
+     * needs to be granted again via an update operation.  Structure is documented below.
      */
     public readonly view!: pulumi.Output<outputs.bigquery.DatasetAccessView | undefined>;
 
@@ -150,21 +169,29 @@ export class DatasetAccess extends pulumi.CustomResource {
  */
 export interface DatasetAccessState {
     /**
-     * A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9),
-     * or underscores (_). The maximum length is 1,024 characters.
+     * -
+     * (Required)
+     * The ID of the dataset containing this table.
      */
     readonly datasetId?: pulumi.Input<string>;
     /**
-     * A domain to grant access to. Any users signed in with the domain specified will be granted the specified access
+     * -
+     * (Optional)
+     * A domain to grant access to. Any users signed in with the
+     * domain specified will be granted the specified access
      */
     readonly domain?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * An email address of a Google Group to grant access to.
      */
     readonly groupByEmail?: pulumi.Input<string>;
     /**
-     * Some other type of member that appears in the IAM Policy but isn't a user, group, domain, or special group. For
-     * example: 'allUsers'
+     * -
+     * (Optional)
+     * Some other type of member that appears in the IAM Policy but isn't a user,
+     * group, domain, or special group. For example: `allUsers`
      */
     readonly iamMember?: pulumi.Input<string>;
     /**
@@ -173,26 +200,37 @@ export interface DatasetAccessState {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * Describes the rights granted to the user specified by the other member of the access object. Primitive, Predefined
-     * and custom roles are supported. Predefined roles that have equivalent primitive roles are swapped by the API to
-     * their Primitive counterparts, and will show a diff post-create. See [official
-     * docs](https://cloud.google.com/bigquery/docs/access-control).
+     * -
+     * (Optional)
+     * Describes the rights granted to the user specified by the other
+     * member of the access object. Primitive, Predefined and custom
+     * roles are supported. Predefined roles that have equivalent
+     * primitive roles are swapped by the API to their Primitive
+     * counterparts, and will show a diff post-create. See
+     * [official docs](https://cloud.google.com/bigquery/docs/access-control).
      */
     readonly role?: pulumi.Input<string>;
     /**
-     * A special group to grant access to. Possible values include: * 'projectOwners': Owners of the enclosing project. *
-     * 'projectReaders': Readers of the enclosing project. * 'projectWriters': Writers of the enclosing project. *
-     * 'allAuthenticatedUsers': All authenticated BigQuery users.
+     * -
+     * (Optional)
+     * A special group to grant access to. Possible values include:
      */
     readonly specialGroup?: pulumi.Input<string>;
     /**
-     * An email address of a user to grant access to. For example: fred@example.com
+     * -
+     * (Optional)
+     * An email address of a user to grant access to. For example:
+     * fred@example.com
      */
     readonly userByEmail?: pulumi.Input<string>;
     /**
-     * A view from a different dataset to grant access to. Queries executed against that view will have read access to
-     * tables in this dataset. The role field is not required when this field is set. If that view is updated by any user,
-     * access to the view needs to be granted again via an update operation.
+     * -
+     * (Optional)
+     * A view from a different dataset to grant access to. Queries
+     * executed against that view will have read access to tables in
+     * this dataset. The role field is not required when this field is
+     * set. If that view is updated by any user, access to the view
+     * needs to be granted again via an update operation.  Structure is documented below.
      */
     readonly view?: pulumi.Input<inputs.bigquery.DatasetAccessView>;
 }
@@ -202,21 +240,29 @@ export interface DatasetAccessState {
  */
 export interface DatasetAccessArgs {
     /**
-     * A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9),
-     * or underscores (_). The maximum length is 1,024 characters.
+     * -
+     * (Required)
+     * The ID of the dataset containing this table.
      */
     readonly datasetId: pulumi.Input<string>;
     /**
-     * A domain to grant access to. Any users signed in with the domain specified will be granted the specified access
+     * -
+     * (Optional)
+     * A domain to grant access to. Any users signed in with the
+     * domain specified will be granted the specified access
      */
     readonly domain?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * An email address of a Google Group to grant access to.
      */
     readonly groupByEmail?: pulumi.Input<string>;
     /**
-     * Some other type of member that appears in the IAM Policy but isn't a user, group, domain, or special group. For
-     * example: 'allUsers'
+     * -
+     * (Optional)
+     * Some other type of member that appears in the IAM Policy but isn't a user,
+     * group, domain, or special group. For example: `allUsers`
      */
     readonly iamMember?: pulumi.Input<string>;
     /**
@@ -225,26 +271,37 @@ export interface DatasetAccessArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * Describes the rights granted to the user specified by the other member of the access object. Primitive, Predefined
-     * and custom roles are supported. Predefined roles that have equivalent primitive roles are swapped by the API to
-     * their Primitive counterparts, and will show a diff post-create. See [official
-     * docs](https://cloud.google.com/bigquery/docs/access-control).
+     * -
+     * (Optional)
+     * Describes the rights granted to the user specified by the other
+     * member of the access object. Primitive, Predefined and custom
+     * roles are supported. Predefined roles that have equivalent
+     * primitive roles are swapped by the API to their Primitive
+     * counterparts, and will show a diff post-create. See
+     * [official docs](https://cloud.google.com/bigquery/docs/access-control).
      */
     readonly role?: pulumi.Input<string>;
     /**
-     * A special group to grant access to. Possible values include: * 'projectOwners': Owners of the enclosing project. *
-     * 'projectReaders': Readers of the enclosing project. * 'projectWriters': Writers of the enclosing project. *
-     * 'allAuthenticatedUsers': All authenticated BigQuery users.
+     * -
+     * (Optional)
+     * A special group to grant access to. Possible values include:
      */
     readonly specialGroup?: pulumi.Input<string>;
     /**
-     * An email address of a user to grant access to. For example: fred@example.com
+     * -
+     * (Optional)
+     * An email address of a user to grant access to. For example:
+     * fred@example.com
      */
     readonly userByEmail?: pulumi.Input<string>;
     /**
-     * A view from a different dataset to grant access to. Queries executed against that view will have read access to
-     * tables in this dataset. The role field is not required when this field is set. If that view is updated by any user,
-     * access to the view needs to be granted again via an update operation.
+     * -
+     * (Optional)
+     * A view from a different dataset to grant access to. Queries
+     * executed against that view will have read access to tables in
+     * this dataset. The role field is not required when this field is
+     * set. If that view is updated by any user, access to the view
+     * needs to be granted again via an update operation.  Structure is documented below.
      */
     readonly view?: pulumi.Input<inputs.bigquery.DatasetAccessView>;
 }

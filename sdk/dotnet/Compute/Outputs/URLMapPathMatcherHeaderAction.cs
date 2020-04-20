@@ -13,9 +13,32 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class URLMapPathMatcherHeaderAction
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add to a matching request prior to forwarding the request to the
+        /// backendService.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.URLMapPathMatcherHeaderActionRequestHeadersToAdd> RequestHeadersToAdds;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the request
+        /// prior to forwarding the request to the backendService.
+        /// </summary>
         public readonly ImmutableArray<string> RequestHeadersToRemoves;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Headers to add the response prior to sending the response back to the client.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.URLMapPathMatcherHeaderActionResponseHeadersToAdd> ResponseHeadersToAdds;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A list of header names for headers that need to be removed from the response
+        /// prior to sending the response back to the client.
+        /// </summary>
         public readonly ImmutableArray<string> ResponseHeadersToRemoves;
 
         [OutputConstructor]

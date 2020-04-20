@@ -13,7 +13,17 @@ namespace Pulumi.Gcp.AppEngine.Outputs
     [OutputType]
     public sealed class FlexibleAppVersionDeploymentZip
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// files count
+        /// </summary>
         public readonly int? FilesCount;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Source URL
+        /// </summary>
         public readonly string SourceUrl;
 
         [OutputConstructor]

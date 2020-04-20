@@ -21,12 +21,16 @@ namespace Pulumi.Gcp.Healthcare
     public partial class Dataset : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The location for the Dataset.
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The resource name for the Dataset.
         /// </summary>
         [Output("name")]
@@ -46,9 +50,11 @@ namespace Pulumi.Gcp.Healthcare
         public Output<string> SelfLink { get; private set; } = null!;
 
         /// <summary>
-        /// The default timezone used by this dataset. Must be a either a valid IANA time zone name such as "America/New_York" or
-        /// empty, which defaults to UTC. This is used for parsing times in resources (e.g., HL7 messages) where no explicit
-        /// timezone is specified.
+        /// -
+        /// (Optional)
+        /// The default timezone used by this dataset. Must be a either a valid IANA time zone name such as
+        /// "America/New_York" or empty, which defaults to UTC. This is used for parsing times in resources
+        /// (e.g., HL7 messages) where no explicit timezone is specified.
         /// </summary>
         [Output("timeZone")]
         public Output<string> TimeZone { get; private set; } = null!;
@@ -100,12 +106,16 @@ namespace Pulumi.Gcp.Healthcare
     public sealed class DatasetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The location for the Dataset.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The resource name for the Dataset.
         /// </summary>
         [Input("name")]
@@ -119,9 +129,11 @@ namespace Pulumi.Gcp.Healthcare
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The default timezone used by this dataset. Must be a either a valid IANA time zone name such as "America/New_York" or
-        /// empty, which defaults to UTC. This is used for parsing times in resources (e.g., HL7 messages) where no explicit
-        /// timezone is specified.
+        /// -
+        /// (Optional)
+        /// The default timezone used by this dataset. Must be a either a valid IANA time zone name such as
+        /// "America/New_York" or empty, which defaults to UTC. This is used for parsing times in resources
+        /// (e.g., HL7 messages) where no explicit timezone is specified.
         /// </summary>
         [Input("timeZone")]
         public Input<string>? TimeZone { get; set; }
@@ -134,12 +146,16 @@ namespace Pulumi.Gcp.Healthcare
     public sealed class DatasetState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The location for the Dataset.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The resource name for the Dataset.
         /// </summary>
         [Input("name")]
@@ -159,9 +175,11 @@ namespace Pulumi.Gcp.Healthcare
         public Input<string>? SelfLink { get; set; }
 
         /// <summary>
-        /// The default timezone used by this dataset. Must be a either a valid IANA time zone name such as "America/New_York" or
-        /// empty, which defaults to UTC. This is used for parsing times in resources (e.g., HL7 messages) where no explicit
-        /// timezone is specified.
+        /// -
+        /// (Optional)
+        /// The default timezone used by this dataset. Must be a either a valid IANA time zone name such as
+        /// "America/New_York" or empty, which defaults to UTC. This is used for parsing times in resources
+        /// (e.g., HL7 messages) where no explicit timezone is specified.
         /// </summary>
         [Input("timeZone")]
         public Input<string>? TimeZone { get; set; }

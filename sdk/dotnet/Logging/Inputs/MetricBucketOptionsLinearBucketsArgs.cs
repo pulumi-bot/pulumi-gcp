@@ -12,12 +12,27 @@ namespace Pulumi.Gcp.Logging.Inputs
 
     public sealed class MetricBucketOptionsLinearBucketsArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         [Input("numFiniteBuckets")]
         public Input<int>? NumFiniteBuckets { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Lower bound of the first bucket.
+        /// </summary>
         [Input("offset")]
         public Input<double>? Offset { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Must be greater than 0.
+        /// </summary>
         [Input("width")]
         public Input<int>? Width { get; set; }
 
