@@ -60,19 +60,28 @@ export class SourceRepresentationInstance extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Required)
      * The MySQL version running on your source database server: MYSQL_5_6 or MYSQL_5_7.
      */
     public readonly databaseVersion!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The externally accessible IPv4 address for the source database server.
      */
     public readonly host!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The name of the source representation instance. Use any valid Cloud SQL instance name.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The externally accessible port for the source database server. Defaults to 3306.
+     * -
+     * (Optional)
+     * The externally accessible port for the source database server.
+     * Defaults to 3306.
      */
     public readonly port!: pulumi.Output<number | undefined>;
     /**
@@ -81,7 +90,10 @@ export class SourceRepresentationInstance extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
-     * The Region in which the created instance should reside. If it is not provided, the provider region is used.
+     * -
+     * (Optional)
+     * The Region in which the created instance should reside.
+     * If it is not provided, the provider region is used.
      */
     public readonly region!: pulumi.Output<string>;
 
@@ -134,19 +146,28 @@ export class SourceRepresentationInstance extends pulumi.CustomResource {
  */
 export interface SourceRepresentationInstanceState {
     /**
+     * -
+     * (Required)
      * The MySQL version running on your source database server: MYSQL_5_6 or MYSQL_5_7.
      */
     readonly databaseVersion?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The externally accessible IPv4 address for the source database server.
      */
     readonly host?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The name of the source representation instance. Use any valid Cloud SQL instance name.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The externally accessible port for the source database server. Defaults to 3306.
+     * -
+     * (Optional)
+     * The externally accessible port for the source database server.
+     * Defaults to 3306.
      */
     readonly port?: pulumi.Input<number>;
     /**
@@ -155,7 +176,10 @@ export interface SourceRepresentationInstanceState {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * The Region in which the created instance should reside. If it is not provided, the provider region is used.
+     * -
+     * (Optional)
+     * The Region in which the created instance should reside.
+     * If it is not provided, the provider region is used.
      */
     readonly region?: pulumi.Input<string>;
 }
@@ -165,19 +189,28 @@ export interface SourceRepresentationInstanceState {
  */
 export interface SourceRepresentationInstanceArgs {
     /**
+     * -
+     * (Required)
      * The MySQL version running on your source database server: MYSQL_5_6 or MYSQL_5_7.
      */
     readonly databaseVersion: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The externally accessible IPv4 address for the source database server.
      */
     readonly host: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The name of the source representation instance. Use any valid Cloud SQL instance name.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The externally accessible port for the source database server. Defaults to 3306.
+     * -
+     * (Optional)
+     * The externally accessible port for the source database server.
+     * Defaults to 3306.
      */
     readonly port?: pulumi.Input<number>;
     /**
@@ -186,7 +219,10 @@ export interface SourceRepresentationInstanceArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * The Region in which the created instance should reside. If it is not provided, the provider region is used.
+     * -
+     * (Optional)
+     * The Region in which the created instance should reside.
+     * If it is not provided, the provider region is used.
      */
     readonly region?: pulumi.Input<string>;
 }

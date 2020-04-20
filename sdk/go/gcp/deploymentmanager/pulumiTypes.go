@@ -11,7 +11,13 @@ import (
 )
 
 type DeploymentLabel struct {
-	Key   *string `pulumi:"key"`
+	// -
+	// (Optional)
+	// Key for label.
+	Key *string `pulumi:"key"`
+	// -
+	// (Optional)
+	// Value of label.
 	Value *string `pulumi:"value"`
 }
 
@@ -28,7 +34,13 @@ type DeploymentLabelInput interface {
 }
 
 type DeploymentLabelArgs struct {
-	Key   pulumi.StringPtrInput `pulumi:"key"`
+	// -
+	// (Optional)
+	// Key for label.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// -
+	// (Optional)
+	// Value of label.
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
@@ -84,10 +96,16 @@ func (o DeploymentLabelOutput) ToDeploymentLabelOutputWithContext(ctx context.Co
 	return o
 }
 
+// -
+// (Optional)
+// Key for label.
 func (o DeploymentLabelOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentLabel) *string { return v.Key }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// Value of label.
 func (o DeploymentLabelOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentLabel) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -113,7 +131,15 @@ func (o DeploymentLabelArrayOutput) Index(i pulumi.IntInput) DeploymentLabelOutp
 }
 
 type DeploymentTarget struct {
-	Config  DeploymentTargetConfig   `pulumi:"config"`
+	// -
+	// (Required)
+	// The root configuration file to use for this deployment.  Structure is documented below.
+	Config DeploymentTargetConfig `pulumi:"config"`
+	// -
+	// (Optional)
+	// Specifies import files for this configuration. This can be
+	// used to import templates or other files. For example, you might
+	// import a text file in order to use the file in a template.  Structure is documented below.
 	Imports []DeploymentTargetImport `pulumi:"imports"`
 }
 
@@ -130,7 +156,15 @@ type DeploymentTargetInput interface {
 }
 
 type DeploymentTargetArgs struct {
-	Config  DeploymentTargetConfigInput      `pulumi:"config"`
+	// -
+	// (Required)
+	// The root configuration file to use for this deployment.  Structure is documented below.
+	Config DeploymentTargetConfigInput `pulumi:"config"`
+	// -
+	// (Optional)
+	// Specifies import files for this configuration. This can be
+	// used to import templates or other files. For example, you might
+	// import a text file in order to use the file in a template.  Structure is documented below.
 	Imports DeploymentTargetImportArrayInput `pulumi:"imports"`
 }
 
@@ -211,10 +245,19 @@ func (o DeploymentTargetOutput) ToDeploymentTargetPtrOutputWithContext(ctx conte
 		return &v
 	}).(DeploymentTargetPtrOutput)
 }
+
+// -
+// (Required)
+// The root configuration file to use for this deployment.  Structure is documented below.
 func (o DeploymentTargetOutput) Config() DeploymentTargetConfigOutput {
 	return o.ApplyT(func(v DeploymentTarget) DeploymentTargetConfig { return v.Config }).(DeploymentTargetConfigOutput)
 }
 
+// -
+// (Optional)
+// Specifies import files for this configuration. This can be
+// used to import templates or other files. For example, you might
+// import a text file in order to use the file in a template.  Structure is documented below.
 func (o DeploymentTargetOutput) Imports() DeploymentTargetImportArrayOutput {
 	return o.ApplyT(func(v DeploymentTarget) []DeploymentTargetImport { return v.Imports }).(DeploymentTargetImportArrayOutput)
 }
@@ -237,15 +280,26 @@ func (o DeploymentTargetPtrOutput) Elem() DeploymentTargetOutput {
 	return o.ApplyT(func(v *DeploymentTarget) DeploymentTarget { return *v }).(DeploymentTargetOutput)
 }
 
+// -
+// (Required)
+// The root configuration file to use for this deployment.  Structure is documented below.
 func (o DeploymentTargetPtrOutput) Config() DeploymentTargetConfigOutput {
 	return o.ApplyT(func(v DeploymentTarget) DeploymentTargetConfig { return v.Config }).(DeploymentTargetConfigOutput)
 }
 
+// -
+// (Optional)
+// Specifies import files for this configuration. This can be
+// used to import templates or other files. For example, you might
+// import a text file in order to use the file in a template.  Structure is documented below.
 func (o DeploymentTargetPtrOutput) Imports() DeploymentTargetImportArrayOutput {
 	return o.ApplyT(func(v DeploymentTarget) []DeploymentTargetImport { return v.Imports }).(DeploymentTargetImportArrayOutput)
 }
 
 type DeploymentTargetConfig struct {
+	// -
+	// (Optional)
+	// The full contents of the template that you want to import.
 	Content string `pulumi:"content"`
 }
 
@@ -262,6 +316,9 @@ type DeploymentTargetConfigInput interface {
 }
 
 type DeploymentTargetConfigArgs struct {
+	// -
+	// (Optional)
+	// The full contents of the template that you want to import.
 	Content pulumi.StringInput `pulumi:"content"`
 }
 
@@ -291,13 +348,23 @@ func (o DeploymentTargetConfigOutput) ToDeploymentTargetConfigOutputWithContext(
 	return o
 }
 
+// -
+// (Optional)
+// The full contents of the template that you want to import.
 func (o DeploymentTargetConfigOutput) Content() pulumi.StringOutput {
 	return o.ApplyT(func(v DeploymentTargetConfig) string { return v.Content }).(pulumi.StringOutput)
 }
 
 type DeploymentTargetImport struct {
+	// -
+	// (Optional)
+	// The full contents of the template that you want to import.
 	Content *string `pulumi:"content"`
-	Name    *string `pulumi:"name"`
+	// -
+	// (Optional)
+	// The name of the template to import, as declared in the YAML
+	// configuration.
+	Name *string `pulumi:"name"`
 }
 
 // DeploymentTargetImportInput is an input type that accepts DeploymentTargetImportArgs and DeploymentTargetImportOutput values.
@@ -313,8 +380,15 @@ type DeploymentTargetImportInput interface {
 }
 
 type DeploymentTargetImportArgs struct {
+	// -
+	// (Optional)
+	// The full contents of the template that you want to import.
 	Content pulumi.StringPtrInput `pulumi:"content"`
-	Name    pulumi.StringPtrInput `pulumi:"name"`
+	// -
+	// (Optional)
+	// The name of the template to import, as declared in the YAML
+	// configuration.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (DeploymentTargetImportArgs) ElementType() reflect.Type {
@@ -369,10 +443,17 @@ func (o DeploymentTargetImportOutput) ToDeploymentTargetImportOutputWithContext(
 	return o
 }
 
+// -
+// (Optional)
+// The full contents of the template that you want to import.
 func (o DeploymentTargetImportOutput) Content() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentTargetImport) *string { return v.Content }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The name of the template to import, as declared in the YAML
+// configuration.
 func (o DeploymentTargetImportOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentTargetImport) *string { return v.Name }).(pulumi.StringPtrOutput)
 }

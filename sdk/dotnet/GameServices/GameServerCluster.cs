@@ -21,30 +21,42 @@ namespace Pulumi.Gcp.GameServices
     public partial class GameServerCluster : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Required. The resource name of the game server cluster
         /// </summary>
         [Output("clusterId")]
         public Output<string> ClusterId { get; private set; } = null!;
 
         /// <summary>
-        /// Game server cluster connection information. This information is used to manage game server clusters.
+        /// -
+        /// (Required)
+        /// Game server cluster connection information. This information is used to
+        /// manage game server clusters.  Structure is documented below.
         /// </summary>
         [Output("connectionInfo")]
         public Output<Outputs.GameServerClusterConnectionInfo> ConnectionInfo { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human readable description of the cluster.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The labels associated with this game server cluster. Each label is a key-value pair.
+        /// -
+        /// (Optional)
+        /// The labels associated with this game server cluster. Each label is a
+        /// key-value pair.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Cluster.
         /// </summary>
         [Output("location")]
@@ -66,6 +78,8 @@ namespace Pulumi.Gcp.GameServices
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The realm id of the game server realm.
         /// </summary>
         [Output("realmId")]
@@ -118,18 +132,25 @@ namespace Pulumi.Gcp.GameServices
     public sealed class GameServerClusterArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Required. The resource name of the game server cluster
         /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
 
         /// <summary>
-        /// Game server cluster connection information. This information is used to manage game server clusters.
+        /// -
+        /// (Required)
+        /// Game server cluster connection information. This information is used to
+        /// manage game server clusters.  Structure is documented below.
         /// </summary>
         [Input("connectionInfo", required: true)]
         public Input<Inputs.GameServerClusterConnectionInfoArgs> ConnectionInfo { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human readable description of the cluster.
         /// </summary>
         [Input("description")]
@@ -139,7 +160,10 @@ namespace Pulumi.Gcp.GameServices
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// The labels associated with this game server cluster. Each label is a key-value pair.
+        /// -
+        /// (Optional)
+        /// The labels associated with this game server cluster. Each label is a
+        /// key-value pair.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -148,6 +172,8 @@ namespace Pulumi.Gcp.GameServices
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Cluster.
         /// </summary>
         [Input("location")]
@@ -161,6 +187,8 @@ namespace Pulumi.Gcp.GameServices
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The realm id of the game server realm.
         /// </summary>
         [Input("realmId", required: true)]
@@ -174,18 +202,25 @@ namespace Pulumi.Gcp.GameServices
     public sealed class GameServerClusterState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// Required. The resource name of the game server cluster
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
         /// <summary>
-        /// Game server cluster connection information. This information is used to manage game server clusters.
+        /// -
+        /// (Required)
+        /// Game server cluster connection information. This information is used to
+        /// manage game server clusters.  Structure is documented below.
         /// </summary>
         [Input("connectionInfo")]
         public Input<Inputs.GameServerClusterConnectionInfoGetArgs>? ConnectionInfo { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human readable description of the cluster.
         /// </summary>
         [Input("description")]
@@ -195,7 +230,10 @@ namespace Pulumi.Gcp.GameServices
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// The labels associated with this game server cluster. Each label is a key-value pair.
+        /// -
+        /// (Optional)
+        /// The labels associated with this game server cluster. Each label is a
+        /// key-value pair.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -204,6 +242,8 @@ namespace Pulumi.Gcp.GameServices
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Cluster.
         /// </summary>
         [Input("location")]
@@ -225,6 +265,8 @@ namespace Pulumi.Gcp.GameServices
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The realm id of the game server realm.
         /// </summary>
         [Input("realmId")]

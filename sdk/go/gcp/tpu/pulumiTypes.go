@@ -113,6 +113,9 @@ func (o NodeNetworkEndpointArrayOutput) Index(i pulumi.IntInput) NodeNetworkEndp
 }
 
 type NodeSchedulingConfig struct {
+	// -
+	// (Required)
+	// Defines whether the TPU instance is preemptible.
 	Preemptible bool `pulumi:"preemptible"`
 }
 
@@ -129,6 +132,9 @@ type NodeSchedulingConfigInput interface {
 }
 
 type NodeSchedulingConfigArgs struct {
+	// -
+	// (Required)
+	// Defines whether the TPU instance is preemptible.
 	Preemptible pulumi.BoolInput `pulumi:"preemptible"`
 }
 
@@ -209,6 +215,10 @@ func (o NodeSchedulingConfigOutput) ToNodeSchedulingConfigPtrOutputWithContext(c
 		return &v
 	}).(NodeSchedulingConfigPtrOutput)
 }
+
+// -
+// (Required)
+// Defines whether the TPU instance is preemptible.
 func (o NodeSchedulingConfigOutput) Preemptible() pulumi.BoolOutput {
 	return o.ApplyT(func(v NodeSchedulingConfig) bool { return v.Preemptible }).(pulumi.BoolOutput)
 }
@@ -231,6 +241,9 @@ func (o NodeSchedulingConfigPtrOutput) Elem() NodeSchedulingConfigOutput {
 	return o.ApplyT(func(v *NodeSchedulingConfig) NodeSchedulingConfig { return *v }).(NodeSchedulingConfigOutput)
 }
 
+// -
+// (Required)
+// Defines whether the TPU instance is preemptible.
 func (o NodeSchedulingConfigPtrOutput) Preemptible() pulumi.BoolOutput {
 	return o.ApplyT(func(v NodeSchedulingConfig) bool { return v.Preemptible }).(pulumi.BoolOutput)
 }

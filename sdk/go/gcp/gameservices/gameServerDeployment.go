@@ -20,12 +20,21 @@ import (
 type GameServerDeployment struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// A unique id for the deployment.
 	DeploymentId pulumi.StringOutput `pulumi:"deploymentId"`
+	// -
+	// (Optional)
 	// Human readable description of the game server deployment.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The labels associated with this game server deployment. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server deployment. Each label is a
+	// key-value pair.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// -
+	// (Optional)
 	// Location of the Deployment.
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// The resource id of the game server deployment, eg:
@@ -68,12 +77,21 @@ func GetGameServerDeployment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GameServerDeployment resources.
 type gameServerDeploymentState struct {
+	// -
+	// (Required)
 	// A unique id for the deployment.
 	DeploymentId *string `pulumi:"deploymentId"`
+	// -
+	// (Optional)
 	// Human readable description of the game server deployment.
 	Description *string `pulumi:"description"`
-	// The labels associated with this game server deployment. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server deployment. Each label is a
+	// key-value pair.
 	Labels map[string]string `pulumi:"labels"`
+	// -
+	// (Optional)
 	// Location of the Deployment.
 	Location *string `pulumi:"location"`
 	// The resource id of the game server deployment, eg:
@@ -86,12 +104,21 @@ type gameServerDeploymentState struct {
 }
 
 type GameServerDeploymentState struct {
+	// -
+	// (Required)
 	// A unique id for the deployment.
 	DeploymentId pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// Human readable description of the game server deployment.
 	Description pulumi.StringPtrInput
-	// The labels associated with this game server deployment. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server deployment. Each label is a
+	// key-value pair.
 	Labels pulumi.StringMapInput
+	// -
+	// (Optional)
 	// Location of the Deployment.
 	Location pulumi.StringPtrInput
 	// The resource id of the game server deployment, eg:
@@ -108,12 +135,21 @@ func (GameServerDeploymentState) ElementType() reflect.Type {
 }
 
 type gameServerDeploymentArgs struct {
+	// -
+	// (Required)
 	// A unique id for the deployment.
 	DeploymentId string `pulumi:"deploymentId"`
+	// -
+	// (Optional)
 	// Human readable description of the game server deployment.
 	Description *string `pulumi:"description"`
-	// The labels associated with this game server deployment. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server deployment. Each label is a
+	// key-value pair.
 	Labels map[string]string `pulumi:"labels"`
+	// -
+	// (Optional)
 	// Location of the Deployment.
 	Location *string `pulumi:"location"`
 	// The ID of the project in which the resource belongs.
@@ -123,12 +159,21 @@ type gameServerDeploymentArgs struct {
 
 // The set of arguments for constructing a GameServerDeployment resource.
 type GameServerDeploymentArgs struct {
+	// -
+	// (Required)
 	// A unique id for the deployment.
 	DeploymentId pulumi.StringInput
+	// -
+	// (Optional)
 	// Human readable description of the game server deployment.
 	Description pulumi.StringPtrInput
-	// The labels associated with this game server deployment. Each label is a key-value pair.
+	// -
+	// (Optional)
+	// The labels associated with this game server deployment. Each label is a
+	// key-value pair.
 	Labels pulumi.StringMapInput
+	// -
+	// (Optional)
 	// Location of the Deployment.
 	Location pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.

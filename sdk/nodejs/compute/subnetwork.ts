@@ -72,8 +72,11 @@ export class Subnetwork extends pulumi.CustomResource {
      */
     public /*out*/ readonly creationTimestamp!: pulumi.Output<string>;
     /**
-     * An optional description of this resource. Provide this property when you create the resource. This field can be set
-     * only at resource creation time.
+     * -
+     * (Optional)
+     * An optional description of this resource. Provide this property when
+     * you create the resource. This field can be set only at resource
+     * creation time.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
@@ -85,30 +88,46 @@ export class Subnetwork extends pulumi.CustomResource {
      */
     public /*out*/ readonly gatewayAddress!: pulumi.Output<string>;
     /**
-     * The range of internal addresses that are owned by this subnetwork. Provide this property when you create the
-     * subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network.
-     * Only IPv4 is supported.
+     * -
+     * (Required)
+     * The range of IP addresses belonging to this subnetwork secondary
+     * range. Provide this property when you create the subnetwork.
+     * Ranges must be unique and non-overlapping with all primary and
+     * secondary IP ranges within a network. Only IPv4 is supported.
      */
     public readonly ipCidrRange!: pulumi.Output<string>;
     /**
-     * Denotes the logging options for the subnetwork flow logs. If logging is enabled logs will be exported to
-     * Stackdriver. This field cannot be set if the 'purpose' of this subnetwork is 'INTERNAL_HTTPS_LOAD_BALANCER'
+     * -
+     * (Optional)
+     * Denotes the logging options for the subnetwork flow logs. If logging is enabled
+     * logs will be exported to Stackdriver. This field cannot be set if the `purpose` of this
+     * subnetwork is `INTERNAL_HTTPS_LOAD_BALANCER`  Structure is documented below.
      */
     public readonly logConfig!: pulumi.Output<outputs.compute.SubnetworkLogConfig | undefined>;
     /**
-     * The name of the resource, provided by the client when initially creating the resource. The name must be 1-63
-     * characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-     * expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-     * following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * The name of the resource, provided by the client when initially
+     * creating the resource. The name must be 1-63 characters long, and
+     * comply with RFC1035. Specifically, the name must be 1-63 characters
+     * long and match the regular expression `a-z?` which
+     * means the first character must be a lowercase letter, and all
+     * following characters must be a dash, lowercase letter, or digit,
+     * except the last character, which cannot be a dash.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The network this subnet belongs to. Only networks that are in the distributed mode can have subnetworks.
+     * -
+     * (Required)
+     * The network this subnet belongs to.
+     * Only networks that are in the distributed mode can have subnetworks.
      */
     public readonly network!: pulumi.Output<string>;
     /**
-     * When enabled, VMs in this subnetwork without external IP addresses can access Google APIs and services by using
-     * Private Google Access.
+     * -
+     * (Optional)
+     * When enabled, VMs in this subnetwork without external IP addresses can
+     * access Google APIs and services by using Private Google Access.
      */
     public readonly privateIpGoogleAccess!: pulumi.Output<boolean | undefined>;
     /**
@@ -124,6 +143,8 @@ export class Subnetwork extends pulumi.CustomResource {
      */
     public readonly purpose!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * URL of the GCP region for this subnetwork.
      */
     public readonly region!: pulumi.Output<string>;
@@ -219,8 +240,11 @@ export interface SubnetworkState {
      */
     readonly creationTimestamp?: pulumi.Input<string>;
     /**
-     * An optional description of this resource. Provide this property when you create the resource. This field can be set
-     * only at resource creation time.
+     * -
+     * (Optional)
+     * An optional description of this resource. Provide this property when
+     * you create the resource. This field can be set only at resource
+     * creation time.
      */
     readonly description?: pulumi.Input<string>;
     /**
@@ -234,30 +258,46 @@ export interface SubnetworkState {
      */
     readonly gatewayAddress?: pulumi.Input<string>;
     /**
-     * The range of internal addresses that are owned by this subnetwork. Provide this property when you create the
-     * subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network.
-     * Only IPv4 is supported.
+     * -
+     * (Required)
+     * The range of IP addresses belonging to this subnetwork secondary
+     * range. Provide this property when you create the subnetwork.
+     * Ranges must be unique and non-overlapping with all primary and
+     * secondary IP ranges within a network. Only IPv4 is supported.
      */
     readonly ipCidrRange?: pulumi.Input<string>;
     /**
-     * Denotes the logging options for the subnetwork flow logs. If logging is enabled logs will be exported to
-     * Stackdriver. This field cannot be set if the 'purpose' of this subnetwork is 'INTERNAL_HTTPS_LOAD_BALANCER'
+     * -
+     * (Optional)
+     * Denotes the logging options for the subnetwork flow logs. If logging is enabled
+     * logs will be exported to Stackdriver. This field cannot be set if the `purpose` of this
+     * subnetwork is `INTERNAL_HTTPS_LOAD_BALANCER`  Structure is documented below.
      */
     readonly logConfig?: pulumi.Input<inputs.compute.SubnetworkLogConfig>;
     /**
-     * The name of the resource, provided by the client when initially creating the resource. The name must be 1-63
-     * characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-     * expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-     * following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * The name of the resource, provided by the client when initially
+     * creating the resource. The name must be 1-63 characters long, and
+     * comply with RFC1035. Specifically, the name must be 1-63 characters
+     * long and match the regular expression `a-z?` which
+     * means the first character must be a lowercase letter, and all
+     * following characters must be a dash, lowercase letter, or digit,
+     * except the last character, which cannot be a dash.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The network this subnet belongs to. Only networks that are in the distributed mode can have subnetworks.
+     * -
+     * (Required)
+     * The network this subnet belongs to.
+     * Only networks that are in the distributed mode can have subnetworks.
      */
     readonly network?: pulumi.Input<string>;
     /**
-     * When enabled, VMs in this subnetwork without external IP addresses can access Google APIs and services by using
-     * Private Google Access.
+     * -
+     * (Optional)
+     * When enabled, VMs in this subnetwork without external IP addresses can
+     * access Google APIs and services by using Private Google Access.
      */
     readonly privateIpGoogleAccess?: pulumi.Input<boolean>;
     /**
@@ -273,6 +313,8 @@ export interface SubnetworkState {
      */
     readonly purpose?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * URL of the GCP region for this subnetwork.
      */
     readonly region?: pulumi.Input<string>;
@@ -303,35 +345,54 @@ export interface SubnetworkState {
  */
 export interface SubnetworkArgs {
     /**
-     * An optional description of this resource. Provide this property when you create the resource. This field can be set
-     * only at resource creation time.
+     * -
+     * (Optional)
+     * An optional description of this resource. Provide this property when
+     * you create the resource. This field can be set only at resource
+     * creation time.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * The range of internal addresses that are owned by this subnetwork. Provide this property when you create the
-     * subnetwork. For example, 10.0.0.0/8 or 192.168.0.0/16. Ranges must be unique and non-overlapping within a network.
-     * Only IPv4 is supported.
+     * -
+     * (Required)
+     * The range of IP addresses belonging to this subnetwork secondary
+     * range. Provide this property when you create the subnetwork.
+     * Ranges must be unique and non-overlapping with all primary and
+     * secondary IP ranges within a network. Only IPv4 is supported.
      */
     readonly ipCidrRange: pulumi.Input<string>;
     /**
-     * Denotes the logging options for the subnetwork flow logs. If logging is enabled logs will be exported to
-     * Stackdriver. This field cannot be set if the 'purpose' of this subnetwork is 'INTERNAL_HTTPS_LOAD_BALANCER'
+     * -
+     * (Optional)
+     * Denotes the logging options for the subnetwork flow logs. If logging is enabled
+     * logs will be exported to Stackdriver. This field cannot be set if the `purpose` of this
+     * subnetwork is `INTERNAL_HTTPS_LOAD_BALANCER`  Structure is documented below.
      */
     readonly logConfig?: pulumi.Input<inputs.compute.SubnetworkLogConfig>;
     /**
-     * The name of the resource, provided by the client when initially creating the resource. The name must be 1-63
-     * characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-     * expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all
-     * following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * The name of the resource, provided by the client when initially
+     * creating the resource. The name must be 1-63 characters long, and
+     * comply with RFC1035. Specifically, the name must be 1-63 characters
+     * long and match the regular expression `a-z?` which
+     * means the first character must be a lowercase letter, and all
+     * following characters must be a dash, lowercase letter, or digit,
+     * except the last character, which cannot be a dash.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The network this subnet belongs to. Only networks that are in the distributed mode can have subnetworks.
+     * -
+     * (Required)
+     * The network this subnet belongs to.
+     * Only networks that are in the distributed mode can have subnetworks.
      */
     readonly network: pulumi.Input<string>;
     /**
-     * When enabled, VMs in this subnetwork without external IP addresses can access Google APIs and services by using
-     * Private Google Access.
+     * -
+     * (Optional)
+     * When enabled, VMs in this subnetwork without external IP addresses can
+     * access Google APIs and services by using Private Google Access.
      */
     readonly privateIpGoogleAccess?: pulumi.Input<boolean>;
     /**
@@ -347,6 +408,8 @@ export interface SubnetworkArgs {
      */
     readonly purpose?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * URL of the GCP region for this subnetwork.
      */
     readonly region?: pulumi.Input<string>;

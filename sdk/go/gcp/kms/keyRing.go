@@ -26,8 +26,13 @@ import (
 type KeyRing struct {
 	pulumi.CustomResourceState
 
-	// The location for the KeyRing. A full list of valid locations can be found by running 'gcloud kms locations list'.
+	// -
+	// (Required)
+	// The location for the KeyRing.
+	// A full list of valid locations can be found by running `gcloud kms locations list`.
 	Location pulumi.StringOutput `pulumi:"location"`
+	// -
+	// (Required)
 	// The resource name for the KeyRing.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
@@ -67,8 +72,13 @@ func GetKeyRing(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KeyRing resources.
 type keyRingState struct {
-	// The location for the KeyRing. A full list of valid locations can be found by running 'gcloud kms locations list'.
+	// -
+	// (Required)
+	// The location for the KeyRing.
+	// A full list of valid locations can be found by running `gcloud kms locations list`.
 	Location *string `pulumi:"location"`
+	// -
+	// (Required)
 	// The resource name for the KeyRing.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
@@ -78,8 +88,13 @@ type keyRingState struct {
 }
 
 type KeyRingState struct {
-	// The location for the KeyRing. A full list of valid locations can be found by running 'gcloud kms locations list'.
+	// -
+	// (Required)
+	// The location for the KeyRing.
+	// A full list of valid locations can be found by running `gcloud kms locations list`.
 	Location pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The resource name for the KeyRing.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
@@ -93,8 +108,13 @@ func (KeyRingState) ElementType() reflect.Type {
 }
 
 type keyRingArgs struct {
-	// The location for the KeyRing. A full list of valid locations can be found by running 'gcloud kms locations list'.
+	// -
+	// (Required)
+	// The location for the KeyRing.
+	// A full list of valid locations can be found by running `gcloud kms locations list`.
 	Location string `pulumi:"location"`
+	// -
+	// (Required)
 	// The resource name for the KeyRing.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
@@ -104,8 +124,13 @@ type keyRingArgs struct {
 
 // The set of arguments for constructing a KeyRing resource.
 type KeyRingArgs struct {
-	// The location for the KeyRing. A full list of valid locations can be found by running 'gcloud kms locations list'.
+	// -
+	// (Required)
+	// The location for the KeyRing.
+	// A full list of valid locations can be found by running `gcloud kms locations list`.
 	Location pulumi.StringInput
+	// -
+	// (Required)
 	// The resource name for the KeyRing.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.

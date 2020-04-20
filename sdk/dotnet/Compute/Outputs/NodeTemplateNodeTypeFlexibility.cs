@@ -13,8 +13,22 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class NodeTemplateNodeTypeFlexibility
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of virtual CPUs to use.
+        /// </summary>
         public readonly string? Cpus;
+        /// <summary>
+        /// -
+        /// Use local SSD
+        /// </summary>
         public readonly string? LocalSsd;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Physical memory available to the node, defined in MB.
+        /// </summary>
         public readonly string? Memory;
 
         [OutputConstructor]

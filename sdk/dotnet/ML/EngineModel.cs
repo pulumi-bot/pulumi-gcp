@@ -18,36 +18,49 @@ namespace Pulumi.Gcp.ML
     public partial class EngineModel : Pulumi.CustomResource
     {
         /// <summary>
-        /// The default version of the model. This version will be used to handle prediction requests that do not specify a version.
+        /// -
+        /// (Optional)
+        /// The default version of the model. This version will be used to handle
+        /// prediction requests that do not specify a version.  Structure is documented below.
         /// </summary>
         [Output("defaultVersion")]
         public Output<Outputs.EngineModelDefaultVersion?> DefaultVersion { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The description specified for the model when it was created.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// One or more labels that you can add, to organize your models.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// The name specified for the model.
+        /// -
+        /// (Required)
+        /// The name specified for the version when it was created.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If true, online prediction nodes send stderr and stdout streams to Stackdriver Logging
         /// </summary>
         [Output("onlinePredictionConsoleLogging")]
         public Output<bool?> OnlinePredictionConsoleLogging { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If true, online prediction access logs are sent to StackDriver Logging.
         /// </summary>
         [Output("onlinePredictionLogging")]
@@ -61,7 +74,10 @@ namespace Pulumi.Gcp.ML
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// The list of regions where the model is going to be deployed. Currently only one region per model is supported
+        /// -
+        /// (Optional)
+        /// The list of regions where the model is going to be deployed.
+        /// Currently only one region per model is supported
         /// </summary>
         [Output("regions")]
         public Output<string?> Regions { get; private set; } = null!;
@@ -113,12 +129,17 @@ namespace Pulumi.Gcp.ML
     public sealed class EngineModelArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The default version of the model. This version will be used to handle prediction requests that do not specify a version.
+        /// -
+        /// (Optional)
+        /// The default version of the model. This version will be used to handle
+        /// prediction requests that do not specify a version.  Structure is documented below.
         /// </summary>
         [Input("defaultVersion")]
         public Input<Inputs.EngineModelDefaultVersionArgs>? DefaultVersion { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The description specified for the model when it was created.
         /// </summary>
         [Input("description")]
@@ -128,6 +149,8 @@ namespace Pulumi.Gcp.ML
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// One or more labels that you can add, to organize your models.
         /// </summary>
         public InputMap<string> Labels
@@ -137,18 +160,24 @@ namespace Pulumi.Gcp.ML
         }
 
         /// <summary>
-        /// The name specified for the model.
+        /// -
+        /// (Required)
+        /// The name specified for the version when it was created.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If true, online prediction nodes send stderr and stdout streams to Stackdriver Logging
         /// </summary>
         [Input("onlinePredictionConsoleLogging")]
         public Input<bool>? OnlinePredictionConsoleLogging { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If true, online prediction access logs are sent to StackDriver Logging.
         /// </summary>
         [Input("onlinePredictionLogging")]
@@ -162,7 +191,10 @@ namespace Pulumi.Gcp.ML
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The list of regions where the model is going to be deployed. Currently only one region per model is supported
+        /// -
+        /// (Optional)
+        /// The list of regions where the model is going to be deployed.
+        /// Currently only one region per model is supported
         /// </summary>
         [Input("regions")]
         public Input<string>? Regions { get; set; }
@@ -175,12 +207,17 @@ namespace Pulumi.Gcp.ML
     public sealed class EngineModelState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The default version of the model. This version will be used to handle prediction requests that do not specify a version.
+        /// -
+        /// (Optional)
+        /// The default version of the model. This version will be used to handle
+        /// prediction requests that do not specify a version.  Structure is documented below.
         /// </summary>
         [Input("defaultVersion")]
         public Input<Inputs.EngineModelDefaultVersionGetArgs>? DefaultVersion { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The description specified for the model when it was created.
         /// </summary>
         [Input("description")]
@@ -190,6 +227,8 @@ namespace Pulumi.Gcp.ML
         private InputMap<string>? _labels;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// One or more labels that you can add, to organize your models.
         /// </summary>
         public InputMap<string> Labels
@@ -199,18 +238,24 @@ namespace Pulumi.Gcp.ML
         }
 
         /// <summary>
-        /// The name specified for the model.
+        /// -
+        /// (Required)
+        /// The name specified for the version when it was created.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If true, online prediction nodes send stderr and stdout streams to Stackdriver Logging
         /// </summary>
         [Input("onlinePredictionConsoleLogging")]
         public Input<bool>? OnlinePredictionConsoleLogging { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If true, online prediction access logs are sent to StackDriver Logging.
         /// </summary>
         [Input("onlinePredictionLogging")]
@@ -224,7 +269,10 @@ namespace Pulumi.Gcp.ML
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The list of regions where the model is going to be deployed. Currently only one region per model is supported
+        /// -
+        /// (Optional)
+        /// The list of regions where the model is going to be deployed.
+        /// Currently only one region per model is supported
         /// </summary>
         [Input("regions")]
         public Input<string>? Regions { get; set; }

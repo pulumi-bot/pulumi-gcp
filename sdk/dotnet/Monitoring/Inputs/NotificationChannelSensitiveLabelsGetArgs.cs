@@ -12,12 +12,27 @@ namespace Pulumi.Gcp.Monitoring.Inputs
 
     public sealed class NotificationChannelSensitiveLabelsGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An authorization token for a notification channel. Channel types that support this field include: slack
+        /// </summary>
         [Input("authToken")]
         public Input<string>? AuthToken { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An password for a notification channel. Channel types that support this field include: webhook_basicauth
+        /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// An servicekey token for a notification channel. Channel types that support this field include: pagerduty
+        /// </summary>
         [Input("serviceKey")]
         public Input<string>? ServiceKey { get; set; }
 

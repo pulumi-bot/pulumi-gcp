@@ -12,6 +12,8 @@ from .. import utilities, tables
 class SshPublicKey(pulumi.CustomResource):
     expiration_time_usec: pulumi.Output[str]
     """
+    -
+    (Optional)
     An expiration time in microseconds since epoch.
     """
     fingerprint: pulumi.Output[str]
@@ -20,10 +22,14 @@ class SshPublicKey(pulumi.CustomResource):
     """
     key: pulumi.Output[str]
     """
+    -
+    (Required)
     Public key text in SSH format, defined by RFC4253 section 6.6.
     """
     user: pulumi.Output[str]
     """
+    -
+    (Required)
     The user email.
     """
     def __init__(__self__, resource_name, opts=None, expiration_time_usec=None, key=None, user=None, __props__=None, __name__=None, __opts__=None):
@@ -39,9 +45,15 @@ class SshPublicKey(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] expiration_time_usec: An expiration time in microseconds since epoch.
-        :param pulumi.Input[str] key: Public key text in SSH format, defined by RFC4253 section 6.6.
-        :param pulumi.Input[str] user: The user email.
+        :param pulumi.Input[str] expiration_time_usec: -
+               (Optional)
+               An expiration time in microseconds since epoch.
+        :param pulumi.Input[str] key: -
+               (Required)
+               Public key text in SSH format, defined by RFC4253 section 6.6.
+        :param pulumi.Input[str] user: -
+               (Required)
+               The user email.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -83,10 +95,16 @@ class SshPublicKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] expiration_time_usec: An expiration time in microseconds since epoch.
+        :param pulumi.Input[str] expiration_time_usec: -
+               (Optional)
+               An expiration time in microseconds since epoch.
         :param pulumi.Input[str] fingerprint: The SHA-256 fingerprint of the SSH public key.
-        :param pulumi.Input[str] key: Public key text in SSH format, defined by RFC4253 section 6.6.
-        :param pulumi.Input[str] user: The user email.
+        :param pulumi.Input[str] key: -
+               (Required)
+               Public key text in SSH format, defined by RFC4253 section 6.6.
+        :param pulumi.Input[str] user: -
+               (Required)
+               The user email.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

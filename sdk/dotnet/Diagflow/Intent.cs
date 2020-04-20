@@ -23,28 +23,37 @@ namespace Pulumi.Gcp.Diagflow
     public partial class Intent : Pulumi.CustomResource
     {
         /// <summary>
-        /// The name of the action associated with the intent. Note: The action name must not contain whitespaces.
+        /// -
+        /// (Optional)
+        /// The name of the action associated with the intent.
+        /// Note: The action name must not contain whitespaces.
         /// </summary>
         [Output("action")]
         public Output<string> Action { get; private set; } = null!;
 
         /// <summary>
-        /// The list of platforms for which the first responses will be copied from the messages in PLATFORM_UNSPECIFIED (i.e.
-        /// default platform).
+        /// -
+        /// (Optional)
+        /// The list of platforms for which the first responses will be copied from the messages in PLATFORM_UNSPECIFIED
+        /// (i.e. default platform).
         /// </summary>
         [Output("defaultResponsePlatforms")]
         public Output<ImmutableArray<string>> DefaultResponsePlatforms { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of this intent to be displayed on the console.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// The collection of event names that trigger the intent. If the collection of input contexts is not empty, all of the
-        /// contexts must be present in the active user session for an event to trigger this intent. See the [events
-        /// reference](https://cloud.google.com/dialogflow/docs/events-overview) for more details.
+        /// -
+        /// (Optional)
+        /// The collection of event names that trigger the intent. If the collection of input contexts is not empty, all of
+        /// the contexts must be present in the active user session for an event to trigger this intent. See the
+        /// [events reference](https://cloud.google.com/dialogflow/docs/events-overview) for more details.
         /// </summary>
         [Output("events")]
         public Output<ImmutableArray<string>> Events { get; private set; } = null!;
@@ -57,21 +66,28 @@ namespace Pulumi.Gcp.Diagflow
         public Output<ImmutableArray<Outputs.IntentFollowupIntentInfo>> FollowupIntentInfos { get; private set; } = null!;
 
         /// <summary>
-        /// The list of context names required for this intent to be triggered. Format: projects/&lt;Project
-        /// ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;.
+        /// -
+        /// (Optional)
+        /// The list of context names required for this intent to be triggered.
+        /// Format: projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;.
         /// </summary>
         [Output("inputContextNames")]
         public Output<ImmutableArray<string>> InputContextNames { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Indicates whether this is a fallback intent.
         /// </summary>
         [Output("isFallback")]
         public Output<bool> IsFallback { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether Machine Learning is disabled for the intent. Note: If mlDisabled setting is set to true, then this
-        /// intent is not taken into account during inference in ML ONLY match mode. Also, auto-markup in the UI is turned off.
+        /// -
+        /// (Optional)
+        /// Indicates whether Machine Learning is disabled for the intent.
+        /// Note: If mlDisabled setting is set to true, then this intent is not taken into account during inference in ML
+        /// ONLY match mode. Also, auto-markup in the UI is turned off.
         /// </summary>
         [Output("mlDisabled")]
         public Output<bool> MlDisabled { get; private set; } = null!;
@@ -83,16 +99,21 @@ namespace Pulumi.Gcp.Diagflow
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The unique identifier of the parent intent in the chain of followup intents. Format: projects/&lt;Project
-        /// ID&gt;/agent/intents/&lt;Intent ID&gt;.
+        /// -
+        /// (Optional)
+        /// The unique identifier of the parent intent in the chain of followup intents.
+        /// Format: projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;.
         /// </summary>
         [Output("parentFollowupIntentName")]
         public Output<string> ParentFollowupIntentName { get; private set; } = null!;
 
         /// <summary>
-        /// The priority of this intent. Higher numbers represent higher priorities. - If the supplied value is unspecified or 0,
-        /// the service translates the value to 500,000, which corresponds to the Normal priority in the console. - If the supplied
-        /// value is negative, the intent is ignored in runtime detect intent requests.
+        /// -
+        /// (Optional)
+        /// The priority of this intent. Higher numbers represent higher priorities.
+        /// - If the supplied value is unspecified or 0, the service translates the value to 500,000, which corresponds
+        /// to the Normal priority in the console.
+        /// - If the supplied value is negative, the intent is ignored in runtime detect intent requests.
         /// </summary>
         [Output("priority")]
         public Output<int> Priority { get; private set; } = null!;
@@ -105,6 +126,8 @@ namespace Pulumi.Gcp.Diagflow
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Indicates whether to delete all contexts in the current session when this intent is matched.
         /// </summary>
         [Output("resetContexts")]
@@ -118,8 +141,11 @@ namespace Pulumi.Gcp.Diagflow
         public Output<string> RootFollowupIntentName { get; private set; } = null!;
 
         /// <summary>
-        /// Indicates whether webhooks are enabled for the intent. * WEBHOOK_STATE_ENABLED: Webhook is enabled in the agent and in
-        /// the intent. * WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING: Webhook is enabled in the agent and in the intent. Also, each slot
+        /// -
+        /// (Optional)
+        /// Indicates whether webhooks are enabled for the intent.
+        /// * WEBHOOK_STATE_ENABLED: Webhook is enabled in the agent and in the intent.
+        /// * WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING: Webhook is enabled in the agent and in the intent. Also, each slot
         /// filling prompt is forwarded to the webhook.
         /// </summary>
         [Output("webhookState")]
@@ -172,7 +198,10 @@ namespace Pulumi.Gcp.Diagflow
     public sealed class IntentArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the action associated with the intent. Note: The action name must not contain whitespaces.
+        /// -
+        /// (Optional)
+        /// The name of the action associated with the intent.
+        /// Note: The action name must not contain whitespaces.
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
@@ -181,8 +210,10 @@ namespace Pulumi.Gcp.Diagflow
         private InputList<string>? _defaultResponsePlatforms;
 
         /// <summary>
-        /// The list of platforms for which the first responses will be copied from the messages in PLATFORM_UNSPECIFIED (i.e.
-        /// default platform).
+        /// -
+        /// (Optional)
+        /// The list of platforms for which the first responses will be copied from the messages in PLATFORM_UNSPECIFIED
+        /// (i.e. default platform).
         /// </summary>
         public InputList<string> DefaultResponsePlatforms
         {
@@ -191,6 +222,8 @@ namespace Pulumi.Gcp.Diagflow
         }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of this intent to be displayed on the console.
         /// </summary>
         [Input("displayName", required: true)]
@@ -200,9 +233,11 @@ namespace Pulumi.Gcp.Diagflow
         private InputList<string>? _events;
 
         /// <summary>
-        /// The collection of event names that trigger the intent. If the collection of input contexts is not empty, all of the
-        /// contexts must be present in the active user session for an event to trigger this intent. See the [events
-        /// reference](https://cloud.google.com/dialogflow/docs/events-overview) for more details.
+        /// -
+        /// (Optional)
+        /// The collection of event names that trigger the intent. If the collection of input contexts is not empty, all of
+        /// the contexts must be present in the active user session for an event to trigger this intent. See the
+        /// [events reference](https://cloud.google.com/dialogflow/docs/events-overview) for more details.
         /// </summary>
         public InputList<string> Events
         {
@@ -214,8 +249,10 @@ namespace Pulumi.Gcp.Diagflow
         private InputList<string>? _inputContextNames;
 
         /// <summary>
-        /// The list of context names required for this intent to be triggered. Format: projects/&lt;Project
-        /// ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;.
+        /// -
+        /// (Optional)
+        /// The list of context names required for this intent to be triggered.
+        /// Format: projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;.
         /// </summary>
         public InputList<string> InputContextNames
         {
@@ -224,29 +261,39 @@ namespace Pulumi.Gcp.Diagflow
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Indicates whether this is a fallback intent.
         /// </summary>
         [Input("isFallback")]
         public Input<bool>? IsFallback { get; set; }
 
         /// <summary>
-        /// Indicates whether Machine Learning is disabled for the intent. Note: If mlDisabled setting is set to true, then this
-        /// intent is not taken into account during inference in ML ONLY match mode. Also, auto-markup in the UI is turned off.
+        /// -
+        /// (Optional)
+        /// Indicates whether Machine Learning is disabled for the intent.
+        /// Note: If mlDisabled setting is set to true, then this intent is not taken into account during inference in ML
+        /// ONLY match mode. Also, auto-markup in the UI is turned off.
         /// </summary>
         [Input("mlDisabled")]
         public Input<bool>? MlDisabled { get; set; }
 
         /// <summary>
-        /// The unique identifier of the parent intent in the chain of followup intents. Format: projects/&lt;Project
-        /// ID&gt;/agent/intents/&lt;Intent ID&gt;.
+        /// -
+        /// (Optional)
+        /// The unique identifier of the parent intent in the chain of followup intents.
+        /// Format: projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;.
         /// </summary>
         [Input("parentFollowupIntentName")]
         public Input<string>? ParentFollowupIntentName { get; set; }
 
         /// <summary>
-        /// The priority of this intent. Higher numbers represent higher priorities. - If the supplied value is unspecified or 0,
-        /// the service translates the value to 500,000, which corresponds to the Normal priority in the console. - If the supplied
-        /// value is negative, the intent is ignored in runtime detect intent requests.
+        /// -
+        /// (Optional)
+        /// The priority of this intent. Higher numbers represent higher priorities.
+        /// - If the supplied value is unspecified or 0, the service translates the value to 500,000, which corresponds
+        /// to the Normal priority in the console.
+        /// - If the supplied value is negative, the intent is ignored in runtime detect intent requests.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -259,14 +306,19 @@ namespace Pulumi.Gcp.Diagflow
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Indicates whether to delete all contexts in the current session when this intent is matched.
         /// </summary>
         [Input("resetContexts")]
         public Input<bool>? ResetContexts { get; set; }
 
         /// <summary>
-        /// Indicates whether webhooks are enabled for the intent. * WEBHOOK_STATE_ENABLED: Webhook is enabled in the agent and in
-        /// the intent. * WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING: Webhook is enabled in the agent and in the intent. Also, each slot
+        /// -
+        /// (Optional)
+        /// Indicates whether webhooks are enabled for the intent.
+        /// * WEBHOOK_STATE_ENABLED: Webhook is enabled in the agent and in the intent.
+        /// * WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING: Webhook is enabled in the agent and in the intent. Also, each slot
         /// filling prompt is forwarded to the webhook.
         /// </summary>
         [Input("webhookState")]
@@ -280,7 +332,10 @@ namespace Pulumi.Gcp.Diagflow
     public sealed class IntentState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the action associated with the intent. Note: The action name must not contain whitespaces.
+        /// -
+        /// (Optional)
+        /// The name of the action associated with the intent.
+        /// Note: The action name must not contain whitespaces.
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
@@ -289,8 +344,10 @@ namespace Pulumi.Gcp.Diagflow
         private InputList<string>? _defaultResponsePlatforms;
 
         /// <summary>
-        /// The list of platforms for which the first responses will be copied from the messages in PLATFORM_UNSPECIFIED (i.e.
-        /// default platform).
+        /// -
+        /// (Optional)
+        /// The list of platforms for which the first responses will be copied from the messages in PLATFORM_UNSPECIFIED
+        /// (i.e. default platform).
         /// </summary>
         public InputList<string> DefaultResponsePlatforms
         {
@@ -299,6 +356,8 @@ namespace Pulumi.Gcp.Diagflow
         }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of this intent to be displayed on the console.
         /// </summary>
         [Input("displayName")]
@@ -308,9 +367,11 @@ namespace Pulumi.Gcp.Diagflow
         private InputList<string>? _events;
 
         /// <summary>
-        /// The collection of event names that trigger the intent. If the collection of input contexts is not empty, all of the
-        /// contexts must be present in the active user session for an event to trigger this intent. See the [events
-        /// reference](https://cloud.google.com/dialogflow/docs/events-overview) for more details.
+        /// -
+        /// (Optional)
+        /// The collection of event names that trigger the intent. If the collection of input contexts is not empty, all of
+        /// the contexts must be present in the active user session for an event to trigger this intent. See the
+        /// [events reference](https://cloud.google.com/dialogflow/docs/events-overview) for more details.
         /// </summary>
         public InputList<string> Events
         {
@@ -335,8 +396,10 @@ namespace Pulumi.Gcp.Diagflow
         private InputList<string>? _inputContextNames;
 
         /// <summary>
-        /// The list of context names required for this intent to be triggered. Format: projects/&lt;Project
-        /// ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;.
+        /// -
+        /// (Optional)
+        /// The list of context names required for this intent to be triggered.
+        /// Format: projects/&lt;Project ID&gt;/agent/sessions/-/contexts/&lt;Context ID&gt;.
         /// </summary>
         public InputList<string> InputContextNames
         {
@@ -345,14 +408,19 @@ namespace Pulumi.Gcp.Diagflow
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Indicates whether this is a fallback intent.
         /// </summary>
         [Input("isFallback")]
         public Input<bool>? IsFallback { get; set; }
 
         /// <summary>
-        /// Indicates whether Machine Learning is disabled for the intent. Note: If mlDisabled setting is set to true, then this
-        /// intent is not taken into account during inference in ML ONLY match mode. Also, auto-markup in the UI is turned off.
+        /// -
+        /// (Optional)
+        /// Indicates whether Machine Learning is disabled for the intent.
+        /// Note: If mlDisabled setting is set to true, then this intent is not taken into account during inference in ML
+        /// ONLY match mode. Also, auto-markup in the UI is turned off.
         /// </summary>
         [Input("mlDisabled")]
         public Input<bool>? MlDisabled { get; set; }
@@ -364,16 +432,21 @@ namespace Pulumi.Gcp.Diagflow
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The unique identifier of the parent intent in the chain of followup intents. Format: projects/&lt;Project
-        /// ID&gt;/agent/intents/&lt;Intent ID&gt;.
+        /// -
+        /// (Optional)
+        /// The unique identifier of the parent intent in the chain of followup intents.
+        /// Format: projects/&lt;Project ID&gt;/agent/intents/&lt;Intent ID&gt;.
         /// </summary>
         [Input("parentFollowupIntentName")]
         public Input<string>? ParentFollowupIntentName { get; set; }
 
         /// <summary>
-        /// The priority of this intent. Higher numbers represent higher priorities. - If the supplied value is unspecified or 0,
-        /// the service translates the value to 500,000, which corresponds to the Normal priority in the console. - If the supplied
-        /// value is negative, the intent is ignored in runtime detect intent requests.
+        /// -
+        /// (Optional)
+        /// The priority of this intent. Higher numbers represent higher priorities.
+        /// - If the supplied value is unspecified or 0, the service translates the value to 500,000, which corresponds
+        /// to the Normal priority in the console.
+        /// - If the supplied value is negative, the intent is ignored in runtime detect intent requests.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -386,6 +459,8 @@ namespace Pulumi.Gcp.Diagflow
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Indicates whether to delete all contexts in the current session when this intent is matched.
         /// </summary>
         [Input("resetContexts")]
@@ -399,8 +474,11 @@ namespace Pulumi.Gcp.Diagflow
         public Input<string>? RootFollowupIntentName { get; set; }
 
         /// <summary>
-        /// Indicates whether webhooks are enabled for the intent. * WEBHOOK_STATE_ENABLED: Webhook is enabled in the agent and in
-        /// the intent. * WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING: Webhook is enabled in the agent and in the intent. Also, each slot
+        /// -
+        /// (Optional)
+        /// Indicates whether webhooks are enabled for the intent.
+        /// * WEBHOOK_STATE_ENABLED: Webhook is enabled in the agent and in the intent.
+        /// * WEBHOOK_STATE_ENABLED_FOR_SLOT_FILLING: Webhook is enabled in the agent and in the intent. Also, each slot
         /// filling prompt is forwarded to the webhook.
         /// </summary>
         [Input("webhookState")]

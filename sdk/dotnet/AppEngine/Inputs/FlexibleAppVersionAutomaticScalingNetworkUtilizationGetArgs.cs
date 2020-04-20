@@ -12,15 +12,35 @@ namespace Pulumi.Gcp.AppEngine.Inputs
 
     public sealed class FlexibleAppVersionAutomaticScalingNetworkUtilizationGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target bytes received per second.
+        /// </summary>
         [Input("targetReceivedBytesPerSecond")]
         public Input<int>? TargetReceivedBytesPerSecond { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target packets received per second.
+        /// </summary>
         [Input("targetReceivedPacketsPerSecond")]
         public Input<int>? TargetReceivedPacketsPerSecond { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target bytes sent per second.
+        /// </summary>
         [Input("targetSentBytesPerSecond")]
         public Input<int>? TargetSentBytesPerSecond { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target packets sent per second.
+        /// </summary>
         [Input("targetSentPacketsPerSecond")]
         public Input<int>? TargetSentPacketsPerSecond { get; set; }
 

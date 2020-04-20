@@ -11,7 +11,11 @@ import (
 )
 
 type IntentFollowupIntentInfo struct {
-	FollowupIntentName       *string `pulumi:"followupIntentName"`
+	FollowupIntentName *string `pulumi:"followupIntentName"`
+	// -
+	// (Optional)
+	// The unique identifier of the parent intent in the chain of followup intents.
+	// Format: projects/<Project ID>/agent/intents/<Intent ID>.
 	ParentFollowupIntentName *string `pulumi:"parentFollowupIntentName"`
 }
 
@@ -28,7 +32,11 @@ type IntentFollowupIntentInfoInput interface {
 }
 
 type IntentFollowupIntentInfoArgs struct {
-	FollowupIntentName       pulumi.StringPtrInput `pulumi:"followupIntentName"`
+	FollowupIntentName pulumi.StringPtrInput `pulumi:"followupIntentName"`
+	// -
+	// (Optional)
+	// The unique identifier of the parent intent in the chain of followup intents.
+	// Format: projects/<Project ID>/agent/intents/<Intent ID>.
 	ParentFollowupIntentName pulumi.StringPtrInput `pulumi:"parentFollowupIntentName"`
 }
 
@@ -88,6 +96,10 @@ func (o IntentFollowupIntentInfoOutput) FollowupIntentName() pulumi.StringPtrOut
 	return o.ApplyT(func(v IntentFollowupIntentInfo) *string { return v.FollowupIntentName }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The unique identifier of the parent intent in the chain of followup intents.
+// Format: projects/<Project ID>/agent/intents/<Intent ID>.
 func (o IntentFollowupIntentInfoOutput) ParentFollowupIntentName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IntentFollowupIntentInfo) *string { return v.ParentFollowupIntentName }).(pulumi.StringPtrOutput)
 }

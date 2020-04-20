@@ -52,29 +52,42 @@ export class StandardAppVersion extends pulumi.CustomResource {
      */
     public readonly deleteServiceOnDestroy!: pulumi.Output<boolean | undefined>;
     /**
-     * Code and application artifacts that make up this version.
+     * -
+     * (Optional)
+     * Code and application artifacts that make up this version.  Structure is documented below.
      */
     public readonly deployment!: pulumi.Output<outputs.appengine.StandardAppVersionDeployment | undefined>;
     /**
-     * The entrypoint for the application.
+     * -
+     * (Optional)
+     * The entrypoint for the application.  Structure is documented below.
      */
     public readonly entrypoint!: pulumi.Output<outputs.appengine.StandardAppVersionEntrypoint | undefined>;
     /**
+     * -
+     * (Optional)
      * Environment variables available to the application.
      */
     public readonly envVariables!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL handles
-     * the request and other request handlers are not attempted.
+     * -
+     * (Optional)
+     * An ordered list of URL-matching patterns that should be applied to incoming requests.
+     * The first matching URL handles the request and other request handlers are not attempted.  Structure is documented below.
      */
     public readonly handlers!: pulumi.Output<outputs.appengine.StandardAppVersionHandler[] | undefined>;
     /**
-     * Instance class that is used to run this version. Valid values are AutomaticScaling F1, F2, F4, F4_1G (Only
-     * AutomaticScaling is supported at the moment)
+     * -
+     * (Optional)
+     * Instance class that is used to run this version. Valid values are
+     * AutomaticScaling F1, F2, F4, F4_1G
+     * (Only AutomaticScaling is supported at the moment)
      */
     public readonly instanceClass!: pulumi.Output<string | undefined>;
     /**
-     * Configuration for third-party Python runtime libraries that are required by the application.
+     * -
+     * (Optional)
+     * Configuration for third-party Python runtime libraries that are required by the application.  Structure is documented below.
      */
     public readonly libraries!: pulumi.Output<outputs.appengine.StandardAppVersionLibrary[] | undefined>;
     /**
@@ -91,25 +104,34 @@ export class StandardAppVersion extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * Desired runtime. Example python27.
      */
     public readonly runtime!: pulumi.Output<string>;
     /**
-     * The version of the API in the given runtime environment. Please see the app.yaml reference for valid values at
-     * https://cloud.google.com/appengine/docs/standard//config/appref
+     * -
+     * (Optional)
+     * The version of the API in the given runtime environment.
+     * Please see the app.yaml reference for valid values at https://cloud.google.com/appengine/docs/standard//config/appref
      */
     public readonly runtimeApiVersion!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Optional)
      * AppEngine service resource
      */
     public readonly service!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Optional)
      * Whether multiple requests can be dispatched to this version at once.
      */
     public readonly threadsafe!: pulumi.Output<boolean | undefined>;
     /**
-     * Relative name of the version within the service. For example, 'v1'. Version names can contain only lowercase
-     * letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
+     * -
+     * (Optional)
+     * Relative name of the version within the service. For example, `v1`. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
      */
     public readonly versionId!: pulumi.Output<string | undefined>;
 
@@ -181,29 +203,42 @@ export interface StandardAppVersionState {
      */
     readonly deleteServiceOnDestroy?: pulumi.Input<boolean>;
     /**
-     * Code and application artifacts that make up this version.
+     * -
+     * (Optional)
+     * Code and application artifacts that make up this version.  Structure is documented below.
      */
     readonly deployment?: pulumi.Input<inputs.appengine.StandardAppVersionDeployment>;
     /**
-     * The entrypoint for the application.
+     * -
+     * (Optional)
+     * The entrypoint for the application.  Structure is documented below.
      */
     readonly entrypoint?: pulumi.Input<inputs.appengine.StandardAppVersionEntrypoint>;
     /**
+     * -
+     * (Optional)
      * Environment variables available to the application.
      */
     readonly envVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL handles
-     * the request and other request handlers are not attempted.
+     * -
+     * (Optional)
+     * An ordered list of URL-matching patterns that should be applied to incoming requests.
+     * The first matching URL handles the request and other request handlers are not attempted.  Structure is documented below.
      */
     readonly handlers?: pulumi.Input<pulumi.Input<inputs.appengine.StandardAppVersionHandler>[]>;
     /**
-     * Instance class that is used to run this version. Valid values are AutomaticScaling F1, F2, F4, F4_1G (Only
-     * AutomaticScaling is supported at the moment)
+     * -
+     * (Optional)
+     * Instance class that is used to run this version. Valid values are
+     * AutomaticScaling F1, F2, F4, F4_1G
+     * (Only AutomaticScaling is supported at the moment)
      */
     readonly instanceClass?: pulumi.Input<string>;
     /**
-     * Configuration for third-party Python runtime libraries that are required by the application.
+     * -
+     * (Optional)
+     * Configuration for third-party Python runtime libraries that are required by the application.  Structure is documented below.
      */
     readonly libraries?: pulumi.Input<pulumi.Input<inputs.appengine.StandardAppVersionLibrary>[]>;
     /**
@@ -220,25 +255,34 @@ export interface StandardAppVersionState {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Desired runtime. Example python27.
      */
     readonly runtime?: pulumi.Input<string>;
     /**
-     * The version of the API in the given runtime environment. Please see the app.yaml reference for valid values at
-     * https://cloud.google.com/appengine/docs/standard//config/appref
+     * -
+     * (Optional)
+     * The version of the API in the given runtime environment.
+     * Please see the app.yaml reference for valid values at https://cloud.google.com/appengine/docs/standard//config/appref
      */
     readonly runtimeApiVersion?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * AppEngine service resource
      */
     readonly service?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Whether multiple requests can be dispatched to this version at once.
      */
     readonly threadsafe?: pulumi.Input<boolean>;
     /**
-     * Relative name of the version within the service. For example, 'v1'. Version names can contain only lowercase
-     * letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
+     * -
+     * (Optional)
+     * Relative name of the version within the service. For example, `v1`. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
      */
     readonly versionId?: pulumi.Input<string>;
 }
@@ -252,29 +296,42 @@ export interface StandardAppVersionArgs {
      */
     readonly deleteServiceOnDestroy?: pulumi.Input<boolean>;
     /**
-     * Code and application artifacts that make up this version.
+     * -
+     * (Optional)
+     * Code and application artifacts that make up this version.  Structure is documented below.
      */
     readonly deployment?: pulumi.Input<inputs.appengine.StandardAppVersionDeployment>;
     /**
-     * The entrypoint for the application.
+     * -
+     * (Optional)
+     * The entrypoint for the application.  Structure is documented below.
      */
     readonly entrypoint?: pulumi.Input<inputs.appengine.StandardAppVersionEntrypoint>;
     /**
+     * -
+     * (Optional)
      * Environment variables available to the application.
      */
     readonly envVariables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL handles
-     * the request and other request handlers are not attempted.
+     * -
+     * (Optional)
+     * An ordered list of URL-matching patterns that should be applied to incoming requests.
+     * The first matching URL handles the request and other request handlers are not attempted.  Structure is documented below.
      */
     readonly handlers?: pulumi.Input<pulumi.Input<inputs.appengine.StandardAppVersionHandler>[]>;
     /**
-     * Instance class that is used to run this version. Valid values are AutomaticScaling F1, F2, F4, F4_1G (Only
-     * AutomaticScaling is supported at the moment)
+     * -
+     * (Optional)
+     * Instance class that is used to run this version. Valid values are
+     * AutomaticScaling F1, F2, F4, F4_1G
+     * (Only AutomaticScaling is supported at the moment)
      */
     readonly instanceClass?: pulumi.Input<string>;
     /**
-     * Configuration for third-party Python runtime libraries that are required by the application.
+     * -
+     * (Optional)
+     * Configuration for third-party Python runtime libraries that are required by the application.  Structure is documented below.
      */
     readonly libraries?: pulumi.Input<pulumi.Input<inputs.appengine.StandardAppVersionLibrary>[]>;
     /**
@@ -287,25 +344,34 @@ export interface StandardAppVersionArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Desired runtime. Example python27.
      */
     readonly runtime: pulumi.Input<string>;
     /**
-     * The version of the API in the given runtime environment. Please see the app.yaml reference for valid values at
-     * https://cloud.google.com/appengine/docs/standard//config/appref
+     * -
+     * (Optional)
+     * The version of the API in the given runtime environment.
+     * Please see the app.yaml reference for valid values at https://cloud.google.com/appengine/docs/standard//config/appref
      */
     readonly runtimeApiVersion?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * AppEngine service resource
      */
     readonly service?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Whether multiple requests can be dispatched to this version at once.
      */
     readonly threadsafe?: pulumi.Input<boolean>;
     /**
-     * Relative name of the version within the service. For example, 'v1'. Version names can contain only lowercase
-     * letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
+     * -
+     * (Optional)
+     * Relative name of the version within the service. For example, `v1`. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
      */
     readonly versionId?: pulumi.Input<string>;
 }

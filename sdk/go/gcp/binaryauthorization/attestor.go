@@ -21,10 +21,17 @@ import (
 type Attestor struct {
 	pulumi.CustomResourceState
 
-	// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.
+	// -
+	// (Required)
+	// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.  Structure is documented below.
 	AttestationAuthorityNote AttestorAttestationAuthorityNoteOutput `pulumi:"attestationAuthorityNote"`
-	// A descriptive comment. This field may be updated. The field may be displayed in chooser dialogs.
+	// -
+	// (Optional)
+	// A descriptive comment. This field may be updated. The field may be
+	// displayed in chooser dialogs.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// -
+	// (Required)
 	// The resource name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
@@ -63,10 +70,17 @@ func GetAttestor(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Attestor resources.
 type attestorState struct {
-	// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.
+	// -
+	// (Required)
+	// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.  Structure is documented below.
 	AttestationAuthorityNote *AttestorAttestationAuthorityNote `pulumi:"attestationAuthorityNote"`
-	// A descriptive comment. This field may be updated. The field may be displayed in chooser dialogs.
+	// -
+	// (Optional)
+	// A descriptive comment. This field may be updated. The field may be
+	// displayed in chooser dialogs.
 	Description *string `pulumi:"description"`
+	// -
+	// (Required)
 	// The resource name.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
@@ -75,10 +89,17 @@ type attestorState struct {
 }
 
 type AttestorState struct {
-	// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.
+	// -
+	// (Required)
+	// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.  Structure is documented below.
 	AttestationAuthorityNote AttestorAttestationAuthorityNotePtrInput
-	// A descriptive comment. This field may be updated. The field may be displayed in chooser dialogs.
+	// -
+	// (Optional)
+	// A descriptive comment. This field may be updated. The field may be
+	// displayed in chooser dialogs.
 	Description pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The resource name.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
@@ -91,10 +112,17 @@ func (AttestorState) ElementType() reflect.Type {
 }
 
 type attestorArgs struct {
-	// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.
+	// -
+	// (Required)
+	// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.  Structure is documented below.
 	AttestationAuthorityNote AttestorAttestationAuthorityNote `pulumi:"attestationAuthorityNote"`
-	// A descriptive comment. This field may be updated. The field may be displayed in chooser dialogs.
+	// -
+	// (Optional)
+	// A descriptive comment. This field may be updated. The field may be
+	// displayed in chooser dialogs.
 	Description *string `pulumi:"description"`
+	// -
+	// (Required)
 	// The resource name.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
@@ -104,10 +132,17 @@ type attestorArgs struct {
 
 // The set of arguments for constructing a Attestor resource.
 type AttestorArgs struct {
-	// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.
+	// -
+	// (Required)
+	// A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.  Structure is documented below.
 	AttestationAuthorityNote AttestorAttestationAuthorityNoteInput
-	// A descriptive comment. This field may be updated. The field may be displayed in chooser dialogs.
+	// -
+	// (Optional)
+	// A descriptive comment. This field may be updated. The field may be
+	// displayed in chooser dialogs.
 	Description pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The resource name.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.

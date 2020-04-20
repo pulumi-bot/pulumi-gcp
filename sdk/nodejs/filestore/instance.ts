@@ -73,6 +73,8 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly createTime!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * A description of the instance.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -81,19 +83,29 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly etag!: pulumi.Output<string>;
     /**
-     * File system shares on the instance. For this version, only a single file share is supported.
+     * -
+     * (Required)
+     * File system shares on the instance. For this version, only a
+     * single file share is supported.  Structure is documented below.
      */
     public readonly fileShares!: pulumi.Output<outputs.filestore.InstanceFileShares>;
     /**
+     * -
+     * (Optional)
      * Resource labels to represent user-provided metadata.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * The resource name of the instance.
+     * -
+     * (Required)
+     * The name of the fileshare (16 characters or less)
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * VPC networks to which the instance is connected. For this version, only a single network is supported.
+     * -
+     * (Required)
+     * VPC networks to which the instance is connected. For this version,
+     * only a single network is supported.  Structure is documented below.
      */
     public readonly networks!: pulumi.Output<outputs.filestore.InstanceNetwork[]>;
     /**
@@ -102,10 +114,14 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The service tier of the instance.
      */
     public readonly tier!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The name of the Filestore zone of the instance.
      */
     public readonly zone!: pulumi.Output<string>;
@@ -177,6 +193,8 @@ export interface InstanceState {
      */
     readonly createTime?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * A description of the instance.
      */
     readonly description?: pulumi.Input<string>;
@@ -185,19 +203,29 @@ export interface InstanceState {
      */
     readonly etag?: pulumi.Input<string>;
     /**
-     * File system shares on the instance. For this version, only a single file share is supported.
+     * -
+     * (Required)
+     * File system shares on the instance. For this version, only a
+     * single file share is supported.  Structure is documented below.
      */
     readonly fileShares?: pulumi.Input<inputs.filestore.InstanceFileShares>;
     /**
+     * -
+     * (Optional)
      * Resource labels to represent user-provided metadata.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The resource name of the instance.
+     * -
+     * (Required)
+     * The name of the fileshare (16 characters or less)
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * VPC networks to which the instance is connected. For this version, only a single network is supported.
+     * -
+     * (Required)
+     * VPC networks to which the instance is connected. For this version,
+     * only a single network is supported.  Structure is documented below.
      */
     readonly networks?: pulumi.Input<pulumi.Input<inputs.filestore.InstanceNetwork>[]>;
     /**
@@ -206,10 +234,14 @@ export interface InstanceState {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The service tier of the instance.
      */
     readonly tier?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The name of the Filestore zone of the instance.
      */
     readonly zone?: pulumi.Input<string>;
@@ -220,23 +252,35 @@ export interface InstanceState {
  */
 export interface InstanceArgs {
     /**
+     * -
+     * (Optional)
      * A description of the instance.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * File system shares on the instance. For this version, only a single file share is supported.
+     * -
+     * (Required)
+     * File system shares on the instance. For this version, only a
+     * single file share is supported.  Structure is documented below.
      */
     readonly fileShares: pulumi.Input<inputs.filestore.InstanceFileShares>;
     /**
+     * -
+     * (Optional)
      * Resource labels to represent user-provided metadata.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * The resource name of the instance.
+     * -
+     * (Required)
+     * The name of the fileshare (16 characters or less)
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * VPC networks to which the instance is connected. For this version, only a single network is supported.
+     * -
+     * (Required)
+     * VPC networks to which the instance is connected. For this version,
+     * only a single network is supported.  Structure is documented below.
      */
     readonly networks: pulumi.Input<pulumi.Input<inputs.filestore.InstanceNetwork>[]>;
     /**
@@ -245,10 +289,14 @@ export interface InstanceArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The service tier of the instance.
      */
     readonly tier: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The name of the Filestore zone of the instance.
      */
     readonly zone: pulumi.Input<string>;

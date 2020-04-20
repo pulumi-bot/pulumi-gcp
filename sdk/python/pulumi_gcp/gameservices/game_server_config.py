@@ -12,35 +12,59 @@ from .. import utilities, tables
 class GameServerConfig(pulumi.CustomResource):
     config_id: pulumi.Output[str]
     """
+    -
+    (Required)
     A unique id for the deployment config.
     """
     deployment_id: pulumi.Output[str]
     """
+    -
+    (Required)
     A unique id for the deployment.
     """
     description: pulumi.Output[str]
     """
+    -
+    (Optional)
     The description of the game server config.
     """
     fleet_configs: pulumi.Output[list]
     """
-    The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+    -
+    (Required)
+    The fleet config contains list of fleet specs. In the Single Cloud, there
+    will be only one.  Structure is documented below.
 
-      * `fleetSpec` (`str`)
-      * `name` (`str`)
+      * `fleetSpec` (`str`) - -
+        (Required)
+        The fleet spec, which is sent to Agones to configure fleet.
+        The spec can be passed as inline json but it is recommended to use a file reference
+        instead. File references can contain the json or yaml format of the fleet spec. Eg:
+        * fleet_spec = jsonencode(yamldecode(file("fleet_configs.yaml")))
+        * fleet_spec = file("fleet_configs.json")
+        The format of the spec can be found :
+        `https://agones.dev/site/docs/reference/fleet/`.
+      * `name` (`str`) - -
+        (Required)
+        The name of the ScalingConfig
     """
     labels: pulumi.Output[dict]
     """
-    The labels associated with this game server config. Each label is a key-value pair.
+    -
+    (Optional)
+    Set of labels to group by.
     """
     location: pulumi.Output[str]
     """
+    -
+    (Optional)
     Location of the Deployment.
     """
     name: pulumi.Output[str]
     """
-    The resource name of the game server config, in the form:
-    'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
+    -
+    (Required)
+    The name of the ScalingConfig
     """
     project: pulumi.Output[str]
     """
@@ -49,18 +73,48 @@ class GameServerConfig(pulumi.CustomResource):
     """
     scaling_configs: pulumi.Output[list]
     """
-    Optional. This contains the autoscaling settings.
+    -
+    (Optional)
+    Optional. This contains the autoscaling settings.  Structure is documented below.
 
-      * `fleetAutoscalerSpec` (`str`)
-      * `name` (`str`)
-      * `schedules` (`list`)
-        * `cronJobDuration` (`str`)
-        * `cronSpec` (`str`)
-        * `endTime` (`str`)
-        * `startTime` (`str`)
+      * `fleetAutoscalerSpec` (`str`) - -
+        (Required)
+        Fleet autoscaler spec, which is sent to Agones.
+        Example spec can be found :
+        https://agones.dev/site/docs/reference/fleetautoscaler/
+      * `name` (`str`) - -
+        (Required)
+        The name of the ScalingConfig
+      * `schedules` (`list`) - -
+        (Optional)
+        The schedules to which this scaling config applies.  Structure is documented below.
+        * `cronJobDuration` (`str`) - -
+          (Optional)
+          The duration for the cron job event. The duration of the event is effective
+          after the cron job's start time.
+          A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
+        * `cronSpec` (`str`) - -
+          (Optional)
+          The cron definition of the scheduled event. See
+          https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as
+          defined by the realm.
+        * `endTime` (`str`) - -
+          (Optional)
+          The end time of the event.
+          A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+        * `startTime` (`str`) - -
+          (Optional)
+          The start time of the event.
+          A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
 
-      * `selectors` (`list`)
-        * `labels` (`dict`)
+      * `selectors` (`list`) - -
+        (Optional)
+        Labels used to identify the clusters to which this scaling config
+        applies. A cluster is subject to this scaling config if its labels match
+        any of the selector entries.  Structure is documented below.
+        * `labels` (`dict`) - -
+          (Optional)
+          Set of labels to group by.
     """
     def __init__(__self__, resource_name, opts=None, config_id=None, deployment_id=None, description=None, fleet_configs=None, labels=None, location=None, project=None, scaling_configs=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -74,33 +128,86 @@ class GameServerConfig(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] config_id: A unique id for the deployment config.
-        :param pulumi.Input[str] deployment_id: A unique id for the deployment.
-        :param pulumi.Input[str] description: The description of the game server config.
-        :param pulumi.Input[list] fleet_configs: The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
-        :param pulumi.Input[dict] labels: The labels associated with this game server config. Each label is a key-value pair.
-        :param pulumi.Input[str] location: Location of the Deployment.
+        :param pulumi.Input[str] config_id: -
+               (Required)
+               A unique id for the deployment config.
+        :param pulumi.Input[str] deployment_id: -
+               (Required)
+               A unique id for the deployment.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               The description of the game server config.
+        :param pulumi.Input[list] fleet_configs: -
+               (Required)
+               The fleet config contains list of fleet specs. In the Single Cloud, there
+               will be only one.  Structure is documented below.
+        :param pulumi.Input[dict] labels: -
+               (Optional)
+               Set of labels to group by.
+        :param pulumi.Input[str] location: -
+               (Optional)
+               Location of the Deployment.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[list] scaling_configs: Optional. This contains the autoscaling settings.
+        :param pulumi.Input[list] scaling_configs: -
+               (Optional)
+               Optional. This contains the autoscaling settings.  Structure is documented below.
 
         The **fleet_configs** object supports the following:
 
-          * `fleetSpec` (`pulumi.Input[str]`)
-          * `name` (`pulumi.Input[str]`)
+          * `fleetSpec` (`pulumi.Input[str]`) - -
+            (Required)
+            The fleet spec, which is sent to Agones to configure fleet.
+            The spec can be passed as inline json but it is recommended to use a file reference
+            instead. File references can contain the json or yaml format of the fleet spec. Eg:
+            * fleet_spec = jsonencode(yamldecode(file("fleet_configs.yaml")))
+            * fleet_spec = file("fleet_configs.json")
+            The format of the spec can be found :
+            `https://agones.dev/site/docs/reference/fleet/`.
+          * `name` (`pulumi.Input[str]`) - -
+            (Required)
+            The name of the ScalingConfig
 
         The **scaling_configs** object supports the following:
 
-          * `fleetAutoscalerSpec` (`pulumi.Input[str]`)
-          * `name` (`pulumi.Input[str]`)
-          * `schedules` (`pulumi.Input[list]`)
-            * `cronJobDuration` (`pulumi.Input[str]`)
-            * `cronSpec` (`pulumi.Input[str]`)
-            * `endTime` (`pulumi.Input[str]`)
-            * `startTime` (`pulumi.Input[str]`)
+          * `fleetAutoscalerSpec` (`pulumi.Input[str]`) - -
+            (Required)
+            Fleet autoscaler spec, which is sent to Agones.
+            Example spec can be found :
+            https://agones.dev/site/docs/reference/fleetautoscaler/
+          * `name` (`pulumi.Input[str]`) - -
+            (Required)
+            The name of the ScalingConfig
+          * `schedules` (`pulumi.Input[list]`) - -
+            (Optional)
+            The schedules to which this scaling config applies.  Structure is documented below.
+            * `cronJobDuration` (`pulumi.Input[str]`) - -
+              (Optional)
+              The duration for the cron job event. The duration of the event is effective
+              after the cron job's start time.
+              A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
+            * `cronSpec` (`pulumi.Input[str]`) - -
+              (Optional)
+              The cron definition of the scheduled event. See
+              https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as
+              defined by the realm.
+            * `endTime` (`pulumi.Input[str]`) - -
+              (Optional)
+              The end time of the event.
+              A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+            * `startTime` (`pulumi.Input[str]`) - -
+              (Optional)
+              The start time of the event.
+              A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
 
-          * `selectors` (`pulumi.Input[list]`)
-            * `labels` (`pulumi.Input[dict]`)
+          * `selectors` (`pulumi.Input[list]`) - -
+            (Optional)
+            Labels used to identify the clusters to which this scaling config
+            applies. A cluster is subject to this scaling config if its labels match
+            any of the selector entries.  Structure is documented below.
+            * `labels` (`pulumi.Input[dict]`) - -
+              (Optional)
+              Set of labels to group by.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -149,35 +256,89 @@ class GameServerConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] config_id: A unique id for the deployment config.
-        :param pulumi.Input[str] deployment_id: A unique id for the deployment.
-        :param pulumi.Input[str] description: The description of the game server config.
-        :param pulumi.Input[list] fleet_configs: The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
-        :param pulumi.Input[dict] labels: The labels associated with this game server config. Each label is a key-value pair.
-        :param pulumi.Input[str] location: Location of the Deployment.
-        :param pulumi.Input[str] name: The resource name of the game server config, in the form:
-               'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
+        :param pulumi.Input[str] config_id: -
+               (Required)
+               A unique id for the deployment config.
+        :param pulumi.Input[str] deployment_id: -
+               (Required)
+               A unique id for the deployment.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               The description of the game server config.
+        :param pulumi.Input[list] fleet_configs: -
+               (Required)
+               The fleet config contains list of fleet specs. In the Single Cloud, there
+               will be only one.  Structure is documented below.
+        :param pulumi.Input[dict] labels: -
+               (Optional)
+               Set of labels to group by.
+        :param pulumi.Input[str] location: -
+               (Optional)
+               Location of the Deployment.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the ScalingConfig
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[list] scaling_configs: Optional. This contains the autoscaling settings.
+        :param pulumi.Input[list] scaling_configs: -
+               (Optional)
+               Optional. This contains the autoscaling settings.  Structure is documented below.
 
         The **fleet_configs** object supports the following:
 
-          * `fleetSpec` (`pulumi.Input[str]`)
-          * `name` (`pulumi.Input[str]`)
+          * `fleetSpec` (`pulumi.Input[str]`) - -
+            (Required)
+            The fleet spec, which is sent to Agones to configure fleet.
+            The spec can be passed as inline json but it is recommended to use a file reference
+            instead. File references can contain the json or yaml format of the fleet spec. Eg:
+            * fleet_spec = jsonencode(yamldecode(file("fleet_configs.yaml")))
+            * fleet_spec = file("fleet_configs.json")
+            The format of the spec can be found :
+            `https://agones.dev/site/docs/reference/fleet/`.
+          * `name` (`pulumi.Input[str]`) - -
+            (Required)
+            The name of the ScalingConfig
 
         The **scaling_configs** object supports the following:
 
-          * `fleetAutoscalerSpec` (`pulumi.Input[str]`)
-          * `name` (`pulumi.Input[str]`)
-          * `schedules` (`pulumi.Input[list]`)
-            * `cronJobDuration` (`pulumi.Input[str]`)
-            * `cronSpec` (`pulumi.Input[str]`)
-            * `endTime` (`pulumi.Input[str]`)
-            * `startTime` (`pulumi.Input[str]`)
+          * `fleetAutoscalerSpec` (`pulumi.Input[str]`) - -
+            (Required)
+            Fleet autoscaler spec, which is sent to Agones.
+            Example spec can be found :
+            https://agones.dev/site/docs/reference/fleetautoscaler/
+          * `name` (`pulumi.Input[str]`) - -
+            (Required)
+            The name of the ScalingConfig
+          * `schedules` (`pulumi.Input[list]`) - -
+            (Optional)
+            The schedules to which this scaling config applies.  Structure is documented below.
+            * `cronJobDuration` (`pulumi.Input[str]`) - -
+              (Optional)
+              The duration for the cron job event. The duration of the event is effective
+              after the cron job's start time.
+              A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
+            * `cronSpec` (`pulumi.Input[str]`) - -
+              (Optional)
+              The cron definition of the scheduled event. See
+              https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as
+              defined by the realm.
+            * `endTime` (`pulumi.Input[str]`) - -
+              (Optional)
+              The end time of the event.
+              A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+            * `startTime` (`pulumi.Input[str]`) - -
+              (Optional)
+              The start time of the event.
+              A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
 
-          * `selectors` (`pulumi.Input[list]`)
-            * `labels` (`pulumi.Input[dict]`)
+          * `selectors` (`pulumi.Input[list]`) - -
+            (Optional)
+            Labels used to identify the clusters to which this scaling config
+            applies. A cluster is subject to this scaling config if its labels match
+            any of the selector entries.  Structure is documented below.
+            * `labels` (`pulumi.Input[dict]`) - -
+              (Optional)
+              Set of labels to group by.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -12,6 +12,11 @@ namespace Pulumi.Gcp.AppEngine.Inputs
 
     public sealed class FlexibleAppVersionManualScalingArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Number of instances to assign to the service at the start. This number can later be altered by using the Modules API set_num_instances() function.
+        /// </summary>
         [Input("instances", required: true)]
         public Input<int> Instances { get; set; } = null!;
 
