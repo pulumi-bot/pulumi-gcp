@@ -15,3 +15,5 @@ replace (
 	github.com/terraform-providers/terraform-provider-google-beta => github.com/pulumi/terraform-provider-google-beta v0.0.0-20200420213853-ce8a3f09bc0b
 	google.golang.org/api => google.golang.org/api v0.16.0
 )
+
+replace github.com/pulumi/pulumi-terraform-bridge/v2 => ../../pulumi-terraform-bridge
