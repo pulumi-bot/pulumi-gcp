@@ -13,9 +13,29 @@ namespace Pulumi.Gcp.IdentityPlatform.Outputs
     [OutputType]
     public sealed class TenantInboundSamlConfigIdpConfig
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.TenantInboundSamlConfigIdpConfigIdpCertificate> IdpCertificates;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Unique identifier for all SAML entities
+        /// </summary>
         public readonly string IdpEntityId;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Indicates if outbounding SAMLRequest should be signed.
+        /// </summary>
         public readonly bool? SignRequest;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// URL to send Authentication request to.
+        /// </summary>
         public readonly string SsoUrl;
 
         [OutputConstructor]

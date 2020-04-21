@@ -21,12 +21,18 @@ import (
 type SshPublicKey struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Optional)
 	// An expiration time in microseconds since epoch.
 	ExpirationTimeUsec pulumi.StringPtrOutput `pulumi:"expirationTimeUsec"`
 	// The SHA-256 fingerprint of the SSH public key.
 	Fingerprint pulumi.StringOutput `pulumi:"fingerprint"`
+	// -
+	// (Required)
 	// Public key text in SSH format, defined by RFC4253 section 6.6.
 	Key pulumi.StringOutput `pulumi:"key"`
+	// -
+	// (Required)
 	// The user email.
 	User pulumi.StringOutput `pulumi:"user"`
 }
@@ -65,23 +71,35 @@ func GetSshPublicKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SshPublicKey resources.
 type sshPublicKeyState struct {
+	// -
+	// (Optional)
 	// An expiration time in microseconds since epoch.
 	ExpirationTimeUsec *string `pulumi:"expirationTimeUsec"`
 	// The SHA-256 fingerprint of the SSH public key.
 	Fingerprint *string `pulumi:"fingerprint"`
+	// -
+	// (Required)
 	// Public key text in SSH format, defined by RFC4253 section 6.6.
 	Key *string `pulumi:"key"`
+	// -
+	// (Required)
 	// The user email.
 	User *string `pulumi:"user"`
 }
 
 type SshPublicKeyState struct {
+	// -
+	// (Optional)
 	// An expiration time in microseconds since epoch.
 	ExpirationTimeUsec pulumi.StringPtrInput
 	// The SHA-256 fingerprint of the SSH public key.
 	Fingerprint pulumi.StringPtrInput
+	// -
+	// (Required)
 	// Public key text in SSH format, defined by RFC4253 section 6.6.
 	Key pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The user email.
 	User pulumi.StringPtrInput
 }
@@ -91,20 +109,32 @@ func (SshPublicKeyState) ElementType() reflect.Type {
 }
 
 type sshPublicKeyArgs struct {
+	// -
+	// (Optional)
 	// An expiration time in microseconds since epoch.
 	ExpirationTimeUsec *string `pulumi:"expirationTimeUsec"`
+	// -
+	// (Required)
 	// Public key text in SSH format, defined by RFC4253 section 6.6.
 	Key string `pulumi:"key"`
+	// -
+	// (Required)
 	// The user email.
 	User string `pulumi:"user"`
 }
 
 // The set of arguments for constructing a SshPublicKey resource.
 type SshPublicKeyArgs struct {
+	// -
+	// (Optional)
 	// An expiration time in microseconds since epoch.
 	ExpirationTimeUsec pulumi.StringPtrInput
+	// -
+	// (Required)
 	// Public key text in SSH format, defined by RFC4253 section 6.6.
 	Key pulumi.StringInput
+	// -
+	// (Required)
 	// The user email.
 	User pulumi.StringInput
 }

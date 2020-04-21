@@ -11,8 +11,16 @@ import (
 )
 
 type GameServerClusterConnectionInfo struct {
+	// -
+	// (Required)
+	// Reference of the GKE cluster where the game servers are installed.  Structure is documented below.
 	GkeClusterReference GameServerClusterConnectionInfoGkeClusterReference `pulumi:"gkeClusterReference"`
-	Namespace           string                                             `pulumi:"namespace"`
+	// -
+	// (Required)
+	// Namespace designated on the game server cluster where the game server
+	// instances will be created. The namespace existence will be validated
+	// during creation.
+	Namespace string `pulumi:"namespace"`
 }
 
 // GameServerClusterConnectionInfoInput is an input type that accepts GameServerClusterConnectionInfoArgs and GameServerClusterConnectionInfoOutput values.
@@ -28,8 +36,16 @@ type GameServerClusterConnectionInfoInput interface {
 }
 
 type GameServerClusterConnectionInfoArgs struct {
+	// -
+	// (Required)
+	// Reference of the GKE cluster where the game servers are installed.  Structure is documented below.
 	GkeClusterReference GameServerClusterConnectionInfoGkeClusterReferenceInput `pulumi:"gkeClusterReference"`
-	Namespace           pulumi.StringInput                                      `pulumi:"namespace"`
+	// -
+	// (Required)
+	// Namespace designated on the game server cluster where the game server
+	// instances will be created. The namespace existence will be validated
+	// during creation.
+	Namespace pulumi.StringInput `pulumi:"namespace"`
 }
 
 func (GameServerClusterConnectionInfoArgs) ElementType() reflect.Type {
@@ -109,12 +125,21 @@ func (o GameServerClusterConnectionInfoOutput) ToGameServerClusterConnectionInfo
 		return &v
 	}).(GameServerClusterConnectionInfoPtrOutput)
 }
+
+// -
+// (Required)
+// Reference of the GKE cluster where the game servers are installed.  Structure is documented below.
 func (o GameServerClusterConnectionInfoOutput) GkeClusterReference() GameServerClusterConnectionInfoGkeClusterReferenceOutput {
 	return o.ApplyT(func(v GameServerClusterConnectionInfo) GameServerClusterConnectionInfoGkeClusterReference {
 		return v.GkeClusterReference
 	}).(GameServerClusterConnectionInfoGkeClusterReferenceOutput)
 }
 
+// -
+// (Required)
+// Namespace designated on the game server cluster where the game server
+// instances will be created. The namespace existence will be validated
+// during creation.
 func (o GameServerClusterConnectionInfoOutput) Namespace() pulumi.StringOutput {
 	return o.ApplyT(func(v GameServerClusterConnectionInfo) string { return v.Namespace }).(pulumi.StringOutput)
 }
@@ -137,17 +162,43 @@ func (o GameServerClusterConnectionInfoPtrOutput) Elem() GameServerClusterConnec
 	return o.ApplyT(func(v *GameServerClusterConnectionInfo) GameServerClusterConnectionInfo { return *v }).(GameServerClusterConnectionInfoOutput)
 }
 
-func (o GameServerClusterConnectionInfoPtrOutput) GkeClusterReference() GameServerClusterConnectionInfoGkeClusterReferenceOutput {
-	return o.ApplyT(func(v GameServerClusterConnectionInfo) GameServerClusterConnectionInfoGkeClusterReference {
-		return v.GkeClusterReference
-	}).(GameServerClusterConnectionInfoGkeClusterReferenceOutput)
+// -
+// (Required)
+// Reference of the GKE cluster where the game servers are installed.  Structure is documented below.
+func (o GameServerClusterConnectionInfoPtrOutput) GkeClusterReference() GameServerClusterConnectionInfoGkeClusterReferencePtrOutput {
+	return o.ApplyT(func(v *GameServerClusterConnectionInfo) *GameServerClusterConnectionInfoGkeClusterReference {
+		if v == nil {
+			return nil
+		}
+		return &v.GkeClusterReference
+	}).(GameServerClusterConnectionInfoGkeClusterReferencePtrOutput)
 }
 
-func (o GameServerClusterConnectionInfoPtrOutput) Namespace() pulumi.StringOutput {
-	return o.ApplyT(func(v GameServerClusterConnectionInfo) string { return v.Namespace }).(pulumi.StringOutput)
+// -
+// (Required)
+// Namespace designated on the game server cluster where the game server
+// instances will be created. The namespace existence will be validated
+// during creation.
+func (o GameServerClusterConnectionInfoPtrOutput) Namespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GameServerClusterConnectionInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Namespace
+	}).(pulumi.StringPtrOutput)
 }
 
 type GameServerClusterConnectionInfoGkeClusterReference struct {
+	// -
+	// (Required)
+	// The full or partial name of a GKE cluster, using one of the following
+	// forms:
+	// * `projects/{project_id}/locations/{location}/clusters/{cluster_id}`
+	// * `locations/{location}/clusters/{cluster_id}`
+	// * `{cluster_id}`
+	// If project and location are not specified, the project and location of the
+	// GameServerCluster resource are used to generate the full name of the
+	// GKE cluster.
 	Cluster string `pulumi:"cluster"`
 }
 
@@ -164,6 +215,16 @@ type GameServerClusterConnectionInfoGkeClusterReferenceInput interface {
 }
 
 type GameServerClusterConnectionInfoGkeClusterReferenceArgs struct {
+	// -
+	// (Required)
+	// The full or partial name of a GKE cluster, using one of the following
+	// forms:
+	// * `projects/{project_id}/locations/{location}/clusters/{cluster_id}`
+	// * `locations/{location}/clusters/{cluster_id}`
+	// * `{cluster_id}`
+	// If project and location are not specified, the project and location of the
+	// GameServerCluster resource are used to generate the full name of the
+	// GKE cluster.
 	Cluster pulumi.StringInput `pulumi:"cluster"`
 }
 
@@ -177,6 +238,48 @@ func (i GameServerClusterConnectionInfoGkeClusterReferenceArgs) ToGameServerClus
 
 func (i GameServerClusterConnectionInfoGkeClusterReferenceArgs) ToGameServerClusterConnectionInfoGkeClusterReferenceOutputWithContext(ctx context.Context) GameServerClusterConnectionInfoGkeClusterReferenceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(GameServerClusterConnectionInfoGkeClusterReferenceOutput)
+}
+
+func (i GameServerClusterConnectionInfoGkeClusterReferenceArgs) ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutput() GameServerClusterConnectionInfoGkeClusterReferencePtrOutput {
+	return i.ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutputWithContext(context.Background())
+}
+
+func (i GameServerClusterConnectionInfoGkeClusterReferenceArgs) ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutputWithContext(ctx context.Context) GameServerClusterConnectionInfoGkeClusterReferencePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerClusterConnectionInfoGkeClusterReferenceOutput).ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutputWithContext(ctx)
+}
+
+// GameServerClusterConnectionInfoGkeClusterReferencePtrInput is an input type that accepts GameServerClusterConnectionInfoGkeClusterReferenceArgs, GameServerClusterConnectionInfoGkeClusterReferencePtr and GameServerClusterConnectionInfoGkeClusterReferencePtrOutput values.
+// You can construct a concrete instance of `GameServerClusterConnectionInfoGkeClusterReferencePtrInput` via:
+//
+// 		 GameServerClusterConnectionInfoGkeClusterReferenceArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type GameServerClusterConnectionInfoGkeClusterReferencePtrInput interface {
+	pulumi.Input
+
+	ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutput() GameServerClusterConnectionInfoGkeClusterReferencePtrOutput
+	ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutputWithContext(context.Context) GameServerClusterConnectionInfoGkeClusterReferencePtrOutput
+}
+
+type gameServerClusterConnectionInfoGkeClusterReferencePtrType GameServerClusterConnectionInfoGkeClusterReferenceArgs
+
+func GameServerClusterConnectionInfoGkeClusterReferencePtr(v *GameServerClusterConnectionInfoGkeClusterReferenceArgs) GameServerClusterConnectionInfoGkeClusterReferencePtrInput {
+	return (*gameServerClusterConnectionInfoGkeClusterReferencePtrType)(v)
+}
+
+func (*gameServerClusterConnectionInfoGkeClusterReferencePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GameServerClusterConnectionInfoGkeClusterReference)(nil)).Elem()
+}
+
+func (i *gameServerClusterConnectionInfoGkeClusterReferencePtrType) ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutput() GameServerClusterConnectionInfoGkeClusterReferencePtrOutput {
+	return i.ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutputWithContext(context.Background())
+}
+
+func (i *gameServerClusterConnectionInfoGkeClusterReferencePtrType) ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutputWithContext(ctx context.Context) GameServerClusterConnectionInfoGkeClusterReferencePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GameServerClusterConnectionInfoGkeClusterReferencePtrOutput)
 }
 
 type GameServerClusterConnectionInfoGkeClusterReferenceOutput struct{ *pulumi.OutputState }
@@ -193,13 +296,84 @@ func (o GameServerClusterConnectionInfoGkeClusterReferenceOutput) ToGameServerCl
 	return o
 }
 
+func (o GameServerClusterConnectionInfoGkeClusterReferenceOutput) ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutput() GameServerClusterConnectionInfoGkeClusterReferencePtrOutput {
+	return o.ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutputWithContext(context.Background())
+}
+
+func (o GameServerClusterConnectionInfoGkeClusterReferenceOutput) ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutputWithContext(ctx context.Context) GameServerClusterConnectionInfoGkeClusterReferencePtrOutput {
+	return o.ApplyT(func(v GameServerClusterConnectionInfoGkeClusterReference) *GameServerClusterConnectionInfoGkeClusterReference {
+		return &v
+	}).(GameServerClusterConnectionInfoGkeClusterReferencePtrOutput)
+}
+
+// -
+// (Required)
+// The full or partial name of a GKE cluster, using one of the following
+// forms:
+// * `projects/{project_id}/locations/{location}/clusters/{cluster_id}`
+// * `locations/{location}/clusters/{cluster_id}`
+// * `{cluster_id}`
+// If project and location are not specified, the project and location of the
+// GameServerCluster resource are used to generate the full name of the
+// GKE cluster.
 func (o GameServerClusterConnectionInfoGkeClusterReferenceOutput) Cluster() pulumi.StringOutput {
 	return o.ApplyT(func(v GameServerClusterConnectionInfoGkeClusterReference) string { return v.Cluster }).(pulumi.StringOutput)
 }
 
+type GameServerClusterConnectionInfoGkeClusterReferencePtrOutput struct{ *pulumi.OutputState }
+
+func (GameServerClusterConnectionInfoGkeClusterReferencePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GameServerClusterConnectionInfoGkeClusterReference)(nil)).Elem()
+}
+
+func (o GameServerClusterConnectionInfoGkeClusterReferencePtrOutput) ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutput() GameServerClusterConnectionInfoGkeClusterReferencePtrOutput {
+	return o
+}
+
+func (o GameServerClusterConnectionInfoGkeClusterReferencePtrOutput) ToGameServerClusterConnectionInfoGkeClusterReferencePtrOutputWithContext(ctx context.Context) GameServerClusterConnectionInfoGkeClusterReferencePtrOutput {
+	return o
+}
+
+func (o GameServerClusterConnectionInfoGkeClusterReferencePtrOutput) Elem() GameServerClusterConnectionInfoGkeClusterReferenceOutput {
+	return o.ApplyT(func(v *GameServerClusterConnectionInfoGkeClusterReference) GameServerClusterConnectionInfoGkeClusterReference {
+		return *v
+	}).(GameServerClusterConnectionInfoGkeClusterReferenceOutput)
+}
+
+// -
+// (Required)
+// The full or partial name of a GKE cluster, using one of the following
+// forms:
+// * `projects/{project_id}/locations/{location}/clusters/{cluster_id}`
+// * `locations/{location}/clusters/{cluster_id}`
+// * `{cluster_id}`
+// If project and location are not specified, the project and location of the
+// GameServerCluster resource are used to generate the full name of the
+// GKE cluster.
+func (o GameServerClusterConnectionInfoGkeClusterReferencePtrOutput) Cluster() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GameServerClusterConnectionInfoGkeClusterReference) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Cluster
+	}).(pulumi.StringPtrOutput)
+}
+
 type GameServerConfigFleetConfig struct {
-	FleetSpec string  `pulumi:"fleetSpec"`
-	Name      *string `pulumi:"name"`
+	// -
+	// (Required)
+	// The fleet spec, which is sent to Agones to configure fleet.
+	// The spec can be passed as inline json but it is recommended to use a file reference
+	// instead. File references can contain the json or yaml format of the fleet spec. Eg:
+	// * fleetSpec = jsonencode(yamldecode(file("fleet_configs.yaml")))
+	// * fleetSpec = file("fleet_configs.json")
+	// The format of the spec can be found :
+	// `https://agones.dev/site/docs/reference/fleet/`.
+	FleetSpec string `pulumi:"fleetSpec"`
+	// -
+	// (Required)
+	// The name of the ScalingConfig
+	Name *string `pulumi:"name"`
 }
 
 // GameServerConfigFleetConfigInput is an input type that accepts GameServerConfigFleetConfigArgs and GameServerConfigFleetConfigOutput values.
@@ -215,8 +389,20 @@ type GameServerConfigFleetConfigInput interface {
 }
 
 type GameServerConfigFleetConfigArgs struct {
-	FleetSpec pulumi.StringInput    `pulumi:"fleetSpec"`
-	Name      pulumi.StringPtrInput `pulumi:"name"`
+	// -
+	// (Required)
+	// The fleet spec, which is sent to Agones to configure fleet.
+	// The spec can be passed as inline json but it is recommended to use a file reference
+	// instead. File references can contain the json or yaml format of the fleet spec. Eg:
+	// * fleetSpec = jsonencode(yamldecode(file("fleet_configs.yaml")))
+	// * fleetSpec = file("fleet_configs.json")
+	// The format of the spec can be found :
+	// `https://agones.dev/site/docs/reference/fleet/`.
+	FleetSpec pulumi.StringInput `pulumi:"fleetSpec"`
+	// -
+	// (Required)
+	// The name of the ScalingConfig
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (GameServerConfigFleetConfigArgs) ElementType() reflect.Type {
@@ -271,10 +457,22 @@ func (o GameServerConfigFleetConfigOutput) ToGameServerConfigFleetConfigOutputWi
 	return o
 }
 
+// -
+// (Required)
+// The fleet spec, which is sent to Agones to configure fleet.
+// The spec can be passed as inline json but it is recommended to use a file reference
+// instead. File references can contain the json or yaml format of the fleet spec. Eg:
+// * fleetSpec = jsonencode(yamldecode(file("fleet_configs.yaml")))
+// * fleetSpec = file("fleet_configs.json")
+// The format of the spec can be found :
+// `https://agones.dev/site/docs/reference/fleet/`.
 func (o GameServerConfigFleetConfigOutput) FleetSpec() pulumi.StringOutput {
 	return o.ApplyT(func(v GameServerConfigFleetConfig) string { return v.FleetSpec }).(pulumi.StringOutput)
 }
 
+// -
+// (Required)
+// The name of the ScalingConfig
 func (o GameServerConfigFleetConfigOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GameServerConfigFleetConfig) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -300,10 +498,26 @@ func (o GameServerConfigFleetConfigArrayOutput) Index(i pulumi.IntInput) GameSer
 }
 
 type GameServerConfigScalingConfig struct {
-	FleetAutoscalerSpec string                                  `pulumi:"fleetAutoscalerSpec"`
-	Name                string                                  `pulumi:"name"`
-	Schedules           []GameServerConfigScalingConfigSchedule `pulumi:"schedules"`
-	Selectors           []GameServerConfigScalingConfigSelector `pulumi:"selectors"`
+	// -
+	// (Required)
+	// Fleet autoscaler spec, which is sent to Agones.
+	// Example spec can be found :
+	// https://agones.dev/site/docs/reference/fleetautoscaler/
+	FleetAutoscalerSpec string `pulumi:"fleetAutoscalerSpec"`
+	// -
+	// (Required)
+	// The name of the ScalingConfig
+	Name string `pulumi:"name"`
+	// -
+	// (Optional)
+	// The schedules to which this scaling config applies.  Structure is documented below.
+	Schedules []GameServerConfigScalingConfigSchedule `pulumi:"schedules"`
+	// -
+	// (Optional)
+	// Labels used to identify the clusters to which this scaling config
+	// applies. A cluster is subject to this scaling config if its labels match
+	// any of the selector entries.  Structure is documented below.
+	Selectors []GameServerConfigScalingConfigSelector `pulumi:"selectors"`
 }
 
 // GameServerConfigScalingConfigInput is an input type that accepts GameServerConfigScalingConfigArgs and GameServerConfigScalingConfigOutput values.
@@ -319,10 +533,26 @@ type GameServerConfigScalingConfigInput interface {
 }
 
 type GameServerConfigScalingConfigArgs struct {
-	FleetAutoscalerSpec pulumi.StringInput                              `pulumi:"fleetAutoscalerSpec"`
-	Name                pulumi.StringInput                              `pulumi:"name"`
-	Schedules           GameServerConfigScalingConfigScheduleArrayInput `pulumi:"schedules"`
-	Selectors           GameServerConfigScalingConfigSelectorArrayInput `pulumi:"selectors"`
+	// -
+	// (Required)
+	// Fleet autoscaler spec, which is sent to Agones.
+	// Example spec can be found :
+	// https://agones.dev/site/docs/reference/fleetautoscaler/
+	FleetAutoscalerSpec pulumi.StringInput `pulumi:"fleetAutoscalerSpec"`
+	// -
+	// (Required)
+	// The name of the ScalingConfig
+	Name pulumi.StringInput `pulumi:"name"`
+	// -
+	// (Optional)
+	// The schedules to which this scaling config applies.  Structure is documented below.
+	Schedules GameServerConfigScalingConfigScheduleArrayInput `pulumi:"schedules"`
+	// -
+	// (Optional)
+	// Labels used to identify the clusters to which this scaling config
+	// applies. A cluster is subject to this scaling config if its labels match
+	// any of the selector entries.  Structure is documented below.
+	Selectors GameServerConfigScalingConfigSelectorArrayInput `pulumi:"selectors"`
 }
 
 func (GameServerConfigScalingConfigArgs) ElementType() reflect.Type {
@@ -377,18 +607,34 @@ func (o GameServerConfigScalingConfigOutput) ToGameServerConfigScalingConfigOutp
 	return o
 }
 
+// -
+// (Required)
+// Fleet autoscaler spec, which is sent to Agones.
+// Example spec can be found :
+// https://agones.dev/site/docs/reference/fleetautoscaler/
 func (o GameServerConfigScalingConfigOutput) FleetAutoscalerSpec() pulumi.StringOutput {
 	return o.ApplyT(func(v GameServerConfigScalingConfig) string { return v.FleetAutoscalerSpec }).(pulumi.StringOutput)
 }
 
+// -
+// (Required)
+// The name of the ScalingConfig
 func (o GameServerConfigScalingConfigOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GameServerConfigScalingConfig) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// -
+// (Optional)
+// The schedules to which this scaling config applies.  Structure is documented below.
 func (o GameServerConfigScalingConfigOutput) Schedules() GameServerConfigScalingConfigScheduleArrayOutput {
 	return o.ApplyT(func(v GameServerConfigScalingConfig) []GameServerConfigScalingConfigSchedule { return v.Schedules }).(GameServerConfigScalingConfigScheduleArrayOutput)
 }
 
+// -
+// (Optional)
+// Labels used to identify the clusters to which this scaling config
+// applies. A cluster is subject to this scaling config if its labels match
+// any of the selector entries.  Structure is documented below.
 func (o GameServerConfigScalingConfigOutput) Selectors() GameServerConfigScalingConfigSelectorArrayOutput {
 	return o.ApplyT(func(v GameServerConfigScalingConfig) []GameServerConfigScalingConfigSelector { return v.Selectors }).(GameServerConfigScalingConfigSelectorArrayOutput)
 }
@@ -414,10 +660,28 @@ func (o GameServerConfigScalingConfigArrayOutput) Index(i pulumi.IntInput) GameS
 }
 
 type GameServerConfigScalingConfigSchedule struct {
+	// -
+	// (Optional)
+	// The duration for the cron job event. The duration of the event is effective
+	// after the cron job's start time.
+	// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
 	CronJobDuration *string `pulumi:"cronJobDuration"`
-	CronSpec        *string `pulumi:"cronSpec"`
-	EndTime         *string `pulumi:"endTime"`
-	StartTime       *string `pulumi:"startTime"`
+	// -
+	// (Optional)
+	// The cron definition of the scheduled event. See
+	// https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as
+	// defined by the realm.
+	CronSpec *string `pulumi:"cronSpec"`
+	// -
+	// (Optional)
+	// The end time of the event.
+	// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+	EndTime *string `pulumi:"endTime"`
+	// -
+	// (Optional)
+	// The start time of the event.
+	// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+	StartTime *string `pulumi:"startTime"`
 }
 
 // GameServerConfigScalingConfigScheduleInput is an input type that accepts GameServerConfigScalingConfigScheduleArgs and GameServerConfigScalingConfigScheduleOutput values.
@@ -433,10 +697,28 @@ type GameServerConfigScalingConfigScheduleInput interface {
 }
 
 type GameServerConfigScalingConfigScheduleArgs struct {
+	// -
+	// (Optional)
+	// The duration for the cron job event. The duration of the event is effective
+	// after the cron job's start time.
+	// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
 	CronJobDuration pulumi.StringPtrInput `pulumi:"cronJobDuration"`
-	CronSpec        pulumi.StringPtrInput `pulumi:"cronSpec"`
-	EndTime         pulumi.StringPtrInput `pulumi:"endTime"`
-	StartTime       pulumi.StringPtrInput `pulumi:"startTime"`
+	// -
+	// (Optional)
+	// The cron definition of the scheduled event. See
+	// https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as
+	// defined by the realm.
+	CronSpec pulumi.StringPtrInput `pulumi:"cronSpec"`
+	// -
+	// (Optional)
+	// The end time of the event.
+	// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+	EndTime pulumi.StringPtrInput `pulumi:"endTime"`
+	// -
+	// (Optional)
+	// The start time of the event.
+	// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
+	StartTime pulumi.StringPtrInput `pulumi:"startTime"`
 }
 
 func (GameServerConfigScalingConfigScheduleArgs) ElementType() reflect.Type {
@@ -491,18 +773,36 @@ func (o GameServerConfigScalingConfigScheduleOutput) ToGameServerConfigScalingCo
 	return o
 }
 
+// -
+// (Optional)
+// The duration for the cron job event. The duration of the event is effective
+// after the cron job's start time.
+// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
 func (o GameServerConfigScalingConfigScheduleOutput) CronJobDuration() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GameServerConfigScalingConfigSchedule) *string { return v.CronJobDuration }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The cron definition of the scheduled event. See
+// https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as
+// defined by the realm.
 func (o GameServerConfigScalingConfigScheduleOutput) CronSpec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GameServerConfigScalingConfigSchedule) *string { return v.CronSpec }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The end time of the event.
+// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
 func (o GameServerConfigScalingConfigScheduleOutput) EndTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GameServerConfigScalingConfigSchedule) *string { return v.EndTime }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The start time of the event.
+// A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
 func (o GameServerConfigScalingConfigScheduleOutput) StartTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GameServerConfigScalingConfigSchedule) *string { return v.StartTime }).(pulumi.StringPtrOutput)
 }
@@ -528,6 +828,9 @@ func (o GameServerConfigScalingConfigScheduleArrayOutput) Index(i pulumi.IntInpu
 }
 
 type GameServerConfigScalingConfigSelector struct {
+	// -
+	// (Optional)
+	// Set of labels to group by.
 	Labels map[string]string `pulumi:"labels"`
 }
 
@@ -544,6 +847,9 @@ type GameServerConfigScalingConfigSelectorInput interface {
 }
 
 type GameServerConfigScalingConfigSelectorArgs struct {
+	// -
+	// (Optional)
+	// Set of labels to group by.
 	Labels pulumi.StringMapInput `pulumi:"labels"`
 }
 
@@ -599,6 +905,9 @@ func (o GameServerConfigScalingConfigSelectorOutput) ToGameServerConfigScalingCo
 	return o
 }
 
+// -
+// (Optional)
+// Set of labels to group by.
 func (o GameServerConfigScalingConfigSelectorOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GameServerConfigScalingConfigSelector) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -624,7 +933,13 @@ func (o GameServerConfigScalingConfigSelectorArrayOutput) Index(i pulumi.IntInpu
 }
 
 type GameServerDeploymentRolloutGameServerConfigOverride struct {
-	ConfigVersion  *string                                                            `pulumi:"configVersion"`
+	// -
+	// (Optional)
+	// Version of the configuration.
+	ConfigVersion *string `pulumi:"configVersion"`
+	// -
+	// (Optional)
+	// Selection by realms.  Structure is documented below.
 	RealmsSelector *GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelector `pulumi:"realmsSelector"`
 }
 
@@ -641,7 +956,13 @@ type GameServerDeploymentRolloutGameServerConfigOverrideInput interface {
 }
 
 type GameServerDeploymentRolloutGameServerConfigOverrideArgs struct {
-	ConfigVersion  pulumi.StringPtrInput                                                     `pulumi:"configVersion"`
+	// -
+	// (Optional)
+	// Version of the configuration.
+	ConfigVersion pulumi.StringPtrInput `pulumi:"configVersion"`
+	// -
+	// (Optional)
+	// Selection by realms.  Structure is documented below.
 	RealmsSelector GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrInput `pulumi:"realmsSelector"`
 }
 
@@ -697,10 +1018,16 @@ func (o GameServerDeploymentRolloutGameServerConfigOverrideOutput) ToGameServerD
 	return o
 }
 
+// -
+// (Optional)
+// Version of the configuration.
 func (o GameServerDeploymentRolloutGameServerConfigOverrideOutput) ConfigVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GameServerDeploymentRolloutGameServerConfigOverride) *string { return v.ConfigVersion }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// Selection by realms.  Structure is documented below.
 func (o GameServerDeploymentRolloutGameServerConfigOverrideOutput) RealmsSelector() GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrOutput {
 	return o.ApplyT(func(v GameServerDeploymentRolloutGameServerConfigOverride) *GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelector {
 		return v.RealmsSelector
@@ -728,6 +1055,9 @@ func (o GameServerDeploymentRolloutGameServerConfigOverrideArrayOutput) Index(i 
 }
 
 type GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelector struct {
+	// -
+	// (Optional)
+	// List of realms to match against.
 	Realms []string `pulumi:"realms"`
 }
 
@@ -744,6 +1074,9 @@ type GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorInput inte
 }
 
 type GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorArgs struct {
+	// -
+	// (Optional)
+	// List of realms to match against.
 	Realms pulumi.StringArrayInput `pulumi:"realms"`
 }
 
@@ -824,6 +1157,10 @@ func (o GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorOutput)
 		return &v
 	}).(GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrOutput)
 }
+
+// -
+// (Optional)
+// List of realms to match against.
 func (o GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorOutput) Realms() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelector) []string { return v.Realms }).(pulumi.StringArrayOutput)
 }
@@ -848,14 +1185,23 @@ func (o GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrOutp
 	}).(GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorOutput)
 }
 
+// -
+// (Optional)
+// List of realms to match against.
 func (o GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelectorPtrOutput) Realms() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelector) []string { return v.Realms }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v *GameServerDeploymentRolloutGameServerConfigOverrideRealmsSelector) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Realms
+	}).(pulumi.StringArrayOutput)
 }
 
 func init() {
 	pulumi.RegisterOutputType(GameServerClusterConnectionInfoOutput{})
 	pulumi.RegisterOutputType(GameServerClusterConnectionInfoPtrOutput{})
 	pulumi.RegisterOutputType(GameServerClusterConnectionInfoGkeClusterReferenceOutput{})
+	pulumi.RegisterOutputType(GameServerClusterConnectionInfoGkeClusterReferencePtrOutput{})
 	pulumi.RegisterOutputType(GameServerConfigFleetConfigOutput{})
 	pulumi.RegisterOutputType(GameServerConfigFleetConfigArrayOutput{})
 	pulumi.RegisterOutputType(GameServerConfigScalingConfigOutput{})

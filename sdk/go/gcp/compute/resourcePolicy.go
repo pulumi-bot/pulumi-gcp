@@ -13,19 +13,28 @@ import (
 type ResourcePolicy struct {
 	pulumi.CustomResourceState
 
-	// The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63
-	// characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-	// expression '[a-z]([-a-z0-9]*[a-z0-9])'? which means the first character must be a lowercase letter, and all following
-	// characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The name of the resource, provided by the client when initially creating
+	// the resource. The resource name must be 1-63 characters long, and comply
+	// with RFC1035. Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z`? which means the
+	// first character must be a lowercase letter, and all following characters
+	// must be a dash, lowercase letter, or digit, except the last character,
+	// which cannot be a dash.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
+	// -
+	// (Optional)
 	// Region where resource policy resides.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The URI of the created resource.
 	SelfLink pulumi.StringOutput `pulumi:"selfLink"`
-	// Policy for creating snapshots of persistent disks.
+	// -
+	// (Optional)
+	// Policy for creating snapshots of persistent disks.  Structure is documented below.
 	SnapshotSchedulePolicy ResourcePolicySnapshotSchedulePolicyPtrOutput `pulumi:"snapshotSchedulePolicy"`
 }
 
@@ -57,36 +66,54 @@ func GetResourcePolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ResourcePolicy resources.
 type resourcePolicyState struct {
-	// The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63
-	// characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-	// expression '[a-z]([-a-z0-9]*[a-z0-9])'? which means the first character must be a lowercase letter, and all following
-	// characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The name of the resource, provided by the client when initially creating
+	// the resource. The resource name must be 1-63 characters long, and comply
+	// with RFC1035. Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z`? which means the
+	// first character must be a lowercase letter, and all following characters
+	// must be a dash, lowercase letter, or digit, except the last character,
+	// which cannot be a dash.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Optional)
 	// Region where resource policy resides.
 	Region *string `pulumi:"region"`
 	// The URI of the created resource.
 	SelfLink *string `pulumi:"selfLink"`
-	// Policy for creating snapshots of persistent disks.
+	// -
+	// (Optional)
+	// Policy for creating snapshots of persistent disks.  Structure is documented below.
 	SnapshotSchedulePolicy *ResourcePolicySnapshotSchedulePolicy `pulumi:"snapshotSchedulePolicy"`
 }
 
 type ResourcePolicyState struct {
-	// The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63
-	// characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-	// expression '[a-z]([-a-z0-9]*[a-z0-9])'? which means the first character must be a lowercase letter, and all following
-	// characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The name of the resource, provided by the client when initially creating
+	// the resource. The resource name must be 1-63 characters long, and comply
+	// with RFC1035. Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z`? which means the
+	// first character must be a lowercase letter, and all following characters
+	// must be a dash, lowercase letter, or digit, except the last character,
+	// which cannot be a dash.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// Region where resource policy resides.
 	Region pulumi.StringPtrInput
 	// The URI of the created resource.
 	SelfLink pulumi.StringPtrInput
-	// Policy for creating snapshots of persistent disks.
+	// -
+	// (Optional)
+	// Policy for creating snapshots of persistent disks.  Structure is documented below.
 	SnapshotSchedulePolicy ResourcePolicySnapshotSchedulePolicyPtrInput
 }
 
@@ -95,33 +122,51 @@ func (ResourcePolicyState) ElementType() reflect.Type {
 }
 
 type resourcePolicyArgs struct {
-	// The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63
-	// characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-	// expression '[a-z]([-a-z0-9]*[a-z0-9])'? which means the first character must be a lowercase letter, and all following
-	// characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The name of the resource, provided by the client when initially creating
+	// the resource. The resource name must be 1-63 characters long, and comply
+	// with RFC1035. Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z`? which means the
+	// first character must be a lowercase letter, and all following characters
+	// must be a dash, lowercase letter, or digit, except the last character,
+	// which cannot be a dash.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Optional)
 	// Region where resource policy resides.
 	Region *string `pulumi:"region"`
-	// Policy for creating snapshots of persistent disks.
+	// -
+	// (Optional)
+	// Policy for creating snapshots of persistent disks.  Structure is documented below.
 	SnapshotSchedulePolicy *ResourcePolicySnapshotSchedulePolicy `pulumi:"snapshotSchedulePolicy"`
 }
 
 // The set of arguments for constructing a ResourcePolicy resource.
 type ResourcePolicyArgs struct {
-	// The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63
-	// characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular
-	// expression '[a-z]([-a-z0-9]*[a-z0-9])'? which means the first character must be a lowercase letter, and all following
-	// characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The name of the resource, provided by the client when initially creating
+	// the resource. The resource name must be 1-63 characters long, and comply
+	// with RFC1035. Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z`? which means the
+	// first character must be a lowercase letter, and all following characters
+	// must be a dash, lowercase letter, or digit, except the last character,
+	// which cannot be a dash.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// Region where resource policy resides.
 	Region pulumi.StringPtrInput
-	// Policy for creating snapshots of persistent disks.
+	// -
+	// (Optional)
+	// Policy for creating snapshots of persistent disks.  Structure is documented below.
 	SnapshotSchedulePolicy ResourcePolicySnapshotSchedulePolicyPtrInput
 }
 

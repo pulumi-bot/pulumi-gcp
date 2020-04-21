@@ -114,7 +114,7 @@ namespace Pulumi.Gcp.Firebase
         /// If it is not provided, the provider project is used.
         /// </summary>
         [Input("project")]
-        public Input<string>? ProjectID { get; set; }
+        public Input<string>? Project { get; set; }
 
         /// <summary>
         /// The number of the google project that firebase is enabled on.

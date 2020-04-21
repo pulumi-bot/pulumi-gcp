@@ -23,26 +23,34 @@ namespace Pulumi.Gcp.ServiceUsage
     public partial class ConsumerQuotaOverride : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit.
         /// </summary>
         [Output("dimensions")]
         public Output<ImmutableDictionary<string, string>?> Dimensions { get; private set; } = null!;
 
         /// <summary>
-        /// If the new quota would decrease the existing quota by more than 10%, the request is rejected. If 'force' is 'true', that
-        /// safety check is ignored.
+        /// -
+        /// (Optional)
+        /// If the new quota would decrease the existing quota by more than 10%, the request is rejected.
+        /// If `force` is `true`, that safety check is ignored.
         /// </summary>
         [Output("force")]
         public Output<bool?> Force { get; private set; } = null!;
 
         /// <summary>
-        /// The limit on the metric, e.g. '/project/region'.
+        /// -
+        /// (Required)
+        /// The limit on the metric, e.g. `/project/region`.
         /// </summary>
         [Output("limit")]
         public Output<string> Limit { get; private set; } = null!;
 
         /// <summary>
-        /// The metric that should be limited, e.g. 'compute.googleapis.com/cpus'.
+        /// -
+        /// (Required)
+        /// The metric that should be limited, e.g. `compute.googleapis.com/cpus`.
         /// </summary>
         [Output("metric")]
         public Output<string> Metric { get; private set; } = null!;
@@ -54,6 +62,8 @@ namespace Pulumi.Gcp.ServiceUsage
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The overriding quota limit value. Can be any nonnegative integer, or -1 (unlimited quota).
         /// </summary>
         [Output("overrideValue")]
@@ -67,7 +77,9 @@ namespace Pulumi.Gcp.ServiceUsage
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// The service that the metrics belong to, e.g. 'compute.googleapis.com'.
+        /// -
+        /// (Required)
+        /// The service that the metrics belong to, e.g. `compute.googleapis.com`.
         /// </summary>
         [Output("service")]
         public Output<string> Service { get; private set; } = null!;
@@ -122,6 +134,8 @@ namespace Pulumi.Gcp.ServiceUsage
         private InputMap<string>? _dimensions;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit.
         /// </summary>
         public InputMap<string> Dimensions
@@ -131,25 +145,33 @@ namespace Pulumi.Gcp.ServiceUsage
         }
 
         /// <summary>
-        /// If the new quota would decrease the existing quota by more than 10%, the request is rejected. If 'force' is 'true', that
-        /// safety check is ignored.
+        /// -
+        /// (Optional)
+        /// If the new quota would decrease the existing quota by more than 10%, the request is rejected.
+        /// If `force` is `true`, that safety check is ignored.
         /// </summary>
         [Input("force")]
         public Input<bool>? Force { get; set; }
 
         /// <summary>
-        /// The limit on the metric, e.g. '/project/region'.
+        /// -
+        /// (Required)
+        /// The limit on the metric, e.g. `/project/region`.
         /// </summary>
         [Input("limit", required: true)]
         public Input<string> Limit { get; set; } = null!;
 
         /// <summary>
-        /// The metric that should be limited, e.g. 'compute.googleapis.com/cpus'.
+        /// -
+        /// (Required)
+        /// The metric that should be limited, e.g. `compute.googleapis.com/cpus`.
         /// </summary>
         [Input("metric", required: true)]
         public Input<string> Metric { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The overriding quota limit value. Can be any nonnegative integer, or -1 (unlimited quota).
         /// </summary>
         [Input("overrideValue", required: true)]
@@ -163,7 +185,9 @@ namespace Pulumi.Gcp.ServiceUsage
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The service that the metrics belong to, e.g. 'compute.googleapis.com'.
+        /// -
+        /// (Required)
+        /// The service that the metrics belong to, e.g. `compute.googleapis.com`.
         /// </summary>
         [Input("service", required: true)]
         public Input<string> Service { get; set; } = null!;
@@ -179,6 +203,8 @@ namespace Pulumi.Gcp.ServiceUsage
         private InputMap<string>? _dimensions;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit.
         /// </summary>
         public InputMap<string> Dimensions
@@ -188,20 +214,26 @@ namespace Pulumi.Gcp.ServiceUsage
         }
 
         /// <summary>
-        /// If the new quota would decrease the existing quota by more than 10%, the request is rejected. If 'force' is 'true', that
-        /// safety check is ignored.
+        /// -
+        /// (Optional)
+        /// If the new quota would decrease the existing quota by more than 10%, the request is rejected.
+        /// If `force` is `true`, that safety check is ignored.
         /// </summary>
         [Input("force")]
         public Input<bool>? Force { get; set; }
 
         /// <summary>
-        /// The limit on the metric, e.g. '/project/region'.
+        /// -
+        /// (Required)
+        /// The limit on the metric, e.g. `/project/region`.
         /// </summary>
         [Input("limit")]
         public Input<string>? Limit { get; set; }
 
         /// <summary>
-        /// The metric that should be limited, e.g. 'compute.googleapis.com/cpus'.
+        /// -
+        /// (Required)
+        /// The metric that should be limited, e.g. `compute.googleapis.com/cpus`.
         /// </summary>
         [Input("metric")]
         public Input<string>? Metric { get; set; }
@@ -213,6 +245,8 @@ namespace Pulumi.Gcp.ServiceUsage
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The overriding quota limit value. Can be any nonnegative integer, or -1 (unlimited quota).
         /// </summary>
         [Input("overrideValue")]
@@ -226,7 +260,9 @@ namespace Pulumi.Gcp.ServiceUsage
         public Input<string>? Project { get; set; }
 
         /// <summary>
-        /// The service that the metrics belong to, e.g. 'compute.googleapis.com'.
+        /// -
+        /// (Required)
+        /// The service that the metrics belong to, e.g. `compute.googleapis.com`.
         /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }

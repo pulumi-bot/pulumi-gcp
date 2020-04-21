@@ -22,7 +22,10 @@ namespace Pulumi.Gcp.SourceRepo
     public partial class Repository : Pulumi.CustomResource
     {
         /// <summary>
-        /// Resource name of the repository, of the form '{{repo}}'. The repo name may contain slashes. eg, 'name/with/slash'
+        /// -
+        /// (Required)
+        /// Resource name of the repository, of the form `{{repo}}`.
+        /// The repo name may contain slashes. eg, `name/with/slash`
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -35,7 +38,10 @@ namespace Pulumi.Gcp.SourceRepo
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// How this repository publishes a change in the repository through Cloud Pub/Sub. Keyed by the topic names.
+        /// -
+        /// (Optional)
+        /// How this repository publishes a change in the repository through Cloud Pub/Sub.
+        /// Keyed by the topic names.  Structure is documented below.
         /// </summary>
         [Output("pubsubConfigs")]
         public Output<ImmutableArray<Outputs.RepositoryPubsubConfig>> PubsubConfigs { get; private set; } = null!;
@@ -99,7 +105,10 @@ namespace Pulumi.Gcp.SourceRepo
     public sealed class RepositoryArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Resource name of the repository, of the form '{{repo}}'. The repo name may contain slashes. eg, 'name/with/slash'
+        /// -
+        /// (Required)
+        /// Resource name of the repository, of the form `{{repo}}`.
+        /// The repo name may contain slashes. eg, `name/with/slash`
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -115,7 +124,10 @@ namespace Pulumi.Gcp.SourceRepo
         private InputList<Inputs.RepositoryPubsubConfigArgs>? _pubsubConfigs;
 
         /// <summary>
-        /// How this repository publishes a change in the repository through Cloud Pub/Sub. Keyed by the topic names.
+        /// -
+        /// (Optional)
+        /// How this repository publishes a change in the repository through Cloud Pub/Sub.
+        /// Keyed by the topic names.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.RepositoryPubsubConfigArgs> PubsubConfigs
         {
@@ -131,7 +143,10 @@ namespace Pulumi.Gcp.SourceRepo
     public sealed class RepositoryState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Resource name of the repository, of the form '{{repo}}'. The repo name may contain slashes. eg, 'name/with/slash'
+        /// -
+        /// (Required)
+        /// Resource name of the repository, of the form `{{repo}}`.
+        /// The repo name may contain slashes. eg, `name/with/slash`
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -147,7 +162,10 @@ namespace Pulumi.Gcp.SourceRepo
         private InputList<Inputs.RepositoryPubsubConfigGetArgs>? _pubsubConfigs;
 
         /// <summary>
-        /// How this repository publishes a change in the repository through Cloud Pub/Sub. Keyed by the topic names.
+        /// -
+        /// (Optional)
+        /// How this repository publishes a change in the repository through Cloud Pub/Sub.
+        /// Keyed by the topic names.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.RepositoryPubsubConfigGetArgs> PubsubConfigs
         {

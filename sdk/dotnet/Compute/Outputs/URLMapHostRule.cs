@@ -13,8 +13,26 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class URLMapHostRule
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Description of this test case.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of host patterns to match. They must be valid hostnames, except * will
+        /// match any string of ([a-z0-9-.]*). In that case, * must be the first character
+        /// and must be followed in the pattern by either - or ..
+        /// </summary>
         public readonly ImmutableArray<string> Hosts;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the PathMatcher to use to match the path portion of the URL if the
+        /// hostRule matches the URL's host portion.
+        /// </summary>
         public readonly string PathMatcher;
 
         [OutputConstructor]

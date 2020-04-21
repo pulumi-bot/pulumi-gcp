@@ -143,7 +143,7 @@ namespace Pulumi.Gcp.Projects
         /// The service to enable.
         /// </summary>
         [Input("service")]
-        public Input<string>? ServiceName { get; set; }
+        public Input<string>? Service { get; set; }
 
         public ServiceState()
         {

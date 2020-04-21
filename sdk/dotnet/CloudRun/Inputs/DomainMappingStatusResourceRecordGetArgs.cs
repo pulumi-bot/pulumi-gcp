@@ -12,6 +12,11 @@ namespace Pulumi.Gcp.CloudRun.Inputs
 
     public sealed class DomainMappingStatusResourceRecordGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name should be a verified domain
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

@@ -43,20 +43,37 @@ export class TenantDefaultSupportedIdpConfig extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Required)
      * OAuth client ID
      */
     public readonly clientId!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * OAuth client secret
      */
     public readonly clientSecret!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * If this IDP allows the user to sign in
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
-     * ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' *
-     * 'google.com' * 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+     * -
+     * (Required)
+     * ID of the IDP. Possible values include:
+     * * `apple.com`
+     * * `facebook.com`
+     * * `gc.apple.com`
+     * * `github.com`
+     * * `google.com`
+     * * `linkedin.com`
+     * * `microsoft.com`
+     * * `playgames.google.com`
+     * * `twitter.com`
+     * * `yahoo.com`
      */
     public readonly idpId!: pulumi.Output<string>;
     /**
@@ -69,6 +86,8 @@ export class TenantDefaultSupportedIdpConfig extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The name of the tenant where this DefaultSupportedIdpConfig resource exists
      */
     public readonly tenant!: pulumi.Output<string>;
@@ -130,20 +149,37 @@ export class TenantDefaultSupportedIdpConfig extends pulumi.CustomResource {
  */
 export interface TenantDefaultSupportedIdpConfigState {
     /**
+     * -
+     * (Required)
      * OAuth client ID
      */
     readonly clientId?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * OAuth client secret
      */
     readonly clientSecret?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * If this IDP allows the user to sign in
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
-     * ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' *
-     * 'google.com' * 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+     * -
+     * (Required)
+     * ID of the IDP. Possible values include:
+     * * `apple.com`
+     * * `facebook.com`
+     * * `gc.apple.com`
+     * * `github.com`
+     * * `google.com`
+     * * `linkedin.com`
+     * * `microsoft.com`
+     * * `playgames.google.com`
+     * * `twitter.com`
+     * * `yahoo.com`
      */
     readonly idpId?: pulumi.Input<string>;
     /**
@@ -156,6 +192,8 @@ export interface TenantDefaultSupportedIdpConfigState {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The name of the tenant where this DefaultSupportedIdpConfig resource exists
      */
     readonly tenant?: pulumi.Input<string>;
@@ -166,20 +204,37 @@ export interface TenantDefaultSupportedIdpConfigState {
  */
 export interface TenantDefaultSupportedIdpConfigArgs {
     /**
+     * -
+     * (Required)
      * OAuth client ID
      */
     readonly clientId: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * OAuth client secret
      */
     readonly clientSecret: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * If this IDP allows the user to sign in
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
-     * ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' *
-     * 'google.com' * 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+     * -
+     * (Required)
+     * ID of the IDP. Possible values include:
+     * * `apple.com`
+     * * `facebook.com`
+     * * `gc.apple.com`
+     * * `github.com`
+     * * `google.com`
+     * * `linkedin.com`
+     * * `microsoft.com`
+     * * `playgames.google.com`
+     * * `twitter.com`
+     * * `yahoo.com`
      */
     readonly idpId: pulumi.Input<string>;
     /**
@@ -188,6 +243,8 @@ export interface TenantDefaultSupportedIdpConfigArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The name of the tenant where this DefaultSupportedIdpConfig resource exists
      */
     readonly tenant: pulumi.Input<string>;

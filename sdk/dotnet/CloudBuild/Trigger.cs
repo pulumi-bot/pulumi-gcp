@@ -22,7 +22,9 @@ namespace Pulumi.Gcp.CloudBuild
     public partial class Trigger : Pulumi.CustomResource
     {
         /// <summary>
-        /// Contents of the build template. Either a filename or build template must be provided.
+        /// -
+        /// (Optional)
+        /// Contents of the build template. Either a filename or build template must be provided.  Structure is documented below.
         /// </summary>
         [Output("build")]
         public Output<Outputs.TriggerBuild?> Build { get; private set; } = null!;
@@ -34,52 +36,74 @@ namespace Pulumi.Gcp.CloudBuild
         public Output<string> CreateTime { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human-readable description of the trigger.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether the trigger is disabled or not. If true, the trigger will never result in a build.
         /// </summary>
         [Output("disabled")]
         public Output<bool?> Disabled { get; private set; } = null!;
 
         /// <summary>
-        /// Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must
-        /// be provided.
+        /// -
+        /// (Optional)
+        /// Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must be provided.
         /// </summary>
         [Output("filename")]
         public Output<string?> Filename { get; private set; } = null!;
 
         /// <summary>
-        /// Describes the configuration of a trigger that creates a build whenever a GitHub event is received. One of
-        /// 'trigger_template' or 'github' must be provided.
+        /// -
+        /// (Optional)
+        /// Describes the configuration of a trigger that creates a build whenever a GitHub event is received.
+        /// One of `trigger_template` or `github` must be provided.  Structure is documented below.
         /// </summary>
         [Output("github")]
         public Output<Outputs.TriggerGithub?> Github { get; private set; } = null!;
 
         /// <summary>
-        /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match extended with
-        /// support for '**'. If ignoredFiles and changed files are both empty, then they are not used to determine whether or not
-        /// to trigger a build. If ignoredFiles is not empty, then we ignore any files that match any of the ignored_file globs. If
-        /// the change has no files that are outside of the ignoredFiles globs, then we do not trigger a build.
+        /// -
+        /// (Optional)
+        /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
+        /// extended with support for `**`.
+        /// If ignoredFiles and changed files are both empty, then they are not
+        /// used to determine whether or not to trigger a build.
+        /// If ignoredFiles is not empty, then we ignore any files that match any
+        /// of the ignored_file globs. If the change has no files that are outside
+        /// of the ignoredFiles globs, then we do not trigger a build.
         /// </summary>
         [Output("ignoredFiles")]
         public Output<ImmutableArray<string>> IgnoredFiles { get; private set; } = null!;
 
         /// <summary>
-        /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match extended with
-        /// support for '**'. If any of the files altered in the commit pass the ignoredFiles filter and includedFiles is empty,
-        /// then as far as this filter is concerned, we should trigger the build. If any of the files altered in the commit pass the
-        /// ignoredFiles filter and includedFiles is not empty, then we make sure that at least one of those files matches a
-        /// includedFiles glob. If not, then we do not trigger a build.
+        /// -
+        /// (Optional)
+        /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
+        /// extended with support for `**`.
+        /// If any of the files altered in the commit pass the ignoredFiles filter
+        /// and includedFiles is empty, then as far as this filter is concerned, we
+        /// should trigger the build.
+        /// If any of the files altered in the commit pass the ignoredFiles filter
+        /// and includedFiles is not empty, then we make sure that at least one of
+        /// those files matches a includedFiles glob. If not, then we do not trigger
+        /// a build.
         /// </summary>
         [Output("includedFiles")]
         public Output<ImmutableArray<string>> IncludedFiles { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the trigger. Must be unique within the project.
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -92,6 +116,8 @@ namespace Pulumi.Gcp.CloudBuild
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Substitutions data for Build resource.
         /// </summary>
         [Output("substitutions")]
@@ -104,9 +130,13 @@ namespace Pulumi.Gcp.CloudBuild
         public Output<string> TriggerId { get; private set; } = null!;
 
         /// <summary>
-        /// Template describing the types of source changes to trigger a build. Branch and tag names in trigger templates are
-        /// interpreted as regular expressions. Any branch or tag change that matches that regular expression will trigger a build.
-        /// One of 'trigger_template' or 'github' must be provided.
+        /// -
+        /// (Optional)
+        /// Template describing the types of source changes to trigger a build.
+        /// Branch and tag names in trigger templates are interpreted as regular
+        /// expressions. Any branch or tag change that matches that regular
+        /// expression will trigger a build.
+        /// One of `trigger_template` or `github` must be provided.  Structure is documented below.
         /// </summary>
         [Output("triggerTemplate")]
         public Output<Outputs.TriggerTriggerTemplate?> TriggerTemplate { get; private set; } = null!;
@@ -158,33 +188,42 @@ namespace Pulumi.Gcp.CloudBuild
     public sealed class TriggerArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Contents of the build template. Either a filename or build template must be provided.
+        /// -
+        /// (Optional)
+        /// Contents of the build template. Either a filename or build template must be provided.  Structure is documented below.
         /// </summary>
         [Input("build")]
         public Input<Inputs.TriggerBuildArgs>? Build { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human-readable description of the trigger.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether the trigger is disabled or not. If true, the trigger will never result in a build.
         /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }
 
         /// <summary>
-        /// Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must
-        /// be provided.
+        /// -
+        /// (Optional)
+        /// Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must be provided.
         /// </summary>
         [Input("filename")]
         public Input<string>? Filename { get; set; }
 
         /// <summary>
-        /// Describes the configuration of a trigger that creates a build whenever a GitHub event is received. One of
-        /// 'trigger_template' or 'github' must be provided.
+        /// -
+        /// (Optional)
+        /// Describes the configuration of a trigger that creates a build whenever a GitHub event is received.
+        /// One of `trigger_template` or `github` must be provided.  Structure is documented below.
         /// </summary>
         [Input("github")]
         public Input<Inputs.TriggerGithubArgs>? Github { get; set; }
@@ -193,10 +232,15 @@ namespace Pulumi.Gcp.CloudBuild
         private InputList<string>? _ignoredFiles;
 
         /// <summary>
-        /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match extended with
-        /// support for '**'. If ignoredFiles and changed files are both empty, then they are not used to determine whether or not
-        /// to trigger a build. If ignoredFiles is not empty, then we ignore any files that match any of the ignored_file globs. If
-        /// the change has no files that are outside of the ignoredFiles globs, then we do not trigger a build.
+        /// -
+        /// (Optional)
+        /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
+        /// extended with support for `**`.
+        /// If ignoredFiles and changed files are both empty, then they are not
+        /// used to determine whether or not to trigger a build.
+        /// If ignoredFiles is not empty, then we ignore any files that match any
+        /// of the ignored_file globs. If the change has no files that are outside
+        /// of the ignoredFiles globs, then we do not trigger a build.
         /// </summary>
         public InputList<string> IgnoredFiles
         {
@@ -208,11 +252,17 @@ namespace Pulumi.Gcp.CloudBuild
         private InputList<string>? _includedFiles;
 
         /// <summary>
-        /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match extended with
-        /// support for '**'. If any of the files altered in the commit pass the ignoredFiles filter and includedFiles is empty,
-        /// then as far as this filter is concerned, we should trigger the build. If any of the files altered in the commit pass the
-        /// ignoredFiles filter and includedFiles is not empty, then we make sure that at least one of those files matches a
-        /// includedFiles glob. If not, then we do not trigger a build.
+        /// -
+        /// (Optional)
+        /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
+        /// extended with support for `**`.
+        /// If any of the files altered in the commit pass the ignoredFiles filter
+        /// and includedFiles is empty, then as far as this filter is concerned, we
+        /// should trigger the build.
+        /// If any of the files altered in the commit pass the ignoredFiles filter
+        /// and includedFiles is not empty, then we make sure that at least one of
+        /// those files matches a includedFiles glob. If not, then we do not trigger
+        /// a build.
         /// </summary>
         public InputList<string> IncludedFiles
         {
@@ -221,7 +271,11 @@ namespace Pulumi.Gcp.CloudBuild
         }
 
         /// <summary>
-        /// Name of the trigger. Must be unique within the project.
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -237,6 +291,8 @@ namespace Pulumi.Gcp.CloudBuild
         private InputMap<string>? _substitutions;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Substitutions data for Build resource.
         /// </summary>
         public InputMap<string> Substitutions
@@ -246,9 +302,13 @@ namespace Pulumi.Gcp.CloudBuild
         }
 
         /// <summary>
-        /// Template describing the types of source changes to trigger a build. Branch and tag names in trigger templates are
-        /// interpreted as regular expressions. Any branch or tag change that matches that regular expression will trigger a build.
-        /// One of 'trigger_template' or 'github' must be provided.
+        /// -
+        /// (Optional)
+        /// Template describing the types of source changes to trigger a build.
+        /// Branch and tag names in trigger templates are interpreted as regular
+        /// expressions. Any branch or tag change that matches that regular
+        /// expression will trigger a build.
+        /// One of `trigger_template` or `github` must be provided.  Structure is documented below.
         /// </summary>
         [Input("triggerTemplate")]
         public Input<Inputs.TriggerTriggerTemplateArgs>? TriggerTemplate { get; set; }
@@ -261,7 +321,9 @@ namespace Pulumi.Gcp.CloudBuild
     public sealed class TriggerState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Contents of the build template. Either a filename or build template must be provided.
+        /// -
+        /// (Optional)
+        /// Contents of the build template. Either a filename or build template must be provided.  Structure is documented below.
         /// </summary>
         [Input("build")]
         public Input<Inputs.TriggerBuildGetArgs>? Build { get; set; }
@@ -273,27 +335,34 @@ namespace Pulumi.Gcp.CloudBuild
         public Input<string>? CreateTime { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Human-readable description of the trigger.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether the trigger is disabled or not. If true, the trigger will never result in a build.
         /// </summary>
         [Input("disabled")]
         public Input<bool>? Disabled { get; set; }
 
         /// <summary>
-        /// Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must
-        /// be provided.
+        /// -
+        /// (Optional)
+        /// Path, from the source root, to a file whose contents is used for the template. Either a filename or build template must be provided.
         /// </summary>
         [Input("filename")]
         public Input<string>? Filename { get; set; }
 
         /// <summary>
-        /// Describes the configuration of a trigger that creates a build whenever a GitHub event is received. One of
-        /// 'trigger_template' or 'github' must be provided.
+        /// -
+        /// (Optional)
+        /// Describes the configuration of a trigger that creates a build whenever a GitHub event is received.
+        /// One of `trigger_template` or `github` must be provided.  Structure is documented below.
         /// </summary>
         [Input("github")]
         public Input<Inputs.TriggerGithubGetArgs>? Github { get; set; }
@@ -302,10 +371,15 @@ namespace Pulumi.Gcp.CloudBuild
         private InputList<string>? _ignoredFiles;
 
         /// <summary>
-        /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match extended with
-        /// support for '**'. If ignoredFiles and changed files are both empty, then they are not used to determine whether or not
-        /// to trigger a build. If ignoredFiles is not empty, then we ignore any files that match any of the ignored_file globs. If
-        /// the change has no files that are outside of the ignoredFiles globs, then we do not trigger a build.
+        /// -
+        /// (Optional)
+        /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
+        /// extended with support for `**`.
+        /// If ignoredFiles and changed files are both empty, then they are not
+        /// used to determine whether or not to trigger a build.
+        /// If ignoredFiles is not empty, then we ignore any files that match any
+        /// of the ignored_file globs. If the change has no files that are outside
+        /// of the ignoredFiles globs, then we do not trigger a build.
         /// </summary>
         public InputList<string> IgnoredFiles
         {
@@ -317,11 +391,17 @@ namespace Pulumi.Gcp.CloudBuild
         private InputList<string>? _includedFiles;
 
         /// <summary>
-        /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match extended with
-        /// support for '**'. If any of the files altered in the commit pass the ignoredFiles filter and includedFiles is empty,
-        /// then as far as this filter is concerned, we should trigger the build. If any of the files altered in the commit pass the
-        /// ignoredFiles filter and includedFiles is not empty, then we make sure that at least one of those files matches a
-        /// includedFiles glob. If not, then we do not trigger a build.
+        /// -
+        /// (Optional)
+        /// ignoredFiles and includedFiles are file glob matches using https://golang.org/pkg/path/filepath/#Match
+        /// extended with support for `**`.
+        /// If any of the files altered in the commit pass the ignoredFiles filter
+        /// and includedFiles is empty, then as far as this filter is concerned, we
+        /// should trigger the build.
+        /// If any of the files altered in the commit pass the ignoredFiles filter
+        /// and includedFiles is not empty, then we make sure that at least one of
+        /// those files matches a includedFiles glob. If not, then we do not trigger
+        /// a build.
         /// </summary>
         public InputList<string> IncludedFiles
         {
@@ -330,7 +410,11 @@ namespace Pulumi.Gcp.CloudBuild
         }
 
         /// <summary>
-        /// Name of the trigger. Must be unique within the project.
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -346,6 +430,8 @@ namespace Pulumi.Gcp.CloudBuild
         private InputMap<string>? _substitutions;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Substitutions data for Build resource.
         /// </summary>
         public InputMap<string> Substitutions
@@ -361,9 +447,13 @@ namespace Pulumi.Gcp.CloudBuild
         public Input<string>? TriggerId { get; set; }
 
         /// <summary>
-        /// Template describing the types of source changes to trigger a build. Branch and tag names in trigger templates are
-        /// interpreted as regular expressions. Any branch or tag change that matches that regular expression will trigger a build.
-        /// One of 'trigger_template' or 'github' must be provided.
+        /// -
+        /// (Optional)
+        /// Template describing the types of source changes to trigger a build.
+        /// Branch and tag names in trigger templates are interpreted as regular
+        /// expressions. Any branch or tag change that matches that regular
+        /// expression will trigger a build.
+        /// One of `trigger_template` or `github` must be provided.  Structure is documented below.
         /// </summary>
         [Input("triggerTemplate")]
         public Input<Inputs.TriggerTriggerTemplateGetArgs>? TriggerTemplate { get; set; }

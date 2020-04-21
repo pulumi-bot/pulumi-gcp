@@ -61,27 +61,39 @@ export class OauthIdpConfig extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Required)
      * The client id of an OAuth client.
      */
     public readonly clientId!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * The client secret of the OAuth client, to enable OIDC code flow.
      */
     public readonly clientSecret!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Optional)
      * Human friendly display name.
      */
     public readonly displayName!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Optional)
      * If this config allows users to sign in with the provider.
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
+     * -
+     * (Required)
      * For OIDC Idps, the issuer identifier.
      */
     public readonly issuer!: pulumi.Output<string>;
     /**
-     * The name of the OauthIdpConfig. Must start with 'oidc.'.
+     * -
+     * (Required)
+     * The name of the OauthIdpConfig. Must start with `oidc.`.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -141,27 +153,39 @@ export class OauthIdpConfig extends pulumi.CustomResource {
  */
 export interface OauthIdpConfigState {
     /**
+     * -
+     * (Required)
      * The client id of an OAuth client.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The client secret of the OAuth client, to enable OIDC code flow.
      */
     readonly clientSecret?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Human friendly display name.
      */
     readonly displayName?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * If this config allows users to sign in with the provider.
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Required)
      * For OIDC Idps, the issuer identifier.
      */
     readonly issuer?: pulumi.Input<string>;
     /**
-     * The name of the OauthIdpConfig. Must start with 'oidc.'.
+     * -
+     * (Required)
+     * The name of the OauthIdpConfig. Must start with `oidc.`.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -176,27 +200,39 @@ export interface OauthIdpConfigState {
  */
 export interface OauthIdpConfigArgs {
     /**
+     * -
+     * (Required)
      * The client id of an OAuth client.
      */
     readonly clientId: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The client secret of the OAuth client, to enable OIDC code flow.
      */
     readonly clientSecret?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Human friendly display name.
      */
     readonly displayName?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * If this config allows users to sign in with the provider.
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Required)
      * For OIDC Idps, the issuer identifier.
      */
     readonly issuer: pulumi.Input<string>;
     /**
-     * The name of the OauthIdpConfig. Must start with 'oidc.'.
+     * -
+     * (Required)
+     * The name of the OauthIdpConfig. Must start with `oidc.`.
      */
     readonly name?: pulumi.Input<string>;
     /**

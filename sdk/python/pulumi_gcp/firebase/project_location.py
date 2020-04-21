@@ -12,8 +12,10 @@ from .. import utilities, tables
 class ProjectLocation(pulumi.CustomResource):
     location_id: pulumi.Output[str]
     """
-    The ID of the default GCP resource location for the Project. The location must be one of the available GCP resource
-    locations.
+    -
+    (Required)
+    The ID of the default GCP resource location for the Project. The location must be one of the available GCP
+    resource locations.
     """
     project: pulumi.Output[str]
     """
@@ -41,8 +43,10 @@ class ProjectLocation(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] location_id: The ID of the default GCP resource location for the Project. The location must be one of the available GCP resource
-               locations.
+        :param pulumi.Input[str] location_id: -
+               (Required)
+               The ID of the default GCP resource location for the Project. The location must be one of the available GCP
+               resource locations.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         """
@@ -82,8 +86,10 @@ class ProjectLocation(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] location_id: The ID of the default GCP resource location for the Project. The location must be one of the available GCP resource
-               locations.
+        :param pulumi.Input[str] location_id: -
+               (Required)
+               The ID of the default GCP resource location for the Project. The location must be one of the available GCP
+               resource locations.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         """

@@ -12,13 +12,19 @@ from .. import utilities, tables
 class GlobalAddress(pulumi.CustomResource):
     address: pulumi.Output[str]
     """
-    The IP address or beginning of the address range represented by this resource. This can be supplied as an input to
-    reserve a specific address or omitted to allow GCP to choose a valid one for you.
+    -
+    (Optional)
+    The IP address or beginning of the address range represented by this
+    resource. This can be supplied as an input to reserve a specific
+    address or omitted to allow GCP to choose a valid one for you.
     """
     address_type: pulumi.Output[str]
     """
-    The type of the address to reserve, default is EXTERNAL. * EXTERNAL indicates public/external single IP address. *
-    INTERNAL indicates internal IP ranges belonging to some network.
+    -
+    (Optional)
+    The type of the address to reserve, default is EXTERNAL.
+    * EXTERNAL indicates public/external single IP address.
+    * INTERNAL indicates internal IP ranges belonging to some network.
     """
     creation_timestamp: pulumi.Output[str]
     """
@@ -26,11 +32,16 @@ class GlobalAddress(pulumi.CustomResource):
     """
     description: pulumi.Output[str]
     """
+    -
+    (Optional)
     An optional description of this resource.
     """
     ip_version: pulumi.Output[str]
     """
-    The IP Version that will be used by this address. Valid options are 'IPV4' or 'IPV6'. The default value is 'IPV4'.
+    -
+    (Optional)
+    The IP Version that will be used by this address. Valid options are
+    `IPV4` or `IPV6`. The default value is `IPV4`.
     """
     label_fingerprint: pulumi.Output[str]
     """
@@ -42,20 +53,32 @@ class GlobalAddress(pulumi.CustomResource):
     """
     name: pulumi.Output[str]
     """
-    Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-    comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-    '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-    must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+    -
+    (Required)
+    Name of the resource. Provided by the client when the resource is
+    created. The name must be 1-63 characters long, and comply with
+    RFC1035.  Specifically, the name must be 1-63 characters long and
+    match the regular expression `a-z?` which means
+    the first character must be a lowercase letter, and all following
+    characters must be a dash, lowercase letter, or digit, except the last
+    character, which cannot be a dash.
     """
     network: pulumi.Output[str]
     """
-    The URL of the network in which to reserve the IP range. The IP range must be in RFC1918 space. The network cannot be
-    deleted if there are any reserved IP ranges referring to it. This should only be set when using an Internal address.
+    -
+    (Optional)
+    The URL of the network in which to reserve the IP range. The IP range
+    must be in RFC1918 space. The network cannot be deleted if there are
+    any reserved IP ranges referring to it.
+    This should only be set when using an Internal address.
     """
     prefix_length: pulumi.Output[float]
     """
-    The prefix length of the IP range. If not present, it means the address field is a single IP address. This field is not
-    applicable to addresses with addressType=EXTERNAL.
+    -
+    (Optional)
+    The prefix length of the IP range. If not present, it means the
+    address field is a single IP address.
+    This field is not applicable to addresses with addressType=EXTERNAL.
     """
     project: pulumi.Output[str]
     """
@@ -64,8 +87,11 @@ class GlobalAddress(pulumi.CustomResource):
     """
     purpose: pulumi.Output[str]
     """
-    The purpose of the resource. For global internal addresses it can be * VPC_PEERING - for peer networks This should only
-    be set when using an Internal address.
+    -
+    (Optional)
+    The purpose of the resource. For global internal addresses it can be
+    * VPC_PEERING - for peer networks
+    This should only be set when using an Internal address.
     """
     self_link: pulumi.Output[str]
     """
@@ -85,25 +111,51 @@ class GlobalAddress(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] address: The IP address or beginning of the address range represented by this resource. This can be supplied as an input to
-               reserve a specific address or omitted to allow GCP to choose a valid one for you.
-        :param pulumi.Input[str] address_type: The type of the address to reserve, default is EXTERNAL. * EXTERNAL indicates public/external single IP address. *
-               INTERNAL indicates internal IP ranges belonging to some network.
-        :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[str] ip_version: The IP Version that will be used by this address. Valid options are 'IPV4' or 'IPV6'. The default value is 'IPV4'.
+        :param pulumi.Input[str] address: -
+               (Optional)
+               The IP address or beginning of the address range represented by this
+               resource. This can be supplied as an input to reserve a specific
+               address or omitted to allow GCP to choose a valid one for you.
+        :param pulumi.Input[str] address_type: -
+               (Optional)
+               The type of the address to reserve, default is EXTERNAL.
+               * EXTERNAL indicates public/external single IP address.
+               * INTERNAL indicates internal IP ranges belonging to some network.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               An optional description of this resource.
+        :param pulumi.Input[str] ip_version: -
+               (Optional)
+               The IP Version that will be used by this address. Valid options are
+               `IPV4` or `IPV6`. The default value is `IPV4`.
         :param pulumi.Input[dict] labels: Labels to apply to this address. A list of key->value pairs.
-        :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-               comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-               '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-               must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-        :param pulumi.Input[str] network: The URL of the network in which to reserve the IP range. The IP range must be in RFC1918 space. The network cannot be
-               deleted if there are any reserved IP ranges referring to it. This should only be set when using an Internal address.
-        :param pulumi.Input[float] prefix_length: The prefix length of the IP range. If not present, it means the address field is a single IP address. This field is not
-               applicable to addresses with addressType=EXTERNAL.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Name of the resource. Provided by the client when the resource is
+               created. The name must be 1-63 characters long, and comply with
+               RFC1035.  Specifically, the name must be 1-63 characters long and
+               match the regular expression `a-z?` which means
+               the first character must be a lowercase letter, and all following
+               characters must be a dash, lowercase letter, or digit, except the last
+               character, which cannot be a dash.
+        :param pulumi.Input[str] network: -
+               (Optional)
+               The URL of the network in which to reserve the IP range. The IP range
+               must be in RFC1918 space. The network cannot be deleted if there are
+               any reserved IP ranges referring to it.
+               This should only be set when using an Internal address.
+        :param pulumi.Input[float] prefix_length: -
+               (Optional)
+               The prefix length of the IP range. If not present, it means the
+               address field is a single IP address.
+               This field is not applicable to addresses with addressType=EXTERNAL.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] purpose: The purpose of the resource. For global internal addresses it can be * VPC_PEERING - for peer networks This should only
-               be set when using an Internal address.
+        :param pulumi.Input[str] purpose: -
+               (Optional)
+               The purpose of the resource. For global internal addresses it can be
+               * VPC_PEERING - for peer networks
+               This should only be set when using an Internal address.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -150,27 +202,53 @@ class GlobalAddress(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] address: The IP address or beginning of the address range represented by this resource. This can be supplied as an input to
-               reserve a specific address or omitted to allow GCP to choose a valid one for you.
-        :param pulumi.Input[str] address_type: The type of the address to reserve, default is EXTERNAL. * EXTERNAL indicates public/external single IP address. *
-               INTERNAL indicates internal IP ranges belonging to some network.
+        :param pulumi.Input[str] address: -
+               (Optional)
+               The IP address or beginning of the address range represented by this
+               resource. This can be supplied as an input to reserve a specific
+               address or omitted to allow GCP to choose a valid one for you.
+        :param pulumi.Input[str] address_type: -
+               (Optional)
+               The type of the address to reserve, default is EXTERNAL.
+               * EXTERNAL indicates public/external single IP address.
+               * INTERNAL indicates internal IP ranges belonging to some network.
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
-        :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[str] ip_version: The IP Version that will be used by this address. Valid options are 'IPV4' or 'IPV6'. The default value is 'IPV4'.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               An optional description of this resource.
+        :param pulumi.Input[str] ip_version: -
+               (Optional)
+               The IP Version that will be used by this address. Valid options are
+               `IPV4` or `IPV6`. The default value is `IPV4`.
         :param pulumi.Input[str] label_fingerprint: The fingerprint used for optimistic locking of this resource. Used internally during updates.
         :param pulumi.Input[dict] labels: Labels to apply to this address. A list of key->value pairs.
-        :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-               comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-               '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-               must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-        :param pulumi.Input[str] network: The URL of the network in which to reserve the IP range. The IP range must be in RFC1918 space. The network cannot be
-               deleted if there are any reserved IP ranges referring to it. This should only be set when using an Internal address.
-        :param pulumi.Input[float] prefix_length: The prefix length of the IP range. If not present, it means the address field is a single IP address. This field is not
-               applicable to addresses with addressType=EXTERNAL.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Name of the resource. Provided by the client when the resource is
+               created. The name must be 1-63 characters long, and comply with
+               RFC1035.  Specifically, the name must be 1-63 characters long and
+               match the regular expression `a-z?` which means
+               the first character must be a lowercase letter, and all following
+               characters must be a dash, lowercase letter, or digit, except the last
+               character, which cannot be a dash.
+        :param pulumi.Input[str] network: -
+               (Optional)
+               The URL of the network in which to reserve the IP range. The IP range
+               must be in RFC1918 space. The network cannot be deleted if there are
+               any reserved IP ranges referring to it.
+               This should only be set when using an Internal address.
+        :param pulumi.Input[float] prefix_length: -
+               (Optional)
+               The prefix length of the IP range. If not present, it means the
+               address field is a single IP address.
+               This field is not applicable to addresses with addressType=EXTERNAL.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] purpose: The purpose of the resource. For global internal addresses it can be * VPC_PEERING - for peer networks This should only
-               be set when using an Internal address.
+        :param pulumi.Input[str] purpose: -
+               (Optional)
+               The purpose of the resource. For global internal addresses it can be
+               * VPC_PEERING - for peer networks
+               This should only be set when using an Internal address.
         :param pulumi.Input[str] self_link: The URI of the created resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

@@ -12,22 +12,32 @@ from .. import utilities, tables
 class Connector(pulumi.CustomResource):
     ip_cidr_range: pulumi.Output[str]
     """
-    The range of internal addresses that follows RFC 4632 notation. Example: '10.132.0.0/28'.
+    -
+    (Required)
+    The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.
     """
     max_throughput: pulumi.Output[float]
     """
-    Maximum throughput of the connector in Mbps, must be greater than 'min_throughput'. Default is 1000.
+    -
+    (Optional)
+    Maximum throughput of the connector in Mbps, must be greater than `min_throughput`. Default is 1000.
     """
     min_throughput: pulumi.Output[float]
     """
+    -
+    (Optional)
     Minimum throughput of the connector in Mbps. Default and min is 200.
     """
     name: pulumi.Output[str]
     """
+    -
+    (Required)
     The name of the resource (Max 25 characters).
     """
     network: pulumi.Output[str]
     """
+    -
+    (Required)
     Name of a VPC network.
     """
     project: pulumi.Output[str]
@@ -37,6 +47,8 @@ class Connector(pulumi.CustomResource):
     """
     region: pulumi.Output[str]
     """
+    -
+    (Required)
     Region where the VPC Access connector resides
     """
     self_link: pulumi.Output[str]
@@ -60,14 +72,26 @@ class Connector(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ip_cidr_range: The range of internal addresses that follows RFC 4632 notation. Example: '10.132.0.0/28'.
-        :param pulumi.Input[float] max_throughput: Maximum throughput of the connector in Mbps, must be greater than 'min_throughput'. Default is 1000.
-        :param pulumi.Input[float] min_throughput: Minimum throughput of the connector in Mbps. Default and min is 200.
-        :param pulumi.Input[str] name: The name of the resource (Max 25 characters).
-        :param pulumi.Input[str] network: Name of a VPC network.
+        :param pulumi.Input[str] ip_cidr_range: -
+               (Required)
+               The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.
+        :param pulumi.Input[float] max_throughput: -
+               (Optional)
+               Maximum throughput of the connector in Mbps, must be greater than `min_throughput`. Default is 1000.
+        :param pulumi.Input[float] min_throughput: -
+               (Optional)
+               Minimum throughput of the connector in Mbps. Default and min is 200.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the resource (Max 25 characters).
+        :param pulumi.Input[str] network: -
+               (Required)
+               Name of a VPC network.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] region: Region where the VPC Access connector resides
+        :param pulumi.Input[str] region: -
+               (Required)
+               Region where the VPC Access connector resides
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -116,14 +140,26 @@ class Connector(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] ip_cidr_range: The range of internal addresses that follows RFC 4632 notation. Example: '10.132.0.0/28'.
-        :param pulumi.Input[float] max_throughput: Maximum throughput of the connector in Mbps, must be greater than 'min_throughput'. Default is 1000.
-        :param pulumi.Input[float] min_throughput: Minimum throughput of the connector in Mbps. Default and min is 200.
-        :param pulumi.Input[str] name: The name of the resource (Max 25 characters).
-        :param pulumi.Input[str] network: Name of a VPC network.
+        :param pulumi.Input[str] ip_cidr_range: -
+               (Required)
+               The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.
+        :param pulumi.Input[float] max_throughput: -
+               (Optional)
+               Maximum throughput of the connector in Mbps, must be greater than `min_throughput`. Default is 1000.
+        :param pulumi.Input[float] min_throughput: -
+               (Optional)
+               Minimum throughput of the connector in Mbps. Default and min is 200.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name of the resource (Max 25 characters).
+        :param pulumi.Input[str] network: -
+               (Required)
+               Name of a VPC network.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] region: Region where the VPC Access connector resides
+        :param pulumi.Input[str] region: -
+               (Required)
+               Region where the VPC Access connector resides
         :param pulumi.Input[str] self_link: The fully qualified name of this VPC connector
         :param pulumi.Input[str] state: State of the VPC access connector.
         """

@@ -58,22 +58,32 @@ export class Connector extends pulumi.CustomResource {
     }
 
     /**
-     * The range of internal addresses that follows RFC 4632 notation. Example: '10.132.0.0/28'.
+     * -
+     * (Required)
+     * The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.
      */
     public readonly ipCidrRange!: pulumi.Output<string>;
     /**
-     * Maximum throughput of the connector in Mbps, must be greater than 'min_throughput'. Default is 1000.
+     * -
+     * (Optional)
+     * Maximum throughput of the connector in Mbps, must be greater than `minThroughput`. Default is 1000.
      */
     public readonly maxThroughput!: pulumi.Output<number | undefined>;
     /**
+     * -
+     * (Optional)
      * Minimum throughput of the connector in Mbps. Default and min is 200.
      */
     public readonly minThroughput!: pulumi.Output<number | undefined>;
     /**
+     * -
+     * (Required)
      * The name of the resource (Max 25 characters).
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * Name of a VPC network.
      */
     public readonly network!: pulumi.Output<string>;
@@ -83,6 +93,8 @@ export class Connector extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * Region where the VPC Access connector resides
      */
     public readonly region!: pulumi.Output<string>;
@@ -153,22 +165,32 @@ export class Connector extends pulumi.CustomResource {
  */
 export interface ConnectorState {
     /**
-     * The range of internal addresses that follows RFC 4632 notation. Example: '10.132.0.0/28'.
+     * -
+     * (Required)
+     * The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.
      */
     readonly ipCidrRange?: pulumi.Input<string>;
     /**
-     * Maximum throughput of the connector in Mbps, must be greater than 'min_throughput'. Default is 1000.
+     * -
+     * (Optional)
+     * Maximum throughput of the connector in Mbps, must be greater than `minThroughput`. Default is 1000.
      */
     readonly maxThroughput?: pulumi.Input<number>;
     /**
+     * -
+     * (Optional)
      * Minimum throughput of the connector in Mbps. Default and min is 200.
      */
     readonly minThroughput?: pulumi.Input<number>;
     /**
+     * -
+     * (Required)
      * The name of the resource (Max 25 characters).
      */
     readonly name?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Name of a VPC network.
      */
     readonly network?: pulumi.Input<string>;
@@ -178,6 +200,8 @@ export interface ConnectorState {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Region where the VPC Access connector resides
      */
     readonly region?: pulumi.Input<string>;
@@ -196,22 +220,32 @@ export interface ConnectorState {
  */
 export interface ConnectorArgs {
     /**
-     * The range of internal addresses that follows RFC 4632 notation. Example: '10.132.0.0/28'.
+     * -
+     * (Required)
+     * The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.
      */
     readonly ipCidrRange: pulumi.Input<string>;
     /**
-     * Maximum throughput of the connector in Mbps, must be greater than 'min_throughput'. Default is 1000.
+     * -
+     * (Optional)
+     * Maximum throughput of the connector in Mbps, must be greater than `minThroughput`. Default is 1000.
      */
     readonly maxThroughput?: pulumi.Input<number>;
     /**
+     * -
+     * (Optional)
      * Minimum throughput of the connector in Mbps. Default and min is 200.
      */
     readonly minThroughput?: pulumi.Input<number>;
     /**
+     * -
+     * (Required)
      * The name of the resource (Max 25 characters).
      */
     readonly name?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Name of a VPC network.
      */
     readonly network: pulumi.Input<string>;
@@ -221,6 +255,8 @@ export interface ConnectorArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Region where the VPC Access connector resides
      */
     readonly region: pulumi.Input<string>;

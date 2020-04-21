@@ -71,10 +71,15 @@ export class AccessPolicy extends pulumi.CustomResource {
      */
     public /*out*/ readonly name!: pulumi.Output<string>;
     /**
-     * The parent of this AccessPolicy in the Cloud Resource Hierarchy. Format: organizations/{organization_id}
+     * -
+     * (Required)
+     * The parent of this AccessPolicy in the Cloud Resource Hierarchy.
+     * Format: organizations/{organization_id}
      */
     public readonly parent!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * Human readable title. Does not affect behavior.
      */
     public readonly title!: pulumi.Output<string>;
@@ -138,10 +143,15 @@ export interface AccessPolicyState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The parent of this AccessPolicy in the Cloud Resource Hierarchy. Format: organizations/{organization_id}
+     * -
+     * (Required)
+     * The parent of this AccessPolicy in the Cloud Resource Hierarchy.
+     * Format: organizations/{organization_id}
      */
     readonly parent?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Human readable title. Does not affect behavior.
      */
     readonly title?: pulumi.Input<string>;
@@ -156,10 +166,15 @@ export interface AccessPolicyState {
  */
 export interface AccessPolicyArgs {
     /**
-     * The parent of this AccessPolicy in the Cloud Resource Hierarchy. Format: organizations/{organization_id}
+     * -
+     * (Required)
+     * The parent of this AccessPolicy in the Cloud Resource Hierarchy.
+     * Format: organizations/{organization_id}
      */
     readonly parent: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Human readable title. Does not affect behavior.
      */
     readonly title: pulumi.Input<string>;
