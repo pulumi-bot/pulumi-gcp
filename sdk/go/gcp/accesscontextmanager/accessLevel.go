@@ -22,15 +22,27 @@ import (
 type AccessLevel struct {
 	pulumi.CustomResourceState
 
-	// A set of predefined conditions for the access level and a combining function.
+	// -
+	// (Optional)
+	// A set of predefined conditions for the access level and a combining function.  Structure is documented below.
 	Basic AccessLevelBasicPtrOutput `pulumi:"basic"`
+	// -
+	// (Optional)
 	// Description of the AccessLevel and its use. Does not affect behavior.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Resource name for the Access Level. The short_name component must begin with a letter and only include alphanumeric and
-	// '_'. Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+	// -
+	// (Required)
+	// Resource name for the Access Level. The shortName component must begin
+	// with a letter and only include alphanumeric and '_'.
+	// Format: accessPolicies/{policy_id}/accessLevels/{short_name}
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The AccessPolicy this AccessLevel lives in. Format: accessPolicies/{policy_id}
+	// -
+	// (Required)
+	// The AccessPolicy this AccessLevel lives in.
+	// Format: accessPolicies/{policy_id}
 	Parent pulumi.StringOutput `pulumi:"parent"`
+	// -
+	// (Required)
 	// Human readable title. Must be unique within the Policy.
 	Title pulumi.StringOutput `pulumi:"title"`
 }
@@ -69,29 +81,53 @@ func GetAccessLevel(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AccessLevel resources.
 type accessLevelState struct {
-	// A set of predefined conditions for the access level and a combining function.
+	// -
+	// (Optional)
+	// A set of predefined conditions for the access level and a combining function.  Structure is documented below.
 	Basic *AccessLevelBasic `pulumi:"basic"`
+	// -
+	// (Optional)
 	// Description of the AccessLevel and its use. Does not affect behavior.
 	Description *string `pulumi:"description"`
-	// Resource name for the Access Level. The short_name component must begin with a letter and only include alphanumeric and
-	// '_'. Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+	// -
+	// (Required)
+	// Resource name for the Access Level. The shortName component must begin
+	// with a letter and only include alphanumeric and '_'.
+	// Format: accessPolicies/{policy_id}/accessLevels/{short_name}
 	Name *string `pulumi:"name"`
-	// The AccessPolicy this AccessLevel lives in. Format: accessPolicies/{policy_id}
+	// -
+	// (Required)
+	// The AccessPolicy this AccessLevel lives in.
+	// Format: accessPolicies/{policy_id}
 	Parent *string `pulumi:"parent"`
+	// -
+	// (Required)
 	// Human readable title. Must be unique within the Policy.
 	Title *string `pulumi:"title"`
 }
 
 type AccessLevelState struct {
-	// A set of predefined conditions for the access level and a combining function.
+	// -
+	// (Optional)
+	// A set of predefined conditions for the access level and a combining function.  Structure is documented below.
 	Basic AccessLevelBasicPtrInput
+	// -
+	// (Optional)
 	// Description of the AccessLevel and its use. Does not affect behavior.
 	Description pulumi.StringPtrInput
-	// Resource name for the Access Level. The short_name component must begin with a letter and only include alphanumeric and
-	// '_'. Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+	// -
+	// (Required)
+	// Resource name for the Access Level. The shortName component must begin
+	// with a letter and only include alphanumeric and '_'.
+	// Format: accessPolicies/{policy_id}/accessLevels/{short_name}
 	Name pulumi.StringPtrInput
-	// The AccessPolicy this AccessLevel lives in. Format: accessPolicies/{policy_id}
+	// -
+	// (Required)
+	// The AccessPolicy this AccessLevel lives in.
+	// Format: accessPolicies/{policy_id}
 	Parent pulumi.StringPtrInput
+	// -
+	// (Required)
 	// Human readable title. Must be unique within the Policy.
 	Title pulumi.StringPtrInput
 }
@@ -101,30 +137,54 @@ func (AccessLevelState) ElementType() reflect.Type {
 }
 
 type accessLevelArgs struct {
-	// A set of predefined conditions for the access level and a combining function.
+	// -
+	// (Optional)
+	// A set of predefined conditions for the access level and a combining function.  Structure is documented below.
 	Basic *AccessLevelBasic `pulumi:"basic"`
+	// -
+	// (Optional)
 	// Description of the AccessLevel and its use. Does not affect behavior.
 	Description *string `pulumi:"description"`
-	// Resource name for the Access Level. The short_name component must begin with a letter and only include alphanumeric and
-	// '_'. Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+	// -
+	// (Required)
+	// Resource name for the Access Level. The shortName component must begin
+	// with a letter and only include alphanumeric and '_'.
+	// Format: accessPolicies/{policy_id}/accessLevels/{short_name}
 	Name *string `pulumi:"name"`
-	// The AccessPolicy this AccessLevel lives in. Format: accessPolicies/{policy_id}
+	// -
+	// (Required)
+	// The AccessPolicy this AccessLevel lives in.
+	// Format: accessPolicies/{policy_id}
 	Parent string `pulumi:"parent"`
+	// -
+	// (Required)
 	// Human readable title. Must be unique within the Policy.
 	Title string `pulumi:"title"`
 }
 
 // The set of arguments for constructing a AccessLevel resource.
 type AccessLevelArgs struct {
-	// A set of predefined conditions for the access level and a combining function.
+	// -
+	// (Optional)
+	// A set of predefined conditions for the access level and a combining function.  Structure is documented below.
 	Basic AccessLevelBasicPtrInput
+	// -
+	// (Optional)
 	// Description of the AccessLevel and its use. Does not affect behavior.
 	Description pulumi.StringPtrInput
-	// Resource name for the Access Level. The short_name component must begin with a letter and only include alphanumeric and
-	// '_'. Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+	// -
+	// (Required)
+	// Resource name for the Access Level. The shortName component must begin
+	// with a letter and only include alphanumeric and '_'.
+	// Format: accessPolicies/{policy_id}/accessLevels/{short_name}
 	Name pulumi.StringPtrInput
-	// The AccessPolicy this AccessLevel lives in. Format: accessPolicies/{policy_id}
+	// -
+	// (Required)
+	// The AccessPolicy this AccessLevel lives in.
+	// Format: accessPolicies/{policy_id}
 	Parent pulumi.StringInput
+	// -
+	// (Required)
 	// Human readable title. Must be unique within the Policy.
 	Title pulumi.StringInput
 }

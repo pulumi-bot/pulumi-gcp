@@ -11,10 +11,32 @@ import (
 )
 
 type AlertPolicyCondition struct {
-	ConditionAbsent    *AlertPolicyConditionConditionAbsent    `pulumi:"conditionAbsent"`
+	// -
+	// (Optional)
+	// A condition that checks that a time series
+	// continues to receive new data points.  Structure is documented below.
+	ConditionAbsent *AlertPolicyConditionConditionAbsent `pulumi:"conditionAbsent"`
+	// -
+	// (Optional)
+	// A condition that compares a time series against a
+	// threshold.  Structure is documented below.
 	ConditionThreshold *AlertPolicyConditionConditionThreshold `pulumi:"conditionThreshold"`
-	DisplayName        string                                  `pulumi:"displayName"`
-	Name               *string                                 `pulumi:"name"`
+	// -
+	// (Required)
+	// A short name or phrase used to identify the
+	// condition in dashboards, notifications, and
+	// incidents. To avoid confusion, don't use the same
+	// display name for multiple conditions in the same
+	// policy.
+	DisplayName string `pulumi:"displayName"`
+	// -
+	// The unique resource name for this condition.
+	// Its syntax is:
+	// projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+	// [CONDITION_ID] is assigned by Stackdriver Monitoring when
+	// the condition is created as part of a new or updated alerting
+	// policy.
+	Name *string `pulumi:"name"`
 }
 
 // AlertPolicyConditionInput is an input type that accepts AlertPolicyConditionArgs and AlertPolicyConditionOutput values.
@@ -30,10 +52,32 @@ type AlertPolicyConditionInput interface {
 }
 
 type AlertPolicyConditionArgs struct {
-	ConditionAbsent    AlertPolicyConditionConditionAbsentPtrInput    `pulumi:"conditionAbsent"`
+	// -
+	// (Optional)
+	// A condition that checks that a time series
+	// continues to receive new data points.  Structure is documented below.
+	ConditionAbsent AlertPolicyConditionConditionAbsentPtrInput `pulumi:"conditionAbsent"`
+	// -
+	// (Optional)
+	// A condition that compares a time series against a
+	// threshold.  Structure is documented below.
 	ConditionThreshold AlertPolicyConditionConditionThresholdPtrInput `pulumi:"conditionThreshold"`
-	DisplayName        pulumi.StringInput                             `pulumi:"displayName"`
-	Name               pulumi.StringPtrInput                          `pulumi:"name"`
+	// -
+	// (Required)
+	// A short name or phrase used to identify the
+	// condition in dashboards, notifications, and
+	// incidents. To avoid confusion, don't use the same
+	// display name for multiple conditions in the same
+	// policy.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// -
+	// The unique resource name for this condition.
+	// Its syntax is:
+	// projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+	// [CONDITION_ID] is assigned by Stackdriver Monitoring when
+	// the condition is created as part of a new or updated alerting
+	// policy.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (AlertPolicyConditionArgs) ElementType() reflect.Type {
@@ -88,18 +132,40 @@ func (o AlertPolicyConditionOutput) ToAlertPolicyConditionOutputWithContext(ctx 
 	return o
 }
 
+// -
+// (Optional)
+// A condition that checks that a time series
+// continues to receive new data points.  Structure is documented below.
 func (o AlertPolicyConditionOutput) ConditionAbsent() AlertPolicyConditionConditionAbsentPtrOutput {
 	return o.ApplyT(func(v AlertPolicyCondition) *AlertPolicyConditionConditionAbsent { return v.ConditionAbsent }).(AlertPolicyConditionConditionAbsentPtrOutput)
 }
 
+// -
+// (Optional)
+// A condition that compares a time series against a
+// threshold.  Structure is documented below.
 func (o AlertPolicyConditionOutput) ConditionThreshold() AlertPolicyConditionConditionThresholdPtrOutput {
 	return o.ApplyT(func(v AlertPolicyCondition) *AlertPolicyConditionConditionThreshold { return v.ConditionThreshold }).(AlertPolicyConditionConditionThresholdPtrOutput)
 }
 
+// -
+// (Required)
+// A short name or phrase used to identify the
+// condition in dashboards, notifications, and
+// incidents. To avoid confusion, don't use the same
+// display name for multiple conditions in the same
+// policy.
 func (o AlertPolicyConditionOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertPolicyCondition) string { return v.DisplayName }).(pulumi.StringOutput)
 }
 
+// -
+// The unique resource name for this condition.
+// Its syntax is:
+// projects/[PROJECT_ID]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
+// [CONDITION_ID] is assigned by Stackdriver Monitoring when
+// the condition is created as part of a new or updated alerting
+// policy.
 func (o AlertPolicyConditionOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyCondition) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -125,10 +191,66 @@ func (o AlertPolicyConditionArrayOutput) Index(i pulumi.IntInput) AlertPolicyCon
 }
 
 type AlertPolicyConditionConditionAbsent struct {
+	// -
+	// (Optional)
+	// Specifies the alignment of data points in
+	// individual time series as well as how to
+	// combine the retrieved time series together
+	// (such as when aggregating multiple streams
+	// on each resource to a single stream for each
+	// resource or when aggregating streams across
+	// all members of a group of resources).
+	// Multiple aggregations are applied in the
+	// order specified.This field is similar to the
+	// one in the MetricService.ListTimeSeries
+	// request. It is advisable to use the
+	// ListTimeSeries method when debugging this
+	// field.  Structure is documented below.
 	Aggregations []AlertPolicyConditionConditionAbsentAggregation `pulumi:"aggregations"`
-	Duration     string                                           `pulumi:"duration"`
-	Filter       *string                                          `pulumi:"filter"`
-	Trigger      *AlertPolicyConditionConditionAbsentTrigger      `pulumi:"trigger"`
+	// -
+	// (Required)
+	// The amount of time that a time series must
+	// violate the threshold to be considered
+	// failing. Currently, only values that are a
+	// multiple of a minute--e.g., 0, 60, 120, or
+	// 300 seconds--are supported. If an invalid
+	// value is given, an error will be returned.
+	// When choosing a duration, it is useful to
+	// keep in mind the frequency of the underlying
+	// time series data (which may also be affected
+	// by any alignments specified in the
+	// aggregations field); a good duration is long
+	// enough so that a single outlier does not
+	// generate spurious alerts, but short enough
+	// that unhealthy states are detected and
+	// alerted on quickly.
+	Duration string `pulumi:"duration"`
+	// -
+	// (Optional)
+	// A filter that identifies which time series
+	// should be compared with the threshold.The
+	// filter is similar to the one that is
+	// specified in the
+	// MetricService.ListTimeSeries request (that
+	// call is useful to verify the time series
+	// that will be retrieved / processed) and must
+	// specify the metric type and optionally may
+	// contain restrictions on resource type,
+	// resource labels, and metric labels. This
+	// field may not exceed 2048 Unicode characters
+	// in length.
+	Filter *string `pulumi:"filter"`
+	// -
+	// (Optional)
+	// The number/percent of time series for which
+	// the comparison must hold in order for the
+	// condition to trigger. If unspecified, then
+	// the condition will trigger if the comparison
+	// is true for any of the time series that have
+	// been identified by filter and aggregations,
+	// or by the ratio, if denominatorFilter and
+	// denominatorAggregations are specified.  Structure is documented below.
+	Trigger *AlertPolicyConditionConditionAbsentTrigger `pulumi:"trigger"`
 }
 
 // AlertPolicyConditionConditionAbsentInput is an input type that accepts AlertPolicyConditionConditionAbsentArgs and AlertPolicyConditionConditionAbsentOutput values.
@@ -144,10 +266,66 @@ type AlertPolicyConditionConditionAbsentInput interface {
 }
 
 type AlertPolicyConditionConditionAbsentArgs struct {
+	// -
+	// (Optional)
+	// Specifies the alignment of data points in
+	// individual time series as well as how to
+	// combine the retrieved time series together
+	// (such as when aggregating multiple streams
+	// on each resource to a single stream for each
+	// resource or when aggregating streams across
+	// all members of a group of resources).
+	// Multiple aggregations are applied in the
+	// order specified.This field is similar to the
+	// one in the MetricService.ListTimeSeries
+	// request. It is advisable to use the
+	// ListTimeSeries method when debugging this
+	// field.  Structure is documented below.
 	Aggregations AlertPolicyConditionConditionAbsentAggregationArrayInput `pulumi:"aggregations"`
-	Duration     pulumi.StringInput                                       `pulumi:"duration"`
-	Filter       pulumi.StringPtrInput                                    `pulumi:"filter"`
-	Trigger      AlertPolicyConditionConditionAbsentTriggerPtrInput       `pulumi:"trigger"`
+	// -
+	// (Required)
+	// The amount of time that a time series must
+	// violate the threshold to be considered
+	// failing. Currently, only values that are a
+	// multiple of a minute--e.g., 0, 60, 120, or
+	// 300 seconds--are supported. If an invalid
+	// value is given, an error will be returned.
+	// When choosing a duration, it is useful to
+	// keep in mind the frequency of the underlying
+	// time series data (which may also be affected
+	// by any alignments specified in the
+	// aggregations field); a good duration is long
+	// enough so that a single outlier does not
+	// generate spurious alerts, but short enough
+	// that unhealthy states are detected and
+	// alerted on quickly.
+	Duration pulumi.StringInput `pulumi:"duration"`
+	// -
+	// (Optional)
+	// A filter that identifies which time series
+	// should be compared with the threshold.The
+	// filter is similar to the one that is
+	// specified in the
+	// MetricService.ListTimeSeries request (that
+	// call is useful to verify the time series
+	// that will be retrieved / processed) and must
+	// specify the metric type and optionally may
+	// contain restrictions on resource type,
+	// resource labels, and metric labels. This
+	// field may not exceed 2048 Unicode characters
+	// in length.
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// -
+	// (Optional)
+	// The number/percent of time series for which
+	// the comparison must hold in order for the
+	// condition to trigger. If unspecified, then
+	// the condition will trigger if the comparison
+	// is true for any of the time series that have
+	// been identified by filter and aggregations,
+	// or by the ratio, if denominatorFilter and
+	// denominatorAggregations are specified.  Structure is documented below.
+	Trigger AlertPolicyConditionConditionAbsentTriggerPtrInput `pulumi:"trigger"`
 }
 
 func (AlertPolicyConditionConditionAbsentArgs) ElementType() reflect.Type {
@@ -227,20 +405,77 @@ func (o AlertPolicyConditionConditionAbsentOutput) ToAlertPolicyConditionConditi
 		return &v
 	}).(AlertPolicyConditionConditionAbsentPtrOutput)
 }
+
+// -
+// (Optional)
+// Specifies the alignment of data points in
+// individual time series as well as how to
+// combine the retrieved time series together
+// (such as when aggregating multiple streams
+// on each resource to a single stream for each
+// resource or when aggregating streams across
+// all members of a group of resources).
+// Multiple aggregations are applied in the
+// order specified.This field is similar to the
+// one in the MetricService.ListTimeSeries
+// request. It is advisable to use the
+// ListTimeSeries method when debugging this
+// field.  Structure is documented below.
 func (o AlertPolicyConditionConditionAbsentOutput) Aggregations() AlertPolicyConditionConditionAbsentAggregationArrayOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsent) []AlertPolicyConditionConditionAbsentAggregation {
 		return v.Aggregations
 	}).(AlertPolicyConditionConditionAbsentAggregationArrayOutput)
 }
 
+// -
+// (Required)
+// The amount of time that a time series must
+// violate the threshold to be considered
+// failing. Currently, only values that are a
+// multiple of a minute--e.g., 0, 60, 120, or
+// 300 seconds--are supported. If an invalid
+// value is given, an error will be returned.
+// When choosing a duration, it is useful to
+// keep in mind the frequency of the underlying
+// time series data (which may also be affected
+// by any alignments specified in the
+// aggregations field); a good duration is long
+// enough so that a single outlier does not
+// generate spurious alerts, but short enough
+// that unhealthy states are detected and
+// alerted on quickly.
 func (o AlertPolicyConditionConditionAbsentOutput) Duration() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsent) string { return v.Duration }).(pulumi.StringOutput)
 }
 
+// -
+// (Optional)
+// A filter that identifies which time series
+// should be compared with the threshold.The
+// filter is similar to the one that is
+// specified in the
+// MetricService.ListTimeSeries request (that
+// call is useful to verify the time series
+// that will be retrieved / processed) and must
+// specify the metric type and optionally may
+// contain restrictions on resource type,
+// resource labels, and metric labels. This
+// field may not exceed 2048 Unicode characters
+// in length.
 func (o AlertPolicyConditionConditionAbsentOutput) Filter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsent) *string { return v.Filter }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The number/percent of time series for which
+// the comparison must hold in order for the
+// condition to trigger. If unspecified, then
+// the condition will trigger if the comparison
+// is true for any of the time series that have
+// been identified by filter and aggregations,
+// or by the ratio, if denominatorFilter and
+// denominatorAggregations are specified.  Structure is documented below.
 func (o AlertPolicyConditionConditionAbsentOutput) Trigger() AlertPolicyConditionConditionAbsentTriggerPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsent) *AlertPolicyConditionConditionAbsentTrigger {
 		return v.Trigger
@@ -265,20 +500,76 @@ func (o AlertPolicyConditionConditionAbsentPtrOutput) Elem() AlertPolicyConditio
 	return o.ApplyT(func(v *AlertPolicyConditionConditionAbsent) AlertPolicyConditionConditionAbsent { return *v }).(AlertPolicyConditionConditionAbsentOutput)
 }
 
+// -
+// (Optional)
+// Specifies the alignment of data points in
+// individual time series as well as how to
+// combine the retrieved time series together
+// (such as when aggregating multiple streams
+// on each resource to a single stream for each
+// resource or when aggregating streams across
+// all members of a group of resources).
+// Multiple aggregations are applied in the
+// order specified.This field is similar to the
+// one in the MetricService.ListTimeSeries
+// request. It is advisable to use the
+// ListTimeSeries method when debugging this
+// field.  Structure is documented below.
 func (o AlertPolicyConditionConditionAbsentPtrOutput) Aggregations() AlertPolicyConditionConditionAbsentAggregationArrayOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsent) []AlertPolicyConditionConditionAbsentAggregation {
 		return v.Aggregations
 	}).(AlertPolicyConditionConditionAbsentAggregationArrayOutput)
 }
 
+// -
+// (Required)
+// The amount of time that a time series must
+// violate the threshold to be considered
+// failing. Currently, only values that are a
+// multiple of a minute--e.g., 0, 60, 120, or
+// 300 seconds--are supported. If an invalid
+// value is given, an error will be returned.
+// When choosing a duration, it is useful to
+// keep in mind the frequency of the underlying
+// time series data (which may also be affected
+// by any alignments specified in the
+// aggregations field); a good duration is long
+// enough so that a single outlier does not
+// generate spurious alerts, but short enough
+// that unhealthy states are detected and
+// alerted on quickly.
 func (o AlertPolicyConditionConditionAbsentPtrOutput) Duration() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsent) string { return v.Duration }).(pulumi.StringOutput)
 }
 
+// -
+// (Optional)
+// A filter that identifies which time series
+// should be compared with the threshold.The
+// filter is similar to the one that is
+// specified in the
+// MetricService.ListTimeSeries request (that
+// call is useful to verify the time series
+// that will be retrieved / processed) and must
+// specify the metric type and optionally may
+// contain restrictions on resource type,
+// resource labels, and metric labels. This
+// field may not exceed 2048 Unicode characters
+// in length.
 func (o AlertPolicyConditionConditionAbsentPtrOutput) Filter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsent) *string { return v.Filter }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The number/percent of time series for which
+// the comparison must hold in order for the
+// condition to trigger. If unspecified, then
+// the condition will trigger if the comparison
+// is true for any of the time series that have
+// been identified by filter and aggregations,
+// or by the ratio, if denominatorFilter and
+// denominatorAggregations are specified.  Structure is documented below.
 func (o AlertPolicyConditionConditionAbsentPtrOutput) Trigger() AlertPolicyConditionConditionAbsentTriggerPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsent) *AlertPolicyConditionConditionAbsentTrigger {
 		return v.Trigger
@@ -286,10 +577,91 @@ func (o AlertPolicyConditionConditionAbsentPtrOutput) Trigger() AlertPolicyCondi
 }
 
 type AlertPolicyConditionConditionAbsentAggregation struct {
-	AlignmentPeriod    *string  `pulumi:"alignmentPeriod"`
-	CrossSeriesReducer *string  `pulumi:"crossSeriesReducer"`
-	GroupByFields      []string `pulumi:"groupByFields"`
-	PerSeriesAligner   *string  `pulumi:"perSeriesAligner"`
+	// -
+	// (Optional)
+	// The alignment period for per-time
+	// series alignment. If present,
+	// alignmentPeriod must be at least
+	// 60 seconds. After per-time series
+	// alignment, each time series will
+	// contain data points only on the
+	// period boundaries. If
+	// perSeriesAligner is not specified
+	// or equals ALIGN_NONE, then this
+	// field is ignored. If
+	// perSeriesAligner is specified and
+	// does not equal ALIGN_NONE, then
+	// this field must be defined;
+	// otherwise an error is returned.
+	AlignmentPeriod *string `pulumi:"alignmentPeriod"`
+	// -
+	// (Optional)
+	// The approach to be used to combine
+	// time series. Not all reducer
+	// functions may be applied to all
+	// time series, depending on the
+	// metric type and the value type of
+	// the original time series.
+	// Reduction may change the metric
+	// type of value type of the time
+	// series.Time series data must be
+	// aligned in order to perform cross-
+	// time series reduction. If
+	// crossSeriesReducer is specified,
+	// then perSeriesAligner must be
+	// specified and not equal ALIGN_NONE
+	// and alignmentPeriod must be
+	// specified; otherwise, an error is
+	// returned.
+	CrossSeriesReducer *string `pulumi:"crossSeriesReducer"`
+	// -
+	// (Optional)
+	// The set of fields to preserve when
+	// crossSeriesReducer is specified.
+	// The groupByFields determine how
+	// the time series are partitioned
+	// into subsets prior to applying the
+	// aggregation function. Each subset
+	// contains time series that have the
+	// same value for each of the
+	// grouping fields. Each individual
+	// time series is a member of exactly
+	// one subset. The crossSeriesReducer
+	// is applied to each subset of time
+	// series. It is not possible to
+	// reduce across different resource
+	// types, so this field implicitly
+	// contains resource.type. Fields not
+	// specified in groupByFields are
+	// aggregated away. If groupByFields
+	// is not specified and all the time
+	// series have the same resource
+	// type, then the time series are
+	// aggregated into a single output
+	// time series. If crossSeriesReducer
+	// is not defined, this field is
+	// ignored.
+	GroupByFields []string `pulumi:"groupByFields"`
+	// -
+	// (Optional)
+	// The approach to be used to align
+	// individual time series. Not all
+	// alignment functions may be applied
+	// to all time series, depending on
+	// the metric type and value type of
+	// the original time series.
+	// Alignment may change the metric
+	// type or the value type of the time
+	// series.Time series data must be
+	// aligned in order to perform cross-
+	// time series reduction. If
+	// crossSeriesReducer is specified,
+	// then perSeriesAligner must be
+	// specified and not equal ALIGN_NONE
+	// and alignmentPeriod must be
+	// specified; otherwise, an error is
+	// returned.
+	PerSeriesAligner *string `pulumi:"perSeriesAligner"`
 }
 
 // AlertPolicyConditionConditionAbsentAggregationInput is an input type that accepts AlertPolicyConditionConditionAbsentAggregationArgs and AlertPolicyConditionConditionAbsentAggregationOutput values.
@@ -305,10 +677,91 @@ type AlertPolicyConditionConditionAbsentAggregationInput interface {
 }
 
 type AlertPolicyConditionConditionAbsentAggregationArgs struct {
-	AlignmentPeriod    pulumi.StringPtrInput   `pulumi:"alignmentPeriod"`
-	CrossSeriesReducer pulumi.StringPtrInput   `pulumi:"crossSeriesReducer"`
-	GroupByFields      pulumi.StringArrayInput `pulumi:"groupByFields"`
-	PerSeriesAligner   pulumi.StringPtrInput   `pulumi:"perSeriesAligner"`
+	// -
+	// (Optional)
+	// The alignment period for per-time
+	// series alignment. If present,
+	// alignmentPeriod must be at least
+	// 60 seconds. After per-time series
+	// alignment, each time series will
+	// contain data points only on the
+	// period boundaries. If
+	// perSeriesAligner is not specified
+	// or equals ALIGN_NONE, then this
+	// field is ignored. If
+	// perSeriesAligner is specified and
+	// does not equal ALIGN_NONE, then
+	// this field must be defined;
+	// otherwise an error is returned.
+	AlignmentPeriod pulumi.StringPtrInput `pulumi:"alignmentPeriod"`
+	// -
+	// (Optional)
+	// The approach to be used to combine
+	// time series. Not all reducer
+	// functions may be applied to all
+	// time series, depending on the
+	// metric type and the value type of
+	// the original time series.
+	// Reduction may change the metric
+	// type of value type of the time
+	// series.Time series data must be
+	// aligned in order to perform cross-
+	// time series reduction. If
+	// crossSeriesReducer is specified,
+	// then perSeriesAligner must be
+	// specified and not equal ALIGN_NONE
+	// and alignmentPeriod must be
+	// specified; otherwise, an error is
+	// returned.
+	CrossSeriesReducer pulumi.StringPtrInput `pulumi:"crossSeriesReducer"`
+	// -
+	// (Optional)
+	// The set of fields to preserve when
+	// crossSeriesReducer is specified.
+	// The groupByFields determine how
+	// the time series are partitioned
+	// into subsets prior to applying the
+	// aggregation function. Each subset
+	// contains time series that have the
+	// same value for each of the
+	// grouping fields. Each individual
+	// time series is a member of exactly
+	// one subset. The crossSeriesReducer
+	// is applied to each subset of time
+	// series. It is not possible to
+	// reduce across different resource
+	// types, so this field implicitly
+	// contains resource.type. Fields not
+	// specified in groupByFields are
+	// aggregated away. If groupByFields
+	// is not specified and all the time
+	// series have the same resource
+	// type, then the time series are
+	// aggregated into a single output
+	// time series. If crossSeriesReducer
+	// is not defined, this field is
+	// ignored.
+	GroupByFields pulumi.StringArrayInput `pulumi:"groupByFields"`
+	// -
+	// (Optional)
+	// The approach to be used to align
+	// individual time series. Not all
+	// alignment functions may be applied
+	// to all time series, depending on
+	// the metric type and value type of
+	// the original time series.
+	// Alignment may change the metric
+	// type or the value type of the time
+	// series.Time series data must be
+	// aligned in order to perform cross-
+	// time series reduction. If
+	// crossSeriesReducer is specified,
+	// then perSeriesAligner must be
+	// specified and not equal ALIGN_NONE
+	// and alignmentPeriod must be
+	// specified; otherwise, an error is
+	// returned.
+	PerSeriesAligner pulumi.StringPtrInput `pulumi:"perSeriesAligner"`
 }
 
 func (AlertPolicyConditionConditionAbsentAggregationArgs) ElementType() reflect.Type {
@@ -363,18 +816,99 @@ func (o AlertPolicyConditionConditionAbsentAggregationOutput) ToAlertPolicyCondi
 	return o
 }
 
+// -
+// (Optional)
+// The alignment period for per-time
+// series alignment. If present,
+// alignmentPeriod must be at least
+// 60 seconds. After per-time series
+// alignment, each time series will
+// contain data points only on the
+// period boundaries. If
+// perSeriesAligner is not specified
+// or equals ALIGN_NONE, then this
+// field is ignored. If
+// perSeriesAligner is specified and
+// does not equal ALIGN_NONE, then
+// this field must be defined;
+// otherwise an error is returned.
 func (o AlertPolicyConditionConditionAbsentAggregationOutput) AlignmentPeriod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsentAggregation) *string { return v.AlignmentPeriod }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The approach to be used to combine
+// time series. Not all reducer
+// functions may be applied to all
+// time series, depending on the
+// metric type and the value type of
+// the original time series.
+// Reduction may change the metric
+// type of value type of the time
+// series.Time series data must be
+// aligned in order to perform cross-
+// time series reduction. If
+// crossSeriesReducer is specified,
+// then perSeriesAligner must be
+// specified and not equal ALIGN_NONE
+// and alignmentPeriod must be
+// specified; otherwise, an error is
+// returned.
 func (o AlertPolicyConditionConditionAbsentAggregationOutput) CrossSeriesReducer() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsentAggregation) *string { return v.CrossSeriesReducer }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The set of fields to preserve when
+// crossSeriesReducer is specified.
+// The groupByFields determine how
+// the time series are partitioned
+// into subsets prior to applying the
+// aggregation function. Each subset
+// contains time series that have the
+// same value for each of the
+// grouping fields. Each individual
+// time series is a member of exactly
+// one subset. The crossSeriesReducer
+// is applied to each subset of time
+// series. It is not possible to
+// reduce across different resource
+// types, so this field implicitly
+// contains resource.type. Fields not
+// specified in groupByFields are
+// aggregated away. If groupByFields
+// is not specified and all the time
+// series have the same resource
+// type, then the time series are
+// aggregated into a single output
+// time series. If crossSeriesReducer
+// is not defined, this field is
+// ignored.
 func (o AlertPolicyConditionConditionAbsentAggregationOutput) GroupByFields() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsentAggregation) []string { return v.GroupByFields }).(pulumi.StringArrayOutput)
 }
 
+// -
+// (Optional)
+// The approach to be used to align
+// individual time series. Not all
+// alignment functions may be applied
+// to all time series, depending on
+// the metric type and value type of
+// the original time series.
+// Alignment may change the metric
+// type or the value type of the time
+// series.Time series data must be
+// aligned in order to perform cross-
+// time series reduction. If
+// crossSeriesReducer is specified,
+// then perSeriesAligner must be
+// specified and not equal ALIGN_NONE
+// and alignmentPeriod must be
+// specified; otherwise, an error is
+// returned.
 func (o AlertPolicyConditionConditionAbsentAggregationOutput) PerSeriesAligner() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsentAggregation) *string { return v.PerSeriesAligner }).(pulumi.StringPtrOutput)
 }
@@ -400,7 +934,17 @@ func (o AlertPolicyConditionConditionAbsentAggregationArrayOutput) Index(i pulum
 }
 
 type AlertPolicyConditionConditionAbsentTrigger struct {
-	Count   *int     `pulumi:"count"`
+	// -
+	// (Optional)
+	// The absolute number of time series
+	// that must fail the predicate for the
+	// condition to be triggered.
+	Count *int `pulumi:"count"`
+	// -
+	// (Optional)
+	// The percentage of time series that
+	// must fail the predicate for the
+	// condition to be triggered.
 	Percent *float64 `pulumi:"percent"`
 }
 
@@ -417,7 +961,17 @@ type AlertPolicyConditionConditionAbsentTriggerInput interface {
 }
 
 type AlertPolicyConditionConditionAbsentTriggerArgs struct {
-	Count   pulumi.IntPtrInput     `pulumi:"count"`
+	// -
+	// (Optional)
+	// The absolute number of time series
+	// that must fail the predicate for the
+	// condition to be triggered.
+	Count pulumi.IntPtrInput `pulumi:"count"`
+	// -
+	// (Optional)
+	// The percentage of time series that
+	// must fail the predicate for the
+	// condition to be triggered.
 	Percent pulumi.Float64PtrInput `pulumi:"percent"`
 }
 
@@ -498,10 +1052,21 @@ func (o AlertPolicyConditionConditionAbsentTriggerOutput) ToAlertPolicyCondition
 		return &v
 	}).(AlertPolicyConditionConditionAbsentTriggerPtrOutput)
 }
+
+// -
+// (Optional)
+// The absolute number of time series
+// that must fail the predicate for the
+// condition to be triggered.
 func (o AlertPolicyConditionConditionAbsentTriggerOutput) Count() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsentTrigger) *int { return v.Count }).(pulumi.IntPtrOutput)
 }
 
+// -
+// (Optional)
+// The percentage of time series that
+// must fail the predicate for the
+// condition to be triggered.
 func (o AlertPolicyConditionConditionAbsentTriggerOutput) Percent() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsentTrigger) *float64 { return v.Percent }).(pulumi.Float64PtrOutput)
 }
@@ -526,23 +1091,138 @@ func (o AlertPolicyConditionConditionAbsentTriggerPtrOutput) Elem() AlertPolicyC
 	}).(AlertPolicyConditionConditionAbsentTriggerOutput)
 }
 
+// -
+// (Optional)
+// The absolute number of time series
+// that must fail the predicate for the
+// condition to be triggered.
 func (o AlertPolicyConditionConditionAbsentTriggerPtrOutput) Count() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsentTrigger) *int { return v.Count }).(pulumi.IntPtrOutput)
 }
 
+// -
+// (Optional)
+// The percentage of time series that
+// must fail the predicate for the
+// condition to be triggered.
 func (o AlertPolicyConditionConditionAbsentTriggerPtrOutput) Percent() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionAbsentTrigger) *float64 { return v.Percent }).(pulumi.Float64PtrOutput)
 }
 
 type AlertPolicyConditionConditionThreshold struct {
-	Aggregations            []AlertPolicyConditionConditionThresholdAggregation            `pulumi:"aggregations"`
-	Comparison              string                                                         `pulumi:"comparison"`
+	// -
+	// (Optional)
+	// Specifies the alignment of data points in
+	// individual time series as well as how to
+	// combine the retrieved time series together
+	// (such as when aggregating multiple streams
+	// on each resource to a single stream for each
+	// resource or when aggregating streams across
+	// all members of a group of resources).
+	// Multiple aggregations are applied in the
+	// order specified.This field is similar to the
+	// one in the MetricService.ListTimeSeries
+	// request. It is advisable to use the
+	// ListTimeSeries method when debugging this
+	// field.  Structure is documented below.
+	Aggregations []AlertPolicyConditionConditionThresholdAggregation `pulumi:"aggregations"`
+	// -
+	// (Required)
+	// The comparison to apply between the time
+	// series (indicated by filter and aggregation)
+	// and the threshold (indicated by
+	// threshold_value). The comparison is applied
+	// on each time series, with the time series on
+	// the left-hand side and the threshold on the
+	// right-hand side. Only COMPARISON_LT and
+	// COMPARISON_GT are supported currently.
+	Comparison string `pulumi:"comparison"`
+	// -
+	// (Optional)
+	// Specifies the alignment of data points in
+	// individual time series selected by
+	// denominatorFilter as well as how to combine
+	// the retrieved time series together (such as
+	// when aggregating multiple streams on each
+	// resource to a single stream for each
+	// resource or when aggregating streams across
+	// all members of a group of resources).When
+	// computing ratios, the aggregations and
+	// denominatorAggregations fields must use the
+	// same alignment period and produce time
+	// series that have the same periodicity and
+	// labels.This field is similar to the one in
+	// the MetricService.ListTimeSeries request. It
+	// is advisable to use the ListTimeSeries
+	// method when debugging this field.  Structure is documented below.
 	DenominatorAggregations []AlertPolicyConditionConditionThresholdDenominatorAggregation `pulumi:"denominatorAggregations"`
-	DenominatorFilter       *string                                                        `pulumi:"denominatorFilter"`
-	Duration                string                                                         `pulumi:"duration"`
-	Filter                  *string                                                        `pulumi:"filter"`
-	ThresholdValue          *float64                                                       `pulumi:"thresholdValue"`
-	Trigger                 *AlertPolicyConditionConditionThresholdTrigger                 `pulumi:"trigger"`
+	// -
+	// (Optional)
+	// A filter that identifies a time series that
+	// should be used as the denominator of a ratio
+	// that will be compared with the threshold. If
+	// a denominatorFilter is specified, the time
+	// series specified by the filter field will be
+	// used as the numerator.The filter is similar
+	// to the one that is specified in the
+	// MetricService.ListTimeSeries request (that
+	// call is useful to verify the time series
+	// that will be retrieved / processed) and must
+	// specify the metric type and optionally may
+	// contain restrictions on resource type,
+	// resource labels, and metric labels. This
+	// field may not exceed 2048 Unicode characters
+	// in length.
+	DenominatorFilter *string `pulumi:"denominatorFilter"`
+	// -
+	// (Required)
+	// The amount of time that a time series must
+	// violate the threshold to be considered
+	// failing. Currently, only values that are a
+	// multiple of a minute--e.g., 0, 60, 120, or
+	// 300 seconds--are supported. If an invalid
+	// value is given, an error will be returned.
+	// When choosing a duration, it is useful to
+	// keep in mind the frequency of the underlying
+	// time series data (which may also be affected
+	// by any alignments specified in the
+	// aggregations field); a good duration is long
+	// enough so that a single outlier does not
+	// generate spurious alerts, but short enough
+	// that unhealthy states are detected and
+	// alerted on quickly.
+	Duration string `pulumi:"duration"`
+	// -
+	// (Optional)
+	// A filter that identifies which time series
+	// should be compared with the threshold.The
+	// filter is similar to the one that is
+	// specified in the
+	// MetricService.ListTimeSeries request (that
+	// call is useful to verify the time series
+	// that will be retrieved / processed) and must
+	// specify the metric type and optionally may
+	// contain restrictions on resource type,
+	// resource labels, and metric labels. This
+	// field may not exceed 2048 Unicode characters
+	// in length.
+	Filter *string `pulumi:"filter"`
+	// -
+	// (Optional)
+	// A value against which to compare the time
+	// series.
+	ThresholdValue *float64 `pulumi:"thresholdValue"`
+	// -
+	// (Optional)
+	// The number/percent of time series for which
+	// the comparison must hold in order for the
+	// condition to trigger. If unspecified, then
+	// the condition will trigger if the comparison
+	// is true for any of the time series that have
+	// been identified by filter and aggregations,
+	// or by the ratio, if denominatorFilter and
+	// denominatorAggregations are specified.  Structure is documented below.
+	Trigger *AlertPolicyConditionConditionThresholdTrigger `pulumi:"trigger"`
 }
 
 // AlertPolicyConditionConditionThresholdInput is an input type that accepts AlertPolicyConditionConditionThresholdArgs and AlertPolicyConditionConditionThresholdOutput values.
@@ -558,14 +1238,119 @@ type AlertPolicyConditionConditionThresholdInput interface {
 }
 
 type AlertPolicyConditionConditionThresholdArgs struct {
-	Aggregations            AlertPolicyConditionConditionThresholdAggregationArrayInput            `pulumi:"aggregations"`
-	Comparison              pulumi.StringInput                                                     `pulumi:"comparison"`
+	// -
+	// (Optional)
+	// Specifies the alignment of data points in
+	// individual time series as well as how to
+	// combine the retrieved time series together
+	// (such as when aggregating multiple streams
+	// on each resource to a single stream for each
+	// resource or when aggregating streams across
+	// all members of a group of resources).
+	// Multiple aggregations are applied in the
+	// order specified.This field is similar to the
+	// one in the MetricService.ListTimeSeries
+	// request. It is advisable to use the
+	// ListTimeSeries method when debugging this
+	// field.  Structure is documented below.
+	Aggregations AlertPolicyConditionConditionThresholdAggregationArrayInput `pulumi:"aggregations"`
+	// -
+	// (Required)
+	// The comparison to apply between the time
+	// series (indicated by filter and aggregation)
+	// and the threshold (indicated by
+	// threshold_value). The comparison is applied
+	// on each time series, with the time series on
+	// the left-hand side and the threshold on the
+	// right-hand side. Only COMPARISON_LT and
+	// COMPARISON_GT are supported currently.
+	Comparison pulumi.StringInput `pulumi:"comparison"`
+	// -
+	// (Optional)
+	// Specifies the alignment of data points in
+	// individual time series selected by
+	// denominatorFilter as well as how to combine
+	// the retrieved time series together (such as
+	// when aggregating multiple streams on each
+	// resource to a single stream for each
+	// resource or when aggregating streams across
+	// all members of a group of resources).When
+	// computing ratios, the aggregations and
+	// denominatorAggregations fields must use the
+	// same alignment period and produce time
+	// series that have the same periodicity and
+	// labels.This field is similar to the one in
+	// the MetricService.ListTimeSeries request. It
+	// is advisable to use the ListTimeSeries
+	// method when debugging this field.  Structure is documented below.
 	DenominatorAggregations AlertPolicyConditionConditionThresholdDenominatorAggregationArrayInput `pulumi:"denominatorAggregations"`
-	DenominatorFilter       pulumi.StringPtrInput                                                  `pulumi:"denominatorFilter"`
-	Duration                pulumi.StringInput                                                     `pulumi:"duration"`
-	Filter                  pulumi.StringPtrInput                                                  `pulumi:"filter"`
-	ThresholdValue          pulumi.Float64PtrInput                                                 `pulumi:"thresholdValue"`
-	Trigger                 AlertPolicyConditionConditionThresholdTriggerPtrInput                  `pulumi:"trigger"`
+	// -
+	// (Optional)
+	// A filter that identifies a time series that
+	// should be used as the denominator of a ratio
+	// that will be compared with the threshold. If
+	// a denominatorFilter is specified, the time
+	// series specified by the filter field will be
+	// used as the numerator.The filter is similar
+	// to the one that is specified in the
+	// MetricService.ListTimeSeries request (that
+	// call is useful to verify the time series
+	// that will be retrieved / processed) and must
+	// specify the metric type and optionally may
+	// contain restrictions on resource type,
+	// resource labels, and metric labels. This
+	// field may not exceed 2048 Unicode characters
+	// in length.
+	DenominatorFilter pulumi.StringPtrInput `pulumi:"denominatorFilter"`
+	// -
+	// (Required)
+	// The amount of time that a time series must
+	// violate the threshold to be considered
+	// failing. Currently, only values that are a
+	// multiple of a minute--e.g., 0, 60, 120, or
+	// 300 seconds--are supported. If an invalid
+	// value is given, an error will be returned.
+	// When choosing a duration, it is useful to
+	// keep in mind the frequency of the underlying
+	// time series data (which may also be affected
+	// by any alignments specified in the
+	// aggregations field); a good duration is long
+	// enough so that a single outlier does not
+	// generate spurious alerts, but short enough
+	// that unhealthy states are detected and
+	// alerted on quickly.
+	Duration pulumi.StringInput `pulumi:"duration"`
+	// -
+	// (Optional)
+	// A filter that identifies which time series
+	// should be compared with the threshold.The
+	// filter is similar to the one that is
+	// specified in the
+	// MetricService.ListTimeSeries request (that
+	// call is useful to verify the time series
+	// that will be retrieved / processed) and must
+	// specify the metric type and optionally may
+	// contain restrictions on resource type,
+	// resource labels, and metric labels. This
+	// field may not exceed 2048 Unicode characters
+	// in length.
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// -
+	// (Optional)
+	// A value against which to compare the time
+	// series.
+	ThresholdValue pulumi.Float64PtrInput `pulumi:"thresholdValue"`
+	// -
+	// (Optional)
+	// The number/percent of time series for which
+	// the comparison must hold in order for the
+	// condition to trigger. If unspecified, then
+	// the condition will trigger if the comparison
+	// is true for any of the time series that have
+	// been identified by filter and aggregations,
+	// or by the ratio, if denominatorFilter and
+	// denominatorAggregations are specified.  Structure is documented below.
+	Trigger AlertPolicyConditionConditionThresholdTriggerPtrInput `pulumi:"trigger"`
 }
 
 func (AlertPolicyConditionConditionThresholdArgs) ElementType() reflect.Type {
@@ -645,38 +1430,144 @@ func (o AlertPolicyConditionConditionThresholdOutput) ToAlertPolicyConditionCond
 		return &v
 	}).(AlertPolicyConditionConditionThresholdPtrOutput)
 }
+
+// -
+// (Optional)
+// Specifies the alignment of data points in
+// individual time series as well as how to
+// combine the retrieved time series together
+// (such as when aggregating multiple streams
+// on each resource to a single stream for each
+// resource or when aggregating streams across
+// all members of a group of resources).
+// Multiple aggregations are applied in the
+// order specified.This field is similar to the
+// one in the MetricService.ListTimeSeries
+// request. It is advisable to use the
+// ListTimeSeries method when debugging this
+// field.  Structure is documented below.
 func (o AlertPolicyConditionConditionThresholdOutput) Aggregations() AlertPolicyConditionConditionThresholdAggregationArrayOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) []AlertPolicyConditionConditionThresholdAggregation {
 		return v.Aggregations
 	}).(AlertPolicyConditionConditionThresholdAggregationArrayOutput)
 }
 
+// -
+// (Required)
+// The comparison to apply between the time
+// series (indicated by filter and aggregation)
+// and the threshold (indicated by
+// threshold_value). The comparison is applied
+// on each time series, with the time series on
+// the left-hand side and the threshold on the
+// right-hand side. Only COMPARISON_LT and
+// COMPARISON_GT are supported currently.
 func (o AlertPolicyConditionConditionThresholdOutput) Comparison() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) string { return v.Comparison }).(pulumi.StringOutput)
 }
 
+// -
+// (Optional)
+// Specifies the alignment of data points in
+// individual time series selected by
+// denominatorFilter as well as how to combine
+// the retrieved time series together (such as
+// when aggregating multiple streams on each
+// resource to a single stream for each
+// resource or when aggregating streams across
+// all members of a group of resources).When
+// computing ratios, the aggregations and
+// denominatorAggregations fields must use the
+// same alignment period and produce time
+// series that have the same periodicity and
+// labels.This field is similar to the one in
+// the MetricService.ListTimeSeries request. It
+// is advisable to use the ListTimeSeries
+// method when debugging this field.  Structure is documented below.
 func (o AlertPolicyConditionConditionThresholdOutput) DenominatorAggregations() AlertPolicyConditionConditionThresholdDenominatorAggregationArrayOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) []AlertPolicyConditionConditionThresholdDenominatorAggregation {
 		return v.DenominatorAggregations
 	}).(AlertPolicyConditionConditionThresholdDenominatorAggregationArrayOutput)
 }
 
+// -
+// (Optional)
+// A filter that identifies a time series that
+// should be used as the denominator of a ratio
+// that will be compared with the threshold. If
+// a denominatorFilter is specified, the time
+// series specified by the filter field will be
+// used as the numerator.The filter is similar
+// to the one that is specified in the
+// MetricService.ListTimeSeries request (that
+// call is useful to verify the time series
+// that will be retrieved / processed) and must
+// specify the metric type and optionally may
+// contain restrictions on resource type,
+// resource labels, and metric labels. This
+// field may not exceed 2048 Unicode characters
+// in length.
 func (o AlertPolicyConditionConditionThresholdOutput) DenominatorFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) *string { return v.DenominatorFilter }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Required)
+// The amount of time that a time series must
+// violate the threshold to be considered
+// failing. Currently, only values that are a
+// multiple of a minute--e.g., 0, 60, 120, or
+// 300 seconds--are supported. If an invalid
+// value is given, an error will be returned.
+// When choosing a duration, it is useful to
+// keep in mind the frequency of the underlying
+// time series data (which may also be affected
+// by any alignments specified in the
+// aggregations field); a good duration is long
+// enough so that a single outlier does not
+// generate spurious alerts, but short enough
+// that unhealthy states are detected and
+// alerted on quickly.
 func (o AlertPolicyConditionConditionThresholdOutput) Duration() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) string { return v.Duration }).(pulumi.StringOutput)
 }
 
+// -
+// (Optional)
+// A filter that identifies which time series
+// should be compared with the threshold.The
+// filter is similar to the one that is
+// specified in the
+// MetricService.ListTimeSeries request (that
+// call is useful to verify the time series
+// that will be retrieved / processed) and must
+// specify the metric type and optionally may
+// contain restrictions on resource type,
+// resource labels, and metric labels. This
+// field may not exceed 2048 Unicode characters
+// in length.
 func (o AlertPolicyConditionConditionThresholdOutput) Filter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) *string { return v.Filter }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// A value against which to compare the time
+// series.
 func (o AlertPolicyConditionConditionThresholdOutput) ThresholdValue() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) *float64 { return v.ThresholdValue }).(pulumi.Float64PtrOutput)
 }
 
+// -
+// (Optional)
+// The number/percent of time series for which
+// the comparison must hold in order for the
+// condition to trigger. If unspecified, then
+// the condition will trigger if the comparison
+// is true for any of the time series that have
+// been identified by filter and aggregations,
+// or by the ratio, if denominatorFilter and
+// denominatorAggregations are specified.  Structure is documented below.
 func (o AlertPolicyConditionConditionThresholdOutput) Trigger() AlertPolicyConditionConditionThresholdTriggerPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) *AlertPolicyConditionConditionThresholdTrigger {
 		return v.Trigger
@@ -701,38 +1592,143 @@ func (o AlertPolicyConditionConditionThresholdPtrOutput) Elem() AlertPolicyCondi
 	return o.ApplyT(func(v *AlertPolicyConditionConditionThreshold) AlertPolicyConditionConditionThreshold { return *v }).(AlertPolicyConditionConditionThresholdOutput)
 }
 
+// -
+// (Optional)
+// Specifies the alignment of data points in
+// individual time series as well as how to
+// combine the retrieved time series together
+// (such as when aggregating multiple streams
+// on each resource to a single stream for each
+// resource or when aggregating streams across
+// all members of a group of resources).
+// Multiple aggregations are applied in the
+// order specified.This field is similar to the
+// one in the MetricService.ListTimeSeries
+// request. It is advisable to use the
+// ListTimeSeries method when debugging this
+// field.  Structure is documented below.
 func (o AlertPolicyConditionConditionThresholdPtrOutput) Aggregations() AlertPolicyConditionConditionThresholdAggregationArrayOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) []AlertPolicyConditionConditionThresholdAggregation {
 		return v.Aggregations
 	}).(AlertPolicyConditionConditionThresholdAggregationArrayOutput)
 }
 
+// -
+// (Required)
+// The comparison to apply between the time
+// series (indicated by filter and aggregation)
+// and the threshold (indicated by
+// threshold_value). The comparison is applied
+// on each time series, with the time series on
+// the left-hand side and the threshold on the
+// right-hand side. Only COMPARISON_LT and
+// COMPARISON_GT are supported currently.
 func (o AlertPolicyConditionConditionThresholdPtrOutput) Comparison() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) string { return v.Comparison }).(pulumi.StringOutput)
 }
 
+// -
+// (Optional)
+// Specifies the alignment of data points in
+// individual time series selected by
+// denominatorFilter as well as how to combine
+// the retrieved time series together (such as
+// when aggregating multiple streams on each
+// resource to a single stream for each
+// resource or when aggregating streams across
+// all members of a group of resources).When
+// computing ratios, the aggregations and
+// denominatorAggregations fields must use the
+// same alignment period and produce time
+// series that have the same periodicity and
+// labels.This field is similar to the one in
+// the MetricService.ListTimeSeries request. It
+// is advisable to use the ListTimeSeries
+// method when debugging this field.  Structure is documented below.
 func (o AlertPolicyConditionConditionThresholdPtrOutput) DenominatorAggregations() AlertPolicyConditionConditionThresholdDenominatorAggregationArrayOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) []AlertPolicyConditionConditionThresholdDenominatorAggregation {
 		return v.DenominatorAggregations
 	}).(AlertPolicyConditionConditionThresholdDenominatorAggregationArrayOutput)
 }
 
+// -
+// (Optional)
+// A filter that identifies a time series that
+// should be used as the denominator of a ratio
+// that will be compared with the threshold. If
+// a denominatorFilter is specified, the time
+// series specified by the filter field will be
+// used as the numerator.The filter is similar
+// to the one that is specified in the
+// MetricService.ListTimeSeries request (that
+// call is useful to verify the time series
+// that will be retrieved / processed) and must
+// specify the metric type and optionally may
+// contain restrictions on resource type,
+// resource labels, and metric labels. This
+// field may not exceed 2048 Unicode characters
+// in length.
 func (o AlertPolicyConditionConditionThresholdPtrOutput) DenominatorFilter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) *string { return v.DenominatorFilter }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Required)
+// The amount of time that a time series must
+// violate the threshold to be considered
+// failing. Currently, only values that are a
+// multiple of a minute--e.g., 0, 60, 120, or
+// 300 seconds--are supported. If an invalid
+// value is given, an error will be returned.
+// When choosing a duration, it is useful to
+// keep in mind the frequency of the underlying
+// time series data (which may also be affected
+// by any alignments specified in the
+// aggregations field); a good duration is long
+// enough so that a single outlier does not
+// generate spurious alerts, but short enough
+// that unhealthy states are detected and
+// alerted on quickly.
 func (o AlertPolicyConditionConditionThresholdPtrOutput) Duration() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) string { return v.Duration }).(pulumi.StringOutput)
 }
 
+// -
+// (Optional)
+// A filter that identifies which time series
+// should be compared with the threshold.The
+// filter is similar to the one that is
+// specified in the
+// MetricService.ListTimeSeries request (that
+// call is useful to verify the time series
+// that will be retrieved / processed) and must
+// specify the metric type and optionally may
+// contain restrictions on resource type,
+// resource labels, and metric labels. This
+// field may not exceed 2048 Unicode characters
+// in length.
 func (o AlertPolicyConditionConditionThresholdPtrOutput) Filter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) *string { return v.Filter }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// A value against which to compare the time
+// series.
 func (o AlertPolicyConditionConditionThresholdPtrOutput) ThresholdValue() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) *float64 { return v.ThresholdValue }).(pulumi.Float64PtrOutput)
 }
 
+// -
+// (Optional)
+// The number/percent of time series for which
+// the comparison must hold in order for the
+// condition to trigger. If unspecified, then
+// the condition will trigger if the comparison
+// is true for any of the time series that have
+// been identified by filter and aggregations,
+// or by the ratio, if denominatorFilter and
+// denominatorAggregations are specified.  Structure is documented below.
 func (o AlertPolicyConditionConditionThresholdPtrOutput) Trigger() AlertPolicyConditionConditionThresholdTriggerPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThreshold) *AlertPolicyConditionConditionThresholdTrigger {
 		return v.Trigger
@@ -740,10 +1736,91 @@ func (o AlertPolicyConditionConditionThresholdPtrOutput) Trigger() AlertPolicyCo
 }
 
 type AlertPolicyConditionConditionThresholdAggregation struct {
-	AlignmentPeriod    *string  `pulumi:"alignmentPeriod"`
-	CrossSeriesReducer *string  `pulumi:"crossSeriesReducer"`
-	GroupByFields      []string `pulumi:"groupByFields"`
-	PerSeriesAligner   *string  `pulumi:"perSeriesAligner"`
+	// -
+	// (Optional)
+	// The alignment period for per-time
+	// series alignment. If present,
+	// alignmentPeriod must be at least
+	// 60 seconds. After per-time series
+	// alignment, each time series will
+	// contain data points only on the
+	// period boundaries. If
+	// perSeriesAligner is not specified
+	// or equals ALIGN_NONE, then this
+	// field is ignored. If
+	// perSeriesAligner is specified and
+	// does not equal ALIGN_NONE, then
+	// this field must be defined;
+	// otherwise an error is returned.
+	AlignmentPeriod *string `pulumi:"alignmentPeriod"`
+	// -
+	// (Optional)
+	// The approach to be used to combine
+	// time series. Not all reducer
+	// functions may be applied to all
+	// time series, depending on the
+	// metric type and the value type of
+	// the original time series.
+	// Reduction may change the metric
+	// type of value type of the time
+	// series.Time series data must be
+	// aligned in order to perform cross-
+	// time series reduction. If
+	// crossSeriesReducer is specified,
+	// then perSeriesAligner must be
+	// specified and not equal ALIGN_NONE
+	// and alignmentPeriod must be
+	// specified; otherwise, an error is
+	// returned.
+	CrossSeriesReducer *string `pulumi:"crossSeriesReducer"`
+	// -
+	// (Optional)
+	// The set of fields to preserve when
+	// crossSeriesReducer is specified.
+	// The groupByFields determine how
+	// the time series are partitioned
+	// into subsets prior to applying the
+	// aggregation function. Each subset
+	// contains time series that have the
+	// same value for each of the
+	// grouping fields. Each individual
+	// time series is a member of exactly
+	// one subset. The crossSeriesReducer
+	// is applied to each subset of time
+	// series. It is not possible to
+	// reduce across different resource
+	// types, so this field implicitly
+	// contains resource.type. Fields not
+	// specified in groupByFields are
+	// aggregated away. If groupByFields
+	// is not specified and all the time
+	// series have the same resource
+	// type, then the time series are
+	// aggregated into a single output
+	// time series. If crossSeriesReducer
+	// is not defined, this field is
+	// ignored.
+	GroupByFields []string `pulumi:"groupByFields"`
+	// -
+	// (Optional)
+	// The approach to be used to align
+	// individual time series. Not all
+	// alignment functions may be applied
+	// to all time series, depending on
+	// the metric type and value type of
+	// the original time series.
+	// Alignment may change the metric
+	// type or the value type of the time
+	// series.Time series data must be
+	// aligned in order to perform cross-
+	// time series reduction. If
+	// crossSeriesReducer is specified,
+	// then perSeriesAligner must be
+	// specified and not equal ALIGN_NONE
+	// and alignmentPeriod must be
+	// specified; otherwise, an error is
+	// returned.
+	PerSeriesAligner *string `pulumi:"perSeriesAligner"`
 }
 
 // AlertPolicyConditionConditionThresholdAggregationInput is an input type that accepts AlertPolicyConditionConditionThresholdAggregationArgs and AlertPolicyConditionConditionThresholdAggregationOutput values.
@@ -759,10 +1836,91 @@ type AlertPolicyConditionConditionThresholdAggregationInput interface {
 }
 
 type AlertPolicyConditionConditionThresholdAggregationArgs struct {
-	AlignmentPeriod    pulumi.StringPtrInput   `pulumi:"alignmentPeriod"`
-	CrossSeriesReducer pulumi.StringPtrInput   `pulumi:"crossSeriesReducer"`
-	GroupByFields      pulumi.StringArrayInput `pulumi:"groupByFields"`
-	PerSeriesAligner   pulumi.StringPtrInput   `pulumi:"perSeriesAligner"`
+	// -
+	// (Optional)
+	// The alignment period for per-time
+	// series alignment. If present,
+	// alignmentPeriod must be at least
+	// 60 seconds. After per-time series
+	// alignment, each time series will
+	// contain data points only on the
+	// period boundaries. If
+	// perSeriesAligner is not specified
+	// or equals ALIGN_NONE, then this
+	// field is ignored. If
+	// perSeriesAligner is specified and
+	// does not equal ALIGN_NONE, then
+	// this field must be defined;
+	// otherwise an error is returned.
+	AlignmentPeriod pulumi.StringPtrInput `pulumi:"alignmentPeriod"`
+	// -
+	// (Optional)
+	// The approach to be used to combine
+	// time series. Not all reducer
+	// functions may be applied to all
+	// time series, depending on the
+	// metric type and the value type of
+	// the original time series.
+	// Reduction may change the metric
+	// type of value type of the time
+	// series.Time series data must be
+	// aligned in order to perform cross-
+	// time series reduction. If
+	// crossSeriesReducer is specified,
+	// then perSeriesAligner must be
+	// specified and not equal ALIGN_NONE
+	// and alignmentPeriod must be
+	// specified; otherwise, an error is
+	// returned.
+	CrossSeriesReducer pulumi.StringPtrInput `pulumi:"crossSeriesReducer"`
+	// -
+	// (Optional)
+	// The set of fields to preserve when
+	// crossSeriesReducer is specified.
+	// The groupByFields determine how
+	// the time series are partitioned
+	// into subsets prior to applying the
+	// aggregation function. Each subset
+	// contains time series that have the
+	// same value for each of the
+	// grouping fields. Each individual
+	// time series is a member of exactly
+	// one subset. The crossSeriesReducer
+	// is applied to each subset of time
+	// series. It is not possible to
+	// reduce across different resource
+	// types, so this field implicitly
+	// contains resource.type. Fields not
+	// specified in groupByFields are
+	// aggregated away. If groupByFields
+	// is not specified and all the time
+	// series have the same resource
+	// type, then the time series are
+	// aggregated into a single output
+	// time series. If crossSeriesReducer
+	// is not defined, this field is
+	// ignored.
+	GroupByFields pulumi.StringArrayInput `pulumi:"groupByFields"`
+	// -
+	// (Optional)
+	// The approach to be used to align
+	// individual time series. Not all
+	// alignment functions may be applied
+	// to all time series, depending on
+	// the metric type and value type of
+	// the original time series.
+	// Alignment may change the metric
+	// type or the value type of the time
+	// series.Time series data must be
+	// aligned in order to perform cross-
+	// time series reduction. If
+	// crossSeriesReducer is specified,
+	// then perSeriesAligner must be
+	// specified and not equal ALIGN_NONE
+	// and alignmentPeriod must be
+	// specified; otherwise, an error is
+	// returned.
+	PerSeriesAligner pulumi.StringPtrInput `pulumi:"perSeriesAligner"`
 }
 
 func (AlertPolicyConditionConditionThresholdAggregationArgs) ElementType() reflect.Type {
@@ -817,18 +1975,99 @@ func (o AlertPolicyConditionConditionThresholdAggregationOutput) ToAlertPolicyCo
 	return o
 }
 
+// -
+// (Optional)
+// The alignment period for per-time
+// series alignment. If present,
+// alignmentPeriod must be at least
+// 60 seconds. After per-time series
+// alignment, each time series will
+// contain data points only on the
+// period boundaries. If
+// perSeriesAligner is not specified
+// or equals ALIGN_NONE, then this
+// field is ignored. If
+// perSeriesAligner is specified and
+// does not equal ALIGN_NONE, then
+// this field must be defined;
+// otherwise an error is returned.
 func (o AlertPolicyConditionConditionThresholdAggregationOutput) AlignmentPeriod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThresholdAggregation) *string { return v.AlignmentPeriod }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The approach to be used to combine
+// time series. Not all reducer
+// functions may be applied to all
+// time series, depending on the
+// metric type and the value type of
+// the original time series.
+// Reduction may change the metric
+// type of value type of the time
+// series.Time series data must be
+// aligned in order to perform cross-
+// time series reduction. If
+// crossSeriesReducer is specified,
+// then perSeriesAligner must be
+// specified and not equal ALIGN_NONE
+// and alignmentPeriod must be
+// specified; otherwise, an error is
+// returned.
 func (o AlertPolicyConditionConditionThresholdAggregationOutput) CrossSeriesReducer() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThresholdAggregation) *string { return v.CrossSeriesReducer }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The set of fields to preserve when
+// crossSeriesReducer is specified.
+// The groupByFields determine how
+// the time series are partitioned
+// into subsets prior to applying the
+// aggregation function. Each subset
+// contains time series that have the
+// same value for each of the
+// grouping fields. Each individual
+// time series is a member of exactly
+// one subset. The crossSeriesReducer
+// is applied to each subset of time
+// series. It is not possible to
+// reduce across different resource
+// types, so this field implicitly
+// contains resource.type. Fields not
+// specified in groupByFields are
+// aggregated away. If groupByFields
+// is not specified and all the time
+// series have the same resource
+// type, then the time series are
+// aggregated into a single output
+// time series. If crossSeriesReducer
+// is not defined, this field is
+// ignored.
 func (o AlertPolicyConditionConditionThresholdAggregationOutput) GroupByFields() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThresholdAggregation) []string { return v.GroupByFields }).(pulumi.StringArrayOutput)
 }
 
+// -
+// (Optional)
+// The approach to be used to align
+// individual time series. Not all
+// alignment functions may be applied
+// to all time series, depending on
+// the metric type and value type of
+// the original time series.
+// Alignment may change the metric
+// type or the value type of the time
+// series.Time series data must be
+// aligned in order to perform cross-
+// time series reduction. If
+// crossSeriesReducer is specified,
+// then perSeriesAligner must be
+// specified and not equal ALIGN_NONE
+// and alignmentPeriod must be
+// specified; otherwise, an error is
+// returned.
 func (o AlertPolicyConditionConditionThresholdAggregationOutput) PerSeriesAligner() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThresholdAggregation) *string { return v.PerSeriesAligner }).(pulumi.StringPtrOutput)
 }
@@ -854,10 +2093,91 @@ func (o AlertPolicyConditionConditionThresholdAggregationArrayOutput) Index(i pu
 }
 
 type AlertPolicyConditionConditionThresholdDenominatorAggregation struct {
-	AlignmentPeriod    *string  `pulumi:"alignmentPeriod"`
-	CrossSeriesReducer *string  `pulumi:"crossSeriesReducer"`
-	GroupByFields      []string `pulumi:"groupByFields"`
-	PerSeriesAligner   *string  `pulumi:"perSeriesAligner"`
+	// -
+	// (Optional)
+	// The alignment period for per-time
+	// series alignment. If present,
+	// alignmentPeriod must be at least
+	// 60 seconds. After per-time series
+	// alignment, each time series will
+	// contain data points only on the
+	// period boundaries. If
+	// perSeriesAligner is not specified
+	// or equals ALIGN_NONE, then this
+	// field is ignored. If
+	// perSeriesAligner is specified and
+	// does not equal ALIGN_NONE, then
+	// this field must be defined;
+	// otherwise an error is returned.
+	AlignmentPeriod *string `pulumi:"alignmentPeriod"`
+	// -
+	// (Optional)
+	// The approach to be used to combine
+	// time series. Not all reducer
+	// functions may be applied to all
+	// time series, depending on the
+	// metric type and the value type of
+	// the original time series.
+	// Reduction may change the metric
+	// type of value type of the time
+	// series.Time series data must be
+	// aligned in order to perform cross-
+	// time series reduction. If
+	// crossSeriesReducer is specified,
+	// then perSeriesAligner must be
+	// specified and not equal ALIGN_NONE
+	// and alignmentPeriod must be
+	// specified; otherwise, an error is
+	// returned.
+	CrossSeriesReducer *string `pulumi:"crossSeriesReducer"`
+	// -
+	// (Optional)
+	// The set of fields to preserve when
+	// crossSeriesReducer is specified.
+	// The groupByFields determine how
+	// the time series are partitioned
+	// into subsets prior to applying the
+	// aggregation function. Each subset
+	// contains time series that have the
+	// same value for each of the
+	// grouping fields. Each individual
+	// time series is a member of exactly
+	// one subset. The crossSeriesReducer
+	// is applied to each subset of time
+	// series. It is not possible to
+	// reduce across different resource
+	// types, so this field implicitly
+	// contains resource.type. Fields not
+	// specified in groupByFields are
+	// aggregated away. If groupByFields
+	// is not specified and all the time
+	// series have the same resource
+	// type, then the time series are
+	// aggregated into a single output
+	// time series. If crossSeriesReducer
+	// is not defined, this field is
+	// ignored.
+	GroupByFields []string `pulumi:"groupByFields"`
+	// -
+	// (Optional)
+	// The approach to be used to align
+	// individual time series. Not all
+	// alignment functions may be applied
+	// to all time series, depending on
+	// the metric type and value type of
+	// the original time series.
+	// Alignment may change the metric
+	// type or the value type of the time
+	// series.Time series data must be
+	// aligned in order to perform cross-
+	// time series reduction. If
+	// crossSeriesReducer is specified,
+	// then perSeriesAligner must be
+	// specified and not equal ALIGN_NONE
+	// and alignmentPeriod must be
+	// specified; otherwise, an error is
+	// returned.
+	PerSeriesAligner *string `pulumi:"perSeriesAligner"`
 }
 
 // AlertPolicyConditionConditionThresholdDenominatorAggregationInput is an input type that accepts AlertPolicyConditionConditionThresholdDenominatorAggregationArgs and AlertPolicyConditionConditionThresholdDenominatorAggregationOutput values.
@@ -873,10 +2193,91 @@ type AlertPolicyConditionConditionThresholdDenominatorAggregationInput interface
 }
 
 type AlertPolicyConditionConditionThresholdDenominatorAggregationArgs struct {
-	AlignmentPeriod    pulumi.StringPtrInput   `pulumi:"alignmentPeriod"`
-	CrossSeriesReducer pulumi.StringPtrInput   `pulumi:"crossSeriesReducer"`
-	GroupByFields      pulumi.StringArrayInput `pulumi:"groupByFields"`
-	PerSeriesAligner   pulumi.StringPtrInput   `pulumi:"perSeriesAligner"`
+	// -
+	// (Optional)
+	// The alignment period for per-time
+	// series alignment. If present,
+	// alignmentPeriod must be at least
+	// 60 seconds. After per-time series
+	// alignment, each time series will
+	// contain data points only on the
+	// period boundaries. If
+	// perSeriesAligner is not specified
+	// or equals ALIGN_NONE, then this
+	// field is ignored. If
+	// perSeriesAligner is specified and
+	// does not equal ALIGN_NONE, then
+	// this field must be defined;
+	// otherwise an error is returned.
+	AlignmentPeriod pulumi.StringPtrInput `pulumi:"alignmentPeriod"`
+	// -
+	// (Optional)
+	// The approach to be used to combine
+	// time series. Not all reducer
+	// functions may be applied to all
+	// time series, depending on the
+	// metric type and the value type of
+	// the original time series.
+	// Reduction may change the metric
+	// type of value type of the time
+	// series.Time series data must be
+	// aligned in order to perform cross-
+	// time series reduction. If
+	// crossSeriesReducer is specified,
+	// then perSeriesAligner must be
+	// specified and not equal ALIGN_NONE
+	// and alignmentPeriod must be
+	// specified; otherwise, an error is
+	// returned.
+	CrossSeriesReducer pulumi.StringPtrInput `pulumi:"crossSeriesReducer"`
+	// -
+	// (Optional)
+	// The set of fields to preserve when
+	// crossSeriesReducer is specified.
+	// The groupByFields determine how
+	// the time series are partitioned
+	// into subsets prior to applying the
+	// aggregation function. Each subset
+	// contains time series that have the
+	// same value for each of the
+	// grouping fields. Each individual
+	// time series is a member of exactly
+	// one subset. The crossSeriesReducer
+	// is applied to each subset of time
+	// series. It is not possible to
+	// reduce across different resource
+	// types, so this field implicitly
+	// contains resource.type. Fields not
+	// specified in groupByFields are
+	// aggregated away. If groupByFields
+	// is not specified and all the time
+	// series have the same resource
+	// type, then the time series are
+	// aggregated into a single output
+	// time series. If crossSeriesReducer
+	// is not defined, this field is
+	// ignored.
+	GroupByFields pulumi.StringArrayInput `pulumi:"groupByFields"`
+	// -
+	// (Optional)
+	// The approach to be used to align
+	// individual time series. Not all
+	// alignment functions may be applied
+	// to all time series, depending on
+	// the metric type and value type of
+	// the original time series.
+	// Alignment may change the metric
+	// type or the value type of the time
+	// series.Time series data must be
+	// aligned in order to perform cross-
+	// time series reduction. If
+	// crossSeriesReducer is specified,
+	// then perSeriesAligner must be
+	// specified and not equal ALIGN_NONE
+	// and alignmentPeriod must be
+	// specified; otherwise, an error is
+	// returned.
+	PerSeriesAligner pulumi.StringPtrInput `pulumi:"perSeriesAligner"`
 }
 
 func (AlertPolicyConditionConditionThresholdDenominatorAggregationArgs) ElementType() reflect.Type {
@@ -931,22 +2332,103 @@ func (o AlertPolicyConditionConditionThresholdDenominatorAggregationOutput) ToAl
 	return o
 }
 
+// -
+// (Optional)
+// The alignment period for per-time
+// series alignment. If present,
+// alignmentPeriod must be at least
+// 60 seconds. After per-time series
+// alignment, each time series will
+// contain data points only on the
+// period boundaries. If
+// perSeriesAligner is not specified
+// or equals ALIGN_NONE, then this
+// field is ignored. If
+// perSeriesAligner is specified and
+// does not equal ALIGN_NONE, then
+// this field must be defined;
+// otherwise an error is returned.
 func (o AlertPolicyConditionConditionThresholdDenominatorAggregationOutput) AlignmentPeriod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThresholdDenominatorAggregation) *string {
 		return v.AlignmentPeriod
 	}).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The approach to be used to combine
+// time series. Not all reducer
+// functions may be applied to all
+// time series, depending on the
+// metric type and the value type of
+// the original time series.
+// Reduction may change the metric
+// type of value type of the time
+// series.Time series data must be
+// aligned in order to perform cross-
+// time series reduction. If
+// crossSeriesReducer is specified,
+// then perSeriesAligner must be
+// specified and not equal ALIGN_NONE
+// and alignmentPeriod must be
+// specified; otherwise, an error is
+// returned.
 func (o AlertPolicyConditionConditionThresholdDenominatorAggregationOutput) CrossSeriesReducer() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThresholdDenominatorAggregation) *string {
 		return v.CrossSeriesReducer
 	}).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The set of fields to preserve when
+// crossSeriesReducer is specified.
+// The groupByFields determine how
+// the time series are partitioned
+// into subsets prior to applying the
+// aggregation function. Each subset
+// contains time series that have the
+// same value for each of the
+// grouping fields. Each individual
+// time series is a member of exactly
+// one subset. The crossSeriesReducer
+// is applied to each subset of time
+// series. It is not possible to
+// reduce across different resource
+// types, so this field implicitly
+// contains resource.type. Fields not
+// specified in groupByFields are
+// aggregated away. If groupByFields
+// is not specified and all the time
+// series have the same resource
+// type, then the time series are
+// aggregated into a single output
+// time series. If crossSeriesReducer
+// is not defined, this field is
+// ignored.
 func (o AlertPolicyConditionConditionThresholdDenominatorAggregationOutput) GroupByFields() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThresholdDenominatorAggregation) []string { return v.GroupByFields }).(pulumi.StringArrayOutput)
 }
 
+// -
+// (Optional)
+// The approach to be used to align
+// individual time series. Not all
+// alignment functions may be applied
+// to all time series, depending on
+// the metric type and value type of
+// the original time series.
+// Alignment may change the metric
+// type or the value type of the time
+// series.Time series data must be
+// aligned in order to perform cross-
+// time series reduction. If
+// crossSeriesReducer is specified,
+// then perSeriesAligner must be
+// specified and not equal ALIGN_NONE
+// and alignmentPeriod must be
+// specified; otherwise, an error is
+// returned.
 func (o AlertPolicyConditionConditionThresholdDenominatorAggregationOutput) PerSeriesAligner() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThresholdDenominatorAggregation) *string {
 		return v.PerSeriesAligner
@@ -974,7 +2456,17 @@ func (o AlertPolicyConditionConditionThresholdDenominatorAggregationArrayOutput)
 }
 
 type AlertPolicyConditionConditionThresholdTrigger struct {
-	Count   *int     `pulumi:"count"`
+	// -
+	// (Optional)
+	// The absolute number of time series
+	// that must fail the predicate for the
+	// condition to be triggered.
+	Count *int `pulumi:"count"`
+	// -
+	// (Optional)
+	// The percentage of time series that
+	// must fail the predicate for the
+	// condition to be triggered.
 	Percent *float64 `pulumi:"percent"`
 }
 
@@ -991,7 +2483,17 @@ type AlertPolicyConditionConditionThresholdTriggerInput interface {
 }
 
 type AlertPolicyConditionConditionThresholdTriggerArgs struct {
-	Count   pulumi.IntPtrInput     `pulumi:"count"`
+	// -
+	// (Optional)
+	// The absolute number of time series
+	// that must fail the predicate for the
+	// condition to be triggered.
+	Count pulumi.IntPtrInput `pulumi:"count"`
+	// -
+	// (Optional)
+	// The percentage of time series that
+	// must fail the predicate for the
+	// condition to be triggered.
 	Percent pulumi.Float64PtrInput `pulumi:"percent"`
 }
 
@@ -1072,10 +2574,21 @@ func (o AlertPolicyConditionConditionThresholdTriggerOutput) ToAlertPolicyCondit
 		return &v
 	}).(AlertPolicyConditionConditionThresholdTriggerPtrOutput)
 }
+
+// -
+// (Optional)
+// The absolute number of time series
+// that must fail the predicate for the
+// condition to be triggered.
 func (o AlertPolicyConditionConditionThresholdTriggerOutput) Count() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThresholdTrigger) *int { return v.Count }).(pulumi.IntPtrOutput)
 }
 
+// -
+// (Optional)
+// The percentage of time series that
+// must fail the predicate for the
+// condition to be triggered.
 func (o AlertPolicyConditionConditionThresholdTriggerOutput) Percent() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThresholdTrigger) *float64 { return v.Percent }).(pulumi.Float64PtrOutput)
 }
@@ -1100,10 +2613,20 @@ func (o AlertPolicyConditionConditionThresholdTriggerPtrOutput) Elem() AlertPoli
 	}).(AlertPolicyConditionConditionThresholdTriggerOutput)
 }
 
+// -
+// (Optional)
+// The absolute number of time series
+// that must fail the predicate for the
+// condition to be triggered.
 func (o AlertPolicyConditionConditionThresholdTriggerPtrOutput) Count() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThresholdTrigger) *int { return v.Count }).(pulumi.IntPtrOutput)
 }
 
+// -
+// (Optional)
+// The percentage of time series that
+// must fail the predicate for the
+// condition to be triggered.
 func (o AlertPolicyConditionConditionThresholdTriggerPtrOutput) Percent() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v AlertPolicyConditionConditionThresholdTrigger) *float64 { return v.Percent }).(pulumi.Float64PtrOutput)
 }
@@ -1242,7 +2765,17 @@ func (o AlertPolicyCreationRecordPtrOutput) MutatedBy() pulumi.StringPtrOutput {
 }
 
 type AlertPolicyDocumentation struct {
-	Content  *string `pulumi:"content"`
+	// -
+	// (Optional)
+	// The text of the documentation, interpreted according to mimeType.
+	// The content may not exceed 8,192 Unicode characters and may not
+	// exceed more than 10,240 bytes when encoded in UTF-8 format,
+	// whichever is smaller.
+	Content *string `pulumi:"content"`
+	// -
+	// (Optional)
+	// The format of the content field. Presently, only the value
+	// "text/markdown" is supported.
 	MimeType *string `pulumi:"mimeType"`
 }
 
@@ -1259,7 +2792,17 @@ type AlertPolicyDocumentationInput interface {
 }
 
 type AlertPolicyDocumentationArgs struct {
-	Content  pulumi.StringPtrInput `pulumi:"content"`
+	// -
+	// (Optional)
+	// The text of the documentation, interpreted according to mimeType.
+	// The content may not exceed 8,192 Unicode characters and may not
+	// exceed more than 10,240 bytes when encoded in UTF-8 format,
+	// whichever is smaller.
+	Content pulumi.StringPtrInput `pulumi:"content"`
+	// -
+	// (Optional)
+	// The format of the content field. Presently, only the value
+	// "text/markdown" is supported.
 	MimeType pulumi.StringPtrInput `pulumi:"mimeType"`
 }
 
@@ -1340,10 +2883,21 @@ func (o AlertPolicyDocumentationOutput) ToAlertPolicyDocumentationPtrOutputWithC
 		return &v
 	}).(AlertPolicyDocumentationPtrOutput)
 }
+
+// -
+// (Optional)
+// The text of the documentation, interpreted according to mimeType.
+// The content may not exceed 8,192 Unicode characters and may not
+// exceed more than 10,240 bytes when encoded in UTF-8 format,
+// whichever is smaller.
 func (o AlertPolicyDocumentationOutput) Content() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyDocumentation) *string { return v.Content }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The format of the content field. Presently, only the value
+// "text/markdown" is supported.
 func (o AlertPolicyDocumentationOutput) MimeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyDocumentation) *string { return v.MimeType }).(pulumi.StringPtrOutput)
 }
@@ -1366,10 +2920,20 @@ func (o AlertPolicyDocumentationPtrOutput) Elem() AlertPolicyDocumentationOutput
 	return o.ApplyT(func(v *AlertPolicyDocumentation) AlertPolicyDocumentation { return *v }).(AlertPolicyDocumentationOutput)
 }
 
+// -
+// (Optional)
+// The text of the documentation, interpreted according to mimeType.
+// The content may not exceed 8,192 Unicode characters and may not
+// exceed more than 10,240 bytes when encoded in UTF-8 format,
+// whichever is smaller.
 func (o AlertPolicyDocumentationPtrOutput) Content() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyDocumentation) *string { return v.Content }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The format of the content field. Presently, only the value
+// "text/markdown" is supported.
 func (o AlertPolicyDocumentationPtrOutput) MimeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertPolicyDocumentation) *string { return v.MimeType }).(pulumi.StringPtrOutput)
 }
@@ -1498,8 +3062,17 @@ func (o CustomServiceTelemetryPtrOutput) ResourceName() pulumi.StringPtrOutput {
 }
 
 type NotificationChannelSensitiveLabels struct {
-	AuthToken  *string `pulumi:"authToken"`
-	Password   *string `pulumi:"password"`
+	// -
+	// (Optional)
+	// An authorization token for a notification channel. Channel types that support this field include: slack
+	AuthToken *string `pulumi:"authToken"`
+	// -
+	// (Optional)
+	// An password for a notification channel. Channel types that support this field include: webhook_basicauth
+	Password *string `pulumi:"password"`
+	// -
+	// (Optional)
+	// An servicekey token for a notification channel. Channel types that support this field include: pagerduty
 	ServiceKey *string `pulumi:"serviceKey"`
 }
 
@@ -1516,8 +3089,17 @@ type NotificationChannelSensitiveLabelsInput interface {
 }
 
 type NotificationChannelSensitiveLabelsArgs struct {
-	AuthToken  pulumi.StringPtrInput `pulumi:"authToken"`
-	Password   pulumi.StringPtrInput `pulumi:"password"`
+	// -
+	// (Optional)
+	// An authorization token for a notification channel. Channel types that support this field include: slack
+	AuthToken pulumi.StringPtrInput `pulumi:"authToken"`
+	// -
+	// (Optional)
+	// An password for a notification channel. Channel types that support this field include: webhook_basicauth
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// -
+	// (Optional)
+	// An servicekey token for a notification channel. Channel types that support this field include: pagerduty
 	ServiceKey pulumi.StringPtrInput `pulumi:"serviceKey"`
 }
 
@@ -1598,14 +3180,24 @@ func (o NotificationChannelSensitiveLabelsOutput) ToNotificationChannelSensitive
 		return &v
 	}).(NotificationChannelSensitiveLabelsPtrOutput)
 }
+
+// -
+// (Optional)
+// An authorization token for a notification channel. Channel types that support this field include: slack
 func (o NotificationChannelSensitiveLabelsOutput) AuthToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NotificationChannelSensitiveLabels) *string { return v.AuthToken }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// An password for a notification channel. Channel types that support this field include: webhook_basicauth
 func (o NotificationChannelSensitiveLabelsOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NotificationChannelSensitiveLabels) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// An servicekey token for a notification channel. Channel types that support this field include: pagerduty
 func (o NotificationChannelSensitiveLabelsOutput) ServiceKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NotificationChannelSensitiveLabels) *string { return v.ServiceKey }).(pulumi.StringPtrOutput)
 }
@@ -1628,23 +3220,59 @@ func (o NotificationChannelSensitiveLabelsPtrOutput) Elem() NotificationChannelS
 	return o.ApplyT(func(v *NotificationChannelSensitiveLabels) NotificationChannelSensitiveLabels { return *v }).(NotificationChannelSensitiveLabelsOutput)
 }
 
+// -
+// (Optional)
+// An authorization token for a notification channel. Channel types that support this field include: slack
 func (o NotificationChannelSensitiveLabelsPtrOutput) AuthToken() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NotificationChannelSensitiveLabels) *string { return v.AuthToken }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// An password for a notification channel. Channel types that support this field include: webhook_basicauth
 func (o NotificationChannelSensitiveLabelsPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NotificationChannelSensitiveLabels) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// An servicekey token for a notification channel. Channel types that support this field include: pagerduty
 func (o NotificationChannelSensitiveLabelsPtrOutput) ServiceKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NotificationChannelSensitiveLabels) *string { return v.ServiceKey }).(pulumi.StringPtrOutput)
 }
 
 type SloBasicSli struct {
-	Latency   SloBasicSliLatency `pulumi:"latency"`
-	Locations []string           `pulumi:"locations"`
-	Methods   []string           `pulumi:"methods"`
-	Versions  []string           `pulumi:"versions"`
+	// -
+	// (Required)
+	// Parameters for a latency threshold SLI.  Structure is documented below.
+	Latency SloBasicSliLatency `pulumi:"latency"`
+	// -
+	// (Optional)
+	// An optional set of locations to which this SLI is relevant.
+	// Telemetry from other locations will not be used to calculate
+	// performance for this SLI. If omitted, this SLI applies to all
+	// locations in which the Service has activity. For service types
+	// that don't support breaking down by location, setting this
+	// field will result in an error.
+	Locations []string `pulumi:"locations"`
+	// -
+	// (Optional)
+	// An optional set of RPCs to which this SLI is relevant.
+	// Telemetry from other methods will not be used to calculate
+	// performance for this SLI. If omitted, this SLI applies to all
+	// the Service's methods. For service types that don't support
+	// breaking down by method, setting this field will result in an
+	// error.
+	Methods []string `pulumi:"methods"`
+	// -
+	// (Optional)
+	// The set of API versions to which this SLI is relevant.
+	// Telemetry from other API versions will not be used to
+	// calculate performance for this SLI. If omitted,
+	// this SLI applies to all API versions. For service types
+	// that don't support breaking down by version, setting this
+	// field will result in an error.
+	Versions []string `pulumi:"versions"`
 }
 
 // SloBasicSliInput is an input type that accepts SloBasicSliArgs and SloBasicSliOutput values.
@@ -1660,10 +3288,37 @@ type SloBasicSliInput interface {
 }
 
 type SloBasicSliArgs struct {
-	Latency   SloBasicSliLatencyInput `pulumi:"latency"`
+	// -
+	// (Required)
+	// Parameters for a latency threshold SLI.  Structure is documented below.
+	Latency SloBasicSliLatencyInput `pulumi:"latency"`
+	// -
+	// (Optional)
+	// An optional set of locations to which this SLI is relevant.
+	// Telemetry from other locations will not be used to calculate
+	// performance for this SLI. If omitted, this SLI applies to all
+	// locations in which the Service has activity. For service types
+	// that don't support breaking down by location, setting this
+	// field will result in an error.
 	Locations pulumi.StringArrayInput `pulumi:"locations"`
-	Methods   pulumi.StringArrayInput `pulumi:"methods"`
-	Versions  pulumi.StringArrayInput `pulumi:"versions"`
+	// -
+	// (Optional)
+	// An optional set of RPCs to which this SLI is relevant.
+	// Telemetry from other methods will not be used to calculate
+	// performance for this SLI. If omitted, this SLI applies to all
+	// the Service's methods. For service types that don't support
+	// breaking down by method, setting this field will result in an
+	// error.
+	Methods pulumi.StringArrayInput `pulumi:"methods"`
+	// -
+	// (Optional)
+	// The set of API versions to which this SLI is relevant.
+	// Telemetry from other API versions will not be used to
+	// calculate performance for this SLI. If omitted,
+	// this SLI applies to all API versions. For service types
+	// that don't support breaking down by version, setting this
+	// field will result in an error.
+	Versions pulumi.StringArrayInput `pulumi:"versions"`
 }
 
 func (SloBasicSliArgs) ElementType() reflect.Type {
@@ -1743,18 +3398,46 @@ func (o SloBasicSliOutput) ToSloBasicSliPtrOutputWithContext(ctx context.Context
 		return &v
 	}).(SloBasicSliPtrOutput)
 }
+
+// -
+// (Required)
+// Parameters for a latency threshold SLI.  Structure is documented below.
 func (o SloBasicSliOutput) Latency() SloBasicSliLatencyOutput {
 	return o.ApplyT(func(v SloBasicSli) SloBasicSliLatency { return v.Latency }).(SloBasicSliLatencyOutput)
 }
 
+// -
+// (Optional)
+// An optional set of locations to which this SLI is relevant.
+// Telemetry from other locations will not be used to calculate
+// performance for this SLI. If omitted, this SLI applies to all
+// locations in which the Service has activity. For service types
+// that don't support breaking down by location, setting this
+// field will result in an error.
 func (o SloBasicSliOutput) Locations() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SloBasicSli) []string { return v.Locations }).(pulumi.StringArrayOutput)
 }
 
+// -
+// (Optional)
+// An optional set of RPCs to which this SLI is relevant.
+// Telemetry from other methods will not be used to calculate
+// performance for this SLI. If omitted, this SLI applies to all
+// the Service's methods. For service types that don't support
+// breaking down by method, setting this field will result in an
+// error.
 func (o SloBasicSliOutput) Methods() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SloBasicSli) []string { return v.Methods }).(pulumi.StringArrayOutput)
 }
 
+// -
+// (Optional)
+// The set of API versions to which this SLI is relevant.
+// Telemetry from other API versions will not be used to
+// calculate performance for this SLI. If omitted,
+// this SLI applies to all API versions. For service types
+// that don't support breaking down by version, setting this
+// field will result in an error.
 func (o SloBasicSliOutput) Versions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SloBasicSli) []string { return v.Versions }).(pulumi.StringArrayOutput)
 }
@@ -1777,23 +3460,55 @@ func (o SloBasicSliPtrOutput) Elem() SloBasicSliOutput {
 	return o.ApplyT(func(v *SloBasicSli) SloBasicSli { return *v }).(SloBasicSliOutput)
 }
 
+// -
+// (Required)
+// Parameters for a latency threshold SLI.  Structure is documented below.
 func (o SloBasicSliPtrOutput) Latency() SloBasicSliLatencyOutput {
 	return o.ApplyT(func(v SloBasicSli) SloBasicSliLatency { return v.Latency }).(SloBasicSliLatencyOutput)
 }
 
+// -
+// (Optional)
+// An optional set of locations to which this SLI is relevant.
+// Telemetry from other locations will not be used to calculate
+// performance for this SLI. If omitted, this SLI applies to all
+// locations in which the Service has activity. For service types
+// that don't support breaking down by location, setting this
+// field will result in an error.
 func (o SloBasicSliPtrOutput) Locations() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SloBasicSli) []string { return v.Locations }).(pulumi.StringArrayOutput)
 }
 
+// -
+// (Optional)
+// An optional set of RPCs to which this SLI is relevant.
+// Telemetry from other methods will not be used to calculate
+// performance for this SLI. If omitted, this SLI applies to all
+// the Service's methods. For service types that don't support
+// breaking down by method, setting this field will result in an
+// error.
 func (o SloBasicSliPtrOutput) Methods() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SloBasicSli) []string { return v.Methods }).(pulumi.StringArrayOutput)
 }
 
+// -
+// (Optional)
+// The set of API versions to which this SLI is relevant.
+// Telemetry from other API versions will not be used to
+// calculate performance for this SLI. If omitted,
+// this SLI applies to all API versions. For service types
+// that don't support breaking down by version, setting this
+// field will result in an error.
 func (o SloBasicSliPtrOutput) Versions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v SloBasicSli) []string { return v.Versions }).(pulumi.StringArrayOutput)
 }
 
 type SloBasicSliLatency struct {
+	// -
+	// (Required)
+	// A duration string, e.g. 10s.
+	// Good service is defined to be the count of requests made to
+	// this service that return in no more than threshold.
 	Threshold string `pulumi:"threshold"`
 }
 
@@ -1810,6 +3525,11 @@ type SloBasicSliLatencyInput interface {
 }
 
 type SloBasicSliLatencyArgs struct {
+	// -
+	// (Required)
+	// A duration string, e.g. 10s.
+	// Good service is defined to be the count of requests made to
+	// this service that return in no more than threshold.
 	Threshold pulumi.StringInput `pulumi:"threshold"`
 }
 
@@ -1839,11 +3559,19 @@ func (o SloBasicSliLatencyOutput) ToSloBasicSliLatencyOutputWithContext(ctx cont
 	return o
 }
 
+// -
+// (Required)
+// A duration string, e.g. 10s.
+// Good service is defined to be the count of requests made to
+// this service that return in no more than threshold.
 func (o SloBasicSliLatencyOutput) Threshold() pulumi.StringOutput {
 	return o.ApplyT(func(v SloBasicSliLatency) string { return v.Threshold }).(pulumi.StringOutput)
 }
 
 type UptimeCheckConfigContentMatcher struct {
+	// -
+	// (Required)
+	// String or regex content to match (max 1024 bytes)
 	Content string `pulumi:"content"`
 }
 
@@ -1860,6 +3588,9 @@ type UptimeCheckConfigContentMatcherInput interface {
 }
 
 type UptimeCheckConfigContentMatcherArgs struct {
+	// -
+	// (Required)
+	// String or regex content to match (max 1024 bytes)
 	Content pulumi.StringInput `pulumi:"content"`
 }
 
@@ -1915,6 +3646,9 @@ func (o UptimeCheckConfigContentMatcherOutput) ToUptimeCheckConfigContentMatcher
 	return o
 }
 
+// -
+// (Required)
+// String or regex content to match (max 1024 bytes)
 func (o UptimeCheckConfigContentMatcherOutput) Content() pulumi.StringOutput {
 	return o.ApplyT(func(v UptimeCheckConfigContentMatcher) string { return v.Content }).(pulumi.StringOutput)
 }
@@ -1940,13 +3674,34 @@ func (o UptimeCheckConfigContentMatcherArrayOutput) Index(i pulumi.IntInput) Upt
 }
 
 type UptimeCheckConfigHttpCheck struct {
-	AuthInfo    *UptimeCheckConfigHttpCheckAuthInfo `pulumi:"authInfo"`
-	Headers     map[string]string                   `pulumi:"headers"`
-	MaskHeaders *bool                               `pulumi:"maskHeaders"`
-	Path        *string                             `pulumi:"path"`
-	Port        *int                                `pulumi:"port"`
-	UseSsl      *bool                               `pulumi:"useSsl"`
-	ValidateSsl *bool                               `pulumi:"validateSsl"`
+	// -
+	// (Optional)
+	// The authentication information. Optional when creating an HTTP check; defaults to empty.  Structure is documented below.
+	AuthInfo *UptimeCheckConfigHttpCheckAuthInfo `pulumi:"authInfo"`
+	// -
+	// (Optional)
+	// The list of headers to send as part of the uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100.
+	Headers map[string]string `pulumi:"headers"`
+	// -
+	// (Optional)
+	// Boolean specifying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if maskHeaders is set to True then the headers will be obscured with ******.
+	MaskHeaders *bool `pulumi:"maskHeaders"`
+	// -
+	// (Optional)
+	// The path to the page to run the check against. Will be combined with the host (specified within the MonitoredResource) and port to construct the full URL. Optional (defaults to "/").
+	Path *string `pulumi:"path"`
+	// -
+	// (Required)
+	// The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
+	Port *int `pulumi:"port"`
+	// -
+	// (Optional)
+	// If true, use HTTPS instead of HTTP to run the check.
+	UseSsl *bool `pulumi:"useSsl"`
+	// -
+	// (Optional)
+	// Boolean specifying whether to include SSL certificate validation as a part of the Uptime check. Only applies to checks where monitoredResource is set to uptime_url. If useSsl is false, setting validateSsl to true has no effect.
+	ValidateSsl *bool `pulumi:"validateSsl"`
 }
 
 // UptimeCheckConfigHttpCheckInput is an input type that accepts UptimeCheckConfigHttpCheckArgs and UptimeCheckConfigHttpCheckOutput values.
@@ -1962,13 +3717,34 @@ type UptimeCheckConfigHttpCheckInput interface {
 }
 
 type UptimeCheckConfigHttpCheckArgs struct {
-	AuthInfo    UptimeCheckConfigHttpCheckAuthInfoPtrInput `pulumi:"authInfo"`
-	Headers     pulumi.StringMapInput                      `pulumi:"headers"`
-	MaskHeaders pulumi.BoolPtrInput                        `pulumi:"maskHeaders"`
-	Path        pulumi.StringPtrInput                      `pulumi:"path"`
-	Port        pulumi.IntPtrInput                         `pulumi:"port"`
-	UseSsl      pulumi.BoolPtrInput                        `pulumi:"useSsl"`
-	ValidateSsl pulumi.BoolPtrInput                        `pulumi:"validateSsl"`
+	// -
+	// (Optional)
+	// The authentication information. Optional when creating an HTTP check; defaults to empty.  Structure is documented below.
+	AuthInfo UptimeCheckConfigHttpCheckAuthInfoPtrInput `pulumi:"authInfo"`
+	// -
+	// (Optional)
+	// The list of headers to send as part of the uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100.
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+	// -
+	// (Optional)
+	// Boolean specifying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if maskHeaders is set to True then the headers will be obscured with ******.
+	MaskHeaders pulumi.BoolPtrInput `pulumi:"maskHeaders"`
+	// -
+	// (Optional)
+	// The path to the page to run the check against. Will be combined with the host (specified within the MonitoredResource) and port to construct the full URL. Optional (defaults to "/").
+	Path pulumi.StringPtrInput `pulumi:"path"`
+	// -
+	// (Required)
+	// The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// -
+	// (Optional)
+	// If true, use HTTPS instead of HTTP to run the check.
+	UseSsl pulumi.BoolPtrInput `pulumi:"useSsl"`
+	// -
+	// (Optional)
+	// Boolean specifying whether to include SSL certificate validation as a part of the Uptime check. Only applies to checks where monitoredResource is set to uptime_url. If useSsl is false, setting validateSsl to true has no effect.
+	ValidateSsl pulumi.BoolPtrInput `pulumi:"validateSsl"`
 }
 
 func (UptimeCheckConfigHttpCheckArgs) ElementType() reflect.Type {
@@ -2048,30 +3824,52 @@ func (o UptimeCheckConfigHttpCheckOutput) ToUptimeCheckConfigHttpCheckPtrOutputW
 		return &v
 	}).(UptimeCheckConfigHttpCheckPtrOutput)
 }
+
+// -
+// (Optional)
+// The authentication information. Optional when creating an HTTP check; defaults to empty.  Structure is documented below.
 func (o UptimeCheckConfigHttpCheckOutput) AuthInfo() UptimeCheckConfigHttpCheckAuthInfoPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheck) *UptimeCheckConfigHttpCheckAuthInfo { return v.AuthInfo }).(UptimeCheckConfigHttpCheckAuthInfoPtrOutput)
 }
 
+// -
+// (Optional)
+// The list of headers to send as part of the uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100.
 func (o UptimeCheckConfigHttpCheckOutput) Headers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheck) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
 }
 
+// -
+// (Optional)
+// Boolean specifying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if maskHeaders is set to True then the headers will be obscured with ******.
 func (o UptimeCheckConfigHttpCheckOutput) MaskHeaders() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheck) *bool { return v.MaskHeaders }).(pulumi.BoolPtrOutput)
 }
 
+// -
+// (Optional)
+// The path to the page to run the check against. Will be combined with the host (specified within the MonitoredResource) and port to construct the full URL. Optional (defaults to "/").
 func (o UptimeCheckConfigHttpCheckOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheck) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Required)
+// The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
 func (o UptimeCheckConfigHttpCheckOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheck) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
+// -
+// (Optional)
+// If true, use HTTPS instead of HTTP to run the check.
 func (o UptimeCheckConfigHttpCheckOutput) UseSsl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheck) *bool { return v.UseSsl }).(pulumi.BoolPtrOutput)
 }
 
+// -
+// (Optional)
+// Boolean specifying whether to include SSL certificate validation as a part of the Uptime check. Only applies to checks where monitoredResource is set to uptime_url. If useSsl is false, setting validateSsl to true has no effect.
 func (o UptimeCheckConfigHttpCheckOutput) ValidateSsl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheck) *bool { return v.ValidateSsl }).(pulumi.BoolPtrOutput)
 }
@@ -2094,36 +3892,63 @@ func (o UptimeCheckConfigHttpCheckPtrOutput) Elem() UptimeCheckConfigHttpCheckOu
 	return o.ApplyT(func(v *UptimeCheckConfigHttpCheck) UptimeCheckConfigHttpCheck { return *v }).(UptimeCheckConfigHttpCheckOutput)
 }
 
+// -
+// (Optional)
+// The authentication information. Optional when creating an HTTP check; defaults to empty.  Structure is documented below.
 func (o UptimeCheckConfigHttpCheckPtrOutput) AuthInfo() UptimeCheckConfigHttpCheckAuthInfoPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheck) *UptimeCheckConfigHttpCheckAuthInfo { return v.AuthInfo }).(UptimeCheckConfigHttpCheckAuthInfoPtrOutput)
 }
 
+// -
+// (Optional)
+// The list of headers to send as part of the uptime check request. If two headers have the same key and different values, they should be entered as a single header, with the value being a comma-separated list of all the desired values as described at https://www.w3.org/Protocols/rfc2616/rfc2616.txt (page 31). Entering two separate headers with the same key in a Create call will cause the first to be overwritten by the second. The maximum number of headers allowed is 100.
 func (o UptimeCheckConfigHttpCheckPtrOutput) Headers() pulumi.StringMapOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheck) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
 }
 
+// -
+// (Optional)
+// Boolean specifying whether to encrypt the header information. Encryption should be specified for any headers related to authentication that you do not wish to be seen when retrieving the configuration. The server will be responsible for encrypting the headers. On Get/List calls, if maskHeaders is set to True then the headers will be obscured with ******.
 func (o UptimeCheckConfigHttpCheckPtrOutput) MaskHeaders() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheck) *bool { return v.MaskHeaders }).(pulumi.BoolPtrOutput)
 }
 
+// -
+// (Optional)
+// The path to the page to run the check against. Will be combined with the host (specified within the MonitoredResource) and port to construct the full URL. Optional (defaults to "/").
 func (o UptimeCheckConfigHttpCheckPtrOutput) Path() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheck) *string { return v.Path }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Required)
+// The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
 func (o UptimeCheckConfigHttpCheckPtrOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheck) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
+// -
+// (Optional)
+// If true, use HTTPS instead of HTTP to run the check.
 func (o UptimeCheckConfigHttpCheckPtrOutput) UseSsl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheck) *bool { return v.UseSsl }).(pulumi.BoolPtrOutput)
 }
 
+// -
+// (Optional)
+// Boolean specifying whether to include SSL certificate validation as a part of the Uptime check. Only applies to checks where monitoredResource is set to uptime_url. If useSsl is false, setting validateSsl to true has no effect.
 func (o UptimeCheckConfigHttpCheckPtrOutput) ValidateSsl() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheck) *bool { return v.ValidateSsl }).(pulumi.BoolPtrOutput)
 }
 
 type UptimeCheckConfigHttpCheckAuthInfo struct {
+	// -
+	// (Required)
+	// The password to authenticate.
 	Password string `pulumi:"password"`
+	// -
+	// (Required)
+	// The username to authenticate.
 	Username string `pulumi:"username"`
 }
 
@@ -2140,7 +3965,13 @@ type UptimeCheckConfigHttpCheckAuthInfoInput interface {
 }
 
 type UptimeCheckConfigHttpCheckAuthInfoArgs struct {
+	// -
+	// (Required)
+	// The password to authenticate.
 	Password pulumi.StringInput `pulumi:"password"`
+	// -
+	// (Required)
+	// The username to authenticate.
 	Username pulumi.StringInput `pulumi:"username"`
 }
 
@@ -2221,10 +4052,17 @@ func (o UptimeCheckConfigHttpCheckAuthInfoOutput) ToUptimeCheckConfigHttpCheckAu
 		return &v
 	}).(UptimeCheckConfigHttpCheckAuthInfoPtrOutput)
 }
+
+// -
+// (Required)
+// The password to authenticate.
 func (o UptimeCheckConfigHttpCheckAuthInfoOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheckAuthInfo) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// -
+// (Required)
+// The username to authenticate.
 func (o UptimeCheckConfigHttpCheckAuthInfoOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheckAuthInfo) string { return v.Username }).(pulumi.StringOutput)
 }
@@ -2247,17 +4085,29 @@ func (o UptimeCheckConfigHttpCheckAuthInfoPtrOutput) Elem() UptimeCheckConfigHtt
 	return o.ApplyT(func(v *UptimeCheckConfigHttpCheckAuthInfo) UptimeCheckConfigHttpCheckAuthInfo { return *v }).(UptimeCheckConfigHttpCheckAuthInfoOutput)
 }
 
+// -
+// (Required)
+// The password to authenticate.
 func (o UptimeCheckConfigHttpCheckAuthInfoPtrOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheckAuthInfo) string { return v.Password }).(pulumi.StringOutput)
 }
 
+// -
+// (Required)
+// The username to authenticate.
 func (o UptimeCheckConfigHttpCheckAuthInfoPtrOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v UptimeCheckConfigHttpCheckAuthInfo) string { return v.Username }).(pulumi.StringOutput)
 }
 
 type UptimeCheckConfigMonitoredResource struct {
+	// -
+	// (Required)
+	// Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels "projectId", "instanceId", and "zone".
 	Labels map[string]string `pulumi:"labels"`
-	Type   string            `pulumi:"type"`
+	// -
+	// (Required)
+	// The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.monitoredResourceDescriptors#MonitoredResourceDescriptor) object. For example, the type of a Compute Engine VM instance is gce_instance. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).
+	Type string `pulumi:"type"`
 }
 
 // UptimeCheckConfigMonitoredResourceInput is an input type that accepts UptimeCheckConfigMonitoredResourceArgs and UptimeCheckConfigMonitoredResourceOutput values.
@@ -2273,8 +4123,14 @@ type UptimeCheckConfigMonitoredResourceInput interface {
 }
 
 type UptimeCheckConfigMonitoredResourceArgs struct {
+	// -
+	// (Required)
+	// Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels "projectId", "instanceId", and "zone".
 	Labels pulumi.StringMapInput `pulumi:"labels"`
-	Type   pulumi.StringInput    `pulumi:"type"`
+	// -
+	// (Required)
+	// The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.monitoredResourceDescriptors#MonitoredResourceDescriptor) object. For example, the type of a Compute Engine VM instance is gce_instance. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).
+	Type pulumi.StringInput `pulumi:"type"`
 }
 
 func (UptimeCheckConfigMonitoredResourceArgs) ElementType() reflect.Type {
@@ -2354,10 +4210,17 @@ func (o UptimeCheckConfigMonitoredResourceOutput) ToUptimeCheckConfigMonitoredRe
 		return &v
 	}).(UptimeCheckConfigMonitoredResourcePtrOutput)
 }
+
+// -
+// (Required)
+// Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels "projectId", "instanceId", and "zone".
 func (o UptimeCheckConfigMonitoredResourceOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v UptimeCheckConfigMonitoredResource) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// -
+// (Required)
+// The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.monitoredResourceDescriptors#MonitoredResourceDescriptor) object. For example, the type of a Compute Engine VM instance is gce_instance. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).
 func (o UptimeCheckConfigMonitoredResourceOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v UptimeCheckConfigMonitoredResource) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -2380,16 +4243,28 @@ func (o UptimeCheckConfigMonitoredResourcePtrOutput) Elem() UptimeCheckConfigMon
 	return o.ApplyT(func(v *UptimeCheckConfigMonitoredResource) UptimeCheckConfigMonitoredResource { return *v }).(UptimeCheckConfigMonitoredResourceOutput)
 }
 
+// -
+// (Required)
+// Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels "projectId", "instanceId", and "zone".
 func (o UptimeCheckConfigMonitoredResourcePtrOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v UptimeCheckConfigMonitoredResource) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// -
+// (Required)
+// The monitored resource type. This field must match the type field of a MonitoredResourceDescriptor (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.monitoredResourceDescriptors#MonitoredResourceDescriptor) object. For example, the type of a Compute Engine VM instance is gce_instance. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).
 func (o UptimeCheckConfigMonitoredResourcePtrOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v UptimeCheckConfigMonitoredResource) string { return v.Type }).(pulumi.StringOutput)
 }
 
 type UptimeCheckConfigResourceGroup struct {
-	GroupId      *string `pulumi:"groupId"`
+	// -
+	// (Optional)
+	// The group of resources being monitored. Should be the `name` of a group
+	GroupId *string `pulumi:"groupId"`
+	// -
+	// (Optional)
+	// The resource type of the group members.
 	ResourceType *string `pulumi:"resourceType"`
 }
 
@@ -2406,7 +4281,13 @@ type UptimeCheckConfigResourceGroupInput interface {
 }
 
 type UptimeCheckConfigResourceGroupArgs struct {
-	GroupId      pulumi.StringPtrInput `pulumi:"groupId"`
+	// -
+	// (Optional)
+	// The group of resources being monitored. Should be the `name` of a group
+	GroupId pulumi.StringPtrInput `pulumi:"groupId"`
+	// -
+	// (Optional)
+	// The resource type of the group members.
 	ResourceType pulumi.StringPtrInput `pulumi:"resourceType"`
 }
 
@@ -2487,10 +4368,17 @@ func (o UptimeCheckConfigResourceGroupOutput) ToUptimeCheckConfigResourceGroupPt
 		return &v
 	}).(UptimeCheckConfigResourceGroupPtrOutput)
 }
+
+// -
+// (Optional)
+// The group of resources being monitored. Should be the `name` of a group
 func (o UptimeCheckConfigResourceGroupOutput) GroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigResourceGroup) *string { return v.GroupId }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The resource type of the group members.
 func (o UptimeCheckConfigResourceGroupOutput) ResourceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigResourceGroup) *string { return v.ResourceType }).(pulumi.StringPtrOutput)
 }
@@ -2513,15 +4401,24 @@ func (o UptimeCheckConfigResourceGroupPtrOutput) Elem() UptimeCheckConfigResourc
 	return o.ApplyT(func(v *UptimeCheckConfigResourceGroup) UptimeCheckConfigResourceGroup { return *v }).(UptimeCheckConfigResourceGroupOutput)
 }
 
+// -
+// (Optional)
+// The group of resources being monitored. Should be the `name` of a group
 func (o UptimeCheckConfigResourceGroupPtrOutput) GroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigResourceGroup) *string { return v.GroupId }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The resource type of the group members.
 func (o UptimeCheckConfigResourceGroupPtrOutput) ResourceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v UptimeCheckConfigResourceGroup) *string { return v.ResourceType }).(pulumi.StringPtrOutput)
 }
 
 type UptimeCheckConfigTcpCheck struct {
+	// -
+	// (Required)
+	// The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
 	Port int `pulumi:"port"`
 }
 
@@ -2538,6 +4435,9 @@ type UptimeCheckConfigTcpCheckInput interface {
 }
 
 type UptimeCheckConfigTcpCheckArgs struct {
+	// -
+	// (Required)
+	// The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
 	Port pulumi.IntInput `pulumi:"port"`
 }
 
@@ -2618,6 +4518,10 @@ func (o UptimeCheckConfigTcpCheckOutput) ToUptimeCheckConfigTcpCheckPtrOutputWit
 		return &v
 	}).(UptimeCheckConfigTcpCheckPtrOutput)
 }
+
+// -
+// (Required)
+// The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
 func (o UptimeCheckConfigTcpCheckOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v UptimeCheckConfigTcpCheck) int { return v.Port }).(pulumi.IntOutput)
 }
@@ -2640,6 +4544,9 @@ func (o UptimeCheckConfigTcpCheckPtrOutput) Elem() UptimeCheckConfigTcpCheckOutp
 	return o.ApplyT(func(v *UptimeCheckConfigTcpCheck) UptimeCheckConfigTcpCheck { return *v }).(UptimeCheckConfigTcpCheckOutput)
 }
 
+// -
+// (Required)
+// The port to the page to run the check against. Will be combined with host (specified within the MonitoredResource) to construct the full URL.
 func (o UptimeCheckConfigTcpCheckPtrOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v UptimeCheckConfigTcpCheck) int { return v.Port }).(pulumi.IntOutput)
 }

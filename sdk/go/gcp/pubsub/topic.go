@@ -20,16 +20,26 @@ import (
 type Topic struct {
 	pulumi.CustomResourceState
 
-	// The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. Your
-	// project's PubSub service account ('service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com') must have
-	// 'roles/cloudkms.cryptoKeyEncrypterDecrypter' to use this feature. The expected format is
-	// 'projects/*/locations/*/keyRings/*/cryptoKeys/*'
+	// -
+	// (Optional)
+	// The resource name of the Cloud KMS CryptoKey to be used to protect access
+	// to messages published on this topic. Your project's PubSub service account
+	// (`service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com`) must have
+	// `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
+	// The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`
 	KmsKeyName pulumi.StringPtrOutput `pulumi:"kmsKeyName"`
+	// -
+	// (Optional)
 	// A set of key/value label pairs to assign to this Topic.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
-	// Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not
-	// present, then no constraints are in effect.
+	// -
+	// (Optional)
+	// Policy constraining the set of Google Cloud Platform regions where
+	// messages published to the topic may be stored. If not present, then no
+	// constraints are in effect.  Structure is documented below.
 	MessageStoragePolicy TopicMessageStoragePolicyOutput `pulumi:"messageStoragePolicy"`
+	// -
+	// (Required)
 	// Name of the topic.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
@@ -65,16 +75,26 @@ func GetTopic(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Topic resources.
 type topicState struct {
-	// The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. Your
-	// project's PubSub service account ('service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com') must have
-	// 'roles/cloudkms.cryptoKeyEncrypterDecrypter' to use this feature. The expected format is
-	// 'projects/*/locations/*/keyRings/*/cryptoKeys/*'
+	// -
+	// (Optional)
+	// The resource name of the Cloud KMS CryptoKey to be used to protect access
+	// to messages published on this topic. Your project's PubSub service account
+	// (`service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com`) must have
+	// `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
+	// The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`
 	KmsKeyName *string `pulumi:"kmsKeyName"`
+	// -
+	// (Optional)
 	// A set of key/value label pairs to assign to this Topic.
 	Labels map[string]string `pulumi:"labels"`
-	// Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not
-	// present, then no constraints are in effect.
+	// -
+	// (Optional)
+	// Policy constraining the set of Google Cloud Platform regions where
+	// messages published to the topic may be stored. If not present, then no
+	// constraints are in effect.  Structure is documented below.
 	MessageStoragePolicy *TopicMessageStoragePolicy `pulumi:"messageStoragePolicy"`
+	// -
+	// (Required)
 	// Name of the topic.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
@@ -83,16 +103,26 @@ type topicState struct {
 }
 
 type TopicState struct {
-	// The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. Your
-	// project's PubSub service account ('service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com') must have
-	// 'roles/cloudkms.cryptoKeyEncrypterDecrypter' to use this feature. The expected format is
-	// 'projects/*/locations/*/keyRings/*/cryptoKeys/*'
+	// -
+	// (Optional)
+	// The resource name of the Cloud KMS CryptoKey to be used to protect access
+	// to messages published on this topic. Your project's PubSub service account
+	// (`service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com`) must have
+	// `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
+	// The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`
 	KmsKeyName pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// A set of key/value label pairs to assign to this Topic.
 	Labels pulumi.StringMapInput
-	// Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not
-	// present, then no constraints are in effect.
+	// -
+	// (Optional)
+	// Policy constraining the set of Google Cloud Platform regions where
+	// messages published to the topic may be stored. If not present, then no
+	// constraints are in effect.  Structure is documented below.
 	MessageStoragePolicy TopicMessageStoragePolicyPtrInput
+	// -
+	// (Required)
 	// Name of the topic.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
@@ -105,16 +135,26 @@ func (TopicState) ElementType() reflect.Type {
 }
 
 type topicArgs struct {
-	// The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. Your
-	// project's PubSub service account ('service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com') must have
-	// 'roles/cloudkms.cryptoKeyEncrypterDecrypter' to use this feature. The expected format is
-	// 'projects/*/locations/*/keyRings/*/cryptoKeys/*'
+	// -
+	// (Optional)
+	// The resource name of the Cloud KMS CryptoKey to be used to protect access
+	// to messages published on this topic. Your project's PubSub service account
+	// (`service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com`) must have
+	// `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
+	// The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`
 	KmsKeyName *string `pulumi:"kmsKeyName"`
+	// -
+	// (Optional)
 	// A set of key/value label pairs to assign to this Topic.
 	Labels map[string]string `pulumi:"labels"`
-	// Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not
-	// present, then no constraints are in effect.
+	// -
+	// (Optional)
+	// Policy constraining the set of Google Cloud Platform regions where
+	// messages published to the topic may be stored. If not present, then no
+	// constraints are in effect.  Structure is documented below.
 	MessageStoragePolicy *TopicMessageStoragePolicy `pulumi:"messageStoragePolicy"`
+	// -
+	// (Required)
 	// Name of the topic.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
@@ -124,16 +164,26 @@ type topicArgs struct {
 
 // The set of arguments for constructing a Topic resource.
 type TopicArgs struct {
-	// The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. Your
-	// project's PubSub service account ('service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com') must have
-	// 'roles/cloudkms.cryptoKeyEncrypterDecrypter' to use this feature. The expected format is
-	// 'projects/*/locations/*/keyRings/*/cryptoKeys/*'
+	// -
+	// (Optional)
+	// The resource name of the Cloud KMS CryptoKey to be used to protect access
+	// to messages published on this topic. Your project's PubSub service account
+	// (`service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com`) must have
+	// `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
+	// The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`
 	KmsKeyName pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// A set of key/value label pairs to assign to this Topic.
 	Labels pulumi.StringMapInput
-	// Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not
-	// present, then no constraints are in effect.
+	// -
+	// (Optional)
+	// Policy constraining the set of Google Cloud Platform regions where
+	// messages published to the topic may be stored. If not present, then no
+	// constraints are in effect.  Structure is documented below.
 	MessageStoragePolicy TopicMessageStoragePolicyPtrInput
+	// -
+	// (Required)
 	// Name of the topic.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.

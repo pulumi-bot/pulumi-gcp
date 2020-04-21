@@ -14,6 +14,12 @@ namespace Pulumi.Gcp.SecretManager.Inputs
     {
         [Input("replicas", required: true)]
         private InputList<Inputs.SecretReplicationUserManagedReplicaArgs>? _replicas;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The list of Replicas for this Secret. Cannot be empty.  Structure is documented below.
+        /// </summary>
         public InputList<Inputs.SecretReplicationUserManagedReplicaArgs> Replicas
         {
             get => _replicas ?? (_replicas = new InputList<Inputs.SecretReplicationUserManagedReplicaArgs>());

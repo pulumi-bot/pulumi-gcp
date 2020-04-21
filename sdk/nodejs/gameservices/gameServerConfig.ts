@@ -45,32 +45,46 @@ export class GameServerConfig extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Required)
      * A unique id for the deployment config.
      */
     public readonly configId!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * A unique id for the deployment.
      */
     public readonly deploymentId!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * The description of the game server config.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+     * -
+     * (Required)
+     * The fleet config contains list of fleet specs. In the Single Cloud, there
+     * will be only one.  Structure is documented below.
      */
     public readonly fleetConfigs!: pulumi.Output<outputs.gameservices.GameServerConfigFleetConfig[]>;
     /**
-     * The labels associated with this game server config. Each label is a key-value pair.
+     * -
+     * (Optional)
+     * Set of labels to group by.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * -
+     * (Optional)
      * Location of the Deployment.
      */
     public readonly location!: pulumi.Output<string | undefined>;
     /**
-     * The resource name of the game server config, in the form:
-     * 'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
+     * -
+     * (Required)
+     * The name of the ScalingConfig
      */
     public /*out*/ readonly name!: pulumi.Output<string>;
     /**
@@ -79,7 +93,9 @@ export class GameServerConfig extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
-     * Optional. This contains the autoscaling settings.
+     * -
+     * (Optional)
+     * Optional. This contains the autoscaling settings.  Structure is documented below.
      */
     public readonly scalingConfigs!: pulumi.Output<outputs.gameservices.GameServerConfigScalingConfig[] | undefined>;
 
@@ -141,32 +157,46 @@ export class GameServerConfig extends pulumi.CustomResource {
  */
 export interface GameServerConfigState {
     /**
+     * -
+     * (Required)
      * A unique id for the deployment config.
      */
     readonly configId?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * A unique id for the deployment.
      */
     readonly deploymentId?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The description of the game server config.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+     * -
+     * (Required)
+     * The fleet config contains list of fleet specs. In the Single Cloud, there
+     * will be only one.  Structure is documented below.
      */
     readonly fleetConfigs?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerConfigFleetConfig>[]>;
     /**
-     * The labels associated with this game server config. Each label is a key-value pair.
+     * -
+     * (Optional)
+     * Set of labels to group by.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * -
+     * (Optional)
      * Location of the Deployment.
      */
     readonly location?: pulumi.Input<string>;
     /**
-     * The resource name of the game server config, in the form:
-     * 'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
+     * -
+     * (Required)
+     * The name of the ScalingConfig
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -175,7 +205,9 @@ export interface GameServerConfigState {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * Optional. This contains the autoscaling settings.
+     * -
+     * (Optional)
+     * Optional. This contains the autoscaling settings.  Structure is documented below.
      */
     readonly scalingConfigs?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerConfigScalingConfig>[]>;
 }
@@ -185,26 +217,39 @@ export interface GameServerConfigState {
  */
 export interface GameServerConfigArgs {
     /**
+     * -
+     * (Required)
      * A unique id for the deployment config.
      */
     readonly configId: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * A unique id for the deployment.
      */
     readonly deploymentId: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The description of the game server config.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+     * -
+     * (Required)
+     * The fleet config contains list of fleet specs. In the Single Cloud, there
+     * will be only one.  Structure is documented below.
      */
     readonly fleetConfigs: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerConfigFleetConfig>[]>;
     /**
-     * The labels associated with this game server config. Each label is a key-value pair.
+     * -
+     * (Optional)
+     * Set of labels to group by.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * -
+     * (Optional)
      * Location of the Deployment.
      */
     readonly location?: pulumi.Input<string>;
@@ -214,7 +259,9 @@ export interface GameServerConfigArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * Optional. This contains the autoscaling settings.
+     * -
+     * (Optional)
+     * Optional. This contains the autoscaling settings.  Structure is documented below.
      */
     readonly scalingConfigs?: pulumi.Input<pulumi.Input<inputs.gameservices.GameServerConfigScalingConfig>[]>;
 }

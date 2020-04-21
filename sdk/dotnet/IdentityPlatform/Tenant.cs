@@ -22,25 +22,34 @@ namespace Pulumi.Gcp.IdentityPlatform
     public partial class Tenant : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether to allow email/password user authentication.
         /// </summary>
         [Output("allowPasswordSignup")]
         public Output<bool?> AllowPasswordSignup { get; private set; } = null!;
 
         /// <summary>
-        /// Whether authentication is disabled for the tenant. If true, the users under the disabled tenant are not allowed to
-        /// sign-in. Admins of the disabled tenant are not able to manage its users.
+        /// -
+        /// (Optional)
+        /// Whether authentication is disabled for the tenant. If true, the users under
+        /// the disabled tenant are not allowed to sign-in. Admins of the disabled tenant
+        /// are not able to manage its users.
         /// </summary>
         [Output("disableAuth")]
         public Output<bool?> DisableAuth { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human friendly display name of the tenant.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether to enable email link user authentication.
         /// </summary>
         [Output("enableEmailLinkSignin")]
@@ -106,25 +115,34 @@ namespace Pulumi.Gcp.IdentityPlatform
     public sealed class TenantArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether to allow email/password user authentication.
         /// </summary>
         [Input("allowPasswordSignup")]
         public Input<bool>? AllowPasswordSignup { get; set; }
 
         /// <summary>
-        /// Whether authentication is disabled for the tenant. If true, the users under the disabled tenant are not allowed to
-        /// sign-in. Admins of the disabled tenant are not able to manage its users.
+        /// -
+        /// (Optional)
+        /// Whether authentication is disabled for the tenant. If true, the users under
+        /// the disabled tenant are not allowed to sign-in. Admins of the disabled tenant
+        /// are not able to manage its users.
         /// </summary>
         [Input("disableAuth")]
         public Input<bool>? DisableAuth { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human friendly display name of the tenant.
         /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether to enable email link user authentication.
         /// </summary>
         [Input("enableEmailLinkSignin")]
@@ -145,25 +163,34 @@ namespace Pulumi.Gcp.IdentityPlatform
     public sealed class TenantState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether to allow email/password user authentication.
         /// </summary>
         [Input("allowPasswordSignup")]
         public Input<bool>? AllowPasswordSignup { get; set; }
 
         /// <summary>
-        /// Whether authentication is disabled for the tenant. If true, the users under the disabled tenant are not allowed to
-        /// sign-in. Admins of the disabled tenant are not able to manage its users.
+        /// -
+        /// (Optional)
+        /// Whether authentication is disabled for the tenant. If true, the users under
+        /// the disabled tenant are not allowed to sign-in. Admins of the disabled tenant
+        /// are not able to manage its users.
         /// </summary>
         [Input("disableAuth")]
         public Input<bool>? DisableAuth { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human friendly display name of the tenant.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether to enable email link user authentication.
         /// </summary>
         [Input("enableEmailLinkSignin")]

@@ -18,18 +18,30 @@ import (
 type SourceRepresentationInstance struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// The MySQL version running on your source database server: MYSQL_5_6 or MYSQL_5_7.
 	DatabaseVersion pulumi.StringOutput `pulumi:"databaseVersion"`
+	// -
+	// (Required)
 	// The externally accessible IPv4 address for the source database server.
 	Host pulumi.StringOutput `pulumi:"host"`
+	// -
+	// (Required)
 	// The name of the source representation instance. Use any valid Cloud SQL instance name.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The externally accessible port for the source database server. Defaults to 3306.
+	// -
+	// (Optional)
+	// The externally accessible port for the source database server.
+	// Defaults to 3306.
 	Port pulumi.IntPtrOutput `pulumi:"port"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
-	// The Region in which the created instance should reside. If it is not provided, the provider region is used.
+	// -
+	// (Optional)
+	// The Region in which the created instance should reside.
+	// If it is not provided, the provider region is used.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
@@ -67,34 +79,58 @@ func GetSourceRepresentationInstance(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SourceRepresentationInstance resources.
 type sourceRepresentationInstanceState struct {
+	// -
+	// (Required)
 	// The MySQL version running on your source database server: MYSQL_5_6 or MYSQL_5_7.
 	DatabaseVersion *string `pulumi:"databaseVersion"`
+	// -
+	// (Required)
 	// The externally accessible IPv4 address for the source database server.
 	Host *string `pulumi:"host"`
+	// -
+	// (Required)
 	// The name of the source representation instance. Use any valid Cloud SQL instance name.
 	Name *string `pulumi:"name"`
-	// The externally accessible port for the source database server. Defaults to 3306.
+	// -
+	// (Optional)
+	// The externally accessible port for the source database server.
+	// Defaults to 3306.
 	Port *int `pulumi:"port"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// The Region in which the created instance should reside. If it is not provided, the provider region is used.
+	// -
+	// (Optional)
+	// The Region in which the created instance should reside.
+	// If it is not provided, the provider region is used.
 	Region *string `pulumi:"region"`
 }
 
 type SourceRepresentationInstanceState struct {
+	// -
+	// (Required)
 	// The MySQL version running on your source database server: MYSQL_5_6 or MYSQL_5_7.
 	DatabaseVersion pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The externally accessible IPv4 address for the source database server.
 	Host pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The name of the source representation instance. Use any valid Cloud SQL instance name.
 	Name pulumi.StringPtrInput
-	// The externally accessible port for the source database server. Defaults to 3306.
+	// -
+	// (Optional)
+	// The externally accessible port for the source database server.
+	// Defaults to 3306.
 	Port pulumi.IntPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// The Region in which the created instance should reside. If it is not provided, the provider region is used.
+	// -
+	// (Optional)
+	// The Region in which the created instance should reside.
+	// If it is not provided, the provider region is used.
 	Region pulumi.StringPtrInput
 }
 
@@ -103,35 +139,59 @@ func (SourceRepresentationInstanceState) ElementType() reflect.Type {
 }
 
 type sourceRepresentationInstanceArgs struct {
+	// -
+	// (Required)
 	// The MySQL version running on your source database server: MYSQL_5_6 or MYSQL_5_7.
 	DatabaseVersion string `pulumi:"databaseVersion"`
+	// -
+	// (Required)
 	// The externally accessible IPv4 address for the source database server.
 	Host string `pulumi:"host"`
+	// -
+	// (Required)
 	// The name of the source representation instance. Use any valid Cloud SQL instance name.
 	Name *string `pulumi:"name"`
-	// The externally accessible port for the source database server. Defaults to 3306.
+	// -
+	// (Optional)
+	// The externally accessible port for the source database server.
+	// Defaults to 3306.
 	Port *int `pulumi:"port"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// The Region in which the created instance should reside. If it is not provided, the provider region is used.
+	// -
+	// (Optional)
+	// The Region in which the created instance should reside.
+	// If it is not provided, the provider region is used.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a SourceRepresentationInstance resource.
 type SourceRepresentationInstanceArgs struct {
+	// -
+	// (Required)
 	// The MySQL version running on your source database server: MYSQL_5_6 or MYSQL_5_7.
 	DatabaseVersion pulumi.StringInput
+	// -
+	// (Required)
 	// The externally accessible IPv4 address for the source database server.
 	Host pulumi.StringInput
+	// -
+	// (Required)
 	// The name of the source representation instance. Use any valid Cloud SQL instance name.
 	Name pulumi.StringPtrInput
-	// The externally accessible port for the source database server. Defaults to 3306.
+	// -
+	// (Optional)
+	// The externally accessible port for the source database server.
+	// Defaults to 3306.
 	Port pulumi.IntPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// The Region in which the created instance should reside. If it is not provided, the provider region is used.
+	// -
+	// (Optional)
+	// The Region in which the created instance should reside.
+	// If it is not provided, the provider region is used.
 	Region pulumi.StringPtrInput
 }
 

@@ -46,32 +46,49 @@ export class Node extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Required)
      * The type of hardware accelerators associated with this node.
      */
     public readonly acceleratorType!: pulumi.Output<string>;
     /**
-     * The CIDR block that the TPU node will use when selecting an IP address. This CIDR block must be a /29 block; the
-     * Compute Engine networks API forbids a smaller block, and using a larger block would be wasteful (a node can only
-     * consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU
-     * node, the CIDR block conflicts with any subnetworks in the user's provided network, or the provided network is
-     * peered with another network that is using that CIDR block.
+     * -
+     * (Required)
+     * The CIDR block that the TPU node will use when selecting an IP
+     * address. This CIDR block must be a /29 block; the Compute Engine
+     * networks API forbids a smaller block, and using a larger block would
+     * be wasteful (a node can only consume one IP address).
+     * Errors will occur if the CIDR block has already been used for a
+     * currently existing TPU node, the CIDR block conflicts with any
+     * subnetworks in the user's provided network, or the provided network
+     * is peered with another network that is using that CIDR block.
      */
     public readonly cidrBlock!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * The user-supplied description of the TPU. Maximum of 512 characters.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Optional)
      * Resource labels to represent user provided metadata.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * -
+     * (Required)
      * The immutable name of the TPU.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The name of a network to peer the TPU node to. It must be a preexisting Compute Engine network inside of the project
-     * on which this API has been activated. If none is provided, "default" will be used.
+     * -
+     * (Optional)
+     * The name of a network to peer the TPU node to. It must be a
+     * preexisting Compute Engine network inside of the project on which
+     * this API has been activated. If none is provided, "default" will be
+     * used.
      */
     public readonly network!: pulumi.Output<string>;
     /**
@@ -85,7 +102,9 @@ export class Node extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
-     * Sets the scheduling options for this TPU instance.
+     * -
+     * (Optional)
+     * Sets the scheduling options for this TPU instance.  Structure is documented below.
      */
     public readonly schedulingConfig!: pulumi.Output<outputs.tpu.NodeSchedulingConfig | undefined>;
     /**
@@ -94,10 +113,14 @@ export class Node extends pulumi.CustomResource {
      */
     public /*out*/ readonly serviceAccount!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The version of Tensorflow running in the Node.
      */
     public readonly tensorflowVersion!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The GCP location for the TPU.
      */
     public readonly zone!: pulumi.Output<string>;
@@ -169,32 +192,49 @@ export class Node extends pulumi.CustomResource {
  */
 export interface NodeState {
     /**
+     * -
+     * (Required)
      * The type of hardware accelerators associated with this node.
      */
     readonly acceleratorType?: pulumi.Input<string>;
     /**
-     * The CIDR block that the TPU node will use when selecting an IP address. This CIDR block must be a /29 block; the
-     * Compute Engine networks API forbids a smaller block, and using a larger block would be wasteful (a node can only
-     * consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU
-     * node, the CIDR block conflicts with any subnetworks in the user's provided network, or the provided network is
-     * peered with another network that is using that CIDR block.
+     * -
+     * (Required)
+     * The CIDR block that the TPU node will use when selecting an IP
+     * address. This CIDR block must be a /29 block; the Compute Engine
+     * networks API forbids a smaller block, and using a larger block would
+     * be wasteful (a node can only consume one IP address).
+     * Errors will occur if the CIDR block has already been used for a
+     * currently existing TPU node, the CIDR block conflicts with any
+     * subnetworks in the user's provided network, or the provided network
+     * is peered with another network that is using that CIDR block.
      */
     readonly cidrBlock?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The user-supplied description of the TPU. Maximum of 512 characters.
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Resource labels to represent user provided metadata.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * -
+     * (Required)
      * The immutable name of the TPU.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The name of a network to peer the TPU node to. It must be a preexisting Compute Engine network inside of the project
-     * on which this API has been activated. If none is provided, "default" will be used.
+     * -
+     * (Optional)
+     * The name of a network to peer the TPU node to. It must be a
+     * preexisting Compute Engine network inside of the project on which
+     * this API has been activated. If none is provided, "default" will be
+     * used.
      */
     readonly network?: pulumi.Input<string>;
     /**
@@ -208,7 +248,9 @@ export interface NodeState {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * Sets the scheduling options for this TPU instance.
+     * -
+     * (Optional)
+     * Sets the scheduling options for this TPU instance.  Structure is documented below.
      */
     readonly schedulingConfig?: pulumi.Input<inputs.tpu.NodeSchedulingConfig>;
     /**
@@ -217,10 +259,14 @@ export interface NodeState {
      */
     readonly serviceAccount?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The version of Tensorflow running in the Node.
      */
     readonly tensorflowVersion?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The GCP location for the TPU.
      */
     readonly zone?: pulumi.Input<string>;
@@ -231,32 +277,49 @@ export interface NodeState {
  */
 export interface NodeArgs {
     /**
+     * -
+     * (Required)
      * The type of hardware accelerators associated with this node.
      */
     readonly acceleratorType: pulumi.Input<string>;
     /**
-     * The CIDR block that the TPU node will use when selecting an IP address. This CIDR block must be a /29 block; the
-     * Compute Engine networks API forbids a smaller block, and using a larger block would be wasteful (a node can only
-     * consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU
-     * node, the CIDR block conflicts with any subnetworks in the user's provided network, or the provided network is
-     * peered with another network that is using that CIDR block.
+     * -
+     * (Required)
+     * The CIDR block that the TPU node will use when selecting an IP
+     * address. This CIDR block must be a /29 block; the Compute Engine
+     * networks API forbids a smaller block, and using a larger block would
+     * be wasteful (a node can only consume one IP address).
+     * Errors will occur if the CIDR block has already been used for a
+     * currently existing TPU node, the CIDR block conflicts with any
+     * subnetworks in the user's provided network, or the provided network
+     * is peered with another network that is using that CIDR block.
      */
     readonly cidrBlock: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The user-supplied description of the TPU. Maximum of 512 characters.
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Resource labels to represent user provided metadata.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * -
+     * (Required)
      * The immutable name of the TPU.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The name of a network to peer the TPU node to. It must be a preexisting Compute Engine network inside of the project
-     * on which this API has been activated. If none is provided, "default" will be used.
+     * -
+     * (Optional)
+     * The name of a network to peer the TPU node to. It must be a
+     * preexisting Compute Engine network inside of the project on which
+     * this API has been activated. If none is provided, "default" will be
+     * used.
      */
     readonly network?: pulumi.Input<string>;
     /**
@@ -265,14 +328,20 @@ export interface NodeArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * Sets the scheduling options for this TPU instance.
+     * -
+     * (Optional)
+     * Sets the scheduling options for this TPU instance.  Structure is documented below.
      */
     readonly schedulingConfig?: pulumi.Input<inputs.tpu.NodeSchedulingConfig>;
     /**
+     * -
+     * (Required)
      * The version of Tensorflow running in the Node.
      */
     readonly tensorflowVersion: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The GCP location for the TPU.
      */
     readonly zone: pulumi.Input<string>;

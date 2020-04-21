@@ -19,37 +19,49 @@ namespace Pulumi.Gcp.IdentityPlatform
     public partial class TenantOauthIdpConfig : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The client id of an OAuth client.
         /// </summary>
         [Output("clientId")]
         public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The client secret of the OAuth client, to enable OIDC code flow.
         /// </summary>
         [Output("clientSecret")]
         public Output<string?> ClientSecret { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human friendly display name.
         /// </summary>
         [Output("displayName")]
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If this config allows users to sign in with the provider.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// For OIDC Idps, the issuer identifier.
         /// </summary>
         [Output("issuer")]
         public Output<string> Issuer { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the OauthIdpConfig. Must start with 'oidc.'.
+        /// -
+        /// (Required)
+        /// The name of the OauthIdpConfig. Must start with `oidc.`.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -62,6 +74,8 @@ namespace Pulumi.Gcp.IdentityPlatform
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the tenant where this OIDC IDP configuration resource exists
         /// </summary>
         [Output("tenant")]
@@ -114,37 +128,49 @@ namespace Pulumi.Gcp.IdentityPlatform
     public sealed class TenantOauthIdpConfigArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The client id of an OAuth client.
         /// </summary>
         [Input("clientId", required: true)]
         public Input<string> ClientId { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The client secret of the OAuth client, to enable OIDC code flow.
         /// </summary>
         [Input("clientSecret")]
         public Input<string>? ClientSecret { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human friendly display name.
         /// </summary>
         [Input("displayName", required: true)]
         public Input<string> DisplayName { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If this config allows users to sign in with the provider.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// For OIDC Idps, the issuer identifier.
         /// </summary>
         [Input("issuer", required: true)]
         public Input<string> Issuer { get; set; } = null!;
 
         /// <summary>
-        /// The name of the OauthIdpConfig. Must start with 'oidc.'.
+        /// -
+        /// (Required)
+        /// The name of the OauthIdpConfig. Must start with `oidc.`.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -157,6 +183,8 @@ namespace Pulumi.Gcp.IdentityPlatform
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the tenant where this OIDC IDP configuration resource exists
         /// </summary>
         [Input("tenant", required: true)]
@@ -170,37 +198,49 @@ namespace Pulumi.Gcp.IdentityPlatform
     public sealed class TenantOauthIdpConfigState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The client id of an OAuth client.
         /// </summary>
         [Input("clientId")]
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The client secret of the OAuth client, to enable OIDC code flow.
         /// </summary>
         [Input("clientSecret")]
         public Input<string>? ClientSecret { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human friendly display name.
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// If this config allows users to sign in with the provider.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// For OIDC Idps, the issuer identifier.
         /// </summary>
         [Input("issuer")]
         public Input<string>? Issuer { get; set; }
 
         /// <summary>
-        /// The name of the OauthIdpConfig. Must start with 'oidc.'.
+        /// -
+        /// (Required)
+        /// The name of the OauthIdpConfig. Must start with `oidc.`.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -213,6 +253,8 @@ namespace Pulumi.Gcp.IdentityPlatform
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The name of the tenant where this OIDC IDP configuration resource exists
         /// </summary>
         [Input("tenant")]

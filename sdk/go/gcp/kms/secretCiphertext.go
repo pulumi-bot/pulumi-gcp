@@ -27,13 +27,19 @@ import (
 type SecretCiphertext struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Optional)
 	// The additional authenticated data used for integrity checks during encryption and decryption.
 	AdditionalAuthenticatedData pulumi.StringPtrOutput `pulumi:"additionalAuthenticatedData"`
 	// Contains the result of encrypting the provided plaintext, encoded in base64.
 	Ciphertext pulumi.StringOutput `pulumi:"ciphertext"`
-	// The full name of the CryptoKey that will be used to encrypt the provided plaintext. Format:
-	// ''projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}''
+	// -
+	// (Required)
+	// The full name of the CryptoKey that will be used to encrypt the provided plaintext.
+	// Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}'`
 	CryptoKey pulumi.StringOutput `pulumi:"cryptoKey"`
+	// -
+	// (Required)
 	// The plaintext to be encrypted.
 	Plaintext pulumi.StringOutput `pulumi:"plaintext"`
 }
@@ -72,25 +78,37 @@ func GetSecretCiphertext(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SecretCiphertext resources.
 type secretCiphertextState struct {
+	// -
+	// (Optional)
 	// The additional authenticated data used for integrity checks during encryption and decryption.
 	AdditionalAuthenticatedData *string `pulumi:"additionalAuthenticatedData"`
 	// Contains the result of encrypting the provided plaintext, encoded in base64.
 	Ciphertext *string `pulumi:"ciphertext"`
-	// The full name of the CryptoKey that will be used to encrypt the provided plaintext. Format:
-	// ''projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}''
+	// -
+	// (Required)
+	// The full name of the CryptoKey that will be used to encrypt the provided plaintext.
+	// Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}'`
 	CryptoKey *string `pulumi:"cryptoKey"`
+	// -
+	// (Required)
 	// The plaintext to be encrypted.
 	Plaintext *string `pulumi:"plaintext"`
 }
 
 type SecretCiphertextState struct {
+	// -
+	// (Optional)
 	// The additional authenticated data used for integrity checks during encryption and decryption.
 	AdditionalAuthenticatedData pulumi.StringPtrInput
 	// Contains the result of encrypting the provided plaintext, encoded in base64.
 	Ciphertext pulumi.StringPtrInput
-	// The full name of the CryptoKey that will be used to encrypt the provided plaintext. Format:
-	// ''projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}''
+	// -
+	// (Required)
+	// The full name of the CryptoKey that will be used to encrypt the provided plaintext.
+	// Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}'`
 	CryptoKey pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The plaintext to be encrypted.
 	Plaintext pulumi.StringPtrInput
 }
@@ -100,22 +118,34 @@ func (SecretCiphertextState) ElementType() reflect.Type {
 }
 
 type secretCiphertextArgs struct {
+	// -
+	// (Optional)
 	// The additional authenticated data used for integrity checks during encryption and decryption.
 	AdditionalAuthenticatedData *string `pulumi:"additionalAuthenticatedData"`
-	// The full name of the CryptoKey that will be used to encrypt the provided plaintext. Format:
-	// ''projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}''
+	// -
+	// (Required)
+	// The full name of the CryptoKey that will be used to encrypt the provided plaintext.
+	// Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}'`
 	CryptoKey string `pulumi:"cryptoKey"`
+	// -
+	// (Required)
 	// The plaintext to be encrypted.
 	Plaintext string `pulumi:"plaintext"`
 }
 
 // The set of arguments for constructing a SecretCiphertext resource.
 type SecretCiphertextArgs struct {
+	// -
+	// (Optional)
 	// The additional authenticated data used for integrity checks during encryption and decryption.
 	AdditionalAuthenticatedData pulumi.StringPtrInput
-	// The full name of the CryptoKey that will be used to encrypt the provided plaintext. Format:
-	// ''projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}''
+	// -
+	// (Required)
+	// The full name of the CryptoKey that will be used to encrypt the provided plaintext.
+	// Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}'`
 	CryptoKey pulumi.StringInput
+	// -
+	// (Required)
 	// The plaintext to be encrypted.
 	Plaintext pulumi.StringInput
 }

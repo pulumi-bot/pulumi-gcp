@@ -38,12 +38,17 @@ namespace Pulumi.Gcp.AccessContextManager
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The parent of this AccessPolicy in the Cloud Resource Hierarchy. Format: organizations/{organization_id}
+        /// -
+        /// (Required)
+        /// The parent of this AccessPolicy in the Cloud Resource Hierarchy.
+        /// Format: organizations/{organization_id}
         /// </summary>
         [Output("parent")]
         public Output<string> Parent { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human readable title. Does not affect behavior.
         /// </summary>
         [Output("title")]
@@ -102,12 +107,17 @@ namespace Pulumi.Gcp.AccessContextManager
     public sealed class AccessPolicyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The parent of this AccessPolicy in the Cloud Resource Hierarchy. Format: organizations/{organization_id}
+        /// -
+        /// (Required)
+        /// The parent of this AccessPolicy in the Cloud Resource Hierarchy.
+        /// Format: organizations/{organization_id}
         /// </summary>
         [Input("parent", required: true)]
         public Input<string> Parent { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human readable title. Does not affect behavior.
         /// </summary>
         [Input("title", required: true)]
@@ -133,12 +143,17 @@ namespace Pulumi.Gcp.AccessContextManager
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The parent of this AccessPolicy in the Cloud Resource Hierarchy. Format: organizations/{organization_id}
+        /// -
+        /// (Required)
+        /// The parent of this AccessPolicy in the Cloud Resource Hierarchy.
+        /// Format: organizations/{organization_id}
         /// </summary>
         [Input("parent")]
         public Input<string>? Parent { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human readable title. Does not affect behavior.
         /// </summary>
         [Input("title")]

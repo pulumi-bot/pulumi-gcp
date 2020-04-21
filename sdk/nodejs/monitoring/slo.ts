@@ -53,21 +53,32 @@ export class Slo extends pulumi.CustomResource {
     }
 
     /**
-     * Basic Service-Level Indicator (SLI) on a well-known service type. Performance will be computed on the basis of
-     * pre-defined metrics. SLIs are used to measure and calculate the quality of the Service's performance with respect to
-     * a single aspect of service quality.
+     * -
+     * (Required)
+     * Basic Service-Level Indicator (SLI) on a well-known service type.
+     * Performance will be computed on the basis of pre-defined metrics.
+     * SLIs are used to measure and calculate the quality of the Service's
+     * performance with respect to a single aspect of service quality.  Structure is documented below.
      */
     public readonly basicSli!: pulumi.Output<outputs.monitoring.SloBasicSli>;
     /**
-     * A calendar period, semantically "since the start of the current <calendarPeriod>".
+     * -
+     * (Optional)
+     * A calendar period, semantically "since the start of the current
+     * <calendarPeriod>".
      */
     public readonly calendarPeriod!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Optional)
      * Name used for UI elements listing this SLO.
      */
     public readonly displayName!: pulumi.Output<string | undefined>;
     /**
-     * The fraction of service that must be good in order for this objective to be met. 0 < goal <= 0.999
+     * -
+     * (Required)
+     * The fraction of service that must be good in order for this objective
+     * to be met. 0 < goal <= 0.999
      */
     public readonly goal!: pulumi.Output<number>;
     /**
@@ -81,14 +92,21 @@ export class Slo extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
-     * A rolling time period, semantically "in the past X days". Must be between 1 to 30 days, inclusive.
+     * -
+     * (Optional)
+     * A rolling time period, semantically "in the past X days".
+     * Must be between 1 to 30 days, inclusive.
      */
     public readonly rollingPeriodDays!: pulumi.Output<number | undefined>;
     /**
+     * -
+     * (Required)
      * ID of the service to which this SLO belongs.
      */
     public readonly service!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * The id to use for this ServiceLevelObjective. If omitted, an id will be generated instead.
      */
     public readonly sloId!: pulumi.Output<string>;
@@ -151,21 +169,32 @@ export class Slo extends pulumi.CustomResource {
  */
 export interface SloState {
     /**
-     * Basic Service-Level Indicator (SLI) on a well-known service type. Performance will be computed on the basis of
-     * pre-defined metrics. SLIs are used to measure and calculate the quality of the Service's performance with respect to
-     * a single aspect of service quality.
+     * -
+     * (Required)
+     * Basic Service-Level Indicator (SLI) on a well-known service type.
+     * Performance will be computed on the basis of pre-defined metrics.
+     * SLIs are used to measure and calculate the quality of the Service's
+     * performance with respect to a single aspect of service quality.  Structure is documented below.
      */
     readonly basicSli?: pulumi.Input<inputs.monitoring.SloBasicSli>;
     /**
-     * A calendar period, semantically "since the start of the current <calendarPeriod>".
+     * -
+     * (Optional)
+     * A calendar period, semantically "since the start of the current
+     * <calendarPeriod>".
      */
     readonly calendarPeriod?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Name used for UI elements listing this SLO.
      */
     readonly displayName?: pulumi.Input<string>;
     /**
-     * The fraction of service that must be good in order for this objective to be met. 0 < goal <= 0.999
+     * -
+     * (Required)
+     * The fraction of service that must be good in order for this objective
+     * to be met. 0 < goal <= 0.999
      */
     readonly goal?: pulumi.Input<number>;
     /**
@@ -179,14 +208,21 @@ export interface SloState {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * A rolling time period, semantically "in the past X days". Must be between 1 to 30 days, inclusive.
+     * -
+     * (Optional)
+     * A rolling time period, semantically "in the past X days".
+     * Must be between 1 to 30 days, inclusive.
      */
     readonly rollingPeriodDays?: pulumi.Input<number>;
     /**
+     * -
+     * (Required)
      * ID of the service to which this SLO belongs.
      */
     readonly service?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The id to use for this ServiceLevelObjective. If omitted, an id will be generated instead.
      */
     readonly sloId?: pulumi.Input<string>;
@@ -197,21 +233,32 @@ export interface SloState {
  */
 export interface SloArgs {
     /**
-     * Basic Service-Level Indicator (SLI) on a well-known service type. Performance will be computed on the basis of
-     * pre-defined metrics. SLIs are used to measure and calculate the quality of the Service's performance with respect to
-     * a single aspect of service quality.
+     * -
+     * (Required)
+     * Basic Service-Level Indicator (SLI) on a well-known service type.
+     * Performance will be computed on the basis of pre-defined metrics.
+     * SLIs are used to measure and calculate the quality of the Service's
+     * performance with respect to a single aspect of service quality.  Structure is documented below.
      */
     readonly basicSli: pulumi.Input<inputs.monitoring.SloBasicSli>;
     /**
-     * A calendar period, semantically "since the start of the current <calendarPeriod>".
+     * -
+     * (Optional)
+     * A calendar period, semantically "since the start of the current
+     * <calendarPeriod>".
      */
     readonly calendarPeriod?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Name used for UI elements listing this SLO.
      */
     readonly displayName?: pulumi.Input<string>;
     /**
-     * The fraction of service that must be good in order for this objective to be met. 0 < goal <= 0.999
+     * -
+     * (Required)
+     * The fraction of service that must be good in order for this objective
+     * to be met. 0 < goal <= 0.999
      */
     readonly goal: pulumi.Input<number>;
     /**
@@ -220,14 +267,21 @@ export interface SloArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * A rolling time period, semantically "in the past X days". Must be between 1 to 30 days, inclusive.
+     * -
+     * (Optional)
+     * A rolling time period, semantically "in the past X days".
+     * Must be between 1 to 30 days, inclusive.
      */
     readonly rollingPeriodDays?: pulumi.Input<number>;
     /**
+     * -
+     * (Required)
      * ID of the service to which this SLO belongs.
      */
     readonly service: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The id to use for this ServiceLevelObjective. If omitted, an id will be generated instead.
      */
     readonly sloId?: pulumi.Input<string>;

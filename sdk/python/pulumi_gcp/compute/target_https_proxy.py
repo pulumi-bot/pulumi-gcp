@@ -16,14 +16,21 @@ class TargetHttpsProxy(pulumi.CustomResource):
     """
     description: pulumi.Output[str]
     """
+    -
+    (Optional)
     An optional description of this resource.
     """
     name: pulumi.Output[str]
     """
-    Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-    comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-    '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-    must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+    -
+    (Required)
+    Name of the resource. Provided by the client when the resource is
+    created. The name must be 1-63 characters long, and comply with
+    RFC1035. Specifically, the name must be 1-63 characters long and match
+    the regular expression `a-z?` which means the
+    first character must be a lowercase letter, and all following
+    characters must be a dash, lowercase letter, or digit, except the last
+    character, which cannot be a dash.
     """
     project: pulumi.Output[str]
     """
@@ -36,10 +43,14 @@ class TargetHttpsProxy(pulumi.CustomResource):
     """
     quic_override: pulumi.Output[str]
     """
-    Specifies the QUIC override policy for this resource. This determines whether the load balancer will attempt to
-    negotiate QUIC with clients or not. Can specify one of NONE, ENABLE, or DISABLE. If NONE is specified, uses the QUIC
-    policy with no user overrides, which is equivalent to DISABLE. Not specifying this field is equivalent to specifying
-    NONE.
+    -
+    (Optional)
+    Specifies the QUIC override policy for this resource. This determines
+    whether the load balancer will attempt to negotiate QUIC with clients
+    or not. Can specify one of NONE, ENABLE, or DISABLE. If NONE is
+    specified, uses the QUIC policy with no user overrides, which is
+    equivalent to DISABLE. Not specifying this field is equivalent to
+    specifying NONE.
     """
     self_link: pulumi.Output[str]
     """
@@ -47,17 +58,26 @@ class TargetHttpsProxy(pulumi.CustomResource):
     """
     ssl_certificates: pulumi.Output[list]
     """
-    A list of SslCertificate resources that are used to authenticate connections between users and the load balancer. At
-    least one SSL certificate must be specified.
+    -
+    (Required)
+    A list of SslCertificate resources that are used to authenticate
+    connections between users and the load balancer. At least one SSL
+    certificate must be specified.
     """
     ssl_policy: pulumi.Output[str]
     """
-    A reference to the SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not set, the
-    TargetHttpsProxy resource will not have any SSL policy configured.
+    -
+    (Optional)
+    A reference to the SslPolicy resource that will be associated with
+    the TargetHttpsProxy resource. If not set, the TargetHttpsProxy
+    resource will not have any SSL policy configured.
     """
     url_map: pulumi.Output[str]
     """
-    A reference to the UrlMap resource that defines the mapping from URL to the BackendService.
+    -
+    (Required)
+    A reference to the UrlMap resource that defines the mapping from URL
+    to the BackendService.
     """
     def __init__(__self__, resource_name, opts=None, description=None, name=None, project=None, quic_override=None, ssl_certificates=None, ssl_policy=None, url_map=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -73,22 +93,42 @@ class TargetHttpsProxy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-               comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-               '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-               must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               An optional description of this resource.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Name of the resource. Provided by the client when the resource is
+               created. The name must be 1-63 characters long, and comply with
+               RFC1035. Specifically, the name must be 1-63 characters long and match
+               the regular expression `a-z?` which means the
+               first character must be a lowercase letter, and all following
+               characters must be a dash, lowercase letter, or digit, except the last
+               character, which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] quic_override: Specifies the QUIC override policy for this resource. This determines whether the load balancer will attempt to
-               negotiate QUIC with clients or not. Can specify one of NONE, ENABLE, or DISABLE. If NONE is specified, uses the QUIC
-               policy with no user overrides, which is equivalent to DISABLE. Not specifying this field is equivalent to specifying
-               NONE.
-        :param pulumi.Input[list] ssl_certificates: A list of SslCertificate resources that are used to authenticate connections between users and the load balancer. At
-               least one SSL certificate must be specified.
-        :param pulumi.Input[str] ssl_policy: A reference to the SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not set, the
-               TargetHttpsProxy resource will not have any SSL policy configured.
-        :param pulumi.Input[str] url_map: A reference to the UrlMap resource that defines the mapping from URL to the BackendService.
+        :param pulumi.Input[str] quic_override: -
+               (Optional)
+               Specifies the QUIC override policy for this resource. This determines
+               whether the load balancer will attempt to negotiate QUIC with clients
+               or not. Can specify one of NONE, ENABLE, or DISABLE. If NONE is
+               specified, uses the QUIC policy with no user overrides, which is
+               equivalent to DISABLE. Not specifying this field is equivalent to
+               specifying NONE.
+        :param pulumi.Input[list] ssl_certificates: -
+               (Required)
+               A list of SslCertificate resources that are used to authenticate
+               connections between users and the load balancer. At least one SSL
+               certificate must be specified.
+        :param pulumi.Input[str] ssl_policy: -
+               (Optional)
+               A reference to the SslPolicy resource that will be associated with
+               the TargetHttpsProxy resource. If not set, the TargetHttpsProxy
+               resource will not have any SSL policy configured.
+        :param pulumi.Input[str] url_map: -
+               (Required)
+               A reference to the UrlMap resource that defines the mapping from URL
+               to the BackendService.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -137,24 +177,44 @@ class TargetHttpsProxy(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
-        :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-               comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-               '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-               must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               An optional description of this resource.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Name of the resource. Provided by the client when the resource is
+               created. The name must be 1-63 characters long, and comply with
+               RFC1035. Specifically, the name must be 1-63 characters long and match
+               the regular expression `a-z?` which means the
+               first character must be a lowercase letter, and all following
+               characters must be a dash, lowercase letter, or digit, except the last
+               character, which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[float] proxy_id: The unique identifier for the resource.
-        :param pulumi.Input[str] quic_override: Specifies the QUIC override policy for this resource. This determines whether the load balancer will attempt to
-               negotiate QUIC with clients or not. Can specify one of NONE, ENABLE, or DISABLE. If NONE is specified, uses the QUIC
-               policy with no user overrides, which is equivalent to DISABLE. Not specifying this field is equivalent to specifying
-               NONE.
+        :param pulumi.Input[str] quic_override: -
+               (Optional)
+               Specifies the QUIC override policy for this resource. This determines
+               whether the load balancer will attempt to negotiate QUIC with clients
+               or not. Can specify one of NONE, ENABLE, or DISABLE. If NONE is
+               specified, uses the QUIC policy with no user overrides, which is
+               equivalent to DISABLE. Not specifying this field is equivalent to
+               specifying NONE.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[list] ssl_certificates: A list of SslCertificate resources that are used to authenticate connections between users and the load balancer. At
-               least one SSL certificate must be specified.
-        :param pulumi.Input[str] ssl_policy: A reference to the SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not set, the
-               TargetHttpsProxy resource will not have any SSL policy configured.
-        :param pulumi.Input[str] url_map: A reference to the UrlMap resource that defines the mapping from URL to the BackendService.
+        :param pulumi.Input[list] ssl_certificates: -
+               (Required)
+               A list of SslCertificate resources that are used to authenticate
+               connections between users and the load balancer. At least one SSL
+               certificate must be specified.
+        :param pulumi.Input[str] ssl_policy: -
+               (Optional)
+               A reference to the SslPolicy resource that will be associated with
+               the TargetHttpsProxy resource. If not set, the TargetHttpsProxy
+               resource will not have any SSL policy configured.
+        :param pulumi.Input[str] url_map: -
+               (Required)
+               A reference to the UrlMap resource that defines the mapping from URL
+               to the BackendService.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

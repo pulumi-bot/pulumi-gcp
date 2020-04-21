@@ -12,19 +12,27 @@ from .. import utilities, tables
 class GlobalNetworkEndpoint(pulumi.CustomResource):
     fqdn: pulumi.Output[str]
     """
-    Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is
-    INTERNET_FQDN_PORT.
+    -
+    (Optional)
+    Fully qualified domain name of network endpoint.
+    This can only be specified when network_endpoint_type of the NEG is INTERNET_FQDN_PORT.
     """
     global_network_endpoint_group: pulumi.Output[str]
     """
+    -
+    (Required)
     The global network endpoint group this endpoint is part of.
     """
     ip_address: pulumi.Output[str]
     """
+    -
+    (Optional)
     IPv4 address external endpoint.
     """
     port: pulumi.Output[float]
     """
+    -
+    (Required)
     Port number of the external endpoint.
     """
     project: pulumi.Output[str]
@@ -47,11 +55,19 @@ class GlobalNetworkEndpoint(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] fqdn: Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is
-               INTERNET_FQDN_PORT.
-        :param pulumi.Input[str] global_network_endpoint_group: The global network endpoint group this endpoint is part of.
-        :param pulumi.Input[str] ip_address: IPv4 address external endpoint.
-        :param pulumi.Input[float] port: Port number of the external endpoint.
+        :param pulumi.Input[str] fqdn: -
+               (Optional)
+               Fully qualified domain name of network endpoint.
+               This can only be specified when network_endpoint_type of the NEG is INTERNET_FQDN_PORT.
+        :param pulumi.Input[str] global_network_endpoint_group: -
+               (Required)
+               The global network endpoint group this endpoint is part of.
+        :param pulumi.Input[str] ip_address: -
+               (Optional)
+               IPv4 address external endpoint.
+        :param pulumi.Input[float] port: -
+               (Required)
+               Port number of the external endpoint.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         """
@@ -96,11 +112,19 @@ class GlobalNetworkEndpoint(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] fqdn: Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is
-               INTERNET_FQDN_PORT.
-        :param pulumi.Input[str] global_network_endpoint_group: The global network endpoint group this endpoint is part of.
-        :param pulumi.Input[str] ip_address: IPv4 address external endpoint.
-        :param pulumi.Input[float] port: Port number of the external endpoint.
+        :param pulumi.Input[str] fqdn: -
+               (Optional)
+               Fully qualified domain name of network endpoint.
+               This can only be specified when network_endpoint_type of the NEG is INTERNET_FQDN_PORT.
+        :param pulumi.Input[str] global_network_endpoint_group: -
+               (Required)
+               The global network endpoint group this endpoint is part of.
+        :param pulumi.Input[str] ip_address: -
+               (Optional)
+               IPv4 address external endpoint.
+        :param pulumi.Input[float] port: -
+               (Required)
+               Port number of the external endpoint.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         """

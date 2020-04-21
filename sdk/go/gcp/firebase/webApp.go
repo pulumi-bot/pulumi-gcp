@@ -16,6 +16,8 @@ type WebApp struct {
 	// Immutable. The globally unique, Firebase-assigned identifier of the App. This identifier should be treated as an opaque
 	// token, as the data format is not specified.
 	AppId pulumi.StringOutput `pulumi:"appId"`
+	// -
+	// (Required)
 	// The user-assigned display name of the App.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// The fully qualified resource name of the App, for example: projects/projectId/webApps/appId
@@ -59,6 +61,8 @@ type webAppState struct {
 	// Immutable. The globally unique, Firebase-assigned identifier of the App. This identifier should be treated as an opaque
 	// token, as the data format is not specified.
 	AppId *string `pulumi:"appId"`
+	// -
+	// (Required)
 	// The user-assigned display name of the App.
 	DisplayName *string `pulumi:"displayName"`
 	// The fully qualified resource name of the App, for example: projects/projectId/webApps/appId
@@ -72,6 +76,8 @@ type WebAppState struct {
 	// Immutable. The globally unique, Firebase-assigned identifier of the App. This identifier should be treated as an opaque
 	// token, as the data format is not specified.
 	AppId pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The user-assigned display name of the App.
 	DisplayName pulumi.StringPtrInput
 	// The fully qualified resource name of the App, for example: projects/projectId/webApps/appId
@@ -86,6 +92,8 @@ func (WebAppState) ElementType() reflect.Type {
 }
 
 type webAppArgs struct {
+	// -
+	// (Required)
 	// The user-assigned display name of the App.
 	DisplayName string `pulumi:"displayName"`
 	// The ID of the project in which the resource belongs.
@@ -95,6 +103,8 @@ type webAppArgs struct {
 
 // The set of arguments for constructing a WebApp resource.
 type WebAppArgs struct {
+	// -
+	// (Required)
 	// The user-assigned display name of the App.
 	DisplayName pulumi.StringInput
 	// The ID of the project in which the resource belongs.

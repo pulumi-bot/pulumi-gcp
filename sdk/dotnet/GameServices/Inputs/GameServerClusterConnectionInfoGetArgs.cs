@@ -12,9 +12,21 @@ namespace Pulumi.Gcp.GameServices.Inputs
 
     public sealed class GameServerClusterConnectionInfoGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Reference of the GKE cluster where the game servers are installed.  Structure is documented below.
+        /// </summary>
         [Input("gkeClusterReference", required: true)]
         public Input<Inputs.GameServerClusterConnectionInfoGkeClusterReferenceGetArgs> GkeClusterReference { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Namespace designated on the game server cluster where the game server
+        /// instances will be created. The namespace existence will be validated
+        /// during creation.
+        /// </summary>
         [Input("namespace", required: true)]
         public Input<string> Namespace { get; set; } = null!;
 

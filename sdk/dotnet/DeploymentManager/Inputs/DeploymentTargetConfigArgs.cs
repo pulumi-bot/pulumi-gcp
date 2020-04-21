@@ -12,6 +12,11 @@ namespace Pulumi.Gcp.DeploymentManager.Inputs
 
     public sealed class DeploymentTargetConfigArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The full contents of the template that you want to import.
+        /// </summary>
         [Input("content", required: true)]
         public Input<string> Content { get; set; } = null!;
 

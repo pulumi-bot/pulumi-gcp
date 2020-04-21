@@ -49,36 +49,54 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly createTime!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * An optional description of the instance.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Optional)
      * Option to enable Stackdriver Logging.
      */
     public readonly enableStackdriverLogging!: pulumi.Output<boolean | undefined>;
     /**
+     * -
+     * (Optional)
      * Option to enable Stackdriver Monitoring.
      */
     public readonly enableStackdriverMonitoring!: pulumi.Output<boolean | undefined>;
     /**
-     * The resource labels for instance to use to annotate any related underlying resources, such as Compute Engine VMs.
+     * -
+     * (Optional)
+     * The resource labels for instance to use to annotate any related underlying resources,
+     * such as Compute Engine VMs.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * -
+     * (Required)
      * The ID of the instance or a fully qualified identifier for the instance.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Network configuration options. These are required when a private Data Fusion instance is to be created.
+     * -
+     * (Optional)
+     * Network configuration options. These are required when a private Data Fusion instance is to be created.  Structure is documented below.
      */
     public readonly networkConfig!: pulumi.Output<outputs.datafusion.InstanceNetworkConfig | undefined>;
     /**
+     * -
+     * (Optional)
      * Map of additional options used to configure the behavior of Data Fusion instance.
      */
     public readonly options!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * Specifies whether the Data Fusion instance should be private. If set to true, all Data Fusion nodes will have
-     * private IP addresses and will not be able to access the public internet.
+     * -
+     * (Optional)
+     * Specifies whether the Data Fusion instance should be private. If set to
+     * true, all Data Fusion nodes will have private IP addresses and will not be
+     * able to access the public internet.
      */
     public readonly privateInstance!: pulumi.Output<boolean | undefined>;
     /**
@@ -87,6 +105,8 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * The region of the Data Fusion instance.
      */
     public readonly region!: pulumi.Output<string>;
@@ -109,11 +129,15 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly stateMessage!: pulumi.Output<string>;
     /**
-     * Represents the type of Data Fusion instance. Each type is configured with the default settings for processing and
-     * memory. - BASIC: Basic Data Fusion instance. In Basic type, the user will be able to create data pipelines using
-     * point and click UI. However, there are certain limitations, such as fewer number of concurrent pipelines, no support
-     * for streaming pipelines, etc. - ENTERPRISE: Enterprise Data Fusion instance. In Enterprise type, the user will have
-     * more features available, such as support for streaming pipelines, higher number of concurrent pipelines, etc.
+     * -
+     * (Required)
+     * Represents the type of Data Fusion instance. Each type is configured with
+     * the default settings for processing and memory.
+     * - BASIC: Basic Data Fusion instance. In Basic type, the user will be able to create data pipelines
+     * using point and click UI. However, there are certain limitations, such as fewer number
+     * of concurrent pipelines, no support for streaming pipelines, etc.
+     * - ENTERPRISE: Enterprise Data Fusion instance. In Enterprise type, the user will have more features
+     * available, such as support for streaming pipelines, higher number of concurrent pipelines, etc.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -199,36 +223,54 @@ export interface InstanceState {
      */
     readonly createTime?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * An optional description of the instance.
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Option to enable Stackdriver Logging.
      */
     readonly enableStackdriverLogging?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Optional)
      * Option to enable Stackdriver Monitoring.
      */
     readonly enableStackdriverMonitoring?: pulumi.Input<boolean>;
     /**
-     * The resource labels for instance to use to annotate any related underlying resources, such as Compute Engine VMs.
+     * -
+     * (Optional)
+     * The resource labels for instance to use to annotate any related underlying resources,
+     * such as Compute Engine VMs.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * -
+     * (Required)
      * The ID of the instance or a fully qualified identifier for the instance.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Network configuration options. These are required when a private Data Fusion instance is to be created.
+     * -
+     * (Optional)
+     * Network configuration options. These are required when a private Data Fusion instance is to be created.  Structure is documented below.
      */
     readonly networkConfig?: pulumi.Input<inputs.datafusion.InstanceNetworkConfig>;
     /**
+     * -
+     * (Optional)
      * Map of additional options used to configure the behavior of Data Fusion instance.
      */
     readonly options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Specifies whether the Data Fusion instance should be private. If set to true, all Data Fusion nodes will have
-     * private IP addresses and will not be able to access the public internet.
+     * -
+     * (Optional)
+     * Specifies whether the Data Fusion instance should be private. If set to
+     * true, all Data Fusion nodes will have private IP addresses and will not be
+     * able to access the public internet.
      */
     readonly privateInstance?: pulumi.Input<boolean>;
     /**
@@ -237,6 +279,8 @@ export interface InstanceState {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The region of the Data Fusion instance.
      */
     readonly region?: pulumi.Input<string>;
@@ -259,11 +303,15 @@ export interface InstanceState {
      */
     readonly stateMessage?: pulumi.Input<string>;
     /**
-     * Represents the type of Data Fusion instance. Each type is configured with the default settings for processing and
-     * memory. - BASIC: Basic Data Fusion instance. In Basic type, the user will be able to create data pipelines using
-     * point and click UI. However, there are certain limitations, such as fewer number of concurrent pipelines, no support
-     * for streaming pipelines, etc. - ENTERPRISE: Enterprise Data Fusion instance. In Enterprise type, the user will have
-     * more features available, such as support for streaming pipelines, higher number of concurrent pipelines, etc.
+     * -
+     * (Required)
+     * Represents the type of Data Fusion instance. Each type is configured with
+     * the default settings for processing and memory.
+     * - BASIC: Basic Data Fusion instance. In Basic type, the user will be able to create data pipelines
+     * using point and click UI. However, there are certain limitations, such as fewer number
+     * of concurrent pipelines, no support for streaming pipelines, etc.
+     * - ENTERPRISE: Enterprise Data Fusion instance. In Enterprise type, the user will have more features
+     * available, such as support for streaming pipelines, higher number of concurrent pipelines, etc.
      */
     readonly type?: pulumi.Input<string>;
     /**
@@ -281,36 +329,54 @@ export interface InstanceState {
  */
 export interface InstanceArgs {
     /**
+     * -
+     * (Optional)
      * An optional description of the instance.
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Option to enable Stackdriver Logging.
      */
     readonly enableStackdriverLogging?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Optional)
      * Option to enable Stackdriver Monitoring.
      */
     readonly enableStackdriverMonitoring?: pulumi.Input<boolean>;
     /**
-     * The resource labels for instance to use to annotate any related underlying resources, such as Compute Engine VMs.
+     * -
+     * (Optional)
+     * The resource labels for instance to use to annotate any related underlying resources,
+     * such as Compute Engine VMs.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * -
+     * (Required)
      * The ID of the instance or a fully qualified identifier for the instance.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * Network configuration options. These are required when a private Data Fusion instance is to be created.
+     * -
+     * (Optional)
+     * Network configuration options. These are required when a private Data Fusion instance is to be created.  Structure is documented below.
      */
     readonly networkConfig?: pulumi.Input<inputs.datafusion.InstanceNetworkConfig>;
     /**
+     * -
+     * (Optional)
      * Map of additional options used to configure the behavior of Data Fusion instance.
      */
     readonly options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Specifies whether the Data Fusion instance should be private. If set to true, all Data Fusion nodes will have
-     * private IP addresses and will not be able to access the public internet.
+     * -
+     * (Optional)
+     * Specifies whether the Data Fusion instance should be private. If set to
+     * true, all Data Fusion nodes will have private IP addresses and will not be
+     * able to access the public internet.
      */
     readonly privateInstance?: pulumi.Input<boolean>;
     /**
@@ -319,15 +385,21 @@ export interface InstanceArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The region of the Data Fusion instance.
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * Represents the type of Data Fusion instance. Each type is configured with the default settings for processing and
-     * memory. - BASIC: Basic Data Fusion instance. In Basic type, the user will be able to create data pipelines using
-     * point and click UI. However, there are certain limitations, such as fewer number of concurrent pipelines, no support
-     * for streaming pipelines, etc. - ENTERPRISE: Enterprise Data Fusion instance. In Enterprise type, the user will have
-     * more features available, such as support for streaming pipelines, higher number of concurrent pipelines, etc.
+     * -
+     * (Required)
+     * Represents the type of Data Fusion instance. Each type is configured with
+     * the default settings for processing and memory.
+     * - BASIC: Basic Data Fusion instance. In Basic type, the user will be able to create data pipelines
+     * using point and click UI. However, there are certain limitations, such as fewer number
+     * of concurrent pipelines, no support for streaming pipelines, etc.
+     * - ENTERPRISE: Enterprise Data Fusion instance. In Enterprise type, the user will have more features
+     * available, such as support for streaming pipelines, higher number of concurrent pipelines, etc.
      */
     readonly type: pulumi.Input<string>;
 }

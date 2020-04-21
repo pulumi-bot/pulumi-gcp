@@ -12,17 +12,34 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class ResourcePolicySnapshotSchedulePolicySnapshotPropertiesArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to perform a 'guest aware' snapshot.
+        /// </summary>
         [Input("guestFlush")]
         public Input<bool>? GuestFlush { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A set of key-value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Cloud Storage bucket location to store the auto snapshot
+        /// (regional or multi-regional)
+        /// </summary>
         [Input("storageLocations")]
         public Input<string>? StorageLocations { get; set; }
 

@@ -21,14 +21,21 @@ import (
 type Database struct {
 	pulumi.CustomResourceState
 
-	// An optional list of DDL statements to run inside the newly created database. Statements can create tables, indexes, etc.
-	// These statements execute atomically with the creation of the database: if there is an error in any statement, the
-	// database is not created.
+	// -
+	// (Optional)
+	// An optional list of DDL statements to run inside the newly created
+	// database. Statements can create tables, indexes, etc. These statements
+	// execute atomically with the creation of the database: if there is an
+	// error in any statement, the database is not created.
 	Ddls pulumi.StringArrayOutput `pulumi:"ddls"`
+	// -
+	// (Required)
 	// The instance to create the database on.
 	Instance pulumi.StringOutput `pulumi:"instance"`
-	// A unique identifier for the database, which cannot be changed after the instance is created. Values are of the form
-	// [a-z][-a-z0-9]*[a-z0-9].
+	// -
+	// (Required)
+	// A unique identifier for the database, which cannot be changed after
+	// the instance is created. Values are of the form [a-z][-a-z0-9]*[a-z0-9].
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -68,14 +75,21 @@ func GetDatabase(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Database resources.
 type databaseState struct {
-	// An optional list of DDL statements to run inside the newly created database. Statements can create tables, indexes, etc.
-	// These statements execute atomically with the creation of the database: if there is an error in any statement, the
-	// database is not created.
+	// -
+	// (Optional)
+	// An optional list of DDL statements to run inside the newly created
+	// database. Statements can create tables, indexes, etc. These statements
+	// execute atomically with the creation of the database: if there is an
+	// error in any statement, the database is not created.
 	Ddls []string `pulumi:"ddls"`
+	// -
+	// (Required)
 	// The instance to create the database on.
 	Instance *string `pulumi:"instance"`
-	// A unique identifier for the database, which cannot be changed after the instance is created. Values are of the form
-	// [a-z][-a-z0-9]*[a-z0-9].
+	// -
+	// (Required)
+	// A unique identifier for the database, which cannot be changed after
+	// the instance is created. Values are of the form [a-z][-a-z0-9]*[a-z0-9].
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -85,14 +99,21 @@ type databaseState struct {
 }
 
 type DatabaseState struct {
-	// An optional list of DDL statements to run inside the newly created database. Statements can create tables, indexes, etc.
-	// These statements execute atomically with the creation of the database: if there is an error in any statement, the
-	// database is not created.
+	// -
+	// (Optional)
+	// An optional list of DDL statements to run inside the newly created
+	// database. Statements can create tables, indexes, etc. These statements
+	// execute atomically with the creation of the database: if there is an
+	// error in any statement, the database is not created.
 	Ddls pulumi.StringArrayInput
+	// -
+	// (Required)
 	// The instance to create the database on.
 	Instance pulumi.StringPtrInput
-	// A unique identifier for the database, which cannot be changed after the instance is created. Values are of the form
-	// [a-z][-a-z0-9]*[a-z0-9].
+	// -
+	// (Required)
+	// A unique identifier for the database, which cannot be changed after
+	// the instance is created. Values are of the form [a-z][-a-z0-9]*[a-z0-9].
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -106,14 +127,21 @@ func (DatabaseState) ElementType() reflect.Type {
 }
 
 type databaseArgs struct {
-	// An optional list of DDL statements to run inside the newly created database. Statements can create tables, indexes, etc.
-	// These statements execute atomically with the creation of the database: if there is an error in any statement, the
-	// database is not created.
+	// -
+	// (Optional)
+	// An optional list of DDL statements to run inside the newly created
+	// database. Statements can create tables, indexes, etc. These statements
+	// execute atomically with the creation of the database: if there is an
+	// error in any statement, the database is not created.
 	Ddls []string `pulumi:"ddls"`
+	// -
+	// (Required)
 	// The instance to create the database on.
 	Instance string `pulumi:"instance"`
-	// A unique identifier for the database, which cannot be changed after the instance is created. Values are of the form
-	// [a-z][-a-z0-9]*[a-z0-9].
+	// -
+	// (Required)
+	// A unique identifier for the database, which cannot be changed after
+	// the instance is created. Values are of the form [a-z][-a-z0-9]*[a-z0-9].
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -122,14 +150,21 @@ type databaseArgs struct {
 
 // The set of arguments for constructing a Database resource.
 type DatabaseArgs struct {
-	// An optional list of DDL statements to run inside the newly created database. Statements can create tables, indexes, etc.
-	// These statements execute atomically with the creation of the database: if there is an error in any statement, the
-	// database is not created.
+	// -
+	// (Optional)
+	// An optional list of DDL statements to run inside the newly created
+	// database. Statements can create tables, indexes, etc. These statements
+	// execute atomically with the creation of the database: if there is an
+	// error in any statement, the database is not created.
 	Ddls pulumi.StringArrayInput
+	// -
+	// (Required)
 	// The instance to create the database on.
 	Instance pulumi.StringInput
-	// A unique identifier for the database, which cannot be changed after the instance is created. Values are of the form
-	// [a-z][-a-z0-9]*[a-z0-9].
+	// -
+	// (Required)
+	// A unique identifier for the database, which cannot be changed after
+	// the instance is created. Values are of the form [a-z][-a-z0-9]*[a-z0-9].
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
