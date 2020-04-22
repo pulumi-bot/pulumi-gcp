@@ -13,7 +13,17 @@ namespace Pulumi.Gcp.SecretManager.Outputs
     [OutputType]
     public sealed class SecretReplication
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret will automatically be replicated without any restrictions.
+        /// </summary>
         public readonly bool? Automatic;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The Secret will automatically be replicated without any restrictions.  Structure is documented below.
+        /// </summary>
         public readonly Outputs.SecretReplicationUserManaged? UserManaged;
 
         [OutputConstructor]

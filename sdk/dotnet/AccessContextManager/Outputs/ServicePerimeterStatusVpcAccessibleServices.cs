@@ -13,7 +13,19 @@ namespace Pulumi.Gcp.AccessContextManager.Outputs
     [OutputType]
     public sealed class ServicePerimeterStatusVpcAccessibleServices
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The list of APIs usable within the Service Perimeter.
+        /// Must be empty unless `enableRestriction` is True.
+        /// </summary>
         public readonly ImmutableArray<string> AllowedServices;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Whether to restrict API calls within the Service Perimeter to the
+        /// list of APIs specified in 'allowedServices'.
+        /// </summary>
         public readonly bool? EnableRestriction;
 
         [OutputConstructor]

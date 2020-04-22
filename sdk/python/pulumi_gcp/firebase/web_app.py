@@ -17,6 +17,8 @@ class WebApp(pulumi.CustomResource):
     """
     display_name: pulumi.Output[str]
     """
+    -
+    (Required)
     The user-assigned display name of the App.
     """
     name: pulumi.Output[str]
@@ -33,7 +35,9 @@ class WebApp(pulumi.CustomResource):
         Create a WebApp resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] display_name: The user-assigned display name of the App.
+        :param pulumi.Input[str] display_name: -
+               (Required)
+               The user-assigned display name of the App.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         """
@@ -77,7 +81,9 @@ class WebApp(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] app_id: Immutable. The globally unique, Firebase-assigned identifier of the App. This identifier should be treated as an opaque
                token, as the data format is not specified.
-        :param pulumi.Input[str] display_name: The user-assigned display name of the App.
+        :param pulumi.Input[str] display_name: -
+               (Required)
+               The user-assigned display name of the App.
         :param pulumi.Input[str] name: The fully qualified resource name of the App, for example: projects/projectId/webApps/appId
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.

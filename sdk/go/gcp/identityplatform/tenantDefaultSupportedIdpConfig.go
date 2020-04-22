@@ -18,20 +18,39 @@ import (
 type TenantDefaultSupportedIdpConfig struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// OAuth client ID
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
+	// -
+	// (Required)
 	// OAuth client secret
 	ClientSecret pulumi.StringOutput `pulumi:"clientSecret"`
+	// -
+	// (Optional)
 	// If this IDP allows the user to sign in
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
-	// ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' * 'google.com' *
-	// 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+	// -
+	// (Required)
+	// ID of the IDP. Possible values include:
+	// * `apple.com`
+	// * `facebook.com`
+	// * `gc.apple.com`
+	// * `github.com`
+	// * `google.com`
+	// * `linkedin.com`
+	// * `microsoft.com`
+	// * `playgames.google.com`
+	// * `twitter.com`
+	// * `yahoo.com`
 	IdpId pulumi.StringOutput `pulumi:"idpId"`
 	// The name of the default supported IDP config resource
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
+	// -
+	// (Required)
 	// The name of the tenant where this DefaultSupportedIdpConfig resource exists
 	Tenant pulumi.StringOutput `pulumi:"tenant"`
 }
@@ -76,39 +95,77 @@ func GetTenantDefaultSupportedIdpConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TenantDefaultSupportedIdpConfig resources.
 type tenantDefaultSupportedIdpConfigState struct {
+	// -
+	// (Required)
 	// OAuth client ID
 	ClientId *string `pulumi:"clientId"`
+	// -
+	// (Required)
 	// OAuth client secret
 	ClientSecret *string `pulumi:"clientSecret"`
+	// -
+	// (Optional)
 	// If this IDP allows the user to sign in
 	Enabled *bool `pulumi:"enabled"`
-	// ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' * 'google.com' *
-	// 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+	// -
+	// (Required)
+	// ID of the IDP. Possible values include:
+	// * `apple.com`
+	// * `facebook.com`
+	// * `gc.apple.com`
+	// * `github.com`
+	// * `google.com`
+	// * `linkedin.com`
+	// * `microsoft.com`
+	// * `playgames.google.com`
+	// * `twitter.com`
+	// * `yahoo.com`
 	IdpId *string `pulumi:"idpId"`
 	// The name of the default supported IDP config resource
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Required)
 	// The name of the tenant where this DefaultSupportedIdpConfig resource exists
 	Tenant *string `pulumi:"tenant"`
 }
 
 type TenantDefaultSupportedIdpConfigState struct {
+	// -
+	// (Required)
 	// OAuth client ID
 	ClientId pulumi.StringPtrInput
+	// -
+	// (Required)
 	// OAuth client secret
 	ClientSecret pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// If this IDP allows the user to sign in
 	Enabled pulumi.BoolPtrInput
-	// ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' * 'google.com' *
-	// 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+	// -
+	// (Required)
+	// ID of the IDP. Possible values include:
+	// * `apple.com`
+	// * `facebook.com`
+	// * `gc.apple.com`
+	// * `github.com`
+	// * `google.com`
+	// * `linkedin.com`
+	// * `microsoft.com`
+	// * `playgames.google.com`
+	// * `twitter.com`
+	// * `yahoo.com`
 	IdpId pulumi.StringPtrInput
 	// The name of the default supported IDP config resource
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The name of the tenant where this DefaultSupportedIdpConfig resource exists
 	Tenant pulumi.StringPtrInput
 }
@@ -118,36 +175,74 @@ func (TenantDefaultSupportedIdpConfigState) ElementType() reflect.Type {
 }
 
 type tenantDefaultSupportedIdpConfigArgs struct {
+	// -
+	// (Required)
 	// OAuth client ID
 	ClientId string `pulumi:"clientId"`
+	// -
+	// (Required)
 	// OAuth client secret
 	ClientSecret string `pulumi:"clientSecret"`
+	// -
+	// (Optional)
 	// If this IDP allows the user to sign in
 	Enabled *bool `pulumi:"enabled"`
-	// ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' * 'google.com' *
-	// 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+	// -
+	// (Required)
+	// ID of the IDP. Possible values include:
+	// * `apple.com`
+	// * `facebook.com`
+	// * `gc.apple.com`
+	// * `github.com`
+	// * `google.com`
+	// * `linkedin.com`
+	// * `microsoft.com`
+	// * `playgames.google.com`
+	// * `twitter.com`
+	// * `yahoo.com`
 	IdpId string `pulumi:"idpId"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Required)
 	// The name of the tenant where this DefaultSupportedIdpConfig resource exists
 	Tenant string `pulumi:"tenant"`
 }
 
 // The set of arguments for constructing a TenantDefaultSupportedIdpConfig resource.
 type TenantDefaultSupportedIdpConfigArgs struct {
+	// -
+	// (Required)
 	// OAuth client ID
 	ClientId pulumi.StringInput
+	// -
+	// (Required)
 	// OAuth client secret
 	ClientSecret pulumi.StringInput
+	// -
+	// (Optional)
 	// If this IDP allows the user to sign in
 	Enabled pulumi.BoolPtrInput
-	// ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' * 'google.com' *
-	// 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+	// -
+	// (Required)
+	// ID of the IDP. Possible values include:
+	// * `apple.com`
+	// * `facebook.com`
+	// * `gc.apple.com`
+	// * `github.com`
+	// * `google.com`
+	// * `linkedin.com`
+	// * `microsoft.com`
+	// * `playgames.google.com`
+	// * `twitter.com`
+	// * `yahoo.com`
 	IdpId pulumi.StringInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The name of the tenant where this DefaultSupportedIdpConfig resource exists
 	Tenant pulumi.StringInput
 }

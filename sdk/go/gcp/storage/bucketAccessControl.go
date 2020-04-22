@@ -36,17 +36,34 @@ import (
 type BucketAccessControl struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// The name of the bucket.
 	Bucket pulumi.StringOutput `pulumi:"bucket"`
 	// The domain associated with the entity.
 	Domain pulumi.StringOutput `pulumi:"domain"`
 	// The email address associated with the entity.
 	Email pulumi.StringOutput `pulumi:"email"`
-	// The entity holding the permission, in one of the following forms: user-userId user-email group-groupId group-email
-	// domain-domain project-team-projectId allUsers allAuthenticatedUsers Examples: The user liz@example.com would be
-	// user-liz@example.com. The group example@googlegroups.com would be group-example@googlegroups.com. To refer to all
-	// members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+	// -
+	// (Required)
+	// The entity holding the permission, in one of the following forms:
+	// user-userId
+	// user-email
+	// group-groupId
+	// group-email
+	// domain-domain
+	// project-team-projectId
+	// allUsers
+	// allAuthenticatedUsers
+	// Examples:
+	// The user liz@example.com would be user-liz@example.com.
+	// The group example@googlegroups.com would be
+	// group-example@googlegroups.com.
+	// To refer to all members of the Google Apps for Business domain
+	// example.com, the entity would be domain-example.com.
 	Entity pulumi.StringOutput `pulumi:"entity"`
+	// -
+	// (Optional)
 	// The access permission for the entity.
 	Role pulumi.StringPtrOutput `pulumi:"role"`
 }
@@ -85,33 +102,67 @@ func GetBucketAccessControl(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BucketAccessControl resources.
 type bucketAccessControlState struct {
+	// -
+	// (Required)
 	// The name of the bucket.
 	Bucket *string `pulumi:"bucket"`
 	// The domain associated with the entity.
 	Domain *string `pulumi:"domain"`
 	// The email address associated with the entity.
 	Email *string `pulumi:"email"`
-	// The entity holding the permission, in one of the following forms: user-userId user-email group-groupId group-email
-	// domain-domain project-team-projectId allUsers allAuthenticatedUsers Examples: The user liz@example.com would be
-	// user-liz@example.com. The group example@googlegroups.com would be group-example@googlegroups.com. To refer to all
-	// members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+	// -
+	// (Required)
+	// The entity holding the permission, in one of the following forms:
+	// user-userId
+	// user-email
+	// group-groupId
+	// group-email
+	// domain-domain
+	// project-team-projectId
+	// allUsers
+	// allAuthenticatedUsers
+	// Examples:
+	// The user liz@example.com would be user-liz@example.com.
+	// The group example@googlegroups.com would be
+	// group-example@googlegroups.com.
+	// To refer to all members of the Google Apps for Business domain
+	// example.com, the entity would be domain-example.com.
 	Entity *string `pulumi:"entity"`
+	// -
+	// (Optional)
 	// The access permission for the entity.
 	Role *string `pulumi:"role"`
 }
 
 type BucketAccessControlState struct {
+	// -
+	// (Required)
 	// The name of the bucket.
 	Bucket pulumi.StringPtrInput
 	// The domain associated with the entity.
 	Domain pulumi.StringPtrInput
 	// The email address associated with the entity.
 	Email pulumi.StringPtrInput
-	// The entity holding the permission, in one of the following forms: user-userId user-email group-groupId group-email
-	// domain-domain project-team-projectId allUsers allAuthenticatedUsers Examples: The user liz@example.com would be
-	// user-liz@example.com. The group example@googlegroups.com would be group-example@googlegroups.com. To refer to all
-	// members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+	// -
+	// (Required)
+	// The entity holding the permission, in one of the following forms:
+	// user-userId
+	// user-email
+	// group-groupId
+	// group-email
+	// domain-domain
+	// project-team-projectId
+	// allUsers
+	// allAuthenticatedUsers
+	// Examples:
+	// The user liz@example.com would be user-liz@example.com.
+	// The group example@googlegroups.com would be
+	// group-example@googlegroups.com.
+	// To refer to all members of the Google Apps for Business domain
+	// example.com, the entity would be domain-example.com.
 	Entity pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// The access permission for the entity.
 	Role pulumi.StringPtrInput
 }
@@ -121,26 +172,60 @@ func (BucketAccessControlState) ElementType() reflect.Type {
 }
 
 type bucketAccessControlArgs struct {
+	// -
+	// (Required)
 	// The name of the bucket.
 	Bucket string `pulumi:"bucket"`
-	// The entity holding the permission, in one of the following forms: user-userId user-email group-groupId group-email
-	// domain-domain project-team-projectId allUsers allAuthenticatedUsers Examples: The user liz@example.com would be
-	// user-liz@example.com. The group example@googlegroups.com would be group-example@googlegroups.com. To refer to all
-	// members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+	// -
+	// (Required)
+	// The entity holding the permission, in one of the following forms:
+	// user-userId
+	// user-email
+	// group-groupId
+	// group-email
+	// domain-domain
+	// project-team-projectId
+	// allUsers
+	// allAuthenticatedUsers
+	// Examples:
+	// The user liz@example.com would be user-liz@example.com.
+	// The group example@googlegroups.com would be
+	// group-example@googlegroups.com.
+	// To refer to all members of the Google Apps for Business domain
+	// example.com, the entity would be domain-example.com.
 	Entity string `pulumi:"entity"`
+	// -
+	// (Optional)
 	// The access permission for the entity.
 	Role *string `pulumi:"role"`
 }
 
 // The set of arguments for constructing a BucketAccessControl resource.
 type BucketAccessControlArgs struct {
+	// -
+	// (Required)
 	// The name of the bucket.
 	Bucket pulumi.StringInput
-	// The entity holding the permission, in one of the following forms: user-userId user-email group-groupId group-email
-	// domain-domain project-team-projectId allUsers allAuthenticatedUsers Examples: The user liz@example.com would be
-	// user-liz@example.com. The group example@googlegroups.com would be group-example@googlegroups.com. To refer to all
-	// members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+	// -
+	// (Required)
+	// The entity holding the permission, in one of the following forms:
+	// user-userId
+	// user-email
+	// group-groupId
+	// group-email
+	// domain-domain
+	// project-team-projectId
+	// allUsers
+	// allAuthenticatedUsers
+	// Examples:
+	// The user liz@example.com would be user-liz@example.com.
+	// The group example@googlegroups.com would be
+	// group-example@googlegroups.com.
+	// To refer to all members of the Google Apps for Business domain
+	// example.com, the entity would be domain-example.com.
 	Entity pulumi.StringInput
+	// -
+	// (Optional)
 	// The access permission for the entity.
 	Role pulumi.StringPtrInput
 }

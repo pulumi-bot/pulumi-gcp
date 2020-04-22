@@ -42,11 +42,16 @@ export class RegionDiskResourcePolicyAttachment extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Required)
      * The name of the regional disk in which the resource policies are attached to.
      */
     public readonly disk!: pulumi.Output<string>;
     /**
-     * The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+     * -
+     * (Required)
+     * The resource policy to be attached to the disk for scheduling snapshot
+     * creation. Do not specify the self link.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -55,6 +60,8 @@ export class RegionDiskResourcePolicyAttachment extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * A reference to the region where the disk resides.
      */
     public readonly region!: pulumi.Output<string>;
@@ -101,11 +108,16 @@ export class RegionDiskResourcePolicyAttachment extends pulumi.CustomResource {
  */
 export interface RegionDiskResourcePolicyAttachmentState {
     /**
+     * -
+     * (Required)
      * The name of the regional disk in which the resource policies are attached to.
      */
     readonly disk?: pulumi.Input<string>;
     /**
-     * The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+     * -
+     * (Required)
+     * The resource policy to be attached to the disk for scheduling snapshot
+     * creation. Do not specify the self link.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -114,6 +126,8 @@ export interface RegionDiskResourcePolicyAttachmentState {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * A reference to the region where the disk resides.
      */
     readonly region?: pulumi.Input<string>;
@@ -124,11 +138,16 @@ export interface RegionDiskResourcePolicyAttachmentState {
  */
 export interface RegionDiskResourcePolicyAttachmentArgs {
     /**
+     * -
+     * (Required)
      * The name of the regional disk in which the resource policies are attached to.
      */
     readonly disk: pulumi.Input<string>;
     /**
-     * The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+     * -
+     * (Required)
+     * The resource policy to be attached to the disk for scheduling snapshot
+     * creation. Do not specify the self link.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -137,6 +156,8 @@ export interface RegionDiskResourcePolicyAttachmentArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * A reference to the region where the disk resides.
      */
     readonly region?: pulumi.Input<string>;

@@ -14,18 +14,39 @@ namespace Pulumi.Gcp.IdentityPlatform.Inputs
     {
         [Input("idpCertificates", required: true)]
         private InputList<Inputs.InboundSamlConfigIdpConfigIdpCertificateArgs>? _idpCertificates;
+
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The IdP's certificate data to verify the signature in the SAMLResponse issued by the IDP.  Structure is documented below.
+        /// </summary>
         public InputList<Inputs.InboundSamlConfigIdpConfigIdpCertificateArgs> IdpCertificates
         {
             get => _idpCertificates ?? (_idpCertificates = new InputList<Inputs.InboundSamlConfigIdpConfigIdpCertificateArgs>());
             set => _idpCertificates = value;
         }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Unique identifier for all SAML entities
+        /// </summary>
         [Input("idpEntityId", required: true)]
         public Input<string> IdpEntityId { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Indicates if outbounding SAMLRequest should be signed.
+        /// </summary>
         [Input("signRequest")]
         public Input<bool>? SignRequest { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// URL to send Authentication request to.
+        /// </summary>
         [Input("ssoUrl", required: true)]
         public Input<string> SsoUrl { get; set; } = null!;
 

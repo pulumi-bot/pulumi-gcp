@@ -15,8 +15,11 @@ namespace Pulumi.Gcp.Iap
     public partial class Client : Pulumi.CustomResource
     {
         /// <summary>
-        /// Identifier of the brand to which this client is attached to. The format is
-        /// 'projects/{project_number}/brands/{brand_id}/identityAwareProxyClients/{client_id}'.
+        /// -
+        /// (Required)
+        /// Identifier of the brand to which this client
+        /// is attached to. The format is
+        /// `projects/{project_number}/brands/{brand_id}/identityAwareProxyClients/{client_id}`.
         /// </summary>
         [Output("brand")]
         public Output<string> Brand { get; private set; } = null!;
@@ -28,6 +31,8 @@ namespace Pulumi.Gcp.Iap
         public Output<string> ClientId { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human-friendly name given to the OAuth client.
         /// </summary>
         [Output("displayName")]
@@ -86,13 +91,18 @@ namespace Pulumi.Gcp.Iap
     public sealed class ClientArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Identifier of the brand to which this client is attached to. The format is
-        /// 'projects/{project_number}/brands/{brand_id}/identityAwareProxyClients/{client_id}'.
+        /// -
+        /// (Required)
+        /// Identifier of the brand to which this client
+        /// is attached to. The format is
+        /// `projects/{project_number}/brands/{brand_id}/identityAwareProxyClients/{client_id}`.
         /// </summary>
         [Input("brand", required: true)]
         public Input<string> Brand { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human-friendly name given to the OAuth client.
         /// </summary>
         [Input("displayName", required: true)]
@@ -106,8 +116,11 @@ namespace Pulumi.Gcp.Iap
     public sealed class ClientState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Identifier of the brand to which this client is attached to. The format is
-        /// 'projects/{project_number}/brands/{brand_id}/identityAwareProxyClients/{client_id}'.
+        /// -
+        /// (Required)
+        /// Identifier of the brand to which this client
+        /// is attached to. The format is
+        /// `projects/{project_number}/brands/{brand_id}/identityAwareProxyClients/{client_id}`.
         /// </summary>
         [Input("brand")]
         public Input<string>? Brand { get; set; }
@@ -119,6 +132,8 @@ namespace Pulumi.Gcp.Iap
         public Input<string>? ClientId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Human-friendly name given to the OAuth client.
         /// </summary>
         [Input("displayName")]

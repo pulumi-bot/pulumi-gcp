@@ -26,15 +26,22 @@ import (
 type NodeGroup struct {
 	pulumi.CustomResourceState
 
-	// If you use sole-tenant nodes for your workloads, you can use the node group autoscaler to automatically manage the sizes
-	// of your node groups.
+	// -
+	// If you use sole-tenant nodes for your workloads, you can use the node
+	// group autoscaler to automatically manage the sizes of your node groups.  Structure is documented below.
 	AutoscalingPolicy NodeGroupAutoscalingPolicyOutput `pulumi:"autoscalingPolicy"`
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringOutput `pulumi:"creationTimestamp"`
+	// -
+	// (Optional)
 	// An optional textual description of the resource.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// -
+	// (Optional)
 	// Name of the resource.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// -
+	// (Required)
 	// The URL of the node template to which this node group belongs.
 	NodeTemplate pulumi.StringOutput `pulumi:"nodeTemplate"`
 	// The ID of the project in which the resource belongs.
@@ -42,8 +49,12 @@ type NodeGroup struct {
 	Project pulumi.StringOutput `pulumi:"project"`
 	// The URI of the created resource.
 	SelfLink pulumi.StringOutput `pulumi:"selfLink"`
+	// -
+	// (Required)
 	// The total number of nodes in the node group.
 	Size pulumi.IntOutput `pulumi:"size"`
+	// -
+	// (Optional)
 	// Zone where this node group is located
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
@@ -82,15 +93,22 @@ func GetNodeGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NodeGroup resources.
 type nodeGroupState struct {
-	// If you use sole-tenant nodes for your workloads, you can use the node group autoscaler to automatically manage the sizes
-	// of your node groups.
+	// -
+	// If you use sole-tenant nodes for your workloads, you can use the node
+	// group autoscaler to automatically manage the sizes of your node groups.  Structure is documented below.
 	AutoscalingPolicy *NodeGroupAutoscalingPolicy `pulumi:"autoscalingPolicy"`
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp *string `pulumi:"creationTimestamp"`
+	// -
+	// (Optional)
 	// An optional textual description of the resource.
 	Description *string `pulumi:"description"`
+	// -
+	// (Optional)
 	// Name of the resource.
 	Name *string `pulumi:"name"`
+	// -
+	// (Required)
 	// The URL of the node template to which this node group belongs.
 	NodeTemplate *string `pulumi:"nodeTemplate"`
 	// The ID of the project in which the resource belongs.
@@ -98,22 +116,33 @@ type nodeGroupState struct {
 	Project *string `pulumi:"project"`
 	// The URI of the created resource.
 	SelfLink *string `pulumi:"selfLink"`
+	// -
+	// (Required)
 	// The total number of nodes in the node group.
 	Size *int `pulumi:"size"`
+	// -
+	// (Optional)
 	// Zone where this node group is located
 	Zone *string `pulumi:"zone"`
 }
 
 type NodeGroupState struct {
-	// If you use sole-tenant nodes for your workloads, you can use the node group autoscaler to automatically manage the sizes
-	// of your node groups.
+	// -
+	// If you use sole-tenant nodes for your workloads, you can use the node
+	// group autoscaler to automatically manage the sizes of your node groups.  Structure is documented below.
 	AutoscalingPolicy NodeGroupAutoscalingPolicyPtrInput
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// An optional textual description of the resource.
 	Description pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// Name of the resource.
 	Name pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The URL of the node template to which this node group belongs.
 	NodeTemplate pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
@@ -121,8 +150,12 @@ type NodeGroupState struct {
 	Project pulumi.StringPtrInput
 	// The URI of the created resource.
 	SelfLink pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The total number of nodes in the node group.
 	Size pulumi.IntPtrInput
+	// -
+	// (Optional)
 	// Zone where this node group is located
 	Zone pulumi.StringPtrInput
 }
@@ -132,40 +165,62 @@ func (NodeGroupState) ElementType() reflect.Type {
 }
 
 type nodeGroupArgs struct {
-	// If you use sole-tenant nodes for your workloads, you can use the node group autoscaler to automatically manage the sizes
-	// of your node groups.
+	// -
+	// If you use sole-tenant nodes for your workloads, you can use the node
+	// group autoscaler to automatically manage the sizes of your node groups.  Structure is documented below.
 	AutoscalingPolicy *NodeGroupAutoscalingPolicy `pulumi:"autoscalingPolicy"`
+	// -
+	// (Optional)
 	// An optional textual description of the resource.
 	Description *string `pulumi:"description"`
+	// -
+	// (Optional)
 	// Name of the resource.
 	Name *string `pulumi:"name"`
+	// -
+	// (Required)
 	// The URL of the node template to which this node group belongs.
 	NodeTemplate string `pulumi:"nodeTemplate"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Required)
 	// The total number of nodes in the node group.
 	Size int `pulumi:"size"`
+	// -
+	// (Optional)
 	// Zone where this node group is located
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a NodeGroup resource.
 type NodeGroupArgs struct {
-	// If you use sole-tenant nodes for your workloads, you can use the node group autoscaler to automatically manage the sizes
-	// of your node groups.
+	// -
+	// If you use sole-tenant nodes for your workloads, you can use the node
+	// group autoscaler to automatically manage the sizes of your node groups.  Structure is documented below.
 	AutoscalingPolicy NodeGroupAutoscalingPolicyPtrInput
+	// -
+	// (Optional)
 	// An optional textual description of the resource.
 	Description pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// Name of the resource.
 	Name pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The URL of the node template to which this node group belongs.
 	NodeTemplate pulumi.StringInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The total number of nodes in the node group.
 	Size pulumi.IntInput
+	// -
+	// (Optional)
 	// Zone where this node group is located
 	Zone pulumi.StringPtrInput
 }

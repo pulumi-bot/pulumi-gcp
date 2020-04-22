@@ -43,27 +43,39 @@ export class TenantOauthIdpConfig extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Required)
      * The client id of an OAuth client.
      */
     public readonly clientId!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * The client secret of the OAuth client, to enable OIDC code flow.
      */
     public readonly clientSecret!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Required)
      * Human friendly display name.
      */
     public readonly displayName!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * If this config allows users to sign in with the provider.
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
+     * -
+     * (Required)
      * For OIDC Idps, the issuer identifier.
      */
     public readonly issuer!: pulumi.Output<string>;
     /**
-     * The name of the OauthIdpConfig. Must start with 'oidc.'.
+     * -
+     * (Required)
+     * The name of the OauthIdpConfig. Must start with `oidc.`.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -72,6 +84,8 @@ export class TenantOauthIdpConfig extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The name of the tenant where this OIDC IDP configuration resource exists
      */
     public readonly tenant!: pulumi.Output<string>;
@@ -135,27 +149,39 @@ export class TenantOauthIdpConfig extends pulumi.CustomResource {
  */
 export interface TenantOauthIdpConfigState {
     /**
+     * -
+     * (Required)
      * The client id of an OAuth client.
      */
     readonly clientId?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The client secret of the OAuth client, to enable OIDC code flow.
      */
     readonly clientSecret?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Human friendly display name.
      */
     readonly displayName?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * If this config allows users to sign in with the provider.
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Required)
      * For OIDC Idps, the issuer identifier.
      */
     readonly issuer?: pulumi.Input<string>;
     /**
-     * The name of the OauthIdpConfig. Must start with 'oidc.'.
+     * -
+     * (Required)
+     * The name of the OauthIdpConfig. Must start with `oidc.`.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -164,6 +190,8 @@ export interface TenantOauthIdpConfigState {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The name of the tenant where this OIDC IDP configuration resource exists
      */
     readonly tenant?: pulumi.Input<string>;
@@ -174,27 +202,39 @@ export interface TenantOauthIdpConfigState {
  */
 export interface TenantOauthIdpConfigArgs {
     /**
+     * -
+     * (Required)
      * The client id of an OAuth client.
      */
     readonly clientId: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The client secret of the OAuth client, to enable OIDC code flow.
      */
     readonly clientSecret?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Human friendly display name.
      */
     readonly displayName: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * If this config allows users to sign in with the provider.
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Required)
      * For OIDC Idps, the issuer identifier.
      */
     readonly issuer: pulumi.Input<string>;
     /**
-     * The name of the OauthIdpConfig. Must start with 'oidc.'.
+     * -
+     * (Required)
+     * The name of the OauthIdpConfig. Must start with `oidc.`.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -203,6 +243,8 @@ export interface TenantOauthIdpConfigArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The name of the tenant where this OIDC IDP configuration resource exists
      */
     readonly tenant: pulumi.Input<string>;

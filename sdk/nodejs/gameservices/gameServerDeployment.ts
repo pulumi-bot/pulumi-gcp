@@ -45,18 +45,27 @@ export class GameServerDeployment extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Required)
      * A unique id for the deployment.
      */
     public readonly deploymentId!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * Human readable description of the game server deployment.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The labels associated with this game server deployment. Each label is a key-value pair.
+     * -
+     * (Optional)
+     * The labels associated with this game server deployment. Each label is a
+     * key-value pair.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * -
+     * (Optional)
      * Location of the Deployment.
      */
     public readonly location!: pulumi.Output<string | undefined>;
@@ -118,18 +127,27 @@ export class GameServerDeployment extends pulumi.CustomResource {
  */
 export interface GameServerDeploymentState {
     /**
+     * -
+     * (Required)
      * A unique id for the deployment.
      */
     readonly deploymentId?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Human readable description of the game server deployment.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * The labels associated with this game server deployment. Each label is a key-value pair.
+     * -
+     * (Optional)
+     * The labels associated with this game server deployment. Each label is a
+     * key-value pair.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * -
+     * (Optional)
      * Location of the Deployment.
      */
     readonly location?: pulumi.Input<string>;
@@ -151,18 +169,27 @@ export interface GameServerDeploymentState {
  */
 export interface GameServerDeploymentArgs {
     /**
+     * -
+     * (Required)
      * A unique id for the deployment.
      */
     readonly deploymentId: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Human readable description of the game server deployment.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * The labels associated with this game server deployment. Each label is a key-value pair.
+     * -
+     * (Optional)
+     * The labels associated with this game server deployment. Each label is a
+     * key-value pair.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
+     * -
+     * (Optional)
      * Location of the Deployment.
      */
     readonly location?: pulumi.Input<string>;

@@ -58,20 +58,37 @@ export class DefaultSupportedIdpConfig extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Required)
      * OAuth client ID
      */
     public readonly clientId!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * OAuth client secret
      */
     public readonly clientSecret!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * If this IDP allows the user to sign in
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
     /**
-     * ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' *
-     * 'google.com' * 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+     * -
+     * (Required)
+     * ID of the IDP. Possible values include:
+     * * `apple.com`
+     * * `facebook.com`
+     * * `gc.apple.com`
+     * * `github.com`
+     * * `google.com`
+     * * `linkedin.com`
+     * * `microsoft.com`
+     * * `playgames.google.com`
+     * * `twitter.com`
+     * * `yahoo.com`
      */
     public readonly idpId!: pulumi.Output<string>;
     /**
@@ -136,20 +153,37 @@ export class DefaultSupportedIdpConfig extends pulumi.CustomResource {
  */
 export interface DefaultSupportedIdpConfigState {
     /**
+     * -
+     * (Required)
      * OAuth client ID
      */
     readonly clientId?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * OAuth client secret
      */
     readonly clientSecret?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * If this IDP allows the user to sign in
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
-     * ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' *
-     * 'google.com' * 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+     * -
+     * (Required)
+     * ID of the IDP. Possible values include:
+     * * `apple.com`
+     * * `facebook.com`
+     * * `gc.apple.com`
+     * * `github.com`
+     * * `google.com`
+     * * `linkedin.com`
+     * * `microsoft.com`
+     * * `playgames.google.com`
+     * * `twitter.com`
+     * * `yahoo.com`
      */
     readonly idpId?: pulumi.Input<string>;
     /**
@@ -168,20 +202,37 @@ export interface DefaultSupportedIdpConfigState {
  */
 export interface DefaultSupportedIdpConfigArgs {
     /**
+     * -
+     * (Required)
      * OAuth client ID
      */
     readonly clientId: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * OAuth client secret
      */
     readonly clientSecret: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * If this IDP allows the user to sign in
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
-     * ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' *
-     * 'google.com' * 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'
+     * -
+     * (Required)
+     * ID of the IDP. Possible values include:
+     * * `apple.com`
+     * * `facebook.com`
+     * * `gc.apple.com`
+     * * `github.com`
+     * * `google.com`
+     * * `linkedin.com`
+     * * `microsoft.com`
+     * * `playgames.google.com`
+     * * `twitter.com`
+     * * `yahoo.com`
      */
     readonly idpId: pulumi.Input<string>;
     /**

@@ -13,9 +13,32 @@ namespace Pulumi.Gcp.CloudBuild.Outputs
     [OutputType]
     public sealed class TriggerGithub
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Name of the volume to mount.
+        /// Volume names must be unique per build step and must be valid names for
+        /// Docker volumes. Each named volume must be used by at least two build steps.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Owner of the repository. For example: The owner for
+        /// https://github.com/googlecloudplatform/cloud-builders is "googlecloudplatform".
+        /// </summary>
         public readonly string? Owner;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// filter to match changes in pull requests.  Specify only one of pullRequest or push.  Structure is documented below.
+        /// </summary>
         public readonly Outputs.TriggerGithubPullRequest? PullRequest;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// filter to match changes in refs, like branches or tags.  Specify only one of pullRequest or push.  Structure is documented below.
+        /// </summary>
         public readonly Outputs.TriggerGithubPush? Push;
 
         [OutputConstructor]

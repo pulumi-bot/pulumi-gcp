@@ -24,25 +24,33 @@ namespace Pulumi.Gcp.Compute
     public partial class GlobalNetworkEndpoint : Pulumi.CustomResource
     {
         /// <summary>
-        /// Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is
-        /// INTERNET_FQDN_PORT.
+        /// -
+        /// (Optional)
+        /// Fully qualified domain name of network endpoint.
+        /// This can only be specified when network_endpoint_type of the NEG is INTERNET_FQDN_PORT.
         /// </summary>
         [Output("fqdn")]
         public Output<string?> Fqdn { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The global network endpoint group this endpoint is part of.
         /// </summary>
         [Output("globalNetworkEndpointGroup")]
         public Output<string> GlobalNetworkEndpointGroup { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// IPv4 address external endpoint.
         /// </summary>
         [Output("ipAddress")]
         public Output<string?> IpAddress { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Port number of the external endpoint.
         /// </summary>
         [Output("port")]
@@ -102,25 +110,33 @@ namespace Pulumi.Gcp.Compute
     public sealed class GlobalNetworkEndpointArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is
-        /// INTERNET_FQDN_PORT.
+        /// -
+        /// (Optional)
+        /// Fully qualified domain name of network endpoint.
+        /// This can only be specified when network_endpoint_type of the NEG is INTERNET_FQDN_PORT.
         /// </summary>
         [Input("fqdn")]
         public Input<string>? Fqdn { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The global network endpoint group this endpoint is part of.
         /// </summary>
         [Input("globalNetworkEndpointGroup", required: true)]
         public Input<string> GlobalNetworkEndpointGroup { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// IPv4 address external endpoint.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Port number of the external endpoint.
         /// </summary>
         [Input("port", required: true)]
@@ -141,25 +157,33 @@ namespace Pulumi.Gcp.Compute
     public sealed class GlobalNetworkEndpointState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is
-        /// INTERNET_FQDN_PORT.
+        /// -
+        /// (Optional)
+        /// Fully qualified domain name of network endpoint.
+        /// This can only be specified when network_endpoint_type of the NEG is INTERNET_FQDN_PORT.
         /// </summary>
         [Input("fqdn")]
         public Input<string>? Fqdn { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The global network endpoint group this endpoint is part of.
         /// </summary>
         [Input("globalNetworkEndpointGroup")]
         public Input<string>? GlobalNetworkEndpointGroup { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// IPv4 address external endpoint.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Port number of the external endpoint.
         /// </summary>
         [Input("port")]

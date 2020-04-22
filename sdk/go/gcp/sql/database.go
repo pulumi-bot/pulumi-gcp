@@ -15,19 +15,31 @@ import (
 type Database struct {
 	pulumi.CustomResourceState
 
-	// The charset value. See MySQL's [Supported Character Sets and
-	// Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html) and Postgres' [Character Set
-	// Support](https://www.postgresql.org/docs/9.6/static/multibyte.html) for more details and supported values. Postgres
-	// databases only support a value of 'UTF8' at creation time.
+	// -
+	// (Optional)
+	// The charset value. See MySQL's
+	// [Supported Character Sets and Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html)
+	// and Postgres' [Character Set Support](https://www.postgresql.org/docs/9.6/static/multibyte.html)
+	// for more details and supported values. Postgres databases only support
+	// a value of `UTF8` at creation time.
 	Charset pulumi.StringOutput `pulumi:"charset"`
-	// The collation value. See MySQL's [Supported Character Sets and
-	// Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html) and Postgres' [Collation
-	// Support](https://www.postgresql.org/docs/9.6/static/collation.html) for more details and supported values. Postgres
-	// databases only support a value of 'en_US.UTF8' at creation time.
+	// -
+	// (Optional)
+	// The collation value. See MySQL's
+	// [Supported Character Sets and Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html)
+	// and Postgres' [Collation Support](https://www.postgresql.org/docs/9.6/static/collation.html)
+	// for more details and supported values. Postgres databases only support
+	// a value of `en_US.UTF8` at creation time.
 	Collation pulumi.StringOutput `pulumi:"collation"`
-	// The name of the Cloud SQL instance. This does not include the project ID.
+	// -
+	// (Required)
+	// The name of the Cloud SQL instance. This does not include the project
+	// ID.
 	Instance pulumi.StringOutput `pulumi:"instance"`
-	// The name of the database in the Cloud SQL instance. This does not include the project ID or instance name.
+	// -
+	// (Required)
+	// The name of the database in the Cloud SQL instance.
+	// This does not include the project ID or instance name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -67,19 +79,31 @@ func GetDatabase(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Database resources.
 type databaseState struct {
-	// The charset value. See MySQL's [Supported Character Sets and
-	// Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html) and Postgres' [Character Set
-	// Support](https://www.postgresql.org/docs/9.6/static/multibyte.html) for more details and supported values. Postgres
-	// databases only support a value of 'UTF8' at creation time.
+	// -
+	// (Optional)
+	// The charset value. See MySQL's
+	// [Supported Character Sets and Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html)
+	// and Postgres' [Character Set Support](https://www.postgresql.org/docs/9.6/static/multibyte.html)
+	// for more details and supported values. Postgres databases only support
+	// a value of `UTF8` at creation time.
 	Charset *string `pulumi:"charset"`
-	// The collation value. See MySQL's [Supported Character Sets and
-	// Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html) and Postgres' [Collation
-	// Support](https://www.postgresql.org/docs/9.6/static/collation.html) for more details and supported values. Postgres
-	// databases only support a value of 'en_US.UTF8' at creation time.
+	// -
+	// (Optional)
+	// The collation value. See MySQL's
+	// [Supported Character Sets and Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html)
+	// and Postgres' [Collation Support](https://www.postgresql.org/docs/9.6/static/collation.html)
+	// for more details and supported values. Postgres databases only support
+	// a value of `en_US.UTF8` at creation time.
 	Collation *string `pulumi:"collation"`
-	// The name of the Cloud SQL instance. This does not include the project ID.
+	// -
+	// (Required)
+	// The name of the Cloud SQL instance. This does not include the project
+	// ID.
 	Instance *string `pulumi:"instance"`
-	// The name of the database in the Cloud SQL instance. This does not include the project ID or instance name.
+	// -
+	// (Required)
+	// The name of the database in the Cloud SQL instance.
+	// This does not include the project ID or instance name.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -89,19 +113,31 @@ type databaseState struct {
 }
 
 type DatabaseState struct {
-	// The charset value. See MySQL's [Supported Character Sets and
-	// Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html) and Postgres' [Character Set
-	// Support](https://www.postgresql.org/docs/9.6/static/multibyte.html) for more details and supported values. Postgres
-	// databases only support a value of 'UTF8' at creation time.
+	// -
+	// (Optional)
+	// The charset value. See MySQL's
+	// [Supported Character Sets and Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html)
+	// and Postgres' [Character Set Support](https://www.postgresql.org/docs/9.6/static/multibyte.html)
+	// for more details and supported values. Postgres databases only support
+	// a value of `UTF8` at creation time.
 	Charset pulumi.StringPtrInput
-	// The collation value. See MySQL's [Supported Character Sets and
-	// Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html) and Postgres' [Collation
-	// Support](https://www.postgresql.org/docs/9.6/static/collation.html) for more details and supported values. Postgres
-	// databases only support a value of 'en_US.UTF8' at creation time.
+	// -
+	// (Optional)
+	// The collation value. See MySQL's
+	// [Supported Character Sets and Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html)
+	// and Postgres' [Collation Support](https://www.postgresql.org/docs/9.6/static/collation.html)
+	// for more details and supported values. Postgres databases only support
+	// a value of `en_US.UTF8` at creation time.
 	Collation pulumi.StringPtrInput
-	// The name of the Cloud SQL instance. This does not include the project ID.
+	// -
+	// (Required)
+	// The name of the Cloud SQL instance. This does not include the project
+	// ID.
 	Instance pulumi.StringPtrInput
-	// The name of the database in the Cloud SQL instance. This does not include the project ID or instance name.
+	// -
+	// (Required)
+	// The name of the database in the Cloud SQL instance.
+	// This does not include the project ID or instance name.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -115,19 +151,31 @@ func (DatabaseState) ElementType() reflect.Type {
 }
 
 type databaseArgs struct {
-	// The charset value. See MySQL's [Supported Character Sets and
-	// Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html) and Postgres' [Character Set
-	// Support](https://www.postgresql.org/docs/9.6/static/multibyte.html) for more details and supported values. Postgres
-	// databases only support a value of 'UTF8' at creation time.
+	// -
+	// (Optional)
+	// The charset value. See MySQL's
+	// [Supported Character Sets and Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html)
+	// and Postgres' [Character Set Support](https://www.postgresql.org/docs/9.6/static/multibyte.html)
+	// for more details and supported values. Postgres databases only support
+	// a value of `UTF8` at creation time.
 	Charset *string `pulumi:"charset"`
-	// The collation value. See MySQL's [Supported Character Sets and
-	// Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html) and Postgres' [Collation
-	// Support](https://www.postgresql.org/docs/9.6/static/collation.html) for more details and supported values. Postgres
-	// databases only support a value of 'en_US.UTF8' at creation time.
+	// -
+	// (Optional)
+	// The collation value. See MySQL's
+	// [Supported Character Sets and Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html)
+	// and Postgres' [Collation Support](https://www.postgresql.org/docs/9.6/static/collation.html)
+	// for more details and supported values. Postgres databases only support
+	// a value of `en_US.UTF8` at creation time.
 	Collation *string `pulumi:"collation"`
-	// The name of the Cloud SQL instance. This does not include the project ID.
+	// -
+	// (Required)
+	// The name of the Cloud SQL instance. This does not include the project
+	// ID.
 	Instance string `pulumi:"instance"`
-	// The name of the database in the Cloud SQL instance. This does not include the project ID or instance name.
+	// -
+	// (Required)
+	// The name of the database in the Cloud SQL instance.
+	// This does not include the project ID or instance name.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -136,19 +184,31 @@ type databaseArgs struct {
 
 // The set of arguments for constructing a Database resource.
 type DatabaseArgs struct {
-	// The charset value. See MySQL's [Supported Character Sets and
-	// Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html) and Postgres' [Character Set
-	// Support](https://www.postgresql.org/docs/9.6/static/multibyte.html) for more details and supported values. Postgres
-	// databases only support a value of 'UTF8' at creation time.
+	// -
+	// (Optional)
+	// The charset value. See MySQL's
+	// [Supported Character Sets and Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html)
+	// and Postgres' [Character Set Support](https://www.postgresql.org/docs/9.6/static/multibyte.html)
+	// for more details and supported values. Postgres databases only support
+	// a value of `UTF8` at creation time.
 	Charset pulumi.StringPtrInput
-	// The collation value. See MySQL's [Supported Character Sets and
-	// Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html) and Postgres' [Collation
-	// Support](https://www.postgresql.org/docs/9.6/static/collation.html) for more details and supported values. Postgres
-	// databases only support a value of 'en_US.UTF8' at creation time.
+	// -
+	// (Optional)
+	// The collation value. See MySQL's
+	// [Supported Character Sets and Collations](https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html)
+	// and Postgres' [Collation Support](https://www.postgresql.org/docs/9.6/static/collation.html)
+	// for more details and supported values. Postgres databases only support
+	// a value of `en_US.UTF8` at creation time.
 	Collation pulumi.StringPtrInput
-	// The name of the Cloud SQL instance. This does not include the project ID.
+	// -
+	// (Required)
+	// The name of the Cloud SQL instance. This does not include the project
+	// ID.
 	Instance pulumi.StringInput
-	// The name of the database in the Cloud SQL instance. This does not include the project ID or instance name.
+	// -
+	// (Required)
+	// The name of the database in the Cloud SQL instance.
+	// This does not include the project ID or instance name.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
