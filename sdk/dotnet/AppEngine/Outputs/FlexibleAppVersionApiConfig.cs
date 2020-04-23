@@ -13,10 +13,35 @@ namespace Pulumi.Gcp.AppEngine.Outputs
     [OutputType]
     public sealed class FlexibleAppVersionApiConfig
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Action to take when users access resources that require authentication. Defaults to "AUTH_FAIL_ACTION_REDIRECT".
+        /// </summary>
         public readonly string? AuthFailAction;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Level of login required to access this resource. Defaults to "LOGIN_OPTIONAL".
+        /// </summary>
         public readonly string? Login;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Path to the script from the application root directory.
+        /// </summary>
         public readonly string Script;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Security (HTTPS) enforcement for this URL.
+        /// </summary>
         public readonly string? SecurityLevel;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// URL to serve the endpoint at.
+        /// </summary>
         public readonly string? Url;
 
         [OutputConstructor]

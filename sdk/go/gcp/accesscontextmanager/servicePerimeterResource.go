@@ -28,10 +28,15 @@ import (
 type ServicePerimeterResource struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// The name of the Service Perimeter to add this resource to.
 	PerimeterName pulumi.StringOutput `pulumi:"perimeterName"`
-	// A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format:
-	// projects/{project_number}
+	// -
+	// (Required)
+	// A GCP resource that is inside of the service perimeter.
+	// Currently only projects are allowed.
+	// Format: projects/{project_number}
 	Resource pulumi.StringOutput `pulumi:"resource"`
 }
 
@@ -69,18 +74,28 @@ func GetServicePerimeterResource(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServicePerimeterResource resources.
 type servicePerimeterResourceState struct {
+	// -
+	// (Required)
 	// The name of the Service Perimeter to add this resource to.
 	PerimeterName *string `pulumi:"perimeterName"`
-	// A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format:
-	// projects/{project_number}
+	// -
+	// (Required)
+	// A GCP resource that is inside of the service perimeter.
+	// Currently only projects are allowed.
+	// Format: projects/{project_number}
 	Resource *string `pulumi:"resource"`
 }
 
 type ServicePerimeterResourceState struct {
+	// -
+	// (Required)
 	// The name of the Service Perimeter to add this resource to.
 	PerimeterName pulumi.StringPtrInput
-	// A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format:
-	// projects/{project_number}
+	// -
+	// (Required)
+	// A GCP resource that is inside of the service perimeter.
+	// Currently only projects are allowed.
+	// Format: projects/{project_number}
 	Resource pulumi.StringPtrInput
 }
 
@@ -89,19 +104,29 @@ func (ServicePerimeterResourceState) ElementType() reflect.Type {
 }
 
 type servicePerimeterResourceArgs struct {
+	// -
+	// (Required)
 	// The name of the Service Perimeter to add this resource to.
 	PerimeterName string `pulumi:"perimeterName"`
-	// A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format:
-	// projects/{project_number}
+	// -
+	// (Required)
+	// A GCP resource that is inside of the service perimeter.
+	// Currently only projects are allowed.
+	// Format: projects/{project_number}
 	Resource string `pulumi:"resource"`
 }
 
 // The set of arguments for constructing a ServicePerimeterResource resource.
 type ServicePerimeterResourceArgs struct {
+	// -
+	// (Required)
 	// The name of the Service Perimeter to add this resource to.
 	PerimeterName pulumi.StringInput
-	// A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format:
-	// projects/{project_number}
+	// -
+	// (Required)
+	// A GCP resource that is inside of the service perimeter.
+	// Currently only projects are allowed.
+	// Format: projects/{project_number}
 	Resource pulumi.StringInput
 }
 

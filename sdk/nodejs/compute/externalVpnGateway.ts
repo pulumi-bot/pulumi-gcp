@@ -43,18 +43,27 @@ export class ExternalVpnGateway extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Optional)
      * An optional description of this resource.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * A list of interfaces on this external VPN gateway.
+     * -
+     * (Optional)
+     * A list of interfaces on this external VPN gateway.  Structure is documented below.
      */
     public readonly interfaces!: pulumi.Output<outputs.compute.ExternalVpnGatewayInterface[] | undefined>;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035.  Specifically, the name must be 1-63 characters long and
+     * match the regular expression `a-z?` which means
+     * the first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -63,6 +72,8 @@ export class ExternalVpnGateway extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * Indicates the redundancy type of this external VPN gateway
      */
     public readonly redundancyType!: pulumi.Output<string | undefined>;
@@ -114,18 +125,27 @@ export class ExternalVpnGateway extends pulumi.CustomResource {
  */
 export interface ExternalVpnGatewayState {
     /**
+     * -
+     * (Optional)
      * An optional description of this resource.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * A list of interfaces on this external VPN gateway.
+     * -
+     * (Optional)
+     * A list of interfaces on this external VPN gateway.  Structure is documented below.
      */
     readonly interfaces?: pulumi.Input<pulumi.Input<inputs.compute.ExternalVpnGatewayInterface>[]>;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035.  Specifically, the name must be 1-63 characters long and
+     * match the regular expression `a-z?` which means
+     * the first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -134,6 +154,8 @@ export interface ExternalVpnGatewayState {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Indicates the redundancy type of this external VPN gateway
      */
     readonly redundancyType?: pulumi.Input<string>;
@@ -148,18 +170,27 @@ export interface ExternalVpnGatewayState {
  */
 export interface ExternalVpnGatewayArgs {
     /**
+     * -
+     * (Optional)
      * An optional description of this resource.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * A list of interfaces on this external VPN gateway.
+     * -
+     * (Optional)
+     * A list of interfaces on this external VPN gateway.  Structure is documented below.
      */
     readonly interfaces?: pulumi.Input<pulumi.Input<inputs.compute.ExternalVpnGatewayInterface>[]>;
     /**
-     * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * Name of the resource. Provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035.  Specifically, the name must be 1-63 characters long and
+     * match the regular expression `a-z?` which means
+     * the first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -168,6 +199,8 @@ export interface ExternalVpnGatewayArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Indicates the redundancy type of this external VPN gateway
      */
     readonly redundancyType?: pulumi.Input<string>;

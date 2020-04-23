@@ -48,19 +48,27 @@ export class GlobalNetworkEndpoint extends pulumi.CustomResource {
     }
 
     /**
-     * Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is
-     * INTERNET_FQDN_PORT.
+     * -
+     * (Optional)
+     * Fully qualified domain name of network endpoint.
+     * This can only be specified when networkEndpointType of the NEG is INTERNET_FQDN_PORT.
      */
     public readonly fqdn!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Required)
      * The global network endpoint group this endpoint is part of.
      */
     public readonly globalNetworkEndpointGroup!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * IPv4 address external endpoint.
      */
     public readonly ipAddress!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Required)
      * Port number of the external endpoint.
      */
     public readonly port!: pulumi.Output<number>;
@@ -117,19 +125,27 @@ export class GlobalNetworkEndpoint extends pulumi.CustomResource {
  */
 export interface GlobalNetworkEndpointState {
     /**
-     * Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is
-     * INTERNET_FQDN_PORT.
+     * -
+     * (Optional)
+     * Fully qualified domain name of network endpoint.
+     * This can only be specified when networkEndpointType of the NEG is INTERNET_FQDN_PORT.
      */
     readonly fqdn?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The global network endpoint group this endpoint is part of.
      */
     readonly globalNetworkEndpointGroup?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * IPv4 address external endpoint.
      */
     readonly ipAddress?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Port number of the external endpoint.
      */
     readonly port?: pulumi.Input<number>;
@@ -145,19 +161,27 @@ export interface GlobalNetworkEndpointState {
  */
 export interface GlobalNetworkEndpointArgs {
     /**
-     * Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is
-     * INTERNET_FQDN_PORT.
+     * -
+     * (Optional)
+     * Fully qualified domain name of network endpoint.
+     * This can only be specified when networkEndpointType of the NEG is INTERNET_FQDN_PORT.
      */
     readonly fqdn?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The global network endpoint group this endpoint is part of.
      */
     readonly globalNetworkEndpointGroup: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * IPv4 address external endpoint.
      */
     readonly ipAddress?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Port number of the external endpoint.
      */
     readonly port: pulumi.Input<number>;

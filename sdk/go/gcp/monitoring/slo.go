@@ -28,15 +28,26 @@ import (
 type Slo struct {
 	pulumi.CustomResourceState
 
-	// Basic Service-Level Indicator (SLI) on a well-known service type. Performance will be computed on the basis of
-	// pre-defined metrics. SLIs are used to measure and calculate the quality of the Service's performance with respect to a
-	// single aspect of service quality.
+	// -
+	// (Required)
+	// Basic Service-Level Indicator (SLI) on a well-known service type.
+	// Performance will be computed on the basis of pre-defined metrics.
+	// SLIs are used to measure and calculate the quality of the Service's
+	// performance with respect to a single aspect of service quality.  Structure is documented below.
 	BasicSli SloBasicSliOutput `pulumi:"basicSli"`
-	// A calendar period, semantically "since the start of the current <calendarPeriod>".
+	// -
+	// (Optional)
+	// A calendar period, semantically "since the start of the current
+	// <calendarPeriod>".
 	CalendarPeriod pulumi.StringPtrOutput `pulumi:"calendarPeriod"`
+	// -
+	// (Optional)
 	// Name used for UI elements listing this SLO.
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
-	// The fraction of service that must be good in order for this objective to be met. 0 < goal <= 0.999
+	// -
+	// (Required)
+	// The fraction of service that must be good in order for this objective
+	// to be met. 0 < goal <= 0.999
 	Goal pulumi.Float64Output `pulumi:"goal"`
 	// The full resource name for this service. The syntax is:
 	// projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
@@ -44,10 +55,17 @@ type Slo struct {
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
-	// A rolling time period, semantically "in the past X days". Must be between 1 to 30 days, inclusive.
+	// -
+	// (Optional)
+	// A rolling time period, semantically "in the past X days".
+	// Must be between 1 to 30 days, inclusive.
 	RollingPeriodDays pulumi.IntPtrOutput `pulumi:"rollingPeriodDays"`
+	// -
+	// (Required)
 	// ID of the service to which this SLO belongs.
 	Service pulumi.StringOutput `pulumi:"service"`
+	// -
+	// (Optional)
 	// The id to use for this ServiceLevelObjective. If omitted, an id will be generated instead.
 	SloId pulumi.StringOutput `pulumi:"sloId"`
 }
@@ -89,15 +107,26 @@ func GetSlo(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Slo resources.
 type sloState struct {
-	// Basic Service-Level Indicator (SLI) on a well-known service type. Performance will be computed on the basis of
-	// pre-defined metrics. SLIs are used to measure and calculate the quality of the Service's performance with respect to a
-	// single aspect of service quality.
+	// -
+	// (Required)
+	// Basic Service-Level Indicator (SLI) on a well-known service type.
+	// Performance will be computed on the basis of pre-defined metrics.
+	// SLIs are used to measure and calculate the quality of the Service's
+	// performance with respect to a single aspect of service quality.  Structure is documented below.
 	BasicSli *SloBasicSli `pulumi:"basicSli"`
-	// A calendar period, semantically "since the start of the current <calendarPeriod>".
+	// -
+	// (Optional)
+	// A calendar period, semantically "since the start of the current
+	// <calendarPeriod>".
 	CalendarPeriod *string `pulumi:"calendarPeriod"`
+	// -
+	// (Optional)
 	// Name used for UI elements listing this SLO.
 	DisplayName *string `pulumi:"displayName"`
-	// The fraction of service that must be good in order for this objective to be met. 0 < goal <= 0.999
+	// -
+	// (Required)
+	// The fraction of service that must be good in order for this objective
+	// to be met. 0 < goal <= 0.999
 	Goal *float64 `pulumi:"goal"`
 	// The full resource name for this service. The syntax is:
 	// projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
@@ -105,24 +134,42 @@ type sloState struct {
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// A rolling time period, semantically "in the past X days". Must be between 1 to 30 days, inclusive.
+	// -
+	// (Optional)
+	// A rolling time period, semantically "in the past X days".
+	// Must be between 1 to 30 days, inclusive.
 	RollingPeriodDays *int `pulumi:"rollingPeriodDays"`
+	// -
+	// (Required)
 	// ID of the service to which this SLO belongs.
 	Service *string `pulumi:"service"`
+	// -
+	// (Optional)
 	// The id to use for this ServiceLevelObjective. If omitted, an id will be generated instead.
 	SloId *string `pulumi:"sloId"`
 }
 
 type SloState struct {
-	// Basic Service-Level Indicator (SLI) on a well-known service type. Performance will be computed on the basis of
-	// pre-defined metrics. SLIs are used to measure and calculate the quality of the Service's performance with respect to a
-	// single aspect of service quality.
+	// -
+	// (Required)
+	// Basic Service-Level Indicator (SLI) on a well-known service type.
+	// Performance will be computed on the basis of pre-defined metrics.
+	// SLIs are used to measure and calculate the quality of the Service's
+	// performance with respect to a single aspect of service quality.  Structure is documented below.
 	BasicSli SloBasicSliPtrInput
-	// A calendar period, semantically "since the start of the current <calendarPeriod>".
+	// -
+	// (Optional)
+	// A calendar period, semantically "since the start of the current
+	// <calendarPeriod>".
 	CalendarPeriod pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// Name used for UI elements listing this SLO.
 	DisplayName pulumi.StringPtrInput
-	// The fraction of service that must be good in order for this objective to be met. 0 < goal <= 0.999
+	// -
+	// (Required)
+	// The fraction of service that must be good in order for this objective
+	// to be met. 0 < goal <= 0.999
 	Goal pulumi.Float64PtrInput
 	// The full resource name for this service. The syntax is:
 	// projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
@@ -130,10 +177,17 @@ type SloState struct {
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// A rolling time period, semantically "in the past X days". Must be between 1 to 30 days, inclusive.
+	// -
+	// (Optional)
+	// A rolling time period, semantically "in the past X days".
+	// Must be between 1 to 30 days, inclusive.
 	RollingPeriodDays pulumi.IntPtrInput
+	// -
+	// (Required)
 	// ID of the service to which this SLO belongs.
 	Service pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// The id to use for this ServiceLevelObjective. If omitted, an id will be generated instead.
 	SloId pulumi.StringPtrInput
 }
@@ -143,46 +197,82 @@ func (SloState) ElementType() reflect.Type {
 }
 
 type sloArgs struct {
-	// Basic Service-Level Indicator (SLI) on a well-known service type. Performance will be computed on the basis of
-	// pre-defined metrics. SLIs are used to measure and calculate the quality of the Service's performance with respect to a
-	// single aspect of service quality.
+	// -
+	// (Required)
+	// Basic Service-Level Indicator (SLI) on a well-known service type.
+	// Performance will be computed on the basis of pre-defined metrics.
+	// SLIs are used to measure and calculate the quality of the Service's
+	// performance with respect to a single aspect of service quality.  Structure is documented below.
 	BasicSli SloBasicSli `pulumi:"basicSli"`
-	// A calendar period, semantically "since the start of the current <calendarPeriod>".
+	// -
+	// (Optional)
+	// A calendar period, semantically "since the start of the current
+	// <calendarPeriod>".
 	CalendarPeriod *string `pulumi:"calendarPeriod"`
+	// -
+	// (Optional)
 	// Name used for UI elements listing this SLO.
 	DisplayName *string `pulumi:"displayName"`
-	// The fraction of service that must be good in order for this objective to be met. 0 < goal <= 0.999
+	// -
+	// (Required)
+	// The fraction of service that must be good in order for this objective
+	// to be met. 0 < goal <= 0.999
 	Goal float64 `pulumi:"goal"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// A rolling time period, semantically "in the past X days". Must be between 1 to 30 days, inclusive.
+	// -
+	// (Optional)
+	// A rolling time period, semantically "in the past X days".
+	// Must be between 1 to 30 days, inclusive.
 	RollingPeriodDays *int `pulumi:"rollingPeriodDays"`
+	// -
+	// (Required)
 	// ID of the service to which this SLO belongs.
 	Service string `pulumi:"service"`
+	// -
+	// (Optional)
 	// The id to use for this ServiceLevelObjective. If omitted, an id will be generated instead.
 	SloId *string `pulumi:"sloId"`
 }
 
 // The set of arguments for constructing a Slo resource.
 type SloArgs struct {
-	// Basic Service-Level Indicator (SLI) on a well-known service type. Performance will be computed on the basis of
-	// pre-defined metrics. SLIs are used to measure and calculate the quality of the Service's performance with respect to a
-	// single aspect of service quality.
+	// -
+	// (Required)
+	// Basic Service-Level Indicator (SLI) on a well-known service type.
+	// Performance will be computed on the basis of pre-defined metrics.
+	// SLIs are used to measure and calculate the quality of the Service's
+	// performance with respect to a single aspect of service quality.  Structure is documented below.
 	BasicSli SloBasicSliInput
-	// A calendar period, semantically "since the start of the current <calendarPeriod>".
+	// -
+	// (Optional)
+	// A calendar period, semantically "since the start of the current
+	// <calendarPeriod>".
 	CalendarPeriod pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// Name used for UI elements listing this SLO.
 	DisplayName pulumi.StringPtrInput
-	// The fraction of service that must be good in order for this objective to be met. 0 < goal <= 0.999
+	// -
+	// (Required)
+	// The fraction of service that must be good in order for this objective
+	// to be met. 0 < goal <= 0.999
 	Goal pulumi.Float64Input
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// A rolling time period, semantically "in the past X days". Must be between 1 to 30 days, inclusive.
+	// -
+	// (Optional)
+	// A rolling time period, semantically "in the past X days".
+	// Must be between 1 to 30 days, inclusive.
 	RollingPeriodDays pulumi.IntPtrInput
+	// -
+	// (Required)
 	// ID of the service to which this SLO belongs.
 	Service pulumi.StringInput
+	// -
+	// (Optional)
 	// The id to use for this ServiceLevelObjective. If omitted, an id will be generated instead.
 	SloId pulumi.StringPtrInput
 }

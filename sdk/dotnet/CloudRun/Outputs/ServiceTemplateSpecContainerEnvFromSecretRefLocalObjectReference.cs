@@ -13,6 +13,11 @@ namespace Pulumi.Gcp.CloudRun.Outputs
     [OutputType]
     public sealed class ServiceTemplateSpecContainerEnvFromSecretRefLocalObjectReference
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the environment variable.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

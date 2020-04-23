@@ -12,24 +12,41 @@ from .. import utilities, tables
 class Topic(pulumi.CustomResource):
     kms_key_name: pulumi.Output[str]
     """
-    The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. Your
-    project's PubSub service account ('service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com') must have
-    'roles/cloudkms.cryptoKeyEncrypterDecrypter' to use this feature. The expected format is
-    'projects/*/locations/*/keyRings/*/cryptoKeys/*'
+    -
+    (Optional)
+    The resource name of the Cloud KMS CryptoKey to be used to protect access
+    to messages published on this topic. Your project's PubSub service account
+    (`service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com`) must have
+    `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
+    The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`
     """
     labels: pulumi.Output[dict]
     """
+    -
+    (Optional)
     A set of key/value label pairs to assign to this Topic.
     """
     message_storage_policy: pulumi.Output[dict]
     """
-    Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not
-    present, then no constraints are in effect.
+    -
+    (Optional)
+    Policy constraining the set of Google Cloud Platform regions where
+    messages published to the topic may be stored. If not present, then no
+    constraints are in effect.  Structure is documented below.
 
-      * `allowedPersistenceRegions` (`list`)
+      * `allowedPersistenceRegions` (`list`) - -
+        (Required)
+        A list of IDs of GCP regions where messages that are published to
+        the topic may be persisted in storage. Messages published by
+        publishers running in non-allowed GCP regions (or running outside
+        of GCP altogether) will be routed for storage in one of the
+        allowed regions. An empty list means that no regions are allowed,
+        and is not a valid configuration.
     """
     name: pulumi.Output[str]
     """
+    -
+    (Required)
     Name of the topic.
     """
     project: pulumi.Output[str]
@@ -50,20 +67,37 @@ class Topic(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] kms_key_name: The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. Your
-               project's PubSub service account ('service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com') must have
-               'roles/cloudkms.cryptoKeyEncrypterDecrypter' to use this feature. The expected format is
-               'projects/*/locations/*/keyRings/*/cryptoKeys/*'
-        :param pulumi.Input[dict] labels: A set of key/value label pairs to assign to this Topic.
-        :param pulumi.Input[dict] message_storage_policy: Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not
-               present, then no constraints are in effect.
-        :param pulumi.Input[str] name: Name of the topic.
+        :param pulumi.Input[str] kms_key_name: -
+               (Optional)
+               The resource name of the Cloud KMS CryptoKey to be used to protect access
+               to messages published on this topic. Your project's PubSub service account
+               (`service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com`) must have
+               `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
+               The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`
+        :param pulumi.Input[dict] labels: -
+               (Optional)
+               A set of key/value label pairs to assign to this Topic.
+        :param pulumi.Input[dict] message_storage_policy: -
+               (Optional)
+               Policy constraining the set of Google Cloud Platform regions where
+               messages published to the topic may be stored. If not present, then no
+               constraints are in effect.  Structure is documented below.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Name of the topic.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
 
         The **message_storage_policy** object supports the following:
 
-          * `allowedPersistenceRegions` (`pulumi.Input[list]`)
+          * `allowedPersistenceRegions` (`pulumi.Input[list]`) - -
+            (Required)
+            A list of IDs of GCP regions where messages that are published to
+            the topic may be persisted in storage. Messages published by
+            publishers running in non-allowed GCP regions (or running outside
+            of GCP altogether) will be routed for storage in one of the
+            allowed regions. An empty list means that no regions are allowed,
+            and is not a valid configuration.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -102,20 +136,37 @@ class Topic(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] kms_key_name: The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. Your
-               project's PubSub service account ('service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com') must have
-               'roles/cloudkms.cryptoKeyEncrypterDecrypter' to use this feature. The expected format is
-               'projects/*/locations/*/keyRings/*/cryptoKeys/*'
-        :param pulumi.Input[dict] labels: A set of key/value label pairs to assign to this Topic.
-        :param pulumi.Input[dict] message_storage_policy: Policy constraining the set of Google Cloud Platform regions where messages published to the topic may be stored. If not
-               present, then no constraints are in effect.
-        :param pulumi.Input[str] name: Name of the topic.
+        :param pulumi.Input[str] kms_key_name: -
+               (Optional)
+               The resource name of the Cloud KMS CryptoKey to be used to protect access
+               to messages published on this topic. Your project's PubSub service account
+               (`service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com`) must have
+               `roles/cloudkms.cryptoKeyEncrypterDecrypter` to use this feature.
+               The expected format is `projects/*/locations/*/keyRings/*/cryptoKeys/*`
+        :param pulumi.Input[dict] labels: -
+               (Optional)
+               A set of key/value label pairs to assign to this Topic.
+        :param pulumi.Input[dict] message_storage_policy: -
+               (Optional)
+               Policy constraining the set of Google Cloud Platform regions where
+               messages published to the topic may be stored. If not present, then no
+               constraints are in effect.  Structure is documented below.
+        :param pulumi.Input[str] name: -
+               (Required)
+               Name of the topic.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
 
         The **message_storage_policy** object supports the following:
 
-          * `allowedPersistenceRegions` (`pulumi.Input[list]`)
+          * `allowedPersistenceRegions` (`pulumi.Input[list]`) - -
+            (Required)
+            A list of IDs of GCP regions where messages that are published to
+            the topic may be persisted in storage. Messages published by
+            publishers running in non-allowed GCP regions (or running outside
+            of GCP altogether) will be routed for storage in one of the
+            allowed regions. An empty list means that no regions are allowed,
+            and is not a valid configuration.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

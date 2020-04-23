@@ -23,13 +23,21 @@ import (
 type GlobalNetworkEndpoint struct {
 	pulumi.CustomResourceState
 
-	// Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is
-	// INTERNET_FQDN_PORT.
+	// -
+	// (Optional)
+	// Fully qualified domain name of network endpoint.
+	// This can only be specified when networkEndpointType of the NEG is INTERNET_FQDN_PORT.
 	Fqdn pulumi.StringPtrOutput `pulumi:"fqdn"`
+	// -
+	// (Required)
 	// The global network endpoint group this endpoint is part of.
 	GlobalNetworkEndpointGroup pulumi.StringOutput `pulumi:"globalNetworkEndpointGroup"`
+	// -
+	// (Optional)
 	// IPv4 address external endpoint.
 	IpAddress pulumi.StringPtrOutput `pulumi:"ipAddress"`
+	// -
+	// (Required)
 	// Port number of the external endpoint.
 	Port pulumi.IntOutput `pulumi:"port"`
 	// The ID of the project in which the resource belongs.
@@ -71,13 +79,21 @@ func GetGlobalNetworkEndpoint(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering GlobalNetworkEndpoint resources.
 type globalNetworkEndpointState struct {
-	// Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is
-	// INTERNET_FQDN_PORT.
+	// -
+	// (Optional)
+	// Fully qualified domain name of network endpoint.
+	// This can only be specified when networkEndpointType of the NEG is INTERNET_FQDN_PORT.
 	Fqdn *string `pulumi:"fqdn"`
+	// -
+	// (Required)
 	// The global network endpoint group this endpoint is part of.
 	GlobalNetworkEndpointGroup *string `pulumi:"globalNetworkEndpointGroup"`
+	// -
+	// (Optional)
 	// IPv4 address external endpoint.
 	IpAddress *string `pulumi:"ipAddress"`
+	// -
+	// (Required)
 	// Port number of the external endpoint.
 	Port *int `pulumi:"port"`
 	// The ID of the project in which the resource belongs.
@@ -86,13 +102,21 @@ type globalNetworkEndpointState struct {
 }
 
 type GlobalNetworkEndpointState struct {
-	// Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is
-	// INTERNET_FQDN_PORT.
+	// -
+	// (Optional)
+	// Fully qualified domain name of network endpoint.
+	// This can only be specified when networkEndpointType of the NEG is INTERNET_FQDN_PORT.
 	Fqdn pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The global network endpoint group this endpoint is part of.
 	GlobalNetworkEndpointGroup pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// IPv4 address external endpoint.
 	IpAddress pulumi.StringPtrInput
+	// -
+	// (Required)
 	// Port number of the external endpoint.
 	Port pulumi.IntPtrInput
 	// The ID of the project in which the resource belongs.
@@ -105,13 +129,21 @@ func (GlobalNetworkEndpointState) ElementType() reflect.Type {
 }
 
 type globalNetworkEndpointArgs struct {
-	// Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is
-	// INTERNET_FQDN_PORT.
+	// -
+	// (Optional)
+	// Fully qualified domain name of network endpoint.
+	// This can only be specified when networkEndpointType of the NEG is INTERNET_FQDN_PORT.
 	Fqdn *string `pulumi:"fqdn"`
+	// -
+	// (Required)
 	// The global network endpoint group this endpoint is part of.
 	GlobalNetworkEndpointGroup string `pulumi:"globalNetworkEndpointGroup"`
+	// -
+	// (Optional)
 	// IPv4 address external endpoint.
 	IpAddress *string `pulumi:"ipAddress"`
+	// -
+	// (Required)
 	// Port number of the external endpoint.
 	Port int `pulumi:"port"`
 	// The ID of the project in which the resource belongs.
@@ -121,13 +153,21 @@ type globalNetworkEndpointArgs struct {
 
 // The set of arguments for constructing a GlobalNetworkEndpoint resource.
 type GlobalNetworkEndpointArgs struct {
-	// Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is
-	// INTERNET_FQDN_PORT.
+	// -
+	// (Optional)
+	// Fully qualified domain name of network endpoint.
+	// This can only be specified when networkEndpointType of the NEG is INTERNET_FQDN_PORT.
 	Fqdn pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The global network endpoint group this endpoint is part of.
 	GlobalNetworkEndpointGroup pulumi.StringInput
+	// -
+	// (Optional)
 	// IPv4 address external endpoint.
 	IpAddress pulumi.StringPtrInput
+	// -
+	// (Required)
 	// Port number of the external endpoint.
 	Port pulumi.IntInput
 	// The ID of the project in which the resource belongs.

@@ -49,18 +49,26 @@ export class NetworkPeeringRoutesConfig extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Required)
      * Whether to export the custom routes to the peer network.
      */
     public readonly exportCustomRoutes!: pulumi.Output<boolean>;
     /**
+     * -
+     * (Required)
      * Whether to import the custom routes to the peer network.
      */
     public readonly importCustomRoutes!: pulumi.Output<boolean>;
     /**
+     * -
+     * (Required)
      * The name of the primary network for the peering.
      */
     public readonly network!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * Name of the peering.
      */
     public readonly peering!: pulumi.Output<string>;
@@ -123,18 +131,26 @@ export class NetworkPeeringRoutesConfig extends pulumi.CustomResource {
  */
 export interface NetworkPeeringRoutesConfigState {
     /**
+     * -
+     * (Required)
      * Whether to export the custom routes to the peer network.
      */
     readonly exportCustomRoutes?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Required)
      * Whether to import the custom routes to the peer network.
      */
     readonly importCustomRoutes?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Required)
      * The name of the primary network for the peering.
      */
     readonly network?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Name of the peering.
      */
     readonly peering?: pulumi.Input<string>;
@@ -150,18 +166,26 @@ export interface NetworkPeeringRoutesConfigState {
  */
 export interface NetworkPeeringRoutesConfigArgs {
     /**
+     * -
+     * (Required)
      * Whether to export the custom routes to the peer network.
      */
     readonly exportCustomRoutes: pulumi.Input<boolean>;
     /**
+     * -
+     * (Required)
      * Whether to import the custom routes to the peer network.
      */
     readonly importCustomRoutes: pulumi.Input<boolean>;
     /**
+     * -
+     * (Required)
      * The name of the primary network for the peering.
      */
     readonly network: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Name of the peering.
      */
     readonly peering: pulumi.Input<string>;

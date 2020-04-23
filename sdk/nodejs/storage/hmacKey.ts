@@ -65,10 +65,14 @@ export class HmacKey extends pulumi.CustomResource {
      */
     public /*out*/ readonly secret!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The email address of the key's associated service account.
      */
     public readonly serviceAccountEmail!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * The state of the key. Can be set to one of ACTIVE, INACTIVE.
      */
     public readonly state!: pulumi.Output<string | undefined>;
@@ -142,10 +146,14 @@ export interface HmacKeyState {
      */
     readonly secret?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The email address of the key's associated service account.
      */
     readonly serviceAccountEmail?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The state of the key. Can be set to one of ACTIVE, INACTIVE.
      */
     readonly state?: pulumi.Input<string>;
@@ -169,10 +177,14 @@ export interface HmacKeyArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The email address of the key's associated service account.
      */
     readonly serviceAccountEmail: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The state of the key. Can be set to one of ACTIVE, INACTIVE.
      */
     readonly state?: pulumi.Input<string>;

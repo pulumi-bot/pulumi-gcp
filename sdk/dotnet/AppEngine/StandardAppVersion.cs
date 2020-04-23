@@ -30,39 +30,52 @@ namespace Pulumi.Gcp.AppEngine
         public Output<bool?> DeleteServiceOnDestroy { get; private set; } = null!;
 
         /// <summary>
-        /// Code and application artifacts that make up this version.
+        /// -
+        /// (Optional)
+        /// Code and application artifacts that make up this version.  Structure is documented below.
         /// </summary>
         [Output("deployment")]
         public Output<Outputs.StandardAppVersionDeployment?> Deployment { get; private set; } = null!;
 
         /// <summary>
-        /// The entrypoint for the application.
+        /// -
+        /// (Optional)
+        /// The entrypoint for the application.  Structure is documented below.
         /// </summary>
         [Output("entrypoint")]
         public Output<Outputs.StandardAppVersionEntrypoint?> Entrypoint { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Environment variables available to the application.
         /// </summary>
         [Output("envVariables")]
         public Output<ImmutableDictionary<string, string>?> EnvVariables { get; private set; } = null!;
 
         /// <summary>
-        /// An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL handles the
-        /// request and other request handlers are not attempted.
+        /// -
+        /// (Optional)
+        /// An ordered list of URL-matching patterns that should be applied to incoming requests.
+        /// The first matching URL handles the request and other request handlers are not attempted.  Structure is documented below.
         /// </summary>
         [Output("handlers")]
         public Output<ImmutableArray<Outputs.StandardAppVersionHandler>> Handlers { get; private set; } = null!;
 
         /// <summary>
-        /// Instance class that is used to run this version. Valid values are AutomaticScaling F1, F2, F4, F4_1G (Only
-        /// AutomaticScaling is supported at the moment)
+        /// -
+        /// (Optional)
+        /// Instance class that is used to run this version. Valid values are
+        /// AutomaticScaling F1, F2, F4, F4_1G
+        /// (Only AutomaticScaling is supported at the moment)
         /// </summary>
         [Output("instanceClass")]
         public Output<string?> InstanceClass { get; private set; } = null!;
 
         /// <summary>
-        /// Configuration for third-party Python runtime libraries that are required by the application.
+        /// -
+        /// (Optional)
+        /// Configuration for third-party Python runtime libraries that are required by the application.  Structure is documented below.
         /// </summary>
         [Output("libraries")]
         public Output<ImmutableArray<Outputs.StandardAppVersionLibrary>> Libraries { get; private set; } = null!;
@@ -87,33 +100,42 @@ namespace Pulumi.Gcp.AppEngine
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Desired runtime. Example python27.
         /// </summary>
         [Output("runtime")]
         public Output<string> Runtime { get; private set; } = null!;
 
         /// <summary>
-        /// The version of the API in the given runtime environment. Please see the app.yaml reference for valid values at
-        /// https://cloud.google.com/appengine/docs/standard//config/appref
+        /// -
+        /// (Optional)
+        /// The version of the API in the given runtime environment.
+        /// Please see the app.yaml reference for valid values at https://cloud.google.com/appengine/docs/standard//config/appref
         /// </summary>
         [Output("runtimeApiVersion")]
         public Output<string?> RuntimeApiVersion { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// AppEngine service resource
         /// </summary>
         [Output("service")]
         public Output<string?> Service { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether multiple requests can be dispatched to this version at once.
         /// </summary>
         [Output("threadsafe")]
         public Output<bool?> Threadsafe { get; private set; } = null!;
 
         /// <summary>
-        /// Relative name of the version within the service. For example, 'v1'. Version names can contain only lowercase letters,
-        /// numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
+        /// -
+        /// (Optional)
+        /// Relative name of the version within the service. For example, `v1`. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
         /// </summary>
         [Output("versionId")]
         public Output<string?> VersionId { get; private set; } = null!;
@@ -171,13 +193,17 @@ namespace Pulumi.Gcp.AppEngine
         public Input<bool>? DeleteServiceOnDestroy { get; set; }
 
         /// <summary>
-        /// Code and application artifacts that make up this version.
+        /// -
+        /// (Optional)
+        /// Code and application artifacts that make up this version.  Structure is documented below.
         /// </summary>
         [Input("deployment")]
         public Input<Inputs.StandardAppVersionDeploymentArgs>? Deployment { get; set; }
 
         /// <summary>
-        /// The entrypoint for the application.
+        /// -
+        /// (Optional)
+        /// The entrypoint for the application.  Structure is documented below.
         /// </summary>
         [Input("entrypoint")]
         public Input<Inputs.StandardAppVersionEntrypointArgs>? Entrypoint { get; set; }
@@ -186,6 +212,8 @@ namespace Pulumi.Gcp.AppEngine
         private InputMap<string>? _envVariables;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Environment variables available to the application.
         /// </summary>
         public InputMap<string> EnvVariables
@@ -198,8 +226,10 @@ namespace Pulumi.Gcp.AppEngine
         private InputList<Inputs.StandardAppVersionHandlerArgs>? _handlers;
 
         /// <summary>
-        /// An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL handles the
-        /// request and other request handlers are not attempted.
+        /// -
+        /// (Optional)
+        /// An ordered list of URL-matching patterns that should be applied to incoming requests.
+        /// The first matching URL handles the request and other request handlers are not attempted.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.StandardAppVersionHandlerArgs> Handlers
         {
@@ -208,8 +238,11 @@ namespace Pulumi.Gcp.AppEngine
         }
 
         /// <summary>
-        /// Instance class that is used to run this version. Valid values are AutomaticScaling F1, F2, F4, F4_1G (Only
-        /// AutomaticScaling is supported at the moment)
+        /// -
+        /// (Optional)
+        /// Instance class that is used to run this version. Valid values are
+        /// AutomaticScaling F1, F2, F4, F4_1G
+        /// (Only AutomaticScaling is supported at the moment)
         /// </summary>
         [Input("instanceClass")]
         public Input<string>? InstanceClass { get; set; }
@@ -218,7 +251,9 @@ namespace Pulumi.Gcp.AppEngine
         private InputList<Inputs.StandardAppVersionLibraryArgs>? _libraries;
 
         /// <summary>
-        /// Configuration for third-party Python runtime libraries that are required by the application.
+        /// -
+        /// (Optional)
+        /// Configuration for third-party Python runtime libraries that are required by the application.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.StandardAppVersionLibraryArgs> Libraries
         {
@@ -240,33 +275,42 @@ namespace Pulumi.Gcp.AppEngine
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Desired runtime. Example python27.
         /// </summary>
         [Input("runtime", required: true)]
         public Input<string> Runtime { get; set; } = null!;
 
         /// <summary>
-        /// The version of the API in the given runtime environment. Please see the app.yaml reference for valid values at
-        /// https://cloud.google.com/appengine/docs/standard//config/appref
+        /// -
+        /// (Optional)
+        /// The version of the API in the given runtime environment.
+        /// Please see the app.yaml reference for valid values at https://cloud.google.com/appengine/docs/standard//config/appref
         /// </summary>
         [Input("runtimeApiVersion")]
         public Input<string>? RuntimeApiVersion { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// AppEngine service resource
         /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether multiple requests can be dispatched to this version at once.
         /// </summary>
         [Input("threadsafe")]
         public Input<bool>? Threadsafe { get; set; }
 
         /// <summary>
-        /// Relative name of the version within the service. For example, 'v1'. Version names can contain only lowercase letters,
-        /// numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
+        /// -
+        /// (Optional)
+        /// Relative name of the version within the service. For example, `v1`. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
         /// </summary>
         [Input("versionId")]
         public Input<string>? VersionId { get; set; }
@@ -285,13 +329,17 @@ namespace Pulumi.Gcp.AppEngine
         public Input<bool>? DeleteServiceOnDestroy { get; set; }
 
         /// <summary>
-        /// Code and application artifacts that make up this version.
+        /// -
+        /// (Optional)
+        /// Code and application artifacts that make up this version.  Structure is documented below.
         /// </summary>
         [Input("deployment")]
         public Input<Inputs.StandardAppVersionDeploymentGetArgs>? Deployment { get; set; }
 
         /// <summary>
-        /// The entrypoint for the application.
+        /// -
+        /// (Optional)
+        /// The entrypoint for the application.  Structure is documented below.
         /// </summary>
         [Input("entrypoint")]
         public Input<Inputs.StandardAppVersionEntrypointGetArgs>? Entrypoint { get; set; }
@@ -300,6 +348,8 @@ namespace Pulumi.Gcp.AppEngine
         private InputMap<string>? _envVariables;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Environment variables available to the application.
         /// </summary>
         public InputMap<string> EnvVariables
@@ -312,8 +362,10 @@ namespace Pulumi.Gcp.AppEngine
         private InputList<Inputs.StandardAppVersionHandlerGetArgs>? _handlers;
 
         /// <summary>
-        /// An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL handles the
-        /// request and other request handlers are not attempted.
+        /// -
+        /// (Optional)
+        /// An ordered list of URL-matching patterns that should be applied to incoming requests.
+        /// The first matching URL handles the request and other request handlers are not attempted.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.StandardAppVersionHandlerGetArgs> Handlers
         {
@@ -322,8 +374,11 @@ namespace Pulumi.Gcp.AppEngine
         }
 
         /// <summary>
-        /// Instance class that is used to run this version. Valid values are AutomaticScaling F1, F2, F4, F4_1G (Only
-        /// AutomaticScaling is supported at the moment)
+        /// -
+        /// (Optional)
+        /// Instance class that is used to run this version. Valid values are
+        /// AutomaticScaling F1, F2, F4, F4_1G
+        /// (Only AutomaticScaling is supported at the moment)
         /// </summary>
         [Input("instanceClass")]
         public Input<string>? InstanceClass { get; set; }
@@ -332,7 +387,9 @@ namespace Pulumi.Gcp.AppEngine
         private InputList<Inputs.StandardAppVersionLibraryGetArgs>? _libraries;
 
         /// <summary>
-        /// Configuration for third-party Python runtime libraries that are required by the application.
+        /// -
+        /// (Optional)
+        /// Configuration for third-party Python runtime libraries that are required by the application.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.StandardAppVersionLibraryGetArgs> Libraries
         {
@@ -360,33 +417,42 @@ namespace Pulumi.Gcp.AppEngine
         public Input<string>? Project { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Desired runtime. Example python27.
         /// </summary>
         [Input("runtime")]
         public Input<string>? Runtime { get; set; }
 
         /// <summary>
-        /// The version of the API in the given runtime environment. Please see the app.yaml reference for valid values at
-        /// https://cloud.google.com/appengine/docs/standard//config/appref
+        /// -
+        /// (Optional)
+        /// The version of the API in the given runtime environment.
+        /// Please see the app.yaml reference for valid values at https://cloud.google.com/appengine/docs/standard//config/appref
         /// </summary>
         [Input("runtimeApiVersion")]
         public Input<string>? RuntimeApiVersion { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// AppEngine service resource
         /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Whether multiple requests can be dispatched to this version at once.
         /// </summary>
         [Input("threadsafe")]
         public Input<bool>? Threadsafe { get; set; }
 
         /// <summary>
-        /// Relative name of the version within the service. For example, 'v1'. Version names can contain only lowercase letters,
-        /// numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
+        /// -
+        /// (Optional)
+        /// Relative name of the version within the service. For example, `v1`. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
         /// </summary>
         [Input("versionId")]
         public Input<string>? VersionId { get; set; }

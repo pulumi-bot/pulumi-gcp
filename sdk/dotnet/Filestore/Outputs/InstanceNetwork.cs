@@ -13,9 +13,31 @@ namespace Pulumi.Gcp.Filestore.Outputs
     [OutputType]
     public sealed class InstanceNetwork
     {
+        /// <summary>
+        /// -
+        /// A list of IPv4 or IPv6 addresses.
+        /// </summary>
         public readonly ImmutableArray<string> IpAddresses;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// IP versions for which the instance has
+        /// IP addresses assigned.
+        /// </summary>
         public readonly ImmutableArray<string> Modes;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the GCE VPC network to which the
+        /// instance is connected.
+        /// </summary>
         public readonly string Network;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// A /29 CIDR block that identifies the range of IP
+        /// addresses reserved for this instance.
+        /// </summary>
         public readonly string? ReservedIpRange;
 
         [OutputConstructor]

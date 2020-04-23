@@ -27,12 +27,17 @@ namespace Pulumi.Gcp.Kms
     public partial class KeyRing : Pulumi.CustomResource
     {
         /// <summary>
-        /// The location for the KeyRing. A full list of valid locations can be found by running 'gcloud kms locations list'.
+        /// -
+        /// (Required)
+        /// The location for the KeyRing.
+        /// A full list of valid locations can be found by running `gcloud kms locations list`.
         /// </summary>
         [Output("location")]
         public Output<string> Location { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The resource name for the KeyRing.
         /// </summary>
         [Output("name")]
@@ -95,12 +100,17 @@ namespace Pulumi.Gcp.Kms
     public sealed class KeyRingArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The location for the KeyRing. A full list of valid locations can be found by running 'gcloud kms locations list'.
+        /// -
+        /// (Required)
+        /// The location for the KeyRing.
+        /// A full list of valid locations can be found by running `gcloud kms locations list`.
         /// </summary>
         [Input("location", required: true)]
         public Input<string> Location { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The resource name for the KeyRing.
         /// </summary>
         [Input("name")]
@@ -121,12 +131,17 @@ namespace Pulumi.Gcp.Kms
     public sealed class KeyRingState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The location for the KeyRing. A full list of valid locations can be found by running 'gcloud kms locations list'.
+        /// -
+        /// (Required)
+        /// The location for the KeyRing.
+        /// A full list of valid locations can be found by running `gcloud kms locations list`.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The resource name for the KeyRing.
         /// </summary>
         [Input("name")]

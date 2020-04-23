@@ -12,39 +12,102 @@ namespace Pulumi.Gcp.AppEngine.Inputs
 
     public sealed class FlexibleAppVersionAutomaticScalingArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The time period that the Autoscaler should wait before it starts collecting information from a new instance.
+        /// This prevents the autoscaler from collecting information when the instance is initializing,
+        /// during which the collected usage would not be reliable. Default: 120s
+        /// </summary>
         [Input("coolDownPeriod")]
         public Input<string>? CoolDownPeriod { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Target scaling by CPU usage.  Structure is documented below.
+        /// </summary>
         [Input("cpuUtilization", required: true)]
         public Input<Inputs.FlexibleAppVersionAutomaticScalingCpuUtilizationArgs> CpuUtilization { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target scaling by disk usage.  Structure is documented below.
+        /// </summary>
         [Input("diskUtilization")]
         public Input<Inputs.FlexibleAppVersionAutomaticScalingDiskUtilizationArgs>? DiskUtilization { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance.
+        /// Defaults to a runtime-specific value.
+        /// </summary>
         [Input("maxConcurrentRequests")]
         public Input<int>? MaxConcurrentRequests { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum number of idle instances that should be maintained for this version.
+        /// </summary>
         [Input("maxIdleInstances")]
         public Input<int>? MaxIdleInstances { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum amount of time that a request should wait in the pending queue before starting a new instance to handle it.
+        /// </summary>
         [Input("maxPendingLatency")]
         public Input<string>? MaxPendingLatency { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Maximum number of instances that should be started to handle requests for this version. Default: 20
+        /// </summary>
         [Input("maxTotalInstances")]
         public Input<int>? MaxTotalInstances { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum number of idle instances that should be maintained for this version. Only applicable for the default version of a service.
+        /// </summary>
         [Input("minIdleInstances")]
         public Input<int>? MinIdleInstances { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum amount of time a request should wait in the pending queue before starting a new instance to handle it.
+        /// </summary>
         [Input("minPendingLatency")]
         public Input<string>? MinPendingLatency { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Minimum number of running instances that should be maintained for this version. Default: 2
+        /// </summary>
         [Input("minTotalInstances")]
         public Input<int>? MinTotalInstances { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target scaling by network usage.  Structure is documented below.
+        /// </summary>
         [Input("networkUtilization")]
         public Input<Inputs.FlexibleAppVersionAutomaticScalingNetworkUtilizationArgs>? NetworkUtilization { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target scaling by request utilization.  Structure is documented below.
+        /// </summary>
         [Input("requestUtilization")]
         public Input<Inputs.FlexibleAppVersionAutomaticScalingRequestUtilizationArgs>? RequestUtilization { get; set; }
 

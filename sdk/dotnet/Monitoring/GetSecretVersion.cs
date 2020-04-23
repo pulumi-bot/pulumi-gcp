@@ -16,6 +16,8 @@ namespace Pulumi.Gcp.Monitoring
         /// 
         /// {{% examples %}}
         /// {{% /examples %}}
+        /// 
+        /// Deprecated: gcp.getSecretVersion has been deprecated in favour of gcp.getSecretVersion
         /// </summary>
         public static Task<GetSecretVersionResult> InvokeAsync(GetSecretVersionArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSecretVersionResult>("gcp:monitoring/getSecretVersion:getSecretVersion", args ?? new GetSecretVersionArgs(), options.WithVersion());
@@ -66,7 +68,7 @@ namespace Pulumi.Gcp.Monitoring
         /// </summary>
         public readonly bool Enabled;
         /// <summary>
-        /// id is the provider-assigned unique ID for this managed resource.
+        /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         /// <summary>

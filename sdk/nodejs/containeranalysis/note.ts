@@ -62,14 +62,22 @@ export class Note extends pulumi.CustomResource {
     }
 
     /**
-     * Note kind that represents a logical attestation "role" or "authority". For example, an organization might have one
-     * AttestationAuthority for "QA" and one for "build". This Note is intended to act strictly as a grouping mechanism for
-     * the attached Occurrences (Attestations). This grouping mechanism also provides a security boundary, since IAM ACLs
-     * gate the ability for a principle to attach an Occurrence to a given Note. It also provides a single point of lookup
-     * to find all attached Attestation Occurrences, even if they don't all live in the same project.
+     * -
+     * (Required)
+     * Note kind that represents a logical attestation "role" or "authority".
+     * For example, an organization might have one AttestationAuthority for
+     * "QA" and one for "build". This Note is intended to act strictly as a
+     * grouping mechanism for the attached Occurrences (Attestations). This
+     * grouping mechanism also provides a security boundary, since IAM ACLs
+     * gate the ability for a principle to attach an Occurrence to a given
+     * Note. It also provides a single point of lookup to find all attached
+     * Attestation Occurrences, even if they don't all live in the same
+     * project.  Structure is documented below.
      */
     public readonly attestationAuthority!: pulumi.Output<outputs.containeranalysis.NoteAttestationAuthority>;
     /**
+     * -
+     * (Required)
      * The name of the note.
      */
     public readonly name!: pulumi.Output<string>;
@@ -119,14 +127,22 @@ export class Note extends pulumi.CustomResource {
  */
 export interface NoteState {
     /**
-     * Note kind that represents a logical attestation "role" or "authority". For example, an organization might have one
-     * AttestationAuthority for "QA" and one for "build". This Note is intended to act strictly as a grouping mechanism for
-     * the attached Occurrences (Attestations). This grouping mechanism also provides a security boundary, since IAM ACLs
-     * gate the ability for a principle to attach an Occurrence to a given Note. It also provides a single point of lookup
-     * to find all attached Attestation Occurrences, even if they don't all live in the same project.
+     * -
+     * (Required)
+     * Note kind that represents a logical attestation "role" or "authority".
+     * For example, an organization might have one AttestationAuthority for
+     * "QA" and one for "build". This Note is intended to act strictly as a
+     * grouping mechanism for the attached Occurrences (Attestations). This
+     * grouping mechanism also provides a security boundary, since IAM ACLs
+     * gate the ability for a principle to attach an Occurrence to a given
+     * Note. It also provides a single point of lookup to find all attached
+     * Attestation Occurrences, even if they don't all live in the same
+     * project.  Structure is documented below.
      */
     readonly attestationAuthority?: pulumi.Input<inputs.containeranalysis.NoteAttestationAuthority>;
     /**
+     * -
+     * (Required)
      * The name of the note.
      */
     readonly name?: pulumi.Input<string>;
@@ -142,14 +158,22 @@ export interface NoteState {
  */
 export interface NoteArgs {
     /**
-     * Note kind that represents a logical attestation "role" or "authority". For example, an organization might have one
-     * AttestationAuthority for "QA" and one for "build". This Note is intended to act strictly as a grouping mechanism for
-     * the attached Occurrences (Attestations). This grouping mechanism also provides a security boundary, since IAM ACLs
-     * gate the ability for a principle to attach an Occurrence to a given Note. It also provides a single point of lookup
-     * to find all attached Attestation Occurrences, even if they don't all live in the same project.
+     * -
+     * (Required)
+     * Note kind that represents a logical attestation "role" or "authority".
+     * For example, an organization might have one AttestationAuthority for
+     * "QA" and one for "build". This Note is intended to act strictly as a
+     * grouping mechanism for the attached Occurrences (Attestations). This
+     * grouping mechanism also provides a security boundary, since IAM ACLs
+     * gate the ability for a principle to attach an Occurrence to a given
+     * Note. It also provides a single point of lookup to find all attached
+     * Attestation Occurrences, even if they don't all live in the same
+     * project.  Structure is documented below.
      */
     readonly attestationAuthority: pulumi.Input<inputs.containeranalysis.NoteAttestationAuthority>;
     /**
+     * -
+     * (Required)
      * The name of the note.
      */
     readonly name?: pulumi.Input<string>;

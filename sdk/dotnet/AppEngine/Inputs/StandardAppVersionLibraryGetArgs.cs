@@ -18,6 +18,11 @@ namespace Pulumi.Gcp.AppEngine.Inputs
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Version of the library to select, or "latest".
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 

@@ -20,6 +20,8 @@ class ManagedSslCertificate(pulumi.CustomResource):
     """
     description: pulumi.Output[str]
     """
+    -
+    (Optional)
     An optional description of this resource.
     """
     expire_time: pulumi.Output[str]
@@ -28,18 +30,27 @@ class ManagedSslCertificate(pulumi.CustomResource):
     """
     managed: pulumi.Output[dict]
     """
-    Properties relevant to a managed certificate. These will be used if the certificate is managed (as indicated by a value
-    of 'MANAGED' in 'type').
+    -
+    (Optional)
+    Properties relevant to a managed certificate.  These will be used if the
+    certificate is managed (as indicated by a value of `MANAGED` in `type`).  Structure is documented below.
 
-      * `domains` (`list`)
+      * `domains` (`list`) - -
+        (Required)
+        Domains for which a managed SSL certificate will be valid.  Currently,
+        there can be up to 100 domains in this list.
     """
     name: pulumi.Output[str]
     """
-    Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-    comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-    '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-    must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. These are in the same
-    namespace as the managed SSL certificates.
+    -
+    (Optional)
+    Name of the resource. Provided by the client when the resource is
+    created. The name must be 1-63 characters long, and comply with
+    RFC1035. Specifically, the name must be 1-63 characters long and match
+    the regular expression `a-z?` which means the
+    first character must be a lowercase letter, and all following
+    characters must be a dash, lowercase letter, or digit, except the last
+    character, which cannot be a dash.
     """
     project: pulumi.Output[str]
     """
@@ -56,7 +67,10 @@ class ManagedSslCertificate(pulumi.CustomResource):
     """
     type: pulumi.Output[str]
     """
-    Enum field whose value is always 'MANAGED' - used to signal to the API which type this is.
+    -
+    (Optional)
+    Enum field whose value is always `MANAGED` - used to signal to the API
+    which type this is.
     """
     def __init__(__self__, resource_name, opts=None, certificate_id=None, description=None, managed=None, name=None, project=None, type=None, __props__=None, __name__=None, __opts__=None):
         """
@@ -89,21 +103,35 @@ class ManagedSslCertificate(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] certificate_id: The unique identifier for the resource.
-        :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[dict] managed: Properties relevant to a managed certificate. These will be used if the certificate is managed (as indicated by a value
-               of 'MANAGED' in 'type').
-        :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-               comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-               '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-               must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. These are in the same
-               namespace as the managed SSL certificates.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               An optional description of this resource.
+        :param pulumi.Input[dict] managed: -
+               (Optional)
+               Properties relevant to a managed certificate.  These will be used if the
+               certificate is managed (as indicated by a value of `MANAGED` in `type`).  Structure is documented below.
+        :param pulumi.Input[str] name: -
+               (Optional)
+               Name of the resource. Provided by the client when the resource is
+               created. The name must be 1-63 characters long, and comply with
+               RFC1035. Specifically, the name must be 1-63 characters long and match
+               the regular expression `a-z?` which means the
+               first character must be a lowercase letter, and all following
+               characters must be a dash, lowercase letter, or digit, except the last
+               character, which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] type: Enum field whose value is always 'MANAGED' - used to signal to the API which type this is.
+        :param pulumi.Input[str] type: -
+               (Optional)
+               Enum field whose value is always `MANAGED` - used to signal to the API
+               which type this is.
 
         The **managed** object supports the following:
 
-          * `domains` (`pulumi.Input[list]`)
+          * `domains` (`pulumi.Input[list]`) - -
+            (Required)
+            Domains for which a managed SSL certificate will be valid.  Currently,
+            there can be up to 100 domains in this list.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -151,24 +179,38 @@ class ManagedSslCertificate(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] certificate_id: The unique identifier for the resource.
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
-        :param pulumi.Input[str] description: An optional description of this resource.
+        :param pulumi.Input[str] description: -
+               (Optional)
+               An optional description of this resource.
         :param pulumi.Input[str] expire_time: Expire time of the certificate.
-        :param pulumi.Input[dict] managed: Properties relevant to a managed certificate. These will be used if the certificate is managed (as indicated by a value
-               of 'MANAGED' in 'type').
-        :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-               comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-               '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-               must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. These are in the same
-               namespace as the managed SSL certificates.
+        :param pulumi.Input[dict] managed: -
+               (Optional)
+               Properties relevant to a managed certificate.  These will be used if the
+               certificate is managed (as indicated by a value of `MANAGED` in `type`).  Structure is documented below.
+        :param pulumi.Input[str] name: -
+               (Optional)
+               Name of the resource. Provided by the client when the resource is
+               created. The name must be 1-63 characters long, and comply with
+               RFC1035. Specifically, the name must be 1-63 characters long and match
+               the regular expression `a-z?` which means the
+               first character must be a lowercase letter, and all following
+               characters must be a dash, lowercase letter, or digit, except the last
+               character, which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
         :param pulumi.Input[list] subject_alternative_names: Domains associated with the certificate via Subject Alternative Name.
-        :param pulumi.Input[str] type: Enum field whose value is always 'MANAGED' - used to signal to the API which type this is.
+        :param pulumi.Input[str] type: -
+               (Optional)
+               Enum field whose value is always `MANAGED` - used to signal to the API
+               which type this is.
 
         The **managed** object supports the following:
 
-          * `domains` (`pulumi.Input[list]`)
+          * `domains` (`pulumi.Input[list]`) - -
+            (Required)
+            Domains for which a managed SSL certificate will be valid.  Currently,
+            there can be up to 100 domains in this list.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

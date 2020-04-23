@@ -13,7 +13,19 @@ namespace Pulumi.Gcp.CloudScheduler.Outputs
     [OutputType]
     public sealed class JobHttpTargetOauthToken
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// OAuth scope to be used for generating OAuth access token. If not specified,
+        /// "https://www.googleapis.com/auth/cloud-platform" will be used.
+        /// </summary>
         public readonly string? Scope;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Service account email to be used for generating OAuth token.
+        /// The service account must be within the same project as the job.
+        /// </summary>
         public readonly string ServiceAccountEmail;
 
         [OutputConstructor]

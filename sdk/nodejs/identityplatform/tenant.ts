@@ -61,19 +61,28 @@ export class Tenant extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Optional)
      * Whether to allow email/password user authentication.
      */
     public readonly allowPasswordSignup!: pulumi.Output<boolean | undefined>;
     /**
-     * Whether authentication is disabled for the tenant. If true, the users under the disabled tenant are not allowed to
-     * sign-in. Admins of the disabled tenant are not able to manage its users.
+     * -
+     * (Optional)
+     * Whether authentication is disabled for the tenant. If true, the users under
+     * the disabled tenant are not allowed to sign-in. Admins of the disabled tenant
+     * are not able to manage its users.
      */
     public readonly disableAuth!: pulumi.Output<boolean | undefined>;
     /**
+     * -
+     * (Required)
      * Human friendly display name of the tenant.
      */
     public readonly displayName!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * Whether to enable email link user authentication.
      */
     public readonly enableEmailLinkSignin!: pulumi.Output<boolean | undefined>;
@@ -133,19 +142,28 @@ export class Tenant extends pulumi.CustomResource {
  */
 export interface TenantState {
     /**
+     * -
+     * (Optional)
      * Whether to allow email/password user authentication.
      */
     readonly allowPasswordSignup?: pulumi.Input<boolean>;
     /**
-     * Whether authentication is disabled for the tenant. If true, the users under the disabled tenant are not allowed to
-     * sign-in. Admins of the disabled tenant are not able to manage its users.
+     * -
+     * (Optional)
+     * Whether authentication is disabled for the tenant. If true, the users under
+     * the disabled tenant are not allowed to sign-in. Admins of the disabled tenant
+     * are not able to manage its users.
      */
     readonly disableAuth?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Required)
      * Human friendly display name of the tenant.
      */
     readonly displayName?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Whether to enable email link user authentication.
      */
     readonly enableEmailLinkSignin?: pulumi.Input<boolean>;
@@ -165,19 +183,28 @@ export interface TenantState {
  */
 export interface TenantArgs {
     /**
+     * -
+     * (Optional)
      * Whether to allow email/password user authentication.
      */
     readonly allowPasswordSignup?: pulumi.Input<boolean>;
     /**
-     * Whether authentication is disabled for the tenant. If true, the users under the disabled tenant are not allowed to
-     * sign-in. Admins of the disabled tenant are not able to manage its users.
+     * -
+     * (Optional)
+     * Whether authentication is disabled for the tenant. If true, the users under
+     * the disabled tenant are not allowed to sign-in. Admins of the disabled tenant
+     * are not able to manage its users.
      */
     readonly disableAuth?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Required)
      * Human friendly display name of the tenant.
      */
     readonly displayName: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Whether to enable email link user authentication.
      */
     readonly enableEmailLinkSignin?: pulumi.Input<boolean>;
