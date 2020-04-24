@@ -79,23 +79,35 @@ export class AccessLevel extends pulumi.CustomResource {
     }
 
     /**
-     * A set of predefined conditions for the access level and a combining function.
+     * -
+     * (Optional)
+     * A set of predefined conditions for the access level and a combining function.  Structure is documented below.
      */
     public readonly basic!: pulumi.Output<outputs.accesscontextmanager.AccessLevelBasic | undefined>;
     /**
+     * -
+     * (Optional)
      * Description of the AccessLevel and its use. Does not affect behavior.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * Resource name for the Access Level. The short_name component must begin with a letter and only include alphanumeric
-     * and '_'. Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+     * -
+     * (Required)
+     * Resource name for the Access Level. The shortName component must begin
+     * with a letter and only include alphanumeric and '_'.
+     * Format: accessPolicies/{policy_id}/accessLevels/{short_name}
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The AccessPolicy this AccessLevel lives in. Format: accessPolicies/{policy_id}
+     * -
+     * (Required)
+     * The AccessPolicy this AccessLevel lives in.
+     * Format: accessPolicies/{policy_id}
      */
     public readonly parent!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * Human readable title. Must be unique within the Policy.
      */
     public readonly title!: pulumi.Output<string>;
@@ -147,23 +159,35 @@ export class AccessLevel extends pulumi.CustomResource {
  */
 export interface AccessLevelState {
     /**
-     * A set of predefined conditions for the access level and a combining function.
+     * -
+     * (Optional)
+     * A set of predefined conditions for the access level and a combining function.  Structure is documented below.
      */
     readonly basic?: pulumi.Input<inputs.accesscontextmanager.AccessLevelBasic>;
     /**
+     * -
+     * (Optional)
      * Description of the AccessLevel and its use. Does not affect behavior.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Resource name for the Access Level. The short_name component must begin with a letter and only include alphanumeric
-     * and '_'. Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+     * -
+     * (Required)
+     * Resource name for the Access Level. The shortName component must begin
+     * with a letter and only include alphanumeric and '_'.
+     * Format: accessPolicies/{policy_id}/accessLevels/{short_name}
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The AccessPolicy this AccessLevel lives in. Format: accessPolicies/{policy_id}
+     * -
+     * (Required)
+     * The AccessPolicy this AccessLevel lives in.
+     * Format: accessPolicies/{policy_id}
      */
     readonly parent?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Human readable title. Must be unique within the Policy.
      */
     readonly title?: pulumi.Input<string>;
@@ -174,23 +198,35 @@ export interface AccessLevelState {
  */
 export interface AccessLevelArgs {
     /**
-     * A set of predefined conditions for the access level and a combining function.
+     * -
+     * (Optional)
+     * A set of predefined conditions for the access level and a combining function.  Structure is documented below.
      */
     readonly basic?: pulumi.Input<inputs.accesscontextmanager.AccessLevelBasic>;
     /**
+     * -
+     * (Optional)
      * Description of the AccessLevel and its use. Does not affect behavior.
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Resource name for the Access Level. The short_name component must begin with a letter and only include alphanumeric
-     * and '_'. Format: accessPolicies/{policy_id}/accessLevels/{short_name}
+     * -
+     * (Required)
+     * Resource name for the Access Level. The shortName component must begin
+     * with a letter and only include alphanumeric and '_'.
+     * Format: accessPolicies/{policy_id}/accessLevels/{short_name}
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The AccessPolicy this AccessLevel lives in. Format: accessPolicies/{policy_id}
+     * -
+     * (Required)
+     * The AccessPolicy this AccessLevel lives in.
+     * Format: accessPolicies/{policy_id}
      */
     readonly parent: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Human readable title. Must be unique within the Policy.
      */
     readonly title: pulumi.Input<string>;

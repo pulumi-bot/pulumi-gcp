@@ -11,10 +11,26 @@ import (
 )
 
 type ManagedZoneDnssecConfig struct {
+	// -
+	// (Optional)
+	// Specifies parameters that will be used for generating initial DnsKeys
+	// for this ManagedZone. If you provide a spec for keySigning or zoneSigning,
+	// you must also provide one for the other.
+	// defaultKeySpecs can only be updated when the state is `off`.  Structure is documented below.
 	DefaultKeySpecs []ManagedZoneDnssecConfigDefaultKeySpec `pulumi:"defaultKeySpecs"`
-	Kind            *string                                 `pulumi:"kind"`
-	NonExistence    *string                                 `pulumi:"nonExistence"`
-	State           *string                                 `pulumi:"state"`
+	// -
+	// (Optional)
+	// Identifies what kind of resource this is
+	Kind *string `pulumi:"kind"`
+	// -
+	// (Optional)
+	// Specifies the mechanism used to provide authenticated denial-of-existence responses.
+	// nonExistence can only be updated when the state is `off`.
+	NonExistence *string `pulumi:"nonExistence"`
+	// -
+	// (Optional)
+	// Specifies whether DNSSEC is enabled, and what mode it is in
+	State *string `pulumi:"state"`
 }
 
 // ManagedZoneDnssecConfigInput is an input type that accepts ManagedZoneDnssecConfigArgs and ManagedZoneDnssecConfigOutput values.
@@ -30,10 +46,26 @@ type ManagedZoneDnssecConfigInput interface {
 }
 
 type ManagedZoneDnssecConfigArgs struct {
+	// -
+	// (Optional)
+	// Specifies parameters that will be used for generating initial DnsKeys
+	// for this ManagedZone. If you provide a spec for keySigning or zoneSigning,
+	// you must also provide one for the other.
+	// defaultKeySpecs can only be updated when the state is `off`.  Structure is documented below.
 	DefaultKeySpecs ManagedZoneDnssecConfigDefaultKeySpecArrayInput `pulumi:"defaultKeySpecs"`
-	Kind            pulumi.StringPtrInput                           `pulumi:"kind"`
-	NonExistence    pulumi.StringPtrInput                           `pulumi:"nonExistence"`
-	State           pulumi.StringPtrInput                           `pulumi:"state"`
+	// -
+	// (Optional)
+	// Identifies what kind of resource this is
+	Kind pulumi.StringPtrInput `pulumi:"kind"`
+	// -
+	// (Optional)
+	// Specifies the mechanism used to provide authenticated denial-of-existence responses.
+	// nonExistence can only be updated when the state is `off`.
+	NonExistence pulumi.StringPtrInput `pulumi:"nonExistence"`
+	// -
+	// (Optional)
+	// Specifies whether DNSSEC is enabled, and what mode it is in
+	State pulumi.StringPtrInput `pulumi:"state"`
 }
 
 func (ManagedZoneDnssecConfigArgs) ElementType() reflect.Type {
@@ -113,18 +145,35 @@ func (o ManagedZoneDnssecConfigOutput) ToManagedZoneDnssecConfigPtrOutputWithCon
 		return &v
 	}).(ManagedZoneDnssecConfigPtrOutput)
 }
+
+// -
+// (Optional)
+// Specifies parameters that will be used for generating initial DnsKeys
+// for this ManagedZone. If you provide a spec for keySigning or zoneSigning,
+// you must also provide one for the other.
+// defaultKeySpecs can only be updated when the state is `off`.  Structure is documented below.
 func (o ManagedZoneDnssecConfigOutput) DefaultKeySpecs() ManagedZoneDnssecConfigDefaultKeySpecArrayOutput {
 	return o.ApplyT(func(v ManagedZoneDnssecConfig) []ManagedZoneDnssecConfigDefaultKeySpec { return v.DefaultKeySpecs }).(ManagedZoneDnssecConfigDefaultKeySpecArrayOutput)
 }
 
+// -
+// (Optional)
+// Identifies what kind of resource this is
 func (o ManagedZoneDnssecConfigOutput) Kind() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedZoneDnssecConfig) *string { return v.Kind }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// Specifies the mechanism used to provide authenticated denial-of-existence responses.
+// nonExistence can only be updated when the state is `off`.
 func (o ManagedZoneDnssecConfigOutput) NonExistence() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedZoneDnssecConfig) *string { return v.NonExistence }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// Specifies whether DNSSEC is enabled, and what mode it is in
 func (o ManagedZoneDnssecConfigOutput) State() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedZoneDnssecConfig) *string { return v.State }).(pulumi.StringPtrOutput)
 }
@@ -147,27 +196,80 @@ func (o ManagedZoneDnssecConfigPtrOutput) Elem() ManagedZoneDnssecConfigOutput {
 	return o.ApplyT(func(v *ManagedZoneDnssecConfig) ManagedZoneDnssecConfig { return *v }).(ManagedZoneDnssecConfigOutput)
 }
 
+// -
+// (Optional)
+// Specifies parameters that will be used for generating initial DnsKeys
+// for this ManagedZone. If you provide a spec for keySigning or zoneSigning,
+// you must also provide one for the other.
+// defaultKeySpecs can only be updated when the state is `off`.  Structure is documented below.
 func (o ManagedZoneDnssecConfigPtrOutput) DefaultKeySpecs() ManagedZoneDnssecConfigDefaultKeySpecArrayOutput {
-	return o.ApplyT(func(v ManagedZoneDnssecConfig) []ManagedZoneDnssecConfigDefaultKeySpec { return v.DefaultKeySpecs }).(ManagedZoneDnssecConfigDefaultKeySpecArrayOutput)
+	return o.ApplyT(func(v *ManagedZoneDnssecConfig) []ManagedZoneDnssecConfigDefaultKeySpec {
+		if v == nil {
+			return nil
+		}
+		return v.DefaultKeySpecs
+	}).(ManagedZoneDnssecConfigDefaultKeySpecArrayOutput)
 }
 
+// -
+// (Optional)
+// Identifies what kind of resource this is
 func (o ManagedZoneDnssecConfigPtrOutput) Kind() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedZoneDnssecConfig) *string { return v.Kind }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ManagedZoneDnssecConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Kind
+	}).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// Specifies the mechanism used to provide authenticated denial-of-existence responses.
+// nonExistence can only be updated when the state is `off`.
 func (o ManagedZoneDnssecConfigPtrOutput) NonExistence() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedZoneDnssecConfig) *string { return v.NonExistence }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ManagedZoneDnssecConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NonExistence
+	}).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// Specifies whether DNSSEC is enabled, and what mode it is in
 func (o ManagedZoneDnssecConfigPtrOutput) State() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ManagedZoneDnssecConfig) *string { return v.State }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *ManagedZoneDnssecConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.State
+	}).(pulumi.StringPtrOutput)
 }
 
 type ManagedZoneDnssecConfigDefaultKeySpec struct {
+	// -
+	// (Optional)
+	// String mnemonic specifying the DNSSEC algorithm of this key
 	Algorithm *string `pulumi:"algorithm"`
-	KeyLength *int    `pulumi:"keyLength"`
-	KeyType   *string `pulumi:"keyType"`
-	Kind      *string `pulumi:"kind"`
+	// -
+	// (Optional)
+	// Length of the keys in bits
+	KeyLength *int `pulumi:"keyLength"`
+	// -
+	// (Optional)
+	// Specifies whether this is a key signing key (KSK) or a zone
+	// signing key (ZSK). Key signing keys have the Secure Entry
+	// Point flag set and, when active, will only be used to sign
+	// resource record sets of type DNSKEY. Zone signing keys do
+	// not have the Secure Entry Point flag set and will be used
+	// to sign all other types of resource record sets.
+	KeyType *string `pulumi:"keyType"`
+	// -
+	// (Optional)
+	// Identifies what kind of resource this is
+	Kind *string `pulumi:"kind"`
 }
 
 // ManagedZoneDnssecConfigDefaultKeySpecInput is an input type that accepts ManagedZoneDnssecConfigDefaultKeySpecArgs and ManagedZoneDnssecConfigDefaultKeySpecOutput values.
@@ -183,10 +285,27 @@ type ManagedZoneDnssecConfigDefaultKeySpecInput interface {
 }
 
 type ManagedZoneDnssecConfigDefaultKeySpecArgs struct {
+	// -
+	// (Optional)
+	// String mnemonic specifying the DNSSEC algorithm of this key
 	Algorithm pulumi.StringPtrInput `pulumi:"algorithm"`
-	KeyLength pulumi.IntPtrInput    `pulumi:"keyLength"`
-	KeyType   pulumi.StringPtrInput `pulumi:"keyType"`
-	Kind      pulumi.StringPtrInput `pulumi:"kind"`
+	// -
+	// (Optional)
+	// Length of the keys in bits
+	KeyLength pulumi.IntPtrInput `pulumi:"keyLength"`
+	// -
+	// (Optional)
+	// Specifies whether this is a key signing key (KSK) or a zone
+	// signing key (ZSK). Key signing keys have the Secure Entry
+	// Point flag set and, when active, will only be used to sign
+	// resource record sets of type DNSKEY. Zone signing keys do
+	// not have the Secure Entry Point flag set and will be used
+	// to sign all other types of resource record sets.
+	KeyType pulumi.StringPtrInput `pulumi:"keyType"`
+	// -
+	// (Optional)
+	// Identifies what kind of resource this is
+	Kind pulumi.StringPtrInput `pulumi:"kind"`
 }
 
 func (ManagedZoneDnssecConfigDefaultKeySpecArgs) ElementType() reflect.Type {
@@ -241,18 +360,35 @@ func (o ManagedZoneDnssecConfigDefaultKeySpecOutput) ToManagedZoneDnssecConfigDe
 	return o
 }
 
+// -
+// (Optional)
+// String mnemonic specifying the DNSSEC algorithm of this key
 func (o ManagedZoneDnssecConfigDefaultKeySpecOutput) Algorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedZoneDnssecConfigDefaultKeySpec) *string { return v.Algorithm }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// Length of the keys in bits
 func (o ManagedZoneDnssecConfigDefaultKeySpecOutput) KeyLength() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ManagedZoneDnssecConfigDefaultKeySpec) *int { return v.KeyLength }).(pulumi.IntPtrOutput)
 }
 
+// -
+// (Optional)
+// Specifies whether this is a key signing key (KSK) or a zone
+// signing key (ZSK). Key signing keys have the Secure Entry
+// Point flag set and, when active, will only be used to sign
+// resource record sets of type DNSKEY. Zone signing keys do
+// not have the Secure Entry Point flag set and will be used
+// to sign all other types of resource record sets.
 func (o ManagedZoneDnssecConfigDefaultKeySpecOutput) KeyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedZoneDnssecConfigDefaultKeySpec) *string { return v.KeyType }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// Identifies what kind of resource this is
 func (o ManagedZoneDnssecConfigDefaultKeySpecOutput) Kind() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedZoneDnssecConfigDefaultKeySpec) *string { return v.Kind }).(pulumi.StringPtrOutput)
 }
@@ -278,6 +414,11 @@ func (o ManagedZoneDnssecConfigDefaultKeySpecArrayOutput) Index(i pulumi.IntInpu
 }
 
 type ManagedZoneForwardingConfig struct {
+	// -
+	// (Required)
+	// List of target name servers to forward to. Cloud DNS will
+	// select the best available name server if more than
+	// one target is given.  Structure is documented below.
 	TargetNameServers []ManagedZoneForwardingConfigTargetNameServer `pulumi:"targetNameServers"`
 }
 
@@ -294,6 +435,11 @@ type ManagedZoneForwardingConfigInput interface {
 }
 
 type ManagedZoneForwardingConfigArgs struct {
+	// -
+	// (Required)
+	// List of target name servers to forward to. Cloud DNS will
+	// select the best available name server if more than
+	// one target is given.  Structure is documented below.
 	TargetNameServers ManagedZoneForwardingConfigTargetNameServerArrayInput `pulumi:"targetNameServers"`
 }
 
@@ -374,6 +520,12 @@ func (o ManagedZoneForwardingConfigOutput) ToManagedZoneForwardingConfigPtrOutpu
 		return &v
 	}).(ManagedZoneForwardingConfigPtrOutput)
 }
+
+// -
+// (Required)
+// List of target name servers to forward to. Cloud DNS will
+// select the best available name server if more than
+// one target is given.  Structure is documented below.
 func (o ManagedZoneForwardingConfigOutput) TargetNameServers() ManagedZoneForwardingConfigTargetNameServerArrayOutput {
 	return o.ApplyT(func(v ManagedZoneForwardingConfig) []ManagedZoneForwardingConfigTargetNameServer {
 		return v.TargetNameServers
@@ -398,15 +550,31 @@ func (o ManagedZoneForwardingConfigPtrOutput) Elem() ManagedZoneForwardingConfig
 	return o.ApplyT(func(v *ManagedZoneForwardingConfig) ManagedZoneForwardingConfig { return *v }).(ManagedZoneForwardingConfigOutput)
 }
 
+// -
+// (Required)
+// List of target name servers to forward to. Cloud DNS will
+// select the best available name server if more than
+// one target is given.  Structure is documented below.
 func (o ManagedZoneForwardingConfigPtrOutput) TargetNameServers() ManagedZoneForwardingConfigTargetNameServerArrayOutput {
-	return o.ApplyT(func(v ManagedZoneForwardingConfig) []ManagedZoneForwardingConfigTargetNameServer {
+	return o.ApplyT(func(v *ManagedZoneForwardingConfig) []ManagedZoneForwardingConfigTargetNameServer {
+		if v == nil {
+			return nil
+		}
 		return v.TargetNameServers
 	}).(ManagedZoneForwardingConfigTargetNameServerArrayOutput)
 }
 
 type ManagedZoneForwardingConfigTargetNameServer struct {
+	// -
+	// (Optional)
+	// Forwarding path for this TargetNameServer. If unset or `default` Cloud DNS will make forwarding
+	// decision based on address ranges, i.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go
+	// to the Internet. When set to `private`, Cloud DNS will always send queries through VPC for this target
 	ForwardingPath *string `pulumi:"forwardingPath"`
-	Ipv4Address    string  `pulumi:"ipv4Address"`
+	// -
+	// (Required)
+	// IPv4 address of a target name server.
+	Ipv4Address string `pulumi:"ipv4Address"`
 }
 
 // ManagedZoneForwardingConfigTargetNameServerInput is an input type that accepts ManagedZoneForwardingConfigTargetNameServerArgs and ManagedZoneForwardingConfigTargetNameServerOutput values.
@@ -422,8 +590,16 @@ type ManagedZoneForwardingConfigTargetNameServerInput interface {
 }
 
 type ManagedZoneForwardingConfigTargetNameServerArgs struct {
+	// -
+	// (Optional)
+	// Forwarding path for this TargetNameServer. If unset or `default` Cloud DNS will make forwarding
+	// decision based on address ranges, i.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go
+	// to the Internet. When set to `private`, Cloud DNS will always send queries through VPC for this target
 	ForwardingPath pulumi.StringPtrInput `pulumi:"forwardingPath"`
-	Ipv4Address    pulumi.StringInput    `pulumi:"ipv4Address"`
+	// -
+	// (Required)
+	// IPv4 address of a target name server.
+	Ipv4Address pulumi.StringInput `pulumi:"ipv4Address"`
 }
 
 func (ManagedZoneForwardingConfigTargetNameServerArgs) ElementType() reflect.Type {
@@ -478,10 +654,18 @@ func (o ManagedZoneForwardingConfigTargetNameServerOutput) ToManagedZoneForwardi
 	return o
 }
 
+// -
+// (Optional)
+// Forwarding path for this TargetNameServer. If unset or `default` Cloud DNS will make forwarding
+// decision based on address ranges, i.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go
+// to the Internet. When set to `private`, Cloud DNS will always send queries through VPC for this target
 func (o ManagedZoneForwardingConfigTargetNameServerOutput) ForwardingPath() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ManagedZoneForwardingConfigTargetNameServer) *string { return v.ForwardingPath }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Required)
+// IPv4 address of a target name server.
 func (o ManagedZoneForwardingConfigTargetNameServerOutput) Ipv4Address() pulumi.StringOutput {
 	return o.ApplyT(func(v ManagedZoneForwardingConfigTargetNameServer) string { return v.Ipv4Address }).(pulumi.StringOutput)
 }
@@ -507,6 +691,9 @@ func (o ManagedZoneForwardingConfigTargetNameServerArrayOutput) Index(i pulumi.I
 }
 
 type ManagedZonePeeringConfig struct {
+	// -
+	// (Required)
+	// The network with which to peer.  Structure is documented below.
 	TargetNetwork ManagedZonePeeringConfigTargetNetwork `pulumi:"targetNetwork"`
 }
 
@@ -523,6 +710,9 @@ type ManagedZonePeeringConfigInput interface {
 }
 
 type ManagedZonePeeringConfigArgs struct {
+	// -
+	// (Required)
+	// The network with which to peer.  Structure is documented below.
 	TargetNetwork ManagedZonePeeringConfigTargetNetworkInput `pulumi:"targetNetwork"`
 }
 
@@ -603,6 +793,10 @@ func (o ManagedZonePeeringConfigOutput) ToManagedZonePeeringConfigPtrOutputWithC
 		return &v
 	}).(ManagedZonePeeringConfigPtrOutput)
 }
+
+// -
+// (Required)
+// The network with which to peer.  Structure is documented below.
 func (o ManagedZonePeeringConfigOutput) TargetNetwork() ManagedZonePeeringConfigTargetNetworkOutput {
 	return o.ApplyT(func(v ManagedZonePeeringConfig) ManagedZonePeeringConfigTargetNetwork { return v.TargetNetwork }).(ManagedZonePeeringConfigTargetNetworkOutput)
 }
@@ -625,11 +819,24 @@ func (o ManagedZonePeeringConfigPtrOutput) Elem() ManagedZonePeeringConfigOutput
 	return o.ApplyT(func(v *ManagedZonePeeringConfig) ManagedZonePeeringConfig { return *v }).(ManagedZonePeeringConfigOutput)
 }
 
-func (o ManagedZonePeeringConfigPtrOutput) TargetNetwork() ManagedZonePeeringConfigTargetNetworkOutput {
-	return o.ApplyT(func(v ManagedZonePeeringConfig) ManagedZonePeeringConfigTargetNetwork { return v.TargetNetwork }).(ManagedZonePeeringConfigTargetNetworkOutput)
+// -
+// (Required)
+// The network with which to peer.  Structure is documented below.
+func (o ManagedZonePeeringConfigPtrOutput) TargetNetwork() ManagedZonePeeringConfigTargetNetworkPtrOutput {
+	return o.ApplyT(func(v *ManagedZonePeeringConfig) *ManagedZonePeeringConfigTargetNetwork {
+		if v == nil {
+			return nil
+		}
+		return &v.TargetNetwork
+	}).(ManagedZonePeeringConfigTargetNetworkPtrOutput)
 }
 
 type ManagedZonePeeringConfigTargetNetwork struct {
+	// -
+	// (Required)
+	// The fully qualified URL of the VPC network to forward queries to.
+	// This should be formatted like
+	// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
 	NetworkUrl string `pulumi:"networkUrl"`
 }
 
@@ -646,6 +853,11 @@ type ManagedZonePeeringConfigTargetNetworkInput interface {
 }
 
 type ManagedZonePeeringConfigTargetNetworkArgs struct {
+	// -
+	// (Required)
+	// The fully qualified URL of the VPC network to forward queries to.
+	// This should be formatted like
+	// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
 	NetworkUrl pulumi.StringInput `pulumi:"networkUrl"`
 }
 
@@ -659,6 +871,48 @@ func (i ManagedZonePeeringConfigTargetNetworkArgs) ToManagedZonePeeringConfigTar
 
 func (i ManagedZonePeeringConfigTargetNetworkArgs) ToManagedZonePeeringConfigTargetNetworkOutputWithContext(ctx context.Context) ManagedZonePeeringConfigTargetNetworkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePeeringConfigTargetNetworkOutput)
+}
+
+func (i ManagedZonePeeringConfigTargetNetworkArgs) ToManagedZonePeeringConfigTargetNetworkPtrOutput() ManagedZonePeeringConfigTargetNetworkPtrOutput {
+	return i.ToManagedZonePeeringConfigTargetNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i ManagedZonePeeringConfigTargetNetworkArgs) ToManagedZonePeeringConfigTargetNetworkPtrOutputWithContext(ctx context.Context) ManagedZonePeeringConfigTargetNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePeeringConfigTargetNetworkOutput).ToManagedZonePeeringConfigTargetNetworkPtrOutputWithContext(ctx)
+}
+
+// ManagedZonePeeringConfigTargetNetworkPtrInput is an input type that accepts ManagedZonePeeringConfigTargetNetworkArgs, ManagedZonePeeringConfigTargetNetworkPtr and ManagedZonePeeringConfigTargetNetworkPtrOutput values.
+// You can construct a concrete instance of `ManagedZonePeeringConfigTargetNetworkPtrInput` via:
+//
+// 		 ManagedZonePeeringConfigTargetNetworkArgs{...}
+//
+//  or:
+//
+// 		 nil
+//
+type ManagedZonePeeringConfigTargetNetworkPtrInput interface {
+	pulumi.Input
+
+	ToManagedZonePeeringConfigTargetNetworkPtrOutput() ManagedZonePeeringConfigTargetNetworkPtrOutput
+	ToManagedZonePeeringConfigTargetNetworkPtrOutputWithContext(context.Context) ManagedZonePeeringConfigTargetNetworkPtrOutput
+}
+
+type managedZonePeeringConfigTargetNetworkPtrType ManagedZonePeeringConfigTargetNetworkArgs
+
+func ManagedZonePeeringConfigTargetNetworkPtr(v *ManagedZonePeeringConfigTargetNetworkArgs) ManagedZonePeeringConfigTargetNetworkPtrInput {
+	return (*managedZonePeeringConfigTargetNetworkPtrType)(v)
+}
+
+func (*managedZonePeeringConfigTargetNetworkPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedZonePeeringConfigTargetNetwork)(nil)).Elem()
+}
+
+func (i *managedZonePeeringConfigTargetNetworkPtrType) ToManagedZonePeeringConfigTargetNetworkPtrOutput() ManagedZonePeeringConfigTargetNetworkPtrOutput {
+	return i.ToManagedZonePeeringConfigTargetNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i *managedZonePeeringConfigTargetNetworkPtrType) ToManagedZonePeeringConfigTargetNetworkPtrOutputWithContext(ctx context.Context) ManagedZonePeeringConfigTargetNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ManagedZonePeeringConfigTargetNetworkPtrOutput)
 }
 
 type ManagedZonePeeringConfigTargetNetworkOutput struct{ *pulumi.OutputState }
@@ -675,8 +929,55 @@ func (o ManagedZonePeeringConfigTargetNetworkOutput) ToManagedZonePeeringConfigT
 	return o
 }
 
+func (o ManagedZonePeeringConfigTargetNetworkOutput) ToManagedZonePeeringConfigTargetNetworkPtrOutput() ManagedZonePeeringConfigTargetNetworkPtrOutput {
+	return o.ToManagedZonePeeringConfigTargetNetworkPtrOutputWithContext(context.Background())
+}
+
+func (o ManagedZonePeeringConfigTargetNetworkOutput) ToManagedZonePeeringConfigTargetNetworkPtrOutputWithContext(ctx context.Context) ManagedZonePeeringConfigTargetNetworkPtrOutput {
+	return o.ApplyT(func(v ManagedZonePeeringConfigTargetNetwork) *ManagedZonePeeringConfigTargetNetwork {
+		return &v
+	}).(ManagedZonePeeringConfigTargetNetworkPtrOutput)
+}
+
+// -
+// (Required)
+// The fully qualified URL of the VPC network to forward queries to.
+// This should be formatted like
+// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
 func (o ManagedZonePeeringConfigTargetNetworkOutput) NetworkUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v ManagedZonePeeringConfigTargetNetwork) string { return v.NetworkUrl }).(pulumi.StringOutput)
+}
+
+type ManagedZonePeeringConfigTargetNetworkPtrOutput struct{ *pulumi.OutputState }
+
+func (ManagedZonePeeringConfigTargetNetworkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ManagedZonePeeringConfigTargetNetwork)(nil)).Elem()
+}
+
+func (o ManagedZonePeeringConfigTargetNetworkPtrOutput) ToManagedZonePeeringConfigTargetNetworkPtrOutput() ManagedZonePeeringConfigTargetNetworkPtrOutput {
+	return o
+}
+
+func (o ManagedZonePeeringConfigTargetNetworkPtrOutput) ToManagedZonePeeringConfigTargetNetworkPtrOutputWithContext(ctx context.Context) ManagedZonePeeringConfigTargetNetworkPtrOutput {
+	return o
+}
+
+func (o ManagedZonePeeringConfigTargetNetworkPtrOutput) Elem() ManagedZonePeeringConfigTargetNetworkOutput {
+	return o.ApplyT(func(v *ManagedZonePeeringConfigTargetNetwork) ManagedZonePeeringConfigTargetNetwork { return *v }).(ManagedZonePeeringConfigTargetNetworkOutput)
+}
+
+// -
+// (Required)
+// The fully qualified URL of the VPC network to forward queries to.
+// This should be formatted like
+// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
+func (o ManagedZonePeeringConfigTargetNetworkPtrOutput) NetworkUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ManagedZonePeeringConfigTargetNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.NetworkUrl
+	}).(pulumi.StringPtrOutput)
 }
 
 type ManagedZonePrivateVisibilityConfig struct {
@@ -801,12 +1102,20 @@ func (o ManagedZonePrivateVisibilityConfigPtrOutput) Elem() ManagedZonePrivateVi
 }
 
 func (o ManagedZonePrivateVisibilityConfigPtrOutput) Networks() ManagedZonePrivateVisibilityConfigNetworkArrayOutput {
-	return o.ApplyT(func(v ManagedZonePrivateVisibilityConfig) []ManagedZonePrivateVisibilityConfigNetwork {
+	return o.ApplyT(func(v *ManagedZonePrivateVisibilityConfig) []ManagedZonePrivateVisibilityConfigNetwork {
+		if v == nil {
+			return nil
+		}
 		return v.Networks
 	}).(ManagedZonePrivateVisibilityConfigNetworkArrayOutput)
 }
 
 type ManagedZonePrivateVisibilityConfigNetwork struct {
+	// -
+	// (Required)
+	// The fully qualified URL of the VPC network to forward queries to.
+	// This should be formatted like
+	// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
 	NetworkUrl string `pulumi:"networkUrl"`
 }
 
@@ -823,6 +1132,11 @@ type ManagedZonePrivateVisibilityConfigNetworkInput interface {
 }
 
 type ManagedZonePrivateVisibilityConfigNetworkArgs struct {
+	// -
+	// (Required)
+	// The fully qualified URL of the VPC network to forward queries to.
+	// This should be formatted like
+	// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
 	NetworkUrl pulumi.StringInput `pulumi:"networkUrl"`
 }
 
@@ -878,6 +1192,11 @@ func (o ManagedZonePrivateVisibilityConfigNetworkOutput) ToManagedZonePrivateVis
 	return o
 }
 
+// -
+// (Required)
+// The fully qualified URL of the VPC network to forward queries to.
+// This should be formatted like
+// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
 func (o ManagedZonePrivateVisibilityConfigNetworkOutput) NetworkUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v ManagedZonePrivateVisibilityConfigNetwork) string { return v.NetworkUrl }).(pulumi.StringOutput)
 }
@@ -903,6 +1222,11 @@ func (o ManagedZonePrivateVisibilityConfigNetworkArrayOutput) Index(i pulumi.Int
 }
 
 type PolicyAlternativeNameServerConfig struct {
+	// -
+	// (Required)
+	// Sets an alternative name server for the associated networks. When specified,
+	// all DNS queries are forwarded to a name server that you choose. Names such as .internal
+	// are not available when an alternative name server is specified.  Structure is documented below.
 	TargetNameServers []PolicyAlternativeNameServerConfigTargetNameServer `pulumi:"targetNameServers"`
 }
 
@@ -919,6 +1243,11 @@ type PolicyAlternativeNameServerConfigInput interface {
 }
 
 type PolicyAlternativeNameServerConfigArgs struct {
+	// -
+	// (Required)
+	// Sets an alternative name server for the associated networks. When specified,
+	// all DNS queries are forwarded to a name server that you choose. Names such as .internal
+	// are not available when an alternative name server is specified.  Structure is documented below.
 	TargetNameServers PolicyAlternativeNameServerConfigTargetNameServerArrayInput `pulumi:"targetNameServers"`
 }
 
@@ -999,6 +1328,12 @@ func (o PolicyAlternativeNameServerConfigOutput) ToPolicyAlternativeNameServerCo
 		return &v
 	}).(PolicyAlternativeNameServerConfigPtrOutput)
 }
+
+// -
+// (Required)
+// Sets an alternative name server for the associated networks. When specified,
+// all DNS queries are forwarded to a name server that you choose. Names such as .internal
+// are not available when an alternative name server is specified.  Structure is documented below.
 func (o PolicyAlternativeNameServerConfigOutput) TargetNameServers() PolicyAlternativeNameServerConfigTargetNameServerArrayOutput {
 	return o.ApplyT(func(v PolicyAlternativeNameServerConfig) []PolicyAlternativeNameServerConfigTargetNameServer {
 		return v.TargetNameServers
@@ -1023,13 +1358,24 @@ func (o PolicyAlternativeNameServerConfigPtrOutput) Elem() PolicyAlternativeName
 	return o.ApplyT(func(v *PolicyAlternativeNameServerConfig) PolicyAlternativeNameServerConfig { return *v }).(PolicyAlternativeNameServerConfigOutput)
 }
 
+// -
+// (Required)
+// Sets an alternative name server for the associated networks. When specified,
+// all DNS queries are forwarded to a name server that you choose. Names such as .internal
+// are not available when an alternative name server is specified.  Structure is documented below.
 func (o PolicyAlternativeNameServerConfigPtrOutput) TargetNameServers() PolicyAlternativeNameServerConfigTargetNameServerArrayOutput {
-	return o.ApplyT(func(v PolicyAlternativeNameServerConfig) []PolicyAlternativeNameServerConfigTargetNameServer {
+	return o.ApplyT(func(v *PolicyAlternativeNameServerConfig) []PolicyAlternativeNameServerConfigTargetNameServer {
+		if v == nil {
+			return nil
+		}
 		return v.TargetNameServers
 	}).(PolicyAlternativeNameServerConfigTargetNameServerArrayOutput)
 }
 
 type PolicyAlternativeNameServerConfigTargetNameServer struct {
+	// -
+	// (Required)
+	// IPv4 address to forward to.
 	Ipv4Address string `pulumi:"ipv4Address"`
 }
 
@@ -1046,6 +1392,9 @@ type PolicyAlternativeNameServerConfigTargetNameServerInput interface {
 }
 
 type PolicyAlternativeNameServerConfigTargetNameServerArgs struct {
+	// -
+	// (Required)
+	// IPv4 address to forward to.
 	Ipv4Address pulumi.StringInput `pulumi:"ipv4Address"`
 }
 
@@ -1101,6 +1450,9 @@ func (o PolicyAlternativeNameServerConfigTargetNameServerOutput) ToPolicyAlterna
 	return o
 }
 
+// -
+// (Required)
+// IPv4 address to forward to.
 func (o PolicyAlternativeNameServerConfigTargetNameServerOutput) Ipv4Address() pulumi.StringOutput {
 	return o.ApplyT(func(v PolicyAlternativeNameServerConfigTargetNameServer) string { return v.Ipv4Address }).(pulumi.StringOutput)
 }
@@ -1126,6 +1478,11 @@ func (o PolicyAlternativeNameServerConfigTargetNameServerArrayOutput) Index(i pu
 }
 
 type PolicyNetwork struct {
+	// -
+	// (Required)
+	// The fully qualified URL of the VPC network to bind to.
+	// This should be formatted like
+	// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
 	NetworkUrl string `pulumi:"networkUrl"`
 }
 
@@ -1142,6 +1499,11 @@ type PolicyNetworkInput interface {
 }
 
 type PolicyNetworkArgs struct {
+	// -
+	// (Required)
+	// The fully qualified URL of the VPC network to bind to.
+	// This should be formatted like
+	// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
 	NetworkUrl pulumi.StringInput `pulumi:"networkUrl"`
 }
 
@@ -1197,6 +1559,11 @@ func (o PolicyNetworkOutput) ToPolicyNetworkOutputWithContext(ctx context.Contex
 	return o
 }
 
+// -
+// (Required)
+// The fully qualified URL of the VPC network to bind to.
+// This should be formatted like
+// `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`
 func (o PolicyNetworkOutput) NetworkUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v PolicyNetwork) string { return v.NetworkUrl }).(pulumi.StringOutput)
 }
@@ -1800,6 +2167,7 @@ func init() {
 	pulumi.RegisterOutputType(ManagedZonePeeringConfigOutput{})
 	pulumi.RegisterOutputType(ManagedZonePeeringConfigPtrOutput{})
 	pulumi.RegisterOutputType(ManagedZonePeeringConfigTargetNetworkOutput{})
+	pulumi.RegisterOutputType(ManagedZonePeeringConfigTargetNetworkPtrOutput{})
 	pulumi.RegisterOutputType(ManagedZonePrivateVisibilityConfigOutput{})
 	pulumi.RegisterOutputType(ManagedZonePrivateVisibilityConfigPtrOutput{})
 	pulumi.RegisterOutputType(ManagedZonePrivateVisibilityConfigNetworkOutput{})

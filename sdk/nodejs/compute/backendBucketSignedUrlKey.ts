@@ -46,15 +46,21 @@ export class BackendBucketSignedUrlKey extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Required)
      * The backend bucket this signed URL key belongs.
      */
     public readonly backendBucket!: pulumi.Output<string>;
     /**
-     * 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded
-     * string.
+     * -
+     * (Required)
+     * 128-bit key value used for signing the URL. The key value must be a
+     * valid RFC 4648 Section 5 base64url encoded string.
      */
     public readonly keyValue!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * Name of the signed URL key.
      */
     public readonly name!: pulumi.Output<string>;
@@ -109,15 +115,21 @@ export class BackendBucketSignedUrlKey extends pulumi.CustomResource {
  */
 export interface BackendBucketSignedUrlKeyState {
     /**
+     * -
+     * (Required)
      * The backend bucket this signed URL key belongs.
      */
     readonly backendBucket?: pulumi.Input<string>;
     /**
-     * 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded
-     * string.
+     * -
+     * (Required)
+     * 128-bit key value used for signing the URL. The key value must be a
+     * valid RFC 4648 Section 5 base64url encoded string.
      */
     readonly keyValue?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Name of the signed URL key.
      */
     readonly name?: pulumi.Input<string>;
@@ -133,15 +145,21 @@ export interface BackendBucketSignedUrlKeyState {
  */
 export interface BackendBucketSignedUrlKeyArgs {
     /**
+     * -
+     * (Required)
      * The backend bucket this signed URL key belongs.
      */
     readonly backendBucket: pulumi.Input<string>;
     /**
-     * 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded
-     * string.
+     * -
+     * (Required)
+     * 128-bit key value used for signing the URL. The key value must be a
+     * valid RFC 4648 Section 5 base64url encoded string.
      */
     readonly keyValue: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Name of the signed URL key.
      */
     readonly name?: pulumi.Input<string>;

@@ -37,6 +37,8 @@ export class WebApp extends pulumi.CustomResource {
      */
     public /*out*/ readonly appId!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The user-assigned display name of the App.
      */
     public readonly displayName!: pulumi.Output<string>;
@@ -97,6 +99,8 @@ export interface WebAppState {
      */
     readonly appId?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The user-assigned display name of the App.
      */
     readonly displayName?: pulumi.Input<string>;
@@ -116,6 +120,8 @@ export interface WebAppState {
  */
 export interface WebAppArgs {
     /**
+     * -
+     * (Required)
      * The user-assigned display name of the App.
      */
     readonly displayName: pulumi.Input<string>;

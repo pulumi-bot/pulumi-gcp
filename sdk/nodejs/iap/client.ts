@@ -39,8 +39,11 @@ export class Client extends pulumi.CustomResource {
     }
 
     /**
-     * Identifier of the brand to which this client is attached to. The format is
-     * 'projects/{project_number}/brands/{brand_id}/identityAwareProxyClients/{client_id}'.
+     * -
+     * (Required)
+     * Identifier of the brand to which this client
+     * is attached to. The format is
+     * `projects/{project_number}/brands/{brand_id}/identityAwareProxyClients/{client_id}`.
      */
     public readonly brand!: pulumi.Output<string>;
     /**
@@ -48,6 +51,8 @@ export class Client extends pulumi.CustomResource {
      */
     public /*out*/ readonly clientId!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * Human-friendly name given to the OAuth client.
      */
     public readonly displayName!: pulumi.Output<string>;
@@ -101,8 +106,11 @@ export class Client extends pulumi.CustomResource {
  */
 export interface ClientState {
     /**
-     * Identifier of the brand to which this client is attached to. The format is
-     * 'projects/{project_number}/brands/{brand_id}/identityAwareProxyClients/{client_id}'.
+     * -
+     * (Required)
+     * Identifier of the brand to which this client
+     * is attached to. The format is
+     * `projects/{project_number}/brands/{brand_id}/identityAwareProxyClients/{client_id}`.
      */
     readonly brand?: pulumi.Input<string>;
     /**
@@ -110,6 +118,8 @@ export interface ClientState {
      */
     readonly clientId?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Human-friendly name given to the OAuth client.
      */
     readonly displayName?: pulumi.Input<string>;
@@ -124,11 +134,16 @@ export interface ClientState {
  */
 export interface ClientArgs {
     /**
-     * Identifier of the brand to which this client is attached to. The format is
-     * 'projects/{project_number}/brands/{brand_id}/identityAwareProxyClients/{client_id}'.
+     * -
+     * (Required)
+     * Identifier of the brand to which this client
+     * is attached to. The format is
+     * `projects/{project_number}/brands/{brand_id}/identityAwareProxyClients/{client_id}`.
      */
     readonly brand: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Human-friendly name given to the OAuth client.
      */
     readonly displayName: pulumi.Input<string>;

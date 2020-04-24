@@ -12,12 +12,30 @@ namespace Pulumi.Gcp.CloudScheduler.Inputs
 
     public sealed class JobAppEngineHttpTargetAppEngineRoutingGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App instance.
+        /// By default, the job is sent to an instance which is available when the job is attempted.
+        /// </summary>
         [Input("instance")]
         public Input<string>? Instance { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App service.
+        /// By default, the job is sent to the service which is the default service when the job is attempted.
+        /// </summary>
         [Input("service")]
         public Input<string>? Service { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// App version.
+        /// By default, the job is sent to the version which is the default version when the job is attempted.
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 

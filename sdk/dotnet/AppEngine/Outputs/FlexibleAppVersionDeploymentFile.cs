@@ -14,10 +14,22 @@ namespace Pulumi.Gcp.AppEngine.Outputs
     public sealed class FlexibleAppVersionDeploymentFile
     {
         /// <summary>
-        /// The identifier for this object. Format specified above.
+        /// -
+        /// (Required)
+        /// Full Serverless VPC Access Connector name e.g. /projects/my-project/locations/us-central1/connectors/c1.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// SHA1 checksum of the file
+        /// </summary>
         public readonly string? Sha1Sum;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Source URL
+        /// </summary>
         public readonly string SourceUrl;
 
         [OutputConstructor]

@@ -39,25 +39,35 @@ export class AppProfile extends pulumi.CustomResource {
     }
 
     /**
-     * The unique name of the app profile in the form '[_a-zA-Z0-9][-_.a-zA-Z0-9]*'.
+     * -
+     * (Required)
+     * The unique name of the app profile in the form `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      */
     public readonly appProfileId!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * Long form description of the use case for this app profile.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * -
+     * (Optional)
      * If true, ignore safety checks when deleting/updating the app profile.
      */
     public readonly ignoreWarnings!: pulumi.Output<boolean | undefined>;
     /**
+     * -
+     * (Optional)
      * The name of the instance to create the app profile within.
      */
     public readonly instance!: pulumi.Output<string | undefined>;
     /**
-     * If true, read/write requests are routed to the nearest cluster in the instance, and will fail over to the nearest
-     * cluster that is available in the event of transient errors or delays. Clusters in a region are considered
-     * equidistant. Choosing this option sacrifices read-your-writes consistency to improve availability.
+     * -
+     * (Optional)
+     * If true, read/write requests are routed to the nearest cluster in the instance, and will fail over to the nearest cluster that is available
+     * in the event of transient errors or delays. Clusters in a region are considered equidistant. Choosing this option sacrifices read-your-writes
+     * consistency to improve availability.
      */
     public readonly multiClusterRoutingUseAny!: pulumi.Output<boolean | undefined>;
     /**
@@ -71,7 +81,9 @@ export class AppProfile extends pulumi.CustomResource {
      */
     public readonly project!: pulumi.Output<string>;
     /**
-     * Use a single-cluster routing policy.
+     * -
+     * (Optional)
+     * Use a single-cluster routing policy.  Structure is documented below.
      */
     public readonly singleClusterRouting!: pulumi.Output<outputs.bigquery.AppProfileSingleClusterRouting | undefined>;
 
@@ -125,25 +137,35 @@ export class AppProfile extends pulumi.CustomResource {
  */
 export interface AppProfileState {
     /**
-     * The unique name of the app profile in the form '[_a-zA-Z0-9][-_.a-zA-Z0-9]*'.
+     * -
+     * (Required)
+     * The unique name of the app profile in the form `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      */
     readonly appProfileId?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Long form description of the use case for this app profile.
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * If true, ignore safety checks when deleting/updating the app profile.
      */
     readonly ignoreWarnings?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Optional)
      * The name of the instance to create the app profile within.
      */
     readonly instance?: pulumi.Input<string>;
     /**
-     * If true, read/write requests are routed to the nearest cluster in the instance, and will fail over to the nearest
-     * cluster that is available in the event of transient errors or delays. Clusters in a region are considered
-     * equidistant. Choosing this option sacrifices read-your-writes consistency to improve availability.
+     * -
+     * (Optional)
+     * If true, read/write requests are routed to the nearest cluster in the instance, and will fail over to the nearest cluster that is available
+     * in the event of transient errors or delays. Clusters in a region are considered equidistant. Choosing this option sacrifices read-your-writes
+     * consistency to improve availability.
      */
     readonly multiClusterRoutingUseAny?: pulumi.Input<boolean>;
     /**
@@ -157,7 +179,9 @@ export interface AppProfileState {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * Use a single-cluster routing policy.
+     * -
+     * (Optional)
+     * Use a single-cluster routing policy.  Structure is documented below.
      */
     readonly singleClusterRouting?: pulumi.Input<inputs.bigquery.AppProfileSingleClusterRouting>;
 }
@@ -167,25 +191,35 @@ export interface AppProfileState {
  */
 export interface AppProfileArgs {
     /**
-     * The unique name of the app profile in the form '[_a-zA-Z0-9][-_.a-zA-Z0-9]*'.
+     * -
+     * (Required)
+     * The unique name of the app profile in the form `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      */
     readonly appProfileId: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Long form description of the use case for this app profile.
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * If true, ignore safety checks when deleting/updating the app profile.
      */
     readonly ignoreWarnings?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Optional)
      * The name of the instance to create the app profile within.
      */
     readonly instance?: pulumi.Input<string>;
     /**
-     * If true, read/write requests are routed to the nearest cluster in the instance, and will fail over to the nearest
-     * cluster that is available in the event of transient errors or delays. Clusters in a region are considered
-     * equidistant. Choosing this option sacrifices read-your-writes consistency to improve availability.
+     * -
+     * (Optional)
+     * If true, read/write requests are routed to the nearest cluster in the instance, and will fail over to the nearest cluster that is available
+     * in the event of transient errors or delays. Clusters in a region are considered equidistant. Choosing this option sacrifices read-your-writes
+     * consistency to improve availability.
      */
     readonly multiClusterRoutingUseAny?: pulumi.Input<boolean>;
     /**
@@ -194,7 +228,9 @@ export interface AppProfileArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * Use a single-cluster routing policy.
+     * -
+     * (Optional)
+     * Use a single-cluster routing policy.  Structure is documented below.
      */
     readonly singleClusterRouting?: pulumi.Input<inputs.bigquery.AppProfileSingleClusterRouting>;
 }

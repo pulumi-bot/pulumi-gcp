@@ -12,12 +12,27 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class RegionBackendServiceConsistentHashHttpCookieArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the cookie.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Path to set for the cookie.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Lifetime of the cookie.  Structure is documented below.
+        /// </summary>
         [Input("ttl")]
         public Input<Inputs.RegionBackendServiceConsistentHashHttpCookieTtlArgs>? Ttl { get; set; }
 

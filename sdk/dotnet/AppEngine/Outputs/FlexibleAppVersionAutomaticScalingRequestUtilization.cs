@@ -13,7 +13,17 @@ namespace Pulumi.Gcp.AppEngine.Outputs
     [OutputType]
     public sealed class FlexibleAppVersionAutomaticScalingRequestUtilization
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target number of concurrent requests.
+        /// </summary>
         public readonly double? TargetConcurrentRequests;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Target requests per second.
+        /// </summary>
         public readonly string? TargetRequestCountPerSecond;
 
         [OutputConstructor]

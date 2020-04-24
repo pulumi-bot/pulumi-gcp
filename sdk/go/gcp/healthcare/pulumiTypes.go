@@ -142,15 +142,30 @@ func (o DatasetIamBindingConditionPtrOutput) Elem() DatasetIamBindingConditionOu
 }
 
 func (o DatasetIamBindingConditionPtrOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DatasetIamBindingCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *DatasetIamBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o DatasetIamBindingConditionPtrOutput) Expression() pulumi.StringOutput {
-	return o.ApplyT(func(v DatasetIamBindingCondition) string { return v.Expression }).(pulumi.StringOutput)
+func (o DatasetIamBindingConditionPtrOutput) Expression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetIamBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Expression
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o DatasetIamBindingConditionPtrOutput) Title() pulumi.StringOutput {
-	return o.ApplyT(func(v DatasetIamBindingCondition) string { return v.Title }).(pulumi.StringOutput)
+func (o DatasetIamBindingConditionPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetIamBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
 }
 
 type DatasetIamMemberCondition struct {
@@ -285,15 +300,30 @@ func (o DatasetIamMemberConditionPtrOutput) Elem() DatasetIamMemberConditionOutp
 }
 
 func (o DatasetIamMemberConditionPtrOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DatasetIamMemberCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *DatasetIamMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o DatasetIamMemberConditionPtrOutput) Expression() pulumi.StringOutput {
-	return o.ApplyT(func(v DatasetIamMemberCondition) string { return v.Expression }).(pulumi.StringOutput)
+func (o DatasetIamMemberConditionPtrOutput) Expression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetIamMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Expression
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o DatasetIamMemberConditionPtrOutput) Title() pulumi.StringOutput {
-	return o.ApplyT(func(v DatasetIamMemberCondition) string { return v.Title }).(pulumi.StringOutput)
+func (o DatasetIamMemberConditionPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatasetIamMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
 }
 
 type DicomStoreIamBindingCondition struct {
@@ -428,15 +458,30 @@ func (o DicomStoreIamBindingConditionPtrOutput) Elem() DicomStoreIamBindingCondi
 }
 
 func (o DicomStoreIamBindingConditionPtrOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DicomStoreIamBindingCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *DicomStoreIamBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o DicomStoreIamBindingConditionPtrOutput) Expression() pulumi.StringOutput {
-	return o.ApplyT(func(v DicomStoreIamBindingCondition) string { return v.Expression }).(pulumi.StringOutput)
+func (o DicomStoreIamBindingConditionPtrOutput) Expression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DicomStoreIamBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Expression
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o DicomStoreIamBindingConditionPtrOutput) Title() pulumi.StringOutput {
-	return o.ApplyT(func(v DicomStoreIamBindingCondition) string { return v.Title }).(pulumi.StringOutput)
+func (o DicomStoreIamBindingConditionPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DicomStoreIamBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
 }
 
 type DicomStoreIamMemberCondition struct {
@@ -571,18 +616,41 @@ func (o DicomStoreIamMemberConditionPtrOutput) Elem() DicomStoreIamMemberConditi
 }
 
 func (o DicomStoreIamMemberConditionPtrOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DicomStoreIamMemberCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *DicomStoreIamMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o DicomStoreIamMemberConditionPtrOutput) Expression() pulumi.StringOutput {
-	return o.ApplyT(func(v DicomStoreIamMemberCondition) string { return v.Expression }).(pulumi.StringOutput)
+func (o DicomStoreIamMemberConditionPtrOutput) Expression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DicomStoreIamMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Expression
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o DicomStoreIamMemberConditionPtrOutput) Title() pulumi.StringOutput {
-	return o.ApplyT(func(v DicomStoreIamMemberCondition) string { return v.Title }).(pulumi.StringOutput)
+func (o DicomStoreIamMemberConditionPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DicomStoreIamMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
 }
 
 type DicomStoreNotificationConfig struct {
+	// -
+	// (Required)
+	// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+	// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+	// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+	// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+	// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+	// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
 	PubsubTopic string `pulumi:"pubsubTopic"`
 }
 
@@ -599,6 +667,14 @@ type DicomStoreNotificationConfigInput interface {
 }
 
 type DicomStoreNotificationConfigArgs struct {
+	// -
+	// (Required)
+	// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+	// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+	// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+	// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+	// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+	// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
 	PubsubTopic pulumi.StringInput `pulumi:"pubsubTopic"`
 }
 
@@ -679,6 +755,15 @@ func (o DicomStoreNotificationConfigOutput) ToDicomStoreNotificationConfigPtrOut
 		return &v
 	}).(DicomStoreNotificationConfigPtrOutput)
 }
+
+// -
+// (Required)
+// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
 func (o DicomStoreNotificationConfigOutput) PubsubTopic() pulumi.StringOutput {
 	return o.ApplyT(func(v DicomStoreNotificationConfig) string { return v.PubsubTopic }).(pulumi.StringOutput)
 }
@@ -701,8 +786,21 @@ func (o DicomStoreNotificationConfigPtrOutput) Elem() DicomStoreNotificationConf
 	return o.ApplyT(func(v *DicomStoreNotificationConfig) DicomStoreNotificationConfig { return *v }).(DicomStoreNotificationConfigOutput)
 }
 
-func (o DicomStoreNotificationConfigPtrOutput) PubsubTopic() pulumi.StringOutput {
-	return o.ApplyT(func(v DicomStoreNotificationConfig) string { return v.PubsubTopic }).(pulumi.StringOutput)
+// -
+// (Required)
+// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
+func (o DicomStoreNotificationConfigPtrOutput) PubsubTopic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DicomStoreNotificationConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PubsubTopic
+	}).(pulumi.StringPtrOutput)
 }
 
 type FhirStoreIamBindingCondition struct {
@@ -837,15 +935,30 @@ func (o FhirStoreIamBindingConditionPtrOutput) Elem() FhirStoreIamBindingConditi
 }
 
 func (o FhirStoreIamBindingConditionPtrOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v FhirStoreIamBindingCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *FhirStoreIamBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o FhirStoreIamBindingConditionPtrOutput) Expression() pulumi.StringOutput {
-	return o.ApplyT(func(v FhirStoreIamBindingCondition) string { return v.Expression }).(pulumi.StringOutput)
+func (o FhirStoreIamBindingConditionPtrOutput) Expression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FhirStoreIamBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Expression
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o FhirStoreIamBindingConditionPtrOutput) Title() pulumi.StringOutput {
-	return o.ApplyT(func(v FhirStoreIamBindingCondition) string { return v.Title }).(pulumi.StringOutput)
+func (o FhirStoreIamBindingConditionPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FhirStoreIamBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
 }
 
 type FhirStoreIamMemberCondition struct {
@@ -980,18 +1093,41 @@ func (o FhirStoreIamMemberConditionPtrOutput) Elem() FhirStoreIamMemberCondition
 }
 
 func (o FhirStoreIamMemberConditionPtrOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v FhirStoreIamMemberCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *FhirStoreIamMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o FhirStoreIamMemberConditionPtrOutput) Expression() pulumi.StringOutput {
-	return o.ApplyT(func(v FhirStoreIamMemberCondition) string { return v.Expression }).(pulumi.StringOutput)
+func (o FhirStoreIamMemberConditionPtrOutput) Expression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FhirStoreIamMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Expression
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o FhirStoreIamMemberConditionPtrOutput) Title() pulumi.StringOutput {
-	return o.ApplyT(func(v FhirStoreIamMemberCondition) string { return v.Title }).(pulumi.StringOutput)
+func (o FhirStoreIamMemberConditionPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FhirStoreIamMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
 }
 
 type FhirStoreNotificationConfig struct {
+	// -
+	// (Required)
+	// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+	// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+	// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+	// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+	// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+	// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
 	PubsubTopic string `pulumi:"pubsubTopic"`
 }
 
@@ -1008,6 +1144,14 @@ type FhirStoreNotificationConfigInput interface {
 }
 
 type FhirStoreNotificationConfigArgs struct {
+	// -
+	// (Required)
+	// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+	// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+	// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+	// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+	// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+	// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
 	PubsubTopic pulumi.StringInput `pulumi:"pubsubTopic"`
 }
 
@@ -1088,6 +1232,15 @@ func (o FhirStoreNotificationConfigOutput) ToFhirStoreNotificationConfigPtrOutpu
 		return &v
 	}).(FhirStoreNotificationConfigPtrOutput)
 }
+
+// -
+// (Required)
+// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
 func (o FhirStoreNotificationConfigOutput) PubsubTopic() pulumi.StringOutput {
 	return o.ApplyT(func(v FhirStoreNotificationConfig) string { return v.PubsubTopic }).(pulumi.StringOutput)
 }
@@ -1110,8 +1263,21 @@ func (o FhirStoreNotificationConfigPtrOutput) Elem() FhirStoreNotificationConfig
 	return o.ApplyT(func(v *FhirStoreNotificationConfig) FhirStoreNotificationConfig { return *v }).(FhirStoreNotificationConfigOutput)
 }
 
-func (o FhirStoreNotificationConfigPtrOutput) PubsubTopic() pulumi.StringOutput {
-	return o.ApplyT(func(v FhirStoreNotificationConfig) string { return v.PubsubTopic }).(pulumi.StringOutput)
+// -
+// (Required)
+// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
+func (o FhirStoreNotificationConfigPtrOutput) PubsubTopic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FhirStoreNotificationConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PubsubTopic
+	}).(pulumi.StringPtrOutput)
 }
 
 type Hl7StoreIamBindingCondition struct {
@@ -1246,15 +1412,30 @@ func (o Hl7StoreIamBindingConditionPtrOutput) Elem() Hl7StoreIamBindingCondition
 }
 
 func (o Hl7StoreIamBindingConditionPtrOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Hl7StoreIamBindingCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *Hl7StoreIamBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o Hl7StoreIamBindingConditionPtrOutput) Expression() pulumi.StringOutput {
-	return o.ApplyT(func(v Hl7StoreIamBindingCondition) string { return v.Expression }).(pulumi.StringOutput)
+func (o Hl7StoreIamBindingConditionPtrOutput) Expression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Hl7StoreIamBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Expression
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o Hl7StoreIamBindingConditionPtrOutput) Title() pulumi.StringOutput {
-	return o.ApplyT(func(v Hl7StoreIamBindingCondition) string { return v.Title }).(pulumi.StringOutput)
+func (o Hl7StoreIamBindingConditionPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Hl7StoreIamBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
 }
 
 type Hl7StoreIamMemberCondition struct {
@@ -1389,18 +1570,41 @@ func (o Hl7StoreIamMemberConditionPtrOutput) Elem() Hl7StoreIamMemberConditionOu
 }
 
 func (o Hl7StoreIamMemberConditionPtrOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Hl7StoreIamMemberCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *Hl7StoreIamMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o Hl7StoreIamMemberConditionPtrOutput) Expression() pulumi.StringOutput {
-	return o.ApplyT(func(v Hl7StoreIamMemberCondition) string { return v.Expression }).(pulumi.StringOutput)
+func (o Hl7StoreIamMemberConditionPtrOutput) Expression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Hl7StoreIamMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Expression
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o Hl7StoreIamMemberConditionPtrOutput) Title() pulumi.StringOutput {
-	return o.ApplyT(func(v Hl7StoreIamMemberCondition) string { return v.Title }).(pulumi.StringOutput)
+func (o Hl7StoreIamMemberConditionPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Hl7StoreIamMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
 }
 
 type Hl7StoreNotificationConfig struct {
+	// -
+	// (Required)
+	// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+	// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+	// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+	// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+	// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+	// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
 	PubsubTopic string `pulumi:"pubsubTopic"`
 }
 
@@ -1417,6 +1621,14 @@ type Hl7StoreNotificationConfigInput interface {
 }
 
 type Hl7StoreNotificationConfigArgs struct {
+	// -
+	// (Required)
+	// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+	// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+	// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+	// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+	// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+	// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
 	PubsubTopic pulumi.StringInput `pulumi:"pubsubTopic"`
 }
 
@@ -1497,6 +1709,15 @@ func (o Hl7StoreNotificationConfigOutput) ToHl7StoreNotificationConfigPtrOutputW
 		return &v
 	}).(Hl7StoreNotificationConfigPtrOutput)
 }
+
+// -
+// (Required)
+// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
 func (o Hl7StoreNotificationConfigOutput) PubsubTopic() pulumi.StringOutput {
 	return o.ApplyT(func(v Hl7StoreNotificationConfig) string { return v.PubsubTopic }).(pulumi.StringOutput)
 }
@@ -1519,12 +1740,32 @@ func (o Hl7StoreNotificationConfigPtrOutput) Elem() Hl7StoreNotificationConfigOu
 	return o.ApplyT(func(v *Hl7StoreNotificationConfig) Hl7StoreNotificationConfig { return *v }).(Hl7StoreNotificationConfigOutput)
 }
 
-func (o Hl7StoreNotificationConfigPtrOutput) PubsubTopic() pulumi.StringOutput {
-	return o.ApplyT(func(v Hl7StoreNotificationConfig) string { return v.PubsubTopic }).(pulumi.StringOutput)
+// -
+// (Required)
+// The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
+// PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
+// It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
+// was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
+// project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
+// Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
+func (o Hl7StoreNotificationConfigPtrOutput) PubsubTopic() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Hl7StoreNotificationConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PubsubTopic
+	}).(pulumi.StringPtrOutput)
 }
 
 type Hl7StoreParserConfig struct {
-	AllowNullHeader   *bool   `pulumi:"allowNullHeader"`
+	// -
+	// (Optional)
+	// Determines whether messages with no header are allowed.
+	AllowNullHeader *bool `pulumi:"allowNullHeader"`
+	// -
+	// (Optional)
+	// Byte(s) to be used as the segment terminator. If this is unset, '\r' will be used as segment terminator.
+	// A base64-encoded string.
 	SegmentTerminator *string `pulumi:"segmentTerminator"`
 }
 
@@ -1541,7 +1782,14 @@ type Hl7StoreParserConfigInput interface {
 }
 
 type Hl7StoreParserConfigArgs struct {
-	AllowNullHeader   pulumi.BoolPtrInput   `pulumi:"allowNullHeader"`
+	// -
+	// (Optional)
+	// Determines whether messages with no header are allowed.
+	AllowNullHeader pulumi.BoolPtrInput `pulumi:"allowNullHeader"`
+	// -
+	// (Optional)
+	// Byte(s) to be used as the segment terminator. If this is unset, '\r' will be used as segment terminator.
+	// A base64-encoded string.
 	SegmentTerminator pulumi.StringPtrInput `pulumi:"segmentTerminator"`
 }
 
@@ -1622,10 +1870,18 @@ func (o Hl7StoreParserConfigOutput) ToHl7StoreParserConfigPtrOutputWithContext(c
 		return &v
 	}).(Hl7StoreParserConfigPtrOutput)
 }
+
+// -
+// (Optional)
+// Determines whether messages with no header are allowed.
 func (o Hl7StoreParserConfigOutput) AllowNullHeader() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v Hl7StoreParserConfig) *bool { return v.AllowNullHeader }).(pulumi.BoolPtrOutput)
 }
 
+// -
+// (Optional)
+// Byte(s) to be used as the segment terminator. If this is unset, '\r' will be used as segment terminator.
+// A base64-encoded string.
 func (o Hl7StoreParserConfigOutput) SegmentTerminator() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v Hl7StoreParserConfig) *string { return v.SegmentTerminator }).(pulumi.StringPtrOutput)
 }
@@ -1648,12 +1904,29 @@ func (o Hl7StoreParserConfigPtrOutput) Elem() Hl7StoreParserConfigOutput {
 	return o.ApplyT(func(v *Hl7StoreParserConfig) Hl7StoreParserConfig { return *v }).(Hl7StoreParserConfigOutput)
 }
 
+// -
+// (Optional)
+// Determines whether messages with no header are allowed.
 func (o Hl7StoreParserConfigPtrOutput) AllowNullHeader() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v Hl7StoreParserConfig) *bool { return v.AllowNullHeader }).(pulumi.BoolPtrOutput)
+	return o.ApplyT(func(v *Hl7StoreParserConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AllowNullHeader
+	}).(pulumi.BoolPtrOutput)
 }
 
+// -
+// (Optional)
+// Byte(s) to be used as the segment terminator. If this is unset, '\r' will be used as segment terminator.
+// A base64-encoded string.
 func (o Hl7StoreParserConfigPtrOutput) SegmentTerminator() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v Hl7StoreParserConfig) *string { return v.SegmentTerminator }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *Hl7StoreParserConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SegmentTerminator
+	}).(pulumi.StringPtrOutput)
 }
 
 func init() {

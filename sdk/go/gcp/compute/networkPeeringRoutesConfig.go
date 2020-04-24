@@ -24,12 +24,20 @@ import (
 type NetworkPeeringRoutesConfig struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// Whether to export the custom routes to the peer network.
 	ExportCustomRoutes pulumi.BoolOutput `pulumi:"exportCustomRoutes"`
+	// -
+	// (Required)
 	// Whether to import the custom routes to the peer network.
 	ImportCustomRoutes pulumi.BoolOutput `pulumi:"importCustomRoutes"`
+	// -
+	// (Required)
 	// The name of the primary network for the peering.
 	Network pulumi.StringOutput `pulumi:"network"`
+	// -
+	// (Required)
 	// Name of the peering.
 	Peering pulumi.StringOutput `pulumi:"peering"`
 	// The ID of the project in which the resource belongs.
@@ -77,12 +85,20 @@ func GetNetworkPeeringRoutesConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NetworkPeeringRoutesConfig resources.
 type networkPeeringRoutesConfigState struct {
+	// -
+	// (Required)
 	// Whether to export the custom routes to the peer network.
 	ExportCustomRoutes *bool `pulumi:"exportCustomRoutes"`
+	// -
+	// (Required)
 	// Whether to import the custom routes to the peer network.
 	ImportCustomRoutes *bool `pulumi:"importCustomRoutes"`
+	// -
+	// (Required)
 	// The name of the primary network for the peering.
 	Network *string `pulumi:"network"`
+	// -
+	// (Required)
 	// Name of the peering.
 	Peering *string `pulumi:"peering"`
 	// The ID of the project in which the resource belongs.
@@ -91,12 +107,20 @@ type networkPeeringRoutesConfigState struct {
 }
 
 type NetworkPeeringRoutesConfigState struct {
+	// -
+	// (Required)
 	// Whether to export the custom routes to the peer network.
 	ExportCustomRoutes pulumi.BoolPtrInput
+	// -
+	// (Required)
 	// Whether to import the custom routes to the peer network.
 	ImportCustomRoutes pulumi.BoolPtrInput
+	// -
+	// (Required)
 	// The name of the primary network for the peering.
 	Network pulumi.StringPtrInput
+	// -
+	// (Required)
 	// Name of the peering.
 	Peering pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
@@ -109,12 +133,20 @@ func (NetworkPeeringRoutesConfigState) ElementType() reflect.Type {
 }
 
 type networkPeeringRoutesConfigArgs struct {
+	// -
+	// (Required)
 	// Whether to export the custom routes to the peer network.
 	ExportCustomRoutes bool `pulumi:"exportCustomRoutes"`
+	// -
+	// (Required)
 	// Whether to import the custom routes to the peer network.
 	ImportCustomRoutes bool `pulumi:"importCustomRoutes"`
+	// -
+	// (Required)
 	// The name of the primary network for the peering.
 	Network string `pulumi:"network"`
+	// -
+	// (Required)
 	// Name of the peering.
 	Peering string `pulumi:"peering"`
 	// The ID of the project in which the resource belongs.
@@ -124,12 +156,20 @@ type networkPeeringRoutesConfigArgs struct {
 
 // The set of arguments for constructing a NetworkPeeringRoutesConfig resource.
 type NetworkPeeringRoutesConfigArgs struct {
+	// -
+	// (Required)
 	// Whether to export the custom routes to the peer network.
 	ExportCustomRoutes pulumi.BoolInput
+	// -
+	// (Required)
 	// Whether to import the custom routes to the peer network.
 	ImportCustomRoutes pulumi.BoolInput
+	// -
+	// (Required)
 	// The name of the primary network for the peering.
 	Network pulumi.StringInput
+	// -
+	// (Required)
 	// Name of the peering.
 	Peering pulumi.StringInput
 	// The ID of the project in which the resource belongs.

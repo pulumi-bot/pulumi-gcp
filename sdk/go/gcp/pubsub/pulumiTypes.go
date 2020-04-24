@@ -11,8 +11,29 @@ import (
 )
 
 type SubscriptionDeadLetterPolicy struct {
-	DeadLetterTopic     *string `pulumi:"deadLetterTopic"`
-	MaxDeliveryAttempts *int    `pulumi:"maxDeliveryAttempts"`
+	// -
+	// (Optional)
+	// The name of the topic to which dead letter messages should be published.
+	// Format is `projects/{project}/topics/{topic}`.
+	// The Cloud Pub/Sub service\naccount associated with the enclosing subscription's
+	// parent project (i.e.,
+	// service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have
+	// permission to Publish() to this topic.
+	// The operation will fail if the topic does not exist.
+	// Users should ensure that there is a subscription attached to this topic
+	// since messages published to a topic with no subscriptions are lost.
+	DeadLetterTopic *string `pulumi:"deadLetterTopic"`
+	// -
+	// (Optional)
+	// The maximum number of delivery attempts for any message. The value must be
+	// between 5 and 100.
+	// The number of delivery attempts is defined as 1 + (the sum of number of
+	// NACKs and number of times the acknowledgement deadline has been exceeded for the message).
+	// A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that
+	// client libraries may automatically extend ack_deadlines.
+	// This field will be honored on a best effort basis.
+	// If this parameter is 0, a default value of 5 is used.
+	MaxDeliveryAttempts *int `pulumi:"maxDeliveryAttempts"`
 }
 
 // SubscriptionDeadLetterPolicyInput is an input type that accepts SubscriptionDeadLetterPolicyArgs and SubscriptionDeadLetterPolicyOutput values.
@@ -28,8 +49,29 @@ type SubscriptionDeadLetterPolicyInput interface {
 }
 
 type SubscriptionDeadLetterPolicyArgs struct {
-	DeadLetterTopic     pulumi.StringPtrInput `pulumi:"deadLetterTopic"`
-	MaxDeliveryAttempts pulumi.IntPtrInput    `pulumi:"maxDeliveryAttempts"`
+	// -
+	// (Optional)
+	// The name of the topic to which dead letter messages should be published.
+	// Format is `projects/{project}/topics/{topic}`.
+	// The Cloud Pub/Sub service\naccount associated with the enclosing subscription's
+	// parent project (i.e.,
+	// service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have
+	// permission to Publish() to this topic.
+	// The operation will fail if the topic does not exist.
+	// Users should ensure that there is a subscription attached to this topic
+	// since messages published to a topic with no subscriptions are lost.
+	DeadLetterTopic pulumi.StringPtrInput `pulumi:"deadLetterTopic"`
+	// -
+	// (Optional)
+	// The maximum number of delivery attempts for any message. The value must be
+	// between 5 and 100.
+	// The number of delivery attempts is defined as 1 + (the sum of number of
+	// NACKs and number of times the acknowledgement deadline has been exceeded for the message).
+	// A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that
+	// client libraries may automatically extend ack_deadlines.
+	// This field will be honored on a best effort basis.
+	// If this parameter is 0, a default value of 5 is used.
+	MaxDeliveryAttempts pulumi.IntPtrInput `pulumi:"maxDeliveryAttempts"`
 }
 
 func (SubscriptionDeadLetterPolicyArgs) ElementType() reflect.Type {
@@ -109,10 +151,32 @@ func (o SubscriptionDeadLetterPolicyOutput) ToSubscriptionDeadLetterPolicyPtrOut
 		return &v
 	}).(SubscriptionDeadLetterPolicyPtrOutput)
 }
+
+// -
+// (Optional)
+// The name of the topic to which dead letter messages should be published.
+// Format is `projects/{project}/topics/{topic}`.
+// The Cloud Pub/Sub service\naccount associated with the enclosing subscription's
+// parent project (i.e.,
+// service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have
+// permission to Publish() to this topic.
+// The operation will fail if the topic does not exist.
+// Users should ensure that there is a subscription attached to this topic
+// since messages published to a topic with no subscriptions are lost.
 func (o SubscriptionDeadLetterPolicyOutput) DeadLetterTopic() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubscriptionDeadLetterPolicy) *string { return v.DeadLetterTopic }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The maximum number of delivery attempts for any message. The value must be
+// between 5 and 100.
+// The number of delivery attempts is defined as 1 + (the sum of number of
+// NACKs and number of times the acknowledgement deadline has been exceeded for the message).
+// A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that
+// client libraries may automatically extend ack_deadlines.
+// This field will be honored on a best effort basis.
+// If this parameter is 0, a default value of 5 is used.
 func (o SubscriptionDeadLetterPolicyOutput) MaxDeliveryAttempts() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v SubscriptionDeadLetterPolicy) *int { return v.MaxDeliveryAttempts }).(pulumi.IntPtrOutput)
 }
@@ -135,15 +199,53 @@ func (o SubscriptionDeadLetterPolicyPtrOutput) Elem() SubscriptionDeadLetterPoli
 	return o.ApplyT(func(v *SubscriptionDeadLetterPolicy) SubscriptionDeadLetterPolicy { return *v }).(SubscriptionDeadLetterPolicyOutput)
 }
 
+// -
+// (Optional)
+// The name of the topic to which dead letter messages should be published.
+// Format is `projects/{project}/topics/{topic}`.
+// The Cloud Pub/Sub service\naccount associated with the enclosing subscription's
+// parent project (i.e.,
+// service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have
+// permission to Publish() to this topic.
+// The operation will fail if the topic does not exist.
+// Users should ensure that there is a subscription attached to this topic
+// since messages published to a topic with no subscriptions are lost.
 func (o SubscriptionDeadLetterPolicyPtrOutput) DeadLetterTopic() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SubscriptionDeadLetterPolicy) *string { return v.DeadLetterTopic }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *SubscriptionDeadLetterPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DeadLetterTopic
+	}).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Optional)
+// The maximum number of delivery attempts for any message. The value must be
+// between 5 and 100.
+// The number of delivery attempts is defined as 1 + (the sum of number of
+// NACKs and number of times the acknowledgement deadline has been exceeded for the message).
+// A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that
+// client libraries may automatically extend ack_deadlines.
+// This field will be honored on a best effort basis.
+// If this parameter is 0, a default value of 5 is used.
 func (o SubscriptionDeadLetterPolicyPtrOutput) MaxDeliveryAttempts() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v SubscriptionDeadLetterPolicy) *int { return v.MaxDeliveryAttempts }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v *SubscriptionDeadLetterPolicy) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxDeliveryAttempts
+	}).(pulumi.IntPtrOutput)
 }
 
 type SubscriptionExpirationPolicy struct {
+	// -
+	// (Required)
+	// Specifies the "time-to-live" duration for an associated resource. The
+	// resource expires if it is not active for a period of ttl.
+	// If ttl is not set, the associated resource never expires.
+	// A duration in seconds with up to nine fractional digits, terminated by 's'.
+	// Example - "3.5s".
 	Ttl string `pulumi:"ttl"`
 }
 
@@ -160,6 +262,13 @@ type SubscriptionExpirationPolicyInput interface {
 }
 
 type SubscriptionExpirationPolicyArgs struct {
+	// -
+	// (Required)
+	// Specifies the "time-to-live" duration for an associated resource. The
+	// resource expires if it is not active for a period of ttl.
+	// If ttl is not set, the associated resource never expires.
+	// A duration in seconds with up to nine fractional digits, terminated by 's'.
+	// Example - "3.5s".
 	Ttl pulumi.StringInput `pulumi:"ttl"`
 }
 
@@ -240,6 +349,14 @@ func (o SubscriptionExpirationPolicyOutput) ToSubscriptionExpirationPolicyPtrOut
 		return &v
 	}).(SubscriptionExpirationPolicyPtrOutput)
 }
+
+// -
+// (Required)
+// Specifies the "time-to-live" duration for an associated resource. The
+// resource expires if it is not active for a period of ttl.
+// If ttl is not set, the associated resource never expires.
+// A duration in seconds with up to nine fractional digits, terminated by 's'.
+// Example - "3.5s".
 func (o SubscriptionExpirationPolicyOutput) Ttl() pulumi.StringOutput {
 	return o.ApplyT(func(v SubscriptionExpirationPolicy) string { return v.Ttl }).(pulumi.StringOutput)
 }
@@ -262,8 +379,20 @@ func (o SubscriptionExpirationPolicyPtrOutput) Elem() SubscriptionExpirationPoli
 	return o.ApplyT(func(v *SubscriptionExpirationPolicy) SubscriptionExpirationPolicy { return *v }).(SubscriptionExpirationPolicyOutput)
 }
 
-func (o SubscriptionExpirationPolicyPtrOutput) Ttl() pulumi.StringOutput {
-	return o.ApplyT(func(v SubscriptionExpirationPolicy) string { return v.Ttl }).(pulumi.StringOutput)
+// -
+// (Required)
+// Specifies the "time-to-live" duration for an associated resource. The
+// resource expires if it is not active for a period of ttl.
+// If ttl is not set, the associated resource never expires.
+// A duration in seconds with up to nine fractional digits, terminated by 's'.
+// Example - "3.5s".
+func (o SubscriptionExpirationPolicyPtrOutput) Ttl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SubscriptionExpirationPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Ttl
+	}).(pulumi.StringPtrOutput)
 }
 
 type SubscriptionIAMBindingCondition struct {
@@ -398,15 +527,30 @@ func (o SubscriptionIAMBindingConditionPtrOutput) Elem() SubscriptionIAMBindingC
 }
 
 func (o SubscriptionIAMBindingConditionPtrOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SubscriptionIAMBindingCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *SubscriptionIAMBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o SubscriptionIAMBindingConditionPtrOutput) Expression() pulumi.StringOutput {
-	return o.ApplyT(func(v SubscriptionIAMBindingCondition) string { return v.Expression }).(pulumi.StringOutput)
+func (o SubscriptionIAMBindingConditionPtrOutput) Expression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SubscriptionIAMBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Expression
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o SubscriptionIAMBindingConditionPtrOutput) Title() pulumi.StringOutput {
-	return o.ApplyT(func(v SubscriptionIAMBindingCondition) string { return v.Title }).(pulumi.StringOutput)
+func (o SubscriptionIAMBindingConditionPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SubscriptionIAMBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
 }
 
 type SubscriptionIAMMemberCondition struct {
@@ -541,21 +685,65 @@ func (o SubscriptionIAMMemberConditionPtrOutput) Elem() SubscriptionIAMMemberCon
 }
 
 func (o SubscriptionIAMMemberConditionPtrOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SubscriptionIAMMemberCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *SubscriptionIAMMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o SubscriptionIAMMemberConditionPtrOutput) Expression() pulumi.StringOutput {
-	return o.ApplyT(func(v SubscriptionIAMMemberCondition) string { return v.Expression }).(pulumi.StringOutput)
+func (o SubscriptionIAMMemberConditionPtrOutput) Expression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SubscriptionIAMMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Expression
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o SubscriptionIAMMemberConditionPtrOutput) Title() pulumi.StringOutput {
-	return o.ApplyT(func(v SubscriptionIAMMemberCondition) string { return v.Title }).(pulumi.StringOutput)
+func (o SubscriptionIAMMemberConditionPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SubscriptionIAMMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
 }
 
 type SubscriptionPushConfig struct {
-	Attributes   map[string]string                `pulumi:"attributes"`
-	OidcToken    *SubscriptionPushConfigOidcToken `pulumi:"oidcToken"`
-	PushEndpoint string                           `pulumi:"pushEndpoint"`
+	// -
+	// (Optional)
+	// Endpoint configuration attributes.
+	// Every endpoint has a set of API supported attributes that can
+	// be used to control different aspects of the message delivery.
+	// The currently supported attribute is x-goog-version, which you
+	// can use to change the format of the pushed message. This
+	// attribute indicates the version of the data expected by
+	// the endpoint. This controls the shape of the pushed message
+	// (i.e., its fields and metadata). The endpoint version is
+	// based on the version of the Pub/Sub API.
+	// If not present during the subscriptions.create call,
+	// it will default to the version of the API used to make
+	// such call. If not present during a subscriptions.modifyPushConfig
+	// call, its value will not be changed. subscriptions.get
+	// calls will always return a valid version, even if the
+	// subscription was created without this attribute.
+	// The possible values for this attribute are:
+	// - v1beta1: uses the push format defined in the v1beta1 Pub/Sub API.
+	// - v1 or v1beta2: uses the push format defined in the v1 Pub/Sub API.
+	Attributes map[string]string `pulumi:"attributes"`
+	// -
+	// (Optional)
+	// If specified, Pub/Sub will generate and attach an OIDC JWT token as
+	// an Authorization header in the HTTP request for every pushed message.  Structure is documented below.
+	OidcToken *SubscriptionPushConfigOidcToken `pulumi:"oidcToken"`
+	// -
+	// (Required)
+	// A URL locating the endpoint to which messages should be pushed.
+	// For example, a Webhook endpoint might use
+	// "https://example.com/push".
+	PushEndpoint string `pulumi:"pushEndpoint"`
 }
 
 // SubscriptionPushConfigInput is an input type that accepts SubscriptionPushConfigArgs and SubscriptionPushConfigOutput values.
@@ -571,9 +759,38 @@ type SubscriptionPushConfigInput interface {
 }
 
 type SubscriptionPushConfigArgs struct {
-	Attributes   pulumi.StringMapInput                   `pulumi:"attributes"`
-	OidcToken    SubscriptionPushConfigOidcTokenPtrInput `pulumi:"oidcToken"`
-	PushEndpoint pulumi.StringInput                      `pulumi:"pushEndpoint"`
+	// -
+	// (Optional)
+	// Endpoint configuration attributes.
+	// Every endpoint has a set of API supported attributes that can
+	// be used to control different aspects of the message delivery.
+	// The currently supported attribute is x-goog-version, which you
+	// can use to change the format of the pushed message. This
+	// attribute indicates the version of the data expected by
+	// the endpoint. This controls the shape of the pushed message
+	// (i.e., its fields and metadata). The endpoint version is
+	// based on the version of the Pub/Sub API.
+	// If not present during the subscriptions.create call,
+	// it will default to the version of the API used to make
+	// such call. If not present during a subscriptions.modifyPushConfig
+	// call, its value will not be changed. subscriptions.get
+	// calls will always return a valid version, even if the
+	// subscription was created without this attribute.
+	// The possible values for this attribute are:
+	// - v1beta1: uses the push format defined in the v1beta1 Pub/Sub API.
+	// - v1 or v1beta2: uses the push format defined in the v1 Pub/Sub API.
+	Attributes pulumi.StringMapInput `pulumi:"attributes"`
+	// -
+	// (Optional)
+	// If specified, Pub/Sub will generate and attach an OIDC JWT token as
+	// an Authorization header in the HTTP request for every pushed message.  Structure is documented below.
+	OidcToken SubscriptionPushConfigOidcTokenPtrInput `pulumi:"oidcToken"`
+	// -
+	// (Required)
+	// A URL locating the endpoint to which messages should be pushed.
+	// For example, a Webhook endpoint might use
+	// "https://example.com/push".
+	PushEndpoint pulumi.StringInput `pulumi:"pushEndpoint"`
 }
 
 func (SubscriptionPushConfigArgs) ElementType() reflect.Type {
@@ -653,14 +870,44 @@ func (o SubscriptionPushConfigOutput) ToSubscriptionPushConfigPtrOutputWithConte
 		return &v
 	}).(SubscriptionPushConfigPtrOutput)
 }
+
+// -
+// (Optional)
+// Endpoint configuration attributes.
+// Every endpoint has a set of API supported attributes that can
+// be used to control different aspects of the message delivery.
+// The currently supported attribute is x-goog-version, which you
+// can use to change the format of the pushed message. This
+// attribute indicates the version of the data expected by
+// the endpoint. This controls the shape of the pushed message
+// (i.e., its fields and metadata). The endpoint version is
+// based on the version of the Pub/Sub API.
+// If not present during the subscriptions.create call,
+// it will default to the version of the API used to make
+// such call. If not present during a subscriptions.modifyPushConfig
+// call, its value will not be changed. subscriptions.get
+// calls will always return a valid version, even if the
+// subscription was created without this attribute.
+// The possible values for this attribute are:
+// - v1beta1: uses the push format defined in the v1beta1 Pub/Sub API.
+// - v1 or v1beta2: uses the push format defined in the v1 Pub/Sub API.
 func (o SubscriptionPushConfigOutput) Attributes() pulumi.StringMapOutput {
 	return o.ApplyT(func(v SubscriptionPushConfig) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
 }
 
+// -
+// (Optional)
+// If specified, Pub/Sub will generate and attach an OIDC JWT token as
+// an Authorization header in the HTTP request for every pushed message.  Structure is documented below.
 func (o SubscriptionPushConfigOutput) OidcToken() SubscriptionPushConfigOidcTokenPtrOutput {
 	return o.ApplyT(func(v SubscriptionPushConfig) *SubscriptionPushConfigOidcToken { return v.OidcToken }).(SubscriptionPushConfigOidcTokenPtrOutput)
 }
 
+// -
+// (Required)
+// A URL locating the endpoint to which messages should be pushed.
+// For example, a Webhook endpoint might use
+// "https://example.com/push".
 func (o SubscriptionPushConfigOutput) PushEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v SubscriptionPushConfig) string { return v.PushEndpoint }).(pulumi.StringOutput)
 }
@@ -683,21 +930,79 @@ func (o SubscriptionPushConfigPtrOutput) Elem() SubscriptionPushConfigOutput {
 	return o.ApplyT(func(v *SubscriptionPushConfig) SubscriptionPushConfig { return *v }).(SubscriptionPushConfigOutput)
 }
 
+// -
+// (Optional)
+// Endpoint configuration attributes.
+// Every endpoint has a set of API supported attributes that can
+// be used to control different aspects of the message delivery.
+// The currently supported attribute is x-goog-version, which you
+// can use to change the format of the pushed message. This
+// attribute indicates the version of the data expected by
+// the endpoint. This controls the shape of the pushed message
+// (i.e., its fields and metadata). The endpoint version is
+// based on the version of the Pub/Sub API.
+// If not present during the subscriptions.create call,
+// it will default to the version of the API used to make
+// such call. If not present during a subscriptions.modifyPushConfig
+// call, its value will not be changed. subscriptions.get
+// calls will always return a valid version, even if the
+// subscription was created without this attribute.
+// The possible values for this attribute are:
+// - v1beta1: uses the push format defined in the v1beta1 Pub/Sub API.
+// - v1 or v1beta2: uses the push format defined in the v1 Pub/Sub API.
 func (o SubscriptionPushConfigPtrOutput) Attributes() pulumi.StringMapOutput {
-	return o.ApplyT(func(v SubscriptionPushConfig) map[string]string { return v.Attributes }).(pulumi.StringMapOutput)
+	return o.ApplyT(func(v *SubscriptionPushConfig) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Attributes
+	}).(pulumi.StringMapOutput)
 }
 
+// -
+// (Optional)
+// If specified, Pub/Sub will generate and attach an OIDC JWT token as
+// an Authorization header in the HTTP request for every pushed message.  Structure is documented below.
 func (o SubscriptionPushConfigPtrOutput) OidcToken() SubscriptionPushConfigOidcTokenPtrOutput {
-	return o.ApplyT(func(v SubscriptionPushConfig) *SubscriptionPushConfigOidcToken { return v.OidcToken }).(SubscriptionPushConfigOidcTokenPtrOutput)
+	return o.ApplyT(func(v *SubscriptionPushConfig) *SubscriptionPushConfigOidcToken {
+		if v == nil {
+			return nil
+		}
+		return v.OidcToken
+	}).(SubscriptionPushConfigOidcTokenPtrOutput)
 }
 
-func (o SubscriptionPushConfigPtrOutput) PushEndpoint() pulumi.StringOutput {
-	return o.ApplyT(func(v SubscriptionPushConfig) string { return v.PushEndpoint }).(pulumi.StringOutput)
+// -
+// (Required)
+// A URL locating the endpoint to which messages should be pushed.
+// For example, a Webhook endpoint might use
+// "https://example.com/push".
+func (o SubscriptionPushConfigPtrOutput) PushEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SubscriptionPushConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PushEndpoint
+	}).(pulumi.StringPtrOutput)
 }
 
 type SubscriptionPushConfigOidcToken struct {
-	Audience            *string `pulumi:"audience"`
-	ServiceAccountEmail string  `pulumi:"serviceAccountEmail"`
+	// -
+	// (Optional)
+	// Audience to be used when generating OIDC token. The audience claim
+	// identifies the recipients that the JWT is intended for. The audience
+	// value is a single case-sensitive string. Having multiple values (array)
+	// for the audience field is not supported. More info about the OIDC JWT
+	// token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
+	// Note: if not specified, the Push endpoint URL will be used.
+	Audience *string `pulumi:"audience"`
+	// -
+	// (Required)
+	// Service account email to be used for generating the OIDC token.
+	// The caller (for subscriptions.create, subscriptions.patch, and
+	// subscriptions.modifyPushConfig RPCs) must have the
+	// iam.serviceAccounts.actAs permission for the service account.
+	ServiceAccountEmail string `pulumi:"serviceAccountEmail"`
 }
 
 // SubscriptionPushConfigOidcTokenInput is an input type that accepts SubscriptionPushConfigOidcTokenArgs and SubscriptionPushConfigOidcTokenOutput values.
@@ -713,8 +1018,22 @@ type SubscriptionPushConfigOidcTokenInput interface {
 }
 
 type SubscriptionPushConfigOidcTokenArgs struct {
-	Audience            pulumi.StringPtrInput `pulumi:"audience"`
-	ServiceAccountEmail pulumi.StringInput    `pulumi:"serviceAccountEmail"`
+	// -
+	// (Optional)
+	// Audience to be used when generating OIDC token. The audience claim
+	// identifies the recipients that the JWT is intended for. The audience
+	// value is a single case-sensitive string. Having multiple values (array)
+	// for the audience field is not supported. More info about the OIDC JWT
+	// token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
+	// Note: if not specified, the Push endpoint URL will be used.
+	Audience pulumi.StringPtrInput `pulumi:"audience"`
+	// -
+	// (Required)
+	// Service account email to be used for generating the OIDC token.
+	// The caller (for subscriptions.create, subscriptions.patch, and
+	// subscriptions.modifyPushConfig RPCs) must have the
+	// iam.serviceAccounts.actAs permission for the service account.
+	ServiceAccountEmail pulumi.StringInput `pulumi:"serviceAccountEmail"`
 }
 
 func (SubscriptionPushConfigOidcTokenArgs) ElementType() reflect.Type {
@@ -794,10 +1113,25 @@ func (o SubscriptionPushConfigOidcTokenOutput) ToSubscriptionPushConfigOidcToken
 		return &v
 	}).(SubscriptionPushConfigOidcTokenPtrOutput)
 }
+
+// -
+// (Optional)
+// Audience to be used when generating OIDC token. The audience claim
+// identifies the recipients that the JWT is intended for. The audience
+// value is a single case-sensitive string. Having multiple values (array)
+// for the audience field is not supported. More info about the OIDC JWT
+// token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
+// Note: if not specified, the Push endpoint URL will be used.
 func (o SubscriptionPushConfigOidcTokenOutput) Audience() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubscriptionPushConfigOidcToken) *string { return v.Audience }).(pulumi.StringPtrOutput)
 }
 
+// -
+// (Required)
+// Service account email to be used for generating the OIDC token.
+// The caller (for subscriptions.create, subscriptions.patch, and
+// subscriptions.modifyPushConfig RPCs) must have the
+// iam.serviceAccounts.actAs permission for the service account.
 func (o SubscriptionPushConfigOidcTokenOutput) ServiceAccountEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v SubscriptionPushConfigOidcToken) string { return v.ServiceAccountEmail }).(pulumi.StringOutput)
 }
@@ -820,12 +1154,36 @@ func (o SubscriptionPushConfigOidcTokenPtrOutput) Elem() SubscriptionPushConfigO
 	return o.ApplyT(func(v *SubscriptionPushConfigOidcToken) SubscriptionPushConfigOidcToken { return *v }).(SubscriptionPushConfigOidcTokenOutput)
 }
 
+// -
+// (Optional)
+// Audience to be used when generating OIDC token. The audience claim
+// identifies the recipients that the JWT is intended for. The audience
+// value is a single case-sensitive string. Having multiple values (array)
+// for the audience field is not supported. More info about the OIDC JWT
+// token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
+// Note: if not specified, the Push endpoint URL will be used.
 func (o SubscriptionPushConfigOidcTokenPtrOutput) Audience() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v SubscriptionPushConfigOidcToken) *string { return v.Audience }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *SubscriptionPushConfigOidcToken) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Audience
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o SubscriptionPushConfigOidcTokenPtrOutput) ServiceAccountEmail() pulumi.StringOutput {
-	return o.ApplyT(func(v SubscriptionPushConfigOidcToken) string { return v.ServiceAccountEmail }).(pulumi.StringOutput)
+// -
+// (Required)
+// Service account email to be used for generating the OIDC token.
+// The caller (for subscriptions.create, subscriptions.patch, and
+// subscriptions.modifyPushConfig RPCs) must have the
+// iam.serviceAccounts.actAs permission for the service account.
+func (o SubscriptionPushConfigOidcTokenPtrOutput) ServiceAccountEmail() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SubscriptionPushConfigOidcToken) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ServiceAccountEmail
+	}).(pulumi.StringPtrOutput)
 }
 
 type TopicIAMBindingCondition struct {
@@ -960,15 +1318,30 @@ func (o TopicIAMBindingConditionPtrOutput) Elem() TopicIAMBindingConditionOutput
 }
 
 func (o TopicIAMBindingConditionPtrOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v TopicIAMBindingCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *TopicIAMBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o TopicIAMBindingConditionPtrOutput) Expression() pulumi.StringOutput {
-	return o.ApplyT(func(v TopicIAMBindingCondition) string { return v.Expression }).(pulumi.StringOutput)
+func (o TopicIAMBindingConditionPtrOutput) Expression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TopicIAMBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Expression
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o TopicIAMBindingConditionPtrOutput) Title() pulumi.StringOutput {
-	return o.ApplyT(func(v TopicIAMBindingCondition) string { return v.Title }).(pulumi.StringOutput)
+func (o TopicIAMBindingConditionPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TopicIAMBindingCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
 }
 
 type TopicIAMMemberCondition struct {
@@ -1103,18 +1476,41 @@ func (o TopicIAMMemberConditionPtrOutput) Elem() TopicIAMMemberConditionOutput {
 }
 
 func (o TopicIAMMemberConditionPtrOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v TopicIAMMemberCondition) *string { return v.Description }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v *TopicIAMMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Description
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o TopicIAMMemberConditionPtrOutput) Expression() pulumi.StringOutput {
-	return o.ApplyT(func(v TopicIAMMemberCondition) string { return v.Expression }).(pulumi.StringOutput)
+func (o TopicIAMMemberConditionPtrOutput) Expression() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TopicIAMMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Expression
+	}).(pulumi.StringPtrOutput)
 }
 
-func (o TopicIAMMemberConditionPtrOutput) Title() pulumi.StringOutput {
-	return o.ApplyT(func(v TopicIAMMemberCondition) string { return v.Title }).(pulumi.StringOutput)
+func (o TopicIAMMemberConditionPtrOutput) Title() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TopicIAMMemberCondition) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Title
+	}).(pulumi.StringPtrOutput)
 }
 
 type TopicMessageStoragePolicy struct {
+	// -
+	// (Required)
+	// A list of IDs of GCP regions where messages that are published to
+	// the topic may be persisted in storage. Messages published by
+	// publishers running in non-allowed GCP regions (or running outside
+	// of GCP altogether) will be routed for storage in one of the
+	// allowed regions. An empty list means that no regions are allowed,
+	// and is not a valid configuration.
 	AllowedPersistenceRegions []string `pulumi:"allowedPersistenceRegions"`
 }
 
@@ -1131,6 +1527,14 @@ type TopicMessageStoragePolicyInput interface {
 }
 
 type TopicMessageStoragePolicyArgs struct {
+	// -
+	// (Required)
+	// A list of IDs of GCP regions where messages that are published to
+	// the topic may be persisted in storage. Messages published by
+	// publishers running in non-allowed GCP regions (or running outside
+	// of GCP altogether) will be routed for storage in one of the
+	// allowed regions. An empty list means that no regions are allowed,
+	// and is not a valid configuration.
 	AllowedPersistenceRegions pulumi.StringArrayInput `pulumi:"allowedPersistenceRegions"`
 }
 
@@ -1211,6 +1615,15 @@ func (o TopicMessageStoragePolicyOutput) ToTopicMessageStoragePolicyPtrOutputWit
 		return &v
 	}).(TopicMessageStoragePolicyPtrOutput)
 }
+
+// -
+// (Required)
+// A list of IDs of GCP regions where messages that are published to
+// the topic may be persisted in storage. Messages published by
+// publishers running in non-allowed GCP regions (or running outside
+// of GCP altogether) will be routed for storage in one of the
+// allowed regions. An empty list means that no regions are allowed,
+// and is not a valid configuration.
 func (o TopicMessageStoragePolicyOutput) AllowedPersistenceRegions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v TopicMessageStoragePolicy) []string { return v.AllowedPersistenceRegions }).(pulumi.StringArrayOutput)
 }
@@ -1233,8 +1646,21 @@ func (o TopicMessageStoragePolicyPtrOutput) Elem() TopicMessageStoragePolicyOutp
 	return o.ApplyT(func(v *TopicMessageStoragePolicy) TopicMessageStoragePolicy { return *v }).(TopicMessageStoragePolicyOutput)
 }
 
+// -
+// (Required)
+// A list of IDs of GCP regions where messages that are published to
+// the topic may be persisted in storage. Messages published by
+// publishers running in non-allowed GCP regions (or running outside
+// of GCP altogether) will be routed for storage in one of the
+// allowed regions. An empty list means that no regions are allowed,
+// and is not a valid configuration.
 func (o TopicMessageStoragePolicyPtrOutput) AllowedPersistenceRegions() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v TopicMessageStoragePolicy) []string { return v.AllowedPersistenceRegions }).(pulumi.StringArrayOutput)
+	return o.ApplyT(func(v *TopicMessageStoragePolicy) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AllowedPersistenceRegions
+	}).(pulumi.StringArrayOutput)
 }
 
 func init() {

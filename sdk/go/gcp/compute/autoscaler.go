@@ -25,25 +25,39 @@ import (
 type Autoscaler struct {
 	pulumi.CustomResourceState
 
-	// The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for an
-	// autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are specified, the
-	// default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+	// -
+	// (Required)
+	// The configuration parameters for the autoscaling algorithm. You can
+	// define one or more of the policies for an autoscaler: cpuUtilization,
+	// customMetricUtilizations, and loadBalancingUtilization.
+	// If none of these are specified, the default will be to autoscale based
+	// on cpuUtilization to 0.6 or 60%.  Structure is documented below.
 	AutoscalingPolicy AutoscalerAutoscalingPolicyOutput `pulumi:"autoscalingPolicy"`
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringOutput `pulumi:"creationTimestamp"`
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// Name of the resource. The name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The identifier (type) of the Stackdriver Monitoring metric.
+	// The metric cannot have negative values.
+	// The metric must have a value type of INT64 or DOUBLE.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
 	// The URI of the created resource.
 	SelfLink pulumi.StringOutput `pulumi:"selfLink"`
-	// URL of the managed instance group that this autoscaler will scale.
+	// -
+	// (Required)
+	// Fraction of backend capacity utilization (set in HTTP(s) load
+	// balancing configuration) that autoscaler should maintain. Must
+	// be a positive float value. If not defined, the default is 0.8.
 	Target pulumi.StringOutput `pulumi:"target"`
+	// -
+	// (Optional)
 	// URL of the zone where the instance group resides.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
@@ -88,49 +102,77 @@ func GetAutoscaler(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Autoscaler resources.
 type autoscalerState struct {
-	// The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for an
-	// autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are specified, the
-	// default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+	// -
+	// (Required)
+	// The configuration parameters for the autoscaling algorithm. You can
+	// define one or more of the policies for an autoscaler: cpuUtilization,
+	// customMetricUtilizations, and loadBalancingUtilization.
+	// If none of these are specified, the default will be to autoscale based
+	// on cpuUtilization to 0.6 or 60%.  Structure is documented below.
 	AutoscalingPolicy *AutoscalerAutoscalingPolicy `pulumi:"autoscalingPolicy"`
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp *string `pulumi:"creationTimestamp"`
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description *string `pulumi:"description"`
-	// Name of the resource. The name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The identifier (type) of the Stackdriver Monitoring metric.
+	// The metric cannot have negative values.
+	// The metric must have a value type of INT64 or DOUBLE.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
 	// The URI of the created resource.
 	SelfLink *string `pulumi:"selfLink"`
-	// URL of the managed instance group that this autoscaler will scale.
+	// -
+	// (Required)
+	// Fraction of backend capacity utilization (set in HTTP(s) load
+	// balancing configuration) that autoscaler should maintain. Must
+	// be a positive float value. If not defined, the default is 0.8.
 	Target *string `pulumi:"target"`
+	// -
+	// (Optional)
 	// URL of the zone where the instance group resides.
 	Zone *string `pulumi:"zone"`
 }
 
 type AutoscalerState struct {
-	// The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for an
-	// autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are specified, the
-	// default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+	// -
+	// (Required)
+	// The configuration parameters for the autoscaling algorithm. You can
+	// define one or more of the policies for an autoscaler: cpuUtilization,
+	// customMetricUtilizations, and loadBalancingUtilization.
+	// If none of these are specified, the default will be to autoscale based
+	// on cpuUtilization to 0.6 or 60%.  Structure is documented below.
 	AutoscalingPolicy AutoscalerAutoscalingPolicyPtrInput
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrInput
-	// Name of the resource. The name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The identifier (type) of the Stackdriver Monitoring metric.
+	// The metric cannot have negative values.
+	// The metric must have a value type of INT64 or DOUBLE.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
 	// The URI of the created resource.
 	SelfLink pulumi.StringPtrInput
-	// URL of the managed instance group that this autoscaler will scale.
+	// -
+	// (Required)
+	// Fraction of backend capacity utilization (set in HTTP(s) load
+	// balancing configuration) that autoscaler should maintain. Must
+	// be a positive float value. If not defined, the default is 0.8.
 	Target pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// URL of the zone where the instance group resides.
 	Zone pulumi.StringPtrInput
 }
@@ -140,42 +182,70 @@ func (AutoscalerState) ElementType() reflect.Type {
 }
 
 type autoscalerArgs struct {
-	// The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for an
-	// autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are specified, the
-	// default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+	// -
+	// (Required)
+	// The configuration parameters for the autoscaling algorithm. You can
+	// define one or more of the policies for an autoscaler: cpuUtilization,
+	// customMetricUtilizations, and loadBalancingUtilization.
+	// If none of these are specified, the default will be to autoscale based
+	// on cpuUtilization to 0.6 or 60%.  Structure is documented below.
 	AutoscalingPolicy AutoscalerAutoscalingPolicy `pulumi:"autoscalingPolicy"`
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description *string `pulumi:"description"`
-	// Name of the resource. The name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The identifier (type) of the Stackdriver Monitoring metric.
+	// The metric cannot have negative values.
+	// The metric must have a value type of INT64 or DOUBLE.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
-	// URL of the managed instance group that this autoscaler will scale.
+	// -
+	// (Required)
+	// Fraction of backend capacity utilization (set in HTTP(s) load
+	// balancing configuration) that autoscaler should maintain. Must
+	// be a positive float value. If not defined, the default is 0.8.
 	Target string `pulumi:"target"`
+	// -
+	// (Optional)
 	// URL of the zone where the instance group resides.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a Autoscaler resource.
 type AutoscalerArgs struct {
-	// The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for an
-	// autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization. If none of these are specified, the
-	// default will be to autoscale based on cpuUtilization to 0.6 or 60%.
+	// -
+	// (Required)
+	// The configuration parameters for the autoscaling algorithm. You can
+	// define one or more of the policies for an autoscaler: cpuUtilization,
+	// customMetricUtilizations, and loadBalancingUtilization.
+	// If none of these are specified, the default will be to autoscale based
+	// on cpuUtilization to 0.6 or 60%.  Structure is documented below.
 	AutoscalingPolicy AutoscalerAutoscalingPolicyInput
+	// -
+	// (Optional)
 	// An optional description of this resource.
 	Description pulumi.StringPtrInput
-	// Name of the resource. The name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// The identifier (type) of the Stackdriver Monitoring metric.
+	// The metric cannot have negative values.
+	// The metric must have a value type of INT64 or DOUBLE.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
-	// URL of the managed instance group that this autoscaler will scale.
+	// -
+	// (Required)
+	// Fraction of backend capacity utilization (set in HTTP(s) load
+	// balancing configuration) that autoscaler should maintain. Must
+	// be a positive float value. If not defined, the default is 0.8.
 	Target pulumi.StringInput
+	// -
+	// (Optional)
 	// URL of the zone where the instance group resides.
 	Zone pulumi.StringPtrInput
 }

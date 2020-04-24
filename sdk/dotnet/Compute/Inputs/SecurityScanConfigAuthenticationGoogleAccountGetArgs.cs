@@ -12,9 +12,20 @@ namespace Pulumi.Gcp.Compute.Inputs
 
     public sealed class SecurityScanConfigAuthenticationGoogleAccountGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The password of the custom account. The credential is stored encrypted
+        /// in GCP.
+        /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The user name of the custom account.
+        /// </summary>
         [Input("username", required: true)]
         public Input<string> Username { get; set; } = null!;
 

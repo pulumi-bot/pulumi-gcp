@@ -13,7 +13,19 @@ namespace Pulumi.Gcp.CloudScheduler.Outputs
     [OutputType]
     public sealed class JobHttpTargetOidcToken
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Audience to be used when generating OIDC token. If not specified,
+        /// the URI specified in target will be used.
+        /// </summary>
         public readonly string? Audience;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// Service account email to be used for generating OAuth token.
+        /// The service account must be within the same project as the job.
+        /// </summary>
         public readonly string ServiceAccountEmail;
 
         [OutputConstructor]

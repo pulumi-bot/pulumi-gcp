@@ -13,6 +13,11 @@ namespace Pulumi.Gcp.Dns.Outputs
     [OutputType]
     public sealed class ManagedZonePeeringConfig
     {
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The network with which to peer.  Structure is documented below.
+        /// </summary>
         public readonly Outputs.ManagedZonePeeringConfigTargetNetwork TargetNetwork;
 
         [OutputConstructor]

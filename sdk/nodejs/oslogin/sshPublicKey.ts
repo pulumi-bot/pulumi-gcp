@@ -44,6 +44,8 @@ export class SshPublicKey extends pulumi.CustomResource {
     }
 
     /**
+     * -
+     * (Optional)
      * An expiration time in microseconds since epoch.
      */
     public readonly expirationTimeUsec!: pulumi.Output<string | undefined>;
@@ -52,10 +54,14 @@ export class SshPublicKey extends pulumi.CustomResource {
      */
     public /*out*/ readonly fingerprint!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * Public key text in SSH format, defined by RFC4253 section 6.6.
      */
     public readonly key!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The user email.
      */
     public readonly user!: pulumi.Output<string>;
@@ -105,6 +111,8 @@ export class SshPublicKey extends pulumi.CustomResource {
  */
 export interface SshPublicKeyState {
     /**
+     * -
+     * (Optional)
      * An expiration time in microseconds since epoch.
      */
     readonly expirationTimeUsec?: pulumi.Input<string>;
@@ -113,10 +121,14 @@ export interface SshPublicKeyState {
      */
     readonly fingerprint?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Public key text in SSH format, defined by RFC4253 section 6.6.
      */
     readonly key?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The user email.
      */
     readonly user?: pulumi.Input<string>;
@@ -127,14 +139,20 @@ export interface SshPublicKeyState {
  */
 export interface SshPublicKeyArgs {
     /**
+     * -
+     * (Optional)
      * An expiration time in microseconds since epoch.
      */
     readonly expirationTimeUsec?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Public key text in SSH format, defined by RFC4253 section 6.6.
      */
     readonly key: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The user email.
      */
     readonly user: pulumi.Input<string>;

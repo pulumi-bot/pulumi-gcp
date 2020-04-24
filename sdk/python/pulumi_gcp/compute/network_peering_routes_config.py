@@ -12,18 +12,26 @@ from .. import utilities, tables
 class NetworkPeeringRoutesConfig(pulumi.CustomResource):
     export_custom_routes: pulumi.Output[bool]
     """
+    -
+    (Required)
     Whether to export the custom routes to the peer network.
     """
     import_custom_routes: pulumi.Output[bool]
     """
+    -
+    (Required)
     Whether to import the custom routes to the peer network.
     """
     network: pulumi.Output[str]
     """
+    -
+    (Required)
     The name of the primary network for the peering.
     """
     peering: pulumi.Output[str]
     """
+    -
+    (Required)
     Name of the peering.
     """
     project: pulumi.Output[str]
@@ -47,10 +55,18 @@ class NetworkPeeringRoutesConfig(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] export_custom_routes: Whether to export the custom routes to the peer network.
-        :param pulumi.Input[bool] import_custom_routes: Whether to import the custom routes to the peer network.
-        :param pulumi.Input[str] network: The name of the primary network for the peering.
-        :param pulumi.Input[str] peering: Name of the peering.
+        :param pulumi.Input[bool] export_custom_routes: -
+               (Required)
+               Whether to export the custom routes to the peer network.
+        :param pulumi.Input[bool] import_custom_routes: -
+               (Required)
+               Whether to import the custom routes to the peer network.
+        :param pulumi.Input[str] network: -
+               (Required)
+               The name of the primary network for the peering.
+        :param pulumi.Input[str] peering: -
+               (Required)
+               Name of the peering.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         """
@@ -99,10 +115,18 @@ class NetworkPeeringRoutesConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] export_custom_routes: Whether to export the custom routes to the peer network.
-        :param pulumi.Input[bool] import_custom_routes: Whether to import the custom routes to the peer network.
-        :param pulumi.Input[str] network: The name of the primary network for the peering.
-        :param pulumi.Input[str] peering: Name of the peering.
+        :param pulumi.Input[bool] export_custom_routes: -
+               (Required)
+               Whether to export the custom routes to the peer network.
+        :param pulumi.Input[bool] import_custom_routes: -
+               (Required)
+               Whether to import the custom routes to the peer network.
+        :param pulumi.Input[str] network: -
+               (Required)
+               The name of the primary network for the peering.
+        :param pulumi.Input[str] peering: -
+               (Required)
+               Name of the peering.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         """
