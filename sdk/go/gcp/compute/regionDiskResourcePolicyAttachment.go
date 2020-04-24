@@ -17,13 +17,20 @@ import (
 type RegionDiskResourcePolicyAttachment struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// The name of the regional disk in which the resource policies are attached to.
 	Disk pulumi.StringOutput `pulumi:"disk"`
-	// The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+	// -
+	// (Required)
+	// The resource policy to be attached to the disk for scheduling snapshot
+	// creation. Do not specify the self link.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringOutput `pulumi:"project"`
+	// -
+	// (Optional)
 	// A reference to the region where the disk resides.
 	Region pulumi.StringOutput `pulumi:"region"`
 }
@@ -59,25 +66,39 @@ func GetRegionDiskResourcePolicyAttachment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RegionDiskResourcePolicyAttachment resources.
 type regionDiskResourcePolicyAttachmentState struct {
+	// -
+	// (Required)
 	// The name of the regional disk in which the resource policies are attached to.
 	Disk *string `pulumi:"disk"`
-	// The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+	// -
+	// (Required)
+	// The resource policy to be attached to the disk for scheduling snapshot
+	// creation. Do not specify the self link.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Optional)
 	// A reference to the region where the disk resides.
 	Region *string `pulumi:"region"`
 }
 
 type RegionDiskResourcePolicyAttachmentState struct {
+	// -
+	// (Required)
 	// The name of the regional disk in which the resource policies are attached to.
 	Disk pulumi.StringPtrInput
-	// The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+	// -
+	// (Required)
+	// The resource policy to be attached to the disk for scheduling snapshot
+	// creation. Do not specify the self link.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// A reference to the region where the disk resides.
 	Region pulumi.StringPtrInput
 }
@@ -87,26 +108,40 @@ func (RegionDiskResourcePolicyAttachmentState) ElementType() reflect.Type {
 }
 
 type regionDiskResourcePolicyAttachmentArgs struct {
+	// -
+	// (Required)
 	// The name of the regional disk in which the resource policies are attached to.
 	Disk string `pulumi:"disk"`
-	// The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+	// -
+	// (Required)
+	// The resource policy to be attached to the disk for scheduling snapshot
+	// creation. Do not specify the self link.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Optional)
 	// A reference to the region where the disk resides.
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a RegionDiskResourcePolicyAttachment resource.
 type RegionDiskResourcePolicyAttachmentArgs struct {
+	// -
+	// (Required)
 	// The name of the regional disk in which the resource policies are attached to.
 	Disk pulumi.StringInput
-	// The resource policy to be attached to the disk for scheduling snapshot creation. Do not specify the self link.
+	// -
+	// (Required)
+	// The resource policy to be attached to the disk for scheduling snapshot
+	// creation. Do not specify the self link.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// A reference to the region where the disk resides.
 	Region pulumi.StringPtrInput
 }

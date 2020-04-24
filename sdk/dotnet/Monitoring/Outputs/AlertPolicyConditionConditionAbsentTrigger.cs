@@ -13,7 +13,21 @@ namespace Pulumi.Gcp.Monitoring.Outputs
     [OutputType]
     public sealed class AlertPolicyConditionConditionAbsentTrigger
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The absolute number of time series
+        /// that must fail the predicate for the
+        /// condition to be triggered.
+        /// </summary>
         public readonly int? Count;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The percentage of time series that
+        /// must fail the predicate for the
+        /// condition to be triggered.
+        /// </summary>
         public readonly double? Percent;
 
         [OutputConstructor]

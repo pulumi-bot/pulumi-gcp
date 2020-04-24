@@ -13,9 +13,33 @@ namespace Pulumi.Gcp.Compute.Outputs
     [OutputType]
     public sealed class ReservationSpecificReservationInstanceProperties
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Guest accelerator type and count.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ReservationSpecificReservationInstancePropertiesGuestAccelerator> GuestAccelerators;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The amount of local ssd to reserve with each instance. This
+        /// reserves disks of type `local-ssd`.  Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ReservationSpecificReservationInstancePropertiesLocalSsd> LocalSsds;
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the machine type to reserve.
+        /// </summary>
         public readonly string MachineType;
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The minimum CPU platform for the reservation. For example,
+        /// `"Intel Skylake"`. See
+        /// the CPU platform availability reference](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform#availablezones)
+        /// for information on available CPU platforms.
+        /// </summary>
         public readonly string? MinCpuPlatform;
 
         [OutputConstructor]

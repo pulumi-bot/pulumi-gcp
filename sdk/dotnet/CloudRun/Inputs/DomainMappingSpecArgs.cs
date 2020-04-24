@@ -12,12 +12,31 @@ namespace Pulumi.Gcp.CloudRun.Inputs
 
     public sealed class DomainMappingSpecArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// The mode of the certificate.
+        /// </summary>
         [Input("certificateMode")]
         public Input<string>? CertificateMode { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// If set, the mapping will override any mapping set before this spec was set.
+        /// It is recommended that the user leaves this empty to receive an error
+        /// warning about a potential conflict and only set it once the respective UI
+        /// has given such a warning.
+        /// </summary>
         [Input("forceOverride")]
         public Input<bool>? ForceOverride { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Required)
+        /// The name of the Cloud Run Service that this DomainMapping applies to.
+        /// The route must exist.
+        /// </summary>
         [Input("routeName", required: true)]
         public Input<string> RouteName { get; set; } = null!;
 

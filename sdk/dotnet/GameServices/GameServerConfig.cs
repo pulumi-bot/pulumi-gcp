@@ -21,44 +21,58 @@ namespace Pulumi.Gcp.GameServices
     public partial class GameServerConfig : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment config.
         /// </summary>
         [Output("configId")]
         public Output<string> ConfigId { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment.
         /// </summary>
         [Output("deploymentId")]
         public Output<string> DeploymentId { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The description of the game server config.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+        /// -
+        /// (Required)
+        /// The fleet config contains list of fleet specs. In the Single Cloud, there
+        /// will be only one.  Structure is documented below.
         /// </summary>
         [Output("fleetConfigs")]
         public Output<ImmutableArray<Outputs.GameServerConfigFleetConfig>> FleetConfigs { get; private set; } = null!;
 
         /// <summary>
-        /// The labels associated with this game server config. Each label is a key-value pair.
+        /// -
+        /// (Optional)
+        /// Set of labels to group by.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Deployment.
         /// </summary>
         [Output("location")]
         public Output<string?> Location { get; private set; } = null!;
 
         /// <summary>
-        /// The resource name of the game server config, in the form:
-        /// 'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
+        /// -
+        /// (Required)
+        /// The name of the ScalingConfig
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -71,7 +85,9 @@ namespace Pulumi.Gcp.GameServices
         public Output<string> Project { get; private set; } = null!;
 
         /// <summary>
-        /// Optional. This contains the autoscaling settings.
+        /// -
+        /// (Optional)
+        /// Optional. This contains the autoscaling settings.  Structure is documented below.
         /// </summary>
         [Output("scalingConfigs")]
         public Output<ImmutableArray<Outputs.GameServerConfigScalingConfig>> ScalingConfigs { get; private set; } = null!;
@@ -123,18 +139,24 @@ namespace Pulumi.Gcp.GameServices
     public sealed class GameServerConfigArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment config.
         /// </summary>
         [Input("configId", required: true)]
         public Input<string> ConfigId { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment.
         /// </summary>
         [Input("deploymentId", required: true)]
         public Input<string> DeploymentId { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The description of the game server config.
         /// </summary>
         [Input("description")]
@@ -144,7 +166,10 @@ namespace Pulumi.Gcp.GameServices
         private InputList<Inputs.GameServerConfigFleetConfigArgs>? _fleetConfigs;
 
         /// <summary>
-        /// The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+        /// -
+        /// (Required)
+        /// The fleet config contains list of fleet specs. In the Single Cloud, there
+        /// will be only one.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.GameServerConfigFleetConfigArgs> FleetConfigs
         {
@@ -156,7 +181,9 @@ namespace Pulumi.Gcp.GameServices
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// The labels associated with this game server config. Each label is a key-value pair.
+        /// -
+        /// (Optional)
+        /// Set of labels to group by.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -165,6 +192,8 @@ namespace Pulumi.Gcp.GameServices
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Deployment.
         /// </summary>
         [Input("location")]
@@ -181,7 +210,9 @@ namespace Pulumi.Gcp.GameServices
         private InputList<Inputs.GameServerConfigScalingConfigArgs>? _scalingConfigs;
 
         /// <summary>
-        /// Optional. This contains the autoscaling settings.
+        /// -
+        /// (Optional)
+        /// Optional. This contains the autoscaling settings.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.GameServerConfigScalingConfigArgs> ScalingConfigs
         {
@@ -197,18 +228,24 @@ namespace Pulumi.Gcp.GameServices
     public sealed class GameServerConfigState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment config.
         /// </summary>
         [Input("configId")]
         public Input<string>? ConfigId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// A unique id for the deployment.
         /// </summary>
         [Input("deploymentId")]
         public Input<string>? DeploymentId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// The description of the game server config.
         /// </summary>
         [Input("description")]
@@ -218,7 +255,10 @@ namespace Pulumi.Gcp.GameServices
         private InputList<Inputs.GameServerConfigFleetConfigGetArgs>? _fleetConfigs;
 
         /// <summary>
-        /// The fleet config contains list of fleet specs. In the Single Cloud, there will be only one.
+        /// -
+        /// (Required)
+        /// The fleet config contains list of fleet specs. In the Single Cloud, there
+        /// will be only one.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.GameServerConfigFleetConfigGetArgs> FleetConfigs
         {
@@ -230,7 +270,9 @@ namespace Pulumi.Gcp.GameServices
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// The labels associated with this game server config. Each label is a key-value pair.
+        /// -
+        /// (Optional)
+        /// Set of labels to group by.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -239,14 +281,17 @@ namespace Pulumi.Gcp.GameServices
         }
 
         /// <summary>
+        /// -
+        /// (Optional)
         /// Location of the Deployment.
         /// </summary>
         [Input("location")]
         public Input<string>? Location { get; set; }
 
         /// <summary>
-        /// The resource name of the game server config, in the form:
-        /// 'projects/{project_id}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}'.
+        /// -
+        /// (Required)
+        /// The name of the ScalingConfig
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -262,7 +307,9 @@ namespace Pulumi.Gcp.GameServices
         private InputList<Inputs.GameServerConfigScalingConfigGetArgs>? _scalingConfigs;
 
         /// <summary>
-        /// Optional. This contains the autoscaling settings.
+        /// -
+        /// (Optional)
+        /// Optional. This contains the autoscaling settings.  Structure is documented below.
         /// </summary>
         public InputList<Inputs.GameServerConfigScalingConfigGetArgs> ScalingConfigs
         {

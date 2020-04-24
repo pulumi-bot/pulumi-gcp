@@ -12,14 +12,21 @@ from .. import utilities, tables
 class InstanceGroupNamedPort(pulumi.CustomResource):
     group: pulumi.Output[str]
     """
+    -
+    (Required)
     The name of the instance group.
     """
     name: pulumi.Output[str]
     """
-    The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
+    -
+    (Required)
+    The name for this named port. The name must be 1-63 characters
+    long, and comply with RFC1035.
     """
     port: pulumi.Output[float]
     """
+    -
+    (Required)
     The port number, which can be a value between 1 and 65535.
     """
     project: pulumi.Output[str]
@@ -29,6 +36,8 @@ class InstanceGroupNamedPort(pulumi.CustomResource):
     """
     zone: pulumi.Output[str]
     """
+    -
+    (Optional)
     The zone of the instance group.
     """
     def __init__(__self__, resource_name, opts=None, group=None, name=None, port=None, project=None, zone=None, __props__=None, __name__=None, __opts__=None):
@@ -47,12 +56,21 @@ class InstanceGroupNamedPort(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] group: The name of the instance group.
-        :param pulumi.Input[str] name: The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
-        :param pulumi.Input[float] port: The port number, which can be a value between 1 and 65535.
+        :param pulumi.Input[str] group: -
+               (Required)
+               The name of the instance group.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name for this named port. The name must be 1-63 characters
+               long, and comply with RFC1035.
+        :param pulumi.Input[float] port: -
+               (Required)
+               The port number, which can be a value between 1 and 65535.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] zone: The zone of the instance group.
+        :param pulumi.Input[str] zone: -
+               (Optional)
+               The zone of the instance group.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -95,12 +113,21 @@ class InstanceGroupNamedPort(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] group: The name of the instance group.
-        :param pulumi.Input[str] name: The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
-        :param pulumi.Input[float] port: The port number, which can be a value between 1 and 65535.
+        :param pulumi.Input[str] group: -
+               (Required)
+               The name of the instance group.
+        :param pulumi.Input[str] name: -
+               (Required)
+               The name for this named port. The name must be 1-63 characters
+               long, and comply with RFC1035.
+        :param pulumi.Input[float] port: -
+               (Required)
+               The port number, which can be a value between 1 and 65535.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[str] zone: The zone of the instance group.
+        :param pulumi.Input[str] zone: -
+               (Optional)
+               The zone of the instance group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

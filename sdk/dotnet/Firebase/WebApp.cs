@@ -19,6 +19,8 @@ namespace Pulumi.Gcp.Firebase
         public Output<string> AppId { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The user-assigned display name of the App.
         /// </summary>
         [Output("displayName")]
@@ -84,6 +86,8 @@ namespace Pulumi.Gcp.Firebase
     public sealed class WebAppArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Required)
         /// The user-assigned display name of the App.
         /// </summary>
         [Input("displayName", required: true)]
@@ -111,6 +115,8 @@ namespace Pulumi.Gcp.Firebase
         public Input<string>? AppId { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The user-assigned display name of the App.
         /// </summary>
         [Input("displayName")]

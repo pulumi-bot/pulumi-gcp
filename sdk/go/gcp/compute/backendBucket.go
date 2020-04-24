@@ -27,20 +27,34 @@ import (
 type BackendBucket struct {
 	pulumi.CustomResourceState
 
+	// -
+	// (Required)
 	// Cloud Storage bucket name.
 	BucketName pulumi.StringOutput `pulumi:"bucketName"`
-	// Cloud CDN configuration for this Backend Bucket.
+	// -
+	// (Optional)
+	// Cloud CDN configuration for this Backend Bucket.  Structure is documented below.
 	CdnPolicy BackendBucketCdnPolicyOutput `pulumi:"cdnPolicy"`
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringOutput `pulumi:"creationTimestamp"`
-	// An optional textual description of the resource; provided by the client when the resource is created.
+	// -
+	// (Optional)
+	// An optional textual description of the resource; provided by the
+	// client when the resource is created.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// -
+	// (Optional)
 	// If true, enable Cloud CDN for this BackendBucket.
 	EnableCdn pulumi.BoolPtrOutput `pulumi:"enableCdn"`
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035.  Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z?` which means
+	// the first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the
+	// last character, which cannot be a dash.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -80,20 +94,34 @@ func GetBackendBucket(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BackendBucket resources.
 type backendBucketState struct {
+	// -
+	// (Required)
 	// Cloud Storage bucket name.
 	BucketName *string `pulumi:"bucketName"`
-	// Cloud CDN configuration for this Backend Bucket.
+	// -
+	// (Optional)
+	// Cloud CDN configuration for this Backend Bucket.  Structure is documented below.
 	CdnPolicy *BackendBucketCdnPolicy `pulumi:"cdnPolicy"`
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp *string `pulumi:"creationTimestamp"`
-	// An optional textual description of the resource; provided by the client when the resource is created.
+	// -
+	// (Optional)
+	// An optional textual description of the resource; provided by the
+	// client when the resource is created.
 	Description *string `pulumi:"description"`
+	// -
+	// (Optional)
 	// If true, enable Cloud CDN for this BackendBucket.
 	EnableCdn *bool `pulumi:"enableCdn"`
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035.  Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z?` which means
+	// the first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the
+	// last character, which cannot be a dash.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -103,20 +131,34 @@ type backendBucketState struct {
 }
 
 type BackendBucketState struct {
+	// -
+	// (Required)
 	// Cloud Storage bucket name.
 	BucketName pulumi.StringPtrInput
-	// Cloud CDN configuration for this Backend Bucket.
+	// -
+	// (Optional)
+	// Cloud CDN configuration for this Backend Bucket.  Structure is documented below.
 	CdnPolicy BackendBucketCdnPolicyPtrInput
 	// Creation timestamp in RFC3339 text format.
 	CreationTimestamp pulumi.StringPtrInput
-	// An optional textual description of the resource; provided by the client when the resource is created.
+	// -
+	// (Optional)
+	// An optional textual description of the resource; provided by the
+	// client when the resource is created.
 	Description pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// If true, enable Cloud CDN for this BackendBucket.
 	EnableCdn pulumi.BoolPtrInput
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035.  Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z?` which means
+	// the first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the
+	// last character, which cannot be a dash.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -130,18 +172,32 @@ func (BackendBucketState) ElementType() reflect.Type {
 }
 
 type backendBucketArgs struct {
+	// -
+	// (Required)
 	// Cloud Storage bucket name.
 	BucketName string `pulumi:"bucketName"`
-	// Cloud CDN configuration for this Backend Bucket.
+	// -
+	// (Optional)
+	// Cloud CDN configuration for this Backend Bucket.  Structure is documented below.
 	CdnPolicy *BackendBucketCdnPolicy `pulumi:"cdnPolicy"`
-	// An optional textual description of the resource; provided by the client when the resource is created.
+	// -
+	// (Optional)
+	// An optional textual description of the resource; provided by the
+	// client when the resource is created.
 	Description *string `pulumi:"description"`
+	// -
+	// (Optional)
 	// If true, enable Cloud CDN for this BackendBucket.
 	EnableCdn *bool `pulumi:"enableCdn"`
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035.  Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z?` which means
+	// the first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the
+	// last character, which cannot be a dash.
 	Name *string `pulumi:"name"`
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
@@ -150,18 +206,32 @@ type backendBucketArgs struct {
 
 // The set of arguments for constructing a BackendBucket resource.
 type BackendBucketArgs struct {
+	// -
+	// (Required)
 	// Cloud Storage bucket name.
 	BucketName pulumi.StringInput
-	// Cloud CDN configuration for this Backend Bucket.
+	// -
+	// (Optional)
+	// Cloud CDN configuration for this Backend Bucket.  Structure is documented below.
 	CdnPolicy BackendBucketCdnPolicyPtrInput
-	// An optional textual description of the resource; provided by the client when the resource is created.
+	// -
+	// (Optional)
+	// An optional textual description of the resource; provided by the
+	// client when the resource is created.
 	Description pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// If true, enable Cloud CDN for this BackendBucket.
 	EnableCdn pulumi.BoolPtrInput
-	// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and
-	// comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-	// '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters
-	// must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+	// -
+	// (Required)
+	// Name of the resource. Provided by the client when the resource is
+	// created. The name must be 1-63 characters long, and comply with
+	// RFC1035.  Specifically, the name must be 1-63 characters long and
+	// match the regular expression `a-z?` which means
+	// the first character must be a lowercase letter, and all following
+	// characters must be a dash, lowercase letter, or digit, except the
+	// last character, which cannot be a dash.
 	Name pulumi.StringPtrInput
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.

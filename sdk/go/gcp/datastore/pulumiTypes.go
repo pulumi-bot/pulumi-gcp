@@ -11,8 +11,14 @@ import (
 )
 
 type DataStoreIndexProperty struct {
+	// -
+	// (Required)
+	// The direction the index should optimize for sorting. Possible values are ASCENDING and DESCENDING.
 	Direction string `pulumi:"direction"`
-	Name      string `pulumi:"name"`
+	// -
+	// (Required)
+	// The property name to index.
+	Name string `pulumi:"name"`
 }
 
 // DataStoreIndexPropertyInput is an input type that accepts DataStoreIndexPropertyArgs and DataStoreIndexPropertyOutput values.
@@ -28,8 +34,14 @@ type DataStoreIndexPropertyInput interface {
 }
 
 type DataStoreIndexPropertyArgs struct {
+	// -
+	// (Required)
+	// The direction the index should optimize for sorting. Possible values are ASCENDING and DESCENDING.
 	Direction pulumi.StringInput `pulumi:"direction"`
-	Name      pulumi.StringInput `pulumi:"name"`
+	// -
+	// (Required)
+	// The property name to index.
+	Name pulumi.StringInput `pulumi:"name"`
 }
 
 func (DataStoreIndexPropertyArgs) ElementType() reflect.Type {
@@ -84,10 +96,16 @@ func (o DataStoreIndexPropertyOutput) ToDataStoreIndexPropertyOutputWithContext(
 	return o
 }
 
+// -
+// (Required)
+// The direction the index should optimize for sorting. Possible values are ASCENDING and DESCENDING.
 func (o DataStoreIndexPropertyOutput) Direction() pulumi.StringOutput {
 	return o.ApplyT(func(v DataStoreIndexProperty) string { return v.Direction }).(pulumi.StringOutput)
 }
 
+// -
+// (Required)
+// The property name to index.
 func (o DataStoreIndexPropertyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v DataStoreIndexProperty) string { return v.Name }).(pulumi.StringOutput)
 }

@@ -12,12 +12,29 @@ namespace Pulumi.Gcp.Firestore.Inputs
 
     public sealed class IndexFieldGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Indicates that this field supports operations on arrayValues. Only one of `order` and `arrayConfig` can
+        /// be specified.
+        /// </summary>
         [Input("arrayConfig")]
         public Input<string>? ArrayConfig { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Name of the field.
+        /// </summary>
         [Input("fieldPath")]
         public Input<string>? FieldPath { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Indicates that this field supports ordering by the specified order or comparing using =, &lt;, &lt;=, &gt;, &gt;=.
+        /// Only one of `order` and `arrayConfig` can be specified.
+        /// </summary>
         [Input("order")]
         public Input<string>? Order { get; set; }
 

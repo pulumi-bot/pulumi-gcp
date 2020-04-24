@@ -34,8 +34,12 @@ type HmacKey struct {
 	Project pulumi.StringOutput `pulumi:"project"`
 	// HMAC secret key material.
 	Secret pulumi.StringOutput `pulumi:"secret"`
+	// -
+	// (Required)
 	// The email address of the key's associated service account.
 	ServiceAccountEmail pulumi.StringOutput `pulumi:"serviceAccountEmail"`
+	// -
+	// (Optional)
 	// The state of the key. Can be set to one of ACTIVE, INACTIVE.
 	State pulumi.StringPtrOutput `pulumi:"state"`
 	// 'The creation time of the HMAC key in RFC 3339 format. '
@@ -82,8 +86,12 @@ type hmacKeyState struct {
 	Project *string `pulumi:"project"`
 	// HMAC secret key material.
 	Secret *string `pulumi:"secret"`
+	// -
+	// (Required)
 	// The email address of the key's associated service account.
 	ServiceAccountEmail *string `pulumi:"serviceAccountEmail"`
+	// -
+	// (Optional)
 	// The state of the key. Can be set to one of ACTIVE, INACTIVE.
 	State *string `pulumi:"state"`
 	// 'The creation time of the HMAC key in RFC 3339 format. '
@@ -100,8 +108,12 @@ type HmacKeyState struct {
 	Project pulumi.StringPtrInput
 	// HMAC secret key material.
 	Secret pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The email address of the key's associated service account.
 	ServiceAccountEmail pulumi.StringPtrInput
+	// -
+	// (Optional)
 	// The state of the key. Can be set to one of ACTIVE, INACTIVE.
 	State pulumi.StringPtrInput
 	// 'The creation time of the HMAC key in RFC 3339 format. '
@@ -118,8 +130,12 @@ type hmacKeyArgs struct {
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project *string `pulumi:"project"`
+	// -
+	// (Required)
 	// The email address of the key's associated service account.
 	ServiceAccountEmail string `pulumi:"serviceAccountEmail"`
+	// -
+	// (Optional)
 	// The state of the key. Can be set to one of ACTIVE, INACTIVE.
 	State *string `pulumi:"state"`
 }
@@ -129,8 +145,12 @@ type HmacKeyArgs struct {
 	// The ID of the project in which the resource belongs.
 	// If it is not provided, the provider project is used.
 	Project pulumi.StringPtrInput
+	// -
+	// (Required)
 	// The email address of the key's associated service account.
 	ServiceAccountEmail pulumi.StringInput
+	// -
+	// (Optional)
 	// The state of the key. Can be set to one of ACTIVE, INACTIVE.
 	State pulumi.StringPtrInput
 }

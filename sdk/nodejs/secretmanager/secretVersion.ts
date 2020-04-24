@@ -47,6 +47,8 @@ export class SecretVersion extends pulumi.CustomResource {
      */
     public /*out*/ readonly destroyTime!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * The current state of the SecretVersion.
      */
     public readonly enabled!: pulumi.Output<boolean | undefined>;
@@ -55,10 +57,14 @@ export class SecretVersion extends pulumi.CustomResource {
      */
     public /*out*/ readonly name!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * Secret Manager secret resource
      */
     public readonly secret!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * The secret data. Must be no larger than 64KiB.
      */
     public readonly secretData!: pulumi.Output<string | undefined>;
@@ -117,6 +123,8 @@ export interface SecretVersionState {
      */
     readonly destroyTime?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The current state of the SecretVersion.
      */
     readonly enabled?: pulumi.Input<boolean>;
@@ -125,10 +133,14 @@ export interface SecretVersionState {
      */
     readonly name?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * Secret Manager secret resource
      */
     readonly secret?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The secret data. Must be no larger than 64KiB.
      */
     readonly secretData?: pulumi.Input<string>;
@@ -139,14 +151,20 @@ export interface SecretVersionState {
  */
 export interface SecretVersionArgs {
     /**
+     * -
+     * (Optional)
      * The current state of the SecretVersion.
      */
     readonly enabled?: pulumi.Input<boolean>;
     /**
+     * -
+     * (Required)
      * Secret Manager secret resource
      */
     readonly secret: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * The secret data. Must be no larger than 64KiB.
      */
     readonly secretData?: pulumi.Input<string>;

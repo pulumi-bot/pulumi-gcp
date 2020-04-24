@@ -9,6 +9,10 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Gcp.Kms
 {
+    /// <summary>
+    /// 
+    /// Deprecated: gcp.Registry has been deprecated in favour of gcp.Registry
+    /// </summary>
     public partial class Registry : Pulumi.CustomResource
     {
         [Output("credentials")]

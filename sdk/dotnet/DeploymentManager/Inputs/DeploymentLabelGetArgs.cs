@@ -12,9 +12,19 @@ namespace Pulumi.Gcp.DeploymentManager.Inputs
 
     public sealed class DeploymentLabelGetArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Key for label.
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
+        /// <summary>
+        /// -
+        /// (Optional)
+        /// Value of label.
+        /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }
 

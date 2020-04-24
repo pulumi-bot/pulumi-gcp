@@ -68,11 +68,15 @@ export class ManagedZone extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string>;
     /**
+     * -
+     * (Required)
      * The DNS name of this managed zone, for instance "example.com.".
      */
     public readonly dnsName!: pulumi.Output<string>;
     /**
-     * DNSSEC configuration
+     * -
+     * (Optional)
+     * DNSSEC configuration  Structure is documented below.
      */
     public readonly dnssecConfig!: pulumi.Output<outputs.dns.ManagedZoneDnssecConfig | undefined>;
     /**
@@ -81,11 +85,16 @@ export class ManagedZone extends pulumi.CustomResource {
      */
     public readonly forwardingConfig!: pulumi.Output<outputs.dns.ManagedZoneForwardingConfig | undefined>;
     /**
+     * -
+     * (Optional)
      * A set of key/value label pairs to assign to this ManagedZone.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * User assigned name for this resource. Must be unique within the project.
+     * -
+     * (Required)
+     * User assigned name for this resource.
+     * Must be unique within the project.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -98,7 +107,10 @@ export class ManagedZone extends pulumi.CustomResource {
      */
     public readonly peeringConfig!: pulumi.Output<outputs.dns.ManagedZonePeeringConfig | undefined>;
     /**
-     * For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+     * -
+     * (Optional)
+     * For privately visible zones, the set of Virtual Private Cloud
+     * resources that the zone is visible from.  Structure is documented below.
      */
     public readonly privateVisibilityConfig!: pulumi.Output<outputs.dns.ManagedZonePrivateVisibilityConfig | undefined>;
     /**
@@ -113,8 +125,11 @@ export class ManagedZone extends pulumi.CustomResource {
      */
     public readonly reverseLookup!: pulumi.Output<boolean | undefined>;
     /**
-     * The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual
-     * Private Cloud resources. Must be one of: 'public', 'private'.
+     * -
+     * (Optional)
+     * The zone's visibility: public zones are exposed to the Internet,
+     * while private zones are visible only to Virtual Private Cloud resources.
+     * Must be one of: `public`, `private`.
      */
     public readonly visibility!: pulumi.Output<string | undefined>;
 
@@ -180,11 +195,15 @@ export interface ManagedZoneState {
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The DNS name of this managed zone, for instance "example.com.".
      */
     readonly dnsName?: pulumi.Input<string>;
     /**
-     * DNSSEC configuration
+     * -
+     * (Optional)
+     * DNSSEC configuration  Structure is documented below.
      */
     readonly dnssecConfig?: pulumi.Input<inputs.dns.ManagedZoneDnssecConfig>;
     /**
@@ -193,11 +212,16 @@ export interface ManagedZoneState {
      */
     readonly forwardingConfig?: pulumi.Input<inputs.dns.ManagedZoneForwardingConfig>;
     /**
+     * -
+     * (Optional)
      * A set of key/value label pairs to assign to this ManagedZone.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * User assigned name for this resource. Must be unique within the project.
+     * -
+     * (Required)
+     * User assigned name for this resource.
+     * Must be unique within the project.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -210,7 +234,10 @@ export interface ManagedZoneState {
      */
     readonly peeringConfig?: pulumi.Input<inputs.dns.ManagedZonePeeringConfig>;
     /**
-     * For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+     * -
+     * (Optional)
+     * For privately visible zones, the set of Virtual Private Cloud
+     * resources that the zone is visible from.  Structure is documented below.
      */
     readonly privateVisibilityConfig?: pulumi.Input<inputs.dns.ManagedZonePrivateVisibilityConfig>;
     /**
@@ -225,8 +252,11 @@ export interface ManagedZoneState {
      */
     readonly reverseLookup?: pulumi.Input<boolean>;
     /**
-     * The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual
-     * Private Cloud resources. Must be one of: 'public', 'private'.
+     * -
+     * (Optional)
+     * The zone's visibility: public zones are exposed to the Internet,
+     * while private zones are visible only to Virtual Private Cloud resources.
+     * Must be one of: `public`, `private`.
      */
     readonly visibility?: pulumi.Input<string>;
 }
@@ -240,11 +270,15 @@ export interface ManagedZoneArgs {
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Required)
      * The DNS name of this managed zone, for instance "example.com.".
      */
     readonly dnsName: pulumi.Input<string>;
     /**
-     * DNSSEC configuration
+     * -
+     * (Optional)
+     * DNSSEC configuration  Structure is documented below.
      */
     readonly dnssecConfig?: pulumi.Input<inputs.dns.ManagedZoneDnssecConfig>;
     /**
@@ -253,11 +287,16 @@ export interface ManagedZoneArgs {
      */
     readonly forwardingConfig?: pulumi.Input<inputs.dns.ManagedZoneForwardingConfig>;
     /**
+     * -
+     * (Optional)
      * A set of key/value label pairs to assign to this ManagedZone.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * User assigned name for this resource. Must be unique within the project.
+     * -
+     * (Required)
+     * User assigned name for this resource.
+     * Must be unique within the project.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -266,7 +305,10 @@ export interface ManagedZoneArgs {
      */
     readonly peeringConfig?: pulumi.Input<inputs.dns.ManagedZonePeeringConfig>;
     /**
-     * For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+     * -
+     * (Optional)
+     * For privately visible zones, the set of Virtual Private Cloud
+     * resources that the zone is visible from.  Structure is documented below.
      */
     readonly privateVisibilityConfig?: pulumi.Input<inputs.dns.ManagedZonePrivateVisibilityConfig>;
     /**
@@ -281,8 +323,11 @@ export interface ManagedZoneArgs {
      */
     readonly reverseLookup?: pulumi.Input<boolean>;
     /**
-     * The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual
-     * Private Cloud resources. Must be one of: 'public', 'private'.
+     * -
+     * (Optional)
+     * The zone's visibility: public zones are exposed to the Internet,
+     * while private zones are visible only to Virtual Private Cloud resources.
+     * Must be one of: `public`, `private`.
      */
     readonly visibility?: pulumi.Input<string>;
 }

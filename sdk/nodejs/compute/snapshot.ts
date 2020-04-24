@@ -61,6 +61,8 @@ export class Snapshot extends pulumi.CustomResource {
      */
     public /*out*/ readonly creationTimestamp!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * An optional description of this resource.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -73,6 +75,8 @@ export class Snapshot extends pulumi.CustomResource {
      */
     public /*out*/ readonly labelFingerprint!: pulumi.Output<string>;
     /**
+     * -
+     * (Optional)
      * Labels to apply to this Snapshot.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
@@ -83,10 +87,15 @@ export class Snapshot extends pulumi.CustomResource {
      */
     public /*out*/ readonly licenses!: pulumi.Output<string[]>;
     /**
-     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * Name of the resource; provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035. Specifically, the name must be 1-63 characters long and match
+     * the regular expression `a-z?` which means the
+     * first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -99,8 +108,10 @@ export class Snapshot extends pulumi.CustomResource {
      */
     public /*out*/ readonly selfLink!: pulumi.Output<string>;
     /**
-     * The customer-supplied encryption key of the snapshot. Required if the source snapshot is protected by a
-     * customer-supplied encryption key.
+     * -
+     * (Optional)
+     * The customer-supplied encryption key of the snapshot. Required if the
+     * source snapshot is protected by a customer-supplied encryption key.  Structure is documented below.
      */
     public readonly snapshotEncryptionKey!: pulumi.Output<outputs.compute.SnapshotSnapshotEncryptionKey | undefined>;
     /**
@@ -108,12 +119,17 @@ export class Snapshot extends pulumi.CustomResource {
      */
     public /*out*/ readonly snapshotId!: pulumi.Output<number>;
     /**
+     * -
+     * (Required)
      * A reference to the disk used to create this snapshot.
      */
     public readonly sourceDisk!: pulumi.Output<string>;
     /**
-     * The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a
-     * customer-supplied encryption key.
+     * -
+     * (Optional)
+     * The customer-supplied encryption key of the source snapshot. Required
+     * if the source snapshot is protected by a customer-supplied encryption
+     * key.  Structure is documented below.
      */
     public readonly sourceDiskEncryptionKey!: pulumi.Output<outputs.compute.SnapshotSourceDiskEncryptionKey | undefined>;
     public /*out*/ readonly sourceDiskLink!: pulumi.Output<string>;
@@ -123,6 +139,8 @@ export class Snapshot extends pulumi.CustomResource {
      */
     public /*out*/ readonly storageBytes!: pulumi.Output<number>;
     /**
+     * -
+     * (Optional)
      * A reference to the zone where the disk is hosted.
      */
     public readonly zone!: pulumi.Output<string>;
@@ -197,6 +215,8 @@ export interface SnapshotState {
      */
     readonly creationTimestamp?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * An optional description of this resource.
      */
     readonly description?: pulumi.Input<string>;
@@ -209,6 +229,8 @@ export interface SnapshotState {
      */
     readonly labelFingerprint?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Labels to apply to this Snapshot.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
@@ -219,10 +241,15 @@ export interface SnapshotState {
      */
     readonly licenses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * Name of the resource; provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035. Specifically, the name must be 1-63 characters long and match
+     * the regular expression `a-z?` which means the
+     * first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -235,8 +262,10 @@ export interface SnapshotState {
      */
     readonly selfLink?: pulumi.Input<string>;
     /**
-     * The customer-supplied encryption key of the snapshot. Required if the source snapshot is protected by a
-     * customer-supplied encryption key.
+     * -
+     * (Optional)
+     * The customer-supplied encryption key of the snapshot. Required if the
+     * source snapshot is protected by a customer-supplied encryption key.  Structure is documented below.
      */
     readonly snapshotEncryptionKey?: pulumi.Input<inputs.compute.SnapshotSnapshotEncryptionKey>;
     /**
@@ -244,12 +273,17 @@ export interface SnapshotState {
      */
     readonly snapshotId?: pulumi.Input<number>;
     /**
+     * -
+     * (Required)
      * A reference to the disk used to create this snapshot.
      */
     readonly sourceDisk?: pulumi.Input<string>;
     /**
-     * The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a
-     * customer-supplied encryption key.
+     * -
+     * (Optional)
+     * The customer-supplied encryption key of the source snapshot. Required
+     * if the source snapshot is protected by a customer-supplied encryption
+     * key.  Structure is documented below.
      */
     readonly sourceDiskEncryptionKey?: pulumi.Input<inputs.compute.SnapshotSourceDiskEncryptionKey>;
     readonly sourceDiskLink?: pulumi.Input<string>;
@@ -259,6 +293,8 @@ export interface SnapshotState {
      */
     readonly storageBytes?: pulumi.Input<number>;
     /**
+     * -
+     * (Optional)
      * A reference to the zone where the disk is hosted.
      */
     readonly zone?: pulumi.Input<string>;
@@ -269,18 +305,27 @@ export interface SnapshotState {
  */
 export interface SnapshotArgs {
     /**
+     * -
+     * (Optional)
      * An optional description of this resource.
      */
     readonly description?: pulumi.Input<string>;
     /**
+     * -
+     * (Optional)
      * Labels to apply to this Snapshot.
      */
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long,
-     * and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression
-     * '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following
-     * characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * -
+     * (Required)
+     * Name of the resource; provided by the client when the resource is
+     * created. The name must be 1-63 characters long, and comply with
+     * RFC1035. Specifically, the name must be 1-63 characters long and match
+     * the regular expression `a-z?` which means the
+     * first character must be a lowercase letter, and all following
+     * characters must be a dash, lowercase letter, or digit, except the last
+     * character, which cannot be a dash.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -289,20 +334,29 @@ export interface SnapshotArgs {
      */
     readonly project?: pulumi.Input<string>;
     /**
-     * The customer-supplied encryption key of the snapshot. Required if the source snapshot is protected by a
-     * customer-supplied encryption key.
+     * -
+     * (Optional)
+     * The customer-supplied encryption key of the snapshot. Required if the
+     * source snapshot is protected by a customer-supplied encryption key.  Structure is documented below.
      */
     readonly snapshotEncryptionKey?: pulumi.Input<inputs.compute.SnapshotSnapshotEncryptionKey>;
     /**
+     * -
+     * (Required)
      * A reference to the disk used to create this snapshot.
      */
     readonly sourceDisk: pulumi.Input<string>;
     /**
-     * The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a
-     * customer-supplied encryption key.
+     * -
+     * (Optional)
+     * The customer-supplied encryption key of the source snapshot. Required
+     * if the source snapshot is protected by a customer-supplied encryption
+     * key.  Structure is documented below.
      */
     readonly sourceDiskEncryptionKey?: pulumi.Input<inputs.compute.SnapshotSourceDiskEncryptionKey>;
     /**
+     * -
+     * (Optional)
      * A reference to the zone where the disk is hosted.
      */
     readonly zone?: pulumi.Input<string>;

@@ -22,6 +22,8 @@ namespace Pulumi.Gcp.OsLogin
     public partial class SshPublicKey : Pulumi.CustomResource
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// An expiration time in microseconds since epoch.
         /// </summary>
         [Output("expirationTimeUsec")]
@@ -34,12 +36,16 @@ namespace Pulumi.Gcp.OsLogin
         public Output<string> Fingerprint { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Public key text in SSH format, defined by RFC4253 section 6.6.
         /// </summary>
         [Output("key")]
         public Output<string> Key { get; private set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The user email.
         /// </summary>
         [Output("user")]
@@ -92,18 +98,24 @@ namespace Pulumi.Gcp.OsLogin
     public sealed class SshPublicKeyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// An expiration time in microseconds since epoch.
         /// </summary>
         [Input("expirationTimeUsec")]
         public Input<string>? ExpirationTimeUsec { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Public key text in SSH format, defined by RFC4253 section 6.6.
         /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The user email.
         /// </summary>
         [Input("user", required: true)]
@@ -117,6 +129,8 @@ namespace Pulumi.Gcp.OsLogin
     public sealed class SshPublicKeyState : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// -
+        /// (Optional)
         /// An expiration time in microseconds since epoch.
         /// </summary>
         [Input("expirationTimeUsec")]
@@ -129,12 +143,16 @@ namespace Pulumi.Gcp.OsLogin
         public Input<string>? Fingerprint { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// Public key text in SSH format, defined by RFC4253 section 6.6.
         /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         /// <summary>
+        /// -
+        /// (Required)
         /// The user email.
         /// </summary>
         [Input("user")]
