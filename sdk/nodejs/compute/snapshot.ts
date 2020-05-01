@@ -26,6 +26,32 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/snapshots)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/compute/docs/disks/create-snapshots)
+ * 
+ * ## Example Usage - Snapshot Basic
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const debian = gcp.compute.getImage({
+ *     family: "debian-9",
+ *     project: "debian-cloud",
+ * });
+ * const persistent = new gcp.compute.Disk("persistent", {
+ *     image: debian.then(debian => debian.selfLink),
+ *     size: 10,
+ *     type: "pd-ssd",
+ *     zone: "us-central1-a",
+ * });
+ * const snapshot = new gcp.compute.Snapshot("snapshot", {
+ *     sourceDisk: persistent.name,
+ *     zone: "us-central1-a",
+ *     labels: {
+ *         my_label: "value",
+ *     },
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_snapshot.html.markdown.
  */

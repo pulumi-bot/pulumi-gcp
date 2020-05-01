@@ -9,7 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
-warnings.warn("gcp.getSecretVersion has been deprecated in favour of gcp.getSecretVersion", DeprecationWarning)
+warnings.warn("gcp.monitoring.getSecretVersion has been deprecated in favour of gcp.secretmanager.getSecretVersion", DeprecationWarning)
 class GetSecretVersionResult:
     """
     A collection of values returned by getSecretVersion.
@@ -81,9 +81,19 @@ def get_secret_version(project=None,secret=None,version=None,opts=None):
     """
     Get a Secret Manager secret's version. For more information see the [official documentation](https://cloud.google.com/secret-manager/docs/) and [API](https://cloud.google.com/secret-manager/docs/reference/rest/v1beta1/projects.secrets.versions).
 
+    ## Example Usage
 
 
-    Deprecated: gcp.getSecretVersion has been deprecated in favour of gcp.getSecretVersion
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    basic = gcp.secretmanager.get_secret_version(secret="my-secret")
+    ```
+
+
+    Deprecated: gcp.monitoring.getSecretVersion has been deprecated in favour of gcp.secretmanager.getSecretVersion
 
 
     :param str project: The project to get the secret version for. If it
@@ -92,7 +102,7 @@ def get_secret_version(project=None,secret=None,version=None,opts=None):
     :param str version: The version of the secret to get. If it
            is not provided, the latest version is retrieved.
     """
-    pulumi.log.warn("get_secret_version is deprecated: gcp.getSecretVersion has been deprecated in favour of gcp.getSecretVersion")
+    pulumi.log.warn("get_secret_version is deprecated: gcp.monitoring.getSecretVersion has been deprecated in favour of gcp.secretmanager.getSecretVersion")
     __args__ = dict()
 
 

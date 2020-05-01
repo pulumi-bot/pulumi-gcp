@@ -33,6 +33,97 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * ## Example Usage - Dns Managed Zone Private
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const network-1 = new gcp.compute.Network("network-1", {autoCreateSubnetworks: false});
+ * const network-2 = new gcp.compute.Network("network-2", {autoCreateSubnetworks: false});
+ * const private-zone = new gcp.dns.ManagedZone("private-zone", {
+ *     dnsName: "private.example.com.",
+ *     description: "Example private DNS zone",
+ *     labels: {
+ *         foo: "bar",
+ *     },
+ *     visibility: "private",
+ *     private_visibility_config: {
+ *         networks: [
+ *             {
+ *                 networkUrl: network-1.selfLink,
+ *             },
+ *             {
+ *                 networkUrl: network-2.selfLink,
+ *             },
+ *         ],
+ *     },
+ * });
+ * ```
+ * ## Example Usage - Dns Managed Zone Private Forwarding
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const network-1 = new gcp.compute.Network("network-1", {autoCreateSubnetworks: false});
+ * const network-2 = new gcp.compute.Network("network-2", {autoCreateSubnetworks: false});
+ * const private-zone = new gcp.dns.ManagedZone("private-zone", {
+ *     dnsName: "private.example.com.",
+ *     description: "Example private DNS zone",
+ *     labels: {
+ *         foo: "bar",
+ *     },
+ *     visibility: "private",
+ *     private_visibility_config: {
+ *         networks: [
+ *             {
+ *                 networkUrl: network-1.selfLink,
+ *             },
+ *             {
+ *                 networkUrl: network-2.selfLink,
+ *             },
+ *         ],
+ *     },
+ *     forwarding_config: {
+ *         target_name_servers: [
+ *             {
+ *                 ipv4Address: "172.16.1.10",
+ *             },
+ *             {
+ *                 ipv4Address: "172.16.1.20",
+ *             },
+ *         ],
+ *     },
+ * });
+ * ```
+ * ## Example Usage - Dns Managed Zone Private Peering
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const network-source = new gcp.compute.Network("network-source", {autoCreateSubnetworks: false});
+ * const network-target = new gcp.compute.Network("network-target", {autoCreateSubnetworks: false});
+ * const peering-zone = new gcp.dns.ManagedZone("peering-zone", {
+ *     dnsName: "peering.example.com.",
+ *     description: "Example private DNS peering zone",
+ *     visibility: "private",
+ *     private_visibility_config: {
+ *         networks: [{
+ *             networkUrl: network-source.selfLink,
+ *         }],
+ *     },
+ *     peering_config: {
+ *         target_network: {
+ *             networkUrl: network-target.selfLink,
+ *         },
+ *     },
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dns_managed_zone.html.markdown.
  */

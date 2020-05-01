@@ -84,6 +84,20 @@ class SecurityScanConfig(pulumi.CustomResource):
         * How-to Guides
             * [Using Cloud Security Scanner](https://cloud.google.com/security-scanner/docs/scanning)
 
+        ## Example Usage - Scan Config Basic
+
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        scanner_static_ip = gcp.compute.Address("scannerStaticIp")
+        scan_config = gcp.compute.SecurityScanConfig("scan-config",
+            display_name="scan-config",
+            starting_urls=[scanner_static_ip.address.apply(lambda address: f"http://{address}")],
+            target_platforms=["COMPUTE"])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] authentication: The authentication configuration.
