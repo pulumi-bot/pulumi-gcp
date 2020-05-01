@@ -26,6 +26,7 @@ import * as utilities from "../utilities";
  * 
  * const neg = new gcp.compute.GlobalNetworkEndpointGroup("neg", {
  *     defaultPort: 90,
+ *     name: "my-lb-neg",
  *     networkEndpointType: "INTERNET_FQDN_PORT",
  * });
  * ```
@@ -38,6 +39,7 @@ import * as utilities from "../utilities";
  * 
  * const neg = new gcp.compute.GlobalNetworkEndpointGroup("neg", {
  *     defaultPort: 90,
+ *     name: "my-lb-neg",
  *     networkEndpointType: "INTERNET_IP_PORT",
  * });
  * ```

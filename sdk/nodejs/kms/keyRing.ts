@@ -30,6 +30,7 @@ import * as utilities from "../utilities";
  * 
  * const exampleKeyring = new gcp.kms.KeyRing("example-keyring", {
  *     location: "global",
+ *     name: "keyring-example",
  * });
  * ```
  *

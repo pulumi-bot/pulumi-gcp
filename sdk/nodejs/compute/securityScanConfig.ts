@@ -14,6 +14,21 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/security-scanner/docs/reference/rest/v1beta/projects.scanConfigs)
  * * How-to Guides
  *     * [Using Cloud Security Scanner](https://cloud.google.com/security-scanner/docs/scanning)
+ * 
+ * ## Example Usage - Scan Config Basic
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const scannerStaticIp = new gcp.compute.Address("scannerStaticIp", {});
+ * const scan-config = new gcp.compute.SecurityScanConfig("scan-config", {
+ *     displayName: "scan-config",
+ *     startingUrls: [scannerStaticIp.address.apply(address => `http://${address}`)],
+ *     targetPlatforms: ["COMPUTE"],
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/security_scanner_scan_config.html.markdown.
  */

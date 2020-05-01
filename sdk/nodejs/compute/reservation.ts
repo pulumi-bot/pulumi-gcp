@@ -31,6 +31,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  * 
  * const gceReservation = new gcp.compute.Reservation("gceReservation", {
+ *     name: "gce-reservation",
  *     specificReservation: {
  *         count: 1,
  *         instanceProperties: {

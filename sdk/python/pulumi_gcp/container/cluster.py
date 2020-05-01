@@ -667,6 +667,74 @@ class Cluster(pulumi.CustomResource):
         passwords as well as certificate outputs will be stored in the raw state as
         plaintext. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
 
+        ## Example Usage - with a separately managed node pool (recommended)
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        primary = gcp.container.Cluster("primary",
+            location="us-central1",
+            remove_default_node_pool=True,
+            initial_node_count=1,
+            master_auth={
+                "username": "",
+                "password": "",
+                "client_certificate_config": {
+                    "issueClientCertificate": False,
+                },
+            })
+        primary_preemptible_nodes = gcp.container.NodePool("primaryPreemptibleNodes",
+            location="us-central1",
+            cluster=primary.name,
+            node_count=1,
+            node_config={
+                "preemptible": True,
+                "machineType": "n1-standard-1",
+                "metadata": {
+                    "disable-legacy-endpoints": "true",
+                },
+                "oauthScopes": [
+                    "https://www.googleapis.com/auth/logging.write",
+                    "https://www.googleapis.com/auth/monitoring",
+                ],
+            })
+        ```
+
+        ## Example Usage - with the default node pool
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        primary = gcp.container.Cluster("primary",
+            initial_node_count=3,
+            location="us-central1-a",
+            master_auth={
+                "clientCertificateConfig": {
+                    "issueClientCertificate": False,
+                },
+                "password": "",
+                "username": "",
+            },
+            node_config={
+                "labels": {
+                    "foo": "bar",
+                },
+                "metadata": {
+                    "disable-legacy-endpoints": "true",
+                },
+                "oauthScopes": [
+                    "https://www.googleapis.com/auth/logging.write",
+                    "https://www.googleapis.com/auth/monitoring",
+                ],
+                "tags": [
+                    "foo",
+                    "bar",
+                ],
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] addons_config: The configuration for addons supported by GKE.

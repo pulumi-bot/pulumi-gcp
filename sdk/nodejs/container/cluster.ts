@@ -15,6 +15,42 @@ import * as utilities from "../utilities";
  * passwords as well as certificate outputs will be stored in the raw state as
  * plaintext. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
  * 
+ * ## Example Usage - with a separately managed node pool (recommended)
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const primary = new gcp.container.Cluster("primary", {
+ *     location: "us-central1",
+ *     removeDefaultNodePool: true,
+ *     initialNodeCount: 1,
+ *     master_auth: {
+ *         username: "",
+ *         password: "",
+ *         client_certificate_config: {
+ *             issueClientCertificate: false,
+ *         },
+ *     },
+ * });
+ * const primaryPreemptibleNodes = new gcp.container.NodePool("primaryPreemptibleNodes", {
+ *     location: "us-central1",
+ *     cluster: primary.name,
+ *     nodeCount: 1,
+ *     node_config: {
+ *         preemptible: true,
+ *         machineType: "n1-standard-1",
+ *         metadata: {
+ *             "disable-legacy-endpoints": "true",
+ *         },
+ *         oauthScopes: [
+ *             "https://www.googleapis.com/auth/logging.write",
+ *             "https://www.googleapis.com/auth/monitoring",
+ *         ],
+ *     },
+ * });
+ * ```
+ * 
  * ## Example Usage - with the default node pool
  * 
  * ```typescript
@@ -31,6 +67,7 @@ import * as utilities from "../utilities";
  *         password: "",
  *         username: "",
  *     },
+ *     name: "marcellus-wallace",
  *     nodeConfig: {
  *         labels: {
  *             foo: "bar",

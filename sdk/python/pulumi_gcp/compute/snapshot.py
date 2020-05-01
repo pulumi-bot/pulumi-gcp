@@ -115,6 +115,28 @@ class Snapshot(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/compute/docs/disks/create-snapshots)
 
+        ## Example Usage - Snapshot Basic
+
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        debian = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        persistent = gcp.compute.Disk("persistent",
+            image=debian.self_link,
+            size=10,
+            type="pd-ssd",
+            zone="us-central1-a")
+        snapshot = gcp.compute.Snapshot("snapshot",
+            source_disk=persistent.name,
+            zone="us-central1-a",
+            labels={
+                "my_label": "value",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional description of this resource.

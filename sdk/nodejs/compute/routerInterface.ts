@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  * 
  * const foobar = new gcp.compute.RouterInterface("foobar", {
  *     ipRange: "169.254.1.1/30",
+ *     name: "interface-1",
  *     region: "us-central1",
  *     router: "router-1",
  *     vpnTunnel: "tunnel-1",

@@ -40,6 +40,7 @@ import * as utilities from "../utilities";
  *             ],
  *         }],
  *     },
+ *     name: pulumi.interpolate`accessPolicies/${google_access_context_manager_access_policy_test_access.name}/accessLevels/chromeos_no_lock`,
  *     parent: pulumi.interpolate`accessPolicies/${google_access_context_manager_access_policy_test_access.name}`,
  *     title: "chromeosNoLock",
  * });

@@ -35,6 +35,7 @@ import * as utilities from "../utilities";
  * 
  * const tcpRegionHealthCheck = new gcp.compute.RegionHealthCheck("tcp-region-health-check", {
  *     checkIntervalSec: 1,
+ *     name: "tcp-region-health-check",
  *     tcpHealthCheck: {
  *         port: 80,
  *     },
@@ -52,6 +53,7 @@ import * as utilities from "../utilities";
  *     checkIntervalSec: 1,
  *     description: "Health check via tcp",
  *     healthyThreshold: 4,
+ *     name: "tcp-region-health-check",
  *     tcpHealthCheck: {
  *         portName: "health-check-port",
  *         portSpecification: "USE_NAMED_PORT",
@@ -72,6 +74,7 @@ import * as utilities from "../utilities";
  * 
  * const sslRegionHealthCheck = new gcp.compute.RegionHealthCheck("ssl-region-health-check", {
  *     checkIntervalSec: 1,
+ *     name: "ssl-region-health-check",
  *     sslHealthCheck: {
  *         port: 443,
  *     },
@@ -89,6 +92,7 @@ import * as utilities from "../utilities";
  *     checkIntervalSec: 1,
  *     description: "Health check via ssl",
  *     healthyThreshold: 4,
+ *     name: "ssl-region-health-check",
  *     sslHealthCheck: {
  *         portName: "health-check-port",
  *         portSpecification: "USE_NAMED_PORT",
@@ -112,7 +116,26 @@ import * as utilities from "../utilities";
  *     httpHealthCheck: {
  *         port: 80,
  *     },
+ *     name: "http-region-health-check",
  *     timeoutSec: 1,
+ * });
+ * ```
+ * ## Example Usage - Region Health Check Http Logs
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const http-region-health-check = new gcp.compute.RegionHealthCheck("http-region-health-check", {
+ *     timeoutSec: 1,
+ *     checkIntervalSec: 1,
+ *     http_health_check: {
+ *         port: "80",
+ *     },
+ *     log_config: {
+ *         enable: true,
+ *     },
  * });
  * ```
  * ## Example Usage - Region Health Check Http Full
@@ -134,6 +157,7 @@ import * as utilities from "../utilities";
  *         requestPath: "/mypath",
  *         response: "I AM HEALTHY",
  *     },
+ *     name: "http-region-health-check",
  *     timeoutSec: 1,
  *     unhealthyThreshold: 5,
  * });
@@ -150,6 +174,7 @@ import * as utilities from "../utilities";
  *     httpsHealthCheck: {
  *         port: 443,
  *     },
+ *     name: "https-region-health-check",
  *     timeoutSec: 1,
  * });
  * ```
@@ -172,6 +197,7 @@ import * as utilities from "../utilities";
  *         requestPath: "/mypath",
  *         response: "I AM HEALTHY",
  *     },
+ *     name: "https-region-health-check",
  *     timeoutSec: 1,
  *     unhealthyThreshold: 5,
  * });
@@ -188,6 +214,7 @@ import * as utilities from "../utilities";
  *     http2HealthCheck: {
  *         port: 443,
  *     },
+ *     name: "http2-region-health-check",
  *     timeoutSec: 1,
  * });
  * ```
@@ -210,6 +237,7 @@ import * as utilities from "../utilities";
  *         requestPath: "/mypath",
  *         response: "I AM HEALTHY",
  *     },
+ *     name: "http2-region-health-check",
  *     timeoutSec: 1,
  *     unhealthyThreshold: 5,
  * });

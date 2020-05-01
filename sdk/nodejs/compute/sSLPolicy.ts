@@ -25,10 +25,12 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  * 
  * const prodSslPolicy = new gcp.compute.SSLPolicy("prod-ssl-policy", {
+ *     name: "production-ssl-policy",
  *     profile: "MODERN",
  * });
  * const nonprodSslPolicy = new gcp.compute.SSLPolicy("nonprod-ssl-policy", {
  *     minTlsVersion: "TLS_1_2",
+ *     name: "nonprod-ssl-policy",
  *     profile: "MODERN",
  * });
  * const customSslPolicy = new gcp.compute.SSLPolicy("custom-ssl-policy", {
@@ -37,6 +39,7 @@ import * as utilities from "../utilities";
  *         "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
  *     ],
  *     minTlsVersion: "TLS_1_2",
+ *     name: "custom-ssl-policy",
  *     profile: "CUSTOM",
  * });
  * ```

@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  * 
  * const defaultDataset = new gcp.healthcare.Dataset("default", {
  *     location: "us-central1",
+ *     name: "example-dataset",
  *     timeZone: "UTC",
  * });
  * ```

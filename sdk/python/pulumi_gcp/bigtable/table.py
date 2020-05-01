@@ -40,6 +40,28 @@ class Table(pulumi.CustomResource):
         [API](https://cloud.google.com/bigtable/docs/go/reference).
 
 
+        ## Example Usage
+
+
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.bigtable.Instance("instance", cluster=[{
+            "clusterId": "tf-instance-cluster",
+            "zone": "us-central1-b",
+            "numNodes": 3,
+            "storageType": "HDD",
+        }])
+        table = gcp.bigtable.Table("table",
+            instance_name=instance.name,
+            split_keys=[
+                "a",
+                "b",
+                "c",
+            ])
+        ```
 
 
         :param str resource_name: The name of the resource.

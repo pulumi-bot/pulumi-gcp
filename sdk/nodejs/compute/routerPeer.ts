@@ -29,6 +29,7 @@ import * as utilities from "../utilities";
  * const peer = new gcp.compute.RouterPeer("peer", {
  *     advertisedRoutePriority: 100,
  *     interface: "interface-1",
+ *     name: "my-router-peer",
  *     peerAsn: 65513,
  *     peerIpAddress: "169.254.1.2",
  *     region: "us-central1",

@@ -28,6 +28,7 @@ import * as utilities from "../utilities";
  *     displayName: "Display Name",
  *     enabled: true,
  *     issuer: "issuer",
+ *     name: "oidc.oauth-idp-config",
  * });
  * ```
  *

@@ -36,6 +36,7 @@ import * as utilities from "../utilities";
  *     title: "my policy",
  * });
  * const servicePerimeter = new gcp.accesscontextmanager.ServicePerimeter("service-perimeter", {
+ *     name: pulumi.interpolate`accessPolicies/${access_policy.name}/servicePerimeters/restrict_storage`,
  *     parent: pulumi.interpolate`accessPolicies/${access_policy.name}`,
  *     status: {
  *         restrictedServices: ["storage.googleapis.com"],
@@ -58,6 +59,7 @@ import * as utilities from "../utilities";
  *             ],
  *         }],
  *     },
+ *     name: pulumi.interpolate`accessPolicies/${access_policy.name}/accessLevels/chromeos_no_lock`,
  *     parent: pulumi.interpolate`accessPolicies/${access_policy.name}`,
  *     title: "chromeosNoLock",
  * });
@@ -74,6 +76,7 @@ import * as utilities from "../utilities";
  *     title: "my policy",
  * });
  * const servicePerimeter = new gcp.accesscontextmanager.ServicePerimeter("service-perimeter", {
+ *     name: pulumi.interpolate`accessPolicies/${access_policy.name}/servicePerimeters/restrict_bigquery_dryrun_storage`,
  *     parent: pulumi.interpolate`accessPolicies/${access_policy.name}`,
  *     // Service 'storage.googleapis.com' will be in dry-run mode.
  *     spec: {

@@ -39,7 +39,43 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  * 
  * const test = new gcp.composer.Environment("test", {
+ *     name: "my-composer-env",
  *     region: "us-central1",
+ * });
+ * ```
+ * 
+ * ### With GKE and Compute Resource Dependencies
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const testNetwork = new gcp.compute.Network("testNetwork", {autoCreateSubnetworks: false});
+ * const testSubnetwork = new gcp.compute.Subnetwork("testSubnetwork", {
+ *     ipCidrRange: "10.2.0.0/16",
+ *     region: "us-central1",
+ *     network: testNetwork.id,
+ * });
+ * const testAccount = new gcp.serviceAccount.Account("testAccount", {
+ *     accountId: "composer-env-account",
+ *     displayName: "Test Service Account for Composer Environment",
+ * });
+ * const composer-worker = new gcp.projects.IAMMember("composer-worker", {
+ *     role: "roles/composer.worker",
+ *     member: testAccount.email.apply(email => `serviceAccount:${email}`),
+ * });
+ * const testEnvironment = new gcp.composer.Environment("testEnvironment", {
+ *     region: "us-central1",
+ *     config: {
+ *         nodeCount: 4,
+ *         node_config: {
+ *             zone: "us-central1-a",
+ *             machineType: "n1-standard-1",
+ *             network: testNetwork.id,
+ *             subnetwork: testSubnetwork.id,
+ *             serviceAccount: testAccount.name,
+ *         },
+ *     },
  * });
  * ```
  * 
@@ -64,6 +100,7 @@ import * as utilities from "../utilities";
  *             },
  *         },
  *     },
+ *     name: "mycomposer",
  *     region: "us-central1",
  * });
  * ```

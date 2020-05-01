@@ -29,6 +29,7 @@ import * as utilities from "../utilities";
  *             humanReadableName: "Attestor Note",
  *         },
  *     },
+ *     name: "test-attestor-note",
  * });
  * ```
  *

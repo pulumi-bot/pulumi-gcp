@@ -39,6 +39,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  * 
  * const example = new gcp.compute.Image("example", {
+ *     name: "example-image",
  *     rawDisk: {
  *         source: "https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.4-google-kvm-ubuntu-trusty-go_agent-raw.tar.gz",
  *     },
@@ -60,6 +61,7 @@ import * as utilities from "../utilities";
  *             type: "MULTI_IP_SUBNET",
  *         },
  *     ],
+ *     name: "example-image",
  *     rawDisk: {
  *         source: "https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.4-google-kvm-ubuntu-trusty-go_agent-raw.tar.gz",
  *     },

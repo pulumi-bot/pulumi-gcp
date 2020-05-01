@@ -23,6 +23,7 @@ import * as utilities from "../utilities";
  * 
  * const defaultEngineModel = new gcp.ml.EngineModel("default", {
  *     description: "My model",
+ *     name: "default",
  *     regions: "us-central1",
  * });
  * ```
@@ -38,6 +39,7 @@ import * as utilities from "../utilities";
  *     labels: {
  *         my_model: "foo",
  *     },
+ *     name: "default",
  *     onlinePredictionConsoleLogging: true,
  *     onlinePredictionLogging: true,
  *     regions: "us-central1",

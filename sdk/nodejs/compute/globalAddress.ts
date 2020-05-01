@@ -24,7 +24,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const defaultGlobalAddress = new gcp.compute.GlobalAddress("default", {});
+ * const defaultGlobalAddress = new gcp.compute.GlobalAddress("default", {
+ *     name: "global-appserver-ip",
+ * });
  * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_global_address.html.markdown.
