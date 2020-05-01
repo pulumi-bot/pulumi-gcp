@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  * 
  * const defaultQueue = new gcp.cloudtasks.Queue("default", {
  *     location: "us-central1",
+ *     name: "cloud-tasks-queue-test",
  * });
  * ```
  *

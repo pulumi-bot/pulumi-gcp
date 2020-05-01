@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  * 
  * const foo = new gcp.compute.ResourcePolicy("foo", {
+ *     name: "policy",
  *     region: "us-central1",
  *     snapshotSchedulePolicy: {
  *         schedule: {
@@ -38,6 +39,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  * 
  * const bar = new gcp.compute.ResourcePolicy("bar", {
+ *     name: "policy",
  *     region: "us-central1",
  *     snapshotSchedulePolicy: {
  *         retentionPolicy: {
@@ -72,6 +74,7 @@ import * as utilities from "../utilities";
  *         collocation: "COLLOCATED",
  *         vmCount: 2,
  *     },
+ *     name: "policy",
  *     region: "us-central1",
  * });
  * ```

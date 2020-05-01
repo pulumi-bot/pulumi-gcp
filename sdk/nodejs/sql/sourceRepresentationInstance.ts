@@ -25,6 +25,7 @@ import * as utilities from "../utilities";
  * const instance = new gcp.sql.SourceRepresentationInstance("instance", {
  *     databaseVersion: "MYSQL_5_7",
  *     host: "10.20.30.40",
+ *     name: "my-instance",
  *     port: 3306,
  *     region: "us-central1",
  * });

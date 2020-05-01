@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  * 
  * const bigDataJob = new gcp.dataflow.Job("bigDataJob", {
+ *     name: "dataflow-job",
  *     parameters: {
  *         baz: "qux",
  *         foo: "bar",

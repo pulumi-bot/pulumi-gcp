@@ -30,6 +30,7 @@ import * as utilities from "../utilities";
  *         capacityGb: 2660,
  *         name: "share1",
  *     },
+ *     name: "test-instance",
  *     networks: [{
  *         modes: ["MODE_IPV4"],
  *         network: "default",

@@ -23,6 +23,7 @@ import * as utilities from "../utilities";
  * 
  * const connector = new gcp.vpcaccess.Connector("connector", {
  *     ipCidrRange: "10.8.0.0/28",
+ *     name: "vpcconn",
  *     network: "default",
  *     region: "us-central1",
  * });

@@ -25,6 +25,7 @@ import * as utilities from "../utilities";
  * 
  * const picture = new gcp.storage.BucketObject("picture", {
  *     bucket: "image-store",
+ *     name: "butterfly01",
  *     source: new pulumi.asset.FileAsset("/images/nature/garden-tiger-moth.jpg"),
  * });
  * ```

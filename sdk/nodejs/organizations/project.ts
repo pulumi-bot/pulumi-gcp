@@ -18,6 +18,20 @@ import * as utilities from "../utilities";
  * doc for more information.
  * 
  * 
+ * ## Example Usage
+ * 
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const myProject = new gcp.organizations.Project("myProject", {
+ *     name: "My Project",
+ *     orgId: "1234567",
+ *     projectId: "your-project-id",
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_project.html.markdown.
  */

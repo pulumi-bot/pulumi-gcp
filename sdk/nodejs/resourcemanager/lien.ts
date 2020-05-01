@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  * 
  * const project = new gcp.organizations.Project("project", {
+ *     name: "A very important project!",
  *     projectId: "staging-project",
  * });
  * const lien = new gcp.resourcemanager.Lien("lien", {

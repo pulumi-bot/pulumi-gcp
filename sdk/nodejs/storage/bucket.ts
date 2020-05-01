@@ -43,6 +43,7 @@ import * as utilities from "../utilities";
  *     }],
  *     forceDestroy: true,
  *     location: "EU",
+ *     name: "image-store.com",
  *     website: {
  *         mainPageSuffix: "index.html",
  *         notFoundPage: "404.html",
@@ -67,6 +68,7 @@ import * as utilities from "../utilities";
  *         },
  *     }],
  *     location: "US",
+ *     name: "auto-expiring-bucket",
  * });
  * ```
  *

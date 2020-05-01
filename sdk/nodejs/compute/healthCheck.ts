@@ -35,6 +35,7 @@ import * as utilities from "../utilities";
  * 
  * const tcpHealthCheck = new gcp.compute.HealthCheck("tcp-health-check", {
  *     checkIntervalSec: 1,
+ *     name: "tcp-health-check",
  *     tcpHealthCheck: {
  *         port: 80,
  *     },
@@ -52,6 +53,7 @@ import * as utilities from "../utilities";
  *     checkIntervalSec: 1,
  *     description: "Health check via tcp",
  *     healthyThreshold: 4,
+ *     name: "tcp-health-check",
  *     tcpHealthCheck: {
  *         portName: "health-check-port",
  *         portSpecification: "USE_NAMED_PORT",
@@ -72,6 +74,7 @@ import * as utilities from "../utilities";
  * 
  * const sslHealthCheck = new gcp.compute.HealthCheck("ssl-health-check", {
  *     checkIntervalSec: 1,
+ *     name: "ssl-health-check",
  *     sslHealthCheck: {
  *         port: 443,
  *     },
@@ -89,6 +92,7 @@ import * as utilities from "../utilities";
  *     checkIntervalSec: 1,
  *     description: "Health check via ssl",
  *     healthyThreshold: 4,
+ *     name: "ssl-health-check",
  *     sslHealthCheck: {
  *         portName: "health-check-port",
  *         portSpecification: "USE_NAMED_PORT",
@@ -112,6 +116,7 @@ import * as utilities from "../utilities";
  *     httpHealthCheck: {
  *         port: 80,
  *     },
+ *     name: "http-health-check",
  *     timeoutSec: 1,
  * });
  * ```
@@ -134,6 +139,7 @@ import * as utilities from "../utilities";
  *         requestPath: "/mypath",
  *         response: "I AM HEALTHY",
  *     },
+ *     name: "http-health-check",
  *     timeoutSec: 1,
  *     unhealthyThreshold: 5,
  * });
@@ -150,6 +156,7 @@ import * as utilities from "../utilities";
  *     httpsHealthCheck: {
  *         port: 443,
  *     },
+ *     name: "https-health-check",
  *     timeoutSec: 1,
  * });
  * ```
@@ -172,6 +179,7 @@ import * as utilities from "../utilities";
  *         requestPath: "/mypath",
  *         response: "I AM HEALTHY",
  *     },
+ *     name: "https-health-check",
  *     timeoutSec: 1,
  *     unhealthyThreshold: 5,
  * });
@@ -188,6 +196,7 @@ import * as utilities from "../utilities";
  *     http2HealthCheck: {
  *         port: 443,
  *     },
+ *     name: "http2-health-check",
  *     timeoutSec: 1,
  * });
  * ```
@@ -210,8 +219,27 @@ import * as utilities from "../utilities";
  *         requestPath: "/mypath",
  *         response: "I AM HEALTHY",
  *     },
+ *     name: "http2-health-check",
  *     timeoutSec: 1,
  *     unhealthyThreshold: 5,
+ * });
+ * ```
+ * ## Example Usage - Health Check With Logging
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const health-check-with-logging = new gcp.compute.HealthCheck("health-check-with-logging", {
+ *     timeoutSec: 1,
+ *     checkIntervalSec: 1,
+ *     tcp_health_check: {
+ *         port: "22",
+ *     },
+ *     log_config: {
+ *         enable: true,
+ *     },
  * });
  * ```
  *

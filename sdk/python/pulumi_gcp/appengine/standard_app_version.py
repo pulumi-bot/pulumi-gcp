@@ -126,6 +126,51 @@ class StandardAppVersion(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/appengine/docs/standard)
 
+        ## Example Usage - App Engine Standard App Version
+
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bucket = gcp.storage.Bucket("bucket")
+        object = gcp.storage.BucketObject("object",
+            bucket=bucket.name,
+            source=pulumi.FileAsset("./test-fixtures/appengine/hello-world.zip"))
+        myapp_v1 = gcp.appengine.StandardAppVersion("myappV1",
+            version_id="v1",
+            service="myapp",
+            runtime="nodejs10",
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                },
+            },
+            env_variables={
+                "port": "8080",
+            },
+            delete_service_on_destroy=True)
+        myapp_v2 = gcp.appengine.StandardAppVersion("myappV2",
+            version_id="v2",
+            service="myapp",
+            runtime="nodejs10",
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                },
+            },
+            env_variables={
+                "port": "8080",
+            },
+            noop_on_destroy=True)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] delete_service_on_destroy: If set to `true`, the service will be deleted if it is the last version.    

@@ -46,6 +46,7 @@ import * as utilities from "../utilities";
  *     labels: {
  *         environment: "dev",
  *     },
+ *     name: "test-disk",
  *     physicalBlockSizeBytes: 4096,
  *     type: "pd-ssd",
  *     zone: "us-central1-a",

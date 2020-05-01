@@ -56,6 +56,7 @@ import * as utilities from "../utilities";
  *         unit: "1",
  *         valueType: "DISTRIBUTION",
  *     },
+ *     name: "my-(custom)/metric",
  *     valueExtractor: "EXTRACT(jsonPayload.request)",
  * });
  * ```
@@ -72,6 +73,7 @@ import * as utilities from "../utilities";
  *         metricKind: "DELTA",
  *         valueType: "INT64",
  *     },
+ *     name: "my-(custom)/metric",
  * });
  * ```
  * ## Example Usage - Logging Metric Counter Labels
@@ -95,6 +97,7 @@ import * as utilities from "../utilities";
  *         metricKind: "DELTA",
  *         valueType: "INT64",
  *     },
+ *     name: "my-(custom)/metric",
  * });
  * ```
  *

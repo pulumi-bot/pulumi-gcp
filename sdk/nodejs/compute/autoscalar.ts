@@ -19,10 +19,129 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/autoscalers)
  * * How-to Guides
  *     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
+ * 
+ * ## Example Usage - Autoscaler Single Instance
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const debian9 = gcp.compute.getImage({
+ *     family: "debian-9",
+ *     project: "debian-cloud",
+ * });
+ * const defaultInstanceTemplate = new gcp.compute.InstanceTemplate("defaultInstanceTemplate", {
+ *     machineType: "n1-standard-1",
+ *     canIpForward: false,
+ *     tags: [
+ *         "foo",
+ *         "bar",
+ *     ],
+ *     disk: [{
+ *         sourceImage: debian9.then(debian9 => debian9.selfLink),
+ *     }],
+ *     network_interface: [{
+ *         network: "default",
+ *     }],
+ *     metadata: {
+ *         foo: "bar",
+ *     },
+ *     service_account: {
+ *         scopes: [
+ *             "userinfo-email",
+ *             "compute-ro",
+ *             "storage-ro",
+ *         ],
+ *     },
+ * });
+ * const defaultTargetPool = new gcp.compute.TargetPool("defaultTargetPool", {});
+ * const defaultInstanceGroupManager = new gcp.compute.InstanceGroupManager("defaultInstanceGroupManager", {
+ *     zone: "us-central1-f",
+ *     version: [{
+ *         instanceTemplate: defaultInstanceTemplate.id,
+ *         name: "primary",
+ *     }],
+ *     targetPools: [defaultTargetPool.id],
+ *     baseInstanceName: "autoscaler-sample",
+ * });
+ * const defaultAutoscaler = new gcp.compute.Autoscaler("defaultAutoscaler", {
+ *     zone: "us-central1-f",
+ *     target: defaultInstanceGroupManager.id,
+ *     autoscaling_policy: {
+ *         maxReplicas: 5,
+ *         minReplicas: 1,
+ *         cooldownPeriod: 60,
+ *         metric: [{
+ *             name: "pubsub.googleapis.com/subscription/num_undelivered_messages",
+ *             filter: "resource.type = pubsubSubscription AND resource.label.subscription_id = our-subscription",
+ *             singleInstanceAssignment: 65535,
+ *         }],
+ *     },
+ * });
+ * ```
+ * ## Example Usage - Autoscaler Basic
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const debian9 = gcp.compute.getImage({
+ *     family: "debian-9",
+ *     project: "debian-cloud",
+ * });
+ * const foobarInstanceTemplate = new gcp.compute.InstanceTemplate("foobarInstanceTemplate", {
+ *     machineType: "n1-standard-1",
+ *     canIpForward: false,
+ *     tags: [
+ *         "foo",
+ *         "bar",
+ *     ],
+ *     disk: [{
+ *         sourceImage: debian9.then(debian9 => debian9.selfLink),
+ *     }],
+ *     network_interface: [{
+ *         network: "default",
+ *     }],
+ *     metadata: {
+ *         foo: "bar",
+ *     },
+ *     service_account: {
+ *         scopes: [
+ *             "userinfo-email",
+ *             "compute-ro",
+ *             "storage-ro",
+ *         ],
+ *     },
+ * });
+ * const foobarTargetPool = new gcp.compute.TargetPool("foobarTargetPool", {});
+ * const foobarInstanceGroupManager = new gcp.compute.InstanceGroupManager("foobarInstanceGroupManager", {
+ *     zone: "us-central1-f",
+ *     version: [{
+ *         instanceTemplate: foobarInstanceTemplate.id,
+ *         name: "primary",
+ *     }],
+ *     targetPools: [foobarTargetPool.id],
+ *     baseInstanceName: "foobar",
+ * });
+ * const foobarAutoscaler = new gcp.compute.Autoscaler("foobarAutoscaler", {
+ *     zone: "us-central1-f",
+ *     target: foobarInstanceGroupManager.id,
+ *     autoscaling_policy: {
+ *         maxReplicas: 5,
+ *         minReplicas: 1,
+ *         cooldownPeriod: 60,
+ *         cpu_utilization: {
+ *             target: 0.5,
+ *         },
+ *     },
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_autoscaler.html.markdown.
  */
-/** @deprecated gcp.Autoscalar has been deprecated in favour of gcp.Autoscaler */
+/** @deprecated gcp.compute.Autoscalar has been deprecated in favour of gcp.compute.Autoscaler */
 export class Autoscalar extends pulumi.CustomResource {
     /**
      * Get an existing Autoscalar resource's state with the given name, ID, and optional extra
@@ -33,7 +152,7 @@ export class Autoscalar extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AutoscalarState, opts?: pulumi.CustomResourceOptions): Autoscalar {
-        pulumi.log.warn("Autoscalar is deprecated: gcp.Autoscalar has been deprecated in favour of gcp.Autoscaler")
+        pulumi.log.warn("Autoscalar is deprecated: gcp.compute.Autoscalar has been deprecated in favour of gcp.compute.Autoscaler")
         return new Autoscalar(name, <any>state, { ...opts, id: id });
     }
 
@@ -100,11 +219,11 @@ export class Autoscalar extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    /** @deprecated gcp.Autoscalar has been deprecated in favour of gcp.Autoscaler */
+    /** @deprecated gcp.compute.Autoscalar has been deprecated in favour of gcp.compute.Autoscaler */
     constructor(name: string, args: AutoscalarArgs, opts?: pulumi.CustomResourceOptions)
-    /** @deprecated gcp.Autoscalar has been deprecated in favour of gcp.Autoscaler */
+    /** @deprecated gcp.compute.Autoscalar has been deprecated in favour of gcp.compute.Autoscaler */
     constructor(name: string, argsOrState?: AutoscalarArgs | AutoscalarState, opts?: pulumi.CustomResourceOptions) {
-        pulumi.log.warn("Autoscalar is deprecated: gcp.Autoscalar has been deprecated in favour of gcp.Autoscaler")
+        pulumi.log.warn("Autoscalar is deprecated: gcp.compute.Autoscalar has been deprecated in favour of gcp.compute.Autoscaler")
         let inputs: pulumi.Inputs = {};
         if (opts && opts.id) {
             const state = argsOrState as AutoscalarState | undefined;

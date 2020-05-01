@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  * 
  * const simplecluster = new gcp.dataproc.Cluster("simplecluster", {
+ *     name: "simplecluster",
  *     region: "us-central1",
  * });
  * ```
@@ -83,6 +84,7 @@ import * as utilities from "../utilities";
  *     labels: {
  *         foo: "bar",
  *     },
+ *     name: "mycluster",
  *     region: "us-central1",
  * });
  * ```
@@ -105,6 +107,7 @@ import * as utilities from "../utilities";
  *             }],
  *         },
  *     },
+ *     name: "my-cluster-with-gpu",
  *     region: "us-central1",
  * });
  * ```

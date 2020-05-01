@@ -9,7 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
-warnings.warn("gcp.Autoscalar has been deprecated in favour of gcp.Autoscaler", DeprecationWarning)
+warnings.warn("gcp.compute.Autoscalar has been deprecated in favour of gcp.compute.Autoscaler", DeprecationWarning)
 class Autoscalar(pulumi.CustomResource):
     autoscaling_policy: pulumi.Output[dict]
     """
@@ -134,7 +134,7 @@ class Autoscalar(pulumi.CustomResource):
     """
     URL of the zone where the instance group resides.
     """
-    warnings.warn("gcp.Autoscalar has been deprecated in favour of gcp.Autoscaler", DeprecationWarning)
+    warnings.warn("gcp.compute.Autoscalar has been deprecated in favour of gcp.compute.Autoscaler", DeprecationWarning)
     def __init__(__self__, resource_name, opts=None, autoscaling_policy=None, description=None, name=None, project=None, target=None, zone=None, __props__=None, __name__=None, __opts__=None):
         """
         Represents an Autoscaler resource.
@@ -150,7 +150,116 @@ class Autoscalar(pulumi.CustomResource):
         * How-to Guides
             * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
 
-        Deprecated: gcp.Autoscalar has been deprecated in favour of gcp.Autoscaler
+        ## Example Usage - Autoscaler Single Instance
+
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        debian9 = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        default_instance_template = gcp.compute.InstanceTemplate("defaultInstanceTemplate",
+            machine_type="n1-standard-1",
+            can_ip_forward=False,
+            tags=[
+                "foo",
+                "bar",
+            ],
+            disk=[{
+                "sourceImage": debian9.self_link,
+            }],
+            network_interface=[{
+                "network": "default",
+            }],
+            metadata={
+                "foo": "bar",
+            },
+            service_account={
+                "scopes": [
+                    "userinfo-email",
+                    "compute-ro",
+                    "storage-ro",
+                ],
+            })
+        default_target_pool = gcp.compute.TargetPool("defaultTargetPool")
+        default_instance_group_manager = gcp.compute.InstanceGroupManager("defaultInstanceGroupManager",
+            zone="us-central1-f",
+            version=[{
+                "instanceTemplate": default_instance_template.id,
+                "name": "primary",
+            }],
+            target_pools=[default_target_pool.id],
+            base_instance_name="autoscaler-sample")
+        default_autoscaler = gcp.compute.Autoscaler("defaultAutoscaler",
+            zone="us-central1-f",
+            target=default_instance_group_manager.id,
+            autoscaling_policy={
+                "maxReplicas": 5,
+                "minReplicas": 1,
+                "cooldownPeriod": 60,
+                "metric": [{
+                    "name": "pubsub.googleapis.com/subscription/num_undelivered_messages",
+                    "filter": "resource.type = pubsub_subscription AND resource.label.subscription_id = our-subscription",
+                    "singleInstanceAssignment": 65535,
+                }],
+            })
+        ```
+        ## Example Usage - Autoscaler Basic
+
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        debian9 = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        foobar_instance_template = gcp.compute.InstanceTemplate("foobarInstanceTemplate",
+            machine_type="n1-standard-1",
+            can_ip_forward=False,
+            tags=[
+                "foo",
+                "bar",
+            ],
+            disk=[{
+                "sourceImage": debian9.self_link,
+            }],
+            network_interface=[{
+                "network": "default",
+            }],
+            metadata={
+                "foo": "bar",
+            },
+            service_account={
+                "scopes": [
+                    "userinfo-email",
+                    "compute-ro",
+                    "storage-ro",
+                ],
+            })
+        foobar_target_pool = gcp.compute.TargetPool("foobarTargetPool")
+        foobar_instance_group_manager = gcp.compute.InstanceGroupManager("foobarInstanceGroupManager",
+            zone="us-central1-f",
+            version=[{
+                "instanceTemplate": foobar_instance_template.id,
+                "name": "primary",
+            }],
+            target_pools=[foobar_target_pool.id],
+            base_instance_name="foobar")
+        foobar_autoscaler = gcp.compute.Autoscaler("foobarAutoscaler",
+            zone="us-central1-f",
+            target=foobar_instance_group_manager.id,
+            autoscaling_policy={
+                "maxReplicas": 5,
+                "minReplicas": 1,
+                "cooldownPeriod": 60,
+                "cpu_utilization": {
+                    "target": 0.5,
+                },
+            })
+        ```
+
+        Deprecated: gcp.compute.Autoscalar has been deprecated in favour of gcp.compute.Autoscaler
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -254,7 +363,7 @@ class Autoscalar(pulumi.CustomResource):
             choose a default value depending on maximum number of instances
             allowed.
         """
-        pulumi.log.warn("Autoscalar is deprecated: gcp.Autoscalar has been deprecated in favour of gcp.Autoscaler")
+        pulumi.log.warn("Autoscalar is deprecated: gcp.compute.Autoscalar has been deprecated in favour of gcp.compute.Autoscaler")
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

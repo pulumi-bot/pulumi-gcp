@@ -32,6 +32,7 @@ import * as utilities from "../utilities";
  *         foo: "bar",
  *     },
  *     metadataStartupScript: "echo hi > /test.txt",
+ *     name: "test",
  *     networkInterfaces: [{
  *         accessConfigs: [{}],
  *         network: "default",

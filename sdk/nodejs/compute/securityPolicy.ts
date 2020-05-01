@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  * 
  * const policy = new gcp.compute.SecurityPolicy("policy", {
+ *     name: "my-policy",
  *     rules: [
  *         {
  *             action: "deny(403)",

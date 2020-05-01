@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  * 
  * const myRuntimeConfig = new gcp.runtimeconfig.Config("my-runtime-config", {
  *     description: "Runtime configuration values for my service",
+ *     name: "my-service-runtime-config",
  * });
  * ```
  *

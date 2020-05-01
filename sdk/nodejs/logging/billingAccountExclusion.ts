@@ -25,6 +25,7 @@ import * as utilities from "../utilities";
  *     description: "Exclude GCE instance debug logs",
  *     // Exclude all DEBUG or lower severity messages relating to instances
  *     filter: "resource.type = gceInstance AND severity <= DEBUG",
+ *     name: "my-instance-debug-exclusion",
  * });
  * ```
  *

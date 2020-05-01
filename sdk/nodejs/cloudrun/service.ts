@@ -37,6 +37,7 @@ import * as utilities from "../utilities";
  * 
  * const defaultService = new gcp.cloudrun.Service("default", {
  *     location: "us-central1",
+ *     name: "cloudrun-srv",
  *     template: {
  *         spec: {
  *             containers: [{
@@ -58,6 +59,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  * 
  * const instance = new gcp.sql.DatabaseInstance("instance", {
+ *     name: "cloudrun-sql",
  *     region: "us-east1",
  *     settings: {
  *         tier: "db-f1-micro",
@@ -66,6 +68,7 @@ import * as utilities from "../utilities";
  * const defaultService = new gcp.cloudrun.Service("default", {
  *     autogenerateRevisionName: true,
  *     location: "us-central1",
+ *     name: "cloudrun-srv",
  *     template: {
  *         metadata: {
  *             annotations: {
@@ -82,6 +85,36 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * ## Example Usage - Cloud Run Service Noauth
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const default = new gcp.cloudrun.Service("default", {
+ *     location: "us-central1",
+ *     template: {
+ *         spec: {
+ *             containers: [{
+ *                 image: "gcr.io/cloudrun/hello",
+ *             }],
+ *         },
+ *     },
+ * });
+ * const noauthIAMPolicy = gcp.organizations.getIAMPolicy({
+ *     binding: [{
+ *         role: "roles/run.invoker",
+ *         members: ["allUsers"],
+ *     }],
+ * });
+ * const noauthIamPolicy = new gcp.cloudrun.IamPolicy("noauthIamPolicy", {
+ *     location: default.location,
+ *     project: default.project,
+ *     service: default.name,
+ *     policyData: noauthIAMPolicy.then(noauthIAMPolicy => noauthIAMPolicy.policyData),
+ * });
+ * ```
  * ## Example Usage - Cloud Run Service Multiple Environment Variables
  * 
  * 
@@ -92,6 +125,7 @@ import * as utilities from "../utilities";
  * const defaultService = new gcp.cloudrun.Service("default", {
  *     autogenerateRevisionName: true,
  *     location: "us-central1",
+ *     name: "cloudrun-srv",
  *     template: {
  *         spec: {
  *             containers: [{

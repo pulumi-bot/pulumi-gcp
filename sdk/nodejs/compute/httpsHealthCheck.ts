@@ -33,6 +33,7 @@ import * as utilities from "../utilities";
  * 
  * const defaultHttpsHealthCheck = new gcp.compute.HttpsHealthCheck("default", {
  *     checkIntervalSec: 1,
+ *     name: "authentication-health-check",
  *     requestPath: "/health_check",
  *     timeoutSec: 1,
  * });

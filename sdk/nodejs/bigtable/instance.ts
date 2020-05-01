@@ -25,6 +25,7 @@ import * as utilities from "../utilities";
  *         storageType: "HDD",
  *         zone: "us-central1-b",
  *     }],
+ *     name: "tf-instance",
  * });
  * ```
  * 
@@ -41,6 +42,7 @@ import * as utilities from "../utilities";
  *         zone: "us-central1-b",
  *     }],
  *     instanceType: "DEVELOPMENT",
+ *     name: "tf-instance",
  * });
  * ```
  *
