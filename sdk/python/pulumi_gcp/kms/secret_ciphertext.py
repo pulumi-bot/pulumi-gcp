@@ -44,6 +44,37 @@ class SecretCiphertext(pulumi.CustomResource):
         * How-to Guides
             * [Encrypting and decrypting data with a symmetric key](https://cloud.google.com/kms/docs/encrypt-decrypt)
 
+        ## Example Usage - Kms Secret Ciphertext Basic
+
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        keyring = gcp.kms.KeyRing("keyring", location="global")
+        cryptokey = gcp.kms.CryptoKey("cryptokey",
+            key_ring=keyring.id,
+            rotation_period="100000s")
+        my_password = gcp.kms.SecretCiphertext("myPassword",
+            crypto_key=cryptokey.id,
+            plaintext="my-secret-password")
+        instance = gcp.compute.Instance("instance",
+            machine_type="n1-standard-1",
+            zone="us-central1-a",
+            boot_disk={
+                "initialize_params": {
+                    "image": "debian-cloud/debian-9",
+                },
+            },
+            network_interface=[{
+                "network": "default",
+                "access_config": [{}],
+            }],
+            metadata={
+                "password": my_password.ciphertext,
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] additional_authenticated_data: The additional authenticated data used for integrity checks during encryption and decryption.
