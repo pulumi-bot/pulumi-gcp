@@ -21,6 +21,40 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys/encrypt)
  * * How-to Guides
  *     * [Encrypting and decrypting data with a symmetric key](https://cloud.google.com/kms/docs/encrypt-decrypt)
+ * 
+ * ## Example Usage - Kms Secret Ciphertext Basic
+ * 
+ * 
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const keyring = new gcp.kms.KeyRing("keyring", {location: "global"});
+ * const cryptokey = new gcp.kms.CryptoKey("cryptokey", {
+ *     keyRing: keyring.id,
+ *     rotationPeriod: "100000s",
+ * });
+ * const myPassword = new gcp.kms.SecretCiphertext("myPassword", {
+ *     cryptoKey: cryptokey.id,
+ *     plaintext: "my-secret-password",
+ * });
+ * const instance = new gcp.compute.Instance("instance", {
+ *     machineType: "n1-standard-1",
+ *     zone: "us-central1-a",
+ *     boot_disk: {
+ *         initialize_params: {
+ *             image: "debian-cloud/debian-9",
+ *         },
+ *     },
+ *     network_interface: [{
+ *         network: "default",
+ *         access_config: [{}],
+ *     }],
+ *     metadata: {
+ *         password: myPassword.ciphertext,
+ *     },
+ * });
+ * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/kms_secret_ciphertext.html.markdown.
  */

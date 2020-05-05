@@ -371,6 +371,66 @@ class BackendService(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
 
+        ## Example Usage - Backend Service Basic
+
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_http_health_check = gcp.compute.HttpHealthCheck("defaultHttpHealthCheck",
+            request_path="/",
+            check_interval_sec=1,
+            timeout_sec=1)
+        default_backend_service = gcp.compute.BackendService("defaultBackendService", health_checks=[default_http_health_check.self_link])
+        ```
+        ## Example Usage - Backend Service Traffic Director Round Robin
+
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        health_check = gcp.compute.HealthCheck("healthCheck", http_health_check={
+            "port": 80,
+        })
+        default = gcp.compute.BackendService("default",
+            health_checks=[health_check.self_link],
+            load_balancing_scheme="INTERNAL_SELF_MANAGED",
+            locality_lb_policy="ROUND_ROBIN")
+        ```
+        ## Example Usage - Backend Service Traffic Director Ring Hash
+
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        health_check = gcp.compute.HealthCheck("healthCheck", http_health_check={
+            "port": 80,
+        })
+        default = gcp.compute.BackendService("default",
+            health_checks=[health_check.self_link],
+            load_balancing_scheme="INTERNAL_SELF_MANAGED",
+            locality_lb_policy="RING_HASH",
+            session_affinity="HTTP_COOKIE",
+            circuit_breakers={
+                "maxConnections": 10,
+            },
+            consistent_hash={
+                "http_cookie": {
+                    "ttl": {
+                        "seconds": 11,
+                        "nanos": 1111,
+                    },
+                    "name": "mycookie",
+                },
+            },
+            outlier_detection={
+                "consecutiveErrors": 2,
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] affinity_cookie_ttl_sec: Lifetime of cookies in seconds if session_affinity is
