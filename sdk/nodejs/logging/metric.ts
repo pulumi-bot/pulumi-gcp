@@ -21,6 +21,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Logging Metric Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -59,9 +60,11 @@ import * as utilities from "../utilities";
  *     valueExtractor: "EXTRACT(jsonPayload.request)",
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Logging Metric Counter Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -74,9 +77,11 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Logging Metric Counter Labels
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -97,6 +102,7 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/logging_metric.html.markdown.
  */

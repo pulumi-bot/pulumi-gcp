@@ -24,6 +24,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Scheduler Job Http
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -39,9 +40,11 @@ import * as utilities from "../utilities";
  *     timeZone: "America/New_York",
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Scheduler Job App Engine
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -62,6 +65,55 @@ import * as utilities from "../utilities";
  *     timeZone: "Europe/London",
  * });
  * ```
+ * {{ % /example % }}
+ * ## Example Usage - Scheduler Job Oauth
+ * 
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const default = gcp.compute.getDefaultServiceAccount({});
+ * const job = new gcp.cloudscheduler.Job("job", {
+ *     description: "test http job",
+ *     schedule: "*&#47;8 * * * *",
+ *     timeZone: "America/New_York",
+ *     attemptDeadline: "320s",
+ *     http_target: {
+ *         httpMethod: "GET",
+ *         uri: "https://cloudscheduler.googleapis.com/v1/projects/my-project-name/locations/us-west1/jobs",
+ *         oauth_token: {
+ *             serviceAccountEmail: default.then(_default => _default.email),
+ *         },
+ *     },
+ * });
+ * ```
+ * {{ % /example % }}
+ * ## Example Usage - Scheduler Job Oidc
+ * 
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const default = gcp.compute.getDefaultServiceAccount({});
+ * const job = new gcp.cloudscheduler.Job("job", {
+ *     description: "test http job",
+ *     schedule: "*&#47;8 * * * *",
+ *     timeZone: "America/New_York",
+ *     attemptDeadline: "320s",
+ *     http_target: {
+ *         httpMethod: "GET",
+ *         uri: "https://example.com/ping",
+ *         oidc_token: {
+ *             serviceAccountEmail: default.then(_default => _default.email),
+ *         },
+ *     },
+ * });
+ * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/cloud_scheduler_job.html.markdown.
  */

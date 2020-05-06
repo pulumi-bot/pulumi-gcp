@@ -239,6 +239,90 @@ class InstanceTemplate(pulumi.CustomResource):
 
 
 
+        ## Using with Instance Group Manager
+
+        Instance Templates cannot be updated after creation with the Google
+        Cloud Platform API. In order to update an Instance Template, this provider will
+        create a replacement. In order to effectively
+        use an Instance Template resource with an [Instance Group Manager resource](https://www.terraform.io/docs/providers/google/r/compute_instance_group_manager.html).
+        Either omit the Instance Template `name` attribute, or specify a partial name
+        with `name_prefix`. Example:
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance_template = gcp.compute.InstanceTemplate("instanceTemplate",
+            name_prefix="instance-template-",
+            machine_type="n1-standard-1",
+            region="us-central1",
+            disk=[{}],
+            network_interface=[{}])
+        instance_group_manager = gcp.compute.InstanceGroupManager("instanceGroupManager",
+            instance_template=instance_template.self_link,
+            base_instance_name="instance-group-manager",
+            zone="us-central1-f",
+            target_size="1")
+        ```
+        {{ % /example % }}
+
+        With this setup, this provider generates a unique name for your Instance
+        Template and can then update the Instance Group manager without conflict before
+        destroying the previous Instance Template.
+
+        ## Deploying the Latest Image
+
+        A common way to use instance templates and managed instance groups is to deploy the
+        latest image in a family, usually the latest build of your application. There are two
+        ways to do this in the provider, and they have their pros and cons. The difference ends
+        up being in how "latest" is interpreted. You can either deploy the latest image available
+        when the provider runs, or you can have each instance check what the latest image is when
+        it's being created, either as part of a scaling event or being rebuilt by the instance
+        group manager.
+
+        If you're not sure, we recommend deploying the latest image available when the provider runs,
+        because this means all the instances in your group will be based on the same image, always,
+        and means that no upgrades or changes to your instances happen outside of a `pulumi up`.
+        You can achieve this by using the `compute.Image`
+        data source, which will retrieve the latest image on every `pulumi apply`, and will update
+        the template to use that specific image:
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_image = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        instance_template = gcp.compute.InstanceTemplate("instanceTemplate",
+            name_prefix="instance-template-",
+            machine_type="n1-standard-1",
+            region="us-central1",
+            disk=[{
+                "sourceImage": google_compute_image["my_image"]["self_link"],
+            }])
+        ```
+        {{ % /example % }}
+
+        To have instances update to the latest on every scaling event or instance re-creation,
+        use the family as the image for the disk, and it will use GCP's default behavior, setting
+        the image for the template to the family:
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance_template = gcp.compute.InstanceTemplate("instanceTemplate",
+            disks=[{
+                "sourceImage": "debian-cloud/debian-9",
+            }],
+            machine_type="n1-standard-1",
+            name_prefix="instance-template-",
+            region="us-central1")
+        ```
+        {{ % /example % }}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

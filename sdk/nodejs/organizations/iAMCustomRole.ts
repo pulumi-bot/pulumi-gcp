@@ -19,26 +19,6 @@ import * as utilities from "../utilities";
  *  made available again. This means a deleted role that has been deleted for more than 7 days cannot be changed at all
  *  by the provider, and new roles cannot share that name.
  *  
- * ## Example Usage
- * 
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const myCustomRole = new gcp.organizations.IAMCustomRole("my-custom-role", {
- *     description: "A description",
- *     orgId: "123456789",
- *     permissions: [
- *         "iam.roles.list",
- *         "iam.roles.create",
- *         "iam.roles.delete",
- *     ],
- *     roleId: "myCustomRole",
- *     title: "My Custom Role",
- * });
- * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_organization_iam_custom_role.html.markdown.
  */

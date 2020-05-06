@@ -30,15 +30,40 @@ import * as utilities from "../utilities";
  * ## Example Usage - Address Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
  * const ipAddress = new gcp.compute.Address("ipAddress", {});
  * ```
+ * {{ % /example % }}
+ * ## Example Usage - Address With Subnetwork
+ * 
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const defaultNetwork = new gcp.compute.Network("defaultNetwork", {});
+ * const defaultSubnetwork = new gcp.compute.Subnetwork("defaultSubnetwork", {
+ *     ipCidrRange: "10.0.0.0/16",
+ *     region: "us-central1",
+ *     network: defaultNetwork.id,
+ * });
+ * const internalWithSubnetAndAddress = new gcp.compute.Address("internalWithSubnetAndAddress", {
+ *     subnetwork: defaultSubnetwork.id,
+ *     addressType: "INTERNAL",
+ *     address: "10.0.42.42",
+ *     region: "us-central1",
+ * });
+ * ```
+ * {{ % /example % }}
  * ## Example Usage - Address With Gce Endpoint
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -48,6 +73,37 @@ import * as utilities from "../utilities";
  *     purpose: "GCE_ENDPOINT",
  * });
  * ```
+ * {{ % /example % }}
+ * ## Example Usage - Instance With Ip
+ * 
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const static = new gcp.compute.Address("static", {});
+ * const debianImage = gcp.compute.getImage({
+ *     family: "debian-9",
+ *     project: "debian-cloud",
+ * });
+ * const instanceWithIp = new gcp.compute.Instance("instanceWithIp", {
+ *     machineType: "f1-micro",
+ *     zone: "us-central1-a",
+ *     boot_disk: {
+ *         initialize_params: {
+ *             image: debianImage.then(debianImage => debianImage.selfLink),
+ *         },
+ *     },
+ *     network_interface: [{
+ *         network: "default",
+ *         access_config: [{
+ *             natIp: static.address,
+ *         }],
+ *     }],
+ * });
+ * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_address.html.markdown.
  */

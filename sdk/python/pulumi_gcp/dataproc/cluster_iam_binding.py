@@ -48,6 +48,53 @@ class ClusterIAMBinding(pulumi.CustomResource):
 
         > **Note:** `dataproc.ClusterIAMBinding` resources **can be** used in conjunction with `dataproc.ClusterIAMMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_pubsub\_subscription\_iam\_policy
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(binding=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+        }])
+        editor = gcp.dataproc.ClusterIAMPolicy("editor",
+            project="your-project",
+            region="your-region",
+            cluster="your-dataproc-cluster",
+            policy_data=admin.policy_data)
+        ```
+        {{ % /example % }}
+
+        ## google\_pubsub\_subscription\_iam\_binding
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        editor = gcp.dataproc.ClusterIAMBinding("editor",
+            cluster="your-dataproc-cluster",
+            members=["user:jane@example.com"],
+            role="roles/editor")
+        ```
+        {{ % /example % }}
+
+        ## google\_pubsub\_subscription\_iam\_member
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        editor = gcp.dataproc.ClusterIAMMember("editor",
+            cluster="your-dataproc-cluster",
+            member="user:jane@example.com",
+            role="roles/editor")
+        ```
+        {{ % /example % }}
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster: The name or relative resource id of the cluster to manage IAM policies for.

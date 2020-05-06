@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Monitoring Group Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -31,6 +32,26 @@ import * as utilities from "../utilities";
  *     filter: "resource.metadata.region=\"europe-west2\"",
  * });
  * ```
+ * {{ % /example % }}
+ * ## Example Usage - Monitoring Group Subgroup
+ * 
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const parent = new gcp.monitoring.Group("parent", {
+ *     displayName: "tf-test MonitoringParentGroup",
+ *     filter: "resource.metadata.region=\"europe-west2\"",
+ * });
+ * const subgroup = new gcp.monitoring.Group("subgroup", {
+ *     displayName: "tf-test MonitoringSubGroup",
+ *     filter: "resource.metadata.region=\"europe-west2\"",
+ *     parentName: parent.name,
+ * });
+ * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/monitoring_group.html.markdown.
  */

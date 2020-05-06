@@ -29,6 +29,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Region Health Check Tcp
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -41,9 +42,11 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Region Health Check Tcp Full
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -63,9 +66,11 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Region Health Check Ssl
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -78,9 +83,11 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Region Health Check Ssl Full
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -100,9 +107,11 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Region Health Check Http
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -115,9 +124,31 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{ % /example % }}
+ * ## Example Usage - Region Health Check Http Logs
+ * 
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const http-region-health-check = new gcp.compute.RegionHealthCheck("http-region-health-check", {
+ *     timeoutSec: 1,
+ *     checkIntervalSec: 1,
+ *     http_health_check: {
+ *         port: "80",
+ *     },
+ *     log_config: {
+ *         enable: true,
+ *     },
+ * });
+ * ```
+ * {{ % /example % }}
  * ## Example Usage - Region Health Check Http Full
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -138,9 +169,11 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Region Health Check Https
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -153,9 +186,11 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Region Health Check Https Full
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -176,9 +211,11 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Region Health Check Http2
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -191,9 +228,11 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Region Health Check Http2 Full
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -214,6 +253,7 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_region_health_check.html.markdown.
  */

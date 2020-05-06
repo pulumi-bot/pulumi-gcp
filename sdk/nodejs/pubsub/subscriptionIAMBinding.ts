@@ -17,8 +17,29 @@ import * as utilities from "../utilities";
  * 
  * > **Note:** `gcp.pubsub.SubscriptionIAMBinding` resources **can be** used in conjunction with `gcp.pubsub.SubscriptionIAMMember` resources **only if** they do not grant privilege to the same role.
  * 
+ * ## google\_pubsub\_subscription\_iam\_policy
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const admin = gcp.organizations.getIAMPolicy({
+ *     binding: [{
+ *         role: "roles/editor",
+ *         members: ["user:jane@example.com"],
+ *     }],
+ * });
+ * const editor = new gcp.pubsub.SubscriptionIAMPolicy("editor", {
+ *     subscription: "your-subscription-name",
+ *     policyData: admin.then(admin => admin.policyData),
+ * });
+ * ```
+ * {{ % /example % }}
+ * 
  * ## google\_pubsub\_subscription\_iam\_binding
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -29,9 +50,11 @@ import * as utilities from "../utilities";
  *     subscription: "your-subscription-name",
  * });
  * ```
+ * {{ % /example % }}
  * 
  * ## google\_pubsub\_subscription\_iam\_member
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -42,6 +65,7 @@ import * as utilities from "../utilities";
  *     subscription: "your-subscription-name",
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/pubsub_subscription_iam.html.markdown.
  */

@@ -12,6 +12,37 @@ import * as utilities from "../utilities";
  * You must enable the
  * [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
  * the marketplace prior to using this resource.
+ * 
+ * 
+ * 
+ * ## Example Usage - Identity Platform Tenant Inbound Saml Config Basic
+ * 
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * import * from "fs";
+ * 
+ * const tenant = new gcp.identityplatform.Tenant("tenant", {displayName: "tenant"});
+ * const tenantSamlConfig = new gcp.identityplatform.TenantInboundSamlConfig("tenantSamlConfig", {
+ *     displayName: "Display Name",
+ *     tenant: tenant.name,
+ *     idp_config: {
+ *         idpEntityId: "tf-idp",
+ *         signRequest: true,
+ *         ssoUrl: "https://example.com",
+ *         idp_certificates: [{
+ *             x509Certificate: fs.readFileSync("test-fixtures/rsa_cert.pem"),
+ *         }],
+ *     },
+ *     sp_config: {
+ *         spEntityId: "tf-sp",
+ *         callbackUri: "https://example.com",
+ *     },
+ * });
+ * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/identity_platform_tenant_inbound_saml_config.html.markdown.
  */

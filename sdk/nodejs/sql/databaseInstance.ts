@@ -37,24 +37,6 @@ import * as utilities from "../utilities";
  * instance creation. You should use `gcp.sql.User` to define a custom user with
  * a restricted host and strong password.
  * 
- * ## Example Usage
- * 
- * ### SQL Second Generation Instance
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const master = new gcp.sql.DatabaseInstance("master", {
- *     databaseVersion: "POSTGRES_11",
- *     region: "us-central1",
- *     settings: {
- *         // Second-generation instance tiers are based on the machine
- *         // type. See argument reference below.
- *         tier: "db-f1-micro",
- *     },
- * });
- * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/sql_database_instance.html.markdown.
  */

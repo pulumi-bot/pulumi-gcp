@@ -79,6 +79,28 @@ class Instance(pulumi.CustomResource):
             * [Use with Kubernetes](https://cloud.google.com/filestore/docs/accessing-fileshares)
             * [Copying Data In/Out](https://cloud.google.com/filestore/docs/copying-data)
 
+        ## Example Usage - Filestore Instance Basic
+
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.filestore.Instance("instance",
+            file_shares={
+                "capacityGb": 2660,
+                "name": "share1",
+            },
+            networks=[{
+                "modes": ["MODE_IPV4"],
+                "network": "default",
+            }],
+            tier="PREMIUM",
+            zone="us-central1-b")
+        ```
+        {{ % /example % }}
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A description of the instance.

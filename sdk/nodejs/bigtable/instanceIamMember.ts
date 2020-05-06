@@ -17,8 +17,30 @@ import * as utilities from "../utilities";
  * 
  * > **Note:** `gcp.bigtable.InstanceIamBinding` resources **can be** used in conjunction with `gcp.bigtable.InstanceIamMember` resources **only if** they do not grant privilege to the same role.
  * 
+ * ## google\_bigtable\_instance\_iam\_policy
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const admin = gcp.organizations.getIAMPolicy({
+ *     binding: [{
+ *         role: "roles/editor",
+ *         members: ["user:jane@example.com"],
+ *     }],
+ * });
+ * const editor = new gcp.bigtable.InstanceIamPolicy("editor", {
+ *     project: "your-project",
+ *     instance: "your-bigtable-instance",
+ *     policyData: admin.then(admin => admin.policyData),
+ * });
+ * ```
+ * {{ % /example % }}
+ * 
  * ## google\_bigtable\_instance\_iam\_binding
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -29,9 +51,11 @@ import * as utilities from "../utilities";
  *     role: "roles/editor",
  * });
  * ```
+ * {{ % /example % }}
  * 
  * ## google\_bigtable\_instance\_iam\_member
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -42,6 +66,7 @@ import * as utilities from "../utilities";
  *     role: "roles/editor",
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/bigtable_instance_iam.html.markdown.
  */

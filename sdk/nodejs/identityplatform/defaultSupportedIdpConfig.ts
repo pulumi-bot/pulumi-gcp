@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Identity Platform Default Supported Idp Config Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -27,6 +28,7 @@ import * as utilities from "../utilities";
  *     idpId: "playgames.google.com",
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/identity_platform_default_supported_idp_config.html.markdown.
  */

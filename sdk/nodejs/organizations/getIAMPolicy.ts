@@ -14,6 +14,7 @@ import * as utilities from "../utilities";
  * See the [setIamPolicy docs](https://cloud.google.com/resource-manager/reference/rest/v1/projects/setIamPolicy)
  * for a list of these restrictions.
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -46,6 +47,7 @@ import * as utilities from "../utilities";
  *     ],
  * }, { async: true }));
  * ```
+ * {{ % /example % }}
  * 
  * This data source is used to define IAM policies to apply to other resources.
  * Currently, defining a policy through a datasource and referencing that policy

@@ -9,23 +9,6 @@ import * as utilities from "../utilities";
  * the official documentation for
  * [Beam](https://beam.apache.org) and [Dataflow](https://cloud.google.com/dataflow/).
  * 
- * ## Example Usage
- * 
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const bigDataJob = new gcp.dataflow.Job("bigDataJob", {
- *     parameters: {
- *         baz: "qux",
- *         foo: "bar",
- *     },
- *     tempGcsLocation: "gs://my-bucket/tmp_dir",
- *     templateGcsPath: "gs://my-bucket/templates/template_file",
- * });
- * ```
  * 
  * ## Note on "destroy" / "apply"
  * 

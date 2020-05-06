@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Identity Platform Oauth Idp Config Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -30,6 +31,7 @@ import * as utilities from "../utilities";
  *     issuer: "issuer",
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/identity_platform_oauth_idp_config.html.markdown.
  */

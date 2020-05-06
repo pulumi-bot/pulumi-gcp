@@ -24,6 +24,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Kms Key Ring Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -32,6 +33,7 @@ import * as utilities from "../utilities";
  *     location: "global",
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/kms_key_ring.html.markdown.
  */

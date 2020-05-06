@@ -161,6 +161,84 @@ class Subscription(pulumi.CustomResource):
         * How-to Guides
             * [Managing Subscriptions](https://cloud.google.com/pubsub/docs/admin#managing_subscriptions)
 
+        ## Example Usage - Pubsub Subscription Push
+
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example_topic = gcp.pubsub.Topic("exampleTopic")
+        example_subscription = gcp.pubsub.Subscription("exampleSubscription",
+            topic=example_topic.name,
+            ack_deadline_seconds=20,
+            labels={
+                "foo": "bar",
+            },
+            push_config={
+                "pushEndpoint": "https://example.com/push",
+                "attributes": {
+                    "x-goog-version": "v1",
+                },
+            })
+        ```
+        {{ % /example % }}
+        ## Example Usage - Pubsub Subscription Pull
+
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example_topic = gcp.pubsub.Topic("exampleTopic")
+        example_subscription = gcp.pubsub.Subscription("exampleSubscription",
+            topic=example_topic.name,
+            labels={
+                "foo": "bar",
+            },
+            message_retention_duration="1200s",
+            retain_acked_messages=True,
+            ack_deadline_seconds=20,
+            expiration_policy={
+                "ttl": "300000.5s",
+            })
+        ```
+        {{ % /example % }}
+        ## Example Usage - Pubsub Subscription Different Project
+
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example_topic = gcp.pubsub.Topic("exampleTopic", project="topic-project")
+        example_subscription = gcp.pubsub.Subscription("exampleSubscription",
+            project="subscription-project",
+            topic=example_topic.name)
+        ```
+        {{ % /example % }}
+        ## Example Usage - Pubsub Subscription Dead Letter
+
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example_topic = gcp.pubsub.Topic("exampleTopic")
+        example_dead_letter = gcp.pubsub.Topic("exampleDeadLetter")
+        example_subscription = gcp.pubsub.Subscription("exampleSubscription",
+            topic=example_topic.name,
+            dead_letter_policy={
+                "deadLetterTopic": example_dead_letter.id,
+                "maxDeliveryAttempts": 10,
+            })
+        ```
+        {{ % /example % }}
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[float] ack_deadline_seconds: This value is the maximum time after a subscriber receives a message

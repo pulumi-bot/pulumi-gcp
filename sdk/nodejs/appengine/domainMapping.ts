@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - App Engine Domain Mapping Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -30,6 +31,7 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/app_engine_domain_mapping.html.markdown.
  */

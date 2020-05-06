@@ -19,8 +19,59 @@ import * as utilities from "../utilities";
  * 
  * 
  * 
+ * ## google\_iap\_app\_engine\_version\_iam\_policy
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const admin = gcp.organizations.getIAMPolicy({
+ *     binding: [{
+ *         role: "roles/iap.httpsResourceAccessor",
+ *         members: ["user:jane@example.com"],
+ *     }],
+ * });
+ * const policy = new gcp.iap.AppEngineVersionIamPolicy("policy", {
+ *     project: google_app_engine_standard_app_version.version.project,
+ *     appId: google_app_engine_standard_app_version.version.project,
+ *     service: google_app_engine_standard_app_version.version.service,
+ *     versionId: google_app_engine_standard_app_version.version.version_id,
+ *     policyData: admin.then(admin => admin.policyData),
+ * });
+ * ```
+ * {{ % /example % }}
+ * 
+ * With IAM Conditions:
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const admin = gcp.organizations.getIAMPolicy({
+ *     binding: [{
+ *         role: "roles/iap.httpsResourceAccessor",
+ *         members: ["user:jane@example.com"],
+ *         condition: {
+ *             title: "expiresAfter20191231",
+ *             description: "Expiring at midnight of 2019-12-31",
+ *             expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+ *         },
+ *     }],
+ * });
+ * const policy = new gcp.iap.AppEngineVersionIamPolicy("policy", {
+ *     project: google_app_engine_standard_app_version.version.project,
+ *     appId: google_app_engine_standard_app_version.version.project,
+ *     service: google_app_engine_standard_app_version.version.service,
+ *     versionId: google_app_engine_standard_app_version.version.version_id,
+ *     policyData: admin.then(admin => admin.policyData),
+ * });
+ * ```
+ * {{ % /example % }}
  * ## google\_iap\_app\_engine\_version\_iam\_binding
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -34,9 +85,11 @@ import * as utilities from "../utilities";
  *     versionId: google_app_engine_standard_app_version_version.versionId,
  * });
  * ```
+ * {{ % /example % }}
  * 
  * With IAM Conditions:
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -55,8 +108,10 @@ import * as utilities from "../utilities";
  *     versionId: google_app_engine_standard_app_version_version.versionId,
  * });
  * ```
+ * {{ % /example % }}
  * ## google\_iap\_app\_engine\_version\_iam\_member
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -70,9 +125,11 @@ import * as utilities from "../utilities";
  *     versionId: google_app_engine_standard_app_version_version.versionId,
  * });
  * ```
+ * {{ % /example % }}
  * 
  * With IAM Conditions:
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -91,6 +148,7 @@ import * as utilities from "../utilities";
  *     versionId: google_app_engine_standard_app_version_version.versionId,
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/iap_app_engine_version_iam.html.markdown.
  */

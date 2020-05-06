@@ -29,6 +29,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Health Check Tcp
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -41,9 +42,11 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Health Check Tcp Full
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -63,9 +66,11 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Health Check Ssl
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -78,9 +83,11 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Health Check Ssl Full
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -100,9 +107,11 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Health Check Http
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -115,9 +124,11 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Health Check Http Full
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -138,9 +149,11 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Health Check Https
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -153,9 +166,11 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Health Check Https Full
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -176,9 +191,11 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Health Check Http2
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -191,9 +208,11 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Health Check Http2 Full
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -214,6 +233,27 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ * {{ % /example % }}
+ * ## Example Usage - Health Check With Logging
+ * 
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const health-check-with-logging = new gcp.compute.HealthCheck("health-check-with-logging", {
+ *     timeoutSec: 1,
+ *     checkIntervalSec: 1,
+ *     tcp_health_check: {
+ *         port: "22",
+ *     },
+ *     log_config: {
+ *         enable: true,
+ *     },
+ * });
+ * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_health_check.html.markdown.
  */

@@ -9,18 +9,6 @@ import * as utilities from "../utilities";
 /**
  * Get a forwarding rule within GCE from its name.
  * 
- * ## Example Usage
- * 
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const myForwardingRule = pulumi.output(gcp.compute.getForwardingRule({
- *     name: "forwarding-rule-us-east1",
- * }, { async: true }));
- * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_compute_forwarding_rule.html.markdown.
  */

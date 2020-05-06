@@ -17,8 +17,29 @@ import * as utilities from "../utilities";
  * 
  * > **Note:** `gcp.healthcare.Hl7StoreIamBinding` resources **can be** used in conjunction with `gcp.healthcare.Hl7StoreIamMember` resources **only if** they do not grant privilege to the same role.
  * 
+ * ## google\_healthcare\_hl7\_v2\_store\_iam\_policy
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const admin = gcp.organizations.getIAMPolicy({
+ *     binding: [{
+ *         role: "roles/editor",
+ *         members: ["user:jane@example.com"],
+ *     }],
+ * });
+ * const hl7V2Store = new gcp.healthcare.Hl7StoreIamPolicy("hl7V2Store", {
+ *     hl7V2StoreId: "your-hl7-v2-store-id",
+ *     policyData: admin.then(admin => admin.policyData),
+ * });
+ * ```
+ * {{ % /example % }}
+ * 
  * ## google\_healthcare\_hl7\_v2\_store\_iam\_binding
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -29,9 +50,11 @@ import * as utilities from "../utilities";
  *     role: "roles/editor",
  * });
  * ```
+ * {{ % /example % }}
  * 
  * ## google\_healthcare\_hl7\_v2\_store\_iam\_member
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -42,6 +65,7 @@ import * as utilities from "../utilities";
  *     role: "roles/editor",
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/healthcare_hl7_v2_store_iam.html.markdown.
  */

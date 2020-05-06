@@ -27,6 +27,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Http Health Check Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -37,6 +38,7 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_http_health_check.html.markdown.
  */

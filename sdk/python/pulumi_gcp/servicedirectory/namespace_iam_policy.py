@@ -35,6 +35,47 @@ class NamespaceIamPolicy(pulumi.CustomResource):
 
         > **Note:** `servicedirectory.NamespaceIamBinding` resources **can be** used in conjunction with `servicedirectory.NamespaceIamMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_service\_directory\_namespace\_iam\_policy
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(binding=[{
+            "role": "roles/viewer",
+            "members": ["user:jane@example.com"],
+        }])
+        policy = gcp.servicedirectory.NamespaceIamPolicy("policy", policy_data=admin.policy_data)
+        ```
+        {{ % /example % }}
+
+        ## google\_service\_directory\_namespace\_iam\_binding
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        binding = gcp.servicedirectory.NamespaceIamBinding("binding",
+            role="roles/viewer",
+            members=["user:jane@example.com"])
+        ```
+        {{ % /example % }}
+
+        ## google\_service\_directory\_namespace\_iam\_member
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        member = gcp.servicedirectory.NamespaceIamMember("member",
+            role="roles/viewer",
+            member="user:jane@example.com")
+        ```
+        {{ % /example % }}
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Used to find the parent resource to bind the IAM policy to

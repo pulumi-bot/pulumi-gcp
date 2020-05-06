@@ -12,6 +12,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Resource Manager Lien
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -26,6 +27,7 @@ import * as utilities from "../utilities";
  *     restrictions: ["resourcemanager.projects.delete"],
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/resource_manager_lien.html.markdown.
  */

@@ -43,6 +43,52 @@ class InstanceIamBinding(pulumi.CustomResource):
 
         > **Note:** `bigtable.InstanceIamBinding` resources **can be** used in conjunction with `bigtable.InstanceIamMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_bigtable\_instance\_iam\_policy
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(binding=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+        }])
+        editor = gcp.bigtable.InstanceIamPolicy("editor",
+            project="your-project",
+            instance="your-bigtable-instance",
+            policy_data=admin.policy_data)
+        ```
+        {{ % /example % }}
+
+        ## google\_bigtable\_instance\_iam\_binding
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        editor = gcp.bigtable.InstanceIamBinding("editor",
+            instance="your-bigtable-instance",
+            members=["user:jane@example.com"],
+            role="roles/editor")
+        ```
+        {{ % /example % }}
+
+        ## google\_bigtable\_instance\_iam\_member
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        editor = gcp.bigtable.InstanceIamMember("editor",
+            instance="your-bigtable-instance",
+            member="user:jane@example.com",
+            role="roles/editor")
+        ```
+        {{ % /example % }}
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance: The name or relative resource id of the instance to manage IAM policies for.

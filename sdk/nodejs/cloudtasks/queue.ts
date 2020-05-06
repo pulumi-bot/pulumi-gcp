@@ -14,6 +14,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Queue Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -22,6 +23,7 @@ import * as utilities from "../utilities";
  *     location: "us-central1",
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/cloud_tasks_queue.html.markdown.
  */

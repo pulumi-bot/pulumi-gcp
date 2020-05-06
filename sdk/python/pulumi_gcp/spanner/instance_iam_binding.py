@@ -46,6 +46,51 @@ class InstanceIAMBinding(pulumi.CustomResource):
 
         > **Note:** `spanner.InstanceIAMBinding` resources **can be** used in conjunction with `spanner.InstanceIAMMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_spanner\_instance\_iam\_policy
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(binding=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+        }])
+        instance = gcp.spanner.InstanceIAMPolicy("instance",
+            instance="your-instance-name",
+            policy_data=admin.policy_data)
+        ```
+        {{ % /example % }}
+
+        ## google\_spanner\_instance\_iam\_binding
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.spanner.InstanceIAMBinding("instance",
+            instance="your-instance-name",
+            members=["user:jane@example.com"],
+            role="roles/compute.networkUser")
+        ```
+        {{ % /example % }}
+
+        ## google\_spanner\_instance\_iam\_member
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.spanner.InstanceIAMMember("instance",
+            instance="your-instance-name",
+            member="user:jane@example.com",
+            role="roles/compute.networkUser")
+        ```
+        {{ % /example % }}
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance: The name of the instance.

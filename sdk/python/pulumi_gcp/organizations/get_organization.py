@@ -75,6 +75,18 @@ def get_organization(domain=None,organization=None,opts=None):
     """
     Use this data source to get information about a Google Cloud Organization.
 
+    {{ % example python % }}
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    org = gcp.organizations.get_organization(domain="example.com")
+    sales = gcp.organizations.Folder("sales",
+        display_name="Sales",
+        parent=org.name)
+    ```
+    {{ % /example % }}
+
 
     :param str domain: The domain name of the Organization.
     :param str organization: The name of the Organization in the form `{organization_id}` or `organizations/{organization_id}`.

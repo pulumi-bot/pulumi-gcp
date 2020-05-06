@@ -70,6 +70,18 @@ class Network(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/vpc/docs/vpc)
 
+        ## Example Usage - Network Basic
+
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        vpc_network = gcp.compute.Network("vpcNetwork")
+        ```
+        {{ % /example % }}
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_create_subnetworks: When set to `true`, the network is created in "auto subnet mode" and

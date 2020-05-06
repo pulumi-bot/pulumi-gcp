@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Router Peer Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -35,6 +36,7 @@ import * as utilities from "../utilities";
  *     router: "my-router",
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_router_bgp_peer.html.markdown.
  */

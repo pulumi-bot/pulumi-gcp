@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Ml Model Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -26,9 +27,11 @@ import * as utilities from "../utilities";
  *     regions: "us-central1",
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Ml Model Full
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -43,6 +46,7 @@ import * as utilities from "../utilities";
  *     regions: "us-central1",
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/ml_engine_model.html.markdown.
  */

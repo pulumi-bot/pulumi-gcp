@@ -11,20 +11,28 @@ import * as utilities from "../utilities";
  * 
  * For more info about signed URL's is available [here](https://cloud.google.com/storage/docs/access-control/signed-urls).
  * 
- * ## Example Usage
  * 
+ * ## Full Example
  * 
- * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
+ * import * from "fs";
  * 
- * const artifact = pulumi.output(gcp.storage.getObjectSignedUrl({
- *     bucket: "installBinaries",
- *     path: "path/to/install_file.bin",
- * }, { async: true }));
- * const vm = new gcp.compute.Instance("vm", {});
+ * const getUrl = gcp.storage.getObjectSignedUrl({
+ *     bucket: "friedChicken",
+ *     path: "path/to/file",
+ *     contentMd5: "pRviqwS4c4OTJRTe03FD1w==",
+ *     contentType: "text/plain",
+ *     duration: "2d",
+ *     credentials: fs.readFileSync("path/to/credentials.json"),
+ *     extensionHeaders: {
+ *         "x-goog-if-generation-match": 1,
+ *     },
+ * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/signed_url.html.markdown.
  */

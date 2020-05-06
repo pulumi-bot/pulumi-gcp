@@ -57,6 +57,16 @@ def get_rule(name=None,opts=None):
     """
     Use this data source to get information about a Google IAM Role.
 
+    {{ % example python % }}
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    roleinfo = gcp.iam.get_rule(name="roles/compute.viewer")
+    pulumi.export("theRolePermissions", roleinfo.included_permissions)
+    ```
+    {{ % /example % }}
+
 
     :param str name: The name of the Role to lookup in the form `roles/{ROLE_NAME}`, `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` or `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
     """

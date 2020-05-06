@@ -16,6 +16,58 @@ import * as utilities from "../utilities";
  * > **Note:** `gcp.endpoints.ServiceIamPolicy` **cannot** be used in conjunction with `gcp.endpoints.ServiceIamBinding` and `gcp.endpoints.ServiceIamMember` or they will fight over what your policy should be.
  * 
  * > **Note:** `gcp.endpoints.ServiceIamBinding` resources **can be** used in conjunction with `gcp.endpoints.ServiceIamMember` resources **only if** they do not grant privilege to the same role.
+ * 
+ * 
+ * 
+ * ## google\_endpoints\_service\_iam\_policy
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const admin = gcp.organizations.getIAMPolicy({
+ *     binding: [{
+ *         role: "roles/viewer",
+ *         members: ["user:jane@example.com"],
+ *     }],
+ * });
+ * const policy = new gcp.endpoints.ServiceIamPolicy("policy", {
+ *     serviceName: google_endpoints_service.endpoints_service.service_name,
+ *     policyData: admin.then(admin => admin.policyData),
+ * });
+ * ```
+ * {{ % /example % }}
+ * 
+ * ## google\_endpoints\_service\_iam\_binding
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const binding = new gcp.endpoints.ServiceIamBinding("binding", {
+ *     serviceName: google_endpoints_service.endpoints_service.service_name,
+ *     role: "roles/viewer",
+ *     members: ["user:jane@example.com"],
+ * });
+ * ```
+ * {{ % /example % }}
+ * 
+ * ## google\_endpoints\_service\_iam\_member
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const member = new gcp.endpoints.ServiceIamMember("member", {
+ *     serviceName: google_endpoints_service.endpoints_service.service_name,
+ *     role: "roles/viewer",
+ *     member: "user:jane@example.com",
+ * });
+ * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/endpoints_service_iam.html.markdown.
  */

@@ -46,6 +46,111 @@ class BucketIAMBinding(pulumi.CustomResource):
 
         > **Note:** `storage.BucketIAMBinding` resources **can be** used in conjunction with `storage.BucketIAMMember` resources **only if** they do not grant privilege to the same role.
 
+
+
+        ## google\_storage\_bucket\_iam\_policy
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(binding=[{
+            "role": "roles/storage.admin",
+            "members": ["user:jane@example.com"],
+        }])
+        policy = gcp.storage.BucketIAMPolicy("policy",
+            bucket=google_storage_bucket["default"]["name"],
+            policy_data=admin.policy_data)
+        ```
+        {{ % /example % }}
+
+        With IAM Conditions:
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(binding=[{
+            "role": "roles/storage.admin",
+            "members": ["user:jane@example.com"],
+            "condition": {
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            },
+        }])
+        policy = gcp.storage.BucketIAMPolicy("policy",
+            bucket=google_storage_bucket["default"]["name"],
+            policy_data=admin.policy_data)
+        ```
+        {{ % /example % }}
+        ## google\_storage\_bucket\_iam\_binding
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        binding = gcp.storage.BucketIAMBinding("binding",
+            bucket=google_storage_bucket["default"]["name"],
+            role="roles/storage.admin",
+            members=["user:jane@example.com"])
+        ```
+        {{ % /example % }}
+
+        With IAM Conditions:
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        binding = gcp.storage.BucketIAMBinding("binding",
+            bucket=google_storage_bucket["default"]["name"],
+            role="roles/storage.admin",
+            members=["user:jane@example.com"],
+            condition={
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            })
+        ```
+        {{ % /example % }}
+        ## google\_storage\_bucket\_iam\_member
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        member = gcp.storage.BucketIAMMember("member",
+            bucket=google_storage_bucket["default"]["name"],
+            role="roles/storage.admin",
+            member="user:jane@example.com")
+        ```
+        {{ % /example % }}
+
+        With IAM Conditions:
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        member = gcp.storage.BucketIAMMember("member",
+            bucket=google_storage_bucket["default"]["name"],
+            role="roles/storage.admin",
+            member="user:jane@example.com",
+            condition={
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            })
+        ```
+        {{ % /example % }}
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: Used to find the parent resource to bind the IAM policy to

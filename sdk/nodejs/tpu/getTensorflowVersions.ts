@@ -9,16 +9,23 @@ import * as utilities from "../utilities";
 /**
  * Get TensorFlow versions available for a project. For more information see the [official documentation](https://cloud.google.com/tpu/docs/) and [API](https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.tensorflowVersions).
  * 
- * ## Example Usage
  * 
+ * ## Example Usage: Configure Basic TPU Node with available version
  * 
- * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
- * const available = pulumi.output(gcp.tpu.getTensorflowVersions({ async: true }));
+ * const available = gcp.tpu.getTensorflowVersions({});
+ * const tpu = new gcp.tpu.Node("tpu", {
+ *     zone: "us-central1-b",
+ *     acceleratorType: "v3-8",
+ *     tensorflowVersion: available.then(available => available.versions[0]),
+ *     cidrBlock: "10.2.0.0/29",
+ * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/datasource_tpu_tensorflow_versions.html.markdown.
  */

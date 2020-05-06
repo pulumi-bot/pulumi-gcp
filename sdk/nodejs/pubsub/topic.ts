@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Pubsub Topic Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -29,9 +30,24 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{ % /example % }}
+ * ## Example Usage - Pubsub Topic Cmek
+ * 
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const keyRing = new gcp.kms.KeyRing("keyRing", {location: "global"});
+ * const cryptoKey = new gcp.kms.CryptoKey("cryptoKey", {keyRing: keyRing.selfLink});
+ * const example = new gcp.pubsub.Topic("example", {kmsKeyName: cryptoKey.selfLink});
+ * ```
+ * {{ % /example % }}
  * ## Example Usage - Pubsub Topic Geo Restricted
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -42,6 +58,7 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/pubsub_topic.html.markdown.
  */

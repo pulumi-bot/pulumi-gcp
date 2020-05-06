@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Global Network Endpoint Group
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -29,9 +30,11 @@ import * as utilities from "../utilities";
  *     networkEndpointType: "INTERNET_FQDN_PORT",
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Global Network Endpoint Group Ip Address
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -41,6 +44,7 @@ import * as utilities from "../utilities";
  *     networkEndpointType: "INTERNET_IP_PORT",
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_global_network_endpoint_group.html.markdown.
  */

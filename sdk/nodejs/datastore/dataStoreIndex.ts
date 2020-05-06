@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Datastore Index
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -37,6 +38,7 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/datastore_index.html.markdown.
  */

@@ -38,6 +38,47 @@ class ServiceIamMember(pulumi.CustomResource):
 
         > **Note:** `servicedirectory.ServiceIamBinding` resources **can be** used in conjunction with `servicedirectory.ServiceIamMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_service\_directory\_service\_iam\_policy
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(binding=[{
+            "role": "roles/viewer",
+            "members": ["user:jane@example.com"],
+        }])
+        policy = gcp.servicedirectory.ServiceIamPolicy("policy", policy_data=admin.policy_data)
+        ```
+        {{ % /example % }}
+
+        ## google\_service\_directory\_service\_iam\_binding
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        binding = gcp.servicedirectory.ServiceIamBinding("binding",
+            role="roles/viewer",
+            members=["user:jane@example.com"])
+        ```
+        {{ % /example % }}
+
+        ## google\_service\_directory\_service\_iam\_member
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        member = gcp.servicedirectory.ServiceIamMember("member",
+            role="roles/viewer",
+            member="user:jane@example.com")
+        ```
+        {{ % /example % }}
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: Used to find the parent resource to bind the IAM policy to

@@ -53,6 +53,22 @@ class Note(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/container-analysis/)
 
+        ## Example Usage - Container Analysis Note Basic
+
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        note = gcp.containeranalysis.Note("note", attestation_authority={
+            "hint": {
+                "humanReadableName": "Attestor Note",
+            },
+        })
+        ```
+        {{ % /example % }}
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] attestation_authority: Note kind that represents a logical attestation "role" or "authority".

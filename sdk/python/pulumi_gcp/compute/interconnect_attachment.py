@@ -134,6 +134,23 @@ class InterconnectAttachment(pulumi.CustomResource):
         Represents an InterconnectAttachment (VLAN attachment) resource. For more
         information, see Creating VLAN Attachments.
 
+
+
+        ## Example Usage - Interconnect Attachment Basic
+
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        foobar = gcp.compute.Router("foobar", network=google_compute_network["foobar"]["name"])
+        on_prem = gcp.compute.InterconnectAttachment("onPrem",
+            interconnect="my-interconnect-id",
+            router=foobar.self_link)
+        ```
+        {{ % /example % }}
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] admin_enabled: Whether the VLAN attachment is enabled or disabled.  When using

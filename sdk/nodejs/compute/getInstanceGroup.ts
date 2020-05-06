@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  * For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/#unmanaged_instance_groups)
  * and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroups)
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -20,6 +21,7 @@ import * as utilities from "../utilities";
  *     zone: "us-central1-a",
  * }, { async: true }));
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_compute_instance_group.html.markdown.
  */

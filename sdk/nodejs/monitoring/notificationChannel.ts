@@ -38,6 +38,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Notification Channel Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -50,9 +51,11 @@ import * as utilities from "../utilities";
  *     type: "email",
  * });
  * ```
+ * {{ % /example % }}
  * ## Example Usage - Notification Channel Sensitive
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -68,6 +71,7 @@ import * as utilities from "../utilities";
  *     type: "slack",
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/monitoring_notification_channel.html.markdown.
  */

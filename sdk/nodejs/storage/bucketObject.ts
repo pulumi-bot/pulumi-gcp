@@ -15,19 +15,6 @@ import * as utilities from "../utilities";
  * [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
  * 
  * 
- * ## Example Usage
- * 
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const picture = new gcp.storage.BucketObject("picture", {
- *     bucket: "image-store",
- *     source: new pulumi.asset.FileAsset("/images/nature/garden-tiger-moth.jpg"),
- * });
- * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/storage_bucket_object.html.markdown.
  */

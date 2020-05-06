@@ -17,8 +17,31 @@ import * as utilities from "../utilities";
  * 
  * > **Note:** `gcp.dataproc.JobIAMBinding` resources **can be** used in conjunction with `gcp.dataproc.JobIAMMember` resources **only if** they do not grant privilege to the same role.
  * 
+ * ## google\_pubsub\_subscription\_iam\_policy
+ * 
+ * {{ % example typescript % }}
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ * 
+ * const admin = gcp.organizations.getIAMPolicy({
+ *     binding: [{
+ *         role: "roles/editor",
+ *         members: ["user:jane@example.com"],
+ *     }],
+ * });
+ * const editor = new gcp.dataproc.JobIAMPolicy("editor", {
+ *     project: "your-project",
+ *     region: "your-region",
+ *     jobId: "your-dataproc-job",
+ *     policyData: admin.then(admin => admin.policyData),
+ * });
+ * ```
+ * {{ % /example % }}
+ * 
  * ## google\_pubsub\_subscription\_iam\_binding
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -29,9 +52,11 @@ import * as utilities from "../utilities";
  *     role: "roles/editor",
  * });
  * ```
+ * {{ % /example % }}
  * 
  * ## google\_pubsub\_subscription\_iam\_member
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -42,6 +67,7 @@ import * as utilities from "../utilities";
  *     role: "roles/editor",
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dataproc_job_iam.html.markdown.
  */

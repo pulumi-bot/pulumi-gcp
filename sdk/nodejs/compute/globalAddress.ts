@@ -20,12 +20,14 @@ import * as utilities from "../utilities";
  * ## Example Usage - Global Address Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * 
  * const defaultGlobalAddress = new gcp.compute.GlobalAddress("default", {});
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_global_address.html.markdown.
  */

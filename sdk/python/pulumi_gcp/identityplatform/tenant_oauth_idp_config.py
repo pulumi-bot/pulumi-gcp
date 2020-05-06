@@ -51,6 +51,27 @@ class TenantOauthIdpConfig(pulumi.CustomResource):
         [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
         the marketplace prior to using this resource.
 
+
+
+        ## Example Usage - Identity Platform Tenant Oauth Idp Config Basic
+
+
+        {{ % example python % }}
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        tenant = gcp.identityplatform.Tenant("tenant", display_name="tenant")
+        tenant_oauth_idp_config = gcp.identityplatform.TenantOauthIdpConfig("tenantOauthIdpConfig",
+            tenant=tenant.name,
+            display_name="Display Name",
+            client_id="client-id",
+            issuer="issuer",
+            enabled=True,
+            client_secret="secret")
+        ```
+        {{ % /example % }}
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: The client id of an OAuth client.

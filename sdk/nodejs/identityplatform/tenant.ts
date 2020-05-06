@@ -21,6 +21,7 @@ import * as utilities from "../utilities";
  * ## Example Usage - Identity Platform Tenant Basic
  * 
  * 
+ * {{ % example typescript % }}
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
@@ -30,6 +31,7 @@ import * as utilities from "../utilities";
  *     displayName: "tenant",
  * });
  * ```
+ * {{ % /example % }}
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/identity_platform_tenant.html.markdown.
  */

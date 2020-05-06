@@ -11,19 +11,6 @@ import * as utilities from "../utilities";
  * errors when you try to apply ACLs to service accounts immediately after
  * creation.
  * 
- * ## Example Usage
- * 
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const serviceAccount = new gcp.serviceAccount.Account("serviceAccount", {
- *     accountId: "serviceAccountId",
- *     displayName: "Service Account",
- * });
- * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_service_account.html.markdown.
  */

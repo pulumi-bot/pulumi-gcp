@@ -12,22 +12,6 @@ import * as utilities from "../utilities";
  * documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
  * [API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/setOrgPolicy).
  * 
- * ## Example Usage
- * 
- * 
- * 
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as gcp from "@pulumi/gcp";
- * 
- * const serialPortPolicy = new gcp.projects.OrganizationPolicy("serialPortPolicy", {
- *     booleanPolicy: {
- *         enforced: true,
- *     },
- *     constraint: "compute.disableSerialPortAccess",
- *     project: "your-project-id",
- * });
- * ```
  *
  * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_project_organization_policy.html.markdown.
  */
