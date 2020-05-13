@@ -8,24 +8,24 @@ import * as utilities from "../utilities";
 
 /**
  * Get TensorFlow versions available for a project. For more information see the [official documentation](https://cloud.google.com/tpu/docs/) and [API](https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.tensorflowVersions).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const available = pulumi.output(gcp.tpu.getTensorflowVersions({ async: true }));
  * ```
- * 
+ *
  * ## Example Usage: Configure Basic TPU Node with available version
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const available = gcp.tpu.getTensorflowVersions({});
  * const tpu = new gcp.tpu.Node("tpu", {
  *     zone: "us-central1-b",

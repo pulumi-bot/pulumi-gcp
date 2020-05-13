@@ -6,9 +6,9 @@ import * as utilities from "../utilities";
 
 /**
  * A Google Cloud Firebase web application instance
- * 
+ *
  * To get more information about WebApp, see:
- * 
+ *
  * * [API documentation](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.webApps)
  * * How-to Guides
  *     * [Official Documentation](https://firebase.google.com/)

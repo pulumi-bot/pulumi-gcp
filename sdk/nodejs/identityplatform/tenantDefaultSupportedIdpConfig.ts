@@ -8,20 +8,20 @@ import * as utilities from "../utilities";
 
 /**
  * Configurations options for the tenant for authenticating with a the standard set of Identity Toolkit-trusted IDPs.
- * 
+ *
  * You must enable the
  * [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
  * the marketplace prior to using this resource.
- * 
- * 
- * 
+ *
+ *
+ *
  * ## Example Usage - Identity Platform Tenant Default Supported Idp Config Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const tenant = new gcp.identityplatform.Tenant("tenant", {displayName: "tenant"});
  * const idpConfig = new gcp.identityplatform.TenantDefaultSupportedIdpConfig("idpConfig", {
  *     enabled: true,

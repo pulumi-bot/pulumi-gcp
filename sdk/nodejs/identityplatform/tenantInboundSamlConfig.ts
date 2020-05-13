@@ -8,21 +8,21 @@ import * as utilities from "../utilities";
 
 /**
  * Inbound SAML configuration for a Identity Toolkit tenant.
- * 
+ *
  * You must enable the
  * [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
  * the marketplace prior to using this resource.
- * 
- * 
- * 
+ *
+ *
+ *
  * ## Example Usage - Identity Platform Tenant Inbound Saml Config Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * import * from "fs";
- * 
+ *
  * const tenant = new gcp.identityplatform.Tenant("tenant", {displayName: "tenant"});
  * const tenantSamlConfig = new gcp.identityplatform.TenantInboundSamlConfig("tenantSamlConfig", {
  *     displayName: "Display Name",

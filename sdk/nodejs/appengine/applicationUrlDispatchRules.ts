@@ -8,19 +8,19 @@ import * as utilities from "../utilities";
 
 /**
  * Rules to match an HTTP request and dispatch that request to a service.
- * 
- * 
+ *
+ *
  * To get more information about ApplicationUrlDispatchRules, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps#UrlDispatchRule)
- * 
+ *
  * ## Example Usage - App Engine Application Url Dispatch Rules Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const bucket = new gcp.storage.Bucket("bucket", {});
  * const object = new gcp.storage.BucketObject("object", {
  *     bucket: bucket.name,

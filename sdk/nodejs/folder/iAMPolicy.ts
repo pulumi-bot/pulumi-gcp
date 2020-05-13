@@ -9,15 +9,15 @@ import * as utilities from "../utilities";
 /**
  * Allows creation and management of the IAM policy for an existing Google Cloud
  * Platform folder.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const department1 = new gcp.organizations.Folder("department1", {
  *     displayName: "Department 1",
  *     parent: "organizations/1234567",

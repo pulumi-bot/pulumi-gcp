@@ -12,11 +12,11 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/dns/zones/)
  * and
  * [API](https://cloud.google.com/dns/api/v1/managedZones).
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const envDnsZone = gcp.dns.getManagedZone({
  *     name: "qa-zone",
  * });

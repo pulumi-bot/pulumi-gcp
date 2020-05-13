@@ -11,23 +11,23 @@ import * as utilities from "../utilities";
  * when a policy violation is detected. Examples of channels include email, SMS,
  * and third-party messaging applications. Fields containing sensitive information
  * like authentication tokens or contact info are only partially populated on retrieval.
- * 
- * 
+ *
+ *
  * To get more information about NotificationChannel, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.notificationChannels)
  * * How-to Guides
  *     * [Notification Options](https://cloud.google.com/monitoring/support/notification-options)
  *     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
- * 
- * 
+ *
+ *
  * ## Example Usage - Notification Channel Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const basic = gcp.monitoring.getNotificationChannel({
  *     displayName: "Test Notification Channel",
  * });

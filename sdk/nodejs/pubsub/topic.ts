@@ -8,21 +8,21 @@ import * as utilities from "../utilities";
 
 /**
  * A named resource to which messages are sent by publishers.
- * 
- * 
+ *
+ *
  * To get more information about Topic, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
  * * How-to Guides
  *     * [Managing Topics](https://cloud.google.com/pubsub/docs/admin#managing_topics)
- * 
+ *
  * ## Example Usage - Pubsub Topic Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const example = new gcp.pubsub.Topic("example", {
  *     labels: {
  *         foo: "bar",
@@ -30,23 +30,23 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Pubsub Topic Cmek
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const keyRing = new gcp.kms.KeyRing("keyRing", {location: "global"});
  * const cryptoKey = new gcp.kms.CryptoKey("cryptoKey", {keyRing: keyRing.selfLink});
  * const example = new gcp.pubsub.Topic("example", {kmsKeyName: cryptoKey.selfLink});
  * ```
  * ## Example Usage - Pubsub Topic Geo Restricted
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const example = new gcp.pubsub.Topic("example", {
  *     messageStoragePolicy: {
  *         allowedPersistenceRegions: ["europe-west3"],

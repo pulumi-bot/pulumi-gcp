@@ -11,21 +11,21 @@ import * as utilities from "../utilities";
  * Learn about the differences between the standard environment and the flexible environment
  * at https://cloud.google.com/appengine/docs/the-appengine-environments.
  * Currently supporting Zip and File Containers.
- * 
- * 
+ *
+ *
  * To get more information about StandardAppVersion, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/appengine/docs/standard)
- * 
+ *
  * ## Example Usage - App Engine Standard App Version
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const bucket = new gcp.storage.Bucket("bucket", {});
  * const object = new gcp.storage.BucketObject("object", {
  *     bucket: bucket.name,

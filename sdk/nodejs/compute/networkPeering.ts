@@ -11,20 +11,20 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/compute/docs/vpc/vpc-peering)
  * and
  * [API](https://cloud.google.com/compute/docs/reference/latest/networks).
- * 
+ *
  * > Both network must create a peering with each other for the peering
  * to be functional.
- * 
+ *
  * > Subnets IP ranges across peered VPC networks cannot overlap.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const default = new gcp.compute.Network("default", {autoCreateSubnetworks: "false"});
  * const other = new gcp.compute.Network("other", {autoCreateSubnetworks: "false"});
  * const peering1 = new gcp.compute.NetworkPeering("peering1", {
@@ -67,12 +67,12 @@ export class NetworkPeering extends pulumi.CustomResource {
     }
 
     /**
-     * 
+     *
      * Whether to export the custom routes to the peer network. Defaults to `false`.
      */
     public readonly exportCustomRoutes!: pulumi.Output<boolean | undefined>;
     /**
-     * 
+     *
      * Whether to export the custom routes from the peer network. Defaults to `false`.
      */
     public readonly importCustomRoutes!: pulumi.Output<boolean | undefined>;
@@ -150,12 +150,12 @@ export class NetworkPeering extends pulumi.CustomResource {
  */
 export interface NetworkPeeringState {
     /**
-     * 
+     *
      * Whether to export the custom routes to the peer network. Defaults to `false`.
      */
     readonly exportCustomRoutes?: pulumi.Input<boolean>;
     /**
-     * 
+     *
      * Whether to export the custom routes from the peer network. Defaults to `false`.
      */
     readonly importCustomRoutes?: pulumi.Input<boolean>;
@@ -188,12 +188,12 @@ export interface NetworkPeeringState {
  */
 export interface NetworkPeeringArgs {
     /**
-     * 
+     *
      * Whether to export the custom routes to the peer network. Defaults to `false`.
      */
     readonly exportCustomRoutes?: pulumi.Input<boolean>;
     /**
-     * 
+     *
      * Whether to export the custom routes from the peer network. Defaults to `false`.
      */
     readonly importCustomRoutes?: pulumi.Input<boolean>;

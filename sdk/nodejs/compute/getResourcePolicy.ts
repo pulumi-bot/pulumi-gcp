@@ -8,11 +8,11 @@ import * as utilities from "../utilities";
 
 /**
  * Provide access to a Resource Policy's attributes. For more information see [the official documentation](https://cloud.google.com/compute/docs/disks/scheduled-snapshots) or the [API](https://cloud.google.com/compute/docs/reference/rest/beta/resourcePolicies).
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const daily = gcp.compute.getResourcePolicy({
  *     name: "daily",
  *     region: "us-central1",

@@ -11,20 +11,20 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/compute/docs/storing-retrieving-metadata)
  * and
  * [API](https://cloud.google.com/compute/docs/reference/latest/projects/setCommonInstanceMetadata).
- * 
+ *
  * > **Note:**  This resource manages all project-level metadata including project-level ssh keys.
  * Keys unset in config but set on the server will be removed. If you want to manage only single
  * key/value pairs within the project metadata rather than the entire set, then use
  * google_compute_project_metadata_item.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const defaultProjectMetadata = new gcp.compute.ProjectMetadata("default", {
  *     metadata: {
  *         "13": "42",

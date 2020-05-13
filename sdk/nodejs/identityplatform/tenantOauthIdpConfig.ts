@@ -8,20 +8,20 @@ import * as utilities from "../utilities";
 
 /**
  * OIDC IdP configuration for a Identity Toolkit project within a tenant.
- * 
+ *
  * You must enable the
  * [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
  * the marketplace prior to using this resource.
- * 
- * 
- * 
+ *
+ *
+ *
  * ## Example Usage - Identity Platform Tenant Oauth Idp Config Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const tenant = new gcp.identityplatform.Tenant("tenant", {displayName: "tenant"});
  * const tenantOauthIdpConfig = new gcp.identityplatform.TenantOauthIdpConfig("tenantOauthIdpConfig", {
  *     tenant: tenant.name,

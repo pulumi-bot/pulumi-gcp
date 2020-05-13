@@ -10,20 +10,20 @@ import * as utilities from "../utilities";
  * Packet Mirroring mirrors traffic to and from particular VM instances.
  * You can use the collected traffic to help you detect security threats
  * and monitor application performance.
- * 
+ *
  * To get more information about PacketMirroring, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/packetMirroring)
  * * How-to Guides
  *     * [Using Packet Mirroring](https://cloud.google.com/vpc/docs/using-packet-mirroring#creating)
- * 
+ *
  * ## Example Usage - Compute Packet Mirroring Full
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const defaultNetwork = new gcp.compute.Network("defaultNetwork", {});
  * const mirror = new gcp.compute.Instance("mirror", {
  *     machineType: "n1-standard-1",

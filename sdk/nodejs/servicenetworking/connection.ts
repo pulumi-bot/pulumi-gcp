@@ -9,13 +9,13 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/vpc/docs/configure-private-services-access#creating-connection)
  * and
  * [API](https://cloud.google.com/service-infrastructure/docs/service-networking/reference/rest/v1/services.connections).
- * 
+ *
  * ## Example usage
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const peeringNetwork = new gcp.compute.Network("peeringNetwork", {});
  * const privateIpAlloc = new gcp.compute.GlobalAddress("privateIpAlloc", {
  *     purpose: "VPC_PEERING",

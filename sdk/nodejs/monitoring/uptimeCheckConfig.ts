@@ -8,24 +8,24 @@ import * as utilities from "../utilities";
 
 /**
  * This message configures which resources and services to monitor for availability.
- * 
- * 
+ *
+ *
  * To get more information about UptimeCheckConfig, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.uptimeCheckConfigs)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/monitoring/uptime-checks/)
- * 
+ *
  * > **Warning:** All arguments including `http_check.auth_info.password` will be stored in the raw
  * state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
- * 
+ *
  * ## Example Usage - Uptime Check Config Http
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const http = new gcp.monitoring.UptimeCheckConfig("http", {
  *     contentMatchers: [{
  *         content: "example",
@@ -46,12 +46,12 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Uptime Check Config Https
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const https = new gcp.monitoring.UptimeCheckConfig("https", {
  *     contentMatchers: [{
  *         content: "example",
@@ -74,12 +74,12 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Uptime Check Tcp
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const check = new gcp.monitoring.Group("check", {
  *     displayName: "uptime-check-group",
  *     filter: "resource.metadata.name=has_substring(\"foo\")",

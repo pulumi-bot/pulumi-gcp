@@ -9,21 +9,21 @@ import * as utilities from "../utilities";
 /**
  * Represents a Dialogflow intent. Intents convert a number of user expressions or patterns into an action. An action
  * is an extraction of a user command or sentence semantics.
- * 
- * 
+ *
+ *
  * To get more information about Intent, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/dialogflow/docs/reference/rest/v2/projects.agent.intents)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
- * 
+ *
  * ## Example Usage - Dialogflow Intent Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const basicAgent = new gcp.diagflow.Agent("basicAgent", {
  *     displayName: "exampleAgent",
  *     defaultLanguageCode: "en",

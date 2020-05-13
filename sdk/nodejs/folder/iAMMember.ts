@@ -9,20 +9,20 @@ import * as utilities from "../utilities";
 /**
  * Allows creation and management of a single member for a single binding within
  * the IAM policy for an existing Google Cloud Platform folder.
- * 
+ *
  * > **Note:** This resource _must not_ be used in conjunction with
  *    `gcp.folder.IAMPolicy` or they will fight over what your policy
  *    should be. Similarly, roles controlled by `gcp.folder.IAMBinding`
  *    should not be assigned to using `gcp.folder.IAMMember`.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const department1 = new gcp.organizations.Folder("department1", {
  *     displayName: "Department 1",
  *     parent: "organizations/1234567",

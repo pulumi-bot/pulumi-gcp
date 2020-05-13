@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Get information about a BackendBucket.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const myBackendBucket = pulumi.output(gcp.compute.getBackendBucket({
  *     name: "my-backend",
  * }, { async: true }));

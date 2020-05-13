@@ -9,16 +9,16 @@ import * as utilities from "../utilities";
 /**
  * Represents an InterconnectAttachment (VLAN attachment) resource. For more
  * information, see Creating VLAN Attachments.
- * 
- * 
- * 
+ *
+ *
+ *
  * ## Example Usage - Interconnect Attachment Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const foobar = new gcp.compute.Router("foobar", {network: google_compute_network.foobar.name});
  * const onPrem = new gcp.compute.InterconnectAttachment("onPrem", {
  *     interconnect: "my-interconnect-id",

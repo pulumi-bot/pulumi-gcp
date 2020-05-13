@@ -8,15 +8,15 @@ import * as utilities from "../utilities";
 
 /**
  * Get a router within GCE from its name and VPC.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const myRouter = pulumi.output(gcp.compute.getRouter({
  *     name: "myrouter-us-east1",
  *     network: "my-network",

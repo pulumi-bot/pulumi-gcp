@@ -9,20 +9,20 @@ import * as utilities from "../utilities";
 /**
  * This represents the rollout state. This is part of the game server
  * deployment.
- * 
+ *
  * To get more information about GameServerDeploymentRollout, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/game-servers/docs/reference/rest/v1beta/GameServerDeploymentRollout)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/game-servers/docs)
- * 
+ *
  * ## Example Usage - Game Service Deployment Rollout Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const defaultGameServerDeployment = new gcp.gameservices.GameServerDeployment("defaultGameServerDeployment", {
  *     deploymentId: "tf-test-deployment",
  *     description: "a deployment description",

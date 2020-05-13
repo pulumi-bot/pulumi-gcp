@@ -90,7 +90,7 @@ export class NodePool extends pulumi.CustomResource {
      */
     public readonly nodeCount!: pulumi.Output<number>;
     /**
-     * 
+     *
      * The list of zones in which the node pool's nodes should be located. Nodes must
      * be in the region of their regional cluster or in the same region as their
      * cluster's zone for zonal clusters. If unspecified, the cluster-level
@@ -238,7 +238,7 @@ export interface NodePoolState {
      */
     readonly nodeCount?: pulumi.Input<number>;
     /**
-     * 
+     *
      * The list of zones in which the node pool's nodes should be located. Nodes must
      * be in the region of their regional cluster or in the same region as their
      * cluster's zone for zonal clusters. If unspecified, the cluster-level
@@ -324,7 +324,7 @@ export interface NodePoolArgs {
      */
     readonly nodeCount?: pulumi.Input<number>;
     /**
-     * 
+     *
      * The list of zones in which the node pool's nodes should be located. Nodes must
      * be in the region of their regional cluster or in the same region as their
      * cluster's zone for zonal clusters. If unspecified, the cluster-level

@@ -10,21 +10,21 @@ import * as utilities from "../utilities";
  * A Global Network endpoint represents a IP address and port combination that exists outside of GCP.
  * **NOTE**: Global network endpoints cannot be created outside of a
  * global network endpoint group.
- * 
- * 
+ *
+ *
  * To get more information about GlobalNetworkEndpoint, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/networkEndpointGroups)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
- * 
+ *
  * ## Example Usage - Global Network Endpoint
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const default-endpoint = new gcp.compute.GlobalNetworkEndpoint("default-endpoint", {
  *     globalNetworkEndpointGroup: google_compute_network_endpoint_group.neg.name,
  *     fqdn: "www.example.com",

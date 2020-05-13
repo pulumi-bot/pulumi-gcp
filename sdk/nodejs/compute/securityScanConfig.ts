@@ -8,23 +8,23 @@ import * as utilities from "../utilities";
 
 /**
  * A ScanConfig resource contains the configurations to launch a scan.
- * 
+ *
  * To get more information about ScanConfig, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/security-scanner/docs/reference/rest/v1beta/projects.scanConfigs)
  * * How-to Guides
  *     * [Using Cloud Security Scanner](https://cloud.google.com/security-scanner/docs/scanning)
- * 
+ *
  * > **Warning:** All arguments including `authentication.google_account.password` and `authentication.custom_account.password` will be stored in the raw
  * state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
- * 
+ *
  * ## Example Usage - Scan Config Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const scannerStaticIp = new gcp.compute.Address("scannerStaticIp", {});
  * const scan-config = new gcp.compute.SecurityScanConfig("scan-config", {
  *     displayName: "scan-config",

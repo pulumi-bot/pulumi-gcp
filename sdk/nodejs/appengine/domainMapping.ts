@@ -8,21 +8,21 @@ import * as utilities from "../utilities";
 
 /**
  * A domain serving an App Engine application.
- * 
- * 
+ *
+ *
  * To get more information about DomainMapping, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.domainMappings)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/mapping-custom-domains)
- * 
+ *
  * ## Example Usage - App Engine Domain Mapping Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const domainMapping = new gcp.appengine.DomainMapping("domainMapping", {
  *     domainName: "verified-domain.com",
  *     sslSettings: {

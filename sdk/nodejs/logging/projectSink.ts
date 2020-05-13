@@ -12,19 +12,19 @@ import * as utilities from "../utilities";
  * [Exporting Logs in the API](https://cloud.google.com/logging/docs/api/tasks/exporting-logs)
  * and
  * [API](https://cloud.google.com/logging/docs/reference/v2/rest/).
- * 
+ *
  * > **Note:** You must have [granted the "Logs Configuration Writer"](https://cloud.google.com/logging/docs/access-control) IAM role (`roles/logging.configWriter`) to the credentials used with this provider.
- * 
+ *
  * > **Note** You must [enable the Cloud Resource Manager API](https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com)
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const mySink = new gcp.logging.ProjectSink("my-sink", {
  *     // Can export to pubsub, cloud storage, or bigquery
  *     destination: "pubsub.googleapis.com/projects/my-project/topics/instance-activity",

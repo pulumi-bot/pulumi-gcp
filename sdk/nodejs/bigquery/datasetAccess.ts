@@ -10,25 +10,25 @@ import * as utilities from "../utilities";
  * Gives dataset access for a single entity. This resource is intended to be used in cases where
  * it is not possible to compile a full list of access blocks to include in a
  * `gcp.bigquery.Dataset` resource, to enable them to be added separately.
- * 
+ *
  * > **Note:** If this resource is used alongside a `gcp.bigquery.Dataset` resource, the
  * dataset resource must either have no defined `access` blocks or a `lifecycle` block with
  * `ignoreChanges = [access]` so they don't fight over which accesses should be on the dataset.
- * 
- * 
+ *
+ *
  * To get more information about DatasetAccess, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets)
  * * How-to Guides
  *     * [Controlling access to datasets](https://cloud.google.com/bigquery/docs/dataset-access-controls)
- * 
+ *
  * ## Example Usage - Bigquery Dataset Access Basic User
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const dataset = new gcp.bigquery.Dataset("dataset", {datasetId: "exampleDataset"});
  * const bqowner = new gcp.serviceAccount.Account("bqowner", {accountId: "bqowner"});
  * const access = new gcp.bigquery.DatasetAccess("access", {
@@ -38,12 +38,12 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Bigquery Dataset Access View
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const private = new gcp.bigquery.Dataset("private", {datasetId: "exampleDataset"});
  * const publicDataset = new gcp.bigquery.Dataset("publicDataset", {datasetId: "exampleDataset2"});
  * const publicTable = new gcp.bigquery.Table("publicTable", {
