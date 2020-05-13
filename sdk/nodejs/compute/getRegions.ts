@@ -9,11 +9,11 @@ import * as utilities from "../utilities";
 /**
  * Provides access to available Google Compute regions for a given project.
  * See more about [regions and zones](https://cloud.google.com/compute/docs/regions-zones/) in the upstream docs.
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * export = async () => {
  *     const available = gcp.compute.getRegions({});
  *     const cluster: gcp.compute.Subnetwork[];
@@ -26,8 +26,6 @@ import * as utilities from "../utilities";
  *     }
  * }
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/d/google_compute_regions.html.markdown.
  */
 export function getRegions(args?: GetRegionsArgs, opts?: pulumi.InvokeOptions): Promise<GetRegionsResult> {
     args = args || {};
