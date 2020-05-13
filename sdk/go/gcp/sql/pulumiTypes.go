@@ -681,6 +681,8 @@ type DatabaseInstanceSettings struct {
 	// First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
 	// for information on how to upgrade to Second Generation instances.
 	// A list of Google App Engine (GAE) project names that are allowed to access this instance.
+	//
+	// This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
 	AuthorizedGaeApplications []string `pulumi:"authorizedGaeApplications"`
 	// This specifies whether a PostgreSQL instance
 	// should be set up for high availability (`REGIONAL`) or single zone (`ZONAL`).
@@ -691,6 +693,8 @@ type DatabaseInstanceSettings struct {
 	// for information on how to upgrade to Second Generation instances.
 	// Specific to read instances, indicates
 	// when crash-safe replication flags are enabled.
+	//
+	// This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
 	CrashSafeReplication *bool                                  `pulumi:"crashSafeReplication"`
 	DatabaseFlags        []DatabaseInstanceSettingsDatabaseFlag `pulumi:"databaseFlags"`
 	// Configuration to increase storage size automatically.  Note that future `pulumi apply` calls will attempt to resize the disk to the value specified in `diskSize` - if this is set, do not set `diskSize`.
@@ -708,6 +712,8 @@ type DatabaseInstanceSettings struct {
 	// First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
 	// for information on how to upgrade to Second Generation instances.
 	// Replication type for this instance, can be one of `ASYNCHRONOUS` or `SYNCHRONOUS`.
+	//
+	// This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
 	ReplicationType *string `pulumi:"replicationType"`
 	// The machine type to use. See [tiers](https://cloud.google.com/sql/docs/admin-api/v1beta4/tiers)
 	// for more details and supported versions. Postgres supports only shared-core machine types such as `db-f1-micro`,
@@ -738,6 +744,8 @@ type DatabaseInstanceSettingsArgs struct {
 	// First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
 	// for information on how to upgrade to Second Generation instances.
 	// A list of Google App Engine (GAE) project names that are allowed to access this instance.
+	//
+	// This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
 	AuthorizedGaeApplications pulumi.StringArrayInput `pulumi:"authorizedGaeApplications"`
 	// This specifies whether a PostgreSQL instance
 	// should be set up for high availability (`REGIONAL`) or single zone (`ZONAL`).
@@ -748,6 +756,8 @@ type DatabaseInstanceSettingsArgs struct {
 	// for information on how to upgrade to Second Generation instances.
 	// Specific to read instances, indicates
 	// when crash-safe replication flags are enabled.
+	//
+	// This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
 	CrashSafeReplication pulumi.BoolPtrInput                            `pulumi:"crashSafeReplication"`
 	DatabaseFlags        DatabaseInstanceSettingsDatabaseFlagArrayInput `pulumi:"databaseFlags"`
 	// Configuration to increase storage size automatically.  Note that future `pulumi apply` calls will attempt to resize the disk to the value specified in `diskSize` - if this is set, do not set `diskSize`.
@@ -765,6 +775,8 @@ type DatabaseInstanceSettingsArgs struct {
 	// First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
 	// for information on how to upgrade to Second Generation instances.
 	// Replication type for this instance, can be one of `ASYNCHRONOUS` or `SYNCHRONOUS`.
+	//
+	// This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
 	ReplicationType pulumi.StringPtrInput `pulumi:"replicationType"`
 	// The machine type to use. See [tiers](https://cloud.google.com/sql/docs/admin-api/v1beta4/tiers)
 	// for more details and supported versions. Postgres supports only shared-core machine types such as `db-f1-micro`,
@@ -863,6 +875,8 @@ func (o DatabaseInstanceSettingsOutput) ActivationPolicy() pulumi.StringPtrOutpu
 // First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
 // for information on how to upgrade to Second Generation instances.
 // A list of Google App Engine (GAE) project names that are allowed to access this instance.
+//
+// This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
 func (o DatabaseInstanceSettingsOutput) AuthorizedGaeApplications() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v DatabaseInstanceSettings) []string { return v.AuthorizedGaeApplications }).(pulumi.StringArrayOutput)
 }
@@ -884,6 +898,8 @@ func (o DatabaseInstanceSettingsOutput) BackupConfiguration() DatabaseInstanceSe
 // for information on how to upgrade to Second Generation instances.
 // Specific to read instances, indicates
 // when crash-safe replication flags are enabled.
+//
+// This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
 func (o DatabaseInstanceSettingsOutput) CrashSafeReplication() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DatabaseInstanceSettings) *bool { return v.CrashSafeReplication }).(pulumi.BoolPtrOutput)
 }
@@ -932,6 +948,8 @@ func (o DatabaseInstanceSettingsOutput) PricingPlan() pulumi.StringPtrOutput {
 // First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
 // for information on how to upgrade to Second Generation instances.
 // Replication type for this instance, can be one of `ASYNCHRONOUS` or `SYNCHRONOUS`.
+//
+// This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
 func (o DatabaseInstanceSettingsOutput) ReplicationType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseInstanceSettings) *string { return v.ReplicationType }).(pulumi.StringPtrOutput)
 }
@@ -985,6 +1003,8 @@ func (o DatabaseInstanceSettingsPtrOutput) ActivationPolicy() pulumi.StringPtrOu
 // First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
 // for information on how to upgrade to Second Generation instances.
 // A list of Google App Engine (GAE) project names that are allowed to access this instance.
+//
+// This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
 func (o DatabaseInstanceSettingsPtrOutput) AuthorizedGaeApplications() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DatabaseInstanceSettings) []string {
 		if v == nil {
@@ -1019,6 +1039,8 @@ func (o DatabaseInstanceSettingsPtrOutput) BackupConfiguration() DatabaseInstanc
 // for information on how to upgrade to Second Generation instances.
 // Specific to read instances, indicates
 // when crash-safe replication flags are enabled.
+//
+// This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
 func (o DatabaseInstanceSettingsPtrOutput) CrashSafeReplication() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstanceSettings) *bool {
 		if v == nil {
@@ -1108,6 +1130,8 @@ func (o DatabaseInstanceSettingsPtrOutput) PricingPlan() pulumi.StringPtrOutput 
 // First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
 // for information on how to upgrade to Second Generation instances.
 // Replication type for this instance, can be one of `ASYNCHRONOUS` or `SYNCHRONOUS`.
+//
+// This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
 func (o DatabaseInstanceSettingsPtrOutput) ReplicationType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstanceSettings) *string {
 		if v == nil {
