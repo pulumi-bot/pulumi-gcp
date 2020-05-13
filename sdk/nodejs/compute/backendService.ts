@@ -11,26 +11,26 @@ import * as utilities from "../utilities";
  * traffic for load balancing. This resource is a global backend service,
  * appropriate for external load balancing or self-managed internal load balancing.
  * For managed internal load balancing, use a regional backend service instead.
- * 
+ *
  * Currently self-managed internal load balancing is only available in beta.
- * 
- * 
+ *
+ *
  * To get more information about BackendService, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/v1/backendServices)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
- * 
+ *
  * > **Warning:** All arguments including `iap.oauth2_client_secret` and `iap.oauth2_client_secret_sha256` will be stored in the raw
  * state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
- * 
+ *
  * ## Example Usage - Backend Service Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const defaultHttpHealthCheck = new gcp.compute.HttpHealthCheck("defaultHttpHealthCheck", {
  *     requestPath: "/",
  *     checkIntervalSec: 1,
@@ -39,12 +39,12 @@ import * as utilities from "../utilities";
  * const defaultBackendService = new gcp.compute.BackendService("defaultBackendService", {healthChecks: [defaultHttpHealthCheck.selfLink]});
  * ```
  * ## Example Usage - Backend Service Traffic Director Round Robin
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {http_health_check: {
  *     port: 80,
  * }});
@@ -55,12 +55,12 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Backend Service Traffic Director Ring Hash
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {http_health_check: {
  *     port: 80,
  * }});

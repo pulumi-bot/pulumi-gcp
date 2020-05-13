@@ -14,27 +14,27 @@ import * as utilities from "../utilities";
  * team resource ownership. Service acts only as an orchestrator of the
  * underlying Routes and Configurations (much as a kubernetes Deployment
  * orchestrates ReplicaSets).
- * 
+ *
  * The Service's controller will track the statuses of its owned Configuration
  * and Route, reflecting their statuses and conditions as its own.
- * 
+ *
  * See also:
  * https://github.com/knative/serving/blob/master/docs/spec/overview.md#service
- * 
- * 
+ *
+ *
  * To get more information about Service, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/run/docs/reference/rest/v1/projects.locations.services)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/run/docs/)
- * 
+ *
  * ## Example Usage - Cloud Run Service Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const defaultService = new gcp.cloudrun.Service("default", {
  *     location: "us-central1",
  *     template: {
@@ -51,12 +51,12 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Cloud Run Service Sql
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const instance = new gcp.sql.DatabaseInstance("instance", {
  *     region: "us-east1",
  *     settings: {
@@ -83,12 +83,12 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Cloud Run Service Noauth
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const default = new gcp.cloudrun.Service("default", {
  *     location: "us-central1",
  *     template: {
@@ -113,12 +113,12 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Cloud Run Service Multiple Environment Variables
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const defaultService = new gcp.cloudrun.Service("default", {
  *     autogenerateRevisionName: true,
  *     location: "us-central1",

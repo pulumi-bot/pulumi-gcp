@@ -8,19 +8,19 @@ import * as utilities from "../utilities";
 
 /**
  * Three different resources help you manage your IAM policy for KMS crypto key. Each of these resources serves a different use case:
- * 
+ *
  * * `gcp.kms.CryptoKeyIAMPolicy`: Authoritative. Sets the IAM policy for the crypto key and replaces any existing policy already attached.
  * * `gcp.kms.CryptoKeyIAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the crypto key are preserved.
  * * `gcp.kms.CryptoKeyIAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the crypto key are preserved.
- * 
+ *
  * > **Note:** `gcp.kms.CryptoKeyIAMPolicy` **cannot** be used in conjunction with `gcp.kms.CryptoKeyIAMBinding` and `gcp.kms.CryptoKeyIAMMember` or they will fight over what your policy should be.
- * 
+ *
  * > **Note:** `gcp.kms.CryptoKeyIAMBinding` resources **can be** used in conjunction with `gcp.kms.CryptoKeyIAMMember` resources **only if** they do not grant privilege to the same role.
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const keyring = new gcp.kms.KeyRing("keyring", {location: "global"});
  * const key = new gcp.kms.CryptoKey("key", {
  *     keyRing: keyring.id,
@@ -37,13 +37,13 @@ import * as utilities from "../utilities";
  *     policyData: admin.then(admin => admin.policyData),
  * });
  * ```
- * 
+ *
  * With IAM Conditions:
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const admin = pulumi.output(gcp.organizations.getIAMPolicy({
  *     bindings: [{
  *         condition: {
@@ -56,24 +56,24 @@ import * as utilities from "../utilities";
  *     }],
  * }, { async: true }));
  * ```
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const cryptoKey = new gcp.kms.CryptoKeyIAMBinding("cryptoKey", {
  *     cryptoKeyId: google_kms_crypto_key.key.id,
  *     role: "roles/cloudkms.cryptoKeyEncrypter",
  *     members: ["user:jane@example.com"],
  * });
  * ```
- * 
+ *
  * With IAM Conditions:
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const cryptoKey = new gcp.kms.CryptoKeyIAMBinding("cryptoKey", {
  *     cryptoKeyId: google_kms_crypto_key.key.id,
  *     role: "roles/cloudkms.cryptoKeyEncrypter",
@@ -85,24 +85,24 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const cryptoKey = new gcp.kms.CryptoKeyIAMMember("cryptoKey", {
  *     cryptoKeyId: google_kms_crypto_key.key.id,
  *     role: "roles/cloudkms.cryptoKeyEncrypter",
  *     member: "user:jane@example.com",
  * });
  * ```
- * 
+ *
  * With IAM Conditions:
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const cryptoKey = new gcp.kms.CryptoKeyIAMMember("cryptoKey", {
  *     cryptoKeyId: google_kms_crypto_key.key.id,
  *     role: "roles/cloudkms.cryptoKeyEncrypter",

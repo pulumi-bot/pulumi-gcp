@@ -11,20 +11,20 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/compute/docs/instances)
  * and
  * [API](https://cloud.google.com/compute/docs/reference/latest/instances).
- * 
+ *
  * This resource is specifically to create a compute instance from a given
  * `sourceInstanceTemplate`. To create an instance without a template, use the
  * `gcp.compute.Instance` resource.
- * 
- * 
+ *
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const tplInstanceTemplate = new gcp.compute.InstanceTemplate("tplInstanceTemplate", {
  *     machineType: "n1-standard-1",
  *     disk: [{

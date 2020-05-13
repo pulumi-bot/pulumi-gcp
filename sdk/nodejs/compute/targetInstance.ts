@@ -13,21 +13,21 @@ import * as utilities from "../utilities";
  * non-NAT'ed target instance. Each target instance contains a single
  * virtual machine instance that receives and handles traffic from the
  * corresponding forwarding rules.
- * 
- * 
+ *
+ *
  * To get more information about TargetInstance, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/v1/targetInstances)
  * * How-to Guides
  *     * [Using Protocol Forwarding](https://cloud.google.com/compute/docs/protocol-forwarding)
- * 
+ *
  * ## Example Usage - Target Instance Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const vmimage = gcp.compute.getImage({
  *     family: "debian-9",
  *     project: "debian-cloud",

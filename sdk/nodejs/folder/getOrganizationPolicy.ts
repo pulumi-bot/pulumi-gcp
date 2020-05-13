@@ -10,15 +10,15 @@ import * as utilities from "../utilities";
  * Allows management of Organization policies for a Google Folder. For more information see
  * [the official
  * documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview)
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const policy = gcp.folder.getOrganizationPolicy({
  *     folder: "folders/folderid",
  *     constraint: "constraints/compute.trustedImageProjects",

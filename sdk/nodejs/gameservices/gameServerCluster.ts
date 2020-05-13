@@ -8,9 +8,9 @@ import * as utilities from "../utilities";
 
 /**
  * A game server cluster resource.
- * 
+ *
  * To get more information about GameServerCluster, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/game-servers/docs/reference/rest/v1beta/projects.locations.realms.gameServerClusters)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/game-servers/docs)

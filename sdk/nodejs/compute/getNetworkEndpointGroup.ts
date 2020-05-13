@@ -8,17 +8,17 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to access a Network Endpoint Group's attributes.
- * 
+ *
  * The NEG may be found by providing either a `selfLink`, or a `name` and a `zone`.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const neg1 = pulumi.output(gcp.compute.getNetworkEndpointGroup({
  *     name: "k8s1-abcdef01-myns-mysvc-8080-4b6bac43",
  *     zone: "us-central1-a",

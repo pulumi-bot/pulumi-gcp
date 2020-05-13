@@ -11,15 +11,15 @@ import * as utilities from "../utilities";
  * of homogeneous Compute Engine virtual machine instances from a common instance
  * template. For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/manager)
  * and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroupManagers)
- * 
+ *
  * > **Note:** Use [gcp.compute.RegionInstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html) to create a regional (multi-zone) instance group manager.
- * 
+ *
  * ## Example Usage with top level instance template (`google` provider)
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const autohealing = new gcp.compute.HealthCheck("autohealing", {
  *     checkIntervalSec: 5,
  *     timeoutSec: 5,
@@ -48,13 +48,13 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * 
+ *
  * ## Example Usage with multiple versions (`google-beta` provider)
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const appserver = new gcp.compute.InstanceGroupManager("appserver", {
  *     baseInstanceName: "app",
  *     zone: "us-central1-a",

@@ -8,23 +8,23 @@ import * as utilities from "../utilities";
 
 /**
  * A Google Cloud Filestore instance.
- * 
- * 
+ *
+ *
  * To get more information about Instance, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/filestore/docs/reference/rest/v1beta1/projects.locations.instances/create)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/filestore/docs/creating-instances)
  *     * [Use with Kubernetes](https://cloud.google.com/filestore/docs/accessing-fileshares)
  *     * [Copying Data In/Out](https://cloud.google.com/filestore/docs/copying-data)
- * 
+ *
  * ## Example Usage - Filestore Instance Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const instance = new gcp.filestore.Instance("instance", {
  *     fileShares: {
  *         capacityGb: 2660,

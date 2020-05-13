@@ -8,18 +8,18 @@ import * as utilities from "../utilities";
 
 /**
  * Represents a VPN gateway managed outside of GCP.
- * 
+ *
  * To get more information about ExternalVpnGateway, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/externalVpnGateways)
- * 
+ *
  * ## Example Usage - External Vpn Gateway
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const network = new gcp.compute.Network("network", {
  *     routingMode: "GLOBAL",
  *     autoCreateSubnetworks: false,

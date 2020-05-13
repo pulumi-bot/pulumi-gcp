@@ -11,15 +11,15 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/compute/docs/cloudrouter)
  * and
  * [API](https://cloud.google.com/compute/docs/reference/latest/routers).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const foobar = new gcp.compute.RouterInterface("foobar", {
  *     ipRange: "169.254.1.1/30",
  *     region: "us-central1",

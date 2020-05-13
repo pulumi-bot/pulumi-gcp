@@ -9,21 +9,21 @@ import * as utilities from "../utilities";
 /**
  * A Region Backend Service defines a regionally-scoped group of virtual
  * machines that will serve traffic for load balancing.
- * 
- * 
+ *
+ *
  * To get more information about RegionBackendService, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/latest/regionBackendServices)
  * * How-to Guides
  *     * [Internal TCP/UDP Load Balancing](https://cloud.google.com/compute/docs/load-balancing/internal/)
- * 
+ *
  * ## Example Usage - Region Backend Service Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const defaultHealthCheck = new gcp.compute.HealthCheck("defaultHealthCheck", {
  *     checkIntervalSec: 1,
  *     timeoutSec: 1,
@@ -39,12 +39,12 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Region Backend Service Ilb Round Robin
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {http_health_check: {
  *     port: 80,
  * }});
@@ -57,12 +57,12 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Region Backend Service Ilb Ring Hash
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {http_health_check: {
  *     port: 80,
  * }});
@@ -91,12 +91,12 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Region Backend Service Balancing Mode
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const debianImage = gcp.compute.getImage({
  *     family: "debian-9",
  *     project: "debian-cloud",

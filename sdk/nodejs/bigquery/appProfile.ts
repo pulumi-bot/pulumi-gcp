@@ -8,16 +8,16 @@ import * as utilities from "../utilities";
 
 /**
  * App profile is a configuration object describing how Cloud Bigtable should treat traffic from a particular end user application.
- * 
- * 
- * 
+ *
+ *
+ *
  * ## Example Usage - Bigtable App Profile Multicluster
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const instance = new gcp.bigtable.Instance("instance", {cluster: [{
  *     clusterId: "bt-instance",
  *     zone: "us-central1-b",
@@ -32,12 +32,12 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Bigtable App Profile Singlecluster
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const instance = new gcp.bigtable.Instance("instance", {cluster: [{
  *     clusterId: "bt-instance",
  *     zone: "us-central1-b",

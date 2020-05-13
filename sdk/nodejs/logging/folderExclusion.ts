@@ -10,18 +10,18 @@ import * as utilities from "../utilities";
  * Manages a folder-level logging exclusion. For more information see
  * [the official documentation](https://cloud.google.com/logging/docs/) and
  * [Excluding Logs](https://cloud.google.com/logging/docs/exclusions).
- * 
+ *
  * Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
  * granted to the credentials used with this provider.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const my-folder = new gcp.organizations.Folder("my-folder", {
  *     displayName: "My folder",
  *     parent: "organizations/123456",

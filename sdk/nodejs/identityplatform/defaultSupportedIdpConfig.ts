@@ -6,20 +6,20 @@ import * as utilities from "../utilities";
 
 /**
  * Configurations options for authenticating with a the standard set of Identity Toolkit-trusted IDPs.
- * 
+ *
  * You must enable the
  * [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
  * the marketplace prior to using this resource.
- * 
- * 
- * 
+ *
+ *
+ *
  * ## Example Usage - Identity Platform Default Supported Idp Config Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const idpConfig = new gcp.identityplatform.DefaultSupportedIdpConfig("idpConfig", {
  *     clientId: "client-id",
  *     clientSecret: "secret",

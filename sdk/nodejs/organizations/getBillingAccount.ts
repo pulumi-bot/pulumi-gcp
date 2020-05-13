@@ -8,11 +8,11 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to get information about a Google Billing Account.
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const acct = gcp.organizations.getBillingAccount({
  *     displayName: "My Billing Account",
  *     open: true,

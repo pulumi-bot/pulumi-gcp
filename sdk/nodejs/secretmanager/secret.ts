@@ -8,18 +8,18 @@ import * as utilities from "../utilities";
 
 /**
  * A Secret is a logical secret whose value and versions can be accessed.
- * 
+ *
  * To get more information about Secret, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/secret-manager/docs/reference/rest/v1beta1/projects.secrets)
- * 
+ *
  * ## Example Usage - Secret Config Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const secret-basic = new gcp.secretmanager.Secret("secret-basic", {
  *     secretId: "secret",
  *     labels: {

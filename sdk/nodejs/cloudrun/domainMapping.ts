@@ -8,21 +8,21 @@ import * as utilities from "../utilities";
 
 /**
  * Resource to hold the state and status of a user's domain mapping.
- * 
- * 
+ *
+ *
  * To get more information about DomainMapping, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/run/docs/reference/rest/v1alpha1/projects.locations.domainmappings)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/run/docs/mapping-custom-domains)
- * 
+ *
  * ## Example Usage - Cloud Run Domain Mapping Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const defaultService = new gcp.cloudrun.Service("defaultService", {
  *     location: "us-central1",
  *     metadata: {

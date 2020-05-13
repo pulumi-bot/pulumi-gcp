@@ -8,19 +8,19 @@ import * as utilities from "../utilities";
 
 /**
  * Traffic routing configuration for versions within a single service. Traffic splits define how traffic directed to the service is assigned to versions.
- * 
- * 
+ *
+ *
  * To get more information about ServiceSplitTraffic, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services)
- * 
+ *
  * ## Example Usage - App Engine Service Split Traffic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const bucket = new gcp.storage.Bucket("bucket", {});
  * const object = new gcp.storage.BucketObject("object", {
  *     bucket: bucket.name,

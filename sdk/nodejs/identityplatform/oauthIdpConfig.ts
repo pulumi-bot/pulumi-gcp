@@ -8,20 +8,20 @@ import * as utilities from "../utilities";
 
 /**
  * OIDC IdP configuration for a Identity Toolkit project.
- * 
+ *
  * You must enable the
  * [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
  * the marketplace prior to using this resource.
- * 
- * 
- * 
+ *
+ *
+ *
  * ## Example Usage - Identity Platform Oauth Idp Config Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const oauthIdpConfig = new gcp.identityplatform.OauthIdpConfig("oauthIdpConfig", {
  *     clientId: "client-id",
  *     clientSecret: "secret",

@@ -7,16 +7,16 @@ import * as utilities from "../utilities";
 /**
  * Represents a SQL database inside the Cloud SQL instance, hosted in
  * Google's cloud.
- * 
- * 
- * 
+ *
+ *
+ *
  * ## Example Usage - Sql Database Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const instance = new gcp.sql.DatabaseInstance("instance", {
  *     region: "us-central1",
  *     settings: {

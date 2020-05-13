@@ -8,32 +8,32 @@ import * as utilities from "../utilities";
 
 /**
  * Represents a Data Fusion instance.
- * 
+ *
  * To get more information about Instance, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/data-fusion/docs/reference/rest/v1beta1/projects.locations.instances)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/data-fusion/docs/)
- * 
+ *
  * ## Example Usage - Data Fusion Instance Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const basicInstance = new gcp.datafusion.Instance("basicInstance", {
  *     region: "us-central1",
  *     type: "BASIC",
  * });
  * ```
  * ## Example Usage - Data Fusion Instance Full
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const extendedInstance = new gcp.datafusion.Instance("extendedInstance", {
  *     description: "My Data Fusion instance",
  *     region: "us-central1",

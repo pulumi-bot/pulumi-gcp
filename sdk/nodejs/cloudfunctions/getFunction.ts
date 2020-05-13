@@ -10,15 +10,15 @@ import * as utilities from "../utilities";
  * Get information about a Google Cloud Function. For more information see
  * the [official documentation](https://cloud.google.com/functions/docs/)
  * and [API](https://cloud.google.com/functions/docs/apis).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const myFunction = pulumi.output(gcp.cloudfunctions.getFunction({
  *     name: "function",
  * }, { async: true }));
