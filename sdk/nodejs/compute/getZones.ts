@@ -15,13 +15,13 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  * 
  * export = async () => {
- *     const available = gcp.compute.getZones({});
+ *     const available = await gcp.compute.getZones({});
  *     const foo: gcp.compute.InstanceGroupManager[];
- *     for (const range = {value: 0}; range.value < await available.then(available => available.names).length; range.value++) {
+ *     for (const range = {value: 0}; range.value < available.names.length; range.value++) {
  *         foo.push(new gcp.compute.InstanceGroupManager(`foo-${range.value}`, {
  *             instanceTemplate: google_compute_instance_template.foobar.self_link,
  *             baseInstanceName: `foobar-${range.value}`,
- *             zone: available.then(available => available.names[range.value]),
+ *             zone: available.names[range.value],
  *             targetSize: 1,
  *         }));
  *     }
