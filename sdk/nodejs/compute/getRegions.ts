@@ -15,13 +15,13 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  * 
  * export = async () => {
- *     const available = gcp.compute.getRegions({});
+ *     const available = await gcp.compute.getRegions({});
  *     const cluster: gcp.compute.Subnetwork[];
- *     for (const range = {value: 0}; range.value < await available.then(available => available.names).length; range.value++) {
+ *     for (const range = {value: 0}; range.value < available.names.length; range.value++) {
  *         cluster.push(new gcp.compute.Subnetwork(`cluster-${range.value}`, {
  *             ipCidrRange: `10.36.${range.value}.0/24`,
  *             network: "my-network",
- *             region: available.then(available => available.names[range.value]),
+ *             region: available.names[range.value],
  *         }));
  *     }
  * }
