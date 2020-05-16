@@ -28,7 +28,7 @@ class GetAccountResult:
         __self__.email = email
         """
         The e-mail address of the service account. This value
-        should be referenced from any `organizations.getIAMPolicy` data sources
+        should be referenced from any `organizationsgetIAMPolicy` data sources
         that would grant the service account privileges.
         """
         if id and not isinstance(id, str):

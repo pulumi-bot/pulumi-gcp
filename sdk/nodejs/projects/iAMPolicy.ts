@@ -8,19 +8,19 @@ import * as utilities from "../utilities";
 
 /**
  * Four different resources help you manage your IAM policy for a project. Each of these resources serves a different use case:
- * 
+ *
  * * `gcp.projects.IAMPolicy`: Authoritative. Sets the IAM policy for the project and replaces any existing policy already attached.
  * * `gcp.projects.IAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the project are preserved.
  * * `gcp.projects.IAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the project are preserved.
  * * `gcp.projects.IAMAuditConfig`: Authoritative for a given service. Updates the IAM policy to enable audit logging for the given service.
- * 
- * 
+ *
+ *
  * > **Note:** `gcp.projects.IAMPolicy` **cannot** be used in conjunction with `gcp.projects.IAMBinding`, `gcp.projects.IAMMember`, or `gcp.projects.IAMAuditConfig` or they will fight over what your policy should be.
- * 
+ *
  * > **Note:** `gcp.projects.IAMBinding` resources **can be** used in conjunction with `gcp.projects.IAMMember` resources **only if** they do not grant privilege to the same role.
- * 
+ *
  * ## google\_project\_iam\_policy
- * 
+ *
  * > **Be careful!** You can accidentally lock yourself out of your project
  *    using this resource. Deleting a `gcp.projects.IAMPolicy` removes access
  *    from anyone without organization-level access to the project. Proceed with caution.
@@ -28,11 +28,11 @@ import * as utilities from "../utilities";
  *    to avoid locking yourself out, and it should generally only be used with projects
  *    fully managed by this provider. If you do use this resource, it is recommended to **import** the policy before
  *    applying the change.
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const admin = gcp.organizations.getIAMPolicy({
  *     binding: [{
  *         role: "roles/editor",
@@ -44,19 +44,19 @@ import * as utilities from "../utilities";
  *     policyData: admin.then(admin => admin.policyData),
  * });
  * ```
- * 
+ *
  * With IAM Conditions):
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const admin = pulumi.output(gcp.organizations.getIAMPolicy({
  *     bindings: [{
  *         condition: {
  *             description: "Expiring at midnight of 2019-12-31",
  *             expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
- *             title: "expiresAfter20191231",
+ *             title: "expires_after_2019_12_31",
  *         },
  *         members: ["user:jane@example.com"],
  *         role: "roles/editor",
@@ -67,77 +67,77 @@ import * as utilities from "../utilities";
  *     project: "your-project-id",
  * });
  * ```
- * 
+ *
  * ## google\_project\_iam\_binding
- * 
+ *
  * > **Note:** If `role` is set to `roles/owner` and you don't specify a user or service account you have access to in `members`, you can lock yourself out of your project.
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const project = new gcp.projects.IAMBinding("project", {
  *     members: ["user:jane@example.com"],
  *     project: "your-project-id",
  *     role: "roles/editor",
  * });
  * ```
- * 
+ *
  * With IAM Conditions:
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const project = new gcp.projects.IAMBinding("project", {
  *     condition: {
  *         description: "Expiring at midnight of 2019-12-31",
  *         expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
- *         title: "expiresAfter20191231",
+ *         title: "expires_after_2019_12_31",
  *     },
  *     members: ["user:jane@example.com"],
  *     project: "your-project-id",
  *     role: "roles/editor",
  * });
  * ```
- * 
+ *
  * ## google\_project\_iam\_member
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const project = new gcp.projects.IAMMember("project", {
  *     member: "user:jane@example.com",
  *     project: "your-project-id",
  *     role: "roles/editor",
  * });
  * ```
- * 
+ *
  * With IAM Conditions:
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const project = new gcp.projects.IAMMember("project", {
  *     condition: {
  *         description: "Expiring at midnight of 2019-12-31",
  *         expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
- *         title: "expiresAfter20191231",
+ *         title: "expires_after_2019_12_31",
  *     },
  *     member: "user:jane@example.com",
  *     project: "your-project-id",
  *     role: "roles/editor",
  * });
  * ```
- * 
+ *
  * ## google\_project\_iam\_audit\_config
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const project = new gcp.projects.IAMAuditConfig("project", {
  *     auditLogConfigs: [
  *         {
@@ -152,8 +152,6 @@ import * as utilities from "../utilities";
  *     service: "allServices",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_project_iam.html.markdown.
  */
 export class IAMPolicy extends pulumi.CustomResource {
     /**
@@ -187,7 +185,7 @@ export class IAMPolicy extends pulumi.CustomResource {
      */
     public /*out*/ readonly etag!: pulumi.Output<string>;
     /**
-     * The `gcp.organizations.getIAMPolicy` data source that represents
+     * The `gcp.organizationsgetIAMPolicy` data source that represents
      * the IAM policy that will be applied to the project. The policy will be
      * merged with any existing policy applied to the project.
      */
@@ -246,7 +244,7 @@ export interface IAMPolicyState {
      */
     readonly etag?: pulumi.Input<string>;
     /**
-     * The `gcp.organizations.getIAMPolicy` data source that represents
+     * The `gcp.organizationsgetIAMPolicy` data source that represents
      * the IAM policy that will be applied to the project. The policy will be
      * merged with any existing policy applied to the project.
      */
@@ -264,7 +262,7 @@ export interface IAMPolicyState {
  */
 export interface IAMPolicyArgs {
     /**
-     * The `gcp.organizations.getIAMPolicy` data source that represents
+     * The `gcp.organizationsgetIAMPolicy` data source that represents
      * the IAM policy that will be applied to the project. The policy will be
      * merged with any existing policy applied to the project.
      */

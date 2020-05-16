@@ -17,7 +17,7 @@ class AccountIamPolicy(pulumi.CustomResource):
     etag: pulumi.Output[str]
     policy_data: pulumi.Output[str]
     """
-    The `organizations.getIAMPolicy` data source that represents
+    The `organizationsgetIAMPolicy` data source that represents
     the IAM policy that will be applied to the billing account. This policy overrides any existing
     policy applied to the billing account.
     """
@@ -56,7 +56,7 @@ class AccountIamPolicy(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] billing_account_id: The billing account id.
-        :param pulumi.Input[str] policy_data: The `organizations.getIAMPolicy` data source that represents
+        :param pulumi.Input[str] policy_data: The `organizationsgetIAMPolicy` data source that represents
                the IAM policy that will be applied to the billing account. This policy overrides any existing
                policy applied to the billing account.
         """
@@ -100,7 +100,7 @@ class AccountIamPolicy(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] billing_account_id: The billing account id.
-        :param pulumi.Input[str] policy_data: The `organizations.getIAMPolicy` data source that represents
+        :param pulumi.Input[str] policy_data: The `organizationsgetIAMPolicy` data source that represents
                the IAM policy that will be applied to the billing account. This policy overrides any existing
                policy applied to the billing account.
         """

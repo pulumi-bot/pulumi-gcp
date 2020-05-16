@@ -10,22 +10,22 @@ import * as utilities from "../utilities";
  * Logs-based metric can also be used to extract values from logs and create a a distribution
  * of the values. The distribution records the statistics of the extracted values along with
  * an optional histogram of the values as specified by the bucket options.
- * 
- * 
+ *
+ *
  * To get more information about Metric, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/logging/docs/reference/v2/rest/v2/projects.metrics/create)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/logging/docs/apis)
- * 
+ *
  * ## Example Usage - Logging Metric Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
- * const loggingMetric = new gcp.logging.Metric("loggingMetric", {
+ *
+ * const loggingMetric = new gcp.logging.Metric("logging_metric", {
  *     bucketOptions: {
  *         linearBuckets: {
  *             numFiniteBuckets: 3,
@@ -60,13 +60,13 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Logging Metric Counter Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
- * const loggingMetric = new gcp.logging.Metric("loggingMetric", {
+ *
+ * const loggingMetric = new gcp.logging.Metric("logging_metric", {
  *     filter: "resource.type=gae_app AND severity>=ERROR",
  *     metricDescriptor: {
  *         metricKind: "DELTA",
@@ -75,13 +75,13 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Logging Metric Counter Labels
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
- * const loggingMetric = new gcp.logging.Metric("loggingMetric", {
+ *
+ * const loggingMetric = new gcp.logging.Metric("logging_metric", {
  *     filter: "resource.type=gae_app AND severity>=ERROR",
  *     labelExtractors: {
  *         mass: "EXTRACT(jsonPayload.request)",
@@ -97,8 +97,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/logging_metric.html.markdown.
  */
 export class Metric extends pulumi.CustomResource {
     /**

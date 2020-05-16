@@ -9,29 +9,29 @@ import * as utilities from "../utilities";
 /**
  * Manages a Cloud Dataproc cluster resource within GCP. For more information see
  * [the official dataproc documentation](https://cloud.google.com/dataproc/).
- * 
- * 
+ *
+ *
  * !> **Warning:** Due to limitations of the API, all arguments except
  * `labels`,`cluster_config.worker_config.num_instances` and `cluster_config.preemptible_worker_config.num_instances` are non-updatable. Changing others will cause recreation of the
  * whole cluster!
- * 
+ *
  * ## Example Usage - Basic
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const simplecluster = new gcp.dataproc.Cluster("simplecluster", {
  *     region: "us-central1",
  * });
  * ```
- * 
+ *
  * ## Example Usage - Advanced
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const mycluster = new gcp.dataproc.Cluster("mycluster", {
  *     clusterConfig: {
  *         gceClusterConfig: {
@@ -46,7 +46,7 @@ import * as utilities from "../utilities";
  *                 "bar",
  *             ],
  *         },
- *         // You can define multiple initializationAction blocks
+ *         // You can define multiple initialization_action blocks
  *         initializationActions: [{
  *             script: "gs://dataproc-initialization-actions/stackdriver/stackdriver.sh",
  *             timeoutSec: 500,
@@ -86,14 +86,14 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
- * 
+ *
  * ## Example Usage - Using a GPU accelerator
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
- * const acceleratedCluster = new gcp.dataproc.Cluster("acceleratedCluster", {
+ *
+ * const acceleratedCluster = new gcp.dataproc.Cluster("accelerated_cluster", {
  *     clusterConfig: {
  *         gceClusterConfig: {
  *             zone: "us-central1-a",
@@ -108,8 +108,6 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/dataproc_cluster.html.markdown.
  */
 export class Cluster extends pulumi.CustomResource {
     /**

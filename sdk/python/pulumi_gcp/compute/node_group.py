@@ -89,7 +89,7 @@ class NodeGroup(pulumi.CustomResource):
             node_type=central1a.names[0])
         nodes = gcp.compute.NodeGroup("nodes",
             zone="us-central1-a",
-            description="example compute.NodeGroup for the Google Provider",
+            description="example google_compute_node_group for the Google Provider",
             size=1,
             node_template=soletenant_tmpl.self_link)
         ```
@@ -106,7 +106,7 @@ class NodeGroup(pulumi.CustomResource):
             node_type=central1a.names[0])
         nodes = gcp.compute.NodeGroup("nodes",
             zone="us-central1-a",
-            description="example compute.NodeGroup for the Google Provider",
+            description="example google_compute_node_group for the Google Provider",
             size=1,
             node_template=soletenant_tmpl.self_link,
             autoscaling_policy={

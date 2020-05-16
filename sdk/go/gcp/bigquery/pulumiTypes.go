@@ -4561,7 +4561,7 @@ type TableEncryptionConfiguration struct {
 	// The self link or full name of a key which should be used to
 	// encrypt this table.  Note that the default bigquery service account will need to have
 	// encrypt/decrypt permissions on this key - you may want to see the
-	// `bigquery.getDefaultServiceAccount` datasource and the
+	// `bigquerygetDefaultServiceAccount` datasource and the
 	// `kms.CryptoKeyIAMBinding` resource.
 	KmsKeyName string `pulumi:"kmsKeyName"`
 }
@@ -4582,7 +4582,7 @@ type TableEncryptionConfigurationArgs struct {
 	// The self link or full name of a key which should be used to
 	// encrypt this table.  Note that the default bigquery service account will need to have
 	// encrypt/decrypt permissions on this key - you may want to see the
-	// `bigquery.getDefaultServiceAccount` datasource and the
+	// `bigquerygetDefaultServiceAccount` datasource and the
 	// `kms.CryptoKeyIAMBinding` resource.
 	KmsKeyName pulumi.StringInput `pulumi:"kmsKeyName"`
 }
@@ -4668,7 +4668,7 @@ func (o TableEncryptionConfigurationOutput) ToTableEncryptionConfigurationPtrOut
 // The self link or full name of a key which should be used to
 // encrypt this table.  Note that the default bigquery service account will need to have
 // encrypt/decrypt permissions on this key - you may want to see the
-// `bigquery.getDefaultServiceAccount` datasource and the
+// `bigquerygetDefaultServiceAccount` datasource and the
 // `kms.CryptoKeyIAMBinding` resource.
 func (o TableEncryptionConfigurationOutput) KmsKeyName() pulumi.StringOutput {
 	return o.ApplyT(func(v TableEncryptionConfiguration) string { return v.KmsKeyName }).(pulumi.StringOutput)
@@ -4695,7 +4695,7 @@ func (o TableEncryptionConfigurationPtrOutput) Elem() TableEncryptionConfigurati
 // The self link or full name of a key which should be used to
 // encrypt this table.  Note that the default bigquery service account will need to have
 // encrypt/decrypt permissions on this key - you may want to see the
-// `bigquery.getDefaultServiceAccount` datasource and the
+// `bigquerygetDefaultServiceAccount` datasource and the
 // `kms.CryptoKeyIAMBinding` resource.
 func (o TableEncryptionConfigurationPtrOutput) KmsKeyName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TableEncryptionConfiguration) *string {

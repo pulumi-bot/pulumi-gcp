@@ -9,28 +9,28 @@ import * as utilities from "../utilities";
 /**
  * Jobs are actions that BigQuery runs on your behalf to load data, export data, query data, or copy data.
  * Once a BigQuery job is created, it cannot be changed or deleted.
- * 
- * 
- * 
+ *
+ *
+ *
  * ## Example Usage - Bigquery Job Query
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const bar = new gcp.bigquery.Dataset("bar", {
- *     datasetId: "jobQueryDataset",
+ *     datasetId: "job_query_dataset",
  *     friendlyName: "test",
  *     description: "This is a test description",
  *     location: "US",
  * });
  * const foo = new gcp.bigquery.Table("foo", {
  *     datasetId: bar.datasetId,
- *     tableId: "jobQueryTable",
+ *     tableId: "job_query_table",
  * });
  * const job = new gcp.bigquery.Job("job", {
- *     jobId: "jobQuery",
+ *     jobId: "job_query",
  *     labels: {
  *         "example-label": "example-value",
  *     },
@@ -50,24 +50,24 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Bigquery Job Load
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const bar = new gcp.bigquery.Dataset("bar", {
- *     datasetId: "jobLoadDataset",
+ *     datasetId: "job_load_dataset",
  *     friendlyName: "test",
  *     description: "This is a test description",
  *     location: "US",
  * });
  * const foo = new gcp.bigquery.Table("foo", {
  *     datasetId: bar.datasetId,
- *     tableId: "jobLoadTable",
+ *     tableId: "job_load_table",
  * });
  * const job = new gcp.bigquery.Job("job", {
- *     jobId: "jobLoad",
+ *     jobId: "job_load",
  *     labels: {
  *         my_job: "load",
  *     },
@@ -89,21 +89,21 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Bigquery Job Extract
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const source-oneDataset = new gcp.bigquery.Dataset("source-oneDataset", {
- *     datasetId: "jobExtractDataset",
+ *     datasetId: "job_extract_dataset",
  *     friendlyName: "test",
  *     description: "This is a test description",
  *     location: "US",
  * });
  * const source-oneTable = new gcp.bigquery.Table("source-oneTable", {
  *     datasetId: source-oneDataset.datasetId,
- *     tableId: "jobExtractTable",
+ *     tableId: "job_extract_table",
  *     schema: `[
  *   {
  *     "name": "name",
@@ -111,7 +111,7 @@ import * as utilities from "../utilities";
  *     "mode": "NULLABLE"
  *   },
  *   {
- *     "name": "postAbbr",
+ *     "name": "post_abbr",
  *     "type": "STRING",
  *     "mode": "NULLABLE"
  *   },
@@ -125,7 +125,7 @@ import * as utilities from "../utilities";
  * });
  * const dest = new gcp.storage.Bucket("dest", {forceDestroy: true});
  * const job = new gcp.bigquery.Job("job", {
- *     jobId: "jobExtract",
+ *     jobId: "job_extract",
  *     extract: {
  *         destinationUris: [pulumi.interpolate`${dest.url}/extract`],
  *         source_table: {
@@ -138,8 +138,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/bigquery_job.html.markdown.
  */
 export class Job extends pulumi.CustomResource {
     /**

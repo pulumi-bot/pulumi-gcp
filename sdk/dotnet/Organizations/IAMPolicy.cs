@@ -37,7 +37,7 @@ namespace Pulumi.Gcp.Organizations
         public Output<string> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// The `gcp.organizations.getIAMPolicy` data source that represents
+        /// The `gcp.organizationsgetIAMPolicy` data source that represents
         /// the IAM policy that will be applied to the organization. This policy overrides any existing
         /// policy applied to the organization.
         /// </summary>
@@ -97,7 +97,7 @@ namespace Pulumi.Gcp.Organizations
         public Input<string> OrgId { get; set; } = null!;
 
         /// <summary>
-        /// The `gcp.organizations.getIAMPolicy` data source that represents
+        /// The `gcp.organizationsgetIAMPolicy` data source that represents
         /// the IAM policy that will be applied to the organization. This policy overrides any existing
         /// policy applied to the organization.
         /// </summary>
@@ -121,7 +121,7 @@ namespace Pulumi.Gcp.Organizations
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// The `gcp.organizations.getIAMPolicy` data source that represents
+        /// The `gcp.organizationsgetIAMPolicy` data source that represents
         /// the IAM policy that will be applied to the organization. This policy overrides any existing
         /// policy applied to the organization.
         /// </summary>

@@ -11,16 +11,16 @@ import * as utilities from "../utilities";
  * [the official
  * documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
  * [API](https://cloud.google.com/resource-manager/reference/rest/v1/organizations/setOrgPolicy).
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
- * const serialPortPolicy = new gcp.organizations.Policy("serialPortPolicy", {
+ *
+ * const serialPortPolicy = new gcp.organizations.Policy("serial_port_policy", {
  *     booleanPolicy: {
  *         enforced: true,
  *     },
@@ -28,8 +28,6 @@ import * as utilities from "../utilities";
  *     orgId: "123456789",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_organization_policy.html.markdown.
  */
 export class Policy extends pulumi.CustomResource {
     /**
