@@ -676,7 +676,7 @@ class RegionUrlMap(pulumi.CustomResource):
             timeout_sec=1,
             http_health_check={
                 "port": 80,
-                "requestPath": "/",
+                "request_path": "/",
             })
         login = gcp.compute.RegionBackendService("login",
             region="us-central1",
@@ -698,7 +698,7 @@ class RegionUrlMap(pulumi.CustomResource):
             }],
             path_matcher=[{
                 "name": "allpaths",
-                "defaultService": home.self_link,
+                "default_service": home.self_link,
                 "path_rule": [
                     {
                         "paths": ["/home"],
@@ -740,7 +740,7 @@ class RegionUrlMap(pulumi.CustomResource):
             }],
             path_matcher=[{
                 "name": "allpaths",
-                "defaultService": home.self_link,
+                "default_service": home.self_link,
                 "path_rule": [{
                     "paths": ["/home"],
                     "route_action": {
@@ -767,7 +767,7 @@ class RegionUrlMap(pulumi.CustomResource):
                             },
                         },
                         "request_mirror_policy": {
-                            "backendService": home.self_link,
+                            "backend_service": home.self_link,
                         },
                         "retry_policy": {
                             "numRetries": 4,
@@ -788,7 +788,7 @@ class RegionUrlMap(pulumi.CustomResource):
                             "pathPrefixRewrite": "A replacement path",
                         },
                         "weighted_backend_services": [{
-                            "backendService": home.self_link,
+                            "backend_service": home.self_link,
                             "weight": 400,
                             "header_action": {
                                 "requestHeadersToRemoves": ["RemoveMe"],
@@ -838,7 +838,7 @@ class RegionUrlMap(pulumi.CustomResource):
             }],
             path_matcher=[{
                 "name": "allpaths",
-                "defaultService": home.self_link,
+                "default_service": home.self_link,
                 "path_rule": [{
                     "paths": ["/home"],
                     "route_action": {
@@ -861,7 +861,7 @@ class RegionUrlMap(pulumi.CustomResource):
                             "pathPrefixRewrite": "A replacement path",
                         },
                         "weighted_backend_services": [{
-                            "backendService": home.self_link,
+                            "backend_service": home.self_link,
                             "weight": 400,
                             "header_action": {
                                 "response_headers_to_add": [{
@@ -904,7 +904,7 @@ class RegionUrlMap(pulumi.CustomResource):
             }],
             path_matcher=[{
                 "name": "allpaths",
-                "defaultService": home.self_link,
+                "default_service": home.self_link,
                 "route_rules": [{
                     "priority": 1,
                     "header_action": {
@@ -980,7 +980,7 @@ class RegionUrlMap(pulumi.CustomResource):
             }],
             path_matcher=[{
                 "name": "allpaths",
-                "defaultService": home.self_link,
+                "default_service": home.self_link,
                 "route_rules": [{
                     "priority": 1,
                     "service": home.self_link,

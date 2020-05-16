@@ -124,7 +124,7 @@ namespace Pulumi.Gcp.Container
         /// and `auto_upgrade` are both specified, they will fight each other for what the node version should
         /// be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
         /// recommended that you specify explicit versions as the provider will see spurious diffs
-        /// when fuzzy versions are used. See the `gcp.container.getEngineVersions` data source's
+        /// when fuzzy versions are used. See the `gcp.containergetEngineVersions` data source's
         /// `version_prefix` field to approximate fuzzy versions in a provider-compatible way.
         /// </summary>
         [Output("version")]
@@ -284,7 +284,7 @@ namespace Pulumi.Gcp.Container
         /// and `auto_upgrade` are both specified, they will fight each other for what the node version should
         /// be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
         /// recommended that you specify explicit versions as the provider will see spurious diffs
-        /// when fuzzy versions are used. See the `gcp.container.getEngineVersions` data source's
+        /// when fuzzy versions are used. See the `gcp.containergetEngineVersions` data source's
         /// `version_prefix` field to approximate fuzzy versions in a provider-compatible way.
         /// </summary>
         [Input("version")]
@@ -417,7 +417,7 @@ namespace Pulumi.Gcp.Container
         /// and `auto_upgrade` are both specified, they will fight each other for what the node version should
         /// be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
         /// recommended that you specify explicit versions as the provider will see spurious diffs
-        /// when fuzzy versions are used. See the `gcp.container.getEngineVersions` data source's
+        /// when fuzzy versions are used. See the `gcp.containergetEngineVersions` data source's
         /// `version_prefix` field to approximate fuzzy versions in a provider-compatible way.
         /// </summary>
         [Input("version")]

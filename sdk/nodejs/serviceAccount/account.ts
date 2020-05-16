@@ -6,26 +6,24 @@ import * as utilities from "../utilities";
 
 /**
  * Allows management of a [Google Cloud Platform service account](https://cloud.google.com/compute/docs/access/service-accounts)
- * 
+ *
  * > Creation of service accounts is eventually consistent, and that can lead to
  * errors when you try to apply ACLs to service accounts immediately after
  * creation.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
- * const serviceAccount = new gcp.serviceAccount.Account("serviceAccount", {
- *     accountId: "serviceAccountId",
+ *
+ * const serviceAccount = new gcp.serviceAccount.Account("service_account", {
+ *     accountId: "service_account_id",
  *     displayName: "Service Account",
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_service_account.html.markdown.
  */
 export class Account extends pulumi.CustomResource {
     /**
@@ -73,7 +71,7 @@ export class Account extends pulumi.CustomResource {
     public readonly displayName!: pulumi.Output<string | undefined>;
     /**
      * The e-mail address of the service account. This value
-     * should be referenced from any `gcp.organizations.getIAMPolicy` data sources
+     * should be referenced from any `gcp.organizationsgetIAMPolicy` data sources
      * that would grant the service account privileges.
      */
     public /*out*/ readonly email!: pulumi.Output<string>;
@@ -157,7 +155,7 @@ export interface AccountState {
     readonly displayName?: pulumi.Input<string>;
     /**
      * The e-mail address of the service account. This value
-     * should be referenced from any `gcp.organizations.getIAMPolicy` data sources
+     * should be referenced from any `gcp.organizationsgetIAMPolicy` data sources
      * that would grant the service account privileges.
      */
     readonly email?: pulumi.Input<string>;

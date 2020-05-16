@@ -10,25 +10,25 @@ import * as utilities from "../utilities";
  * A RegionSslCertificate resource, used for HTTPS load balancing. This resource
  * provides a mechanism to upload an SSL key and certificate to
  * the load balancer to serve secure connections from the user.
- * 
- * 
+ *
+ *
  * To get more information about RegionSslCertificate, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/regionSslCertificates)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/ssl-certificates)
- * 
+ *
  * > **Warning:** All arguments including `certificate` and `privateKey` will be stored in the raw
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
- * 
+ *
  * ## Example Usage - Region Ssl Certificate Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * import * from "fs";
- * 
+ *
  * const default = new gcp.compute.RegionSslCertificate("default", {
  *     region: "us-central1",
  *     namePrefix: "my-certificate-",
@@ -38,22 +38,22 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## Example Usage - Region Ssl Certificate Target Https Proxies
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  * import * from "fs";
- * 
+ *
  * // Using with Region Target HTTPS Proxies
  * //
  * // SSL certificates cannot be updated after creation. In order to apply
  * // the specified configuration, the provider will destroy the existing
  * // resource and create a replacement. To effectively use an SSL
  * // certificate resource with a Target HTTPS Proxy resource, it's
- * // recommended to specify createBeforeDestroy in a lifecycle block.
+ * // recommended to specify create_before_destroy in a lifecycle block.
  * // Either omit the Instance Template name attribute, specify a partial
- * // name with name_prefix, or use randomId resource. Example:
+ * // name with name_prefix, or use random_id resource. Example:
  * const defaultRegionSslCertificate = new gcp.compute.RegionSslCertificate("defaultRegionSslCertificate", {
  *     region: "us-central1",
  *     namePrefix: "my-certificate-",
@@ -95,8 +95,6 @@ import * as utilities from "../utilities";
  *     sslCertificates: [defaultRegionSslCertificate.selfLink],
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_region_ssl_certificate.html.markdown.
  */
 export class RegionSslCertificate extends pulumi.CustomResource {
     /**

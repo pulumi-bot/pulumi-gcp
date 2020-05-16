@@ -16,7 +16,7 @@ class IAMPolicy(pulumi.CustomResource):
     """
     policy_data: pulumi.Output[str]
     """
-    The `organizations.getIAMPolicy` data source that represents
+    The `organizationsgetIAMPolicy` data source that represents
     the IAM policy that will be applied to the project. The policy will be
     merged with any existing policy applied to the project.
     """
@@ -165,7 +165,7 @@ class IAMPolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] policy_data: The `organizations.getIAMPolicy` data source that represents
+        :param pulumi.Input[str] policy_data: The `organizationsgetIAMPolicy` data source that represents
                the IAM policy that will be applied to the project. The policy will be
                merged with any existing policy applied to the project.
         :param pulumi.Input[str] project: The project ID. If not specified for `projects.IAMBinding`, `projects.IAMMember`, or `projects.IAMAuditConfig`, uses the ID of the project configured with the provider.
@@ -212,7 +212,7 @@ class IAMPolicy(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] etag: (Computed) The etag of the project's IAM policy.
-        :param pulumi.Input[str] policy_data: The `organizations.getIAMPolicy` data source that represents
+        :param pulumi.Input[str] policy_data: The `organizationsgetIAMPolicy` data source that represents
                the IAM policy that will be applied to the project. The policy will be
                merged with any existing policy applied to the project.
         :param pulumi.Input[str] project: The project ID. If not specified for `projects.IAMBinding`, `projects.IAMMember`, or `projects.IAMAuditConfig`, uses the ID of the project configured with the provider.

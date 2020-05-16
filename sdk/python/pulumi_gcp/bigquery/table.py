@@ -38,7 +38,7 @@ class Table(pulumi.CustomResource):
       * `kms_key_name` (`str`) - The self link or full name of a key which should be used to
         encrypt this table.  Note that the default bigquery service account will need to have
         encrypt/decrypt permissions on this key - you may want to see the
-        `bigquery.getDefaultServiceAccount` datasource and the
+        `bigquerygetDefaultServiceAccount` datasource and the
         `kms.CryptoKeyIAMBinding` resource.
     """
     etag: pulumi.Output[str]
@@ -317,7 +317,7 @@ class Table(pulumi.CustomResource):
           * `kms_key_name` (`pulumi.Input[str]`) - The self link or full name of a key which should be used to
             encrypt this table.  Note that the default bigquery service account will need to have
             encrypt/decrypt permissions on this key - you may want to see the
-            `bigquery.getDefaultServiceAccount` datasource and the
+            `bigquerygetDefaultServiceAccount` datasource and the
             `kms.CryptoKeyIAMBinding` resource.
 
         The **external_data_configuration** object supports the following:
@@ -515,7 +515,7 @@ class Table(pulumi.CustomResource):
           * `kms_key_name` (`pulumi.Input[str]`) - The self link or full name of a key which should be used to
             encrypt this table.  Note that the default bigquery service account will need to have
             encrypt/decrypt permissions on this key - you may want to see the
-            `bigquery.getDefaultServiceAccount` datasource and the
+            `bigquerygetDefaultServiceAccount` datasource and the
             `kms.CryptoKeyIAMBinding` resource.
 
         The **external_data_configuration** object supports the following:
