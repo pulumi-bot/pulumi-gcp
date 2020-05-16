@@ -9,28 +9,28 @@ import * as utilities from "../utilities";
 /**
  * Represents a data transfer configuration. A transfer configuration
  * contains all metadata needed to perform a data transfer.
- * 
- * 
+ *
+ *
  * To get more information about Config, see:
- * 
+ *
  * * [API documentation](https://cloud.google.com/bigquery/docs/reference/datatransfer/rest/v1/projects.locations.transferConfigs/create)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/bigquery/docs/reference/datatransfer/rest/)
- * 
+ *
  * ## Example Usage - Scheduled Query
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const project = gcp.organizations.getProject({});
  * const permissions = new gcp.projects.IAMMember("permissions", {
  *     role: "roles/iam.serviceAccountShortTermTokenMinter",
  *     member: project.then(project => `serviceAccount:service-${project.number}@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com`),
  * });
  * const myDataset = new gcp.bigquery.Dataset("myDataset", {
- *     datasetId: "myDataset",
+ *     datasetId: "my_dataset",
  *     friendlyName: "foo",
  *     description: "bar",
  *     location: "asia-northeast1",
@@ -38,7 +38,7 @@ import * as utilities from "../utilities";
  * const queryConfig = new gcp.bigquery.DataTransferConfig("queryConfig", {
  *     displayName: "my-query",
  *     location: "asia-northeast1",
- *     dataSourceId: "scheduledQuery",
+ *     dataSourceId: "scheduled_query",
  *     schedule: "first sunday of quarter 00:00",
  *     destinationDatasetId: myDataset.datasetId,
  *     params: {
@@ -48,8 +48,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/bigquery_data_transfer_config.html.markdown.
  */
 export class DataTransferConfig extends pulumi.CustomResource {
     /**

@@ -137,7 +137,7 @@ class NodePool(pulumi.CustomResource):
     and `auto_upgrade` are both specified, they will fight each other for what the node version should
     be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
     recommended that you specify explicit versions as the provider will see spurious diffs
-    when fuzzy versions are used. See the `container.getEngineVersions` data source's
+    when fuzzy versions are used. See the `containergetEngineVersions` data source's
     `version_prefix` field to approximate fuzzy versions in a provider-compatible way.
     """
     def __init__(__self__, resource_name, opts=None, autoscaling=None, cluster=None, initial_node_count=None, location=None, management=None, max_pods_per_node=None, name=None, name_prefix=None, node_config=None, node_count=None, node_locations=None, project=None, upgrade_settings=None, version=None, __props__=None, __name__=None, __opts__=None):
@@ -162,7 +162,7 @@ class NodePool(pulumi.CustomResource):
             node_count=1,
             node_config={
                 "preemptible": True,
-                "machineType": "n1-standard-1",
+                "machine_type": "n1-standard-1",
                 "oauthScopes": [
                     "https://www.googleapis.com/auth/logging.write",
                     "https://www.googleapis.com/auth/monitoring",
@@ -248,7 +248,7 @@ class NodePool(pulumi.CustomResource):
                and `auto_upgrade` are both specified, they will fight each other for what the node version should
                be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
                recommended that you specify explicit versions as the provider will see spurious diffs
-               when fuzzy versions are used. See the `container.getEngineVersions` data source's
+               when fuzzy versions are used. See the `containergetEngineVersions` data source's
                `version_prefix` field to approximate fuzzy versions in a provider-compatible way.
 
         The **autoscaling** object supports the following:
@@ -391,7 +391,7 @@ class NodePool(pulumi.CustomResource):
                and `auto_upgrade` are both specified, they will fight each other for what the node version should
                be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
                recommended that you specify explicit versions as the provider will see spurious diffs
-               when fuzzy versions are used. See the `container.getEngineVersions` data source's
+               when fuzzy versions are used. See the `containergetEngineVersions` data source's
                `version_prefix` field to approximate fuzzy versions in a provider-compatible way.
 
         The **autoscaling** object supports the following:

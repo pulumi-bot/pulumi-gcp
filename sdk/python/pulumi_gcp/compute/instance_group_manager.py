@@ -125,7 +125,7 @@ class InstanceGroupManager(pulumi.CustomResource):
         template. For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/manager)
         and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroupManagers)
 
-        > **Note:** Use [compute.RegionInstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html) to create a regional (multi-zone) instance group manager.
+        > **Note:** Use [google_compute_region_instance_group_manager](https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html) to create a regional (multi-zone) instance group manager.
 
         ## Example Usage with top level instance template (`google` provider)
 
@@ -139,7 +139,7 @@ class InstanceGroupManager(pulumi.CustomResource):
             healthy_threshold=2,
             unhealthy_threshold=10,
             http_health_check={
-                "requestPath": "/healthz",
+                "request_path": "/healthz",
                 "port": "8080",
             })
         appserver = gcp.compute.InstanceGroupManager("appserver",

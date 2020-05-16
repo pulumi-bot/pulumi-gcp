@@ -67,7 +67,7 @@ type NodePool struct {
 	// and `autoUpgrade` are both specified, they will fight each other for what the node version should
 	// be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
 	// recommended that you specify explicit versions as the provider will see spurious diffs
-	// when fuzzy versions are used. See the `container.getEngineVersions` data source's
+	// when fuzzy versions are used. See the `containergetEngineVersions` data source's
 	// `versionPrefix` field to approximate fuzzy versions in a provider-compatible way.
 	Version pulumi.StringOutput `pulumi:"version"`
 }
@@ -154,7 +154,7 @@ type nodePoolState struct {
 	// and `autoUpgrade` are both specified, they will fight each other for what the node version should
 	// be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
 	// recommended that you specify explicit versions as the provider will see spurious diffs
-	// when fuzzy versions are used. See the `container.getEngineVersions` data source's
+	// when fuzzy versions are used. See the `containergetEngineVersions` data source's
 	// `versionPrefix` field to approximate fuzzy versions in a provider-compatible way.
 	Version *string `pulumi:"version"`
 }
@@ -211,7 +211,7 @@ type NodePoolState struct {
 	// and `autoUpgrade` are both specified, they will fight each other for what the node version should
 	// be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
 	// recommended that you specify explicit versions as the provider will see spurious diffs
-	// when fuzzy versions are used. See the `container.getEngineVersions` data source's
+	// when fuzzy versions are used. See the `containergetEngineVersions` data source's
 	// `versionPrefix` field to approximate fuzzy versions in a provider-compatible way.
 	Version pulumi.StringPtrInput
 }
@@ -270,7 +270,7 @@ type nodePoolArgs struct {
 	// and `autoUpgrade` are both specified, they will fight each other for what the node version should
 	// be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
 	// recommended that you specify explicit versions as the provider will see spurious diffs
-	// when fuzzy versions are used. See the `container.getEngineVersions` data source's
+	// when fuzzy versions are used. See the `containergetEngineVersions` data source's
 	// `versionPrefix` field to approximate fuzzy versions in a provider-compatible way.
 	Version *string `pulumi:"version"`
 }
@@ -326,7 +326,7 @@ type NodePoolArgs struct {
 	// and `autoUpgrade` are both specified, they will fight each other for what the node version should
 	// be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
 	// recommended that you specify explicit versions as the provider will see spurious diffs
-	// when fuzzy versions are used. See the `container.getEngineVersions` data source's
+	// when fuzzy versions are used. See the `containergetEngineVersions` data source's
 	// `versionPrefix` field to approximate fuzzy versions in a provider-compatible way.
 	Version pulumi.StringPtrInput
 }

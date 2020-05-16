@@ -8,23 +8,23 @@ import * as utilities from "../utilities";
 
 /**
  * When managing IAM roles, you can treat a service account either as a resource or as an identity. This resource is to add iam policy bindings to a service account resource **to configure permissions for who can edit the service account**. To configure permissions for a service account to act as an identity that can manage other GCP resources, use the googleProjectIam set of resources.
- * 
+ *
  * Three different resources help you manage your IAM policy for a service account. Each of these resources serves a different use case:
- * 
+ *
  * * `gcp.serviceAccount.IAMPolicy`: Authoritative. Sets the IAM policy for the service account and replaces any existing policy already attached.
  * * `gcp.serviceAccount.IAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the service account are preserved.
  * * `gcp.serviceAccount.IAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the service account are preserved.
- * 
+ *
  * > **Note:** `gcp.serviceAccount.IAMPolicy` **cannot** be used in conjunction with `gcp.serviceAccount.IAMBinding` and `gcp.serviceAccount.IAMMember` or they will fight over what your policy should be.
- * 
+ *
  * > **Note:** `gcp.serviceAccount.IAMBinding` resources **can be** used in conjunction with `gcp.serviceAccount.IAMMember` resources **only if** they do not grant privilege to the same role.
- * 
+ *
  * ## google\_service\_account\_iam\_policy
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const admin = gcp.organizations.getIAMPolicy({
  *     binding: [{
  *         role: "roles/iam.serviceAccountUser",
@@ -40,13 +40,13 @@ import * as utilities from "../utilities";
  *     policyData: admin.then(admin => admin.policyData),
  * });
  * ```
- * 
+ *
  * ## google\_service\_account\_iam\_binding
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const sa = new gcp.serviceAccount.Account("sa", {
  *     accountId: "my-service-account",
  *     displayName: "A service account that only Jane can use",
@@ -57,35 +57,35 @@ import * as utilities from "../utilities";
  *     members: ["user:jane@example.com"],
  * });
  * ```
- * 
+ *
  * With IAM Conditions:
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const sa = new gcp.serviceAccount.Account("sa", {
  *     accountId: "my-service-account",
  *     displayName: "A service account that only Jane can use",
  * });
- * const adminAccountIam = new gcp.serviceAccount.IAMBinding("admin-account-iam", {
+ * const admin_account_iam = new gcp.serviceAccount.IAMBinding("admin-account-iam", {
  *     condition: {
  *         description: "Expiring at midnight of 2019-12-31",
  *         expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
- *         title: "expiresAfter20191231",
+ *         title: "expires_after_2019_12_31",
  *     },
  *     members: ["user:jane@example.com"],
  *     role: "roles/iam.serviceAccountUser",
  *     serviceAccountId: sa.name,
  * });
  * ```
- * 
+ *
  * ## google\_service\_account\_iam\_member
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const default = gcp.compute.getDefaultServiceAccount({});
  * const sa = new gcp.serviceAccount.Account("sa", {
  *     accountId: "my-service-account",
@@ -103,30 +103,28 @@ import * as utilities from "../utilities";
  *     member: pulumi.interpolate`serviceAccount:${sa.email}`,
  * });
  * ```
- * 
+ *
  * With IAM Conditions:
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const sa = new gcp.serviceAccount.Account("sa", {
  *     accountId: "my-service-account",
  *     displayName: "A service account that Jane can use",
  * });
- * const adminAccountIam = new gcp.serviceAccount.IAMMember("admin-account-iam", {
+ * const admin_account_iam = new gcp.serviceAccount.IAMMember("admin-account-iam", {
  *     condition: {
  *         description: "Expiring at midnight of 2019-12-31",
  *         expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
- *         title: "expiresAfter20191231",
+ *         title: "expires_after_2019_12_31",
  *     },
  *     member: "user:jane@example.com",
  *     role: "roles/iam.serviceAccountUser",
  *     serviceAccountId: sa.name,
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_service_account_iam.html.markdown.
  */
 export class IAMBinding extends pulumi.CustomResource {
     /**

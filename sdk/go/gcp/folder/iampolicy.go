@@ -19,7 +19,7 @@ type IAMPolicy struct {
 	Etag pulumi.StringOutput `pulumi:"etag"`
 	// The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
 	Folder pulumi.StringOutput `pulumi:"folder"`
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the folder. This policy overrides any existing
 	// policy applied to the folder.
 	PolicyData pulumi.StringOutput `pulumi:"policyData"`
@@ -63,7 +63,7 @@ type iampolicyState struct {
 	Etag *string `pulumi:"etag"`
 	// The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
 	Folder *string `pulumi:"folder"`
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the folder. This policy overrides any existing
 	// policy applied to the folder.
 	PolicyData *string `pulumi:"policyData"`
@@ -74,7 +74,7 @@ type IAMPolicyState struct {
 	Etag pulumi.StringPtrInput
 	// The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
 	Folder pulumi.StringPtrInput
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the folder. This policy overrides any existing
 	// policy applied to the folder.
 	PolicyData pulumi.StringPtrInput
@@ -87,7 +87,7 @@ func (IAMPolicyState) ElementType() reflect.Type {
 type iampolicyArgs struct {
 	// The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
 	Folder string `pulumi:"folder"`
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the folder. This policy overrides any existing
 	// policy applied to the folder.
 	PolicyData string `pulumi:"policyData"`
@@ -97,7 +97,7 @@ type iampolicyArgs struct {
 type IAMPolicyArgs struct {
 	// The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
 	Folder pulumi.StringInput
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the folder. This policy overrides any existing
 	// policy applied to the folder.
 	PolicyData pulumi.StringInput

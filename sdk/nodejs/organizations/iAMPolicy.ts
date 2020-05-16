@@ -8,7 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Allows management of the entire IAM policy for an existing Google Cloud Platform Organization.
- * 
+ *
  * !> **Warning:** New organizations have several default policies which will,
  *    without extreme caution, be **overwritten** by use of this resource.
  *    The safest alternative is to use multiple `gcp.organizations.IAMBinding`
@@ -17,19 +17,19 @@ import * as utilities from "../utilities";
  *    fixed, and can take multiple days to resolve.  If you do use this resource,
  *    the best way to be sure that you are not making dangerous changes is to start
  *    by importing your existing policy, and examining the diff very closely.
- * 
+ *
  * > **Note:** This resource __must not__ be used in conjunction with
  *    `gcp.organizations.IAMMember` or `gcp.organizations.IAMBinding`
  *    or they will fight over what your policy should be.
- * 
+ *
  * ## Example Usage
- * 
- * 
- * 
+ *
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const admin = gcp.organizations.getIAMPolicy({
  *     binding: [{
  *         role: "roles/editor",
@@ -41,8 +41,6 @@ import * as utilities from "../utilities";
  *     policyData: admin.then(admin => admin.policyData),
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/google_organization_iam_policy.html.markdown.
  */
 export class IAMPolicy extends pulumi.CustomResource {
     /**
@@ -77,7 +75,7 @@ export class IAMPolicy extends pulumi.CustomResource {
      */
     public readonly orgId!: pulumi.Output<string>;
     /**
-     * The `gcp.organizations.getIAMPolicy` data source that represents
+     * The `gcp.organizationsgetIAMPolicy` data source that represents
      * the IAM policy that will be applied to the organization. This policy overrides any existing
      * policy applied to the organization.
      */
@@ -131,7 +129,7 @@ export interface IAMPolicyState {
      */
     readonly orgId?: pulumi.Input<string>;
     /**
-     * The `gcp.organizations.getIAMPolicy` data source that represents
+     * The `gcp.organizationsgetIAMPolicy` data source that represents
      * the IAM policy that will be applied to the organization. This policy overrides any existing
      * policy applied to the organization.
      */
@@ -147,7 +145,7 @@ export interface IAMPolicyArgs {
      */
     readonly orgId: pulumi.Input<string>;
     /**
-     * The `gcp.organizations.getIAMPolicy` data source that represents
+     * The `gcp.organizationsgetIAMPolicy` data source that represents
      * the IAM policy that will be applied to the organization. This policy overrides any existing
      * policy applied to the organization.
      */

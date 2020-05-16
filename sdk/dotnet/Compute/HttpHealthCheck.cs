@@ -15,7 +15,7 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// 
     /// &gt; **Note:** gcp.compute.HttpHealthCheck is a legacy health check.
-    /// The newer [gcp.compute.HealthCheck](https://www.terraform.io/docs/providers/google/r/compute_health_check.html)
+    /// The newer [google_compute_health_check](https://www.terraform.io/docs/providers/google/r/compute_health_check.html)
     /// should be preferred for all uses except
     /// [Network Load Balancers](https://cloud.google.com/compute/docs/load-balancing/network/)
     /// which still require the legacy version.

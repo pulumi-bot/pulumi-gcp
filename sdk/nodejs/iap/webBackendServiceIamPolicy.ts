@@ -8,23 +8,23 @@ import * as utilities from "../utilities";
 
 /**
  * Three different resources help you manage your IAM policy for Identity-Aware Proxy WebBackendService. Each of these resources serves a different use case:
- * 
+ *
  * * `gcp.iap.WebBackendServiceIamPolicy`: Authoritative. Sets the IAM policy for the webbackendservice and replaces any existing policy already attached.
  * * `gcp.iap.WebBackendServiceIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the webbackendservice are preserved.
  * * `gcp.iap.WebBackendServiceIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the webbackendservice are preserved.
- * 
+ *
  * > **Note:** `gcp.iap.WebBackendServiceIamPolicy` **cannot** be used in conjunction with `gcp.iap.WebBackendServiceIamBinding` and `gcp.iap.WebBackendServiceIamMember` or they will fight over what your policy should be.
- * 
+ *
  * > **Note:** `gcp.iap.WebBackendServiceIamBinding` resources **can be** used in conjunction with `gcp.iap.WebBackendServiceIamMember` resources **only if** they do not grant privilege to the same role.
- * 
- * 
- * 
+ *
+ *
+ *
  * ## google\_iap\_web\_backend\_service\_iam\_policy
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const admin = gcp.organizations.getIAMPolicy({
  *     binding: [{
  *         role: "roles/iap.httpsResourceAccessor",
@@ -37,19 +37,19 @@ import * as utilities from "../utilities";
  *     policyData: admin.then(admin => admin.policyData),
  * });
  * ```
- * 
+ *
  * With IAM Conditions:
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const admin = gcp.organizations.getIAMPolicy({
  *     binding: [{
  *         role: "roles/iap.httpsResourceAccessor",
  *         members: ["user:jane@example.com"],
  *         condition: {
- *             title: "expiresAfter20191231",
+ *             title: "expires_after_2019_12_31",
  *             description: "Expiring at midnight of 2019-12-31",
  *             expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
  *         },
@@ -62,11 +62,11 @@ import * as utilities from "../utilities";
  * });
  * ```
  * ## google\_iap\_web\_backend\_service\_iam\_binding
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const binding = new gcp.iap.WebBackendServiceIamBinding("binding", {
  *     project: google_compute_backend_service["default"].project,
  *     webBackendService: google_compute_backend_service["default"].name,
@@ -74,31 +74,31 @@ import * as utilities from "../utilities";
  *     members: ["user:jane@example.com"],
  * });
  * ```
- * 
+ *
  * With IAM Conditions:
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const binding = new gcp.iap.WebBackendServiceIamBinding("binding", {
  *     project: google_compute_backend_service["default"].project,
  *     webBackendService: google_compute_backend_service["default"].name,
  *     role: "roles/iap.httpsResourceAccessor",
  *     members: ["user:jane@example.com"],
  *     condition: {
- *         title: "expiresAfter20191231",
+ *         title: "expires_after_2019_12_31",
  *         description: "Expiring at midnight of 2019-12-31",
  *         expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
  *     },
  * });
  * ```
  * ## google\_iap\_web\_backend\_service\_iam\_member
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const member = new gcp.iap.WebBackendServiceIamMember("member", {
  *     project: google_compute_backend_service["default"].project,
  *     webBackendService: google_compute_backend_service["default"].name,
@@ -106,27 +106,25 @@ import * as utilities from "../utilities";
  *     member: "user:jane@example.com",
  * });
  * ```
- * 
+ *
  * With IAM Conditions:
- * 
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const member = new gcp.iap.WebBackendServiceIamMember("member", {
  *     project: google_compute_backend_service["default"].project,
  *     webBackendService: google_compute_backend_service["default"].name,
  *     role: "roles/iap.httpsResourceAccessor",
  *     member: "user:jane@example.com",
  *     condition: {
- *         title: "expiresAfter20191231",
+ *         title: "expires_after_2019_12_31",
  *         description: "Expiring at midnight of 2019-12-31",
  *         expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
  *     },
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/iap_web_backend_service_iam.html.markdown.
  */
 export class WebBackendServiceIamPolicy extends pulumi.CustomResource {
     /**
@@ -161,7 +159,7 @@ export class WebBackendServiceIamPolicy extends pulumi.CustomResource {
     public /*out*/ readonly etag!: pulumi.Output<string>;
     /**
      * The policy data generated by
-     * a `gcp.organizations.getIAMPolicy` data source.
+     * a `gcp.organizationsgetIAMPolicy` data source.
      */
     public readonly policyData!: pulumi.Output<string>;
     /**
@@ -224,7 +222,7 @@ export interface WebBackendServiceIamPolicyState {
     readonly etag?: pulumi.Input<string>;
     /**
      * The policy data generated by
-     * a `gcp.organizations.getIAMPolicy` data source.
+     * a `gcp.organizationsgetIAMPolicy` data source.
      */
     readonly policyData?: pulumi.Input<string>;
     /**
@@ -244,7 +242,7 @@ export interface WebBackendServiceIamPolicyState {
 export interface WebBackendServiceIamPolicyArgs {
     /**
      * The policy data generated by
-     * a `gcp.organizations.getIAMPolicy` data source.
+     * a `gcp.organizationsgetIAMPolicy` data source.
      */
     readonly policyData: pulumi.Input<string>;
     /**

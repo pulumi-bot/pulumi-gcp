@@ -219,7 +219,7 @@ namespace Pulumi.Gcp.Container
         /// current master version--use the read-only `master_version` field to obtain that.
         /// If unset, the cluster's version will be set by GKE to the version of the most recent
         /// official release (which is not necessarily the latest version).  Most users will find
-        /// the `gcp.container.getEngineVersions` data source useful - it indicates which versions
+        /// the `gcp.containergetEngineVersions` data source useful - it indicates which versions
         /// are available. If you intend to specify versions manually,
         /// [the docs](https://cloud.google.com/kubernetes-engine/versioning-and-upgrades#specifying_cluster_version)
         /// describe the various acceptable formats for this field.
@@ -298,7 +298,7 @@ namespace Pulumi.Gcp.Container
         /// version set by GKE which is not necessarily the latest version. This only affects
         /// nodes in the default node pool. While a fuzzy version can be specified, it's
         /// recommended that you specify explicit versions as the provider will see spurious diffs
-        /// when fuzzy versions are used. See the `gcp.container.getEngineVersions` data source's
+        /// when fuzzy versions are used. See the `gcp.containergetEngineVersions` data source's
         /// `version_prefix` field to approximate fuzzy versions.
         /// To update nodes in other node pools, use the `version` attribute on the node pool.
         /// </summary>
@@ -620,7 +620,7 @@ namespace Pulumi.Gcp.Container
         /// current master version--use the read-only `master_version` field to obtain that.
         /// If unset, the cluster's version will be set by GKE to the version of the most recent
         /// official release (which is not necessarily the latest version).  Most users will find
-        /// the `gcp.container.getEngineVersions` data source useful - it indicates which versions
+        /// the `gcp.containergetEngineVersions` data source useful - it indicates which versions
         /// are available. If you intend to specify versions manually,
         /// [the docs](https://cloud.google.com/kubernetes-engine/versioning-and-upgrades#specifying_cluster_version)
         /// describe the various acceptable formats for this field.
@@ -711,7 +711,7 @@ namespace Pulumi.Gcp.Container
         /// version set by GKE which is not necessarily the latest version. This only affects
         /// nodes in the default node pool. While a fuzzy version can be specified, it's
         /// recommended that you specify explicit versions as the provider will see spurious diffs
-        /// when fuzzy versions are used. See the `gcp.container.getEngineVersions` data source's
+        /// when fuzzy versions are used. See the `gcp.containergetEngineVersions` data source's
         /// `version_prefix` field to approximate fuzzy versions.
         /// To update nodes in other node pools, use the `version` attribute on the node pool.
         /// </summary>
@@ -1013,7 +1013,7 @@ namespace Pulumi.Gcp.Container
         /// current master version--use the read-only `master_version` field to obtain that.
         /// If unset, the cluster's version will be set by GKE to the version of the most recent
         /// official release (which is not necessarily the latest version).  Most users will find
-        /// the `gcp.container.getEngineVersions` data source useful - it indicates which versions
+        /// the `gcp.containergetEngineVersions` data source useful - it indicates which versions
         /// are available. If you intend to specify versions manually,
         /// [the docs](https://cloud.google.com/kubernetes-engine/versioning-and-upgrades#specifying_cluster_version)
         /// describe the various acceptable formats for this field.
@@ -1104,7 +1104,7 @@ namespace Pulumi.Gcp.Container
         /// version set by GKE which is not necessarily the latest version. This only affects
         /// nodes in the default node pool. While a fuzzy version can be specified, it's
         /// recommended that you specify explicit versions as the provider will see spurious diffs
-        /// when fuzzy versions are used. See the `gcp.container.getEngineVersions` data source's
+        /// when fuzzy versions are used. See the `gcp.containergetEngineVersions` data source's
         /// `version_prefix` field to approximate fuzzy versions.
         /// To update nodes in other node pools, use the `version` attribute on the node pool.
         /// </summary>
