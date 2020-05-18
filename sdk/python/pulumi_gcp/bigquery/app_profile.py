@@ -64,9 +64,9 @@ class AppProfile(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         instance = gcp.bigtable.Instance("instance", cluster=[{
-            "clusterId": "bt-instance",
+            "cluster_id": "bt-instance",
             "zone": "us-central1-b",
-            "numNodes": 3,
+            "num_nodes": 3,
             "storageType": "HDD",
         }])
         ap = gcp.bigquery.AppProfile("ap",
@@ -83,16 +83,16 @@ class AppProfile(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         instance = gcp.bigtable.Instance("instance", cluster=[{
-            "clusterId": "bt-instance",
+            "cluster_id": "bt-instance",
             "zone": "us-central1-b",
-            "numNodes": 3,
+            "num_nodes": 3,
             "storageType": "HDD",
         }])
         ap = gcp.bigquery.AppProfile("ap",
             instance=instance.name,
             app_profile_id="bt-profile",
             single_cluster_routing={
-                "clusterId": "bt-instance",
+                "cluster_id": "bt-instance",
                 "allowTransactionalWrites": True,
             },
             ignore_warnings=True)
