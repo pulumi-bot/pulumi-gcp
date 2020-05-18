@@ -9,18 +9,18 @@ import * as utilities from "../utilities";
 /**
  * Adds existing resource policies to a disk. You can only add one policy
  * which will be applied to this disk for scheduling snapshot creation.
- * 
+ *
  * > **Note:** This resource does not support regional disks (`gcp.compute.RegionDisk`).
- * 
- * 
- * 
+ *
+ *
+ *
  * ## Example Usage - Disk Resource Policy Attachment Basic
- * 
- * 
+ *
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
- * 
+ *
  * const myImage = gcp.compute.getImage({
  *     family: "debian-9",
  *     project: "debian-cloud",
@@ -47,8 +47,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
- * > This content is derived from https://github.com/terraform-providers/terraform-provider-google/blob/master/website/docs/r/compute_disk_resource_policy_attachment.html.markdown.
  */
 export class DiskResourcePolicyAttachment extends pulumi.CustomResource {
     /**
