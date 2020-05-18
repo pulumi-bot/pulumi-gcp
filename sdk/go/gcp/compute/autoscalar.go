@@ -22,8 +22,6 @@ import (
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/autoscalers)
 // * How-to Guides
 //     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
-//
-// Deprecated: gcp.compute.Autoscalar has been deprecated in favour of gcp.compute.Autoscaler
 type Autoscalar struct {
 	pulumi.CustomResourceState
 
