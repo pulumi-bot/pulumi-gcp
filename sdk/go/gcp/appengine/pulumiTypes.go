@@ -2095,7 +2095,9 @@ func (o FlexibleAppVersionAutomaticScalingNetworkUtilizationOutput) TargetSentBy
 
 // Target packets sent per second.
 func (o FlexibleAppVersionAutomaticScalingNetworkUtilizationOutput) TargetSentPacketsPerSecond() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v FlexibleAppVersionAutomaticScalingNetworkUtilization) *int { return v.TargetSentPacketsPerSecond }).(pulumi.IntPtrOutput)
+	return o.ApplyT(func(v FlexibleAppVersionAutomaticScalingNetworkUtilization) *int {
+		return v.TargetSentPacketsPerSecond
+	}).(pulumi.IntPtrOutput)
 }
 
 type FlexibleAppVersionAutomaticScalingNetworkUtilizationPtrOutput struct{ *pulumi.OutputState }
