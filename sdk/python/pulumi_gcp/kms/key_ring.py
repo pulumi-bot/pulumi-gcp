@@ -42,6 +42,7 @@ class KeyRing(pulumi.CustomResource):
             * [Creating a key ring](https://cloud.google.com/kms/docs/creating-keys#create_a_key_ring)
 
         ## Example Usage - Kms Key Ring Basic
+        {{% example %}}
 
 
         ```python
@@ -50,6 +51,8 @@ class KeyRing(pulumi.CustomResource):
 
         example_keyring = gcp.kms.KeyRing("example-keyring", location="global")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

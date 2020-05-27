@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  *     * [Creating a key ring](https://cloud.google.com/kms/docs/creating-keys#create_a_key_ring)
  *
  * ## Example Usage - Kms Key Ring Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -32,6 +33,8 @@ import * as utilities from "../utilities";
  *     location: "global",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class KeyRing extends pulumi.CustomResource {
     /**

@@ -493,6 +493,7 @@ class AlertPolicy(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/monitoring/alerts/)
 
         ## Example Usage - Monitoring Alert Policy Basic
+        {{% example %}}
 
 
         ```python
@@ -518,6 +519,8 @@ class AlertPolicy(pulumi.CustomResource):
                 "foo": "bar",
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

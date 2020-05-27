@@ -44,6 +44,7 @@ class SubscriptionIAMBinding(pulumi.CustomResource):
         > **Note:** `pubsub.SubscriptionIAMBinding` resources **can be** used in conjunction with `pubsub.SubscriptionIAMMember` resources **only if** they do not grant privilege to the same role.
 
         ## google\_pubsub\_subscription\_iam\_policy
+        {{% example %}}
 
         ```python
         import pulumi
@@ -58,7 +59,9 @@ class SubscriptionIAMBinding(pulumi.CustomResource):
             policy_data=admin.policy_data)
         ```
 
+        {{% /example %}}
         ## google\_pubsub\_subscription\_iam\_binding
+        {{% example %}}
 
         ```python
         import pulumi
@@ -70,7 +73,9 @@ class SubscriptionIAMBinding(pulumi.CustomResource):
             subscription="your-subscription-name")
         ```
 
+        {{% /example %}}
         ## google\_pubsub\_subscription\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -81,6 +86,8 @@ class SubscriptionIAMBinding(pulumi.CustomResource):
             role="roles/editor",
             subscription="your-subscription-name")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

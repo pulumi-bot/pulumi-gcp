@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/run/docs/mapping-custom-domains)
  *
  * ## Example Usage - Cloud Run Domain Mapping Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -46,6 +47,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class DomainMapping extends pulumi.CustomResource {
     /**

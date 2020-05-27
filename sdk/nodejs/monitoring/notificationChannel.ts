@@ -33,6 +33,7 @@ import * as utilities from "../utilities";
  *     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
  *
  * ## Example Usage - Notification Channel Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -47,7 +48,9 @@ import * as utilities from "../utilities";
  *     type: "email",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Notification Channel Sensitive
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -65,6 +68,8 @@ import * as utilities from "../utilities";
  *     type: "slack",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class NotificationChannel extends pulumi.CustomResource {
     /**

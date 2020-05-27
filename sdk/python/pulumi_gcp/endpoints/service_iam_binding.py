@@ -41,6 +41,7 @@ class ServiceIamBinding(pulumi.CustomResource):
 
 
         ## google\_endpoints\_service\_iam\_policy
+        {{% example %}}
 
         ```python
         import pulumi
@@ -55,7 +56,9 @@ class ServiceIamBinding(pulumi.CustomResource):
             policy_data=admin.policy_data)
         ```
 
+        {{% /example %}}
         ## google\_endpoints\_service\_iam\_binding
+        {{% example %}}
 
         ```python
         import pulumi
@@ -67,7 +70,9 @@ class ServiceIamBinding(pulumi.CustomResource):
             members=["user:jane@example.com"])
         ```
 
+        {{% /example %}}
         ## google\_endpoints\_service\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -78,6 +83,8 @@ class ServiceIamBinding(pulumi.CustomResource):
             role="roles/viewer",
             member="user:jane@example.com")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -51,6 +51,7 @@ class IAMMember(pulumi.CustomResource):
         > **Note:** `projects.IAMBinding` resources **can be** used in conjunction with `projects.IAMMember` resources **only if** they do not grant privilege to the same role.
 
         ## google\_project\_iam\_policy
+        {{% example %}}
 
         > **Be careful!** You can accidentally lock yourself out of your project
            using this resource. Deleting a `projects.IAMPolicy` removes access
@@ -93,7 +94,9 @@ class IAMMember(pulumi.CustomResource):
             project="your-project-id")
         ```
 
+        {{% /example %}}
         ## google\_project\_iam\_binding
+        {{% example %}}
 
         > **Note:** If `role` is set to `roles/owner` and you don't specify a user or service account you have access to in `members`, you can lock yourself out of your project.
 
@@ -124,7 +127,9 @@ class IAMMember(pulumi.CustomResource):
             role="roles/editor")
         ```
 
+        {{% /example %}}
         ## google\_project\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -153,7 +158,9 @@ class IAMMember(pulumi.CustomResource):
             role="roles/editor")
         ```
 
+        {{% /example %}}
         ## google\_project\_iam\_audit\_config
+        {{% example %}}
 
         ```python
         import pulumi
@@ -172,6 +179,8 @@ class IAMMember(pulumi.CustomResource):
             project="your-project-id",
             service="allServices")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

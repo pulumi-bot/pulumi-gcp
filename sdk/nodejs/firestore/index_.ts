@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/firestore/docs/query-data/indexing)
  *
  * ## Example Usage - Firestore Index Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -44,6 +45,8 @@ import * as utilities from "../utilities";
  *     project: "my-project-name",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Index extends pulumi.CustomResource {
     /**

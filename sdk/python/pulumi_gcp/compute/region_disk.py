@@ -166,6 +166,7 @@ class RegionDisk(pulumi.CustomResource):
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
         ## Example Usage - Region Disk Basic
+        {{% example %}}
 
 
         ```python
@@ -190,6 +191,8 @@ class RegionDisk(pulumi.CustomResource):
                 "us-central1-f",
             ])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -51,6 +51,7 @@ class Lien(pulumi.CustomResource):
 
 
         ## Example Usage - Resource Manager Lien
+        {{% example %}}
 
 
         ```python
@@ -64,6 +65,8 @@ class Lien(pulumi.CustomResource):
             reason="This project is an important environment",
             restrictions=["resourcemanager.projects.delete"])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

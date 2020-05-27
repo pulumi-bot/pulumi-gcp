@@ -42,6 +42,7 @@ class FhirStoreIamMember(pulumi.CustomResource):
         > **Note:** `healthcare.FhirStoreIamBinding` resources **can be** used in conjunction with `healthcare.FhirStoreIamMember` resources **only if** they do not grant privilege to the same role.
 
         ## google\_healthcare\_fhir\_store\_iam\_policy
+        {{% example %}}
 
         ```python
         import pulumi
@@ -56,7 +57,9 @@ class FhirStoreIamMember(pulumi.CustomResource):
             policy_data=admin.policy_data)
         ```
 
+        {{% /example %}}
         ## google\_healthcare\_fhir\_store\_iam\_binding
+        {{% example %}}
 
         ```python
         import pulumi
@@ -68,7 +71,9 @@ class FhirStoreIamMember(pulumi.CustomResource):
             role="roles/editor")
         ```
 
+        {{% /example %}}
         ## google\_healthcare\_fhir\_store\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -79,6 +84,8 @@ class FhirStoreIamMember(pulumi.CustomResource):
             member="user:jane@example.com",
             role="roles/editor")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

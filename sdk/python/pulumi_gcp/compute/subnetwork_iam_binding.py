@@ -61,6 +61,7 @@ class SubnetworkIAMBinding(pulumi.CustomResource):
 
 
         ## google\_compute\_subnetwork\_iam\_policy
+        {{% example %}}
 
         ```python
         import pulumi
@@ -98,7 +99,9 @@ class SubnetworkIAMBinding(pulumi.CustomResource):
             subnetwork=google_compute_subnetwork["network-with-private-secondary-ip-ranges"]["name"],
             policy_data=admin.policy_data)
         ```
+        {{% /example %}}
         ## google\_compute\_subnetwork\_iam\_binding
+        {{% example %}}
 
         ```python
         import pulumi
@@ -130,7 +133,9 @@ class SubnetworkIAMBinding(pulumi.CustomResource):
                 "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
             })
         ```
+        {{% /example %}}
         ## google\_compute\_subnetwork\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -162,6 +167,7 @@ class SubnetworkIAMBinding(pulumi.CustomResource):
                 "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
             })
         ```
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

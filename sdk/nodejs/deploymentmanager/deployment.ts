@@ -24,6 +24,7 @@ import * as utilities from "../utilities";
  * `preview=false`).
  *
  * ## Example Usage - Deployment Manager Deployment Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -43,6 +44,7 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
  */
 export class Deployment extends pulumi.CustomResource {
     /**

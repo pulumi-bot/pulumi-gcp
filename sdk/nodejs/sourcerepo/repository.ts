@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/source-repositories/)
  *
  * ## Example Usage - Sourcerepo Repository Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -25,7 +26,9 @@ import * as utilities from "../utilities";
  *
  * const myRepo = new gcp.sourcerepo.Repository("my-repo", {});
  * ```
+ * {{% /example %}}
  * ## Example Usage - Sourcerepo Repository Full
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -43,6 +46,8 @@ import * as utilities from "../utilities";
  *     serviceAccountEmail: test-account.email,
  * }]});
  * ```
+ *
+ * {{% /example %}}
  */
 export class Repository extends pulumi.CustomResource {
     /**

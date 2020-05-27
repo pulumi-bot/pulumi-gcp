@@ -38,6 +38,7 @@ class IAMPolicy(pulumi.CustomResource):
         > **Note:** `serviceAccount.IAMBinding` resources **can be** used in conjunction with `serviceAccount.IAMMember` resources **only if** they do not grant privilege to the same role.
 
         ## google\_service\_account\_iam\_policy
+        {{% example %}}
 
         ```python
         import pulumi
@@ -55,7 +56,9 @@ class IAMPolicy(pulumi.CustomResource):
             policy_data=admin.policy_data)
         ```
 
+        {{% /example %}}
         ## google\_service\_account\_iam\_binding
+        {{% example %}}
 
         ```python
         import pulumi
@@ -90,7 +93,9 @@ class IAMPolicy(pulumi.CustomResource):
             service_account_id=sa.name)
         ```
 
+        {{% /example %}}
         ## google\_service\_account\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -130,6 +135,8 @@ class IAMPolicy(pulumi.CustomResource):
             role="roles/iam.serviceAccountUser",
             service_account_id=sa.name)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -62,6 +62,7 @@ class Connection(pulumi.CustomResource):
             * [Cloud SQL federated queries](https://cloud.google.com/bigquery/docs/cloud-sql-federated-queries)
 
         ## Example Usage - Bigquery Connection Basic
+        {{% example %}}
 
 
         ```python
@@ -84,7 +85,9 @@ class Connection(pulumi.CustomResource):
                 "type": "POSTGRES",
             })
         ```
+        {{% /example %}}
         ## Example Usage - Bigquery Connection Full
+        {{% example %}}
 
 
         ```python
@@ -109,6 +112,8 @@ class Connection(pulumi.CustomResource):
                 "type": "POSTGRES",
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

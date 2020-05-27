@@ -50,6 +50,7 @@ class KeyRingIAMMember(pulumi.CustomResource):
         > **Note:** `kms.KeyRingIAMBinding` resources **can be** used in conjunction with `kms.KeyRingIAMMember` resources **only if** they do not grant privilege to the same role.
 
         ## google\_kms\_key\_ring\_iam\_policy
+        {{% example %}}
 
         ```python
         import pulumi
@@ -86,7 +87,9 @@ class KeyRingIAMMember(pulumi.CustomResource):
             policy_data=admin.policy_data)
         ```
 
+        {{% /example %}}
         ## google\_kms\_key\_ring\_iam\_binding
+        {{% example %}}
 
         ```python
         import pulumi
@@ -115,7 +118,9 @@ class KeyRingIAMMember(pulumi.CustomResource):
             role="roles/editor")
         ```
 
+        {{% /example %}}
         ## google\_kms\_key\_ring\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -143,6 +148,8 @@ class KeyRingIAMMember(pulumi.CustomResource):
             member="user:jane@example.com",
             role="roles/editor")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

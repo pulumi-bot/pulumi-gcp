@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## google\_cloudfunctions\_function\_iam\_policy
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -39,7 +40,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_cloudfunctions\_function\_iam\_binding
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -54,7 +57,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_cloudfunctions\_function\_iam\_member
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -68,6 +73,8 @@ import * as utilities from "../utilities";
  *     member: "user:jane@example.com",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class FunctionIamMember extends pulumi.CustomResource {
     /**

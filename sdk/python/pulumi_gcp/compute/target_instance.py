@@ -72,6 +72,7 @@ class TargetInstance(pulumi.CustomResource):
             * [Using Protocol Forwarding](https://cloud.google.com/compute/docs/protocol-forwarding)
 
         ## Example Usage - Target Instance Basic
+        {{% example %}}
 
 
         ```python
@@ -93,6 +94,8 @@ class TargetInstance(pulumi.CustomResource):
             }])
         default = gcp.compute.TargetInstance("default", instance=target_vm.id)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

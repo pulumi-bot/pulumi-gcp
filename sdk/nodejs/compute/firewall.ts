@@ -28,6 +28,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/vpc/docs/firewalls)
  *
  * ## Example Usage - Firewall Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -53,6 +54,8 @@ import * as utilities from "../utilities";
  *     sourceTags: ["web"],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Firewall extends pulumi.CustomResource {
     /**

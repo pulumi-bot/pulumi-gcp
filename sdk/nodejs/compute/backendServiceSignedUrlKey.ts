@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  * state as plain-text.
  *
  * ## Example Usage - Backend Service Signed Url Key
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -67,6 +68,8 @@ import * as utilities from "../utilities";
  *     backendService: exampleBackend.name,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class BackendServiceSignedUrlKey extends pulumi.CustomResource {
     /**

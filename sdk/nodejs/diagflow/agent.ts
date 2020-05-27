@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
  *
  * ## Example Usage - Dialogflow Agent Full
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -42,6 +43,8 @@ import * as utilities from "../utilities";
  *     timeZone: "America/New_York",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Agent extends pulumi.CustomResource {
     /**

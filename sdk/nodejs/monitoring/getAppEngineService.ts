@@ -23,6 +23,7 @@ import * as utilities from "../utilities";
  *     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
  *
  * ## Example Usage - Monitoring App Engine Service
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -55,6 +56,8 @@ import * as utilities from "../utilities";
  *     moduleId: service,
  * }));
  * ```
+ *
+ * {{% /example %}}
  */
 export function getAppEngineService(args: GetAppEngineServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetAppEngineServiceResult> {
     if (!opts) {

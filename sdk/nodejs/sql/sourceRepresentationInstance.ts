@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Sql Source Representation Instance Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -29,6 +30,8 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class SourceRepresentationInstance extends pulumi.CustomResource {
     /**

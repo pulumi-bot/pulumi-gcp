@@ -43,6 +43,7 @@ class BackendBucketSignedUrlKey(pulumi.CustomResource):
         state as plain-text.
 
         ## Example Usage - Backend Bucket Signed Url Key
+        {{% example %}}
 
 
         ```python
@@ -58,6 +59,8 @@ class BackendBucketSignedUrlKey(pulumi.CustomResource):
             key_value="pPsVemX8GM46QVeezid6Rw==",
             backend_bucket=test_backend.name)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

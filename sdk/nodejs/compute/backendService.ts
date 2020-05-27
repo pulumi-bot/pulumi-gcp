@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
  *
  * ## Example Usage - Backend Service Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -35,7 +36,9 @@ import * as utilities from "../utilities";
  * });
  * const defaultBackendService = new gcp.compute.BackendService("defaultBackendService", {healthChecks: [defaultHttpHealthCheck.id]});
  * ```
+ * {{% /example %}}
  * ## Example Usage - Backend Service Traffic Director Round Robin
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -51,7 +54,9 @@ import * as utilities from "../utilities";
  *     localityLbPolicy: "ROUND_ROBIN",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Backend Service Traffic Director Ring Hash
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -83,6 +88,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class BackendService extends pulumi.CustomResource {
     /**

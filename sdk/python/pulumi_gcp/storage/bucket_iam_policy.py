@@ -38,6 +38,7 @@ class BucketIAMPolicy(pulumi.CustomResource):
 
 
         ## google\_storage\_bucket\_iam\_policy
+        {{% example %}}
 
         ```python
         import pulumi
@@ -71,7 +72,9 @@ class BucketIAMPolicy(pulumi.CustomResource):
             bucket=google_storage_bucket["default"]["name"],
             policy_data=admin.policy_data)
         ```
+        {{% /example %}}
         ## google\_storage\_bucket\_iam\_binding
+        {{% example %}}
 
         ```python
         import pulumi
@@ -99,7 +102,9 @@ class BucketIAMPolicy(pulumi.CustomResource):
                 "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
             })
         ```
+        {{% /example %}}
         ## google\_storage\_bucket\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -127,6 +132,7 @@ class BucketIAMPolicy(pulumi.CustomResource):
                 "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
             })
         ```
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  *     * [Copying Data In/Out](https://cloud.google.com/filestore/docs/copying-data)
  *
  * ## Example Usage - Filestore Instance Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -38,6 +39,8 @@ import * as utilities from "../utilities";
  *     zone: "us-central1-b",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Instance extends pulumi.CustomResource {
     /**

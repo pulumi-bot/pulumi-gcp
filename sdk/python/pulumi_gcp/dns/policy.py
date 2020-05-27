@@ -66,6 +66,7 @@ class Policy(pulumi.CustomResource):
             * [Using DNS server policies](https://cloud.google.com/dns/zones/#using-dns-server-policies)
 
         ## Example Usage - Dns Policy Basic
+        {{% example %}}
 
 
         ```python
@@ -96,6 +97,8 @@ class Policy(pulumi.CustomResource):
                 },
             ])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -17,6 +17,29 @@ namespace Pulumi.Gcp.DataFusion
     /// * [API documentation](https://cloud.google.com/data-fusion/docs/reference/rest/v1beta1/projects.locations.instances)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/data-fusion/docs/)
+    /// 
+    /// ## Example Usage - Data Fusion Instance Basic
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var basicInstance = new Gcp.DataFusion.Instance("basicInstance", new Gcp.DataFusion.InstanceArgs
+    ///         {
+    ///             Region = "us-central1",
+    ///             Type = "BASIC",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// {{% /example %}}
     /// </summary>
     public partial class Instance : Pulumi.CustomResource
     {

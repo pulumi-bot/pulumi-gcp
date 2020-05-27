@@ -46,6 +46,7 @@ class DataStoreIndex(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/datastore/docs/concepts/indexes)
 
         ## Example Usage - Datastore Index
+        {{% example %}}
 
 
         ```python
@@ -65,6 +66,8 @@ class DataStoreIndex(pulumi.CustomResource):
                 },
             ])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

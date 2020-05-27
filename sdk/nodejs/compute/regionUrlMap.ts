@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  * that you define for the host and path of an incoming URL.
  *
  * ## Example Usage - Region Url Map Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -67,7 +68,9 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Url Map L7 Ilb Path
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -167,7 +170,9 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Url Map L7 Ilb Path Partial
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -235,7 +240,9 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Url Map L7 Ilb Route
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -313,7 +320,9 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Url Map L7 Ilb Route Partial
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -366,6 +375,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class RegionUrlMap extends pulumi.CustomResource {
     /**

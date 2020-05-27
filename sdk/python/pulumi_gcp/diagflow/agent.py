@@ -101,6 +101,7 @@ class Agent(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
 
         ## Example Usage - Dialogflow Agent Full
+        {{% example %}}
 
 
         ```python
@@ -124,6 +125,8 @@ class Agent(pulumi.CustomResource):
             tier="TIER_STANDARD",
             time_zone="America/New_York")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

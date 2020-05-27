@@ -93,6 +93,7 @@ class GlobalAddress(pulumi.CustomResource):
             * [Reserving a Static External IP Address](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-external-ip-address)
 
         ## Example Usage - Global Address Basic
+        {{% example %}}
 
 
         ```python
@@ -101,6 +102,8 @@ class GlobalAddress(pulumi.CustomResource):
 
         default = gcp.compute.GlobalAddress("default")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

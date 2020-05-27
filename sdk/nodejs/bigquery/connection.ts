@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  *     * [Cloud SQL federated queries](https://cloud.google.com/bigquery/docs/cloud-sql-federated-queries)
  *
  * ## Example Usage - Bigquery Connection Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -40,7 +41,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Bigquery Connection Full
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -67,6 +70,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Connection extends pulumi.CustomResource {
     /**

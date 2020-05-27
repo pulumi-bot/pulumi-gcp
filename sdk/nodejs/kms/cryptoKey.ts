@@ -26,6 +26,7 @@ import * as utilities from "../utilities";
  *     * [Creating a key](https://cloud.google.com/kms/docs/creating-keys#create_a_key)
  *
  * ## Example Usage - Kms Crypto Key Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -38,7 +39,9 @@ import * as utilities from "../utilities";
  *     rotationPeriod: "100000s",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Kms Crypto Key Asymmetric Sign
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -54,6 +57,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class CryptoKey extends pulumi.CustomResource {
     /**

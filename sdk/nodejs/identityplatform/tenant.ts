@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Identity Platform Tenant Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -30,6 +31,8 @@ import * as utilities from "../utilities";
  *     displayName: "tenant",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Tenant extends pulumi.CustomResource {
     /**

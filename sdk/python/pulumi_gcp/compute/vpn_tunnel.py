@@ -140,6 +140,7 @@ class VPNTunnel(pulumi.CustomResource):
         state as plain-text.
 
         ## Example Usage - Vpn Tunnel Basic
+        {{% example %}}
 
 
         ```python
@@ -173,7 +174,9 @@ class VPNTunnel(pulumi.CustomResource):
             priority=1000,
             next_hop_vpn_tunnel=tunnel1.id)
         ```
+        {{% /example %}}
         ## Example Usage - Vpn Tunnel Beta
+        {{% example %}}
 
 
         ```python
@@ -210,6 +213,8 @@ class VPNTunnel(pulumi.CustomResource):
             priority=1000,
             next_hop_vpn_tunnel=tunnel1.id)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

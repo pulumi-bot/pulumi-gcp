@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/bigquery/docs/reference/datatransfer/rest/)
  *
  * ## Example Usage - Scheduled Query
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -48,6 +49,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class DataTransferConfig extends pulumi.CustomResource {
     /**

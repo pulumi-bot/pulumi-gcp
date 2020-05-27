@@ -98,6 +98,7 @@ class FhirStore(pulumi.CustomResource):
             * [Creating a FHIR store](https://cloud.google.com/healthcare/docs/how-tos/fhir)
 
         ## Example Usage - Healthcare Fhir Store Basic
+        {{% example %}}
 
 
         ```python
@@ -120,6 +121,8 @@ class FhirStore(pulumi.CustomResource):
                 "label1": "labelvalue1",
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

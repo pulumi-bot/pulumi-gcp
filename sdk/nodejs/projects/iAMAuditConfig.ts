@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  * > **Note:** `gcp.projects.IAMBinding` resources **can be** used in conjunction with `gcp.projects.IAMMember` resources **only if** they do not grant privilege to the same role.
  *
  * ## google\_project\_iam\_policy
+ * {{% example %}}
  *
  * > **Be careful!** You can accidentally lock yourself out of your project
  *    using this resource. Deleting a `gcp.projects.IAMPolicy` removes access
@@ -68,7 +69,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_project\_iam\_binding
+ * {{% example %}}
  *
  * > **Note:** If `role` is set to `roles/owner` and you don't specify a user or service account you have access to in `members`, you can lock yourself out of your project.
  *
@@ -101,7 +104,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_project\_iam\_member
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -132,7 +137,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_project\_iam\_audit\_config
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -152,6 +159,8 @@ import * as utilities from "../utilities";
  *     service: "allServices",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class IAMAuditConfig extends pulumi.CustomResource {
     /**

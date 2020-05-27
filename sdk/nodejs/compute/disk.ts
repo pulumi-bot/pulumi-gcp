@@ -34,6 +34,7 @@ import * as utilities from "../utilities";
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
  * ## Example Usage - Disk Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -50,6 +51,8 @@ import * as utilities from "../utilities";
  *     zone: "us-central1-a",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Disk extends pulumi.CustomResource {
     /**

@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
  *
  * ## Example Usage - Dialogflow Intent Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -31,6 +32,7 @@ import * as utilities from "../utilities";
  * });
  * const basicIntent = new gcp.diagflow.Intent("basicIntent", {displayName: "basic-intent"});
  * ```
+ * {{% /example %}}
  */
 export class Intent extends pulumi.CustomResource {
     /**

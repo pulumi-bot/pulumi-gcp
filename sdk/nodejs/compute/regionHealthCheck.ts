@@ -27,6 +27,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
  *
  * ## Example Usage - Region Health Check Tcp
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -41,7 +42,9 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Health Check Tcp Full
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -63,7 +66,9 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Health Check Ssl
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -78,7 +83,9 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Health Check Ssl Full
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -100,7 +107,9 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Health Check Http
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -115,7 +124,9 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Health Check Http Logs
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -133,7 +144,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Health Check Http Full
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -156,7 +169,9 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Health Check Https
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -171,7 +186,9 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Health Check Https Full
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -194,7 +211,9 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Health Check Http2
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -209,7 +228,9 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Health Check Http2 Full
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -232,6 +253,8 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class RegionHealthCheck extends pulumi.CustomResource {
     /**

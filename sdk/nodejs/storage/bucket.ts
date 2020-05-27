@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - creating a private bucket in standard storage, in the EU region. Bucket configured as static website and CORS configurations
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -50,7 +51,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## Example Usage - Life cycle settings for storage bucket objects
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -69,6 +72,7 @@ import * as utilities from "../utilities";
  *     location: "US",
  * });
  * ```
+ * {{% /example %}}
  */
 export class Bucket extends pulumi.CustomResource {
     /**

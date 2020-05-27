@@ -117,6 +117,7 @@ class Instance(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/memorystore/docs/redis/)
 
         ## Example Usage - Redis Instance Basic
+        {{% example %}}
 
 
         ```python
@@ -125,7 +126,9 @@ class Instance(pulumi.CustomResource):
 
         cache = gcp.redis.Instance("cache", memory_size_gb=1)
         ```
+        {{% /example %}}
         ## Example Usage - Redis Instance Full
+        {{% example %}}
 
 
         ```python
@@ -147,6 +150,7 @@ class Instance(pulumi.CustomResource):
                 "other_key": "other_val",
             })
         ```
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

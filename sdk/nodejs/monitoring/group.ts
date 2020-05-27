@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/monitoring/groups/)
  *
  * ## Example Usage - Monitoring Group Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -31,7 +32,9 @@ import * as utilities from "../utilities";
  *     filter: "resource.metadata.region=\"europe-west2\"",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Monitoring Group Subgroup
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -48,6 +51,8 @@ import * as utilities from "../utilities";
  *     parentName: parent.name,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Group extends pulumi.CustomResource {
     /**

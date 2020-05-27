@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
  *
  * ## Example Usage - Dialogflow Entity Type Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -49,6 +50,8 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class EntityType extends pulumi.CustomResource {
     /**

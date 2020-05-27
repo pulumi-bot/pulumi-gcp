@@ -354,6 +354,7 @@ class RegionBackendService(pulumi.CustomResource):
             * [Internal TCP/UDP Load Balancing](https://cloud.google.com/compute/docs/load-balancing/internal/)
 
         ## Example Usage - Region Backend Service Basic
+        {{% example %}}
 
 
         ```python
@@ -372,7 +373,9 @@ class RegionBackendService(pulumi.CustomResource):
             connection_draining_timeout_sec=10,
             session_affinity="CLIENT_IP")
         ```
+        {{% /example %}}
         ## Example Usage - Region Backend Service Ilb Round Robin
+        {{% example %}}
 
 
         ```python
@@ -389,7 +392,9 @@ class RegionBackendService(pulumi.CustomResource):
             load_balancing_scheme="INTERNAL_MANAGED",
             locality_lb_policy="ROUND_ROBIN")
         ```
+        {{% /example %}}
         ## Example Usage - Region Backend Service Ilb Ring Hash
+        {{% example %}}
 
 
         ```python
@@ -422,7 +427,9 @@ class RegionBackendService(pulumi.CustomResource):
                 "consecutiveErrors": 2,
             })
         ```
+        {{% /example %}}
         ## Example Usage - Region Backend Service Balancing Mode
+        {{% example %}}
 
 
         ```python
@@ -478,6 +485,8 @@ class RegionBackendService(pulumi.CustomResource):
             timeout_sec=10,
             health_checks=[default_region_health_check.id])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -26,6 +26,7 @@ import * as utilities from "../utilities";
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
  * ## Example Usage - Kms Secret Ciphertext Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -58,6 +59,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class SecretCiphertext extends pulumi.CustomResource {
     /**

@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  *     * [Cloud VPN Overview](https://cloud.google.com/vpn/docs/concepts/overview)
  *
  * ## Example Usage - Ha Vpn Gateway Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -31,7 +32,9 @@ import * as utilities from "../utilities";
  *     network: network1.id,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Ha Vpn Gateway Gcp To Gcp
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -175,6 +178,8 @@ import * as utilities from "../utilities";
  *     "interface": router2Interface2.name,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class HaVpnGateway extends pulumi.CustomResource {
     /**

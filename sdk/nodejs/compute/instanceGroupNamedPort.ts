@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/compute/docs/instance-groups/)
  *
  * ## Example Usage - Instance Group Named Port Gke
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -53,6 +54,8 @@ import * as utilities from "../utilities";
  *     port: 4443,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class InstanceGroupNamedPort extends pulumi.CustomResource {
     /**

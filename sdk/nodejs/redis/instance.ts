@@ -15,6 +15,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/memorystore/docs/redis/)
  *
  * ## Example Usage - Redis Instance Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -25,7 +26,9 @@ import * as utilities from "../utilities";
  *     memorySizeGb: 1,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Redis Instance Full
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -50,6 +53,7 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  */
 export class Instance extends pulumi.CustomResource {
     /**

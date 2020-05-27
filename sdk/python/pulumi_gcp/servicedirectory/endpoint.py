@@ -50,6 +50,7 @@ class Endpoint(pulumi.CustomResource):
             * [Configuring an endpoint](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_an_endpoint)
 
         ## Example Usage - Service Directory Endpoint Basic
+        {{% example %}}
 
 
         ```python
@@ -72,6 +73,8 @@ class Endpoint(pulumi.CustomResource):
             address="1.2.3.4",
             port=5353)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

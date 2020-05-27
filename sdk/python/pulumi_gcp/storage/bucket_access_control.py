@@ -71,6 +71,7 @@ class BucketAccessControl(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/storage/docs/access-control/lists)
 
         ## Example Usage - Storage Bucket Access Control Public Bucket
+        {{% example %}}
 
 
         ```python
@@ -83,6 +84,8 @@ class BucketAccessControl(pulumi.CustomResource):
             role="READER",
             entity="allUsers")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

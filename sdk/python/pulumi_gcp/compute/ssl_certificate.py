@@ -73,6 +73,7 @@ class SSLCertificate(pulumi.CustomResource):
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
         ## Example Usage - Ssl Certificate Basic
+        {{% example %}}
 
 
         ```python
@@ -85,7 +86,9 @@ class SSLCertificate(pulumi.CustomResource):
             private_key=(lambda path: open(path).read())("path/to/private.key"),
             certificate=(lambda path: open(path).read())("path/to/certificate.crt"))
         ```
+        {{% /example %}}
         ## Example Usage - Ssl Certificate Target Https Proxies
+        {{% example %}}
 
 
         ```python
@@ -129,6 +132,8 @@ class SSLCertificate(pulumi.CustomResource):
             url_map=default_url_map.id,
             ssl_certificates=[default_ssl_certificate.id])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

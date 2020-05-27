@@ -42,6 +42,7 @@ class SecretVersion(pulumi.CustomResource):
         state as plain-text.
 
         ## Example Usage - Secret Version Basic
+        {{% example %}}
 
 
         ```python
@@ -60,6 +61,8 @@ class SecretVersion(pulumi.CustomResource):
             secret=secret_basic.id,
             secret_data="secret-data")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

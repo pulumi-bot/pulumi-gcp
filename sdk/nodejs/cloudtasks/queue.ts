@@ -12,6 +12,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Queue Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -22,6 +23,8 @@ import * as utilities from "../utilities";
  *     location: "us-central1",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Queue extends pulumi.CustomResource {
     /**

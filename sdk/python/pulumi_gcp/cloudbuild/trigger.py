@@ -193,6 +193,7 @@ class Trigger(pulumi.CustomResource):
             * [Automating builds using build triggers](https://cloud.google.com/cloud-build/docs/running-builds/automate-builds)
 
         ## Example Usage - Cloudbuild Trigger Filename
+        {{% example %}}
 
 
         ```python
@@ -210,6 +211,8 @@ class Trigger(pulumi.CustomResource):
                 "repoName": "my-repo",
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

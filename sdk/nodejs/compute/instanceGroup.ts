@@ -13,6 +13,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Empty instance group
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -25,6 +26,8 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Example Usage - With instances and named ports
  *
  * ```typescript
@@ -51,6 +54,8 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Example Usage - Recreating an instance group in use
  * Recreating an instance group that's in use by another resource will give a
  * `resourceInUseByAnotherResource` error. Use `lifecycle.create_before_destroy`
@@ -100,6 +105,8 @@ import * as utilities from "../utilities";
  *     healthChecks: [stagingHealth.selfLink],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class InstanceGroup extends pulumi.CustomResource {
     /**

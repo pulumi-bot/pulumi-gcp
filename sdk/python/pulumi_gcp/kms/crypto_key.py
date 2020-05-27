@@ -66,6 +66,7 @@ class CryptoKey(pulumi.CustomResource):
             * [Creating a key](https://cloud.google.com/kms/docs/creating-keys#create_a_key)
 
         ## Example Usage - Kms Crypto Key Basic
+        {{% example %}}
 
 
         ```python
@@ -77,7 +78,9 @@ class CryptoKey(pulumi.CustomResource):
             key_ring=keyring.id,
             rotation_period="100000s")
         ```
+        {{% /example %}}
         ## Example Usage - Kms Crypto Key Asymmetric Sign
+        {{% example %}}
 
 
         ```python
@@ -92,6 +95,8 @@ class CryptoKey(pulumi.CustomResource):
                 "algorithm": "EC_SIGN_P384_SHA384",
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

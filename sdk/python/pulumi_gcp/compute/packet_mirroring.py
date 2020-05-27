@@ -84,6 +84,7 @@ class PacketMirroring(pulumi.CustomResource):
             * [Using Packet Mirroring](https://cloud.google.com/vpc/docs/using-packet-mirroring#creating)
 
         ## Example Usage - Compute Packet Mirroring Full
+        {{% example %}}
 
 
         ```python
@@ -140,6 +141,8 @@ class PacketMirroring(pulumi.CustomResource):
                 "cidrRanges": ["0.0.0.0/0"],
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

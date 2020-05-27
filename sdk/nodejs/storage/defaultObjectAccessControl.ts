@@ -29,6 +29,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/storage/docs/access-control/create-manage-lists)
  *
  * ## Example Usage - Storage Default Object Access Control Public
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -42,6 +43,8 @@ import * as utilities from "../utilities";
  *     entity: "allUsers",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class DefaultObjectAccessControl extends pulumi.CustomResource {
     /**

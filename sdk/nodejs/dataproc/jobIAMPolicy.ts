@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  * > **Note:** `gcp.dataproc.JobIAMBinding` resources **can be** used in conjunction with `gcp.dataproc.JobIAMMember` resources **only if** they do not grant privilege to the same role.
  *
  * ## google\_pubsub\_subscription\_iam\_policy
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -37,7 +38,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_pubsub\_subscription\_iam\_binding
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -50,7 +53,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_pubsub\_subscription\_iam\_member
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -62,6 +67,8 @@ import * as utilities from "../utilities";
  *     role: "roles/editor",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class JobIAMPolicy extends pulumi.CustomResource {
     /**

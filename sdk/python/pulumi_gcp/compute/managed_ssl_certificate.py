@@ -91,6 +91,7 @@ class ManagedSslCertificate(pulumi.CustomResource):
         In conclusion: Be extremely cautious.
 
         ## Example Usage - Managed Ssl Certificate Basic
+        {{% example %}}
 
 
         ```python
@@ -137,6 +138,7 @@ class ManagedSslCertificate(pulumi.CustomResource):
             managed_zone=zone.name,
             rrdatas=[default_global_forwarding_rule.ip_address])
         ```
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

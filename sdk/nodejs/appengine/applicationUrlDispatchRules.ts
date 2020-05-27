@@ -15,6 +15,7 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps#UrlDispatchRule)
  *
  * ## Example Usage - App Engine Application Url Dispatch Rules Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -56,6 +57,8 @@ import * as utilities from "../utilities";
  *     },
  * ]});
  * ```
+ *
+ * {{% /example %}}
  */
 export class ApplicationUrlDispatchRules extends pulumi.CustomResource {
     /**

@@ -34,6 +34,7 @@ import * as utilities from "../utilities";
  * In conclusion: Be extremely cautious.
  *
  * ## Example Usage - Managed Ssl Certificate Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -86,6 +87,7 @@ import * as utilities from "../utilities";
  *     rrdatas: [defaultGlobalForwardingRule.ipAddress],
  * });
  * ```
+ * {{% /example %}}
  */
 export class ManagedSslCertificate extends pulumi.CustomResource {
     /**

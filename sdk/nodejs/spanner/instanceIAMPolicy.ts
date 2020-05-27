@@ -21,6 +21,7 @@ import * as utilities from "../utilities";
  * > **Note:** `gcp.spanner.InstanceIAMBinding` resources **can be** used in conjunction with `gcp.spanner.InstanceIAMMember` resources **only if** they do not grant privilege to the same role.
  *
  * ## google\_spanner\_instance\_iam\_policy
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -38,7 +39,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_spanner\_instance\_iam\_binding
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -51,7 +54,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_spanner\_instance\_iam\_member
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -63,6 +68,8 @@ import * as utilities from "../utilities";
  *     role: "roles/compute.networkUser",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class InstanceIAMPolicy extends pulumi.CustomResource {
     /**

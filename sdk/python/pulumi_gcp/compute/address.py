@@ -107,6 +107,7 @@ class Address(pulumi.CustomResource):
             * [Reserving a Static Internal IP Address](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address)
 
         ## Example Usage - Address Basic
+        {{% example %}}
 
 
         ```python
@@ -115,7 +116,9 @@ class Address(pulumi.CustomResource):
 
         ip_address = gcp.compute.Address("ipAddress")
         ```
+        {{% /example %}}
         ## Example Usage - Address With Subnetwork
+        {{% example %}}
 
 
         ```python
@@ -133,7 +136,9 @@ class Address(pulumi.CustomResource):
             address="10.0.42.42",
             region="us-central1")
         ```
+        {{% /example %}}
         ## Example Usage - Address With Gce Endpoint
+        {{% example %}}
 
 
         ```python
@@ -144,7 +149,9 @@ class Address(pulumi.CustomResource):
             address_type="INTERNAL",
             purpose="GCE_ENDPOINT")
         ```
+        {{% /example %}}
         ## Example Usage - Instance With Ip
+        {{% example %}}
 
 
         ```python
@@ -169,6 +176,8 @@ class Address(pulumi.CustomResource):
                 }],
             }])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

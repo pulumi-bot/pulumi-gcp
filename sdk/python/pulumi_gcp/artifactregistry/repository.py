@@ -63,6 +63,7 @@ class Repository(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/artifact-registry/docs/overview)
 
         ## Example Usage - Artifact Registry Repository Basic
+        {{% example %}}
 
 
         ```python
@@ -75,7 +76,9 @@ class Repository(pulumi.CustomResource):
             description="example docker repository",
             format="DOCKER")
         ```
+        {{% /example %}}
         ## Example Usage - Artifact Registry Repository Iam
+        {{% example %}}
 
 
         ```python
@@ -96,6 +99,8 @@ class Repository(pulumi.CustomResource):
             role="roles/artifactregistry.reader",
             member=test_account.email.apply(lambda email: f"serviceAccount:{email}"))
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

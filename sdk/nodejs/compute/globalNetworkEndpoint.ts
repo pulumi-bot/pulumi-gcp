@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
  *
  * ## Example Usage - Global Network Endpoint
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -37,6 +38,8 @@ import * as utilities from "../utilities";
  *     defaultPort: "90",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class GlobalNetworkEndpoint extends pulumi.CustomResource {
     /**

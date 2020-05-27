@@ -70,6 +70,7 @@ def get_app_engine_service(module_id=None,project=None,opts=None):
         * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
     ## Example Usage - Monitoring App Engine Service
+    {{% example %}}
 
 
     ```python
@@ -98,6 +99,8 @@ def get_app_engine_service(module_id=None,project=None,opts=None):
         delete_service_on_destroy=False)
     srv = myapp.service.apply(lambda service: gcp.monitoring.get_app_engine_service(module_id=service))
     ```
+
+    {{% /example %}}
 
 
     :param str module_id: The ID of the App Engine module underlying this

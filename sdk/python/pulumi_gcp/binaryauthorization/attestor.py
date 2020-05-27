@@ -93,6 +93,7 @@ class Attestor(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/binary-authorization/)
 
         ## Example Usage - Binary Authorization Attestor Basic
+        {{% example %}}
 
 
         ```python
@@ -126,6 +127,7 @@ class Attestor(pulumi.CustomResource):
             }],
         })
         ```
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

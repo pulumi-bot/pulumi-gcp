@@ -105,6 +105,7 @@ class Deployment(pulumi.CustomResource):
         `preview=false`).
 
         ## Example Usage - Deployment Manager Deployment Basic
+        {{% example %}}
 
 
         ```python
@@ -122,6 +123,7 @@ class Deployment(pulumi.CustomResource):
                 "value": "bar",
             }])
         ```
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -15,6 +15,7 @@ import * as utilities from "../utilities";
  *     * [Configuring Serverless VPC Access](https://cloud.google.com/vpc/docs/configure-serverless-vpc-access)
  *
  * ## Example Usage - VPC Access Connector
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -27,6 +28,8 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Connector extends pulumi.CustomResource {
     /**

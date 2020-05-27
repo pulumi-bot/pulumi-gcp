@@ -253,6 +253,7 @@ class Cluster(pulumi.CustomResource):
         whole cluster!
 
         ## Example Usage - Basic
+        {{% example %}}
 
         ```python
         import pulumi
@@ -261,7 +262,9 @@ class Cluster(pulumi.CustomResource):
         simplecluster = gcp.dataproc.Cluster("simplecluster", region="us-central1")
         ```
 
+        {{% /example %}}
         ## Example Usage - Advanced
+        {{% example %}}
 
         ```python
         import pulumi
@@ -319,7 +322,9 @@ class Cluster(pulumi.CustomResource):
             region="us-central1")
         ```
 
+        {{% /example %}}
         ## Example Usage - Using a GPU accelerator
+        {{% example %}}
 
         ```python
         import pulumi
@@ -339,6 +344,8 @@ class Cluster(pulumi.CustomResource):
             },
             region="us-central1")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

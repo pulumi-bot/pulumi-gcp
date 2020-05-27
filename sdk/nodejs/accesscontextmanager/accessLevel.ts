@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  *     * [Access Policy Quickstart](https://cloud.google.com/access-context-manager/docs/quickstart)
  *
  * ## Example Usage - Access Context Manager Access Level Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -48,6 +49,8 @@ import * as utilities from "../utilities";
  *     title: "chromeosNoLock",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class AccessLevel extends pulumi.CustomResource {
     /**

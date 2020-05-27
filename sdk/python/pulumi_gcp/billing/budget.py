@@ -97,6 +97,7 @@ class Budget(pulumi.CustomResource):
             * [Creating a budget](https://cloud.google.com/billing/docs/how-to/budgets)
 
         ## Example Usage - Billing Budget Basic
+        {{% example %}}
 
 
         ```python
@@ -117,7 +118,9 @@ class Budget(pulumi.CustomResource):
                 "thresholdPercent": 0.5,
             }])
         ```
+        {{% /example %}}
         ## Example Usage - Billing Budget Filter
+        {{% example %}}
 
 
         ```python
@@ -149,6 +152,8 @@ class Budget(pulumi.CustomResource):
                 },
             ])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

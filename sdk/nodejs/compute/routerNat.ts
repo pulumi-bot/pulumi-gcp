@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Google Cloud Router](https://cloud.google.com/router/docs/)
  *
  * ## Example Usage - Router Nat Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -47,7 +48,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Router Nat Manual Ips
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -80,6 +83,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class RouterNat extends pulumi.CustomResource {
     /**

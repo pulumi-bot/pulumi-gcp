@@ -49,6 +49,7 @@ class GameServerDeployment(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/game-servers/docs)
 
         ## Example Usage - Game Service Deployment Basic
+        {{% example %}}
 
 
         ```python
@@ -59,6 +60,8 @@ class GameServerDeployment(pulumi.CustomResource):
             deployment_id="tf-test-deployment",
             description="a deployment description")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

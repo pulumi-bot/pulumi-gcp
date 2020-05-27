@@ -14,6 +14,42 @@ namespace Pulumi.Gcp.SecretManager
     /// 
     /// &gt; **Warning:** All arguments including `payload.secret_data` will be stored in the raw
     /// state as plain-text.
+    /// 
+    /// ## Example Usage - Secret Version Basic
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var secret-basic = new Gcp.SecretManager.Secret("secret-basic", new Gcp.SecretManager.SecretArgs
+    ///         {
+    ///             SecretId = "secret-version",
+    ///             Labels = 
+    ///             {
+    ///                 { "label", "my-label" },
+    ///             },
+    ///             Replication = new Gcp.SecretManager.Inputs.SecretReplicationArgs
+    ///             {
+    ///                 Automatic = true,
+    ///             },
+    ///         });
+    ///         var secret-version-basic = new Gcp.SecretManager.SecretVersion("secret-version-basic", new Gcp.SecretManager.SecretVersionArgs
+    ///         {
+    ///             Secret = secret-basic.Id,
+    ///             SecretData = "secret-data",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// {{% /example %}}
     /// </summary>
     public partial class SecretVersion : Pulumi.CustomResource
     {

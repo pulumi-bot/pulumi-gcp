@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Global Forwarding Rule Http
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -60,7 +61,9 @@ import * as utilities from "../utilities";
  *     portRange: "80",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Global Forwarding Rule Internal
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -145,6 +148,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class GlobalForwardingRule extends pulumi.CustomResource {
     /**

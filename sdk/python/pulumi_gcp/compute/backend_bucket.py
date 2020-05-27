@@ -77,6 +77,7 @@ class BackendBucket(pulumi.CustomResource):
             * [Using a Cloud Storage bucket as a load balancer backend](https://cloud.google.com/compute/docs/load-balancing/http/backend-bucket)
 
         ## Example Usage - Backend Bucket Basic
+        {{% example %}}
 
 
         ```python
@@ -89,6 +90,8 @@ class BackendBucket(pulumi.CustomResource):
             bucket_name=image_bucket.name,
             enable_cdn=True)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

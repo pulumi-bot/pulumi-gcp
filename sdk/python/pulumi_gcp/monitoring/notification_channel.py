@@ -100,6 +100,7 @@ class NotificationChannel(pulumi.CustomResource):
             * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
         ## Example Usage - Notification Channel Basic
+        {{% example %}}
 
 
         ```python
@@ -113,7 +114,9 @@ class NotificationChannel(pulumi.CustomResource):
             },
             type="email")
         ```
+        {{% /example %}}
         ## Example Usage - Notification Channel Sensitive
+        {{% example %}}
 
 
         ```python
@@ -130,6 +133,8 @@ class NotificationChannel(pulumi.CustomResource):
             },
             type="slack")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

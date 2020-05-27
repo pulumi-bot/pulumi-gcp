@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/mapping-custom-domains)
  *
  * ## Example Usage - App Engine Domain Mapping Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -30,6 +31,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class DomainMapping extends pulumi.CustomResource {
     /**

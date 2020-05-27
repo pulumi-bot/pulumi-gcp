@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Automating builds using build triggers](https://cloud.google.com/cloud-build/docs/running-builds/automate-builds)
  *
  * ## Example Usage - Cloudbuild Trigger Filename
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -35,6 +36,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Trigger extends pulumi.CustomResource {
     /**

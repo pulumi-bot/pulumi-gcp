@@ -104,6 +104,7 @@ class RouterPeer(pulumi.CustomResource):
             * [Google Cloud Router](https://cloud.google.com/router/docs/)
 
         ## Example Usage - Router Peer Basic
+        {{% example %}}
 
 
         ```python
@@ -118,6 +119,8 @@ class RouterPeer(pulumi.CustomResource):
             region="us-central1",
             router="my-router")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

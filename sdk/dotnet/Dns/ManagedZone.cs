@@ -20,6 +20,33 @@ namespace Pulumi.Gcp.Dns
     /// * [API documentation](https://cloud.google.com/dns/api/v1/managedZones)
     /// * How-to Guides
     ///     * [Managing Zones](https://cloud.google.com/dns/zones/)
+    /// 
+    /// ## Example Usage - Dns Managed Zone Basic
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example-zone = new Gcp.Dns.ManagedZone("example-zone", new Gcp.Dns.ManagedZoneArgs
+    ///         {
+    ///             Description = "Example DNS zone",
+    ///             DnsName = "my-domain.com.",
+    ///             Labels = 
+    ///             {
+    ///                 { "foo", "bar" },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// {{% /example %}}
     /// </summary>
     public partial class ManagedZone : Pulumi.CustomResource
     {

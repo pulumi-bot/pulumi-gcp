@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Identity Platform Inbound Saml Config Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -39,6 +40,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class InboundSamlConfig extends pulumi.CustomResource {
     /**

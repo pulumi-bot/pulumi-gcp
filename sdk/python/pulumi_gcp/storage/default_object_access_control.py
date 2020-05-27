@@ -81,6 +81,7 @@ class DefaultObjectAccessControl(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/storage/docs/access-control/create-manage-lists)
 
         ## Example Usage - Storage Default Object Access Control Public
+        {{% example %}}
 
 
         ```python
@@ -93,6 +94,8 @@ class DefaultObjectAccessControl(pulumi.CustomResource):
             role="READER",
             entity="allUsers")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

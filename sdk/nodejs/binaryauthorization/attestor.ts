@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/binary-authorization/)
  *
  * ## Example Usage - Binary Authorization Attestor Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -50,6 +51,7 @@ import * as utilities from "../utilities";
  *     }],
  * }});
  * ```
+ * {{% /example %}}
  */
 export class Attestor extends pulumi.CustomResource {
     /**

@@ -25,6 +25,7 @@ import * as utilities from "../utilities";
  *     * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
  *
  * ## Example Usage - Access Context Manager Service Perimeter Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -62,7 +63,9 @@ import * as utilities from "../utilities";
  *     title: "chromeosNoLock",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Access Context Manager Service Perimeter Dry Run
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -87,6 +90,8 @@ import * as utilities from "../utilities";
  *     useExplicitDryRunSpec: true,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class ServicePerimeter extends pulumi.CustomResource {
     /**

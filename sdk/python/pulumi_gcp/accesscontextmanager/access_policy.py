@@ -47,6 +47,7 @@ class AccessPolicy(pulumi.CustomResource):
             * [Access Policy Quickstart](https://cloud.google.com/access-context-manager/docs/quickstart)
 
         ## Example Usage - Access Context Manager Access Policy Basic
+        {{% example %}}
 
 
         ```python
@@ -57,6 +58,8 @@ class AccessPolicy(pulumi.CustomResource):
             parent="organizations/123456789",
             title="my policy")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

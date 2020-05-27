@@ -48,6 +48,7 @@ class FirewallRule(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/creating-firewalls#creating_firewall_rules)
 
         ## Example Usage - App Engine Firewall Rule Basic
+        {{% example %}}
 
 
         ```python
@@ -66,6 +67,8 @@ class FirewallRule(pulumi.CustomResource):
             action="ALLOW",
             source_range="*")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

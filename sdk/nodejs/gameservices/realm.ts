@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/game-servers/docs)
  *
  * ## Example Usage - Game Service Realm Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -29,6 +30,8 @@ import * as utilities from "../utilities";
  *     description: "one of the nine",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Realm extends pulumi.CustomResource {
     /**

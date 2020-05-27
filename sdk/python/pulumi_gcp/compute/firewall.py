@@ -186,6 +186,7 @@ class Firewall(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/vpc/docs/firewalls)
 
         ## Example Usage - Firewall Basic
+        {{% example %}}
 
 
         ```python
@@ -210,6 +211,8 @@ class Firewall(pulumi.CustomResource):
             ],
             source_tags=["web"])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

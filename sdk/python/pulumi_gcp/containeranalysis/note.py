@@ -54,6 +54,7 @@ class Note(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/container-analysis/)
 
         ## Example Usage - Container Analysis Note Basic
+        {{% example %}}
 
 
         ```python
@@ -66,6 +67,8 @@ class Note(pulumi.CustomResource):
             },
         })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

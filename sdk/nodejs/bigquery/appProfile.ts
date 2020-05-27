@@ -12,6 +12,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Bigtable App Profile Multicluster
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -34,7 +35,9 @@ import * as utilities from "../utilities";
  *     ignoreWarnings: true,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Bigtable App Profile Singlecluster
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -60,6 +63,8 @@ import * as utilities from "../utilities";
  *     ignoreWarnings: true,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class AppProfile extends pulumi.CustomResource {
     /**

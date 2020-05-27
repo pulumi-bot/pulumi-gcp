@@ -47,6 +47,7 @@ class InstanceGroupNamedPort(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/compute/docs/instance-groups/)
 
         ## Example Usage - Instance Group Named Port Gke
+        {{% example %}}
 
 
         ```python
@@ -76,6 +77,8 @@ class InstanceGroupNamedPort(pulumi.CustomResource):
             zone="us-central1-a",
             port=4443)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

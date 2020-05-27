@@ -112,6 +112,7 @@ class RouterNat(pulumi.CustomResource):
             * [Google Cloud Router](https://cloud.google.com/router/docs/)
 
         ## Example Usage - Router Nat Basic
+        {{% example %}}
 
 
         ```python
@@ -139,7 +140,9 @@ class RouterNat(pulumi.CustomResource):
                 "filter": "ERRORS_ONLY",
             })
         ```
+        {{% /example %}}
         ## Example Usage - Router Nat Manual Ips
+        {{% example %}}
 
 
         ```python
@@ -168,6 +171,8 @@ class RouterNat(pulumi.CustomResource):
                 "sourceIpRangesToNats": ["ALL_IP_RANGES"],
             }])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

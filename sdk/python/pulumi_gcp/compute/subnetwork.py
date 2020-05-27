@@ -156,6 +156,7 @@ class Subnetwork(pulumi.CustomResource):
             * [Cloud Networking](https://cloud.google.com/vpc/docs/using-vpc)
 
         ## Example Usage - Subnetwork Basic
+        {{% example %}}
 
 
         ```python
@@ -172,7 +173,9 @@ class Subnetwork(pulumi.CustomResource):
                 "ip_cidr_range": "192.168.10.0/24",
             }])
         ```
+        {{% /example %}}
         ## Example Usage - Subnetwork Logging Config
+        {{% example %}}
 
 
         ```python
@@ -190,7 +193,9 @@ class Subnetwork(pulumi.CustomResource):
                 "metadata": "INCLUDE_ALL_METADATA",
             })
         ```
+        {{% /example %}}
         ## Example Usage - Subnetwork Internal L7lb
+        {{% example %}}
 
 
         ```python
@@ -205,6 +210,8 @@ class Subnetwork(pulumi.CustomResource):
             role="ACTIVE",
             network=custom_test.id)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

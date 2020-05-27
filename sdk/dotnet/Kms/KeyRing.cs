@@ -23,6 +23,29 @@ namespace Pulumi.Gcp.Kms
     /// * [API documentation](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings)
     /// * How-to Guides
     ///     * [Creating a key ring](https://cloud.google.com/kms/docs/creating-keys#create_a_key_ring)
+    /// 
+    /// ## Example Usage - Kms Key Ring Basic
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example-keyring = new Gcp.Kms.KeyRing("example-keyring", new Gcp.Kms.KeyRingArgs
+    ///         {
+    ///             Location = "global",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// {{% /example %}}
     /// </summary>
     public partial class KeyRing : Pulumi.CustomResource
     {

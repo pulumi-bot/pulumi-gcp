@@ -88,6 +88,7 @@ class SecurityScanConfig(pulumi.CustomResource):
         state as plain-text.[Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets)
 
         ## Example Usage - Scan Config Basic
+        {{% example %}}
 
 
         ```python
@@ -100,6 +101,8 @@ class SecurityScanConfig(pulumi.CustomResource):
             starting_urls=[scanner_static_ip.address.apply(lambda address: f"http://{address}")],
             target_platforms=["COMPUTE"])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

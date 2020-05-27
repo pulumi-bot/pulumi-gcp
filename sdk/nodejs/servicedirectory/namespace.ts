@@ -15,6 +15,7 @@ import * as utilities from "../utilities";
  *     * [Configuring a namespace](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_namespace)
  *
  * ## Example Usage - Service Directory Namespace Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -30,6 +31,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Namespace extends pulumi.CustomResource {
     /**

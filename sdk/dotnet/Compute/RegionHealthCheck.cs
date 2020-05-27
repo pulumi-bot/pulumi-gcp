@@ -28,6 +28,306 @@ namespace Pulumi.Gcp.Compute
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/regionHealthChecks)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
+    /// 
+    /// ## Example Usage - Region Health Check Tcp
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var tcp-region-health-check = new Gcp.Compute.RegionHealthCheck("tcp-region-health-check", new Gcp.Compute.RegionHealthCheckArgs
+    ///         {
+    ///             CheckIntervalSec = 1,
+    ///             TcpHealthCheck = new Gcp.Compute.Inputs.RegionHealthCheckTcpHealthCheckArgs
+    ///             {
+    ///                 Port = "80",
+    ///             },
+    ///             TimeoutSec = 1,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// {{% /example %}}
+    /// ## Example Usage - Region Health Check Tcp Full
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var tcp-region-health-check = new Gcp.Compute.RegionHealthCheck("tcp-region-health-check", new Gcp.Compute.RegionHealthCheckArgs
+    ///         {
+    ///             CheckIntervalSec = 1,
+    ///             Description = "Health check via tcp",
+    ///             HealthyThreshold = 4,
+    ///             TcpHealthCheck = new Gcp.Compute.Inputs.RegionHealthCheckTcpHealthCheckArgs
+    ///             {
+    ///                 PortName = "health-check-port",
+    ///                 PortSpecification = "USE_NAMED_PORT",
+    ///                 ProxyHeader = "NONE",
+    ///                 Request = "ARE YOU HEALTHY?",
+    ///                 Response = "I AM HEALTHY",
+    ///             },
+    ///             TimeoutSec = 1,
+    ///             UnhealthyThreshold = 5,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// {{% /example %}}
+    /// ## Example Usage - Region Health Check Ssl
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var ssl-region-health-check = new Gcp.Compute.RegionHealthCheck("ssl-region-health-check", new Gcp.Compute.RegionHealthCheckArgs
+    ///         {
+    ///             CheckIntervalSec = 1,
+    ///             SslHealthCheck = new Gcp.Compute.Inputs.RegionHealthCheckSslHealthCheckArgs
+    ///             {
+    ///                 Port = "443",
+    ///             },
+    ///             TimeoutSec = 1,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// {{% /example %}}
+    /// ## Example Usage - Region Health Check Ssl Full
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var ssl-region-health-check = new Gcp.Compute.RegionHealthCheck("ssl-region-health-check", new Gcp.Compute.RegionHealthCheckArgs
+    ///         {
+    ///             CheckIntervalSec = 1,
+    ///             Description = "Health check via ssl",
+    ///             HealthyThreshold = 4,
+    ///             SslHealthCheck = new Gcp.Compute.Inputs.RegionHealthCheckSslHealthCheckArgs
+    ///             {
+    ///                 PortName = "health-check-port",
+    ///                 PortSpecification = "USE_NAMED_PORT",
+    ///                 ProxyHeader = "NONE",
+    ///                 Request = "ARE YOU HEALTHY?",
+    ///                 Response = "I AM HEALTHY",
+    ///             },
+    ///             TimeoutSec = 1,
+    ///             UnhealthyThreshold = 5,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// {{% /example %}}
+    /// ## Example Usage - Region Health Check Http
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var http-region-health-check = new Gcp.Compute.RegionHealthCheck("http-region-health-check", new Gcp.Compute.RegionHealthCheckArgs
+    ///         {
+    ///             CheckIntervalSec = 1,
+    ///             HttpHealthCheck = new Gcp.Compute.Inputs.RegionHealthCheckHttpHealthCheckArgs
+    ///             {
+    ///                 Port = "80",
+    ///             },
+    ///             TimeoutSec = 1,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// {{% /example %}}
+    /// ## Example Usage - Region Health Check Http Full
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var http-region-health-check = new Gcp.Compute.RegionHealthCheck("http-region-health-check", new Gcp.Compute.RegionHealthCheckArgs
+    ///         {
+    ///             CheckIntervalSec = 1,
+    ///             Description = "Health check via http",
+    ///             HealthyThreshold = 4,
+    ///             HttpHealthCheck = new Gcp.Compute.Inputs.RegionHealthCheckHttpHealthCheckArgs
+    ///             {
+    ///                 Host = "1.2.3.4",
+    ///                 PortName = "health-check-port",
+    ///                 PortSpecification = "USE_NAMED_PORT",
+    ///                 ProxyHeader = "NONE",
+    ///                 RequestPath = "/mypath",
+    ///                 Response = "I AM HEALTHY",
+    ///             },
+    ///             TimeoutSec = 1,
+    ///             UnhealthyThreshold = 5,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// {{% /example %}}
+    /// ## Example Usage - Region Health Check Https
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var https-region-health-check = new Gcp.Compute.RegionHealthCheck("https-region-health-check", new Gcp.Compute.RegionHealthCheckArgs
+    ///         {
+    ///             CheckIntervalSec = 1,
+    ///             HttpsHealthCheck = new Gcp.Compute.Inputs.RegionHealthCheckHttpsHealthCheckArgs
+    ///             {
+    ///                 Port = "443",
+    ///             },
+    ///             TimeoutSec = 1,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// {{% /example %}}
+    /// ## Example Usage - Region Health Check Https Full
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var https-region-health-check = new Gcp.Compute.RegionHealthCheck("https-region-health-check", new Gcp.Compute.RegionHealthCheckArgs
+    ///         {
+    ///             CheckIntervalSec = 1,
+    ///             Description = "Health check via https",
+    ///             HealthyThreshold = 4,
+    ///             HttpsHealthCheck = new Gcp.Compute.Inputs.RegionHealthCheckHttpsHealthCheckArgs
+    ///             {
+    ///                 Host = "1.2.3.4",
+    ///                 PortName = "health-check-port",
+    ///                 PortSpecification = "USE_NAMED_PORT",
+    ///                 ProxyHeader = "NONE",
+    ///                 RequestPath = "/mypath",
+    ///                 Response = "I AM HEALTHY",
+    ///             },
+    ///             TimeoutSec = 1,
+    ///             UnhealthyThreshold = 5,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// {{% /example %}}
+    /// ## Example Usage - Region Health Check Http2
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var http2-region-health-check = new Gcp.Compute.RegionHealthCheck("http2-region-health-check", new Gcp.Compute.RegionHealthCheckArgs
+    ///         {
+    ///             CheckIntervalSec = 1,
+    ///             Http2HealthCheck = new Gcp.Compute.Inputs.RegionHealthCheckHttp2HealthCheckArgs
+    ///             {
+    ///                 Port = "443",
+    ///             },
+    ///             TimeoutSec = 1,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// {{% /example %}}
+    /// ## Example Usage - Region Health Check Http2 Full
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var http2-region-health-check = new Gcp.Compute.RegionHealthCheck("http2-region-health-check", new Gcp.Compute.RegionHealthCheckArgs
+    ///         {
+    ///             CheckIntervalSec = 1,
+    ///             Description = "Health check via http2",
+    ///             HealthyThreshold = 4,
+    ///             Http2HealthCheck = new Gcp.Compute.Inputs.RegionHealthCheckHttp2HealthCheckArgs
+    ///             {
+    ///                 Host = "1.2.3.4",
+    ///                 PortName = "health-check-port",
+    ///                 PortSpecification = "USE_NAMED_PORT",
+    ///                 ProxyHeader = "NONE",
+    ///                 RequestPath = "/mypath",
+    ///                 Response = "I AM HEALTHY",
+    ///             },
+    ///             TimeoutSec = 1,
+    ///             UnhealthyThreshold = 5,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// {{% /example %}}
     /// </summary>
     public partial class RegionHealthCheck : Pulumi.CustomResource
     {

@@ -43,6 +43,7 @@ class ConfigIamPolicy(pulumi.CustomResource):
 
 
         ## google\_runtimeconfig\_config\_iam\_policy
+        {{% example %}}
 
         ```python
         import pulumi
@@ -58,7 +59,9 @@ class ConfigIamPolicy(pulumi.CustomResource):
             policy_data=admin.policy_data)
         ```
 
+        {{% /example %}}
         ## google\_runtimeconfig\_config\_iam\_binding
+        {{% example %}}
 
         ```python
         import pulumi
@@ -71,7 +74,9 @@ class ConfigIamPolicy(pulumi.CustomResource):
             members=["user:jane@example.com"])
         ```
 
+        {{% /example %}}
         ## google\_runtimeconfig\_config\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -83,6 +88,8 @@ class ConfigIamPolicy(pulumi.CustomResource):
             role="roles/viewer",
             member="user:jane@example.com")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

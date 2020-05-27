@@ -21,6 +21,7 @@ import * as utilities from "../utilities";
  * > **Note:** `gcp.spanner.DatabaseIAMBinding` resources **can be** used in conjunction with `gcp.spanner.DatabaseIAMMember` resources **only if** they do not grant privilege to the same role.
  *
  * ## google\_spanner\_database\_iam\_policy
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -39,7 +40,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_spanner\_database\_iam\_binding
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -53,7 +56,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_spanner\_database\_iam\_member
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -66,6 +71,8 @@ import * as utilities from "../utilities";
  *     role: "roles/compute.networkUser",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class DatabaseIAMBinding extends pulumi.CustomResource {
     /**

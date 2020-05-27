@@ -664,6 +664,7 @@ class RegionUrlMap(pulumi.CustomResource):
         that you define for the host and path of an incoming URL.
 
         ## Example Usage - Region Url Map Basic
+        {{% example %}}
 
 
         ```python
@@ -716,7 +717,9 @@ class RegionUrlMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
+        {{% /example %}}
         ## Example Usage - Region Url Map L7 Ilb Path
+        {{% example %}}
 
 
         ```python
@@ -814,7 +817,9 @@ class RegionUrlMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
+        {{% /example %}}
         ## Example Usage - Region Url Map L7 Ilb Path Partial
+        {{% example %}}
 
 
         ```python
@@ -880,7 +885,9 @@ class RegionUrlMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
+        {{% /example %}}
         ## Example Usage - Region Url Map L7 Ilb Route
+        {{% example %}}
 
 
         ```python
@@ -956,7 +963,9 @@ class RegionUrlMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
+        {{% /example %}}
         ## Example Usage - Region Url Map L7 Ilb Route Partial
+        {{% example %}}
 
 
         ```python
@@ -1007,6 +1016,8 @@ class RegionUrlMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

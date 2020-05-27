@@ -23,6 +23,7 @@ import * as utilities from "../utilities";
  *     * [Using a Cloud Storage bucket as a load balancer backend](https://cloud.google.com/compute/docs/load-balancing/http/backend-bucket)
  *
  * ## Example Usage - Backend Bucket Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -36,6 +37,8 @@ import * as utilities from "../utilities";
  *     enableCdn: true,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class BackendBucket extends pulumi.CustomResource {
     /**

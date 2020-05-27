@@ -134,6 +134,7 @@ class Route(pulumi.CustomResource):
             * [Using Routes](https://cloud.google.com/vpc/docs/using-routes)
 
         ## Example Usage - Route Basic
+        {{% example %}}
 
 
         ```python
@@ -147,7 +148,9 @@ class Route(pulumi.CustomResource):
             next_hop_ip="10.132.1.5",
             priority=100)
         ```
+        {{% /example %}}
         ## Example Usage - Route Ilb
+        {{% example %}}
 
 
         ```python
@@ -181,6 +184,8 @@ class Route(pulumi.CustomResource):
             next_hop_ilb=default_forwarding_rule.id,
             priority=2000)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

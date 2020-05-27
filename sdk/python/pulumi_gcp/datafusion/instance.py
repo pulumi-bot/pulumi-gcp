@@ -111,6 +111,7 @@ class Instance(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/data-fusion/docs/)
 
         ## Example Usage - Data Fusion Instance Basic
+        {{% example %}}
 
 
         ```python
@@ -121,7 +122,9 @@ class Instance(pulumi.CustomResource):
             region="us-central1",
             type="BASIC")
         ```
+        {{% /example %}}
         ## Example Usage - Data Fusion Instance Full
+        {{% example %}}
 
 
         ```python
@@ -143,6 +146,8 @@ class Instance(pulumi.CustomResource):
                 "ipAllocation": "10.89.48.0/22",
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

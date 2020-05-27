@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  *     * [Managing Zones](https://cloud.google.com/dns/zones/)
  *
  * ## Example Usage - Dns Managed Zone Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -33,7 +34,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Dns Managed Zone Private
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -61,7 +64,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Dns Managed Zone Private Forwarding
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -99,7 +104,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Dns Managed Zone Private Peering
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -124,7 +131,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Dns Managed Zone Service Directory
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -147,6 +156,8 @@ import * as utilities from "../utilities";
  * });
  * const network = new gcp.compute.Network("network", {autoCreateSubnetworks: false});
  * ```
+ *
+ * {{% /example %}}
  */
 export class ManagedZone extends pulumi.CustomResource {
     /**

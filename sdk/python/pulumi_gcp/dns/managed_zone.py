@@ -129,6 +129,7 @@ class ManagedZone(pulumi.CustomResource):
             * [Managing Zones](https://cloud.google.com/dns/zones/)
 
         ## Example Usage - Dns Managed Zone Basic
+        {{% example %}}
 
 
         ```python
@@ -142,7 +143,9 @@ class ManagedZone(pulumi.CustomResource):
                 "foo": "bar",
             })
         ```
+        {{% /example %}}
         ## Example Usage - Dns Managed Zone Private
+        {{% example %}}
 
 
         ```python
@@ -169,7 +172,9 @@ class ManagedZone(pulumi.CustomResource):
                 ],
             })
         ```
+        {{% /example %}}
         ## Example Usage - Dns Managed Zone Private Forwarding
+        {{% example %}}
 
 
         ```python
@@ -206,7 +211,9 @@ class ManagedZone(pulumi.CustomResource):
                 ],
             })
         ```
+        {{% /example %}}
         ## Example Usage - Dns Managed Zone Private Peering
+        {{% example %}}
 
 
         ```python
@@ -230,7 +237,9 @@ class ManagedZone(pulumi.CustomResource):
                 },
             })
         ```
+        {{% /example %}}
         ## Example Usage - Dns Managed Zone Service Directory
+        {{% example %}}
 
 
         ```python
@@ -251,6 +260,8 @@ class ManagedZone(pulumi.CustomResource):
             })
         network = gcp.compute.Network("network", auto_create_subnetworks=False)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

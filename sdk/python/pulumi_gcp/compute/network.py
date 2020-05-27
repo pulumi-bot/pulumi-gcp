@@ -71,6 +71,7 @@ class Network(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/vpc/docs/vpc)
 
         ## Example Usage - Network Basic
+        {{% example %}}
 
 
         ```python
@@ -79,6 +80,8 @@ class Network(pulumi.CustomResource):
 
         vpc_network = gcp.compute.Network("vpcNetwork")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -24,6 +24,7 @@ import * as utilities from "../utilities";
  *     * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
  *
  * ## Example Usage - Access Context Manager Service Perimeter Resource Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -46,6 +47,8 @@ import * as utilities from "../utilities";
  *     resource: "projects/987654321",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class ServicePerimeterResource extends pulumi.CustomResource {
     /**

@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/targetVpnGateways)
  *
  * ## Example Usage - Target Vpn Gateway Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -54,6 +55,8 @@ import * as utilities from "../utilities";
  *     nextHopVpnTunnel: tunnel1.id,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class VPNGateway extends pulumi.CustomResource {
     /**

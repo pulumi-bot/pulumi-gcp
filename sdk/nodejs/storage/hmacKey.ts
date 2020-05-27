@@ -26,6 +26,7 @@ import * as utilities from "../utilities";
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
  * ## Example Usage - Storage Hmac Key
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -35,6 +36,8 @@ import * as utilities from "../utilities";
  * const serviceAccount = new gcp.serviceAccount.Account("serviceAccount", {accountId: "my-svc-acc"});
  * const key = new gcp.storage.HmacKey("key", {serviceAccountEmail: serviceAccount.email});
  * ```
+ *
+ * {{% /example %}}
  */
 export class HmacKey extends pulumi.CustomResource {
     /**

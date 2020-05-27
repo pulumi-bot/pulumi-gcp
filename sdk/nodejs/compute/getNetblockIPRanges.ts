@@ -10,6 +10,7 @@ import * as utilities from "../utilities";
  * Use this data source to get the IP addresses from different special IP ranges on Google Cloud Platform.
  *
  * ## Example Usage - Cloud Ranges
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -21,7 +22,9 @@ import * as utilities from "../utilities";
  * export const cidrBlocksIpv6 = netblock.then(netblock => netblock.cidrBlocksIpv6s);
  * ```
  *
+ * {{% /example %}}
  * ## Example Usage - Allow Health Checks
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -40,6 +43,8 @@ import * as utilities from "../utilities";
  *     sourceRanges: legacy-hcs.then(legacy_hcs => legacy_hcs.cidrBlocksIpv4s),
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export function getNetblockIPRanges(args?: GetNetblockIPRangesArgs, opts?: pulumi.InvokeOptions): Promise<GetNetblockIPRangesResult> {
     args = args || {};

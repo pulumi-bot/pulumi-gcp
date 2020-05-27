@@ -88,6 +88,7 @@ class Node(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/tpu/docs/)
 
         ## Example Usage - TPU Node Basic
+        {{% example %}}
 
 
         ```python
@@ -101,7 +102,9 @@ class Node(pulumi.CustomResource):
             tensorflow_version=available.versions[0],
             cidr_block="10.2.0.0/29")
         ```
+        {{% /example %}}
         ## Example Usage - TPU Node Full
+        {{% example %}}
 
 
         ```python
@@ -123,6 +126,8 @@ class Node(pulumi.CustomResource):
                 "preemptible": True,
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

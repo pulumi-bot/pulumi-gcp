@@ -10,6 +10,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Resource Manager Lien
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -26,6 +27,8 @@ import * as utilities from "../utilities";
  *     restrictions: ["resourcemanager.projects.delete"],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Lien extends pulumi.CustomResource {
     /**

@@ -87,6 +87,7 @@ def get_object_signed_url(bucket=None,content_md5=None,content_type=None,credent
     ```
 
     ## Full Example
+    {{% example %}}
 
     ```python
     import pulumi
@@ -102,6 +103,8 @@ def get_object_signed_url(bucket=None,content_md5=None,content_type=None,credent
             "x-goog-if-generation-match": 1,
         })
     ```
+
+    {{% /example %}}
 
 
     :param str bucket: The name of the bucket to read the object from

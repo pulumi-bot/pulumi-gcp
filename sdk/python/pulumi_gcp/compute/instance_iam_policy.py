@@ -49,6 +49,7 @@ class InstanceIAMPolicy(pulumi.CustomResource):
 
 
         ## google\_compute\_instance\_iam\_policy
+        {{% example %}}
 
         ```python
         import pulumi
@@ -86,7 +87,9 @@ class InstanceIAMPolicy(pulumi.CustomResource):
             instance_name=google_compute_instance["default"]["name"],
             policy_data=admin.policy_data)
         ```
+        {{% /example %}}
         ## google\_compute\_instance\_iam\_binding
+        {{% example %}}
 
         ```python
         import pulumi
@@ -118,7 +121,9 @@ class InstanceIAMPolicy(pulumi.CustomResource):
                 "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
             })
         ```
+        {{% /example %}}
         ## google\_compute\_instance\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -150,6 +155,7 @@ class InstanceIAMPolicy(pulumi.CustomResource):
                 "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
             })
         ```
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

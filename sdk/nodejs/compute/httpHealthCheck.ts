@@ -25,6 +25,7 @@ import * as utilities from "../utilities";
  *     * [Adding Health Checks](https://cloud.google.com/compute/docs/load-balancing/health-checks#legacy_health_checks)
  *
  * ## Example Usage - Http Health Check Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -37,6 +38,8 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class HttpHealthCheck extends pulumi.CustomResource {
     /**

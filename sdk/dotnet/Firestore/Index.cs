@@ -20,6 +20,48 @@ namespace Pulumi.Gcp.Firestore
     /// * [API documentation](https://cloud.google.com/firestore/docs/reference/rest/v1/projects.databases.collectionGroups.indexes)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/firestore/docs/query-data/indexing)
+    /// 
+    /// ## Example Usage - Firestore Index Basic
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var my-index = new Gcp.Firestore.Index("my-index", new Gcp.Firestore.IndexArgs
+    ///         {
+    ///             Collection = "chatrooms",
+    ///             Fields = 
+    ///             {
+    ///                 new Gcp.Firestore.Inputs.IndexFieldArgs
+    ///                 {
+    ///                     FieldPath = "name",
+    ///                     Order = "ASCENDING",
+    ///                 },
+    ///                 new Gcp.Firestore.Inputs.IndexFieldArgs
+    ///                 {
+    ///                     FieldPath = "description",
+    ///                     Order = "DESCENDING",
+    ///                 },
+    ///                 new Gcp.Firestore.Inputs.IndexFieldArgs
+    ///                 {
+    ///                     FieldPath = "__name__",
+    ///                     Order = "DESCENDING",
+    ///                 },
+    ///             },
+    ///             Project = "my-project-name",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// {{% /example %}}
     /// </summary>
     public partial class Index : Pulumi.CustomResource
     {

@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Notification Channel Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -49,6 +50,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export function getNotificationChannel(args?: GetNotificationChannelArgs, opts?: pulumi.InvokeOptions): Promise<GetNotificationChannelResult> {
     args = args || {};

@@ -13,6 +13,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Bigquery Job Query
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -49,7 +50,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Bigquery Job Load
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -88,7 +91,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Bigquery Job Extract
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -138,6 +143,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Job extends pulumi.CustomResource {
     /**

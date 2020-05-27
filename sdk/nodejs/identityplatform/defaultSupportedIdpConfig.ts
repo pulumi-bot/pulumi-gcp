@@ -14,6 +14,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Identity Platform Default Supported Idp Config Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -27,6 +28,8 @@ import * as utilities from "../utilities";
  *     idpId: "playgames.google.com",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class DefaultSupportedIdpConfig extends pulumi.CustomResource {
     /**

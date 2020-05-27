@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Identity Platform Tenant Default Supported Idp Config Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -31,6 +32,8 @@ import * as utilities from "../utilities";
  *     clientSecret: "secret",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class TenantDefaultSupportedIdpConfig extends pulumi.CustomResource {
     /**

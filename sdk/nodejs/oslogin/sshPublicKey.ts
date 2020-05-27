@@ -15,6 +15,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/compute/docs/oslogin)
  *
  * ## Example Usage - Os Login Ssh Key Provided User
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -28,6 +29,8 @@ import * as utilities from "../utilities";
  *     key: fs.readFileSync("path/to/id_rsa.pub"),
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class SshPublicKey extends pulumi.CustomResource {
     /**

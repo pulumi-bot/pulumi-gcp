@@ -119,6 +119,7 @@ import * as utilities from "../utilities";
  * ```
  *
  * ## Example Usage - Cloud Run Service Traffic Split
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -150,6 +151,8 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Service extends pulumi.CustomResource {
     /**

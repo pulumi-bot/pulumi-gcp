@@ -21,6 +21,7 @@ import * as utilities from "../utilities";
  *     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
  *
  * ## Example Usage - Region Autoscaler Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -78,6 +79,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class RegionAutoscaler extends pulumi.CustomResource {
     /**

@@ -21,6 +21,7 @@ import * as utilities from "../utilities";
  *     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
  *
  * ## Example Usage - Autoscaler Single Instance
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -80,7 +81,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Autoscaler Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -138,6 +141,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 /** @deprecated gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler */
 export class Autoscalar extends pulumi.CustomResource {

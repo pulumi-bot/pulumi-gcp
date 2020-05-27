@@ -128,6 +128,7 @@ class InstanceGroupManager(pulumi.CustomResource):
         > **Note:** Use [compute.RegionInstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html) to create a regional (multi-zone) instance group manager.
 
         ## Example Usage with top level instance template (`google` provider)
+        {{% example %}}
 
         ```python
         import pulumi
@@ -160,8 +161,10 @@ class InstanceGroupManager(pulumi.CustomResource):
             })
         ```
 
+        {{% /example %}}
         ## Example Usage with multiple versions (`google-beta` provider)
 
+        {{% example %}}
         ```python
         import pulumi
         import pulumi_gcp as gcp
@@ -184,6 +187,8 @@ class InstanceGroupManager(pulumi.CustomResource):
                 },
             ])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

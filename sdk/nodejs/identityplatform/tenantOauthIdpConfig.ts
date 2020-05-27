@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Identity Platform Tenant Oauth Idp Config Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -32,6 +33,8 @@ import * as utilities from "../utilities";
  *     clientSecret: "secret",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class TenantOauthIdpConfig extends pulumi.CustomResource {
     /**

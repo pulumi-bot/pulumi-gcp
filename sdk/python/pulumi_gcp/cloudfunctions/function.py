@@ -122,6 +122,7 @@ class Function(pulumi.CustomResource):
         for Cloud Functions.
 
         ## Example Usage - Public Function
+        {{% example %}}
 
         ```python
         import pulumi
@@ -148,7 +149,9 @@ class Function(pulumi.CustomResource):
             member="allUsers")
         ```
 
+        {{% /example %}}
         ## Example Usage - Single User
+        {{% example %}}
 
         ```python
         import pulumi
@@ -181,6 +184,8 @@ class Function(pulumi.CustomResource):
             role="roles/cloudfunctions.invoker",
             member="user:myFunctionInvoker@example.com")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

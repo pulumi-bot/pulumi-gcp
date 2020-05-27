@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  * > **Note:** `gcp.servicedirectory.NamespaceIamBinding` resources **can be** used in conjunction with `gcp.servicedirectory.NamespaceIamMember` resources **only if** they do not grant privilege to the same role.
  *
  * ## google\_service\_directory\_namespace\_iam\_policy
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -32,7 +33,9 @@ import * as utilities from "../utilities";
  * const policy = new gcp.servicedirectory.NamespaceIamPolicy("policy", {policyData: admin.then(admin => admin.policyData)});
  * ```
  *
+ * {{% /example %}}
  * ## google\_service\_directory\_namespace\_iam\_binding
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -44,7 +47,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_service\_directory\_namespace\_iam\_member
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -55,6 +60,8 @@ import * as utilities from "../utilities";
  *     member: "user:jane@example.com",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class NamespaceIamPolicy extends pulumi.CustomResource {
     /**

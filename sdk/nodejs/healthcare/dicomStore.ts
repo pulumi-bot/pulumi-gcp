@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Creating a DICOM store](https://cloud.google.com/healthcare/docs/how-tos/dicom)
  *
  * ## Example Usage - Healthcare Dicom Store Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -35,6 +36,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class DicomStore extends pulumi.CustomResource {
     /**

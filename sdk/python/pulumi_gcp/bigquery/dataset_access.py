@@ -83,6 +83,7 @@ class DatasetAccess(pulumi.CustomResource):
             * [Controlling access to datasets](https://cloud.google.com/bigquery/docs/dataset-access-controls)
 
         ## Example Usage - Bigquery Dataset Access Basic User
+        {{% example %}}
 
 
         ```python
@@ -96,7 +97,9 @@ class DatasetAccess(pulumi.CustomResource):
             role="OWNER",
             user_by_email=bqowner.email)
         ```
+        {{% /example %}}
         ## Example Usage - Bigquery Dataset Access View
+        {{% example %}}
 
 
         ```python
@@ -120,6 +123,8 @@ class DatasetAccess(pulumi.CustomResource):
                 "table_id": public_table.table_id,
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

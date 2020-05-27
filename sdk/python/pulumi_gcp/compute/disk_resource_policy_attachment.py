@@ -38,6 +38,7 @@ class DiskResourcePolicyAttachment(pulumi.CustomResource):
 
         ## Example Usage 
 
+        {{% example %}}
         ### Disk Resource Policy Attachment Basic
 
 
@@ -66,6 +67,8 @@ class DiskResourcePolicyAttachment(pulumi.CustomResource):
                 },
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -54,6 +54,7 @@ class WebTypeAppEngingIamMember(pulumi.CustomResource):
 
 
         ## google\_iap\_web\_type\_app\_engine\_iam\_policy
+        {{% example %}}
 
         ```python
         import pulumi
@@ -89,7 +90,9 @@ class WebTypeAppEngingIamMember(pulumi.CustomResource):
             app_id=google_app_engine_application["app"]["app_id"],
             policy_data=admin.policy_data)
         ```
+        {{% /example %}}
         ## google\_iap\_web\_type\_app\_engine\_iam\_binding
+        {{% example %}}
 
         ```python
         import pulumi
@@ -119,7 +122,9 @@ class WebTypeAppEngingIamMember(pulumi.CustomResource):
                 "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
             })
         ```
+        {{% /example %}}
         ## google\_iap\_web\_type\_app\_engine\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -149,6 +154,7 @@ class WebTypeAppEngingIamMember(pulumi.CustomResource):
                 "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
             })
         ```
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

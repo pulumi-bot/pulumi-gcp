@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  *     * [Using Protocol Forwarding](https://cloud.google.com/compute/docs/protocol-forwarding)
  *
  * ## Example Usage - Target Instance Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -46,6 +47,8 @@ import * as utilities from "../utilities";
  * });
  * const default = new gcp.compute.TargetInstance("default", {instance: target-vm.id});
  * ```
+ *
+ * {{% /example %}}
  */
 export class TargetInstance extends pulumi.CustomResource {
     /**

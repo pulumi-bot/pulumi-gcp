@@ -15,6 +15,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/spanner/)
  *
  * ## Example Usage - Spanner Database Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -33,6 +34,8 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Database extends pulumi.CustomResource {
     /**

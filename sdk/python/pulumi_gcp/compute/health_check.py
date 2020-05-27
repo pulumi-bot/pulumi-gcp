@@ -235,6 +235,7 @@ class HealthCheck(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
 
         ## Example Usage - Health Check Tcp
+        {{% example %}}
 
 
         ```python
@@ -248,7 +249,9 @@ class HealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
+        {{% /example %}}
         ## Example Usage - Health Check Tcp Full
+        {{% example %}}
 
 
         ```python
@@ -269,7 +272,9 @@ class HealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
+        {{% /example %}}
         ## Example Usage - Health Check Ssl
+        {{% example %}}
 
 
         ```python
@@ -283,7 +288,9 @@ class HealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
+        {{% /example %}}
         ## Example Usage - Health Check Ssl Full
+        {{% example %}}
 
 
         ```python
@@ -304,7 +311,9 @@ class HealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
+        {{% /example %}}
         ## Example Usage - Health Check Http
+        {{% example %}}
 
 
         ```python
@@ -318,7 +327,9 @@ class HealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
+        {{% /example %}}
         ## Example Usage - Health Check Http Full
+        {{% example %}}
 
 
         ```python
@@ -340,7 +351,9 @@ class HealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
+        {{% /example %}}
         ## Example Usage - Health Check Https
+        {{% example %}}
 
 
         ```python
@@ -354,7 +367,9 @@ class HealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
+        {{% /example %}}
         ## Example Usage - Health Check Https Full
+        {{% example %}}
 
 
         ```python
@@ -376,7 +391,9 @@ class HealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
+        {{% /example %}}
         ## Example Usage - Health Check Http2
+        {{% example %}}
 
 
         ```python
@@ -390,7 +407,9 @@ class HealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
+        {{% /example %}}
         ## Example Usage - Health Check Http2 Full
+        {{% example %}}
 
 
         ```python
@@ -412,7 +431,9 @@ class HealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
+        {{% /example %}}
         ## Example Usage - Health Check With Logging
+        {{% example %}}
 
 
         ```python
@@ -429,6 +450,8 @@ class HealthCheck(pulumi.CustomResource):
                 "enable": True,
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

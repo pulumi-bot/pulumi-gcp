@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  * receive an error otherwise.
  *
  * ## Example Usage - exporting an email
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -28,6 +29,8 @@ import * as utilities from "../utilities";
  * const me = gcp.organizations.getClientOpenIdUserInfo({});
  * export const myEmail = me.then(me => me.email);
  * ```
+ *
+ * {{% /example %}}
  */
 export function getClientOpenIdUserInfo(opts?: pulumi.InvokeOptions): Promise<GetClientOpenIdUserInfoResult> {
     if (!opts) {

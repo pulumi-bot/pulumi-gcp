@@ -12,6 +12,7 @@ import * as utilities from "../utilities";
  * for more details.
  *
  * ## Example Usage - searching for projects about to be deleted in an org
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -24,6 +25,8 @@ import * as utilities from "../utilities";
  *     projectId: my_org_projects.projects[0].projectId,
  * }));
  * ```
+ *
+ * {{% /example %}}
  */
 export function getProject(args: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
     if (!opts) {

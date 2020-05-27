@@ -12,6 +12,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Resource Policy Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -30,7 +31,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Resource Policy Full
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -60,7 +63,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Resource Policy Placement Policy
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -75,6 +80,8 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class ResourcePolicy extends pulumi.CustomResource {
     /**

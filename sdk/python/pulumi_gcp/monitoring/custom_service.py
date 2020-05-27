@@ -52,6 +52,7 @@ class CustomService(pulumi.CustomResource):
             * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
         ## Example Usage - Monitoring Service Custom
+        {{% example %}}
 
 
         ```python
@@ -65,6 +66,8 @@ class CustomService(pulumi.CustomResource):
                 "resourceName": "//product.googleapis.com/foo/foo/services/test",
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

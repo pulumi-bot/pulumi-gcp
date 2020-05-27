@@ -32,6 +32,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/storage/docs/access-control/lists)
  *
  * ## Example Usage - Storage Bucket Access Control Public Bucket
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -45,6 +46,8 @@ import * as utilities from "../utilities";
  *     entity: "allUsers",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class BucketAccessControl extends pulumi.CustomResource {
     /**

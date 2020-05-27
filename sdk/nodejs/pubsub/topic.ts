@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Managing Topics](https://cloud.google.com/pubsub/docs/admin#managing_topics)
  *
  * ## Example Usage - Pubsub Topic Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -29,7 +30,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Pubsub Topic Cmek
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -40,7 +43,9 @@ import * as utilities from "../utilities";
  * const cryptoKey = new gcp.kms.CryptoKey("cryptoKey", {keyRing: keyRing.id});
  * const example = new gcp.pubsub.Topic("example", {kmsKeyName: cryptoKey.id});
  * ```
+ * {{% /example %}}
  * ## Example Usage - Pubsub Topic Geo Restricted
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -53,6 +58,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Topic extends pulumi.CustomResource {
     /**

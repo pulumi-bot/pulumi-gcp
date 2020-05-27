@@ -50,6 +50,7 @@ def get_client_open_id_user_info(opts=None):
     receive an error otherwise.
 
     ## Example Usage - exporting an email
+    {{% example %}}
 
     ```python
     import pulumi
@@ -58,6 +59,8 @@ def get_client_open_id_user_info(opts=None):
     me = gcp.organizations.get_client_open_id_user_info()
     pulumi.export("my-email", me.email)
     ```
+
+    {{% /example %}}
     """
     __args__ = dict()
 

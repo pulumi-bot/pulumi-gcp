@@ -15,6 +15,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Ml Model Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -26,7 +27,9 @@ import * as utilities from "../utilities";
  *     regions: "us-central1",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Ml Model Full
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -43,6 +46,8 @@ import * as utilities from "../utilities";
  *     regions: "us-central1",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class EngineModel extends pulumi.CustomResource {
     /**

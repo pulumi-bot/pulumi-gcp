@@ -41,6 +41,7 @@ class Service(pulumi.CustomResource):
             * [Configuring a service](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_service)
 
         ## Example Usage - Service Directory Service Basic
+        {{% example %}}
 
 
         ```python
@@ -58,6 +59,8 @@ class Service(pulumi.CustomResource):
                 "region": "us-central1",
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -76,6 +76,7 @@ import * as utilities from "../utilities";
  * ```
  *
  * ## Using with Instance Group Manager
+ * {{% example %}}
  *
  * Instance Templates cannot be updated after creation with the Google
  * Cloud Platform API. In order to update an Instance Template, this provider will
@@ -107,7 +108,9 @@ import * as utilities from "../utilities";
  * Template and can then update the Instance Group manager without conflict before
  * destroying the previous Instance Template.
  *
+ * {{% /example %}}
  * ## Deploying the Latest Image
+ * {{% example %}}
  *
  * A common way to use instance templates and managed instance groups is to deploy the
  * latest image in a family, usually the latest build of your application. There are two
@@ -160,6 +163,8 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class InstanceTemplate extends pulumi.CustomResource {
     /**

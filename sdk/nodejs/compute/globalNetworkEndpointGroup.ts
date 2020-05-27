@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/internet-neg-concepts)
  *
  * ## Example Usage - Global Network Endpoint Group
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -29,7 +30,9 @@ import * as utilities from "../utilities";
  *     networkEndpointType: "INTERNET_FQDN_PORT",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Global Network Endpoint Group Ip Address
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -41,6 +44,8 @@ import * as utilities from "../utilities";
  *     networkEndpointType: "INTERNET_IP_PORT",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class GlobalNetworkEndpointGroup extends pulumi.CustomResource {
     /**

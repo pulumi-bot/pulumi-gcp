@@ -21,6 +21,7 @@ import * as utilities from "../utilities";
  *     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
  *
  * ## Example Usage - Monitoring Service Custom
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -35,6 +36,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class CustomService extends pulumi.CustomResource {
     /**

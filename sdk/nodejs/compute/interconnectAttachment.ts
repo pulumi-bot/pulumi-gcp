@@ -13,6 +13,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Interconnect Attachment Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -25,6 +26,8 @@ import * as utilities from "../utilities";
  *     router: foobar.id,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class InterconnectAttachment extends pulumi.CustomResource {
     /**

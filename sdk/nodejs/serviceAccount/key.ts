@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage, creating a new Key Pair
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -25,6 +26,8 @@ import * as utilities from "../utilities";
  *     publicKeyType: "TYPE_X509_PEM_FILE",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Key extends pulumi.CustomResource {
     /**

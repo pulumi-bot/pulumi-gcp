@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage 
  *
+ * {{% example %}}
  * ### Region Disk Resource Policy Attachment Basic
  *
  *
@@ -64,6 +65,8 @@ import * as utilities from "../utilities";
  *     project: "debian-cloud",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class RegionDiskResourcePolicyAttachment extends pulumi.CustomResource {
     /**

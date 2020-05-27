@@ -61,6 +61,7 @@ class Index(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/firestore/docs/query-data/indexing)
 
         ## Example Usage - Firestore Index Basic
+        {{% example %}}
 
 
         ```python
@@ -85,6 +86,8 @@ class Index(pulumi.CustomResource):
             ],
             project="my-project-name")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

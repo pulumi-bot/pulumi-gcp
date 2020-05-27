@@ -15,6 +15,7 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services)
  *
  * ## Example Usage - App Engine Service Split Traffic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -72,6 +73,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class EngineSplitTraffic extends pulumi.CustomResource {
     /**

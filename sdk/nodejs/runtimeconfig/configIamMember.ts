@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## google\_runtimeconfig\_config\_iam\_policy
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -38,7 +39,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_runtimeconfig\_config\_iam\_binding
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -52,7 +55,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_runtimeconfig\_config\_iam\_member
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -65,6 +70,8 @@ import * as utilities from "../utilities";
  *     member: "user:jane@example.com",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class ConfigIamMember extends pulumi.CustomResource {
     /**

@@ -131,6 +131,7 @@ class Bucket(pulumi.CustomResource):
 
 
         ## Example Usage - creating a private bucket in standard storage, in the EU region. Bucket configured as static website and CORS configurations
+        {{% example %}}
 
         ```python
         import pulumi
@@ -158,7 +159,9 @@ class Bucket(pulumi.CustomResource):
             })
         ```
 
+        {{% /example %}}
         ## Example Usage - Life cycle settings for storage bucket objects
+        {{% example %}}
 
         ```python
         import pulumi
@@ -176,6 +179,7 @@ class Bucket(pulumi.CustomResource):
             }],
             location="US")
         ```
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

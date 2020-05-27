@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Creating a FHIR store](https://cloud.google.com/healthcare/docs/how-tos/fhir)
  *
  * ## Example Usage - Healthcare Fhir Store Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -40,6 +41,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class FhirStore extends pulumi.CustomResource {
     /**

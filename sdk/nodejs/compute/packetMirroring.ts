@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  *     * [Using Packet Mirroring](https://cloud.google.com/vpc/docs/using-packet-mirroring#creating)
  *
  * ## Example Usage - Compute Packet Mirroring Full
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -79,6 +80,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class PacketMirroring extends pulumi.CustomResource {
     /**

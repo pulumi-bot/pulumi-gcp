@@ -24,6 +24,7 @@ import * as utilities from "../utilities";
  *     * [Reserving zonal resources](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
  *
  * ## Example Usage - Reservation Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -41,6 +42,8 @@ import * as utilities from "../utilities";
  *     zone: "us-central1-a",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Reservation extends pulumi.CustomResource {
     /**

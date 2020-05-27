@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  * > **Note:** `gcp.serviceAccount.IAMBinding` resources **can be** used in conjunction with `gcp.serviceAccount.IAMMember` resources **only if** they do not grant privilege to the same role.
  *
  * ## google\_service\_account\_iam\_policy
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -41,7 +42,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_service\_account\_iam\_binding
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -80,7 +83,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## google\_service\_account\_iam\_member
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -125,6 +130,8 @@ import * as utilities from "../utilities";
  *     serviceAccountId: sa.name,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class IAMMember extends pulumi.CustomResource {
     /**

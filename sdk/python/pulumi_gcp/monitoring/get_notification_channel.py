@@ -85,6 +85,7 @@ def get_notification_channel(display_name=None,labels=None,project=None,type=Non
 
 
     ## Example Usage - Notification Channel Basic
+    {{% example %}}
 
 
     ```python
@@ -109,6 +110,8 @@ def get_notification_channel(display_name=None,labels=None,project=None,type=Non
             },
         }])
     ```
+
+    {{% /example %}}
 
 
     :param str display_name: The display name for this notification channel.

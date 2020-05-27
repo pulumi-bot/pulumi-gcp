@@ -13,6 +13,34 @@ namespace Pulumi.Gcp.Compute
     {
         /// <summary>
         /// Use this data source to get the IP addresses from different special IP ranges on Google Cloud Platform.
+        /// 
+        /// ## Example Usage - Cloud Ranges
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Gcp = Pulumi.Gcp;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var netblock = Output.Create(Gcp.Compute.GetNetblockIPRanges.InvokeAsync());
+        ///         this.CidrBlocks = netblock.Apply(netblock =&gt; netblock.CidrBlocks);
+        ///         this.CidrBlocksIpv4 = netblock.Apply(netblock =&gt; netblock.CidrBlocksIpv4s);
+        ///         this.CidrBlocksIpv6 = netblock.Apply(netblock =&gt; netblock.CidrBlocksIpv6s);
+        ///     }
+        /// 
+        ///     [Output("cidrBlocks")]
+        ///     public Output&lt;string&gt; CidrBlocks { get; set; }
+        ///     [Output("cidrBlocksIpv4")]
+        ///     public Output&lt;string&gt; CidrBlocksIpv4 { get; set; }
+        ///     [Output("cidrBlocksIpv6")]
+        ///     public Output&lt;string&gt; CidrBlocksIpv6 { get; set; }
+        /// }
+        /// ```
+        /// 
+        /// {{% /example %}}
         /// </summary>
         public static Task<GetNetblockIPRangesResult> InvokeAsync(GetNetblockIPRangesArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetNetblockIPRangesResult>("gcp:compute/getNetblockIPRanges:getNetblockIPRanges", args ?? new GetNetblockIPRangesArgs(), options.WithVersion());

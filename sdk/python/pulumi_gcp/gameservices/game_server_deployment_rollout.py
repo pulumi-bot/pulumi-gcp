@@ -53,6 +53,7 @@ class GameServerDeploymentRollout(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/game-servers/docs)
 
         ## Example Usage - Game Service Deployment Rollout Basic
+        {{% example %}}
 
 
         ```python
@@ -93,6 +94,8 @@ class GameServerDeploymentRollout(pulumi.CustomResource):
             deployment_id=default_game_server_deployment.deployment_id,
             default_game_server_config=default_game_server_config.name)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

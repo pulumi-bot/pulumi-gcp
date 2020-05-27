@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  *     * [Using SSL Policies](https://cloud.google.com/compute/docs/load-balancing/ssl-policies)
  *
  * ## Example Usage - Ssl Policy Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -40,6 +41,8 @@ import * as utilities from "../utilities";
  *     profile: "CUSTOM",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class SSLPolicy extends pulumi.CustomResource {
     /**

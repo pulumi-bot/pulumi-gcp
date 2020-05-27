@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Datasets Intro](https://cloud.google.com/bigquery/docs/datasets-intro)
  *
  * ## Example Usage - Bigquery Dataset Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -45,7 +46,9 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Bigquery Dataset Cmek
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -65,6 +68,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Dataset extends pulumi.CustomResource {
     /**

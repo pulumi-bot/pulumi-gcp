@@ -38,6 +38,7 @@ import * as utilities from "../utilities";
  *     * [Using Routes](https://cloud.google.com/vpc/docs/using-routes)
  *
  * ## Example Usage - Route Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -52,7 +53,9 @@ import * as utilities from "../utilities";
  *     priority: 100,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Route Ilb
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -91,6 +94,8 @@ import * as utilities from "../utilities";
  *     priority: 2000,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Route extends pulumi.CustomResource {
     /**

@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
  * ## Example Usage - Ssl Certificate Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -36,7 +37,9 @@ import * as utilities from "../utilities";
  *     certificate: fs.readFileSync("path/to/certificate.crt"),
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Ssl Certificate Target Https Proxies
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -86,6 +89,8 @@ import * as utilities from "../utilities";
  *     sslCertificates: [defaultSSLCertificate.id],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class SSLCertificate extends pulumi.CustomResource {
     /**

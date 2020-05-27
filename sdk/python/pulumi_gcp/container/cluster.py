@@ -672,6 +672,7 @@ class Cluster(pulumi.CustomResource):
         plaintext. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
         ## Example Usage - with a separately managed node pool (recommended)
+        {{% example %}}
 
         ```python
         import pulumi
@@ -705,7 +706,9 @@ class Cluster(pulumi.CustomResource):
             })
         ```
 
+        {{% /example %}}
         ## Example Usage - with the default node pool
+        {{% example %}}
 
         ```python
         import pulumi
@@ -738,6 +741,8 @@ class Cluster(pulumi.CustomResource):
                 ],
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

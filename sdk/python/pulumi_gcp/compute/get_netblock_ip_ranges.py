@@ -58,6 +58,7 @@ def get_netblock_ip_ranges(range_type=None,opts=None):
     Use this data source to get the IP addresses from different special IP ranges on Google Cloud Platform.
 
     ## Example Usage - Cloud Ranges
+    {{% example %}}
 
     ```python
     import pulumi
@@ -69,7 +70,9 @@ def get_netblock_ip_ranges(range_type=None,opts=None):
     pulumi.export("cidrBlocksIpv6", netblock.cidr_blocks_ipv6s)
     ```
 
+    {{% /example %}}
     ## Example Usage - Allow Health Checks
+    {{% example %}}
 
     ```python
     import pulumi
@@ -85,6 +88,8 @@ def get_netblock_ip_ranges(range_type=None,opts=None):
         }],
         source_ranges=legacy_hcs.cidr_blocks_ipv4s)
     ```
+
+    {{% /example %}}
 
 
     :param str range_type: The type of range for which to provide results.

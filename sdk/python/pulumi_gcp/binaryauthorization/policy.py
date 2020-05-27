@@ -84,6 +84,7 @@ class Policy(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/binary-authorization/)
 
         ## Example Usage - Binary Authorization Policy Basic
+        {{% example %}}
 
 
         ```python
@@ -113,7 +114,9 @@ class Policy(pulumi.CustomResource):
                 "requireAttestationsBies": [attestor.name],
             }])
         ```
+        {{% /example %}}
         ## Example Usage - Binary Authorization Policy Global Evaluation
+        {{% example %}}
 
 
         ```python
@@ -136,6 +139,8 @@ class Policy(pulumi.CustomResource):
             },
             global_policy_evaluation_mode="ENABLE")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

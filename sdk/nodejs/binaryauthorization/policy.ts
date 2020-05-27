@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/binary-authorization/)
  *
  * ## Example Usage - Binary Authorization Policy Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -47,7 +48,9 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Binary Authorization Policy Global Evaluation
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -71,6 +74,8 @@ import * as utilities from "../utilities";
  *     globalPolicyEvaluationMode: "ENABLE",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Policy extends pulumi.CustomResource {
     /**

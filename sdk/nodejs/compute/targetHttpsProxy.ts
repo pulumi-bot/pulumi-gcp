@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
  *
  * ## Example Usage - Target Https Proxy Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -61,6 +62,8 @@ import * as utilities from "../utilities";
  *     sslCertificates: [defaultSSLCertificate.id],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class TargetHttpsProxy extends pulumi.CustomResource {
     /**

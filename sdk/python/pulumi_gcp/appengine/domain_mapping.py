@@ -68,6 +68,7 @@ class DomainMapping(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/mapping-custom-domains)
 
         ## Example Usage - App Engine Domain Mapping Basic
+        {{% example %}}
 
 
         ```python
@@ -80,6 +81,8 @@ class DomainMapping(pulumi.CustomResource):
                 "sslManagementType": "AUTOMATIC",
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -95,6 +95,7 @@ class HttpHealthCheck(pulumi.CustomResource):
             * [Adding Health Checks](https://cloud.google.com/compute/docs/load-balancing/health-checks#legacy_health_checks)
 
         ## Example Usage - Http Health Check Basic
+        {{% example %}}
 
 
         ```python
@@ -106,6 +107,8 @@ class HttpHealthCheck(pulumi.CustomResource):
             request_path="/health_check",
             timeout_sec=1)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

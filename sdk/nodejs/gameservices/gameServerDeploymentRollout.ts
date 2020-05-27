@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/game-servers/docs)
  *
  * ## Example Usage - Game Service Deployment Rollout Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -59,6 +60,8 @@ import * as utilities from "../utilities";
  *     defaultGameServerConfig: defaultGameServerConfig.name,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class GameServerDeploymentRollout extends pulumi.CustomResource {
     /**

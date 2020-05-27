@@ -89,6 +89,7 @@ class NodeTemplate(pulumi.CustomResource):
             * [Sole-Tenant Nodes](https://cloud.google.com/compute/docs/nodes/)
 
         ## Example Usage - Node Template Basic
+        {{% example %}}
 
 
         ```python
@@ -100,7 +101,9 @@ class NodeTemplate(pulumi.CustomResource):
             region="us-central1",
             node_type=central1a.names[0])
         ```
+        {{% /example %}}
         ## Example Usage - Node Template Server Binding
+        {{% example %}}
 
 
         ```python
@@ -118,6 +121,8 @@ class NodeTemplate(pulumi.CustomResource):
                 "type": "RESTART_NODE_ON_MINIMAL_SERVERS",
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

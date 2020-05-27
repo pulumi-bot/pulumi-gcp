@@ -162,6 +162,7 @@ class Subscription(pulumi.CustomResource):
             * [Managing Subscriptions](https://cloud.google.com/pubsub/docs/admin#managing_subscriptions)
 
         ## Example Usage - Pubsub Subscription Push
+        {{% example %}}
 
 
         ```python
@@ -182,7 +183,9 @@ class Subscription(pulumi.CustomResource):
                 },
             })
         ```
+        {{% /example %}}
         ## Example Usage - Pubsub Subscription Pull
+        {{% example %}}
 
 
         ```python
@@ -202,7 +205,9 @@ class Subscription(pulumi.CustomResource):
                 "ttl": "300000.5s",
             })
         ```
+        {{% /example %}}
         ## Example Usage - Pubsub Subscription Different Project
+        {{% example %}}
 
 
         ```python
@@ -214,7 +219,9 @@ class Subscription(pulumi.CustomResource):
             project="subscription-project",
             topic=example_topic.name)
         ```
+        {{% /example %}}
         ## Example Usage - Pubsub Subscription Dead Letter
+        {{% example %}}
 
 
         ```python
@@ -230,6 +237,8 @@ class Subscription(pulumi.CustomResource):
                 "maxDeliveryAttempts": 10,
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -53,6 +53,7 @@ class Instance(pulumi.CustomResource):
         [API](https://cloud.google.com/bigtable/docs/go/reference).
 
         ## Example Usage - Production Instance
+        {{% example %}}
 
         ```python
         import pulumi
@@ -70,7 +71,9 @@ class Instance(pulumi.CustomResource):
             })
         ```
 
+        {{% /example %}}
         ## Example Usage - Development Instance
+        {{% example %}}
 
         ```python
         import pulumi
@@ -84,6 +87,8 @@ class Instance(pulumi.CustomResource):
             }],
             instance_type="DEVELOPMENT")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -60,6 +60,7 @@ class TenantDefaultSupportedIdpConfig(pulumi.CustomResource):
 
 
         ## Example Usage - Identity Platform Tenant Default Supported Idp Config Basic
+        {{% example %}}
 
 
         ```python
@@ -74,6 +75,8 @@ class TenantDefaultSupportedIdpConfig(pulumi.CustomResource):
             client_id="my-client-id",
             client_secret="secret")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

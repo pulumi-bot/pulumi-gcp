@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  * for Cloud Functions.
  *
  * ## Example Usage - Public Function
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -48,7 +49,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## Example Usage - Single User
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -84,6 +87,8 @@ import * as utilities from "../utilities";
  *     member: "user:myFunctionInvoker@example.com",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Function extends pulumi.CustomResource {
     /**

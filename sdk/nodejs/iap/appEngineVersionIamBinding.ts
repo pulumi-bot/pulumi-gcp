@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## google\_iap\_app\_engine\_version\_iam\_policy
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -65,7 +66,9 @@ import * as utilities from "../utilities";
  *     policyData: admin.then(admin => admin.policyData),
  * });
  * ```
+ * {{% /example %}}
  * ## google\_iap\_app\_engine\_version\_iam\_binding
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -101,7 +104,9 @@ import * as utilities from "../utilities";
  *     versionId: google_app_engine_standard_app_version_version.versionId,
  * });
  * ```
+ * {{% /example %}}
  * ## google\_iap\_app\_engine\_version\_iam\_member
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -137,6 +142,7 @@ import * as utilities from "../utilities";
  *     versionId: google_app_engine_standard_app_version_version.versionId,
  * });
  * ```
+ * {{% /example %}}
  */
 export class AppEngineVersionIamBinding extends pulumi.CustomResource {
     /**

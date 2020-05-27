@@ -65,6 +65,7 @@ class InstanceGroup(pulumi.CustomResource):
 
 
         ## Example Usage - Empty instance group
+        {{% example %}}
 
         ```python
         import pulumi
@@ -76,6 +77,8 @@ class InstanceGroup(pulumi.CustomResource):
             network=google_compute_network["default"]["self_link"])
         ```
 
+        {{% /example %}}
+        {{% example %}}
         ### Example Usage - With instances and named ports
 
         ```python
@@ -101,6 +104,8 @@ class InstanceGroup(pulumi.CustomResource):
             zone="us-central1-a")
         ```
 
+        {{% /example %}}
+        {{% example %}}
         ### Example Usage - Recreating an instance group in use
         Recreating an instance group that's in use by another resource will give a
         `resourceInUseByAnotherResource` error. Use `lifecycle.create_before_destroy`
@@ -145,6 +150,8 @@ class InstanceGroup(pulumi.CustomResource):
             }],
             health_checks=[staging_health.self_link])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

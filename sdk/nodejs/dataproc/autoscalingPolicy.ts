@@ -12,6 +12,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Dataproc Autoscaling Policy
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -41,6 +42,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class AutoscalingPolicy extends pulumi.CustomResource {
     /**

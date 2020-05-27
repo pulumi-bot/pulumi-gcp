@@ -53,6 +53,7 @@ class Database(pulumi.CustomResource):
 
 
         ## Example Usage - Sql Database Basic
+        {{% example %}}
 
 
         ```python
@@ -66,6 +67,8 @@ class Database(pulumi.CustomResource):
             })
         database = gcp.sql.Database("database", instance=instance.name)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

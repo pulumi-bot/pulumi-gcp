@@ -77,6 +77,7 @@ class NodeGroup(pulumi.CustomResource):
         the provider to delete and recreate the node group.
 
         ## Example Usage - Node Group Basic
+        {{% example %}}
 
 
         ```python
@@ -93,7 +94,9 @@ class NodeGroup(pulumi.CustomResource):
             size=1,
             node_template=soletenant_tmpl.id)
         ```
+        {{% /example %}}
         ## Example Usage - Node Group Autoscaling Policy
+        {{% example %}}
 
 
         ```python
@@ -115,6 +118,8 @@ class NodeGroup(pulumi.CustomResource):
                 "maxNodes": 10,
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

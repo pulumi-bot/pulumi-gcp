@@ -92,6 +92,7 @@ class Hl7Store(pulumi.CustomResource):
             * [Creating a HL7v2 Store](https://cloud.google.com/healthcare/docs/how-tos/hl7v2)
 
         ## Example Usage - Healthcare Hl7 V2 Store Basic
+        {{% example %}}
 
 
         ```python
@@ -109,7 +110,9 @@ class Hl7Store(pulumi.CustomResource):
                 "label1": "labelvalue1",
             })
         ```
+        {{% /example %}}
         ## Example Usage - Healthcare Hl7 V2 Store Parser Config
+        {{% example %}}
 
 
         ```python
@@ -203,6 +206,8 @@ class Hl7Store(pulumi.CustomResource):
         \"\"\",
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

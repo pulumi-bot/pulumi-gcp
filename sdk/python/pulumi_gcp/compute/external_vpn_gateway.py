@@ -60,6 +60,7 @@ class ExternalVpnGateway(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/externalVpnGateways)
 
         ## Example Usage - External Vpn Gateway
+        {{% example %}}
 
 
         ```python
@@ -133,6 +134,8 @@ class ExternalVpnGateway(pulumi.CustomResource):
             advertised_route_priority=100,
             interface=router1_interface2.name)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -32,6 +32,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/compute/docs/images)
  *
  * ## Example Usage - Image Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -44,7 +45,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Image Guest Os
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -65,6 +68,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Image extends pulumi.CustomResource {
     /**

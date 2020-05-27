@@ -101,6 +101,7 @@ class Reservation(pulumi.CustomResource):
             * [Reserving zonal resources](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
 
         ## Example Usage - Reservation Basic
+        {{% example %}}
 
 
         ```python
@@ -117,6 +118,8 @@ class Reservation(pulumi.CustomResource):
             },
             zone="us-central1-a")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

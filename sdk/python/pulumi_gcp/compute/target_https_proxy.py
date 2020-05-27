@@ -79,6 +79,7 @@ class TargetHttpsProxy(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
 
         ## Example Usage - Target Https Proxy Basic
+        {{% example %}}
 
 
         ```python
@@ -116,6 +117,8 @@ class TargetHttpsProxy(pulumi.CustomResource):
             url_map=default_url_map.id,
             ssl_certificates=[default_ssl_certificate.id])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

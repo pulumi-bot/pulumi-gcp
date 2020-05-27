@@ -38,6 +38,7 @@ class SecretIamPolicy(pulumi.CustomResource):
         > **Note:** `secretmanager.SecretIamBinding` resources **can be** used in conjunction with `secretmanager.SecretIamMember` resources **only if** they do not grant privilege to the same role.
 
         ## google\_secret\_manager\_secret\_iam\_policy
+        {{% example %}}
 
         ```python
         import pulumi
@@ -53,7 +54,9 @@ class SecretIamPolicy(pulumi.CustomResource):
             policy_data=admin.policy_data)
         ```
 
+        {{% /example %}}
         ## google\_secret\_manager\_secret\_iam\_binding
+        {{% example %}}
 
         ```python
         import pulumi
@@ -66,7 +69,9 @@ class SecretIamPolicy(pulumi.CustomResource):
             members=["user:jane@example.com"])
         ```
 
+        {{% /example %}}
         ## google\_secret\_manager\_secret\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -78,6 +83,8 @@ class SecretIamPolicy(pulumi.CustomResource):
             role="roles/viewer",
             member="user:jane@example.com")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

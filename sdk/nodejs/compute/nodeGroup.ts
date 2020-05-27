@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  * the provider to delete and recreate the node group.
  *
  * ## Example Usage - Node Group Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -42,7 +43,9 @@ import * as utilities from "../utilities";
  *     nodeTemplate: soletenant-tmpl.id,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Node Group Autoscaling Policy
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -68,6 +71,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class NodeGroup extends pulumi.CustomResource {
     /**

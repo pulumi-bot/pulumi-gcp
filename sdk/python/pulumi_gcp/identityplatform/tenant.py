@@ -51,6 +51,7 @@ class Tenant(pulumi.CustomResource):
 
 
         ## Example Usage - Identity Platform Tenant Basic
+        {{% example %}}
 
 
         ```python
@@ -61,6 +62,8 @@ class Tenant(pulumi.CustomResource):
             allow_password_signup=True,
             display_name="tenant")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

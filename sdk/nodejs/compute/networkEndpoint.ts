@@ -21,6 +21,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
  *
  * ## Example Usage - Network Endpoint
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -62,6 +63,8 @@ import * as utilities from "../utilities";
  *     zone: "us-central1-a",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class NetworkEndpoint extends pulumi.CustomResource {
     /**

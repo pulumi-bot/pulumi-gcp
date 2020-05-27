@@ -46,6 +46,7 @@ class NetworkPeeringRoutesConfig(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/vpc/docs/vpc-peering)
 
         ## Example Usage - Network Peering Routes Config Basic
+        {{% example %}}
 
 
         ```python
@@ -68,6 +69,7 @@ class NetworkPeeringRoutesConfig(pulumi.CustomResource):
             network=network_secondary.id,
             peer_network=network_primary.id)
         ```
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

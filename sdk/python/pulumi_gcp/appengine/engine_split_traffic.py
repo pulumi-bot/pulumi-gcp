@@ -40,6 +40,7 @@ class EngineSplitTraffic(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services)
 
         ## Example Usage - App Engine Service Split Traffic
+        {{% example %}}
 
 
         ```python
@@ -93,6 +94,8 @@ class EngineSplitTraffic(pulumi.CustomResource):
                 }),
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

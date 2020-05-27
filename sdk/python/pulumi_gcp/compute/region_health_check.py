@@ -240,6 +240,7 @@ class RegionHealthCheck(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
 
         ## Example Usage - Region Health Check Tcp
+        {{% example %}}
 
 
         ```python
@@ -253,7 +254,9 @@ class RegionHealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
+        {{% /example %}}
         ## Example Usage - Region Health Check Tcp Full
+        {{% example %}}
 
 
         ```python
@@ -274,7 +277,9 @@ class RegionHealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
+        {{% /example %}}
         ## Example Usage - Region Health Check Ssl
+        {{% example %}}
 
 
         ```python
@@ -288,7 +293,9 @@ class RegionHealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
+        {{% /example %}}
         ## Example Usage - Region Health Check Ssl Full
+        {{% example %}}
 
 
         ```python
@@ -309,7 +316,9 @@ class RegionHealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
+        {{% /example %}}
         ## Example Usage - Region Health Check Http
+        {{% example %}}
 
 
         ```python
@@ -323,7 +332,9 @@ class RegionHealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
+        {{% /example %}}
         ## Example Usage - Region Health Check Http Logs
+        {{% example %}}
 
 
         ```python
@@ -340,7 +351,9 @@ class RegionHealthCheck(pulumi.CustomResource):
                 "enable": True,
             })
         ```
+        {{% /example %}}
         ## Example Usage - Region Health Check Http Full
+        {{% example %}}
 
 
         ```python
@@ -362,7 +375,9 @@ class RegionHealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
+        {{% /example %}}
         ## Example Usage - Region Health Check Https
+        {{% example %}}
 
 
         ```python
@@ -376,7 +391,9 @@ class RegionHealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
+        {{% /example %}}
         ## Example Usage - Region Health Check Https Full
+        {{% example %}}
 
 
         ```python
@@ -398,7 +415,9 @@ class RegionHealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
+        {{% /example %}}
         ## Example Usage - Region Health Check Http2
+        {{% example %}}
 
 
         ```python
@@ -412,7 +431,9 @@ class RegionHealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
+        {{% /example %}}
         ## Example Usage - Region Health Check Http2 Full
+        {{% example %}}
 
 
         ```python
@@ -434,6 +455,8 @@ class RegionHealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  *     * [Managing Subscriptions](https://cloud.google.com/pubsub/docs/admin#managing_subscriptions)
  *
  * ## Example Usage - Pubsub Subscription Push
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -39,7 +40,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Pubsub Subscription Pull
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -60,7 +63,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Pubsub Subscription Different Project
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -73,7 +78,9 @@ import * as utilities from "../utilities";
  *     topic: exampleTopic.name,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Pubsub Subscription Dead Letter
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -90,6 +97,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Subscription extends pulumi.CustomResource {
     /**

@@ -44,6 +44,7 @@ class TunnelInstanceIAMPolicy(pulumi.CustomResource):
 
 
         ## google\_iap\_tunnel\_instance\_iam\_policy
+        {{% example %}}
 
         ```python
         import pulumi
@@ -81,7 +82,9 @@ class TunnelInstanceIAMPolicy(pulumi.CustomResource):
             instance=google_compute_instance["tunnelvm"]["name"],
             policy_data=admin.policy_data)
         ```
+        {{% /example %}}
         ## google\_iap\_tunnel\_instance\_iam\_binding
+        {{% example %}}
 
         ```python
         import pulumi
@@ -113,7 +116,9 @@ class TunnelInstanceIAMPolicy(pulumi.CustomResource):
                 "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
             })
         ```
+        {{% /example %}}
         ## google\_iap\_tunnel\_instance\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -145,6 +150,7 @@ class TunnelInstanceIAMPolicy(pulumi.CustomResource):
                 "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
             })
         ```
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

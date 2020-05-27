@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/creating-firewalls#creating_firewall_rules)
  *
  * ## Example Usage - App Engine Firewall Rule Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -39,6 +40,8 @@ import * as utilities from "../utilities";
  *     sourceRange: "*",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class FirewallRule extends pulumi.CustomResource {
     /**

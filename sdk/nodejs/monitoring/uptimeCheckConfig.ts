@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
  * ## Example Usage - Uptime Check Config Http
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -45,7 +46,9 @@ import * as utilities from "../utilities";
  *     timeout: "60s",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Uptime Check Config Https
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -73,7 +76,9 @@ import * as utilities from "../utilities";
  *     timeout: "60s",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Uptime Check Tcp
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -96,6 +101,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class UptimeCheckConfig extends pulumi.CustomResource {
     /**

@@ -84,6 +84,7 @@ class ResourcePolicy(pulumi.CustomResource):
 
 
         ## Example Usage - Resource Policy Basic
+        {{% example %}}
 
 
         ```python
@@ -101,7 +102,9 @@ class ResourcePolicy(pulumi.CustomResource):
                 },
             })
         ```
+        {{% /example %}}
         ## Example Usage - Resource Policy Full
+        {{% example %}}
 
 
         ```python
@@ -130,7 +133,9 @@ class ResourcePolicy(pulumi.CustomResource):
                 },
             })
         ```
+        {{% /example %}}
         ## Example Usage - Resource Policy Placement Policy
+        {{% example %}}
 
 
         ```python
@@ -144,6 +149,8 @@ class ResourcePolicy(pulumi.CustomResource):
             },
             region="us-central1")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

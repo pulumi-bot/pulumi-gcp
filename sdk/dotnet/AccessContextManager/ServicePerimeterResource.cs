@@ -25,6 +25,47 @@ namespace Pulumi.Gcp.AccessContextManager
     /// * [API documentation](https://cloud.google.com/access-context-manager/docs/reference/rest/v1/accessPolicies.servicePerimeters)
     /// * How-to Guides
     ///     * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
+    /// 
+    /// ## Example Usage - Access Context Manager Service Perimeter Resource Basic
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var access-policy = new Gcp.AccessContextManager.AccessPolicy("access-policy", new Gcp.AccessContextManager.AccessPolicyArgs
+    ///         {
+    ///             Parent = "organizations/123456789",
+    ///             Title = "my policy",
+    ///         });
+    ///         var service-perimeter-resourceServicePerimeter = new Gcp.AccessContextManager.ServicePerimeter("service-perimeter-resourceServicePerimeter", new Gcp.AccessContextManager.ServicePerimeterArgs
+    ///         {
+    ///             Parent = access-policy.Name.Apply(name =&gt; $"accessPolicies/{name}"),
+    ///             Title = "restrict_all",
+    ///             Status = new Gcp.AccessContextManager.Inputs.ServicePerimeterStatusArgs
+    ///             {
+    ///                 RestrictedServices = 
+    ///                 {
+    ///                     "storage.googleapis.com",
+    ///                 },
+    ///             },
+    ///         });
+    ///         var service-perimeter-resourceServicePerimeterResource = new Gcp.AccessContextManager.ServicePerimeterResource("service-perimeter-resourceServicePerimeterResource", new Gcp.AccessContextManager.ServicePerimeterResourceArgs
+    ///         {
+    ///             PerimeterName = service-perimeter-resourceServicePerimeter.Name,
+    ///             Resource = "projects/987654321",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// {{% /example %}}
     /// </summary>
     public partial class ServicePerimeterResource : Pulumi.CustomResource
     {

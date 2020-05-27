@@ -120,6 +120,7 @@ class Image(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/compute/docs/images)
 
         ## Example Usage - Image Basic
+        {{% example %}}
 
 
         ```python
@@ -130,7 +131,9 @@ class Image(pulumi.CustomResource):
             "source": "https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.4-google-kvm-ubuntu-trusty-go_agent-raw.tar.gz",
         })
         ```
+        {{% /example %}}
         ## Example Usage - Image Guest Os
+        {{% example %}}
 
 
         ```python
@@ -150,6 +153,8 @@ class Image(pulumi.CustomResource):
                 "source": "https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.4-google-kvm-ubuntu-trusty-go_agent-raw.tar.gz",
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

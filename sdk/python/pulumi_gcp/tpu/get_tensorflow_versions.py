@@ -59,6 +59,7 @@ def get_tensorflow_versions(project=None,zone=None,opts=None):
     ```
 
     ## Example Usage: Configure Basic TPU Node with available version
+    {{% example %}}
 
     ```python
     import pulumi
@@ -71,6 +72,8 @@ def get_tensorflow_versions(project=None,zone=None,opts=None):
         tensorflow_version=available.versions[0],
         cidr_block="10.2.0.0/29")
     ```
+
+    {{% /example %}}
 
 
     :param str project: The project to list versions for. If it

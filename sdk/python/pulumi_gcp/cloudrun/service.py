@@ -332,6 +332,7 @@ class Service(pulumi.CustomResource):
         ```
 
         ## Example Usage - Cloud Run Service Traffic Split
+        {{% example %}}
 
 
         ```python
@@ -361,6 +362,8 @@ class Service(pulumi.CustomResource):
                 },
             ])
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

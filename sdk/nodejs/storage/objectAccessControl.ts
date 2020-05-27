@@ -28,6 +28,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/storage/docs/access-control/create-manage-lists)
  *
  * ## Example Usage - Storage Object Access Control Public Object
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -46,6 +47,8 @@ import * as utilities from "../utilities";
  *     entity: "allUsers",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class ObjectAccessControl extends pulumi.CustomResource {
     /**

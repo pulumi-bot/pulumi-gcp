@@ -104,6 +104,7 @@ class Intent(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
 
         ## Example Usage - Dialogflow Intent Basic
+        {{% example %}}
 
 
         ```python
@@ -116,6 +117,7 @@ class Intent(pulumi.CustomResource):
             time_zone="America/New_York")
         basic_intent = gcp.diagflow.Intent("basicIntent", display_name="basic-intent")
         ```
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

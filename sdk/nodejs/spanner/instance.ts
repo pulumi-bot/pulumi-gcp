@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/spanner/)
  *
  * ## Example Usage - Spanner Instance Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -33,6 +34,8 @@ import * as utilities from "../utilities";
  *     numNodes: 2,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Instance extends pulumi.CustomResource {
     /**

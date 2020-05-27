@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## google\_compute\_subnetwork\_iam\_policy
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -63,7 +64,9 @@ import * as utilities from "../utilities";
  *     policyData: admin.then(admin => admin.policyData),
  * });
  * ```
+ * {{% /example %}}
  * ## google\_compute\_subnetwork\_iam\_binding
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -97,7 +100,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## google\_compute\_subnetwork\_iam\_member
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -131,6 +136,7 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  */
 export class SubnetworkIAMBinding extends pulumi.CustomResource {
     /**

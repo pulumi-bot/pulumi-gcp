@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  *     * [Sole-Tenant Nodes](https://cloud.google.com/compute/docs/nodes/)
  *
  * ## Example Usage - Node Template Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -33,7 +34,9 @@ import * as utilities from "../utilities";
  *     nodeType: central1a.then(central1a => central1a.names[0]),
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Node Template Server Binding
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -54,6 +57,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class NodeTemplate extends pulumi.CustomResource {
     /**

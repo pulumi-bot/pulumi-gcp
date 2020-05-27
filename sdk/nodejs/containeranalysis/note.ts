@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/container-analysis/)
  *
  * ## Example Usage - Container Analysis Note Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -31,6 +32,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Note extends pulumi.CustomResource {
     /**

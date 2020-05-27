@@ -19,6 +19,35 @@ namespace Pulumi.Gcp.Spanner
     /// * [API documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/projects.instances)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/spanner/)
+    /// 
+    /// ## Example Usage - Spanner Instance Basic
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var example = new Gcp.Spanner.Instance("example", new Gcp.Spanner.InstanceArgs
+    ///         {
+    ///             Config = "regional-us-central1",
+    ///             DisplayName = "Test Spanner Instance",
+    ///             Labels = 
+    ///             {
+    ///                 { "foo", "bar" },
+    ///             },
+    ///             NumNodes = 2,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// {{% /example %}}
     /// </summary>
     public partial class Instance : Pulumi.CustomResource
     {

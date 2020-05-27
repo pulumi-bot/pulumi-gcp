@@ -15,6 +15,7 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage 
  *
+ * {{% example %}}
  * ### Disk Resource Policy Attachment Basic
  *
  *
@@ -48,6 +49,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class DiskResourcePolicyAttachment extends pulumi.CustomResource {
     /**

@@ -114,6 +114,7 @@ class AutoscalingPolicy(pulumi.CustomResource):
 
 
         ## Example Usage - Dataproc Autoscaling Policy
+        {{% example %}}
 
 
         ```python
@@ -141,6 +142,8 @@ class AutoscalingPolicy(pulumi.CustomResource):
                 },
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

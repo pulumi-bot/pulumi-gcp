@@ -81,6 +81,7 @@ class NetworkEndpointGroup(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
 
         ## Example Usage - Network Endpoint Group
+        {{% example %}}
 
 
         ```python
@@ -98,6 +99,8 @@ class NetworkEndpointGroup(pulumi.CustomResource):
             default_port="90",
             zone="us-central1-a")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

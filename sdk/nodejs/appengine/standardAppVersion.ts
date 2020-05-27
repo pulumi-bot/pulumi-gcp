@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/appengine/docs/standard)
  *
  * ## Example Usage - App Engine Standard App Version
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -82,6 +83,8 @@ import * as utilities from "../utilities";
  *     noopOnDestroy: true,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class StandardAppVersion extends pulumi.CustomResource {
     /**

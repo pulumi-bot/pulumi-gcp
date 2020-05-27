@@ -11,6 +11,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Sql Database Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -25,6 +26,8 @@ import * as utilities from "../utilities";
  * });
  * const database = new gcp.sql.Database("database", {instance: instance.name});
  * ```
+ *
+ * {{% /example %}}
  */
 export class Database extends pulumi.CustomResource {
     /**

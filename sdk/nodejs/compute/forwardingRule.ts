@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/network/forwarding-rules)
  *
  * ## Example Usage - Forwarding Rule Global Internallb
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -53,7 +54,9 @@ import * as utilities from "../utilities";
  *     subnetwork: defaultSubnetwork.name,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Forwarding Rule Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -66,7 +69,9 @@ import * as utilities from "../utilities";
  *     portRange: "80",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Forwarding Rule Internallb
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -100,7 +105,9 @@ import * as utilities from "../utilities";
  *     subnetwork: defaultSubnetwork.name,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Forwarding Rule Http Lb
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -248,6 +255,8 @@ import * as utilities from "../utilities";
  *     networkTier: "PREMIUM",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class ForwardingRule extends pulumi.CustomResource {
     /**

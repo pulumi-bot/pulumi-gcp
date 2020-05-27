@@ -39,6 +39,7 @@ import * as utilities from "../utilities";
  *     * [Cloud Networking](https://cloud.google.com/vpc/docs/using-vpc)
  *
  * ## Example Usage - Subnetwork Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -56,7 +57,9 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Subnetwork Logging Config
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -75,7 +78,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Subnetwork Internal L7lb
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -91,6 +96,8 @@ import * as utilities from "../utilities";
  *     network: custom-test.id,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Subnetwork extends pulumi.CustomResource {
     /**

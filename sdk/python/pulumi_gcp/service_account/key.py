@@ -59,6 +59,7 @@ class Key(pulumi.CustomResource):
 
 
         ## Example Usage, creating a new Key Pair
+        {{% example %}}
 
         ```python
         import pulumi
@@ -71,6 +72,8 @@ class Key(pulumi.CustomResource):
             service_account_id=myaccount.name,
             public_key_type="TYPE_X509_PEM_FILE")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

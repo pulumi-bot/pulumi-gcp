@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/urlMaps)
  *
  * ## Example Usage - Url Map Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -88,7 +89,9 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Url Map Traffic Director Route
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -167,7 +170,9 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Url Map Traffic Director Route Partial
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -217,7 +222,9 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Url Map Traffic Director Path
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -319,7 +326,9 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Url Map Traffic Director Path Partial
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -387,6 +396,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class URLMap extends pulumi.CustomResource {
     /**

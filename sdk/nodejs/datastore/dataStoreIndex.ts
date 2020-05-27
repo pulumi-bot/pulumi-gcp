@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/datastore/docs/concepts/indexes)
  *
  * ## Example Usage - Datastore Index
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -37,6 +38,8 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class DataStoreIndex extends pulumi.CustomResource {
     /**

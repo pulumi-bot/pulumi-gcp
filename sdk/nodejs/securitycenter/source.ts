@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/binary-authorization/)
  *
  * ## Example Usage - Scc Source Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -30,6 +31,8 @@ import * as utilities from "../utilities";
  *     organization: "123456789",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Source extends pulumi.CustomResource {
     /**

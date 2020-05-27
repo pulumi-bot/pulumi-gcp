@@ -22,6 +22,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/scheduler/)
  *
  * ## Example Usage - Scheduler Job Http
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -42,7 +43,9 @@ import * as utilities from "../utilities";
  *     timeZone: "America/New_York",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Scheduler Job App Engine
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -71,7 +74,9 @@ import * as utilities from "../utilities";
  *     timeZone: "Europe/London",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Scheduler Job Oauth
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -93,7 +98,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Scheduler Job Oidc
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -115,6 +122,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Job extends pulumi.CustomResource {
     /**

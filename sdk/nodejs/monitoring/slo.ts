@@ -24,6 +24,7 @@ import * as utilities from "../utilities";
  *     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
  *
  * ## Example Usage - Monitoring Slo Appengine
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -46,6 +47,7 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  */
 export class Slo extends pulumi.CustomResource {
     /**

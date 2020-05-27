@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/tpu/docs/)
  *
  * ## Example Usage - TPU Node Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -31,7 +32,9 @@ import * as utilities from "../utilities";
  *     cidrBlock: "10.2.0.0/29",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - TPU Node Full
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -54,6 +57,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Node extends pulumi.CustomResource {
     /**

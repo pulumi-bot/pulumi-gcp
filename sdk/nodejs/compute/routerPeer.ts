@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  *     * [Google Cloud Router](https://cloud.google.com/router/docs/)
  *
  * ## Example Usage - Router Peer Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -35,6 +36,8 @@ import * as utilities from "../utilities";
  *     router: "my-router",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class RouterPeer extends pulumi.CustomResource {
     /**

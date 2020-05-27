@@ -23,6 +23,7 @@ import * as utilities from "../utilities";
  *     * [Controlling access to datasets](https://cloud.google.com/bigquery/docs/dataset-access-controls)
  *
  * ## Example Usage - Bigquery Dataset Access Basic User
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -37,7 +38,9 @@ import * as utilities from "../utilities";
  *     userByEmail: bqowner.email,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Bigquery Dataset Access View
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -63,6 +66,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class DatasetAccess extends pulumi.CustomResource {
     /**

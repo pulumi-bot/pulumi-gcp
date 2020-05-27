@@ -13,6 +13,7 @@ import * as utilities from "../utilities";
  * state as plain-text.
  *
  * ## Example Usage - Secret Version Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -33,6 +34,8 @@ import * as utilities from "../utilities";
  *     secretData: "secret-data",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class SecretVersion extends pulumi.CustomResource {
     /**

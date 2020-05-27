@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  * plaintext. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
  * ## Example Usage - with a separately managed node pool (recommended)
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -51,7 +52,9 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% /example %}}
  * ## Example Usage - with the default node pool
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -88,6 +91,8 @@ import * as utilities from "../utilities";
  *     update: "40m",
  * } });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Cluster extends pulumi.CustomResource {
     /**

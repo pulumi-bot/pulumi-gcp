@@ -94,6 +94,7 @@ class DomainMapping(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/run/docs/mapping-custom-domains)
 
         ## Example Usage - Cloud Run Domain Mapping Basic
+        {{% example %}}
 
 
         ```python
@@ -121,6 +122,8 @@ class DomainMapping(pulumi.CustomResource):
                 "routeName": default_service.name,
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

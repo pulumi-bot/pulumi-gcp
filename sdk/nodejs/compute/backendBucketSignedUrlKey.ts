@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  * state as plain-text.
  *
  * ## Example Usage - Backend Bucket Signed Url Key
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -37,6 +38,8 @@ import * as utilities from "../utilities";
  *     backendBucket: testBackend.name,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class BackendBucketSignedUrlKey extends pulumi.CustomResource {
     /**

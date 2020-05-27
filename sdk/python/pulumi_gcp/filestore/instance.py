@@ -80,6 +80,7 @@ class Instance(pulumi.CustomResource):
             * [Copying Data In/Out](https://cloud.google.com/filestore/docs/copying-data)
 
         ## Example Usage - Filestore Instance Basic
+        {{% example %}}
 
 
         ```python
@@ -98,6 +99,8 @@ class Instance(pulumi.CustomResource):
             tier="PREMIUM",
             zone="us-central1-b")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

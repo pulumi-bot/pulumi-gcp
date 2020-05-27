@@ -96,6 +96,7 @@ class UptimeCheckConfig(pulumi.CustomResource):
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
         ## Example Usage - Uptime Check Config Http
+        {{% example %}}
 
 
         ```python
@@ -120,7 +121,9 @@ class UptimeCheckConfig(pulumi.CustomResource):
             },
             timeout="60s")
         ```
+        {{% /example %}}
         ## Example Usage - Uptime Check Config Https
+        {{% example %}}
 
 
         ```python
@@ -147,7 +150,9 @@ class UptimeCheckConfig(pulumi.CustomResource):
             },
             timeout="60s")
         ```
+        {{% /example %}}
         ## Example Usage - Uptime Check Tcp
+        {{% example %}}
 
 
         ```python
@@ -168,6 +173,8 @@ class UptimeCheckConfig(pulumi.CustomResource):
                 "groupId": check.name,
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

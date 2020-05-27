@@ -17,6 +17,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/vpc/docs/vpc)
  *
  * ## Example Usage - Network Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -25,6 +26,8 @@ import * as utilities from "../utilities";
  *
  * const vpcNetwork = new gcp.compute.Network("vpcNetwork", {});
  * ```
+ *
+ * {{% /example %}}
  */
 export class Network extends pulumi.CustomResource {
     /**

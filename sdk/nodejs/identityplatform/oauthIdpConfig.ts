@@ -16,6 +16,7 @@ import * as utilities from "../utilities";
  *
  *
  * ## Example Usage - Identity Platform Oauth Idp Config Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -30,6 +31,8 @@ import * as utilities from "../utilities";
  *     issuer: "issuer",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class OauthIdpConfig extends pulumi.CustomResource {
     /**

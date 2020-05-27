@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  *     * [Internal TCP/UDP Load Balancing](https://cloud.google.com/compute/docs/load-balancing/internal/)
  *
  * ## Example Usage - Region Backend Service Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -38,7 +39,9 @@ import * as utilities from "../utilities";
  *     sessionAffinity: "CLIENT_IP",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Backend Service Ilb Round Robin
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -56,7 +59,9 @@ import * as utilities from "../utilities";
  *     localityLbPolicy: "ROUND_ROBIN",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Backend Service Ilb Ring Hash
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -90,7 +95,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Region Backend Service Balancing Mode
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -154,6 +161,8 @@ import * as utilities from "../utilities";
  *     healthChecks: [defaultRegionHealthCheck.id],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class RegionBackendService extends pulumi.CustomResource {
     /**

@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/logging/docs/apis)
  *
  * ## Example Usage - Logging Metric Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -59,7 +60,9 @@ import * as utilities from "../utilities";
  *     valueExtractor: "EXTRACT(jsonPayload.request)",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Logging Metric Counter Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -74,7 +77,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Logging Metric Counter Labels
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -97,6 +102,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Metric extends pulumi.CustomResource {
     /**

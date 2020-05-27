@@ -19,6 +19,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/monitoring/alerts/)
  *
  * ## Example Usage - Monitoring Alert Policy Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -45,6 +46,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class AlertPolicy extends pulumi.CustomResource {
     /**

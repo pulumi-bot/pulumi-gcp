@@ -150,6 +150,7 @@ class Autoscalar(pulumi.CustomResource):
             * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
 
         ## Example Usage - Autoscaler Single Instance
+        {{% example %}}
 
 
         ```python
@@ -204,7 +205,9 @@ class Autoscalar(pulumi.CustomResource):
                 }],
             })
         ```
+        {{% /example %}}
         ## Example Usage - Autoscaler Basic
+        {{% example %}}
 
 
         ```python
@@ -257,6 +260,8 @@ class Autoscalar(pulumi.CustomResource):
                 },
             })
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

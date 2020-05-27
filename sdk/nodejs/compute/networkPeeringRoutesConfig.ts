@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/vpc/docs/vpc-peering)
  *
  * ## Example Usage - Network Peering Routes Config Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -45,6 +46,7 @@ import * as utilities from "../utilities";
  *     peerNetwork: networkPrimary.id,
  * });
  * ```
+ * {{% /example %}}
  */
 export class NetworkPeeringRoutesConfig extends pulumi.CustomResource {
     /**

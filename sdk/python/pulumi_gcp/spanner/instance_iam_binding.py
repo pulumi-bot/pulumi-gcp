@@ -47,6 +47,7 @@ class InstanceIAMBinding(pulumi.CustomResource):
         > **Note:** `spanner.InstanceIAMBinding` resources **can be** used in conjunction with `spanner.InstanceIAMMember` resources **only if** they do not grant privilege to the same role.
 
         ## google\_spanner\_instance\_iam\_policy
+        {{% example %}}
 
         ```python
         import pulumi
@@ -61,7 +62,9 @@ class InstanceIAMBinding(pulumi.CustomResource):
             policy_data=admin.policy_data)
         ```
 
+        {{% /example %}}
         ## google\_spanner\_instance\_iam\_binding
+        {{% example %}}
 
         ```python
         import pulumi
@@ -73,7 +76,9 @@ class InstanceIAMBinding(pulumi.CustomResource):
             role="roles/compute.networkUser")
         ```
 
+        {{% /example %}}
         ## google\_spanner\_instance\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -84,6 +89,8 @@ class InstanceIAMBinding(pulumi.CustomResource):
             member="user:jane@example.com",
             role="roles/compute.networkUser")
         ```
+
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

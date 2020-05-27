@@ -28,6 +28,7 @@ import * as utilities from "../utilities";
  *     * [Reserving a Static Internal IP Address](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address)
  *
  * ## Example Usage - Address Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -36,7 +37,9 @@ import * as utilities from "../utilities";
  *
  * const ipAddress = new gcp.compute.Address("ipAddress", {});
  * ```
+ * {{% /example %}}
  * ## Example Usage - Address With Subnetwork
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -56,7 +59,9 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Address With Gce Endpoint
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -68,7 +73,9 @@ import * as utilities from "../utilities";
  *     purpose: "GCE_ENDPOINT",
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Instance With Ip
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -96,6 +103,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class Address extends pulumi.CustomResource {
     /**

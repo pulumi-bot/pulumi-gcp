@@ -21,6 +21,7 @@ import * as utilities from "../utilities";
  * state as plain-text.
  *
  * ## Example Usage - Vpn Tunnel Basic
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -59,7 +60,9 @@ import * as utilities from "../utilities";
  *     nextHopVpnTunnel: tunnel1.id,
  * });
  * ```
+ * {{% /example %}}
  * ## Example Usage - Vpn Tunnel Beta
+ * {{% example %}}
  *
  *
  * ```typescript
@@ -101,6 +104,8 @@ import * as utilities from "../utilities";
  *     nextHopVpnTunnel: tunnel1.id,
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export class VPNTunnel extends pulumi.CustomResource {
     /**

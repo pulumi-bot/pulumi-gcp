@@ -51,6 +51,7 @@ class AppEngineVersionIamPolicy(pulumi.CustomResource):
 
 
         ## google\_iap\_app\_engine\_version\_iam\_policy
+        {{% example %}}
 
         ```python
         import pulumi
@@ -90,7 +91,9 @@ class AppEngineVersionIamPolicy(pulumi.CustomResource):
             version_id=google_app_engine_standard_app_version["version"]["version_id"],
             policy_data=admin.policy_data)
         ```
+        {{% /example %}}
         ## google\_iap\_app\_engine\_version\_iam\_binding
+        {{% example %}}
 
         ```python
         import pulumi
@@ -124,7 +127,9 @@ class AppEngineVersionIamPolicy(pulumi.CustomResource):
             service=google_app_engine_standard_app_version["version"]["service"],
             version_id=google_app_engine_standard_app_version["version"]["version_id"])
         ```
+        {{% /example %}}
         ## google\_iap\_app\_engine\_version\_iam\_member
+        {{% example %}}
 
         ```python
         import pulumi
@@ -158,6 +163,7 @@ class AppEngineVersionIamPolicy(pulumi.CustomResource):
             service=google_app_engine_standard_app_version["version"]["service"],
             version_id=google_app_engine_standard_app_version["version"]["version_id"])
         ```
+        {{% /example %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

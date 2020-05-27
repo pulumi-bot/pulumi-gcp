@@ -21,6 +21,7 @@ import * as utilities from "../utilities";
  * ```
  *
  * ## Example Usage: Configure Basic TPU Node with available version
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -34,6 +35,8 @@ import * as utilities from "../utilities";
  *     cidrBlock: "10.2.0.0/29",
  * });
  * ```
+ *
+ * {{% /example %}}
  */
 export function getTensorflowVersions(args?: GetTensorflowVersionsArgs, opts?: pulumi.InvokeOptions): Promise<GetTensorflowVersionsResult> {
     args = args || {};

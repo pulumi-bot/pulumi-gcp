@@ -21,6 +21,58 @@ namespace Pulumi.Gcp.Monitoring
     /// * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.groups)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/monitoring/groups/)
+    /// 
+    /// ## Example Usage - Monitoring Group Basic
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var basic = new Gcp.Monitoring.Group("basic", new Gcp.Monitoring.GroupArgs
+    ///         {
+    ///             DisplayName = "tf-test MonitoringGroup",
+    ///             Filter = "resource.metadata.region=\"europe-west2\"",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// {{% /example %}}
+    /// ## Example Usage - Monitoring Group Subgroup
+    /// {{% example %}}
+    /// 
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var parent = new Gcp.Monitoring.Group("parent", new Gcp.Monitoring.GroupArgs
+    ///         {
+    ///             DisplayName = "tf-test MonitoringParentGroup",
+    ///             Filter = "resource.metadata.region=\"europe-west2\"",
+    ///         });
+    ///         var subgroup = new Gcp.Monitoring.Group("subgroup", new Gcp.Monitoring.GroupArgs
+    ///         {
+    ///             DisplayName = "tf-test MonitoringSubGroup",
+    ///             Filter = "resource.metadata.region=\"europe-west2\"",
+    ///             ParentName = parent.Name,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// {{% /example %}}
     /// </summary>
     public partial class Group : Pulumi.CustomResource
     {
