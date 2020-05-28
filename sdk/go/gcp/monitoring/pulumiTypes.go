@@ -2213,7 +2213,9 @@ func (o AlertPolicyConditionConditionThresholdDenominatorAggregationOutput) ToAl
 // this field must be defined;
 // otherwise an error is returned.
 func (o AlertPolicyConditionConditionThresholdDenominatorAggregationOutput) AlignmentPeriod() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v AlertPolicyConditionConditionThresholdDenominatorAggregation) *string { return v.AlignmentPeriod }).(pulumi.StringPtrOutput)
+	return o.ApplyT(func(v AlertPolicyConditionConditionThresholdDenominatorAggregation) *string {
+		return v.AlignmentPeriod
+	}).(pulumi.StringPtrOutput)
 }
 
 // The approach to be used to combine
@@ -5112,7 +5114,9 @@ func (o SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyOutpu
 // Good service is defined to be the count of requests made to
 // this service that return in no more than threshold.
 func (o SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyOutput) Threshold() pulumi.StringOutput {
-	return o.ApplyT(func(v SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatency) string { return v.Threshold }).(pulumi.StringOutput)
+	return o.ApplyT(func(v SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatency) string {
+		return v.Threshold
+	}).(pulumi.StringOutput)
 }
 
 type SloWindowsBasedSliGoodTotalRatioThresholdBasicSliPerformanceLatencyPtrOutput struct{ *pulumi.OutputState }
