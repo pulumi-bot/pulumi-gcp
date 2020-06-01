@@ -229,8 +229,7 @@ export class RegionBackendService extends pulumi.CustomResource {
      */
     public readonly failoverPolicy!: pulumi.Output<outputs.compute.RegionBackendServiceFailoverPolicy | undefined>;
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic
-     * locking.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking.
      */
     public /*out*/ readonly fingerprint!: pulumi.Output<string>;
     /**
@@ -457,8 +456,7 @@ export interface RegionBackendServiceState {
      */
     readonly failoverPolicy?: pulumi.Input<inputs.compute.RegionBackendServiceFailoverPolicy>;
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic
-     * locking.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking.
      */
     readonly fingerprint?: pulumi.Input<string>;
     /**

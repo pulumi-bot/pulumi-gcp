@@ -86,8 +86,8 @@ export class Agent extends pulumi.CustomResource {
      */
     public readonly avatarUri!: pulumi.Output<string | undefined>;
     /**
-     * The URI of the agent's avatar as returned from the API. Output only. To provide an image URL for the agent avatar,
-     * the [avatarUri] field can be used.
+     * The URI of the agent's avatar as returned from the API. Output only. To provide an image URL for the agent avatar, the
+     * [avatarUri] field can be used.
      */
     public /*out*/ readonly avatarUriBackend!: pulumi.Output<string>;
     /**
@@ -228,8 +228,8 @@ export interface AgentState {
      */
     readonly avatarUri?: pulumi.Input<string>;
     /**
-     * The URI of the agent's avatar as returned from the API. Output only. To provide an image URL for the agent avatar,
-     * the [avatarUri] field can be used.
+     * The URI of the agent's avatar as returned from the API. Output only. To provide an image URL for the agent avatar, the
+     * [avatarUri] field can be used.
      */
     readonly avatarUriBackend?: pulumi.Input<string>;
     /**

@@ -2,9 +2,13 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
-
+export interface ProviderBatching {
+    enableBatching?: boolean;
+    sendAfter?: string;
+}
 export namespace accesscontextmanager {
     export interface AccessLevelBasic {
         /**
@@ -2496,6 +2500,8 @@ export namespace cloudrun {
          * are in for this Revision.
          * It is expected
          * that the system will manipulate this based on routability and load.
+         *
+         * @deprecated Not supported by Cloud Run fully managed
          */
         servingState: string;
     }
@@ -2526,10 +2532,6 @@ export namespace cloudrun {
          */
         commands?: string[];
         /**
-         * List of environment variables to set in the container.  Structure is documented below.
-         */
-        envs?: outputs.cloudrun.ServiceTemplateSpecContainerEnv[];
-        /**
          * -
          * (Optional, Deprecated)
          * List of sources to populate environment variables in the container.
@@ -2537,8 +2539,14 @@ export namespace cloudrun {
          * When a key exists in multiple sources, the value associated with the last source will
          * take precedence. Values defined by an Env with a duplicate key will take
          * precedence.  Structure is documented below.
+         *
+         * @deprecated Not supported by Cloud Run fully managed
          */
         envFroms?: outputs.cloudrun.ServiceTemplateSpecContainerEnvFrom[];
+        /**
+         * List of environment variables to set in the container.  Structure is documented below.
+         */
+        envs?: outputs.cloudrun.ServiceTemplateSpecContainerEnv[];
         /**
          * Docker image name. This is most often a reference to a container located
          * in the container registry, such as gcr.io/cloudrun/hello
@@ -2557,6 +2565,8 @@ export namespace cloudrun {
          * Container's working directory.
          * If not specified, the container runtime's default will be used, which
          * might be configured in the container image.
+         *
+         * @deprecated Not supported by Cloud Run fully managed
          */
         workingDir?: string;
     }
@@ -9408,6 +9418,13 @@ export namespace compute {
     }
 }
 
+export namespace config {
+    export interface Batching {
+        enableBatching?: boolean;
+        sendAfter?: string;
+    }
+}
+
 export namespace container {
     export interface ClusterAddonsConfig {
         /**
@@ -14572,6 +14589,8 @@ export namespace sql {
          * First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
          * for information on how to upgrade to Second Generation instances.
          * A list of Google App Engine (GAE) project names that are allowed to access this instance.
+         *
+         * @deprecated This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
          */
         authorizedGaeApplications?: string[];
         /**
@@ -14585,6 +14604,8 @@ export namespace sql {
          * for information on how to upgrade to Second Generation instances.
          * Specific to read instances, indicates
          * when crash-safe replication flags are enabled.
+         *
+         * @deprecated This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
          */
         crashSafeReplication: boolean;
         databaseFlags?: outputs.sql.DatabaseInstanceSettingsDatabaseFlag[];
@@ -14612,6 +14633,8 @@ export namespace sql {
          * First Generation instances are now deprecated, see [here](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
          * for information on how to upgrade to Second Generation instances.
          * Replication type for this instance, can be one of `ASYNCHRONOUS` or `SYNCHRONOUS`.
+         *
+         * @deprecated This property is only applicable to First Generation instances, and First Generation instances are now deprecated.
          */
         replicationType?: string;
         /**
@@ -15053,7 +15076,7 @@ export namespace storage {
          */
         maxTimeElapsedSinceLastModification?: string;
         /**
-         * 
+         *
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
          */
         minTimeElapsedSinceLastModification?: string;
@@ -15089,3 +15112,4 @@ export namespace tpu {
         preemptible: boolean;
     }
 }
+

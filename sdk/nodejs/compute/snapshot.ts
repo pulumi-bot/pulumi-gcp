@@ -105,8 +105,8 @@ export class Snapshot extends pulumi.CustomResource {
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses
-     * attached (such as a Windows image). snapshotEncryptionKey nested object Encrypts the snapshot using a
-     * customer-supplied encryption key.
+     * attached (such as a Windows image). snapshotEncryptionKey nested object Encrypts the snapshot using a customer-supplied
+     * encryption key.
      */
     public /*out*/ readonly licenses!: pulumi.Output<string[]>;
     /**
@@ -245,8 +245,8 @@ export interface SnapshotState {
     readonly labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses
-     * attached (such as a Windows image). snapshotEncryptionKey nested object Encrypts the snapshot using a
-     * customer-supplied encryption key.
+     * attached (such as a Windows image). snapshotEncryptionKey nested object Encrypts the snapshot using a customer-supplied
+     * encryption key.
      */
     readonly licenses?: pulumi.Input<pulumi.Input<string>[]>;
     /**

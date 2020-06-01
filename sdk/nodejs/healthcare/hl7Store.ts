@@ -183,6 +183,8 @@ export class Hl7Store extends pulumi.CustomResource {
      * -
      * (Optional, Deprecated)
      * A nested object resource  Structure is documented below.
+     *
+     * @deprecated This field has been replaced by notificationConfigs
      */
     public readonly notificationConfig!: pulumi.Output<outputs.healthcare.Hl7StoreNotificationConfig | undefined>;
     /**
@@ -272,6 +274,7 @@ export interface Hl7StoreState {
      * -
      * (Optional, Deprecated)
      * A nested object resource  Structure is documented below.
+     *
      * @deprecated This field has been replaced by notificationConfigs
      */
     readonly notificationConfig?: pulumi.Input<inputs.healthcare.Hl7StoreNotificationConfig>;
@@ -320,6 +323,7 @@ export interface Hl7StoreArgs {
      * -
      * (Optional, Deprecated)
      * A nested object resource  Structure is documented below.
+     *
      * @deprecated This field has been replaced by notificationConfigs
      */
     readonly notificationConfig?: pulumi.Input<inputs.healthcare.Hl7StoreNotificationConfig>;

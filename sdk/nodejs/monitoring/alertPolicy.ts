@@ -86,8 +86,8 @@ export class AlertPolicy extends pulumi.CustomResource {
      */
     public readonly conditions!: pulumi.Output<outputs.monitoring.AlertPolicyCondition[]>;
     /**
-     * A read-only record of the creation of the alerting policy. If provided in a call to create or update, this field
-     * will be ignored.
+     * A read-only record of the creation of the alerting policy. If provided in a call to create or update, this field will be
+     * ignored.
      */
     public /*out*/ readonly creationRecord!: pulumi.Output<outputs.monitoring.AlertPolicyCreationRecord>;
     /**
@@ -215,8 +215,8 @@ export interface AlertPolicyState {
      */
     readonly conditions?: pulumi.Input<pulumi.Input<inputs.monitoring.AlertPolicyCondition>[]>;
     /**
-     * A read-only record of the creation of the alerting policy. If provided in a call to create or update, this field
-     * will be ignored.
+     * A read-only record of the creation of the alerting policy. If provided in a call to create or update, this field will be
+     * ignored.
      */
     readonly creationRecord?: pulumi.Input<inputs.monitoring.AlertPolicyCreationRecord>;
     /**

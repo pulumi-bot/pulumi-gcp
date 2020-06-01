@@ -6,7 +6,9 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
-/** @deprecated gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry */
+/**
+ * @deprecated gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry
+ */
 export class Registry extends pulumi.CustomResource {
     /**
      * Get an existing Registry resource's state with the given name, ID, and optional extra
