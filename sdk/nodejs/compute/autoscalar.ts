@@ -138,8 +138,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * @deprecated gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler
  */
-/** @deprecated gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler */
 export class Autoscalar extends pulumi.CustomResource {
     /**
      * Get an existing Autoscalar resource's state with the given name, ID, and optional extra

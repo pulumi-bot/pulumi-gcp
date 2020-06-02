@@ -131,6 +131,8 @@ export class Subnetwork extends pulumi.CustomResource {
     public readonly description!: pulumi.Output<string | undefined>;
     /**
      * Fingerprint of this resource. This field is used internally during updates of this resource.
+     *
+     * @deprecated This field is not useful for users, and has been removed as an output.
      */
     public /*out*/ readonly fingerprint!: pulumi.Output<string>;
     /**
@@ -285,21 +287,8 @@ export interface SubnetworkState {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Fingerprint     * 
- of     * 
- this     * 
- resource.     * 
- This     * 
- field     * 
- is     * 
- used     * 
- internally     * 
- during     * 
- updates     * 
- of     * 
- this     * 
- resource.     * 
-
+     * Fingerprint of this resource. This field is used internally during updates of this resource.
+     *
      * @deprecated This field is not useful for users, and has been removed as an output.
      */
     readonly fingerprint?: pulumi.Input<string>;

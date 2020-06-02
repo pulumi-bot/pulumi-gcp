@@ -167,8 +167,7 @@ export class BackendService extends pulumi.CustomResource {
      */
     public readonly enableCdn!: pulumi.Output<boolean | undefined>;
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic
-     * locking.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking.
      */
     public /*out*/ readonly fingerprint!: pulumi.Output<string>;
     /**
@@ -403,8 +402,7 @@ export interface BackendServiceState {
      */
     readonly enableCdn?: pulumi.Input<boolean>;
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic
-     * locking.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking.
      */
     readonly fingerprint?: pulumi.Input<string>;
     /**
