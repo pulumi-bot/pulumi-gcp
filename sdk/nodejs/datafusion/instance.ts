@@ -135,9 +135,9 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly serviceEndpoint!: pulumi.Output<string>;
     /**
-     * The current state of this Data Fusion instance. - CREATING: Instance is being created - RUNNING: Instance is running
-     * and ready for requests - FAILED: Instance creation failed - DELETING: Instance is being deleted - UPGRADING:
-     * Instance is being upgraded - RESTARTING: Instance is being restarted
+     * The current state of this Data Fusion instance. - CREATING: Instance is being created - RUNNING: Instance is running and
+     * ready for requests - FAILED: Instance creation failed - DELETING: Instance is being deleted - UPGRADING: Instance is
+     * being upgraded - RESTARTING: Instance is being restarted
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
     /**
@@ -289,9 +289,9 @@ export interface InstanceState {
      */
     readonly serviceEndpoint?: pulumi.Input<string>;
     /**
-     * The current state of this Data Fusion instance. - CREATING: Instance is being created - RUNNING: Instance is running
-     * and ready for requests - FAILED: Instance creation failed - DELETING: Instance is being deleted - UPGRADING:
-     * Instance is being upgraded - RESTARTING: Instance is being restarted
+     * The current state of this Data Fusion instance. - CREATING: Instance is being created - RUNNING: Instance is running and
+     * ready for requests - FAILED: Instance creation failed - DELETING: Instance is being deleted - UPGRADING: Instance is
+     * being upgraded - RESTARTING: Instance is being restarted
      */
     readonly state?: pulumi.Input<string>;
     /**

@@ -188,10 +188,9 @@ export class RegionDisk extends pulumi.CustomResource {
      */
     public readonly sourceSnapshotEncryptionKey!: pulumi.Output<outputs.compute.RegionDiskSourceSnapshotEncryptionKey | undefined>;
     /**
-     * The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to
-     * create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted
-     * and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was
-     * used.
+     * The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create
+     * this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and
+     * recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
      */
     public /*out*/ readonly sourceSnapshotId!: pulumi.Output<string>;
     /**
@@ -374,10 +373,9 @@ export interface RegionDiskState {
      */
     readonly sourceSnapshotEncryptionKey?: pulumi.Input<inputs.compute.RegionDiskSourceSnapshotEncryptionKey>;
     /**
-     * The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to
-     * create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted
-     * and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was
-     * used.
+     * The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create
+     * this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and
+     * recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
      */
     readonly sourceSnapshotId?: pulumi.Input<string>;
     /**
