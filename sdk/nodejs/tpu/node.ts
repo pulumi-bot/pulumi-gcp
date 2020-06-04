@@ -117,8 +117,8 @@ export class Node extends pulumi.CustomResource {
      */
     public readonly network!: pulumi.Output<string>;
     /**
-     * The network endpoints where TPU workers can be accessed and sent work. It is recommended that Tensorflow clients of
-     * the node first reach out to the first (index 0) entry.
+     * The network endpoints where TPU workers can be accessed and sent work. It is recommended that Tensorflow clients of the
+     * node first reach out to the first (index 0) entry.
      */
     public /*out*/ readonly networkEndpoints!: pulumi.Output<outputs.tpu.NodeNetworkEndpoint[]>;
     /**
@@ -245,8 +245,8 @@ export interface NodeState {
      */
     readonly network?: pulumi.Input<string>;
     /**
-     * The network endpoints where TPU workers can be accessed and sent work. It is recommended that Tensorflow clients of
-     * the node first reach out to the first (index 0) entry.
+     * The network endpoints where TPU workers can be accessed and sent work. It is recommended that Tensorflow clients of the
+     * node first reach out to the first (index 0) entry.
      */
     readonly networkEndpoints?: pulumi.Input<pulumi.Input<inputs.tpu.NodeNetworkEndpoint>[]>;
     /**

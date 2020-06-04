@@ -99,10 +99,10 @@ export class RouterPeer extends pulumi.CustomResource {
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
-     * The resource that configures and manages this BGP peer. * 'MANAGED_BY_USER' is the default value and can be managed
-     * by you or other users * 'MANAGED_BY_ATTACHMENT' is a BGP peer that is configured and managed by Cloud Interconnect,
-     * specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this
-     * type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     * The resource that configures and manages this BGP peer. * 'MANAGED_BY_USER' is the default value and can be managed by
+     * you or other users * 'MANAGED_BY_ATTACHMENT' is a BGP peer that is configured and managed by Cloud Interconnect,
+     * specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type
+     * of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
      */
     public /*out*/ readonly managementType!: pulumi.Output<string>;
     /**
@@ -243,10 +243,10 @@ export interface RouterPeerState {
      */
     readonly ipAddress?: pulumi.Input<string>;
     /**
-     * The resource that configures and manages this BGP peer. * 'MANAGED_BY_USER' is the default value and can be managed
-     * by you or other users * 'MANAGED_BY_ATTACHMENT' is a BGP peer that is configured and managed by Cloud Interconnect,
-     * specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this
-     * type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+     * The resource that configures and manages this BGP peer. * 'MANAGED_BY_USER' is the default value and can be managed by
+     * you or other users * 'MANAGED_BY_ATTACHMENT' is a BGP peer that is configured and managed by Cloud Interconnect,
+     * specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type
+     * of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
      */
     readonly managementType?: pulumi.Input<string>;
     /**
