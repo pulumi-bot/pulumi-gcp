@@ -19,6 +19,43 @@ import (
 // * How-to Guides
 //     * [Getting Started](https://cloud.google.com/service-usage/docs/getting-started)
 //     * [REST API documentation](https://cloud.google.com/service-usage/docs/reference/rest/v1beta1/services.consumerQuotaMetrics.limits.consumerOverrides)
+//
+// ## Example Usage - Consumer Quota Override
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/serviceusage"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myProject, err := organizations.NewProject(ctx, "myProject", &organizations.ProjectArgs{
+// 			ProjectId: pulumi.String("quota"),
+// 			OrgId:     pulumi.String("123456789"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		override, err := serviceusage.NewConsumerQuotaOverride(ctx, "override", &serviceusage.ConsumerQuotaOverrideArgs{
+// 			Project:       myProject.ProjectId,
+// 			Service:       pulumi.String("servicemanagement.googleapis.com"),
+// 			Metric:        pulumi.String("TODO: TODO multi part template expressions"),
+// 			Limit:         pulumi.String("TODO: TODO multi part template expressions"),
+// 			OverrideValue: pulumi.String("95"),
+// 			Force:         pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type ConsumerQuotaOverride struct {
 	pulumi.CustomResourceState
 

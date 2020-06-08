@@ -27,6 +27,38 @@ import (
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/regionHealthChecks)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
+//
+// ## Example Usage - Region Health Check Tcp
+//
+//
+// ## Example Usage - Region Health Check Tcp Full
+//
+//
+// ## Example Usage - Region Health Check Ssl
+//
+//
+// ## Example Usage - Region Health Check Ssl Full
+//
+//
+// ## Example Usage - Region Health Check Http
+//
+//
+// ## Example Usage - Region Health Check Http Logs
+//
+//
+// ## Example Usage - Region Health Check Http Full
+//
+//
+// ## Example Usage - Region Health Check Https
+//
+//
+// ## Example Usage - Region Health Check Https Full
+//
+//
+// ## Example Usage - Region Health Check Http2
+//
+//
+// ## Example Usage - Region Health Check Http2 Full
 type RegionHealthCheck struct {
 	pulumi.CustomResourceState
 

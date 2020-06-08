@@ -17,6 +17,11 @@ import (
 // * [API documentation](https://cloud.google.com/artifact-registry/docs/reference/rest/)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/artifact-registry/docs/overview)
+//
+// ## Example Usage - Artifact Registry Repository Basic
+//
+//
+// ## Example Usage - Artifact Registry Repository Iam
 type Repository struct {
 	pulumi.CustomResourceState
 

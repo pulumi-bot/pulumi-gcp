@@ -27,6 +27,11 @@ import (
 // * [API documentation](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys)
 // * How-to Guides
 //     * [Creating a key](https://cloud.google.com/kms/docs/creating-keys#create_a_key)
+//
+// ## Example Usage - Kms Crypto Key Basic
+//
+//
+// ## Example Usage - Kms Crypto Key Asymmetric Sign
 type CryptoKey struct {
 	pulumi.CustomResourceState
 

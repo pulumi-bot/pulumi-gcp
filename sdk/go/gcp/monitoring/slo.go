@@ -25,6 +25,8 @@ import (
 // * How-to Guides
 //     * [Service Monitoring](https://cloud.google.com/monitoring/service-monitoring)
 //     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
+//
+// ## Example Usage - Monitoring Slo Appengine
 type Slo struct {
 	pulumi.CustomResourceState
 

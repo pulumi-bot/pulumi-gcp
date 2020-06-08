@@ -17,6 +17,8 @@ import (
 // * [API documentation](https://cloud.google.com/cloud-build/docs/api/reference/rest/)
 // * How-to Guides
 //     * [Automating builds using build triggers](https://cloud.google.com/cloud-build/docs/running-builds/automate-builds)
+//
+// ## Example Usage - Cloudbuild Trigger Filename
 type Trigger struct {
 	pulumi.CustomResourceState
 

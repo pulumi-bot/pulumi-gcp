@@ -27,6 +27,38 @@ import (
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/healthChecks)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
+//
+// ## Example Usage - Health Check Tcp
+//
+//
+// ## Example Usage - Health Check Tcp Full
+//
+//
+// ## Example Usage - Health Check Ssl
+//
+//
+// ## Example Usage - Health Check Ssl Full
+//
+//
+// ## Example Usage - Health Check Http
+//
+//
+// ## Example Usage - Health Check Http Full
+//
+//
+// ## Example Usage - Health Check Https
+//
+//
+// ## Example Usage - Health Check Https Full
+//
+//
+// ## Example Usage - Health Check Http2
+//
+//
+// ## Example Usage - Health Check Http2 Full
+//
+//
+// ## Example Usage - Health Check With Logging
 type HealthCheck struct {
 	pulumi.CustomResourceState
 

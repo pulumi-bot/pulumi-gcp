@@ -17,6 +17,11 @@ import (
 // * [API documentation](https://cloud.google.com/source-repositories/docs/reference/rest/v1/projects.repos)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/source-repositories/)
+//
+// ## Example Usage - Sourcerepo Repository Basic
+//
+//
+// ## Example Usage - Sourcerepo Repository Full
 type Repository struct {
 	pulumi.CustomResourceState
 

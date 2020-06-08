@@ -20,6 +20,8 @@ import (
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/networkEndpointGroups)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
+//
+// ## Example Usage - Global Network Endpoint
 type GlobalNetworkEndpoint struct {
 	pulumi.CustomResourceState
 

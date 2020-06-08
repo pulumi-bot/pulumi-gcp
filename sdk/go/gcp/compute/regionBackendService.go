@@ -19,6 +19,11 @@ import (
 // * [API documentation](https://cloud.google.com/compute/docs/reference/latest/regionBackendServices)
 // * How-to Guides
 //     * [Internal TCP/UDP Load Balancing](https://cloud.google.com/compute/docs/load-balancing/internal/)
+//
+// ## Example Usage - Region Backend Service Ilb Round Robin
+//
+//
+// ## Example Usage - Region Backend Service Ilb Ring Hash
 type RegionBackendService struct {
 	pulumi.CustomResourceState
 

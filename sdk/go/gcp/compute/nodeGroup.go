@@ -23,6 +23,11 @@ import (
 // number of nodes in a node group and changes to node group size either
 // through provider config or through external changes will cause
 // the provider to delete and recreate the node group.
+//
+// ## Example Usage - Node Group Basic
+//
+//
+// ## Example Usage - Node Group Autoscaling Policy
 type NodeGroup struct {
 	pulumi.CustomResourceState
 

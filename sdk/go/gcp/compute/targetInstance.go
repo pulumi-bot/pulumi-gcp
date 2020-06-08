@@ -23,6 +23,8 @@ import (
 // * [API documentation](https://cloud.google.com/compute/docs/reference/v1/targetInstances)
 // * How-to Guides
 //     * [Using Protocol Forwarding](https://cloud.google.com/compute/docs/protocol-forwarding)
+//
+// ## Example Usage - Target Instance Basic
 type TargetInstance struct {
 	pulumi.CustomResourceState
 

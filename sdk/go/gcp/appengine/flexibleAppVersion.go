@@ -24,6 +24,8 @@ import (
 // * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/appengine/docs/flexible)
+//
+// ## Example Usage - App Engine Flexible App Version
 type FlexibleAppVersion struct {
 	pulumi.CustomResourceState
 

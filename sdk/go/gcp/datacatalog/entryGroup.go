@@ -10,14 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// An EntryGroup resource represents a logical grouping of zero or more Data Catalog Entry resources.
-//
-//
-// To get more information about EntryGroup, see:
-//
-// * [API documentation](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups)
-// * How-to Guides
-//     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 type EntryGroup struct {
 	pulumi.CustomResourceState
 

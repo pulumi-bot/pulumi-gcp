@@ -16,6 +16,8 @@ import (
 // To get more information about ApplicationUrlDispatchRules, see:
 //
 // * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps#UrlDispatchRule)
+//
+// ## Example Usage - App Engine Application Url Dispatch Rules Basic
 type ApplicationUrlDispatchRules struct {
 	pulumi.CustomResourceState
 

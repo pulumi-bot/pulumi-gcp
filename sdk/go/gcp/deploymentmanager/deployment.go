@@ -25,6 +25,40 @@ import (
 // deployments in preview as recreate-only for any update operation other
 // than actually deploying an in-preview deployment (i.e. `preview=true` to
 // `preview=false`).
+//
+// ## Example Usage - Deployment Manager Deployment Basic
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/deploymentmanager"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		deployment, err := deploymentmanager.NewDeployment(ctx, "deployment", &deploymentmanager.DeploymentArgs{
+// 			Target: &deploymentmanager.DeploymentTargetArgs{
+// 				Config: &deploymentmanager.DeploymentTargetConfigArgs{
+// 					Content: "TODO: ReadFile",
+// 				},
+// 			},
+// 			Labels: deploymentmanager.DeploymentLabelArray{
+// 				&deploymentmanager.DeploymentLabelArgs{
+// 					Key:   pulumi.String("foo"),
+// 					Value: pulumi.String("bar"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Deployment struct {
 	pulumi.CustomResourceState
 

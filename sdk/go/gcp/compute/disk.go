@@ -34,6 +34,8 @@ import (
 //
 // > **Warning:** All arguments including `disk_encryption_key.raw_key` will be stored in the raw
 // state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
+//
+// ## Example Usage - Disk Basic
 type Disk struct {
 	pulumi.CustomResourceState
 

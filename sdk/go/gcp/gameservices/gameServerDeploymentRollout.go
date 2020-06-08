@@ -18,6 +18,8 @@ import (
 // * [API documentation](https://cloud.google.com/game-servers/docs/reference/rest/v1beta/GameServerDeploymentRollout)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/game-servers/docs)
+//
+// ## Example Usage - Game Service Deployment Rollout Basic
 type GameServerDeploymentRollout struct {
 	pulumi.CustomResourceState
 

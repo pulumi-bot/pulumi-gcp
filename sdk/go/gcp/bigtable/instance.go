@@ -12,6 +12,11 @@ import (
 // Creates a Google Bigtable instance. For more information see
 // [the official documentation](https://cloud.google.com/bigtable/) and
 // [API](https://cloud.google.com/bigtable/docs/go/reference).
+//
+// ## Example Usage - Production Instance
+//
+//
+// ## Example Usage - Development Instance
 type Instance struct {
 	pulumi.CustomResourceState
 

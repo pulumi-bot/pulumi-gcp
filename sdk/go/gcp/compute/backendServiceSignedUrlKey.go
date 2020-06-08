@@ -21,6 +21,8 @@ import (
 //
 // > **Warning:** All arguments including `keyValue` will be stored in the raw
 // state as plain-text.
+//
+// ## Example Usage - Backend Service Signed Url Key
 type BackendServiceSignedUrlKey struct {
 	pulumi.CustomResourceState
 

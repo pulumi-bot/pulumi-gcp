@@ -18,6 +18,14 @@ import (
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/iot/docs/)
 //
+// ## Example Usage - Cloudiot Device Registry Basic
+//
+//
+// ## Example Usage - Cloudiot Device Registry Single Event Notification Configs
+//
+//
+// ## Example Usage - Cloudiot Device Registry Full
+//
 // Deprecated: gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry
 type Registry struct {
 	pulumi.CustomResourceState
