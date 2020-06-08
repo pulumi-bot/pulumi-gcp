@@ -20,8 +20,9 @@ namespace Pulumi.Gcp.Compute
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/internet-neg-concepts)
     /// 
-    /// ## Example Usage - Global Network Endpoint Group
+    /// ## Example Usage
     /// 
+    /// ### Global Network Endpoint Group
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -33,15 +34,15 @@ namespace Pulumi.Gcp.Compute
     ///     {
     ///         var neg = new Gcp.Compute.GlobalNetworkEndpointGroup("neg", new Gcp.Compute.GlobalNetworkEndpointGroupArgs
     ///         {
-    ///             DefaultPort = "90",
+    ///             DefaultPort = 90,
     ///             NetworkEndpointType = "INTERNET_FQDN_PORT",
     ///         });
     ///     }
     /// 
     /// }
     /// ```
-    /// ## Example Usage - Global Network Endpoint Group Ip Address
     /// 
+    /// ### Global Network Endpoint Group Ip Address
     /// 
     /// ```csharp
     /// using Pulumi;

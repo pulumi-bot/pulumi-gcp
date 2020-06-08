@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -19,8 +17,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/monitoring/groups/)
  *
- * ## Example Usage - Monitoring Group Basic
+ * ## Example Usage
  *
+ * ### Monitoring Group Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -31,8 +30,8 @@ import * as utilities from "../utilities";
  *     filter: "resource.metadata.region=\"europe-west2\"",
  * });
  * ```
- * ## Example Usage - Monitoring Group Subgroup
  *
+ * ### Monitoring Group Subgroup
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -57,6 +56,7 @@ export class Group extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: GroupState, opts?: pulumi.CustomResourceOptions): Group {
         return new Group(name, <any>state, { ...opts, id: id });

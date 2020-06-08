@@ -15,7 +15,9 @@ import * as utilities from "../utilities";
  * `labels`,`cluster_config.worker_config.num_instances` and `cluster_config.preemptible_worker_config.num_instances` are non-updatable. Changing others will cause recreation of the
  * whole cluster!
  *
- * ## Example Usage - Basic
+ * ## Example Usage
+ *
+ * ### Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -26,7 +28,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ## Example Usage - Advanced
+ * ### Advanced
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -87,7 +89,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ## Example Usage - Using a GPU accelerator
+ * ### Using A GPU Accelerator
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -117,6 +119,7 @@ export class Cluster extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ClusterState, opts?: pulumi.CustomResourceOptions): Cluster {
         return new Cluster(name, <any>state, { ...opts, id: id });

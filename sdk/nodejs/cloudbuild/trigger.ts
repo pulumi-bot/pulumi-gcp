@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Automating builds using build triggers](https://cloud.google.com/cloud-build/docs/running-builds/automate-builds)
  *
- * ## Example Usage - Cloudbuild Trigger Filename
+ * ## Example Usage
  *
+ * ### Cloudbuild Trigger Filename
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -44,6 +45,7 @@ export class Trigger extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: TriggerState, opts?: pulumi.CustomResourceOptions): Trigger {
         return new Trigger(name, <any>state, { ...opts, id: id });

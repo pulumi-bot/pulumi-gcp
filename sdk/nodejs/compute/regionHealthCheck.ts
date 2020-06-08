@@ -26,8 +26,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
  *
- * ## Example Usage - Region Health Check Tcp
+ * ## Example Usage
  *
+ * ### Region Health Check Tcp
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -41,8 +42,8 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- * ## Example Usage - Region Health Check Tcp Full
  *
+ * ### Region Health Check Tcp Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -63,8 +64,8 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
- * ## Example Usage - Region Health Check Ssl
  *
+ * ### Region Health Check Ssl
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -78,8 +79,8 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- * ## Example Usage - Region Health Check Ssl Full
  *
+ * ### Region Health Check Ssl Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -100,8 +101,8 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
- * ## Example Usage - Region Health Check Http
  *
+ * ### Region Health Check Http
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -115,8 +116,8 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- * ## Example Usage - Region Health Check Http Logs
  *
+ * ### Region Health Check Http Logs
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -133,8 +134,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ## Example Usage - Region Health Check Http Full
  *
+ * ### Region Health Check Http Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -156,8 +157,8 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
- * ## Example Usage - Region Health Check Https
  *
+ * ### Region Health Check Https
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -171,8 +172,8 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- * ## Example Usage - Region Health Check Https Full
  *
+ * ### Region Health Check Https Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -194,8 +195,8 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
- * ## Example Usage - Region Health Check Http2
  *
+ * ### Region Health Check Http2
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -209,8 +210,8 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- * ## Example Usage - Region Health Check Http2 Full
  *
+ * ### Region Health Check Http2 Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -241,6 +242,7 @@ export class RegionHealthCheck extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RegionHealthCheckState, opts?: pulumi.CustomResourceOptions): RegionHealthCheck {
         return new RegionHealthCheck(name, <any>state, { ...opts, id: id });

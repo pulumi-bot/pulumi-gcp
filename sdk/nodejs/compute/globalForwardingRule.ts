@@ -17,8 +17,9 @@ import * as utilities from "../utilities";
  *
  *
  *
- * ## Example Usage - Global Forwarding Rule Http
+ * ## Example Usage
  *
+ * ### Global Forwarding Rule Http
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -60,8 +61,8 @@ import * as utilities from "../utilities";
  *     portRange: "80",
  * });
  * ```
- * ## Example Usage - Global Forwarding Rule Internal
  *
+ * ### Global Forwarding Rule Internal
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -154,6 +155,7 @@ export class GlobalForwardingRule extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: GlobalForwardingRuleState, opts?: pulumi.CustomResourceOptions): GlobalForwardingRule {
         return new GlobalForwardingRule(name, <any>state, { ...opts, id: id });

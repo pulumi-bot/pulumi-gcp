@@ -14,8 +14,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/memorystore/docs/redis/)
  *
- * ## Example Usage - Redis Instance Basic
+ * ## Example Usage
  *
+ * ### Redis Instance Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -25,8 +26,8 @@ import * as utilities from "../utilities";
  *     memorySizeGb: 1,
  * });
  * ```
- * ## Example Usage - Redis Instance Full
  *
+ * ### Redis Instance Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -59,6 +60,7 @@ export class Instance extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceState, opts?: pulumi.CustomResourceOptions): Instance {
         return new Instance(name, <any>state, { ...opts, id: id });

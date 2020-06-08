@@ -24,8 +24,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
  *
- * ## Example Usage - Access Context Manager Service Perimeter Basic
+ * ## Example Usage
  *
+ * ### Access Context Manager Service Perimeter Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -62,8 +63,8 @@ import * as utilities from "../utilities";
  *     title: "chromeosNoLock",
  * });
  * ```
- * ## Example Usage - Access Context Manager Service Perimeter Dry Run
  *
+ * ### Access Context Manager Service Perimeter Dry Run
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -96,6 +97,7 @@ export class ServicePerimeter extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ServicePerimeterState, opts?: pulumi.CustomResourceOptions): ServicePerimeter {
         return new ServicePerimeter(name, <any>state, { ...opts, id: id });

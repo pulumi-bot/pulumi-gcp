@@ -88,8 +88,9 @@ class GameServerConfig(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/game-servers/docs)
 
-        ## Example Usage - Game Service Config Basic
+        ## Example Usage
 
+        ### Game Service Config Basic
 
         ```python
         import pulumi
@@ -150,6 +151,7 @@ class GameServerConfig(pulumi.CustomResource):
                 }],
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

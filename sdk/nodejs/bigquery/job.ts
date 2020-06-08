@@ -12,8 +12,9 @@ import * as utilities from "../utilities";
  *
  *
  *
- * ## Example Usage - Bigquery Job Query
+ * ## Example Usage
  *
+ * ### Bigquery Job Query
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -49,8 +50,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ## Example Usage - Bigquery Job Query Table Reference
  *
+ * ### Bigquery Job Query Table Reference
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -87,8 +88,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ## Example Usage - Bigquery Job Load
  *
+ * ### Bigquery Job Load
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -126,8 +127,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ## Example Usage - Bigquery Job Extract
  *
+ * ### Bigquery Job Extract
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -185,6 +186,7 @@ export class Job extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: JobState, opts?: pulumi.CustomResourceOptions): Job {
         return new Job(name, <any>state, { ...opts, id: id });

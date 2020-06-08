@@ -18,7 +18,9 @@ import * as utilities from "../utilities";
  * or view the [Cloud Functions IAM resources](https://www.terraform.io/docs/providers/google/r/cloudfunctions_cloud_function_iam.html)
  * for Cloud Functions.
  *
- * ## Example Usage - Public Function
+ * ## Example Usage
+ *
+ * ### Public Function
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -48,7 +50,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ## Example Usage - Single User
+ * ### Single User
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -93,6 +95,7 @@ export class Function extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: FunctionState, opts?: pulumi.CustomResourceOptions): Function {
         return new Function(name, <any>state, { ...opts, id: id });

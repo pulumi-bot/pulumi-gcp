@@ -12,8 +12,9 @@ import * as utilities from "../utilities";
  *
  *
  *
- * ## Example Usage - Interconnect Attachment Basic
+ * ## Example Usage
  *
+ * ### Interconnect Attachment Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -34,6 +35,7 @@ export class InterconnectAttachment extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InterconnectAttachmentState, opts?: pulumi.CustomResourceOptions): InterconnectAttachment {
         return new InterconnectAttachment(name, <any>state, { ...opts, id: id });
@@ -127,13 +129,13 @@ export class InterconnectAttachment extends pulumi.CustomResource {
      */
     public /*out*/ readonly pairingKey!: pulumi.Output<string>;
     /**
-     * [Output only for type PARTNER. Not present for DEDICATED]. Optional BGP ASN for the router that should be supplied
-     * by a layer 3 Partner if they configured BGP on behalf of the customer.
+     * [Output only for type PARTNER. Not present for DEDICATED]. Optional BGP ASN for the router that should be supplied by a
+     * layer 3 Partner if they configured BGP on behalf of the customer.
      */
     public /*out*/ readonly partnerAsn!: pulumi.Output<string>;
     /**
-     * Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is
-     * attached to is of type DEDICATED.
+     * Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached
+     * to is of type DEDICATED.
      */
     public /*out*/ readonly privateInterconnectInfo!: pulumi.Output<outputs.compute.InterconnectAttachmentPrivateInterconnectInfo>;
     /**
@@ -320,13 +322,13 @@ export interface InterconnectAttachmentState {
      */
     readonly pairingKey?: pulumi.Input<string>;
     /**
-     * [Output only for type PARTNER. Not present for DEDICATED]. Optional BGP ASN for the router that should be supplied
-     * by a layer 3 Partner if they configured BGP on behalf of the customer.
+     * [Output only for type PARTNER. Not present for DEDICATED]. Optional BGP ASN for the router that should be supplied by a
+     * layer 3 Partner if they configured BGP on behalf of the customer.
      */
     readonly partnerAsn?: pulumi.Input<string>;
     /**
-     * Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is
-     * attached to is of type DEDICATED.
+     * Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached
+     * to is of type DEDICATED.
      */
     readonly privateInterconnectInfo?: pulumi.Input<inputs.compute.InterconnectAttachmentPrivateInterconnectInfo>;
     /**

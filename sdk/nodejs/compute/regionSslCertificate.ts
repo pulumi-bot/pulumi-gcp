@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -21,8 +19,9 @@ import * as utilities from "../utilities";
  * > **Warning:** All arguments including `certificate` and `privateKey` will be stored in the raw
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
- * ## Example Usage - Region Ssl Certificate Basic
+ * ## Example Usage
  *
+ * ### Region Ssl Certificate Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -37,8 +36,8 @@ import * as utilities from "../utilities";
  *     certificate: fs.readFileSync("path/to/certificate.crt"),
  * });
  * ```
- * ## Example Usage - Region Ssl Certificate Target Https Proxies
  *
+ * ### Region Ssl Certificate Target Https Proxies
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -104,6 +103,7 @@ export class RegionSslCertificate extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RegionSslCertificateState, opts?: pulumi.CustomResourceOptions): RegionSslCertificate {
         return new RegionSslCertificate(name, <any>state, { ...opts, id: id });

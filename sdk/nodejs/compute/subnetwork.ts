@@ -38,8 +38,9 @@ import * as utilities from "../utilities";
  *     * [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
  *     * [Cloud Networking](https://cloud.google.com/vpc/docs/using-vpc)
  *
- * ## Example Usage - Subnetwork Basic
+ * ## Example Usage
  *
+ * ### Subnetwork Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -56,8 +57,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
- * ## Example Usage - Subnetwork Logging Config
  *
+ * ### Subnetwork Logging Config
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -75,8 +76,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ## Example Usage - Subnetwork Internal L7lb
  *
+ * ### Subnetwork Internal L7lb
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -100,6 +101,7 @@ export class Subnetwork extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SubnetworkState, opts?: pulumi.CustomResourceOptions): Subnetwork {
         return new Subnetwork(name, <any>state, { ...opts, id: id });
@@ -131,6 +133,8 @@ export class Subnetwork extends pulumi.CustomResource {
     public readonly description!: pulumi.Output<string | undefined>;
     /**
      * Fingerprint of this resource. This field is used internally during updates of this resource.
+     *
+     * @deprecated This field is not useful for users, and has been removed as an output.
      */
     public /*out*/ readonly fingerprint!: pulumi.Output<string>;
     /**
@@ -285,21 +289,8 @@ export interface SubnetworkState {
      */
     readonly description?: pulumi.Input<string>;
     /**
-     * Fingerprint     * 
- of     * 
- this     * 
- resource.     * 
- This     * 
- field     * 
- is     * 
- used     * 
- internally     * 
- during     * 
- updates     * 
- of     * 
- this     * 
- resource.     * 
-
+     * Fingerprint of this resource. This field is used internally during updates of this resource.
+     *
      * @deprecated This field is not useful for users, and has been removed as an output.
      */
     readonly fingerprint?: pulumi.Input<string>;

@@ -15,8 +15,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/game-servers/docs)
  *
- * ## Example Usage - Game Service Config Basic
+ * ## Example Usage
  *
+ * ### Game Service Config Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -87,6 +88,7 @@ export class GameServerConfig extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: GameServerConfigState, opts?: pulumi.CustomResourceOptions): GameServerConfig {
         return new GameServerConfig(name, <any>state, { ...opts, id: id });

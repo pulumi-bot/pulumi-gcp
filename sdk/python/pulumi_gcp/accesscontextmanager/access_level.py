@@ -99,8 +99,9 @@ class AccessLevel(pulumi.CustomResource):
         * How-to Guides
             * [Access Policy Quickstart](https://cloud.google.com/access-context-manager/docs/quickstart)
 
-        ## Example Usage - Access Context Manager Access Level Basic
+        ## Example Usage
 
+        ### Access Context Manager Access Level Basic
 
         ```python
         import pulumi
@@ -128,6 +129,7 @@ class AccessLevel(pulumi.CustomResource):
             parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"),
             title="chromeos_no_lock")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

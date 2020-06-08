@@ -17,8 +17,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Internal TCP/UDP Load Balancing](https://cloud.google.com/compute/docs/load-balancing/internal/)
  *
- * ## Example Usage - Region Backend Service Basic
+ * ## Example Usage
  *
+ * ### Region Backend Service Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -38,8 +39,8 @@ import * as utilities from "../utilities";
  *     sessionAffinity: "CLIENT_IP",
  * });
  * ```
- * ## Example Usage - Region Backend Service Ilb Round Robin
  *
+ * ### Region Backend Service Ilb Round Robin
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -56,8 +57,8 @@ import * as utilities from "../utilities";
  *     localityLbPolicy: "ROUND_ROBIN",
  * });
  * ```
- * ## Example Usage - Region Backend Service Ilb Ring Hash
  *
+ * ### Region Backend Service Ilb Ring Hash
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -90,8 +91,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ## Example Usage - Region Backend Service Balancing Mode
  *
+ * ### Region Backend Service Balancing Mode
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -163,6 +164,7 @@ export class RegionBackendService extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RegionBackendServiceState, opts?: pulumi.CustomResourceOptions): RegionBackendService {
         return new RegionBackendService(name, <any>state, { ...opts, id: id });
@@ -229,8 +231,7 @@ export class RegionBackendService extends pulumi.CustomResource {
      */
     public readonly failoverPolicy!: pulumi.Output<outputs.compute.RegionBackendServiceFailoverPolicy | undefined>;
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic
-     * locking.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking.
      */
     public /*out*/ readonly fingerprint!: pulumi.Output<string>;
     /**
@@ -457,8 +458,7 @@ export interface RegionBackendServiceState {
      */
     readonly failoverPolicy?: pulumi.Input<inputs.compute.RegionBackendServiceFailoverPolicy>;
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic
-     * locking.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking.
      */
     readonly fingerprint?: pulumi.Input<string>;
     /**

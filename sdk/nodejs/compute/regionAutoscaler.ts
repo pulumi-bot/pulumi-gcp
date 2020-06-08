@@ -20,8 +20,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
  *
- * ## Example Usage - Region Autoscaler Basic
+ * ## Example Usage
  *
+ * ### Region Autoscaler Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -87,6 +88,7 @@ export class RegionAutoscaler extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RegionAutoscalerState, opts?: pulumi.CustomResourceOptions): RegionAutoscaler {
         return new RegionAutoscaler(name, <any>state, { ...opts, id: id });

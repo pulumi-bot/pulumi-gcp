@@ -22,8 +22,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Controlling access to datasets](https://cloud.google.com/bigquery/docs/dataset-access-controls)
  *
- * ## Example Usage - Bigquery Dataset Access Basic User
+ * ## Example Usage
  *
+ * ### Bigquery Dataset Access Basic User
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -37,8 +38,8 @@ import * as utilities from "../utilities";
  *     userByEmail: bqowner.email,
  * });
  * ```
- * ## Example Usage - Bigquery Dataset Access View
  *
+ * ### Bigquery Dataset Access View
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -72,6 +73,7 @@ export class DatasetAccess extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DatasetAccessState, opts?: pulumi.CustomResourceOptions): DatasetAccess {
         return new DatasetAccess(name, <any>state, { ...opts, id: id });

@@ -21,8 +21,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/scheduler/)
  *
- * ## Example Usage - Scheduler Job Http
+ * ## Example Usage
  *
+ * ### Scheduler Job Http
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -42,8 +43,8 @@ import * as utilities from "../utilities";
  *     timeZone: "America/New_York",
  * });
  * ```
- * ## Example Usage - Scheduler Job App Engine
  *
+ * ### Scheduler Job App Engine
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -71,8 +72,8 @@ import * as utilities from "../utilities";
  *     timeZone: "Europe/London",
  * });
  * ```
- * ## Example Usage - Scheduler Job Oauth
  *
+ * ### Scheduler Job Oauth
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -93,8 +94,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ## Example Usage - Scheduler Job Oidc
  *
+ * ### Scheduler Job Oidc
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -124,6 +125,7 @@ export class Job extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: JobState, opts?: pulumi.CustomResourceOptions): Job {
         return new Job(name, <any>state, { ...opts, id: id });

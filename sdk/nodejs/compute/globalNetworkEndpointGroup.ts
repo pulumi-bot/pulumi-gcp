@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -17,8 +15,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/internet-neg-concepts)
  *
- * ## Example Usage - Global Network Endpoint Group
+ * ## Example Usage
  *
+ * ### Global Network Endpoint Group
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -29,8 +28,8 @@ import * as utilities from "../utilities";
  *     networkEndpointType: "INTERNET_FQDN_PORT",
  * });
  * ```
- * ## Example Usage - Global Network Endpoint Group Ip Address
  *
+ * ### Global Network Endpoint Group Ip Address
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -50,6 +49,7 @@ export class GlobalNetworkEndpointGroup extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: GlobalNetworkEndpointGroupState, opts?: pulumi.CustomResourceOptions): GlobalNetworkEndpointGroup {
         return new GlobalNetworkEndpointGroup(name, <any>state, { ...opts, id: id });

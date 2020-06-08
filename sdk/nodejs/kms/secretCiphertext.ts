@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -25,8 +23,9 @@ import * as utilities from "../utilities";
  * > **Warning:** All arguments including `plaintext` and `additionalAuthenticatedData` will be stored in the raw
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
- * ## Example Usage - Kms Secret Ciphertext Basic
+ * ## Example Usage
  *
+ * ### Kms Secret Ciphertext Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -67,6 +66,7 @@ export class SecretCiphertext extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SecretCiphertextState, opts?: pulumi.CustomResourceOptions): SecretCiphertext {
         return new SecretCiphertext(name, <any>state, { ...opts, id: id });

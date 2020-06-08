@@ -21,8 +21,9 @@ import * as utilities from "../utilities";
  *     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
  *
  *
- * ## Example Usage - Notification Channel Basic
+ * ## Example Usage
  *
+ * ### Notification Channel Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -103,6 +104,10 @@ export interface GetNotificationChannelResult {
     readonly description: string;
     readonly displayName?: string;
     readonly enabled: boolean;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly labels?: {[key: string]: string};
     readonly name: string;
     readonly project?: string;
@@ -110,8 +115,4 @@ export interface GetNotificationChannelResult {
     readonly type?: string;
     readonly userLabels?: {[key: string]: string};
     readonly verificationStatus: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

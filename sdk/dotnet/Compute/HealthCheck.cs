@@ -29,8 +29,9 @@ namespace Pulumi.Gcp.Compute
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
     /// 
-    /// ## Example Usage - Health Check Tcp
+    /// ## Example Usage
     /// 
+    /// ### Health Check Tcp
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -45,7 +46,7 @@ namespace Pulumi.Gcp.Compute
     ///             CheckIntervalSec = 1,
     ///             TcpHealthCheck = new Gcp.Compute.Inputs.HealthCheckTcpHealthCheckArgs
     ///             {
-    ///                 Port = "80",
+    ///                 Port = 80,
     ///             },
     ///             TimeoutSec = 1,
     ///         });
@@ -53,8 +54,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// ## Example Usage - Health Check Tcp Full
     /// 
+    /// ### Health Check Tcp Full
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -84,8 +85,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// ## Example Usage - Health Check Ssl
     /// 
+    /// ### Health Check Ssl
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -100,7 +101,7 @@ namespace Pulumi.Gcp.Compute
     ///             CheckIntervalSec = 1,
     ///             SslHealthCheck = new Gcp.Compute.Inputs.HealthCheckSslHealthCheckArgs
     ///             {
-    ///                 Port = "443",
+    ///                 Port = 443,
     ///             },
     ///             TimeoutSec = 1,
     ///         });
@@ -108,8 +109,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// ## Example Usage - Health Check Ssl Full
     /// 
+    /// ### Health Check Ssl Full
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -139,8 +140,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// ## Example Usage - Health Check Http
     /// 
+    /// ### Health Check Http
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -163,8 +164,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// ## Example Usage - Health Check Http Full
     /// 
+    /// ### Health Check Http Full
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -195,8 +196,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// ## Example Usage - Health Check Https
     /// 
+    /// ### Health Check Https
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -211,7 +212,7 @@ namespace Pulumi.Gcp.Compute
     ///             CheckIntervalSec = 1,
     ///             HttpsHealthCheck = new Gcp.Compute.Inputs.HealthCheckHttpsHealthCheckArgs
     ///             {
-    ///                 Port = "443",
+    ///                 Port = 443,
     ///             },
     ///             TimeoutSec = 1,
     ///         });
@@ -219,8 +220,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// ## Example Usage - Health Check Https Full
     /// 
+    /// ### Health Check Https Full
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -251,8 +252,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// ## Example Usage - Health Check Http2
     /// 
+    /// ### Health Check Http2
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -267,7 +268,7 @@ namespace Pulumi.Gcp.Compute
     ///             CheckIntervalSec = 1,
     ///             Http2HealthCheck = new Gcp.Compute.Inputs.HealthCheckHttp2HealthCheckArgs
     ///             {
-    ///                 Port = "443",
+    ///                 Port = 443,
     ///             },
     ///             TimeoutSec = 1,
     ///         });
@@ -275,8 +276,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// ## Example Usage - Health Check Http2 Full
     /// 
+    /// ### Health Check Http2 Full
     /// 
     /// ```csharp
     /// using Pulumi;

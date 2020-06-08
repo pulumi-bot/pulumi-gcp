@@ -2,13 +2,16 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
  * Retrieve a list of testable permissions for a resource. Testable permissions mean the permissions that user can add or remove in a role at a given resource. The resource can be referenced either via the full resource name or via a URI.
  *
- * ## Example Usage - searching for projects about to be deleted in an org
+ * ## Example Usage
+ *
+ * ### Searching For Projects About To Be Deleted In An Org
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -66,12 +69,12 @@ export interface GetTestablePermissionsResult {
     readonly customSupportLevel?: string;
     readonly fullResourceName: string;
     /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
+    /**
      * A list of permissions matching the provided input. Structure is defined below.
      */
     readonly permissions: outputs.iam.GetTestablePermissionsPermission[];
     readonly stages?: string[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

@@ -33,8 +33,9 @@ import * as utilities from "../utilities";
  * > **Warning:** All arguments including `disk_encryption_key.raw_key` will be stored in the raw
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
- * ## Example Usage - Disk Basic
+ * ## Example Usage
  *
+ * ### Disk Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -59,6 +60,7 @@ export class Disk extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DiskState, opts?: pulumi.CustomResourceOptions): Disk {
         return new Disk(name, <any>state, { ...opts, id: id });
@@ -185,9 +187,9 @@ export class Disk extends pulumi.CustomResource {
      */
     public readonly sourceImageEncryptionKey!: pulumi.Output<outputs.compute.DiskSourceImageEncryptionKey | undefined>;
     /**
-     * The ID value of the image used to create this disk. This value identifies the exact image that was used to create
-     * this persistent disk. For example, if you created the persistent disk from an image that was later deleted and
-     * recreated under the same name, the source image ID would identify the exact version of the image that was used.
+     * The ID value of the image used to create this disk. This value identifies the exact image that was used to create this
+     * persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated
+     * under the same name, the source image ID would identify the exact version of the image that was used.
      */
     public /*out*/ readonly sourceImageId!: pulumi.Output<string>;
     /**
@@ -197,10 +199,9 @@ export class Disk extends pulumi.CustomResource {
      */
     public readonly sourceSnapshotEncryptionKey!: pulumi.Output<outputs.compute.DiskSourceSnapshotEncryptionKey | undefined>;
     /**
-     * The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to
-     * create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted
-     * and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was
-     * used.
+     * The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create
+     * this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and
+     * recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
      */
     public /*out*/ readonly sourceSnapshotId!: pulumi.Output<string>;
     /**
@@ -398,9 +399,9 @@ export interface DiskState {
      */
     readonly sourceImageEncryptionKey?: pulumi.Input<inputs.compute.DiskSourceImageEncryptionKey>;
     /**
-     * The ID value of the image used to create this disk. This value identifies the exact image that was used to create
-     * this persistent disk. For example, if you created the persistent disk from an image that was later deleted and
-     * recreated under the same name, the source image ID would identify the exact version of the image that was used.
+     * The ID value of the image used to create this disk. This value identifies the exact image that was used to create this
+     * persistent disk. For example, if you created the persistent disk from an image that was later deleted and recreated
+     * under the same name, the source image ID would identify the exact version of the image that was used.
      */
     readonly sourceImageId?: pulumi.Input<string>;
     /**
@@ -410,10 +411,9 @@ export interface DiskState {
      */
     readonly sourceSnapshotEncryptionKey?: pulumi.Input<inputs.compute.DiskSourceSnapshotEncryptionKey>;
     /**
-     * The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to
-     * create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted
-     * and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was
-     * used.
+     * The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create
+     * this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and
+     * recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
      */
     readonly sourceSnapshotId?: pulumi.Input<string>;
     /**

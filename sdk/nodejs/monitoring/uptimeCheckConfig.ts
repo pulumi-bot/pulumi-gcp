@@ -19,8 +19,9 @@ import * as utilities from "../utilities";
  * > **Warning:** All arguments including `http_check.auth_info.password` will be stored in the raw
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
- * ## Example Usage - Uptime Check Config Http
+ * ## Example Usage
  *
+ * ### Uptime Check Config Http
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -45,8 +46,8 @@ import * as utilities from "../utilities";
  *     timeout: "60s",
  * });
  * ```
- * ## Example Usage - Uptime Check Config Https
  *
+ * ### Uptime Check Config Https
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -73,8 +74,8 @@ import * as utilities from "../utilities";
  *     timeout: "60s",
  * });
  * ```
- * ## Example Usage - Uptime Check Tcp
  *
+ * ### Uptime Check Tcp
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -105,6 +106,7 @@ export class UptimeCheckConfig extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: UptimeCheckConfigState, opts?: pulumi.CustomResourceOptions): UptimeCheckConfig {
         return new UptimeCheckConfig(name, <any>state, { ...opts, id: id });

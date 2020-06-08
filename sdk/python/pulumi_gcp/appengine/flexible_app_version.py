@@ -289,8 +289,9 @@ class FlexibleAppVersion(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/appengine/docs/flexible)
 
-        ## Example Usage - App Engine Flexible App Version
+        ## Example Usage
 
+        ### App Engine Flexible App Version
 
         ```python
         import pulumi
@@ -355,6 +356,7 @@ class FlexibleAppVersion(pulumi.CustomResource):
             },
             noop_on_destroy=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

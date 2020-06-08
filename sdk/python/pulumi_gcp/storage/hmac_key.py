@@ -59,8 +59,9 @@ class HmacKey(pulumi.CustomResource):
         > **Warning:** All arguments including `secret` will be stored in the raw
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
-        ## Example Usage - Storage Hmac Key
+        ## Example Usage
 
+        ### Storage Hmac Key
 
         ```python
         import pulumi
@@ -69,6 +70,7 @@ class HmacKey(pulumi.CustomResource):
         service_account = gcp.service_account.Account("serviceAccount", account_id="my-svc-acc")
         key = gcp.storage.HmacKey("key", service_account_email=service_account.email)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

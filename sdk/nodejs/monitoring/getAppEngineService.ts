@@ -22,8 +22,9 @@ import * as utilities from "../utilities";
  *     * [Service Monitoring](https://cloud.google.com/monitoring/service-monitoring)
  *     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
  *
- * ## Example Usage - Monitoring App Engine Service
+ * ## Example Usage
  *
+ * ### Monitoring App Engine Service
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -91,13 +92,13 @@ export interface GetAppEngineServiceArgs {
  */
 export interface GetAppEngineServiceResult {
     readonly displayName: string;
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly moduleId: string;
     readonly name: string;
     readonly project?: string;
     readonly serviceId: string;
     readonly telemetries: outputs.monitoring.GetAppEngineServiceTelemetry[];
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

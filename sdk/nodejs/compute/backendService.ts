@@ -21,8 +21,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
  *
- * ## Example Usage - Backend Service Basic
+ * ## Example Usage
  *
+ * ### Backend Service Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -35,8 +36,8 @@ import * as utilities from "../utilities";
  * });
  * const defaultBackendService = new gcp.compute.BackendService("defaultBackendService", {healthChecks: [defaultHttpHealthCheck.id]});
  * ```
- * ## Example Usage - Backend Service Traffic Director Round Robin
  *
+ * ### Backend Service Traffic Director Round Robin
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -51,8 +52,8 @@ import * as utilities from "../utilities";
  *     localityLbPolicy: "ROUND_ROBIN",
  * });
  * ```
- * ## Example Usage - Backend Service Traffic Director Ring Hash
  *
+ * ### Backend Service Traffic Director Ring Hash
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -92,6 +93,7 @@ export class BackendService extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: BackendServiceState, opts?: pulumi.CustomResourceOptions): BackendService {
         return new BackendService(name, <any>state, { ...opts, id: id });
@@ -167,8 +169,7 @@ export class BackendService extends pulumi.CustomResource {
      */
     public readonly enableCdn!: pulumi.Output<boolean | undefined>;
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic
-     * locking.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking.
      */
     public /*out*/ readonly fingerprint!: pulumi.Output<string>;
     /**
@@ -403,8 +404,7 @@ export interface BackendServiceState {
      */
     readonly enableCdn?: pulumi.Input<boolean>;
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic
-     * locking.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking.
      */
     readonly fingerprint?: pulumi.Input<string>;
     /**

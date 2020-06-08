@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -18,8 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/network/forwarding-rules)
  *
- * ## Example Usage - Forwarding Rule Global Internallb
+ * ## Example Usage
  *
+ * ### Forwarding Rule Global Internallb
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -53,8 +52,8 @@ import * as utilities from "../utilities";
  *     subnetwork: defaultSubnetwork.name,
  * });
  * ```
- * ## Example Usage - Forwarding Rule Basic
  *
+ * ### Forwarding Rule Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -66,8 +65,8 @@ import * as utilities from "../utilities";
  *     portRange: "80",
  * });
  * ```
- * ## Example Usage - Forwarding Rule Internallb
  *
+ * ### Forwarding Rule Internallb
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -100,8 +99,8 @@ import * as utilities from "../utilities";
  *     subnetwork: defaultSubnetwork.name,
  * });
  * ```
- * ## Example Usage - Forwarding Rule Http Lb
  *
+ * ### Forwarding Rule Http Lb
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -257,6 +256,7 @@ export class ForwardingRule extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ForwardingRuleState, opts?: pulumi.CustomResourceOptions): ForwardingRule {
         return new ForwardingRule(name, <any>state, { ...opts, id: id });
@@ -438,8 +438,7 @@ export class ForwardingRule extends pulumi.CustomResource {
      */
     public readonly serviceLabel!: pulumi.Output<string | undefined>;
     /**
-     * The internal fully qualified service name for this Forwarding Rule. This field is only used for INTERNAL load
-     * balancing.
+     * The internal fully qualified service name for this Forwarding Rule. This field is only used for INTERNAL load balancing.
      */
     public /*out*/ readonly serviceName!: pulumi.Output<string>;
     /**
@@ -696,8 +695,7 @@ export interface ForwardingRuleState {
      */
     readonly serviceLabel?: pulumi.Input<string>;
     /**
-     * The internal fully qualified service name for this Forwarding Rule. This field is only used for INTERNAL load
-     * balancing.
+     * The internal fully qualified service name for this Forwarding Rule. This field is only used for INTERNAL load balancing.
      */
     readonly serviceName?: pulumi.Input<string>;
     /**

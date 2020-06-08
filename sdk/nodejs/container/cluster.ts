@@ -15,7 +15,9 @@ import * as utilities from "../utilities";
  * passwords as well as certificate outputs will be stored in the raw state as
  * plaintext. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
- * ## Example Usage - with a separately managed node pool (recommended)
+ * ## Example Usage
+ *
+ * ### With A Separately Managed Node Pool (Recommended)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -51,7 +53,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ## Example Usage - with the default node pool
+ * ### With The Default Node Pool
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -97,6 +99,7 @@ export class Cluster extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ClusterState, opts?: pulumi.CustomResourceOptions): Cluster {
         return new Cluster(name, <any>state, { ...opts, id: id });

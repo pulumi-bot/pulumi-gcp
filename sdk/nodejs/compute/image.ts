@@ -31,8 +31,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/compute/docs/images)
  *
- * ## Example Usage - Image Basic
+ * ## Example Usage
  *
+ * ### Image Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -44,8 +45,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ## Example Usage - Image Guest Os
  *
+ * ### Image Guest Os
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -74,6 +75,7 @@ export class Image extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ImageState, opts?: pulumi.CustomResourceOptions): Image {
         return new Image(name, <any>state, { ...opts, id: id });

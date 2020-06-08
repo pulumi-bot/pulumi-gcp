@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Managing Topics](https://cloud.google.com/pubsub/docs/admin#managing_topics)
  *
- * ## Example Usage - Pubsub Topic Basic
+ * ## Example Usage
  *
+ * ### Pubsub Topic Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -29,8 +30,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ## Example Usage - Pubsub Topic Cmek
  *
+ * ### Pubsub Topic Cmek
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -40,8 +41,8 @@ import * as utilities from "../utilities";
  * const cryptoKey = new gcp.kms.CryptoKey("cryptoKey", {keyRing: keyRing.id});
  * const example = new gcp.pubsub.Topic("example", {kmsKeyName: cryptoKey.id});
  * ```
- * ## Example Usage - Pubsub Topic Geo Restricted
  *
+ * ### Pubsub Topic Geo Restricted
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -62,6 +63,7 @@ export class Topic extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: TopicState, opts?: pulumi.CustomResourceOptions): Topic {
         return new Topic(name, <any>state, { ...opts, id: id });

@@ -146,7 +146,9 @@ class NodePool(pulumi.CustomResource):
         the cluster control plane. For more information see [the official documentation](https://cloud.google.com/container-engine/docs/node-pools)
         and [the API reference](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.nodePools).
 
-        ## Example Usage - using a separately managed node pool (recommended)
+        ## Example Usage
+
+        ### Using A Separately Managed Node Pool (Recommended)
 
         ```python
         import pulumi
@@ -170,7 +172,7 @@ class NodePool(pulumi.CustomResource):
             })
         ```
 
-        ## Example Usage - 2 node pools, 1 separately managed + the default node pool
+        ### 2 Node Pools, 1 Separately Managed + The Default Node Pool
 
         ```python
         import pulumi
@@ -209,6 +211,7 @@ class NodePool(pulumi.CustomResource):
                 "update": "20m",
             }])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -18,8 +18,9 @@ import * as utilities from "../utilities";
  *     * [Choosing a VPN](https://cloud.google.com/vpn/docs/how-to/choosing-a-vpn)
  *     * [Cloud VPN Overview](https://cloud.google.com/vpn/docs/concepts/overview)
  *
- * ## Example Usage - Ha Vpn Gateway Basic
+ * ## Example Usage
  *
+ * ### Ha Vpn Gateway Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -31,8 +32,8 @@ import * as utilities from "../utilities";
  *     network: network1.id,
  * });
  * ```
- * ## Example Usage - Ha Vpn Gateway Gcp To Gcp
  *
+ * ### Ha Vpn Gateway Gcp To Gcp
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -184,6 +185,7 @@ export class HaVpnGateway extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: HaVpnGatewayState, opts?: pulumi.CustomResourceOptions): HaVpnGateway {
         return new HaVpnGateway(name, <any>state, { ...opts, id: id });

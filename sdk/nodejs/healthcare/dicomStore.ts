@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Creating a DICOM store](https://cloud.google.com/healthcare/docs/how-tos/dicom)
  *
- * ## Example Usage - Healthcare Dicom Store Basic
+ * ## Example Usage
  *
+ * ### Healthcare Dicom Store Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -44,6 +45,7 @@ export class DicomStore extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DicomStoreState, opts?: pulumi.CustomResourceOptions): DicomStore {
         return new DicomStore(name, <any>state, { ...opts, id: id });

@@ -21,7 +21,9 @@ import * as utilities from "../utilities";
  * determined which will require enabling the compute api.
  *
  *
- * ## Example Usage - creating a private bucket in standard storage, in the EU region. Bucket configured as static website and CORS configurations
+ * ## Example Usage
+ *
+ * ### Creating A Private Bucket In Standard Storage, In The EU Region. Bucket Configured As Static Website And CORS Configurations
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -50,7 +52,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ## Example Usage - Life cycle settings for storage bucket objects
+ * ### Life Cycle Settings For Storage Bucket Objects
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -78,6 +80,7 @@ export class Bucket extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: BucketState, opts?: pulumi.CustomResourceOptions): Bucket {
         return new Bucket(name, <any>state, { ...opts, id: id });

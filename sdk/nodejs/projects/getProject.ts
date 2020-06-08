@@ -11,7 +11,9 @@ import * as utilities from "../utilities";
  * [REST API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/list)
  * for more details.
  *
- * ## Example Usage - searching for projects about to be deleted in an org
+ * ## Example Usage
+ *
+ * ### Searching For Projects About To Be Deleted In An Org
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -54,11 +56,11 @@ export interface GetProjectArgs {
 export interface GetProjectResult {
     readonly filter: string;
     /**
-     * A list of projects matching the provided filter. Structure is defined below.
-     */
-    readonly projects: outputs.projects.GetProjectProject[];
-    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * A list of projects matching the provided filter. Structure is defined below.
+     */
+    readonly projects: outputs.projects.GetProjectProject[];
 }

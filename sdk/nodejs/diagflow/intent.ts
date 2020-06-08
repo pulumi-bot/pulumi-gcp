@@ -17,8 +17,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
  *
- * ## Example Usage - Dialogflow Intent Basic
+ * ## Example Usage
  *
+ * ### Dialogflow Intent Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -40,6 +41,7 @@ export class Intent extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IntentState, opts?: pulumi.CustomResourceOptions): Intent {
         return new Intent(name, <any>state, { ...opts, id: id });
@@ -80,8 +82,8 @@ export class Intent extends pulumi.CustomResource {
      */
     public readonly events!: pulumi.Output<string[] | undefined>;
     /**
-     * Information about all followup intents that have this intent as a direct or indirect parent. We populate this field
-     * only in the output.
+     * Information about all followup intents that have this intent as a direct or indirect parent. We populate this field only
+     * in the output.
      */
     public /*out*/ readonly followupIntentInfos!: pulumi.Output<outputs.diagflow.IntentFollowupIntentInfo[]>;
     /**
@@ -125,8 +127,8 @@ export class Intent extends pulumi.CustomResource {
      */
     public readonly resetContexts!: pulumi.Output<boolean>;
     /**
-     * The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup
-     * intents chain for this intent. Format: projects/<Project ID>/agent/intents/<Intent ID>.
+     * The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents
+     * chain for this intent. Format: projects/<Project ID>/agent/intents/<Intent ID>.
      */
     public /*out*/ readonly rootFollowupIntentName!: pulumi.Output<string>;
     /**
@@ -221,8 +223,8 @@ export interface IntentState {
      */
     readonly events?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Information about all followup intents that have this intent as a direct or indirect parent. We populate this field
-     * only in the output.
+     * Information about all followup intents that have this intent as a direct or indirect parent. We populate this field only
+     * in the output.
      */
     readonly followupIntentInfos?: pulumi.Input<pulumi.Input<inputs.diagflow.IntentFollowupIntentInfo>[]>;
     /**
@@ -266,8 +268,8 @@ export interface IntentState {
      */
     readonly resetContexts?: pulumi.Input<boolean>;
     /**
-     * The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup
-     * intents chain for this intent. Format: projects/<Project ID>/agent/intents/<Intent ID>.
+     * The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents
+     * chain for this intent. Format: projects/<Project ID>/agent/intents/<Intent ID>.
      */
     readonly rootFollowupIntentName?: pulumi.Input<string>;
     /**

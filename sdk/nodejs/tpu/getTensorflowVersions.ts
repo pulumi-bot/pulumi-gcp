@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * const available = pulumi.output(gcp.tpu.getTensorflowVersions({ async: true }));
  * ```
  *
- * ## Example Usage: Configure Basic TPU Node with available version
+ * ### Configure Basic TPU Node With Available Version
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -70,14 +70,14 @@ export interface GetTensorflowVersionsArgs {
  * A collection of values returned by getTensorflowVersions.
  */
 export interface GetTensorflowVersionsResult {
+    /**
+     * The provider-assigned unique ID for this managed resource.
+     */
+    readonly id: string;
     readonly project: string;
     /**
      * The list of TensorFlow versions available for the given project and zone.
      */
     readonly versions: string[];
     readonly zone: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }

@@ -91,8 +91,9 @@ class Hl7Store(pulumi.CustomResource):
         * How-to Guides
             * [Creating a HL7v2 Store](https://cloud.google.com/healthcare/docs/how-tos/hl7v2)
 
-        ## Example Usage - Healthcare Hl7 V2 Store Basic
+        ## Example Usage
 
+        ### Healthcare Hl7 V2 Store Basic
 
         ```python
         import pulumi
@@ -109,8 +110,8 @@ class Hl7Store(pulumi.CustomResource):
                 "label1": "labelvalue1",
             })
         ```
-        ## Example Usage - Healthcare Hl7 V2 Store Parser Config
 
+        ### Healthcare Hl7 V2 Store Parser Config
 
         ```python
         import pulumi
@@ -204,6 +205,7 @@ class Hl7Store(pulumi.CustomResource):
             })
         ```
 
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dataset: Identifies the dataset addressed by this request. Must be in the format
@@ -283,6 +285,9 @@ class Hl7Store(pulumi.CustomResource):
             __props__['dataset'] = dataset
             __props__['labels'] = labels
             __props__['name'] = name
+            if notification_config is not None:
+                warnings.warn("This field has been replaced by notificationConfigs", DeprecationWarning)
+                pulumi.log.warn("notification_config is deprecated: This field has been replaced by notificationConfigs")
             __props__['notification_config'] = notification_config
             __props__['notification_configs'] = notification_configs
             __props__['parser_config'] = parser_config

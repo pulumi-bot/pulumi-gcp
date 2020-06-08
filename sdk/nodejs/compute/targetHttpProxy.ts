@@ -2,8 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "../types/input";
-import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -17,8 +15,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
  *
- * ## Example Usage - Target Http Proxy Basic
+ * ## Example Usage
  *
+ * ### Target Http Proxy Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -52,8 +51,8 @@ import * as utilities from "../utilities";
  * });
  * const defaultTargetHttpProxy = new gcp.compute.TargetHttpProxy("defaultTargetHttpProxy", {urlMap: defaultURLMap.id});
  * ```
- * ## Example Usage - Target Http Proxy Https Redirect
  *
+ * ### Target Http Proxy Https Redirect
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -74,6 +73,7 @@ export class TargetHttpProxy extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: TargetHttpProxyState, opts?: pulumi.CustomResourceOptions): TargetHttpProxy {
         return new TargetHttpProxy(name, <any>state, { ...opts, id: id });

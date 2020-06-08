@@ -26,8 +26,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
  *
- * ## Example Usage - Health Check Tcp
+ * ## Example Usage
  *
+ * ### Health Check Tcp
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -41,8 +42,8 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- * ## Example Usage - Health Check Tcp Full
  *
+ * ### Health Check Tcp Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -63,8 +64,8 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
- * ## Example Usage - Health Check Ssl
  *
+ * ### Health Check Ssl
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -78,8 +79,8 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- * ## Example Usage - Health Check Ssl Full
  *
+ * ### Health Check Ssl Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -100,8 +101,8 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
- * ## Example Usage - Health Check Http
  *
+ * ### Health Check Http
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -115,8 +116,8 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- * ## Example Usage - Health Check Http Full
  *
+ * ### Health Check Http Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -138,8 +139,8 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
- * ## Example Usage - Health Check Https
  *
+ * ### Health Check Https
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -153,8 +154,8 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- * ## Example Usage - Health Check Https Full
  *
+ * ### Health Check Https Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -176,8 +177,8 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
- * ## Example Usage - Health Check Http2
  *
+ * ### Health Check Http2
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -191,8 +192,8 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- * ## Example Usage - Health Check Http2 Full
  *
+ * ### Health Check Http2 Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -214,8 +215,8 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
- * ## Example Usage - Health Check With Logging
  *
+ * ### Health Check With Logging
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -241,6 +242,7 @@ export class HealthCheck extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: HealthCheckState, opts?: pulumi.CustomResourceOptions): HealthCheck {
         return new HealthCheck(name, <any>state, { ...opts, id: id });

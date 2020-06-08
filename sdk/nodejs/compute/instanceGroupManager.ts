@@ -14,7 +14,9 @@ import * as utilities from "../utilities";
  *
  * > **Note:** Use [gcp.compute.RegionInstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html) to create a regional (multi-zone) instance group manager.
  *
- * ## Example Usage with top level instance template (`google` provider)
+ * ## Example Usage
+ *
+ * ### With Top Level Instance Template (`Google` Provider)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -49,7 +51,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ## Example Usage with multiple versions (`google-beta` provider)
+ * ### With Multiple Versions (`Google-Beta` Provider)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -83,6 +85,7 @@ export class InstanceGroupManager extends pulumi.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param id The _unique_ provider ID of the resource to lookup.
      * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceGroupManagerState, opts?: pulumi.CustomResourceOptions): InstanceGroupManager {
         return new InstanceGroupManager(name, <any>state, { ...opts, id: id });
