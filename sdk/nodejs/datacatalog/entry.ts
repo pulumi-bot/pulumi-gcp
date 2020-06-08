@@ -21,8 +21,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
  *
- * ## Example Usage - Data Catalog Entry Basic
+ * ## Example Usage
  *
+ * ### Data Catalog Entry Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -36,8 +37,8 @@ import * as utilities from "../utilities";
  *     userSpecifiedSystem: "SomethingExternal",
  * });
  * ```
- * ## Example Usage - Data Catalog Entry Fileset
  *
+ * ### Data Catalog Entry Fileset
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -53,8 +54,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ## Example Usage - Data Catalog Entry Full
  *
+ * ### Data Catalog Entry Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

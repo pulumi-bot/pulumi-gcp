@@ -20,8 +20,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
  *
- * ## Example Usage - Autoscaler Single Instance
+ * ## Example Usage
  *
+ * ### Autoscaler Single Instance
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -80,8 +81,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ## Example Usage - Autoscaler Basic
  *
+ * ### Autoscaler Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

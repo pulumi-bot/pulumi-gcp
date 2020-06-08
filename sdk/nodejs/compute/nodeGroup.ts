@@ -21,8 +21,9 @@ import * as utilities from "../utilities";
  * through provider config or through external changes will cause
  * the provider to delete and recreate the node group.
  *
- * ## Example Usage - Node Group Basic
+ * ## Example Usage
  *
+ * ### Node Group Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -42,8 +43,8 @@ import * as utilities from "../utilities";
  *     nodeTemplate: soletenant_tmpl.id,
  * });
  * ```
- * ## Example Usage - Node Group Autoscaling Policy
  *
+ * ### Node Group Autoscaling Policy
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

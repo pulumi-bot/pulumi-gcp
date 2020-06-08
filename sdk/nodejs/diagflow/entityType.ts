@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
  *
- * ## Example Usage - Dialogflow Entity Type Basic
+ * ## Example Usage
  *
+ * ### Dialogflow Entity Type Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

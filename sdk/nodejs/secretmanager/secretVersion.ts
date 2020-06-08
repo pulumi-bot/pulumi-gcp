@@ -11,8 +11,9 @@ import * as utilities from "../utilities";
  * state as plain-text.
  *
  *
- * ## Example Usage - Secret Version Basic
+ * ## Example Usage
  *
+ * ### Secret Version Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

@@ -19,8 +19,9 @@ namespace Pulumi.Gcp.ContainerAnalysis
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/container-analysis/)
     /// 
-    /// ## Example Usage - Container Analysis Note Basic
+    /// ## Example Usage
     /// 
+    /// ### Container Analysis Note Basic
     /// 
     /// ```csharp
     /// using Pulumi;

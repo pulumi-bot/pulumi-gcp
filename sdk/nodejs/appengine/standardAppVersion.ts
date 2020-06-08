@@ -19,8 +19,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/appengine/docs/standard)
  *
- * ## Example Usage - App Engine Standard App Version
+ * ## Example Usage
  *
+ * ### App Engine Standard App Version
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

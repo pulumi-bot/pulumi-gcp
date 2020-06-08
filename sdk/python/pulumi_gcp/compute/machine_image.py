@@ -43,8 +43,9 @@ class MachineImage(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/compute/docs/machine-images)
 
-        ## Example Usage - Machine Image Basic
+        ## Example Usage
 
+        ### Machine Image Basic
 
         ```python
         import pulumi
@@ -62,6 +63,7 @@ class MachineImage(pulumi.CustomResource):
             }])
         image = gcp.compute.MachineImage("image", source_instance=vm.self_link)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/container-analysis/)
  *
- * ## Example Usage - Container Analysis Note Basic
+ * ## Example Usage
  *
+ * ### Container Analysis Note Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

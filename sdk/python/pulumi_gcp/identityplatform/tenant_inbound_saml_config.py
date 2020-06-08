@@ -68,8 +68,9 @@ class TenantInboundSamlConfig(pulumi.CustomResource):
 
 
 
-        ## Example Usage - Identity Platform Tenant Inbound Saml Config Basic
+        ## Example Usage
 
+        ### Identity Platform Tenant Inbound Saml Config Basic
 
         ```python
         import pulumi
@@ -92,6 +93,7 @@ class TenantInboundSamlConfig(pulumi.CustomResource):
                 "callbackUri": "https://example.com",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

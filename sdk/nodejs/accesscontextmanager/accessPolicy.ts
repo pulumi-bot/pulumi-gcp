@@ -18,8 +18,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Access Policy Quickstart](https://cloud.google.com/access-context-manager/docs/quickstart)
  *
- * ## Example Usage - Access Context Manager Access Policy Basic
+ * ## Example Usage
  *
+ * ### Access Context Manager Access Policy Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

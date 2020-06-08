@@ -21,7 +21,9 @@ import * as utilities from "../utilities";
  * determined which will require enabling the compute api.
  *
  *
- * ## Example Usage - creating a private bucket in standard storage, in the EU region. Bucket configured as static website and CORS configurations
+ * ## Example Usage
+ *
+ * ### Creating A Private Bucket In Standard Storage, In The EU Region. Bucket Configured As Static Website And CORS Configurations
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -50,7 +52,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ## Example Usage - Life cycle settings for storage bucket objects
+ * ### Life Cycle Settings For Storage Bucket Objects
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

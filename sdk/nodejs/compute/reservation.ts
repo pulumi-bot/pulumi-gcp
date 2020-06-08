@@ -23,8 +23,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Reserving zonal resources](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
  *
- * ## Example Usage - Reservation Basic
+ * ## Example Usage
  *
+ * ### Reservation Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

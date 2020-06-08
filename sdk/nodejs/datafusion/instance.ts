@@ -15,8 +15,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/data-fusion/docs/)
  *
- * ## Example Usage - Data Fusion Instance Basic
+ * ## Example Usage
  *
+ * ### Data Fusion Instance Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -27,8 +28,8 @@ import * as utilities from "../utilities";
  *     type: "BASIC",
  * });
  * ```
- * ## Example Usage - Data Fusion Instance Full
  *
+ * ### Data Fusion Instance Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

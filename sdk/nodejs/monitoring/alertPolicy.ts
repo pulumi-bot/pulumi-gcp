@@ -18,8 +18,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/monitoring/alerts/)
  *
- * ## Example Usage - Monitoring Alert Policy Basic
+ * ## Example Usage
  *
+ * ### Monitoring Alert Policy Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

@@ -56,8 +56,9 @@ class EngineModel(pulumi.CustomResource):
 
 
 
-        ## Example Usage - Ml Model Basic
+        ## Example Usage
 
+        ### Ml Model Basic
 
         ```python
         import pulumi
@@ -67,8 +68,8 @@ class EngineModel(pulumi.CustomResource):
             description="My model",
             regions="us-central1")
         ```
-        ## Example Usage - Ml Model Full
 
+        ### Ml Model Full
 
         ```python
         import pulumi
@@ -83,6 +84,7 @@ class EngineModel(pulumi.CustomResource):
             online_prediction_logging=True,
             regions="us-central1")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -55,8 +55,9 @@ class DefaultSupportedIdpConfig(pulumi.CustomResource):
 
 
 
-        ## Example Usage - Identity Platform Default Supported Idp Config Basic
+        ## Example Usage
 
+        ### Identity Platform Default Supported Idp Config Basic
 
         ```python
         import pulumi
@@ -68,6 +69,7 @@ class DefaultSupportedIdpConfig(pulumi.CustomResource):
             enabled=True,
             idp_id="playgames.google.com")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

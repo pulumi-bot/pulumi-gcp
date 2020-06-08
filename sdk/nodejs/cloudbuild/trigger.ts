@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Automating builds using build triggers](https://cloud.google.com/cloud-build/docs/running-builds/automate-builds)
  *
- * ## Example Usage - Cloudbuild Trigger Filename
+ * ## Example Usage
  *
+ * ### Cloudbuild Trigger Filename
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

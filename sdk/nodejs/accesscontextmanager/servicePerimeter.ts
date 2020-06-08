@@ -24,8 +24,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
  *
- * ## Example Usage - Access Context Manager Service Perimeter Basic
+ * ## Example Usage
  *
+ * ### Access Context Manager Service Perimeter Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -62,8 +63,8 @@ import * as utilities from "../utilities";
  *     title: "chromeosNoLock",
  * });
  * ```
- * ## Example Usage - Access Context Manager Service Perimeter Dry Run
  *
+ * ### Access Context Manager Service Perimeter Dry Run
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
