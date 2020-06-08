@@ -20,6 +20,20 @@ import (
 // * [API documentation](https://cloud.google.com/dns/api/v1/managedZones)
 // * How-to Guides
 //     * [Managing Zones](https://cloud.google.com/dns/zones/)
+//
+// ## Example Usage - Dns Managed Zone Basic
+//
+//
+// ## Example Usage - Dns Managed Zone Private
+//
+//
+// ## Example Usage - Dns Managed Zone Private Forwarding
+//
+//
+// ## Example Usage - Dns Managed Zone Private Peering
+//
+//
+// ## Example Usage - Dns Managed Zone Service Directory
 type ManagedZone struct {
 	pulumi.CustomResourceState
 

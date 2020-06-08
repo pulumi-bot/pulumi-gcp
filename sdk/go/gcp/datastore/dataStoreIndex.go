@@ -18,6 +18,8 @@ import (
 // * [API documentation](https://cloud.google.com/datastore/docs/reference/admin/rest/v1/projects.indexes)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/datastore/docs/concepts/indexes)
+//
+// ## Example Usage - Datastore Index
 type DataStoreIndex struct {
 	pulumi.CustomResourceState
 

@@ -22,6 +22,8 @@ import (
 // * [API documentation](https://cloud.google.com/access-context-manager/docs/reference/rest/v1/accessPolicies)
 // * How-to Guides
 //     * [Access Policy Quickstart](https://cloud.google.com/access-context-manager/docs/quickstart)
+//
+// ## Example Usage - Access Context Manager Access Policy Basic
 type AccessPolicy struct {
 	pulumi.CustomResourceState
 

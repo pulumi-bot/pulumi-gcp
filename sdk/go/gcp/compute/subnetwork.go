@@ -40,6 +40,14 @@ import (
 // * How-to Guides
 //     * [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
 //     * [Cloud Networking](https://cloud.google.com/vpc/docs/using-vpc)
+//
+// ## Example Usage - Subnetwork Basic
+//
+//
+// ## Example Usage - Subnetwork Logging Config
+//
+//
+// ## Example Usage - Subnetwork Internal L7lb
 type Subnetwork struct {
 	pulumi.CustomResourceState
 

@@ -18,6 +18,34 @@ import (
 // * [API documentation](https://cloud.google.com/container-analysis/api/reference/rest/)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/container-analysis/)
+//
+// ## Example Usage - Container Analysis Note Basic
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/containeranalysis"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		note, err := containeranalysis.NewNote(ctx, "note", &containeranalysis.NoteArgs{
+// 			AttestationAuthority: &containeranalysis.NoteAttestationAuthorityArgs{
+// 				Hint: &containeranalysis.NoteAttestationAuthorityHintArgs{
+// 					HumanReadableName: pulumi.String("Attestor Note"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Note struct {
 	pulumi.CustomResourceState
 

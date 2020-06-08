@@ -26,6 +26,11 @@ import (
 // * [API documentation](https://cloud.google.com/access-context-manager/docs/reference/rest/v1/accessPolicies.servicePerimeters)
 // * How-to Guides
 //     * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
+//
+// ## Example Usage - Access Context Manager Service Perimeter Basic
+//
+//
+// ## Example Usage - Access Context Manager Service Perimeter Dry Run
 type ServicePerimeter struct {
 	pulumi.CustomResourceState
 

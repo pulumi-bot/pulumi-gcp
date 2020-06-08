@@ -21,6 +21,8 @@ import (
 // * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/appengine/docs/standard)
+//
+// ## Example Usage - App Engine Standard App Version
 type StandardAppVersion struct {
 	pulumi.CustomResourceState
 

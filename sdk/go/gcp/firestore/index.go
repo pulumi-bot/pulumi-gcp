@@ -20,6 +20,8 @@ import (
 // * [API documentation](https://cloud.google.com/firestore/docs/reference/rest/v1/projects.databases.collectionGroups.indexes)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/firestore/docs/query-data/indexing)
+//
+// ## Example Usage - Firestore Index Basic
 type Index struct {
 	pulumi.CustomResourceState
 

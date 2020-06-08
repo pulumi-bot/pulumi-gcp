@@ -18,6 +18,11 @@ import (
 // * [API documentation](https://cloud.google.com/tpu/docs/reference/rest/)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/tpu/docs/)
+//
+// ## Example Usage - TPU Node Basic
+//
+//
+// ## Example Usage - TPU Node Full
 type Node struct {
 	pulumi.CustomResourceState
 

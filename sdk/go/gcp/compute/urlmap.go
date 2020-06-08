@@ -16,6 +16,20 @@ import (
 // To get more information about UrlMap, see:
 //
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/urlMaps)
+//
+// ## Example Usage - Url Map Basic
+//
+//
+// ## Example Usage - Url Map Traffic Director Route
+//
+//
+// ## Example Usage - Url Map Traffic Director Route Partial
+//
+//
+// ## Example Usage - Url Map Traffic Director Path
+//
+//
+// ## Example Usage - Url Map Traffic Director Path Partial
 type URLMap struct {
 	pulumi.CustomResourceState
 

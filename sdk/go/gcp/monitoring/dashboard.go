@@ -17,6 +17,54 @@ import (
 // * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v1/projects.dashboards)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/monitoring/dashboards)
+//
+// ## Example Usage - Monitoring Dashboard Basic
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/monitoring"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		dashboard, err := monitoring.NewDashboard(ctx, "dashboard", &monitoring.DashboardArgs{
+// 			DashboardJson: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ## Example Usage - Monitoring Dashboard GridLayout
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/monitoring"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		dashboard, err := monitoring.NewDashboard(ctx, "dashboard", &monitoring.DashboardArgs{
+// 			DashboardJson: pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Dashboard struct {
 	pulumi.CustomResourceState
 

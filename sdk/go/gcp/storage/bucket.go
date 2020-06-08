@@ -21,6 +21,12 @@ import (
 //
 // **Note**: If the project id is not set on the resource or in the provider block it will be dynamically
 // determined which will require enabling the compute api.
+//
+//
+// ## Example Usage - creating a private bucket in standard storage, in the EU region. Bucket configured as static website and CORS configurations
+//
+//
+// ## Example Usage - Life cycle settings for storage bucket objects
 type Bucket struct {
 	pulumi.CustomResourceState
 

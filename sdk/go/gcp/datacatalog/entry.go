@@ -23,6 +23,75 @@ import (
 // * [API documentation](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
+//
+// ## Example Usage - Data Catalog Entry Basic
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/datacatalog"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		entryGroup, err := datacatalog.NewEntryGroup(ctx, "entryGroup", &datacatalog.EntryGroupArgs{
+// 			EntryGroupId: pulumi.String("myGroup"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		basicEntry, err := datacatalog.NewEntry(ctx, "basicEntry", &datacatalog.EntryArgs{
+// 			EntryGroup:          entryGroup.ID(),
+// 			EntryId:             pulumi.String("myEntry"),
+// 			UserSpecifiedType:   pulumi.String("myCustomType"),
+// 			UserSpecifiedSystem: pulumi.String("SomethingExternal"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ## Example Usage - Data Catalog Entry Full
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/datacatalog"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		entryGroup, err := datacatalog.NewEntryGroup(ctx, "entryGroup", &datacatalog.EntryGroupArgs{
+// 			EntryGroupId: pulumi.String("myGroup"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		basicEntry, err := datacatalog.NewEntry(ctx, "basicEntry", &datacatalog.EntryArgs{
+// 			EntryGroup:          entryGroup.ID(),
+// 			EntryId:             pulumi.String("myEntry"),
+// 			UserSpecifiedType:   pulumi.String("myUserSpecifiedType"),
+// 			UserSpecifiedSystem: pulumi.String("Something_custom"),
+// 			LinkedResource:      pulumi.String("my/linked/resource"),
+// 			DisplayName:         pulumi.String("my custom type entry"),
+// 			Description:         pulumi.String("a custom type entry for a user specified system"),
+// 			Schema:              pulumi.String("TODO: TODO multi part template expressions"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Entry struct {
 	pulumi.CustomResourceState
 

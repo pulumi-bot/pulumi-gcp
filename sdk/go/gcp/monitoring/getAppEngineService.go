@@ -21,6 +21,8 @@ import (
 // * How-to Guides
 //     * [Service Monitoring](https://cloud.google.com/monitoring/service-monitoring)
 //     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
+//
+// ## Example Usage - Monitoring App Engine Service
 func GetAppEngineService(ctx *pulumi.Context, args *GetAppEngineServiceArgs, opts ...pulumi.InvokeOption) (*GetAppEngineServiceResult, error) {
 	var rv GetAppEngineServiceResult
 	err := ctx.Invoke("gcp:monitoring/getAppEngineService:getAppEngineService", args, &rv, opts...)

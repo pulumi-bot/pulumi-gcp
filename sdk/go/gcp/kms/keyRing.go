@@ -23,6 +23,8 @@ import (
 // * [API documentation](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings)
 // * How-to Guides
 //     * [Creating a key ring](https://cloud.google.com/kms/docs/creating-keys#create_a_key_ring)
+//
+// ## Example Usage - Kms Key Ring Basic
 type KeyRing struct {
 	pulumi.CustomResourceState
 

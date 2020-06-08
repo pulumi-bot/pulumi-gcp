@@ -11,6 +11,10 @@ import (
 )
 
 // A named resource to which messages are sent by publishers.
+//
+//
+//
+// ## Example Usage - Queue Basic
 type Queue struct {
 	pulumi.CustomResourceState
 
