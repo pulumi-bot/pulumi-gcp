@@ -304,7 +304,7 @@ class Cluster(pulumi.CustomResource):
     current master version--use the read-only `master_version` field to obtain that.
     If unset, the cluster's version will be set by GKE to the version of the most recent
     official release (which is not necessarily the latest version).  Most users will find
-    the `container.getEngineVersions` data source useful - it indicates which versions
+    the `containergetEngineVersions` data source useful - it indicates which versions
     are available. If you intend to specify versions manually,
     [the docs](https://cloud.google.com/kubernetes-engine/versioning-and-upgrades#specifying_cluster_version)
     describe the various acceptable formats for this field.
@@ -551,7 +551,7 @@ class Cluster(pulumi.CustomResource):
     version set by GKE which is not necessarily the latest version. This only affects
     nodes in the default node pool. While a fuzzy version can be specified, it's
     recommended that you specify explicit versions as the provider will see spurious diffs
-    when fuzzy versions are used. See the `container.getEngineVersions` data source's
+    when fuzzy versions are used. See the `containergetEngineVersions` data source's
     `version_prefix` field to approximate fuzzy versions.
     To update nodes in other node pools, use the `version` attribute on the node pool.
     """
@@ -600,7 +600,7 @@ class Cluster(pulumi.CustomResource):
     feature, which provide more control over automatic upgrades of your GKE clusters.
     When updating this field, GKE imposes specific version requirements. See
     [Migrating between release channels](https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels#migrating_between_release_channels)
-    for more details; the `container.getEngineVersions` datasource can provide
+    for more details; the `containergetEngineVersions` datasource can provide
     the default version for a channel. Note that removing the `release_channel`
     field from your config will cause this provider to stop managing your cluster's
     release channel, but will not unenroll it. Instead, use the `"UNSPECIFIED"`
@@ -687,7 +687,9 @@ class Cluster(pulumi.CustomResource):
         passwords as well as certificate outputs will be stored in the raw state as
         plaintext. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
-        ## Example Usage - with a separately managed node pool (recommended)
+        ## Example Usage
+
+        ### With A Separately Managed Node Pool (Recommended)
 
         ```python
         import pulumi
@@ -721,7 +723,7 @@ class Cluster(pulumi.CustomResource):
             })
         ```
 
-        ## Example Usage - with the default node pool
+        ### With The Default Node Pool
 
         ```python
         import pulumi
@@ -754,6 +756,7 @@ class Cluster(pulumi.CustomResource):
                 ],
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -828,7 +831,7 @@ class Cluster(pulumi.CustomResource):
                current master version--use the read-only `master_version` field to obtain that.
                If unset, the cluster's version will be set by GKE to the version of the most recent
                official release (which is not necessarily the latest version).  Most users will find
-               the `container.getEngineVersions` data source useful - it indicates which versions
+               the `containergetEngineVersions` data source useful - it indicates which versions
                are available. If you intend to specify versions manually,
                [the docs](https://cloud.google.com/kubernetes-engine/versioning-and-upgrades#specifying_cluster_version)
                describe the various acceptable formats for this field.
@@ -867,7 +870,7 @@ class Cluster(pulumi.CustomResource):
                version set by GKE which is not necessarily the latest version. This only affects
                nodes in the default node pool. While a fuzzy version can be specified, it's
                recommended that you specify explicit versions as the provider will see spurious diffs
-               when fuzzy versions are used. See the `container.getEngineVersions` data source's
+               when fuzzy versions are used. See the `containergetEngineVersions` data source's
                `version_prefix` field to approximate fuzzy versions.
                To update nodes in other node pools, use the `version` attribute on the node pool.
         :param pulumi.Input[dict] pod_security_policy_config: Configuration for the
@@ -881,7 +884,7 @@ class Cluster(pulumi.CustomResource):
                feature, which provide more control over automatic upgrades of your GKE clusters.
                When updating this field, GKE imposes specific version requirements. See
                [Migrating between release channels](https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels#migrating_between_release_channels)
-               for more details; the `container.getEngineVersions` datasource can provide
+               for more details; the `containergetEngineVersions` datasource can provide
                the default version for a channel. Note that removing the `release_channel`
                field from your config will cause this provider to stop managing your cluster's
                release channel, but will not unenroll it. Instead, use the `"UNSPECIFIED"`
@@ -1465,7 +1468,7 @@ class Cluster(pulumi.CustomResource):
                current master version--use the read-only `master_version` field to obtain that.
                If unset, the cluster's version will be set by GKE to the version of the most recent
                official release (which is not necessarily the latest version).  Most users will find
-               the `container.getEngineVersions` data source useful - it indicates which versions
+               the `containergetEngineVersions` data source useful - it indicates which versions
                are available. If you intend to specify versions manually,
                [the docs](https://cloud.google.com/kubernetes-engine/versioning-and-upgrades#specifying_cluster_version)
                describe the various acceptable formats for this field.
@@ -1504,7 +1507,7 @@ class Cluster(pulumi.CustomResource):
                version set by GKE which is not necessarily the latest version. This only affects
                nodes in the default node pool. While a fuzzy version can be specified, it's
                recommended that you specify explicit versions as the provider will see spurious diffs
-               when fuzzy versions are used. See the `container.getEngineVersions` data source's
+               when fuzzy versions are used. See the `containergetEngineVersions` data source's
                `version_prefix` field to approximate fuzzy versions.
                To update nodes in other node pools, use the `version` attribute on the node pool.
         :param pulumi.Input[dict] pod_security_policy_config: Configuration for the
@@ -1518,7 +1521,7 @@ class Cluster(pulumi.CustomResource):
                feature, which provide more control over automatic upgrades of your GKE clusters.
                When updating this field, GKE imposes specific version requirements. See
                [Migrating between release channels](https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels#migrating_between_release_channels)
-               for more details; the `container.getEngineVersions` datasource can provide
+               for more details; the `containergetEngineVersions` datasource can provide
                the default version for a channel. Note that removing the `release_channel`
                field from your config will cause this provider to stop managing your cluster's
                release channel, but will not unenroll it. Instead, use the `"UNSPECIFIED"`

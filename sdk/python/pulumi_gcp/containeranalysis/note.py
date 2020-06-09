@@ -90,8 +90,9 @@ class Note(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/container-analysis/)
             * [Creating Attestations (Occurrences)](https://cloud.google.com/binary-authorization/docs/making-attestations)
 
-        ## Example Usage - Container Analysis Note Basic
+        ## Example Usage
 
+        ### Container Analysis Note Basic
 
         ```python
         import pulumi
@@ -103,8 +104,8 @@ class Note(pulumi.CustomResource):
             },
         })
         ```
-        ## Example Usage - Container Analysis Note Attestation Full
 
+        ### Container Analysis Note Attestation Full
 
         ```python
         import pulumi
@@ -129,6 +130,7 @@ class Note(pulumi.CustomResource):
             ],
             short_description="test note")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

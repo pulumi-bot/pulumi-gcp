@@ -46,8 +46,9 @@ class Database(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/spanner/)
 
-        ## Example Usage - Spanner Database Basic
+        ## Example Usage
 
+        ### Spanner Database Basic
 
         ```python
         import pulumi
@@ -63,6 +64,7 @@ class Database(pulumi.CustomResource):
                 "CREATE TABLE t2 (t2 INT64 NOT NULL,) PRIMARY KEY(t2)",
             ])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

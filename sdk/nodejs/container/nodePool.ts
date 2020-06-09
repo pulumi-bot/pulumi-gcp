@@ -11,7 +11,9 @@ import * as utilities from "../utilities";
  * the cluster control plane. For more information see [the official documentation](https://cloud.google.com/container-engine/docs/node-pools)
  * and [the API reference](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.nodePools).
  *
- * ## Example Usage - using a separately managed node pool (recommended)
+ * ## Example Usage
+ *
+ * ### Using A Separately Managed Node Pool (Recommended)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -37,7 +39,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ## Example Usage - 2 node pools, 1 separately managed + the default node pool
+ * ### 2 Node Pools, 1 Separately Managed + The Default Node Pool
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -187,7 +189,7 @@ export class NodePool extends pulumi.CustomResource {
      * and `autoUpgrade` are both specified, they will fight each other for what the node version should
      * be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
      * recommended that you specify explicit versions as the provider will see spurious diffs
-     * when fuzzy versions are used. See the `gcp.container.getEngineVersions` data source's
+     * when fuzzy versions are used. See the `gcp.containergetEngineVersions` data source's
      * `versionPrefix` field to approximate fuzzy versions in a provider-compatible way.
      */
     public readonly version!: pulumi.Output<string>;
@@ -335,7 +337,7 @@ export interface NodePoolState {
      * and `autoUpgrade` are both specified, they will fight each other for what the node version should
      * be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
      * recommended that you specify explicit versions as the provider will see spurious diffs
-     * when fuzzy versions are used. See the `gcp.container.getEngineVersions` data source's
+     * when fuzzy versions are used. See the `gcp.containergetEngineVersions` data source's
      * `versionPrefix` field to approximate fuzzy versions in a provider-compatible way.
      */
     readonly version?: pulumi.Input<string>;
@@ -421,7 +423,7 @@ export interface NodePoolArgs {
      * and `autoUpgrade` are both specified, they will fight each other for what the node version should
      * be, so setting both is highly discouraged. While a fuzzy version can be specified, it's
      * recommended that you specify explicit versions as the provider will see spurious diffs
-     * when fuzzy versions are used. See the `gcp.container.getEngineVersions` data source's
+     * when fuzzy versions are used. See the `gcp.containergetEngineVersions` data source's
      * `versionPrefix` field to approximate fuzzy versions in a provider-compatible way.
      */
     readonly version?: pulumi.Input<string>;

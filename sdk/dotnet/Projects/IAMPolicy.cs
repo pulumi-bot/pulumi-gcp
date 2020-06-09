@@ -252,7 +252,7 @@ namespace Pulumi.Gcp.Projects
         public Output<string> Etag { get; private set; } = null!;
 
         /// <summary>
-        /// The `gcp.organizations.getIAMPolicy` data source that represents
+        /// The `gcp.organizationsgetIAMPolicy` data source that represents
         /// the IAM policy that will be applied to the project. The policy will be
         /// merged with any existing policy applied to the project.
         /// </summary>
@@ -314,7 +314,7 @@ namespace Pulumi.Gcp.Projects
     public sealed class IAMPolicyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The `gcp.organizations.getIAMPolicy` data source that represents
+        /// The `gcp.organizationsgetIAMPolicy` data source that represents
         /// the IAM policy that will be applied to the project. The policy will be
         /// merged with any existing policy applied to the project.
         /// </summary>
@@ -343,7 +343,7 @@ namespace Pulumi.Gcp.Projects
         public Input<string>? Etag { get; set; }
 
         /// <summary>
-        /// The `gcp.organizations.getIAMPolicy` data source that represents
+        /// The `gcp.organizationsgetIAMPolicy` data source that represents
         /// the IAM policy that will be applied to the project. The policy will be
         /// merged with any existing policy applied to the project.
         /// </summary>

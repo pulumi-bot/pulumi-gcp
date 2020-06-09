@@ -84,8 +84,9 @@ def get_notification_channel(display_name=None,labels=None,project=None,type=Non
         * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
 
-    ## Example Usage - Notification Channel Basic
+    ## Example Usage
 
+    ### Notification Channel Basic
 
     ```python
     import pulumi
@@ -109,6 +110,7 @@ def get_notification_channel(display_name=None,labels=None,project=None,type=Non
             },
         }])
     ```
+
 
 
     :param str display_name: The display name for this notification channel.

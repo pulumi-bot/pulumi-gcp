@@ -18,8 +18,9 @@ namespace Pulumi.Gcp.DataFusion
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/data-fusion/docs/)
     /// 
-    /// ## Example Usage - Data Fusion Instance Basic
+    /// ## Example Usage
     /// 
+    /// ### Data Fusion Instance Basic
     /// 
     /// ```csharp
     /// using Pulumi;
