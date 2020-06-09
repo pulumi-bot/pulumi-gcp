@@ -68,8 +68,9 @@ class Connection(pulumi.CustomResource):
         > **Warning:** All arguments including `cloud_sql.credential.password` will be stored in the raw
         state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
 
-        ## Example Usage - Bigquery Connection Basic
+        ## Example Usage
 
+        ### Bigquery Connection Basic
 
         ```python
         import pulumi
@@ -102,8 +103,8 @@ class Connection(pulumi.CustomResource):
                 },
             })
         ```
-        ## Example Usage - Bigquery Connection Full
 
+        ### Bigquery Connection Full
 
         ```python
         import pulumi
@@ -138,6 +139,7 @@ class Connection(pulumi.CustomResource):
                 },
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

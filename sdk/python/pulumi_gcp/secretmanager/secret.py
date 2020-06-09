@@ -57,8 +57,9 @@ class Secret(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets)
 
 
-        ## Example Usage - Secret Config Basic
+        ## Example Usage
 
+        ### Secret Config Basic
 
         ```python
         import pulumi
@@ -82,6 +83,7 @@ class Secret(pulumi.CustomResource):
             },
             secret_id="secret")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

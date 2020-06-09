@@ -15432,7 +15432,6 @@ export namespace storage {
          */
         maxTimeElapsedSinceLastModification?: string;
         /**
-         *
          * A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s".
          */
         minTimeElapsedSinceLastModification?: string;

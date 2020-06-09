@@ -73,8 +73,9 @@ class TagTemplate(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 
-        ## Example Usage - Data Catalog Tag Template Basic
+        ## Example Usage
 
+        ### Data Catalog Tag Template Basic
 
         ```python
         import pulumi
@@ -122,6 +123,7 @@ class TagTemplate(pulumi.CustomResource):
             region="us-central1",
             tag_template_id="my_template")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
