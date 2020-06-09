@@ -30,7 +30,7 @@ type IAMPolicy struct {
 	Etag pulumi.StringOutput `pulumi:"etag"`
 	// The numeric ID of the organization in which you want to create a custom role.
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the organization. This policy overrides any existing
 	// policy applied to the organization.
 	PolicyData pulumi.StringOutput `pulumi:"policyData"`
@@ -73,7 +73,7 @@ type iampolicyState struct {
 	Etag *string `pulumi:"etag"`
 	// The numeric ID of the organization in which you want to create a custom role.
 	OrgId *string `pulumi:"orgId"`
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the organization. This policy overrides any existing
 	// policy applied to the organization.
 	PolicyData *string `pulumi:"policyData"`
@@ -83,7 +83,7 @@ type IAMPolicyState struct {
 	Etag pulumi.StringPtrInput
 	// The numeric ID of the organization in which you want to create a custom role.
 	OrgId pulumi.StringPtrInput
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the organization. This policy overrides any existing
 	// policy applied to the organization.
 	PolicyData pulumi.StringPtrInput
@@ -96,7 +96,7 @@ func (IAMPolicyState) ElementType() reflect.Type {
 type iampolicyArgs struct {
 	// The numeric ID of the organization in which you want to create a custom role.
 	OrgId string `pulumi:"orgId"`
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the organization. This policy overrides any existing
 	// policy applied to the organization.
 	PolicyData string `pulumi:"policyData"`
@@ -106,7 +106,7 @@ type iampolicyArgs struct {
 type IAMPolicyArgs struct {
 	// The numeric ID of the organization in which you want to create a custom role.
 	OrgId pulumi.StringInput
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the organization. This policy overrides any existing
 	// policy applied to the organization.
 	PolicyData pulumi.StringInput

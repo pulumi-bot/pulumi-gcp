@@ -26,7 +26,7 @@ type IAMPolicy struct {
 
 	// (Computed) The etag of the project's IAM policy.
 	Etag pulumi.StringOutput `pulumi:"etag"`
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the project. The policy will be
 	// merged with any existing policy applied to the project.
 	PolicyData pulumi.StringOutput `pulumi:"policyData"`
@@ -72,7 +72,7 @@ func GetIAMPolicy(ctx *pulumi.Context,
 type iampolicyState struct {
 	// (Computed) The etag of the project's IAM policy.
 	Etag *string `pulumi:"etag"`
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the project. The policy will be
 	// merged with any existing policy applied to the project.
 	PolicyData *string `pulumi:"policyData"`
@@ -85,7 +85,7 @@ type iampolicyState struct {
 type IAMPolicyState struct {
 	// (Computed) The etag of the project's IAM policy.
 	Etag pulumi.StringPtrInput
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the project. The policy will be
 	// merged with any existing policy applied to the project.
 	PolicyData pulumi.StringPtrInput
@@ -100,7 +100,7 @@ func (IAMPolicyState) ElementType() reflect.Type {
 }
 
 type iampolicyArgs struct {
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the project. The policy will be
 	// merged with any existing policy applied to the project.
 	PolicyData string `pulumi:"policyData"`
@@ -112,7 +112,7 @@ type iampolicyArgs struct {
 
 // The set of arguments for constructing a IAMPolicy resource.
 type IAMPolicyArgs struct {
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the project. The policy will be
 	// merged with any existing policy applied to the project.
 	PolicyData pulumi.StringInput

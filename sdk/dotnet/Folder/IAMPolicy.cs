@@ -69,7 +69,7 @@ namespace Pulumi.Gcp.Folder
         public Output<string> Folder { get; private set; } = null!;
 
         /// <summary>
-        /// The `gcp.organizations.getIAMPolicy` data source that represents
+        /// The `gcp.organizationsgetIAMPolicy` data source that represents
         /// the IAM policy that will be applied to the folder. This policy overrides any existing
         /// policy applied to the folder.
         /// </summary>
@@ -129,7 +129,7 @@ namespace Pulumi.Gcp.Folder
         public Input<string> Folder { get; set; } = null!;
 
         /// <summary>
-        /// The `gcp.organizations.getIAMPolicy` data source that represents
+        /// The `gcp.organizationsgetIAMPolicy` data source that represents
         /// the IAM policy that will be applied to the folder. This policy overrides any existing
         /// policy applied to the folder.
         /// </summary>
@@ -156,7 +156,7 @@ namespace Pulumi.Gcp.Folder
         public Input<string>? Folder { get; set; }
 
         /// <summary>
-        /// The `gcp.organizations.getIAMPolicy` data source that represents
+        /// The `gcp.organizationsgetIAMPolicy` data source that represents
         /// the IAM policy that will be applied to the folder. This policy overrides any existing
         /// policy applied to the folder.
         /// </summary>

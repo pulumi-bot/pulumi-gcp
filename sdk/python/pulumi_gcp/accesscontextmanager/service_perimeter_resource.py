@@ -38,8 +38,9 @@ class ServicePerimeterResource(pulumi.CustomResource):
         * How-to Guides
             * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
 
-        ## Example Usage - Access Context Manager Service Perimeter Resource Basic
+        ## Example Usage
 
+        ### Access Context Manager Service Perimeter Resource Basic
 
         ```python
         import pulumi
@@ -58,6 +59,7 @@ class ServicePerimeterResource(pulumi.CustomResource):
             perimeter_name=service_perimeter_resource_service_perimeter.name,
             resource="projects/987654321")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

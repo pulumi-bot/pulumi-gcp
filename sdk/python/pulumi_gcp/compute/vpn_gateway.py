@@ -59,8 +59,9 @@ class VPNGateway(pulumi.CustomResource):
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/targetVpnGateways)
 
-        ## Example Usage - Target Vpn Gateway Basic
+        ## Example Usage
 
+        ### Target Vpn Gateway Basic
 
         ```python
         import pulumi
@@ -93,6 +94,7 @@ class VPNGateway(pulumi.CustomResource):
             priority=1000,
             next_hop_vpn_tunnel=tunnel1.id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

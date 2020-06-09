@@ -79,8 +79,9 @@ class Instance(pulumi.CustomResource):
             * [Use with Kubernetes](https://cloud.google.com/filestore/docs/accessing-fileshares)
             * [Copying Data In/Out](https://cloud.google.com/filestore/docs/copying-data)
 
-        ## Example Usage - Filestore Instance Basic
+        ## Example Usage
 
+        ### Filestore Instance Basic
 
         ```python
         import pulumi
@@ -98,6 +99,7 @@ class Instance(pulumi.CustomResource):
             tier="PREMIUM",
             zone="us-central1-b")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
