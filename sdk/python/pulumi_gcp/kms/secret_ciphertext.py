@@ -47,8 +47,9 @@ class SecretCiphertext(pulumi.CustomResource):
         > **Warning:** All arguments including `plaintext` and `additional_authenticated_data` will be stored in the raw
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
-        ## Example Usage - Kms Secret Ciphertext Basic
+        ## Example Usage
 
+        ### Kms Secret Ciphertext Basic
 
         ```python
         import pulumi
@@ -77,6 +78,7 @@ class SecretCiphertext(pulumi.CustomResource):
                 "password": my_password.ciphertext,
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

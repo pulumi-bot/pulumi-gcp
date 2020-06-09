@@ -22,8 +22,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/appengine/docs/flexible)
  *
- * ## Example Usage - App Engine Flexible App Version
+ * ## Example Usage
  *
+ * ### App Engine Flexible App Version
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

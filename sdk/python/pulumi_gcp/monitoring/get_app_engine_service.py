@@ -69,8 +69,9 @@ def get_app_engine_service(module_id=None,project=None,opts=None):
         * [Service Monitoring](https://cloud.google.com/monitoring/service-monitoring)
         * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
-    ## Example Usage - Monitoring App Engine Service
+    ## Example Usage
 
+    ### Monitoring App Engine Service
 
     ```python
     import pulumi
@@ -98,6 +99,7 @@ def get_app_engine_service(module_id=None,project=None,opts=None):
         delete_service_on_destroy=False)
     srv = myapp.service.apply(lambda service: gcp.monitoring.get_app_engine_service(module_id=service))
     ```
+
 
 
     :param str module_id: The ID of the App Engine module underlying this
