@@ -15,7 +15,9 @@ import * as utilities from "../utilities";
  * passwords as well as certificate outputs will be stored in the raw state as
  * plaintext. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
- * ## Example Usage - with a separately managed node pool (recommended)
+ * ## Example Usage
+ *
+ * ### With A Separately Managed Node Pool (Recommended)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -51,7 +53,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ## Example Usage - with the default node pool
+ * ### With The Default Node Pool
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -200,7 +202,7 @@ export class Cluster extends pulumi.CustomResource {
      * The number of nodes to create in this
      * cluster's default node pool. In regional or multi-zonal clusters, this is the
      * number of nodes per zone. Must be set if `nodePool` is not set. If you're using
-     * `gcp.container.NodePool` objects with no default node pool, you'll need to
+     * `gcp.container..NodePool` objects with no default node pool, you'll need to
      * set this to a value of at least `1`, alongside setting
      * `removeDefaultNodePool` to `true`.
      */
@@ -304,7 +306,7 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * Parameters used in creating the default node pool.
      * Generally, this field should not be used at the same time as a
-     * `gcp.container.NodePool` or a `nodePool` block; this configuration
+     * `gcp.container..NodePool` or a `nodePool` block; this configuration
      * manages the default node pool, which isn't recommended to be used.
      * Structure is documented below.
      */
@@ -318,11 +320,11 @@ export class Cluster extends pulumi.CustomResource {
     public readonly nodeLocations!: pulumi.Output<string[]>;
     /**
      * List of node pools associated with this cluster.
-     * See gcp.container.NodePool for schema.
+     * See gcp.container..NodePool for schema.
      * **Warning:** node pools defined inside a cluster can't be changed (or added/removed) after
      * cluster creation without deleting and recreating the entire cluster. Unless you absolutely need the ability
      * to say "these are the _only_ node pools associated with this cluster", use the
-     * gcp.container.NodePool resource instead of this property.
+     * gcp.container..NodePool resource instead of this property.
      */
     public readonly nodePools!: pulumi.Output<outputs.container.ClusterNodePool[]>;
     /**
@@ -367,7 +369,7 @@ export class Cluster extends pulumi.CustomResource {
     public readonly releaseChannel!: pulumi.Output<outputs.container.ClusterReleaseChannel>;
     /**
      * If `true`, deletes the default node
-     * pool upon cluster creation. If you're using `gcp.container.NodePool`
+     * pool upon cluster creation. If you're using `gcp.container..NodePool`
      * resources with no default node pool, this should be set to `true`, alongside
      * setting `initialNodeCount` to at least `1`.
      */
@@ -619,7 +621,7 @@ export interface ClusterState {
      * The number of nodes to create in this
      * cluster's default node pool. In regional or multi-zonal clusters, this is the
      * number of nodes per zone. Must be set if `nodePool` is not set. If you're using
-     * `gcp.container.NodePool` objects with no default node pool, you'll need to
+     * `gcp.container..NodePool` objects with no default node pool, you'll need to
      * set this to a value of at least `1`, alongside setting
      * `removeDefaultNodePool` to `true`.
      */
@@ -723,7 +725,7 @@ export interface ClusterState {
     /**
      * Parameters used in creating the default node pool.
      * Generally, this field should not be used at the same time as a
-     * `gcp.container.NodePool` or a `nodePool` block; this configuration
+     * `gcp.container..NodePool` or a `nodePool` block; this configuration
      * manages the default node pool, which isn't recommended to be used.
      * Structure is documented below.
      */
@@ -737,11 +739,11 @@ export interface ClusterState {
     readonly nodeLocations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of node pools associated with this cluster.
-     * See gcp.container.NodePool for schema.
+     * See gcp.container..NodePool for schema.
      * **Warning:** node pools defined inside a cluster can't be changed (or added/removed) after
      * cluster creation without deleting and recreating the entire cluster. Unless you absolutely need the ability
      * to say "these are the _only_ node pools associated with this cluster", use the
-     * gcp.container.NodePool resource instead of this property.
+     * gcp.container..NodePool resource instead of this property.
      */
     readonly nodePools?: pulumi.Input<pulumi.Input<inputs.container.ClusterNodePool>[]>;
     /**
@@ -786,7 +788,7 @@ export interface ClusterState {
     readonly releaseChannel?: pulumi.Input<inputs.container.ClusterReleaseChannel>;
     /**
      * If `true`, deletes the default node
-     * pool upon cluster creation. If you're using `gcp.container.NodePool`
+     * pool upon cluster creation. If you're using `gcp.container..NodePool`
      * resources with no default node pool, this should be set to `true`, alongside
      * setting `initialNodeCount` to at least `1`.
      */
@@ -917,7 +919,7 @@ export interface ClusterArgs {
      * The number of nodes to create in this
      * cluster's default node pool. In regional or multi-zonal clusters, this is the
      * number of nodes per zone. Must be set if `nodePool` is not set. If you're using
-     * `gcp.container.NodePool` objects with no default node pool, you'll need to
+     * `gcp.container..NodePool` objects with no default node pool, you'll need to
      * set this to a value of at least `1`, alongside setting
      * `removeDefaultNodePool` to `true`.
      */
@@ -1006,7 +1008,7 @@ export interface ClusterArgs {
     /**
      * Parameters used in creating the default node pool.
      * Generally, this field should not be used at the same time as a
-     * `gcp.container.NodePool` or a `nodePool` block; this configuration
+     * `gcp.container..NodePool` or a `nodePool` block; this configuration
      * manages the default node pool, which isn't recommended to be used.
      * Structure is documented below.
      */
@@ -1020,11 +1022,11 @@ export interface ClusterArgs {
     readonly nodeLocations?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * List of node pools associated with this cluster.
-     * See gcp.container.NodePool for schema.
+     * See gcp.container..NodePool for schema.
      * **Warning:** node pools defined inside a cluster can't be changed (or added/removed) after
      * cluster creation without deleting and recreating the entire cluster. Unless you absolutely need the ability
      * to say "these are the _only_ node pools associated with this cluster", use the
-     * gcp.container.NodePool resource instead of this property.
+     * gcp.container..NodePool resource instead of this property.
      */
     readonly nodePools?: pulumi.Input<pulumi.Input<inputs.container.ClusterNodePool>[]>;
     /**
@@ -1068,7 +1070,7 @@ export interface ClusterArgs {
     readonly releaseChannel?: pulumi.Input<inputs.container.ClusterReleaseChannel>;
     /**
      * If `true`, deletes the default node
-     * pool upon cluster creation. If you're using `gcp.container.NodePool`
+     * pool upon cluster creation. If you're using `gcp.container..NodePool`
      * resources with no default node pool, this should be set to `true`, alongside
      * setting `initialNodeCount` to at least `1`.
      */

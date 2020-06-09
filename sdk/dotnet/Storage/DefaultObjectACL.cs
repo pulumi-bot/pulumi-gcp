@@ -21,7 +21,7 @@ namespace Pulumi.Gcp.Storage
     /// and 
     /// [API](https://cloud.google.com/storage/docs/json_api/v1/defaultObjectAccessControls).
     /// 
-    /// &gt; Want fine-grained control over default object ACLs? Use `gcp.storage.DefaultObjectAccessControl`
+    /// &gt; Want fine-grained control over default object ACLs? Use `gcp.storage..DefaultObjectAccessControl`
     /// to control individual role entity pairs.
     /// 
     /// ## Example Usage

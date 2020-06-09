@@ -23,8 +23,9 @@ namespace Pulumi.Gcp.Compute
     /// &gt; **Warning:** All arguments including `shared_secret` will be stored in the raw
     /// state as plain-text.
     /// 
-    /// ## Example Usage - Vpn Tunnel Basic
+    /// ## Example Usage
     /// 
+    /// ### Vpn Tunnel Basic
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -81,8 +82,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// ## Example Usage - Vpn Tunnel Beta
     /// 
+    /// ### Vpn Tunnel Beta
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -221,7 +222,7 @@ namespace Pulumi.Gcp.Compute
         /// URL of the peer side HA GCP VPN gateway to which this VPN tunnel is connected.
         /// If provided, the VPN tunnel will automatically use the same vpn_gateway_interface
         /// ID in the peer GCP VPN gateway.
-        /// This field must reference a `gcp.compute.HaVpnGateway` resource.
+        /// This field must reference a `gcp.compute..HaVpnGateway` resource.
         /// </summary>
         [Output("peerGcpGateway")]
         public Output<string?> PeerGcpGateway { get; private set; } = null!;
@@ -295,7 +296,7 @@ namespace Pulumi.Gcp.Compute
         /// <summary>
         /// URL of the VPN gateway with which this VPN tunnel is associated.
         /// This must be used if a High Availability VPN gateway resource is created.
-        /// This field must reference a `gcp.compute.HaVpnGateway` resource.
+        /// This field must reference a `gcp.compute..HaVpnGateway` resource.
         /// </summary>
         [Output("vpnGateway")]
         public Output<string?> VpnGateway { get; private set; } = null!;
@@ -421,7 +422,7 @@ namespace Pulumi.Gcp.Compute
         /// URL of the peer side HA GCP VPN gateway to which this VPN tunnel is connected.
         /// If provided, the VPN tunnel will automatically use the same vpn_gateway_interface
         /// ID in the peer GCP VPN gateway.
-        /// This field must reference a `gcp.compute.HaVpnGateway` resource.
+        /// This field must reference a `gcp.compute..HaVpnGateway` resource.
         /// </summary>
         [Input("peerGcpGateway")]
         public Input<string>? PeerGcpGateway { get; set; }
@@ -483,7 +484,7 @@ namespace Pulumi.Gcp.Compute
         /// <summary>
         /// URL of the VPN gateway with which this VPN tunnel is associated.
         /// This must be used if a High Availability VPN gateway resource is created.
-        /// This field must reference a `gcp.compute.HaVpnGateway` resource.
+        /// This field must reference a `gcp.compute..HaVpnGateway` resource.
         /// </summary>
         [Input("vpnGateway")]
         public Input<string>? VpnGateway { get; set; }
@@ -588,7 +589,7 @@ namespace Pulumi.Gcp.Compute
         /// URL of the peer side HA GCP VPN gateway to which this VPN tunnel is connected.
         /// If provided, the VPN tunnel will automatically use the same vpn_gateway_interface
         /// ID in the peer GCP VPN gateway.
-        /// This field must reference a `gcp.compute.HaVpnGateway` resource.
+        /// This field must reference a `gcp.compute..HaVpnGateway` resource.
         /// </summary>
         [Input("peerGcpGateway")]
         public Input<string>? PeerGcpGateway { get; set; }
@@ -668,7 +669,7 @@ namespace Pulumi.Gcp.Compute
         /// <summary>
         /// URL of the VPN gateway with which this VPN tunnel is associated.
         /// This must be used if a High Availability VPN gateway resource is created.
-        /// This field must reference a `gcp.compute.HaVpnGateway` resource.
+        /// This field must reference a `gcp.compute..HaVpnGateway` resource.
         /// </summary>
         [Input("vpnGateway")]
         public Input<string>? VpnGateway { get; set; }

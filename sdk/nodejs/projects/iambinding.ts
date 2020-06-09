@@ -9,22 +9,22 @@ import * as utilities from "../utilities";
 /**
  * Four different resources help you manage your IAM policy for a project. Each of these resources serves a different use case:
  *
- * * `gcp.projects.IAMPolicy`: Authoritative. Sets the IAM policy for the project and replaces any existing policy already attached.
- * * `gcp.projects.IAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the project are preserved.
- * * `gcp.projects.IAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the project are preserved.
- * * `gcp.projects.IAMAuditConfig`: Authoritative for a given service. Updates the IAM policy to enable audit logging for the given service.
+ * * `gcp.projects..IAMPolicy`: Authoritative. Sets the IAM policy for the project and replaces any existing policy already attached.
+ * * `gcp.projects..IAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the project are preserved.
+ * * `gcp.projects..IAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the project are preserved.
+ * * `gcp.projects..IAMAuditConfig`: Authoritative for a given service. Updates the IAM policy to enable audit logging for the given service.
  *
  *
- * > **Note:** `gcp.projects.IAMPolicy` **cannot** be used in conjunction with `gcp.projects.IAMBinding`, `gcp.projects.IAMMember`, or `gcp.projects.IAMAuditConfig` or they will fight over what your policy should be.
+ * > **Note:** `gcp.projects..IAMPolicy` **cannot** be used in conjunction with `gcp.projects..IAMBinding`, `gcp.projects..IAMMember`, or `gcp.projects..IAMAuditConfig` or they will fight over what your policy should be.
  *
- * > **Note:** `gcp.projects.IAMBinding` resources **can be** used in conjunction with `gcp.projects.IAMMember` resources **only if** they do not grant privilege to the same role.
+ * > **Note:** `gcp.projects..IAMBinding` resources **can be** used in conjunction with `gcp.projects..IAMMember` resources **only if** they do not grant privilege to the same role.
  *
  * ## google\_project\_iam\_policy
  *
  * > **Be careful!** You can accidentally lock yourself out of your project
- *    using this resource. Deleting a `gcp.projects.IAMPolicy` removes access
+ *    using this resource. Deleting a `gcp.projects..IAMPolicy` removes access
  *    from anyone without organization-level access to the project. Proceed with caution.
- *    It's not recommended to use `gcp.projects.IAMPolicy` with your provider project
+ *    It's not recommended to use `gcp.projects..IAMPolicy` with your provider project
  *    to avoid locking yourself out, and it should generally only be used with projects
  *    fully managed by this provider. If you do use this resource, it is recommended to **import** the policy before
  *    applying the change.
@@ -56,7 +56,7 @@ import * as utilities from "../utilities";
  *         condition: {
  *             description: "Expiring at midnight of 2019-12-31",
  *             expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
- *             title: "expiresAfter20191231",
+ *             title: "expires_after_2019_12_31",
  *         },
  *         members: ["user:jane@example.com"],
  *         role: "roles/editor",
@@ -93,7 +93,7 @@ import * as utilities from "../utilities";
  *     condition: {
  *         description: "Expiring at midnight of 2019-12-31",
  *         expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
- *         title: "expiresAfter20191231",
+ *         title: "expires_after_2019_12_31",
  *     },
  *     members: ["user:jane@example.com"],
  *     project: "your-project-id",
@@ -124,7 +124,7 @@ import * as utilities from "../utilities";
  *     condition: {
  *         description: "Expiring at midnight of 2019-12-31",
  *         expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
- *         title: "expiresAfter20191231",
+ *         title: "expires_after_2019_12_31",
  *     },
  *     member: "user:jane@example.com",
  *     project: "your-project-id",
@@ -192,14 +192,14 @@ export class IAMBinding extends pulumi.CustomResource {
     public /*out*/ readonly etag!: pulumi.Output<string>;
     public readonly members!: pulumi.Output<string[]>;
     /**
-     * The project ID. If not specified for `gcp.projects.IAMBinding`, `gcp.projects.IAMMember`, or `gcp.projects.IAMAuditConfig`, uses the ID of the project configured with the provider.
-     * Required for `gcp.projects.IAMPolicy` - you must explicitly set the project, and it
+     * The project ID. If not specified for `gcp.projects..IAMBinding`, `gcp.projects..IAMMember`, or `gcp.projects..IAMAuditConfig`, uses the ID of the project configured with the provider.
+     * Required for `gcp.projects..IAMPolicy` - you must explicitly set the project, and it
      * will not be inferred from the provider.
      */
     public readonly project!: pulumi.Output<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.projects.IAMBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.projects..IAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     public readonly role!: pulumi.Output<string>;
@@ -261,14 +261,14 @@ export interface IAMBindingState {
     readonly etag?: pulumi.Input<string>;
     readonly members?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The project ID. If not specified for `gcp.projects.IAMBinding`, `gcp.projects.IAMMember`, or `gcp.projects.IAMAuditConfig`, uses the ID of the project configured with the provider.
-     * Required for `gcp.projects.IAMPolicy` - you must explicitly set the project, and it
+     * The project ID. If not specified for `gcp.projects..IAMBinding`, `gcp.projects..IAMMember`, or `gcp.projects..IAMAuditConfig`, uses the ID of the project configured with the provider.
+     * Required for `gcp.projects..IAMPolicy` - you must explicitly set the project, and it
      * will not be inferred from the provider.
      */
     readonly project?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.projects.IAMBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.projects..IAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role?: pulumi.Input<string>;
@@ -285,14 +285,14 @@ export interface IAMBindingArgs {
     readonly condition?: pulumi.Input<inputs.projects.IAMBindingCondition>;
     readonly members: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The project ID. If not specified for `gcp.projects.IAMBinding`, `gcp.projects.IAMMember`, or `gcp.projects.IAMAuditConfig`, uses the ID of the project configured with the provider.
-     * Required for `gcp.projects.IAMPolicy` - you must explicitly set the project, and it
+     * The project ID. If not specified for `gcp.projects..IAMBinding`, `gcp.projects..IAMMember`, or `gcp.projects..IAMAuditConfig`, uses the ID of the project configured with the provider.
+     * Required for `gcp.projects..IAMPolicy` - you must explicitly set the project, and it
      * will not be inferred from the provider.
      */
     readonly project?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.projects.IAMBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.projects..IAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role: pulumi.Input<string>;

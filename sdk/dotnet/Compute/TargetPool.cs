@@ -76,7 +76,7 @@ namespace Pulumi.Gcp.Compute
 
         /// <summary>
         /// List of zero or one health check name or self_link. Only
-        /// legacy `gcp.compute.HttpHealthCheck` is supported.
+        /// legacy `gcp.compute..HttpHealthCheck` is supported.
         /// </summary>
         [Output("healthChecks")]
         public Output<string?> HealthChecks { get; private set; } = null!;
@@ -194,7 +194,7 @@ namespace Pulumi.Gcp.Compute
 
         /// <summary>
         /// List of zero or one health check name or self_link. Only
-        /// legacy `gcp.compute.HttpHealthCheck` is supported.
+        /// legacy `gcp.compute..HttpHealthCheck` is supported.
         /// </summary>
         [Input("healthChecks")]
         public Input<string>? HealthChecks { get; set; }
@@ -273,7 +273,7 @@ namespace Pulumi.Gcp.Compute
 
         /// <summary>
         /// List of zero or one health check name or self_link. Only
-        /// legacy `gcp.compute.HttpHealthCheck` is supported.
+        /// legacy `gcp.compute..HttpHealthCheck` is supported.
         /// </summary>
         [Input("healthChecks")]
         public Input<string>? HealthChecks { get; set; }

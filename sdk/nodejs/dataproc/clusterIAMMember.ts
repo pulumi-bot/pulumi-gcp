@@ -9,13 +9,13 @@ import * as utilities from "../utilities";
 /**
  * Three different resources help you manage IAM policies on dataproc clusters. Each of these resources serves a different use case:
  *
- * * `gcp.dataproc.ClusterIAMPolicy`: Authoritative. Sets the IAM policy for the cluster and replaces any existing policy already attached.
- * * `gcp.dataproc.ClusterIAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the cluster are preserved.
- * * `gcp.dataproc.ClusterIAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the cluster are preserved.
+ * * `gcp.dataproc..ClusterIAMPolicy`: Authoritative. Sets the IAM policy for the cluster and replaces any existing policy already attached.
+ * * `gcp.dataproc..ClusterIAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the cluster are preserved.
+ * * `gcp.dataproc..ClusterIAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the cluster are preserved.
  *
- * > **Note:** `gcp.dataproc.ClusterIAMPolicy` **cannot** be used in conjunction with `gcp.dataproc.ClusterIAMBinding` and `gcp.dataproc.ClusterIAMMember` or they will fight over what your policy should be. In addition, be careful not to accidentally unset ownership of the cluster as `gcp.dataproc.ClusterIAMPolicy` replaces the entire policy.
+ * > **Note:** `gcp.dataproc..ClusterIAMPolicy` **cannot** be used in conjunction with `gcp.dataproc..ClusterIAMBinding` and `gcp.dataproc..ClusterIAMMember` or they will fight over what your policy should be. In addition, be careful not to accidentally unset ownership of the cluster as `gcp.dataproc..ClusterIAMPolicy` replaces the entire policy.
  *
- * > **Note:** `gcp.dataproc.ClusterIAMBinding` resources **can be** used in conjunction with `gcp.dataproc.ClusterIAMMember` resources **only if** they do not grant privilege to the same role.
+ * > **Note:** `gcp.dataproc..ClusterIAMBinding` resources **can be** used in conjunction with `gcp.dataproc..ClusterIAMMember` resources **only if** they do not grant privilege to the same role.
  *
  * ## google\_pubsub\_subscription\_iam\_policy
  *
@@ -113,7 +113,7 @@ export class ClusterIAMMember extends pulumi.CustomResource {
     public readonly region!: pulumi.Output<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.dataproc.ClusterIAMBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.dataproc..ClusterIAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     public readonly role!: pulumi.Output<string>;
@@ -193,7 +193,7 @@ export interface ClusterIAMMemberState {
     readonly region?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.dataproc.ClusterIAMBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.dataproc..ClusterIAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role?: pulumi.Input<string>;
@@ -221,7 +221,7 @@ export interface ClusterIAMMemberArgs {
     readonly region?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.dataproc.ClusterIAMBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.dataproc..ClusterIAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role: pulumi.Input<string>;

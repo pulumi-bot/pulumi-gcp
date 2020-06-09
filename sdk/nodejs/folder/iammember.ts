@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  * the IAM policy for an existing Google Cloud Platform folder.
  *
  * > **Note:** This resource _must not_ be used in conjunction with
- *    `gcp.folder.IAMPolicy` or they will fight over what your policy
- *    should be. Similarly, roles controlled by `gcp.folder.IAMBinding`
- *    should not be assigned to using `gcp.folder.IAMMember`.
+ *    `gcp.folder..IAMPolicy` or they will fight over what your policy
+ *    should be. Similarly, roles controlled by `gcp.folder..IAMBinding`
+ *    should not be assigned to using `gcp.folder..IAMMember`.
  *
  * ## Example Usage
  *

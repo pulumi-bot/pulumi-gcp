@@ -12,9 +12,11 @@ import * as utilities from "../utilities";
  * template. For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/manager)
  * and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroupManagers)
  *
- * > **Note:** Use [gcp.compute.RegionInstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html) to create a regional (multi-zone) instance group manager.
+ * > **Note:** Use [gcp.compute..RegionInstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html) to create a regional (multi-zone) instance group manager.
  *
- * ## Example Usage with top level instance template (`google` provider)
+ * ## Example Usage
+ *
+ * ### With Top Level Instance Template (`Google` Provider)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -49,7 +51,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ## Example Usage with multiple versions (`google-beta` provider)
+ * ### With Multiple Versions (`Google-Beta` Provider)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

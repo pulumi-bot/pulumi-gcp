@@ -11,7 +11,7 @@ namespace Pulumi.Gcp.Storage
 {
     /// <summary>
     /// Authoritatively manages the access control list (ACL) for an object in a Google
-    /// Cloud Storage (GCS) bucket. Removing a `gcp.storage.ObjectACL` sets the
+    /// Cloud Storage (GCS) bucket. Removing a `gcp.storage..ObjectACL` sets the
     /// acl to the `private` [predefined ACL](https://cloud.google.com/storage/docs/access-control#predefined-acl).
     /// 
     /// For more information see
@@ -19,7 +19,7 @@ namespace Pulumi.Gcp.Storage
     /// and 
     /// [API](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls).
     /// 
-    /// &gt; Want fine-grained control over object ACLs? Use `gcp.storage.ObjectAccessControl` to control individual
+    /// &gt; Want fine-grained control over object ACLs? Use `gcp.storage..ObjectAccessControl` to control individual
     /// role entity pairs.
     /// 
     /// ## Example Usage

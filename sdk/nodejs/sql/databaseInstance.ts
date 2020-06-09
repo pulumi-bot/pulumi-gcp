@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  * Creates a new Google SQL Database Instance. For more information, see the [official documentation](https://cloud.google.com/sql/),
  * or the [JSON API](https://cloud.google.com/sql/docs/admin-api/v1beta4/instances).
  *
- * > **NOTE on `gcp.sql.DatabaseInstance`:** - First-generation instances have been
+ * > **NOTE on `gcp.sql..DatabaseInstance`:** - First-generation instances have been
  * deprecated and should no longer be created, see [upgrade docs](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
  * for more details.
  * To upgrade your First-generation instance, update your config that the instance has
@@ -32,9 +32,9 @@ import * as utilities from "../utilities";
  * * `pricingPlan` ("PER_USE" is now the only valid option)
  * Change `settings.backup_configuration.enabled` attribute back to its desired value and apply as necessary.
  *
- * > **NOTE on `gcp.sql.DatabaseInstance`:** - Second-generation instances include a
+ * > **NOTE on `gcp.sql..DatabaseInstance`:** - Second-generation instances include a
  * default 'root'@'%' user with no password. This user will be deleted by the provider on
- * instance creation. You should use `gcp.sql.User` to define a custom user with
+ * instance creation. You should use `gcp.sql..User` to define a custom user with
  * a restricted host and strong password.
  *
  * ## Example Usage

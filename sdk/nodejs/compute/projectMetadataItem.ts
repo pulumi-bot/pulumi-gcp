@@ -6,7 +6,7 @@ import * as utilities from "../utilities";
 
 /**
  * Manages a single key/value pair on metadata common to all instances for
- * a project in GCE. Using `gcp.compute.ProjectMetadataItem` lets you
+ * a project in GCE. Using `gcp.compute..ProjectMetadataItem` lets you
  * manage a single key/value setting in the provider rather than the entire
  * project metadata map.
  *
@@ -19,8 +19,8 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  *
  * const defaultProjectMetadataItem = new gcp.compute.ProjectMetadataItem("default", {
- *     key: "myMetadata",
- *     value: "myValue",
+ *     key: "my_metadata",
+ *     value: "my_value",
  * });
  * ```
  */

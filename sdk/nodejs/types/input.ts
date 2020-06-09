@@ -1557,7 +1557,7 @@ export namespace bigquery {
          * encrypt this table.  Note that the default bigquery service account will need to have
          * encrypt/decrypt permissions on this key - you may want to see the
          * `gcp.bigquery.getDefaultServiceAccount` datasource and the
-         * `gcp.kms.CryptoKeyIAMBinding` resource.
+         * `gcp.kms..CryptoKeyIAMBinding` resource.
          */
         kmsKeyName: pulumi.Input<string>;
     }
@@ -4422,7 +4422,7 @@ export namespace compute {
          * `global/images/family/{family}`, `family/{family}`, `{project}/{family}`,
          * `{project}/{image}`, `{family}`, or `{image}`. If referred by family, the
          * images names must include the family name. If they don't, use the
-         * [gcp.compute.Image data source](https://www.terraform.io/docs/providers/google/d/datasource_compute_image.html).
+         * [gcp.compute..Image data source](https://www.terraform.io/docs/providers/google/d/datasource_compute_image.html).
          * For instance, the image `centos-6-v20180104` includes its family name `centos-6`.
          * These images can be referred by family name here.
          */
@@ -4891,7 +4891,7 @@ export namespace compute {
         mode?: pulumi.Input<string>;
         /**
          * The name (**not self_link**)
-         * of the disk (such as those managed by `gcp.compute.Disk`) to attach.
+         * of the disk (such as those managed by `gcp.compute..Disk`) to attach.
          * > **Note:** Either `source` or `sourceImage` is **required** when creating a new instance except for when creating a local SSD. Check the API [docs](https://cloud.google.com/compute/docs/reference/rest/v1/instanceTemplates/insert) for details.
          */
         source?: pulumi.Input<string>;
@@ -9669,7 +9669,7 @@ export namespace container {
          * The number of nodes to create in this
          * cluster's default node pool. In regional or multi-zonal clusters, this is the
          * number of nodes per zone. Must be set if `nodePool` is not set. If you're using
-         * `gcp.container.NodePool` objects with no default node pool, you'll need to
+         * `gcp.container..NodePool` objects with no default node pool, you'll need to
          * set this to a value of at least `1`, alongside setting
          * `removeDefaultNodePool` to `true`.
          */
@@ -9690,7 +9690,7 @@ export namespace container {
         /**
          * Parameters used in creating the default node pool.
          * Generally, this field should not be used at the same time as a
-         * `gcp.container.NodePool` or a `nodePool` block; this configuration
+         * `gcp.container..NodePool` or a `nodePool` block; this configuration
          * manages the default node pool, which isn't recommended to be used.
          * Structure is documented below.
          */
@@ -13455,8 +13455,8 @@ export namespace organizations {
         /**
          * An array of identities that will be granted the privilege in the `role`. For more details on format and restrictions see https://cloud.google.com/billing/reference/rest/v1/Policy#Binding
          * Each entry can have one of the following values:
-         * * **allUsers**: A special identifier that represents anyone who is on the internet; with or without a Google account. It **can't** be used with the `gcp.organizations.Project` resource.
-         * * **allAuthenticatedUsers**: A special identifier that represents anyone who is authenticated with a Google account or a service account. It **can't** be used with the `gcp.organizations.Project` resource.
+         * * **allUsers**: A special identifier that represents anyone who is on the internet; with or without a Google account. It **can't** be used with the `gcp.organizations..Project` resource.
+         * * **allAuthenticatedUsers**: A special identifier that represents anyone who is authenticated with a Google account or a service account. It **can't** be used with the `gcp.organizations..Project` resource.
          * * **user:{emailid}**: An email address that represents a specific Google account. For example, alice@gmail.com.
          * * **serviceAccount:{emailid}**: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com.
          * * **group:{emailid}**: An email address that represents a Google group. For example, admins@example.com.

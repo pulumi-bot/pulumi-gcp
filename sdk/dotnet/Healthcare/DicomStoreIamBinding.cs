@@ -12,13 +12,13 @@ namespace Pulumi.Gcp.Healthcare
     /// <summary>
     /// Three different resources help you manage your IAM policy for Healthcare DICOM store. Each of these resources serves a different use case:
     /// 
-    /// * `gcp.healthcare.DicomStoreIamPolicy`: Authoritative. Sets the IAM policy for the DICOM store and replaces any existing policy already attached.
-    /// * `gcp.healthcare.DicomStoreIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the DICOM store are preserved.
-    /// * `gcp.healthcare.DicomStoreIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the DICOM store are preserved.
+    /// * `gcp.healthcare..DicomStoreIamPolicy`: Authoritative. Sets the IAM policy for the DICOM store and replaces any existing policy already attached.
+    /// * `gcp.healthcare..DicomStoreIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the DICOM store are preserved.
+    /// * `gcp.healthcare..DicomStoreIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the DICOM store are preserved.
     /// 
-    /// &gt; **Note:** `gcp.healthcare.DicomStoreIamPolicy` **cannot** be used in conjunction with `gcp.healthcare.DicomStoreIamBinding` and `gcp.healthcare.DicomStoreIamMember` or they will fight over what your policy should be.
+    /// &gt; **Note:** `gcp.healthcare..DicomStoreIamPolicy` **cannot** be used in conjunction with `gcp.healthcare..DicomStoreIamBinding` and `gcp.healthcare..DicomStoreIamMember` or they will fight over what your policy should be.
     /// 
-    /// &gt; **Note:** `gcp.healthcare.DicomStoreIamBinding` resources **can be** used in conjunction with `gcp.healthcare.DicomStoreIamMember` resources **only if** they do not grant privilege to the same role.
+    /// &gt; **Note:** `gcp.healthcare..DicomStoreIamBinding` resources **can be** used in conjunction with `gcp.healthcare..DicomStoreIamMember` resources **only if** they do not grant privilege to the same role.
     /// 
     /// ## google\_healthcare\_dicom\_store\_iam\_policy
     /// 
@@ -124,7 +124,7 @@ namespace Pulumi.Gcp.Healthcare
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.healthcare.DicomStoreIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.healthcare..DicomStoreIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Output("role")]
@@ -198,7 +198,7 @@ namespace Pulumi.Gcp.Healthcare
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.healthcare.DicomStoreIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.healthcare..DicomStoreIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role", required: true)]
@@ -239,7 +239,7 @@ namespace Pulumi.Gcp.Healthcare
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.healthcare.DicomStoreIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.healthcare..DicomStoreIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role")]

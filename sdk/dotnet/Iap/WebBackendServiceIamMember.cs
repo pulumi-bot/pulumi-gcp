@@ -12,13 +12,13 @@ namespace Pulumi.Gcp.Iap
     /// <summary>
     /// Three different resources help you manage your IAM policy for Identity-Aware Proxy WebBackendService. Each of these resources serves a different use case:
     /// 
-    /// * `gcp.iap.WebBackendServiceIamPolicy`: Authoritative. Sets the IAM policy for the webbackendservice and replaces any existing policy already attached.
-    /// * `gcp.iap.WebBackendServiceIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the webbackendservice are preserved.
-    /// * `gcp.iap.WebBackendServiceIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the webbackendservice are preserved.
+    /// * `gcp.iap..WebBackendServiceIamPolicy`: Authoritative. Sets the IAM policy for the webbackendservice and replaces any existing policy already attached.
+    /// * `gcp.iap..WebBackendServiceIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the webbackendservice are preserved.
+    /// * `gcp.iap..WebBackendServiceIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the webbackendservice are preserved.
     /// 
-    /// &gt; **Note:** `gcp.iap.WebBackendServiceIamPolicy` **cannot** be used in conjunction with `gcp.iap.WebBackendServiceIamBinding` and `gcp.iap.WebBackendServiceIamMember` or they will fight over what your policy should be.
+    /// &gt; **Note:** `gcp.iap..WebBackendServiceIamPolicy` **cannot** be used in conjunction with `gcp.iap..WebBackendServiceIamBinding` and `gcp.iap..WebBackendServiceIamMember` or they will fight over what your policy should be.
     /// 
-    /// &gt; **Note:** `gcp.iap.WebBackendServiceIamBinding` resources **can be** used in conjunction with `gcp.iap.WebBackendServiceIamMember` resources **only if** they do not grant privilege to the same role.
+    /// &gt; **Note:** `gcp.iap..WebBackendServiceIamBinding` resources **can be** used in conjunction with `gcp.iap..WebBackendServiceIamMember` resources **only if** they do not grant privilege to the same role.
     /// 
     /// 
     /// 
@@ -229,7 +229,7 @@ namespace Pulumi.Gcp.Iap
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.iap.WebBackendServiceIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.iap..WebBackendServiceIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Output("role")]
@@ -306,7 +306,7 @@ namespace Pulumi.Gcp.Iap
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.iap.WebBackendServiceIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.iap..WebBackendServiceIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role", required: true)]
@@ -350,7 +350,7 @@ namespace Pulumi.Gcp.Iap
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.iap.WebBackendServiceIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.iap..WebBackendServiceIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role")]

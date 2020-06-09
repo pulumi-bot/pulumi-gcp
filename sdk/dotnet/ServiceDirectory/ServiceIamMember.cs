@@ -12,13 +12,13 @@ namespace Pulumi.Gcp.ServiceDirectory
     /// <summary>
     /// Three different resources help you manage your IAM policy for Service Directory Service. Each of these resources serves a different use case:
     /// 
-    /// * `gcp.servicedirectory.ServiceIamPolicy`: Authoritative. Sets the IAM policy for the service and replaces any existing policy already attached.
-    /// * `gcp.servicedirectory.ServiceIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the service are preserved.
-    /// * `gcp.servicedirectory.ServiceIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the service are preserved.
+    /// * `gcp.servicedirectory..ServiceIamPolicy`: Authoritative. Sets the IAM policy for the service and replaces any existing policy already attached.
+    /// * `gcp.servicedirectory..ServiceIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the service are preserved.
+    /// * `gcp.servicedirectory..ServiceIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the service are preserved.
     /// 
-    /// &gt; **Note:** `gcp.servicedirectory.ServiceIamPolicy` **cannot** be used in conjunction with `gcp.servicedirectory.ServiceIamBinding` and `gcp.servicedirectory.ServiceIamMember` or they will fight over what your policy should be.
+    /// &gt; **Note:** `gcp.servicedirectory..ServiceIamPolicy` **cannot** be used in conjunction with `gcp.servicedirectory..ServiceIamBinding` and `gcp.servicedirectory..ServiceIamMember` or they will fight over what your policy should be.
     /// 
-    /// &gt; **Note:** `gcp.servicedirectory.ServiceIamBinding` resources **can be** used in conjunction with `gcp.servicedirectory.ServiceIamMember` resources **only if** they do not grant privilege to the same role.
+    /// &gt; **Note:** `gcp.servicedirectory..ServiceIamBinding` resources **can be** used in conjunction with `gcp.servicedirectory..ServiceIamMember` resources **only if** they do not grant privilege to the same role.
     /// 
     /// ## google\_service\_directory\_service\_iam\_policy
     /// 
@@ -118,7 +118,7 @@ namespace Pulumi.Gcp.ServiceDirectory
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.servicedirectory.ServiceIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.servicedirectory..ServiceIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Output("role")]
@@ -184,7 +184,7 @@ namespace Pulumi.Gcp.ServiceDirectory
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.servicedirectory.ServiceIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.servicedirectory..ServiceIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role", required: true)]
@@ -217,7 +217,7 @@ namespace Pulumi.Gcp.ServiceDirectory
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.servicedirectory.ServiceIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.servicedirectory..ServiceIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role")]

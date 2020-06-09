@@ -9,13 +9,13 @@ import * as utilities from "../utilities";
 /**
  * Three different resources help you manage your IAM policy for Healthcare dataset. Each of these resources serves a different use case:
  *
- * * `gcp.healthcare.DatasetIamPolicy`: Authoritative. Sets the IAM policy for the dataset and replaces any existing policy already attached.
- * * `gcp.healthcare.DatasetIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the dataset are preserved.
- * * `gcp.healthcare.DatasetIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the dataset are preserved.
+ * * `gcp.healthcare..DatasetIamPolicy`: Authoritative. Sets the IAM policy for the dataset and replaces any existing policy already attached.
+ * * `gcp.healthcare..DatasetIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the dataset are preserved.
+ * * `gcp.healthcare..DatasetIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the dataset are preserved.
  *
- * > **Note:** `gcp.healthcare.DatasetIamPolicy` **cannot** be used in conjunction with `gcp.healthcare.DatasetIamBinding` and `gcp.healthcare.DatasetIamMember` or they will fight over what your policy should be.
+ * > **Note:** `gcp.healthcare..DatasetIamPolicy` **cannot** be used in conjunction with `gcp.healthcare..DatasetIamBinding` and `gcp.healthcare..DatasetIamMember` or they will fight over what your policy should be.
  *
- * > **Note:** `gcp.healthcare.DatasetIamBinding` resources **can be** used in conjunction with `gcp.healthcare.DatasetIamMember` resources **only if** they do not grant privilege to the same role.
+ * > **Note:** `gcp.healthcare..DatasetIamBinding` resources **can be** used in conjunction with `gcp.healthcare..DatasetIamMember` resources **only if** they do not grant privilege to the same role.
  *
  * ## google\_healthcare\_dataset\_iam\_policy
  *
@@ -104,7 +104,7 @@ export class DatasetIamBinding extends pulumi.CustomResource {
     public readonly members!: pulumi.Output<string[]>;
     /**
      * The role that should be applied. Only one
-     * `gcp.healthcare.DatasetIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.healthcare..DatasetIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     public readonly role!: pulumi.Output<string>;
@@ -173,7 +173,7 @@ export interface DatasetIamBindingState {
     readonly members?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The role that should be applied. Only one
-     * `gcp.healthcare.DatasetIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.healthcare..DatasetIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role?: pulumi.Input<string>;
@@ -194,7 +194,7 @@ export interface DatasetIamBindingArgs {
     readonly members: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The role that should be applied. Only one
-     * `gcp.healthcare.DatasetIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.healthcare..DatasetIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role: pulumi.Input<string>;

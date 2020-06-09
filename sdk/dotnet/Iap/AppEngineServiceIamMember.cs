@@ -12,13 +12,13 @@ namespace Pulumi.Gcp.Iap
     /// <summary>
     /// Three different resources help you manage your IAM policy for Identity-Aware Proxy AppEngineService. Each of these resources serves a different use case:
     /// 
-    /// * `gcp.iap.AppEngineServiceIamPolicy`: Authoritative. Sets the IAM policy for the appengineservice and replaces any existing policy already attached.
-    /// * `gcp.iap.AppEngineServiceIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the appengineservice are preserved.
-    /// * `gcp.iap.AppEngineServiceIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the appengineservice are preserved.
+    /// * `gcp.iap..AppEngineServiceIamPolicy`: Authoritative. Sets the IAM policy for the appengineservice and replaces any existing policy already attached.
+    /// * `gcp.iap..AppEngineServiceIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the appengineservice are preserved.
+    /// * `gcp.iap..AppEngineServiceIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the appengineservice are preserved.
     /// 
-    /// &gt; **Note:** `gcp.iap.AppEngineServiceIamPolicy` **cannot** be used in conjunction with `gcp.iap.AppEngineServiceIamBinding` and `gcp.iap.AppEngineServiceIamMember` or they will fight over what your policy should be.
+    /// &gt; **Note:** `gcp.iap..AppEngineServiceIamPolicy` **cannot** be used in conjunction with `gcp.iap..AppEngineServiceIamBinding` and `gcp.iap..AppEngineServiceIamMember` or they will fight over what your policy should be.
     /// 
-    /// &gt; **Note:** `gcp.iap.AppEngineServiceIamBinding` resources **can be** used in conjunction with `gcp.iap.AppEngineServiceIamMember` resources **only if** they do not grant privilege to the same role.
+    /// &gt; **Note:** `gcp.iap..AppEngineServiceIamBinding` resources **can be** used in conjunction with `gcp.iap..AppEngineServiceIamMember` resources **only if** they do not grant privilege to the same role.
     /// 
     /// 
     /// 
@@ -241,7 +241,7 @@ namespace Pulumi.Gcp.Iap
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.iap.AppEngineServiceIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.iap..AppEngineServiceIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Output("role")]
@@ -324,7 +324,7 @@ namespace Pulumi.Gcp.Iap
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.iap.AppEngineServiceIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.iap..AppEngineServiceIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role", required: true)]
@@ -374,7 +374,7 @@ namespace Pulumi.Gcp.Iap
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.iap.AppEngineServiceIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.iap..AppEngineServiceIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role")]

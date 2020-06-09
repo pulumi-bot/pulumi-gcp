@@ -9,13 +9,13 @@ import * as utilities from "../utilities";
 /**
  * Three different resources help you manage your IAM policy for Cloud Functions CloudFunction. Each of these resources serves a different use case:
  *
- * * `gcp.cloudfunctions.FunctionIamPolicy`: Authoritative. Sets the IAM policy for the cloudfunction and replaces any existing policy already attached.
- * * `gcp.cloudfunctions.FunctionIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the cloudfunction are preserved.
- * * `gcp.cloudfunctions.FunctionIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the cloudfunction are preserved.
+ * * `gcp.cloudfunctions..FunctionIamPolicy`: Authoritative. Sets the IAM policy for the cloudfunction and replaces any existing policy already attached.
+ * * `gcp.cloudfunctions..FunctionIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the cloudfunction are preserved.
+ * * `gcp.cloudfunctions..FunctionIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the cloudfunction are preserved.
  *
- * > **Note:** `gcp.cloudfunctions.FunctionIamPolicy` **cannot** be used in conjunction with `gcp.cloudfunctions.FunctionIamBinding` and `gcp.cloudfunctions.FunctionIamMember` or they will fight over what your policy should be.
+ * > **Note:** `gcp.cloudfunctions..FunctionIamPolicy` **cannot** be used in conjunction with `gcp.cloudfunctions..FunctionIamBinding` and `gcp.cloudfunctions..FunctionIamMember` or they will fight over what your policy should be.
  *
- * > **Note:** `gcp.cloudfunctions.FunctionIamBinding` resources **can be** used in conjunction with `gcp.cloudfunctions.FunctionIamMember` resources **only if** they do not grant privilege to the same role.
+ * > **Note:** `gcp.cloudfunctions..FunctionIamBinding` resources **can be** used in conjunction with `gcp.cloudfunctions..FunctionIamMember` resources **only if** they do not grant privilege to the same role.
  *
  *
  *
@@ -120,7 +120,7 @@ export class FunctionIamBinding extends pulumi.CustomResource {
     public readonly region!: pulumi.Output<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.cloudfunctions.FunctionIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.cloudfunctions..FunctionIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     public readonly role!: pulumi.Output<string>;
@@ -201,7 +201,7 @@ export interface FunctionIamBindingState {
     readonly region?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.cloudfunctions.FunctionIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.cloudfunctions..FunctionIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role?: pulumi.Input<string>;
@@ -230,7 +230,7 @@ export interface FunctionIamBindingArgs {
     readonly region?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.cloudfunctions.FunctionIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.cloudfunctions..FunctionIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role: pulumi.Input<string>;

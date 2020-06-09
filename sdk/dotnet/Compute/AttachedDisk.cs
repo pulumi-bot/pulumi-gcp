@@ -23,7 +23,7 @@ namespace Pulumi.Gcp.Compute
     /// * How-to Guides
     ///     * [Adding a persistent disk](https://cloud.google.com/compute/docs/disks/add-persistent-disk)
     /// 
-    /// **Note:** When using `gcp.compute.AttachedDisk` you **must** use `lifecycle.ignore_changes = ["attached_disk"]` on the `gcp.compute.Instance` resource that has the disks attached. Otherwise the two resources will fight for control of the attached disk block.
+    /// **Note:** When using `gcp.compute..AttachedDisk` you **must** use `lifecycle.ignore_changes = ["attached_disk"]` on the `gcp.compute..Instance` resource that has the disks attached. Otherwise the two resources will fight for control of the attached disk block.
     /// </summary>
     public partial class AttachedDisk : Pulumi.CustomResource
     {

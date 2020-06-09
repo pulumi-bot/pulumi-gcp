@@ -9,13 +9,13 @@ import * as utilities from "../utilities";
 /**
  * Three different resources help you manage your IAM policy for Identity-Aware Proxy TunnelInstance. Each of these resources serves a different use case:
  *
- * * `gcp.iap.TunnelInstanceIAMPolicy`: Authoritative. Sets the IAM policy for the tunnelinstance and replaces any existing policy already attached.
- * * `gcp.iap.TunnelInstanceIAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the tunnelinstance are preserved.
- * * `gcp.iap.TunnelInstanceIAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the tunnelinstance are preserved.
+ * * `gcp.iap..TunnelInstanceIAMPolicy`: Authoritative. Sets the IAM policy for the tunnelinstance and replaces any existing policy already attached.
+ * * `gcp.iap..TunnelInstanceIAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the tunnelinstance are preserved.
+ * * `gcp.iap..TunnelInstanceIAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the tunnelinstance are preserved.
  *
- * > **Note:** `gcp.iap.TunnelInstanceIAMPolicy` **cannot** be used in conjunction with `gcp.iap.TunnelInstanceIAMBinding` and `gcp.iap.TunnelInstanceIAMMember` or they will fight over what your policy should be.
+ * > **Note:** `gcp.iap..TunnelInstanceIAMPolicy` **cannot** be used in conjunction with `gcp.iap..TunnelInstanceIAMBinding` and `gcp.iap..TunnelInstanceIAMMember` or they will fight over what your policy should be.
  *
- * > **Note:** `gcp.iap.TunnelInstanceIAMBinding` resources **can be** used in conjunction with `gcp.iap.TunnelInstanceIAMMember` resources **only if** they do not grant privilege to the same role.
+ * > **Note:** `gcp.iap..TunnelInstanceIAMBinding` resources **can be** used in conjunction with `gcp.iap..TunnelInstanceIAMMember` resources **only if** they do not grant privilege to the same role.
  *
  *
  *
@@ -50,7 +50,7 @@ import * as utilities from "../utilities";
  *         role: "roles/iap.tunnelResourceAccessor",
  *         members: ["user:jane@example.com"],
  *         condition: {
- *             title: "expiresAfter20191231",
+ *             title: "expires_after_2019_12_31",
  *             description: "Expiring at midnight of 2019-12-31",
  *             expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
  *         },
@@ -91,7 +91,7 @@ import * as utilities from "../utilities";
  *     role: "roles/iap.tunnelResourceAccessor",
  *     members: ["user:jane@example.com"],
  *     condition: {
- *         title: "expiresAfter20191231",
+ *         title: "expires_after_2019_12_31",
  *         description: "Expiring at midnight of 2019-12-31",
  *         expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
  *     },
@@ -125,7 +125,7 @@ import * as utilities from "../utilities";
  *     role: "roles/iap.tunnelResourceAccessor",
  *     member: "user:jane@example.com",
  *     condition: {
- *         title: "expiresAfter20191231",
+ *         title: "expires_after_2019_12_31",
  *         description: "Expiring at midnight of 2019-12-31",
  *         expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
  *     },
@@ -181,7 +181,7 @@ export class TunnelInstanceIAMBinding extends pulumi.CustomResource {
     public readonly project!: pulumi.Output<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.iap.TunnelInstanceIAMBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.iap..TunnelInstanceIAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     public readonly role!: pulumi.Output<string>;
@@ -261,7 +261,7 @@ export interface TunnelInstanceIAMBindingState {
     readonly project?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.iap.TunnelInstanceIAMBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.iap..TunnelInstanceIAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role?: pulumi.Input<string>;
@@ -289,7 +289,7 @@ export interface TunnelInstanceIAMBindingArgs {
     readonly project?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.iap.TunnelInstanceIAMBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.iap..TunnelInstanceIAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role: pulumi.Input<string>;

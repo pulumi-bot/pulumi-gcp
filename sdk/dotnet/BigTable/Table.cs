@@ -44,7 +44,7 @@ namespace Pulumi.Gcp.BigTable
         /// <summary>
         /// A list of predefined keys to split the table on.
         /// !&gt; **Warning:** Modifying the `split_keys` of an existing table will cause the provider
-        /// to delete/recreate the entire `gcp.bigtable.Table` resource.
+        /// to delete/recreate the entire `gcp.bigtable..Table` resource.
         /// </summary>
         [Output("splitKeys")]
         public Output<ImmutableArray<string>> SplitKeys { get; private set; } = null!;
@@ -132,7 +132,7 @@ namespace Pulumi.Gcp.BigTable
         /// <summary>
         /// A list of predefined keys to split the table on.
         /// !&gt; **Warning:** Modifying the `split_keys` of an existing table will cause the provider
-        /// to delete/recreate the entire `gcp.bigtable.Table` resource.
+        /// to delete/recreate the entire `gcp.bigtable..Table` resource.
         /// </summary>
         public InputList<string> SplitKeys
         {
@@ -184,7 +184,7 @@ namespace Pulumi.Gcp.BigTable
         /// <summary>
         /// A list of predefined keys to split the table on.
         /// !&gt; **Warning:** Modifying the `split_keys` of an existing table will cause the provider
-        /// to delete/recreate the entire `gcp.bigtable.Table` resource.
+        /// to delete/recreate the entire `gcp.bigtable..Table` resource.
         /// </summary>
         public InputList<string> SplitKeys
         {

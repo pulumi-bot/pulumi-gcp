@@ -12,7 +12,7 @@ namespace Pulumi.Gcp.Kms
     public static class GetKMSSecretCiphertext
     {
         /// <summary>
-        /// !&gt; **Warning:** This data source is deprecated. Use the `gcp.kms.SecretCiphertext` **resource** instead.
+        /// !&gt; **Warning:** This data source is deprecated. Use the `gcp.kms..SecretCiphertext` **resource** instead.
         /// 
         /// This data source allows you to encrypt data with Google Cloud KMS and use the
         /// ciphertext within your resource definitions.

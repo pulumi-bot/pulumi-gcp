@@ -83,7 +83,7 @@ export class Table extends pulumi.CustomResource {
     /**
      * A list of predefined keys to split the table on.
      * !> **Warning:** Modifying the `splitKeys` of an existing table will cause the provider
-     * to delete/recreate the entire `gcp.bigtable.Table` resource.
+     * to delete/recreate the entire `gcp.bigtable..Table` resource.
      */
     public readonly splitKeys!: pulumi.Output<string[] | undefined>;
 
@@ -150,7 +150,7 @@ export interface TableState {
     /**
      * A list of predefined keys to split the table on.
      * !> **Warning:** Modifying the `splitKeys` of an existing table will cause the provider
-     * to delete/recreate the entire `gcp.bigtable.Table` resource.
+     * to delete/recreate the entire `gcp.bigtable..Table` resource.
      */
     readonly splitKeys?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -179,7 +179,7 @@ export interface TableArgs {
     /**
      * A list of predefined keys to split the table on.
      * !> **Warning:** Modifying the `splitKeys` of an existing table will cause the provider
-     * to delete/recreate the entire `gcp.bigtable.Table` resource.
+     * to delete/recreate the entire `gcp.bigtable..Table` resource.
      */
     readonly splitKeys?: pulumi.Input<pulumi.Input<string>[]>;
 }

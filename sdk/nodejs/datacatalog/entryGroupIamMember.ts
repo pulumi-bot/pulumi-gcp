@@ -9,13 +9,13 @@ import * as utilities from "../utilities";
 /**
  * Three different resources help you manage your IAM policy for Data catalog EntryGroup. Each of these resources serves a different use case:
  *
- * * `gcp.datacatalog.EntryGroupIamPolicy`: Authoritative. Sets the IAM policy for the entrygroup and replaces any existing policy already attached.
- * * `gcp.datacatalog.EntryGroupIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the entrygroup are preserved.
- * * `gcp.datacatalog.EntryGroupIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the entrygroup are preserved.
+ * * `gcp.datacatalog..EntryGroupIamPolicy`: Authoritative. Sets the IAM policy for the entrygroup and replaces any existing policy already attached.
+ * * `gcp.datacatalog..EntryGroupIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the entrygroup are preserved.
+ * * `gcp.datacatalog..EntryGroupIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the entrygroup are preserved.
  *
- * > **Note:** `gcp.datacatalog.EntryGroupIamPolicy` **cannot** be used in conjunction with `gcp.datacatalog.EntryGroupIamBinding` and `gcp.datacatalog.EntryGroupIamMember` or they will fight over what your policy should be.
+ * > **Note:** `gcp.datacatalog..EntryGroupIamPolicy` **cannot** be used in conjunction with `gcp.datacatalog..EntryGroupIamBinding` and `gcp.datacatalog..EntryGroupIamMember` or they will fight over what your policy should be.
  *
- * > **Note:** `gcp.datacatalog.EntryGroupIamBinding` resources **can be** used in conjunction with `gcp.datacatalog.EntryGroupIamMember` resources **only if** they do not grant privilege to the same role.
+ * > **Note:** `gcp.datacatalog..EntryGroupIamBinding` resources **can be** used in conjunction with `gcp.datacatalog..EntryGroupIamMember` resources **only if** they do not grant privilege to the same role.
  *
  *
  *
@@ -109,7 +109,7 @@ export class EntryGroupIamMember extends pulumi.CustomResource {
     public readonly region!: pulumi.Output<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.datacatalog.EntryGroupIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.datacatalog..EntryGroupIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     public readonly role!: pulumi.Output<string>;
@@ -185,7 +185,7 @@ export interface EntryGroupIamMemberState {
     readonly region?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.datacatalog.EntryGroupIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.datacatalog..EntryGroupIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role?: pulumi.Input<string>;
@@ -209,7 +209,7 @@ export interface EntryGroupIamMemberArgs {
     readonly region?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.datacatalog.EntryGroupIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.datacatalog..EntryGroupIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role: pulumi.Input<string>;

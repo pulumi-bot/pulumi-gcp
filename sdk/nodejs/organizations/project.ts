@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  * Projects created with this resource must be associated with an Organization.
  * See the [Organization documentation](https://cloud.google.com/resource-manager/docs/quickstarts) for more details.
  *
- * The service account used to run this provider when creating a `gcp.organizations.Project`
+ * The service account used to run this provider when creating a `gcp.organizations..Project`
  * resource must have `roles/resourcemanager.projectCreator`. See the
  * [Access Control for Organizations Using IAM](https://cloud.google.com/resource-manager/docs/access-control-org)
  * doc for more information.
@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const myProject = new gcp.organizations.Project("myProject", {
+ * const myProject = new gcp.organizations.Project("my_project", {
  *     orgId: "1234567",
  *     projectId: "your-project-id",
  * });

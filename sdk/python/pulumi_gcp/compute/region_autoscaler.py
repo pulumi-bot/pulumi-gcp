@@ -147,8 +147,9 @@ class RegionAutoscaler(pulumi.CustomResource):
         * How-to Guides
             * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
 
-        ## Example Usage - Region Autoscaler Basic
+        ## Example Usage
 
+        ### Region Autoscaler Basic
 
         ```python
         import pulumi
@@ -200,6 +201,7 @@ class RegionAutoscaler(pulumi.CustomResource):
                 },
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

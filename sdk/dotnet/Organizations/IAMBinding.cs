@@ -14,7 +14,7 @@ namespace Pulumi.Gcp.Organizations
     /// an existing Google Cloud Platform Organization.
     /// 
     /// &gt; **Note:** This resource __must not__ be used in conjunction with
-    ///    `gcp.organizations.IAMMember` for the __same role__ or they will fight over
+    ///    `gcp.organizations..IAMMember` for the __same role__ or they will fight over
     ///    what your policy should be.
     /// 
     /// &gt; **Note:** On create, this resource will overwrite members of any existing roles.
@@ -72,7 +72,7 @@ namespace Pulumi.Gcp.Organizations
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.organizations.IAMBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.organizations..IAMBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Output("role")]
@@ -147,7 +147,7 @@ namespace Pulumi.Gcp.Organizations
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.organizations.IAMBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.organizations..IAMBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role", required: true)]
@@ -189,7 +189,7 @@ namespace Pulumi.Gcp.Organizations
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.organizations.IAMBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.organizations..IAMBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role")]

@@ -12,16 +12,16 @@ namespace Pulumi.Gcp.Spanner
     /// <summary>
     /// Three different resources help you manage your IAM policy for a Spanner database. Each of these resources serves a different use case:
     /// 
-    /// * `gcp.spanner.DatabaseIAMPolicy`: Authoritative. Sets the IAM policy for the database and replaces any existing policy already attached.
+    /// * `gcp.spanner..DatabaseIAMPolicy`: Authoritative. Sets the IAM policy for the database and replaces any existing policy already attached.
     /// 
-    /// &gt; **Warning:** It's entirely possibly to lock yourself out of your database using `gcp.spanner.DatabaseIAMPolicy`. Any permissions granted by default will be removed unless you include them in your config.
+    /// &gt; **Warning:** It's entirely possibly to lock yourself out of your database using `gcp.spanner..DatabaseIAMPolicy`. Any permissions granted by default will be removed unless you include them in your config.
     /// 
-    /// * `gcp.spanner.DatabaseIAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the database are preserved.
-    /// * `gcp.spanner.DatabaseIAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the database are preserved.
+    /// * `gcp.spanner..DatabaseIAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the database are preserved.
+    /// * `gcp.spanner..DatabaseIAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the database are preserved.
     /// 
-    /// &gt; **Note:** `gcp.spanner.DatabaseIAMPolicy` **cannot** be used in conjunction with `gcp.spanner.DatabaseIAMBinding` and `gcp.spanner.DatabaseIAMMember` or they will fight over what your policy should be.
+    /// &gt; **Note:** `gcp.spanner..DatabaseIAMPolicy` **cannot** be used in conjunction with `gcp.spanner..DatabaseIAMBinding` and `gcp.spanner..DatabaseIAMMember` or they will fight over what your policy should be.
     /// 
-    /// &gt; **Note:** `gcp.spanner.DatabaseIAMBinding` resources **can be** used in conjunction with `gcp.spanner.DatabaseIAMMember` resources **only if** they do not grant privilege to the same role.
+    /// &gt; **Note:** `gcp.spanner..DatabaseIAMBinding` resources **can be** used in conjunction with `gcp.spanner..DatabaseIAMMember` resources **only if** they do not grant privilege to the same role.
     /// 
     /// ## google\_spanner\_database\_iam\_policy
     /// 
@@ -140,7 +140,7 @@ namespace Pulumi.Gcp.Spanner
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.spanner.DatabaseIAMBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.spanner..DatabaseIAMBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Output("role")]
@@ -224,7 +224,7 @@ namespace Pulumi.Gcp.Spanner
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.spanner.DatabaseIAMBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.spanner..DatabaseIAMBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role", required: true)]
@@ -275,7 +275,7 @@ namespace Pulumi.Gcp.Spanner
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.spanner.DatabaseIAMBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.spanner..DatabaseIAMBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role")]

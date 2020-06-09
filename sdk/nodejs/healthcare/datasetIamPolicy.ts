@@ -7,13 +7,13 @@ import * as utilities from "../utilities";
 /**
  * Three different resources help you manage your IAM policy for Healthcare dataset. Each of these resources serves a different use case:
  *
- * * `gcp.healthcare.DatasetIamPolicy`: Authoritative. Sets the IAM policy for the dataset and replaces any existing policy already attached.
- * * `gcp.healthcare.DatasetIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the dataset are preserved.
- * * `gcp.healthcare.DatasetIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the dataset are preserved.
+ * * `gcp.healthcare..DatasetIamPolicy`: Authoritative. Sets the IAM policy for the dataset and replaces any existing policy already attached.
+ * * `gcp.healthcare..DatasetIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the dataset are preserved.
+ * * `gcp.healthcare..DatasetIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the dataset are preserved.
  *
- * > **Note:** `gcp.healthcare.DatasetIamPolicy` **cannot** be used in conjunction with `gcp.healthcare.DatasetIamBinding` and `gcp.healthcare.DatasetIamMember` or they will fight over what your policy should be.
+ * > **Note:** `gcp.healthcare..DatasetIamPolicy` **cannot** be used in conjunction with `gcp.healthcare..DatasetIamBinding` and `gcp.healthcare..DatasetIamMember` or they will fight over what your policy should be.
  *
- * > **Note:** `gcp.healthcare.DatasetIamBinding` resources **can be** used in conjunction with `gcp.healthcare.DatasetIamMember` resources **only if** they do not grant privilege to the same role.
+ * > **Note:** `gcp.healthcare..DatasetIamBinding` resources **can be** used in conjunction with `gcp.healthcare..DatasetIamMember` resources **only if** they do not grant privilege to the same role.
  *
  * ## google\_healthcare\_dataset\_iam\_policy
  *

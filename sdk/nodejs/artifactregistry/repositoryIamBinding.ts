@@ -9,13 +9,13 @@ import * as utilities from "../utilities";
 /**
  * Three different resources help you manage your IAM policy for Artifact Registry Repository. Each of these resources serves a different use case:
  *
- * * `gcp.artifactregistry.RepositoryIamPolicy`: Authoritative. Sets the IAM policy for the repository and replaces any existing policy already attached.
- * * `gcp.artifactregistry.RepositoryIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the repository are preserved.
- * * `gcp.artifactregistry.RepositoryIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the repository are preserved.
+ * * `gcp.artifactregistry..RepositoryIamPolicy`: Authoritative. Sets the IAM policy for the repository and replaces any existing policy already attached.
+ * * `gcp.artifactregistry..RepositoryIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the repository are preserved.
+ * * `gcp.artifactregistry..RepositoryIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the repository are preserved.
  *
- * > **Note:** `gcp.artifactregistry.RepositoryIamPolicy` **cannot** be used in conjunction with `gcp.artifactregistry.RepositoryIamBinding` and `gcp.artifactregistry.RepositoryIamMember` or they will fight over what your policy should be.
+ * > **Note:** `gcp.artifactregistry..RepositoryIamPolicy` **cannot** be used in conjunction with `gcp.artifactregistry..RepositoryIamBinding` and `gcp.artifactregistry..RepositoryIamMember` or they will fight over what your policy should be.
  *
- * > **Note:** `gcp.artifactregistry.RepositoryIamBinding` resources **can be** used in conjunction with `gcp.artifactregistry.RepositoryIamMember` resources **only if** they do not grant privilege to the same role.
+ * > **Note:** `gcp.artifactregistry..RepositoryIamBinding` resources **can be** used in conjunction with `gcp.artifactregistry..RepositoryIamMember` resources **only if** they do not grant privilege to the same role.
  *
  *
  * ## google\_artifact\_registry\_repository\_iam\_policy
@@ -118,7 +118,7 @@ export class RepositoryIamBinding extends pulumi.CustomResource {
     public readonly repository!: pulumi.Output<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.artifactregistry.RepositoryIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.artifactregistry..RepositoryIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     public readonly role!: pulumi.Output<string>;
@@ -198,7 +198,7 @@ export interface RepositoryIamBindingState {
     readonly repository?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.artifactregistry.RepositoryIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.artifactregistry..RepositoryIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role?: pulumi.Input<string>;
@@ -226,7 +226,7 @@ export interface RepositoryIamBindingArgs {
     readonly repository: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.artifactregistry.RepositoryIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.artifactregistry..RepositoryIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role: pulumi.Input<string>;

@@ -14,7 +14,7 @@ namespace Pulumi.Gcp.Organizations
     /// 
     /// !&gt; **Warning:** New organizations have several default policies which will,
     ///    without extreme caution, be **overwritten** by use of this resource.
-    ///    The safest alternative is to use multiple `gcp.organizations.IAMBinding`
+    ///    The safest alternative is to use multiple `gcp.organizations..IAMBinding`
     ///    resources.  It is easy to use this resource to remove your own access to
     ///    an organization, which will require a call to Google Support to have
     ///    fixed, and can take multiple days to resolve.  If you do use this resource,
@@ -22,7 +22,7 @@ namespace Pulumi.Gcp.Organizations
     ///    by importing your existing policy, and examining the diff very closely.
     /// 
     /// &gt; **Note:** This resource __must not__ be used in conjunction with
-    ///    `gcp.organizations.IAMMember` or `gcp.organizations.IAMBinding`
+    ///    `gcp.organizations..IAMMember` or `gcp.organizations..IAMBinding`
     ///    or they will fight over what your policy should be.
     /// 
     /// ## Example Usage

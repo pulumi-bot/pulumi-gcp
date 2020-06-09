@@ -36,8 +36,9 @@ namespace Pulumi.Gcp.Compute
     /// &gt; **Warning:** All arguments including `disk_encryption_key.raw_key` will be stored in the raw
     /// state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
     /// 
-    /// ## Example Usage - Disk Basic
+    /// ## Example Usage
     /// 
+    /// ### Disk Basic
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -99,7 +100,7 @@ namespace Pulumi.Gcp.Compute
         /// `global/images/family/{family}`, `family/{family}`, `{project}/{family}`,
         /// `{project}/{image}`, `{family}`, or `{image}`. If referred by family, the
         /// images names must include the family name. If they don't, use the
-        /// [gcp.compute.Image data source](https://www.terraform.io/docs/providers/google/d/datasource_compute_image.html).
+        /// [gcp.compute..Image data source](https://www.terraform.io/docs/providers/google/d/datasource_compute_image.html).
         /// For instance, the image `centos-6-v20180104` includes its family name `centos-6`.
         /// These images can be referred by family name here.
         /// </summary>
@@ -320,7 +321,7 @@ namespace Pulumi.Gcp.Compute
         /// `global/images/family/{family}`, `family/{family}`, `{project}/{family}`,
         /// `{project}/{image}`, `{family}`, or `{image}`. If referred by family, the
         /// images names must include the family name. If they don't, use the
-        /// [gcp.compute.Image data source](https://www.terraform.io/docs/providers/google/d/datasource_compute_image.html).
+        /// [gcp.compute..Image data source](https://www.terraform.io/docs/providers/google/d/datasource_compute_image.html).
         /// For instance, the image `centos-6-v20180104` includes its family name `centos-6`.
         /// These images can be referred by family name here.
         /// </summary>
@@ -474,7 +475,7 @@ namespace Pulumi.Gcp.Compute
         /// `global/images/family/{family}`, `family/{family}`, `{project}/{family}`,
         /// `{project}/{image}`, `{family}`, or `{image}`. If referred by family, the
         /// images names must include the family name. If they don't, use the
-        /// [gcp.compute.Image data source](https://www.terraform.io/docs/providers/google/d/datasource_compute_image.html).
+        /// [gcp.compute..Image data source](https://www.terraform.io/docs/providers/google/d/datasource_compute_image.html).
         /// For instance, the image `centos-6-v20180104` includes its family name `centos-6`.
         /// These images can be referred by family name here.
         /// </summary>

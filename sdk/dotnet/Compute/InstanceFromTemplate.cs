@@ -17,7 +17,7 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// This resource is specifically to create a compute instance from a given
     /// `source_instance_template`. To create an instance without a template, use the
-    /// `gcp.compute.Instance` resource.
+    /// `gcp.compute..Instance` resource.
     /// </summary>
     public partial class InstanceFromTemplate : Pulumi.CustomResource
     {

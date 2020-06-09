@@ -7,13 +7,13 @@ import * as utilities from "../utilities";
 /**
  * Three different resources help you manage your IAM policy for Identity-Aware Proxy WebTypeCompute. Each of these resources serves a different use case:
  *
- * * `gcp.iap.WebTypeComputeIamPolicy`: Authoritative. Sets the IAM policy for the webtypecompute and replaces any existing policy already attached.
- * * `gcp.iap.WebTypeComputeIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the webtypecompute are preserved.
- * * `gcp.iap.WebTypeComputeIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the webtypecompute are preserved.
+ * * `gcp.iap..WebTypeComputeIamPolicy`: Authoritative. Sets the IAM policy for the webtypecompute and replaces any existing policy already attached.
+ * * `gcp.iap..WebTypeComputeIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the webtypecompute are preserved.
+ * * `gcp.iap..WebTypeComputeIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the webtypecompute are preserved.
  *
- * > **Note:** `gcp.iap.WebTypeComputeIamPolicy` **cannot** be used in conjunction with `gcp.iap.WebTypeComputeIamBinding` and `gcp.iap.WebTypeComputeIamMember` or they will fight over what your policy should be.
+ * > **Note:** `gcp.iap..WebTypeComputeIamPolicy` **cannot** be used in conjunction with `gcp.iap..WebTypeComputeIamBinding` and `gcp.iap..WebTypeComputeIamMember` or they will fight over what your policy should be.
  *
- * > **Note:** `gcp.iap.WebTypeComputeIamBinding` resources **can be** used in conjunction with `gcp.iap.WebTypeComputeIamMember` resources **only if** they do not grant privilege to the same role.
+ * > **Note:** `gcp.iap..WebTypeComputeIamBinding` resources **can be** used in conjunction with `gcp.iap..WebTypeComputeIamMember` resources **only if** they do not grant privilege to the same role.
  *
  *
  *
@@ -46,7 +46,7 @@ import * as utilities from "../utilities";
  *         role: "roles/iap.httpsResourceAccessor",
  *         members: ["user:jane@example.com"],
  *         condition: {
- *             title: "expiresAfter20191231",
+ *             title: "expires_after_2019_12_31",
  *             description: "Expiring at midnight of 2019-12-31",
  *             expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
  *         },
@@ -81,7 +81,7 @@ import * as utilities from "../utilities";
  *     role: "roles/iap.httpsResourceAccessor",
  *     members: ["user:jane@example.com"],
  *     condition: {
- *         title: "expiresAfter20191231",
+ *         title: "expires_after_2019_12_31",
  *         description: "Expiring at midnight of 2019-12-31",
  *         expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
  *     },
@@ -111,7 +111,7 @@ import * as utilities from "../utilities";
  *     role: "roles/iap.httpsResourceAccessor",
  *     member: "user:jane@example.com",
  *     condition: {
- *         title: "expiresAfter20191231",
+ *         title: "expires_after_2019_12_31",
  *         description: "Expiring at midnight of 2019-12-31",
  *         expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
  *     },

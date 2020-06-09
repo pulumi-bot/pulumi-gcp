@@ -14,13 +14,13 @@ namespace Pulumi.Gcp.ServiceAccount
     /// 
     /// Three different resources help you manage your IAM policy for a service account. Each of these resources serves a different use case:
     /// 
-    /// * `gcp.serviceAccount.IAMPolicy`: Authoritative. Sets the IAM policy for the service account and replaces any existing policy already attached.
-    /// * `gcp.serviceAccount.IAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the service account are preserved.
-    /// * `gcp.serviceAccount.IAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the service account are preserved.
+    /// * `gcp.serviceAccount..IAMPolicy`: Authoritative. Sets the IAM policy for the service account and replaces any existing policy already attached.
+    /// * `gcp.serviceAccount..IAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the service account are preserved.
+    /// * `gcp.serviceAccount..IAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the service account are preserved.
     /// 
-    /// &gt; **Note:** `gcp.serviceAccount.IAMPolicy` **cannot** be used in conjunction with `gcp.serviceAccount.IAMBinding` and `gcp.serviceAccount.IAMMember` or they will fight over what your policy should be.
+    /// &gt; **Note:** `gcp.serviceAccount..IAMPolicy` **cannot** be used in conjunction with `gcp.serviceAccount..IAMBinding` and `gcp.serviceAccount..IAMMember` or they will fight over what your policy should be.
     /// 
-    /// &gt; **Note:** `gcp.serviceAccount.IAMBinding` resources **can be** used in conjunction with `gcp.serviceAccount.IAMMember` resources **only if** they do not grant privilege to the same role.
+    /// &gt; **Note:** `gcp.serviceAccount..IAMBinding` resources **can be** used in conjunction with `gcp.serviceAccount..IAMMember` resources **only if** they do not grant privilege to the same role.
     /// 
     /// ## google\_service\_account\_iam\_policy
     /// 

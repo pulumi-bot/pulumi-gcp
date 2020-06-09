@@ -14,7 +14,7 @@ namespace Pulumi.Gcp.Folder
     /// an existing Google Cloud Platform folder.
     /// 
     /// &gt; **Note:** This resource _must not_ be used in conjunction with
-    ///    `gcp.folder.IAMPolicy` or they will fight over what your policy
+    ///    `gcp.folder..IAMPolicy` or they will fight over what your policy
     ///    should be.
     /// 
     /// &gt; **Note:** On create, this resource will overwrite members of any existing roles.
@@ -83,7 +83,7 @@ namespace Pulumi.Gcp.Folder
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.folder.IAMBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.folder..IAMBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Output("role")]
@@ -164,7 +164,7 @@ namespace Pulumi.Gcp.Folder
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.folder.IAMBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.folder..IAMBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role", required: true)]
@@ -212,7 +212,7 @@ namespace Pulumi.Gcp.Folder
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.folder.IAMBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.folder..IAMBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role")]

@@ -11,7 +11,7 @@ import * as utilities from "../utilities";
  * an existing Google Cloud Platform Billing Account.
  *
  * > **Note:** This resource __must not__ be used in conjunction with
- *    `gcp.billing.AccountIamMember` for the __same role__ or they will fight over
+ *    `gcp.billing..AccountIamMember` for the __same role__ or they will fight over
  *    what your policy should be.
  *
  * > **Note:** On create, this resource will overwrite members of any existing roles.

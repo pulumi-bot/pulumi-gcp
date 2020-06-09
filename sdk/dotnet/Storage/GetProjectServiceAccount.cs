@@ -15,7 +15,7 @@ namespace Pulumi.Gcp.Storage
         /// Get the email address of a project's unique Google Cloud Storage service account.
         /// 
         /// Each Google Cloud project has a unique service account for use with Google Cloud Storage. Only this
-        /// special service account can be used to set up `gcp.storage.Notification` resources.
+        /// special service account can be used to set up `gcp.storage..Notification` resources.
         /// 
         /// For more information see
         /// [the API reference](https://cloud.google.com/storage/docs/json_api/v1/projects/serviceAccount).

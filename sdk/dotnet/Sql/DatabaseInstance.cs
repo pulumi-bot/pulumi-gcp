@@ -13,7 +13,7 @@ namespace Pulumi.Gcp.Sql
     /// Creates a new Google SQL Database Instance. For more information, see the [official documentation](https://cloud.google.com/sql/),
     /// or the [JSON API](https://cloud.google.com/sql/docs/admin-api/v1beta4/instances).
     /// 
-    /// &gt; **NOTE on `gcp.sql.DatabaseInstance`:** - First-generation instances have been
+    /// &gt; **NOTE on `gcp.sql..DatabaseInstance`:** - First-generation instances have been
     /// deprecated and should no longer be created, see [upgrade docs](https://cloud.google.com/sql/docs/mysql/upgrade-2nd-gen)
     /// for more details.
     /// To upgrade your First-generation instance, update your config that the instance has
@@ -35,9 +35,9 @@ namespace Pulumi.Gcp.Sql
     /// * `pricing_plan` ("PER_USE" is now the only valid option)
     /// Change `settings.backup_configuration.enabled` attribute back to its desired value and apply as necessary.
     /// 
-    /// &gt; **NOTE on `gcp.sql.DatabaseInstance`:** - Second-generation instances include a
+    /// &gt; **NOTE on `gcp.sql..DatabaseInstance`:** - Second-generation instances include a
     /// default 'root'@'%' user with no password. This user will be deleted by the provider on
-    /// instance creation. You should use `gcp.sql.User` to define a custom user with
+    /// instance creation. You should use `gcp.sql..User` to define a custom user with
     /// a restricted host and strong password.
     /// 
     /// ## Example Usage

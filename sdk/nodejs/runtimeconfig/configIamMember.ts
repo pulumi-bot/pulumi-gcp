@@ -9,13 +9,13 @@ import * as utilities from "../utilities";
 /**
  * Three different resources help you manage your IAM policy for Runtime Configurator Config. Each of these resources serves a different use case:
  *
- * * `gcp.runtimeconfig.ConfigIamPolicy`: Authoritative. Sets the IAM policy for the config and replaces any existing policy already attached.
- * * `gcp.runtimeconfig.ConfigIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the config are preserved.
- * * `gcp.runtimeconfig.ConfigIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the config are preserved.
+ * * `gcp.runtimeconfig..ConfigIamPolicy`: Authoritative. Sets the IAM policy for the config and replaces any existing policy already attached.
+ * * `gcp.runtimeconfig..ConfigIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the config are preserved.
+ * * `gcp.runtimeconfig..ConfigIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the config are preserved.
  *
- * > **Note:** `gcp.runtimeconfig.ConfigIamPolicy` **cannot** be used in conjunction with `gcp.runtimeconfig.ConfigIamBinding` and `gcp.runtimeconfig.ConfigIamMember` or they will fight over what your policy should be.
+ * > **Note:** `gcp.runtimeconfig..ConfigIamPolicy` **cannot** be used in conjunction with `gcp.runtimeconfig..ConfigIamBinding` and `gcp.runtimeconfig..ConfigIamMember` or they will fight over what your policy should be.
  *
- * > **Note:** `gcp.runtimeconfig.ConfigIamBinding` resources **can be** used in conjunction with `gcp.runtimeconfig.ConfigIamMember` resources **only if** they do not grant privilege to the same role.
+ * > **Note:** `gcp.runtimeconfig..ConfigIamBinding` resources **can be** used in conjunction with `gcp.runtimeconfig..ConfigIamMember` resources **only if** they do not grant privilege to the same role.
  *
  *
  *
@@ -111,7 +111,7 @@ export class ConfigIamMember extends pulumi.CustomResource {
     public readonly project!: pulumi.Output<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.runtimeconfig.ConfigIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.runtimeconfig..ConfigIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     public readonly role!: pulumi.Output<string>;
@@ -184,7 +184,7 @@ export interface ConfigIamMemberState {
     readonly project?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.runtimeconfig.ConfigIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.runtimeconfig..ConfigIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role?: pulumi.Input<string>;
@@ -207,7 +207,7 @@ export interface ConfigIamMemberArgs {
     readonly project?: pulumi.Input<string>;
     /**
      * The role that should be applied. Only one
-     * `gcp.runtimeconfig.ConfigIamBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.runtimeconfig..ConfigIamBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role: pulumi.Input<string>;

@@ -12,13 +12,13 @@ namespace Pulumi.Gcp.Kms
     /// <summary>
     /// Three different resources help you manage your IAM policy for KMS key ring. Each of these resources serves a different use case:
     /// 
-    /// * `gcp.kms.KeyRingIAMPolicy`: Authoritative. Sets the IAM policy for the key ring and replaces any existing policy already attached.
-    /// * `gcp.kms.KeyRingIAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the key ring are preserved.
-    /// * `gcp.kms.KeyRingIAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the key ring are preserved.
+    /// * `gcp.kms..KeyRingIAMPolicy`: Authoritative. Sets the IAM policy for the key ring and replaces any existing policy already attached.
+    /// * `gcp.kms..KeyRingIAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the key ring are preserved.
+    /// * `gcp.kms..KeyRingIAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the key ring are preserved.
     /// 
-    /// &gt; **Note:** `gcp.kms.KeyRingIAMPolicy` **cannot** be used in conjunction with `gcp.kms.KeyRingIAMBinding` and `gcp.kms.KeyRingIAMMember` or they will fight over what your policy should be.
+    /// &gt; **Note:** `gcp.kms..KeyRingIAMPolicy` **cannot** be used in conjunction with `gcp.kms..KeyRingIAMBinding` and `gcp.kms..KeyRingIAMMember` or they will fight over what your policy should be.
     /// 
-    /// &gt; **Note:** `gcp.kms.KeyRingIAMBinding` resources **can be** used in conjunction with `gcp.kms.KeyRingIAMMember` resources **only if** they do not grant privilege to the same role.
+    /// &gt; **Note:** `gcp.kms..KeyRingIAMBinding` resources **can be** used in conjunction with `gcp.kms..KeyRingIAMMember` resources **only if** they do not grant privilege to the same role.
     /// 
     /// ## google\_kms\_key\_ring\_iam\_policy
     /// 
@@ -233,7 +233,7 @@ namespace Pulumi.Gcp.Kms
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.kms.KeyRingIAMBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.kms..KeyRingIAMBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Output("role")]
@@ -306,7 +306,7 @@ namespace Pulumi.Gcp.Kms
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.kms.KeyRingIAMBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.kms..KeyRingIAMBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role", required: true)]
@@ -346,7 +346,7 @@ namespace Pulumi.Gcp.Kms
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.kms.KeyRingIAMBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.kms..KeyRingIAMBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role")]

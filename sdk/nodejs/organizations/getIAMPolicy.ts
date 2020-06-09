@@ -8,7 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Generates an IAM policy document that may be referenced by and applied to
- * other Google Cloud Platform resources, such as the `gcp.organizations.Project` resource.
+ * other Google Cloud Platform resources, such as the `gcp.organizations..Project` resource.
  *
  * **Note:** Several restrictions apply when setting IAM policies through this API.
  * See the [setIamPolicy docs](https://cloud.google.com/resource-manager/reference/rest/v1/projects/setIamPolicy)

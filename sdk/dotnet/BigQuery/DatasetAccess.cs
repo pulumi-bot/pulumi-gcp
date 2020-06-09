@@ -12,9 +12,9 @@ namespace Pulumi.Gcp.BigQuery
     /// <summary>
     /// Gives dataset access for a single entity. This resource is intended to be used in cases where
     /// it is not possible to compile a full list of access blocks to include in a
-    /// `gcp.bigquery.Dataset` resource, to enable them to be added separately.
+    /// `gcp.bigquery..Dataset` resource, to enable them to be added separately.
     /// 
-    /// &gt; **Note:** If this resource is used alongside a `gcp.bigquery.Dataset` resource, the
+    /// &gt; **Note:** If this resource is used alongside a `gcp.bigquery..Dataset` resource, the
     /// dataset resource must either have no defined `access` blocks or a `lifecycle` block with
     /// `ignore_changes = [access]` so they don't fight over which accesses should be on the dataset.
     /// 
@@ -25,8 +25,9 @@ namespace Pulumi.Gcp.BigQuery
     /// * How-to Guides
     ///     * [Controlling access to datasets](https://cloud.google.com/bigquery/docs/dataset-access-controls)
     /// 
-    /// ## Example Usage - Bigquery Dataset Access Basic User
+    /// ## Example Usage
     /// 
+    /// ### Bigquery Dataset Access Basic User
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -54,8 +55,8 @@ namespace Pulumi.Gcp.BigQuery
     /// 
     /// }
     /// ```
-    /// ## Example Usage - Bigquery Dataset Access View
     /// 
+    /// ### Bigquery Dataset Access View
     /// 
     /// ```csharp
     /// using Pulumi;

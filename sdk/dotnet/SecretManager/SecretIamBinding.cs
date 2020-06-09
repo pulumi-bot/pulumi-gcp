@@ -12,13 +12,13 @@ namespace Pulumi.Gcp.SecretManager
     /// <summary>
     /// Three different resources help you manage your IAM policy for Secret Manager Secret. Each of these resources serves a different use case:
     /// 
-    /// * `gcp.secretmanager.SecretIamPolicy`: Authoritative. Sets the IAM policy for the secret and replaces any existing policy already attached.
-    /// * `gcp.secretmanager.SecretIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the secret are preserved.
-    /// * `gcp.secretmanager.SecretIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the secret are preserved.
+    /// * `gcp.secretmanager..SecretIamPolicy`: Authoritative. Sets the IAM policy for the secret and replaces any existing policy already attached.
+    /// * `gcp.secretmanager..SecretIamBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the secret are preserved.
+    /// * `gcp.secretmanager..SecretIamMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the secret are preserved.
     /// 
-    /// &gt; **Note:** `gcp.secretmanager.SecretIamPolicy` **cannot** be used in conjunction with `gcp.secretmanager.SecretIamBinding` and `gcp.secretmanager.SecretIamMember` or they will fight over what your policy should be.
+    /// &gt; **Note:** `gcp.secretmanager..SecretIamPolicy` **cannot** be used in conjunction with `gcp.secretmanager..SecretIamBinding` and `gcp.secretmanager..SecretIamMember` or they will fight over what your policy should be.
     /// 
-    /// &gt; **Note:** `gcp.secretmanager.SecretIamBinding` resources **can be** used in conjunction with `gcp.secretmanager.SecretIamMember` resources **only if** they do not grant privilege to the same role.
+    /// &gt; **Note:** `gcp.secretmanager..SecretIamBinding` resources **can be** used in conjunction with `gcp.secretmanager..SecretIamMember` resources **only if** they do not grant privilege to the same role.
     /// 
     /// ## google\_secret\_manager\_secret\_iam\_policy
     /// 
@@ -125,7 +125,7 @@ namespace Pulumi.Gcp.SecretManager
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.secretmanager.SecretIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.secretmanager..SecretIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Output("role")]
@@ -200,7 +200,7 @@ namespace Pulumi.Gcp.SecretManager
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.secretmanager.SecretIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.secretmanager..SecretIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role", required: true)]
@@ -242,7 +242,7 @@ namespace Pulumi.Gcp.SecretManager
 
         /// <summary>
         /// The role that should be applied. Only one
-        /// `gcp.secretmanager.SecretIamBinding` can be used per role. Note that custom roles must be of the format
+        /// `gcp.secretmanager..SecretIamBinding` can be used per role. Note that custom roles must be of the format
         /// `[projects|organizations]/{parent-name}/roles/{role-name}`.
         /// </summary>
         [Input("role")]

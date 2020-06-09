@@ -15,7 +15,7 @@ namespace Pulumi.Gcp.Compute
     /// template. For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/distributing-instances-with-regional-instance-groups)
     /// and [API](https://cloud.google.com/compute/docs/reference/latest/regionInstanceGroupManagers)
     /// 
-    /// &gt; **Note:** Use [gcp.compute.InstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_instance_group_manager.html) to create a single-zone instance group manager.
+    /// &gt; **Note:** Use [gcp.compute..InstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_instance_group_manager.html) to create a single-zone instance group manager.
     /// </summary>
     public partial class RegionInstanceGroupManager : Pulumi.CustomResource
     {

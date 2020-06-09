@@ -14,8 +14,8 @@ namespace Pulumi.Gcp.Compute
     /// individual VMs should be checked for health, via HTTP.
     /// 
     /// 
-    /// &gt; **Note:** gcp.compute.HttpHealthCheck is a legacy health check.
-    /// The newer [gcp.compute.HealthCheck](https://www.terraform.io/docs/providers/google/r/compute_health_check.html)
+    /// &gt; **Note:** gcp.compute..HttpHealthCheck is a legacy health check.
+    /// The newer [gcp.compute..HealthCheck](https://www.terraform.io/docs/providers/google/r/compute_health_check.html)
     /// should be preferred for all uses except
     /// [Network Load Balancers](https://cloud.google.com/compute/docs/load-balancing/network/)
     /// which still require the legacy version.
@@ -27,8 +27,9 @@ namespace Pulumi.Gcp.Compute
     /// * How-to Guides
     ///     * [Adding Health Checks](https://cloud.google.com/compute/docs/load-balancing/health-checks#legacy_health_checks)
     /// 
-    /// ## Example Usage - Http Health Check Basic
+    /// ## Example Usage
     /// 
+    /// ### Http Health Check Basic
     /// 
     /// ```csharp
     /// using Pulumi;

@@ -11,7 +11,9 @@ import * as utilities from "../utilities";
  * the cluster control plane. For more information see [the official documentation](https://cloud.google.com/container-engine/docs/node-pools)
  * and [the API reference](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.nodePools).
  *
- * ## Example Usage - using a separately managed node pool (recommended)
+ * ## Example Usage
+ *
+ * ### Using A Separately Managed Node Pool (Recommended)
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -37,7 +39,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ## Example Usage - 2 node pools, 1 separately managed + the default node pool
+ * ### 2 Node Pools, 1 Separately Managed + The Default Node Pool
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -155,7 +157,7 @@ export class NodePool extends pulumi.CustomResource {
     public readonly namePrefix!: pulumi.Output<string>;
     /**
      * The node configuration of the pool. See
-     * gcp.container.Cluster for schema.
+     * gcp.container..Cluster for schema.
      */
     public readonly nodeConfig!: pulumi.Output<outputs.container.NodePoolNodeConfig>;
     /**
@@ -303,7 +305,7 @@ export interface NodePoolState {
     readonly namePrefix?: pulumi.Input<string>;
     /**
      * The node configuration of the pool. See
-     * gcp.container.Cluster for schema.
+     * gcp.container..Cluster for schema.
      */
     readonly nodeConfig?: pulumi.Input<inputs.container.NodePoolNodeConfig>;
     /**
@@ -389,7 +391,7 @@ export interface NodePoolArgs {
     readonly namePrefix?: pulumi.Input<string>;
     /**
      * The node configuration of the pool. See
-     * gcp.container.Cluster for schema.
+     * gcp.container..Cluster for schema.
      */
     readonly nodeConfig?: pulumi.Input<inputs.container.NodePoolNodeConfig>;
     /**

@@ -6,7 +6,7 @@ import * as utilities from "../utilities";
 
 /**
  * Authoritatively manages the access control list (ACL) for an object in a Google
- * Cloud Storage (GCS) bucket. Removing a `gcp.storage.ObjectACL` sets the
+ * Cloud Storage (GCS) bucket. Removing a `gcp.storage..ObjectACL` sets the
  * acl to the `private` [predefined ACL](https://cloud.google.com/storage/docs/access-control#predefined-acl).
  *
  * For more information see
@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * and 
  * [API](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls).
  *
- * > Want fine-grained control over object ACLs? Use `gcp.storage.ObjectAccessControl` to control individual
+ * > Want fine-grained control over object ACLs? Use `gcp.storage..ObjectAccessControl` to control individual
  * role entity pairs.
  *
  * ## Example Usage
@@ -25,12 +25,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const imageStore = new gcp.storage.Bucket("image-store", {location: "EU"});
+ * const image_store = new gcp.storage.Bucket("image-store", {location: "EU"});
  * const image = new gcp.storage.BucketObject("image", {
  *     bucket: image_store.name,
  *     source: new pulumi.asset.FileAsset("image1.jpg"),
  * });
- * const imageStoreAcl = new gcp.storage.ObjectACL("image-store-acl", {
+ * const image_store_acl = new gcp.storage.ObjectACL("image-store-acl", {
  *     bucket: image_store.name,
  *     object: image.outputName,
  *     roleEntities: [

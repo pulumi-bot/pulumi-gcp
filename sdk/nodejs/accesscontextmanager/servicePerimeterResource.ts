@@ -7,10 +7,10 @@ import * as utilities from "../utilities";
 /**
  * Allows configuring a single GCP resource that should be inside of a service perimeter.
  * This resource is intended to be used in cases where it is not possible to compile a full list
- * of projects to include in a `gcp.accesscontextmanager.ServicePerimeter` resource,
+ * of projects to include in a `gcp.accesscontextmanager..ServicePerimeter` resource,
  * to enable them to be added separately.
  *
- * > **Note:** If this resource is used alongside a `gcp.accesscontextmanager.ServicePerimeter` resource,
+ * > **Note:** If this resource is used alongside a `gcp.accesscontextmanager..ServicePerimeter` resource,
  * the service perimeter resource must have a `lifecycle` block with `ignoreChanges = [status[0].resources]` so
  * they don't fight over which resources should be in the policy.
  *
@@ -21,20 +21,21 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
  *
- * ## Example Usage - Access Context Manager Service Perimeter Resource Basic
+ * ## Example Usage
  *
+ * ### Access Context Manager Service Perimeter Resource Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const accessPolicy = new gcp.accesscontextmanager.AccessPolicy("access-policy", {
+ * const access_policy = new gcp.accesscontextmanager.AccessPolicy("access-policy", {
  *     parent: "organizations/123456789",
  *     title: "my policy",
  * });
  * const service_perimeter_resourceServicePerimeter = new gcp.accesscontextmanager.ServicePerimeter("service-perimeter-resourceServicePerimeter", {
  *     parent: pulumi.interpolate`accessPolicies/${access_policy.name}`,
- *     title: "restrictAll",
+ *     title: "restrict_all",
  *     status: {
  *         restrictedServices: ["storage.googleapis.com"],
  *     },

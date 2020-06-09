@@ -12,10 +12,10 @@ namespace Pulumi.Gcp.AccessContextManager
     /// <summary>
     /// Allows configuring a single GCP resource that should be inside of a service perimeter.
     /// This resource is intended to be used in cases where it is not possible to compile a full list
-    /// of projects to include in a `gcp.accesscontextmanager.ServicePerimeter` resource,
+    /// of projects to include in a `gcp.accesscontextmanager..ServicePerimeter` resource,
     /// to enable them to be added separately.
     /// 
-    /// &gt; **Note:** If this resource is used alongside a `gcp.accesscontextmanager.ServicePerimeter` resource,
+    /// &gt; **Note:** If this resource is used alongside a `gcp.accesscontextmanager..ServicePerimeter` resource,
     /// the service perimeter resource must have a `lifecycle` block with `ignore_changes = [status[0].resources]` so
     /// they don't fight over which resources should be in the policy.
     /// 
@@ -26,8 +26,9 @@ namespace Pulumi.Gcp.AccessContextManager
     /// * How-to Guides
     ///     * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
     /// 
-    /// ## Example Usage - Access Context Manager Service Perimeter Resource Basic
+    /// ## Example Usage
     /// 
+    /// ### Access Context Manager Service Perimeter Resource Basic
     /// 
     /// ```csharp
     /// using Pulumi;

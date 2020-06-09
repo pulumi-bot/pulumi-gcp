@@ -9,13 +9,13 @@ import * as utilities from "../utilities";
 /**
  * Three different resources help you manage your IAM policy for KMS key ring. Each of these resources serves a different use case:
  *
- * * `gcp.kms.KeyRingIAMPolicy`: Authoritative. Sets the IAM policy for the key ring and replaces any existing policy already attached.
- * * `gcp.kms.KeyRingIAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the key ring are preserved.
- * * `gcp.kms.KeyRingIAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the key ring are preserved.
+ * * `gcp.kms..KeyRingIAMPolicy`: Authoritative. Sets the IAM policy for the key ring and replaces any existing policy already attached.
+ * * `gcp.kms..KeyRingIAMBinding`: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the key ring are preserved.
+ * * `gcp.kms..KeyRingIAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the key ring are preserved.
  *
- * > **Note:** `gcp.kms.KeyRingIAMPolicy` **cannot** be used in conjunction with `gcp.kms.KeyRingIAMBinding` and `gcp.kms.KeyRingIAMMember` or they will fight over what your policy should be.
+ * > **Note:** `gcp.kms..KeyRingIAMPolicy` **cannot** be used in conjunction with `gcp.kms..KeyRingIAMBinding` and `gcp.kms..KeyRingIAMMember` or they will fight over what your policy should be.
  *
- * > **Note:** `gcp.kms.KeyRingIAMBinding` resources **can be** used in conjunction with `gcp.kms.KeyRingIAMMember` resources **only if** they do not grant privilege to the same role.
+ * > **Note:** `gcp.kms..KeyRingIAMBinding` resources **can be** used in conjunction with `gcp.kms..KeyRingIAMMember` resources **only if** they do not grant privilege to the same role.
  *
  * ## google\_kms\_key\_ring\_iam\_policy
  *
@@ -48,7 +48,7 @@ import * as utilities from "../utilities";
  *         role: "roles/editor",
  *         members: ["user:jane@example.com"],
  *         condition: {
- *             title: "expiresAfter20191231",
+ *             title: "expires_after_2019_12_31",
  *             description: "Expiring at midnight of 2019-12-31",
  *             expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
  *         },
@@ -66,7 +66,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const keyRing = new gcp.kms.KeyRingIAMBinding("keyRing", {
+ * const keyRing = new gcp.kms.KeyRingIAMBinding("key_ring", {
  *     keyRingId: "your-key-ring-id",
  *     members: ["user:jane@example.com"],
  *     role: "roles/editor",
@@ -79,11 +79,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const keyRing = new gcp.kms.KeyRingIAMBinding("keyRing", {
+ * const keyRing = new gcp.kms.KeyRingIAMBinding("key_ring", {
  *     condition: {
  *         description: "Expiring at midnight of 2019-12-31",
  *         expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
- *         title: "expiresAfter20191231",
+ *         title: "expires_after_2019_12_31",
  *     },
  *     keyRingId: "your-key-ring-id",
  *     members: ["user:jane@example.com"],
@@ -97,7 +97,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const keyRing = new gcp.kms.KeyRingIAMMember("keyRing", {
+ * const keyRing = new gcp.kms.KeyRingIAMMember("key_ring", {
  *     keyRingId: "your-key-ring-id",
  *     member: "user:jane@example.com",
  *     role: "roles/editor",
@@ -110,11 +110,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const keyRing = new gcp.kms.KeyRingIAMMember("keyRing", {
+ * const keyRing = new gcp.kms.KeyRingIAMMember("key_ring", {
  *     condition: {
  *         description: "Expiring at midnight of 2019-12-31",
  *         expression: "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
- *         title: "expiresAfter20191231",
+ *         title: "expires_after_2019_12_31",
  *     },
  *     keyRingId: "your-key-ring-id",
  *     member: "user:jane@example.com",
@@ -169,7 +169,7 @@ export class KeyRingIAMBinding extends pulumi.CustomResource {
     public readonly members!: pulumi.Output<string[]>;
     /**
      * The role that should be applied. Only one
-     * `gcp.kms.KeyRingIAMBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.kms..KeyRingIAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     public readonly role!: pulumi.Output<string>;
@@ -242,7 +242,7 @@ export interface KeyRingIAMBindingState {
     readonly members?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The role that should be applied. Only one
-     * `gcp.kms.KeyRingIAMBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.kms..KeyRingIAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role?: pulumi.Input<string>;
@@ -267,7 +267,7 @@ export interface KeyRingIAMBindingArgs {
     readonly members: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The role that should be applied. Only one
-     * `gcp.kms.KeyRingIAMBinding` can be used per role. Note that custom roles must be of the format
+     * `gcp.kms..KeyRingIAMBinding` can be used per role. Note that custom roles must be of the format
      * `[projects|organizations]/{parent-name}/roles/{role-name}`.
      */
     readonly role: pulumi.Input<string>;

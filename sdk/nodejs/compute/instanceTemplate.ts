@@ -120,7 +120,7 @@ import * as utilities from "../utilities";
  * If you're not sure, we recommend deploying the latest image available when the provider runs,
  * because this means all the instances in your group will be based on the same image, always,
  * and means that no upgrades or changes to your instances happen outside of a `pulumi up`.
- * You can achieve this by using the `gcp.compute.Image`
+ * You can achieve this by using the `gcp.compute..Image`
  * data source, which will retrieve the latest image on every `pulumi apply`, and will update
  * the template to use that specific image:
  *
@@ -150,7 +150,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const instanceTemplate = new gcp.compute.InstanceTemplate("instanceTemplate", {
+ * const instanceTemplate = new gcp.compute.InstanceTemplate("instance_template", {
  *     // boot disk
  *     disks: [{
  *         sourceImage: "debian-cloud/debian-9",

@@ -82,7 +82,7 @@ namespace Pulumi.Gcp.Container
 
         /// <summary>
         /// The node configuration of the pool. See
-        /// gcp.container.Cluster for schema.
+        /// gcp.container..Cluster for schema.
         /// </summary>
         [Output("nodeConfig")]
         public Output<Outputs.NodePoolNodeConfig> NodeConfig { get; private set; } = null!;
@@ -236,7 +236,7 @@ namespace Pulumi.Gcp.Container
 
         /// <summary>
         /// The node configuration of the pool. See
-        /// gcp.container.Cluster for schema.
+        /// gcp.container..Cluster for schema.
         /// </summary>
         [Input("nodeConfig")]
         public Input<Inputs.NodePoolNodeConfigArgs>? NodeConfig { get; set; }
@@ -369,7 +369,7 @@ namespace Pulumi.Gcp.Container
 
         /// <summary>
         /// The node configuration of the pool. See
-        /// gcp.container.Cluster for schema.
+        /// gcp.container..Cluster for schema.
         /// </summary>
         [Input("nodeConfig")]
         public Input<Inputs.NodePoolNodeConfigGetArgs>? NodeConfig { get; set; }
