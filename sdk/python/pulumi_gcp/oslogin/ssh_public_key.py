@@ -37,8 +37,9 @@ class SshPublicKey(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/compute/docs/oslogin)
 
-        ## Example Usage - Os Login Ssh Key Provided User
+        ## Example Usage
 
+        ### Os Login Ssh Key Provided User
 
         ```python
         import pulumi
@@ -49,6 +50,7 @@ class SshPublicKey(pulumi.CustomResource):
             user=me.email,
             key=(lambda path: open(path).read())("path/to/id_rsa.pub"))
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

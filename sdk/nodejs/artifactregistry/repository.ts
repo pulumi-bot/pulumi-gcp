@@ -13,8 +13,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/artifact-registry/docs/overview)
  *
- * ## Example Usage - Artifact Registry Repository Basic
+ * ## Example Usage
  *
+ * ### Artifact Registry Repository Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -27,8 +28,8 @@ import * as utilities from "../utilities";
  *     format: "DOCKER",
  * });
  * ```
- * ## Example Usage - Artifact Registry Repository Iam
  *
+ * ### Artifact Registry Repository Iam
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

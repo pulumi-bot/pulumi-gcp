@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/datastore/docs/concepts/indexes)
  *
- * ## Example Usage - Datastore Index
+ * ## Example Usage
  *
+ * ### Datastore Index
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

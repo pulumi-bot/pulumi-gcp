@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
  *
- * ## Example Usage - Global Network Endpoint
+ * ## Example Usage
  *
+ * ### Global Network Endpoint
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

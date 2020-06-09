@@ -14,8 +14,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/vpc/docs/vpc)
  *
- * ## Example Usage - Network Basic
+ * ## Example Usage
  *
+ * ### Network Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

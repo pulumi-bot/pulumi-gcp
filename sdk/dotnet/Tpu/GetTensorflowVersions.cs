@@ -32,9 +32,10 @@ namespace Pulumi.Gcp.Tpu
         /// }
         /// ```
         /// 
+        /// 
         /// {{% /example %}}
-        /// {{% /examples %}}
-        /// ## Example Usage: Configure Basic TPU Node with available version
+        /// {{% example %}}
+        /// ### Configure Basic TPU Node With Available Version
         /// 
         /// ```csharp
         /// using Pulumi;
@@ -56,6 +57,10 @@ namespace Pulumi.Gcp.Tpu
         /// 
         /// }
         /// ```
+        /// 
+        /// 
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetTensorflowVersionsResult> InvokeAsync(GetTensorflowVersionsArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTensorflowVersionsResult>("gcp:tpu/getTensorflowVersions:getTensorflowVersions", args ?? new GetTensorflowVersionsArgs(), options.WithVersion());

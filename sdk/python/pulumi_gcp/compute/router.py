@@ -80,8 +80,9 @@ class Router(pulumi.CustomResource):
         * How-to Guides
             * [Google Cloud Router](https://cloud.google.com/router/docs/)
 
-        ## Example Usage - Router Basic
+        ## Example Usage
 
+        ### Router Basic
 
         ```python
         import pulumi
@@ -104,6 +105,7 @@ class Router(pulumi.CustomResource):
                 ],
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

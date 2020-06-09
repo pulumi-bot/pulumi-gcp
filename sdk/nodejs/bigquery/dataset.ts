@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Datasets Intro](https://cloud.google.com/bigquery/docs/datasets-intro)
  *
- * ## Example Usage - Bigquery Dataset Basic
+ * ## Example Usage
  *
+ * ### Bigquery Dataset Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -45,8 +46,8 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
- * ## Example Usage - Bigquery Dataset Cmek
  *
+ * ### Bigquery Dataset Cmek
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

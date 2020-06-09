@@ -147,8 +147,9 @@ class ServicePerimeter(pulumi.CustomResource):
         * How-to Guides
             * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
 
-        ## Example Usage - Access Context Manager Service Perimeter Basic
+        ## Example Usage
 
+        ### Access Context Manager Service Perimeter Basic
 
         ```python
         import pulumi
@@ -182,8 +183,8 @@ class ServicePerimeter(pulumi.CustomResource):
             parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"),
             title="chromeos_no_lock")
         ```
-        ## Example Usage - Access Context Manager Service Perimeter Dry Run
 
+        ### Access Context Manager Service Perimeter Dry Run
 
         ```python
         import pulumi
@@ -203,6 +204,7 @@ class ServicePerimeter(pulumi.CustomResource):
             title="restrict_bigquery_dryrun_storage",
             use_explicit_dry_run_spec=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

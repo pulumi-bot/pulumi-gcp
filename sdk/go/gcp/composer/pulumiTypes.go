@@ -1142,21 +1142,6 @@ type EnvironmentConfigSoftwareConfig struct {
 	// Environment variable names must match the regular expression `[a-zA-Z_][a-zA-Z0-9_]*`.
 	// They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression
 	// `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names:
-	// ```
-	// AIRFLOW_HOME
-	// C_FORCE_ROOT
-	// CONTAINER_NAME
-	// DAGS_FOLDER
-	// GCP_PROJECT
-	// GCS_BUCKET
-	// GKE_CLUSTER_NAME
-	// SQL_DATABASE
-	// SQL_INSTANCE
-	// SQL_PASSWORD
-	// SQL_PROJECT
-	// SQL_REGION
-	// SQL_USER
-	// ```
 	EnvVariables map[string]string `pulumi:"envVariables"`
 	// -
 	// The version of the software running in the environment. This encapsulates both the version of Cloud Composer
@@ -1199,21 +1184,6 @@ type EnvironmentConfigSoftwareConfigArgs struct {
 	// Environment variable names must match the regular expression `[a-zA-Z_][a-zA-Z0-9_]*`.
 	// They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression
 	// `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names:
-	// ```
-	// AIRFLOW_HOME
-	// C_FORCE_ROOT
-	// CONTAINER_NAME
-	// DAGS_FOLDER
-	// GCP_PROJECT
-	// GCS_BUCKET
-	// GKE_CLUSTER_NAME
-	// SQL_DATABASE
-	// SQL_INSTANCE
-	// SQL_PASSWORD
-	// SQL_PROJECT
-	// SQL_REGION
-	// SQL_USER
-	// ```
 	EnvVariables pulumi.StringMapInput `pulumi:"envVariables"`
 	// -
 	// The version of the software running in the environment. This encapsulates both the version of Cloud Composer
@@ -1324,21 +1294,6 @@ func (o EnvironmentConfigSoftwareConfigOutput) AirflowConfigOverrides() pulumi.S
 // Environment variable names must match the regular expression `[a-zA-Z_][a-zA-Z0-9_]*`.
 // They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression
 // `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names:
-// ```
-// AIRFLOW_HOME
-// C_FORCE_ROOT
-// CONTAINER_NAME
-// DAGS_FOLDER
-// GCP_PROJECT
-// GCS_BUCKET
-// GKE_CLUSTER_NAME
-// SQL_DATABASE
-// SQL_INSTANCE
-// SQL_PASSWORD
-// SQL_PROJECT
-// SQL_REGION
-// SQL_USER
-// ```
 func (o EnvironmentConfigSoftwareConfigOutput) EnvVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v EnvironmentConfigSoftwareConfig) map[string]string { return v.EnvVariables }).(pulumi.StringMapOutput)
 }
@@ -1404,21 +1359,6 @@ func (o EnvironmentConfigSoftwareConfigPtrOutput) AirflowConfigOverrides() pulum
 // Environment variable names must match the regular expression `[a-zA-Z_][a-zA-Z0-9_]*`.
 // They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression
 // `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names:
-// ```
-// AIRFLOW_HOME
-// C_FORCE_ROOT
-// CONTAINER_NAME
-// DAGS_FOLDER
-// GCP_PROJECT
-// GCS_BUCKET
-// GKE_CLUSTER_NAME
-// SQL_DATABASE
-// SQL_INSTANCE
-// SQL_PASSWORD
-// SQL_PROJECT
-// SQL_REGION
-// SQL_USER
-// ```
 func (o EnvironmentConfigSoftwareConfigPtrOutput) EnvVariables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *EnvironmentConfigSoftwareConfig) map[string]string {
 		if v == nil {

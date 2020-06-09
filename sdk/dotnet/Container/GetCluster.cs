@@ -54,6 +54,7 @@ namespace Pulumi.Gcp.Container
         /// }
         /// ```
         /// 
+        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

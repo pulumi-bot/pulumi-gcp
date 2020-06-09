@@ -46,6 +46,7 @@ namespace Pulumi.Gcp.BigQuery
         /// }
         /// ```
         /// 
+        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

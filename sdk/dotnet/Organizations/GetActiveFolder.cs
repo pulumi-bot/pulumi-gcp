@@ -36,6 +36,7 @@ namespace Pulumi.Gcp.Organizations
         /// }
         /// ```
         /// 
+        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

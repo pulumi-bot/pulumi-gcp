@@ -41,6 +41,7 @@ namespace Pulumi.Gcp.Projects
         /// }
         /// ```
         /// 
+        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

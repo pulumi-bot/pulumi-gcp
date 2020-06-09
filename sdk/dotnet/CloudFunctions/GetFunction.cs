@@ -37,6 +37,7 @@ namespace Pulumi.Gcp.CloudFunctions
         /// }
         /// ```
         /// 
+        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

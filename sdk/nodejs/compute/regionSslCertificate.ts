@@ -19,8 +19,9 @@ import * as utilities from "../utilities";
  * > **Warning:** All arguments including `certificate` and `privateKey` will be stored in the raw
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
- * ## Example Usage - Region Ssl Certificate Basic
+ * ## Example Usage
  *
+ * ### Region Ssl Certificate Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -35,8 +36,8 @@ import * as utilities from "../utilities";
  *     certificate: fs.readFileSync("path/to/certificate.crt"),
  * });
  * ```
- * ## Example Usage - Region Ssl Certificate Target Https Proxies
  *
+ * ### Region Ssl Certificate Target Https Proxies
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

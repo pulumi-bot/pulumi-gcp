@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/mapping-custom-domains)
  *
- * ## Example Usage - App Engine Domain Mapping Basic
+ * ## Example Usage
  *
+ * ### App Engine Domain Mapping Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

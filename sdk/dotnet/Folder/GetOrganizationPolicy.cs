@@ -41,6 +41,7 @@ namespace Pulumi.Gcp.Folder
         /// }
         /// ```
         /// 
+        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

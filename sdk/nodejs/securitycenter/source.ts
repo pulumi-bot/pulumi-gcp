@@ -17,8 +17,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/binary-authorization/)
  *
- * ## Example Usage - Scc Source Basic
+ * ## Example Usage
  *
+ * ### Scc Source Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

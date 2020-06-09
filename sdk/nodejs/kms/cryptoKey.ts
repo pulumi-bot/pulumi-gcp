@@ -25,8 +25,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Creating a key](https://cloud.google.com/kms/docs/creating-keys#create_a_key)
  *
- * ## Example Usage - Kms Crypto Key Basic
+ * ## Example Usage
  *
+ * ### Kms Crypto Key Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -38,8 +39,8 @@ import * as utilities from "../utilities";
  *     rotationPeriod: "100000s",
  * });
  * ```
- * ## Example Usage - Kms Crypto Key Asymmetric Sign
  *
+ * ### Kms Crypto Key Asymmetric Sign
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

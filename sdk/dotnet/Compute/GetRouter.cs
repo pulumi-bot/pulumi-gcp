@@ -36,6 +36,7 @@ namespace Pulumi.Gcp.Compute
         /// }
         /// ```
         /// 
+        /// 
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>

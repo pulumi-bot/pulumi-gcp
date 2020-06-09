@@ -45,8 +45,9 @@ class GlobalNetworkEndpoint(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
 
-        ## Example Usage - Global Network Endpoint
+        ## Example Usage
 
+        ### Global Network Endpoint
 
         ```python
         import pulumi
@@ -62,6 +63,7 @@ class GlobalNetworkEndpoint(pulumi.CustomResource):
             network=default.id,
             default_port="90")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

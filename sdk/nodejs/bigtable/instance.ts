@@ -11,7 +11,9 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/bigtable/) and
  * [API](https://cloud.google.com/bigtable/docs/go/reference).
  *
- * ## Example Usage - Production Instance
+ * ## Example Usage
+ *
+ * ### Production Instance
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -27,7 +29,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ## Example Usage - Development Instance
+ * ### Development Instance
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

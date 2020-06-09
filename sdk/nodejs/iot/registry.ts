@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/iot/docs/)
  *
- * ## Example Usage - Cloudiot Device Registry Basic
+ * ## Example Usage
  *
+ * ### Cloudiot Device Registry Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -25,8 +26,8 @@ import * as utilities from "../utilities";
  *
  * const testRegistry = new gcp.iot.Registry("test-registry", {});
  * ```
- * ## Example Usage - Cloudiot Device Registry Single Event Notification Configs
  *
+ * ### Cloudiot Device Registry Single Event Notification Configs
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -38,8 +39,8 @@ import * as utilities from "../utilities";
  *     subfolderMatches: "",
  * }]});
  * ```
- * ## Example Usage - Cloudiot Device Registry Full
  *
+ * ### Cloudiot Device Registry Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
