@@ -71,7 +71,7 @@ export class AccountIamPolicy extends pulumi.CustomResource {
     public readonly billingAccountId!: pulumi.Output<string>;
     public /*out*/ readonly etag!: pulumi.Output<string>;
     /**
-     * The `gcp.organizations.getIAMPolicy` data source that represents
+     * The `gcp.organizationsgetIAMPolicy` data source that represents
      * the IAM policy that will be applied to the billing account. This policy overrides any existing
      * policy applied to the billing account.
      */
@@ -125,7 +125,7 @@ export interface AccountIamPolicyState {
     readonly billingAccountId?: pulumi.Input<string>;
     readonly etag?: pulumi.Input<string>;
     /**
-     * The `gcp.organizations.getIAMPolicy` data source that represents
+     * The `gcp.organizationsgetIAMPolicy` data source that represents
      * the IAM policy that will be applied to the billing account. This policy overrides any existing
      * policy applied to the billing account.
      */
@@ -141,7 +141,7 @@ export interface AccountIamPolicyArgs {
      */
     readonly billingAccountId: pulumi.Input<string>;
     /**
-     * The `gcp.organizations.getIAMPolicy` data source that represents
+     * The `gcp.organizationsgetIAMPolicy` data source that represents
      * the IAM policy that will be applied to the billing account. This policy overrides any existing
      * policy applied to the billing account.
      */

@@ -61,8 +61,9 @@ class HaVpnGateway(pulumi.CustomResource):
             * [Choosing a VPN](https://cloud.google.com/vpn/docs/how-to/choosing-a-vpn)
             * [Cloud VPN Overview](https://cloud.google.com/vpn/docs/concepts/overview)
 
-        ## Example Usage - Ha Vpn Gateway Basic
+        ## Example Usage
 
+        ### Ha Vpn Gateway Basic
 
         ```python
         import pulumi
@@ -73,8 +74,8 @@ class HaVpnGateway(pulumi.CustomResource):
             region="us-central1",
             network=network1.id)
         ```
-        ## Example Usage - Ha Vpn Gateway Gcp To Gcp
 
+        ### Ha Vpn Gateway Gcp To Gcp
 
         ```python
         import pulumi
@@ -195,6 +196,7 @@ class HaVpnGateway(pulumi.CustomResource):
             advertised_route_priority=100,
             interface=router2_interface2.name)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

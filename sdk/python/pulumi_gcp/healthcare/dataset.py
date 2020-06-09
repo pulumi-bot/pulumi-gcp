@@ -43,8 +43,9 @@ class Dataset(pulumi.CustomResource):
         * How-to Guides
             * [Creating a dataset](https://cloud.google.com/healthcare/docs/how-tos/datasets)
 
-        ## Example Usage - Healthcare Dataset Basic
+        ## Example Usage
 
+        ### Healthcare Dataset Basic
 
         ```python
         import pulumi
@@ -54,6 +55,7 @@ class Dataset(pulumi.CustomResource):
             location="us-central1",
             time_zone="UTC")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

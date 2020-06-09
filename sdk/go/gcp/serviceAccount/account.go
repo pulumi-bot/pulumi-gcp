@@ -30,7 +30,7 @@ type Account struct {
 	// Can be updated without creating a new resource.
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
 	// The e-mail address of the service account. This value
-	// should be referenced from any `organizations.getIAMPolicy` data sources
+	// should be referenced from any `organizationsgetIAMPolicy` data sources
 	// that would grant the service account privileges.
 	Email pulumi.StringOutput `pulumi:"email"`
 	// The fully-qualified name of the service account.
@@ -85,7 +85,7 @@ type accountState struct {
 	// Can be updated without creating a new resource.
 	DisplayName *string `pulumi:"displayName"`
 	// The e-mail address of the service account. This value
-	// should be referenced from any `organizations.getIAMPolicy` data sources
+	// should be referenced from any `organizationsgetIAMPolicy` data sources
 	// that would grant the service account privileges.
 	Email *string `pulumi:"email"`
 	// The fully-qualified name of the service account.
@@ -110,7 +110,7 @@ type AccountState struct {
 	// Can be updated without creating a new resource.
 	DisplayName pulumi.StringPtrInput
 	// The e-mail address of the service account. This value
-	// should be referenced from any `organizations.getIAMPolicy` data sources
+	// should be referenced from any `organizationsgetIAMPolicy` data sources
 	// that would grant the service account privileges.
 	Email pulumi.StringPtrInput
 	// The fully-qualified name of the service account.

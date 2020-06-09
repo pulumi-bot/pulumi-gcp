@@ -27,7 +27,7 @@ type AccountIamPolicy struct {
 	// The billing account id.
 	BillingAccountId pulumi.StringOutput `pulumi:"billingAccountId"`
 	Etag             pulumi.StringOutput `pulumi:"etag"`
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the billing account. This policy overrides any existing
 	// policy applied to the billing account.
 	PolicyData pulumi.StringOutput `pulumi:"policyData"`
@@ -70,7 +70,7 @@ type accountIamPolicyState struct {
 	// The billing account id.
 	BillingAccountId *string `pulumi:"billingAccountId"`
 	Etag             *string `pulumi:"etag"`
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the billing account. This policy overrides any existing
 	// policy applied to the billing account.
 	PolicyData *string `pulumi:"policyData"`
@@ -80,7 +80,7 @@ type AccountIamPolicyState struct {
 	// The billing account id.
 	BillingAccountId pulumi.StringPtrInput
 	Etag             pulumi.StringPtrInput
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the billing account. This policy overrides any existing
 	// policy applied to the billing account.
 	PolicyData pulumi.StringPtrInput
@@ -93,7 +93,7 @@ func (AccountIamPolicyState) ElementType() reflect.Type {
 type accountIamPolicyArgs struct {
 	// The billing account id.
 	BillingAccountId string `pulumi:"billingAccountId"`
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the billing account. This policy overrides any existing
 	// policy applied to the billing account.
 	PolicyData string `pulumi:"policyData"`
@@ -103,7 +103,7 @@ type accountIamPolicyArgs struct {
 type AccountIamPolicyArgs struct {
 	// The billing account id.
 	BillingAccountId pulumi.StringInput
-	// The `organizations.getIAMPolicy` data source that represents
+	// The `organizationsgetIAMPolicy` data source that represents
 	// the IAM policy that will be applied to the billing account. This policy overrides any existing
 	// policy applied to the billing account.
 	PolicyData pulumi.StringInput

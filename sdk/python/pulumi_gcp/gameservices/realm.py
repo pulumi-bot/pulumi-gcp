@@ -56,8 +56,9 @@ class Realm(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/game-servers/docs)
 
-        ## Example Usage - Game Service Realm Basic
+        ## Example Usage
 
+        ### Game Service Realm Basic
 
         ```python
         import pulumi
@@ -69,6 +70,7 @@ class Realm(pulumi.CustomResource):
             location="global",
             description="one of the nine")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
