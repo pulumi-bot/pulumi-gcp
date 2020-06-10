@@ -18,8 +18,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/firestore/docs/query-data/indexing)
  *
- * ## Example Usage - Firestore Index Basic
+ * ## Example Usage
  *
+ * ### Firestore Index Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

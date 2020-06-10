@@ -15,8 +15,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Using SSL Policies](https://cloud.google.com/compute/docs/load-balancing/ssl-policies)
  *
- * ## Example Usage - Ssl Policy Basic
+ * ## Example Usage
  *
+ * ### Ssl Policy Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

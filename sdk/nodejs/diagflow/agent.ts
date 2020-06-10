@@ -17,8 +17,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
  *
- * ## Example Usage - Dialogflow Agent Full
+ * ## Example Usage
  *
+ * ### Dialogflow Agent Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

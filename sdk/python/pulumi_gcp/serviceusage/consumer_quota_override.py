@@ -56,8 +56,9 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
             * [Getting Started](https://cloud.google.com/service-usage/docs/getting-started)
             * [REST API documentation](https://cloud.google.com/service-usage/docs/reference/rest/v1beta1/services.consumerQuotaMetrics.limits.consumerOverrides)
 
-        ## Example Usage - Consumer Quota Override
+        ## Example Usage
 
+        ### Consumer Quota Override
 
         ```python
         import pulumi
@@ -74,6 +75,7 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
             override_value="95",
             force=True)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -18,8 +18,9 @@ import * as utilities from "../utilities";
  * > **Warning:** All arguments including `authentication.google_account.password` and `authentication.custom_account.password` will be stored in the raw
  * state as plain-text.[Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets)
  *
- * ## Example Usage - Scan Config Basic
+ * ## Example Usage
  *
+ * ### Scan Config Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

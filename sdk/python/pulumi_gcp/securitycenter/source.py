@@ -45,8 +45,9 @@ class Source(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/binary-authorization/)
 
-        ## Example Usage - Scc Source Basic
+        ## Example Usage
 
+        ### Scc Source Basic
 
         ```python
         import pulumi
@@ -57,6 +58,7 @@ class Source(pulumi.CustomResource):
             display_name="My Source",
             organization="123456789")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

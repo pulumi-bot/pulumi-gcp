@@ -24,8 +24,9 @@ namespace Pulumi.Gcp.Compute
     /// through provider config or through external changes will cause
     /// the provider to delete and recreate the node group.
     /// 
-    /// ## Example Usage - Node Group Basic
+    /// ## Example Usage
     /// 
+    /// ### Node Group Basic
     /// 
     /// ```csharp
     /// using Pulumi;

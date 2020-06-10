@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/source-repositories/)
  *
- * ## Example Usage - Sourcerepo Repository Basic
+ * ## Example Usage
  *
+ * ### Sourcerepo Repository Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -25,8 +26,8 @@ import * as utilities from "../utilities";
  *
  * const myRepo = new gcp.sourcerepo.Repository("my-repo", {});
  * ```
- * ## Example Usage - Sourcerepo Repository Full
  *
+ * ### Sourcerepo Repository Full
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

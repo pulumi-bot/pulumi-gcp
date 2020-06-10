@@ -15,8 +15,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/bigquery/docs/reference/datatransfer/rest/)
  *
- * ## Example Usage - Scheduled Query
+ * ## Example Usage
  *
+ * ### Scheduled Query
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

@@ -12,8 +12,9 @@ import * as utilities from "../utilities";
  *
  *
  *
- * ## Example Usage - Bigquery Job Query
+ * ## Example Usage
  *
+ * ### Bigquery Job Query
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -49,8 +50,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ## Example Usage - Bigquery Job Query Table Reference
  *
+ * ### Bigquery Job Query Table Reference
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -87,8 +88,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ## Example Usage - Bigquery Job Load
  *
+ * ### Bigquery Job Load
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -126,8 +127,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- * ## Example Usage - Bigquery Job Extract
  *
+ * ### Bigquery Job Extract
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

@@ -687,7 +687,9 @@ class Cluster(pulumi.CustomResource):
         passwords as well as certificate outputs will be stored in the raw state as
         plaintext. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
-        ## Example Usage - with a separately managed node pool (recommended)
+        ## Example Usage
+
+        ### With A Separately Managed Node Pool (Recommended)
 
         ```python
         import pulumi
@@ -721,7 +723,7 @@ class Cluster(pulumi.CustomResource):
             })
         ```
 
-        ## Example Usage - with the default node pool
+        ### With The Default Node Pool
 
         ```python
         import pulumi
@@ -754,6 +756,7 @@ class Cluster(pulumi.CustomResource):
                 ],
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

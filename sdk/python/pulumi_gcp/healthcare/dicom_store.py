@@ -57,8 +57,9 @@ class DicomStore(pulumi.CustomResource):
         * How-to Guides
             * [Creating a DICOM store](https://cloud.google.com/healthcare/docs/how-tos/dicom)
 
-        ## Example Usage - Healthcare Dicom Store Basic
+        ## Example Usage
 
+        ### Healthcare Dicom Store Basic
 
         ```python
         import pulumi
@@ -75,6 +76,7 @@ class DicomStore(pulumi.CustomResource):
                 "label1": "labelvalue1",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

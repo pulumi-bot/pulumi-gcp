@@ -22,8 +22,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Controlling access to datasets](https://cloud.google.com/bigquery/docs/dataset-access-controls)
  *
- * ## Example Usage - Bigquery Dataset Access Basic User
+ * ## Example Usage
  *
+ * ### Bigquery Dataset Access Basic User
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -37,8 +38,8 @@ import * as utilities from "../utilities";
  *     userByEmail: bqowner.email,
  * });
  * ```
- * ## Example Usage - Bigquery Dataset Access View
  *
+ * ### Bigquery Dataset Access View
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

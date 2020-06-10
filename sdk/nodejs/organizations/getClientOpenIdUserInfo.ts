@@ -19,7 +19,9 @@ import * as utilities from "../utilities";
  * use the `https://www.googleapis.com/auth/userinfo.email` scope! You will
  * receive an error otherwise.
  *
- * ## Example Usage - exporting an email
+ * ## Example Usage
+ *
+ * ### Exporting An Email
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
