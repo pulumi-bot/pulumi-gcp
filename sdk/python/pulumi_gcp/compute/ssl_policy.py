@@ -84,8 +84,9 @@ class SSLPolicy(pulumi.CustomResource):
         * How-to Guides
             * [Using SSL Policies](https://cloud.google.com/compute/docs/load-balancing/ssl-policies)
 
-        ## Example Usage - Ssl Policy Basic
+        ## Example Usage
 
+        ### Ssl Policy Basic
 
         ```python
         import pulumi
@@ -103,6 +104,7 @@ class SSLPolicy(pulumi.CustomResource):
             min_tls_version="TLS_1_2",
             profile="CUSTOM")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -26,7 +26,6 @@ type Cluster struct {
 	// [Google Groups for GKE](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control#groups-setup-gsuite) feature.
 	// Structure is documented below.
 	AuthenticatorGroupsConfig ClusterAuthenticatorGroupsConfigOutput `pulumi:"authenticatorGroupsConfig"`
-	//
 	// Per-cluster configuration of Node Auto-Provisioning with Cluster Autoscaler to
 	// automatically adjust the size of the cluster and create/delete node pools based
 	// on the current needs of the cluster's workload. See the
@@ -51,7 +50,6 @@ type Cluster struct {
 	// Enable Binary Authorization for this cluster.
 	// If enabled, all container images will be validated by Google Binary Authorization.
 	EnableBinaryAuthorization pulumi.BoolPtrOutput `pulumi:"enableBinaryAuthorization"`
-	//
 	// Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.
 	EnableIntranodeVisibility pulumi.BoolPtrOutput `pulumi:"enableIntranodeVisibility"`
 	// Whether to enable Kubernetes Alpha features for
@@ -216,11 +214,9 @@ type Cluster struct {
 	// [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
 	// notation (e.g. `1.2.3.4/29`).
 	TpuIpv4CidrBlock pulumi.StringOutput `pulumi:"tpuIpv4CidrBlock"`
-	//
 	// Vertical Pod Autoscaling automatically adjusts the resources of pods controlled by it.
 	// Structure is documented below.
 	VerticalPodAutoscaling ClusterVerticalPodAutoscalingPtrOutput `pulumi:"verticalPodAutoscaling"`
-	//
 	// Workload Identity allows Kubernetes service accounts to act as a user-managed
 	// [Google IAM Service Account](https://cloud.google.com/iam/docs/service-accounts#user-managed_service_accounts).
 	// Structure is documented below.
@@ -262,7 +258,6 @@ type clusterState struct {
 	// [Google Groups for GKE](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control#groups-setup-gsuite) feature.
 	// Structure is documented below.
 	AuthenticatorGroupsConfig *ClusterAuthenticatorGroupsConfig `pulumi:"authenticatorGroupsConfig"`
-	//
 	// Per-cluster configuration of Node Auto-Provisioning with Cluster Autoscaler to
 	// automatically adjust the size of the cluster and create/delete node pools based
 	// on the current needs of the cluster's workload. See the
@@ -287,7 +282,6 @@ type clusterState struct {
 	// Enable Binary Authorization for this cluster.
 	// If enabled, all container images will be validated by Google Binary Authorization.
 	EnableBinaryAuthorization *bool `pulumi:"enableBinaryAuthorization"`
-	//
 	// Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.
 	EnableIntranodeVisibility *bool `pulumi:"enableIntranodeVisibility"`
 	// Whether to enable Kubernetes Alpha features for
@@ -452,11 +446,9 @@ type clusterState struct {
 	// [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
 	// notation (e.g. `1.2.3.4/29`).
 	TpuIpv4CidrBlock *string `pulumi:"tpuIpv4CidrBlock"`
-	//
 	// Vertical Pod Autoscaling automatically adjusts the resources of pods controlled by it.
 	// Structure is documented below.
 	VerticalPodAutoscaling *ClusterVerticalPodAutoscaling `pulumi:"verticalPodAutoscaling"`
-	//
 	// Workload Identity allows Kubernetes service accounts to act as a user-managed
 	// [Google IAM Service Account](https://cloud.google.com/iam/docs/service-accounts#user-managed_service_accounts).
 	// Structure is documented below.
@@ -471,7 +463,6 @@ type ClusterState struct {
 	// [Google Groups for GKE](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control#groups-setup-gsuite) feature.
 	// Structure is documented below.
 	AuthenticatorGroupsConfig ClusterAuthenticatorGroupsConfigPtrInput
-	//
 	// Per-cluster configuration of Node Auto-Provisioning with Cluster Autoscaler to
 	// automatically adjust the size of the cluster and create/delete node pools based
 	// on the current needs of the cluster's workload. See the
@@ -496,7 +487,6 @@ type ClusterState struct {
 	// Enable Binary Authorization for this cluster.
 	// If enabled, all container images will be validated by Google Binary Authorization.
 	EnableBinaryAuthorization pulumi.BoolPtrInput
-	//
 	// Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.
 	EnableIntranodeVisibility pulumi.BoolPtrInput
 	// Whether to enable Kubernetes Alpha features for
@@ -661,11 +651,9 @@ type ClusterState struct {
 	// [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
 	// notation (e.g. `1.2.3.4/29`).
 	TpuIpv4CidrBlock pulumi.StringPtrInput
-	//
 	// Vertical Pod Autoscaling automatically adjusts the resources of pods controlled by it.
 	// Structure is documented below.
 	VerticalPodAutoscaling ClusterVerticalPodAutoscalingPtrInput
-	//
 	// Workload Identity allows Kubernetes service accounts to act as a user-managed
 	// [Google IAM Service Account](https://cloud.google.com/iam/docs/service-accounts#user-managed_service_accounts).
 	// Structure is documented below.
@@ -684,7 +672,6 @@ type clusterArgs struct {
 	// [Google Groups for GKE](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control#groups-setup-gsuite) feature.
 	// Structure is documented below.
 	AuthenticatorGroupsConfig *ClusterAuthenticatorGroupsConfig `pulumi:"authenticatorGroupsConfig"`
-	//
 	// Per-cluster configuration of Node Auto-Provisioning with Cluster Autoscaler to
 	// automatically adjust the size of the cluster and create/delete node pools based
 	// on the current needs of the cluster's workload. See the
@@ -709,7 +696,6 @@ type clusterArgs struct {
 	// Enable Binary Authorization for this cluster.
 	// If enabled, all container images will be validated by Google Binary Authorization.
 	EnableBinaryAuthorization *bool `pulumi:"enableBinaryAuthorization"`
-	//
 	// Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.
 	EnableIntranodeVisibility *bool `pulumi:"enableIntranodeVisibility"`
 	// Whether to enable Kubernetes Alpha features for
@@ -853,11 +839,9 @@ type clusterArgs struct {
 	// The name or selfLink of the Google Compute Engine
 	// subnetwork in which the cluster's instances are launched.
 	Subnetwork *string `pulumi:"subnetwork"`
-	//
 	// Vertical Pod Autoscaling automatically adjusts the resources of pods controlled by it.
 	// Structure is documented below.
 	VerticalPodAutoscaling *ClusterVerticalPodAutoscaling `pulumi:"verticalPodAutoscaling"`
-	//
 	// Workload Identity allows Kubernetes service accounts to act as a user-managed
 	// [Google IAM Service Account](https://cloud.google.com/iam/docs/service-accounts#user-managed_service_accounts).
 	// Structure is documented below.
@@ -873,7 +857,6 @@ type ClusterArgs struct {
 	// [Google Groups for GKE](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control#groups-setup-gsuite) feature.
 	// Structure is documented below.
 	AuthenticatorGroupsConfig ClusterAuthenticatorGroupsConfigPtrInput
-	//
 	// Per-cluster configuration of Node Auto-Provisioning with Cluster Autoscaler to
 	// automatically adjust the size of the cluster and create/delete node pools based
 	// on the current needs of the cluster's workload. See the
@@ -898,7 +881,6 @@ type ClusterArgs struct {
 	// Enable Binary Authorization for this cluster.
 	// If enabled, all container images will be validated by Google Binary Authorization.
 	EnableBinaryAuthorization pulumi.BoolPtrInput
-	//
 	// Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.
 	EnableIntranodeVisibility pulumi.BoolPtrInput
 	// Whether to enable Kubernetes Alpha features for
@@ -1042,11 +1024,9 @@ type ClusterArgs struct {
 	// The name or selfLink of the Google Compute Engine
 	// subnetwork in which the cluster's instances are launched.
 	Subnetwork pulumi.StringPtrInput
-	//
 	// Vertical Pod Autoscaling automatically adjusts the resources of pods controlled by it.
 	// Structure is documented below.
 	VerticalPodAutoscaling ClusterVerticalPodAutoscalingPtrInput
-	//
 	// Workload Identity allows Kubernetes service accounts to act as a user-managed
 	// [Google IAM Service Account](https://cloud.google.com/iam/docs/service-accounts#user-managed_service_accounts).
 	// Structure is documented below.
