@@ -123,7 +123,7 @@ class GetFunctionResult:
             raise TypeError("Expected argument 'vpc_connector' to be a str")
         __self__.vpc_connector = vpc_connector
         """
-        The VPC Network Connector that this cloud function can connect to. 
+        The VPC Network Connector that this cloud function can connect to.
         """
         if vpc_connector_egress_settings and not isinstance(vpc_connector_egress_settings, str):
             raise TypeError("Expected argument 'vpc_connector_egress_settings' to be a str")

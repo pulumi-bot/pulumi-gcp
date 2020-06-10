@@ -94,8 +94,9 @@ class Queue(pulumi.CustomResource):
 
 
 
-        ## Example Usage - Queue Basic
+        ## Example Usage
 
+        ### Queue Basic
 
         ```python
         import pulumi
@@ -103,6 +104,7 @@ class Queue(pulumi.CustomResource):
 
         default = gcp.cloudtasks.Queue("default", location="us-central1")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

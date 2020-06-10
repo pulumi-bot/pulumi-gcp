@@ -314,8 +314,9 @@ class Slo(pulumi.CustomResource):
             * [Service Monitoring](https://cloud.google.com/monitoring/service-monitoring)
             * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
-        ## Example Usage - Monitoring Slo Appengine
+        ## Example Usage
 
+        ### Monitoring Slo Appengine
 
         ```python
         import pulumi
@@ -334,6 +335,7 @@ class Slo(pulumi.CustomResource):
                 },
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

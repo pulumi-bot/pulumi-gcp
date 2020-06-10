@@ -30,8 +30,9 @@ class Dashboard(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/monitoring/dashboards)
 
-        ## Example Usage - Monitoring Dashboard Basic
+        ## Example Usage
 
+        ### Monitoring Dashboard Basic
 
         ```python
         import pulumi
@@ -52,8 +53,7 @@ class Dashboard(pulumi.CustomResource):
         \"\"\")
         ```
 
-        ## Example Usage - Monitoring Dashboard GridLayout
-
+        ### Monitoring Dashboard GridLayout
 
         ```python
         import pulumi
@@ -121,6 +121,7 @@ class Dashboard(pulumi.CustomResource):
 
         \"\"\")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

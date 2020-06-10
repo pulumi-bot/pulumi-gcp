@@ -252,8 +252,9 @@ class Job(pulumi.CustomResource):
 
 
 
-        ## Example Usage - Bigquery Job Query
+        ## Example Usage
 
+        ### Bigquery Job Query
 
         ```python
         import pulumi
@@ -286,8 +287,8 @@ class Job(pulumi.CustomResource):
                 },
             })
         ```
-        ## Example Usage - Bigquery Job Query Table Reference
 
+        ### Bigquery Job Query Table Reference
 
         ```python
         import pulumi
@@ -321,8 +322,8 @@ class Job(pulumi.CustomResource):
                 },
             })
         ```
-        ## Example Usage - Bigquery Job Load
 
+        ### Bigquery Job Load
 
         ```python
         import pulumi
@@ -357,8 +358,8 @@ class Job(pulumi.CustomResource):
                 "autodetect": True,
             })
         ```
-        ## Example Usage - Bigquery Job Extract
 
+        ### Bigquery Job Extract
 
         ```python
         import pulumi
@@ -404,6 +405,7 @@ class Job(pulumi.CustomResource):
                 "compression": "GZIP",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -47,8 +47,9 @@ class SourceRepresentationInstance(pulumi.CustomResource):
 
 
 
-        ## Example Usage - Sql Source Representation Instance Basic
+        ## Example Usage
 
+        ### Sql Source Representation Instance Basic
 
         ```python
         import pulumi
@@ -60,6 +61,7 @@ class SourceRepresentationInstance(pulumi.CustomResource):
             port=3306,
             region="us-central1")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -60,8 +60,9 @@ class Index(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/firestore/docs/query-data/indexing)
 
-        ## Example Usage - Firestore Index Basic
+        ## Example Usage
 
+        ### Firestore Index Basic
 
         ```python
         import pulumi
@@ -85,6 +86,7 @@ class Index(pulumi.CustomResource):
             ],
             project="my-project-name")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
