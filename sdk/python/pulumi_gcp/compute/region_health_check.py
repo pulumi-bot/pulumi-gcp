@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class RegionHealthCheck(pulumi.CustomResource):
     check_interval_sec: pulumi.Output[float]
     """
@@ -845,9 +846,9 @@ class RegionHealthCheck(pulumi.CustomResource):
         __props__["type"] = type
         __props__["unhealthy_threshold"] = unhealthy_threshold
         return RegionHealthCheck(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-
