@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Trigger(pulumi.CustomResource):
     build: pulumi.Output[dict]
     """
@@ -552,9 +553,9 @@ class Trigger(pulumi.CustomResource):
         __props__["trigger_id"] = trigger_id
         __props__["trigger_template"] = trigger_template
         return Trigger(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

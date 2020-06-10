@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class CryptoKey(pulumi.CustomResource):
     key_ring: pulumi.Output[str]
     """
@@ -186,9 +187,9 @@ class CryptoKey(pulumi.CustomResource):
         __props__["self_link"] = self_link
         __props__["version_template"] = version_template
         return CryptoKey(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

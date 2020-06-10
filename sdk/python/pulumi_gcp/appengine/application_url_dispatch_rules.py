@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class ApplicationUrlDispatchRules(pulumi.CustomResource):
     dispatch_rules: pulumi.Output[list]
     """
@@ -147,9 +148,9 @@ class ApplicationUrlDispatchRules(pulumi.CustomResource):
         __props__["dispatch_rules"] = dispatch_rules
         __props__["project"] = project
         return ApplicationUrlDispatchRules(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-
