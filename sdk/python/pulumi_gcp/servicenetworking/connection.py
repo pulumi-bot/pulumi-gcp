@@ -34,7 +34,9 @@ class Connection(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/service-infrastructure/docs/service-networking/reference/rest/v1/services.connections).
 
-        ## Example usage
+        ## Example Usage
+
+
 
         ```python
         import pulumi
@@ -51,6 +53,7 @@ class Connection(pulumi.CustomResource):
             service="servicenetworking.googleapis.com",
             reserved_peering_ranges=[private_ip_alloc.name])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

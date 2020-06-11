@@ -38,10 +38,9 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
 
 
 
-        ## Example Usage 
+        ## Example Usage
 
         ### Region Disk Resource Policy Attachment Basic
-
 
         ```python
         import pulumi
@@ -80,6 +79,7 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
         my_image = gcp.compute.get_image(family="debian-9",
             project="debian-cloud")
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
