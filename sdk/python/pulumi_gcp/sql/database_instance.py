@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class DatabaseInstance(pulumi.CustomResource):
     connection_name: pulumi.Output[str]
     """
@@ -632,9 +633,9 @@ class DatabaseInstance(pulumi.CustomResource):
         __props__["service_account_email_address"] = service_account_email_address
         __props__["settings"] = settings
         return DatabaseInstance(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

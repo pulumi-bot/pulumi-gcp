@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class EngineSplitTraffic(pulumi.CustomResource):
     migrate_traffic: pulumi.Output[bool]
     """
@@ -167,9 +168,9 @@ class EngineSplitTraffic(pulumi.CustomResource):
         __props__["service"] = service
         __props__["split"] = split
         return EngineSplitTraffic(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

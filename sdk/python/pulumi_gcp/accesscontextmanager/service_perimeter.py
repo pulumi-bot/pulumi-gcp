@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class ServicePerimeter(pulumi.CustomResource):
     create_time: pulumi.Output[str]
     """
@@ -451,9 +452,9 @@ class ServicePerimeter(pulumi.CustomResource):
         __props__["update_time"] = update_time
         __props__["use_explicit_dry_run_spec"] = use_explicit_dry_run_spec
         return ServicePerimeter(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-
