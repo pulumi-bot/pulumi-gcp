@@ -10,6 +10,7 @@ from typing import Union
 from .. import utilities, tables
 
 warnings.warn("gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler", DeprecationWarning)
+
 class Autoscalar(pulumi.CustomResource):
     autoscaling_policy: pulumi.Output[dict]
     """
@@ -518,9 +519,9 @@ class Autoscalar(pulumi.CustomResource):
         __props__["target"] = target
         __props__["zone"] = zone
         return Autoscalar(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-
