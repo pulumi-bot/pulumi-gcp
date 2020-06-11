@@ -83,8 +83,9 @@ class DataTransferConfig(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/bigquery/docs/reference/datatransfer/rest/)
 
-        ## Example Usage - Scheduled Query
+        ## Example Usage
 
+        ### Scheduled Query
 
         ```python
         import pulumi
@@ -111,6 +112,7 @@ class DataTransferConfig(pulumi.CustomResource):
                 "query": "SELECT name FROM tabl WHERE x = 'y'",
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

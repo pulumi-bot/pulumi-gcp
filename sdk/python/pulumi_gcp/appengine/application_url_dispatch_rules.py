@@ -35,8 +35,9 @@ class ApplicationUrlDispatchRules(pulumi.CustomResource):
 
         * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps#UrlDispatchRule)
 
-        ## Example Usage - App Engine Application Url Dispatch Rules Basic
+        ## Example Usage
 
+        ### App Engine Application Url Dispatch Rules Basic
 
         ```python
         import pulumi
@@ -75,6 +76,7 @@ class ApplicationUrlDispatchRules(pulumi.CustomResource):
             },
         ])
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

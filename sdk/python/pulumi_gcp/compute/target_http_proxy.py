@@ -58,8 +58,9 @@ class TargetHttpProxy(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
 
-        ## Example Usage - Target Http Proxy Basic
+        ## Example Usage
 
+        ### Target Http Proxy Basic
 
         ```python
         import pulumi
@@ -90,8 +91,8 @@ class TargetHttpProxy(pulumi.CustomResource):
             }])
         default_target_http_proxy = gcp.compute.TargetHttpProxy("defaultTargetHttpProxy", url_map=default_url_map.id)
         ```
-        ## Example Usage - Target Http Proxy Https Redirect
 
+        ### Target Http Proxy Https Redirect
 
         ```python
         import pulumi
@@ -103,6 +104,7 @@ class TargetHttpProxy(pulumi.CustomResource):
         })
         default_target_http_proxy = gcp.compute.TargetHttpProxy("defaultTargetHttpProxy", url_map=default_url_map.self_link)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

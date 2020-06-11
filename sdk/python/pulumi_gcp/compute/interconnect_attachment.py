@@ -136,8 +136,9 @@ class InterconnectAttachment(pulumi.CustomResource):
 
 
 
-        ## Example Usage - Interconnect Attachment Basic
+        ## Example Usage
 
+        ### Interconnect Attachment Basic
 
         ```python
         import pulumi
@@ -148,6 +149,7 @@ class InterconnectAttachment(pulumi.CustomResource):
             interconnect="my-interconnect-id",
             router=foobar.id)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -60,8 +60,9 @@ class Instance(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/spanner/)
 
-        ## Example Usage - Spanner Instance Basic
+        ## Example Usage
 
+        ### Spanner Instance Basic
 
         ```python
         import pulumi
@@ -75,6 +76,7 @@ class Instance(pulumi.CustomResource):
             },
             num_nodes=2)
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

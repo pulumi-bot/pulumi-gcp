@@ -117,8 +117,9 @@ class Dataset(pulumi.CustomResource):
         * How-to Guides
             * [Datasets Intro](https://cloud.google.com/bigquery/docs/datasets-intro)
 
-        ## Example Usage - Bigquery Dataset Basic
+        ## Example Usage
 
+        ### Bigquery Dataset Basic
 
         ```python
         import pulumi
@@ -145,8 +146,8 @@ class Dataset(pulumi.CustomResource):
                 },
             ])
         ```
-        ## Example Usage - Bigquery Dataset Cmek
 
+        ### Bigquery Dataset Cmek
 
         ```python
         import pulumi
@@ -164,6 +165,7 @@ class Dataset(pulumi.CustomResource):
                 "kms_key_name": crypto_key.id,
             })
         ```
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
