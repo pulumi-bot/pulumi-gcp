@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Function(pulumi.CustomResource):
     available_memory_mb: pulumi.Output[float]
     """
@@ -345,9 +346,9 @@ class Function(pulumi.CustomResource):
         __props__["vpc_connector"] = vpc_connector
         __props__["vpc_connector_egress_settings"] = vpc_connector_egress_settings
         return Function(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-
