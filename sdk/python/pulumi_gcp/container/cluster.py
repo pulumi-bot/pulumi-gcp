@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Cluster(pulumi.CustomResource):
     addons_config: pulumi.Output[dict]
     """
@@ -2004,9 +2005,9 @@ class Cluster(pulumi.CustomResource):
         __props__["vertical_pod_autoscaling"] = vertical_pod_autoscaling
         __props__["workload_identity_config"] = workload_identity_config
         return Cluster(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-
