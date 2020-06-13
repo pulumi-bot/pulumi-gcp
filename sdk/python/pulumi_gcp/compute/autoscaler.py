@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Autoscaler(pulumi.CustomResource):
     autoscaling_policy: pulumi.Output[dict]
     """
@@ -517,9 +518,9 @@ class Autoscaler(pulumi.CustomResource):
         __props__["target"] = target
         __props__["zone"] = zone
         return Autoscaler(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-
