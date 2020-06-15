@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class WebTypeAppEngingIamPolicy(pulumi.CustomResource):
     app_id: pulumi.Output[str]
     """
@@ -203,9 +204,9 @@ class WebTypeAppEngingIamPolicy(pulumi.CustomResource):
         __props__["policy_data"] = policy_data
         __props__["project"] = project
         return WebTypeAppEngingIamPolicy(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-
