@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Network(pulumi.CustomResource):
     auto_create_subnetworks: pulumi.Output[bool]
     """
@@ -186,9 +187,9 @@ class Network(pulumi.CustomResource):
         __props__["routing_mode"] = routing_mode
         __props__["self_link"] = self_link
         return Network(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-
