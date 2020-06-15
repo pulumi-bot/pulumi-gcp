@@ -46,7 +46,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		imageBackend, err := compute.NewBackendBucket(ctx, "imageBackend", &compute.BackendBucketArgs{
+// 		_, err = compute.NewBackendBucket(ctx, "imageBackend", &compute.BackendBucketArgs{
 // 			Description: pulumi.String("Contains beautiful images"),
 // 			BucketName:  imageBucket.Name,
 // 			EnableCdn:   pulumi.Bool(true),

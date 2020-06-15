@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class HttpHealthCheck(pulumi.CustomResource):
     check_interval_sec: pulumi.Output[float]
     """
@@ -229,9 +230,9 @@ class HttpHealthCheck(pulumi.CustomResource):
         __props__["timeout_sec"] = timeout_sec
         __props__["unhealthy_threshold"] = unhealthy_threshold
         return HttpHealthCheck(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

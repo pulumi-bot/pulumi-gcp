@@ -16,7 +16,6 @@ import (
 // [API](https://cloud.google.com/compute/docs/reference/latest/instanceTemplates).
 //
 //
-//
 // ## Using with Instance Group Manager
 //
 // Instance Templates cannot be updated after creation with the Google

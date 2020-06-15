@@ -45,7 +45,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		job, err := bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
+// 		_, err = bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
 // 			JobId: pulumi.String("job_query"),
 // 			Labels: map[string]interface{}{
 // 				"example-label": "example-value",
@@ -100,7 +100,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		job, err := bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
+// 		_, err = bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
 // 			JobId: pulumi.String("job_query"),
 // 			Labels: map[string]interface{}{
 // 				"example-label": "example-value",
@@ -156,7 +156,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		job, err := bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
+// 		_, err = bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
 // 			JobId: pulumi.String("job_load"),
 // 			Labels: map[string]interface{}{
 // 				"my_job": "load",

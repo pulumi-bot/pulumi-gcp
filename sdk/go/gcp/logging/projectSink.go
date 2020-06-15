@@ -19,6 +19,33 @@ import (
 // > **Note:** You must have [granted the "Logs Configuration Writer"](https://cloud.google.com/logging/docs/access-control) IAM role (`roles/logging.configWriter`) to the credentials used with this provider.
 //
 // > **Note** You must [enable the Cloud Resource Manager API](https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com)
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/logging"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = logging.NewProjectSink(ctx, "my-sink", &logging.ProjectSinkArgs{
+// 			Destination:          pulumi.String("pubsub.googleapis.com/projects/my-project/topics/instance-activity"),
+// 			Filter:               pulumi.String("resource.type = gce_instance AND severity >= WARN"),
+// 			UniqueWriterIdentity: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type ProjectSink struct {
 	pulumi.CustomResourceState
 

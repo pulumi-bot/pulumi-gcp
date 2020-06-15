@@ -45,7 +45,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		policy, err := secretmanager.NewSecretIamPolicy(ctx, "policy", &secretmanager.SecretIamPolicyArgs{
+// 		_, err = secretmanager.NewSecretIamPolicy(ctx, "policy", &secretmanager.SecretIamPolicyArgs{
 // 			Project:    pulumi.String(google_secret_manager_secret.Secret - basic.Project),
 // 			SecretId:   pulumi.String(google_secret_manager_secret.Secret - basic.Secret_id),
 // 			PolicyData: pulumi.String(admin.PolicyData),
@@ -70,7 +70,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		binding, err := secretmanager.NewSecretIamBinding(ctx, "binding", &secretmanager.SecretIamBindingArgs{
+// 		_, err = secretmanager.NewSecretIamBinding(ctx, "binding", &secretmanager.SecretIamBindingArgs{
 // 			Project:  pulumi.String(google_secret_manager_secret.Secret - basic.Project),
 // 			SecretId: pulumi.String(google_secret_manager_secret.Secret - basic.Secret_id),
 // 			Role:     pulumi.String("roles/viewer"),
@@ -98,7 +98,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		member, err := secretmanager.NewSecretIamMember(ctx, "member", &secretmanager.SecretIamMemberArgs{
+// 		_, err = secretmanager.NewSecretIamMember(ctx, "member", &secretmanager.SecretIamMemberArgs{
 // 			Project:  pulumi.String(google_secret_manager_secret.Secret - basic.Project),
 // 			SecretId: pulumi.String(google_secret_manager_secret.Secret - basic.Secret_id),
 // 			Role:     pulumi.String("roles/viewer"),
