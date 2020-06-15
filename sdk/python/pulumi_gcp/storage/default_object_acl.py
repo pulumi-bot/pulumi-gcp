@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class DefaultObjectACL(pulumi.CustomResource):
     bucket: pulumi.Output[str]
     """
@@ -108,9 +109,9 @@ class DefaultObjectACL(pulumi.CustomResource):
         __props__["bucket"] = bucket
         __props__["role_entities"] = role_entities
         return DefaultObjectACL(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-
