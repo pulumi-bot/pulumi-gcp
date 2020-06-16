@@ -12,9 +12,9 @@ import * as utilities from "../utilities";
  * Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
  * granted to the credentials used with the provider.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -27,6 +27,8 @@ import * as utilities from "../utilities";
  *     filter: "resource.type = gce_instance AND severity <= DEBUG",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class BillingAccountExclusion extends pulumi.CustomResource {
     /**

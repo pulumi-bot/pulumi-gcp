@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class IAMPolicy(pulumi.CustomResource):
     etag: pulumi.Output[str]
     """
@@ -29,9 +30,9 @@ class IAMPolicy(pulumi.CustomResource):
         Allows creation and management of the IAM policy for an existing Google Cloud
         Platform folder.
 
+        {{% examples %}}
         ## Example Usage
-
-
+        {{% example %}}
 
         ```python
         import pulumi
@@ -48,6 +49,8 @@ class IAMPolicy(pulumi.CustomResource):
             folder=department1.name,
             policy_data=admin.policy_data)
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -109,9 +112,9 @@ class IAMPolicy(pulumi.CustomResource):
         __props__["folder"] = folder
         __props__["policy_data"] = policy_data
         return IAMPolicy(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

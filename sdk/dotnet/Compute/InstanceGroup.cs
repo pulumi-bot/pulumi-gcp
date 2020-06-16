@@ -14,9 +14,9 @@ namespace Pulumi.Gcp.Compute
     /// For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/#unmanaged_instance_groups)
     /// and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroups)
     /// 
-    /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Empty Instance Group
     /// 
     /// ```csharp
@@ -37,6 +37,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class InstanceGroup : Pulumi.CustomResource
     {

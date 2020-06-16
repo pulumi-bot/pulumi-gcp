@@ -16,9 +16,11 @@ import * as utilities from "../utilities";
  *
  * **NOTE** This resource will not remove the `project-owners-<project_id>` entity from the `OWNER` role.
  *
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  *
- *
+ * Example creating an ACL on a bucket with one owner, and one reader.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -33,6 +35,8 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class BucketACL extends pulumi.CustomResource {
     /**

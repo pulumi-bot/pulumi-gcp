@@ -18,9 +18,9 @@ namespace Pulumi.Gcp.Compute
     /// [the Project API documentation](https://cloud.google.com/compute/docs/reference/latest/projects),
     /// where the Shared VPC feature is referred to by its former name "XPN".
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -51,6 +51,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class SharedVPCHostProject : Pulumi.CustomResource
     {

@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  *
  * https://cloud.google.com/compute/docs/load-balancing/health-checks#health_check_source_ips_and_firewall_rules
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -30,6 +30,8 @@ import * as utilities from "../utilities";
  *     targetTags: ["InstanceBehindLoadBalancer"],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getLBIPRanges(opts?: pulumi.InvokeOptions): Promise<GetLBIPRangesResult> {
     if (!opts) {

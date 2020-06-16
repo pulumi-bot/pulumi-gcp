@@ -12,10 +12,9 @@ import * as utilities from "../utilities";
  * A model can have multiple versions, each of which is a deployed, trained model
  * ready to receive prediction requests. The model itself is just a container.
  *
- *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Ml Model Basic
  *
  * ```typescript
@@ -27,7 +26,8 @@ import * as utilities from "../utilities";
  *     regions: "us-central1",
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Ml Model Full
  *
  * ```typescript
@@ -44,6 +44,8 @@ import * as utilities from "../utilities";
  *     regions: "us-central1",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class EngineModel extends pulumi.CustomResource {
     /**

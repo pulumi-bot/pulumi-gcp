@@ -10,7 +10,6 @@ import * as utilities from "../utilities";
  * A Container Analysis note is a high-level piece of metadata that
  * describes a type of analysis that can be done for a resource.
  *
- *
  * To get more information about Note, see:
  *
  * * [API documentation](https://cloud.google.com/container-analysis/api/reference/rest/)
@@ -18,8 +17,9 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/container-analysis/)
  *     * [Creating Attestations (Occurrences)](https://cloud.google.com/binary-authorization/docs/making-attestations)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Container Analysis Note Basic
  *
  * ```typescript
@@ -34,7 +34,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Container Analysis Note Attestation Full
  *
  * ```typescript
@@ -61,6 +62,8 @@ import * as utilities from "../utilities";
  *     shortDescription: "test note",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Note extends pulumi.CustomResource {
     /**

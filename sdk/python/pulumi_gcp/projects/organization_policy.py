@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class OrganizationPolicy(pulumi.CustomResource):
     boolean_policy: pulumi.Output[dict]
     """
@@ -65,9 +66,11 @@ class OrganizationPolicy(pulumi.CustomResource):
         documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
         [API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/setOrgPolicy).
 
+        {{% examples %}}
         ## Example Usage
+        {{% example %}}
 
-
+        To set policy with a [boolean constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-boolean-constraints):
 
         ```python
         import pulumi
@@ -80,6 +83,55 @@ class OrganizationPolicy(pulumi.CustomResource):
             constraint="compute.disableSerialPortAccess",
             project="your-project-id")
         ```
+
+        To set a policy with a [list constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-list-constraints):
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        services_policy = gcp.projects.OrganizationPolicy("servicesPolicy",
+            constraint="serviceuser.services",
+            list_policy={
+                "allow": {
+                    "all": True,
+                },
+            },
+            project="your-project-id")
+        ```
+
+        Or to deny some services, use the following instead:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        services_policy = gcp.projects.OrganizationPolicy("servicesPolicy",
+            constraint="serviceuser.services",
+            list_policy={
+                "deny": {
+                    "values": ["cloudresourcemanager.googleapis.com"],
+                },
+                "suggestedValue": "compute.googleapis.com",
+            },
+            project="your-project-id")
+        ```
+
+        To restore the default project organization policy, use the following instead:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        services_policy = gcp.projects.OrganizationPolicy("servicesPolicy",
+            constraint="serviceuser.services",
+            project="your-project-id",
+            restore_policy={
+                "default": True,
+            })
+        ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -200,9 +252,9 @@ class OrganizationPolicy(pulumi.CustomResource):
         __props__["update_time"] = update_time
         __props__["version"] = version
         return OrganizationPolicy(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -11,10 +11,9 @@ import * as utilities from "../utilities";
  * contains no data, requires no configuration or maintenance, and does not
  * affect billing. You cannot update the source representation instance.
  *
- *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Sql Source Representation Instance Basic
  *
  * ```typescript
@@ -28,6 +27,8 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class SourceRepresentationInstance extends pulumi.CustomResource {
     /**

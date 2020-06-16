@@ -10,15 +10,15 @@ import * as utilities from "../utilities";
  * like a container of findings that come from the same scanner, logger,
  * monitor, etc.
  *
- *
  * To get more information about Source, see:
  *
  * * [API documentation](https://cloud.google.com/security-command-center/docs/reference/rest/v1beta1/organizations.sources)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/binary-authorization/)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Scc Source Basic
  *
  * ```typescript
@@ -31,6 +31,8 @@ import * as utilities from "../utilities";
  *     organization: "123456789",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Source extends pulumi.CustomResource {
     /**

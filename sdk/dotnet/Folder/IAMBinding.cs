@@ -21,9 +21,9 @@ namespace Pulumi.Gcp.Folder
     ///     Use `pulumi import` and inspect the output to ensure
     ///     your existing members are preserved.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -51,6 +51,8 @@ namespace Pulumi.Gcp.Folder
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class IAMBinding : Pulumi.CustomResource
     {

@@ -16,9 +16,11 @@ namespace Pulumi.Gcp.ServiceAccount
     /// errors when you try to apply ACLs to service accounts immediately after
     /// creation.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
+    /// {{% example %}}
     /// 
-    /// 
+    /// This snippet creates a service account in a project.
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -37,6 +39,8 @@ namespace Pulumi.Gcp.ServiceAccount
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Account : Pulumi.CustomResource
     {

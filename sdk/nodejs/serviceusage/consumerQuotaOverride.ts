@@ -15,8 +15,9 @@ import * as utilities from "../utilities";
  *     * [Getting Started](https://cloud.google.com/service-usage/docs/getting-started)
  *     * [REST API documentation](https://cloud.google.com/service-usage/docs/reference/rest/v1beta1/services.consumerQuotaMetrics.limits.consumerOverrides)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Consumer Quota Override
  *
  * ```typescript
@@ -36,6 +37,8 @@ import * as utilities from "../utilities";
  *     force: true,
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class ConsumerQuotaOverride extends pulumi.CustomResource {
     /**

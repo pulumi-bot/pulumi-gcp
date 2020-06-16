@@ -13,15 +13,15 @@ import * as utilities from "../utilities";
  * managed instance groups according to an autoscaling policy that you
  * define.
  *
- *
  * To get more information about RegionAutoscaler, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/regionAutoscalers)
  * * How-to Guides
  *     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Region Autoscaler Basic
  *
  * ```typescript
@@ -79,6 +79,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class RegionAutoscaler extends pulumi.CustomResource {
     /**

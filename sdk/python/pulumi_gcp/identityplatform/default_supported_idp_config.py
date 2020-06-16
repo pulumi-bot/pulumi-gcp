@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class DefaultSupportedIdpConfig(pulumi.CustomResource):
     client_id: pulumi.Output[str]
     """
@@ -53,10 +54,9 @@ class DefaultSupportedIdpConfig(pulumi.CustomResource):
         [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
         the marketplace prior to using this resource.
 
-
-
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Identity Platform Default Supported Idp Config Basic
 
         ```python
@@ -69,6 +69,8 @@ class DefaultSupportedIdpConfig(pulumi.CustomResource):
             enabled=True,
             idp_id="playgames.google.com")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -162,9 +164,9 @@ class DefaultSupportedIdpConfig(pulumi.CustomResource):
         __props__["name"] = name
         __props__["project"] = project
         return DefaultSupportedIdpConfig(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

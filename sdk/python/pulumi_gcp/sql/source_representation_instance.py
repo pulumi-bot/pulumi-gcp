@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class SourceRepresentationInstance(pulumi.CustomResource):
     database_version: pulumi.Output[str]
     """
@@ -45,10 +46,9 @@ class SourceRepresentationInstance(pulumi.CustomResource):
         contains no data, requires no configuration or maintenance, and does not
         affect billing. You cannot update the source representation instance.
 
-
-
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Sql Source Representation Instance Basic
 
         ```python
@@ -61,6 +61,8 @@ class SourceRepresentationInstance(pulumi.CustomResource):
             port=3306,
             region="us-central1")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -137,9 +139,9 @@ class SourceRepresentationInstance(pulumi.CustomResource):
         __props__["project"] = project
         __props__["region"] = region
         return SourceRepresentationInstance(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

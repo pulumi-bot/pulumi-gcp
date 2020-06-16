@@ -16,10 +16,9 @@ import (
 // [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
 // the marketplace prior to using this resource.
 //
-//
-//
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Identity Platform Default Supported Idp Config Basic
 //
 // ```go
@@ -32,7 +31,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		idpConfig, err := identityplatform.NewDefaultSupportedIdpConfig(ctx, "idpConfig", &identityplatform.DefaultSupportedIdpConfigArgs{
+// 		_, err = identityplatform.NewDefaultSupportedIdpConfig(ctx, "idpConfig", &identityplatform.DefaultSupportedIdpConfigArgs{
 // 			ClientId:     pulumi.String("client-id"),
 // 			ClientSecret: pulumi.String("secret"),
 // 			Enabled:      pulumi.Bool(true),
@@ -45,6 +44,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type DefaultSupportedIdpConfig struct {
 	pulumi.CustomResourceState
 

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class ResourcePolicy(pulumi.CustomResource):
     group_placement_policy: pulumi.Output[dict]
     """
@@ -81,10 +82,9 @@ class ResourcePolicy(pulumi.CustomResource):
         """
         A policy that can be attached to a resource to specify or schedule actions on that resource.
 
-
-
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Resource Policy Basic
 
         ```python
@@ -102,7 +102,8 @@ class ResourcePolicy(pulumi.CustomResource):
                 },
             })
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Resource Policy Full
 
         ```python
@@ -131,7 +132,8 @@ class ResourcePolicy(pulumi.CustomResource):
                 },
             })
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Resource Policy Placement Policy
 
         ```python
@@ -145,6 +147,8 @@ class ResourcePolicy(pulumi.CustomResource):
             },
             region="us-central1")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -304,9 +308,9 @@ class ResourcePolicy(pulumi.CustomResource):
         __props__["self_link"] = self_link
         __props__["snapshot_schedule_policy"] = snapshot_schedule_policy
         return ResourcePolicy(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

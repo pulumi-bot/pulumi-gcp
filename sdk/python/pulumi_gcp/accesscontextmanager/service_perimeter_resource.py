@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class ServicePerimeterResource(pulumi.CustomResource):
     perimeter_name: pulumi.Output[str]
     """
@@ -31,15 +32,15 @@ class ServicePerimeterResource(pulumi.CustomResource):
         the service perimeter resource must have a `lifecycle` block with `ignore_changes = [status[0].resources]` so
         they don't fight over which resources should be in the policy.
 
-
         To get more information about ServicePerimeterResource, see:
 
         * [API documentation](https://cloud.google.com/access-context-manager/docs/reference/rest/v1/accessPolicies.servicePerimeters)
         * How-to Guides
             * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Access Context Manager Service Perimeter Resource Basic
 
         ```python
@@ -59,6 +60,8 @@ class ServicePerimeterResource(pulumi.CustomResource):
             perimeter_name=service_perimeter_resource_service_perimeter.name,
             resource="projects/987654321")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -117,9 +120,9 @@ class ServicePerimeterResource(pulumi.CustomResource):
         __props__["perimeter_name"] = perimeter_name
         __props__["resource"] = resource
         return ServicePerimeterResource(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

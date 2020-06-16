@@ -22,9 +22,9 @@ namespace Pulumi.Gcp.Billing
     ///    `gcp.billing.AccountIamMember` or `gcp.billing.AccountIamBinding`
     ///    or they will fight over what your policy should be.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -57,6 +57,8 @@ namespace Pulumi.Gcp.Billing
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class AccountIamPolicy : Pulumi.CustomResource
     {

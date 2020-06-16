@@ -15,9 +15,11 @@ import (
 // documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
 // [API](https://cloud.google.com/resource-manager/reference/rest/v1/folders/setOrgPolicy).
 //
+// {{% examples %}}
 // ## Example Usage
+// {{% example %}}
 //
-//
+// To set policy with a [boolean constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-boolean-constraints):
 //
 // ```go
 // package main
@@ -29,7 +31,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		serialPortPolicy, err := folder.NewOrganizationPolicy(ctx, "serialPortPolicy", &folder.OrganizationPolicyArgs{
+// 		_, err = folder.NewOrganizationPolicy(ctx, "serialPortPolicy", &folder.OrganizationPolicyArgs{
 // 			BooleanPolicy: &folder.OrganizationPolicyBooleanPolicyArgs{
 // 				Enforced: pulumi.Bool(true),
 // 			},
@@ -43,6 +45,96 @@ import (
 // 	})
 // }
 // ```
+//
+// To set a policy with a [list constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-list-constraints):
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/folder"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = folder.NewOrganizationPolicy(ctx, "servicesPolicy", &folder.OrganizationPolicyArgs{
+// 			Constraint: pulumi.String("serviceuser.services"),
+// 			Folder:     pulumi.String("folders/123456789"),
+// 			ListPolicy: &folder.OrganizationPolicyListPolicyArgs{
+// 				Allow: &folder.OrganizationPolicyListPolicyAllowArgs{
+// 					All: pulumi.Bool(true),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Or to deny some services, use the following instead:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/folder"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = folder.NewOrganizationPolicy(ctx, "servicesPolicy", &folder.OrganizationPolicyArgs{
+// 			Constraint: pulumi.String("serviceuser.services"),
+// 			Folder:     pulumi.String("folders/123456789"),
+// 			ListPolicy: &folder.OrganizationPolicyListPolicyArgs{
+// 				Deny: &folder.OrganizationPolicyListPolicyDenyArgs{
+// 					Values: pulumi.StringArray{
+// 						pulumi.String("cloudresourcemanager.googleapis.com"),
+// 					},
+// 				},
+// 				SuggestedValue: pulumi.String("compute.googleapis.com"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// To restore the default folder organization policy, use the following instead:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/folder"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = folder.NewOrganizationPolicy(ctx, "servicesPolicy", &folder.OrganizationPolicyArgs{
+// 			Constraint: pulumi.String("serviceuser.services"),
+// 			Folder:     pulumi.String("folders/123456789"),
+// 			RestorePolicy: &folder.OrganizationPolicyRestorePolicyArgs{
+// 				Default: pulumi.Bool(true),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// {{% /example %}}
+// {{% /examples %}}
 type OrganizationPolicy struct {
 	pulumi.CustomResourceState
 

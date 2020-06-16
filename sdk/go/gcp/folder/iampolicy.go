@@ -13,9 +13,9 @@ import (
 // Allows creation and management of the IAM policy for an existing Google Cloud
 // Platform folder.
 //
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -48,7 +48,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		folderAdminPolicy, err := folder.NewIAMPolicy(ctx, "folderAdminPolicy", &folder.IAMPolicyArgs{
+// 		_, err = folder.NewIAMPolicy(ctx, "folderAdminPolicy", &folder.IAMPolicyArgs{
 // 			Folder:     department1.Name,
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})
@@ -59,6 +59,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type IAMPolicy struct {
 	pulumi.CustomResourceState
 

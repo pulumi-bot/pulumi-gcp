@@ -8,13 +8,14 @@ import * as utilities from "../utilities";
  * Manages a set of DNS records within Google Cloud DNS. For more information see [the official documentation](https://cloud.google.com/dns/records/) and
  * [API](https://cloud.google.com/dns/api/v1/resourceRecordSets).
  *
- * > **Note:** The provider treats this resource as an authoritative record set. This means existing records (including 
- * the default records) for the given type will be overwritten when you create this resource in the provider. 
- * In addition, the Google Cloud DNS API requires NS records to be present at all times, so the provider 
+ * > **Note:** The provider treats this resource as an authoritative record set. This means existing records (including
+ * the default records) for the given type will be overwritten when you create this resource in the provider.
+ * In addition, the Google Cloud DNS API requires NS records to be present at all times, so the provider
  * will not actually remove NS records during destroy but will report that it did.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Binding a DNS name to the ephemeral IP of a new instance:
  *
  * ```typescript
@@ -42,7 +43,8 @@ import * as utilities from "../utilities";
  *     rrdatas: [frontendInstance.networkInterfaces.apply(networkInterfaces => networkInterfaces[0].accessConfigs?[0]?.natIp)],
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Adding an A record
  *
  * ```typescript
@@ -57,7 +59,8 @@ import * as utilities from "../utilities";
  *     rrdatas: ["8.8.8.8"],
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Adding an MX record
  *
  * ```typescript
@@ -78,8 +81,11 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Adding an SPF record
+ *
+ * Quotes (`""`) must be added around your `rrdatas` for a SPF record. Otherwise `rrdatas` string gets split on spaces.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -93,8 +99,11 @@ import * as utilities from "../utilities";
  *     rrdatas: ["\"v=spf1 ip4:111.111.111.111 include:backoff.email-example.com -all\""],
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Adding a CNAME record
+ *
+ *  The list of `rrdatas` should only contain a single string corresponding to the Canonical Name intended.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -108,6 +117,8 @@ import * as utilities from "../utilities";
  *     rrdatas: ["frontend.mydomain.com."],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class RecordSet extends pulumi.CustomResource {
     /**

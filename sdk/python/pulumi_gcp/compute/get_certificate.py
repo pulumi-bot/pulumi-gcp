@@ -68,9 +68,9 @@ def get_certificate(name=None,project=None,opts=None):
     """
     Get info about a Google Compute SSL Certificate from its name.
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -81,6 +81,8 @@ def get_certificate(name=None,project=None,opts=None):
     pulumi.export("certificateId", my_cert.certificate_id)
     pulumi.export("selfLink", my_cert.self_link)
     ```
+    {{% /example %}}
+    {{% /examples %}}
 
 
     :param str name: The name of the certificate.

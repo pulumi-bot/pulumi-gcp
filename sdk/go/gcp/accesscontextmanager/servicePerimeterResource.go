@@ -19,7 +19,6 @@ import (
 // the service perimeter resource must have a `lifecycle` block with `ignoreChanges = [status[0].resources]` so
 // they don't fight over which resources should be in the policy.
 //
-//
 // To get more information about ServicePerimeterResource, see:
 //
 // * [API documentation](https://cloud.google.com/access-context-manager/docs/reference/rest/v1/accessPolicies.servicePerimeters)

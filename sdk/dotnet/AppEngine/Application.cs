@@ -20,9 +20,9 @@ namespace Pulumi.Gcp.AppEngine
     /// &gt; **Warning:** All arguments including `iap.oauth2_client_secret` will be stored in the raw
     /// state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -46,6 +46,8 @@ namespace Pulumi.Gcp.AppEngine
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Application : Pulumi.CustomResource
     {

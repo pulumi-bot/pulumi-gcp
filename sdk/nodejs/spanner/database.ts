@@ -7,15 +7,15 @@ import * as utilities from "../utilities";
 /**
  * A Cloud Spanner Database which is hosted on a Spanner instance.
  *
- *
  * To get more information about Database, see:
  *
  * * [API documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/projects.instances.databases)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/spanner/)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Spanner Database Basic
  *
  * ```typescript
@@ -34,6 +34,8 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Database extends pulumi.CustomResource {
     /**

@@ -13,8 +13,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Configuring a service](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_service)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Service Directory Service Basic
  *
  * ```typescript
@@ -34,6 +35,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Service extends pulumi.CustomResource {
     /**

@@ -19,8 +19,9 @@ namespace Pulumi.Gcp.ServiceDirectory
     /// * How-to Guides
     ///     * [Configuring a namespace](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_namespace)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Service Directory Namespace Basic
     /// 
     /// ```csharp
@@ -45,6 +46,8 @@ namespace Pulumi.Gcp.ServiceDirectory
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Namespace : Pulumi.CustomResource
     {

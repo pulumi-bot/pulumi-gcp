@@ -10,8 +10,6 @@ import * as utilities from "../utilities";
  * A collection of resources that are deployed and managed together using
  * a configuration file
  *
- *
- *
  * > **Warning:** This resource is intended only to manage a Deployment resource,
  * and attempts to manage the Deployment's resources in the provider as well
  * will likely result in errors or unexpected behavior as the two tools
@@ -23,8 +21,9 @@ import * as utilities from "../utilities";
  * than actually deploying an in-preview deployment (i.e. `preview=true` to
  * `preview=false`).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Deployment Manager Deployment Basic
  *
  * ```typescript
@@ -44,6 +43,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Deployment extends pulumi.CustomResource {
     /**

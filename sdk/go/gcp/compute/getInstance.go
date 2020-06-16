@@ -12,10 +12,9 @@ import (
 // and
 // [API](https://cloud.google.com/compute/docs/reference/latest/instances).
 //
-//
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -26,7 +25,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		appserver, err := compute.LookupInstance(ctx, &compute.LookupInstanceArgs{
+// 		_, err := compute.LookupInstance(ctx, &compute.LookupInstanceArgs{
 // 			Name: "primary-application-server",
 // 			Zone: "us-central1-a",
 // 		}, nil)
@@ -37,6 +36,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 func LookupInstance(ctx *pulumi.Context, args *LookupInstanceArgs, opts ...pulumi.InvokeOption) (*LookupInstanceResult, error) {
 	var rv LookupInstanceResult
 	err := ctx.Invoke("gcp:compute/getInstance:getInstance", args, &rv, opts...)

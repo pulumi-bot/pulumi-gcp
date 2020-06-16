@@ -10,6 +10,7 @@ from typing import Union
 from .. import utilities, tables
 
 warnings.warn("gcp.compute.Autoscalar has been deprecated in favor of gcp.compute.Autoscaler", DeprecationWarning)
+
 class Autoscalar(pulumi.CustomResource):
     autoscaling_policy: pulumi.Output[dict]
     """
@@ -142,15 +143,15 @@ class Autoscalar(pulumi.CustomResource):
         managed instance groups according to an autoscaling policy that you
         define.
 
-
         To get more information about Autoscaler, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/autoscalers)
         * How-to Guides
             * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Autoscaler Single Instance
 
         ```python
@@ -205,7 +206,8 @@ class Autoscalar(pulumi.CustomResource):
                 }],
             })
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Autoscaler Basic
 
         ```python
@@ -258,6 +260,8 @@ class Autoscalar(pulumi.CustomResource):
                 },
             })
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -519,9 +523,9 @@ class Autoscalar(pulumi.CustomResource):
         __props__["target"] = target
         __props__["zone"] = zone
         return Autoscalar(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

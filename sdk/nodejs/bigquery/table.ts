@@ -11,10 +11,9 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/bigquery/docs/) and
  * [API](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables).
  *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -68,6 +67,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Table extends pulumi.CustomResource {
     /**

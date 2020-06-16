@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class TransferJob(pulumi.CustomResource):
     creation_time: pulumi.Output[str]
     """
@@ -102,9 +103,11 @@ class TransferJob(pulumi.CustomResource):
         * How-to Guides
             * [Configuring Access to Data Sources and Sinks](https://cloud.google.com/storage-transfer/docs/configure-access)
 
+        {{% examples %}}
         ## Example Usage
+        {{% example %}}
 
-
+        Example creating a nightly Transfer Job from an AWS S3 Bucket to a GCS bucket.
 
         ```python
         import pulumi
@@ -159,6 +162,8 @@ class TransferJob(pulumi.CustomResource):
                 },
             })
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -337,9 +342,9 @@ class TransferJob(pulumi.CustomResource):
         __props__["status"] = status
         __props__["transfer_spec"] = transfer_spec
         return TransferJob(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

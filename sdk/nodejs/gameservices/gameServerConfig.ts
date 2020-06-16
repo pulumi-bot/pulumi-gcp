@@ -15,8 +15,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/game-servers/docs)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Game Service Config Basic
  *
  * ```typescript
@@ -79,6 +80,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class GameServerConfig extends pulumi.CustomResource {
     /**

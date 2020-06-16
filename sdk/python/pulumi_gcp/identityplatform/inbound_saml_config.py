@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class InboundSamlConfig(pulumi.CustomResource):
     display_name: pulumi.Output[str]
     """
@@ -62,10 +63,9 @@ class InboundSamlConfig(pulumi.CustomResource):
         [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
         the marketplace prior to using this resource.
 
-
-
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Identity Platform Inbound Saml Config Basic
 
         ```python
@@ -87,6 +87,8 @@ class InboundSamlConfig(pulumi.CustomResource):
                 "callbackUri": "https://example.com",
             })
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -207,9 +209,9 @@ class InboundSamlConfig(pulumi.CustomResource):
         __props__["project"] = project
         __props__["sp_config"] = sp_config
         return InboundSamlConfig(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

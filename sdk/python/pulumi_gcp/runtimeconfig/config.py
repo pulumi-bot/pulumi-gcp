@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Config(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
@@ -31,9 +32,11 @@ class Config(pulumi.CustomResource):
         or the
         [JSON API](https://cloud.google.com/deployment-manager/runtime-configurator/reference/rest/).
 
+        {{% examples %}}
         ## Example Usage
+        {{% example %}}
 
-
+        Example creating a RuntimeConfig resource.
 
         ```python
         import pulumi
@@ -41,6 +44,8 @@ class Config(pulumi.CustomResource):
 
         my_runtime_config = gcp.runtimeconfig.Config("my-runtime-config", description="Runtime configuration values for my service")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -99,9 +104,9 @@ class Config(pulumi.CustomResource):
         __props__["name"] = name
         __props__["project"] = project
         return Config(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

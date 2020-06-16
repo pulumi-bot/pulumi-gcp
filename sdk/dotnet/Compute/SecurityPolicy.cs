@@ -14,9 +14,9 @@ namespace Pulumi.Gcp.Compute
     /// see the [official documentation](https://cloud.google.com/armor/docs/configure-security-policies)
     /// and the [API](https://cloud.google.com/compute/docs/reference/rest/beta/securityPolicies).
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -70,6 +70,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class SecurityPolicy : Pulumi.CustomResource
     {

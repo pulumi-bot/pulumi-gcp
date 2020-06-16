@@ -9,15 +9,15 @@ import * as utilities from "../utilities";
 /**
  * A NAT service created in a router.
  *
- *
  * To get more information about RouterNat, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/routers)
  * * How-to Guides
  *     * [Google Cloud Router](https://cloud.google.com/router/docs/)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Router Nat Basic
  *
  * ```typescript
@@ -48,7 +48,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Router Nat Manual Ips
  *
  * ```typescript
@@ -81,6 +82,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class RouterNat extends pulumi.CustomResource {
     /**

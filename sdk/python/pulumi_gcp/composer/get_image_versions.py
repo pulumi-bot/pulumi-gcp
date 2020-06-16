@@ -47,9 +47,9 @@ def get_image_versions(project=None,region=None,opts=None):
     """
     Provides access to available Cloud Composer versions in a region for a given project.
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -64,6 +64,8 @@ def get_image_versions(project=None,region=None,opts=None):
             },
         })
     ```
+    {{% /example %}}
+    {{% /examples %}}
 
 
     :param str project: The ID of the project to list versions in.

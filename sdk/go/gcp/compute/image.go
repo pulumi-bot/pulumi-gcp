@@ -26,15 +26,15 @@ import (
 // from root persistent disks and other images. Then, use the custom image
 // to create an instance.
 //
-//
 // To get more information about Image, see:
 //
 // * [API documentation](https://cloud.google.com/compute/docs/reference/v1/images)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/compute/docs/images)
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Image Basic
 //
 // ```go
@@ -47,7 +47,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := compute.NewImage(ctx, "example", &compute.ImageArgs{
+// 		_, err = compute.NewImage(ctx, "example", &compute.ImageArgs{
 // 			RawDisk: &compute.ImageRawDiskArgs{
 // 				Source: pulumi.String("https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.4-google-kvm-ubuntu-trusty-go_agent-raw.tar.gz"),
 // 			},
@@ -59,7 +59,8 @@ import (
 // 	})
 // }
 // ```
-//
+// {{% /example %}}
+// {{% example %}}
 // ### Image Guest Os
 //
 // ```go
@@ -72,7 +73,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := compute.NewImage(ctx, "example", &compute.ImageArgs{
+// 		_, err = compute.NewImage(ctx, "example", &compute.ImageArgs{
 // 			GuestOsFeatures: compute.ImageGuestOsFeatureArray{
 // 				&compute.ImageGuestOsFeatureArgs{
 // 					Type: pulumi.String("SECURE_BOOT"),
@@ -92,6 +93,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type Image struct {
 	pulumi.CustomResourceState
 

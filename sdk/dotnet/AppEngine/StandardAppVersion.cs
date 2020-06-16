@@ -15,7 +15,6 @@ namespace Pulumi.Gcp.AppEngine
     /// at https://cloud.google.com/appengine/docs/the-appengine-environments.
     /// Currently supporting Zip and File Containers.
     /// 
-    /// 
     /// To get more information about StandardAppVersion, see:
     /// 
     /// * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions)

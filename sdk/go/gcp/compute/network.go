@@ -11,15 +11,15 @@ import (
 
 // Manages a VPC network or legacy network resource on GCP.
 //
-//
 // To get more information about Network, see:
 //
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/networks)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/vpc/docs/vpc)
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Network Basic
 //
 // ```go
@@ -32,7 +32,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		vpcNetwork, err := compute.NewNetwork(ctx, "vpcNetwork", nil)
+// 		_, err = compute.NewNetwork(ctx, "vpcNetwork", nil)
 // 		if err != nil {
 // 			return err
 // 		}
@@ -40,6 +40,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type Network struct {
 	pulumi.CustomResourceState
 

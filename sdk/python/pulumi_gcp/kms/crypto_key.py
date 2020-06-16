@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class CryptoKey(pulumi.CustomResource):
     key_ring: pulumi.Output[str]
     """
@@ -49,7 +50,6 @@ class CryptoKey(pulumi.CustomResource):
         """
         A `CryptoKey` represents a logical key that can be used for cryptographic operations.
 
-
         > **Note:** CryptoKeys cannot be deleted from Google Cloud Platform.
         Destroying a provider-managed CryptoKey will remove it from state
         and delete all CryptoKeyVersions, rendering the key unusable, but *will
@@ -58,15 +58,15 @@ class CryptoKey(pulumi.CustomResource):
         For this reason, it is strongly recommended that you add lifecycle hooks
         to the resource to prevent accidental destruction.
 
-
         To get more information about CryptoKey, see:
 
         * [API documentation](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys)
         * How-to Guides
             * [Creating a key](https://cloud.google.com/kms/docs/creating-keys#create_a_key)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Kms Crypto Key Basic
 
         ```python
@@ -78,7 +78,8 @@ class CryptoKey(pulumi.CustomResource):
             key_ring=keyring.id,
             rotation_period="100000s")
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Kms Crypto Key Asymmetric Sign
 
         ```python
@@ -93,6 +94,8 @@ class CryptoKey(pulumi.CustomResource):
                 "algorithm": "EC_SIGN_P384_SHA384",
             })
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -187,9 +190,9 @@ class CryptoKey(pulumi.CustomResource):
         __props__["self_link"] = self_link
         __props__["version_template"] = version_template
         return CryptoKey(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

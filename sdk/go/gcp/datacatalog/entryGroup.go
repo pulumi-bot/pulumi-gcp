@@ -12,15 +12,15 @@ import (
 
 // An EntryGroup resource represents a logical grouping of zero or more Data Catalog Entry resources.
 //
-//
 // To get more information about EntryGroup, see:
 //
 // * [API documentation](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Data Catalog Entry Group Basic
 //
 // ```go
@@ -33,7 +33,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		basicEntryGroup, err := datacatalog.NewEntryGroup(ctx, "basicEntryGroup", &datacatalog.EntryGroupArgs{
+// 		_, err = datacatalog.NewEntryGroup(ctx, "basicEntryGroup", &datacatalog.EntryGroupArgs{
 // 			EntryGroupId: pulumi.String("my_group"),
 // 		})
 // 		if err != nil {
@@ -43,7 +43,8 @@ import (
 // 	})
 // }
 // ```
-//
+// {{% /example %}}
+// {{% example %}}
 // ### Data Catalog Entry Group Full
 //
 // ```go
@@ -56,7 +57,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		basicEntryGroup, err := datacatalog.NewEntryGroup(ctx, "basicEntryGroup", &datacatalog.EntryGroupArgs{
+// 		_, err = datacatalog.NewEntryGroup(ctx, "basicEntryGroup", &datacatalog.EntryGroupArgs{
 // 			Description:  pulumi.String("entry group created by Terraform"),
 // 			DisplayName:  pulumi.String("terraform entry group"),
 // 			EntryGroupId: pulumi.String("my_group"),
@@ -68,6 +69,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type EntryGroup struct {
 	pulumi.CustomResourceState
 

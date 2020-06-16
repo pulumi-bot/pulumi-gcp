@@ -13,15 +13,15 @@ import (
 // A named resource representing the stream of messages from a single,
 // specific topic, to be delivered to the subscribing application.
 //
-//
 // To get more information about Subscription, see:
 //
 // * [API documentation](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions)
 // * How-to Guides
 //     * [Managing Subscriptions](https://cloud.google.com/pubsub/docs/admin#managing_subscriptions)
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Pubsub Subscription Different Project
 //
 // ```go
@@ -40,7 +40,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		exampleSubscription, err := pubsub.NewSubscription(ctx, "exampleSubscription", &pubsub.SubscriptionArgs{
+// 		_, err = pubsub.NewSubscription(ctx, "exampleSubscription", &pubsub.SubscriptionArgs{
 // 			Project: pulumi.String("subscription-project"),
 // 			Topic:   exampleTopic.Name,
 // 		})
@@ -51,6 +51,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type Subscription struct {
 	pulumi.CustomResourceState
 

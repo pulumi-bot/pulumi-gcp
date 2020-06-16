@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GCPolicy(pulumi.CustomResource):
     column_family: pulumi.Output[str]
     """
@@ -48,10 +49,9 @@ class GCPolicy(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/bigtable/) and
         [API](https://cloud.google.com/bigtable/docs/go/reference).
 
-
+        {{% examples %}}
         ## Example Usage
-
-
+        {{% example %}}
 
         ```python
         import pulumi
@@ -76,6 +76,27 @@ class GCPolicy(pulumi.CustomResource):
                 "days": 7,
             }])
         ```
+
+        Multiple conditions is also supported. `UNION` when any of its sub-policies apply (OR). `INTERSECTION` when all its sub-policies apply (AND)
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        policy = gcp.bigtable.GCPolicy("policy",
+            instance_name=google_bigtable_instance["instance"]["name"],
+            table=google_bigtable_table["table"]["name"],
+            column_family="name",
+            mode="UNION",
+            max_age=[{
+                "days": 7,
+            }],
+            max_version=[{
+                "number": 10,
+            }])
+        ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -168,9 +189,9 @@ class GCPolicy(pulumi.CustomResource):
         __props__["project"] = project
         __props__["table"] = table
         return GCPolicy(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

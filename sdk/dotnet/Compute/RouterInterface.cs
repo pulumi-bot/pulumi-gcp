@@ -15,9 +15,9 @@ namespace Pulumi.Gcp.Compute
     /// and
     /// [API](https://cloud.google.com/compute/docs/reference/latest/routers).
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -38,6 +38,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class RouterInterface : Pulumi.CustomResource
     {

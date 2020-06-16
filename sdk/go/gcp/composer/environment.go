@@ -32,10 +32,10 @@ import (
 //   * **Environments create Google Cloud Storage buckets that do not get cleaned up automatically** on environment
 //     deletion. [More about Composer's use of Cloud Storage](https://cloud.google.com/composer/docs/concepts/cloud-storage).
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Basic Usage
-//
 // ```go
 // package main
 //
@@ -46,7 +46,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test, err := composer.NewEnvironment(ctx, "test", &composer.EnvironmentArgs{
+// 		_, err = composer.NewEnvironment(ctx, "test", &composer.EnvironmentArgs{
 // 			Region: pulumi.String("us-central1"),
 // 		})
 // 		if err != nil {
@@ -56,9 +56,9 @@ import (
 // 	})
 // }
 // ```
-//
+// {{% /example %}}
+// {{% example %}}
 // ### With Software (Airflow) Config
-//
 // ```go
 // package main
 //
@@ -69,7 +69,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test, err := composer.NewEnvironment(ctx, "test", &composer.EnvironmentArgs{
+// 		_, err = composer.NewEnvironment(ctx, "test", &composer.EnvironmentArgs{
 // 			Config: &composer.EnvironmentConfigArgs{
 // 				SoftwareConfig: &composer.EnvironmentConfigSoftwareConfigArgs{
 // 					AirflowConfigOverrides: map[string]interface{}{
@@ -93,6 +93,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type Environment struct {
 	pulumi.CustomResourceState
 

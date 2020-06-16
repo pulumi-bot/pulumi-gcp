@@ -33,15 +33,15 @@ namespace Pulumi.Gcp.Compute
     /// nextHopGateway, nextHopInstance, nextHopIp, nextHopVpnTunnel, or
     /// nextHopIlb.
     /// 
-    /// 
     /// To get more information about Route, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/routes)
     /// * How-to Guides
     ///     * [Using Routes](https://cloud.google.com/vpc/docs/using-routes)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Route Basic
     /// 
     /// ```csharp
@@ -66,6 +66,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Route : Pulumi.CustomResource
     {

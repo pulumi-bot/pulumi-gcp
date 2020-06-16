@@ -9,9 +9,9 @@ import * as utilities from "../utilities";
 /**
  * Provides access to available Cloud Composer versions in a region for a given project.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -27,6 +27,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getImageVersions(args?: GetImageVersionsArgs, opts?: pulumi.InvokeOptions): Promise<GetImageVersionsResult> {
     args = args || {};

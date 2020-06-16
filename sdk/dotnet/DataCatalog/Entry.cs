@@ -17,15 +17,15 @@ namespace Pulumi.Gcp.DataCatalog
     /// An Entry resource contains resource details, such as its schema. An Entry can also be used to attach
     /// flexible metadata, such as a Tag.
     /// 
-    /// 
     /// To get more information about Entry, see:
     /// 
     /// * [API documentation](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Data Catalog Entry Basic
     /// 
     /// ```csharp
@@ -51,7 +51,8 @@ namespace Pulumi.Gcp.DataCatalog
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Data Catalog Entry Full
     /// 
     /// ```csharp
@@ -117,6 +118,8 @@ namespace Pulumi.Gcp.DataCatalog
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Entry : Pulumi.CustomResource
     {

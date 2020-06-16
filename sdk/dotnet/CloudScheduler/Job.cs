@@ -17,15 +17,15 @@ namespace Pulumi.Gcp.CloudScheduler
     /// that is located in one of the supported regions. If your project
     /// does not have an App Engine app, you must create one.
     /// 
-    /// 
     /// To get more information about Job, see:
     /// 
     /// * [API documentation](https://cloud.google.com/scheduler/docs/reference/rest/)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/scheduler/)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Scheduler Job Http
     /// 
     /// ```csharp
@@ -56,7 +56,8 @@ namespace Pulumi.Gcp.CloudScheduler
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Scheduler Job App Engine
     /// 
     /// ```csharp
@@ -96,6 +97,8 @@ namespace Pulumi.Gcp.CloudScheduler
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Job : Pulumi.CustomResource
     {

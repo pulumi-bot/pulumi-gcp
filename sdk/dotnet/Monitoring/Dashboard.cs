@@ -18,8 +18,9 @@ namespace Pulumi.Gcp.Monitoring
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/monitoring/dashboards)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Monitoring Dashboard Basic
     /// 
     /// ```csharp
@@ -50,7 +51,8 @@ namespace Pulumi.Gcp.Monitoring
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Monitoring Dashboard GridLayout
     /// 
     /// ```csharp
@@ -129,6 +131,8 @@ namespace Pulumi.Gcp.Monitoring
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Dashboard : Pulumi.CustomResource
     {

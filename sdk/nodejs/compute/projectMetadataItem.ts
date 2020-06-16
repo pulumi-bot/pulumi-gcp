@@ -10,9 +10,9 @@ import * as utilities from "../utilities";
  * manage a single key/value setting in the provider rather than the entire
  * project metadata map.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -23,6 +23,8 @@ import * as utilities from "../utilities";
  *     value: "my_value",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class ProjectMetadataItem extends pulumi.CustomResource {
     /**

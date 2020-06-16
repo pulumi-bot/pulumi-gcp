@@ -16,15 +16,15 @@ import * as utilities from "../utilities";
  * services not listed above
  * like Cloud SQL and Dataflow.
  *
- *
  * To get more information about Reservation, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/reservations)
  * * How-to Guides
  *     * [Reserving zonal resources](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Reservation Basic
  *
  * ```typescript
@@ -42,6 +42,8 @@ import * as utilities from "../utilities";
  *     zone: "us-central1-a",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Reservation extends pulumi.CustomResource {
     /**

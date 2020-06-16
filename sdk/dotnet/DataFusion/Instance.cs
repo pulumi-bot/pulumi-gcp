@@ -18,8 +18,9 @@ namespace Pulumi.Gcp.DataFusion
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/data-fusion/docs/)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Data Fusion Instance Basic
     /// 
     /// ```csharp
@@ -39,7 +40,8 @@ namespace Pulumi.Gcp.DataFusion
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Data Fusion Instance Full
     /// 
     /// ```csharp
@@ -72,6 +74,8 @@ namespace Pulumi.Gcp.DataFusion
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Instance : Pulumi.CustomResource
     {

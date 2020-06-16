@@ -15,9 +15,9 @@ namespace Pulumi.Gcp.SecretManager
     /// &gt; **Warning:** All arguments including `payload.secret_data` will be stored in the raw
     /// state as plain-text.
     /// 
-    /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Secret Version Basic
     /// 
     /// ```csharp
@@ -49,6 +49,8 @@ namespace Pulumi.Gcp.SecretManager
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class SecretVersion : Pulumi.CustomResource
     {

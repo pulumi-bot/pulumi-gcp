@@ -10,9 +10,9 @@ import * as utilities from "../utilities";
  * and
  * [API](https://cloud.google.com/service-infrastructure/docs/service-networking/reference/rest/v1/services.connections).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -31,6 +31,8 @@ import * as utilities from "../utilities";
  *     reservedPeeringRanges: [privateIpAlloc.name],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Connection extends pulumi.CustomResource {
     /**

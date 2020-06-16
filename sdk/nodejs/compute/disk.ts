@@ -23,7 +23,6 @@ import * as utilities from "../utilities";
  * Add a persistent disk to your instance when you need reliable and
  * affordable storage with consistent performance characteristics.
  *
- *
  * To get more information about Disk, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/v1/disks)
@@ -33,8 +32,9 @@ import * as utilities from "../utilities";
  * > **Warning:** All arguments including `disk_encryption_key.raw_key` will be stored in the raw
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Disk Basic
  *
  * ```typescript
@@ -51,6 +51,8 @@ import * as utilities from "../utilities";
  *     zone: "us-central1-a",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Disk extends pulumi.CustomResource {
     /**

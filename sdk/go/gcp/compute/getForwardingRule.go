@@ -8,6 +8,32 @@ import (
 )
 
 // Get a forwarding rule within GCE from its name.
+//
+// {{% examples %}}
+// ## Example Usage
+// {{% example %}}
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := compute.LookupForwardingRule(ctx, &compute.LookupForwardingRuleArgs{
+// 			Name: "forwarding-rule-us-east1",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// {{% /example %}}
+// {{% /examples %}}
 func LookupForwardingRule(ctx *pulumi.Context, args *LookupForwardingRuleArgs, opts ...pulumi.InvokeOption) (*LookupForwardingRuleResult, error) {
 	var rv LookupForwardingRuleResult
 	err := ctx.Invoke("gcp:compute/getForwardingRule:getForwardingRule", args, &rv, opts...)

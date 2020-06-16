@@ -18,8 +18,9 @@ import (
 // * How-to Guides
 //     * [Introduction to Reservations](https://cloud.google.com/bigquery/docs/reservations-intro)
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Bigquery Reservation Basic
 //
 // ```go
@@ -32,7 +33,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		reservation, err := bigquery.NewReservation(ctx, "reservation", &bigquery.ReservationArgs{
+// 		_, err = bigquery.NewReservation(ctx, "reservation", &bigquery.ReservationArgs{
 // 			Location:        pulumi.String("asia-northeast1"),
 // 			SlotCapacity:    pulumi.Int(0),
 // 			IgnoreIdleSlots: pulumi.Bool(false),
@@ -44,6 +45,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type Reservation struct {
 	pulumi.CustomResourceState
 

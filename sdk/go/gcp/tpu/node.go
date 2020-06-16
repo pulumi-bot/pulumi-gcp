@@ -12,7 +12,6 @@ import (
 
 // A Cloud TPU instance.
 //
-//
 // To get more information about Node, see:
 //
 // * [API documentation](https://cloud.google.com/tpu/docs/reference/rest/)

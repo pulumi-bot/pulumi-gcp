@@ -18,9 +18,9 @@ import * as utilities from "../utilities";
  *     Use `pulumi import` and inspect the output to ensure
  *     your existing members are preserved.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -36,6 +36,8 @@ import * as utilities from "../utilities";
  *     members: ["user:alice@gmail.com"],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class IAMBinding extends pulumi.CustomResource {
     /**

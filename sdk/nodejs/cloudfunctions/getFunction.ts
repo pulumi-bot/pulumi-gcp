@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  * the [official documentation](https://cloud.google.com/functions/docs/)
  * and [API](https://cloud.google.com/functions/docs/apis).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -23,6 +23,8 @@ import * as utilities from "../utilities";
  *     name: "function",
  * }, { async: true }));
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getFunction(args: GetFunctionArgs, opts?: pulumi.InvokeOptions): Promise<GetFunctionResult> {
     if (!opts) {

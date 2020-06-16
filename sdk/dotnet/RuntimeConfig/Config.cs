@@ -15,9 +15,11 @@ namespace Pulumi.Gcp.RuntimeConfig
     /// or the
     /// [JSON API](https://cloud.google.com/deployment-manager/runtime-configurator/reference/rest/).
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
+    /// {{% example %}}
     /// 
-    /// 
+    /// Example creating a RuntimeConfig resource.
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -35,6 +37,8 @@ namespace Pulumi.Gcp.RuntimeConfig
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Config : Pulumi.CustomResource
     {

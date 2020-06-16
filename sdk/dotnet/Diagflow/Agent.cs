@@ -15,15 +15,15 @@ namespace Pulumi.Gcp.Diagflow
     /// during a conversation to structured data that your apps and services can understand. You design and build a Dialogflow
     /// agent to handle the types of conversations required for your system.
     /// 
-    /// 
     /// To get more information about Agent, see:
     /// 
     /// * [API documentation](https://cloud.google.com/dialogflow/docs/reference/rest/v2/projects/agent)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Dialogflow Agent Full
     /// 
     /// ```csharp
@@ -57,6 +57,8 @@ namespace Pulumi.Gcp.Diagflow
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Agent : Pulumi.CustomResource
     {

@@ -17,15 +17,15 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// Currently self-managed internal load balancing is only available in beta.
     /// 
-    /// 
     /// To get more information about BackendService, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/v1/backendServices)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Backend Service Basic
     /// 
     /// ```csharp
@@ -53,6 +53,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class BackendService : Pulumi.CustomResource
     {

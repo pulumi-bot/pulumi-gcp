@@ -49,8 +49,9 @@ def get_client_open_id_user_info(opts=None):
     use the `https://www.googleapis.com/auth/userinfo.email` scope! You will
     receive an error otherwise.
 
+    {{% examples %}}
     ## Example Usage
-
+    {{% example %}}
     ### Exporting An Email
 
     ```python
@@ -60,6 +61,8 @@ def get_client_open_id_user_info(opts=None):
     me = gcp.organizations.get_client_open_id_user_info()
     pulumi.export("my-email", me.email)
     ```
+    {{% /example %}}
+    {{% /examples %}}
     """
     __args__ = dict()
 

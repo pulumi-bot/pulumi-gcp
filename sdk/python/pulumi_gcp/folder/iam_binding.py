@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class IAMBinding(pulumi.CustomResource):
     condition: pulumi.Output[dict]
     etag: pulumi.Output[str]
@@ -48,9 +49,9 @@ class IAMBinding(pulumi.CustomResource):
             Use `pulumi import` and inspect the output to ensure
             your existing members are preserved.
 
+        {{% examples %}}
         ## Example Usage
-
-
+        {{% example %}}
 
         ```python
         import pulumi
@@ -64,6 +65,8 @@ class IAMBinding(pulumi.CustomResource):
             role="roles/editor",
             members=["user:alice@gmail.com"])
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -157,9 +160,9 @@ class IAMBinding(pulumi.CustomResource):
         __props__["members"] = members
         __props__["role"] = role
         return IAMBinding(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

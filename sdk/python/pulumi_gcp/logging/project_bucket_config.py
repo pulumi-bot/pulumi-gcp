@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class ProjectBucketConfig(pulumi.CustomResource):
     bucket_id: pulumi.Output[str]
     """
@@ -46,9 +47,9 @@ class ProjectBucketConfig(pulumi.CustomResource):
 
         > **Note:** Logging buckets are automatically created for a given folder, project, organization, billingAccount and cannot be deleted. Creating a resource of this type will acquire and update the resource that already exists at the desired location. These buckets cannot be removed so deleting this resource will remove the bucket config from your state but will leave the logging bucket unchanged. The buckets that are currently automatically created are "_Default" and "_Required".
 
+        {{% examples %}}
         ## Example Usage
-
-
+        {{% example %}}
 
         ```python
         import pulumi
@@ -63,6 +64,8 @@ class ProjectBucketConfig(pulumi.CustomResource):
             retention_days=30,
             bucket_id="_Default")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -137,9 +140,9 @@ class ProjectBucketConfig(pulumi.CustomResource):
         __props__["project"] = project
         __props__["retention_days"] = retention_days
         return ProjectBucketConfig(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

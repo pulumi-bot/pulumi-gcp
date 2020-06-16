@@ -15,8 +15,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/compute/docs/machine-images)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Machine Image Basic
  *
  * ```typescript
@@ -36,6 +37,8 @@ import * as utilities from "../utilities";
  * });
  * const image = new gcp.compute.MachineImage("image", {sourceInstance: vm.selfLink});
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class MachineImage extends pulumi.CustomResource {
     /**

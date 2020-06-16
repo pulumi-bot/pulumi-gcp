@@ -15,9 +15,9 @@ import * as utilities from "../utilities";
  *
  * > Subnets IP ranges across peered VPC networks cannot overlap.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -34,6 +34,8 @@ import * as utilities from "../utilities";
  *     peerNetwork: _default.id,
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class NetworkPeering extends pulumi.CustomResource {
     /**

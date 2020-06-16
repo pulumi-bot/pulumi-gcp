@@ -25,9 +25,9 @@ import (
 //    `organizations.IAMMember` or `organizations.IAMBinding`
 //    or they will fight over what your policy should be.
 //
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -52,7 +52,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		policy, err := organizations.NewIAMPolicy(ctx, "policy", &organizations.IAMPolicyArgs{
+// 		_, err = organizations.NewIAMPolicy(ctx, "policy", &organizations.IAMPolicyArgs{
 // 			OrgId:      pulumi.String("123456789"),
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})
@@ -63,6 +63,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type IAMPolicy struct {
 	pulumi.CustomResourceState
 

@@ -14,8 +14,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Region Target Http Proxy Basic
  *
  * ```typescript
@@ -55,7 +56,8 @@ import * as utilities from "../utilities";
  *     urlMap: defaultRegionUrlMap.id,
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Region Target Http Proxy Https Redirect
  *
  * ```typescript
@@ -74,6 +76,8 @@ import * as utilities from "../utilities";
  *     urlMap: defaultRegionUrlMap.selfLink,
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class RegionTargetHttpProxy extends pulumi.CustomResource {
     /**

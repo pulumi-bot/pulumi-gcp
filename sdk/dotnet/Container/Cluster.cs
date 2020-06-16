@@ -18,8 +18,9 @@ namespace Pulumi.Gcp.Container
     /// passwords as well as certificate outputs will be stored in the raw state as
     /// plaintext. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### With The Default Node Pool
     /// 
     /// ```csharp
@@ -69,6 +70,8 @@ namespace Pulumi.Gcp.Container
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Cluster : Pulumi.CustomResource
     {

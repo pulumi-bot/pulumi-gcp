@@ -10,15 +10,15 @@ import * as utilities from "../utilities";
  * A tag template defines a tag, which can have one or more typed fields.
  * The template is used to create and attach the tag to GCP resources.
  *
- *
  * To get more information about TagTemplate, see:
  *
  * * [API documentation](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Data Catalog Tag Template Basic
  *
  * ```typescript
@@ -68,6 +68,8 @@ import * as utilities from "../utilities";
  *     tagTemplateId: "my_template",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class TagTemplate extends pulumi.CustomResource {
     /**

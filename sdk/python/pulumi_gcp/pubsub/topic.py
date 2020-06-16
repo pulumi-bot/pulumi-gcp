@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Topic(pulumi.CustomResource):
     kms_key_name: pulumi.Output[str]
     """
@@ -48,15 +49,15 @@ class Topic(pulumi.CustomResource):
         """
         A named resource to which messages are sent by publishers.
 
-
         To get more information about Topic, see:
 
         * [API documentation](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
         * How-to Guides
             * [Managing Topics](https://cloud.google.com/pubsub/docs/admin#managing_topics)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Pubsub Topic Basic
 
         ```python
@@ -67,7 +68,8 @@ class Topic(pulumi.CustomResource):
             "foo": "bar",
         })
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Pubsub Topic Cmek
 
         ```python
@@ -78,7 +80,8 @@ class Topic(pulumi.CustomResource):
         crypto_key = gcp.kms.CryptoKey("cryptoKey", key_ring=key_ring.id)
         example = gcp.pubsub.Topic("example", kms_key_name=crypto_key.id)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Pubsub Topic Geo Restricted
 
         ```python
@@ -89,6 +92,8 @@ class Topic(pulumi.CustomResource):
             "allowedPersistenceRegions": ["europe-west3"],
         })
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -183,9 +188,9 @@ class Topic(pulumi.CustomResource):
         __props__["name"] = name
         __props__["project"] = project
         return Topic(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

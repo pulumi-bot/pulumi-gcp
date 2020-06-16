@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GlobalForwardingRule(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
@@ -155,10 +156,9 @@ class GlobalForwardingRule(pulumi.CustomResource):
         For more information, see
         https://cloud.google.com/compute/docs/load-balancing/http/
 
-
-
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Global Forwarding Rule Http
 
         ```python
@@ -196,7 +196,8 @@ class GlobalForwardingRule(pulumi.CustomResource):
             target=default_target_http_proxy.id,
             port_range="80")
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Global Forwarding Rule Internal
 
         ```python
@@ -272,6 +273,8 @@ class GlobalForwardingRule(pulumi.CustomResource):
                 }],
             }])
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -532,9 +535,9 @@ class GlobalForwardingRule(pulumi.CustomResource):
         __props__["self_link"] = self_link
         __props__["target"] = target
         return GlobalForwardingRule(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

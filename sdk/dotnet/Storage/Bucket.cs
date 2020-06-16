@@ -23,9 +23,9 @@ namespace Pulumi.Gcp.Storage
     /// **Note**: If the project id is not set on the resource or in the provider block it will be dynamically
     /// determined which will require enabling the compute api.
     /// 
-    /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Creating A Private Bucket In Standard Storage, In The EU Region. Bucket Configured As Static Website And CORS Configurations
     /// 
     /// ```csharp
@@ -74,7 +74,8 @@ namespace Pulumi.Gcp.Storage
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Life Cycle Settings For Storage Bucket Objects
     /// 
     /// ```csharp
@@ -108,6 +109,8 @@ namespace Pulumi.Gcp.Storage
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Bucket : Pulumi.CustomResource
     {

@@ -14,15 +14,15 @@ namespace Pulumi.Gcp.Monitoring
     /// considered to be "unhealthy" and the ways to notify people or services
     /// about this state.
     /// 
-    /// 
     /// To get more information about AlertPolicy, see:
     /// 
     /// * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.alertPolicies)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/monitoring/alerts/)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Monitoring Alert Policy Basic
     /// 
     /// ```csharp
@@ -67,6 +67,8 @@ namespace Pulumi.Gcp.Monitoring
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class AlertPolicy : Pulumi.CustomResource
     {

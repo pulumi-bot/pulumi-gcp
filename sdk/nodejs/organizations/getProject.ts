@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  * For more information see
  * [API](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -22,6 +22,8 @@ import * as utilities from "../utilities";
  * const project = gcp.organizations.getProject({});
  * export const projectNumber = project.then(project => project.number);
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getProject(args?: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
     args = args || {};

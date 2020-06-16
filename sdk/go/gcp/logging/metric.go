@@ -14,15 +14,15 @@ import (
 // of the values. The distribution records the statistics of the extracted values along with
 // an optional histogram of the values as specified by the bucket options.
 //
-//
 // To get more information about Metric, see:
 //
 // * [API documentation](https://cloud.google.com/logging/docs/reference/v2/rest/v2/projects.metrics/create)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/logging/docs/apis)
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Logging Metric Basic
 //
 // ```go
@@ -35,7 +35,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		loggingMetric, err := logging.NewMetric(ctx, "loggingMetric", &logging.MetricArgs{
+// 		_, err = logging.NewMetric(ctx, "loggingMetric", &logging.MetricArgs{
 // 			BucketOptions: &logging.MetricBucketOptionsArgs{
 // 				LinearBuckets: &logging.MetricBucketOptionsLinearBucketsArgs{
 // 					NumFiniteBuckets: pulumi.Int(3),
@@ -75,7 +75,8 @@ import (
 // 	})
 // }
 // ```
-//
+// {{% /example %}}
+// {{% example %}}
 // ### Logging Metric Counter Basic
 //
 // ```go
@@ -88,7 +89,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		loggingMetric, err := logging.NewMetric(ctx, "loggingMetric", &logging.MetricArgs{
+// 		_, err = logging.NewMetric(ctx, "loggingMetric", &logging.MetricArgs{
 // 			Filter: pulumi.String("resource.type=gae_app AND severity>=ERROR"),
 // 			MetricDescriptor: &logging.MetricMetricDescriptorArgs{
 // 				MetricKind: pulumi.String("DELTA"),
@@ -102,7 +103,8 @@ import (
 // 	})
 // }
 // ```
-//
+// {{% /example %}}
+// {{% example %}}
 // ### Logging Metric Counter Labels
 //
 // ```go
@@ -115,7 +117,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		loggingMetric, err := logging.NewMetric(ctx, "loggingMetric", &logging.MetricArgs{
+// 		_, err = logging.NewMetric(ctx, "loggingMetric", &logging.MetricArgs{
 // 			Filter: pulumi.String("resource.type=gae_app AND severity>=ERROR"),
 // 			LabelExtractors: map[string]interface{}{
 // 				"mass": "EXTRACT(jsonPayload.request)",
@@ -139,6 +141,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type Metric struct {
 	pulumi.CustomResourceState
 

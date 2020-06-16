@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
     disk: pulumi.Output[str]
     """
@@ -35,11 +36,9 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
 
         > **Note:** This resource does not support zonal disks (`compute.Disk`). For zonal disks, please refer to the `compute.DiskResourcePolicyAttachment` resource.
 
-
-
-
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Region Disk Resource Policy Attachment Basic
 
         ```python
@@ -79,6 +78,8 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
         my_image = gcp.compute.get_image(family="debian-9",
             project="debian-cloud")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -143,9 +144,9 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
         __props__["project"] = project
         __props__["region"] = region
         return RegionDiskResourcePolicyAttachment(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -129,10 +129,11 @@ def get_bucket_object(bucket=None,name=None,opts=None):
     and
     [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
 
-
+    {{% examples %}}
     ## Example Usage
+    {{% example %}}
 
-
+    Example picture stored within a folder.
 
     ```python
     import pulumi
@@ -141,6 +142,8 @@ def get_bucket_object(bucket=None,name=None,opts=None):
     picture = gcp.storage.get_bucket_object(bucket="image-store",
         name="folder/butterfly01.jpg")
     ```
+    {{% /example %}}
+    {{% /examples %}}
 
 
     :param str bucket: The name of the containing bucket.

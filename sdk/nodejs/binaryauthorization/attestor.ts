@@ -9,15 +9,15 @@ import * as utilities from "../utilities";
 /**
  * An attestor that attests to container image artifacts.
  *
- *
  * To get more information about Attestor, see:
  *
  * * [API documentation](https://cloud.google.com/binary-authorization/docs/reference/rest/)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/binary-authorization/)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Binary Authorization Attestor Basic
  *
  * ```typescript
@@ -51,6 +51,8 @@ import * as utilities from "../utilities";
  *     }],
  * }});
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Attestor extends pulumi.CustomResource {
     /**

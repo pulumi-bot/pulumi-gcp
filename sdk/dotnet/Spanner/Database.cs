@@ -12,15 +12,15 @@ namespace Pulumi.Gcp.Spanner
     /// <summary>
     /// A Cloud Spanner Database which is hosted on a Spanner instance.
     /// 
-    /// 
     /// To get more information about Database, see:
     /// 
     /// * [API documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/projects.instances.databases)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/spanner/)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Spanner Database Basic
     /// 
     /// ```csharp
@@ -49,6 +49,8 @@ namespace Pulumi.Gcp.Spanner
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Database : Pulumi.CustomResource
     {

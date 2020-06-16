@@ -21,8 +21,9 @@ namespace Pulumi.Gcp.Compute
     /// &gt; **Warning:** All arguments including `authentication.google_account.password` and `authentication.custom_account.password` will be stored in the raw
     /// state as plain-text.[Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Scan Config Basic
     /// 
     /// ```csharp
@@ -52,6 +53,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class SecurityScanConfig : Pulumi.CustomResource
     {

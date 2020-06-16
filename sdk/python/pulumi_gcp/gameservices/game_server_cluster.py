@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GameServerCluster(pulumi.CustomResource):
     cluster_id: pulumi.Output[str]
     """
@@ -70,7 +71,6 @@ class GameServerCluster(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/game-servers/docs/reference/rest/v1beta/projects.locations.realms.gameServerClusters)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/game-servers/docs)
-
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -190,9 +190,9 @@ class GameServerCluster(pulumi.CustomResource):
         __props__["project"] = project
         __props__["realm_id"] = realm_id
         return GameServerCluster(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

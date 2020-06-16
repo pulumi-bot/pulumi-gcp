@@ -12,9 +12,9 @@ namespace Pulumi.Gcp.Organizations
     /// <summary>
     /// Allows management of audit logging config for a given service for a Google Cloud Platform Organization.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -44,6 +44,8 @@ namespace Pulumi.Gcp.Organizations
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class IamAuditConfig : Pulumi.CustomResource
     {

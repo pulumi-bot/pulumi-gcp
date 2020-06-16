@@ -10,9 +10,9 @@ import * as utilities from "../utilities";
  * Get the service account from a project. For more information see
  * the official [API](https://cloud.google.com/compute/docs/access/service-accounts) documentation.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -22,6 +22,8 @@ import * as utilities from "../utilities";
  *     accountId: "object-viewer",
  * }, { async: true }));
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getAccount(args: GetAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetAccountResult> {
     if (!opts) {

@@ -77,9 +77,9 @@ def get_kms_crypto_key(key_ring=None,name=None,opts=None):
     A CryptoKey is an interface to key material which can be used to encrypt and decrypt data. A CryptoKey belongs to a
     Google Cloud KMS KeyRing.
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -90,6 +90,8 @@ def get_kms_crypto_key(key_ring=None,name=None,opts=None):
     my_crypto_key = gcp.kms.get_kms_crypto_key(name="my-crypto-key",
         key_ring=my_key_ring.self_link)
     ```
+    {{% /example %}}
+    {{% /examples %}}
 
 
     :param str key_ring: The `self_link` of the Google Cloud Platform KeyRing to which the key belongs.

@@ -8,13 +8,13 @@ import * as utilities from "../utilities";
  * Represents a VPN gateway running in GCP. This virtual device is managed
  * by Google, but used only by you.
  *
- *
  * To get more information about VpnGateway, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/targetVpnGateways)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Target Vpn Gateway Basic
  *
  * ```typescript
@@ -53,6 +53,8 @@ import * as utilities from "../utilities";
  *     nextHopVpnTunnel: tunnel1.id,
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class VPNGateway extends pulumi.CustomResource {
     /**

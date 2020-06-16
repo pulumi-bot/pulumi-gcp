@@ -12,9 +12,9 @@ import * as utilities from "../utilities";
  * For more information, see,
  * [the Project API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/projects/setDefaultNetworkTier).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -24,6 +24,8 @@ import * as utilities from "../utilities";
  *     networkTier: "PREMIUM",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class ProjectDefaultNetworkTier extends pulumi.CustomResource {
     /**

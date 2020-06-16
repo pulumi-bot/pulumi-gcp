@@ -11,9 +11,9 @@ import (
 //
 // For more info about signed URL's is available [here](https://cloud.google.com/storage/docs/access-control/signed-urls).
 //
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -25,14 +25,14 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		artifact, err := storage.LookupObjectSignedUrl(ctx, &storage.LookupObjectSignedUrlArgs{
+// 		_, err := storage.LookupObjectSignedUrl(ctx, &storage.LookupObjectSignedUrlArgs{
 // 			Bucket: "install_binaries",
 // 			Path:   "path/to/install_file.bin",
 // 		}, nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		vm, err := compute.NewInstance(ctx, "vm", nil)
+// 		_, err = compute.NewInstance(ctx, "vm", nil)
 // 		if err != nil {
 // 			return err
 // 		}
@@ -40,6 +40,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 func GetObjectSignedUrl(ctx *pulumi.Context, args *GetObjectSignedUrlArgs, opts ...pulumi.InvokeOption) (*GetObjectSignedUrlResult, error) {
 	var rv GetObjectSignedUrlResult
 	err := ctx.Invoke("gcp:storage/getObjectSignedUrl:getObjectSignedUrl", args, &rv, opts...)

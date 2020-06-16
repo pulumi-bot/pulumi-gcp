@@ -17,9 +17,9 @@ namespace Pulumi.Gcp.Billing
     ///    `gcp.billing.AccountIamBinding` for the __same role__ or they will fight over
     ///    what your policy should be.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -39,6 +39,8 @@ namespace Pulumi.Gcp.Billing
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class AccountIamMember : Pulumi.CustomResource
     {

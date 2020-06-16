@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class RegionUrlMap(pulumi.CustomResource):
     creation_timestamp: pulumi.Output[str]
     """
@@ -663,8 +664,9 @@ class RegionUrlMap(pulumi.CustomResource):
         UrlMaps are used to route requests to a backend service based on rules
         that you define for the host and path of an incoming URL.
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Region Url Map Basic
 
         ```python
@@ -717,7 +719,8 @@ class RegionUrlMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Url Map L7 Ilb Path
 
         ```python
@@ -815,7 +818,8 @@ class RegionUrlMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Url Map L7 Ilb Path Partial
 
         ```python
@@ -881,7 +885,8 @@ class RegionUrlMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Url Map L7 Ilb Route
 
         ```python
@@ -957,7 +962,8 @@ class RegionUrlMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Url Map L7 Ilb Route Partial
 
         ```python
@@ -1008,6 +1014,8 @@ class RegionUrlMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -2306,9 +2314,9 @@ class RegionUrlMap(pulumi.CustomResource):
         __props__["self_link"] = self_link
         __props__["tests"] = tests
         return RegionUrlMap(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

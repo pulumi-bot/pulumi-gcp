@@ -15,9 +15,11 @@ namespace Pulumi.Gcp.Organizations
     /// documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
     /// [API](https://cloud.google.com/resource-manager/reference/rest/v1/organizations/setOrgPolicy).
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
+    /// {{% example %}}
     /// 
-    /// 
+    /// To set policy with a [boolean constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-boolean-constraints):
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -40,6 +42,90 @@ namespace Pulumi.Gcp.Organizations
     /// 
     /// }
     /// ```
+    /// 
+    /// To set a policy with a [list constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-list-constraints):
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var servicesPolicy = new Gcp.Organizations.Policy("servicesPolicy", new Gcp.Organizations.PolicyArgs
+    ///         {
+    ///             Constraint = "serviceuser.services",
+    ///             ListPolicy = new Gcp.Organizations.Inputs.PolicyListPolicyArgs
+    ///             {
+    ///                 Allow = new Gcp.Organizations.Inputs.PolicyListPolicyAllowArgs
+    ///                 {
+    ///                     All = true,
+    ///                 },
+    ///             },
+    ///             OrgId = "123456789",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Or to deny some services, use the following instead:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var servicesPolicy = new Gcp.Organizations.Policy("servicesPolicy", new Gcp.Organizations.PolicyArgs
+    ///         {
+    ///             Constraint = "serviceuser.services",
+    ///             ListPolicy = new Gcp.Organizations.Inputs.PolicyListPolicyArgs
+    ///             {
+    ///                 Deny = new Gcp.Organizations.Inputs.PolicyListPolicyDenyArgs
+    ///                 {
+    ///                     Values = 
+    ///                     {
+    ///                         "cloudresourcemanager.googleapis.com",
+    ///                     },
+    ///                 },
+    ///                 SuggestedValue = "compute.googleapis.com",
+    ///             },
+    ///             OrgId = "123456789",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// To restore the default organization policy, use the following instead:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var servicesPolicy = new Gcp.Organizations.Policy("servicesPolicy", new Gcp.Organizations.PolicyArgs
+    ///         {
+    ///             Constraint = "serviceuser.services",
+    ///             OrgId = "123456789",
+    ///             RestorePolicy = new Gcp.Organizations.Inputs.PolicyRestorePolicyArgs
+    ///             {
+    ///                 Default = true,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Policy : Pulumi.CustomResource
     {

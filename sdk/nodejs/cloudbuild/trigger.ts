@@ -9,15 +9,15 @@ import * as utilities from "../utilities";
 /**
  * Configuration for an automated build in response to source repository changes.
  *
- *
  * To get more information about Trigger, see:
  *
  * * [API documentation](https://cloud.google.com/cloud-build/docs/api/reference/rest/)
  * * How-to Guides
  *     * [Automating builds using build triggers](https://cloud.google.com/cloud-build/docs/running-builds/automate-builds)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Cloudbuild Trigger Filename
  *
  * ```typescript
@@ -36,6 +36,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Trigger extends pulumi.CustomResource {
     /**

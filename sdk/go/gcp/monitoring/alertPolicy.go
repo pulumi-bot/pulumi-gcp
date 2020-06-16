@@ -14,15 +14,15 @@ import (
 // considered to be "unhealthy" and the ways to notify people or services
 // about this state.
 //
-//
 // To get more information about AlertPolicy, see:
 //
 // * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.alertPolicies)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/monitoring/alerts/)
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Monitoring Alert Policy Basic
 //
 // ```go
@@ -35,7 +35,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		alertPolicy, err := monitoring.NewAlertPolicy(ctx, "alertPolicy", &monitoring.AlertPolicyArgs{
+// 		_, err = monitoring.NewAlertPolicy(ctx, "alertPolicy", &monitoring.AlertPolicyArgs{
 // 			Combiner: pulumi.String("OR"),
 // 			Conditions: monitoring.AlertPolicyConditionArray{
 // 				&monitoring.AlertPolicyConditionArgs{
@@ -65,6 +65,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type AlertPolicy struct {
 	pulumi.CustomResourceState
 

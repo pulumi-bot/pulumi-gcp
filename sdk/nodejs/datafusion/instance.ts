@@ -15,8 +15,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/data-fusion/docs/)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Data Fusion Instance Basic
  *
  * ```typescript
@@ -28,7 +29,8 @@ import * as utilities from "../utilities";
  *     type: "BASIC",
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Data Fusion Instance Full
  *
  * ```typescript
@@ -51,6 +53,8 @@ import * as utilities from "../utilities";
  *     type: "BASIC",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Instance extends pulumi.CustomResource {
     /**

@@ -56,9 +56,9 @@ def get_instance_serial_port(instance=None,port=None,project=None,zone=None,opts
     Get the serial port output from a Compute Instance. For more information see
     the official [API](https://cloud.google.com/compute/docs/instances/viewing-serial-port-output) documentation.
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -69,6 +69,50 @@ def get_instance_serial_port(instance=None,port=None,project=None,zone=None,opts
         port=1)
     pulumi.export("serialOut", serial.contents)
     ```
+
+    Using the serial port output to generate a windows password, derived from the [official guide](https://cloud.google.com/compute/docs/instances/windows/automate-pw-generation):
+
+    ```python
+    import pulumi
+    import json
+    import pulumi_gcp as gcp
+
+    windows = gcp.compute.Instance("windows",
+        machine_type="n1-standard-1",
+        zone="us-central1-a",
+        boot_disk={
+            "initialize_params": {
+                "image": "gce-uefi-images/windows-2019",
+            },
+        },
+        network_interface=[{
+            "network": "default",
+            "access_config": [{}],
+        }],
+        metadata={
+            "serial-port-logging-enable": "TRUE",
+            "windows-keys": json.dumps({
+                "email": "example.user@example.com",
+                "expireOn": "2020-04-14T01:37:19Z",
+                "exponent": "AQAB",
+                "modulus": "wgsquN4IBNPqIUnu+h/5Za1kujb2YRhX1vCQVQAkBwnWigcCqOBVfRa5JoZfx6KIvEXjWqa77jPvlsxM4WPqnDIM2qiK36up3SKkYwFjff6F2ni/ry8vrwXCX3sGZ1hbIHlK0O012HpA3ISeEswVZmX2X67naOvJXfY5v0hGPWqCADao+xVxrmxsZD4IWnKl1UaZzI5lhAzr8fw6utHwx1EZ/MSgsEki6tujcZfN+GUDRnmJGQSnPTXmsf7Q4DKreTZk49cuyB3prV91S0x3DYjCUpSXrkVy1Ha5XicGD/q+ystuFsJnrrhbNXJbpSjM6sjo/aduAkZJl4FmOt0R7Q==",
+                "userName": "example-user",
+            }),
+        },
+        service_account={
+            "scopes": [
+                "userinfo-email",
+                "compute-ro",
+                "storage-ro",
+            ],
+        })
+    serial = pulumi.Output.all(windows.name, windows.zone).apply(lambda name, zone: gcp.compute.get_instance_serial_port(instance=name,
+        zone=zone,
+        port=4))
+    pulumi.export("serialOut", serial.contents)
+    ```
+    {{% /example %}}
+    {{% /examples %}}
 
 
     :param str instance: The name of the Compute Instance to read output from.

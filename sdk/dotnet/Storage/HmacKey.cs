@@ -14,7 +14,6 @@ namespace Pulumi.Gcp.Storage
     /// consists of a secret and HMAC key metadata. HMAC keys can be used as credentials
     /// for service accounts.
     /// 
-    /// 
     /// To get more information about HmacKey, see:
     /// 
     /// * [API documentation](https://cloud.google.com/storage/docs/json_api/v1/projects/hmacKeys)
@@ -28,8 +27,9 @@ namespace Pulumi.Gcp.Storage
     /// &gt; **Warning:** All arguments including `secret` will be stored in the raw
     /// state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Storage Hmac Key
     /// 
     /// ```csharp
@@ -52,6 +52,8 @@ namespace Pulumi.Gcp.Storage
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class HmacKey : Pulumi.CustomResource
     {

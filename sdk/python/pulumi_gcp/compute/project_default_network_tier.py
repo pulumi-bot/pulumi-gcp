@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class ProjectDefaultNetworkTier(pulumi.CustomResource):
     network_tier: pulumi.Output[str]
     """
@@ -29,9 +30,9 @@ class ProjectDefaultNetworkTier(pulumi.CustomResource):
         For more information, see,
         [the Project API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/projects/setDefaultNetworkTier).
 
+        {{% examples %}}
         ## Example Usage
-
-
+        {{% example %}}
 
         ```python
         import pulumi
@@ -39,6 +40,8 @@ class ProjectDefaultNetworkTier(pulumi.CustomResource):
 
         default = gcp.compute.ProjectDefaultNetworkTier("default", network_tier="PREMIUM")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -95,9 +98,9 @@ class ProjectDefaultNetworkTier(pulumi.CustomResource):
         __props__["network_tier"] = network_tier
         __props__["project"] = project
         return ProjectDefaultNetworkTier(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

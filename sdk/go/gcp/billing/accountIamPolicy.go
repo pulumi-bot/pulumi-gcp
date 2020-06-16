@@ -22,9 +22,9 @@ import (
 //    `billing.AccountIamMember` or `billing.AccountIamBinding`
 //    or they will fight over what your policy should be.
 //
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -49,7 +49,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		policy, err := billing.NewAccountIamPolicy(ctx, "policy", &billing.AccountIamPolicyArgs{
+// 		_, err = billing.NewAccountIamPolicy(ctx, "policy", &billing.AccountIamPolicyArgs{
 // 			BillingAccountId: pulumi.String("00AA00-000AAA-00AA0A"),
 // 			PolicyData:       pulumi.String(admin.PolicyData),
 // 		})
@@ -60,6 +60,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type AccountIamPolicy struct {
 	pulumi.CustomResourceState
 

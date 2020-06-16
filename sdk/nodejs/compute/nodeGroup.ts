@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 /**
  * Represents a NodeGroup resource to manage a group of sole-tenant nodes.
  *
- *
  * To get more information about NodeGroup, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups)
@@ -21,8 +20,9 @@ import * as utilities from "../utilities";
  * through provider config or through external changes will cause
  * the provider to delete and recreate the node group.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Node Group Basic
  *
  * ```typescript
@@ -43,7 +43,8 @@ import * as utilities from "../utilities";
  *     nodeTemplate: soletenant_tmpl.id,
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Node Group Autoscaling Policy
  *
  * ```typescript
@@ -69,6 +70,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class NodeGroup extends pulumi.CustomResource {
     /**

@@ -13,8 +13,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/artifact-registry/docs/overview)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Artifact Registry Repository Basic
  *
  * ```typescript
@@ -28,7 +29,8 @@ import * as utilities from "../utilities";
  *     format: "DOCKER",
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Artifact Registry Repository Iam
  *
  * ```typescript
@@ -52,6 +54,8 @@ import * as utilities from "../utilities";
  *     member: pulumi.interpolate`serviceAccount:${test_account.email}`,
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Repository extends pulumi.CustomResource {
     /**

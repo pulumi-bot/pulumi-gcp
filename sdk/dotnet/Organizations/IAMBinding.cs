@@ -21,9 +21,9 @@ namespace Pulumi.Gcp.Organizations
     ///     Use `pulumi import` and inspect the `output to ensure
     ///     your existing members are preserved.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -46,6 +46,8 @@ namespace Pulumi.Gcp.Organizations
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class IAMBinding : Pulumi.CustomResource
     {

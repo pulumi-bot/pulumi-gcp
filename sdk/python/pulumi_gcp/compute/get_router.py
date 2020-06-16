@@ -64,9 +64,9 @@ def get_router(name=None,network=None,project=None,region=None,opts=None):
     """
     Get a router within GCE from its name and VPC.
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -75,6 +75,8 @@ def get_router(name=None,network=None,project=None,region=None,opts=None):
     my_router = gcp.compute.get_router(name="myrouter-us-east1",
         network="my-network")
     ```
+    {{% /example %}}
+    {{% /examples %}}
 
 
     :param str name: The name of the router.

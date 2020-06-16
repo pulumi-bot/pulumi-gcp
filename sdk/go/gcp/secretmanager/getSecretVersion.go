@@ -9,9 +9,9 @@ import (
 
 // Get a Secret Manager secret's version. For more information see the [official documentation](https://cloud.google.com/secret-manager/docs/) and [API](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets.versions).
 //
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -22,7 +22,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		basic, err := secretmanager.LookupSecretVersion(ctx, &secretmanager.LookupSecretVersionArgs{
+// 		_, err := secretmanager.LookupSecretVersion(ctx, &secretmanager.LookupSecretVersionArgs{
 // 			Secret: "my-secret",
 // 		}, nil)
 // 		if err != nil {
@@ -32,6 +32,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 func LookupSecretVersion(ctx *pulumi.Context, args *LookupSecretVersionArgs, opts ...pulumi.InvokeOption) (*LookupSecretVersionResult, error) {
 	var rv LookupSecretVersionResult
 	err := ctx.Invoke("gcp:secretmanager/getSecretVersion:getSecretVersion", args, &rv, opts...)

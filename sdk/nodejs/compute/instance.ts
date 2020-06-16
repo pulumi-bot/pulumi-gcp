@@ -12,10 +12,9 @@ import * as utilities from "../utilities";
  * and
  * [API](https://cloud.google.com/compute/docs/reference/latest/instances).
  *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -54,6 +53,8 @@ import * as utilities from "../utilities";
  *     zone: "us-central1-a",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Instance extends pulumi.CustomResource {
     /**

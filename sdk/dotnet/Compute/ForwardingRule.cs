@@ -14,15 +14,15 @@ namespace Pulumi.Gcp.Compute
     /// of target virtual machines to forward a packet to if it matches the given
     /// [IPAddress, IPProtocol, portRange] tuple.
     /// 
-    /// 
     /// To get more information about ForwardingRule, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/v1/forwardingRules)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/network/forwarding-rules)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Forwarding Rule Basic
     /// 
     /// ```csharp
@@ -45,6 +45,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class ForwardingRule : Pulumi.CustomResource
     {

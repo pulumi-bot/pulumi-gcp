@@ -7,9 +7,11 @@ import * as utilities from "../utilities";
 /**
  * Creates a new Google SQL SSL Cert on a Google SQL Instance. For more information, see the [official documentation](https://cloud.google.com/sql/), or the [JSON API](https://cloud.google.com/sql/docs/mysql/admin-api/v1beta4/sslCerts).
  *
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  *
- *
+ * Example creating a SQL Client Certificate.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -25,6 +27,8 @@ import * as utilities from "../utilities";
  *     instance: master.name,
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class SslCert extends pulumi.CustomResource {
     /**

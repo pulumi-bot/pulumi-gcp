@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class ConsumerQuotaOverride(pulumi.CustomResource):
     dimensions: pulumi.Output[dict]
     """
@@ -56,8 +57,9 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
             * [Getting Started](https://cloud.google.com/service-usage/docs/getting-started)
             * [REST API documentation](https://cloud.google.com/service-usage/docs/reference/rest/v1beta1/services.consumerQuotaMetrics.limits.consumerOverrides)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Consumer Quota Override
 
         ```python
@@ -75,6 +77,8 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
             override_value="95",
             force=True)
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -160,9 +164,9 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
         __props__["project"] = project
         __props__["service"] = service
         return ConsumerQuotaOverride(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -16,8 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Creating a HL7v2 Store](https://cloud.google.com/healthcare/docs/how-tos/hl7v2)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Healthcare Hl7 V2 Store Basic
  *
  * ```typescript
@@ -36,7 +37,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Healthcare Hl7 V2 Store Parser Config
  *
  * ```typescript
@@ -131,6 +133,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Hl7Store extends pulumi.CustomResource {
     /**

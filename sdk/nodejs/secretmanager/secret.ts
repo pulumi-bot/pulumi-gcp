@@ -13,9 +13,9 @@ import * as utilities from "../utilities";
  *
  * * [API documentation](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets)
  *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Secret Config Basic
  *
  * ```typescript
@@ -41,6 +41,8 @@ import * as utilities from "../utilities";
  *     secretId: "secret",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Secret extends pulumi.CustomResource {
     /**

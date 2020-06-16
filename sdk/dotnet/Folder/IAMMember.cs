@@ -18,9 +18,9 @@ namespace Pulumi.Gcp.Folder
     ///    should be. Similarly, roles controlled by `gcp.folder.IAMBinding`
     ///    should not be assigned to using `gcp.folder.IAMMember`.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -45,6 +45,8 @@ namespace Pulumi.Gcp.Folder
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class IAMMember : Pulumi.CustomResource
     {

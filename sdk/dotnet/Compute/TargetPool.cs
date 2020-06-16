@@ -16,10 +16,9 @@ namespace Pulumi.Gcp.Compute
     /// documentation](https://cloud.google.com/compute/docs/load-balancing/network/target-pools)
     /// and [API](https://cloud.google.com/compute/docs/reference/latest/targetPools).
     /// 
-    /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -51,6 +50,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class TargetPool : Pulumi.CustomResource
     {

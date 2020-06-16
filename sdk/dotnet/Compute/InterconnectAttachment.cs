@@ -13,10 +13,9 @@ namespace Pulumi.Gcp.Compute
     /// Represents an InterconnectAttachment (VLAN attachment) resource. For more
     /// information, see Creating VLAN Attachments.
     /// 
-    /// 
-    /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Interconnect Attachment Basic
     /// 
     /// ```csharp
@@ -40,6 +39,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class InterconnectAttachment : Pulumi.CustomResource
     {

@@ -11,8 +11,6 @@ import * as utilities from "../utilities";
  * manually created via the GCP console. This restriction is due to the existing APIs and not lack of support
  * in this tool.
  *
- *
- *
  * > **Warning:** All arguments including `secret` will be stored in the raw
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  */

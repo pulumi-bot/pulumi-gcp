@@ -16,9 +16,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Using DNS server policies](https://cloud.google.com/dns/zones/#using-dns-server-policies)
  *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Dns Policy Basic
  *
  * ```typescript
@@ -50,6 +50,8 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Policy extends pulumi.CustomResource {
     /**

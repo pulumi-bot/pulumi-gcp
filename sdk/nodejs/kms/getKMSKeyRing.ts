@@ -15,9 +15,9 @@ import * as utilities from "../utilities";
  * A KeyRing is a grouping of CryptoKeys for organizational purposes. A KeyRing belongs to a Google Cloud Platform Project
  * and resides in a specific location.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -28,6 +28,8 @@ import * as utilities from "../utilities";
  *     name: "my-key-ring",
  * }, { async: true }));
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getKMSKeyRing(args: GetKMSKeyRingArgs, opts?: pulumi.InvokeOptions): Promise<GetKMSKeyRingResult> {
     if (!opts) {

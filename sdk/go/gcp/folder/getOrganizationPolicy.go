@@ -11,9 +11,9 @@ import (
 // [the official
 // documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview)
 //
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -36,6 +36,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 func LookupOrganizationPolicy(ctx *pulumi.Context, args *LookupOrganizationPolicyArgs, opts ...pulumi.InvokeOption) (*LookupOrganizationPolicyResult, error) {
 	var rv LookupOrganizationPolicyResult
 	err := ctx.Invoke("gcp:folder/getOrganizationPolicy:getOrganizationPolicy", args, &rv, opts...)

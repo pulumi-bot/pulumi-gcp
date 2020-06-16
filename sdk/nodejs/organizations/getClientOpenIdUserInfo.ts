@@ -19,8 +19,9 @@ import * as utilities from "../utilities";
  * use the `https://www.googleapis.com/auth/userinfo.email` scope! You will
  * receive an error otherwise.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Exporting An Email
  *
  * ```typescript
@@ -30,6 +31,8 @@ import * as utilities from "../utilities";
  * const me = gcp.organizations.getClientOpenIdUserInfo({});
  * export const my_email = me.then(me => me.email);
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getClientOpenIdUserInfo(opts?: pulumi.InvokeOptions): Promise<GetClientOpenIdUserInfoResult> {
     if (!opts) {

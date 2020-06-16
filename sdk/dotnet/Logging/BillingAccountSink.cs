@@ -19,9 +19,9 @@ namespace Pulumi.Gcp.Logging
     /// the credentials used with this provider. [IAM roles granted on a billing account](https://cloud.google.com/billing/docs/how-to/billing-access) are separate from the
     /// typical IAM roles granted on a project.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -51,6 +51,8 @@ namespace Pulumi.Gcp.Logging
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class BillingAccountSink : Pulumi.CustomResource
     {

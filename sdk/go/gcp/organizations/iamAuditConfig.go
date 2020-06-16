@@ -12,9 +12,9 @@ import (
 
 // Allows management of audit logging config for a given service for a Google Cloud Platform Organization.
 //
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -26,7 +26,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		config, err := organizations.NewIamAuditConfig(ctx, "config", &organizations.IamAuditConfigArgs{
+// 		_, err = organizations.NewIamAuditConfig(ctx, "config", &organizations.IamAuditConfigArgs{
 // 			AuditLogConfigs: organizations.IamAuditConfigAuditLogConfigArray{
 // 				&organizations.IamAuditConfigAuditLogConfigArgs{
 // 					ExemptedMembers: pulumi.StringArray{
@@ -45,6 +45,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type IamAuditConfig struct {
 	pulumi.CustomResourceState
 

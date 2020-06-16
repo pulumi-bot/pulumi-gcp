@@ -166,9 +166,9 @@ def get_function(name=None,project=None,region=None,opts=None):
     the [official documentation](https://cloud.google.com/functions/docs/)
     and [API](https://cloud.google.com/functions/docs/apis).
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -176,6 +176,8 @@ def get_function(name=None,project=None,region=None,opts=None):
 
     my_function = gcp.cloudfunctions.get_function(name="function")
     ```
+    {{% /example %}}
+    {{% /examples %}}
 
 
     :param str name: The name of a Cloud Function.

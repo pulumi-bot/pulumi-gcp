@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class URLMap(pulumi.CustomResource):
     creation_timestamp: pulumi.Output[str]
     """
@@ -902,13 +903,13 @@ class URLMap(pulumi.CustomResource):
         UrlMaps are used to route requests to a backend service based on rules
         that you define for the host and path of an incoming URL.
 
-
         To get more information about UrlMap, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/urlMaps)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Url Map Basic
 
         ```python
@@ -976,7 +977,8 @@ class URLMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Url Map Traffic Director Route
 
         ```python
@@ -1053,7 +1055,8 @@ class URLMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Url Map Traffic Director Route Partial
 
         ```python
@@ -1101,7 +1104,8 @@ class URLMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Url Map Traffic Director Path
 
         ```python
@@ -1201,7 +1205,8 @@ class URLMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Url Map Traffic Director Path Partial
 
         ```python
@@ -1267,6 +1272,8 @@ class URLMap(pulumi.CustomResource):
                 "path": "/home",
             }])
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -3047,9 +3054,9 @@ class URLMap(pulumi.CustomResource):
         __props__["self_link"] = self_link
         __props__["tests"] = tests
         return URLMap(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

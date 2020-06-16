@@ -15,7 +15,6 @@ import (
 // with GKE-generated groups that shouldn't otherwise be managed by other
 // tools.
 //
-//
 // To get more information about InstanceGroupNamedPort, see:
 //
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/instanceGroup)

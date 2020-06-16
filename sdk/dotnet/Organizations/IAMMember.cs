@@ -17,9 +17,9 @@ namespace Pulumi.Gcp.Organizations
     ///    `gcp.organizations.IAMBinding` for the __same role__ or they will fight over
     ///    what your policy should be.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -39,6 +39,8 @@ namespace Pulumi.Gcp.Organizations
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class IAMMember : Pulumi.CustomResource
     {

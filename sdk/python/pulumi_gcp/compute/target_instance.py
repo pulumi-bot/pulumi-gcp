@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class TargetInstance(pulumi.CustomResource):
     creation_timestamp: pulumi.Output[str]
     """
@@ -64,15 +65,15 @@ class TargetInstance(pulumi.CustomResource):
         virtual machine instance that receives and handles traffic from the
         corresponding forwarding rules.
 
-
         To get more information about TargetInstance, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/v1/targetInstances)
         * How-to Guides
             * [Using Protocol Forwarding](https://cloud.google.com/compute/docs/protocol-forwarding)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Target Instance Basic
 
         ```python
@@ -94,6 +95,8 @@ class TargetInstance(pulumi.CustomResource):
             }])
         default = gcp.compute.TargetInstance("default", instance=target_vm.id)
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -194,9 +197,9 @@ class TargetInstance(pulumi.CustomResource):
         __props__["self_link"] = self_link
         __props__["zone"] = zone
         return TargetInstance(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

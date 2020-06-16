@@ -12,9 +12,11 @@ import * as utilities from "../utilities";
  * documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
  * [API](https://cloud.google.com/resource-manager/reference/rest/v1/folders/setOrgPolicy).
  *
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  *
- *
+ * To set policy with a [boolean constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-boolean-constraints):
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -28,6 +30,58 @@ import * as utilities from "../utilities";
  *     folder: "folders/123456789",
  * });
  * ```
+ *
+ * To set a policy with a [list constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-list-constraints):
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const servicesPolicy = new gcp.folder.OrganizationPolicy("services_policy", {
+ *     constraint: "serviceuser.services",
+ *     folder: "folders/123456789",
+ *     listPolicy: {
+ *         allow: {
+ *             all: true,
+ *         },
+ *     },
+ * });
+ * ```
+ *
+ * Or to deny some services, use the following instead:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const servicesPolicy = new gcp.folder.OrganizationPolicy("services_policy", {
+ *     constraint: "serviceuser.services",
+ *     folder: "folders/123456789",
+ *     listPolicy: {
+ *         deny: {
+ *             values: ["cloudresourcemanager.googleapis.com"],
+ *         },
+ *         suggestedValue: "compute.googleapis.com",
+ *     },
+ * });
+ * ```
+ *
+ * To restore the default folder organization policy, use the following instead:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const servicesPolicy = new gcp.folder.OrganizationPolicy("services_policy", {
+ *     constraint: "serviceuser.services",
+ *     folder: "folders/123456789",
+ *     restorePolicy: {
+ *         default: true,
+ *     },
+ * });
+ * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class OrganizationPolicy extends pulumi.CustomResource {
     /**

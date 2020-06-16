@@ -33,7 +33,6 @@ import (
 // region, using their RFC1918 private IP addresses. You can isolate portions
 // of the network, even entire subnets, using firewall rules.
 //
-//
 // To get more information about Subnetwork, see:
 //
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/subnetworks)

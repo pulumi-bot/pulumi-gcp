@@ -11,15 +11,15 @@ import * as utilities from "../utilities";
  * single subnet. **NOTE**: Network endpoints cannot be created outside of a
  * network endpoint group.
  *
- *
  * To get more information about NetworkEndpoint, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/networkEndpointGroups)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Network Endpoint
  *
  * ```typescript
@@ -61,6 +61,8 @@ import * as utilities from "../utilities";
  *     zone: "us-central1-a",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class NetworkEndpoint extends pulumi.CustomResource {
     /**

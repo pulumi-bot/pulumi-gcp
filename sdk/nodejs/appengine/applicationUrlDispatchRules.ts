@@ -9,13 +9,13 @@ import * as utilities from "../utilities";
 /**
  * Rules to match an HTTP request and dispatch that request to a service.
  *
- *
  * To get more information about ApplicationUrlDispatchRules, see:
  *
  * * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps#UrlDispatchRule)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### App Engine Application Url Dispatch Rules Basic
  *
  * ```typescript
@@ -57,6 +57,8 @@ import * as utilities from "../utilities";
  *     },
  * ]});
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class ApplicationUrlDispatchRules extends pulumi.CustomResource {
     /**

@@ -18,9 +18,9 @@ import (
 // [the Project API documentation](https://cloud.google.com/compute/docs/reference/latest/projects),
 // where the Shared VPC feature is referred to by its former name "XPN".
 //
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -38,14 +38,14 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		service1, err := compute.NewSharedVPCServiceProject(ctx, "service1", &compute.SharedVPCServiceProjectArgs{
+// 		_, err = compute.NewSharedVPCServiceProject(ctx, "service1", &compute.SharedVPCServiceProjectArgs{
 // 			HostProject:    host.Project,
 // 			ServiceProject: pulumi.String("service-project-id-1"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		service2, err := compute.NewSharedVPCServiceProject(ctx, "service2", &compute.SharedVPCServiceProjectArgs{
+// 		_, err = compute.NewSharedVPCServiceProject(ctx, "service2", &compute.SharedVPCServiceProjectArgs{
 // 			HostProject:    host.Project,
 // 			ServiceProject: pulumi.String("service-project-id-2"),
 // 		})
@@ -56,6 +56,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type SharedVPCHostProject struct {
 	pulumi.CustomResourceState
 

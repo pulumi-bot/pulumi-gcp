@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/bigtable/) and
  * [API](https://cloud.google.com/bigtable/docs/go/reference).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -34,6 +34,8 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Table extends pulumi.CustomResource {
     /**

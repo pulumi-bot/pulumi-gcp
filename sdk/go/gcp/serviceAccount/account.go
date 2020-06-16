@@ -16,9 +16,11 @@ import (
 // errors when you try to apply ACLs to service accounts immediately after
 // creation.
 //
+// {{% examples %}}
 // ## Example Usage
+// {{% example %}}
 //
-//
+// This snippet creates a service account in a project.
 //
 // ```go
 // package main
@@ -30,7 +32,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		serviceAccount, err := serviceAccount.NewAccount(ctx, "serviceAccount", &serviceAccount.AccountArgs{
+// 		_, err = serviceAccount.NewAccount(ctx, "serviceAccount", &serviceAccount.AccountArgs{
 // 			AccountId:   pulumi.String("service_account_id"),
 // 			DisplayName: pulumi.String("Service Account"),
 // 		})
@@ -41,6 +43,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type Account struct {
 	pulumi.CustomResourceState
 

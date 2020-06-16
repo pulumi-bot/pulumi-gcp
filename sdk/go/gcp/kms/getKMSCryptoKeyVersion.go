@@ -14,9 +14,9 @@ import (
 //
 // A CryptoKeyVersion represents an individual cryptographic key, and the associated key material.
 //
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -34,14 +34,14 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		myCryptoKey, err := kms.LookupKMSCryptoKey(ctx, &kms.LookupKMSCryptoKeyArgs{
+// 		_, err := kms.LookupKMSCryptoKey(ctx, &kms.LookupKMSCryptoKeyArgs{
 // 			Name:    "my-crypto-key",
 // 			KeyRing: myKeyRing.SelfLink,
 // 		}, nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		myCryptoKeyVersion, err := kms.LookupKMSCryptoKeyVersion(ctx, &kms.LookupKMSCryptoKeyVersionArgs{
+// 		_, err := kms.LookupKMSCryptoKeyVersion(ctx, &kms.LookupKMSCryptoKeyVersionArgs{
 // 			CryptoKey: data.Google_kms_key.My_key.Self_link,
 // 		}, nil)
 // 		if err != nil {
@@ -51,6 +51,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 func GetKMSCryptoKeyVersion(ctx *pulumi.Context, args *GetKMSCryptoKeyVersionArgs, opts ...pulumi.InvokeOption) (*GetKMSCryptoKeyVersionResult, error) {
 	var rv GetKMSCryptoKeyVersionResult
 	err := ctx.Invoke("gcp:kms/getKMSCryptoKeyVersion:getKMSCryptoKeyVersion", args, &rv, opts...)

@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  *
  * The URLs are computed entirely offline - as long as the project exists, they will be valid, but this data source does not contact Google Container Registry (GCR) at any point.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -24,6 +24,8 @@ import * as utilities from "../utilities";
  * });
  * export const gcrLocation = debian.then(debian => debian.imageUrl);
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getRegistryImage(args: GetRegistryImageArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryImageResult> {
     if (!opts) {

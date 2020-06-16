@@ -13,8 +13,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Introduction to Reservations](https://cloud.google.com/bigquery/docs/reservations-intro)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Bigquery Reservation Basic
  *
  * ```typescript
@@ -27,6 +28,8 @@ import * as utilities from "../utilities";
  *     ignoreIdleSlots: false,
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Reservation extends pulumi.CustomResource {
     /**

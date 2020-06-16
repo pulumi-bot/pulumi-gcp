@@ -21,9 +21,11 @@ namespace Pulumi.Gcp.Storage
     /// 
     /// **NOTE** This resource will not remove the `project-owners-&lt;project_id&gt;` entity from the `OWNER` role.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
+    /// {{% example %}}
     /// 
-    /// 
+    /// Example creating an ACL on a bucket with one owner, and one reader.
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -50,6 +52,8 @@ namespace Pulumi.Gcp.Storage
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class BucketACL : Pulumi.CustomResource
     {

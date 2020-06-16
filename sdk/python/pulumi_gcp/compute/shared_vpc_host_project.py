@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class SharedVPCHostProject(pulumi.CustomResource):
     project: pulumi.Output[str]
     """
@@ -24,9 +25,9 @@ class SharedVPCHostProject(pulumi.CustomResource):
         [the Project API documentation](https://cloud.google.com/compute/docs/reference/latest/projects),
         where the Shared VPC feature is referred to by its former name "XPN".
 
+        {{% examples %}}
         ## Example Usage
-
-
+        {{% example %}}
 
         ```python
         import pulumi
@@ -43,6 +44,8 @@ class SharedVPCHostProject(pulumi.CustomResource):
             host_project=host.project,
             service_project="service-project-id-2")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -91,9 +94,9 @@ class SharedVPCHostProject(pulumi.CustomResource):
 
         __props__["project"] = project
         return SharedVPCHostProject(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

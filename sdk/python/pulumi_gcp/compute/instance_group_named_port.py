@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class InstanceGroupNamedPort(pulumi.CustomResource):
     group: pulumi.Output[str]
     """
@@ -39,15 +40,15 @@ class InstanceGroupNamedPort(pulumi.CustomResource):
         with GKE-generated groups that shouldn't otherwise be managed by other
         tools.
 
-
         To get more information about InstanceGroupNamedPort, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/instanceGroup)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/compute/docs/instance-groups/)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Instance Group Named Port Gke
 
         ```python
@@ -77,6 +78,8 @@ class InstanceGroupNamedPort(pulumi.CustomResource):
             zone="us-central1-a",
             port=4443)
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -147,9 +150,9 @@ class InstanceGroupNamedPort(pulumi.CustomResource):
         __props__["project"] = project
         __props__["zone"] = zone
         return InstanceGroupNamedPort(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -24,7 +24,6 @@ import * as utilities from "../utilities";
  * accessed programmatically or through the api explorer at  https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.notificationChannelDescriptors/list .
  * This provides the channel type and all of the required labels that must be passed.
  *
- *
  * To get more information about NotificationChannel, see:
  *
  * * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.notificationChannels)
@@ -32,8 +31,9 @@ import * as utilities from "../utilities";
  *     * [Notification Options](https://cloud.google.com/monitoring/support/notification-options)
  *     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Notification Channel Basic
  *
  * ```typescript
@@ -48,7 +48,8 @@ import * as utilities from "../utilities";
  *     type: "email",
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Notification Channel Sensitive
  *
  * ```typescript
@@ -66,6 +67,8 @@ import * as utilities from "../utilities";
  *     type: "slack",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class NotificationChannel extends pulumi.CustomResource {
     /**

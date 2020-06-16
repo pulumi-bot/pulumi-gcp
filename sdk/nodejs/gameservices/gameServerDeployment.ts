@@ -13,8 +13,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/game-servers/docs)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Game Service Deployment Basic
  *
  * ```typescript
@@ -26,6 +27,8 @@ import * as utilities from "../utilities";
  *     description: "a deployment description",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class GameServerDeployment extends pulumi.CustomResource {
     /**

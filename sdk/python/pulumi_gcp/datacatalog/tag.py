@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Tag(pulumi.CustomResource):
     column: pulumi.Output[str]
     """
@@ -63,13 +64,271 @@ class Tag(pulumi.CustomResource):
 
         See [Data Catalog IAM](https://cloud.google.com/data-catalog/docs/concepts/iam) for information on the permissions needed to create or view tags.
 
-
         To get more information about Tag, see:
 
         * [API documentation](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.tags)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 
+        {{% examples %}}
+        ## Example Usage
+        {{% example %}}
+        ### Data Catalog Entry Tag Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        entry_group = gcp.datacatalog.EntryGroup("entryGroup", entry_group_id="my_entry_group")
+        entry = gcp.datacatalog.Entry("entry",
+            entry_group=entry_group.id,
+            entry_id="my_entry",
+            user_specified_type="my_custom_type",
+            user_specified_system="SomethingExternal")
+        tag_template = gcp.datacatalog.TagTemplate("tagTemplate",
+            tag_template_id="my_template",
+            region="us-central1",
+            display_name="Demo Tag Template",
+            fields=[
+                {
+                    "fieldId": "source",
+                    "display_name": "Source of data asset",
+                    "type": {
+                        "primitiveType": "STRING",
+                    },
+                    "isRequired": True,
+                },
+                {
+                    "fieldId": "num_rows",
+                    "display_name": "Number of rows in the data asset",
+                    "type": {
+                        "primitiveType": "DOUBLE",
+                    },
+                },
+                {
+                    "fieldId": "pii_type",
+                    "display_name": "PII type",
+                    "type": {
+                        "enum_type": {
+                            "allowed_values": [
+                                {
+                                    "display_name": "EMAIL",
+                                },
+                                {
+                                    "display_name": "SOCIAL SECURITY NUMBER",
+                                },
+                                {
+                                    "display_name": "NONE",
+                                },
+                            ],
+                        },
+                    },
+                },
+            ],
+            force_delete="false")
+        basic_tag = gcp.datacatalog.Tag("basicTag",
+            parent=entry.id,
+            template=tag_template.id,
+            fields=[{
+                "fieldName": "source",
+                "stringValue": "my-string",
+            }])
+        ```
+        {{% /example %}}
+        {{% example %}}
+        ### Data Catalog Entry Group Tag
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        entry_group = gcp.datacatalog.EntryGroup("entryGroup", entry_group_id="my_entry_group")
+        first_entry = gcp.datacatalog.Entry("firstEntry",
+            entry_group=entry_group.id,
+            entry_id="first_entry",
+            user_specified_type="my_custom_type",
+            user_specified_system="SomethingExternal")
+        second_entry = gcp.datacatalog.Entry("secondEntry",
+            entry_group=entry_group.id,
+            entry_id="second_entry",
+            user_specified_type="another_custom_type",
+            user_specified_system="SomethingElseExternal")
+        tag_template = gcp.datacatalog.TagTemplate("tagTemplate",
+            tag_template_id="my_template",
+            region="us-central1",
+            display_name="Demo Tag Template",
+            fields=[
+                {
+                    "fieldId": "source",
+                    "display_name": "Source of data asset",
+                    "type": {
+                        "primitiveType": "STRING",
+                    },
+                    "isRequired": True,
+                },
+                {
+                    "fieldId": "num_rows",
+                    "display_name": "Number of rows in the data asset",
+                    "type": {
+                        "primitiveType": "DOUBLE",
+                    },
+                },
+                {
+                    "fieldId": "pii_type",
+                    "display_name": "PII type",
+                    "type": {
+                        "enum_type": {
+                            "allowed_values": [
+                                {
+                                    "display_name": "EMAIL",
+                                },
+                                {
+                                    "display_name": "SOCIAL SECURITY NUMBER",
+                                },
+                                {
+                                    "display_name": "NONE",
+                                },
+                            ],
+                        },
+                    },
+                },
+            ],
+            force_delete="false")
+        entry_group_tag = gcp.datacatalog.Tag("entryGroupTag",
+            parent=entry_group.id,
+            template=tag_template.id,
+            fields=[{
+                "fieldName": "source",
+                "stringValue": "my-string",
+            }])
+        ```
+        {{% /example %}}
+        {{% example %}}
+        ### Data Catalog Entry Tag Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        entry_group = gcp.datacatalog.EntryGroup("entryGroup", entry_group_id="my_entry_group")
+        entry = gcp.datacatalog.Entry("entry",
+            entry_group=entry_group.id,
+            entry_id="my_entry",
+            user_specified_type="my_custom_type",
+            user_specified_system="SomethingExternal",
+            schema=\"\"\"{
+          "columns": [
+            {
+              "column": "first_name",
+              "description": "First name",
+              "mode": "REQUIRED",
+              "type": "STRING"
+            },
+            {
+              "column": "last_name",
+              "description": "Last name",
+              "mode": "REQUIRED",
+              "type": "STRING"
+            },
+            {
+              "column": "address",
+              "description": "Address",
+              "mode": "REPEATED",
+              "subcolumns": [
+                {
+                  "column": "city",
+                  "description": "City",
+                  "mode": "NULLABLE",
+                  "type": "STRING"
+                },
+                {
+                  "column": "state",
+                  "description": "State",
+                  "mode": "NULLABLE",
+                  "type": "STRING"
+                }
+              ],
+              "type": "RECORD"
+            }
+          ]
+        }
+        \"\"\")
+        tag_template = gcp.datacatalog.TagTemplate("tagTemplate",
+            tag_template_id="my_template",
+            region="us-central1",
+            display_name="Demo Tag Template",
+            fields=[
+                {
+                    "fieldId": "source",
+                    "display_name": "Source of data asset",
+                    "type": {
+                        "primitiveType": "STRING",
+                    },
+                    "isRequired": True,
+                },
+                {
+                    "fieldId": "num_rows",
+                    "display_name": "Number of rows in the data asset",
+                    "type": {
+                        "primitiveType": "DOUBLE",
+                    },
+                },
+                {
+                    "fieldId": "pii_type",
+                    "display_name": "PII type",
+                    "type": {
+                        "enum_type": {
+                            "allowed_values": [
+                                {
+                                    "display_name": "EMAIL",
+                                },
+                                {
+                                    "display_name": "SOCIAL SECURITY NUMBER",
+                                },
+                                {
+                                    "display_name": "NONE",
+                                },
+                            ],
+                        },
+                    },
+                },
+            ],
+            force_delete="false")
+        basic_tag = gcp.datacatalog.Tag("basicTag",
+            parent=entry.id,
+            template=tag_template.id,
+            fields=[
+                {
+                    "fieldName": "source",
+                    "stringValue": "my-string",
+                },
+                {
+                    "fieldName": "num_rows",
+                    "doubleValue": 5,
+                },
+                {
+                    "fieldName": "pii_type",
+                    "enumValue": "EMAIL",
+                },
+            ],
+            column="address")
+        second_tag = gcp.datacatalog.Tag("second-tag",
+            parent=entry.id,
+            template=tag_template.id,
+            fields=[
+                {
+                    "fieldName": "source",
+                    "stringValue": "my-string",
+                },
+                {
+                    "fieldName": "pii_type",
+                    "enumValue": "NONE",
+                },
+            ],
+            column="first_name")
+        ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -185,9 +444,9 @@ class Tag(pulumi.CustomResource):
         __props__["template"] = template
         __props__["template_displayname"] = template_displayname
         return Tag(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -7,10 +7,9 @@ import * as utilities from "../utilities";
 /**
  * A Lien represents an encumbrance on the actions that can be performed on a resource.
  *
- *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Resource Manager Lien
  *
  * ```typescript
@@ -27,6 +26,8 @@ import * as utilities from "../utilities";
  *     restrictions: ["resourcemanager.projects.delete"],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Lien extends pulumi.CustomResource {
     /**

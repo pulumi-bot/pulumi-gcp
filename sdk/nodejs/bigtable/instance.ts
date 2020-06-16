@@ -11,8 +11,9 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/bigtable/) and
  * [API](https://cloud.google.com/bigtable/docs/go/reference).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Production Instance
  *
  * ```typescript
@@ -28,7 +29,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Development Instance
  *
  * ```typescript
@@ -44,6 +46,8 @@ import * as utilities from "../utilities";
  *     instanceType: "DEVELOPMENT",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Instance extends pulumi.CustomResource {
     /**

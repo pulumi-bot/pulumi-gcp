@@ -7,11 +7,9 @@ import * as utilities from "../utilities";
 /**
  * A `KeyRing` is a toplevel logical grouping of `CryptoKeys`.
  *
- *
  * > **Note:** KeyRings cannot be deleted from Google Cloud Platform.
  * Destroying a provider-managed KeyRing will remove it from state but
  * *will not delete the resource on the server.*
- *
  *
  * To get more information about KeyRing, see:
  *
@@ -19,8 +17,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Creating a key ring](https://cloud.google.com/kms/docs/creating-keys#create_a_key_ring)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Kms Key Ring Basic
  *
  * ```typescript
@@ -31,6 +30,8 @@ import * as utilities from "../utilities";
  *     location: "global",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class KeyRing extends pulumi.CustomResource {
     /**

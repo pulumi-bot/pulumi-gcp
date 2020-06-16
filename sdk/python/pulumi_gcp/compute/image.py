@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Image(pulumi.CustomResource):
     archive_size_bytes: pulumi.Output[float]
     """
@@ -112,15 +113,15 @@ class Image(pulumi.CustomResource):
         from root persistent disks and other images. Then, use the custom image
         to create an instance.
 
-
         To get more information about Image, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/v1/images)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/compute/docs/images)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Image Basic
 
         ```python
@@ -131,7 +132,8 @@ class Image(pulumi.CustomResource):
             "source": "https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.4-google-kvm-ubuntu-trusty-go_agent-raw.tar.gz",
         })
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Image Guest Os
 
         ```python
@@ -151,6 +153,8 @@ class Image(pulumi.CustomResource):
                 "source": "https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.4-google-kvm-ubuntu-trusty-go_agent-raw.tar.gz",
             })
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -307,9 +311,9 @@ class Image(pulumi.CustomResource):
         __props__["self_link"] = self_link
         __props__["source_disk"] = source_disk
         return Image(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

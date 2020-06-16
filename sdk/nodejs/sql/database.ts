@@ -8,10 +8,9 @@ import * as utilities from "../utilities";
  * Represents a SQL database inside the Cloud SQL instance, hosted in
  * Google's cloud.
  *
- *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Sql Database Basic
  *
  * ```typescript
@@ -26,6 +25,8 @@ import * as utilities from "../utilities";
  * });
  * const database = new gcp.sql.Database("database", {instance: instance.name});
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Database extends pulumi.CustomResource {
     /**

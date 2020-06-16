@@ -11,9 +11,11 @@ import * as utilities from "../utilities";
  * errors when you try to apply ACLs to service accounts immediately after
  * creation.
  *
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  *
- *
+ * This snippet creates a service account in a project.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -24,6 +26,8 @@ import * as utilities from "../utilities";
  *     displayName: "Service Account",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Account extends pulumi.CustomResource {
     /**

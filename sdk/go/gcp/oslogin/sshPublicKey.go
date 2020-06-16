@@ -12,7 +12,6 @@ import (
 
 // The SSH public key information associated with a Google account.
 //
-//
 // To get more information about SSHPublicKey, see:
 //
 // * [API documentation](https://cloud.google.com/compute/docs/oslogin/rest)

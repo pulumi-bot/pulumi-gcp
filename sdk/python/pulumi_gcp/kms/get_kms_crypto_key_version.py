@@ -73,9 +73,9 @@ def get_kms_crypto_key_version(crypto_key=None,version=None,opts=None):
 
     A CryptoKeyVersion represents an individual cryptographic key, and the associated key material.
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -87,6 +87,8 @@ def get_kms_crypto_key_version(crypto_key=None,version=None,opts=None):
         key_ring=my_key_ring.self_link)
     my_crypto_key_version = gcp.kms.get_kms_crypto_key_version(crypto_key=data["google_kms_key"]["my_key"]["self_link"])
     ```
+    {{% /example %}}
+    {{% /examples %}}
 
 
     :param str crypto_key: The `self_link` of the Google Cloud Platform CryptoKey to which the key version belongs.

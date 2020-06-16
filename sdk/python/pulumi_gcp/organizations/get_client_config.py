@@ -60,9 +60,9 @@ def get_client_config(opts=None):
     """
     Use this data source to access the configuration of the Google Cloud provider.
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -71,6 +71,8 @@ def get_client_config(opts=None):
     current = gcp.organizations.get_client_config()
     pulumi.export("project", current.project)
     ```
+    {{% /example %}}
+    {{% /examples %}}
     """
     __args__ = dict()
 

@@ -82,9 +82,9 @@ def get_backend_bucket(name=None,project=None,opts=None):
     """
     Get information about a BackendBucket.
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -92,6 +92,8 @@ def get_backend_bucket(name=None,project=None,opts=None):
 
     my_backend_bucket = gcp.compute.get_backend_bucket(name="my-backend")
     ```
+    {{% /example %}}
+    {{% /examples %}}
 
 
     :param str name: Name of the resource.

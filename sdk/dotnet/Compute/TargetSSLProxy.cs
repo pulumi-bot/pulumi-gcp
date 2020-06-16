@@ -14,7 +14,6 @@ namespace Pulumi.Gcp.Compute
     /// global forwarding rule to route incoming SSL requests to a backend
     /// service.
     /// 
-    /// 
     /// To get more information about TargetSslProxy, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/v1/targetSslProxies)

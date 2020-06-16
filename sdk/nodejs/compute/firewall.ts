@@ -20,15 +20,15 @@ import * as utilities from "../utilities";
  * networks except the default network, you must create any firewall rules
  * you need.
  *
- *
  * To get more information about Firewall, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/v1/firewalls)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/vpc/docs/firewalls)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Firewall Basic
  *
  * ```typescript
@@ -54,6 +54,8 @@ import * as utilities from "../utilities";
  *     sourceTags: ["web"],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Firewall extends pulumi.CustomResource {
     /**

@@ -12,7 +12,6 @@ import (
 
 // This message configures which resources and services to monitor for availability.
 //
-//
 // To get more information about UptimeCheckConfig, see:
 //
 // * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.uptimeCheckConfigs)
@@ -22,8 +21,9 @@ import (
 // > **Warning:** All arguments including `http_check.auth_info.password` will be stored in the raw
 // state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Uptime Check Config Http
 //
 // ```go
@@ -36,7 +36,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		http, err := monitoring.NewUptimeCheckConfig(ctx, "http", &monitoring.UptimeCheckConfigArgs{
+// 		_, err = monitoring.NewUptimeCheckConfig(ctx, "http", &monitoring.UptimeCheckConfigArgs{
 // 			ContentMatchers: monitoring.UptimeCheckConfigContentMatcherArray{
 // 				&monitoring.UptimeCheckConfigContentMatcherArgs{
 // 					Content: pulumi.String("example"),
@@ -63,7 +63,8 @@ import (
 // 	})
 // }
 // ```
-//
+// {{% /example %}}
+// {{% example %}}
 // ### Uptime Check Config Https
 //
 // ```go
@@ -76,7 +77,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		https, err := monitoring.NewUptimeCheckConfig(ctx, "https", &monitoring.UptimeCheckConfigArgs{
+// 		_, err = monitoring.NewUptimeCheckConfig(ctx, "https", &monitoring.UptimeCheckConfigArgs{
 // 			ContentMatchers: monitoring.UptimeCheckConfigContentMatcherArray{
 // 				&monitoring.UptimeCheckConfigContentMatcherArgs{
 // 					Content: pulumi.String("example"),
@@ -105,6 +106,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type UptimeCheckConfig struct {
 	pulumi.CustomResourceState
 

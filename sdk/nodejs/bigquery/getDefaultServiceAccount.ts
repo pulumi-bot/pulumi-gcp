@@ -17,9 +17,9 @@ import * as utilities from "../utilities";
  * For more information see
  * [the API reference](https://cloud.google.com/bigquery/docs/reference/rest/v2/projects/getServiceAccount).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -32,6 +32,8 @@ import * as utilities from "../utilities";
  *     member: bqSa.then(bqSa => `serviceAccount:${bqSa.email}`),
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getDefaultServiceAccount(args?: GetDefaultServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetDefaultServiceAccountResult> {
     args = args || {};

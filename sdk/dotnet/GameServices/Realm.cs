@@ -18,8 +18,9 @@ namespace Pulumi.Gcp.GameServices
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/game-servers/docs)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Game Service Realm Basic
     /// 
     /// ```csharp
@@ -41,6 +42,8 @@ namespace Pulumi.Gcp.GameServices
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Realm : Pulumi.CustomResource
     {

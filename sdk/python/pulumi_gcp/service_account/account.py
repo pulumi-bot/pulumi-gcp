@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Account(pulumi.CustomResource):
     account_id: pulumi.Output[str]
     """
@@ -54,9 +55,11 @@ class Account(pulumi.CustomResource):
         errors when you try to apply ACLs to service accounts immediately after
         creation.
 
+        {{% examples %}}
         ## Example Usage
+        {{% example %}}
 
-
+        This snippet creates a service account in a project.
 
         ```python
         import pulumi
@@ -66,6 +69,8 @@ class Account(pulumi.CustomResource):
             account_id="service_account_id",
             display_name="Service Account")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -149,9 +154,9 @@ class Account(pulumi.CustomResource):
         __props__["project"] = project
         __props__["unique_id"] = unique_id
         return Account(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

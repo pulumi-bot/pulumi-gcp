@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class SecurityPolicy(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
@@ -71,9 +72,9 @@ class SecurityPolicy(pulumi.CustomResource):
         see the [official documentation](https://cloud.google.com/armor/docs/configure-security-policies)
         and the [API](https://cloud.google.com/compute/docs/reference/rest/beta/securityPolicies).
 
+        {{% examples %}}
         ## Example Usage
-
-
+        {{% example %}}
 
         ```python
         import pulumi
@@ -104,6 +105,8 @@ class SecurityPolicy(pulumi.CustomResource):
             },
         ])
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -234,9 +237,9 @@ class SecurityPolicy(pulumi.CustomResource):
         __props__["rules"] = rules
         __props__["self_link"] = self_link
         return SecurityPolicy(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

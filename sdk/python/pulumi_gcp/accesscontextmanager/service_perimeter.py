@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class ServicePerimeter(pulumi.CustomResource):
     create_time: pulumi.Output[str]
     """
@@ -136,10 +137,9 @@ class ServicePerimeter(pulumi.CustomResource):
         has a target outside of the ServicePerimeter, the request will be blocked.
         Otherwise the request is allowed. There are two types of Service Perimeter
         - Regular and Bridge. Regular Service Perimeters cannot overlap, a single
-        GCP project can only belong to a single regular Service Perimeter. Service
-        Perimeter Bridges can contain only GCP projects as members, a single GCP
-        project may belong to multiple Service Perimeter Bridges.
-
+          GCP project can only belong to a single regular Service Perimeter. Service
+          Perimeter Bridges can contain only GCP projects as members, a single GCP
+          project may belong to multiple Service Perimeter Bridges.
 
         To get more information about ServicePerimeter, see:
 
@@ -147,8 +147,9 @@ class ServicePerimeter(pulumi.CustomResource):
         * How-to Guides
             * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Access Context Manager Service Perimeter Basic
 
         ```python
@@ -183,7 +184,8 @@ class ServicePerimeter(pulumi.CustomResource):
             parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"),
             title="chromeos_no_lock")
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Access Context Manager Service Perimeter Dry Run
 
         ```python
@@ -204,6 +206,8 @@ class ServicePerimeter(pulumi.CustomResource):
             title="restrict_bigquery_dryrun_storage",
             use_explicit_dry_run_spec=True)
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -452,9 +456,9 @@ class ServicePerimeter(pulumi.CustomResource):
         __props__["update_time"] = update_time
         __props__["use_explicit_dry_run_spec"] = use_explicit_dry_run_spec
         return ServicePerimeter(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

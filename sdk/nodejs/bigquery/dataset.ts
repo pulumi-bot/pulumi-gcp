@@ -9,15 +9,15 @@ import * as utilities from "../utilities";
 /**
  * Datasets allow you to organize and control access to your tables.
  *
- *
  * To get more information about Dataset, see:
  *
  * * [API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets)
  * * How-to Guides
  *     * [Datasets Intro](https://cloud.google.com/bigquery/docs/datasets-intro)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Bigquery Dataset Basic
  *
  * ```typescript
@@ -46,7 +46,8 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Bigquery Dataset Cmek
  *
  * ```typescript
@@ -66,6 +67,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Dataset extends pulumi.CustomResource {
     /**

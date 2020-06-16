@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Node(pulumi.CustomResource):
     accelerator_type: pulumi.Output[str]
     """
@@ -80,15 +81,15 @@ class Node(pulumi.CustomResource):
         """
         A Cloud TPU instance.
 
-
         To get more information about Node, see:
 
         * [API documentation](https://cloud.google.com/tpu/docs/reference/rest/)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/tpu/docs/)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### TPU Node Basic
 
         ```python
@@ -102,7 +103,8 @@ class Node(pulumi.CustomResource):
             tensorflow_version=available.versions[0],
             cidr_block="10.2.0.0/29")
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### TPU Node Full
 
         ```python
@@ -124,6 +126,8 @@ class Node(pulumi.CustomResource):
                 "preemptible": True,
             })
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -257,9 +261,9 @@ class Node(pulumi.CustomResource):
         __props__["tensorflow_version"] = tensorflow_version
         __props__["zone"] = zone
         return Node(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

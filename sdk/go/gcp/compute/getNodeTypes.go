@@ -10,9 +10,9 @@ import (
 // Provides available node types for Compute Engine sole-tenant nodes in a zone
 // for a given project. For more information, see [the official documentation](https://cloud.google.com/compute/docs/nodes/#types) and [API](https://cloud.google.com/compute/docs/reference/rest/v1/nodeTypes).
 //
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -24,13 +24,13 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		central1b, err := compute.LookupNodeTypes(ctx, &compute.LookupNodeTypesArgs{
+// 		_, err := compute.LookupNodeTypes(ctx, &compute.LookupNodeTypesArgs{
 // 			Zone: "us-central1-b",
 // 		}, nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		tmpl, err := compute.NewNodeTemplate(ctx, "tmpl", &compute.NodeTemplateArgs{
+// 		_, err = compute.NewNodeTemplate(ctx, "tmpl", &compute.NodeTemplateArgs{
 // 			Region:   pulumi.String("us-central1"),
 // 			NodeType: pulumi.String(data.Google_compute_node_types.Types.Names[0]),
 // 		})
@@ -41,6 +41,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 func GetNodeTypes(ctx *pulumi.Context, args *GetNodeTypesArgs, opts ...pulumi.InvokeOption) (*GetNodeTypesResult, error) {
 	var rv GetNodeTypesResult
 	err := ctx.Invoke("gcp:compute/getNodeTypes:getNodeTypes", args, &rv, opts...)

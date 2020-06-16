@@ -18,8 +18,9 @@ import (
 // * How-to Guides
 //     * [Configuring an endpoint](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_an_endpoint)
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Service Directory Endpoint Basic
 //
 // ```go
@@ -46,7 +47,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		exampleEndpoint, err := servicedirectory.NewEndpoint(ctx, "exampleEndpoint", &servicedirectory.EndpointArgs{
+// 		_, err = servicedirectory.NewEndpoint(ctx, "exampleEndpoint", &servicedirectory.EndpointArgs{
 // 			EndpointId: pulumi.String("example-endpoint"),
 // 			Service:    exampleService.ID(),
 // 			Metadata: map[string]interface{}{
@@ -63,6 +64,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type Endpoint struct {
 	pulumi.CustomResourceState
 

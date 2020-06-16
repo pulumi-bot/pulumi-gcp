@@ -18,8 +18,9 @@ import (
 // * How-to Guides
 //     * [Configuring a service](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_service)
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Service Directory Service Basic
 //
 // ```go
@@ -39,7 +40,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		exampleService, err := servicedirectory.NewService(ctx, "exampleService", &servicedirectory.ServiceArgs{
+// 		_, err = servicedirectory.NewService(ctx, "exampleService", &servicedirectory.ServiceArgs{
 // 			ServiceId: pulumi.String("example-service"),
 // 			Namespace: exampleNamespace.ID(),
 // 			Metadata: map[string]interface{}{
@@ -54,6 +55,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type Service struct {
 	pulumi.CustomResourceState
 

@@ -20,7 +20,6 @@ import * as utilities from "../utilities";
  * persistent disk faster and at a much lower cost than if you regularly
  * created a full image of the disk.
  *
- *
  * To get more information about Snapshot, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/snapshots)
@@ -30,8 +29,9 @@ import * as utilities from "../utilities";
  * > **Warning:** All arguments including `snapshot_encryption_key.raw_key` and `source_disk_encryption_key.raw_key` will be stored in the raw
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Snapshot Basic
  *
  * ```typescript
@@ -56,6 +56,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Snapshot extends pulumi.CustomResource {
     /**

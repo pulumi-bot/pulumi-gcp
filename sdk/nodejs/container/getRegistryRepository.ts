@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  *
  * The URLs are computed entirely offline - as long as the project exists, they will be valid, but this data source does not contact Google Container Registry (GCR) at any point.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -22,6 +22,8 @@ import * as utilities from "../utilities";
  * const foo = gcp.container.getRegistryRepository({});
  * export const gcrLocation = foo.then(foo => foo.repositoryUrl);
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getRegistryRepository(args?: GetRegistryRepositoryArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryRepositoryResult> {
     args = args || {};

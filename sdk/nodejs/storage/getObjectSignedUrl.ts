@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  *
  * For more info about signed URL's is available [here](https://cloud.google.com/storage/docs/access-control/signed-urls).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -25,7 +25,8 @@ import * as utilities from "../utilities";
  * }, { async: true }));
  * const vm = new gcp.compute.Instance("vm", {});
  * ```
- *
+ * {{% /example %}}
+ * {{% /examples %}}
  * ## Full Example
  *
  * ```typescript

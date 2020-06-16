@@ -25,9 +25,9 @@ namespace Pulumi.Gcp.Organizations
     ///    `gcp.organizations.IAMMember` or `gcp.organizations.IAMBinding`
     ///    or they will fight over what your policy should be.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -60,6 +60,8 @@ namespace Pulumi.Gcp.Organizations
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class IAMPolicy : Pulumi.CustomResource
     {

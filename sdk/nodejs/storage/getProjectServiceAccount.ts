@@ -15,9 +15,9 @@ import * as utilities from "../utilities";
  * For more information see
  * [the API reference](https://cloud.google.com/storage/docs/json_api/v1/projects/serviceAccount).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -30,6 +30,8 @@ import * as utilities from "../utilities";
  *     members: [gcsAccount.then(gcsAccount => `serviceAccount:${gcsAccount.emailAddress}`)],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getProjectServiceAccount(args?: GetProjectServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectServiceAccountResult> {
     args = args || {};

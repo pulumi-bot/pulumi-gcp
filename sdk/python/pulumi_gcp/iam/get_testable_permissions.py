@@ -54,9 +54,11 @@ def get_testable_permissions(custom_support_level=None,full_resource_name=None,s
     """
     Retrieve a list of testable permissions for a resource. Testable permissions mean the permissions that user can add or remove in a role at a given resource. The resource can be referenced either via the full resource name or via a URI.
 
+    {{% examples %}}
     ## Example Usage
+    {{% example %}}
 
-
+    Retrieve all the supported permissions able to be set on `my-project` that are in either GA or BETA. This is useful for dynamically constructing custom roles.
 
     ```python
     import pulumi
@@ -68,6 +70,8 @@ def get_testable_permissions(custom_support_level=None,full_resource_name=None,s
             "BETA",
         ])
     ```
+    {{% /example %}}
+    {{% /examples %}}
 
 
     :param str custom_support_level: The level of support for custom roles. Can be one of `"NOT_SUPPORTED"`, `"SUPPORTED"`, `"TESTING"`. Default is `"SUPPORTED"`

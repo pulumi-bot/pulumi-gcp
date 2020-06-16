@@ -13,13 +13,13 @@ namespace Pulumi.Gcp.Dataproc
     /// Manages a Cloud Dataproc cluster resource within GCP. For more information see
     /// [the official dataproc documentation](https://cloud.google.com/dataproc/).
     /// 
-    /// 
     /// !&gt; **Warning:** Due to limitations of the API, all arguments except
     /// `labels`,`cluster_config.worker_config.num_instances` and `cluster_config.preemptible_worker_config.num_instances` are non-updatable. Changing others will cause recreation of the
     /// whole cluster!
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Basic
     /// 
     /// ```csharp
@@ -38,7 +38,8 @@ namespace Pulumi.Gcp.Dataproc
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Advanced
     /// 
     /// ```csharp
@@ -121,7 +122,8 @@ namespace Pulumi.Gcp.Dataproc
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Using A GPU Accelerator
     /// 
     /// ```csharp
@@ -158,6 +160,8 @@ namespace Pulumi.Gcp.Dataproc
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Cluster : Pulumi.CustomResource
     {

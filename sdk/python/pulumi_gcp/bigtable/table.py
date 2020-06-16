@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Table(pulumi.CustomResource):
     column_families: pulumi.Output[list]
     """
@@ -41,9 +42,9 @@ class Table(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/bigtable/) and
         [API](https://cloud.google.com/bigtable/docs/go/reference).
 
+        {{% examples %}}
         ## Example Usage
-
-
+        {{% example %}}
 
         ```python
         import pulumi
@@ -63,6 +64,8 @@ class Table(pulumi.CustomResource):
                 "c",
             ])
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -141,9 +144,9 @@ class Table(pulumi.CustomResource):
         __props__["project"] = project
         __props__["split_keys"] = split_keys
         return Table(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

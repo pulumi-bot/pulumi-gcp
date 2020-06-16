@@ -48,9 +48,9 @@ def get_lbip_ranges(opts=None):
 
     https://cloud.google.com/compute/docs/load-balancing/health-checks#health_check_source_ips_and_firewall_rules
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -66,6 +66,8 @@ def get_lbip_ranges(opts=None):
         source_ranges=ranges.networks,
         target_tags=["InstanceBehindLoadBalancer"])
     ```
+    {{% /example %}}
+    {{% /examples %}}
     """
     __args__ = dict()
 

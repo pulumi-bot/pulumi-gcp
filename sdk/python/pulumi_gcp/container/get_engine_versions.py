@@ -92,9 +92,9 @@ def get_engine_versions(location=None,project=None,version_prefix=None,opts=None
     its component zones, and not all zones in a region are guaranteed to
     support the same version.
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -112,6 +112,8 @@ def get_engine_versions(location=None,project=None,version_prefix=None,opts=None
         })
     pulumi.export("stableChannelVersion", central1b.release_channel_default_version["STABLE"])
     ```
+    {{% /example %}}
+    {{% /examples %}}
 
 
     :param str location: The location (region or zone) to list versions for.

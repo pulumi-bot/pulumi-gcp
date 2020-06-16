@@ -13,9 +13,9 @@ import * as utilities from "../utilities";
  * [the Project API documentation](https://cloud.google.com/compute/docs/reference/latest/projects),
  * where the Shared VPC feature is referred to by its former name "XPN".
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -34,6 +34,8 @@ import * as utilities from "../utilities";
  *     serviceProject: "service-project-id-2",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class SharedVPCHostProject extends pulumi.CustomResource {
     /**

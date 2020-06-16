@@ -12,13 +12,13 @@ import (
 // Manages a Cloud Dataproc cluster resource within GCP. For more information see
 // [the official dataproc documentation](https://cloud.google.com/dataproc/).
 //
-//
 // !> **Warning:** Due to limitations of the API, all arguments except
 // `labels`,`cluster_config.worker_config.num_instances` and `cluster_config.preemptible_worker_config.num_instances` are non-updatable. Changing others will cause recreation of the
 // whole cluster!
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Basic
 //
 // ```go
@@ -31,7 +31,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		simplecluster, err := dataproc.NewCluster(ctx, "simplecluster", &dataproc.ClusterArgs{
+// 		_, err = dataproc.NewCluster(ctx, "simplecluster", &dataproc.ClusterArgs{
 // 			Region: pulumi.String("us-central1"),
 // 		})
 // 		if err != nil {
@@ -41,7 +41,8 @@ import (
 // 	})
 // }
 // ```
-//
+// {{% /example %}}
+// {{% example %}}
 // ### Advanced
 //
 // ```go
@@ -54,7 +55,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		mycluster, err := dataproc.NewCluster(ctx, "mycluster", &dataproc.ClusterArgs{
+// 		_, err = dataproc.NewCluster(ctx, "mycluster", &dataproc.ClusterArgs{
 // 			ClusterConfig: &dataproc.ClusterClusterConfigArgs{
 // 				GceClusterConfig: &dataproc.ClusterClusterConfigGceClusterConfigArgs{
 // 					ServiceAccountScopes: pulumi.StringArray{
@@ -114,7 +115,8 @@ import (
 // 	})
 // }
 // ```
-//
+// {{% /example %}}
+// {{% example %}}
 // ### Using A GPU Accelerator
 //
 // ```go
@@ -127,7 +129,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		acceleratedCluster, err := dataproc.NewCluster(ctx, "acceleratedCluster", &dataproc.ClusterArgs{
+// 		_, err = dataproc.NewCluster(ctx, "acceleratedCluster", &dataproc.ClusterArgs{
 // 			ClusterConfig: &dataproc.ClusterClusterConfigArgs{
 // 				GceClusterConfig: &dataproc.ClusterClusterConfigGceClusterConfigArgs{
 // 					Zone: pulumi.String("us-central1-a"),
@@ -150,6 +152,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type Cluster struct {
 	pulumi.CustomResourceState
 

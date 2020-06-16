@@ -10,13 +10,13 @@ import * as utilities from "../utilities";
  * Manages a Cloud Dataproc cluster resource within GCP. For more information see
  * [the official dataproc documentation](https://cloud.google.com/dataproc/).
  *
- *
  * !> **Warning:** Due to limitations of the API, all arguments except
  * `labels`,`cluster_config.worker_config.num_instances` and `cluster_config.preemptible_worker_config.num_instances` are non-updatable. Changing others will cause recreation of the
  * whole cluster!
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Basic
  *
  * ```typescript
@@ -27,7 +27,8 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Advanced
  *
  * ```typescript
@@ -88,7 +89,8 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Using A GPU Accelerator
  *
  * ```typescript
@@ -110,6 +112,8 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Cluster extends pulumi.CustomResource {
     /**

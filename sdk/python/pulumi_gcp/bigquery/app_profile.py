@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class AppProfile(pulumi.CustomResource):
     app_profile_id: pulumi.Output[str]
     """
@@ -54,10 +55,9 @@ class AppProfile(pulumi.CustomResource):
         """
         App profile is a configuration object describing how Cloud Bigtable should treat traffic from a particular end user application.
 
-
-
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Bigtable App Profile Multicluster
 
         ```python
@@ -78,7 +78,8 @@ class AppProfile(pulumi.CustomResource):
             multi_cluster_routing_use_any=True,
             ignore_warnings=True)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Bigtable App Profile Singlecluster
 
         ```python
@@ -102,6 +103,8 @@ class AppProfile(pulumi.CustomResource):
             },
             ignore_warnings=True)
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -196,9 +199,9 @@ class AppProfile(pulumi.CustomResource):
         __props__["project"] = project
         __props__["single_cluster_routing"] = single_cluster_routing
         return AppProfile(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

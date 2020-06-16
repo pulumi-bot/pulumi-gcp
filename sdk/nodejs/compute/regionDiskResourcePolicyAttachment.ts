@@ -10,11 +10,9 @@ import * as utilities from "../utilities";
  *
  * > **Note:** This resource does not support zonal disks (`gcp.compute.Disk`). For zonal disks, please refer to the `gcp.compute.DiskResourcePolicyAttachment` resource.
  *
- *
- *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Region Disk Resource Policy Attachment Basic
  *
  * ```typescript
@@ -61,6 +59,8 @@ import * as utilities from "../utilities";
  *     project: "debian-cloud",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class RegionDiskResourcePolicyAttachment extends pulumi.CustomResource {
     /**

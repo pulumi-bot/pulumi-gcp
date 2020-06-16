@@ -46,9 +46,9 @@ def get_registry_repository(project=None,region=None,opts=None):
 
     The URLs are computed entirely offline - as long as the project exists, they will be valid, but this data source does not contact Google Container Registry (GCR) at any point.
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -57,6 +57,8 @@ def get_registry_repository(project=None,region=None,opts=None):
     foo = gcp.container.get_registry_repository()
     pulumi.export("gcrLocation", foo.repository_url)
     ```
+    {{% /example %}}
+    {{% /examples %}}
     """
     __args__ = dict()
 

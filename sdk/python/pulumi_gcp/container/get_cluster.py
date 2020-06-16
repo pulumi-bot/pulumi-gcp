@@ -232,9 +232,9 @@ def get_cluster(location=None,name=None,project=None,region=None,zone=None,opts=
     """
     Get info about a GKE cluster from its name and location.
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -249,6 +249,8 @@ def get_cluster(location=None,name=None,project=None,region=None,zone=None,opts=
     pulumi.export("nodeConfig", my_cluster.node_configs)
     pulumi.export("nodePools", my_cluster.node_pools)
     ```
+    {{% /example %}}
+    {{% /examples %}}
 
 
     :param str location: The location (zone or region) this cluster has been

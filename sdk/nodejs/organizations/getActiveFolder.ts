@@ -9,9 +9,9 @@ import * as utilities from "../utilities";
 /**
  * Get an active folder within GCP by `displayName` and `parent`.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -22,6 +22,8 @@ import * as utilities from "../utilities";
  *     parent: "organizations/1234567",
  * }, { async: true }));
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getActiveFolder(args: GetActiveFolderArgs, opts?: pulumi.InvokeOptions): Promise<GetActiveFolderResult> {
     if (!opts) {

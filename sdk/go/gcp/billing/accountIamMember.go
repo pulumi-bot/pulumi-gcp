@@ -17,9 +17,9 @@ import (
 //    `billing.AccountIamBinding` for the __same role__ or they will fight over
 //    what your policy should be.
 //
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -31,7 +31,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		binding, err := billing.NewAccountIamMember(ctx, "binding", &billing.AccountIamMemberArgs{
+// 		_, err = billing.NewAccountIamMember(ctx, "binding", &billing.AccountIamMemberArgs{
 // 			BillingAccountId: pulumi.String("00AA00-000AAA-00AA0A"),
 // 			Member:           pulumi.String("user:alice@gmail.com"),
 // 			Role:             pulumi.String("roles/billing.viewer"),
@@ -43,6 +43,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type AccountIamMember struct {
 	pulumi.CustomResourceState
 

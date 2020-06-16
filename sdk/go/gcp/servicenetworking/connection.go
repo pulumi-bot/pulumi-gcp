@@ -15,9 +15,9 @@ import (
 // and
 // [API](https://cloud.google.com/service-infrastructure/docs/service-networking/reference/rest/v1/services.connections).
 //
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -43,7 +43,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		foobar, err := servicenetworking.NewConnection(ctx, "foobar", &servicenetworking.ConnectionArgs{
+// 		_, err = servicenetworking.NewConnection(ctx, "foobar", &servicenetworking.ConnectionArgs{
 // 			Network: peeringNetwork.ID(),
 // 			Service: pulumi.String("servicenetworking.googleapis.com"),
 // 			ReservedPeeringRanges: pulumi.StringArray{
@@ -57,6 +57,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type Connection struct {
 	pulumi.CustomResourceState
 

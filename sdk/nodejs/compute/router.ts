@@ -9,15 +9,15 @@ import * as utilities from "../utilities";
 /**
  * Represents a Router resource.
  *
- *
  * To get more information about Router, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/routers)
  * * How-to Guides
  *     * [Google Cloud Router](https://cloud.google.com/router/docs/)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Router Basic
  *
  * ```typescript
@@ -42,6 +42,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Router extends pulumi.CustomResource {
     /**

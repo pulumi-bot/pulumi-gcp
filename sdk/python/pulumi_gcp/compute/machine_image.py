@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class MachineImage(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
@@ -43,8 +44,9 @@ class MachineImage(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/compute/docs/machine-images)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Machine Image Basic
 
         ```python
@@ -63,6 +65,8 @@ class MachineImage(pulumi.CustomResource):
             }])
         image = gcp.compute.MachineImage("image", source_instance=vm.self_link)
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -128,9 +132,9 @@ class MachineImage(pulumi.CustomResource):
         __props__["self_link"] = self_link
         __props__["source_instance"] = source_instance
         return MachineImage(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -15,9 +15,9 @@ import * as utilities from "../utilities";
  * A CryptoKey is an interface to key material which can be used to encrypt and decrypt data. A CryptoKey belongs to a
  * Google Cloud KMS KeyRing.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -32,6 +32,8 @@ import * as utilities from "../utilities";
  *     keyRing: myKeyRing.selfLink,
  * }));
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getKMSCryptoKey(args: GetKMSCryptoKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetKMSCryptoKeyResult> {
     if (!opts) {

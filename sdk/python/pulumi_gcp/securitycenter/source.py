@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Source(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
@@ -38,15 +39,15 @@ class Source(pulumi.CustomResource):
         like a container of findings that come from the same scanner, logger,
         monitor, etc.
 
-
         To get more information about Source, see:
 
         * [API documentation](https://cloud.google.com/security-command-center/docs/reference/rest/v1beta1/organizations.sources)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/binary-authorization/)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Scc Source Basic
 
         ```python
@@ -58,6 +59,8 @@ class Source(pulumi.CustomResource):
             display_name="My Source",
             organization="123456789")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -129,9 +132,9 @@ class Source(pulumi.CustomResource):
         __props__["name"] = name
         __props__["organization"] = organization
         return Source(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  *
  * The NEG may be found by providing either a `selfLink`, or a `name` and a `zone`.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -27,6 +27,8 @@ import * as utilities from "../utilities";
  *     selfLink: "https://www.googleapis.com/compute/v1/projects/myproject/zones/us-central1-a/networkEndpointGroups/k8s1-abcdef01-myns-mysvc-8080-4b6bac43",
  * }, { async: true }));
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getNetworkEndpointGroup(args?: GetNetworkEndpointGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkEndpointGroupResult> {
     args = args || {};

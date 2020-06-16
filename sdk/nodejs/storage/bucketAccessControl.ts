@@ -22,15 +22,15 @@ import * as utilities from "../utilities";
  * information, see Access Control, with the caveat that this API uses
  * READER, WRITER, and OWNER instead of READ, WRITE, and FULL_CONTROL.
  *
- *
  * To get more information about BucketAccessControl, see:
  *
  * * [API documentation](https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/storage/docs/access-control/lists)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Storage Bucket Access Control Public Bucket
  *
  * ```typescript
@@ -44,6 +44,8 @@ import * as utilities from "../utilities";
  *     entity: "allUsers",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class BucketAccessControl extends pulumi.CustomResource {
     /**

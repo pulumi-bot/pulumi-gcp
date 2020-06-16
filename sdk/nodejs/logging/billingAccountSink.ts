@@ -16,9 +16,9 @@ import * as utilities from "../utilities";
  * the credentials used with this provider. [IAM roles granted on a billing account](https://cloud.google.com/billing/docs/how-to/billing-access) are separate from the
  * typical IAM roles granted on a project.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -34,6 +34,8 @@ import * as utilities from "../utilities";
  *     members: [my_sink.writerIdentity],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class BillingAccountSink extends pulumi.CustomResource {
     /**

@@ -15,9 +15,9 @@ import * as utilities from "../utilities";
  *    should be. Similarly, roles controlled by `gcp.folder.IAMBinding`
  *    should not be assigned to using `gcp.folder.IAMMember`.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -33,6 +33,8 @@ import * as utilities from "../utilities";
  *     member: "user:alice@gmail.com",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class IAMMember extends pulumi.CustomResource {
     /**

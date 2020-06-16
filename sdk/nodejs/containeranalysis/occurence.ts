@@ -10,7 +10,6 @@ import * as utilities from "../utilities";
  * An occurrence is an instance of a Note, or type of analysis that
  * can be done for a resource.
  *
- *
  * To get more information about Occurrence, see:
  *
  * * [API documentation](https://cloud.google.com/container-analysis/api/reference/rest/)

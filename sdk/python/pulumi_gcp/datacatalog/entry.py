@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Entry(pulumi.CustomResource):
     bigquery_date_sharded_spec: pulumi.Output[dict]
     """
@@ -123,15 +124,15 @@ class Entry(pulumi.CustomResource):
         An Entry resource contains resource details, such as its schema. An Entry can also be used to attach
         flexible metadata, such as a Tag.
 
-
         To get more information about Entry, see:
 
         * [API documentation](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Data Catalog Entry Basic
 
         ```python
@@ -145,7 +146,8 @@ class Entry(pulumi.CustomResource):
             user_specified_type="my_custom_type",
             user_specified_system="SomethingExternal")
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Data Catalog Entry Fileset
 
         ```python
@@ -161,7 +163,8 @@ class Entry(pulumi.CustomResource):
                 "filePatterns": ["gs://fake_bucket/dir/*"],
             })
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Data Catalog Entry Full
 
         ```python
@@ -215,6 +218,8 @@ class Entry(pulumi.CustomResource):
         }
         \"\"\")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -403,9 +408,9 @@ class Entry(pulumi.CustomResource):
         __props__["user_specified_system"] = user_specified_system
         __props__["user_specified_type"] = user_specified_type
         return Entry(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

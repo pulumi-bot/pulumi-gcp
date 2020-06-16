@@ -21,8 +21,9 @@ namespace Pulumi.Gcp.CloudFunctions
     /// or view the [Cloud Functions IAM resources](https://www.terraform.io/docs/providers/google/r/cloudfunctions_cloud_function_iam.html)
     /// for Cloud Functions.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Public Function
     /// 
     /// ```csharp
@@ -64,7 +65,8 @@ namespace Pulumi.Gcp.CloudFunctions
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Single User
     /// 
     /// ```csharp
@@ -115,6 +117,8 @@ namespace Pulumi.Gcp.CloudFunctions
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Function : Pulumi.CustomResource
     {

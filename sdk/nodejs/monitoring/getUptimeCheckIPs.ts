@@ -10,9 +10,9 @@ import * as utilities from "../utilities";
  * Returns the list of IP addresses that checkers run from. For more information see
  * the [official documentation](https://cloud.google.com/monitoring/uptime-checks#get-ips).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -21,6 +21,8 @@ import * as utilities from "../utilities";
  * const ips = gcp.monitoring.getUptimeCheckIPs({});
  * export const ipList = ips.then(ips => ips.uptimeCheckIps);
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getUptimeCheckIPs(opts?: pulumi.InvokeOptions): Promise<GetUptimeCheckIPsResult> {
     if (!opts) {

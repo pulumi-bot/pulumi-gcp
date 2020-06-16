@@ -12,10 +12,11 @@ import * as utilities from "../utilities";
  * and
  * [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
  *
- *
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  *
- *
+ * Example picture stored within a folder.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -26,6 +27,8 @@ import * as utilities from "../utilities";
  *     name: "folder/butterfly01.jpg",
  * }, { async: true }));
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getBucketObject(args?: GetBucketObjectArgs, opts?: pulumi.InvokeOptions): Promise<GetBucketObjectResult> {
     args = args || {};

@@ -21,9 +21,9 @@ import (
 //     Use `pulumi import` and inspect the `output to ensure
 //     your existing members are preserved.
 //
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -35,7 +35,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		binding, err := organizations.NewIAMBinding(ctx, "binding", &organizations.IAMBindingArgs{
+// 		_, err = organizations.NewIAMBinding(ctx, "binding", &organizations.IAMBindingArgs{
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:alice@gmail.com"),
 // 			},
@@ -49,6 +49,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type IAMBinding struct {
 	pulumi.CustomResourceState
 

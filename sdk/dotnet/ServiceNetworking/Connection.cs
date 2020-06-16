@@ -15,9 +15,9 @@ namespace Pulumi.Gcp.ServiceNetworking
     /// and
     /// [API](https://cloud.google.com/service-infrastructure/docs/service-networking/reference/rest/v1/services.connections).
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -50,6 +50,8 @@ namespace Pulumi.Gcp.ServiceNetworking
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Connection : Pulumi.CustomResource
     {

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Job(pulumi.CustomResource):
     copy: pulumi.Output[dict]
     """
@@ -250,10 +251,9 @@ class Job(pulumi.CustomResource):
         Jobs are actions that BigQuery runs on your behalf to load data, export data, query data, or copy data.
         Once a BigQuery job is created, it cannot be changed or deleted.
 
-
-
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Bigquery Job Query
 
         ```python
@@ -287,7 +287,8 @@ class Job(pulumi.CustomResource):
                 },
             })
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Bigquery Job Query Table Reference
 
         ```python
@@ -322,7 +323,8 @@ class Job(pulumi.CustomResource):
                 },
             })
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Bigquery Job Load
 
         ```python
@@ -358,7 +360,8 @@ class Job(pulumi.CustomResource):
                 "autodetect": True,
             })
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Bigquery Job Extract
 
         ```python
@@ -405,6 +408,8 @@ class Job(pulumi.CustomResource):
                 "compression": "GZIP",
             })
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -889,9 +894,9 @@ class Job(pulumi.CustomResource):
         __props__["query"] = query
         __props__["user_email"] = user_email
         return Job(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

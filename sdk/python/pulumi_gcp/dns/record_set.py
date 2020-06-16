@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class RecordSet(pulumi.CustomResource):
     managed_zone: pulumi.Output[str]
     """
@@ -42,13 +43,14 @@ class RecordSet(pulumi.CustomResource):
         Manages a set of DNS records within Google Cloud DNS. For more information see [the official documentation](https://cloud.google.com/dns/records/) and
         [API](https://cloud.google.com/dns/api/v1/resourceRecordSets).
 
-        > **Note:** The provider treats this resource as an authoritative record set. This means existing records (including 
-        the default records) for the given type will be overwritten when you create this resource in the provider. 
-        In addition, the Google Cloud DNS API requires NS records to be present at all times, so the provider 
+        > **Note:** The provider treats this resource as an authoritative record set. This means existing records (including
+        the default records) for the given type will be overwritten when you create this resource in the provider.
+        In addition, the Google Cloud DNS API requires NS records to be present at all times, so the provider
         will not actually remove NS records during destroy but will report that it did.
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Binding a DNS name to the ephemeral IP of a new instance:
 
         ```python
@@ -74,7 +76,8 @@ class RecordSet(pulumi.CustomResource):
             managed_zone=prod.name,
             rrdatas=[frontend_instance.network_interfaces[0]["accessConfigs"][0]["natIp"]])
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Adding an A record
 
         ```python
@@ -88,7 +91,8 @@ class RecordSet(pulumi.CustomResource):
             ttl=300,
             rrdatas=["8.8.8.8"])
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Adding an MX record
 
         ```python
@@ -108,8 +112,11 @@ class RecordSet(pulumi.CustomResource):
                 "10 alt4.aspmx.l.google.com.",
             ])
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Adding an SPF record
+
+        Quotes (`""`) must be added around your `rrdatas` for a SPF record. Otherwise `rrdatas` string gets split on spaces.
 
         ```python
         import pulumi
@@ -122,8 +129,11 @@ class RecordSet(pulumi.CustomResource):
             ttl=300,
             rrdatas=["\"v=spf1 ip4:111.111.111.111 include:backoff.email-example.com -all\""])
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Adding a CNAME record
+
+         The list of `rrdatas` should only contain a single string corresponding to the Canonical Name intended.
 
         ```python
         import pulumi
@@ -136,6 +146,8 @@ class RecordSet(pulumi.CustomResource):
             ttl=300,
             rrdatas=["frontend.mydomain.com."])
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -216,9 +228,9 @@ class RecordSet(pulumi.CustomResource):
         __props__["ttl"] = ttl
         __props__["type"] = type
         return RecordSet(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

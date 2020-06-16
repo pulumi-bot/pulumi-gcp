@@ -27,15 +27,15 @@ import (
 // information, see Access Control, with the caveat that this API uses
 // READER, WRITER, and OWNER instead of READ, WRITE, and FULL_CONTROL.
 //
-//
 // To get more information about BucketAccessControl, see:
 //
 // * [API documentation](https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/storage/docs/access-control/lists)
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Storage Bucket Access Control Public Bucket
 //
 // ```go
@@ -52,7 +52,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		publicRule, err := storage.NewBucketAccessControl(ctx, "publicRule", &storage.BucketAccessControlArgs{
+// 		_, err = storage.NewBucketAccessControl(ctx, "publicRule", &storage.BucketAccessControlArgs{
 // 			Bucket: bucket.Name,
 // 			Role:   pulumi.String("READER"),
 // 			Entity: pulumi.String("allUsers"),
@@ -64,6 +64,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type BucketAccessControl struct {
 	pulumi.CustomResourceState
 

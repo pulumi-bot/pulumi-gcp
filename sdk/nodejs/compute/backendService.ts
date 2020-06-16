@@ -14,15 +14,15 @@ import * as utilities from "../utilities";
  *
  * Currently self-managed internal load balancing is only available in beta.
  *
- *
  * To get more information about BackendService, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/v1/backendServices)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Backend Service Basic
  *
  * ```typescript
@@ -36,7 +36,8 @@ import * as utilities from "../utilities";
  * });
  * const defaultBackendService = new gcp.compute.BackendService("defaultBackendService", {healthChecks: [defaultHttpHealthCheck.id]});
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Backend Service Traffic Director Round Robin
  *
  * ```typescript
@@ -52,7 +53,8 @@ import * as utilities from "../utilities";
  *     localityLbPolicy: "ROUND_ROBIN",
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Backend Service Traffic Director Ring Hash
  *
  * ```typescript
@@ -84,6 +86,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class BackendService extends pulumi.CustomResource {
     /**

@@ -73,9 +73,9 @@ def get_object_signed_url(bucket=None,content_md5=None,content_type=None,credent
 
     For more info about signed URL's is available [here](https://cloud.google.com/storage/docs/access-control/signed-urls).
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -85,7 +85,8 @@ def get_object_signed_url(bucket=None,content_md5=None,content_type=None,credent
         path="path/to/install_file.bin")
     vm = gcp.compute.Instance("vm")
     ```
-
+    {{% /example %}}
+    {{% /examples %}}
     ## Full Example
 
     ```python

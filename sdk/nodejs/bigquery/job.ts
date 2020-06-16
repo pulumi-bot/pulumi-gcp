@@ -10,10 +10,9 @@ import * as utilities from "../utilities";
  * Jobs are actions that BigQuery runs on your behalf to load data, export data, query data, or copy data.
  * Once a BigQuery job is created, it cannot be changed or deleted.
  *
- *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Bigquery Job Query
  *
  * ```typescript
@@ -50,7 +49,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Bigquery Job Query Table Reference
  *
  * ```typescript
@@ -88,7 +88,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Bigquery Job Load
  *
  * ```typescript
@@ -127,7 +128,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Bigquery Job Extract
  *
  * ```typescript
@@ -177,6 +179,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Job extends pulumi.CustomResource {
     /**

@@ -13,8 +13,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Creating a dataset](https://cloud.google.com/healthcare/docs/how-tos/datasets)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Healthcare Dataset Basic
  *
  * ```typescript
@@ -26,6 +27,8 @@ import * as utilities from "../utilities";
  *     timeZone: "UTC",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Dataset extends pulumi.CustomResource {
     /**

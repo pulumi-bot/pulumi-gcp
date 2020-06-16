@@ -20,10 +20,9 @@ import (
 // [Access Control for Organizations Using IAM](https://cloud.google.com/resource-manager/docs/access-control-org)
 // doc for more information.
 //
-//
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -35,7 +34,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		myProject, err := organizations.NewProject(ctx, "myProject", &organizations.ProjectArgs{
+// 		_, err = organizations.NewProject(ctx, "myProject", &organizations.ProjectArgs{
 // 			OrgId:     pulumi.String("1234567"),
 // 			ProjectId: pulumi.String("your-project-id"),
 // 		})
@@ -46,6 +45,39 @@ import (
 // 	})
 // }
 // ```
+//
+// To create a project under a specific folder
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		department1, err := organizations.NewFolder(ctx, "department1", &organizations.FolderArgs{
+// 			DisplayName: pulumi.String("Department 1"),
+// 			Parent:      pulumi.String("organizations/1234567"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = organizations.NewProject(ctx, "myProject-in-a-folder", &organizations.ProjectArgs{
+// 			ProjectId: pulumi.String("your-project-id"),
+// 			FolderId:  department1.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// {{% /example %}}
+// {{% /examples %}}
 type UsageExportBucket struct {
 	pulumi.CustomResourceState
 

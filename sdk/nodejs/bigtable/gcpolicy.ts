@@ -11,10 +11,9 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/bigtable/) and
  * [API](https://cloud.google.com/bigtable/docs/go/reference).
  *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -41,6 +40,28 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ *
+ * Multiple conditions is also supported. `UNION` when any of its sub-policies apply (OR). `INTERSECTION` when all its sub-policies apply (AND)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const policy = new gcp.bigtable.GCPolicy("policy", {
+ *     instanceName: google_bigtable_instance.instance.name,
+ *     table: google_bigtable_table.table.name,
+ *     columnFamily: "name",
+ *     mode: "UNION",
+ *     max_age: [{
+ *         days: 7,
+ *     }],
+ *     max_version: [{
+ *         number: 10,
+ *     }],
+ * });
+ * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class GCPolicy extends pulumi.CustomResource {
     /**

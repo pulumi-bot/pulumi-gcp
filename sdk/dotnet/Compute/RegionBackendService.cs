@@ -13,7 +13,6 @@ namespace Pulumi.Gcp.Compute
     /// A Region Backend Service defines a regionally-scoped group of virtual
     /// machines that will serve traffic for load balancing.
     /// 
-    /// 
     /// To get more information about RegionBackendService, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/latest/regionBackendServices)

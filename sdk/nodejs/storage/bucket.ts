@@ -20,9 +20,9 @@ import * as utilities from "../utilities";
  * **Note**: If the project id is not set on the resource or in the provider block it will be dynamically
  * determined which will require enabling the compute api.
  *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Creating A Private Bucket In Standard Storage, In The EU Region. Bucket Configured As Static Website And CORS Configurations
  *
  * ```typescript
@@ -51,7 +51,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Life Cycle Settings For Storage Bucket Objects
  *
  * ```typescript
@@ -71,6 +72,8 @@ import * as utilities from "../utilities";
  *     location: "US",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Bucket extends pulumi.CustomResource {
     /**

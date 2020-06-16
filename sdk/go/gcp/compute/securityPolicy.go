@@ -13,9 +13,9 @@ import (
 // see the [official documentation](https://cloud.google.com/armor/docs/configure-security-policies)
 // and the [API](https://cloud.google.com/compute/docs/reference/rest/beta/securityPolicies).
 //
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -27,7 +27,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		policy, err := compute.NewSecurityPolicy(ctx, "policy", &compute.SecurityPolicyArgs{
+// 		_, err = compute.NewSecurityPolicy(ctx, "policy", &compute.SecurityPolicyArgs{
 // 			Rules: compute.SecurityPolicyRuleArray{
 // 				&compute.SecurityPolicyRuleArgs{
 // 					Action:      pulumi.String("deny(403)"),
@@ -64,6 +64,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type SecurityPolicy struct {
 	pulumi.CustomResourceState
 

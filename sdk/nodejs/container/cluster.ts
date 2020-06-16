@@ -15,8 +15,9 @@ import * as utilities from "../utilities";
  * passwords as well as certificate outputs will be stored in the raw state as
  * plaintext. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### With A Separately Managed Node Pool (Recommended)
  *
  * ```typescript
@@ -52,7 +53,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### With The Default Node Pool
  *
  * ```typescript
@@ -90,6 +92,8 @@ import * as utilities from "../utilities";
  *     update: "40m",
  * } });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Cluster extends pulumi.CustomResource {
     /**

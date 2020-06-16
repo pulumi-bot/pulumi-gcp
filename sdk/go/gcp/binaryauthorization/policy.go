@@ -12,7 +12,6 @@ import (
 
 // A policy for container image binary authorization.
 //
-//
 // To get more information about Policy, see:
 //
 // * [API documentation](https://cloud.google.com/binary-authorization/docs/reference/rest/)

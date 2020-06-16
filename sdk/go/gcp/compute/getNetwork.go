@@ -8,6 +8,32 @@ import (
 )
 
 // Get a network within GCE from its name.
+//
+// {{% examples %}}
+// ## Example Usage
+// {{% example %}}
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := compute.LookupNetwork(ctx, &compute.LookupNetworkArgs{
+// 			Name: "default-us-east1",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// {{% /example %}}
+// {{% /examples %}}
 func LookupNetwork(ctx *pulumi.Context, args *LookupNetworkArgs, opts ...pulumi.InvokeOption) (*LookupNetworkResult, error) {
 	var rv LookupNetworkResult
 	err := ctx.Invoke("gcp:compute/getNetwork:getNetwork", args, &rv, opts...)

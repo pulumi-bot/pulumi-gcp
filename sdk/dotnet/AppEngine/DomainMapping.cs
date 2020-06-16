@@ -12,15 +12,15 @@ namespace Pulumi.Gcp.AppEngine
     /// <summary>
     /// A domain serving an App Engine application.
     /// 
-    /// 
     /// To get more information about DomainMapping, see:
     /// 
     /// * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.domainMappings)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/mapping-custom-domains)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### App Engine Domain Mapping Basic
     /// 
     /// ```csharp
@@ -43,6 +43,8 @@ namespace Pulumi.Gcp.AppEngine
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class DomainMapping : Pulumi.CustomResource
     {

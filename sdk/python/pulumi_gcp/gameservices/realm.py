@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Realm(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
@@ -56,8 +57,9 @@ class Realm(pulumi.CustomResource):
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/game-servers/docs)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Game Service Realm Basic
 
         ```python
@@ -70,6 +72,8 @@ class Realm(pulumi.CustomResource):
             location="global",
             description="one of the nine")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -153,9 +157,9 @@ class Realm(pulumi.CustomResource):
         __props__["realm_id"] = realm_id
         __props__["time_zone"] = time_zone
         return Realm(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  * [the official
  * documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -25,6 +25,8 @@ import * as utilities from "../utilities";
  * });
  * export const version = policy.then(policy => policy.version);
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getOrganizationPolicy(args: GetOrganizationPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationPolicyResult> {
     if (!opts) {

@@ -9,10 +9,9 @@ import * as utilities from "../utilities";
 /**
  * App profile is a configuration object describing how Cloud Bigtable should treat traffic from a particular end user application.
  *
- *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Bigtable App Profile Multicluster
  *
  * ```typescript
@@ -35,7 +34,8 @@ import * as utilities from "../utilities";
  *     ignoreWarnings: true,
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Bigtable App Profile Singlecluster
  *
  * ```typescript
@@ -61,6 +61,8 @@ import * as utilities from "../utilities";
  *     ignoreWarnings: true,
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class AppProfile extends pulumi.CustomResource {
     /**

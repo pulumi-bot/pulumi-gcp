@@ -24,7 +24,6 @@ namespace Pulumi.Gcp.Compute
     /// Engine or by you. External IP addresses can be either ephemeral or
     /// static.
     /// 
-    /// 
     /// To get more information about Address, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/beta/addresses)
@@ -32,8 +31,9 @@ namespace Pulumi.Gcp.Compute
     ///     * [Reserving a Static External IP Address](https://cloud.google.com/compute/docs/instances-and-network)
     ///     * [Reserving a Static Internal IP Address](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Address Basic
     /// 
     /// ```csharp
@@ -51,7 +51,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Address With Subnetwork
     /// 
     /// ```csharp
@@ -82,7 +83,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Address With Gce Endpoint
     /// 
     /// ```csharp
@@ -102,6 +104,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Address : Pulumi.CustomResource
     {

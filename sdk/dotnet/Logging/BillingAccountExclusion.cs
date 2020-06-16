@@ -17,9 +17,9 @@ namespace Pulumi.Gcp.Logging
     /// Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
     /// granted to the credentials used with the provider.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -39,6 +39,8 @@ namespace Pulumi.Gcp.Logging
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class BillingAccountExclusion : Pulumi.CustomResource
     {

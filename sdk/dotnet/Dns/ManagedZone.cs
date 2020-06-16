@@ -14,15 +14,15 @@ namespace Pulumi.Gcp.Dns
     /// responsibility. A ManagedZone is a resource that represents a DNS zone
     /// hosted by the Cloud DNS service.
     /// 
-    /// 
     /// To get more information about ManagedZone, see:
     /// 
     /// * [API documentation](https://cloud.google.com/dns/api/v1/managedZones)
     /// * How-to Guides
     ///     * [Managing Zones](https://cloud.google.com/dns/zones/)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Dns Managed Zone Basic
     /// 
     /// ```csharp
@@ -46,6 +46,8 @@ namespace Pulumi.Gcp.Dns
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class ManagedZone : Pulumi.CustomResource
     {

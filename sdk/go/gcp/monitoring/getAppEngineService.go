@@ -14,7 +14,6 @@ import (
 // An App Engine monitoring service is automatically created by GCP to monitor
 // App Engine services.
 //
-//
 // To get more information about Service, see:
 //
 // * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/services)

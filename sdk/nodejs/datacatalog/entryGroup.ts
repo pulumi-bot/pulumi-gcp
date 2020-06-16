@@ -7,15 +7,15 @@ import * as utilities from "../utilities";
 /**
  * An EntryGroup resource represents a logical grouping of zero or more Data Catalog Entry resources.
  *
- *
  * To get more information about EntryGroup, see:
  *
  * * [API documentation](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Data Catalog Entry Group Basic
  *
  * ```typescript
@@ -26,7 +26,8 @@ import * as utilities from "../utilities";
  *     entryGroupId: "my_group",
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Data Catalog Entry Group Full
  *
  * ```typescript
@@ -39,6 +40,8 @@ import * as utilities from "../utilities";
  *     entryGroupId: "my_group",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class EntryGroup extends pulumi.CustomResource {
     /**

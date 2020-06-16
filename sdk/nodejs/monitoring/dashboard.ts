@@ -13,8 +13,9 @@ import * as utilities from "../utilities";
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/monitoring/dashboards)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Monitoring Dashboard Basic
  *
  * ```typescript
@@ -36,7 +37,8 @@ import * as utilities from "../utilities";
  * `,
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Monitoring Dashboard GridLayout
  *
  * ```typescript
@@ -106,6 +108,8 @@ import * as utilities from "../utilities";
  * `,
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Dashboard extends pulumi.CustomResource {
     /**

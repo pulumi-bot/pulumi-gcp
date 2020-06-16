@@ -18,8 +18,9 @@ namespace Pulumi.Gcp.BigQuery
     /// * How-to Guides
     ///     * [Introduction to Reservations](https://cloud.google.com/bigquery/docs/reservations-intro)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Bigquery Reservation Basic
     /// 
     /// ```csharp
@@ -40,6 +41,8 @@ namespace Pulumi.Gcp.BigQuery
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Reservation : Pulumi.CustomResource
     {

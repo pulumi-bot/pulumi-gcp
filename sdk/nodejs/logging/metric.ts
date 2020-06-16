@@ -11,15 +11,15 @@ import * as utilities from "../utilities";
  * of the values. The distribution records the statistics of the extracted values along with
  * an optional histogram of the values as specified by the bucket options.
  *
- *
  * To get more information about Metric, see:
  *
  * * [API documentation](https://cloud.google.com/logging/docs/reference/v2/rest/v2/projects.metrics/create)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/logging/docs/apis)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Logging Metric Basic
  *
  * ```typescript
@@ -60,7 +60,8 @@ import * as utilities from "../utilities";
  *     valueExtractor: "EXTRACT(jsonPayload.request)",
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Logging Metric Counter Basic
  *
  * ```typescript
@@ -75,7 +76,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Logging Metric Counter Labels
  *
  * ```typescript
@@ -98,6 +100,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Metric extends pulumi.CustomResource {
     /**

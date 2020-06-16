@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class FolderSink(pulumi.CustomResource):
     bigquery_options: pulumi.Output[dict]
     """
@@ -62,9 +63,9 @@ class FolderSink(pulumi.CustomResource):
         Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
         granted to the credentials used with this provider.
 
+        {{% examples %}}
         ## Example Usage
-
-
+        {{% example %}}
 
         ```python
         import pulumi
@@ -82,6 +83,8 @@ class FolderSink(pulumi.CustomResource):
             role="roles/storage.objectCreator",
             members=[my_sink.writer_identity])
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -188,9 +191,9 @@ class FolderSink(pulumi.CustomResource):
         __props__["name"] = name
         __props__["writer_identity"] = writer_identity
         return FolderSink(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

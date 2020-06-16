@@ -30,7 +30,6 @@ import * as utilities from "../utilities";
  * region, using their RFC1918 private IP addresses. You can isolate portions
  * of the network, even entire subnets, using firewall rules.
  *
- *
  * To get more information about Subnetwork, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/subnetworks)
@@ -38,8 +37,9 @@ import * as utilities from "../utilities";
  *     * [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
  *     * [Cloud Networking](https://cloud.google.com/vpc/docs/using-vpc)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Subnetwork Basic
  *
  * ```typescript
@@ -57,7 +57,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Subnetwork Logging Config
  *
  * ```typescript
@@ -76,7 +77,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Subnetwork Internal L7lb
  *
  * ```typescript
@@ -92,6 +94,8 @@ import * as utilities from "../utilities";
  *     network: custom_test.id,
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Subnetwork extends pulumi.CustomResource {
     /**

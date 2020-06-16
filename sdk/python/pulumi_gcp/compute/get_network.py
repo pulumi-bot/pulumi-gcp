@@ -68,9 +68,9 @@ def get_network(name=None,project=None,opts=None):
     """
     Get a network within GCE from its name.
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -78,6 +78,8 @@ def get_network(name=None,project=None,opts=None):
 
     my_network = gcp.compute.get_network(name="default-us-east1")
     ```
+    {{% /example %}}
+    {{% /examples %}}
 
 
     :param str name: The name of the network.

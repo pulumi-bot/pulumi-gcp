@@ -17,7 +17,6 @@ namespace Pulumi.Gcp.Compute
     /// virtual machine instance that receives and handles traffic from the
     /// corresponding forwarding rules.
     /// 
-    /// 
     /// To get more information about TargetInstance, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/v1/targetInstances)

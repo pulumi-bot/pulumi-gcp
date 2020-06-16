@@ -12,7 +12,6 @@ namespace Pulumi.Gcp.AppEngine
     /// <summary>
     /// Rules to match an HTTP request and dispatch that request to a service.
     /// 
-    /// 
     /// To get more information about ApplicationUrlDispatchRules, see:
     /// 
     /// * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps#UrlDispatchRule)

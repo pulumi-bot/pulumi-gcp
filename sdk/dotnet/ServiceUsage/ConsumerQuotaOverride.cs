@@ -20,8 +20,9 @@ namespace Pulumi.Gcp.ServiceUsage
     ///     * [Getting Started](https://cloud.google.com/service-usage/docs/getting-started)
     ///     * [REST API documentation](https://cloud.google.com/service-usage/docs/reference/rest/v1beta1/services.consumerQuotaMetrics.limits.consumerOverrides)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Consumer Quota Override
     /// 
     /// ```csharp
@@ -50,6 +51,8 @@ namespace Pulumi.Gcp.ServiceUsage
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class ConsumerQuotaOverride : Pulumi.CustomResource
     {

@@ -9,9 +9,9 @@ import * as utilities from "../utilities";
 /**
  * Allows management of audit logging config for a given service for a Google Cloud Platform Organization.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -26,6 +26,8 @@ import * as utilities from "../utilities";
  *     service: "allServices",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class IamAuditConfig extends pulumi.CustomResource {
     /**

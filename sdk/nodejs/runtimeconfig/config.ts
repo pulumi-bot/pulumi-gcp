@@ -10,9 +10,11 @@ import * as utilities from "../utilities";
  * or the
  * [JSON API](https://cloud.google.com/deployment-manager/runtime-configurator/reference/rest/).
  *
+ * {{% examples %}}
  * ## Example Usage
+ * {{% example %}}
  *
- *
+ * Example creating a RuntimeConfig resource.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -22,6 +24,8 @@ import * as utilities from "../utilities";
  *     description: "Runtime configuration values for my service",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Config extends pulumi.CustomResource {
     /**

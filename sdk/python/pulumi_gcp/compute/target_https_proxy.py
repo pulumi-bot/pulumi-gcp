@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class TargetHttpsProxy(pulumi.CustomResource):
     creation_timestamp: pulumi.Output[str]
     """
@@ -71,15 +72,15 @@ class TargetHttpsProxy(pulumi.CustomResource):
         Represents a TargetHttpsProxy resource, which is used by one or more
         global forwarding rule to route incoming HTTPS requests to a URL map.
 
-
         To get more information about TargetHttpsProxy, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/v1/targetHttpsProxies)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Target Https Proxy Basic
 
         ```python
@@ -117,6 +118,8 @@ class TargetHttpsProxy(pulumi.CustomResource):
             url_map=default_url_map.id,
             ssl_certificates=[default_ssl_certificate.id])
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -232,9 +235,9 @@ class TargetHttpsProxy(pulumi.CustomResource):
         __props__["ssl_policy"] = ssl_policy
         __props__["url_map"] = url_map
         return TargetHttpsProxy(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

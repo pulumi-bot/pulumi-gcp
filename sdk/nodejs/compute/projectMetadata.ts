@@ -15,9 +15,9 @@ import * as utilities from "../utilities";
  * key/value pairs within the project metadata rather than the entire set, then use
  * google_compute_project_metadata_item.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -31,6 +31,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class ProjectMetadata extends pulumi.CustomResource {
     /**

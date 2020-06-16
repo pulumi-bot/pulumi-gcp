@@ -15,10 +15,9 @@ namespace Pulumi.Gcp.Compute
     /// and
     /// [API](https://cloud.google.com/compute/docs/reference/latest/instances).
     /// 
-    /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -81,6 +80,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Instance : Pulumi.CustomResource
     {

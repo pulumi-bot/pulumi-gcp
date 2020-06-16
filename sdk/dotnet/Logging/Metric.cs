@@ -14,15 +14,15 @@ namespace Pulumi.Gcp.Logging
     /// of the values. The distribution records the statistics of the extracted values along with
     /// an optional histogram of the values as specified by the bucket options.
     /// 
-    /// 
     /// To get more information about Metric, see:
     /// 
     /// * [API documentation](https://cloud.google.com/logging/docs/reference/v2/rest/v2/projects.metrics/create)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/logging/docs/apis)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Logging Metric Basic
     /// 
     /// ```csharp
@@ -78,7 +78,8 @@ namespace Pulumi.Gcp.Logging
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Logging Metric Counter Basic
     /// 
     /// ```csharp
@@ -102,7 +103,8 @@ namespace Pulumi.Gcp.Logging
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Logging Metric Counter Labels
     /// 
     /// ```csharp
@@ -139,6 +141,8 @@ namespace Pulumi.Gcp.Logging
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Metric : Pulumi.CustomResource
     {

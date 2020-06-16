@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class NetworkPeeringRoutesConfig(pulumi.CustomResource):
     export_custom_routes: pulumi.Output[bool]
     """
@@ -38,15 +39,15 @@ class NetworkPeeringRoutesConfig(pulumi.CustomResource):
         peerings that shouldn't otherwise be managed by other tools. Deleting this
         resource is a no-op and the peering will not be modified.
 
-
         To get more information about NetworkPeeringRoutesConfig, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/networks/updatePeering)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/vpc/docs/vpc-peering)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Network Peering Routes Config Basic
 
         ```python
@@ -69,6 +70,8 @@ class NetworkPeeringRoutesConfig(pulumi.CustomResource):
             network=network_secondary.id,
             peer_network=network_primary.id)
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -141,9 +144,9 @@ class NetworkPeeringRoutesConfig(pulumi.CustomResource):
         __props__["peering"] = peering
         __props__["project"] = project
         return NetworkPeeringRoutesConfig(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

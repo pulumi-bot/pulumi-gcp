@@ -12,15 +12,15 @@ namespace Pulumi.Gcp.DataCatalog
     /// <summary>
     /// An EntryGroup resource represents a logical grouping of zero or more Data Catalog Entry resources.
     /// 
-    /// 
     /// To get more information about EntryGroup, see:
     /// 
     /// * [API documentation](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Data Catalog Entry Group Basic
     /// 
     /// ```csharp
@@ -39,7 +39,8 @@ namespace Pulumi.Gcp.DataCatalog
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Data Catalog Entry Group Full
     /// 
     /// ```csharp
@@ -60,6 +61,8 @@ namespace Pulumi.Gcp.DataCatalog
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class EntryGroup : Pulumi.CustomResource
     {

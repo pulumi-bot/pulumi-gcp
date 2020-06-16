@@ -18,9 +18,9 @@ import * as utilities from "../utilities";
  *     Use `pulumi import` and inspect the output to ensure
  *     your existing members are preserved.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -32,6 +32,8 @@ import * as utilities from "../utilities";
  *     role: "roles/billing.viewer",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class AccountIamBinding extends pulumi.CustomResource {
     /**

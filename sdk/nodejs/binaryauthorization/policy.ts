@@ -9,15 +9,15 @@ import * as utilities from "../utilities";
 /**
  * A policy for container image binary authorization.
  *
- *
  * To get more information about Policy, see:
  *
  * * [API documentation](https://cloud.google.com/binary-authorization/docs/reference/rest/)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/binary-authorization/)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Binary Authorization Policy Basic
  *
  * ```typescript
@@ -48,7 +48,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Binary Authorization Policy Global Evaluation
  *
  * ```typescript
@@ -72,6 +73,8 @@ import * as utilities from "../utilities";
  *     globalPolicyEvaluationMode: "ENABLE",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Policy extends pulumi.CustomResource {
     /**

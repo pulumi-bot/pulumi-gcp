@@ -15,10 +15,9 @@ namespace Pulumi.Gcp.ML
     /// A model can have multiple versions, each of which is a deployed, trained model
     /// ready to receive prediction requests. The model itself is just a container.
     /// 
-    /// 
-    /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Ml Model Basic
     /// 
     /// ```csharp
@@ -38,7 +37,8 @@ namespace Pulumi.Gcp.ML
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Ml Model Full
     /// 
     /// ```csharp
@@ -64,6 +64,8 @@ namespace Pulumi.Gcp.ML
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class EngineModel : Pulumi.CustomResource
     {

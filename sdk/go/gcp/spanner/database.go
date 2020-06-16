@@ -12,15 +12,15 @@ import (
 
 // A Cloud Spanner Database which is hosted on a Spanner instance.
 //
-//
 // To get more information about Database, see:
 //
 // * [API documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/projects.instances.databases)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/spanner/)
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Spanner Database Basic
 //
 // ```go
@@ -40,7 +40,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		database, err := spanner.NewDatabase(ctx, "database", &spanner.DatabaseArgs{
+// 		_, err = spanner.NewDatabase(ctx, "database", &spanner.DatabaseArgs{
 // 			Instance: main.Name,
 // 			Ddls: pulumi.StringArray{
 // 				pulumi.String("CREATE TABLE t1 (t1 INT64 NOT NULL,) PRIMARY KEY(t1)"),
@@ -54,6 +54,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type Database struct {
 	pulumi.CustomResourceState
 

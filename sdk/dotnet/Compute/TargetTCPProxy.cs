@@ -14,7 +14,6 @@ namespace Pulumi.Gcp.Compute
     /// global forwarding rule to route incoming TCP requests to a Backend
     /// service.
     /// 
-    /// 
     /// To get more information about TargetTcpProxy, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/v1/targetTcpProxies)

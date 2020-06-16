@@ -16,10 +16,9 @@ import * as utilities from "../utilities";
  * `sourceInstanceTemplate`. To create an instance without a template, use the
  * `gcp.compute.Instance` resource.
  *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -50,6 +49,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class InstanceFromTemplate extends pulumi.CustomResource {
     /**

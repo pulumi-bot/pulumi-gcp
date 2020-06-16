@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class VPNTunnel(pulumi.CustomResource):
     creation_timestamp: pulumi.Output[str]
     """
@@ -128,7 +129,6 @@ class VPNTunnel(pulumi.CustomResource):
         """
         VPN tunnel resource.
 
-
         To get more information about VpnTunnel, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/vpnTunnels)
@@ -139,8 +139,9 @@ class VPNTunnel(pulumi.CustomResource):
         > **Warning:** All arguments including `shared_secret` will be stored in the raw
         state as plain-text.
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Vpn Tunnel Basic
 
         ```python
@@ -174,7 +175,8 @@ class VPNTunnel(pulumi.CustomResource):
             priority=1000,
             next_hop_vpn_tunnel=tunnel1.id)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Vpn Tunnel Beta
 
         ```python
@@ -211,6 +213,8 @@ class VPNTunnel(pulumi.CustomResource):
             priority=1000,
             next_hop_vpn_tunnel=tunnel1.id)
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -385,9 +389,9 @@ class VPNTunnel(pulumi.CustomResource):
         __props__["vpn_gateway"] = vpn_gateway
         __props__["vpn_gateway_interface"] = vpn_gateway_interface
         return VPNTunnel(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -12,7 +12,6 @@ import (
 
 // Represents a NodeGroup resource to manage a group of sole-tenant nodes.
 //
-//
 // To get more information about NodeGroup, see:
 //
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups)

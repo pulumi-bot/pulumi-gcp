@@ -9,10 +9,9 @@ import (
 
 // Get service account public key. For more information, see [the official documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) and [API](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys/get).
 //
-//
+// {{% examples %}}
 // ## Example Usage
-//
-//
+// {{% example %}}
 //
 // ```go
 // package main
@@ -40,6 +39,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 func GetAccountKey(ctx *pulumi.Context, args *GetAccountKeyArgs, opts ...pulumi.InvokeOption) (*GetAccountKeyResult, error) {
 	var rv GetAccountKeyResult
 	err := ctx.Invoke("gcp:serviceAccount/getAccountKey:getAccountKey", args, &rv, opts...)

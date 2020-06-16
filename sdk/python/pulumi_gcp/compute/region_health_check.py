@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class RegionHealthCheck(pulumi.CustomResource):
     check_interval_sec: pulumi.Output[float]
     """
@@ -232,15 +233,15 @@ class RegionHealthCheck(pulumi.CustomResource):
         successfully to some number of consecutive probes, it is marked
         healthy again and can receive new connections.
 
-
         To get more information about RegionHealthCheck, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/regionHealthChecks)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Region Health Check Tcp
 
         ```python
@@ -254,7 +255,8 @@ class RegionHealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Health Check Tcp Full
 
         ```python
@@ -275,7 +277,8 @@ class RegionHealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Health Check Ssl
 
         ```python
@@ -289,7 +292,8 @@ class RegionHealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Health Check Ssl Full
 
         ```python
@@ -310,7 +314,8 @@ class RegionHealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Health Check Http
 
         ```python
@@ -324,7 +329,8 @@ class RegionHealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Health Check Http Logs
 
         ```python
@@ -341,7 +347,8 @@ class RegionHealthCheck(pulumi.CustomResource):
                 "enable": True,
             })
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Health Check Http Full
 
         ```python
@@ -363,7 +370,8 @@ class RegionHealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Health Check Https
 
         ```python
@@ -377,7 +385,8 @@ class RegionHealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Health Check Https Full
 
         ```python
@@ -399,7 +408,8 @@ class RegionHealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Health Check Http2
 
         ```python
@@ -413,7 +423,8 @@ class RegionHealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Health Check Http2 Full
 
         ```python
@@ -435,6 +446,8 @@ class RegionHealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -846,9 +859,9 @@ class RegionHealthCheck(pulumi.CustomResource):
         __props__["type"] = type
         __props__["unhealthy_threshold"] = unhealthy_threshold
         return RegionHealthCheck(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

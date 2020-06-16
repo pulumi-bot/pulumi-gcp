@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class EngineModel(pulumi.CustomResource):
     default_version: pulumi.Output[dict]
     """
@@ -54,10 +55,9 @@ class EngineModel(pulumi.CustomResource):
         A model can have multiple versions, each of which is a deployed, trained model
         ready to receive prediction requests. The model itself is just a container.
 
-
-
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Ml Model Basic
 
         ```python
@@ -68,7 +68,8 @@ class EngineModel(pulumi.CustomResource):
             description="My model",
             regions="us-central1")
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Ml Model Full
 
         ```python
@@ -84,6 +85,8 @@ class EngineModel(pulumi.CustomResource):
             online_prediction_logging=True,
             regions="us-central1")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -172,9 +175,9 @@ class EngineModel(pulumi.CustomResource):
         __props__["project"] = project
         __props__["regions"] = regions
         return EngineModel(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

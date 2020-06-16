@@ -11,8 +11,9 @@ import * as utilities from "../utilities";
  * the cluster control plane. For more information see [the official documentation](https://cloud.google.com/container-engine/docs/node-pools)
  * and [the API reference](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.nodePools).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Using A Separately Managed Node Pool (Recommended)
  *
  * ```typescript
@@ -38,7 +39,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### 2 Node Pools, 1 Separately Managed + The Default Node Pool
  *
  * ```typescript
@@ -80,6 +82,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class NodePool extends pulumi.CustomResource {
     /**

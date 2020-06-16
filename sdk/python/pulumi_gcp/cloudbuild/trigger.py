@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Trigger(pulumi.CustomResource):
     build: pulumi.Output[dict]
     """
@@ -185,15 +186,15 @@ class Trigger(pulumi.CustomResource):
         """
         Configuration for an automated build in response to source repository changes.
 
-
         To get more information about Trigger, see:
 
         * [API documentation](https://cloud.google.com/cloud-build/docs/api/reference/rest/)
         * How-to Guides
             * [Automating builds using build triggers](https://cloud.google.com/cloud-build/docs/running-builds/automate-builds)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Cloudbuild Trigger Filename
 
         ```python
@@ -211,6 +212,8 @@ class Trigger(pulumi.CustomResource):
                 "repoName": "my-repo",
             })
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -553,9 +556,9 @@ class Trigger(pulumi.CustomResource):
         __props__["trigger_id"] = trigger_id
         __props__["trigger_template"] = trigger_template
         return Trigger(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

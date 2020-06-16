@@ -23,7 +23,6 @@ import (
 // persistent disk faster and at a much lower cost than if you regularly
 // created a full image of the disk.
 //
-//
 // To get more information about Snapshot, see:
 //
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/snapshots)
@@ -33,8 +32,9 @@ import (
 // > **Warning:** All arguments including `snapshot_encryption_key.raw_key` and `source_disk_encryption_key.raw_key` will be stored in the raw
 // state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Snapshot Basic
 //
 // ```go
@@ -63,7 +63,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		snapshot, err := compute.NewSnapshot(ctx, "snapshot", &compute.SnapshotArgs{
+// 		_, err = compute.NewSnapshot(ctx, "snapshot", &compute.SnapshotArgs{
 // 			SourceDisk: persistent.Name,
 // 			Zone:       pulumi.String("us-central1-a"),
 // 			Labels: map[string]interface{}{
@@ -77,6 +77,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type Snapshot struct {
 	pulumi.CustomResourceState
 

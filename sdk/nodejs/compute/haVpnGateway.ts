@@ -18,8 +18,9 @@ import * as utilities from "../utilities";
  *     * [Choosing a VPN](https://cloud.google.com/vpn/docs/how-to/choosing-a-vpn)
  *     * [Cloud VPN Overview](https://cloud.google.com/vpn/docs/concepts/overview)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Ha Vpn Gateway Basic
  *
  * ```typescript
@@ -32,7 +33,8 @@ import * as utilities from "../utilities";
  *     network: network1.id,
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Ha Vpn Gateway Gcp To Gcp
  *
  * ```typescript
@@ -176,6 +178,8 @@ import * as utilities from "../utilities";
  *     "interface": router2Interface2.name,
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class HaVpnGateway extends pulumi.CustomResource {
     /**

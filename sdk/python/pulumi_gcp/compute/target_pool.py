@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class TargetPool(pulumi.CustomResource):
     backup_pool: pulumi.Output[str]
     """
@@ -70,10 +71,9 @@ class TargetPool(pulumi.CustomResource):
         documentation](https://cloud.google.com/compute/docs/load-balancing/network/target-pools)
         and [API](https://cloud.google.com/compute/docs/reference/latest/targetPools).
 
-
+        {{% examples %}}
         ## Example Usage
-
-
+        {{% example %}}
 
         ```python
         import pulumi
@@ -90,6 +90,8 @@ class TargetPool(pulumi.CustomResource):
             ],
             health_checks=[default_http_health_check.name])
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -195,9 +197,9 @@ class TargetPool(pulumi.CustomResource):
         __props__["self_link"] = self_link
         __props__["session_affinity"] = session_affinity
         return TargetPool(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

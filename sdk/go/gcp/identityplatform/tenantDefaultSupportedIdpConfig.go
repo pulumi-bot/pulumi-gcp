@@ -16,10 +16,9 @@ import (
 // [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
 // the marketplace prior to using this resource.
 //
-//
-//
+// {{% examples %}}
 // ## Example Usage
-//
+// {{% example %}}
 // ### Identity Platform Tenant Default Supported Idp Config Basic
 //
 // ```go
@@ -38,7 +37,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		idpConfig, err := identityplatform.NewTenantDefaultSupportedIdpConfig(ctx, "idpConfig", &identityplatform.TenantDefaultSupportedIdpConfigArgs{
+// 		_, err = identityplatform.NewTenantDefaultSupportedIdpConfig(ctx, "idpConfig", &identityplatform.TenantDefaultSupportedIdpConfigArgs{
 // 			Enabled:      pulumi.Bool(true),
 // 			Tenant:       tenant.Name,
 // 			IdpId:        pulumi.String("playgames.google.com"),
@@ -52,6 +51,8 @@ import (
 // 	})
 // }
 // ```
+// {{% /example %}}
+// {{% /examples %}}
 type TenantDefaultSupportedIdpConfig struct {
 	pulumi.CustomResourceState
 

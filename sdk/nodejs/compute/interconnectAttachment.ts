@@ -10,10 +10,9 @@ import * as utilities from "../utilities";
  * Represents an InterconnectAttachment (VLAN attachment) resource. For more
  * information, see Creating VLAN Attachments.
  *
- *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Interconnect Attachment Basic
  *
  * ```typescript
@@ -26,6 +25,8 @@ import * as utilities from "../utilities";
  *     router: foobar.id,
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class InterconnectAttachment extends pulumi.CustomResource {
     /**

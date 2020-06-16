@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  * see the [official documentation](https://cloud.google.com/armor/docs/configure-security-policies)
  * and the [API](https://cloud.google.com/compute/docs/reference/rest/beta/securityPolicies).
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -46,6 +46,8 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class SecurityPolicy extends pulumi.CustomResource {
     /**

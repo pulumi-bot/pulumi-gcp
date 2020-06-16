@@ -12,11 +12,9 @@ namespace Pulumi.Gcp.Kms
     /// <summary>
     /// A `KeyRing` is a toplevel logical grouping of `CryptoKeys`.
     /// 
-    /// 
     /// &gt; **Note:** KeyRings cannot be deleted from Google Cloud Platform.
     /// Destroying a provider-managed KeyRing will remove it from state but
     /// *will not delete the resource on the server.*
-    /// 
     /// 
     /// To get more information about KeyRing, see:
     /// 
@@ -24,8 +22,9 @@ namespace Pulumi.Gcp.Kms
     /// * How-to Guides
     ///     * [Creating a key ring](https://cloud.google.com/kms/docs/creating-keys#create_a_key_ring)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Kms Key Ring Basic
     /// 
     /// ```csharp
@@ -44,6 +43,8 @@ namespace Pulumi.Gcp.Kms
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class KeyRing : Pulumi.CustomResource
     {

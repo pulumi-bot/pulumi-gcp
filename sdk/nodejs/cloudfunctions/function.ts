@@ -18,8 +18,9 @@ import * as utilities from "../utilities";
  * or view the [Cloud Functions IAM resources](https://www.terraform.io/docs/providers/google/r/cloudfunctions_cloud_function_iam.html)
  * for Cloud Functions.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Public Function
  *
  * ```typescript
@@ -49,7 +50,8 @@ import * as utilities from "../utilities";
  *     member: "allUsers",
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Single User
  *
  * ```typescript
@@ -86,6 +88,8 @@ import * as utilities from "../utilities";
  *     member: "user:myFunctionInvoker@example.com",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Function extends pulumi.CustomResource {
     /**

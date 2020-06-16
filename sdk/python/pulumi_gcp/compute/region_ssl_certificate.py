@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class RegionSslCertificate(pulumi.CustomResource):
     certificate: pulumi.Output[str]
     """
@@ -67,7 +68,6 @@ class RegionSslCertificate(pulumi.CustomResource):
         provides a mechanism to upload an SSL key and certificate to
         the load balancer to serve secure connections from the user.
 
-
         To get more information about RegionSslCertificate, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/regionSslCertificates)
@@ -77,8 +77,9 @@ class RegionSslCertificate(pulumi.CustomResource):
         > **Warning:** All arguments including `certificate` and `private_key` will be stored in the raw
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Region Ssl Certificate Basic
 
         ```python
@@ -92,7 +93,8 @@ class RegionSslCertificate(pulumi.CustomResource):
             private_key=(lambda path: open(path).read())("path/to/private.key"),
             certificate=(lambda path: open(path).read())("path/to/certificate.crt"))
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Region Ssl Certificate Target Https Proxies
 
         ```python
@@ -144,6 +146,8 @@ class RegionSslCertificate(pulumi.CustomResource):
             url_map=default_region_url_map.id,
             ssl_certificates=[default_region_ssl_certificate.id])
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -249,9 +253,9 @@ class RegionSslCertificate(pulumi.CustomResource):
         __props__["region"] = region
         __props__["self_link"] = self_link
         return RegionSslCertificate(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -14,9 +14,9 @@ import * as utilities from "../utilities";
  *
  * A CryptoKeyVersion represents an individual cryptographic key, and the associated key material.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -34,6 +34,8 @@ import * as utilities from "../utilities";
  *     cryptoKey: data.google_kms_key.my_key.self_link,
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getKMSCryptoKeyVersion(args: GetKMSCryptoKeyVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetKMSCryptoKeyVersionResult> {
     if (!opts) {

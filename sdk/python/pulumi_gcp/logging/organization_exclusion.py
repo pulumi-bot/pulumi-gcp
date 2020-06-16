@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class OrganizationExclusion(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
@@ -42,9 +43,9 @@ class OrganizationExclusion(pulumi.CustomResource):
         Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
         granted to the credentials used with this provider.
 
+        {{% examples %}}
         ## Example Usage
-
-
+        {{% example %}}
 
         ```python
         import pulumi
@@ -55,6 +56,8 @@ class OrganizationExclusion(pulumi.CustomResource):
             filter="resource.type = gce_instance AND severity <= DEBUG",
             org_id="123456789")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -127,9 +130,9 @@ class OrganizationExclusion(pulumi.CustomResource):
         __props__["name"] = name
         __props__["org_id"] = org_id
         return OrganizationExclusion(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

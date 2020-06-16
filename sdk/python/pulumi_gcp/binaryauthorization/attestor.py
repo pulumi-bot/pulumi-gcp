@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Attestor(pulumi.CustomResource):
     attestation_authority_note: pulumi.Output[dict]
     """
@@ -85,15 +86,15 @@ class Attestor(pulumi.CustomResource):
         """
         An attestor that attests to container image artifacts.
 
-
         To get more information about Attestor, see:
 
         * [API documentation](https://cloud.google.com/binary-authorization/docs/reference/rest/)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/binary-authorization/)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Binary Authorization Attestor Basic
 
         ```python
@@ -127,6 +128,8 @@ class Attestor(pulumi.CustomResource):
             }],
         })
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -301,9 +304,9 @@ class Attestor(pulumi.CustomResource):
         __props__["name"] = name
         __props__["project"] = project
         return Attestor(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

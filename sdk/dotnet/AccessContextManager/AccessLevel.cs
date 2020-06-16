@@ -13,15 +13,15 @@ namespace Pulumi.Gcp.AccessContextManager
     /// An AccessLevel is a label that can be applied to requests to GCP services,
     /// along with a list of requirements necessary for the label to be applied.
     /// 
-    /// 
     /// To get more information about AccessLevel, see:
     /// 
     /// * [API documentation](https://cloud.google.com/access-context-manager/docs/reference/rest/v1/accessPolicies.accessLevels)
     /// * How-to Guides
     ///     * [Access Policy Quickstart](https://cloud.google.com/access-context-manager/docs/quickstart)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Access Context Manager Access Level Basic
     /// 
     /// ```csharp
@@ -72,6 +72,8 @@ namespace Pulumi.Gcp.AccessContextManager
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class AccessLevel : Pulumi.CustomResource
     {

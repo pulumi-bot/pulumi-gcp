@@ -12,15 +12,15 @@ namespace Pulumi.Gcp.Kms
     /// <summary>
     /// A Google Cloud IoT Core device registry.
     /// 
-    /// 
     /// To get more information about DeviceRegistry, see:
     /// 
     /// * [API documentation](https://cloud.google.com/iot/docs/reference/cloudiot/rest/)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/iot/docs/)
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Cloudiot Device Registry Basic
     /// 
     /// ```csharp
@@ -38,6 +38,8 @@ namespace Pulumi.Gcp.Kms
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     [Obsolete(@"gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry")]
     public partial class Registry : Pulumi.CustomResource

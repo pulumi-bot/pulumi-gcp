@@ -58,9 +58,9 @@ def get_registry_image(digest=None,name=None,project=None,region=None,tag=None,o
 
     The URLs are computed entirely offline - as long as the project exists, they will be valid, but this data source does not contact Google Container Registry (GCR) at any point.
 
+    {{% examples %}}
     ## Example Usage
-
-
+    {{% example %}}
 
     ```python
     import pulumi
@@ -69,6 +69,8 @@ def get_registry_image(digest=None,name=None,project=None,region=None,tag=None,o
     debian = gcp.container.get_registry_image(name="debian")
     pulumi.export("gcrLocation", debian.image_url)
     ```
+    {{% /example %}}
+    {{% /examples %}}
     """
     __args__ = dict()
 

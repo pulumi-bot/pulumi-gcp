@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class SslCert(pulumi.CustomResource):
     cert: pulumi.Output[str]
     """
@@ -59,9 +60,11 @@ class SslCert(pulumi.CustomResource):
         """
         Creates a new Google SQL SSL Cert on a Google SQL Instance. For more information, see the [official documentation](https://cloud.google.com/sql/), or the [JSON API](https://cloud.google.com/sql/docs/mysql/admin-api/v1beta4/sslCerts).
 
+        {{% examples %}}
         ## Example Usage
+        {{% example %}}
 
-
+        Example creating a SQL Client Certificate.
 
         ```python
         import pulumi
@@ -76,6 +79,8 @@ class SslCert(pulumi.CustomResource):
             common_name="client-name",
             instance=master.name)
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -163,9 +168,9 @@ class SslCert(pulumi.CustomResource):
         __props__["server_ca_cert"] = server_ca_cert
         __props__["sha1_fingerprint"] = sha1_fingerprint
         return SslCert(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class KeyRing(pulumi.CustomResource):
     location: pulumi.Output[str]
     """
@@ -29,11 +30,9 @@ class KeyRing(pulumi.CustomResource):
         """
         A `KeyRing` is a toplevel logical grouping of `CryptoKeys`.
 
-
         > **Note:** KeyRings cannot be deleted from Google Cloud Platform.
         Destroying a provider-managed KeyRing will remove it from state but
         *will not delete the resource on the server.*
-
 
         To get more information about KeyRing, see:
 
@@ -41,8 +40,9 @@ class KeyRing(pulumi.CustomResource):
         * How-to Guides
             * [Creating a key ring](https://cloud.google.com/kms/docs/creating-keys#create_a_key_ring)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Kms Key Ring Basic
 
         ```python
@@ -51,6 +51,8 @@ class KeyRing(pulumi.CustomResource):
 
         example_keyring = gcp.kms.KeyRing("example-keyring", location="global")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -113,9 +115,9 @@ class KeyRing(pulumi.CustomResource):
         __props__["project"] = project
         __props__["self_link"] = self_link
         return KeyRing(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

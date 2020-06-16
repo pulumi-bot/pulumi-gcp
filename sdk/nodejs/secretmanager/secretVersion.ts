@@ -10,9 +10,9 @@ import * as utilities from "../utilities";
  * > **Warning:** All arguments including `payload.secret_data` will be stored in the raw
  * state as plain-text.
  *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Secret Version Basic
  *
  * ```typescript
@@ -33,6 +33,8 @@ import * as utilities from "../utilities";
  *     secretData: "secret-data",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class SecretVersion extends pulumi.CustomResource {
     /**

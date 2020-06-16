@@ -10,9 +10,9 @@ import * as utilities from "../utilities";
  *
  * > **Note:** This resource does not support regional disks (`gcp.compute.RegionDisk`). For regional disks, please refer to the `gcp.compute.RegionDiskResourcePolicyAttachment` resource.
  *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Disk Resource Policy Attachment Basic
  *
  * ```typescript
@@ -45,6 +45,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class DiskResourcePolicyAttachment extends pulumi.CustomResource {
     /**

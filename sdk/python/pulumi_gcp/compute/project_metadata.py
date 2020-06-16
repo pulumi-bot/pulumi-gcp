@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class ProjectMetadata(pulumi.CustomResource):
     metadata: pulumi.Output[dict]
     """
@@ -31,9 +32,9 @@ class ProjectMetadata(pulumi.CustomResource):
         key/value pairs within the project metadata rather than the entire set, then use
         google_compute_project_metadata_item.
 
+        {{% examples %}}
         ## Example Usage
-
-
+        {{% example %}}
 
         ```python
         import pulumi
@@ -45,6 +46,8 @@ class ProjectMetadata(pulumi.CustomResource):
             "foo": "bar",
         })
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -99,9 +102,9 @@ class ProjectMetadata(pulumi.CustomResource):
         __props__["metadata"] = metadata
         __props__["project"] = project
         return ProjectMetadata(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

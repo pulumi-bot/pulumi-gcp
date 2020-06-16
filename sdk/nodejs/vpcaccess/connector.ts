@@ -7,15 +7,15 @@ import * as utilities from "../utilities";
 /**
  * Serverless VPC Access connector resource.
  *
- *
  * To get more information about Connector, see:
  *
  * * [API documentation](https://cloud.google.com/vpc/docs/reference/vpcaccess/rest/v1/projects.locations.connectors)
  * * How-to Guides
  *     * [Configuring Serverless VPC Access](https://cloud.google.com/vpc/docs/configure-serverless-vpc-access)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### VPC Access Connector
  *
  * ```typescript
@@ -28,6 +28,8 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Connector extends pulumi.CustomResource {
     /**

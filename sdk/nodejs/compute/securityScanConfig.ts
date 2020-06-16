@@ -18,8 +18,9 @@ import * as utilities from "../utilities";
  * > **Warning:** All arguments including `authentication.google_account.password` and `authentication.custom_account.password` will be stored in the raw
  * state as plain-text.[Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Scan Config Basic
  *
  * ```typescript
@@ -33,6 +34,8 @@ import * as utilities from "../utilities";
  *     targetPlatforms: ["COMPUTE"],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class SecurityScanConfig extends pulumi.CustomResource {
     /**

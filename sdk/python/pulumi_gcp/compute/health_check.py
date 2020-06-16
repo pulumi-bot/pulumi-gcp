@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class HealthCheck(pulumi.CustomResource):
     check_interval_sec: pulumi.Output[float]
     """
@@ -227,15 +228,15 @@ class HealthCheck(pulumi.CustomResource):
         successfully to some number of consecutive probes, it is marked
         healthy again and can receive new connections.
 
-
         To get more information about HealthCheck, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/healthChecks)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Health Check Tcp
 
         ```python
@@ -249,7 +250,8 @@ class HealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Health Check Tcp Full
 
         ```python
@@ -270,7 +272,8 @@ class HealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Health Check Ssl
 
         ```python
@@ -284,7 +287,8 @@ class HealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Health Check Ssl Full
 
         ```python
@@ -305,7 +309,8 @@ class HealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Health Check Http
 
         ```python
@@ -319,7 +324,8 @@ class HealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Health Check Http Full
 
         ```python
@@ -341,7 +347,8 @@ class HealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Health Check Https
 
         ```python
@@ -355,7 +362,8 @@ class HealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Health Check Https Full
 
         ```python
@@ -377,7 +385,8 @@ class HealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Health Check Http2
 
         ```python
@@ -391,7 +400,8 @@ class HealthCheck(pulumi.CustomResource):
             },
             timeout_sec=1)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Health Check Http2 Full
 
         ```python
@@ -413,7 +423,8 @@ class HealthCheck(pulumi.CustomResource):
             timeout_sec=1,
             unhealthy_threshold=5)
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Health Check With Logging
 
         ```python
@@ -430,6 +441,8 @@ class HealthCheck(pulumi.CustomResource):
                 "enable": True,
             })
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -835,9 +848,9 @@ class HealthCheck(pulumi.CustomResource):
         __props__["type"] = type
         __props__["unhealthy_threshold"] = unhealthy_threshold
         return HealthCheck(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

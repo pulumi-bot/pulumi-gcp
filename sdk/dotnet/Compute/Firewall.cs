@@ -23,7 +23,6 @@ namespace Pulumi.Gcp.Compute
     /// networks except the default network, you must create any firewall rules
     /// you need.
     /// 
-    /// 
     /// To get more information about Firewall, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/v1/firewalls)

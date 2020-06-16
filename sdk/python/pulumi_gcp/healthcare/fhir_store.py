@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class FhirStore(pulumi.CustomResource):
     dataset: pulumi.Output[str]
     """
@@ -125,8 +126,9 @@ class FhirStore(pulumi.CustomResource):
         * How-to Guides
             * [Creating a FHIR store](https://cloud.google.com/healthcare/docs/how-tos/fhir)
 
+        {{% examples %}}
         ## Example Usage
-
+        {{% example %}}
         ### Healthcare Fhir Store Basic
 
         ```python
@@ -149,7 +151,8 @@ class FhirStore(pulumi.CustomResource):
                 "label1": "labelvalue1",
             })
         ```
-
+        {{% /example %}}
+        {{% example %}}
         ### Healthcare Fhir Store Streaming Config
 
         ```python
@@ -175,15 +178,17 @@ class FhirStore(pulumi.CustomResource):
             },
             stream_configs=[{
                 "resourceTypes": ["Observation"],
-                "bigquery_destination": [{
+                "bigquery_destination": {
                     "datasetUri": pulumi.Output.all(bq_dataset.project, bq_dataset.dataset_id).apply(lambda project, dataset_id: f"bq://{project}.{dataset_id}"),
-                    "schema_config": [{
+                    "schema_config": {
                         "recursiveStructureDepth": 3,
-                    }],
-                }],
+                    },
+                },
             }])
         topic = gcp.pubsub.Topic("topic")
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -399,9 +404,9 @@ class FhirStore(pulumi.CustomResource):
         __props__["stream_configs"] = stream_configs
         __props__["version"] = version
         return FhirStore(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -12,7 +12,6 @@ namespace Pulumi.Gcp.Compute
     /// <summary>
     /// VPN tunnel resource.
     /// 
-    /// 
     /// To get more information about VpnTunnel, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/vpnTunnels)
@@ -23,8 +22,9 @@ namespace Pulumi.Gcp.Compute
     /// &gt; **Warning:** All arguments including `shared_secret` will be stored in the raw
     /// state as plain-text.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
+    /// {{% example %}}
     /// ### Vpn Tunnel Basic
     /// 
     /// ```csharp
@@ -82,7 +82,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
+    /// {{% /example %}}
+    /// {{% example %}}
     /// ### Vpn Tunnel Beta
     /// 
     /// ```csharp
@@ -144,6 +145,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class VPNTunnel : Pulumi.CustomResource
     {

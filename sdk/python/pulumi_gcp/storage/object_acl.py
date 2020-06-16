@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class ObjectACL(pulumi.CustomResource):
     bucket: pulumi.Output[str]
     """
@@ -34,16 +35,18 @@ class ObjectACL(pulumi.CustomResource):
         acl to the `private` [predefined ACL](https://cloud.google.com/storage/docs/access-control#predefined-acl).
 
         For more information see
-        [the official documentation](https://cloud.google.com/storage/docs/access-control/lists) 
-        and 
+        [the official documentation](https://cloud.google.com/storage/docs/access-control/lists)
+        and
         [API](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls).
 
         > Want fine-grained control over object ACLs? Use `storage.ObjectAccessControl` to control individual
         role entity pairs.
 
+        {{% examples %}}
         ## Example Usage
+        {{% example %}}
 
-
+        Create an object ACL with one owner and one reader.
 
         ```python
         import pulumi
@@ -61,6 +64,8 @@ class ObjectACL(pulumi.CustomResource):
                 "READER:group-mygroup",
             ])
         ```
+        {{% /example %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -125,9 +130,9 @@ class ObjectACL(pulumi.CustomResource):
         __props__["predefined_acl"] = predefined_acl
         __props__["role_entities"] = role_entities
         return ObjectACL(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

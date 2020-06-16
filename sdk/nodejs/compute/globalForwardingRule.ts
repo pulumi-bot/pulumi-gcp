@@ -15,10 +15,9 @@ import * as utilities from "../utilities";
  * For more information, see
  * https://cloud.google.com/compute/docs/load-balancing/http/
  *
- *
- *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Global Forwarding Rule Http
  *
  * ```typescript
@@ -61,7 +60,8 @@ import * as utilities from "../utilities";
  *     portRange: "80",
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Global Forwarding Rule Internal
  *
  * ```typescript
@@ -146,6 +146,8 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class GlobalForwardingRule extends pulumi.CustomResource {
     /**

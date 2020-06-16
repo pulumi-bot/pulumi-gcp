@@ -15,9 +15,9 @@ namespace Pulumi.Gcp.Compute
     /// manage a single key/value setting in the provider rather than the entire
     /// project metadata map.
     /// 
+    /// {{% examples %}}
     /// ## Example Usage
-    /// 
-    /// 
+    /// {{% example %}}
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -36,6 +36,8 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// {{% /example %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class ProjectMetadataItem : Pulumi.CustomResource
     {

@@ -7,15 +7,15 @@ import * as utilities from "../utilities";
 /**
  * A Google Cloud Redis instance.
  *
- *
  * To get more information about Instance, see:
  *
  * * [API documentation](https://cloud.google.com/memorystore/docs/redis/reference/rest/)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/memorystore/docs/redis/)
  *
+ * {{% examples %}}
  * ## Example Usage
- *
+ * {{% example %}}
  * ### Redis Instance Basic
  *
  * ```typescript
@@ -26,7 +26,8 @@ import * as utilities from "../utilities";
  *     memorySizeGb: 1,
  * });
  * ```
- *
+ * {{% /example %}}
+ * {{% example %}}
  * ### Redis Instance Full
  *
  * ```typescript
@@ -51,6 +52,8 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export class Instance extends pulumi.CustomResource {
     /**

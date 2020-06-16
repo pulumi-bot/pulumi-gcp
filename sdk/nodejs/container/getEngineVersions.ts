@@ -15,9 +15,9 @@ import * as utilities from "../utilities";
  * its component zones, and not all zones in a region are guaranteed to
  * support the same version.
  *
+ * {{% examples %}}
  * ## Example Usage
- *
- *
+ * {{% example %}}
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -38,6 +38,8 @@ import * as utilities from "../utilities";
  * });
  * export const stableChannelVersion = central1b.then(central1b => central1b.releaseChannelDefaultVersion.STABLE);
  * ```
+ * {{% /example %}}
+ * {{% /examples %}}
  */
 export function getEngineVersions(args?: GetEngineVersionsArgs, opts?: pulumi.InvokeOptions): Promise<GetEngineVersionsResult> {
     args = args || {};
