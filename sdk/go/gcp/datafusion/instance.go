@@ -32,7 +32,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		basicInstance, err := datafusion.NewInstance(ctx, "basicInstance", &datafusion.InstanceArgs{
+// 		_, err = datafusion.NewInstance(ctx, "basicInstance", &datafusion.InstanceArgs{
 // 			Region: pulumi.String("us-central1"),
 // 			Type:   pulumi.String("BASIC"),
 // 		})
@@ -56,7 +56,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		extendedInstance, err := datafusion.NewInstance(ctx, "extendedInstance", &datafusion.InstanceArgs{
+// 		_, err = datafusion.NewInstance(ctx, "extendedInstance", &datafusion.InstanceArgs{
 // 			Description:                 pulumi.String("My Data Fusion instance"),
 // 			EnableStackdriverLogging:    pulumi.Bool(true),
 // 			EnableStackdriverMonitoring: pulumi.Bool(true),

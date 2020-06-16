@@ -52,7 +52,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		policy, err := organizations.NewIAMPolicy(ctx, "policy", &organizations.IAMPolicyArgs{
+// 		_, err = organizations.NewIAMPolicy(ctx, "policy", &organizations.IAMPolicyArgs{
 // 			OrgId:      pulumi.String("123456789"),
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})

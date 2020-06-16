@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Project(pulumi.CustomResource):
     auto_create_network: pulumi.Output[bool]
     """
@@ -201,9 +202,9 @@ class Project(pulumi.CustomResource):
         __props__["project_id"] = project_id
         __props__["skip_delete"] = skip_delete
         return Project(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

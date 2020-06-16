@@ -38,7 +38,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		recordSet, err := dns.NewRecordSet(ctx, "recordSet", &dns.RecordSetArgs{
+// 		_, err = dns.NewRecordSet(ctx, "recordSet", &dns.RecordSetArgs{
 // 			ManagedZone: prod.Name,
 // 			Type:        pulumi.String("A"),
 // 			Ttl:         pulumi.Int(300),
@@ -72,7 +72,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		mx, err := dns.NewRecordSet(ctx, "mx", &dns.RecordSetArgs{
+// 		_, err = dns.NewRecordSet(ctx, "mx", &dns.RecordSetArgs{
 // 			ManagedZone: prod.Name,
 // 			Type:        pulumi.String("MX"),
 // 			Ttl:         pulumi.Int(3600),
@@ -110,7 +110,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		spf, err := dns.NewRecordSet(ctx, "spf", &dns.RecordSetArgs{
+// 		_, err = dns.NewRecordSet(ctx, "spf", &dns.RecordSetArgs{
 // 			ManagedZone: prod.Name,
 // 			Type:        pulumi.String("TXT"),
 // 			Ttl:         pulumi.Int(300),
@@ -144,7 +144,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		cname, err := dns.NewRecordSet(ctx, "cname", &dns.RecordSetArgs{
+// 		_, err = dns.NewRecordSet(ctx, "cname", &dns.RecordSetArgs{
 // 			ManagedZone: prod.Name,
 // 			Type:        pulumi.String("CNAME"),
 // 			Ttl:         pulumi.Int(300),

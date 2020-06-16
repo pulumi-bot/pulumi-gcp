@@ -269,7 +269,7 @@ export class ManagedZone extends pulumi.CustomResource {
             if (!args || args.dnsName === undefined) {
                 throw new Error("Missing required property 'dnsName'");
             }
-            inputs["description"] = (args ? args.description : undefined) || "Managed by Pulumi";
+            inputs["description"] = (args ? args.description : undefined) ?? "Managed by Pulumi";
             inputs["dnsName"] = args ? args.dnsName : undefined;
             inputs["dnssecConfig"] = args ? args.dnssecConfig : undefined;
             inputs["forwardingConfig"] = args ? args.forwardingConfig : undefined;

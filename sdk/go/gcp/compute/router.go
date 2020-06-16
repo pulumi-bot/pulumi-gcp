@@ -39,7 +39,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		foobarRouter, err := compute.NewRouter(ctx, "foobarRouter", &compute.RouterArgs{
+// 		_, err = compute.NewRouter(ctx, "foobarRouter", &compute.RouterArgs{
 // 			Network: foobarNetwork.Name,
 // 			Bgp: &compute.RouterBgpArgs{
 // 				Asn:           pulumi.Int(64514),
