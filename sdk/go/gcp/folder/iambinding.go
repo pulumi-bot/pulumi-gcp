@@ -20,10 +20,7 @@ import (
 // > **Note:** On create, this resource will overwrite members of any existing roles.
 //     Use `pulumi import` and inspect the output to ensure
 //     your existing members are preserved.
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main
@@ -43,7 +40,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		admin, err := folder.NewIAMBinding(ctx, "admin", &folder.IAMBindingArgs{
+// 		_, err = folder.NewIAMBinding(ctx, "admin", &folder.IAMBindingArgs{
 // 			Folder: department1.Name,
 // 			Role:   pulumi.String("roles/editor"),
 // 			Members: pulumi.StringArray{
@@ -57,6 +54,9 @@ import (
 // 	})
 // }
 // ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 type IAMBinding struct {
 	pulumi.CustomResourceState
 

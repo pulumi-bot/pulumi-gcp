@@ -8,6 +8,10 @@ import (
 )
 
 // Use this data source to access the configuration of the Google Cloud provider.
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 func GetClientConfig(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetClientConfigResult, error) {
 	var rv GetClientConfigResult
 	err := ctx.Invoke("gcp:organizations/getClientConfig:getClientConfig", nil, &rv, opts...)

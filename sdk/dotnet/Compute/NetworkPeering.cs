@@ -19,10 +19,7 @@ namespace Pulumi.Gcp.Compute
     /// to be functional.
     /// 
     /// &gt; Subnets IP ranges across peered VPC networks cannot overlap.
-    /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -54,6 +51,9 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class NetworkPeering : Pulumi.CustomResource
     {

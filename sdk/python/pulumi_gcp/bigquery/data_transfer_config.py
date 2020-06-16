@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class DataTransferConfig(pulumi.CustomResource):
     data_refresh_window_days: pulumi.Output[float]
     """
@@ -76,15 +77,12 @@ class DataTransferConfig(pulumi.CustomResource):
         Represents a data transfer configuration. A transfer configuration
         contains all metadata needed to perform a data transfer.
 
-
         To get more information about Config, see:
 
         * [API documentation](https://cloud.google.com/bigquery/docs/reference/datatransfer/rest/v1/projects.locations.transferConfigs/create)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/bigquery/docs/reference/datatransfer/rest/)
-
         ## Example Usage
-
         ### Scheduled Query
 
         ```python
@@ -112,6 +110,9 @@ class DataTransferConfig(pulumi.CustomResource):
                 "query": "SELECT name FROM tabl WHERE x = 'y'",
             })
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -237,9 +238,9 @@ class DataTransferConfig(pulumi.CustomResource):
         __props__["schedule"] = schedule
         __props__["service_account_name"] = service_account_name
         return DataTransferConfig(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

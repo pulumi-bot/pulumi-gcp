@@ -8,10 +8,9 @@ import (
 )
 
 // Retrieve a list of testable permissions for a resource. Testable permissions mean the permissions that user can add or remove in a role at a given resource. The resource can be referenced either via the full resource name or via a URI.
-//
 // ## Example Usage
 //
-//
+// Retrieve all the supported permissions able to be set on `my-project` that are in either GA or BETA. This is useful for dynamically constructing custom roles.
 //
 // ```go
 // package main
@@ -22,7 +21,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		perms, err := iam.LookupTestablePermissions(ctx, &iam.LookupTestablePermissionsArgs{
+// 		_, err := iam.LookupTestablePermissions(ctx, &iam.LookupTestablePermissionsArgs{
 // 			FullResourceName: "//cloudresourcemanager.googleapis.com/projects/my-project",
 // 			Stages: []string{
 // 				"GA",
@@ -36,6 +35,9 @@ import (
 // 	})
 // }
 // ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 func GetTestablePermissions(ctx *pulumi.Context, args *GetTestablePermissionsArgs, opts ...pulumi.InvokeOption) (*GetTestablePermissionsResult, error) {
 	var rv GetTestablePermissionsResult
 	err := ctx.Invoke("gcp:iam/getTestablePermissions:getTestablePermissions", args, &rv, opts...)

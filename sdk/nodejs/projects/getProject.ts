@@ -10,9 +10,7 @@ import * as utilities from "../utilities";
  * Retrieve information about a set of projects based on a filter. See the
  * [REST API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/list)
  * for more details.
- *
  * ## Example Usage
- *
  * ### Searching For Projects About To Be Deleted In An Org
  *
  * ```typescript
@@ -26,6 +24,9 @@ import * as utilities from "../utilities";
  *     projectId: my_org_projects.projects[0].projectId,
  * }));
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getProject(args: GetProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectResult> {
     if (!opts) {

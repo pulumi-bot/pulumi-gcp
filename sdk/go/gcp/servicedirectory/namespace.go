@@ -18,9 +18,7 @@ import (
 // * [API documentation](https://cloud.google.com/service-directory/docs/reference/rest/v1beta1/projects.locations.namespaces)
 // * How-to Guides
 //     * [Configuring a namespace](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_namespace)
-//
 // ## Example Usage
-//
 // ### Service Directory Namespace Basic
 //
 // ```go
@@ -33,7 +31,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := servicedirectory.NewNamespace(ctx, "example", &servicedirectory.NamespaceArgs{
+// 		_, err = servicedirectory.NewNamespace(ctx, "example", &servicedirectory.NamespaceArgs{
 // 			NamespaceId: pulumi.String("example-namespace"),
 // 			Location:    pulumi.String("us-central1"),
 // 			Labels: map[string]interface{}{
@@ -48,6 +46,9 @@ import (
 // 	})
 // }
 // ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 type Namespace struct {
 	pulumi.CustomResourceState
 

@@ -11,11 +11,7 @@ namespace Pulumi.Gcp.CloudTasks
 {
     /// <summary>
     /// A named resource to which messages are sent by publishers.
-    /// 
-    /// 
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Queue Basic
     /// 
     /// ```csharp
@@ -34,6 +30,9 @@ namespace Pulumi.Gcp.CloudTasks
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Queue : Pulumi.CustomResource
     {

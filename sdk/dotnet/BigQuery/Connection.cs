@@ -20,6 +20,10 @@ namespace Pulumi.Gcp.BigQuery
     /// 
     /// &gt; **Warning:** All arguments including `cloud_sql.credential.password` will be stored in the raw
     /// state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
+    /// ## Example Usage
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Connection : Pulumi.CustomResource
     {

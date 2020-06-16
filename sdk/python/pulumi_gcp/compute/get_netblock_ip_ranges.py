@@ -56,9 +56,7 @@ class AwaitableGetNetblockIPRangesResult(GetNetblockIPRangesResult):
 def get_netblock_ip_ranges(range_type=None,opts=None):
     """
     Use this data source to get the IP addresses from different special IP ranges on Google Cloud Platform.
-
     ## Example Usage
-
     ### Cloud Ranges
 
     ```python
@@ -70,7 +68,6 @@ def get_netblock_ip_ranges(range_type=None,opts=None):
     pulumi.export("cidrBlocksIpv4", netblock.cidr_blocks_ipv4s)
     pulumi.export("cidrBlocksIpv6", netblock.cidr_blocks_ipv6s)
     ```
-
     ### Allow Health Checks
 
     ```python
@@ -87,6 +84,9 @@ def get_netblock_ip_ranges(range_type=None,opts=None):
         }],
         source_ranges=legacy_hcs.cidr_blocks_ipv4s)
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
 
 
     :param str range_type: The type of range for which to provide results.

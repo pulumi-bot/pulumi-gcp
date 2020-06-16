@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Get a Secret Manager secret's version. For more information see the [official documentation](https://cloud.google.com/secret-manager/docs/) and [API](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets.versions).
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -21,6 +18,9 @@ import * as utilities from "../utilities";
  *     secret: "my-secret",
  * }, { async: true }));
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getSecretVersion(args: GetSecretVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretVersionResult> {
     if (!opts) {

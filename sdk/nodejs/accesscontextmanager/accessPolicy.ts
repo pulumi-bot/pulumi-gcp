@@ -11,15 +11,12 @@ import * as utilities from "../utilities";
  * access policy is globally visible within an organization, and the
  * restrictions it specifies apply to all projects within an organization.
  *
- *
  * To get more information about AccessPolicy, see:
  *
  * * [API documentation](https://cloud.google.com/access-context-manager/docs/reference/rest/v1/accessPolicies)
  * * How-to Guides
  *     * [Access Policy Quickstart](https://cloud.google.com/access-context-manager/docs/quickstart)
- *
  * ## Example Usage
- *
  * ### Access Context Manager Access Policy Basic
  *
  * ```typescript
@@ -31,6 +28,9 @@ import * as utilities from "../utilities";
  *     title: "my policy",
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class AccessPolicy extends pulumi.CustomResource {
     /**

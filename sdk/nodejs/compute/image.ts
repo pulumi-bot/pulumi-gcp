@@ -24,15 +24,12 @@ import * as utilities from "../utilities";
  * from root persistent disks and other images. Then, use the custom image
  * to create an instance.
  *
- *
  * To get more information about Image, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/v1/images)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/compute/docs/images)
- *
  * ## Example Usage
- *
  * ### Image Basic
  *
  * ```typescript
@@ -45,7 +42,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
  * ### Image Guest Os
  *
  * ```typescript
@@ -66,6 +62,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class Image extends pulumi.CustomResource {
     /**

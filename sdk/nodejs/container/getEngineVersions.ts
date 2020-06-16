@@ -14,10 +14,7 @@ import * as utilities from "../utilities";
  * the datasource. A region can have a different set of supported versions than
  * its component zones, and not all zones in a region are guaranteed to
  * support the same version.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -38,6 +35,9 @@ import * as utilities from "../utilities";
  * });
  * export const stableChannelVersion = central1b.then(central1b => central1b.releaseChannelDefaultVersion.STABLE);
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getEngineVersions(args?: GetEngineVersionsArgs, opts?: pulumi.InvokeOptions): Promise<GetEngineVersionsResult> {
     args = args || {};

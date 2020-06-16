@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Get information about a BackendBucket.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -21,6 +18,9 @@ import * as utilities from "../utilities";
  *     name: "my-backend",
  * }, { async: true }));
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getBackendBucket(args: GetBackendBucketArgs, opts?: pulumi.InvokeOptions): Promise<GetBackendBucketResult> {
     if (!opts) {

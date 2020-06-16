@@ -15,10 +15,7 @@ namespace Pulumi.Gcp.Logging
     /// [Storing Logs](https://cloud.google.com/logging/docs/storage).
     /// 
     /// &gt; **Note:** Logging buckets are automatically created for a given folder, project, organization, billingAccount and cannot be deleted. Creating a resource of this type will acquire and update the resource that already exists at the desired location. These buckets cannot be removed so deleting this resource will remove the bucket config from your state but will leave the logging bucket unchanged. The buckets that are currently automatically created are "_Default" and "_Required".
-    /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -44,6 +41,9 @@ namespace Pulumi.Gcp.Logging
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class FolderBucketConfig : Pulumi.CustomResource
     {

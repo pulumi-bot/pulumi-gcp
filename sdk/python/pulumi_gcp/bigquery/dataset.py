@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Dataset(pulumi.CustomResource):
     accesses: pulumi.Output[list]
     """
@@ -110,15 +111,12 @@ class Dataset(pulumi.CustomResource):
         """
         Datasets allow you to organize and control access to your tables.
 
-
         To get more information about Dataset, see:
 
         * [API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets)
         * How-to Guides
             * [Datasets Intro](https://cloud.google.com/bigquery/docs/datasets-intro)
-
         ## Example Usage
-
         ### Bigquery Dataset Basic
 
         ```python
@@ -146,7 +144,6 @@ class Dataset(pulumi.CustomResource):
                 },
             ])
         ```
-
         ### Bigquery Dataset Cmek
 
         ```python
@@ -165,6 +162,9 @@ class Dataset(pulumi.CustomResource):
                 "kms_key_name": crypto_key.id,
             })
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -345,9 +345,9 @@ class Dataset(pulumi.CustomResource):
         __props__["project"] = project
         __props__["self_link"] = self_link
         return Dataset(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

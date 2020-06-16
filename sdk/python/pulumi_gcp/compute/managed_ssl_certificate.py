@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class ManagedSslCertificate(pulumi.CustomResource):
     certificate_id: pulumi.Output[float]
     """
@@ -89,9 +90,7 @@ class ManagedSslCertificate(pulumi.CustomResource):
         certificates may entail some downtime while the certificate provisions.
 
         In conclusion: Be extremely cautious.
-
         ## Example Usage
-
         ### Managed Ssl Certificate Basic
 
         ```python
@@ -138,6 +137,9 @@ class ManagedSslCertificate(pulumi.CustomResource):
             managed_zone=zone.name,
             rrdatas=[default_global_forwarding_rule.ip_address])
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -246,9 +248,9 @@ class ManagedSslCertificate(pulumi.CustomResource):
         __props__["subject_alternative_names"] = subject_alternative_names
         __props__["type"] = type
         return ManagedSslCertificate(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

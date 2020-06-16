@@ -18,11 +18,7 @@ namespace Pulumi.Gcp.IdentityPlatform
     /// 
     /// You must [enable multi-tenancy](https://cloud.google.com/identity-platform/docs/multi-tenancy-quickstart) via
     /// the Cloud Console prior to creating tenants.
-    /// 
-    /// 
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Identity Platform Tenant Basic
     /// 
     /// ```csharp
@@ -42,6 +38,9 @@ namespace Pulumi.Gcp.IdentityPlatform
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Tenant : Pulumi.CustomResource
     {

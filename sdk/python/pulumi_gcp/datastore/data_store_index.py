@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class DataStoreIndex(pulumi.CustomResource):
     ancestor: pulumi.Output[str]
     """
@@ -38,15 +39,12 @@ class DataStoreIndex(pulumi.CustomResource):
         """
         Describes a composite index for Cloud Datastore.
 
-
         To get more information about Index, see:
 
         * [API documentation](https://cloud.google.com/datastore/docs/reference/admin/rest/v1/projects.indexes)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/datastore/docs/concepts/indexes)
-
         ## Example Usage
-
         ### Datastore Index
 
         ```python
@@ -66,6 +64,9 @@ class DataStoreIndex(pulumi.CustomResource):
                 },
             ])
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -141,9 +142,9 @@ class DataStoreIndex(pulumi.CustomResource):
         __props__["project"] = project
         __props__["properties"] = properties
         return DataStoreIndex(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

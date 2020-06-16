@@ -8,10 +8,7 @@ import (
 )
 
 // Get info about a GKE cluster from its name and location.
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main
@@ -39,6 +36,9 @@ import (
 // 	})
 // }
 // ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 func LookupCluster(ctx *pulumi.Context, args *LookupClusterArgs, opts ...pulumi.InvokeOption) (*LookupClusterResult, error) {
 	var rv LookupClusterResult
 	err := ctx.Invoke("gcp:container/getCluster:getCluster", args, &rv, opts...)

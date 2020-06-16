@@ -13,10 +13,7 @@ import * as utilities from "../utilities";
  *
  * Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
  * granted to the credentials used with this provider.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -33,6 +30,9 @@ import * as utilities from "../utilities";
  *     member: my_sink.writerIdentity,
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class OrganizationSink extends pulumi.CustomResource {
     /**

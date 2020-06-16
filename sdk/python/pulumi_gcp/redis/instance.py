@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Instance(pulumi.CustomResource):
     alternative_location_id: pulumi.Output[str]
     """
@@ -109,15 +110,12 @@ class Instance(pulumi.CustomResource):
         """
         A Google Cloud Redis instance.
 
-
         To get more information about Instance, see:
 
         * [API documentation](https://cloud.google.com/memorystore/docs/redis/reference/rest/)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/memorystore/docs/redis/)
-
         ## Example Usage
-
         ### Redis Instance Basic
 
         ```python
@@ -126,7 +124,6 @@ class Instance(pulumi.CustomResource):
 
         cache = gcp.redis.Instance("cache", memory_size_gb=1)
         ```
-
         ### Redis Instance Full
 
         ```python
@@ -148,6 +145,9 @@ class Instance(pulumi.CustomResource):
                 "other_key": "other_val",
             })
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -304,9 +304,9 @@ class Instance(pulumi.CustomResource):
         __props__["reserved_ip_range"] = reserved_ip_range
         __props__["tier"] = tier
         return Instance(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

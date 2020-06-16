@@ -9,10 +9,7 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/compute/docs/cloudrouter)
  * and
  * [API](https://cloud.google.com/compute/docs/reference/latest/routers).
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -25,6 +22,9 @@ import * as utilities from "../utilities";
  *     vpnTunnel: "tunnel-1",
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class RouterInterface extends pulumi.CustomResource {
     /**

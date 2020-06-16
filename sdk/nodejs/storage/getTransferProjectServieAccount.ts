@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to retrieve Storage Transfer service account for this project
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -20,6 +17,9 @@ import * as utilities from "../utilities";
  * const default = gcp.storage.getTransferProjectServieAccount({});
  * export const defaultAccount = _default.then(_default => _default.email);
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getTransferProjectServieAccount(args?: GetTransferProjectServieAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetTransferProjectServieAccountResult> {
     args = args || {};

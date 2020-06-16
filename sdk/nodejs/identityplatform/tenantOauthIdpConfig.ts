@@ -10,11 +10,7 @@ import * as utilities from "../utilities";
  * You must enable the
  * [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
  * the marketplace prior to using this resource.
- *
- *
- *
  * ## Example Usage
- *
  * ### Identity Platform Tenant Oauth Idp Config Basic
  *
  * ```typescript
@@ -31,6 +27,9 @@ import * as utilities from "../utilities";
  *     clientSecret: "secret",
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class TenantOauthIdpConfig extends pulumi.CustomResource {
     /**

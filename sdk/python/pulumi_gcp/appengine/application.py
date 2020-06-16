@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Application(pulumi.CustomResource):
     app_id: pulumi.Output[str]
     """
@@ -89,10 +90,7 @@ class Application(pulumi.CustomResource):
 
         > **Warning:** All arguments including `iap.oauth2_client_secret` will be stored in the raw
         state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
-
         ## Example Usage
-
-
 
         ```python
         import pulumi
@@ -105,6 +103,9 @@ class Application(pulumi.CustomResource):
             project=my_project.project_id,
             location_id="us-central")
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -232,9 +233,9 @@ class Application(pulumi.CustomResource):
         __props__["serving_status"] = serving_status
         __props__["url_dispatch_rules"] = url_dispatch_rules
         return Application(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

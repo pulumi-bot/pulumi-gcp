@@ -18,6 +18,10 @@ import (
 // > This resource will only work as expected if the provider is configured to
 // use the `https://www.googleapis.com/auth/userinfo.email` scope! You will
 // receive an error otherwise.
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 func GetClientOpenIdUserInfo(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetClientOpenIdUserInfoResult, error) {
 	var rv GetClientOpenIdUserInfoResult
 	err := ctx.Invoke("gcp:organizations/getClientOpenIdUserInfo:getClientOpenIdUserInfo", nil, &rv, opts...)

@@ -16,10 +16,7 @@ import * as utilities from "../utilities";
  * > **Note:** This resource __must not__ be used in conjunction with
  *    `gcp.billing.AccountIamMember` or `gcp.billing.AccountIamBinding`
  *    or they will fight over what your policy should be.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -36,6 +33,9 @@ import * as utilities from "../utilities";
  *     policyData: admin.then(admin => admin.policyData),
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class AccountIamPolicy extends pulumi.CustomResource {
     /**

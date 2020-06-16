@@ -10,10 +10,7 @@ import * as utilities from "../utilities";
  * Get information about a Google Cloud Function. For more information see
  * the [official documentation](https://cloud.google.com/functions/docs/)
  * and [API](https://cloud.google.com/functions/docs/apis).
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -23,6 +20,9 @@ import * as utilities from "../utilities";
  *     name: "function",
  * }, { async: true }));
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getFunction(args: GetFunctionArgs, opts?: pulumi.InvokeOptions): Promise<GetFunctionResult> {
     if (!opts) {

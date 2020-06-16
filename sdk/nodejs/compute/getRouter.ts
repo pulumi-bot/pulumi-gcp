@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Get a router within GCE from its name and VPC.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -22,6 +19,9 @@ import * as utilities from "../utilities";
  *     network: "my-network",
  * }, { async: true }));
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getRouter(args: GetRouterArgs, opts?: pulumi.InvokeOptions): Promise<GetRouterResult> {
     if (!opts) {

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Function(pulumi.CustomResource):
     available_memory_mb: pulumi.Output[float]
     """
@@ -120,9 +121,7 @@ class Function(pulumi.CustomResource):
         to be invoked. See below examples for how to set up the appropriate permissions,
         or view the [Cloud Functions IAM resources](https://www.terraform.io/docs/providers/google/r/cloudfunctions_cloud_function_iam.html)
         for Cloud Functions.
-
         ## Example Usage
-
         ### Public Function
 
         ```python
@@ -149,7 +148,6 @@ class Function(pulumi.CustomResource):
             role="roles/cloudfunctions.invoker",
             member="allUsers")
         ```
-
         ### Single User
 
         ```python
@@ -183,6 +181,9 @@ class Function(pulumi.CustomResource):
             role="roles/cloudfunctions.invoker",
             member="user:myFunctionInvoker@example.com")
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -347,9 +348,9 @@ class Function(pulumi.CustomResource):
         __props__["vpc_connector"] = vpc_connector
         __props__["vpc_connector_egress_settings"] = vpc_connector_egress_settings
         return Function(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

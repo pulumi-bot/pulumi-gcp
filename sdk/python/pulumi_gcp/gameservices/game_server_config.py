@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GameServerConfig(pulumi.CustomResource):
     config_id: pulumi.Output[str]
     """
@@ -87,9 +88,7 @@ class GameServerConfig(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/game-servers/docs/reference/rest/v1beta/projects.locations.gameServerDeployments.configs)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/game-servers/docs)
-
         ## Example Usage
-
         ### Game Service Config Basic
 
         ```python
@@ -151,6 +150,9 @@ class GameServerConfig(pulumi.CustomResource):
                 }],
             }])
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -306,9 +308,9 @@ class GameServerConfig(pulumi.CustomResource):
         __props__["project"] = project
         __props__["scaling_configs"] = scaling_configs
         return GameServerConfig(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

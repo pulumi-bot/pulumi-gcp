@@ -17,6 +17,10 @@ namespace Pulumi.Gcp.Firebase
     /// * [API documentation](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.webApps)
     /// * How-to Guides
     ///     * [Official Documentation](https://firebase.google.com/)
+    /// ## Example Usage
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class WebApp : Pulumi.CustomResource
     {

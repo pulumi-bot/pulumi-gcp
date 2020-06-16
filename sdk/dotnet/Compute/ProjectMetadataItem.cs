@@ -14,10 +14,7 @@ namespace Pulumi.Gcp.Compute
     /// a project in GCE. Using `gcp.compute.ProjectMetadataItem` lets you
     /// manage a single key/value setting in the provider rather than the entire
     /// project metadata map.
-    /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -36,6 +33,9 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class ProjectMetadataItem : Pulumi.CustomResource
     {

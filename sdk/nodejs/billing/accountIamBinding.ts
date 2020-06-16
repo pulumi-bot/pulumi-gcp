@@ -17,10 +17,7 @@ import * as utilities from "../utilities";
  * > **Note:** On create, this resource will overwrite members of any existing roles.
  *     Use `pulumi import` and inspect the output to ensure
  *     your existing members are preserved.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -32,6 +29,9 @@ import * as utilities from "../utilities";
  *     role: "roles/billing.viewer",
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class AccountIamBinding extends pulumi.CustomResource {
     /**

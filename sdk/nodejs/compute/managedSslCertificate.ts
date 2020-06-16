@@ -32,9 +32,7 @@ import * as utilities from "../utilities";
  * certificates may entail some downtime while the certificate provisions.
  *
  * In conclusion: Be extremely cautious.
- *
  * ## Example Usage
- *
  * ### Managed Ssl Certificate Basic
  *
  * ```typescript
@@ -87,6 +85,9 @@ import * as utilities from "../utilities";
  *     rrdatas: [defaultGlobalForwardingRule.ipAddress],
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class ManagedSslCertificate extends pulumi.CustomResource {
     /**

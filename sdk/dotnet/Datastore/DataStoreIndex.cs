@@ -12,15 +12,12 @@ namespace Pulumi.Gcp.Datastore
     /// <summary>
     /// Describes a composite index for Cloud Datastore.
     /// 
-    /// 
     /// To get more information about Index, see:
     /// 
     /// * [API documentation](https://cloud.google.com/datastore/docs/reference/admin/rest/v1/projects.indexes)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/datastore/docs/concepts/indexes)
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Datastore Index
     /// 
     /// ```csharp
@@ -52,6 +49,9 @@ namespace Pulumi.Gcp.Datastore
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class DataStoreIndex : Pulumi.CustomResource
     {

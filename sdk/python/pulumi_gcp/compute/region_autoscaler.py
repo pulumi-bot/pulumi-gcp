@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class RegionAutoscaler(pulumi.CustomResource):
     autoscaling_policy: pulumi.Output[dict]
     """
@@ -140,15 +141,12 @@ class RegionAutoscaler(pulumi.CustomResource):
         managed instance groups according to an autoscaling policy that you
         define.
 
-
         To get more information about RegionAutoscaler, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/regionAutoscalers)
         * How-to Guides
             * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
-
         ## Example Usage
-
         ### Region Autoscaler Basic
 
         ```python
@@ -201,6 +199,9 @@ class RegionAutoscaler(pulumi.CustomResource):
                 },
             })
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -461,9 +462,9 @@ class RegionAutoscaler(pulumi.CustomResource):
         __props__["self_link"] = self_link
         __props__["target"] = target
         return RegionAutoscaler(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

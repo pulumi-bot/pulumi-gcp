@@ -12,9 +12,7 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/service-directory/docs/reference/rest/v1beta1/projects.locations.namespaces.services)
  * * How-to Guides
  *     * [Configuring a service](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_service)
- *
  * ## Example Usage
- *
  * ### Service Directory Service Basic
  *
  * ```typescript
@@ -34,6 +32,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class Service extends pulumi.CustomResource {
     /**

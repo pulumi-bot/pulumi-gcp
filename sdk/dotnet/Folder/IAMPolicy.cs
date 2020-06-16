@@ -12,10 +12,7 @@ namespace Pulumi.Gcp.Folder
     /// <summary>
     /// Allows creation and management of the IAM policy for an existing Google Cloud
     /// Platform folder.
-    /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -53,6 +50,9 @@ namespace Pulumi.Gcp.Folder
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class IAMPolicy : Pulumi.CustomResource
     {

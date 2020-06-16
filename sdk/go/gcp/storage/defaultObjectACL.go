@@ -23,6 +23,10 @@ import (
 //
 // > Want fine-grained control over default object ACLs? Use `storage.DefaultObjectAccessControl`
 // to control individual role entity pairs.
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 type DefaultObjectACL struct {
 	pulumi.CustomResourceState
 

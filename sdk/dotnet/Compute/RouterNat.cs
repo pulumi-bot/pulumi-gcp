@@ -12,12 +12,15 @@ namespace Pulumi.Gcp.Compute
     /// <summary>
     /// A NAT service created in a router.
     /// 
-    /// 
     /// To get more information about RouterNat, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/routers)
     /// * How-to Guides
     ///     * [Google Cloud Router](https://cloud.google.com/router/docs/)
+    /// ## Example Usage
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class RouterNat : Pulumi.CustomResource
     {

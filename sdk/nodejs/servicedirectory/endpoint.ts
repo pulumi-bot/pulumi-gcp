@@ -12,9 +12,7 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/service-directory/docs/reference/rest/v1beta1/projects.locations.namespaces.services.endpoints)
  * * How-to Guides
  *     * [Configuring an endpoint](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_an_endpoint)
- *
  * ## Example Usage
- *
  * ### Service Directory Endpoint Basic
  *
  * ```typescript
@@ -40,6 +38,9 @@ import * as utilities from "../utilities";
  *     port: 5353,
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class Endpoint extends pulumi.CustomResource {
     /**

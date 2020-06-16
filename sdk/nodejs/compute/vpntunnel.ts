@@ -7,7 +7,6 @@ import * as utilities from "../utilities";
 /**
  * VPN tunnel resource.
  *
- *
  * To get more information about VpnTunnel, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/vpnTunnels)
@@ -17,9 +16,7 @@ import * as utilities from "../utilities";
  *
  * > **Warning:** All arguments including `sharedSecret` will be stored in the raw
  * state as plain-text.
- *
  * ## Example Usage
- *
  * ### Vpn Tunnel Basic
  *
  * ```typescript
@@ -58,7 +55,6 @@ import * as utilities from "../utilities";
  *     nextHopVpnTunnel: tunnel1.id,
  * });
  * ```
- *
  * ### Vpn Tunnel Beta
  *
  * ```typescript
@@ -100,6 +96,9 @@ import * as utilities from "../utilities";
  *     nextHopVpnTunnel: tunnel1.id,
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class VPNTunnel extends pulumi.CustomResource {
     /**

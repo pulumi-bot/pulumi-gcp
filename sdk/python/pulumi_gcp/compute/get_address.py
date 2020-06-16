@@ -65,10 +65,7 @@ def get_address(name=None,project=None,region=None,opts=None):
     """
     Get the IP address from a static address. For more information see
     the official [API](https://cloud.google.com/compute/docs/reference/latest/addresses/get) documentation.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -82,6 +79,9 @@ def get_address(name=None,project=None,region=None,opts=None):
         managed_zone=prod.name,
         rrdatas=[my_address.address])
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
 
 
     :param str name: A unique name for the resource, required by GCE.

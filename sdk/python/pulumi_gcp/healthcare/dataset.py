@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Dataset(pulumi.CustomResource):
     location: pulumi.Output[str]
     """
@@ -42,9 +43,7 @@ class Dataset(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/healthcare/docs/reference/rest/v1/projects.locations.datasets)
         * How-to Guides
             * [Creating a dataset](https://cloud.google.com/healthcare/docs/how-tos/datasets)
-
         ## Example Usage
-
         ### Healthcare Dataset Basic
 
         ```python
@@ -55,6 +54,9 @@ class Dataset(pulumi.CustomResource):
             location="us-central1",
             time_zone="UTC")
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -124,9 +126,9 @@ class Dataset(pulumi.CustomResource):
         __props__["self_link"] = self_link
         __props__["time_zone"] = time_zone
         return Dataset(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

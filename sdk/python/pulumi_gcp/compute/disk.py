@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Disk(pulumi.CustomResource):
     creation_timestamp: pulumi.Output[str]
     """
@@ -198,7 +199,6 @@ class Disk(pulumi.CustomResource):
         Add a persistent disk to your instance when you need reliable and
         affordable storage with consistent performance characteristics.
 
-
         To get more information about Disk, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/v1/disks)
@@ -207,9 +207,7 @@ class Disk(pulumi.CustomResource):
 
         > **Warning:** All arguments including `disk_encryption_key.raw_key` will be stored in the raw
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
-
         ## Example Usage
-
         ### Disk Basic
 
         ```python
@@ -225,6 +223,9 @@ class Disk(pulumi.CustomResource):
             type="pd-ssd",
             zone="us-central1-a")
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -519,9 +520,9 @@ class Disk(pulumi.CustomResource):
         __props__["users"] = users
         __props__["zone"] = zone
         return Disk(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

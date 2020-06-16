@@ -53,10 +53,7 @@ def get_project_service_account(project=None,user_project=None,opts=None):
 
     For more information see
     [the API reference](https://cloud.google.com/storage/docs/json_api/v1/projects/serviceAccount).
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -68,6 +65,9 @@ def get_project_service_account(project=None,user_project=None,opts=None):
         role="roles/pubsub.publisher",
         members=[f"serviceAccount:{gcs_account.email_address}"])
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
 
 
     :param str project: The project the unique service account was created for. If it is not provided, the provider project is used.

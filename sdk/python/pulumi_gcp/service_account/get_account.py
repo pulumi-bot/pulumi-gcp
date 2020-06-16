@@ -70,10 +70,7 @@ def get_account(account_id=None,project=None,opts=None):
     """
     Get the service account from a project. For more information see
     the official [API](https://cloud.google.com/compute/docs/access/service-accounts) documentation.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -81,6 +78,9 @@ def get_account(account_id=None,project=None,opts=None):
 
     object_viewer = gcp.serviceAccount.get_account(account_id="object-viewer")
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
 
 
     :param str account_id: The Service account id.  (This is the part of the service account's email field that comes before the @ symbol.)

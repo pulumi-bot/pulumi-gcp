@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class RegionBackendService(pulumi.CustomResource):
     affinity_cookie_ttl_sec: pulumi.Output[float]
     """
@@ -346,15 +347,12 @@ class RegionBackendService(pulumi.CustomResource):
         A Region Backend Service defines a regionally-scoped group of virtual
         machines that will serve traffic for load balancing.
 
-
         To get more information about RegionBackendService, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/latest/regionBackendServices)
         * How-to Guides
             * [Internal TCP/UDP Load Balancing](https://cloud.google.com/compute/docs/load-balancing/internal/)
-
         ## Example Usage
-
         ### Region Backend Service Basic
 
         ```python
@@ -373,7 +371,6 @@ class RegionBackendService(pulumi.CustomResource):
             connection_draining_timeout_sec=10,
             session_affinity="CLIENT_IP")
         ```
-
         ### Region Backend Service Ilb Round Robin
 
         ```python
@@ -390,7 +387,6 @@ class RegionBackendService(pulumi.CustomResource):
             load_balancing_scheme="INTERNAL_MANAGED",
             locality_lb_policy="ROUND_ROBIN")
         ```
-
         ### Region Backend Service Ilb Ring Hash
 
         ```python
@@ -423,7 +419,6 @@ class RegionBackendService(pulumi.CustomResource):
                 "consecutiveErrors": 2,
             })
         ```
-
         ### Region Backend Service Balancing Mode
 
         ```python
@@ -479,6 +474,9 @@ class RegionBackendService(pulumi.CustomResource):
             timeout_sec=10,
             health_checks=[default_region_health_check.id])
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1114,9 +1112,9 @@ class RegionBackendService(pulumi.CustomResource):
         __props__["session_affinity"] = session_affinity
         __props__["timeout_sec"] = timeout_sec
         return RegionBackendService(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

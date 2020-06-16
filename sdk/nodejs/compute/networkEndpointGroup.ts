@@ -16,15 +16,12 @@ import * as utilities from "../utilities";
  * specify IP addresses and ports, you can distribute traffic in a granular
  * fashion among applications or containers running within VM instances.
  *
- *
  * To get more information about NetworkEndpointGroup, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/networkEndpointGroups)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
- *
  * ## Example Usage
- *
  * ### Network Endpoint Group
  *
  * ```typescript
@@ -44,6 +41,9 @@ import * as utilities from "../utilities";
  *     zone: "us-central1-a",
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class NetworkEndpointGroup extends pulumi.CustomResource {
     /**

@@ -12,11 +12,7 @@ namespace Pulumi.Gcp.Sql
     /// <summary>
     /// Represents a SQL database inside the Cloud SQL instance, hosted in
     /// Google's cloud.
-    /// 
-    /// 
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Sql Database Basic
     /// 
     /// ```csharp
@@ -43,6 +39,9 @@ namespace Pulumi.Gcp.Sql
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Database : Pulumi.CustomResource
     {

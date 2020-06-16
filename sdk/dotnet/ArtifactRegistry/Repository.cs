@@ -17,9 +17,7 @@ namespace Pulumi.Gcp.ArtifactRegistry
     /// * [API documentation](https://cloud.google.com/artifact-registry/docs/reference/rest/)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/artifact-registry/docs/overview)
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Artifact Registry Repository Basic
     /// 
     /// ```csharp
@@ -41,7 +39,6 @@ namespace Pulumi.Gcp.ArtifactRegistry
     /// 
     /// }
     /// ```
-    /// 
     /// ### Artifact Registry Repository Iam
     /// 
     /// ```csharp
@@ -75,6 +72,9 @@ namespace Pulumi.Gcp.ArtifactRegistry
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Repository : Pulumi.CustomResource
     {

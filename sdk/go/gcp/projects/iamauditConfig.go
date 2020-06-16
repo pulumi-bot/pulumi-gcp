@@ -17,7 +17,6 @@ import (
 // * `projects.IAMMember`: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the project are preserved.
 // * `projects.IAMAuditConfig`: Authoritative for a given service. Updates the IAM policy to enable audit logging for the given service.
 //
-//
 // > **Note:** `projects.IAMPolicy` **cannot** be used in conjunction with `projects.IAMBinding`, `projects.IAMMember`, or `projects.IAMAuditConfig` or they will fight over what your policy should be.
 //
 // > **Note:** `projects.IAMBinding` resources **can be** used in conjunction with `projects.IAMMember` resources **only if** they do not grant privilege to the same role.
@@ -55,7 +54,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		project, err := projects.NewIAMPolicy(ctx, "project", &projects.IAMPolicyArgs{
+// 		_, err = projects.NewIAMPolicy(ctx, "project", &projects.IAMPolicyArgs{
 // 			Project:    pulumi.String("your-project-id"),
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})
@@ -97,7 +96,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		project, err := projects.NewIAMPolicy(ctx, "project", &projects.IAMPolicyArgs{
+// 		_, err = projects.NewIAMPolicy(ctx, "project", &projects.IAMPolicyArgs{
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 			Project:    pulumi.String("your-project-id"),
 // 		})
@@ -123,7 +122,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		project, err := projects.NewIAMBinding(ctx, "project", &projects.IAMBindingArgs{
+// 		_, err = projects.NewIAMBinding(ctx, "project", &projects.IAMBindingArgs{
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
 // 			},
@@ -150,7 +149,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		project, err := projects.NewIAMBinding(ctx, "project", &projects.IAMBindingArgs{
+// 		_, err = projects.NewIAMBinding(ctx, "project", &projects.IAMBindingArgs{
 // 			Condition: &projects.IAMBindingConditionArgs{
 // 				Description: pulumi.String("Expiring at midnight of 2019-12-31"),
 // 				Expression:  pulumi.String("request.time < timestamp(\"2020-01-01T00:00:00Z\")"),
@@ -182,7 +181,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		project, err := projects.NewIAMMember(ctx, "project", &projects.IAMMemberArgs{
+// 		_, err = projects.NewIAMMember(ctx, "project", &projects.IAMMemberArgs{
 // 			Member:  pulumi.String("user:jane@example.com"),
 // 			Project: pulumi.String("your-project-id"),
 // 			Role:    pulumi.String("roles/editor"),
@@ -207,7 +206,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		project, err := projects.NewIAMMember(ctx, "project", &projects.IAMMemberArgs{
+// 		_, err = projects.NewIAMMember(ctx, "project", &projects.IAMMemberArgs{
 // 			Condition: &projects.IAMMemberConditionArgs{
 // 				Description: pulumi.String("Expiring at midnight of 2019-12-31"),
 // 				Expression:  pulumi.String("request.time < timestamp(\"2020-01-01T00:00:00Z\")"),
@@ -237,7 +236,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		project, err := projects.NewIAMAuditConfig(ctx, "project", &projects.IAMAuditConfigArgs{
+// 		_, err = projects.NewIAMAuditConfig(ctx, "project", &projects.IAMAuditConfigArgs{
 // 			AuditLogConfigs: projects.IAMAuditConfigAuditLogConfigArray{
 // 				&projects.IAMAuditConfigAuditLogConfigArgs{
 // 					LogType: pulumi.String("ADMIN_READ"),

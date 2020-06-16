@@ -19,15 +19,12 @@ import * as utilities from "../utilities";
  * successfully to some number of consecutive probes, it is marked
  * healthy again and can receive new connections.
  *
- *
  * To get more information about RegionHealthCheck, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/regionHealthChecks)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
- *
  * ## Example Usage
- *
  * ### Region Health Check Tcp
  *
  * ```typescript
@@ -42,7 +39,6 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- *
  * ### Region Health Check Tcp Full
  *
  * ```typescript
@@ -64,7 +60,6 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
- *
  * ### Region Health Check Ssl
  *
  * ```typescript
@@ -79,7 +74,6 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- *
  * ### Region Health Check Ssl Full
  *
  * ```typescript
@@ -101,7 +95,6 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
- *
  * ### Region Health Check Http
  *
  * ```typescript
@@ -116,7 +109,6 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- *
  * ### Region Health Check Http Logs
  *
  * ```typescript
@@ -134,7 +126,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
  * ### Region Health Check Http Full
  *
  * ```typescript
@@ -157,7 +148,6 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
- *
  * ### Region Health Check Https
  *
  * ```typescript
@@ -172,7 +162,6 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- *
  * ### Region Health Check Https Full
  *
  * ```typescript
@@ -195,7 +184,6 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
- *
  * ### Region Health Check Http2
  *
  * ```typescript
@@ -210,7 +198,6 @@ import * as utilities from "../utilities";
  *     timeoutSec: 1,
  * });
  * ```
- *
  * ### Region Health Check Http2 Full
  *
  * ```typescript
@@ -233,6 +220,9 @@ import * as utilities from "../utilities";
  *     unhealthyThreshold: 5,
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class RegionHealthCheck extends pulumi.CustomResource {
     /**

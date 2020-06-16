@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class AccountIamPolicy(pulumi.CustomResource):
     billing_account_id: pulumi.Output[str]
     """
@@ -34,10 +35,7 @@ class AccountIamPolicy(pulumi.CustomResource):
         > **Note:** This resource __must not__ be used in conjunction with
            `billing.AccountIamMember` or `billing.AccountIamBinding`
            or they will fight over what your policy should be.
-
         ## Example Usage
-
-
 
         ```python
         import pulumi
@@ -51,6 +49,9 @@ class AccountIamPolicy(pulumi.CustomResource):
             billing_account_id="00AA00-000AAA-00AA0A",
             policy_data=admin.policy_data)
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -111,9 +112,9 @@ class AccountIamPolicy(pulumi.CustomResource):
         __props__["etag"] = etag
         __props__["policy_data"] = policy_data
         return AccountIamPolicy(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

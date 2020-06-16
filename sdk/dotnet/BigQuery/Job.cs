@@ -12,11 +12,7 @@ namespace Pulumi.Gcp.BigQuery
     /// <summary>
     /// Jobs are actions that BigQuery runs on your behalf to load data, export data, query data, or copy data.
     /// Once a BigQuery job is created, it cannot be changed or deleted.
-    /// 
-    /// 
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Bigquery Job Query
     /// 
     /// ```csharp
@@ -67,7 +63,6 @@ namespace Pulumi.Gcp.BigQuery
     /// 
     /// }
     /// ```
-    /// 
     /// ### Bigquery Job Query Table Reference
     /// 
     /// ```csharp
@@ -120,7 +115,6 @@ namespace Pulumi.Gcp.BigQuery
     /// 
     /// }
     /// ```
-    /// 
     /// ### Bigquery Job Load
     /// 
     /// ```csharp
@@ -176,7 +170,6 @@ namespace Pulumi.Gcp.BigQuery
     /// 
     /// }
     /// ```
-    /// 
     /// ### Bigquery Job Extract
     /// 
     /// ```csharp
@@ -244,6 +237,9 @@ namespace Pulumi.Gcp.BigQuery
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Job : Pulumi.CustomResource
     {

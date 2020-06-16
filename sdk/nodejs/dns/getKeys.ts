@@ -10,11 +10,7 @@ import * as utilities from "../utilities";
  * Get the DNSKEY and DS records of DNSSEC-signed managed zones. For more information see the
  * [official documentation](https://cloud.google.com/dns/docs/dnskeys/)
  * and [API](https://cloud.google.com/dns/docs/reference/v1/dnsKeys).
- *
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -32,6 +28,9 @@ import * as utilities from "../utilities";
  * }));
  * export const fooDnsDsRecord = fooDnsKeys.keySigningKeys[0].dsRecord;
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getKeys(args: GetKeysArgs, opts?: pulumi.InvokeOptions): Promise<GetKeysResult> {
     if (!opts) {

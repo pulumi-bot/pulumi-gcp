@@ -10,9 +10,7 @@ import * as utilities from "../utilities";
  * Creates a Google Bigtable instance. For more information see
  * [the official documentation](https://cloud.google.com/bigtable/) and
  * [API](https://cloud.google.com/bigtable/docs/go/reference).
- *
  * ## Example Usage
- *
  * ### Production Instance
  *
  * ```typescript
@@ -28,7 +26,6 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
- *
  * ### Development Instance
  *
  * ```typescript
@@ -44,6 +41,9 @@ import * as utilities from "../utilities";
  *     instanceType: "DEVELOPMENT",
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class Instance extends pulumi.CustomResource {
     /**

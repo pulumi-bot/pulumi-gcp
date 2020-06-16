@@ -123,10 +123,7 @@ class AwaitableGetForwardingRuleResult(GetForwardingRuleResult):
 def get_forwarding_rule(name=None,project=None,region=None,opts=None):
     """
     Get a forwarding rule within GCE from its name.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -134,6 +131,9 @@ def get_forwarding_rule(name=None,project=None,region=None,opts=None):
 
     my_forwarding_rule = gcp.compute.get_forwarding_rule(name="forwarding-rule-us-east1")
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
 
 
     :param str name: The name of the forwarding rule.

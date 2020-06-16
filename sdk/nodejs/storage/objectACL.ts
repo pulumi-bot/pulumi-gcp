@@ -10,16 +10,15 @@ import * as utilities from "../utilities";
  * acl to the `private` [predefined ACL](https://cloud.google.com/storage/docs/access-control#predefined-acl).
  *
  * For more information see
- * [the official documentation](https://cloud.google.com/storage/docs/access-control/lists) 
- * and 
+ * [the official documentation](https://cloud.google.com/storage/docs/access-control/lists)
+ * and
  * [API](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls).
  *
  * > Want fine-grained control over object ACLs? Use `gcp.storage.ObjectAccessControl` to control individual
  * role entity pairs.
- *
  * ## Example Usage
  *
- *
+ * Create an object ACL with one owner and one reader.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -39,6 +38,9 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class ObjectACL extends pulumi.CustomResource {
     /**

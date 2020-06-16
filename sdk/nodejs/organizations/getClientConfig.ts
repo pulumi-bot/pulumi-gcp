@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to access the configuration of the Google Cloud provider.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -20,6 +17,9 @@ import * as utilities from "../utilities";
  * const current = gcp.organizations.getClientConfig({});
  * export const project = current.then(current => current.project);
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getClientConfig(opts?: pulumi.InvokeOptions): Promise<GetClientConfigResult> {
     if (!opts) {

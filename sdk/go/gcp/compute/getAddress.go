@@ -9,10 +9,7 @@ import (
 
 // Get the IP address from a static address. For more information see
 // the official [API](https://cloud.google.com/compute/docs/reference/latest/addresses/get) documentation.
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main
@@ -36,7 +33,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		frontend, err := dns.NewRecordSet(ctx, "frontend", &dns.RecordSetArgs{
+// 		_, err = dns.NewRecordSet(ctx, "frontend", &dns.RecordSetArgs{
 // 			Type:        pulumi.String("A"),
 // 			Ttl:         pulumi.Int(300),
 // 			ManagedZone: prod.Name,
@@ -51,6 +48,9 @@ import (
 // 	})
 // }
 // ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 func LookupAddress(ctx *pulumi.Context, args *LookupAddressArgs, opts ...pulumi.InvokeOption) (*LookupAddressResult, error) {
 	var rv LookupAddressResult
 	err := ctx.Invoke("gcp:compute/getAddress:getAddress", args, &rv, opts...)

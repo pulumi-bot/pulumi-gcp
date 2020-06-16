@@ -8,10 +8,7 @@ import (
 )
 
 // Get a Secret Manager secret's version. For more information see the [official documentation](https://cloud.google.com/secret-manager/docs/) and [API](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets.versions).
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main
@@ -22,7 +19,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		basic, err := secretmanager.LookupSecretVersion(ctx, &secretmanager.LookupSecretVersionArgs{
+// 		_, err := secretmanager.LookupSecretVersion(ctx, &secretmanager.LookupSecretVersionArgs{
 // 			Secret: "my-secret",
 // 		}, nil)
 // 		if err != nil {
@@ -32,6 +29,9 @@ import (
 // 	})
 // }
 // ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 //
 // Deprecated: gcp.monitoring.getSecretVersion has been deprecated in favor of gcp.secretmanager.getSecretVersion
 func GetSecretVersion(ctx *pulumi.Context, args *GetSecretVersionArgs, opts ...pulumi.InvokeOption) (*GetSecretVersionResult, error) {

@@ -51,10 +51,7 @@ def get_default_service_account(project=None,opts=None):
 
     For more information see
     [the API reference](https://cloud.google.com/bigquery/docs/reference/rest/v2/projects/getServiceAccount).
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -66,6 +63,9 @@ def get_default_service_account(project=None,opts=None):
         role="roles/cloudkms.cryptoKeyEncrypterDecrypter",
         member=f"serviceAccount:{bq_sa.email}")
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
 
 
     :param str project: The project the unique service account was created for. If it is not provided, the provider project is used.

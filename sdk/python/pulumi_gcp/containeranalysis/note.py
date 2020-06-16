@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Note(pulumi.CustomResource):
     attestation_authority: pulumi.Output[dict]
     """
@@ -82,16 +83,13 @@ class Note(pulumi.CustomResource):
         A Container Analysis note is a high-level piece of metadata that
         describes a type of analysis that can be done for a resource.
 
-
         To get more information about Note, see:
 
         * [API documentation](https://cloud.google.com/container-analysis/api/reference/rest/)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/container-analysis/)
             * [Creating Attestations (Occurrences)](https://cloud.google.com/binary-authorization/docs/making-attestations)
-
         ## Example Usage
-
         ### Container Analysis Note Basic
 
         ```python
@@ -104,7 +102,6 @@ class Note(pulumi.CustomResource):
             },
         })
         ```
-
         ### Container Analysis Note Attestation Full
 
         ```python
@@ -130,6 +127,9 @@ class Note(pulumi.CustomResource):
             ],
             short_description="test note")
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -269,9 +269,9 @@ class Note(pulumi.CustomResource):
         __props__["short_description"] = short_description
         __props__["update_time"] = update_time
         return Note(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

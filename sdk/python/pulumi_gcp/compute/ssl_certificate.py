@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class SSLCertificate(pulumi.CustomResource):
     certificate: pulumi.Output[str]
     """
@@ -62,7 +63,6 @@ class SSLCertificate(pulumi.CustomResource):
         provides a mechanism to upload an SSL key and certificate to
         the load balancer to serve secure connections from the user.
 
-
         To get more information about SslCertificate, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/sslCertificates)
@@ -71,9 +71,7 @@ class SSLCertificate(pulumi.CustomResource):
 
         > **Warning:** All arguments including `certificate` and `private_key` will be stored in the raw
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
-
         ## Example Usage
-
         ### Ssl Certificate Basic
 
         ```python
@@ -86,7 +84,6 @@ class SSLCertificate(pulumi.CustomResource):
             private_key=(lambda path: open(path).read())("path/to/private.key"),
             certificate=(lambda path: open(path).read())("path/to/certificate.crt"))
         ```
-
         ### Ssl Certificate Target Https Proxies
 
         ```python
@@ -130,6 +127,9 @@ class SSLCertificate(pulumi.CustomResource):
             url_map=default_url_map.id,
             ssl_certificates=[default_ssl_certificate.id])
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -229,9 +229,9 @@ class SSLCertificate(pulumi.CustomResource):
         __props__["project"] = project
         __props__["self_link"] = self_link
         return SSLCertificate(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

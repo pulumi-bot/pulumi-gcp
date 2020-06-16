@@ -15,10 +15,9 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferJobs#TransferJob)
  * * How-to Guides
  *     * [Configuring Access to Data Sources and Sinks](https://cloud.google.com/storage-transfer/docs/configure-access)
- *
  * ## Example Usage
  *
- *
+ * Example creating a nightly Transfer Job from an AWS S3 Bucket to a GCS bucket.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -78,6 +77,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class TransferJob extends pulumi.CustomResource {
     /**

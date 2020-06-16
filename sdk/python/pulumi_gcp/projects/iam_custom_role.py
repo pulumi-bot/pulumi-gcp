@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class IAMCustomRole(pulumi.CustomResource):
     deleted: pulumi.Output[bool]
     """
@@ -58,10 +59,9 @@ class IAMCustomRole(pulumi.CustomResource):
          after 7 days, but it can take up to 30 more days (i.e. between 7 and 37 days after deletion) before the role name is
          made available again. This means a deleted role that has been deleted for more than 7 days cannot be changed at all
          by the provider, and new roles cannot share that name.
-
         ## Example Usage
 
-
+        This snippet creates a customized IAM role.
 
         ```python
         import pulumi
@@ -77,6 +77,9 @@ class IAMCustomRole(pulumi.CustomResource):
             role_id="myCustomRole",
             title="My Custom Role")
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -161,9 +164,9 @@ class IAMCustomRole(pulumi.CustomResource):
         __props__["stage"] = stage
         __props__["title"] = title
         return IAMCustomRole(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Instance(pulumi.CustomResource):
     config: pulumi.Output[str]
     """
@@ -53,15 +54,12 @@ class Instance(pulumi.CustomResource):
         An isolated set of Cloud Spanner resources on which databases can be
         hosted.
 
-
         To get more information about Instance, see:
 
         * [API documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/projects.instances)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/spanner/)
-
         ## Example Usage
-
         ### Spanner Instance Basic
 
         ```python
@@ -76,6 +74,9 @@ class Instance(pulumi.CustomResource):
             },
             num_nodes=2)
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -169,9 +170,9 @@ class Instance(pulumi.CustomResource):
         __props__["project"] = project
         __props__["state"] = state
         return Instance(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

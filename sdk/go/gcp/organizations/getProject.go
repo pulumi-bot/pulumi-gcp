@@ -10,6 +10,10 @@ import (
 // Use this data source to get project details.
 // For more information see
 // [API](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project)
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.InvokeOption) (*LookupProjectResult, error) {
 	var rv LookupProjectResult
 	err := ctx.Invoke("gcp:organizations/getProject:getProject", args, &rv, opts...)

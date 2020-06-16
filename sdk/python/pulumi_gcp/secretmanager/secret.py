@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Secret(pulumi.CustomResource):
     create_time: pulumi.Output[str]
     """
@@ -55,10 +56,7 @@ class Secret(pulumi.CustomResource):
         To get more information about Secret, see:
 
         * [API documentation](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets)
-
-
         ## Example Usage
-
         ### Secret Config Basic
 
         ```python
@@ -83,6 +81,9 @@ class Secret(pulumi.CustomResource):
             },
             secret_id="secret")
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -183,9 +184,9 @@ class Secret(pulumi.CustomResource):
         __props__["replication"] = replication
         __props__["secret_id"] = secret_id
         return Secret(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Job(pulumi.CustomResource):
     app_engine_http_target: pulumi.Output[dict]
     """
@@ -146,15 +147,12 @@ class Job(pulumi.CustomResource):
         that is located in one of the supported regions. If your project
         does not have an App Engine app, you must create one.
 
-
         To get more information about Job, see:
 
         * [API documentation](https://cloud.google.com/scheduler/docs/reference/rest/)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/scheduler/)
-
         ## Example Usage
-
         ### Scheduler Job Http
 
         ```python
@@ -174,7 +172,6 @@ class Job(pulumi.CustomResource):
             schedule="*/8 * * * *",
             time_zone="America/New_York")
         ```
-
         ### Scheduler Job App Engine
 
         ```python
@@ -202,7 +199,6 @@ class Job(pulumi.CustomResource):
             schedule="*/4 * * * *",
             time_zone="Europe/London")
         ```
-
         ### Scheduler Job Oauth
 
         ```python
@@ -223,7 +219,6 @@ class Job(pulumi.CustomResource):
                 },
             })
         ```
-
         ### Scheduler Job Oidc
 
         ```python
@@ -244,6 +239,9 @@ class Job(pulumi.CustomResource):
                 },
             })
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -512,9 +510,9 @@ class Job(pulumi.CustomResource):
         __props__["schedule"] = schedule
         __props__["time_zone"] = time_zone
         return Job(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

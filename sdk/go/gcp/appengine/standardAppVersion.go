@@ -15,12 +15,15 @@ import (
 // at https://cloud.google.com/appengine/docs/the-appengine-environments.
 // Currently supporting Zip and File Containers.
 //
-//
 // To get more information about StandardAppVersion, see:
 //
 // * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/appengine/docs/standard)
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 type StandardAppVersion struct {
 	pulumi.CustomResourceState
 

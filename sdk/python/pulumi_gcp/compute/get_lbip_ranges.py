@@ -47,10 +47,7 @@ def get_lbip_ranges(opts=None):
     Use this data source to access IP ranges in your firewall rules.
 
     https://cloud.google.com/compute/docs/load-balancing/health-checks#health_check_source_ips_and_firewall_rules
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -66,6 +63,9 @@ def get_lbip_ranges(opts=None):
         source_ranges=ranges.networks,
         target_tags=["InstanceBehindLoadBalancer"])
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
     """
     __args__ = dict()
 

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class AutoscalingPolicy(pulumi.CustomResource):
     basic_algorithm: pulumi.Output[dict]
     """
@@ -110,11 +111,7 @@ class AutoscalingPolicy(pulumi.CustomResource):
     def __init__(__self__, resource_name, opts=None, basic_algorithm=None, location=None, policy_id=None, project=None, secondary_worker_config=None, worker_config=None, __props__=None, __name__=None, __opts__=None):
         """
         Describes an autoscaling policy for Dataproc cluster autoscaler.
-
-
-
         ## Example Usage
-
         ### Dataproc Autoscaling Policy
 
         ```python
@@ -142,6 +139,9 @@ class AutoscalingPolicy(pulumi.CustomResource):
                 },
             })
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -363,9 +363,9 @@ class AutoscalingPolicy(pulumi.CustomResource):
         __props__["secondary_worker_config"] = secondary_worker_config
         __props__["worker_config"] = worker_config
         return AutoscalingPolicy(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

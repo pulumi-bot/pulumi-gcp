@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class BackendServiceSignedUrlKey(pulumi.CustomResource):
     backend_service: pulumi.Output[str]
     """
@@ -32,7 +33,6 @@ class BackendServiceSignedUrlKey(pulumi.CustomResource):
         """
         A key for signing Cloud CDN signed URLs for Backend Services.
 
-
         To get more information about BackendServiceSignedUrlKey, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices)
@@ -41,9 +41,7 @@ class BackendServiceSignedUrlKey(pulumi.CustomResource):
 
         > **Warning:** All arguments including `key_value` will be stored in the raw
         state as plain-text.
-
         ## Example Usage
-
         ### Backend Service Signed Url Key
 
         ```python
@@ -86,6 +84,9 @@ class BackendServiceSignedUrlKey(pulumi.CustomResource):
             key_value="pPsVemX8GM46QVeezid6Rw==",
             backend_service=example_backend.name)
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -152,9 +153,9 @@ class BackendServiceSignedUrlKey(pulumi.CustomResource):
         __props__["name"] = name
         __props__["project"] = project
         return BackendServiceSignedUrlKey(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

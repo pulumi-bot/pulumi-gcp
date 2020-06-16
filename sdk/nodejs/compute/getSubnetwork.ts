@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Get a subnetwork within GCE from its name and region.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -22,6 +19,9 @@ import * as utilities from "../utilities";
  *     region: "us-east1",
  * }, { async: true }));
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getSubnetwork(args?: GetSubnetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetSubnetworkResult> {
     args = args || {};

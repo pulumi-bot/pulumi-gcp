@@ -12,15 +12,12 @@ import (
 
 // Represents a Router resource.
 //
-//
 // To get more information about Router, see:
 //
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/routers)
 // * How-to Guides
 //     * [Google Cloud Router](https://cloud.google.com/router/docs/)
-//
 // ## Example Usage
-//
 // ### Router Basic
 //
 // ```go
@@ -39,7 +36,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		foobarRouter, err := compute.NewRouter(ctx, "foobarRouter", &compute.RouterArgs{
+// 		_, err = compute.NewRouter(ctx, "foobarRouter", &compute.RouterArgs{
 // 			Network: foobarNetwork.Name,
 // 			Bgp: &compute.RouterBgpArgs{
 // 				Asn:           pulumi.Int(64514),
@@ -64,6 +61,9 @@ import (
 // 	})
 // }
 // ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 type Router struct {
 	pulumi.CustomResourceState
 

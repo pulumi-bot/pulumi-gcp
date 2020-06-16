@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class RegionTargetHttpsProxy(pulumi.CustomResource):
     creation_timestamp: pulumi.Output[str]
     """
@@ -67,9 +68,7 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/regionTargetHttpsProxies)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
-
         ## Example Usage
-
         ### Region Target Https Proxy Basic
 
         ```python
@@ -111,6 +110,9 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
             url_map=default_region_url_map.id,
             ssl_certificates=[default_region_ssl_certificate.id])
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -212,9 +214,9 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
         __props__["ssl_certificates"] = ssl_certificates
         __props__["url_map"] = url_map
         return RegionTargetHttpsProxy(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

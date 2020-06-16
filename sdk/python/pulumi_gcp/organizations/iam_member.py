@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class IAMMember(pulumi.CustomResource):
     condition: pulumi.Output[dict]
     etag: pulumi.Output[str]
@@ -36,10 +37,7 @@ class IAMMember(pulumi.CustomResource):
         > **Note:** This resource __must not__ be used in conjunction with
            `organizations.IAMBinding` for the __same role__ or they will fight over
            what your policy should be.
-
         ## Example Usage
-
-
 
         ```python
         import pulumi
@@ -50,6 +48,9 @@ class IAMMember(pulumi.CustomResource):
             org_id="0123456789",
             role="roles/editor")
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -129,9 +130,9 @@ class IAMMember(pulumi.CustomResource):
         __props__["org_id"] = org_id
         __props__["role"] = role
         return IAMMember(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

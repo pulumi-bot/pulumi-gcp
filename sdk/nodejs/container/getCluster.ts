@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Get info about a GKE cluster from its name and location.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -28,6 +25,9 @@ import * as utilities from "../utilities";
  * export const nodeConfig = myCluster.then(myCluster => myCluster.nodeConfigs);
  * export const nodePools = myCluster.then(myCluster => myCluster.nodePools);
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getCluster(args: GetClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetClusterResult> {
     if (!opts) {

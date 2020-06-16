@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class SshPublicKey(pulumi.CustomResource):
     expiration_time_usec: pulumi.Output[str]
     """
@@ -30,15 +31,12 @@ class SshPublicKey(pulumi.CustomResource):
         """
         The SSH public key information associated with a Google account.
 
-
         To get more information about SSHPublicKey, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/oslogin/rest)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/compute/docs/oslogin)
-
         ## Example Usage
-
         ### Os Login Ssh Key Provided User
 
         ```python
@@ -50,6 +48,9 @@ class SshPublicKey(pulumi.CustomResource):
             user=me.email,
             key=(lambda path: open(path).read())("path/to/id_rsa.pub"))
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -111,9 +112,9 @@ class SshPublicKey(pulumi.CustomResource):
         __props__["key"] = key
         __props__["user"] = user
         return SshPublicKey(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

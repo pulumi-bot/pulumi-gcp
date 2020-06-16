@@ -42,10 +42,7 @@ class AwaitableGetTransferProjectServieAccountResult(GetTransferProjectServieAcc
 def get_transfer_project_servie_account(project=None,opts=None):
     """
     Use this data source to retrieve Storage Transfer service account for this project
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -54,6 +51,9 @@ def get_transfer_project_servie_account(project=None,opts=None):
     default = gcp.storage.get_transfer_project_servie_account()
     pulumi.export("defaultAccount", default.email)
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
 
 
     :param str project: The project ID. If it is not provided, the provider project is used.

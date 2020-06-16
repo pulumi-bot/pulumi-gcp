@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Instance(pulumi.CustomResource):
     allow_stopping_for_update: pulumi.Output[bool]
     """
@@ -302,11 +303,7 @@ class Instance(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/compute/docs/instances)
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/instances).
-
-
         ## Example Usage
-
-
 
         ```python
         import pulumi
@@ -343,6 +340,9 @@ class Instance(pulumi.CustomResource):
             ],
             zone="us-central1-a")
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -865,9 +865,9 @@ class Instance(pulumi.CustomResource):
         __props__["tags_fingerprint"] = tags_fingerprint
         __props__["zone"] = zone
         return Instance(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

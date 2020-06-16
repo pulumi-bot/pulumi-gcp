@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Get a network within GCE from its name.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -21,6 +18,9 @@ import * as utilities from "../utilities";
  *     name: "default-us-east1",
  * }, { async: true }));
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getNetwork(args: GetNetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkResult> {
     if (!opts) {

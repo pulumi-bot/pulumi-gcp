@@ -12,10 +12,7 @@ import (
 // A Security Policy defines an IP blacklist or whitelist that protects load balanced Google Cloud services by denying or permitting traffic from specified IP ranges. For more information
 // see the [official documentation](https://cloud.google.com/armor/docs/configure-security-policies)
 // and the [API](https://cloud.google.com/compute/docs/reference/rest/beta/securityPolicies).
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main
@@ -27,7 +24,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		policy, err := compute.NewSecurityPolicy(ctx, "policy", &compute.SecurityPolicyArgs{
+// 		_, err = compute.NewSecurityPolicy(ctx, "policy", &compute.SecurityPolicyArgs{
 // 			Rules: compute.SecurityPolicyRuleArray{
 // 				&compute.SecurityPolicyRuleArgs{
 // 					Action:      pulumi.String("deny(403)"),
@@ -64,6 +61,9 @@ import (
 // 	})
 // }
 // ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 type SecurityPolicy struct {
 	pulumi.CustomResourceState
 

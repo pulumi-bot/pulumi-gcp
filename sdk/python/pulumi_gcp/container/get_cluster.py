@@ -231,10 +231,7 @@ class AwaitableGetClusterResult(GetClusterResult):
 def get_cluster(location=None,name=None,project=None,region=None,zone=None,opts=None):
     """
     Get info about a GKE cluster from its name and location.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -249,6 +246,9 @@ def get_cluster(location=None,name=None,project=None,region=None,zone=None,opts=
     pulumi.export("nodeConfig", my_cluster.node_configs)
     pulumi.export("nodePools", my_cluster.node_pools)
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
 
 
     :param str location: The location (zone or region) this cluster has been

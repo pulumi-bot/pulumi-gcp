@@ -13,12 +13,15 @@ import (
 // Represents a data transfer configuration. A transfer configuration
 // contains all metadata needed to perform a data transfer.
 //
-//
 // To get more information about Config, see:
 //
 // * [API documentation](https://cloud.google.com/bigquery/docs/reference/datatransfer/rest/v1/projects.locations.transferConfigs/create)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/bigquery/docs/reference/datatransfer/rest/)
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 type DataTransferConfig struct {
 	pulumi.CustomResourceState
 

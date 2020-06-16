@@ -8,10 +8,7 @@ import (
 )
 
 // Get info about a Google Compute SSL Certificate from its name.
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main
@@ -35,6 +32,9 @@ import (
 // 	})
 // }
 // ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 func GetCertificate(ctx *pulumi.Context, args *GetCertificateArgs, opts ...pulumi.InvokeOption) (*GetCertificateResult, error) {
 	var rv GetCertificateResult
 	err := ctx.Invoke("gcp:compute/getCertificate:getCertificate", args, &rv, opts...)

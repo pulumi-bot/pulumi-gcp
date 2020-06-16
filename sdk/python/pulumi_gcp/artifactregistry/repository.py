@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Repository(pulumi.CustomResource):
     create_time: pulumi.Output[str]
     """
@@ -61,9 +62,7 @@ class Repository(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/artifact-registry/docs/reference/rest/)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/artifact-registry/docs/overview)
-
         ## Example Usage
-
         ### Artifact Registry Repository Basic
 
         ```python
@@ -76,7 +75,6 @@ class Repository(pulumi.CustomResource):
             description="example docker repository",
             format="DOCKER")
         ```
-
         ### Artifact Registry Repository Iam
 
         ```python
@@ -97,6 +95,9 @@ class Repository(pulumi.CustomResource):
             role="roles/artifactregistry.reader",
             member=test_account.email.apply(lambda email: f"serviceAccount:{email}"))
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -188,9 +189,9 @@ class Repository(pulumi.CustomResource):
         __props__["repository_id"] = repository_id
         __props__["update_time"] = update_time
         return Repository(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

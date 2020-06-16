@@ -55,11 +55,7 @@ def get_keys(managed_zone=None,project=None,opts=None):
     Get the DNSKEY and DS records of DNSSEC-signed managed zones. For more information see the
     [official documentation](https://cloud.google.com/dns/docs/dnskeys/)
     and [API](https://cloud.google.com/dns/docs/reference/v1/dnsKeys).
-
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -74,6 +70,9 @@ def get_keys(managed_zone=None,project=None,opts=None):
     foo_dns_keys = foo.id.apply(lambda id: gcp.dns.get_keys(managed_zone=id))
     pulumi.export("fooDnsDsRecord", foo_dns_keys.key_signing_keys[0]["dsRecord"])
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
 
 
     :param str managed_zone: The name or id of the Cloud DNS managed zone.

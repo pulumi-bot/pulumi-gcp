@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class RouterPeer(pulumi.CustomResource):
     advertise_mode: pulumi.Output[str]
     """
@@ -96,15 +97,12 @@ class RouterPeer(pulumi.CustomResource):
         and either the interface name, IP address, or peer IP address.
         Please refer to RFC4273.
 
-
         To get more information about RouterBgpPeer, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/routers)
         * How-to Guides
             * [Google Cloud Router](https://cloud.google.com/router/docs/)
-
         ## Example Usage
-
         ### Router Peer Basic
 
         ```python
@@ -119,6 +117,9 @@ class RouterPeer(pulumi.CustomResource):
             region="us-central1",
             router="my-router")
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -274,9 +275,9 @@ class RouterPeer(pulumi.CustomResource):
         __props__["region"] = region
         __props__["router"] = router
         return RouterPeer(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

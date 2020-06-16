@@ -9,15 +9,12 @@ import * as utilities from "../utilities";
 /**
  * A named resource to which messages are sent by publishers.
  *
- *
  * To get more information about Topic, see:
  *
  * * [API documentation](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.topics)
  * * How-to Guides
  *     * [Managing Topics](https://cloud.google.com/pubsub/docs/admin#managing_topics)
- *
  * ## Example Usage
- *
  * ### Pubsub Topic Basic
  *
  * ```typescript
@@ -30,7 +27,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
  * ### Pubsub Topic Cmek
  *
  * ```typescript
@@ -41,7 +37,6 @@ import * as utilities from "../utilities";
  * const cryptoKey = new gcp.kms.CryptoKey("cryptoKey", {keyRing: keyRing.id});
  * const example = new gcp.pubsub.Topic("example", {kmsKeyName: cryptoKey.id});
  * ```
- *
  * ### Pubsub Topic Geo Restricted
  *
  * ```typescript
@@ -54,6 +49,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class Topic extends pulumi.CustomResource {
     /**

@@ -81,10 +81,7 @@ class AwaitableGetBackendBucketResult(GetBackendBucketResult):
 def get_backend_bucket(name=None,project=None,opts=None):
     """
     Get information about a BackendBucket.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -92,6 +89,9 @@ def get_backend_bucket(name=None,project=None,opts=None):
 
     my_backend_bucket = gcp.compute.get_backend_bucket(name="my-backend")
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
 
 
     :param str name: Name of the resource.

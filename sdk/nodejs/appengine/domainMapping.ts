@@ -9,15 +9,12 @@ import * as utilities from "../utilities";
 /**
  * A domain serving an App Engine application.
  *
- *
  * To get more information about DomainMapping, see:
  *
  * * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.domainMappings)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/mapping-custom-domains)
- *
  * ## Example Usage
- *
  * ### App Engine Domain Mapping Basic
  *
  * ```typescript
@@ -31,6 +28,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class DomainMapping extends pulumi.CustomResource {
     /**

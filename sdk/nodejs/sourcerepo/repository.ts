@@ -9,15 +9,12 @@ import * as utilities from "../utilities";
 /**
  * A repository (or repo) is a Git repository storing versioned source content.
  *
- *
  * To get more information about Repository, see:
  *
  * * [API documentation](https://cloud.google.com/source-repositories/docs/reference/rest/v1/projects.repos)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/source-repositories/)
- *
  * ## Example Usage
- *
  * ### Sourcerepo Repository Basic
  *
  * ```typescript
@@ -26,7 +23,6 @@ import * as utilities from "../utilities";
  *
  * const my_repo = new gcp.sourcerepo.Repository("my-repo", {});
  * ```
- *
  * ### Sourcerepo Repository Full
  *
  * ```typescript
@@ -44,6 +40,9 @@ import * as utilities from "../utilities";
  *     serviceAccountEmail: test_account.email,
  * }]});
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class Repository extends pulumi.CustomResource {
     /**

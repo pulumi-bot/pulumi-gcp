@@ -10,15 +10,12 @@ import * as utilities from "../utilities";
  * during a conversation to structured data that your apps and services can understand. You design and build a Dialogflow
  * agent to handle the types of conversations required for your system.
  *
- *
  * To get more information about Agent, see:
  *
  * * [API documentation](https://cloud.google.com/dialogflow/docs/reference/rest/v2/projects/agent)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
- *
  * ## Example Usage
- *
  * ### Dialogflow Agent Full
  *
  * ```typescript
@@ -43,6 +40,9 @@ import * as utilities from "../utilities";
  *     timeZone: "America/New_York",
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class Agent extends pulumi.CustomResource {
     /**

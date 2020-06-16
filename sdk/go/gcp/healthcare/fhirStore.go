@@ -18,6 +18,10 @@ import (
 // * [API documentation](https://cloud.google.com/healthcare/docs/reference/rest/v1/projects.locations.datasets.fhirStores)
 // * How-to Guides
 //     * [Creating a FHIR store](https://cloud.google.com/healthcare/docs/how-tos/fhir)
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 type FhirStore struct {
 	pulumi.CustomResourceState
 

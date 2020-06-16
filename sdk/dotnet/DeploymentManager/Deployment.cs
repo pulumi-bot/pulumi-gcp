@@ -13,8 +13,6 @@ namespace Pulumi.Gcp.DeploymentManager
     /// A collection of resources that are deployed and managed together using
     /// a configuration file
     /// 
-    /// 
-    /// 
     /// &gt; **Warning:** This resource is intended only to manage a Deployment resource,
     /// and attempts to manage the Deployment's resources in the provider as well
     /// will likely result in errors or unexpected behavior as the two tools
@@ -25,9 +23,7 @@ namespace Pulumi.Gcp.DeploymentManager
     /// deployments in preview as recreate-only for any update operation other
     /// than actually deploying an in-preview deployment (i.e. `preview=true` to
     /// `preview=false`).
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Deployment Manager Deployment Basic
     /// 
     /// ```csharp
@@ -61,6 +57,9 @@ namespace Pulumi.Gcp.DeploymentManager
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Deployment : Pulumi.CustomResource
     {

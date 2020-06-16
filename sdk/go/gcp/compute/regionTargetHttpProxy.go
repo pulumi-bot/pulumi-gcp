@@ -18,6 +18,10 @@ import (
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/regionTargetHttpProxies)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 type RegionTargetHttpProxy struct {
 	pulumi.CustomResourceState
 

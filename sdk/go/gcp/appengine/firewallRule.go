@@ -13,15 +13,12 @@ import (
 // A single firewall rule that is evaluated against incoming traffic
 // and provides an action to take on matched requests.
 //
-//
 // To get more information about FirewallRule, see:
 //
 // * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.firewall.ingressRules)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/creating-firewalls#creating_firewall_rules)
-//
 // ## Example Usage
-//
 // ### App Engine Firewall Rule Basic
 //
 // ```go
@@ -49,7 +46,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		rule, err := appengine.NewFirewallRule(ctx, "rule", &appengine.FirewallRuleArgs{
+// 		_, err = appengine.NewFirewallRule(ctx, "rule", &appengine.FirewallRuleArgs{
 // 			Project:     app.Project,
 // 			Priority:    pulumi.Int(1000),
 // 			Action:      pulumi.String("ALLOW"),
@@ -62,6 +59,9 @@ import (
 // 	})
 // }
 // ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 type FirewallRule struct {
 	pulumi.CustomResourceState
 

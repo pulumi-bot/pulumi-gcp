@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Metric(pulumi.CustomResource):
     bucket_options: pulumi.Output[dict]
     """
@@ -100,15 +101,12 @@ class Metric(pulumi.CustomResource):
         of the values. The distribution records the statistics of the extracted values along with
         an optional histogram of the values as specified by the bucket options.
 
-
         To get more information about Metric, see:
 
         * [API documentation](https://cloud.google.com/logging/docs/reference/v2/rest/v2/projects.metrics/create)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/logging/docs/apis)
-
         ## Example Usage
-
         ### Logging Metric Basic
 
         ```python
@@ -148,7 +146,6 @@ class Metric(pulumi.CustomResource):
             },
             value_extractor="EXTRACT(jsonPayload.request)")
         ```
-
         ### Logging Metric Counter Basic
 
         ```python
@@ -162,7 +159,6 @@ class Metric(pulumi.CustomResource):
                 "valueType": "INT64",
             })
         ```
-
         ### Logging Metric Counter Labels
 
         ```python
@@ -184,6 +180,9 @@ class Metric(pulumi.CustomResource):
                 "valueType": "INT64",
             })
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -374,9 +373,9 @@ class Metric(pulumi.CustomResource):
         __props__["project"] = project
         __props__["value_extractor"] = value_extractor
         return Metric(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

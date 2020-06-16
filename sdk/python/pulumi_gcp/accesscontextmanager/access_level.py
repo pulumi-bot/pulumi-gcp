@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class AccessLevel(pulumi.CustomResource):
     basic: pulumi.Output[dict]
     """
@@ -92,15 +93,12 @@ class AccessLevel(pulumi.CustomResource):
         An AccessLevel is a label that can be applied to requests to GCP services,
         along with a list of requirements necessary for the label to be applied.
 
-
         To get more information about AccessLevel, see:
 
         * [API documentation](https://cloud.google.com/access-context-manager/docs/reference/rest/v1/accessPolicies.accessLevels)
         * How-to Guides
             * [Access Policy Quickstart](https://cloud.google.com/access-context-manager/docs/quickstart)
-
         ## Example Usage
-
         ### Access Context Manager Access Level Basic
 
         ```python
@@ -129,6 +127,9 @@ class AccessLevel(pulumi.CustomResource):
             parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"),
             title="chromeos_no_lock")
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -313,9 +314,9 @@ class AccessLevel(pulumi.CustomResource):
         __props__["parent"] = parent
         __props__["title"] = title
         return AccessLevel(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

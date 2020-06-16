@@ -10,10 +10,7 @@ import * as utilities from "../utilities";
  * Allows management of Organization policies for a Google Folder. For more information see
  * [the official
  * documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview)
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -25,6 +22,9 @@ import * as utilities from "../utilities";
  * });
  * export const version = policy.then(policy => policy.version);
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getOrganizationPolicy(args: GetOrganizationPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationPolicyResult> {
     if (!opts) {

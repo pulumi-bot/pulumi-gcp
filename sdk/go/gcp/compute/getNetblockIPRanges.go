@@ -8,6 +8,10 @@ import (
 )
 
 // Use this data source to get the IP addresses from different special IP ranges on Google Cloud Platform.
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 func GetNetblockIPRanges(ctx *pulumi.Context, args *GetNetblockIPRangesArgs, opts ...pulumi.InvokeOption) (*GetNetblockIPRangesResult, error) {
 	var rv GetNetblockIPRangesResult
 	err := ctx.Invoke("gcp:compute/getNetblockIPRanges:getNetblockIPRanges", args, &rv, opts...)

@@ -63,10 +63,7 @@ class AwaitableGetDefaultServiceAccountResult(GetDefaultServiceAccountResult):
 def get_default_service_account(project=None,opts=None):
     """
     Use this data source to retrieve default service account for this project
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -75,6 +72,9 @@ def get_default_service_account(project=None,opts=None):
     default = gcp.compute.get_default_service_account()
     pulumi.export("defaultAccount", default.email)
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
 
 
     :param str project: The project ID. If it is not provided, the provider project is used.

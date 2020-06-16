@@ -19,10 +19,7 @@ import * as utilities from "../utilities";
  * > **Note:** This resource __must not__ be used in conjunction with
  *    `gcp.organizations.IAMMember` or `gcp.organizations.IAMBinding`
  *    or they will fight over what your policy should be.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -39,6 +36,9 @@ import * as utilities from "../utilities";
  *     policyData: admin.then(admin => admin.policyData),
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class IAMPolicy extends pulumi.CustomResource {
     /**

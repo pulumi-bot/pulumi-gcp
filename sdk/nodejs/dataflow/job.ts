@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
  * Creates a job on Dataflow, which is an implementation of Apache Beam running on Google Compute Engine. For more information see
  * the official documentation for
  * [Beam](https://beam.apache.org) and [Dataflow](https://cloud.google.com/dataflow/).
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -27,6 +24,8 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * {{% examples %}}
+ * {{% /examples %}}
  * ## Note on "destroy" / "apply"
  *
  * There are many types of Dataflow jobs.  Some Dataflow jobs run constantly, getting new data from (e.g.) a GCS bucket, and outputting data continuously.  Some jobs process a set amount of data then terminate.  All jobs can fail while running due to programming errors or other issues.  In this way, Dataflow jobs are different from most other Google resources.

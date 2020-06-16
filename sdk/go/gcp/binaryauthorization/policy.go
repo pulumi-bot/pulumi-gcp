@@ -12,12 +12,15 @@ import (
 
 // A policy for container image binary authorization.
 //
-//
 // To get more information about Policy, see:
 //
 // * [API documentation](https://cloud.google.com/binary-authorization/docs/reference/rest/)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/binary-authorization/)
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 type Policy struct {
 	pulumi.CustomResourceState
 

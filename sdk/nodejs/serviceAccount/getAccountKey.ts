@@ -8,11 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Get service account public key. For more information, see [the official documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) and [API](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys/get).
- *
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -25,6 +21,9 @@ import * as utilities from "../utilities";
  *     publicKeyType: "TYPE_X509_PEM_FILE",
  * }));
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getAccountKey(args: GetAccountKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetAccountKeyResult> {
     if (!opts) {

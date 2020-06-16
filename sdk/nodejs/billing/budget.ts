@@ -14,9 +14,7 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/billing/docs/reference/budget/rest/v1beta1/billingAccounts.budgets)
  * * How-to Guides
  *     * [Creating a budget](https://cloud.google.com/billing/docs/how-to/budgets)
- *
  * ## Example Usage
- *
  * ### Billing Budget Basic
  *
  * ```typescript
@@ -40,7 +38,6 @@ import * as utilities from "../utilities";
  *     }],
  * });
  * ```
- *
  * ### Billing Budget Filter
  *
  * ```typescript
@@ -75,6 +72,9 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class Budget extends pulumi.CustomResource {
     /**

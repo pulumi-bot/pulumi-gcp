@@ -18,6 +18,10 @@ import (
 // * [API documentation](https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferJobs#TransferJob)
 // * How-to Guides
 //     * [Configuring Access to Data Sources and Sinks](https://cloud.google.com/storage-transfer/docs/configure-access)
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 type TransferJob struct {
 	pulumi.CustomResourceState
 

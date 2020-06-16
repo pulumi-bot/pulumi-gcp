@@ -12,13 +12,10 @@ namespace Pulumi.Gcp.AppEngine
     /// <summary>
     /// Traffic routing configuration for versions within a single service. Traffic splits define how traffic directed to the service is assigned to versions.
     /// 
-    /// 
     /// To get more information about ServiceSplitTraffic, see:
     /// 
     /// * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services)
-    /// 
     /// ## Example Usage
-    /// 
     /// ### App Engine Service Split Traffic
     /// 
     /// ```csharp
@@ -114,6 +111,9 @@ namespace Pulumi.Gcp.AppEngine
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class EngineSplitTraffic : Pulumi.CustomResource
     {

@@ -20,9 +20,7 @@ namespace Pulumi.Gcp.Compute
     /// * How-to Guides
     ///     * [Choosing a VPN](https://cloud.google.com/vpn/docs/how-to/choosing-a-vpn)
     ///     * [Cloud VPN Overview](https://cloud.google.com/vpn/docs/concepts/overview)
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Ha Vpn Gateway Basic
     /// 
     /// ```csharp
@@ -46,7 +44,6 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
     /// ### Ha Vpn Gateway Gcp To Gcp
     /// 
     /// ```csharp
@@ -221,6 +218,9 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class HaVpnGateway : Pulumi.CustomResource
     {

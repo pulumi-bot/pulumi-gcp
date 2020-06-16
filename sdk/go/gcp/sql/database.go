@@ -12,11 +12,7 @@ import (
 
 // Represents a SQL database inside the Cloud SQL instance, hosted in
 // Google's cloud.
-//
-//
-//
 // ## Example Usage
-//
 // ### Sql Database Basic
 //
 // ```go
@@ -38,7 +34,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		database, err := sql.NewDatabase(ctx, "database", &sql.DatabaseArgs{
+// 		_, err = sql.NewDatabase(ctx, "database", &sql.DatabaseArgs{
 // 			Instance: instance.Name,
 // 		})
 // 		if err != nil {
@@ -48,6 +44,9 @@ import (
 // 	})
 // }
 // ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 type Database struct {
 	pulumi.CustomResourceState
 

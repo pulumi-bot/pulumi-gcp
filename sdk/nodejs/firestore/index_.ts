@@ -11,15 +11,12 @@ import * as utilities from "../utilities";
  *  This resource manages composite indexes and not single
  * field indexes.
  *
- *
  * To get more information about Index, see:
  *
  * * [API documentation](https://cloud.google.com/firestore/docs/reference/rest/v1/projects.databases.collectionGroups.indexes)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/firestore/docs/query-data/indexing)
- *
  * ## Example Usage
- *
  * ### Firestore Index Basic
  *
  * ```typescript
@@ -45,6 +42,9 @@ import * as utilities from "../utilities";
  *     project: "my-project-name",
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class Index extends pulumi.CustomResource {
     /**

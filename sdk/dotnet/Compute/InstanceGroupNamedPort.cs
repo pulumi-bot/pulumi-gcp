@@ -15,12 +15,15 @@ namespace Pulumi.Gcp.Compute
     /// with GKE-generated groups that shouldn't otherwise be managed by other
     /// tools.
     /// 
-    /// 
     /// To get more information about InstanceGroupNamedPort, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/instanceGroup)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/instance-groups/)
+    /// ## Example Usage
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class InstanceGroupNamedPort : Pulumi.CustomResource
     {

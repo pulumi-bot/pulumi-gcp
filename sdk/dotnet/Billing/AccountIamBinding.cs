@@ -20,10 +20,7 @@ namespace Pulumi.Gcp.Billing
     /// &gt; **Note:** On create, this resource will overwrite members of any existing roles.
     ///     Use `pulumi import` and inspect the output to ensure
     ///     your existing members are preserved.
-    /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -46,6 +43,9 @@ namespace Pulumi.Gcp.Billing
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class AccountIamBinding : Pulumi.CustomResource
     {

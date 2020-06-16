@@ -47,10 +47,7 @@ def get_node_types(project=None,zone=None,opts=None):
     """
     Provides available node types for Compute Engine sole-tenant nodes in a zone
     for a given project. For more information, see [the official documentation](https://cloud.google.com/compute/docs/nodes/#types) and [API](https://cloud.google.com/compute/docs/reference/rest/v1/nodeTypes).
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -61,6 +58,9 @@ def get_node_types(project=None,zone=None,opts=None):
         region="us-central1",
         node_type=data["google_compute_node_types"]["types"]["names"])
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
 
 
     :param str project: ID of the project to list available node types for.

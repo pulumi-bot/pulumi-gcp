@@ -8,15 +8,12 @@ import * as utilities from "../utilities";
  * An isolated set of Cloud Spanner resources on which databases can be
  * hosted.
  *
- *
  * To get more information about Instance, see:
  *
  * * [API documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/projects.instances)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/spanner/)
- *
  * ## Example Usage
- *
  * ### Spanner Instance Basic
  *
  * ```typescript
@@ -32,6 +29,9 @@ import * as utilities from "../utilities";
  *     numNodes: 2,
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class Instance extends pulumi.CustomResource {
     /**

@@ -9,12 +9,7 @@ import * as utilities from "../utilities";
  * which will be applied to this disk for scheduling snapshot creation.
  *
  * > **Note:** This resource does not support zonal disks (`gcp.compute.Disk`). For zonal disks, please refer to the `gcp.compute.DiskResourcePolicyAttachment` resource.
- *
- *
- *
- *
  * ## Example Usage
- *
  * ### Region Disk Resource Policy Attachment Basic
  *
  * ```typescript
@@ -61,6 +56,9 @@ import * as utilities from "../utilities";
  *     project: "debian-cloud",
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class RegionDiskResourcePolicyAttachment extends pulumi.CustomResource {
     /**

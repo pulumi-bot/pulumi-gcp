@@ -19,6 +19,10 @@ import (
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/packetMirroring)
 // * How-to Guides
 //     * [Using Packet Mirroring](https://cloud.google.com/vpc/docs/using-packet-mirroring#creating)
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 type PacketMirroring struct {
 	pulumi.CustomResourceState
 

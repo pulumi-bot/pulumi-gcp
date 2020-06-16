@@ -12,15 +12,12 @@ import (
 
 // A Google Cloud Redis instance.
 //
-//
 // To get more information about Instance, see:
 //
 // * [API documentation](https://cloud.google.com/memorystore/docs/redis/reference/rest/)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/memorystore/docs/redis/)
-//
 // ## Example Usage
-//
 // ### Redis Instance Basic
 //
 // ```go
@@ -33,7 +30,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		cache, err := redis.NewInstance(ctx, "cache", &redis.InstanceArgs{
+// 		_, err = redis.NewInstance(ctx, "cache", &redis.InstanceArgs{
 // 			MemorySizeGb: pulumi.Int(1),
 // 		})
 // 		if err != nil {
@@ -43,6 +40,9 @@ import (
 // 	})
 // }
 // ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 type Instance struct {
 	pulumi.CustomResourceState
 

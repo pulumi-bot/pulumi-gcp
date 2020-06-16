@@ -14,6 +14,10 @@ import (
 //
 // For more information see
 // [the API reference](https://cloud.google.com/storage/docs/json_api/v1/projects/serviceAccount).
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 func GetProjectServiceAccount(ctx *pulumi.Context, args *GetProjectServiceAccountArgs, opts ...pulumi.InvokeOption) (*GetProjectServiceAccountResult, error) {
 	var rv GetProjectServiceAccountResult
 	err := ctx.Invoke("gcp:storage/getProjectServiceAccount:getProjectServiceAccount", args, &rv, opts...)

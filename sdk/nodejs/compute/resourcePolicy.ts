@@ -8,11 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * A policy that can be attached to a resource to specify or schedule actions on that resource.
- *
- *
- *
  * ## Example Usage
- *
  * ### Resource Policy Basic
  *
  * ```typescript
@@ -31,7 +27,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
  * ### Resource Policy Full
  *
  * ```typescript
@@ -61,7 +56,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
  * ### Resource Policy Placement Policy
  *
  * ```typescript
@@ -76,6 +70,9 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class ResourcePolicy extends pulumi.CustomResource {
     /**

@@ -14,10 +14,9 @@ import (
 // [the official
 // documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
 // [API](https://cloud.google.com/resource-manager/reference/rest/v1/organizations/setOrgPolicy).
-//
 // ## Example Usage
 //
-//
+// To set policy with a [boolean constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-boolean-constraints):
 //
 // ```go
 // package main
@@ -29,7 +28,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		serialPortPolicy, err := organizations.NewPolicy(ctx, "serialPortPolicy", &organizations.PolicyArgs{
+// 		_, err = organizations.NewPolicy(ctx, "serialPortPolicy", &organizations.PolicyArgs{
 // 			BooleanPolicy: &organizations.PolicyBooleanPolicyArgs{
 // 				Enforced: pulumi.Bool(true),
 // 			},
@@ -43,6 +42,97 @@ import (
 // 	})
 // }
 // ```
+//
+// To set a policy with a [list constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-list-constraints):
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = organizations.NewPolicy(ctx, "servicesPolicy", &organizations.PolicyArgs{
+// 			Constraint: pulumi.String("serviceuser.services"),
+// 			ListPolicy: &organizations.PolicyListPolicyArgs{
+// 				Allow: &organizations.PolicyListPolicyAllowArgs{
+// 					All: pulumi.Bool(true),
+// 				},
+// 			},
+// 			OrgId: pulumi.String("123456789"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// Or to deny some services, use the following instead:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = organizations.NewPolicy(ctx, "servicesPolicy", &organizations.PolicyArgs{
+// 			Constraint: pulumi.String("serviceuser.services"),
+// 			ListPolicy: &organizations.PolicyListPolicyArgs{
+// 				Deny: &organizations.PolicyListPolicyDenyArgs{
+// 					Values: pulumi.StringArray{
+// 						pulumi.String("cloudresourcemanager.googleapis.com"),
+// 					},
+// 				},
+// 				SuggestedValue: pulumi.String("compute.googleapis.com"),
+// 			},
+// 			OrgId: pulumi.String("123456789"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// To restore the default organization policy, use the following instead:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = organizations.NewPolicy(ctx, "servicesPolicy", &organizations.PolicyArgs{
+// 			Constraint: pulumi.String("serviceuser.services"),
+// 			OrgId:      pulumi.String("123456789"),
+// 			RestorePolicy: &organizations.PolicyRestorePolicyArgs{
+// 				Default: pulumi.Bool(true),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 type Policy struct {
 	pulumi.CustomResourceState
 

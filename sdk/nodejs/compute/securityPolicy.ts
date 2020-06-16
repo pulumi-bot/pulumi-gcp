@@ -10,10 +10,7 @@ import * as utilities from "../utilities";
  * A Security Policy defines an IP blacklist or whitelist that protects load balanced Google Cloud services by denying or permitting traffic from specified IP ranges. For more information
  * see the [official documentation](https://cloud.google.com/armor/docs/configure-security-policies)
  * and the [API](https://cloud.google.com/compute/docs/reference/rest/beta/securityPolicies).
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -46,6 +43,9 @@ import * as utilities from "../utilities";
  *     ],
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class SecurityPolicy extends pulumi.CustomResource {
     /**

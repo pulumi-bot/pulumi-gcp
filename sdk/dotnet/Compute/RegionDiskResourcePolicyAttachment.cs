@@ -14,6 +14,10 @@ namespace Pulumi.Gcp.Compute
     /// which will be applied to this disk for scheduling snapshot creation.
     /// 
     /// &gt; **Note:** This resource does not support zonal disks (`gcp.compute.Disk`). For zonal disks, please refer to the `gcp.compute.DiskResourcePolicyAttachment` resource.
+    /// ## Example Usage
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class RegionDiskResourcePolicyAttachment : Pulumi.CustomResource
     {

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class HaVpnGateway(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
@@ -60,9 +61,7 @@ class HaVpnGateway(pulumi.CustomResource):
         * How-to Guides
             * [Choosing a VPN](https://cloud.google.com/vpn/docs/how-to/choosing-a-vpn)
             * [Cloud VPN Overview](https://cloud.google.com/vpn/docs/concepts/overview)
-
         ## Example Usage
-
         ### Ha Vpn Gateway Basic
 
         ```python
@@ -74,7 +73,6 @@ class HaVpnGateway(pulumi.CustomResource):
             region="us-central1",
             network=network1.id)
         ```
-
         ### Ha Vpn Gateway Gcp To Gcp
 
         ```python
@@ -197,6 +195,9 @@ class HaVpnGateway(pulumi.CustomResource):
             interface=router2_interface2.name)
         ```
 
+        {{% examples %}}
+        {{% /examples %}}
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional description of this resource.
@@ -285,9 +286,9 @@ class HaVpnGateway(pulumi.CustomResource):
         __props__["self_link"] = self_link
         __props__["vpn_interfaces"] = vpn_interfaces
         return HaVpnGateway(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Job(pulumi.CustomResource):
     additional_experiments: pulumi.Output[list]
     """
@@ -91,10 +92,7 @@ class Job(pulumi.CustomResource):
         Creates a job on Dataflow, which is an implementation of Apache Beam running on Google Compute Engine. For more information see
         the official documentation for
         [Beam](https://beam.apache.org) and [Dataflow](https://cloud.google.com/dataflow/).
-
         ## Example Usage
-
-
 
         ```python
         import pulumi
@@ -109,6 +107,8 @@ class Job(pulumi.CustomResource):
             template_gcs_path="gs://my-bucket/templates/template_file")
         ```
 
+        {{% examples %}}
+        {{% /examples %}}
         ## Note on "destroy" / "apply"
 
         There are many types of Dataflow jobs.  Some Dataflow jobs run constantly, getting new data from (e.g.) a GCS bucket, and outputting data continuously.  Some jobs process a set amount of data then terminate.  All jobs can fail while running due to programming errors or other issues.  In this way, Dataflow jobs are different from most other Google resources.
@@ -239,9 +239,9 @@ class Job(pulumi.CustomResource):
         __props__["type"] = type
         __props__["zone"] = zone
         return Job(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

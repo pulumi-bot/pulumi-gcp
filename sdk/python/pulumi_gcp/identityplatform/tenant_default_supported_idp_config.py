@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class TenantDefaultSupportedIdpConfig(pulumi.CustomResource):
     client_id: pulumi.Output[str]
     """
@@ -56,11 +57,7 @@ class TenantDefaultSupportedIdpConfig(pulumi.CustomResource):
         You must enable the
         [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
         the marketplace prior to using this resource.
-
-
-
         ## Example Usage
-
         ### Identity Platform Tenant Default Supported Idp Config Basic
 
         ```python
@@ -75,6 +72,9 @@ class TenantDefaultSupportedIdpConfig(pulumi.CustomResource):
             client_id="my-client-id",
             client_secret="secret")
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -174,9 +174,9 @@ class TenantDefaultSupportedIdpConfig(pulumi.CustomResource):
         __props__["project"] = project
         __props__["tenant"] = tenant
         return TenantDefaultSupportedIdpConfig(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

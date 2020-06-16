@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class InterconnectAttachment(pulumi.CustomResource):
     admin_enabled: pulumi.Output[bool]
     """
@@ -133,11 +134,7 @@ class InterconnectAttachment(pulumi.CustomResource):
         """
         Represents an InterconnectAttachment (VLAN attachment) resource. For more
         information, see Creating VLAN Attachments.
-
-
-
         ## Example Usage
-
         ### Interconnect Attachment Basic
 
         ```python
@@ -149,6 +146,9 @@ class InterconnectAttachment(pulumi.CustomResource):
             interconnect="my-interconnect-id",
             router=foobar.id)
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -334,9 +334,9 @@ class InterconnectAttachment(pulumi.CustomResource):
         __props__["type"] = type
         __props__["vlan_tag8021q"] = vlan_tag8021q
         return InterconnectAttachment(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

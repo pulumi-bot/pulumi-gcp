@@ -14,10 +14,9 @@ namespace Pulumi.Gcp.Folder
     /// [the official
     /// documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
     /// [API](https://cloud.google.com/resource-manager/reference/rest/v1/folders/setOrgPolicy).
-    /// 
     /// ## Example Usage
     /// 
-    /// 
+    /// To set policy with a [boolean constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-boolean-constraints):
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -40,6 +39,91 @@ namespace Pulumi.Gcp.Folder
     /// 
     /// }
     /// ```
+    /// 
+    /// To set a policy with a [list constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-list-constraints):
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var servicesPolicy = new Gcp.Folder.OrganizationPolicy("servicesPolicy", new Gcp.Folder.OrganizationPolicyArgs
+    ///         {
+    ///             Constraint = "serviceuser.services",
+    ///             Folder = "folders/123456789",
+    ///             ListPolicy = new Gcp.Folder.Inputs.OrganizationPolicyListPolicyArgs
+    ///             {
+    ///                 Allow = new Gcp.Folder.Inputs.OrganizationPolicyListPolicyAllowArgs
+    ///                 {
+    ///                     All = true,
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// Or to deny some services, use the following instead:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var servicesPolicy = new Gcp.Folder.OrganizationPolicy("servicesPolicy", new Gcp.Folder.OrganizationPolicyArgs
+    ///         {
+    ///             Constraint = "serviceuser.services",
+    ///             Folder = "folders/123456789",
+    ///             ListPolicy = new Gcp.Folder.Inputs.OrganizationPolicyListPolicyArgs
+    ///             {
+    ///                 Deny = new Gcp.Folder.Inputs.OrganizationPolicyListPolicyDenyArgs
+    ///                 {
+    ///                     Values = 
+    ///                     {
+    ///                         "cloudresourcemanager.googleapis.com",
+    ///                     },
+    ///                 },
+    ///                 SuggestedValue = "compute.googleapis.com",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// To restore the default folder organization policy, use the following instead:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var servicesPolicy = new Gcp.Folder.OrganizationPolicy("servicesPolicy", new Gcp.Folder.OrganizationPolicyArgs
+    ///         {
+    ///             Constraint = "serviceuser.services",
+    ///             Folder = "folders/123456789",
+    ///             RestorePolicy = new Gcp.Folder.Inputs.OrganizationPolicyRestorePolicyArgs
+    ///             {
+    ///                 Default = true,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class OrganizationPolicy : Pulumi.CustomResource
     {

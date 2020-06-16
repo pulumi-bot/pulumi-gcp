@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Connection(pulumi.CustomResource):
     cloud_sql: pulumi.Output[dict]
     """
@@ -67,9 +68,7 @@ class Connection(pulumi.CustomResource):
 
         > **Warning:** All arguments including `cloud_sql.credential.password` will be stored in the raw
         state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
-
         ## Example Usage
-
         ### Bigquery Connection Basic
 
         ```python
@@ -103,7 +102,6 @@ class Connection(pulumi.CustomResource):
                 },
             })
         ```
-
         ### Bigquery Connection Full
 
         ```python
@@ -139,6 +137,9 @@ class Connection(pulumi.CustomResource):
                 },
             })
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -242,9 +243,9 @@ class Connection(pulumi.CustomResource):
         __props__["name"] = name
         __props__["project"] = project
         return Connection(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

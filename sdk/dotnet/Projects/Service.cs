@@ -10,14 +10,11 @@ using Pulumi.Serialization;
 namespace Pulumi.Gcp.Projects
 {
     /// <summary>
-    /// Allows management of a single API service for an existing Google Cloud Platform project. 
+    /// Allows management of a single API service for an existing Google Cloud Platform project.
     /// 
     /// For a list of services available, visit the
     /// [API library page](https://console.cloud.google.com/apis/library) or run `gcloud services list`.
-    /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -37,6 +34,9 @@ namespace Pulumi.Gcp.Projects
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Service : Pulumi.CustomResource
     {

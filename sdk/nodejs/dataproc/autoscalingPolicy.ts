@@ -8,11 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Describes an autoscaling policy for Dataproc cluster autoscaler.
- *
- *
- *
  * ## Example Usage
- *
  * ### Dataproc Autoscaling Policy
  *
  * ```typescript
@@ -42,6 +38,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class AutoscalingPolicy extends pulumi.CustomResource {
     /**

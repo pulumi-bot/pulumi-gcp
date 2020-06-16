@@ -17,9 +17,7 @@ namespace Pulumi.Gcp.ServiceDirectory
     /// * [API documentation](https://cloud.google.com/service-directory/docs/reference/rest/v1beta1/projects.locations.namespaces.services.endpoints)
     /// * How-to Guides
     ///     * [Configuring an endpoint](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_an_endpoint)
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Service Directory Endpoint Basic
     /// 
     /// ```csharp
@@ -56,6 +54,9 @@ namespace Pulumi.Gcp.ServiceDirectory
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Endpoint : Pulumi.CustomResource
     {

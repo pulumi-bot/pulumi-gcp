@@ -14,10 +14,7 @@ import (
 // [the official documentation](https://cloud.google.com/compute/docs/cloudrouter)
 // and
 // [API](https://cloud.google.com/compute/docs/reference/latest/routers).
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main
@@ -29,7 +26,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		foobar, err := compute.NewRouterInterface(ctx, "foobar", &compute.RouterInterfaceArgs{
+// 		_, err = compute.NewRouterInterface(ctx, "foobar", &compute.RouterInterfaceArgs{
 // 			IpRange:   pulumi.String("169.254.1.1/30"),
 // 			Region:    pulumi.String("us-central1"),
 // 			Router:    pulumi.String("router-1"),
@@ -42,6 +39,9 @@ import (
 // 	})
 // }
 // ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 type RouterInterface struct {
 	pulumi.CustomResourceState
 

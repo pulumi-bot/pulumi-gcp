@@ -11,11 +11,7 @@ namespace Pulumi.Gcp.Compute
 {
     /// <summary>
     /// A policy that can be attached to a resource to specify or schedule actions on that resource.
-    /// 
-    /// 
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Resource Policy Basic
     /// 
     /// ```csharp
@@ -45,7 +41,6 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
     /// ### Resource Policy Full
     /// 
     /// ```csharp
@@ -89,7 +84,6 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
     /// ### Resource Policy Placement Policy
     /// 
     /// ```csharp
@@ -113,6 +107,9 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class ResourcePolicy : Pulumi.CustomResource
     {

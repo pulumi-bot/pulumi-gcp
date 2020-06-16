@@ -8,6 +8,10 @@ import (
 )
 
 // Use this data source to retrieve default service account for this project
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 func GetDefaultServiceAccount(ctx *pulumi.Context, args *GetDefaultServiceAccountArgs, opts ...pulumi.InvokeOption) (*GetDefaultServiceAccountResult, error) {
 	var rv GetDefaultServiceAccountResult
 	err := ctx.Invoke("gcp:compute/getDefaultServiceAccount:getDefaultServiceAccount", args, &rv, opts...)

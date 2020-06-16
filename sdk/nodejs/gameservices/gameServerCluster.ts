@@ -14,6 +14,10 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/game-servers/docs/reference/rest/v1beta/projects.locations.realms.gameServerClusters)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/game-servers/docs)
+ * ## Example Usage
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class GameServerCluster extends pulumi.CustomResource {
     /**

@@ -11,6 +11,10 @@ import (
 )
 
 // App profile is a configuration object describing how Cloud Bigtable should treat traffic from a particular end user application.
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 type AppProfile struct {
 	pulumi.CustomResourceState
 

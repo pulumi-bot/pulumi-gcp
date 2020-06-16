@@ -12,9 +12,7 @@ import * as utilities from "../utilities";
  * To get more information about ExternalVpnGateway, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/externalVpnGateways)
- *
  * ## Example Usage
- *
  * ### External Vpn Gateway
  *
  * ```typescript
@@ -100,6 +98,9 @@ import * as utilities from "../utilities";
  *     "interface": router1Interface2.name,
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class ExternalVpnGateway extends pulumi.CustomResource {
     /**

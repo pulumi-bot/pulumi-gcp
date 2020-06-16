@@ -13,12 +13,15 @@ import (
 // Represents a TargetHttpsProxy resource, which is used by one or more
 // global forwarding rule to route incoming HTTPS requests to a URL map.
 //
-//
 // To get more information about TargetHttpsProxy, see:
 //
 // * [API documentation](https://cloud.google.com/compute/docs/reference/v1/targetHttpsProxies)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
+// ## Example Usage
+//
+// {{% examples %}}
+// {{% /examples %}}
 type TargetHttpsProxy struct {
 	pulumi.CustomResourceState
 

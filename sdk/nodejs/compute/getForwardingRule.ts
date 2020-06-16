@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Get a forwarding rule within GCE from its name.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -21,6 +18,9 @@ import * as utilities from "../utilities";
  *     name: "forwarding-rule-us-east1",
  * }, { async: true }));
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export function getForwardingRule(args: GetForwardingRuleArgs, opts?: pulumi.InvokeOptions): Promise<GetForwardingRuleResult> {
     if (!opts) {

@@ -12,15 +12,12 @@ import * as utilities from "../utilities";
  * and either the interface name, IP address, or peer IP address.
  * Please refer to RFC4273.
  *
- *
  * To get more information about RouterBgpPeer, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/routers)
  * * How-to Guides
  *     * [Google Cloud Router](https://cloud.google.com/router/docs/)
- *
  * ## Example Usage
- *
  * ### Router Peer Basic
  *
  * ```typescript
@@ -36,6 +33,9 @@ import * as utilities from "../utilities";
  *     router: "my-router",
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class RouterPeer extends pulumi.CustomResource {
     /**

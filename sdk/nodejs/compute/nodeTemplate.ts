@@ -11,15 +11,12 @@ import * as utilities from "../utilities";
  * for creating sole-tenant nodes, such as node type, vCPU and memory
  * requirements, node affinity labels, and region.
  *
- *
  * To get more information about NodeTemplate, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/nodeTemplates)
  * * How-to Guides
  *     * [Sole-Tenant Nodes](https://cloud.google.com/compute/docs/nodes/)
- *
  * ## Example Usage
- *
  * ### Node Template Basic
  *
  * ```typescript
@@ -34,7 +31,6 @@ import * as utilities from "../utilities";
  *     nodeType: central1a.then(central1a => central1a.names[0]),
  * });
  * ```
- *
  * ### Node Template Server Binding
  *
  * ```typescript
@@ -55,6 +51,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class NodeTemplate extends pulumi.CustomResource {
     /**

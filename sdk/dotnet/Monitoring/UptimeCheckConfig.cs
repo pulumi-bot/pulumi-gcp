@@ -12,7 +12,6 @@ namespace Pulumi.Gcp.Monitoring
     /// <summary>
     /// This message configures which resources and services to monitor for availability.
     /// 
-    /// 
     /// To get more information about UptimeCheckConfig, see:
     /// 
     /// * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.uptimeCheckConfigs)
@@ -21,9 +20,7 @@ namespace Pulumi.Gcp.Monitoring
     /// 
     /// &gt; **Warning:** All arguments including `http_check.auth_info.password` will be stored in the raw
     /// state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Uptime Check Config Http
     /// 
     /// ```csharp
@@ -64,7 +61,6 @@ namespace Pulumi.Gcp.Monitoring
     /// 
     /// }
     /// ```
-    /// 
     /// ### Uptime Check Config Https
     /// 
     /// ```csharp
@@ -107,6 +103,9 @@ namespace Pulumi.Gcp.Monitoring
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class UptimeCheckConfig : Pulumi.CustomResource
     {

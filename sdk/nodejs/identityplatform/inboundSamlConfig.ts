@@ -12,11 +12,7 @@ import * as utilities from "../utilities";
  * You must enable the
  * [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
  * the marketplace prior to using this resource.
- *
- *
- *
  * ## Example Usage
- *
  * ### Identity Platform Inbound Saml Config Basic
  *
  * ```typescript
@@ -40,6 +36,9 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class InboundSamlConfig extends pulumi.CustomResource {
     /**

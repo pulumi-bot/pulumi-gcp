@@ -69,10 +69,7 @@ def get_project(project_id=None,opts=None):
     Use this data source to get project details.
     For more information see
     [API](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project)
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -81,6 +78,9 @@ def get_project(project_id=None,opts=None):
     project = gcp.organizations.get_project()
     pulumi.export("projectNumber", project.number)
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
 
 
     :param str project_id: The project ID. If it is not provided, the provider project is used.

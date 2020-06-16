@@ -15,16 +15,15 @@ namespace Pulumi.Gcp.Storage
     /// acl to the `private` [predefined ACL](https://cloud.google.com/storage/docs/access-control#predefined-acl).
     /// 
     /// For more information see
-    /// [the official documentation](https://cloud.google.com/storage/docs/access-control/lists) 
-    /// and 
+    /// [the official documentation](https://cloud.google.com/storage/docs/access-control/lists)
+    /// and
     /// [API](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls).
     /// 
     /// &gt; Want fine-grained control over object ACLs? Use `gcp.storage.ObjectAccessControl` to control individual
     /// role entity pairs.
-    /// 
     /// ## Example Usage
     /// 
-    /// 
+    /// Create an object ACL with one owner and one reader.
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -57,6 +56,9 @@ namespace Pulumi.Gcp.Storage
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class ObjectACL : Pulumi.CustomResource
     {

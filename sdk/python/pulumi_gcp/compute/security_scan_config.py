@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class SecurityScanConfig(pulumi.CustomResource):
     authentication: pulumi.Output[dict]
     """
@@ -86,9 +87,7 @@ class SecurityScanConfig(pulumi.CustomResource):
 
         > **Warning:** All arguments including `authentication.google_account.password` and `authentication.custom_account.password` will be stored in the raw
         state as plain-text.[Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets)
-
         ## Example Usage
-
         ### Scan Config Basic
 
         ```python
@@ -101,6 +100,9 @@ class SecurityScanConfig(pulumi.CustomResource):
             starting_urls=[scanner_static_ip.address.apply(lambda address: f"http://{address}")],
             target_platforms=["COMPUTE"])
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -238,9 +240,9 @@ class SecurityScanConfig(pulumi.CustomResource):
         __props__["target_platforms"] = target_platforms
         __props__["user_agent"] = user_agent
         return SecurityScanConfig(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class SSLPolicy(pulumi.CustomResource):
     creation_timestamp: pulumi.Output[str]
     """
@@ -77,15 +78,12 @@ class SSLPolicy(pulumi.CustomResource):
         Represents a SSL policy. SSL policies give you the ability to control the
         features of SSL that your SSL proxy or HTTPS load balancer negotiates.
 
-
         To get more information about SslPolicy, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/sslPolicies)
         * How-to Guides
             * [Using SSL Policies](https://cloud.google.com/compute/docs/load-balancing/ssl-policies)
-
         ## Example Usage
-
         ### Ssl Policy Basic
 
         ```python
@@ -104,6 +102,9 @@ class SSLPolicy(pulumi.CustomResource):
             min_tls_version="TLS_1_2",
             profile="CUSTOM")
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -226,9 +227,9 @@ class SSLPolicy(pulumi.CustomResource):
         __props__["project"] = project
         __props__["self_link"] = self_link
         return SSLPolicy(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

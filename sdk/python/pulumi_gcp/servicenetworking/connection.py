@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Connection(pulumi.CustomResource):
     network: pulumi.Output[str]
     """
@@ -33,10 +34,7 @@ class Connection(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/vpc/docs/configure-private-services-access#creating-connection)
         and
         [API](https://cloud.google.com/service-infrastructure/docs/service-networking/reference/rest/v1/services.connections).
-
         ## Example Usage
-
-
 
         ```python
         import pulumi
@@ -53,6 +51,9 @@ class Connection(pulumi.CustomResource):
             service="servicenetworking.googleapis.com",
             reserved_peering_ranges=[private_ip_alloc.name])
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -123,9 +124,9 @@ class Connection(pulumi.CustomResource):
         __props__["reserved_peering_ranges"] = reserved_peering_ranges
         __props__["service"] = service
         return Connection(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

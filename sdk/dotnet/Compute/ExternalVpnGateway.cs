@@ -15,6 +15,10 @@ namespace Pulumi.Gcp.Compute
     /// To get more information about ExternalVpnGateway, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/externalVpnGateways)
+    /// ## Example Usage
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class ExternalVpnGateway : Pulumi.CustomResource
     {

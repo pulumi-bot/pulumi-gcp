@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Group(pulumi.CustomResource):
     display_name: pulumi.Output[str]
     """
@@ -48,15 +49,12 @@ class Group(pulumi.CustomResource):
         associated metadata. If a group's filter matches an available monitored
         resource, then that resource is a member of that group.
 
-
         To get more information about Group, see:
 
         * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.groups)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/monitoring/groups/)
-
         ## Example Usage
-
         ### Monitoring Group Basic
 
         ```python
@@ -67,7 +65,6 @@ class Group(pulumi.CustomResource):
             display_name="tf-test MonitoringGroup",
             filter="resource.metadata.region=\"europe-west2\"")
         ```
-
         ### Monitoring Group Subgroup
 
         ```python
@@ -82,6 +79,9 @@ class Group(pulumi.CustomResource):
             filter="resource.metadata.region=\"europe-west2\"",
             parent_name=parent.name)
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -165,9 +165,9 @@ class Group(pulumi.CustomResource):
         __props__["parent_name"] = parent_name
         __props__["project"] = project
         return Group(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

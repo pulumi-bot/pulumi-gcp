@@ -27,16 +27,13 @@ namespace Pulumi.Gcp.Monitoring
     /// accessed programmatically or through the api explorer at  https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.notificationChannelDescriptors/list .
     /// This provides the channel type and all of the required labels that must be passed.
     /// 
-    /// 
     /// To get more information about NotificationChannel, see:
     /// 
     /// * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.notificationChannels)
     /// * How-to Guides
     ///     * [Notification Options](https://cloud.google.com/monitoring/support/notification-options)
     ///     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Notification Channel Basic
     /// 
     /// ```csharp
@@ -60,7 +57,6 @@ namespace Pulumi.Gcp.Monitoring
     /// 
     /// }
     /// ```
-    /// 
     /// ### Notification Channel Sensitive
     /// 
     /// ```csharp
@@ -88,6 +84,9 @@ namespace Pulumi.Gcp.Monitoring
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class NotificationChannel : Pulumi.CustomResource
     {

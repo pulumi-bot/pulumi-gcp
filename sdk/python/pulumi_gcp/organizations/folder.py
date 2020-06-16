@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Folder(pulumi.CustomResource):
     create_time: pulumi.Output[str]
     """
@@ -35,9 +36,9 @@ class Folder(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, display_name=None, parent=None, __props__=None, __name__=None, __opts__=None):
         """
-        Allows management of a Google Cloud Platform folder. For more information see 
+        Allows management of a Google Cloud Platform folder. For more information see
         [the official documentation](https://cloud.google.com/resource-manager/docs/creating-managing-folders)
-        and 
+        and
         [API](https://cloud.google.com/resource-manager/reference/rest/v2/folders).
 
         A folder can contain projects, other folders, or a combination of both. You can use folders to group projects under an organization in a hierarchy. For example, your organization might contain multiple departments, each with its own set of Cloud Platform resources. Folders allows you to group these resources on a per-department basis. Folders are used to group resources that share common IAM policies.
@@ -48,10 +49,7 @@ class Folder(pulumi.CustomResource):
         resource must have `roles/resourcemanager.folderCreator`. See the
         [Access Control for Folders Using IAM](https://cloud.google.com/resource-manager/docs/access-control-folders)
         doc for more information.
-
         ## Example Usage
-
-
 
         ```python
         import pulumi
@@ -66,6 +64,9 @@ class Folder(pulumi.CustomResource):
             display_name="Team ABC",
             parent=department1.name)
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -134,9 +135,9 @@ class Folder(pulumi.CustomResource):
         __props__["name"] = name
         __props__["parent"] = parent
         return Folder(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

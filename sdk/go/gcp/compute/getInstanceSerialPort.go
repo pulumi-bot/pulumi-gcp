@@ -9,10 +9,7 @@ import (
 
 // Get the serial port output from a Compute Instance. For more information see
 // the official [API](https://cloud.google.com/compute/docs/instances/viewing-serial-port-output) documentation.
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main
@@ -36,6 +33,11 @@ import (
 // 	})
 // }
 // ```
+//
+// Using the serial port output to generate a windows password, derived from the [official guide](https://cloud.google.com/compute/docs/instances/windows/automate-pw-generation):
+//
+// {{% examples %}}
+// {{% /examples %}}
 func GetInstanceSerialPort(ctx *pulumi.Context, args *GetInstanceSerialPortArgs, opts ...pulumi.InvokeOption) (*GetInstanceSerialPortResult, error) {
 	var rv GetInstanceSerialPortResult
 	err := ctx.Invoke("gcp:compute/getInstanceSerialPort:getInstanceSerialPort", args, &rv, opts...)

@@ -12,15 +12,12 @@ namespace Pulumi.Gcp.Iot
     /// <summary>
     /// A Google Cloud IoT Core device registry.
     /// 
-    /// 
     /// To get more information about DeviceRegistry, see:
     /// 
     /// * [API documentation](https://cloud.google.com/iot/docs/reference/cloudiot/rest/)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/iot/docs/)
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Cloudiot Device Registry Basic
     /// 
     /// ```csharp
@@ -38,6 +35,9 @@ namespace Pulumi.Gcp.Iot
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Registry : Pulumi.CustomResource
     {

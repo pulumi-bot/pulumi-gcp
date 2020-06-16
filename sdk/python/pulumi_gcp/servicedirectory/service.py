@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Service(pulumi.CustomResource):
     metadata: pulumi.Output[dict]
     """
@@ -39,9 +40,7 @@ class Service(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/service-directory/docs/reference/rest/v1beta1/projects.locations.namespaces.services)
         * How-to Guides
             * [Configuring a service](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_service)
-
         ## Example Usage
-
         ### Service Directory Service Basic
 
         ```python
@@ -59,6 +58,9 @@ class Service(pulumi.CustomResource):
                 "region": "us-central1",
             })
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -128,9 +130,9 @@ class Service(pulumi.CustomResource):
         __props__["namespace"] = namespace
         __props__["service_id"] = service_id
         return Service(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

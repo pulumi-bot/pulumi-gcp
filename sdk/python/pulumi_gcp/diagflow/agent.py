@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Agent(pulumi.CustomResource):
     api_version: pulumi.Output[str]
     """
@@ -93,15 +94,12 @@ class Agent(pulumi.CustomResource):
         during a conversation to structured data that your apps and services can understand. You design and build a Dialogflow
         agent to handle the types of conversations required for your system.
 
-
         To get more information about Agent, see:
 
         * [API documentation](https://cloud.google.com/dialogflow/docs/reference/rest/v2/projects/agent)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
-
         ## Example Usage
-
         ### Dialogflow Agent Full
 
         ```python
@@ -125,6 +123,9 @@ class Agent(pulumi.CustomResource):
             tier="TIER_STANDARD",
             time_zone="America/New_York")
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -271,9 +272,9 @@ class Agent(pulumi.CustomResource):
         __props__["tier"] = tier
         __props__["time_zone"] = time_zone
         return Agent(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

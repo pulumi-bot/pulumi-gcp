@@ -17,9 +17,7 @@ namespace Pulumi.Gcp.Healthcare
     /// * [API documentation](https://cloud.google.com/healthcare/docs/reference/rest/v1/projects.locations.datasets)
     /// * How-to Guides
     ///     * [Creating a dataset](https://cloud.google.com/healthcare/docs/how-tos/datasets)
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Healthcare Dataset Basic
     /// 
     /// ```csharp
@@ -39,6 +37,9 @@ namespace Pulumi.Gcp.Healthcare
     /// 
     /// }
     /// ```
+    /// 
+    /// {{% examples %}}
+    /// {{% /examples %}}
     /// </summary>
     public partial class Dataset : Pulumi.CustomResource
     {

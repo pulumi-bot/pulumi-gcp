@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Router(pulumi.CustomResource):
     bgp: pulumi.Output[dict]
     """
@@ -73,15 +74,12 @@ class Router(pulumi.CustomResource):
         """
         Represents a Router resource.
 
-
         To get more information about Router, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/routers)
         * How-to Guides
             * [Google Cloud Router](https://cloud.google.com/router/docs/)
-
         ## Example Usage
-
         ### Router Basic
 
         ```python
@@ -105,6 +103,9 @@ class Router(pulumi.CustomResource):
                 ],
             })
         ```
+
+        {{% examples %}}
+        {{% /examples %}}
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -237,9 +238,9 @@ class Router(pulumi.CustomResource):
         __props__["region"] = region
         __props__["self_link"] = self_link
         return Router(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

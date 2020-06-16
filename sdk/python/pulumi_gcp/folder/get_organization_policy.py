@@ -65,10 +65,7 @@ def get_organization_policy(constraint=None,folder=None,opts=None):
     Allows management of Organization policies for a Google Folder. For more information see
     [the official
     documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview)
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -78,6 +75,9 @@ def get_organization_policy(constraint=None,folder=None,opts=None):
         constraint="constraints/compute.trustedImageProjects")
     pulumi.export("version", policy.version)
     ```
+
+    {{% examples %}}
+    {{% /examples %}}
 
 
     :param str constraint: (Required) The name of the Constraint the Policy is configuring, for example, `serviceuser.services`. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints).

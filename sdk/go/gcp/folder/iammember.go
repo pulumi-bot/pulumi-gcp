@@ -17,10 +17,7 @@ import (
 //    `folder.IAMPolicy` or they will fight over what your policy
 //    should be. Similarly, roles controlled by `folder.IAMBinding`
 //    should not be assigned to using `folder.IAMMember`.
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main
@@ -40,7 +37,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		admin, err := folder.NewIAMMember(ctx, "admin", &folder.IAMMemberArgs{
+// 		_, err = folder.NewIAMMember(ctx, "admin", &folder.IAMMemberArgs{
 // 			Folder: department1.Name,
 // 			Role:   pulumi.String("roles/editor"),
 // 			Member: pulumi.String("user:alice@gmail.com"),
@@ -52,6 +49,9 @@ import (
 // 	})
 // }
 // ```
+//
+// {{% examples %}}
+// {{% /examples %}}
 type IAMMember struct {
 	pulumi.CustomResourceState
 

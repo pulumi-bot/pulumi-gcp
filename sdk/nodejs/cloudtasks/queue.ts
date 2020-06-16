@@ -8,11 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * A named resource to which messages are sent by publishers.
- *
- *
- *
  * ## Example Usage
- *
  * ### Queue Basic
  *
  * ```typescript
@@ -23,6 +19,9 @@ import * as utilities from "../utilities";
  *     location: "us-central1",
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class Queue extends pulumi.CustomResource {
     /**

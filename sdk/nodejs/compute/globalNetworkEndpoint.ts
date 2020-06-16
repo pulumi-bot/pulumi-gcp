@@ -9,15 +9,12 @@ import * as utilities from "../utilities";
  * **NOTE**: Global network endpoints cannot be created outside of a
  * global network endpoint group.
  *
- *
  * To get more information about GlobalNetworkEndpoint, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/networkEndpointGroups)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
- *
  * ## Example Usage
- *
  * ### Global Network Endpoint
  *
  * ```typescript
@@ -36,6 +33,9 @@ import * as utilities from "../utilities";
  *     defaultPort: "90",
  * });
  * ```
+ *
+ * {{% examples %}}
+ * {{% /examples %}}
  */
 export class GlobalNetworkEndpoint extends pulumi.CustomResource {
     /**
