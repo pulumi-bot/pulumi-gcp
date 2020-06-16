@@ -43,7 +43,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		admin, err := folder.NewIAMBinding(ctx, "admin", &folder.IAMBindingArgs{
+// 		_, err = folder.NewIAMBinding(ctx, "admin", &folder.IAMBindingArgs{
 // 			Folder: department1.Name,
 // 			Role:   pulumi.String("roles/editor"),
 // 			Members: pulumi.StringArray{

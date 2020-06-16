@@ -34,7 +34,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		neg, err := compute.NewGlobalNetworkEndpointGroup(ctx, "neg", &compute.GlobalNetworkEndpointGroupArgs{
+// 		_, err = compute.NewGlobalNetworkEndpointGroup(ctx, "neg", &compute.GlobalNetworkEndpointGroupArgs{
 // 			DefaultPort:         pulumi.Int(90),
 // 			NetworkEndpointType: pulumi.String("INTERNET_FQDN_PORT"),
 // 		})
@@ -58,7 +58,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		neg, err := compute.NewGlobalNetworkEndpointGroup(ctx, "neg", &compute.GlobalNetworkEndpointGroupArgs{
+// 		_, err = compute.NewGlobalNetworkEndpointGroup(ctx, "neg", &compute.GlobalNetworkEndpointGroupArgs{
 // 			DefaultPort:         pulumi.Int(90),
 // 			NetworkEndpointType: pulumi.String("INTERNET_IP_PORT"),
 // 		})

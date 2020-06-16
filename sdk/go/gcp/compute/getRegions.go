@@ -9,6 +9,39 @@ import (
 
 // Provides access to available Google Compute regions for a given project.
 // See more about [regions and zones](https://cloud.google.com/compute/docs/regions-zones/) in the upstream docs.
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		available, err := compute.LookupRegions(ctx, nil, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		var cluster []*compute.Subnetwork
+// 		for i0, val0 := range available.Names.Length {
+// 			_res, err := compute.NewSubnetwork(ctx, "cluster-"+string(i0), &compute.SubnetworkArgs{
+// 				IpCidrRange: pulumi.String(fmt.Sprintf("%v%v%v", "10.36.", val0, ".0/24")),
+// 				Network:     pulumi.String("my-network"),
+// 				Region:      available.Names[val0],
+// 			})
+// 			if err != nil {
+// 				return err
+// 			}
+// 			cluster = append(cluster, _res)
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func GetRegions(ctx *pulumi.Context, args *GetRegionsArgs, opts ...pulumi.InvokeOption) (*GetRegionsResult, error) {
 	var rv GetRegionsResult
 	err := ctx.Invoke("gcp:compute/getRegions:getRegions", args, &rv, opts...)

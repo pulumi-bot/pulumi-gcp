@@ -38,7 +38,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		idpConfig, err := identityplatform.NewTenantDefaultSupportedIdpConfig(ctx, "idpConfig", &identityplatform.TenantDefaultSupportedIdpConfigArgs{
+// 		_, err = identityplatform.NewTenantDefaultSupportedIdpConfig(ctx, "idpConfig", &identityplatform.TenantDefaultSupportedIdpConfigArgs{
 // 			Enabled:      pulumi.Bool(true),
 // 			Tenant:       tenant.Name,
 // 			IdpId:        pulumi.String("playgames.google.com"),

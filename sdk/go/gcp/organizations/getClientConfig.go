@@ -8,6 +8,29 @@ import (
 )
 
 // Use this data source to access the configuration of the Google Cloud provider.
+//
+// ## Example Usage
+//
+//
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		current, err := organizations.LookupClientConfig(ctx, nil, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("project", current.Project)
+// 		return nil
+// 	})
+// }
+// ```
 func GetClientConfig(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetClientConfigResult, error) {
 	var rv GetClientConfigResult
 	err := ctx.Invoke("gcp:organizations/getClientConfig:getClientConfig", nil, &rv, opts...)

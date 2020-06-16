@@ -44,7 +44,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		basicEntry, err := datacatalog.NewEntry(ctx, "basicEntry", &datacatalog.EntryArgs{
+// 		_, err = datacatalog.NewEntry(ctx, "basicEntry", &datacatalog.EntryArgs{
 // 			EntryGroup:          entryGroup.ID(),
 // 			EntryId:             pulumi.String("my_entry"),
 // 			UserSpecifiedType:   pulumi.String("my_custom_type"),
