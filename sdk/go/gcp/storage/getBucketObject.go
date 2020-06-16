@@ -26,7 +26,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		picture, err := storage.LookupBucketObject(ctx, &storage.LookupBucketObjectArgs{
+// 		_, err := storage.LookupBucketObject(ctx, &storage.LookupBucketObjectArgs{
 // 			Bucket: "image-store",
 // 			Name:   "folder/butterfly01.jpg",
 // 		}, nil)

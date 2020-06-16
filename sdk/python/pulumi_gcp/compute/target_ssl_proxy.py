@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class TargetSSLProxy(pulumi.CustomResource):
     backend_service: pulumi.Output[str]
     """
@@ -206,9 +207,9 @@ class TargetSSLProxy(pulumi.CustomResource):
         __props__["ssl_certificates"] = ssl_certificates
         __props__["ssl_policy"] = ssl_policy
         return TargetSSLProxy(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

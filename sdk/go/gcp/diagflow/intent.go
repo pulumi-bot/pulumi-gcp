@@ -42,7 +42,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		basicIntent, err := diagflow.NewIntent(ctx, "basicIntent", &diagflow.IntentArgs{
+// 		_, err = diagflow.NewIntent(ctx, "basicIntent", &diagflow.IntentArgs{
 // 			DisplayName: pulumi.String("basic-intent"),
 // 		})
 // 		if err != nil {

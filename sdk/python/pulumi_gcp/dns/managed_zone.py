@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class ManagedZone(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
@@ -475,9 +476,9 @@ class ManagedZone(pulumi.CustomResource):
         __props__["service_directory_config"] = service_directory_config
         __props__["visibility"] = visibility
         return ManagedZone(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

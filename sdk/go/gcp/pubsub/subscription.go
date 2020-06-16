@@ -40,7 +40,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		exampleSubscription, err := pubsub.NewSubscription(ctx, "exampleSubscription", &pubsub.SubscriptionArgs{
+// 		_, err = pubsub.NewSubscription(ctx, "exampleSubscription", &pubsub.SubscriptionArgs{
 // 			Project: pulumi.String("subscription-project"),
 // 			Topic:   exampleTopic.Name,
 // 		})

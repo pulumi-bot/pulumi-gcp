@@ -31,7 +31,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		simplecluster, err := dataproc.NewCluster(ctx, "simplecluster", &dataproc.ClusterArgs{
+// 		_, err = dataproc.NewCluster(ctx, "simplecluster", &dataproc.ClusterArgs{
 // 			Region: pulumi.String("us-central1"),
 // 		})
 // 		if err != nil {
@@ -54,7 +54,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		mycluster, err := dataproc.NewCluster(ctx, "mycluster", &dataproc.ClusterArgs{
+// 		_, err = dataproc.NewCluster(ctx, "mycluster", &dataproc.ClusterArgs{
 // 			ClusterConfig: &dataproc.ClusterClusterConfigArgs{
 // 				GceClusterConfig: &dataproc.ClusterClusterConfigGceClusterConfigArgs{
 // 					ServiceAccountScopes: pulumi.StringArray{
@@ -127,7 +127,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		acceleratedCluster, err := dataproc.NewCluster(ctx, "acceleratedCluster", &dataproc.ClusterArgs{
+// 		_, err = dataproc.NewCluster(ctx, "acceleratedCluster", &dataproc.ClusterArgs{
 // 			ClusterConfig: &dataproc.ClusterClusterConfigArgs{
 // 				GceClusterConfig: &dataproc.ClusterClusterConfigGceClusterConfigArgs{
 // 					Zone: pulumi.String("us-central1-a"),

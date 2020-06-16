@@ -34,7 +34,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := spanner.NewInstance(ctx, "example", &spanner.InstanceArgs{
+// 		_, err = spanner.NewInstance(ctx, "example", &spanner.InstanceArgs{
 // 			Config:      pulumi.String("regional-us-central1"),
 // 			DisplayName: pulumi.String("Test Spanner Instance"),
 // 			Labels: map[string]interface{}{

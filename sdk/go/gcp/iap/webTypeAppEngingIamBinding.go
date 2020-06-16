@@ -47,9 +47,9 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		policy, err := iap.NewWebTypeAppEngingIamPolicy(ctx, "policy", &iap.WebTypeAppEngingIamPolicyArgs{
-// 			Project:    pulumi.String(google_app_engine_application.App.Project),
-// 			AppId:      pulumi.String(google_app_engine_application.App.App_id),
+// 		_, err = iap.NewWebTypeAppEngingIamPolicy(ctx, "policy", &iap.WebTypeAppEngingIamPolicyArgs{
+// 			Project:    dynamic(google_app_engine_application.App.Project),
+// 			AppId:      dynamic(google_app_engine_application.App.App_id),
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})
 // 		if err != nil {
@@ -90,9 +90,9 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		policy, err := iap.NewWebTypeAppEngingIamPolicy(ctx, "policy", &iap.WebTypeAppEngingIamPolicyArgs{
-// 			Project:    pulumi.String(google_app_engine_application.App.Project),
-// 			AppId:      pulumi.String(google_app_engine_application.App.App_id),
+// 		_, err = iap.NewWebTypeAppEngingIamPolicy(ctx, "policy", &iap.WebTypeAppEngingIamPolicyArgs{
+// 			Project:    dynamic(google_app_engine_application.App.Project),
+// 			AppId:      dynamic(google_app_engine_application.App.App_id),
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})
 // 		if err != nil {
@@ -114,9 +114,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		binding, err := iap.NewWebTypeAppEngingIamBinding(ctx, "binding", &iap.WebTypeAppEngingIamBindingArgs{
-// 			Project: pulumi.String(google_app_engine_application.App.Project),
-// 			AppId:   pulumi.String(google_app_engine_application.App.App_id),
+// 		_, err = iap.NewWebTypeAppEngingIamBinding(ctx, "binding", &iap.WebTypeAppEngingIamBindingArgs{
+// 			Project: dynamic(google_app_engine_application.App.Project),
+// 			AppId:   dynamic(google_app_engine_application.App.App_id),
 // 			Role:    pulumi.String("roles/iap.httpsResourceAccessor"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -142,9 +142,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		binding, err := iap.NewWebTypeAppEngingIamBinding(ctx, "binding", &iap.WebTypeAppEngingIamBindingArgs{
-// 			Project: pulumi.String(google_app_engine_application.App.Project),
-// 			AppId:   pulumi.String(google_app_engine_application.App.App_id),
+// 		_, err = iap.NewWebTypeAppEngingIamBinding(ctx, "binding", &iap.WebTypeAppEngingIamBindingArgs{
+// 			Project: dynamic(google_app_engine_application.App.Project),
+// 			AppId:   dynamic(google_app_engine_application.App.App_id),
 // 			Role:    pulumi.String("roles/iap.httpsResourceAccessor"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -174,9 +174,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		member, err := iap.NewWebTypeAppEngingIamMember(ctx, "member", &iap.WebTypeAppEngingIamMemberArgs{
-// 			Project: pulumi.String(google_app_engine_application.App.Project),
-// 			AppId:   pulumi.String(google_app_engine_application.App.App_id),
+// 		_, err = iap.NewWebTypeAppEngingIamMember(ctx, "member", &iap.WebTypeAppEngingIamMemberArgs{
+// 			Project: dynamic(google_app_engine_application.App.Project),
+// 			AppId:   dynamic(google_app_engine_application.App.App_id),
 // 			Role:    pulumi.String("roles/iap.httpsResourceAccessor"),
 // 			Member:  pulumi.String("user:jane@example.com"),
 // 		})
@@ -200,9 +200,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		member, err := iap.NewWebTypeAppEngingIamMember(ctx, "member", &iap.WebTypeAppEngingIamMemberArgs{
-// 			Project: pulumi.String(google_app_engine_application.App.Project),
-// 			AppId:   pulumi.String(google_app_engine_application.App.App_id),
+// 		_, err = iap.NewWebTypeAppEngingIamMember(ctx, "member", &iap.WebTypeAppEngingIamMemberArgs{
+// 			Project: dynamic(google_app_engine_application.App.Project),
+// 			AppId:   dynamic(google_app_engine_application.App.App_id),
 // 			Role:    pulumi.String("roles/iap.httpsResourceAccessor"),
 // 			Member:  pulumi.String("user:jane@example.com"),
 // 			Condition: &iap.WebTypeAppEngingIamMemberConditionArgs{

@@ -47,8 +47,8 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		policy, err := endpoints.NewServiceIamPolicy(ctx, "policy", &endpoints.ServiceIamPolicyArgs{
-// 			ServiceName: pulumi.String(google_endpoints_service.Endpoints_service.Service_name),
+// 		_, err = endpoints.NewServiceIamPolicy(ctx, "policy", &endpoints.ServiceIamPolicyArgs{
+// 			ServiceName: dynamic(google_endpoints_service.Endpoints_service.Service_name),
 // 			PolicyData:  pulumi.String(admin.PolicyData),
 // 		})
 // 		if err != nil {
@@ -71,8 +71,8 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		binding, err := endpoints.NewServiceIamBinding(ctx, "binding", &endpoints.ServiceIamBindingArgs{
-// 			ServiceName: pulumi.String(google_endpoints_service.Endpoints_service.Service_name),
+// 		_, err = endpoints.NewServiceIamBinding(ctx, "binding", &endpoints.ServiceIamBindingArgs{
+// 			ServiceName: dynamic(google_endpoints_service.Endpoints_service.Service_name),
 // 			Role:        pulumi.String("roles/viewer"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -98,8 +98,8 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		member, err := endpoints.NewServiceIamMember(ctx, "member", &endpoints.ServiceIamMemberArgs{
-// 			ServiceName: pulumi.String(google_endpoints_service.Endpoints_service.Service_name),
+// 		_, err = endpoints.NewServiceIamMember(ctx, "member", &endpoints.ServiceIamMemberArgs{
+// 			ServiceName: dynamic(google_endpoints_service.Endpoints_service.Service_name),
 // 			Role:        pulumi.String("roles/viewer"),
 // 			Member:      pulumi.String("user:jane@example.com"),
 // 		})
