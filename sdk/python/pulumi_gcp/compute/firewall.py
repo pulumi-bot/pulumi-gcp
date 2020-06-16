@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Firewall(pulumi.CustomResource):
     allows: pulumi.Output[list]
     """
@@ -178,15 +179,12 @@ class Firewall(pulumi.CustomResource):
         networks except the default network, you must create any firewall rules
         you need.
 
-
         To get more information about Firewall, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/v1/firewalls)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/vpc/docs/firewalls)
-
         ## Example Usage
-
         ### Firewall Basic
 
         ```python
@@ -495,9 +493,9 @@ class Firewall(pulumi.CustomResource):
         __props__["target_service_accounts"] = target_service_accounts
         __props__["target_tags"] = target_tags
         return Firewall(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

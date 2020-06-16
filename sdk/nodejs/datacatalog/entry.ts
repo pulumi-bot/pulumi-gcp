@@ -14,15 +14,12 @@ import * as utilities from "../utilities";
  * An Entry resource contains resource details, such as its schema. An Entry can also be used to attach
  * flexible metadata, such as a Tag.
  *
- *
  * To get more information about Entry, see:
  *
  * * [API documentation](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
- *
  * ## Example Usage
- *
  * ### Data Catalog Entry Basic
  *
  * ```typescript
@@ -37,7 +34,6 @@ import * as utilities from "../utilities";
  *     userSpecifiedSystem: "SomethingExternal",
  * });
  * ```
- *
  * ### Data Catalog Entry Fileset
  *
  * ```typescript
@@ -54,7 +50,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
  * ### Data Catalog Entry Full
  *
  * ```typescript

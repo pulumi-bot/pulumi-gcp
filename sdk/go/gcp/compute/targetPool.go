@@ -14,11 +14,7 @@ import (
 // [the official
 // documentation](https://cloud.google.com/compute/docs/load-balancing/network/target-pools)
 // and [API](https://cloud.google.com/compute/docs/reference/latest/targetPools).
-//
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main
@@ -38,7 +34,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		defaultTargetPool, err := compute.NewTargetPool(ctx, "defaultTargetPool", &compute.TargetPoolArgs{
+// 		_, err = compute.NewTargetPool(ctx, "defaultTargetPool", &compute.TargetPoolArgs{
 // 			Instances: pulumi.StringArray{
 // 				pulumi.String("us-central1-a/myinstance1"),
 // 				pulumi.String("us-central1-b/myinstance2"),

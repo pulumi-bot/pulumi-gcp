@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Budget(pulumi.CustomResource):
     all_updates_rule: pulumi.Output[dict]
     """
@@ -95,9 +96,7 @@ class Budget(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/billing/docs/reference/budget/rest/v1beta1/billingAccounts.budgets)
         * How-to Guides
             * [Creating a budget](https://cloud.google.com/billing/docs/how-to/budgets)
-
         ## Example Usage
-
         ### Billing Budget Basic
 
         ```python
@@ -118,7 +117,6 @@ class Budget(pulumi.CustomResource):
                 "thresholdPercent": 0.5,
             }])
         ```
-
         ### Billing Budget Filter
 
         ```python
@@ -336,9 +334,9 @@ class Budget(pulumi.CustomResource):
         __props__["name"] = name
         __props__["threshold_rules"] = threshold_rules
         return Budget(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

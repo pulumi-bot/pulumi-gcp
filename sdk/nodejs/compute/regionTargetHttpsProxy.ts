@@ -13,9 +13,7 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/regionTargetHttpsProxies)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
- *
  * ## Example Usage
- *
  * ### Region Target Https Proxy Basic
  *
  * ```typescript

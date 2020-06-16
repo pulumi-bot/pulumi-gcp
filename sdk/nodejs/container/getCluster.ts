@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Get info about a GKE cluster from its name and location.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

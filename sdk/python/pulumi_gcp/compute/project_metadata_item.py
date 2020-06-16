@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class ProjectMetadataItem(pulumi.CustomResource):
     key: pulumi.Output[str]
     """
@@ -29,10 +30,7 @@ class ProjectMetadataItem(pulumi.CustomResource):
         a project in GCE. Using `compute.ProjectMetadataItem` lets you
         manage a single key/value setting in the provider rather than the entire
         project metadata map.
-
         ## Example Usage
-
-
 
         ```python
         import pulumi
@@ -102,9 +100,9 @@ class ProjectMetadataItem(pulumi.CustomResource):
         __props__["project"] = project
         __props__["value"] = value
         return ProjectMetadataItem(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

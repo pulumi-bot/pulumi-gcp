@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Get info about a Google Compute SSL Certificate from its name.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

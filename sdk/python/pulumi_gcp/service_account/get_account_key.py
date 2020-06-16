@@ -54,11 +54,7 @@ class AwaitableGetAccountKeyResult(GetAccountKeyResult):
 def get_account_key(name=None,project=None,public_key_type=None,opts=None):
     """
     Get service account public key. For more information, see [the official documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) and [API](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys/get).
-
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

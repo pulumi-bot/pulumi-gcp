@@ -10,15 +10,12 @@ import * as utilities from "../utilities";
  * A named resource representing the stream of messages from a single,
  * specific topic, to be delivered to the subscribing application.
  *
- *
  * To get more information about Subscription, see:
  *
  * * [API documentation](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions)
  * * How-to Guides
  *     * [Managing Subscriptions](https://cloud.google.com/pubsub/docs/admin#managing_subscriptions)
- *
  * ## Example Usage
- *
  * ### Pubsub Subscription Push
  *
  * ```typescript
@@ -40,7 +37,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
  * ### Pubsub Subscription Pull
  *
  * ```typescript
@@ -61,7 +57,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
  * ### Pubsub Subscription Different Project
  *
  * ```typescript
@@ -74,7 +69,6 @@ import * as utilities from "../utilities";
  *     topic: exampleTopic.name,
  * });
  * ```
- *
  * ### Pubsub Subscription Dead Letter
  *
  * ```typescript

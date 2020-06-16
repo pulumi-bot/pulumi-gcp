@@ -12,17 +12,13 @@ import (
 // and third-party messaging applications. Fields containing sensitive information
 // like authentication tokens or contact info are only partially populated on retrieval.
 //
-//
 // To get more information about NotificationChannel, see:
 //
 // * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.notificationChannels)
 // * How-to Guides
 //     * [Notification Options](https://cloud.google.com/monitoring/support/notification-options)
 //     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
-//
-//
 // ## Example Usage
-//
 // ### Notification Channel Basic
 //
 // ```go
@@ -41,7 +37,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		alertPolicy, err := monitoring.NewAlertPolicy(ctx, "alertPolicy", &monitoring.AlertPolicyArgs{
+// 		_, err = monitoring.NewAlertPolicy(ctx, "alertPolicy", &monitoring.AlertPolicyArgs{
 // 			DisplayName: pulumi.String("My Alert Policy"),
 // 			NotificationChannels: pulumi.StringArray{
 // 				pulumi.String(basic.Name),

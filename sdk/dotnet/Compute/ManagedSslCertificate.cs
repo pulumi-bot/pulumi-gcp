@@ -35,6 +35,7 @@ namespace Pulumi.Gcp.Compute
     /// certificates may entail some downtime while the certificate provisions.
     /// 
     /// In conclusion: Be extremely cautious.
+    /// ## Example Usage
     /// </summary>
     public partial class ManagedSslCertificate : Pulumi.CustomResource
     {

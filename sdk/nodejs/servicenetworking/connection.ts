@@ -9,10 +9,7 @@ import * as utilities from "../utilities";
  * [the official documentation](https://cloud.google.com/vpc/docs/configure-private-services-access#creating-connection)
  * and
  * [API](https://cloud.google.com/service-infrastructure/docs/service-networking/reference/rest/v1/services.connections).
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

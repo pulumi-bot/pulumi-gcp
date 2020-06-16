@@ -17,10 +17,7 @@ namespace Pulumi.Gcp.Folder
     ///    `gcp.folder.IAMPolicy` or they will fight over what your policy
     ///    should be. Similarly, roles controlled by `gcp.folder.IAMBinding`
     ///    should not be assigned to using `gcp.folder.IAMMember`.
-    /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;

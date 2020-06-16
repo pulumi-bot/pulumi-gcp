@@ -9,15 +9,12 @@ import * as utilities from "../utilities";
  * global forwarding rule to route incoming SSL requests to a backend
  * service.
  *
- *
  * To get more information about TargetSslProxy, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/v1/targetSslProxies)
  * * How-to Guides
  *     * [Setting Up SSL proxy for Google Cloud Load Balancing](https://cloud.google.com/compute/docs/load-balancing/tcp-ssl/)
- *
  * ## Example Usage
- *
  * ### Target Ssl Proxy Basic
  *
  * ```typescript

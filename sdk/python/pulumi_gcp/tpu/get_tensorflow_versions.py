@@ -46,10 +46,7 @@ class AwaitableGetTensorflowVersionsResult(GetTensorflowVersionsResult):
 def get_tensorflow_versions(project=None,zone=None,opts=None):
     """
     Get TensorFlow versions available for a project. For more information see the [official documentation](https://cloud.google.com/tpu/docs/) and [API](https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.tensorflowVersions).
-
     ## Example Usage
-
-
 
     ```python
     import pulumi
@@ -57,7 +54,6 @@ def get_tensorflow_versions(project=None,zone=None,opts=None):
 
     available = gcp.tpu.get_tensorflow_versions()
     ```
-
     ### Configure Basic TPU Node With Available Version
 
     ```python

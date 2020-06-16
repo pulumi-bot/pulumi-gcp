@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Get a router within GCE from its name and VPC.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

@@ -12,15 +12,12 @@ import (
 
 // Represents an entity type. Entity types serve as a tool for extracting parameter values from natural language queries.
 //
-//
 // To get more information about EntityType, see:
 //
 // * [API documentation](https://cloud.google.com/dialogflow/docs/reference/rest/v2/projects.agent.entityTypes)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
-//
 // ## Example Usage
-//
 // ### Dialogflow Entity Type Basic
 //
 // ```go
@@ -41,7 +38,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		basicEntityType, err := diagflow.NewEntityType(ctx, "basicEntityType", &diagflow.EntityTypeArgs{
+// 		_, err = diagflow.NewEntityType(ctx, "basicEntityType", &diagflow.EntityTypeArgs{
 // 			DisplayName: pulumi.String(""),
 // 			Kind:        pulumi.String("KIND_MAP"),
 // 			Entities: diagflow.EntityTypeEntityArray{
@@ -80,7 +77,7 @@ type EntityType struct {
 	// Indicates the kind of entity type.
 	// * KIND_MAP: Map entity types allow mapping of a group of synonyms to a reference value.
 	// * KIND_LIST: List entity types contain a set of entries that do not map to reference values. However, list entity
-	// types can contain references to other entity types (with or without aliases).
+	//   types can contain references to other entity types (with or without aliases).
 	// * KIND_REGEXP: Regexp entity types allow to specify regular expressions in entries values.
 	Kind pulumi.StringOutput `pulumi:"kind"`
 	// The unique identifier of the entity type. Format: projects/<Project ID>/agent/entityTypes/<Entity type ID>.
@@ -133,7 +130,7 @@ type entityTypeState struct {
 	// Indicates the kind of entity type.
 	// * KIND_MAP: Map entity types allow mapping of a group of synonyms to a reference value.
 	// * KIND_LIST: List entity types contain a set of entries that do not map to reference values. However, list entity
-	// types can contain references to other entity types (with or without aliases).
+	//   types can contain references to other entity types (with or without aliases).
 	// * KIND_REGEXP: Regexp entity types allow to specify regular expressions in entries values.
 	Kind *string `pulumi:"kind"`
 	// The unique identifier of the entity type. Format: projects/<Project ID>/agent/entityTypes/<Entity type ID>.
@@ -153,7 +150,7 @@ type EntityTypeState struct {
 	// Indicates the kind of entity type.
 	// * KIND_MAP: Map entity types allow mapping of a group of synonyms to a reference value.
 	// * KIND_LIST: List entity types contain a set of entries that do not map to reference values. However, list entity
-	// types can contain references to other entity types (with or without aliases).
+	//   types can contain references to other entity types (with or without aliases).
 	// * KIND_REGEXP: Regexp entity types allow to specify regular expressions in entries values.
 	Kind pulumi.StringPtrInput
 	// The unique identifier of the entity type. Format: projects/<Project ID>/agent/entityTypes/<Entity type ID>.
@@ -177,7 +174,7 @@ type entityTypeArgs struct {
 	// Indicates the kind of entity type.
 	// * KIND_MAP: Map entity types allow mapping of a group of synonyms to a reference value.
 	// * KIND_LIST: List entity types contain a set of entries that do not map to reference values. However, list entity
-	// types can contain references to other entity types (with or without aliases).
+	//   types can contain references to other entity types (with or without aliases).
 	// * KIND_REGEXP: Regexp entity types allow to specify regular expressions in entries values.
 	Kind string `pulumi:"kind"`
 	// The ID of the project in which the resource belongs.
@@ -196,7 +193,7 @@ type EntityTypeArgs struct {
 	// Indicates the kind of entity type.
 	// * KIND_MAP: Map entity types allow mapping of a group of synonyms to a reference value.
 	// * KIND_LIST: List entity types contain a set of entries that do not map to reference values. However, list entity
-	// types can contain references to other entity types (with or without aliases).
+	//   types can contain references to other entity types (with or without aliases).
 	// * KIND_REGEXP: Regexp entity types allow to specify regular expressions in entries values.
 	Kind pulumi.StringInput
 	// The ID of the project in which the resource belongs.

@@ -165,10 +165,7 @@ def get_function(name=None,project=None,region=None,opts=None):
     Get information about a Google Cloud Function. For more information see
     the [official documentation](https://cloud.google.com/functions/docs/)
     and [API](https://cloud.google.com/functions/docs/apis).
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

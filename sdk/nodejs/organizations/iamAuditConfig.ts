@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Allows management of audit logging config for a given service for a Google Cloud Platform Organization.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

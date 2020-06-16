@@ -14,9 +14,7 @@ import * as utilities from "../utilities";
  * > **Note:** All arguments and attributes, including basic auth username and
  * passwords as well as certificate outputs will be stored in the raw state as
  * plaintext. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
- *
  * ## Example Usage
- *
  * ### With A Separately Managed Node Pool (Recommended)
  *
  * ```typescript
@@ -52,7 +50,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
  * ### With The Default Node Pool
  *
  * ```typescript

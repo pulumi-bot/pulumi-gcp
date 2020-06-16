@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class NodeGroup(pulumi.CustomResource):
     autoscaling_policy: pulumi.Output[dict]
     """
@@ -64,7 +65,6 @@ class NodeGroup(pulumi.CustomResource):
         """
         Represents a NodeGroup resource to manage a group of sole-tenant nodes.
 
-
         To get more information about NodeGroup, see:
 
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups)
@@ -75,9 +75,7 @@ class NodeGroup(pulumi.CustomResource):
         number of nodes in a node group and changes to node group size either
         through provider config or through external changes will cause
         the provider to delete and recreate the node group.
-
         ## Example Usage
-
         ### Node Group Basic
 
         ```python
@@ -94,7 +92,6 @@ class NodeGroup(pulumi.CustomResource):
             size=1,
             node_template=soletenant_tmpl.id)
         ```
-
         ### Node Group Autoscaling Policy
 
         ```python
@@ -228,9 +225,9 @@ class NodeGroup(pulumi.CustomResource):
         __props__["size"] = size
         __props__["zone"] = zone
         return NodeGroup(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

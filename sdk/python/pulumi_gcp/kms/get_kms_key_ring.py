@@ -56,10 +56,7 @@ def get_kms_key_ring(location=None,name=None,project=None,opts=None):
 
     A KeyRing is a grouping of CryptoKeys for organizational purposes. A KeyRing belongs to a Google Cloud Platform Project
     and resides in a specific location.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

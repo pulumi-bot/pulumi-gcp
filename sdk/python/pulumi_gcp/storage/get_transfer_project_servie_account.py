@@ -42,10 +42,7 @@ class AwaitableGetTransferProjectServieAccountResult(GetTransferProjectServieAcc
 def get_transfer_project_servie_account(project=None,opts=None):
     """
     Use this data source to retrieve Storage Transfer service account for this project
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

@@ -9,10 +9,7 @@ import (
 
 // Get the IP address from a static address reserved for a Global Forwarding Rule which are only used for HTTP load balancing. For more information see
 // the official [API](https://cloud.google.com/compute/docs/reference/latest/globalAddresses) documentation.
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main
@@ -36,7 +33,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		frontend, err := dns.NewRecordSet(ctx, "frontend", &dns.RecordSetArgs{
+// 		_, err = dns.NewRecordSet(ctx, "frontend", &dns.RecordSetArgs{
 // 			Type:        pulumi.String("A"),
 // 			Ttl:         pulumi.Int(300),
 // 			ManagedZone: prod.Name,

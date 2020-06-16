@@ -67,10 +67,7 @@ class AwaitableGetNetworkResult(GetNetworkResult):
 def get_network(name=None,project=None,opts=None):
     """
     Get a network within GCE from its name.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

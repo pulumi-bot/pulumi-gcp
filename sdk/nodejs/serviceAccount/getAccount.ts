@@ -9,10 +9,7 @@ import * as utilities from "../utilities";
 /**
  * Get the service account from a project. For more information see
  * the official [API](https://cloud.google.com/compute/docs/access/service-accounts) documentation.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

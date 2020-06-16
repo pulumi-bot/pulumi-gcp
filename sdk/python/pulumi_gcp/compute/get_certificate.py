@@ -67,10 +67,7 @@ class AwaitableGetCertificateResult(GetCertificateResult):
 def get_certificate(name=None,project=None,opts=None):
     """
     Get info about a Google Compute SSL Certificate from its name.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

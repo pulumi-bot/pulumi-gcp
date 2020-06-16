@@ -26,7 +26,6 @@ namespace Pulumi.Gcp.Compute
     /// Add a persistent disk to your instance when you need reliable and
     /// affordable storage with consistent performance characteristics.
     /// 
-    /// 
     /// To get more information about RegionDisk, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/regionDisks)
@@ -35,9 +34,7 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// &gt; **Warning:** All arguments including `disk_encryption_key.raw_key` will be stored in the raw
     /// state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Region Disk Basic
     /// 
     /// ```csharp

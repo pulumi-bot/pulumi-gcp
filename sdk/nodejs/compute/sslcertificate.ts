@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
  * provides a mechanism to upload an SSL key and certificate to
  * the load balancer to serve secure connections from the user.
  *
- *
  * To get more information about SslCertificate, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/sslCertificates)
@@ -18,9 +17,7 @@ import * as utilities from "../utilities";
  *
  * > **Warning:** All arguments including `certificate` and `privateKey` will be stored in the raw
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
- *
  * ## Example Usage
- *
  * ### Ssl Certificate Basic
  *
  * ```typescript
@@ -35,7 +32,6 @@ import * as utilities from "../utilities";
  *     certificate: fs.readFileSync("path/to/certificate.crt"),
  * });
  * ```
- *
  * ### Ssl Certificate Target Https Proxies
  *
  * ```typescript

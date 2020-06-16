@@ -16,15 +16,12 @@ import (
 // that is located in one of the supported regions. If your project
 // does not have an App Engine app, you must create one.
 //
-//
 // To get more information about Job, see:
 //
 // * [API documentation](https://cloud.google.com/scheduler/docs/reference/rest/)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/scheduler/)
-//
 // ## Example Usage
-//
 // ### Scheduler Job Http
 //
 // ```go
@@ -37,7 +34,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		job, err := cloudscheduler.NewJob(ctx, "job", &cloudscheduler.JobArgs{
+// 		_, err = cloudscheduler.NewJob(ctx, "job", &cloudscheduler.JobArgs{
 // 			AttemptDeadline: pulumi.String("320s"),
 // 			Description:     pulumi.String("test http job"),
 // 			HttpTarget: &cloudscheduler.JobHttpTargetArgs{
@@ -57,7 +54,6 @@ import (
 // 	})
 // }
 // ```
-//
 // ### Scheduler Job App Engine
 //
 // ```go
@@ -70,7 +66,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		job, err := cloudscheduler.NewJob(ctx, "job", &cloudscheduler.JobArgs{
+// 		_, err = cloudscheduler.NewJob(ctx, "job", &cloudscheduler.JobArgs{
 // 			AppEngineHttpTarget: &cloudscheduler.JobAppEngineHttpTargetArgs{
 // 				AppEngineRouting: &cloudscheduler.JobAppEngineHttpTargetAppEngineRoutingArgs{
 // 					Instance: pulumi.String("my-instance-001"),
@@ -111,7 +107,7 @@ type Job struct {
 	// The allowed duration for this deadline is:
 	// * For HTTP targets, between 15 seconds and 30 minutes.
 	// * For App Engine HTTP targets, between 15 seconds and 24 hours.
-	// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
+	//   A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
 	AttemptDeadline pulumi.StringPtrOutput `pulumi:"attemptDeadline"`
 	// A human-readable description for the job.
 	// This string must not contain more than 500 characters.
@@ -180,7 +176,7 @@ type jobState struct {
 	// The allowed duration for this deadline is:
 	// * For HTTP targets, between 15 seconds and 30 minutes.
 	// * For App Engine HTTP targets, between 15 seconds and 24 hours.
-	// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
+	//   A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
 	AttemptDeadline *string `pulumi:"attemptDeadline"`
 	// A human-readable description for the job.
 	// This string must not contain more than 500 characters.
@@ -222,7 +218,7 @@ type JobState struct {
 	// The allowed duration for this deadline is:
 	// * For HTTP targets, between 15 seconds and 30 minutes.
 	// * For App Engine HTTP targets, between 15 seconds and 24 hours.
-	// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
+	//   A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
 	AttemptDeadline pulumi.StringPtrInput
 	// A human-readable description for the job.
 	// This string must not contain more than 500 characters.
@@ -268,7 +264,7 @@ type jobArgs struct {
 	// The allowed duration for this deadline is:
 	// * For HTTP targets, between 15 seconds and 30 minutes.
 	// * For App Engine HTTP targets, between 15 seconds and 24 hours.
-	// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
+	//   A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
 	AttemptDeadline *string `pulumi:"attemptDeadline"`
 	// A human-readable description for the job.
 	// This string must not contain more than 500 characters.
@@ -311,7 +307,7 @@ type JobArgs struct {
 	// The allowed duration for this deadline is:
 	// * For HTTP targets, between 15 seconds and 30 minutes.
 	// * For App Engine HTTP targets, between 15 seconds and 24 hours.
-	// A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
+	//   A duration in seconds with up to nine fractional digits, terminated by 's'. Example: "3.5s"
 	AttemptDeadline pulumi.StringPtrInput
 	// A human-readable description for the job.
 	// This string must not contain more than 500 characters.

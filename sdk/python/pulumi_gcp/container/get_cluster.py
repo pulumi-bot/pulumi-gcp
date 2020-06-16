@@ -231,10 +231,7 @@ class AwaitableGetClusterResult(GetClusterResult):
 def get_cluster(location=None,name=None,project=None,region=None,zone=None,opts=None):
     """
     Get info about a GKE cluster from its name and location.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

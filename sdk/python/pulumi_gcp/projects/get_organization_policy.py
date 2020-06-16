@@ -65,10 +65,7 @@ def get_organization_policy(constraint=None,project=None,opts=None):
     Allows management of Organization policies for a Google Project. For more information see
     [the official
     documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview)
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

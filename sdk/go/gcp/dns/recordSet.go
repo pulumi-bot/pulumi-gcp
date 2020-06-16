@@ -17,9 +17,7 @@ import (
 // the default records) for the given type will be overwritten when you create this resource in the provider.
 // In addition, the Google Cloud DNS API requires NS records to be present at all times, so the provider
 // will not actually remove NS records during destroy but will report that it did.
-//
 // ## Example Usage
-//
 // ### Adding an A record
 //
 // ```go
@@ -38,7 +36,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		recordSet, err := dns.NewRecordSet(ctx, "recordSet", &dns.RecordSetArgs{
+// 		_, err = dns.NewRecordSet(ctx, "recordSet", &dns.RecordSetArgs{
 // 			ManagedZone: prod.Name,
 // 			Type:        pulumi.String("A"),
 // 			Ttl:         pulumi.Int(300),
@@ -53,7 +51,6 @@ import (
 // 	})
 // }
 // ```
-//
 // ### Adding an MX record
 //
 // ```go
@@ -72,7 +69,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		mx, err := dns.NewRecordSet(ctx, "mx", &dns.RecordSetArgs{
+// 		_, err = dns.NewRecordSet(ctx, "mx", &dns.RecordSetArgs{
 // 			ManagedZone: prod.Name,
 // 			Type:        pulumi.String("MX"),
 // 			Ttl:         pulumi.Int(3600),
@@ -91,8 +88,9 @@ import (
 // 	})
 // }
 // ```
-//
 // ### Adding an SPF record
+//
+// Quotes (`""`) must be added around your `rrdatas` for a SPF record. Otherwise `rrdatas` string gets split on spaces.
 //
 // ```go
 // package main
@@ -110,7 +108,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		spf, err := dns.NewRecordSet(ctx, "spf", &dns.RecordSetArgs{
+// 		_, err = dns.NewRecordSet(ctx, "spf", &dns.RecordSetArgs{
 // 			ManagedZone: prod.Name,
 // 			Type:        pulumi.String("TXT"),
 // 			Ttl:         pulumi.Int(300),
@@ -125,8 +123,9 @@ import (
 // 	})
 // }
 // ```
-//
 // ### Adding a CNAME record
+//
+//  The list of `rrdatas` should only contain a single string corresponding to the Canonical Name intended.
 //
 // ```go
 // package main
@@ -144,7 +143,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		cname, err := dns.NewRecordSet(ctx, "cname", &dns.RecordSetArgs{
+// 		_, err = dns.NewRecordSet(ctx, "cname", &dns.RecordSetArgs{
 // 			ManagedZone: prod.Name,
 // 			Type:        pulumi.String("CNAME"),
 // 			Ttl:         pulumi.Int(300),

@@ -9,10 +9,7 @@ import * as utilities from "../utilities";
 /**
  * Returns the list of IP addresses that checkers run from. For more information see
  * the [official documentation](https://cloud.google.com/monitoring/uptime-checks#get-ips).
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

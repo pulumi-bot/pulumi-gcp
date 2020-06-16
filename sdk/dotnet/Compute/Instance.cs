@@ -14,11 +14,7 @@ namespace Pulumi.Gcp.Compute
     /// [the official documentation](https://cloud.google.com/compute/docs/instances)
     /// and
     /// [API](https://cloud.google.com/compute/docs/reference/latest/instances).
-    /// 
-    /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;

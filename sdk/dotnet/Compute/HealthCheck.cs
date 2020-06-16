@@ -22,15 +22,12 @@ namespace Pulumi.Gcp.Compute
     /// successfully to some number of consecutive probes, it is marked
     /// healthy again and can receive new connections.
     /// 
-    /// 
     /// To get more information about HealthCheck, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/healthChecks)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Health Check Tcp
     /// 
     /// ```csharp
@@ -54,7 +51,6 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
     /// ### Health Check Tcp Full
     /// 
     /// ```csharp
@@ -85,7 +81,6 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
     /// ### Health Check Ssl
     /// 
     /// ```csharp
@@ -109,7 +104,6 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
     /// ### Health Check Ssl Full
     /// 
     /// ```csharp
@@ -140,7 +134,6 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
     /// ### Health Check Http
     /// 
     /// ```csharp
@@ -164,7 +157,6 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
     /// ### Health Check Http Full
     /// 
     /// ```csharp
@@ -196,7 +188,6 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
     /// ### Health Check Https
     /// 
     /// ```csharp
@@ -220,7 +211,6 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
     /// ### Health Check Https Full
     /// 
     /// ```csharp
@@ -252,7 +242,6 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
     /// ### Health Check Http2
     /// 
     /// ```csharp
@@ -276,7 +265,6 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
     /// ### Health Check Http2 Full
     /// 
     /// ```csharp

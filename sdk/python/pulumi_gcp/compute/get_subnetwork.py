@@ -94,10 +94,7 @@ class AwaitableGetSubnetworkResult(GetSubnetworkResult):
 def get_subnetwork(name=None,project=None,region=None,self_link=None,opts=None):
     """
     Get a subnetwork within GCE from its name and region.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

@@ -67,10 +67,7 @@ class AwaitableGetVPNGatewayResult(GetVPNGatewayResult):
 def get_vpn_gateway(name=None,project=None,region=None,opts=None):
     """
     Get a VPN gateway within GCE from its name.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

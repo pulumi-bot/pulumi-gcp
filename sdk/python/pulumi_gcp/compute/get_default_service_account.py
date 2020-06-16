@@ -63,10 +63,7 @@ class AwaitableGetDefaultServiceAccountResult(GetDefaultServiceAccountResult):
 def get_default_service_account(project=None,opts=None):
     """
     Use this data source to retrieve default service account for this project
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

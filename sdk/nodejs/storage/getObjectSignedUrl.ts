@@ -10,10 +10,7 @@ import * as utilities from "../utilities";
  * The Google Cloud storage signed URL data source generates a signed URL for a given storage object. Signed URLs provide a way to give time-limited read or write access to anyone in possession of the URL, regardless of whether they have a Google account.
  *
  * For more info about signed URL's is available [here](https://cloud.google.com/storage/docs/access-control/signed-urls).
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -25,7 +22,6 @@ import * as utilities from "../utilities";
  * }, { async: true }));
  * const vm = new gcp.compute.Instance("vm", {});
  * ```
- *
  * ## Full Example
  *
  * ```typescript

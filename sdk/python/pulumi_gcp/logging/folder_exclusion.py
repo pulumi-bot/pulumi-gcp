@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class FolderExclusion(pulumi.CustomResource):
     description: pulumi.Output[str]
     """
@@ -42,10 +43,7 @@ class FolderExclusion(pulumi.CustomResource):
 
         Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
         granted to the credentials used with this provider.
-
         ## Example Usage
-
-
 
         ```python
         import pulumi
@@ -133,9 +131,9 @@ class FolderExclusion(pulumi.CustomResource):
         __props__["folder"] = folder
         __props__["name"] = name
         return FolderExclusion(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

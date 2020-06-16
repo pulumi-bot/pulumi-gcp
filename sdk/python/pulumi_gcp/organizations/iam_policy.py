@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class IAMPolicy(pulumi.CustomResource):
     etag: pulumi.Output[str]
     org_id: pulumi.Output[str]
@@ -37,10 +38,7 @@ class IAMPolicy(pulumi.CustomResource):
         > **Note:** This resource __must not__ be used in conjunction with
            `organizations.IAMMember` or `organizations.IAMBinding`
            or they will fight over what your policy should be.
-
         ## Example Usage
-
-
 
         ```python
         import pulumi
@@ -114,9 +112,9 @@ class IAMPolicy(pulumi.CustomResource):
         __props__["org_id"] = org_id
         __props__["policy_data"] = policy_data
         return IAMPolicy(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

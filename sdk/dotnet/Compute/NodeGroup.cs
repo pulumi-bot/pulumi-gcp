@@ -12,7 +12,6 @@ namespace Pulumi.Gcp.Compute
     /// <summary>
     /// Represents a NodeGroup resource to manage a group of sole-tenant nodes.
     /// 
-    /// 
     /// To get more information about NodeGroup, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/nodeGroups)
@@ -23,9 +22,7 @@ namespace Pulumi.Gcp.Compute
     /// number of nodes in a node group and changes to node group size either
     /// through provider config or through external changes will cause
     /// the provider to delete and recreate the node group.
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Node Group Basic
     /// 
     /// ```csharp

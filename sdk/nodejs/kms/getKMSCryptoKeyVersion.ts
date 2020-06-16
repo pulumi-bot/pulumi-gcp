@@ -13,10 +13,7 @@ import * as utilities from "../utilities";
  * [API](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions).
  *
  * A CryptoKeyVersion represents an individual cryptographic key, and the associated key material.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

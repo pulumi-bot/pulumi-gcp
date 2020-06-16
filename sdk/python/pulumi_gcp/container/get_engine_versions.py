@@ -91,10 +91,7 @@ def get_engine_versions(location=None,project=None,version_prefix=None,opts=None
     the datasource. A region can have a different set of supported versions than
     its component zones, and not all zones in a region are guaranteed to
     support the same version.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

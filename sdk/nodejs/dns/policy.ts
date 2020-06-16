@@ -15,10 +15,7 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/dns/docs/reference/v1beta2/policies)
  * * How-to Guides
  *     * [Using DNS server policies](https://cloud.google.com/dns/zones/#using-dns-server-policies)
- *
- *
  * ## Example Usage
- *
  * ### Dns Policy Basic
  *
  * ```typescript

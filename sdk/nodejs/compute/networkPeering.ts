@@ -14,10 +14,7 @@ import * as utilities from "../utilities";
  * to be functional.
  *
  * > Subnets IP ranges across peered VPC networks cannot overlap.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

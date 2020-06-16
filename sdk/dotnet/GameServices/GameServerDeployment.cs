@@ -17,9 +17,7 @@ namespace Pulumi.Gcp.GameServices
     /// * [API documentation](https://cloud.google.com/game-servers/docs/reference/rest/v1beta/projects.locations.gameServerDeployments)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/game-servers/docs)
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Game Service Deployment Basic
     /// 
     /// ```csharp

@@ -12,10 +12,7 @@ import * as utilities from "../utilities";
  * To get more information about Secret, see:
  *
  * * [API documentation](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets)
- *
- *
  * ## Example Usage
- *
  * ### Secret Config Basic
  *
  * ```typescript

@@ -14,9 +14,7 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/machineImages)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/compute/docs/machine-images)
- *
  * ## Example Usage
- *
  * ### Machine Image Basic
  *
  * ```typescript

@@ -19,9 +19,7 @@ namespace Pulumi.Gcp.ServiceUsage
     /// * How-to Guides
     ///     * [Getting Started](https://cloud.google.com/service-usage/docs/getting-started)
     ///     * [REST API documentation](https://cloud.google.com/service-usage/docs/reference/rest/v1beta1/services.consumerQuotaMetrics.limits.consumerOverrides)
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Consumer Quota Override
     /// 
     /// ```csharp

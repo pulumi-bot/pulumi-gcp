@@ -15,10 +15,9 @@ namespace Pulumi.Gcp.ServiceAccount
     /// &gt; Creation of service accounts is eventually consistent, and that can lead to
     /// errors when you try to apply ACLs to service accounts immediately after
     /// creation.
-    /// 
     /// ## Example Usage
     /// 
-    /// 
+    /// This snippet creates a service account in a project.
     /// 
     /// ```csharp
     /// using Pulumi;

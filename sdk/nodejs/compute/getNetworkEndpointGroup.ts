@@ -10,10 +10,7 @@ import * as utilities from "../utilities";
  * Use this data source to access a Network Endpoint Group's attributes.
  *
  * The NEG may be found by providing either a `selfLink`, or a `name` and a `zone`.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

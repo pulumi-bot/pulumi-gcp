@@ -46,10 +46,7 @@ class AwaitableGetImageVersionsResult(GetImageVersionsResult):
 def get_image_versions(project=None,region=None,opts=None):
     """
     Provides access to available Cloud Composer versions in a region for a given project.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

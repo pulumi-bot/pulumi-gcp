@@ -12,9 +12,7 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v1/projects.dashboards)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/monitoring/dashboards)
- *
  * ## Example Usage
- *
  * ### Monitoring Dashboard Basic
  *
  * ```typescript
@@ -36,7 +34,6 @@ import * as utilities from "../utilities";
  * `,
  * });
  * ```
- *
  * ### Monitoring Dashboard GridLayout
  *
  * ```typescript

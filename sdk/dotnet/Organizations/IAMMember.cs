@@ -16,10 +16,7 @@ namespace Pulumi.Gcp.Organizations
     /// &gt; **Note:** This resource __must not__ be used in conjunction with
     ///    `gcp.organizations.IAMBinding` for the __same role__ or they will fight over
     ///    what your policy should be.
-    /// 
     /// ## Example Usage
-    /// 
-    /// 
     /// 
     /// ```csharp
     /// using Pulumi;

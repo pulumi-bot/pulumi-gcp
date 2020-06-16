@@ -81,10 +81,7 @@ class AwaitableGetBackendBucketResult(GetBackendBucketResult):
 def get_backend_bucket(name=None,project=None,opts=None):
     """
     Get information about a BackendBucket.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

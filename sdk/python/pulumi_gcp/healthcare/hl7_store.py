@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Hl7Store(pulumi.CustomResource):
     dataset: pulumi.Output[str]
     """
@@ -90,9 +91,7 @@ class Hl7Store(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/healthcare/docs/reference/rest/v1/projects.locations.datasets.hl7V2Stores)
         * How-to Guides
             * [Creating a HL7v2 Store](https://cloud.google.com/healthcare/docs/how-tos/hl7v2)
-
         ## Example Usage
-
         ### Healthcare Hl7 V2 Store Basic
 
         ```python
@@ -110,7 +109,6 @@ class Hl7Store(pulumi.CustomResource):
                 "label1": "labelvalue1",
             })
         ```
-
         ### Healthcare Hl7 V2 Store Parser Config
 
         ```python
@@ -374,9 +372,9 @@ class Hl7Store(pulumi.CustomResource):
         __props__["parser_config"] = parser_config
         __props__["self_link"] = self_link
         return Hl7Store(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

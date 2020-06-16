@@ -11,11 +11,9 @@ import (
 // See [the official documentation](https://cloud.google.com/storage/docs/key-terms#objects)
 // and
 // [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
-//
-//
 // ## Example Usage
 //
-//
+// Example picture stored within a folder.
 //
 // ```go
 // package main
@@ -26,7 +24,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		picture, err := storage.LookupBucketObject(ctx, &storage.LookupBucketObjectArgs{
+// 		_, err := storage.LookupBucketObject(ctx, &storage.LookupBucketObjectArgs{
 // 			Bucket: "image-store",
 // 			Name:   "folder/butterfly01.jpg",
 // 		}, nil)

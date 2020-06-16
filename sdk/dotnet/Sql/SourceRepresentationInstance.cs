@@ -15,11 +15,7 @@ namespace Pulumi.Gcp.Sql
     /// Cloud Console and appears the same as a regular Cloud SQL instance, but it
     /// contains no data, requires no configuration or maintenance, and does not
     /// affect billing. You cannot update the source representation instance.
-    /// 
-    /// 
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Sql Source Representation Instance Basic
     /// 
     /// ```csharp

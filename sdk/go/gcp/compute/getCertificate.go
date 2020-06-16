@@ -8,10 +8,7 @@ import (
 )
 
 // Get info about a Google Compute SSL Certificate from its name.
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main

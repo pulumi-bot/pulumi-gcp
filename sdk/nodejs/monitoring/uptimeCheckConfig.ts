@@ -9,7 +9,6 @@ import * as utilities from "../utilities";
 /**
  * This message configures which resources and services to monitor for availability.
  *
- *
  * To get more information about UptimeCheckConfig, see:
  *
  * * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.uptimeCheckConfigs)
@@ -18,9 +17,7 @@ import * as utilities from "../utilities";
  *
  * > **Warning:** All arguments including `http_check.auth_info.password` will be stored in the raw
  * state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
- *
  * ## Example Usage
- *
  * ### Uptime Check Config Http
  *
  * ```typescript
@@ -46,7 +43,6 @@ import * as utilities from "../utilities";
  *     timeout: "60s",
  * });
  * ```
- *
  * ### Uptime Check Config Https
  *
  * ```typescript
@@ -74,7 +70,6 @@ import * as utilities from "../utilities";
  *     timeout: "60s",
  * });
  * ```
- *
  * ### Uptime Check Tcp
  *
  * ```typescript

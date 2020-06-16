@@ -46,10 +46,7 @@ class AwaitableGetActiveFolderResult(GetActiveFolderResult):
 def get_active_folder(display_name=None,parent=None,opts=None):
     """
     Get an active folder within GCP by `display_name` and `parent`.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class ObjectAccessControl(pulumi.CustomResource):
     bucket: pulumi.Output[str]
     """
@@ -72,15 +73,12 @@ class ObjectAccessControl(pulumi.CustomResource):
         For more information, see Access Control, with the caveat that this API
         uses READER and OWNER instead of READ and FULL_CONTROL.
 
-
         To get more information about ObjectAccessControl, see:
 
         * [API documentation](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls)
         * How-to Guides
             * [Official Documentation](https://cloud.google.com/storage/docs/access-control/create-manage-lists)
-
         ## Example Usage
-
         ### Storage Object Access Control Public Object
 
         ```python
@@ -199,9 +197,9 @@ class ObjectAccessControl(pulumi.CustomResource):
         __props__["project_team"] = project_team
         __props__["role"] = role
         return ObjectAccessControl(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

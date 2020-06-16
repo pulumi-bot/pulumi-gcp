@@ -8,10 +8,7 @@ import (
 )
 
 // Get info about a GKE cluster from its name and location.
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main

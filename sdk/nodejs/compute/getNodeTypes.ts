@@ -9,10 +9,7 @@ import * as utilities from "../utilities";
 /**
  * Provides available node types for Compute Engine sole-tenant nodes in a zone
  * for a given project. For more information, see [the official documentation](https://cloud.google.com/compute/docs/nodes/#types) and [API](https://cloud.google.com/compute/docs/reference/rest/v1/nodeTypes).
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

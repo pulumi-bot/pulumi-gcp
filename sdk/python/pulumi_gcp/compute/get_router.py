@@ -63,10 +63,7 @@ class AwaitableGetRouterResult(GetRouterResult):
 def get_router(name=None,network=None,project=None,region=None,opts=None):
     """
     Get a router within GCE from its name and VPC.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

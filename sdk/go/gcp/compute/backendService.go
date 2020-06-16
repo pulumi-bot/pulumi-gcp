@@ -17,15 +17,12 @@ import (
 //
 // Currently self-managed internal load balancing is only available in beta.
 //
-//
 // To get more information about BackendService, see:
 //
 // * [API documentation](https://cloud.google.com/compute/docs/reference/v1/backendServices)
 // * How-to Guides
 //     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
-//
 // ## Example Usage
-//
 // ### Backend Service Basic
 //
 // ```go
@@ -46,7 +43,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		defaultBackendService, err := compute.NewBackendService(ctx, "defaultBackendService", &compute.BackendServiceArgs{
+// 		_, err = compute.NewBackendService(ctx, "defaultBackendService", &compute.BackendServiceArgs{
 // 			HealthChecks: pulumi.String(pulumi.String{
 // 				defaultHttpHealthCheck.ID(),
 // 			}),

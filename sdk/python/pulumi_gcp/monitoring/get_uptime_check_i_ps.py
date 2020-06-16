@@ -39,10 +39,7 @@ def get_uptime_check_i_ps(opts=None):
     """
     Returns the list of IP addresses that checkers run from. For more information see
     the [official documentation](https://cloud.google.com/monitoring/uptime-checks#get-ips).
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

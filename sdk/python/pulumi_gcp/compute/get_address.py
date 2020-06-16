@@ -65,10 +65,7 @@ def get_address(name=None,project=None,region=None,opts=None):
     """
     Get the IP address from a static address. For more information see
     the official [API](https://cloud.google.com/compute/docs/reference/latest/addresses/get) documentation.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

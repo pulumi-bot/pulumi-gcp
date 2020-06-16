@@ -70,10 +70,7 @@ def get_account(account_id=None,project=None,opts=None):
     """
     Get the service account from a project. For more information see
     the official [API](https://cloud.google.com/compute/docs/access/service-accounts) documentation.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

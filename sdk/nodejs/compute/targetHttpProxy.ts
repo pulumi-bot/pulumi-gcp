@@ -8,15 +8,12 @@ import * as utilities from "../utilities";
  * Represents a TargetHttpProxy resource, which is used by one or more global
  * forwarding rule to route incoming HTTP requests to a URL map.
  *
- *
  * To get more information about TargetHttpProxy, see:
  *
  * * [API documentation](https://cloud.google.com/compute/docs/reference/v1/targetHttpProxies)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
- *
  * ## Example Usage
- *
  * ### Target Http Proxy Basic
  *
  * ```typescript
@@ -51,7 +48,6 @@ import * as utilities from "../utilities";
  * });
  * const defaultTargetHttpProxy = new gcp.compute.TargetHttpProxy("defaultTargetHttpProxy", {urlMap: defaultURLMap.id});
  * ```
- *
  * ### Target Http Proxy Https Redirect
  *
  * ```typescript

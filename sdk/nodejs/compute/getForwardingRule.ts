@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Get a forwarding rule within GCE from its name.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

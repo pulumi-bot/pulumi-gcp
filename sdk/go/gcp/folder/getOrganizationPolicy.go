@@ -10,10 +10,7 @@ import (
 // Allows management of Organization policies for a Google Folder. For more information see
 // [the official
 // documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview)
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main

@@ -13,9 +13,7 @@ import * as utilities from "../utilities";
  * and [API](https://cloud.google.com/compute/docs/reference/latest/regionInstanceGroupManagers)
  *
  * > **Note:** Use [gcp.compute.InstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_instance_group_manager.html) to create a single-zone instance group manager.
- *
  * ## Example Usage
- *
  * ### With Top Level Instance Template (`Google` Provider)
  *
  * ```typescript
@@ -54,9 +52,7 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
  * ### With Multiple Versions
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";

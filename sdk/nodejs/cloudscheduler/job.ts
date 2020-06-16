@@ -14,15 +14,12 @@ import * as utilities from "../utilities";
  * that is located in one of the supported regions. If your project
  * does not have an App Engine app, you must create one.
  *
- *
  * To get more information about Job, see:
  *
  * * [API documentation](https://cloud.google.com/scheduler/docs/reference/rest/)
  * * How-to Guides
  *     * [Official Documentation](https://cloud.google.com/scheduler/)
- *
  * ## Example Usage
- *
  * ### Scheduler Job Http
  *
  * ```typescript
@@ -43,7 +40,6 @@ import * as utilities from "../utilities";
  *     timeZone: "America/New_York",
  * });
  * ```
- *
  * ### Scheduler Job App Engine
  *
  * ```typescript
@@ -72,7 +68,6 @@ import * as utilities from "../utilities";
  *     timeZone: "Europe/London",
  * });
  * ```
- *
  * ### Scheduler Job Oauth
  *
  * ```typescript
@@ -94,7 +89,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
  * ### Scheduler Job Oidc
  *
  * ```typescript

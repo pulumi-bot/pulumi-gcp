@@ -12,15 +12,12 @@ namespace Pulumi.Gcp.Redis
     /// <summary>
     /// A Google Cloud Redis instance.
     /// 
-    /// 
     /// To get more information about Instance, see:
     /// 
     /// * [API documentation](https://cloud.google.com/memorystore/docs/redis/reference/rest/)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/memorystore/docs/redis/)
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Redis Instance Basic
     /// 
     /// ```csharp
@@ -39,7 +36,6 @@ namespace Pulumi.Gcp.Redis
     /// 
     /// }
     /// ```
-    /// 
     /// ### Redis Instance Full
     /// 
     /// ```csharp

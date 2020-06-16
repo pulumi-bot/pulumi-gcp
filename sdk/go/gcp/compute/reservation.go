@@ -19,15 +19,12 @@ import (
 // services not listed above
 // like Cloud SQL and Dataflow.
 //
-//
 // To get more information about Reservation, see:
 //
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/reservations)
 // * How-to Guides
 //     * [Reserving zonal resources](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
-//
 // ## Example Usage
-//
 // ### Reservation Basic
 //
 // ```go
@@ -40,7 +37,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		gceReservation, err := compute.NewReservation(ctx, "gceReservation", &compute.ReservationArgs{
+// 		_, err = compute.NewReservation(ctx, "gceReservation", &compute.ReservationArgs{
 // 			SpecificReservation: &compute.ReservationSpecificReservationArgs{
 // 				Count: pulumi.Int(1),
 // 				InstanceProperties: &compute.ReservationSpecificReservationInstancePropertiesArgs{

@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Get information about a BackendBucket.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

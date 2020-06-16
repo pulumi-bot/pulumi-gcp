@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class BillingAccountExclusion(pulumi.CustomResource):
     billing_account: pulumi.Output[str]
     """
@@ -41,10 +42,7 @@ class BillingAccountExclusion(pulumi.CustomResource):
 
         Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
         granted to the credentials used with the provider.
-
         ## Example Usage
-
-
 
         ```python
         import pulumi
@@ -127,9 +125,9 @@ class BillingAccountExclusion(pulumi.CustomResource):
         __props__["filter"] = filter
         __props__["name"] = name
         return BillingAccountExclusion(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

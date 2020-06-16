@@ -12,16 +12,13 @@ import * as utilities from "../utilities";
  * a Service acts as the root resource under which operational aspects of
  * the service are accessible
  *
- *
  * To get more information about Service, see:
  *
  * * [API documentation](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/services)
  * * How-to Guides
  *     * [Service Monitoring](https://cloud.google.com/monitoring/service-monitoring)
  *     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
- *
  * ## Example Usage
- *
  * ### Monitoring Service Custom
  *
  * ```typescript

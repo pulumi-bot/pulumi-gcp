@@ -91,10 +91,7 @@ def get_network_endpoint_group(name=None,self_link=None,zone=None,opts=None):
     Use this data source to access a Network Endpoint Group's attributes.
 
     The NEG may be found by providing either a `self_link`, or a `name` and a `zone`.
-
     ## Example Usage
-
-
 
     ```python
     import pulumi

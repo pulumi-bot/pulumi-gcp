@@ -15,9 +15,7 @@ import * as utilities from "../utilities";
  * * [API documentation](https://cloud.google.com/healthcare/docs/reference/rest/v1/projects.locations.datasets.fhirStores)
  * * How-to Guides
  *     * [Creating a FHIR store](https://cloud.google.com/healthcare/docs/how-tos/fhir)
- *
  * ## Example Usage
- *
  * ### Healthcare Fhir Store Basic
  *
  * ```typescript
@@ -41,7 +39,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
  * ### Healthcare Fhir Store Streaming Config
  *
  * ```typescript
@@ -68,12 +65,12 @@ import * as utilities from "../utilities";
  *     },
  *     stream_configs: [{
  *         resourceTypes: ["Observation"],
- *         bigquery_destination: [{
+ *         bigquery_destination: {
  *             datasetUri: pulumi.interpolate`bq://${bqDataset.project}.${bqDataset.datasetId}`,
- *             schema_config: [{
+ *             schema_config: {
  *                 recursiveStructureDepth: 3,
- *             }],
- *         }],
+ *             },
+ *         },
  *     }],
  * });
  * const topic = new gcp.pubsub.Topic("topic", {});

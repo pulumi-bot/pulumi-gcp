@@ -8,10 +8,7 @@ import * as utilities from "../utilities";
 
 /**
  * Get an active folder within GCP by `displayName` and `parent`.
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

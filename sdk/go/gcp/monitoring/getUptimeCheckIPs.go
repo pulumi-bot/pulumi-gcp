@@ -9,6 +9,7 @@ import (
 
 // Returns the list of IP addresses that checkers run from. For more information see
 // the [official documentation](https://cloud.google.com/monitoring/uptime-checks#get-ips).
+// ## Example Usage
 func GetUptimeCheckIPs(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetUptimeCheckIPsResult, error) {
 	var rv GetUptimeCheckIPsResult
 	err := ctx.Invoke("gcp:monitoring/getUptimeCheckIPs:getUptimeCheckIPs", nil, &rv, opts...)

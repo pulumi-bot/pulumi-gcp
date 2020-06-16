@@ -27,15 +27,12 @@ namespace Pulumi.Gcp.Compute
     /// from root persistent disks and other images. Then, use the custom image
     /// to create an instance.
     /// 
-    /// 
     /// To get more information about Image, see:
     /// 
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/v1/images)
     /// * How-to Guides
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/images)
-    /// 
     /// ## Example Usage
-    /// 
     /// ### Image Basic
     /// 
     /// ```csharp
@@ -57,7 +54,6 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
-    /// 
     /// ### Image Guest Os
     /// 
     /// ```csharp

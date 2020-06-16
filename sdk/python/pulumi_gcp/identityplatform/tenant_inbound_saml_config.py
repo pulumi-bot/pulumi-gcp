@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class TenantInboundSamlConfig(pulumi.CustomResource):
     display_name: pulumi.Output[str]
     """
@@ -65,11 +66,7 @@ class TenantInboundSamlConfig(pulumi.CustomResource):
         You must enable the
         [Google Identity Platform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity) in
         the marketplace prior to using this resource.
-
-
-
         ## Example Usage
-
         ### Identity Platform Tenant Inbound Saml Config Basic
 
         ```python
@@ -219,9 +216,9 @@ class TenantInboundSamlConfig(pulumi.CustomResource):
         __props__["sp_config"] = sp_config
         __props__["tenant"] = tenant
         return TenantInboundSamlConfig(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

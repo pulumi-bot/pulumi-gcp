@@ -12,7 +12,6 @@ import (
 
 // A Google Cloud Filestore instance.
 //
-//
 // To get more information about Instance, see:
 //
 // * [API documentation](https://cloud.google.com/filestore/docs/reference/rest/v1beta1/projects.locations.instances/create)
@@ -20,9 +19,7 @@ import (
 //     * [Official Documentation](https://cloud.google.com/filestore/docs/creating-instances)
 //     * [Use with Kubernetes](https://cloud.google.com/filestore/docs/accessing-fileshares)
 //     * [Copying Data In/Out](https://cloud.google.com/filestore/docs/copying-data)
-//
 // ## Example Usage
-//
 // ### Filestore Instance Basic
 //
 // ```go
@@ -35,7 +32,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		instance, err := filestore.NewInstance(ctx, "instance", &filestore.InstanceArgs{
+// 		_, err = filestore.NewInstance(ctx, "instance", &filestore.InstanceArgs{
 // 			FileShares: &filestore.InstanceFileSharesArgs{
 // 				CapacityGb: pulumi.Int(2660),
 // 				Name:       pulumi.String("share1"),

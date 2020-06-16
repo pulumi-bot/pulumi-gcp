@@ -10,10 +10,7 @@ import * as utilities from "../utilities";
  * Allows management of Organization policies for a Google Project. For more information see
  * [the official
  * documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview)
- *
  * ## Example Usage
- *
- *
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
