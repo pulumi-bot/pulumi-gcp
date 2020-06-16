@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GlobalAddress(pulumi.CustomResource):
     address: pulumi.Output[str]
     """
@@ -229,9 +230,9 @@ class GlobalAddress(pulumi.CustomResource):
         __props__["purpose"] = purpose
         __props__["self_link"] = self_link
         return GlobalAddress(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

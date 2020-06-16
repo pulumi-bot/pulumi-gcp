@@ -20,7 +20,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		all, err := compute.LookupInstanceGroup(ctx, &compute.LookupInstanceGroupArgs{
+// 		_, err := compute.LookupInstanceGroup(ctx, &compute.LookupInstanceGroupArgs{
 // 			Name: "instance-group-name",
 // 			Zone: "us-central1-a",
 // 		}, nil)

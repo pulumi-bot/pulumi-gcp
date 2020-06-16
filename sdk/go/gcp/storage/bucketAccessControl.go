@@ -52,7 +52,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		publicRule, err := storage.NewBucketAccessControl(ctx, "publicRule", &storage.BucketAccessControlArgs{
+// 		_, err = storage.NewBucketAccessControl(ctx, "publicRule", &storage.BucketAccessControlArgs{
 // 			Bucket: bucket.Name,
 // 			Role:   pulumi.String("READER"),
 // 			Entity: pulumi.String("allUsers"),

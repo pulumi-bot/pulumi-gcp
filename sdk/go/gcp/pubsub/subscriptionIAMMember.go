@@ -45,7 +45,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		editor, err := pubsub.NewSubscriptionIAMPolicy(ctx, "editor", &pubsub.SubscriptionIAMPolicyArgs{
+// 		_, err = pubsub.NewSubscriptionIAMPolicy(ctx, "editor", &pubsub.SubscriptionIAMPolicyArgs{
 // 			Subscription: pulumi.String("your-subscription-name"),
 // 			PolicyData:   pulumi.String(admin.PolicyData),
 // 		})
@@ -69,7 +69,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		editor, err := pubsub.NewSubscriptionIAMBinding(ctx, "editor", &pubsub.SubscriptionIAMBindingArgs{
+// 		_, err = pubsub.NewSubscriptionIAMBinding(ctx, "editor", &pubsub.SubscriptionIAMBindingArgs{
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
 // 			},
@@ -96,7 +96,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		editor, err := pubsub.NewSubscriptionIAMMember(ctx, "editor", &pubsub.SubscriptionIAMMemberArgs{
+// 		_, err = pubsub.NewSubscriptionIAMMember(ctx, "editor", &pubsub.SubscriptionIAMMemberArgs{
 // 			Member:       pulumi.String("user:jane@example.com"),
 // 			Role:         pulumi.String("roles/editor"),
 // 			Subscription: pulumi.String("your-subscription-name"),

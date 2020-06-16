@@ -46,7 +46,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test, err := composer.NewEnvironment(ctx, "test", &composer.EnvironmentArgs{
+// 		_, err = composer.NewEnvironment(ctx, "test", &composer.EnvironmentArgs{
 // 			Region: pulumi.String("us-central1"),
 // 		})
 // 		if err != nil {
@@ -69,7 +69,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test, err := composer.NewEnvironment(ctx, "test", &composer.EnvironmentArgs{
+// 		_, err = composer.NewEnvironment(ctx, "test", &composer.EnvironmentArgs{
 // 			Config: &composer.EnvironmentConfigArgs{
 // 				SoftwareConfig: &composer.EnvironmentConfigSoftwareConfigArgs{
 // 					AirflowConfigOverrides: map[string]interface{}{

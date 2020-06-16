@@ -48,7 +48,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		instance, err := spanner.NewInstanceIAMPolicy(ctx, "instance", &spanner.InstanceIAMPolicyArgs{
+// 		_, err = spanner.NewInstanceIAMPolicy(ctx, "instance", &spanner.InstanceIAMPolicyArgs{
 // 			Instance:   pulumi.String("your-instance-name"),
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})
@@ -72,7 +72,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		instance, err := spanner.NewInstanceIAMBinding(ctx, "instance", &spanner.InstanceIAMBindingArgs{
+// 		_, err = spanner.NewInstanceIAMBinding(ctx, "instance", &spanner.InstanceIAMBindingArgs{
 // 			Instance: pulumi.String("your-instance-name"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -99,7 +99,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		instance, err := spanner.NewInstanceIAMMember(ctx, "instance", &spanner.InstanceIAMMemberArgs{
+// 		_, err = spanner.NewInstanceIAMMember(ctx, "instance", &spanner.InstanceIAMMemberArgs{
 // 			Instance: pulumi.String("your-instance-name"),
 // 			Member:   pulumi.String("user:jane@example.com"),
 // 			Role:     pulumi.String("roles/compute.networkUser"),

@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class Slo(pulumi.CustomResource):
     basic_sli: pulumi.Output[dict]
     """
@@ -919,9 +920,9 @@ class Slo(pulumi.CustomResource):
         __props__["slo_id"] = slo_id
         __props__["windows_based_sli"] = windows_based_sli
         return Slo(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

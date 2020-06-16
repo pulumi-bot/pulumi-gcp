@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class TransferJob(pulumi.CustomResource):
     creation_time: pulumi.Output[str]
     """
@@ -337,9 +338,9 @@ class TransferJob(pulumi.CustomResource):
         __props__["status"] = status
         __props__["transfer_spec"] = transfer_spec
         return TransferJob(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-
