@@ -31,7 +31,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		primary, err := container.NewCluster(ctx, "primary", &container.ClusterArgs{
+// 		_, err = container.NewCluster(ctx, "primary", &container.ClusterArgs{
 // 			InitialNodeCount: pulumi.Int(3),
 // 			Location:         pulumi.String("us-central1-a"),
 // 			MasterAuth: &container.ClusterMasterAuthArgs{

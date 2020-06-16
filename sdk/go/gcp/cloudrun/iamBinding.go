@@ -47,10 +47,10 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		policy, err := cloudrun.NewIamPolicy(ctx, "policy", &cloudrun.IamPolicyArgs{
-// 			Location:   pulumi.String(google_cloud_run_service.Default.Location),
-// 			Project:    pulumi.String(google_cloud_run_service.Default.Project),
-// 			Service:    pulumi.String(google_cloud_run_service.Default.Name),
+// 		_, err = cloudrun.NewIamPolicy(ctx, "policy", &cloudrun.IamPolicyArgs{
+// 			Location:   dynamic(google_cloud_run_service.Default.Location),
+// 			Project:    dynamic(google_cloud_run_service.Default.Project),
+// 			Service:    dynamic(google_cloud_run_service.Default.Name),
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})
 // 		if err != nil {
@@ -73,10 +73,10 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		binding, err := cloudrun.NewIamBinding(ctx, "binding", &cloudrun.IamBindingArgs{
-// 			Location: pulumi.String(google_cloud_run_service.Default.Location),
-// 			Project:  pulumi.String(google_cloud_run_service.Default.Project),
-// 			Service:  pulumi.String(google_cloud_run_service.Default.Name),
+// 		_, err = cloudrun.NewIamBinding(ctx, "binding", &cloudrun.IamBindingArgs{
+// 			Location: dynamic(google_cloud_run_service.Default.Location),
+// 			Project:  dynamic(google_cloud_run_service.Default.Project),
+// 			Service:  dynamic(google_cloud_run_service.Default.Name),
 // 			Role:     pulumi.String("roles/viewer"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -102,10 +102,10 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		member, err := cloudrun.NewIamMember(ctx, "member", &cloudrun.IamMemberArgs{
-// 			Location: pulumi.String(google_cloud_run_service.Default.Location),
-// 			Project:  pulumi.String(google_cloud_run_service.Default.Project),
-// 			Service:  pulumi.String(google_cloud_run_service.Default.Name),
+// 		_, err = cloudrun.NewIamMember(ctx, "member", &cloudrun.IamMemberArgs{
+// 			Location: dynamic(google_cloud_run_service.Default.Location),
+// 			Project:  dynamic(google_cloud_run_service.Default.Project),
+// 			Service:  dynamic(google_cloud_run_service.Default.Name),
 // 			Role:     pulumi.String("roles/viewer"),
 // 			Member:   pulumi.String("user:jane@example.com"),
 // 		})

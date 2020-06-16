@@ -47,10 +47,10 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		policy, err := cloudfunctions.NewFunctionIamPolicy(ctx, "policy", &cloudfunctions.FunctionIamPolicyArgs{
-// 			Project:       pulumi.String(google_cloudfunctions_function.Function.Project),
-// 			Region:        pulumi.String(google_cloudfunctions_function.Function.Region),
-// 			CloudFunction: pulumi.String(google_cloudfunctions_function.Function.Name),
+// 		_, err = cloudfunctions.NewFunctionIamPolicy(ctx, "policy", &cloudfunctions.FunctionIamPolicyArgs{
+// 			Project:       dynamic(google_cloudfunctions_function.Function.Project),
+// 			Region:        dynamic(google_cloudfunctions_function.Function.Region),
+// 			CloudFunction: dynamic(google_cloudfunctions_function.Function.Name),
 // 			PolicyData:    pulumi.String(admin.PolicyData),
 // 		})
 // 		if err != nil {
@@ -73,10 +73,10 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		binding, err := cloudfunctions.NewFunctionIamBinding(ctx, "binding", &cloudfunctions.FunctionIamBindingArgs{
-// 			Project:       pulumi.String(google_cloudfunctions_function.Function.Project),
-// 			Region:        pulumi.String(google_cloudfunctions_function.Function.Region),
-// 			CloudFunction: pulumi.String(google_cloudfunctions_function.Function.Name),
+// 		_, err = cloudfunctions.NewFunctionIamBinding(ctx, "binding", &cloudfunctions.FunctionIamBindingArgs{
+// 			Project:       dynamic(google_cloudfunctions_function.Function.Project),
+// 			Region:        dynamic(google_cloudfunctions_function.Function.Region),
+// 			CloudFunction: dynamic(google_cloudfunctions_function.Function.Name),
 // 			Role:          pulumi.String("roles/viewer"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -102,10 +102,10 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		member, err := cloudfunctions.NewFunctionIamMember(ctx, "member", &cloudfunctions.FunctionIamMemberArgs{
-// 			Project:       pulumi.String(google_cloudfunctions_function.Function.Project),
-// 			Region:        pulumi.String(google_cloudfunctions_function.Function.Region),
-// 			CloudFunction: pulumi.String(google_cloudfunctions_function.Function.Name),
+// 		_, err = cloudfunctions.NewFunctionIamMember(ctx, "member", &cloudfunctions.FunctionIamMemberArgs{
+// 			Project:       dynamic(google_cloudfunctions_function.Function.Project),
+// 			Region:        dynamic(google_cloudfunctions_function.Function.Region),
+// 			CloudFunction: dynamic(google_cloudfunctions_function.Function.Name),
 // 			Role:          pulumi.String("roles/viewer"),
 // 			Member:        pulumi.String("user:jane@example.com"),
 // 		})

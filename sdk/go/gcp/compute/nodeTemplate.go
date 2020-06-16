@@ -40,7 +40,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		template, err := compute.NewNodeTemplate(ctx, "template", &compute.NodeTemplateArgs{
+// 		_, err = compute.NewNodeTemplate(ctx, "template", &compute.NodeTemplateArgs{
 // 			Region:   pulumi.String("us-central1"),
 // 			NodeType: pulumi.String(central1a.Names[0]),
 // 		})
