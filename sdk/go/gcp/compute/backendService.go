@@ -46,7 +46,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		defaultBackendService, err := compute.NewBackendService(ctx, "defaultBackendService", &compute.BackendServiceArgs{
+// 		_, err = compute.NewBackendService(ctx, "defaultBackendService", &compute.BackendServiceArgs{
 // 			HealthChecks: pulumi.String(pulumi.String{
 // 				defaultHttpHealthCheck.ID(),
 // 			}),

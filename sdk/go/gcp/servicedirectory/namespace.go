@@ -33,7 +33,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := servicedirectory.NewNamespace(ctx, "example", &servicedirectory.NamespaceArgs{
+// 		_, err = servicedirectory.NewNamespace(ctx, "example", &servicedirectory.NamespaceArgs{
 // 			NamespaceId: pulumi.String("example-namespace"),
 // 			Location:    pulumi.String("us-central1"),
 // 			Labels: map[string]interface{}{
