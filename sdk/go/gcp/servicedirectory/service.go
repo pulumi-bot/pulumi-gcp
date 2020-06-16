@@ -39,7 +39,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		exampleService, err := servicedirectory.NewService(ctx, "exampleService", &servicedirectory.ServiceArgs{
+// 		_, err = servicedirectory.NewService(ctx, "exampleService", &servicedirectory.ServiceArgs{
 // 			ServiceId: pulumi.String("example-service"),
 // 			Namespace: exampleNamespace.ID(),
 // 			Metadata: map[string]interface{}{

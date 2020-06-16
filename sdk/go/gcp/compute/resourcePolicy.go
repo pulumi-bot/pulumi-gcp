@@ -27,7 +27,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		foo, err := compute.NewResourcePolicy(ctx, "foo", &compute.ResourcePolicyArgs{
+// 		_, err = compute.NewResourcePolicy(ctx, "foo", &compute.ResourcePolicyArgs{
 // 			Region: pulumi.String("us-central1"),
 // 			SnapshotSchedulePolicy: &compute.ResourcePolicySnapshotSchedulePolicyArgs{
 // 				Schedule: &compute.ResourcePolicySnapshotSchedulePolicyScheduleArgs{
@@ -58,7 +58,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		bar, err := compute.NewResourcePolicy(ctx, "bar", &compute.ResourcePolicyArgs{
+// 		_, err = compute.NewResourcePolicy(ctx, "bar", &compute.ResourcePolicyArgs{
 // 			Region: pulumi.String("us-central1"),
 // 			SnapshotSchedulePolicy: &compute.ResourcePolicySnapshotSchedulePolicyArgs{
 // 				RetentionPolicy: &compute.ResourcePolicySnapshotSchedulePolicyRetentionPolicyArgs{
@@ -100,7 +100,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		baz, err := compute.NewResourcePolicy(ctx, "baz", &compute.ResourcePolicyArgs{
+// 		_, err = compute.NewResourcePolicy(ctx, "baz", &compute.ResourcePolicyArgs{
 // 			GroupPlacementPolicy: &compute.ResourcePolicyGroupPlacementPolicyArgs{
 // 				Collocation: pulumi.String("COLLOCATED"),
 // 				VmCount:     pulumi.Int(2),

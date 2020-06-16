@@ -47,7 +47,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		policy, err := iap.NewWebBackendServiceIamPolicy(ctx, "policy", &iap.WebBackendServiceIamPolicyArgs{
+// 		_, err = iap.NewWebBackendServiceIamPolicy(ctx, "policy", &iap.WebBackendServiceIamPolicyArgs{
 // 			Project:           pulumi.String(google_compute_backend_service.Default.Project),
 // 			WebBackendService: pulumi.String(google_compute_backend_service.Default.Name),
 // 			PolicyData:        pulumi.String(admin.PolicyData),
@@ -90,7 +90,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		policy, err := iap.NewWebBackendServiceIamPolicy(ctx, "policy", &iap.WebBackendServiceIamPolicyArgs{
+// 		_, err = iap.NewWebBackendServiceIamPolicy(ctx, "policy", &iap.WebBackendServiceIamPolicyArgs{
 // 			Project:           pulumi.String(google_compute_backend_service.Default.Project),
 // 			WebBackendService: pulumi.String(google_compute_backend_service.Default.Name),
 // 			PolicyData:        pulumi.String(admin.PolicyData),
@@ -114,7 +114,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		binding, err := iap.NewWebBackendServiceIamBinding(ctx, "binding", &iap.WebBackendServiceIamBindingArgs{
+// 		_, err = iap.NewWebBackendServiceIamBinding(ctx, "binding", &iap.WebBackendServiceIamBindingArgs{
 // 			Project:           pulumi.String(google_compute_backend_service.Default.Project),
 // 			WebBackendService: pulumi.String(google_compute_backend_service.Default.Name),
 // 			Role:              pulumi.String("roles/iap.httpsResourceAccessor"),
@@ -142,7 +142,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		binding, err := iap.NewWebBackendServiceIamBinding(ctx, "binding", &iap.WebBackendServiceIamBindingArgs{
+// 		_, err = iap.NewWebBackendServiceIamBinding(ctx, "binding", &iap.WebBackendServiceIamBindingArgs{
 // 			Project:           pulumi.String(google_compute_backend_service.Default.Project),
 // 			WebBackendService: pulumi.String(google_compute_backend_service.Default.Name),
 // 			Role:              pulumi.String("roles/iap.httpsResourceAccessor"),
@@ -174,7 +174,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		member, err := iap.NewWebBackendServiceIamMember(ctx, "member", &iap.WebBackendServiceIamMemberArgs{
+// 		_, err = iap.NewWebBackendServiceIamMember(ctx, "member", &iap.WebBackendServiceIamMemberArgs{
 // 			Project:           pulumi.String(google_compute_backend_service.Default.Project),
 // 			WebBackendService: pulumi.String(google_compute_backend_service.Default.Name),
 // 			Role:              pulumi.String("roles/iap.httpsResourceAccessor"),
@@ -200,7 +200,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		member, err := iap.NewWebBackendServiceIamMember(ctx, "member", &iap.WebBackendServiceIamMemberArgs{
+// 		_, err = iap.NewWebBackendServiceIamMember(ctx, "member", &iap.WebBackendServiceIamMemberArgs{
 // 			Project:           pulumi.String(google_compute_backend_service.Default.Project),
 // 			WebBackendService: pulumi.String(google_compute_backend_service.Default.Name),
 // 			Role:              pulumi.String("roles/iap.httpsResourceAccessor"),

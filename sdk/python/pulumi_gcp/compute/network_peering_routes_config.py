@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class NetworkPeeringRoutesConfig(pulumi.CustomResource):
     export_custom_routes: pulumi.Output[bool]
     """
@@ -141,9 +142,9 @@ class NetworkPeeringRoutesConfig(pulumi.CustomResource):
         __props__["peering"] = peering
         __props__["project"] = project
         return NetworkPeeringRoutesConfig(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-
