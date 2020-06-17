@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class DatasetIamBinding(pulumi.CustomResource):
     condition: pulumi.Output[dict]
     dataset_id: pulumi.Output[str]
@@ -44,6 +45,45 @@ class DatasetIamBinding(pulumi.CustomResource):
         > **Note:** `bigquery.DatasetIamPolicy` **cannot** be used in conjunction with `bigquery.DatasetIamBinding` and `bigquery.DatasetIamMember` or they will fight over what your policy should be.
 
         > **Note:** `bigquery.DatasetIamBinding` resources **can be** used in conjunction with `bigquery.DatasetIamMember` resources **only if** they do not grant privilege to the same role.
+
+        ## google\bigquery\_dataset\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        owner = gcp.organizations.get_iam_policy(binding=[{
+            "role": "roles/dataOwner",
+            "members": ["user:jane@example.com"],
+        }])
+        dataset = gcp.bigquery.DatasetIamPolicy("dataset",
+            dataset_id="your-dataset-id",
+            policy_data=owner.policy_data)
+        ```
+
+        ## google\_bigquery\_dataset\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        reader = gcp.bigquery.DatasetIamBinding("reader",
+            dataset_id="your-dataset-id",
+            members=["user:jane@example.com"],
+            role="roles/bigquery.dataViewer")
+        ```
+
+        ## google\_bigquery\_dataset\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        editor = gcp.bigquery.DatasetIamMember("editor",
+            dataset_id="your-dataset-id",
+            member="user:jane@example.com",
+            role="roles/bigquery.dataEditor")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -125,9 +165,9 @@ class DatasetIamBinding(pulumi.CustomResource):
         __props__["project"] = project
         __props__["role"] = role
         return DatasetIamBinding(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

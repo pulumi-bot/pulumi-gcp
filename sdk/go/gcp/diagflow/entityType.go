@@ -41,7 +41,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		basicEntityType, err := diagflow.NewEntityType(ctx, "basicEntityType", &diagflow.EntityTypeArgs{
+// 		_, err = diagflow.NewEntityType(ctx, "basicEntityType", &diagflow.EntityTypeArgs{
 // 			DisplayName: pulumi.String(""),
 // 			Kind:        pulumi.String("KIND_MAP"),
 // 			Entities: diagflow.EntityTypeEntityArray{

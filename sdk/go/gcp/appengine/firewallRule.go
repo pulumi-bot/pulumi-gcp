@@ -49,7 +49,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		rule, err := appengine.NewFirewallRule(ctx, "rule", &appengine.FirewallRuleArgs{
+// 		_, err = appengine.NewFirewallRule(ctx, "rule", &appengine.FirewallRuleArgs{
 // 			Project:     app.Project,
 // 			Priority:    pulumi.Int(1000),
 // 			Action:      pulumi.String("ALLOW"),

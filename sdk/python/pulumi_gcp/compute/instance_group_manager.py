@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class InstanceGroupManager(pulumi.CustomResource):
     auto_healing_policies: pulumi.Output[dict]
     """
@@ -401,9 +402,9 @@ class InstanceGroupManager(pulumi.CustomResource):
         __props__["wait_for_instances"] = wait_for_instances
         __props__["zone"] = zone
         return InstanceGroupManager(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

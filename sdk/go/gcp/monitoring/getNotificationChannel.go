@@ -41,7 +41,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		alertPolicy, err := monitoring.NewAlertPolicy(ctx, "alertPolicy", &monitoring.AlertPolicyArgs{
+// 		_, err = monitoring.NewAlertPolicy(ctx, "alertPolicy", &monitoring.AlertPolicyArgs{
 // 			DisplayName: pulumi.String("My Alert Policy"),
 // 			NotificationChannels: pulumi.StringArray{
 // 				pulumi.String(basic.Name),

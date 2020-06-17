@@ -22,7 +22,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		department1, err := organizations.LookupActiveFolder(ctx, &organizations.LookupActiveFolderArgs{
+// 		_, err := organizations.LookupActiveFolder(ctx, &organizations.LookupActiveFolderArgs{
 // 			DisplayName: "Department 1",
 // 			Parent:      "organizations/1234567",
 // 		}, nil)
