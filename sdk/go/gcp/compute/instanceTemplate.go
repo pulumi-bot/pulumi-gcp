@@ -15,8 +15,6 @@ import (
 // and
 // [API](https://cloud.google.com/compute/docs/reference/latest/instanceTemplates).
 //
-//
-//
 // ## Using with Instance Group Manager
 //
 // Instance Templates cannot be updated after creation with the Google
@@ -25,8 +23,6 @@ import (
 // use an Instance Template resource with an [Instance Group Manager resource](https://www.terraform.io/docs/providers/google/r/compute_instance_group_manager.html).
 // Either omit the Instance Template `name` attribute, or specify a partial name
 // with `namePrefix`. Example:
-//
-//
 //
 // With this setup, this provider generates a unique name for your Instance
 // Template and can then update the Instance Group manager without conflict before
