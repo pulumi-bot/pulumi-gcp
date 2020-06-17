@@ -12,8 +12,6 @@ import (
 //
 // ## Example Usage
 //
-//
-//
 // ```go
 // package main
 //
@@ -36,6 +34,8 @@ import (
 // 	})
 // }
 // ```
+//
+// Using the serial port output to generate a windows password, derived from the [official guide](https://cloud.google.com/compute/docs/instances/windows/automate-pw-generation):
 func GetInstanceSerialPort(ctx *pulumi.Context, args *GetInstanceSerialPortArgs, opts ...pulumi.InvokeOption) (*GetInstanceSerialPortResult, error) {
 	var rv GetInstanceSerialPortResult
 	err := ctx.Invoke("gcp:compute/getInstanceSerialPort:getInstanceSerialPort", args, &rv, opts...)

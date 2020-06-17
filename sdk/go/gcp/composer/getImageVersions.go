@@ -8,6 +8,8 @@ import (
 )
 
 // Provides access to available Cloud Composer versions in a region for a given project.
+//
+// ## Example Usage
 func GetImageVersions(ctx *pulumi.Context, args *GetImageVersionsArgs, opts ...pulumi.InvokeOption) (*GetImageVersionsResult, error) {
 	var rv GetImageVersionsResult
 	err := ctx.Invoke("gcp:composer/getImageVersions:getImageVersions", args, &rv, opts...)

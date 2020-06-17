@@ -12,8 +12,6 @@ import (
 //
 // ## Example Usage
 //
-//
-//
 // ```go
 // package main
 //
@@ -36,7 +34,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		frontend, err := dns.NewRecordSet(ctx, "frontend", &dns.RecordSetArgs{
+// 		_, err = dns.NewRecordSet(ctx, "frontend", &dns.RecordSetArgs{
 // 			Type:        pulumi.String("A"),
 // 			Ttl:         pulumi.Int(300),
 // 			ManagedZone: prod.Name,

@@ -10,6 +10,8 @@ import (
 // This data source fetches the project name, and provides the appropriate URLs to use for container registry for this project.
 //
 // The URLs are computed entirely offline - as long as the project exists, they will be valid, but this data source does not contact Google Container Registry (GCR) at any point.
+//
+// ## Example Usage
 func GetRegistryRepository(ctx *pulumi.Context, args *GetRegistryRepositoryArgs, opts ...pulumi.InvokeOption) (*GetRegistryRepositoryResult, error) {
 	var rv GetRegistryRepositoryResult
 	err := ctx.Invoke("gcp:container/getRegistryRepository:getRegistryRepository", args, &rv, opts...)

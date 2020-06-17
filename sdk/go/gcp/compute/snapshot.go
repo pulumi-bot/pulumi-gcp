@@ -23,7 +23,6 @@ import (
 // persistent disk faster and at a much lower cost than if you regularly
 // created a full image of the disk.
 //
-//
 // To get more information about Snapshot, see:
 //
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/snapshots)
@@ -34,7 +33,6 @@ import (
 // state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
 // ## Example Usage
-//
 // ### Snapshot Basic
 //
 // ```go
@@ -63,7 +61,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		snapshot, err := compute.NewSnapshot(ctx, "snapshot", &compute.SnapshotArgs{
+// 		_, err = compute.NewSnapshot(ctx, "snapshot", &compute.SnapshotArgs{
 // 			SourceDisk: persistent.Name,
 // 			Zone:       pulumi.String("us-central1-a"),
 // 			Labels: map[string]interface{}{

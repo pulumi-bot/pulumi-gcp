@@ -26,7 +26,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		myProject, err := organizations.NewProject(ctx, "myProject", &organizations.ProjectArgs{
+// 		_, err = organizations.NewProject(ctx, "myProject", &organizations.ProjectArgs{
 // 			ProjectId:      pulumi.String("your-project-id"),
 // 			OrgId:          pulumi.String("1234567"),
 // 			BillingAccount: pulumi.String(acct.Id),

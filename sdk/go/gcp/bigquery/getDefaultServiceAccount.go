@@ -16,6 +16,8 @@ import (
 //
 // For more information see
 // [the API reference](https://cloud.google.com/bigquery/docs/reference/rest/v2/projects/getServiceAccount).
+//
+// ## Example Usage
 func GetDefaultServiceAccount(ctx *pulumi.Context, args *GetDefaultServiceAccountArgs, opts ...pulumi.InvokeOption) (*GetDefaultServiceAccountResult, error) {
 	var rv GetDefaultServiceAccountResult
 	err := ctx.Invoke("gcp:bigquery/getDefaultServiceAccount:getDefaultServiceAccount", args, &rv, opts...)
