@@ -37,7 +37,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		job, err := cloudscheduler.NewJob(ctx, "job", &cloudscheduler.JobArgs{
+// 		_, err = cloudscheduler.NewJob(ctx, "job", &cloudscheduler.JobArgs{
 // 			AttemptDeadline: pulumi.String("320s"),
 // 			Description:     pulumi.String("test http job"),
 // 			HttpTarget: &cloudscheduler.JobHttpTargetArgs{
@@ -70,7 +70,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		job, err := cloudscheduler.NewJob(ctx, "job", &cloudscheduler.JobArgs{
+// 		_, err = cloudscheduler.NewJob(ctx, "job", &cloudscheduler.JobArgs{
 // 			AppEngineHttpTarget: &cloudscheduler.JobAppEngineHttpTargetArgs{
 // 				AppEngineRouting: &cloudscheduler.JobAppEngineHttpTargetAppEngineRoutingArgs{
 // 					Instance: pulumi.String("my-instance-001"),

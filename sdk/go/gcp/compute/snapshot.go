@@ -63,7 +63,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		snapshot, err := compute.NewSnapshot(ctx, "snapshot", &compute.SnapshotArgs{
+// 		_, err = compute.NewSnapshot(ctx, "snapshot", &compute.SnapshotArgs{
 // 			SourceDisk: persistent.Name,
 // 			Zone:       pulumi.String("us-central1-a"),
 // 			Labels: map[string]interface{}{

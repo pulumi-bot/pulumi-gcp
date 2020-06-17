@@ -32,7 +32,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := pubsub.NewTopic(ctx, "example", &pubsub.TopicArgs{
+// 		_, err = pubsub.NewTopic(ctx, "example", &pubsub.TopicArgs{
 // 			Labels: map[string]interface{}{
 // 				"foo": "bar",
 // 			},
@@ -70,7 +70,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		example, err := pubsub.NewTopic(ctx, "example", &pubsub.TopicArgs{
+// 		_, err = pubsub.NewTopic(ctx, "example", &pubsub.TopicArgs{
 // 			KmsKeyName: cryptoKey.ID(),
 // 		})
 // 		if err != nil {
@@ -93,7 +93,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := pubsub.NewTopic(ctx, "example", &pubsub.TopicArgs{
+// 		_, err = pubsub.NewTopic(ctx, "example", &pubsub.TopicArgs{
 // 			MessageStoragePolicy: &pubsub.TopicMessageStoragePolicyArgs{
 // 				AllowedPersistenceRegions: pulumi.StringArray{
 // 					pulumi.String("europe-west3"),

@@ -46,7 +46,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		exampleEndpoint, err := servicedirectory.NewEndpoint(ctx, "exampleEndpoint", &servicedirectory.EndpointArgs{
+// 		_, err = servicedirectory.NewEndpoint(ctx, "exampleEndpoint", &servicedirectory.EndpointArgs{
 // 			EndpointId: pulumi.String("example-endpoint"),
 // 			Service:    exampleService.ID(),
 // 			Metadata: map[string]interface{}{
