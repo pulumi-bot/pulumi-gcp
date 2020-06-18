@@ -13,8 +13,6 @@ import (
 //
 // ## Example Usage
 //
-//
-//
 // ```go
 // package main
 //
@@ -25,14 +23,14 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		artifact, err := storage.LookupObjectSignedUrl(ctx, &storage.LookupObjectSignedUrlArgs{
+// 		_, err := storage.LookupObjectSignedUrl(ctx, &storage.LookupObjectSignedUrlArgs{
 // 			Bucket: "install_binaries",
 // 			Path:   "path/to/install_file.bin",
 // 		}, nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		vm, err := compute.NewInstance(ctx, "vm", nil)
+// 		_, err = compute.NewInstance(ctx, "vm", nil)
 // 		if err != nil {
 // 			return err
 // 		}

@@ -14,7 +14,6 @@ import (
 //
 // See [Data Catalog IAM](https://cloud.google.com/data-catalog/docs/concepts/iam) for information on the permissions needed to create or view tags.
 //
-//
 // To get more information about Tag, see:
 //
 // * [API documentation](https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.tags)
@@ -22,7 +21,6 @@ import (
 //     * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 //
 // ## Example Usage
-//
 // ### Data Catalog Entry Tag Basic
 //
 // ```go
@@ -95,7 +93,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		basicTag, err := datacatalog.NewTag(ctx, "basicTag", &datacatalog.TagArgs{
+// 		_, err = datacatalog.NewTag(ctx, "basicTag", &datacatalog.TagArgs{
 // 			Parent:   entry.ID(),
 // 			Template: tagTemplate.ID(),
 // 			Fields: datacatalog.TagFieldArray{
@@ -112,7 +110,6 @@ import (
 // 	})
 // }
 // ```
-//
 // ### Data Catalog Entry Group Tag
 //
 // ```go
@@ -131,7 +128,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		firstEntry, err := datacatalog.NewEntry(ctx, "firstEntry", &datacatalog.EntryArgs{
+// 		_, err = datacatalog.NewEntry(ctx, "firstEntry", &datacatalog.EntryArgs{
 // 			EntryGroup:          entryGroup.ID(),
 // 			EntryId:             pulumi.String("first_entry"),
 // 			UserSpecifiedType:   pulumi.String("my_custom_type"),
@@ -140,7 +137,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		secondEntry, err := datacatalog.NewEntry(ctx, "secondEntry", &datacatalog.EntryArgs{
+// 		_, err = datacatalog.NewEntry(ctx, "secondEntry", &datacatalog.EntryArgs{
 // 			EntryGroup:          entryGroup.ID(),
 // 			EntryId:             pulumi.String("second_entry"),
 // 			UserSpecifiedType:   pulumi.String("another_custom_type"),
@@ -194,7 +191,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		entryGroupTag, err := datacatalog.NewTag(ctx, "entryGroupTag", &datacatalog.TagArgs{
+// 		_, err = datacatalog.NewTag(ctx, "entryGroupTag", &datacatalog.TagArgs{
 // 			Parent:   entryGroup.ID(),
 // 			Template: tagTemplate.ID(),
 // 			Fields: datacatalog.TagFieldArray{
