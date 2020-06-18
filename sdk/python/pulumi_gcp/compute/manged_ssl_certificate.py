@@ -10,6 +10,7 @@ from typing import Union
 from .. import utilities, tables
 
 warnings.warn("gcp.compute.MangedSslCertificate has been deprecated in favor of gcp.compute.ManagedSslCertificate", DeprecationWarning)
+
 class MangedSslCertificate(pulumi.CustomResource):
     certificate_id: pulumi.Output[float]
     """
@@ -152,9 +153,9 @@ class MangedSslCertificate(pulumi.CustomResource):
         __props__["subject_alternative_names"] = subject_alternative_names
         __props__["type"] = type
         return MangedSslCertificate(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-
