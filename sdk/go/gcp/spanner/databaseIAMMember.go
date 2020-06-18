@@ -48,7 +48,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		database, err := spanner.NewDatabaseIAMPolicy(ctx, "database", &spanner.DatabaseIAMPolicyArgs{
+// 		_, err = spanner.NewDatabaseIAMPolicy(ctx, "database", &spanner.DatabaseIAMPolicyArgs{
 // 			Instance:   pulumi.String("your-instance-name"),
 // 			Database:   pulumi.String("your-database-name"),
 // 			PolicyData: pulumi.String(admin.PolicyData),
@@ -73,7 +73,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		database, err := spanner.NewDatabaseIAMBinding(ctx, "database", &spanner.DatabaseIAMBindingArgs{
+// 		_, err = spanner.NewDatabaseIAMBinding(ctx, "database", &spanner.DatabaseIAMBindingArgs{
 // 			Database: pulumi.String("your-database-name"),
 // 			Instance: pulumi.String("your-instance-name"),
 // 			Members: pulumi.StringArray{
@@ -101,7 +101,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		database, err := spanner.NewDatabaseIAMMember(ctx, "database", &spanner.DatabaseIAMMemberArgs{
+// 		_, err = spanner.NewDatabaseIAMMember(ctx, "database", &spanner.DatabaseIAMMemberArgs{
 // 			Database: pulumi.String("your-database-name"),
 // 			Instance: pulumi.String("your-instance-name"),
 // 			Member:   pulumi.String("user:jane@example.com"),
