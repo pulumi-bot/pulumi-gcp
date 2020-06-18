@@ -33,9 +33,7 @@ import (
 //     deletion. [More about Composer's use of Cloud Storage](https://cloud.google.com/composer/docs/concepts/cloud-storage).
 //
 // ## Example Usage
-//
 // ### Basic Usage
-//
 // ```go
 // package main
 //
@@ -46,7 +44,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test, err := composer.NewEnvironment(ctx, "test", &composer.EnvironmentArgs{
+// 		_, err = composer.NewEnvironment(ctx, "test", &composer.EnvironmentArgs{
 // 			Region: pulumi.String("us-central1"),
 // 		})
 // 		if err != nil {
@@ -56,9 +54,7 @@ import (
 // 	})
 // }
 // ```
-//
 // ### With Software (Airflow) Config
-//
 // ```go
 // package main
 //
@@ -69,7 +65,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		test, err := composer.NewEnvironment(ctx, "test", &composer.EnvironmentArgs{
+// 		_, err = composer.NewEnvironment(ctx, "test", &composer.EnvironmentArgs{
 // 			Config: &composer.EnvironmentConfigArgs{
 // 				SoftwareConfig: &composer.EnvironmentConfigSoftwareConfigArgs{
 // 					AirflowConfigOverrides: map[string]interface{}{
