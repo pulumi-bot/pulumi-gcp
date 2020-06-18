@@ -13,10 +13,7 @@ import (
 // Jobs are actions that BigQuery runs on your behalf to load data, export data, query data, or copy data.
 // Once a BigQuery job is created, it cannot be changed or deleted.
 //
-//
-//
 // ## Example Usage
-//
 // ### Bigquery Job Query
 //
 // ```go
@@ -45,7 +42,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		job, err := bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
+// 		_, err = bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
 // 			JobId: pulumi.String("job_query"),
 // 			Labels: map[string]interface{}{
 // 				"example-label": "example-value",
@@ -71,7 +68,6 @@ import (
 // 	})
 // }
 // ```
-//
 // ### Bigquery Job Query Table Reference
 //
 // ```go
@@ -100,7 +96,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		job, err := bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
+// 		_, err = bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
 // 			JobId: pulumi.String("job_query"),
 // 			Labels: map[string]interface{}{
 // 				"example-label": "example-value",
@@ -127,7 +123,6 @@ import (
 // 	})
 // }
 // ```
-//
 // ### Bigquery Job Load
 //
 // ```go
@@ -156,7 +151,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		job, err := bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
+// 		_, err = bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
 // 			JobId: pulumi.String("job_load"),
 // 			Labels: map[string]interface{}{
 // 				"my_job": "load",
