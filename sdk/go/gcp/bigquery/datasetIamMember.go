@@ -51,7 +51,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		dataset, err := bigquery.NewDatasetIamPolicy(ctx, "dataset", &bigquery.DatasetIamPolicyArgs{
+// 		_, err = bigquery.NewDatasetIamPolicy(ctx, "dataset", &bigquery.DatasetIamPolicyArgs{
 // 			DatasetId:  pulumi.String("your-dataset-id"),
 // 			PolicyData: pulumi.String(owner.PolicyData),
 // 		})
@@ -75,7 +75,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		reader, err := bigquery.NewDatasetIamBinding(ctx, "reader", &bigquery.DatasetIamBindingArgs{
+// 		_, err = bigquery.NewDatasetIamBinding(ctx, "reader", &bigquery.DatasetIamBindingArgs{
 // 			DatasetId: pulumi.String("your-dataset-id"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -102,7 +102,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		editor, err := bigquery.NewDatasetIamMember(ctx, "editor", &bigquery.DatasetIamMemberArgs{
+// 		_, err = bigquery.NewDatasetIamMember(ctx, "editor", &bigquery.DatasetIamMemberArgs{
 // 			DatasetId: pulumi.String("your-dataset-id"),
 // 			Member:    pulumi.String("user:jane@example.com"),
 // 			Role:      pulumi.String("roles/bigquery.dataEditor"),
