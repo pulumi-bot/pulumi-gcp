@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class InstanceTemplate(pulumi.CustomResource):
     can_ip_forward: pulumi.Output[bool]
     """
@@ -237,10 +238,7 @@ class InstanceTemplate(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/instanceTemplates).
 
-
         ## Example Usage
-
-
 
         ```python
         import pulumi
@@ -295,7 +293,6 @@ class InstanceTemplate(pulumi.CustomResource):
                 ],
             })
         ```
-
         ## Using with Instance Group Manager
 
         Instance Templates cannot be updated after creation with the Google
@@ -789,9 +786,9 @@ class InstanceTemplate(pulumi.CustomResource):
         __props__["tags"] = tags
         __props__["tags_fingerprint"] = tags_fingerprint
         return InstanceTemplate(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-

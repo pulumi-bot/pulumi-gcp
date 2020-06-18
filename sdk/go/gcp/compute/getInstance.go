@@ -12,10 +12,7 @@ import (
 // and
 // [API](https://cloud.google.com/compute/docs/reference/latest/instances).
 //
-//
 // ## Example Usage
-//
-//
 //
 // ```go
 // package main
@@ -26,7 +23,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		appserver, err := compute.LookupInstance(ctx, &compute.LookupInstanceArgs{
+// 		_, err := compute.LookupInstance(ctx, &compute.LookupInstanceArgs{
 // 			Name: "primary-application-server",
 // 			Zone: "us-central1-a",
 // 		}, nil)
