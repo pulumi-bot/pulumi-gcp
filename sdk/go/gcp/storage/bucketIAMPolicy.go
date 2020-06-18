@@ -20,8 +20,6 @@ import (
 //
 // > **Note:** `storage.BucketIAMBinding` resources **can be** used in conjunction with `storage.BucketIAMMember` resources **only if** they do not grant privilege to the same role.
 //
-//
-//
 // ## google\_storage\_bucket\_iam\_policy
 //
 // ```go
@@ -47,7 +45,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		policy, err := storage.NewBucketIAMPolicy(ctx, "policy", &storage.BucketIAMPolicyArgs{
+// 		_, err = storage.NewBucketIAMPolicy(ctx, "policy", &storage.BucketIAMPolicyArgs{
 // 			Bucket:     pulumi.String(google_storage_bucket.Default.Name),
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})
@@ -89,7 +87,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		policy, err := storage.NewBucketIAMPolicy(ctx, "policy", &storage.BucketIAMPolicyArgs{
+// 		_, err = storage.NewBucketIAMPolicy(ctx, "policy", &storage.BucketIAMPolicyArgs{
 // 			Bucket:     pulumi.String(google_storage_bucket.Default.Name),
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})
@@ -112,7 +110,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		binding, err := storage.NewBucketIAMBinding(ctx, "binding", &storage.BucketIAMBindingArgs{
+// 		_, err = storage.NewBucketIAMBinding(ctx, "binding", &storage.BucketIAMBindingArgs{
 // 			Bucket: pulumi.String(google_storage_bucket.Default.Name),
 // 			Role:   pulumi.String("roles/storage.admin"),
 // 			Members: pulumi.StringArray{
@@ -139,7 +137,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		binding, err := storage.NewBucketIAMBinding(ctx, "binding", &storage.BucketIAMBindingArgs{
+// 		_, err = storage.NewBucketIAMBinding(ctx, "binding", &storage.BucketIAMBindingArgs{
 // 			Bucket: pulumi.String(google_storage_bucket.Default.Name),
 // 			Role:   pulumi.String("roles/storage.admin"),
 // 			Members: pulumi.StringArray{
@@ -170,7 +168,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		member, err := storage.NewBucketIAMMember(ctx, "member", &storage.BucketIAMMemberArgs{
+// 		_, err = storage.NewBucketIAMMember(ctx, "member", &storage.BucketIAMMemberArgs{
 // 			Bucket: pulumi.String(google_storage_bucket.Default.Name),
 // 			Role:   pulumi.String("roles/storage.admin"),
 // 			Member: pulumi.String("user:jane@example.com"),
@@ -195,7 +193,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		member, err := storage.NewBucketIAMMember(ctx, "member", &storage.BucketIAMMemberArgs{
+// 		_, err = storage.NewBucketIAMMember(ctx, "member", &storage.BucketIAMMemberArgs{
 // 			Bucket: pulumi.String(google_storage_bucket.Default.Name),
 // 			Role:   pulumi.String("roles/storage.admin"),
 // 			Member: pulumi.String("user:jane@example.com"),
