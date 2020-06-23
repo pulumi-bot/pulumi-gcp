@@ -80,7 +80,6 @@ class Registry(pulumi.CustomResource):
         """
         A Google Cloud IoT Core device registry.
 
-
         To get more information about DeviceRegistry, see:
 
         * [API documentation](https://cloud.google.com/iot/docs/reference/cloudiot/rest/)
@@ -88,7 +87,6 @@ class Registry(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/iot/docs/)
 
         ## Example Usage
-
         ### Cloudiot Device Registry Basic
 
         ```python
@@ -97,7 +95,6 @@ class Registry(pulumi.CustomResource):
 
         test_registry = gcp.iot.Registry("test-registry")
         ```
-
         ### Cloudiot Device Registry Single Event Notification Configs
 
         ```python
@@ -110,7 +107,6 @@ class Registry(pulumi.CustomResource):
             "subfolderMatches": "",
         }])
         ```
-
         ### Cloudiot Device Registry Full
 
         ```python
@@ -303,9 +299,9 @@ class Registry(pulumi.CustomResource):
         __props__["region"] = region
         __props__["state_notification_config"] = state_notification_config
         return Registry(resource_name, opts=opts, __props__=__props__)
+
     def translate_output_property(self, prop):
         return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
-
