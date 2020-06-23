@@ -13,25 +13,24 @@ import (
 //
 // ## Example Usage
 //
-//
-//
 // ```go
 // package main
 //
 // import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		neg1, err := compute.LookupNetworkEndpointGroup(ctx, &compute.LookupNetworkEndpointGroupArgs{
+// 		_, err := compute.LookupNetworkEndpointGroup(ctx, &compute.LookupNetworkEndpointGroupArgs{
 // 			Name: "k8s1-abcdef01-myns-mysvc-8080-4b6bac43",
 // 			Zone: "us-central1-a",
 // 		}, nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		neg2, err := compute.LookupNetworkEndpointGroup(ctx, &compute.LookupNetworkEndpointGroupArgs{
+// 		_, err := compute.LookupNetworkEndpointGroup(ctx, &compute.LookupNetworkEndpointGroupArgs{
 // 			SelfLink: "https://www.googleapis.com/compute/v1/projects/myproject/zones/us-central1-a/networkEndpointGroups/k8s1-abcdef01-myns-mysvc-8080-4b6bac43",
 // 		}, nil)
 // 		if err != nil {
