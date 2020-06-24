@@ -13,7 +13,6 @@ import (
 // for creating sole-tenant nodes, such as node type, vCPU and memory
 // requirements, node affinity labels, and region.
 //
-//
 // To get more information about NodeTemplate, see:
 //
 // * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/nodeTemplates)
@@ -21,7 +20,6 @@ import (
 //     * [Sole-Tenant Nodes](https://cloud.google.com/compute/docs/nodes/)
 //
 // ## Example Usage
-//
 // ### Node Template Basic
 //
 // ```go
@@ -34,13 +32,14 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		central1a, err := compute.LookupNodeTypes(ctx, &compute.LookupNodeTypesArgs{
-// 			Zone: "us-central1-a",
+// 		opt0 := "us-central1-a"
+// 		central1a, err := compute.GetNodeTypes(ctx, &compute.GetNodeTypesArgs{
+// 			Zone: &opt0,
 // 		}, nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		template, err := compute.NewNodeTemplate(ctx, "template", &compute.NodeTemplateArgs{
+// 		_, err = compute.NewNodeTemplate(ctx, "template", &compute.NodeTemplateArgs{
 // 			Region:   pulumi.String("us-central1"),
 // 			NodeType: pulumi.String(central1a.Names[0]),
 // 		})
