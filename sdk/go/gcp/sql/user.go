@@ -13,6 +13,46 @@ import (
 // Creates a new Google SQL User on a Google SQL User Instance. For more information, see the [official documentation](https://cloud.google.com/sql/), or the [JSON API](https://cloud.google.com/sql/docs/admin-api/v1beta4/users).
 //
 // ## Example Usage
+//
+// Example creating a SQL User.
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/sql"
+// 	"github.com/pulumi/pulumi-random/sdk/v2/go/random"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = random.NewRandomId(ctx, "dbNameSuffix", &random.RandomIdArgs{
+// 			ByteLength: pulumi.Int(4),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		master, err := sql.NewDatabaseInstance(ctx, "master", &sql.DatabaseInstanceArgs{
+// 			Settings: &sql.DatabaseInstanceSettingsArgs{
+// 				Tier: pulumi.String("db-f1-micro"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = sql.NewUser(ctx, "users", &sql.UserArgs{
+// 			Instance: master.Name,
+// 			Host:     pulumi.String("me.com"),
+// 			Password: pulumi.String("changeme"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type User struct {
 	pulumi.CustomResourceState
 
