@@ -139,45 +139,6 @@ import (
 // 	})
 // }
 // ```
-//
-// ## google\_service\_account\_iam\_member
-//
-// With IAM Conditions:
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/serviceAccount"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		sa, err := serviceAccount.NewAccount(ctx, "sa", &serviceAccount.AccountArgs{
-// 			AccountId:   pulumi.String("my-service-account"),
-// 			DisplayName: pulumi.String("A service account that Jane can use"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = serviceAccount.NewIAMMember(ctx, "admin-account-iam", &serviceAccount.IAMMemberArgs{
-// 			Condition: &serviceAccount.IAMMemberConditionArgs{
-// 				Description: pulumi.String("Expiring at midnight of 2019-12-31"),
-// 				Expression:  pulumi.String("request.time < timestamp(\"2020-01-01T00:00:00Z\")"),
-// 				Title:       pulumi.String("expires_after_2019_12_31"),
-// 			},
-// 			Member:           pulumi.String("user:jane@example.com"),
-// 			Role:             pulumi.String("roles/iam.serviceAccountUser"),
-// 			ServiceAccountId: sa.Name,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type IAMBinding struct {
 	pulumi.CustomResourceState
 
