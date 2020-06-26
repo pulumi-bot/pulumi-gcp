@@ -58,7 +58,7 @@ import (
 // 			Description:                 pulumi.String("My Data Fusion instance"),
 // 			EnableStackdriverLogging:    pulumi.Bool(true),
 // 			EnableStackdriverMonitoring: pulumi.Bool(true),
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"example_key": pulumi.String("example_value"),
 // 			},
 // 			NetworkConfig: &datafusion.InstanceNetworkConfigArgs{

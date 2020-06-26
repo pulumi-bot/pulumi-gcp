@@ -31,7 +31,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err = pubsub.NewTopic(ctx, "example", &pubsub.TopicArgs{
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"foo": pulumi.String("bar"),
 // 			},
 // 		})

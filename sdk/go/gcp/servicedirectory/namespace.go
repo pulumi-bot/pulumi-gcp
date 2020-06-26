@@ -35,7 +35,7 @@ import (
 // 		_, err = servicedirectory.NewNamespace(ctx, "example", &servicedirectory.NamespaceArgs{
 // 			NamespaceId: pulumi.String("example-namespace"),
 // 			Location:    pulumi.String("us-central1"),
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"key": pulumi.String("value"),
 // 				"foo": pulumi.String("bar"),
 // 			},

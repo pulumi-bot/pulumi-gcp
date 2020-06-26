@@ -84,7 +84,7 @@ import (
 // 				},
 // 				SoftwareConfig: &dataproc.ClusterClusterConfigSoftwareConfigArgs{
 // 					ImageVersion: pulumi.String("1.3.7-deb9"),
-// 					OverrideProperties: pulumi.Map{
+// 					OverrideProperties: pulumi.StringMap{
 // 						"dataproc:dataproc.allow.zero.workers": pulumi.String("true"),
 // 					},
 // 				},
@@ -99,7 +99,7 @@ import (
 // 					NumInstances:   pulumi.Int(2),
 // 				},
 // 			},
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"foo": pulumi.String("bar"),
 // 			},
 // 			Region: pulumi.String("us-central1"),

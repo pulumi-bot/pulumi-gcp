@@ -152,7 +152,7 @@ import (
 // 			PeerIp:           pulumi.String("15.0.0.120"),
 // 			SharedSecret:     pulumi.String("a secret message"),
 // 			TargetVpnGateway: targetGateway.ID(),
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"foo": pulumi.String("bar"),
 // 			},
 // 		})
