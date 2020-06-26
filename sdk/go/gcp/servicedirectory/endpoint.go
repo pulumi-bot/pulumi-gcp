@@ -48,7 +48,7 @@ import (
 // 		_, err = servicedirectory.NewEndpoint(ctx, "exampleEndpoint", &servicedirectory.EndpointArgs{
 // 			EndpointId: pulumi.String("example-endpoint"),
 // 			Service:    exampleService.ID(),
-// 			Metadata: pulumi.Map{
+// 			Metadata: pulumi.StringMap{
 // 				"stage":  pulumi.String("prod"),
 // 				"region": pulumi.String("us-central1"),
 // 			},

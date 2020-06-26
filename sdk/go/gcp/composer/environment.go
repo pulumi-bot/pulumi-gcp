@@ -68,13 +68,13 @@ import (
 // 		_, err = composer.NewEnvironment(ctx, "test", &composer.EnvironmentArgs{
 // 			Config: &composer.EnvironmentConfigArgs{
 // 				SoftwareConfig: &composer.EnvironmentConfigSoftwareConfigArgs{
-// 					AirflowConfigOverrides: pulumi.Map{
+// 					AirflowConfigOverrides: pulumi.StringMap{
 // 						"core-loadExample": pulumi.String("True"),
 // 					},
-// 					EnvVariables: pulumi.Map{
+// 					EnvVariables: pulumi.StringMap{
 // 						"FOO": pulumi.String("bar"),
 // 					},
-// 					PypiPackages: pulumi.Map{
+// 					PypiPackages: pulumi.StringMap{
 // 						"numpy": pulumi.String(""),
 // 						"scipy": pulumi.String("==1.1.0"),
 // 					},

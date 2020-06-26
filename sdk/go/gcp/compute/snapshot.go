@@ -66,7 +66,7 @@ import (
 // 		_, err = compute.NewSnapshot(ctx, "snapshot", &compute.SnapshotArgs{
 // 			SourceDisk: persistent.Name,
 // 			Zone:       pulumi.String("us-central1-a"),
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"my_label": pulumi.String("value"),
 // 			},
 // 		})

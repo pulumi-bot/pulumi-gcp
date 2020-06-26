@@ -69,7 +69,7 @@ import (
 // 				},
 // 				SnapshotProperties: &compute.ResourcePolicySnapshotSchedulePolicySnapshotPropertiesArgs{
 // 					GuestFlush: pulumi.Bool(true),
-// 					Labels: pulumi.Map{
+// 					Labels: pulumi.StringMap{
 // 						"myLabel": pulumi.String("value"),
 // 					},
 // 					StorageLocations: pulumi.String("us"),

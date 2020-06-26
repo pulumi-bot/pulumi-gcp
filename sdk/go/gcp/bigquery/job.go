@@ -44,19 +44,19 @@ import (
 // 		}
 // 		_, err = bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
 // 			JobId: pulumi.String("job_query"),
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"example-label": pulumi.String("example-value"),
 // 			},
 // 			Query: &bigquery.JobQueryArgs{
 // 				Query: pulumi.String("SELECT state FROM [lookerdata:cdc.project_tycho_reports]"),
-// 				Destination_table: pulumi.Map{
+// 				Destination_table: pulumi.StringMap{
 // 					"projectId": foo.Project,
 // 					"datasetId": foo.DatasetId,
 // 					"tableId":   foo.TableId,
 // 				},
 // 				AllowLargeResults: pulumi.Bool(true),
 // 				FlattenResults:    pulumi.Bool(true),
-// 				Script_options: pulumi.Map{
+// 				Script_options: pulumi.StringMap{
 // 					"keyResultStatement": pulumi.String("LAST"),
 // 				},
 // 			},
@@ -98,20 +98,20 @@ import (
 // 		}
 // 		_, err = bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
 // 			JobId: pulumi.String("job_query"),
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"example-label": pulumi.String("example-value"),
 // 			},
 // 			Query: &bigquery.JobQueryArgs{
 // 				Query: pulumi.String("SELECT state FROM [lookerdata:cdc.project_tycho_reports]"),
-// 				Destination_table: pulumi.Map{
+// 				Destination_table: pulumi.StringMap{
 // 					"tableId": foo.ID(),
 // 				},
-// 				Default_dataset: pulumi.Map{
+// 				Default_dataset: pulumi.StringMap{
 // 					"datasetId": bar.ID(),
 // 				},
 // 				AllowLargeResults: pulumi.Bool(true),
 // 				FlattenResults:    pulumi.Bool(true),
-// 				Script_options: pulumi.Map{
+// 				Script_options: pulumi.StringMap{
 // 					"keyResultStatement": pulumi.String("LAST"),
 // 				},
 // 			},
@@ -153,14 +153,14 @@ import (
 // 		}
 // 		_, err = bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
 // 			JobId: pulumi.String("job_load"),
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"my_job": pulumi.String("load"),
 // 			},
 // 			Load: &bigquery.JobLoadArgs{
 // 				SourceUris: pulumi.StringArray{
 // 					pulumi.String("gs://cloud-samples-data/bigquery/us-states/us-states-by-date.csv"),
 // 				},
-// 				Destination_table: pulumi.Map{
+// 				Destination_table: pulumi.StringMap{
 // 					"projectId": foo.Project,
 // 					"datasetId": foo.DatasetId,
 // 					"tableId":   foo.TableId,
