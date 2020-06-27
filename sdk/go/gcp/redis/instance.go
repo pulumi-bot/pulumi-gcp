@@ -41,6 +41,46 @@ import (
 // 	})
 // }
 // ```
+// ### Redis Instance Full
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/redis"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		redis_network, err := compute.LookupNetwork(ctx, &compute.LookupNetworkArgs{
+// 			Name: "redis-test-network",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = redis.NewInstance(ctx, "cache", &redis.InstanceArgs{
+// 			Tier:                  pulumi.String("STANDARD_HA"),
+// 			MemorySizeGb:          pulumi.Int(1),
+// 			LocationId:            pulumi.String("us-central1-a"),
+// 			AlternativeLocationId: pulumi.String("us-central1-f"),
+// 			AuthorizedNetwork:     pulumi.String(redis_network.Id),
+// 			RedisVersion:          pulumi.String("REDIS_3_2"),
+// 			DisplayName:           pulumi.String("Test Instance"),
+// 			ReservedIpRange:       pulumi.String("192.168.0.0/29"),
+// 			Labels: pulumi.Map{
+// 				"my_key":    pulumi.String("my_val"),
+// 				"other_key": pulumi.String("other_val"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Instance struct {
 	pulumi.CustomResourceState
 

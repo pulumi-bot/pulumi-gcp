@@ -37,7 +37,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewHttpHealthCheck(ctx, "default", &compute.HttpHealthCheckArgs{
+// 		_default, err := compute.NewHttpHealthCheck(ctx, "_default", &compute.HttpHealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			RequestPath:      pulumi.String("/health_check"),
 // 			TimeoutSec:       pulumi.Int(1),

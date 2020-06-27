@@ -36,7 +36,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = organizations.NewIAMCustomRole(ctx, "my-custom-role", &organizations.IAMCustomRoleArgs{
+// 		_, err = organizations.NewIAMCustomRole(ctx, "my_custom_role", &organizations.IAMCustomRoleArgs{
 // 			Description: pulumi.String("A description"),
 // 			OrgId:       pulumi.String("123456789"),
 // 			Permissions: pulumi.StringArray{

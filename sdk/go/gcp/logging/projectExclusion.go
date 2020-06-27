@@ -29,7 +29,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = logging.NewProjectExclusion(ctx, "my-exclusion", &logging.ProjectExclusionArgs{
+// 		_, err = logging.NewProjectExclusion(ctx, "my_exclusion", &logging.ProjectExclusionArgs{
 // 			Description: pulumi.String("Exclude GCE instance debug logs"),
 // 			Filter:      pulumi.String("resource.type = gce_instance AND severity <= DEBUG"),
 // 		})
