@@ -71,7 +71,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = binaryauthorization.NewAttestorIamBinding(ctx, "binding", &binaryauthorization.AttestorIamBindingArgs{
+// 		_, err := binaryauthorization.NewAttestorIamBinding(ctx, "binding", &binaryauthorization.AttestorIamBindingArgs{
 // 			Project:  pulumi.String(google_binary_authorization_attestor.Attestor.Project),
 // 			Attestor: pulumi.String(google_binary_authorization_attestor.Attestor.Name),
 // 			Role:     pulumi.String("roles/viewer"),
@@ -99,7 +99,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = binaryauthorization.NewAttestorIamMember(ctx, "member", &binaryauthorization.AttestorIamMemberArgs{
+// 		_, err := binaryauthorization.NewAttestorIamMember(ctx, "member", &binaryauthorization.AttestorIamMemberArgs{
 // 			Project:  pulumi.String(google_binary_authorization_attestor.Attestor.Project),
 // 			Attestor: pulumi.String(google_binary_authorization_attestor.Attestor.Name),
 // 			Role:     pulumi.String("roles/viewer"),

@@ -71,7 +71,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = pubsub.NewTopicIAMBinding(ctx, "binding", &pubsub.TopicIAMBindingArgs{
+// 		_, err := pubsub.NewTopicIAMBinding(ctx, "binding", &pubsub.TopicIAMBindingArgs{
 // 			Project: pulumi.String(google_pubsub_topic.Example.Project),
 // 			Topic:   pulumi.String(google_pubsub_topic.Example.Name),
 // 			Role:    pulumi.String("roles/viewer"),
@@ -99,7 +99,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = pubsub.NewTopicIAMMember(ctx, "member", &pubsub.TopicIAMMemberArgs{
+// 		_, err := pubsub.NewTopicIAMMember(ctx, "member", &pubsub.TopicIAMMemberArgs{
 // 			Project: pulumi.String(google_pubsub_topic.Example.Project),
 // 			Topic:   pulumi.String(google_pubsub_topic.Example.Name),
 // 			Role:    pulumi.String("roles/viewer"),

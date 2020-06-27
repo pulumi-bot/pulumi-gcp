@@ -47,7 +47,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = monitoring.NewNotificationChannel(ctx, "basic", &monitoring.NotificationChannelArgs{
+// 		_, err := monitoring.NewNotificationChannel(ctx, "basic", &monitoring.NotificationChannelArgs{
 // 			DisplayName: pulumi.String("Test Notification Channel"),
 // 			Labels: pulumi.Map{
 // 				"email_address": pulumi.String("fake_email@blahblah.com"),
@@ -73,7 +73,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = monitoring.NewNotificationChannel(ctx, "default", &monitoring.NotificationChannelArgs{
+// 		_, err := monitoring.NewNotificationChannel(ctx, "_default", &monitoring.NotificationChannelArgs{
 // 			DisplayName: pulumi.String("Test Slack Channel"),
 // 			Labels: pulumi.Map{
 // 				"channel_name": pulumi.String("#foobar"),

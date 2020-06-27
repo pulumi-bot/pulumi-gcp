@@ -16,6 +16,41 @@ import (
 // state as plain-text.
 //
 // ## Example Usage
+// ### Secret Version Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/secretmanager"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := secretmanager.NewSecret(ctx, "secret_basic", &secretmanager.SecretArgs{
+// 			SecretId: pulumi.String("secret-version"),
+// 			Labels: pulumi.Map{
+// 				"label": pulumi.String("my-label"),
+// 			},
+// 			Replication: &secretmanager.SecretReplicationArgs{
+// 				Automatic: pulumi.Bool(true),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = secretmanager.NewSecretVersion(ctx, "secret_version_basic", &secretmanager.SecretVersionArgs{
+// 			Secret:     secret_basic.ID(),
+// 			SecretData: pulumi.String("secret-data"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type SecretVersion struct {
 	pulumi.CustomResourceState
 

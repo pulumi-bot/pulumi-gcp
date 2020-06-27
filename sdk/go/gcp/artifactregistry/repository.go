@@ -31,11 +31,57 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = artifactregistry.NewRepository(ctx, "my-repo", &artifactregistry.RepositoryArgs{
+// 		_, err := artifactregistry.NewRepository(ctx, "my_repo", &artifactregistry.RepositoryArgs{
 // 			Location:     pulumi.String("us-central1"),
 // 			RepositoryId: pulumi.String("my-repository"),
 // 			Description:  pulumi.String("example docker repository"),
 // 			Format:       pulumi.String("DOCKER"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Artifact Registry Repository Iam
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/artifactregistry"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/serviceAccount"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := artifactregistry.NewRepository(ctx, "my_repo", &artifactregistry.RepositoryArgs{
+// 			Location:     pulumi.String("us-central1"),
+// 			RepositoryId: pulumi.String("my-repository"),
+// 			Description:  pulumi.String("example docker repository with iam"),
+// 			Format:       pulumi.String("DOCKER"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = serviceAccount.NewAccount(ctx, "test_account", &serviceAccount.AccountArgs{
+// 			AccountId:   pulumi.String("my-account"),
+// 			DisplayName: pulumi.String("Test Service Account"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = artifactregistry.NewRepositoryIamMember(ctx, "test_iam", &artifactregistry.RepositoryIamMemberArgs{
+// 			Location:   my_repo.Location,
+// 			Repository: my_repo.Name,
+// 			Role:       pulumi.String("roles/artifactregistry.reader"),
+// 			Member: test_account.Email.ApplyT(func(email string) (string, error) {
+// 				return fmt.Sprintf("%v%v", "serviceAccount:", email), nil
+// 			}).(pulumi.StringOutput),
 // 		})
 // 		if err != nil {
 // 			return err

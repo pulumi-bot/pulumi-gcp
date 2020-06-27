@@ -25,7 +25,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = cloudtasks.NewQueue(ctx, "default", &cloudtasks.QueueArgs{
+// 		_, err := cloudtasks.NewQueue(ctx, "_default", &cloudtasks.QueueArgs{
 // 			Location: pulumi.String("us-central1"),
 // 		})
 // 		if err != nil {

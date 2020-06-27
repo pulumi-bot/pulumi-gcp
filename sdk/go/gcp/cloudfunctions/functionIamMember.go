@@ -72,7 +72,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = cloudfunctions.NewFunctionIamBinding(ctx, "binding", &cloudfunctions.FunctionIamBindingArgs{
+// 		_, err := cloudfunctions.NewFunctionIamBinding(ctx, "binding", &cloudfunctions.FunctionIamBindingArgs{
 // 			Project:       pulumi.String(google_cloudfunctions_function.Function.Project),
 // 			Region:        pulumi.String(google_cloudfunctions_function.Function.Region),
 // 			CloudFunction: pulumi.String(google_cloudfunctions_function.Function.Name),
@@ -101,7 +101,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = cloudfunctions.NewFunctionIamMember(ctx, "member", &cloudfunctions.FunctionIamMemberArgs{
+// 		_, err := cloudfunctions.NewFunctionIamMember(ctx, "member", &cloudfunctions.FunctionIamMemberArgs{
 // 			Project:       pulumi.String(google_cloudfunctions_function.Function.Project),
 // 			Region:        pulumi.String(google_cloudfunctions_function.Function.Region),
 // 			CloudFunction: pulumi.String(google_cloudfunctions_function.Function.Name),

@@ -72,7 +72,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = artifactregistry.NewRepositoryIamBinding(ctx, "binding", &artifactregistry.RepositoryIamBindingArgs{
+// 		_, err := artifactregistry.NewRepositoryIamBinding(ctx, "binding", &artifactregistry.RepositoryIamBindingArgs{
 // 			Project:    pulumi.String(google_artifact_registry_repository.My - repo.Project),
 // 			Location:   pulumi.String(google_artifact_registry_repository.My - repo.Location),
 // 			Repository: pulumi.String(google_artifact_registry_repository.My - repo.Name),
@@ -101,7 +101,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = artifactregistry.NewRepositoryIamMember(ctx, "member", &artifactregistry.RepositoryIamMemberArgs{
+// 		_, err := artifactregistry.NewRepositoryIamMember(ctx, "member", &artifactregistry.RepositoryIamMemberArgs{
 // 			Project:    pulumi.String(google_artifact_registry_repository.My - repo.Project),
 // 			Location:   pulumi.String(google_artifact_registry_repository.My - repo.Location),
 // 			Repository: pulumi.String(google_artifact_registry_repository.My - repo.Name),
