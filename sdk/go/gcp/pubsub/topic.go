@@ -30,7 +30,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = pubsub.NewTopic(ctx, "example", &pubsub.TopicArgs{
+// 		_, err := pubsub.NewTopic(ctx, "example", &pubsub.TopicArgs{
 // 			Labels: pulumi.Map{
 // 				"foo": pulumi.String("bar"),
 // 			},
@@ -89,7 +89,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = pubsub.NewTopic(ctx, "example", &pubsub.TopicArgs{
+// 		_, err := pubsub.NewTopic(ctx, "example", &pubsub.TopicArgs{
 // 			MessageStoragePolicy: &pubsub.TopicMessageStoragePolicyArgs{
 // 				AllowedPersistenceRegions: pulumi.StringArray{
 // 					pulumi.String("europe-west3"),

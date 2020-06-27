@@ -31,7 +31,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = datastore.NewDataStoreIndex(ctx, "default", &datastore.DataStoreIndexArgs{
+// 		_default, err := datastore.NewDataStoreIndex(ctx, "_default", &datastore.DataStoreIndexArgs{
 // 			Kind: pulumi.String("foo"),
 // 			Properties: datastore.DataStoreIndexPropertyArray{
 // 				&datastore.DataStoreIndexPropertyArgs{

@@ -181,6 +181,68 @@ import (
 // 	})
 // }
 // ```
+// ### Bigquery Job Extract
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/bigquery"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/storage"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := bigquery.NewDataset(ctx, "source_oneDataset", &bigquery.DatasetArgs{
+// 			DatasetId:    pulumi.String("job_extract_dataset"),
+// 			FriendlyName: pulumi.String("test"),
+// 			Description:  pulumi.String("This is a test description"),
+// 			Location:     pulumi.String("US"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = bigquery.NewTable(ctx, "source_oneTable", &bigquery.TableArgs{
+// 			DatasetId: source_oneDataset.DatasetId,
+// 			TableId:   pulumi.String("job_extract_table"),
+// 			Schema:    pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v%v", "[\n", "  {\n", "    \"name\": \"name\",\n", "    \"type\": \"STRING\",\n", "    \"mode\": \"NULLABLE\"\n", "  },\n", "  {\n", "    \"name\": \"post_abbr\",\n", "    \"type\": \"STRING\",\n", "    \"mode\": \"NULLABLE\"\n", "  },\n", "  {\n", "    \"name\": \"date\",\n", "    \"type\": \"DATE\",\n", "    \"mode\": \"NULLABLE\"\n", "  }\n", "]\n")),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		dest, err := storage.NewBucket(ctx, "dest", &storage.BucketArgs{
+// 			ForceDestroy: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = bigquery.NewJob(ctx, "job", &bigquery.JobArgs{
+// 			JobId: pulumi.String("job_extract"),
+// 			Extract: &bigquery.JobExtractArgs{
+// 				DestinationUris: pulumi.StringArray{
+// 					dest.Url.ApplyT(func(url string) (string, error) {
+// 						return fmt.Sprintf("%v%v", url, "/extract"), nil
+// 					}).(pulumi.StringOutput),
+// 				},
+// 				Source_table: pulumi.Map{
+// 					"projectId": source_oneTable.Project,
+// 					"datasetId": source_oneTable.DatasetId,
+// 					"tableId":   source_oneTable.TableId,
+// 				},
+// 				DestinationFormat: pulumi.String("NEWLINE_DELIMITED_JSON"),
+// 				Compression:       pulumi.String("GZIP"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Job struct {
 	pulumi.CustomResourceState
 

@@ -43,7 +43,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewAddress(ctx, "ipAddress", nil)
+// 		_, err := compute.NewAddress(ctx, "ipAddress", nil)
 // 		if err != nil {
 // 			return err
 // 		}
@@ -100,7 +100,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewAddress(ctx, "internalWithGceEndpoint", &compute.AddressArgs{
+// 		_, err := compute.NewAddress(ctx, "internalWithGceEndpoint", &compute.AddressArgs{
 // 			AddressType: pulumi.String("INTERNAL"),
 // 			Purpose:     pulumi.String("GCE_ENDPOINT"),
 // 		})

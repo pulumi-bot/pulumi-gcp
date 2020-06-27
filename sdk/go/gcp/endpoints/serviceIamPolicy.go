@@ -70,7 +70,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = endpoints.NewServiceIamBinding(ctx, "binding", &endpoints.ServiceIamBindingArgs{
+// 		_, err := endpoints.NewServiceIamBinding(ctx, "binding", &endpoints.ServiceIamBindingArgs{
 // 			ServiceName: pulumi.String(google_endpoints_service.Endpoints_service.Service_name),
 // 			Role:        pulumi.String("roles/viewer"),
 // 			Members: pulumi.StringArray{
@@ -97,7 +97,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = endpoints.NewServiceIamMember(ctx, "member", &endpoints.ServiceIamMemberArgs{
+// 		_, err := endpoints.NewServiceIamMember(ctx, "member", &endpoints.ServiceIamMemberArgs{
 // 			ServiceName: pulumi.String(google_endpoints_service.Endpoints_service.Service_name),
 // 			Role:        pulumi.String("roles/viewer"),
 // 			Member:      pulumi.String("user:jane@example.com"),

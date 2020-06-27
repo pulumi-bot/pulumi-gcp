@@ -112,7 +112,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = iap.NewWebIamBinding(ctx, "binding", &iap.WebIamBindingArgs{
+// 		_, err := iap.NewWebIamBinding(ctx, "binding", &iap.WebIamBindingArgs{
 // 			Project: pulumi.String(google_project_service.Project_service.Project),
 // 			Role:    pulumi.String("roles/iap.httpsResourceAccessor"),
 // 			Members: pulumi.StringArray{
@@ -139,7 +139,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = iap.NewWebIamBinding(ctx, "binding", &iap.WebIamBindingArgs{
+// 		_, err := iap.NewWebIamBinding(ctx, "binding", &iap.WebIamBindingArgs{
 // 			Project: pulumi.String(google_project_service.Project_service.Project),
 // 			Role:    pulumi.String("roles/iap.httpsResourceAccessor"),
 // 			Members: pulumi.StringArray{
@@ -170,7 +170,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = iap.NewWebIamMember(ctx, "member", &iap.WebIamMemberArgs{
+// 		_, err := iap.NewWebIamMember(ctx, "member", &iap.WebIamMemberArgs{
 // 			Project: pulumi.String(google_project_service.Project_service.Project),
 // 			Role:    pulumi.String("roles/iap.httpsResourceAccessor"),
 // 			Member:  pulumi.String("user:jane@example.com"),
@@ -195,7 +195,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = iap.NewWebIamMember(ctx, "member", &iap.WebIamMemberArgs{
+// 		_, err := iap.NewWebIamMember(ctx, "member", &iap.WebIamMemberArgs{
 // 			Project: pulumi.String(google_project_service.Project_service.Project),
 // 			Role:    pulumi.String("roles/iap.httpsResourceAccessor"),
 // 			Member:  pulumi.String("user:jane@example.com"),

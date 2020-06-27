@@ -116,7 +116,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = iap.NewAppEngineServiceIamBinding(ctx, "binding", &iap.AppEngineServiceIamBindingArgs{
+// 		_, err := iap.NewAppEngineServiceIamBinding(ctx, "binding", &iap.AppEngineServiceIamBindingArgs{
 // 			AppId: pulumi.String(google_app_engine_standard_app_version.Version.Project),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -145,7 +145,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = iap.NewAppEngineServiceIamBinding(ctx, "binding", &iap.AppEngineServiceIamBindingArgs{
+// 		_, err := iap.NewAppEngineServiceIamBinding(ctx, "binding", &iap.AppEngineServiceIamBindingArgs{
 // 			AppId: pulumi.String(google_app_engine_standard_app_version.Version.Project),
 // 			Condition: &iap.AppEngineServiceIamBindingConditionArgs{
 // 				Description: pulumi.String("Expiring at midnight of 2019-12-31"),
@@ -178,7 +178,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = iap.NewAppEngineServiceIamMember(ctx, "member", &iap.AppEngineServiceIamMemberArgs{
+// 		_, err := iap.NewAppEngineServiceIamMember(ctx, "member", &iap.AppEngineServiceIamMemberArgs{
 // 			AppId:   pulumi.String(google_app_engine_standard_app_version.Version.Project),
 // 			Member:  pulumi.String("user:jane@example.com"),
 // 			Project: pulumi.String(google_app_engine_standard_app_version.Version.Project),
@@ -205,7 +205,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = iap.NewAppEngineServiceIamMember(ctx, "member", &iap.AppEngineServiceIamMemberArgs{
+// 		_, err := iap.NewAppEngineServiceIamMember(ctx, "member", &iap.AppEngineServiceIamMemberArgs{
 // 			AppId: pulumi.String(google_app_engine_standard_app_version.Version.Project),
 // 			Condition: &iap.AppEngineServiceIamMemberConditionArgs{
 // 				Description: pulumi.String("Expiring at midnight of 2019-12-31"),

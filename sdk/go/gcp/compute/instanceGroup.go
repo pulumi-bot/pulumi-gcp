@@ -26,7 +26,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewInstanceGroup(ctx, "test", &compute.InstanceGroupArgs{
+// 		_, err := compute.NewInstanceGroup(ctx, "test", &compute.InstanceGroupArgs{
 // 			Description: pulumi.String("Test instance group"),
 // 			Zone:        pulumi.String("us-central1-a"),
 // 			Network:     pulumi.String(google_compute_network.Default.Id),

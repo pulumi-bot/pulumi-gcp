@@ -29,7 +29,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = secretmanager.NewSecret(ctx, "secret-basic", &secretmanager.SecretArgs{
+// 		_, err := secretmanager.NewSecret(ctx, "secret_basic", &secretmanager.SecretArgs{
 // 			Labels: pulumi.Map{
 // 				"label": pulumi.String("my-label"),
 // 			},

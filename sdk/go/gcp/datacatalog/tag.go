@@ -305,7 +305,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = datacatalog.NewTag(ctx, "second-tag", &datacatalog.TagArgs{
+// 		_, err = datacatalog.NewTag(ctx, "second_tag", &datacatalog.TagArgs{
 // 			Parent:   entry.ID(),
 // 			Template: tagTemplate.ID(),
 // 			Fields: datacatalog.TagFieldArray{
