@@ -40,7 +40,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewSecurityScanConfig(ctx, "scan-config", &compute.SecurityScanConfigArgs{
+// 		_, err = compute.NewSecurityScanConfig(ctx, "scan_config", &compute.SecurityScanConfigArgs{
 // 			DisplayName: pulumi.String("scan-config"),
 // 			StartingUrls: pulumi.StringArray{
 // 				scannerStaticIp.Address.ApplyT(func(address string) (string, error) {

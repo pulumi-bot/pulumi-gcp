@@ -33,7 +33,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = firestore.NewIndex(ctx, "my-index", &firestore.IndexArgs{
+// 		_, err = firestore.NewIndex(ctx, "my_index", &firestore.IndexArgs{
 // 			Collection: pulumi.String("chatrooms"),
 // 			Fields: firestore.IndexFieldArray{
 // 				&firestore.IndexFieldArgs{

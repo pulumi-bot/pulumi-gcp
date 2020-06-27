@@ -43,7 +43,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = cloudrun.NewService(ctx, "default", &cloudrun.ServiceArgs{
+// 		_default, err := cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
 // 			Location: pulumi.String("us-central1"),
 // 			Template: &cloudrun.ServiceTemplateArgs{
 // 				Spec: &cloudrun.ServiceTemplateSpecArgs{
@@ -94,7 +94,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = cloudrun.NewService(ctx, "default", &cloudrun.ServiceArgs{
+// 		_default, err := cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
 // 			AutogenerateRevisionName: pulumi.Bool(true),
 // 			Location:                 pulumi.String("us-central1"),
 // 			Template: &cloudrun.ServiceTemplateArgs{
@@ -125,6 +125,59 @@ import (
 // ```
 //
 // ###Cloud Run Service Noauth
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/cloudrun"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_default, err := cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
+// 			Location: pulumi.String("us-central1"),
+// 			Template: &cloudrun.ServiceTemplateArgs{
+// 				Spec: &cloudrun.ServiceTemplateSpecArgs{
+// 					Containers: cloudrun.ServiceTemplateSpecContainerArray{
+// 						&cloudrun.ServiceTemplateSpecContainerArgs{
+// 							Image: pulumi.String("gcr.io/cloudrun/hello"),
+// 						},
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		noauthIAMPolicy, err := organizations.LookupIAMPolicy(ctx, &organizations.LookupIAMPolicyArgs{
+// 			Binding: []map[string]interface{}{
+// 				map[string]interface{}{
+// 					"role": "roles/run.invoker",
+// 					"members": []string{
+// 						"allUsers",
+// 					},
+// 				},
+// 			},
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = cloudrun.NewIamPolicy(ctx, "noauthIamPolicy", &cloudrun.IamPolicyArgs{
+// 			Location:   _default.Location,
+// 			Project:    _default.Project,
+// 			Service:    _default.Name,
+// 			PolicyData: pulumi.String(noauthIAMPolicy.PolicyData),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 // ### Cloud Run Service Multiple Environment Variables
 //
 // ```go
@@ -137,7 +190,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = cloudrun.NewService(ctx, "default", &cloudrun.ServiceArgs{
+// 		_default, err := cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
 // 			AutogenerateRevisionName: pulumi.Bool(true),
 // 			Location:                 pulumi.String("us-central1"),
 // 			Template: &cloudrun.ServiceTemplateArgs{
@@ -185,7 +238,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = cloudrun.NewService(ctx, "default", &cloudrun.ServiceArgs{
+// 		_default, err := cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
 // 			Location: pulumi.String("us-central1"),
 // 			Template: &cloudrun.ServiceTemplateArgs{
 // 				Metadata: &cloudrun.ServiceTemplateMetadataArgs{

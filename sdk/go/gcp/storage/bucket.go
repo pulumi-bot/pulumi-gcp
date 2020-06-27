@@ -35,7 +35,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = storage.NewBucket(ctx, "static-site", &storage.BucketArgs{
+// 		_, err = storage.NewBucket(ctx, "static_site", &storage.BucketArgs{
 // 			BucketPolicyOnly: pulumi.Bool(true),
 // 			Cors: storage.BucketCorArray{
 // 				&storage.BucketCorArgs{
@@ -81,7 +81,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = storage.NewBucket(ctx, "auto-expire", &storage.BucketArgs{
+// 		_, err = storage.NewBucket(ctx, "auto_expire", &storage.BucketArgs{
 // 			ForceDestroy: pulumi.Bool(true),
 // 			LifecycleRules: storage.BucketLifecycleRuleArray{
 // 				&storage.BucketLifecycleRuleArgs{

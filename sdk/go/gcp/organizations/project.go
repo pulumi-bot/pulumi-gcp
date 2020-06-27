@@ -63,7 +63,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = organizations.NewProject(ctx, "myProject-in-a-folder", &organizations.ProjectArgs{
+// 		_, err = organizations.NewProject(ctx, "myProject_in_a_folder", &organizations.ProjectArgs{
 // 			ProjectId: pulumi.String("your-project-id"),
 // 			FolderId:  department1.Name,
 // 		})

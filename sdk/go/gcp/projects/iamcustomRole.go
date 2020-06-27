@@ -36,7 +36,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = projects.NewIAMCustomRole(ctx, "my-custom-role", &projects.IAMCustomRoleArgs{
+// 		_, err = projects.NewIAMCustomRole(ctx, "my_custom_role", &projects.IAMCustomRoleArgs{
 // 			Description: pulumi.String("A description"),
 // 			Permissions: pulumi.StringArray{
 // 				pulumi.String("iam.roles.list"),

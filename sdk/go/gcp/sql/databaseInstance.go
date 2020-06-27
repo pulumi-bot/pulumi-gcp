@@ -67,6 +67,68 @@ import (
 // 	})
 // }
 // ```
+// ### Private IP Instance
+// > **NOTE**: For private IP instance setup, note that the `sql.DatabaseInstance` does not actually interpolate values from `servicenetworking.Connection`. You must explicitly add a `dependsOn`reference as shown below.
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/servicenetworking"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/sql"
+// 	"github.com/pulumi/pulumi-random/sdk/v2/go/random"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		privateNetwork, err := compute.NewNetwork(ctx, "privateNetwork", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		privateIpAddress, err := compute.NewGlobalAddress(ctx, "privateIpAddress", &compute.GlobalAddressArgs{
+// 			Purpose:      pulumi.String("VPC_PEERING"),
+// 			AddressType:  pulumi.String("INTERNAL"),
+// 			PrefixLength: pulumi.Int(16),
+// 			Network:      privateNetwork.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		privateVpcConnection, err := servicenetworking.NewConnection(ctx, "privateVpcConnection", &servicenetworking.ConnectionArgs{
+// 			Network: privateNetwork.ID(),
+// 			Service: pulumi.String("servicenetworking.googleapis.com"),
+// 			ReservedPeeringRanges: pulumi.StringArray{
+// 				privateIpAddress.Name,
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = random.NewRandomId(ctx, "dbNameSuffix", &random.RandomIdArgs{
+// 			ByteLength: pulumi.Int(4),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = sql.NewDatabaseInstance(ctx, "instance", &sql.DatabaseInstanceArgs{
+// 			Region: pulumi.String("us-central1"),
+// 			Settings: &sql.DatabaseInstanceSettingsArgs{
+// 				Tier: pulumi.String("db-f1-micro"),
+// 				Ip_configuration: pulumi.Map{
+// 					"ipv4Enabled":    pulumi.Bool(false),
+// 					"privateNetwork": privateNetwork.ID(),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type DatabaseInstance struct {
 	pulumi.CustomResourceState
 

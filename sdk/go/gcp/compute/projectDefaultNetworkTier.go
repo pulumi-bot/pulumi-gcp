@@ -29,7 +29,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewProjectDefaultNetworkTier(ctx, "default", &compute.ProjectDefaultNetworkTierArgs{
+// 		_default, err := compute.NewProjectDefaultNetworkTier(ctx, "_default", &compute.ProjectDefaultNetworkTierArgs{
 // 			NetworkTier: pulumi.String("PREMIUM"),
 // 		})
 // 		if err != nil {

@@ -30,7 +30,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = iot.NewRegistry(ctx, "test-registry", nil)
+// 		_, err = iot.NewRegistry(ctx, "test_registry", nil)
 // 		if err != nil {
 // 			return err
 // 		}
