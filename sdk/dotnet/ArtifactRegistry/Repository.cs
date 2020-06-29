@@ -35,6 +35,8 @@ namespace Pulumi.Gcp.ArtifactRegistry
     ///             RepositoryId = "my-repository",
     ///             Description = "example docker repository",
     ///             Format = "DOCKER",
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///     }
     /// 
@@ -56,11 +58,15 @@ namespace Pulumi.Gcp.ArtifactRegistry
     ///             RepositoryId = "my-repository",
     ///             Description = "example docker repository with iam",
     ///             Format = "DOCKER",
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var test_account = new Gcp.ServiceAccount.Account("test-account", new Gcp.ServiceAccount.AccountArgs
     ///         {
     ///             AccountId = "my-account",
     ///             DisplayName = "Test Service Account",
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var test_iam = new Gcp.ArtifactRegistry.RepositoryIamMember("test-iam", new Gcp.ArtifactRegistry.RepositoryIamMemberArgs
     ///         {
@@ -68,6 +74,8 @@ namespace Pulumi.Gcp.ArtifactRegistry
     ///             Repository = my_repo.Name,
     ///             Role = "roles/artifactregistry.reader",
     ///             Member = test_account.Email.Apply(email =&gt; $"serviceAccount:{email}"),
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///     }
     /// 

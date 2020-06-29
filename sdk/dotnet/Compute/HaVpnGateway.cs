@@ -35,11 +35,15 @@ namespace Pulumi.Gcp.Compute
     ///         var network1 = new Gcp.Compute.Network("network1", new Gcp.Compute.NetworkArgs
     ///         {
     ///             AutoCreateSubnetworks = false,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var haGateway1 = new Gcp.Compute.HaVpnGateway("haGateway1", new Gcp.Compute.HaVpnGatewayArgs
     ///         {
     ///             Region = "us-central1",
     ///             Network = network1.Id,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///     }
     /// 
@@ -59,45 +63,61 @@ namespace Pulumi.Gcp.Compute
     ///         {
     ///             RoutingMode = "GLOBAL",
     ///             AutoCreateSubnetworks = false,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var haGateway1 = new Gcp.Compute.HaVpnGateway("haGateway1", new Gcp.Compute.HaVpnGatewayArgs
     ///         {
     ///             Region = "us-central1",
     ///             Network = network1.Id,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var network2 = new Gcp.Compute.Network("network2", new Gcp.Compute.NetworkArgs
     ///         {
     ///             RoutingMode = "GLOBAL",
     ///             AutoCreateSubnetworks = false,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var haGateway2 = new Gcp.Compute.HaVpnGateway("haGateway2", new Gcp.Compute.HaVpnGatewayArgs
     ///         {
     ///             Region = "us-central1",
     ///             Network = network2.Id,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var network1Subnet1 = new Gcp.Compute.Subnetwork("network1Subnet1", new Gcp.Compute.SubnetworkArgs
     ///         {
     ///             IpCidrRange = "10.0.1.0/24",
     ///             Region = "us-central1",
     ///             Network = network1.Id,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var network1Subnet2 = new Gcp.Compute.Subnetwork("network1Subnet2", new Gcp.Compute.SubnetworkArgs
     ///         {
     ///             IpCidrRange = "10.0.2.0/24",
     ///             Region = "us-west1",
     ///             Network = network1.Id,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var network2Subnet1 = new Gcp.Compute.Subnetwork("network2Subnet1", new Gcp.Compute.SubnetworkArgs
     ///         {
     ///             IpCidrRange = "192.168.1.0/24",
     ///             Region = "us-central1",
     ///             Network = network2.Id,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var network2Subnet2 = new Gcp.Compute.Subnetwork("network2Subnet2", new Gcp.Compute.SubnetworkArgs
     ///         {
     ///             IpCidrRange = "192.168.2.0/24",
     ///             Region = "us-east1",
     ///             Network = network2.Id,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var router1 = new Gcp.Compute.Router("router1", new Gcp.Compute.RouterArgs
     ///         {
@@ -106,6 +126,8 @@ namespace Pulumi.Gcp.Compute
     ///             {
     ///                 Asn = 64514,
     ///             },
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var router2 = new Gcp.Compute.Router("router2", new Gcp.Compute.RouterArgs
     ///         {
@@ -114,6 +136,8 @@ namespace Pulumi.Gcp.Compute
     ///             {
     ///                 Asn = 64515,
     ///             },
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var tunnel1 = new Gcp.Compute.VPNTunnel("tunnel1", new Gcp.Compute.VPNTunnelArgs
     ///         {
@@ -123,6 +147,8 @@ namespace Pulumi.Gcp.Compute
     ///             SharedSecret = "a secret message",
     ///             Router = router1.Id,
     ///             VpnGatewayInterface = 0,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var tunnel2 = new Gcp.Compute.VPNTunnel("tunnel2", new Gcp.Compute.VPNTunnelArgs
     ///         {
@@ -132,6 +158,8 @@ namespace Pulumi.Gcp.Compute
     ///             SharedSecret = "a secret message",
     ///             Router = router1.Id,
     ///             VpnGatewayInterface = 1,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var tunnel3 = new Gcp.Compute.VPNTunnel("tunnel3", new Gcp.Compute.VPNTunnelArgs
     ///         {
@@ -141,6 +169,8 @@ namespace Pulumi.Gcp.Compute
     ///             SharedSecret = "a secret message",
     ///             Router = router2.Id,
     ///             VpnGatewayInterface = 0,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var tunnel4 = new Gcp.Compute.VPNTunnel("tunnel4", new Gcp.Compute.VPNTunnelArgs
     ///         {
@@ -150,6 +180,8 @@ namespace Pulumi.Gcp.Compute
     ///             SharedSecret = "a secret message",
     ///             Router = router2.Id,
     ///             VpnGatewayInterface = 1,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var router1Interface1 = new Gcp.Compute.RouterInterface("router1Interface1", new Gcp.Compute.RouterInterfaceArgs
     ///         {
@@ -157,6 +189,8 @@ namespace Pulumi.Gcp.Compute
     ///             Region = "us-central1",
     ///             IpRange = "169.254.0.1/30",
     ///             VpnTunnel = tunnel1.Name,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var router1Peer1 = new Gcp.Compute.RouterPeer("router1Peer1", new Gcp.Compute.RouterPeerArgs
     ///         {
@@ -166,6 +200,8 @@ namespace Pulumi.Gcp.Compute
     ///             PeerAsn = 64515,
     ///             AdvertisedRoutePriority = 100,
     ///             Interface = router1Interface1.Name,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var router1Interface2 = new Gcp.Compute.RouterInterface("router1Interface2", new Gcp.Compute.RouterInterfaceArgs
     ///         {
@@ -173,6 +209,8 @@ namespace Pulumi.Gcp.Compute
     ///             Region = "us-central1",
     ///             IpRange = "169.254.1.1/30",
     ///             VpnTunnel = tunnel2.Name,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var router1Peer2 = new Gcp.Compute.RouterPeer("router1Peer2", new Gcp.Compute.RouterPeerArgs
     ///         {
@@ -182,6 +220,8 @@ namespace Pulumi.Gcp.Compute
     ///             PeerAsn = 64515,
     ///             AdvertisedRoutePriority = 100,
     ///             Interface = router1Interface2.Name,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var router2Interface1 = new Gcp.Compute.RouterInterface("router2Interface1", new Gcp.Compute.RouterInterfaceArgs
     ///         {
@@ -189,6 +229,8 @@ namespace Pulumi.Gcp.Compute
     ///             Region = "us-central1",
     ///             IpRange = "169.254.0.1/30",
     ///             VpnTunnel = tunnel3.Name,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var router2Peer1 = new Gcp.Compute.RouterPeer("router2Peer1", new Gcp.Compute.RouterPeerArgs
     ///         {
@@ -198,6 +240,8 @@ namespace Pulumi.Gcp.Compute
     ///             PeerAsn = 64514,
     ///             AdvertisedRoutePriority = 100,
     ///             Interface = router2Interface1.Name,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var router2Interface2 = new Gcp.Compute.RouterInterface("router2Interface2", new Gcp.Compute.RouterInterfaceArgs
     ///         {
@@ -205,6 +249,8 @@ namespace Pulumi.Gcp.Compute
     ///             Region = "us-central1",
     ///             IpRange = "169.254.1.1/30",
     ///             VpnTunnel = tunnel4.Name,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var router2Peer2 = new Gcp.Compute.RouterPeer("router2Peer2", new Gcp.Compute.RouterPeerArgs
     ///         {
@@ -214,6 +260,8 @@ namespace Pulumi.Gcp.Compute
     ///             PeerAsn = 64514,
     ///             AdvertisedRoutePriority = 100,
     ///             Interface = router2Interface2.Name,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///     }
     /// 

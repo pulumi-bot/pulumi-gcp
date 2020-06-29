@@ -78,6 +78,8 @@ namespace Pulumi.Gcp.Sql
     ///     {
     ///         var privateNetwork = new Gcp.Compute.Network("privateNetwork", new Gcp.Compute.NetworkArgs
     ///         {
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var privateIpAddress = new Gcp.Compute.GlobalAddress("privateIpAddress", new Gcp.Compute.GlobalAddressArgs
     ///         {
@@ -85,6 +87,8 @@ namespace Pulumi.Gcp.Sql
     ///             AddressType = "INTERNAL",
     ///             PrefixLength = 16,
     ///             Network = privateNetwork.Id,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var privateVpcConnection = new Gcp.ServiceNetworking.Connection("privateVpcConnection", new Gcp.ServiceNetworking.ConnectionArgs
     ///         {
@@ -94,6 +98,8 @@ namespace Pulumi.Gcp.Sql
     ///             {
     ///                 privateIpAddress.Name,
     ///             },
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var dbNameSuffix = new Random.RandomId("dbNameSuffix", new Random.RandomIdArgs
     ///         {
@@ -110,6 +116,12 @@ namespace Pulumi.Gcp.Sql
     ///                     { "ipv4Enabled", false },
     ///                     { "privateNetwork", privateNetwork.Id },
     ///                 },
+    ///             },
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
+    ///             DependsOn = 
+    ///             {
+    ///                 privateVpcConnection,
     ///             },
     ///         });
     ///     }

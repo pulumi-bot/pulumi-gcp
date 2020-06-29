@@ -39,6 +39,11 @@ namespace Pulumi.Gcp.Diagflow
     ///         var basicIntent = new Gcp.Diagflow.Intent("basicIntent", new Gcp.Diagflow.IntentArgs
     ///         {
     ///             DisplayName = "basic-intent",
+    ///         }, new CustomResourceOptions {
+    ///             DependsOn = 
+    ///             {
+    ///                 basicAgent,
+    ///             },
     ///         });
     ///     }
     /// 

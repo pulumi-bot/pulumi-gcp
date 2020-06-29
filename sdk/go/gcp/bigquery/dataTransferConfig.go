@@ -52,7 +52,9 @@ import (
 // 			FriendlyName: pulumi.String("foo"),
 // 			Description:  pulumi.String("bar"),
 // 			Location:     pulumi.String("asia-northeast1"),
-// 		})
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			permissions,
+// 		}))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -67,7 +69,9 @@ import (
 // 				"write_disposition":               pulumi.String("WRITE_APPEND"),
 // 				"query":                           pulumi.String("SELECT name FROM tabl WHERE x = 'y'"),
 // 			},
-// 		})
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			permissions,
+// 		}))
 // 		if err != nil {
 // 			return err
 // 		}

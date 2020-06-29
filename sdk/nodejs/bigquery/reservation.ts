@@ -24,6 +24,8 @@ import * as utilities from "../utilities";
  *     location: "asia-northeast1",
  *     slotCapacity: 0,
  *     ignoreIdleSlots: false,
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */
