@@ -54,6 +54,8 @@ namespace Pulumi.Gcp.Compute
     ///         var custom_test = new Gcp.Compute.Network("custom-test", new Gcp.Compute.NetworkArgs
     ///         {
     ///             AutoCreateSubnetworks = false,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///         var network_for_l7lb = new Gcp.Compute.Subnetwork("network-for-l7lb", new Gcp.Compute.SubnetworkArgs
     ///         {
@@ -62,6 +64,8 @@ namespace Pulumi.Gcp.Compute
     ///             Purpose = "INTERNAL_HTTPS_LOAD_BALANCER",
     ///             Role = "ACTIVE",
     ///             Network = custom_test.Id,
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///     }
     /// 

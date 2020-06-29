@@ -34,7 +34,7 @@ import (
 // 		exampleNamespace, err := servicedirectory.NewNamespace(ctx, "exampleNamespace", &servicedirectory.NamespaceArgs{
 // 			NamespaceId: pulumi.String("example-namespace"),
 // 			Location:    pulumi.String("us-central1"),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -45,7 +45,7 @@ import (
 // 				"stage":  pulumi.String("prod"),
 // 				"region": pulumi.String("us-central1"),
 // 			},
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}

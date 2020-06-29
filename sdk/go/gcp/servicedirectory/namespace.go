@@ -39,7 +39,7 @@ import (
 // 				"key": pulumi.String("value"),
 // 				"foo": pulumi.String("bar"),
 // 			},
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}

@@ -36,7 +36,7 @@ import (
 // 			RepositoryId: pulumi.String("my-repository"),
 // 			Description:  pulumi.String("example docker repository"),
 // 			Format:       pulumi.String("DOCKER"),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}

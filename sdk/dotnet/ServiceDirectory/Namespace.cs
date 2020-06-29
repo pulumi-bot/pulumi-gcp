@@ -39,6 +39,8 @@ namespace Pulumi.Gcp.ServiceDirectory
     ///                 { "key", "value" },
     ///                 { "foo", "bar" },
     ///             },
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///     }
     /// 

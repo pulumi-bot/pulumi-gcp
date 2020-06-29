@@ -34,7 +34,7 @@ import (
 // 		_, err = gameservices.NewGameServerDeployment(ctx, "default", &gameservices.GameServerDeploymentArgs{
 // 			DeploymentId: pulumi.String("tf-test-deployment"),
 // 			Description:  pulumi.String("a deployment description"),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
