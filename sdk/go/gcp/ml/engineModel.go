@@ -52,7 +52,7 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err = ml.NewEngineModel(ctx, "default", &ml.EngineModelArgs{
 // 			Description: pulumi.String("My model"),
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"my_model": pulumi.String("foo"),
 // 			},
 // 			OnlinePredictionConsoleLogging: pulumi.Bool(true),

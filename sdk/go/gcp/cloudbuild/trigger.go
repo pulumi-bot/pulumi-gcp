@@ -32,7 +32,7 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err = cloudbuild.NewTrigger(ctx, "filename-trigger", &cloudbuild.TriggerArgs{
 // 			Filename: pulumi.String("cloudbuild.yaml"),
-// 			Substitutions: pulumi.Map{
+// 			Substitutions: pulumi.StringMap{
 // 				"_BAZ": pulumi.String("qux"),
 // 				"_FOO": pulumi.String("bar"),
 // 			},

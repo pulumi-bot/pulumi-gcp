@@ -34,7 +34,7 @@ import (
 // 				},
 // 			},
 // 			MachineType: pulumi.String("n1-standard-1"),
-// 			Metadata: pulumi.Map{
+// 			Metadata: pulumi.StringMap{
 // 				"foo": pulumi.String("bar"),
 // 			},
 // 			MetadataStartupScript: pulumi.String("echo hi > /test.txt"),

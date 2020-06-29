@@ -33,7 +33,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err = compute.NewProjectMetadata(ctx, "default", &compute.ProjectMetadataArgs{
-// 			Metadata: pulumi.Map{
+// 			Metadata: pulumi.StringMap{
 // 				"13":   pulumi.String("42"),
 // 				"fizz": pulumi.String("buzz"),
 // 				"foo":  pulumi.String("bar"),

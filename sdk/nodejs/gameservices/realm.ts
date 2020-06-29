@@ -25,6 +25,8 @@ import * as utilities from "../utilities";
  *     timeZone: "EST",
  *     location: "global",
  *     description: "one of the nine",
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

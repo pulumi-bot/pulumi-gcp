@@ -52,7 +52,7 @@ import (
 // 				},
 // 			},
 // 			DisplayName: pulumi.String("My Alert Policy"),
-// 			UserLabels: pulumi.Map{
+// 			UserLabels: pulumi.StringMap{
 // 				"foo": pulumi.String("bar"),
 // 			},
 // 		})
