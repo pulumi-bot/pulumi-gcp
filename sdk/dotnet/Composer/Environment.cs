@@ -100,6 +100,11 @@ namespace Pulumi.Gcp.Composer
     ///                     { "serviceAccount", testAccount.Name },
     ///                 },
     ///             },
+    ///         }, new CustomResourceOptions {
+    ///             DependsOn = 
+    ///             {
+    ///                 composer_worker,
+    ///             },
     ///         });
     ///     }
     /// 

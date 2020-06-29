@@ -42,7 +42,9 @@ import (
 // 		}
 // 		_, err = diagflow.NewIntent(ctx, "basicIntent", &diagflow.IntentArgs{
 // 			DisplayName: pulumi.String("basic-intent"),
-// 		})
+// 		}, pulumi.DependsOn([]string{
+// 			basicAgent,
+// 		}))
 // 		if err != nil {
 // 			return err
 // 		}

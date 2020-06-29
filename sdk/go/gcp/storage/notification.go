@@ -73,7 +73,9 @@ import (
 // 			CustomAttributes: pulumi.Map{
 // 				"new-attribute": pulumi.String("new-attribute-value"),
 // 			},
-// 		})
+// 		}, pulumi.DependsOn([]string{
+// 			binding,
+// 		}))
 // 		if err != nil {
 // 			return err
 // 		}

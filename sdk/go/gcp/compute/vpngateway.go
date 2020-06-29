@@ -74,7 +74,11 @@ import (
 // 			PeerIp:           pulumi.String("15.0.0.120"),
 // 			SharedSecret:     pulumi.String("a secret message"),
 // 			TargetVpnGateway: targetGateway.ID(),
-// 		})
+// 		}, pulumi.DependsOn([]string{
+// 			frEsp,
+// 			frUdp500,
+// 			frUdp4500,
+// 		}))
 // 		if err != nil {
 // 			return err
 // 		}

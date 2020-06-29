@@ -35,6 +35,8 @@ namespace Pulumi.Gcp.GameServices
     ///             TimeZone = "EST",
     ///             Location = "global",
     ///             Description = "one of the nine",
+    ///         }, new CustomResourceOptions {
+    ///             Provider = google_beta,
     ///         });
     ///     }
     /// 

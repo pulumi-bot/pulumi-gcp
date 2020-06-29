@@ -79,7 +79,11 @@ import (
 // 			PeerIp:           pulumi.String("15.0.0.120"),
 // 			SharedSecret:     pulumi.String("a secret message"),
 // 			TargetVpnGateway: targetGateway.ID(),
-// 		})
+// 		}, pulumi.DependsOn([]string{
+// 			frEsp,
+// 			frUdp500,
+// 			frUdp4500,
+// 		}))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -108,17 +112,17 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		network1, err := compute.NewNetwork(ctx, "network1", nil)
+// 		network1, err := compute.NewNetwork(ctx, "network1", nil, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
 // 		targetGateway, err := compute.NewVPNGateway(ctx, "targetGateway", &compute.VPNGatewayArgs{
 // 			Network: network1.ID(),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
-// 		vpnStaticIp, err := compute.NewAddress(ctx, "vpnStaticIp", nil)
+// 		vpnStaticIp, err := compute.NewAddress(ctx, "vpnStaticIp", nil, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -126,7 +130,7 @@ import (
 // 			IpProtocol: pulumi.String("ESP"),
 // 			IpAddress:  vpnStaticIp.Address,
 // 			Target:     targetGateway.ID(),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -135,7 +139,7 @@ import (
 // 			PortRange:  pulumi.String("500"),
 // 			IpAddress:  vpnStaticIp.Address,
 // 			Target:     targetGateway.ID(),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -144,7 +148,7 @@ import (
 // 			PortRange:  pulumi.String("4500"),
 // 			IpAddress:  vpnStaticIp.Address,
 // 			Target:     targetGateway.ID(),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -155,7 +159,11 @@ import (
 // 			Labels: pulumi.Map{
 // 				"foo": pulumi.String("bar"),
 // 			},
-// 		})
+// 		}, pulumi.Provider(google-beta), pulumi.DependsOn([]string{
+// 			frEsp,
+// 			frUdp500,
+// 			frUdp4500,
+// 		}))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -164,7 +172,7 @@ import (
 // 			DestRange:        pulumi.String("15.0.0.0/24"),
 // 			Priority:         pulumi.Int(1000),
 // 			NextHopVpnTunnel: tunnel1.ID(),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}

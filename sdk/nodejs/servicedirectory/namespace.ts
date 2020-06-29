@@ -28,6 +28,8 @@ import * as utilities from "../utilities";
  *         key: "value",
  *         foo: "bar",
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

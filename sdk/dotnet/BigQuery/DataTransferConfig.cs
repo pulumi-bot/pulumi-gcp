@@ -42,6 +42,11 @@ namespace Pulumi.Gcp.BigQuery
     ///             FriendlyName = "foo",
     ///             Description = "bar",
     ///             Location = "asia-northeast1",
+    ///         }, new CustomResourceOptions {
+    ///             DependsOn = 
+    ///             {
+    ///                 permissions,
+    ///             },
     ///         });
     ///         var queryConfig = new Gcp.BigQuery.DataTransferConfig("queryConfig", new Gcp.BigQuery.DataTransferConfigArgs
     ///         {
@@ -55,6 +60,11 @@ namespace Pulumi.Gcp.BigQuery
     ///                 { "destination_table_name_template", "my_table" },
     ///                 { "write_disposition", "WRITE_APPEND" },
     ///                 { "query", "SELECT name FROM tabl WHERE x = 'y'" },
+    ///             },
+    ///         }, new CustomResourceOptions {
+    ///             DependsOn = 
+    ///             {
+    ///                 permissions,
     ///             },
     ///         });
     ///     }

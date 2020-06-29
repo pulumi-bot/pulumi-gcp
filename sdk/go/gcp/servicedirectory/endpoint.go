@@ -34,14 +34,14 @@ import (
 // 		exampleNamespace, err := servicedirectory.NewNamespace(ctx, "exampleNamespace", &servicedirectory.NamespaceArgs{
 // 			NamespaceId: pulumi.String("example-namespace"),
 // 			Location:    pulumi.String("us-central1"),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
 // 		exampleService, err := servicedirectory.NewService(ctx, "exampleService", &servicedirectory.ServiceArgs{
 // 			ServiceId: pulumi.String("example-service"),
 // 			Namespace: exampleNamespace.ID(),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -54,7 +54,7 @@ import (
 // 			},
 // 			Address: pulumi.String("1.2.3.4"),
 // 			Port:    pulumi.Int(5353),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}

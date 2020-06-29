@@ -129,6 +129,8 @@ import * as utilities from "../utilities";
  * const example = new gcp.servicedirectory.Namespace("example", {
  *     namespaceId: "example",
  *     location: "us-central1",
+ * }, {
+ *     provider: google_beta,
  * });
  * const sd_zone = new gcp.dns.ManagedZone("sd-zone", {
  *     dnsName: "services.example.com.",
@@ -139,8 +141,12 @@ import * as utilities from "../utilities";
  *             namespaceUrl: example.id,
  *         },
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
- * const network = new gcp.compute.Network("network", {autoCreateSubnetworks: false});
+ * const network = new gcp.compute.Network("network", {autoCreateSubnetworks: false}, {
+ *     provider: google_beta,
+ * });
  * ```
  */
 export class ManagedZone extends pulumi.CustomResource {
