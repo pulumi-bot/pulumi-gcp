@@ -125,6 +125,8 @@ import * as utilities from "../utilities";
  *     log_config: {
  *         enable: true,
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  * ### Region Health Check Http Full

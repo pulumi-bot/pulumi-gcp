@@ -79,13 +79,17 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const custom_test = new gcp.compute.Network("custom-test", {autoCreateSubnetworks: false});
+ * const custom_test = new gcp.compute.Network("custom-test", {autoCreateSubnetworks: false}, {
+ *     provider: google_beta,
+ * });
  * const network_for_l7lb = new gcp.compute.Subnetwork("network-for-l7lb", {
  *     ipCidrRange: "10.0.0.0/22",
  *     region: "us-central1",
  *     purpose: "INTERNAL_HTTPS_LOAD_BALANCER",
  *     role: "ACTIVE",
  *     network: custom_test.id,
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

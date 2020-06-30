@@ -34,7 +34,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = monitoring.NewUptimeCheckConfig(ctx, "http", &monitoring.UptimeCheckConfigArgs{
+// 		_, err := monitoring.NewUptimeCheckConfig(ctx, "http", &monitoring.UptimeCheckConfigArgs{
 // 			ContentMatchers: monitoring.UptimeCheckConfigContentMatcherArray{
 // 				&monitoring.UptimeCheckConfigContentMatcherArgs{
 // 					Content: pulumi.String("example"),
@@ -46,7 +46,7 @@ import (
 // 				Port: pulumi.Int(8010),
 // 			},
 // 			MonitoredResource: &monitoring.UptimeCheckConfigMonitoredResourceArgs{
-// 				Labels: pulumi.Map{
+// 				Labels: pulumi.StringMap{
 // 					"host":       pulumi.String("192.168.1.1"),
 // 					"project_id": pulumi.String("my-project-name"),
 // 				},
@@ -73,7 +73,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = monitoring.NewUptimeCheckConfig(ctx, "https", &monitoring.UptimeCheckConfigArgs{
+// 		_, err := monitoring.NewUptimeCheckConfig(ctx, "https", &monitoring.UptimeCheckConfigArgs{
 // 			ContentMatchers: monitoring.UptimeCheckConfigContentMatcherArray{
 // 				&monitoring.UptimeCheckConfigContentMatcherArgs{
 // 					Content: pulumi.String("example"),
@@ -87,7 +87,7 @@ import (
 // 				ValidateSsl: pulumi.Bool(true),
 // 			},
 // 			MonitoredResource: &monitoring.UptimeCheckConfigMonitoredResourceArgs{
-// 				Labels: pulumi.Map{
+// 				Labels: pulumi.StringMap{
 // 					"host":       pulumi.String("192.168.1.1"),
 // 					"project_id": pulumi.String("my-project-name"),
 // 				},

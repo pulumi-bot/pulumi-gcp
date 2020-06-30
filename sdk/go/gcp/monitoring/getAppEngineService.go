@@ -65,7 +65,7 @@ import (
 // 					}).(pulumi.StringOutput),
 // 				},
 // 			},
-// 			EnvVariables: pulumi.Map{
+// 			EnvVariables: pulumi.StringMap{
 // 				"port": pulumi.String("8080"),
 // 			},
 // 			DeleteServiceOnDestroy: pulumi.Bool(false),

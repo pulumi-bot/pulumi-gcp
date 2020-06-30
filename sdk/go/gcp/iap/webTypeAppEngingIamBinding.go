@@ -114,7 +114,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = iap.NewWebTypeAppEngingIamBinding(ctx, "binding", &iap.WebTypeAppEngingIamBindingArgs{
+// 		_, err := iap.NewWebTypeAppEngingIamBinding(ctx, "binding", &iap.WebTypeAppEngingIamBindingArgs{
 // 			Project: pulumi.String(google_app_engine_application.App.Project),
 // 			AppId:   pulumi.String(google_app_engine_application.App.App_id),
 // 			Role:    pulumi.String("roles/iap.httpsResourceAccessor"),
@@ -142,7 +142,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = iap.NewWebTypeAppEngingIamBinding(ctx, "binding", &iap.WebTypeAppEngingIamBindingArgs{
+// 		_, err := iap.NewWebTypeAppEngingIamBinding(ctx, "binding", &iap.WebTypeAppEngingIamBindingArgs{
 // 			Project: pulumi.String(google_app_engine_application.App.Project),
 // 			AppId:   pulumi.String(google_app_engine_application.App.App_id),
 // 			Role:    pulumi.String("roles/iap.httpsResourceAccessor"),
@@ -174,7 +174,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = iap.NewWebTypeAppEngingIamMember(ctx, "member", &iap.WebTypeAppEngingIamMemberArgs{
+// 		_, err := iap.NewWebTypeAppEngingIamMember(ctx, "member", &iap.WebTypeAppEngingIamMemberArgs{
 // 			Project: pulumi.String(google_app_engine_application.App.Project),
 // 			AppId:   pulumi.String(google_app_engine_application.App.App_id),
 // 			Role:    pulumi.String("roles/iap.httpsResourceAccessor"),
@@ -200,7 +200,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = iap.NewWebTypeAppEngingIamMember(ctx, "member", &iap.WebTypeAppEngingIamMemberArgs{
+// 		_, err := iap.NewWebTypeAppEngingIamMember(ctx, "member", &iap.WebTypeAppEngingIamMemberArgs{
 // 			Project: pulumi.String(google_app_engine_application.App.Project),
 // 			AppId:   pulumi.String(google_app_engine_application.App.App_id),
 // 			Role:    pulumi.String("roles/iap.httpsResourceAccessor"),

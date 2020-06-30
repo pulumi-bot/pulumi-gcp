@@ -53,8 +53,12 @@ import * as utilities from "../utilities";
  *             "storage-ro",
  *         ],
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
- * const defaultTargetPool = new gcp.compute.TargetPool("defaultTargetPool", {});
+ * const defaultTargetPool = new gcp.compute.TargetPool("defaultTargetPool", {}, {
+ *     provider: google_beta,
+ * });
  * const defaultInstanceGroupManager = new gcp.compute.InstanceGroupManager("defaultInstanceGroupManager", {
  *     zone: "us-central1-f",
  *     version: [{
@@ -63,6 +67,8 @@ import * as utilities from "../utilities";
  *     }],
  *     targetPools: [defaultTargetPool.id],
  *     baseInstanceName: "autoscaler-sample",
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultAutoscaler = new gcp.compute.Autoscaler("defaultAutoscaler", {
  *     zone: "us-central1-f",
@@ -77,6 +83,8 @@ import * as utilities from "../utilities";
  *             singleInstanceAssignment: 65535,
  *         }],
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  * ### Autoscaler Basic

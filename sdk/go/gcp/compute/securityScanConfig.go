@@ -36,11 +36,11 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		scannerStaticIp, err := compute.NewAddress(ctx, "scannerStaticIp", nil)
+// 		scannerStaticIp, err := compute.NewAddress(ctx, "scannerStaticIp", nil, pulumi.Provider(google_beta))
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewSecurityScanConfig(ctx, "scan-config", &compute.SecurityScanConfigArgs{
+// 		_, err = compute.NewSecurityScanConfig(ctx, "scan_config", &compute.SecurityScanConfigArgs{
 // 			DisplayName: pulumi.String("scan-config"),
 // 			StartingUrls: pulumi.StringArray{
 // 				scannerStaticIp.Address.ApplyT(func(address string) (string, error) {
@@ -50,7 +50,7 @@ import (
 // 			TargetPlatforms: pulumi.StringArray{
 // 				pulumi.String("COMPUTE"),
 // 			},
-// 		})
+// 		}, pulumi.Provider(google_beta))
 // 		if err != nil {
 // 			return err
 // 		}

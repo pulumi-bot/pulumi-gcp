@@ -26,8 +26,8 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = dataflow.NewJob(ctx, "bigDataJob", &dataflow.JobArgs{
-// 			Parameters: pulumi.Map{
+// 		_, err := dataflow.NewJob(ctx, "bigDataJob", &dataflow.JobArgs{
+// 			Parameters: pulumi.StringMap{
 // 				"baz": pulumi.String("qux"),
 // 				"foo": pulumi.String("bar"),
 // 			},

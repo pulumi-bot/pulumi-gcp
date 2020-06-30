@@ -71,7 +71,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = bigtable.NewInstanceIamBinding(ctx, "editor", &bigtable.InstanceIamBindingArgs{
+// 		_, err := bigtable.NewInstanceIamBinding(ctx, "editor", &bigtable.InstanceIamBindingArgs{
 // 			Instance: pulumi.String("your-bigtable-instance"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -98,7 +98,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = bigtable.NewInstanceIamMember(ctx, "editor", &bigtable.InstanceIamMemberArgs{
+// 		_, err := bigtable.NewInstanceIamMember(ctx, "editor", &bigtable.InstanceIamMemberArgs{
 // 			Instance: pulumi.String("your-bigtable-instance"),
 // 			Member:   pulumi.String("user:jane@example.com"),
 // 			Role:     pulumi.String("roles/editor"),

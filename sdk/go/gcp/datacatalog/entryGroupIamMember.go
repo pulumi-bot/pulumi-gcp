@@ -70,7 +70,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = datacatalog.NewEntryGroupIamBinding(ctx, "binding", &datacatalog.EntryGroupIamBindingArgs{
+// 		_, err := datacatalog.NewEntryGroupIamBinding(ctx, "binding", &datacatalog.EntryGroupIamBindingArgs{
 // 			EntryGroup: pulumi.String(google_data_catalog_entry_group.Basic_entry_group.Name),
 // 			Role:       pulumi.String("roles/viewer"),
 // 			Members: pulumi.StringArray{
@@ -97,7 +97,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = datacatalog.NewEntryGroupIamMember(ctx, "member", &datacatalog.EntryGroupIamMemberArgs{
+// 		_, err := datacatalog.NewEntryGroupIamMember(ctx, "member", &datacatalog.EntryGroupIamMemberArgs{
 // 			EntryGroup: pulumi.String(google_data_catalog_entry_group.Basic_entry_group.Name),
 // 			Role:       pulumi.String("roles/viewer"),
 // 			Member:     pulumi.String("user:jane@example.com"),
