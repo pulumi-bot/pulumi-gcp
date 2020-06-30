@@ -36,14 +36,14 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		network1, err := compute.NewNetwork(ctx, "network1", &compute.NetworkArgs{
 // 			AutoCreateSubnetworks: pulumi.Bool(false),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
 // 		_, err = compute.NewHaVpnGateway(ctx, "haGateway1", &compute.HaVpnGatewayArgs{
 // 			Region:  pulumi.String("us-central1"),
 // 			Network: network1.ID(),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -66,28 +66,28 @@ import (
 // 		network1, err := compute.NewNetwork(ctx, "network1", &compute.NetworkArgs{
 // 			RoutingMode:           pulumi.String("GLOBAL"),
 // 			AutoCreateSubnetworks: pulumi.Bool(false),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
 // 		haGateway1, err := compute.NewHaVpnGateway(ctx, "haGateway1", &compute.HaVpnGatewayArgs{
 // 			Region:  pulumi.String("us-central1"),
 // 			Network: network1.ID(),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
 // 		network2, err := compute.NewNetwork(ctx, "network2", &compute.NetworkArgs{
 // 			RoutingMode:           pulumi.String("GLOBAL"),
 // 			AutoCreateSubnetworks: pulumi.Bool(false),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
 // 		haGateway2, err := compute.NewHaVpnGateway(ctx, "haGateway2", &compute.HaVpnGatewayArgs{
 // 			Region:  pulumi.String("us-central1"),
 // 			Network: network2.ID(),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -95,7 +95,7 @@ import (
 // 			IpCidrRange: pulumi.String("10.0.1.0/24"),
 // 			Region:      pulumi.String("us-central1"),
 // 			Network:     network1.ID(),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -103,7 +103,7 @@ import (
 // 			IpCidrRange: pulumi.String("10.0.2.0/24"),
 // 			Region:      pulumi.String("us-west1"),
 // 			Network:     network1.ID(),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -111,7 +111,7 @@ import (
 // 			IpCidrRange: pulumi.String("192.168.1.0/24"),
 // 			Region:      pulumi.String("us-central1"),
 // 			Network:     network2.ID(),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -119,7 +119,7 @@ import (
 // 			IpCidrRange: pulumi.String("192.168.2.0/24"),
 // 			Region:      pulumi.String("us-east1"),
 // 			Network:     network2.ID(),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -128,7 +128,7 @@ import (
 // 			Bgp: &compute.RouterBgpArgs{
 // 				Asn: pulumi.Int(64514),
 // 			},
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -137,7 +137,7 @@ import (
 // 			Bgp: &compute.RouterBgpArgs{
 // 				Asn: pulumi.Int(64515),
 // 			},
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -148,7 +148,7 @@ import (
 // 			SharedSecret:        pulumi.String("a secret message"),
 // 			Router:              router1.ID(),
 // 			VpnGatewayInterface: pulumi.Int(0),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -159,7 +159,7 @@ import (
 // 			SharedSecret:        pulumi.String("a secret message"),
 // 			Router:              router1.ID(),
 // 			VpnGatewayInterface: pulumi.Int(1),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -170,7 +170,7 @@ import (
 // 			SharedSecret:        pulumi.String("a secret message"),
 // 			Router:              router2.ID(),
 // 			VpnGatewayInterface: pulumi.Int(0),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -181,7 +181,7 @@ import (
 // 			SharedSecret:        pulumi.String("a secret message"),
 // 			Router:              router2.ID(),
 // 			VpnGatewayInterface: pulumi.Int(1),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -190,7 +190,7 @@ import (
 // 			Region:    pulumi.String("us-central1"),
 // 			IpRange:   pulumi.String("169.254.0.1/30"),
 // 			VpnTunnel: tunnel1.Name,
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -201,7 +201,7 @@ import (
 // 			PeerAsn:                 pulumi.Int(64515),
 // 			AdvertisedRoutePriority: pulumi.Int(100),
 // 			Interface:               router1Interface1.Name,
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -210,7 +210,7 @@ import (
 // 			Region:    pulumi.String("us-central1"),
 // 			IpRange:   pulumi.String("169.254.1.1/30"),
 // 			VpnTunnel: tunnel2.Name,
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -221,7 +221,7 @@ import (
 // 			PeerAsn:                 pulumi.Int(64515),
 // 			AdvertisedRoutePriority: pulumi.Int(100),
 // 			Interface:               router1Interface2.Name,
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -230,7 +230,7 @@ import (
 // 			Region:    pulumi.String("us-central1"),
 // 			IpRange:   pulumi.String("169.254.0.1/30"),
 // 			VpnTunnel: tunnel3.Name,
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -241,7 +241,7 @@ import (
 // 			PeerAsn:                 pulumi.Int(64514),
 // 			AdvertisedRoutePriority: pulumi.Int(100),
 // 			Interface:               router2Interface1.Name,
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -250,7 +250,7 @@ import (
 // 			Region:    pulumi.String("us-central1"),
 // 			IpRange:   pulumi.String("169.254.1.1/30"),
 // 			VpnTunnel: tunnel4.Name,
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -261,7 +261,7 @@ import (
 // 			PeerAsn:                 pulumi.Int(64514),
 // 			AdvertisedRoutePriority: pulumi.Int(100),
 // 			Interface:               router2Interface2.Name,
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}

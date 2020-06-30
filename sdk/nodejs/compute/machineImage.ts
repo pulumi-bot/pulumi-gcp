@@ -32,8 +32,12 @@ import * as utilities from "../utilities";
  *     network_interface: [{
  *         network: "default",
  *     }],
+ * }, {
+ *     provider: google_beta,
  * });
- * const image = new gcp.compute.MachineImage("image", {sourceInstance: vm.selfLink});
+ * const image = new gcp.compute.MachineImage("image", {sourceInstance: vm.selfLink}, {
+ *     provider: google_beta,
+ * });
  * ```
  */
 export class MachineImage extends pulumi.CustomResource {

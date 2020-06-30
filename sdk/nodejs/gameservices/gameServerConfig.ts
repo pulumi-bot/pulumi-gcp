@@ -25,6 +25,8 @@ import * as utilities from "../utilities";
  * const defaultGameServerDeployment = new gcp.gameservices.GameServerDeployment("defaultGameServerDeployment", {
  *     deploymentId: "tf-test-deployment",
  *     description: "a deployment description",
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultGameServerConfig = new gcp.gameservices.GameServerConfig("defaultGameServerConfig", {
  *     configId: "tf-test-config",
@@ -76,6 +78,8 @@ import * as utilities from "../utilities";
  *             cronSpec: "0 0 * * 0",
  *         }],
  *     }],
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

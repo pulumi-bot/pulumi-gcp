@@ -36,7 +36,7 @@ import (
 // 		_, err = dns.NewManagedZone(ctx, "example-zone", &dns.ManagedZoneArgs{
 // 			Description: pulumi.String("Example DNS zone"),
 // 			DnsName:     pulumi.String("my-domain.com."),
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"foo": pulumi.String("bar"),
 // 			},
 // 		})

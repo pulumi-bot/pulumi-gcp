@@ -23,10 +23,14 @@ import * as utilities from "../utilities";
  * const exampleNamespace = new gcp.servicedirectory.Namespace("exampleNamespace", {
  *     namespaceId: "example-namespace",
  *     location: "us-central1",
+ * }, {
+ *     provider: google_beta,
  * });
  * const exampleService = new gcp.servicedirectory.Service("exampleService", {
  *     serviceId: "example-service",
  *     namespace: exampleNamespace.id,
+ * }, {
+ *     provider: google_beta,
  * });
  * const exampleEndpoint = new gcp.servicedirectory.Endpoint("exampleEndpoint", {
  *     endpointId: "example-endpoint",
@@ -37,6 +41,8 @@ import * as utilities from "../utilities";
  *     },
  *     address: "1.2.3.4",
  *     port: 5353,
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

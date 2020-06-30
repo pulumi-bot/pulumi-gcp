@@ -99,7 +99,7 @@ import (
 // 			Location:                 pulumi.String("us-central1"),
 // 			Template: &cloudrun.ServiceTemplateArgs{
 // 				Metadata: &cloudrun.ServiceTemplateMetadataArgs{
-// 					Annotations: pulumi.Map{
+// 					Annotations: pulumi.StringMap{
 // 						"autoscaling.knative.dev/maxScale": pulumi.String("1000"),
 // 						"run.googleapis.com/client-name":   pulumi.String("demo"),
 // 						"run.googleapis.com/cloudsql-instances": instance.Name.ApplyT(func(name string) (string, error) {
@@ -144,12 +144,12 @@ import (
 // 				Spec: &cloudrun.ServiceTemplateSpecArgs{
 // 					Containers: cloudrun.ServiceTemplateSpecContainerArray{
 // 						&cloudrun.ServiceTemplateSpecContainerArgs{
-// 							Env: pulumi.MapArray{
-// 								pulumi.Map{
+// 							Env: pulumi.StringMapArray{
+// 								pulumi.StringMap{
 // 									"name":  pulumi.String("SOURCE"),
 // 									"value": pulumi.String("remote"),
 // 								},
-// 								pulumi.Map{
+// 								pulumi.StringMap{
 // 									"name":  pulumi.String("TARGET"),
 // 									"value": pulumi.String("home"),
 // 								},

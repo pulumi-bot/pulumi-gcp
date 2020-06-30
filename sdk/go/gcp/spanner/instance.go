@@ -35,7 +35,7 @@ import (
 // 		_, err = spanner.NewInstance(ctx, "example", &spanner.InstanceArgs{
 // 			Config:      pulumi.String("regional-us-central1"),
 // 			DisplayName: pulumi.String("Test Spanner Instance"),
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"foo": pulumi.String("bar"),
 // 			},
 // 			NumNodes: pulumi.Int(2),

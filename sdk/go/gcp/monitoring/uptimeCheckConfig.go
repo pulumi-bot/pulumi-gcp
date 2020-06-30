@@ -46,7 +46,7 @@ import (
 // 				Port: pulumi.Int(8010),
 // 			},
 // 			MonitoredResource: &monitoring.UptimeCheckConfigMonitoredResourceArgs{
-// 				Labels: pulumi.Map{
+// 				Labels: pulumi.StringMap{
 // 					"host":       pulumi.String("192.168.1.1"),
 // 					"project_id": pulumi.String("my-project-name"),
 // 				},
@@ -87,7 +87,7 @@ import (
 // 				ValidateSsl: pulumi.Bool(true),
 // 			},
 // 			MonitoredResource: &monitoring.UptimeCheckConfigMonitoredResourceArgs{
-// 				Labels: pulumi.Map{
+// 				Labels: pulumi.StringMap{
 // 					"host":       pulumi.String("192.168.1.1"),
 // 					"project_id": pulumi.String("my-project-name"),
 // 				},

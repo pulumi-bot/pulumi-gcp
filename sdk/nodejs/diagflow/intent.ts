@@ -28,7 +28,9 @@ import * as utilities from "../utilities";
  *     defaultLanguageCode: "en",
  *     timeZone: "America/New_York",
  * });
- * const basicIntent = new gcp.diagflow.Intent("basicIntent", {displayName: "basic-intent"});
+ * const basicIntent = new gcp.diagflow.Intent("basicIntent", {displayName: "basic-intent"}, {
+ *     dependsOn: [basicAgent],
+ * });
  * ```
  */
 export class Intent extends pulumi.CustomResource {

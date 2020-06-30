@@ -76,6 +76,8 @@ import * as utilities from "../utilities";
  *             serviceAccount: testAccount.name,
  *         },
  *     },
+ * }, {
+ *     dependsOn: [composer_worker],
  * });
  * ```
  * ### With Software (Airflow) Config

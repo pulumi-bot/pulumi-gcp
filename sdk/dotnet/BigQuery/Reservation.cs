@@ -34,6 +34,9 @@ namespace Pulumi.Gcp.BigQuery
     ///             Location = "asia-northeast1",
     ///             SlotCapacity = 0,
     ///             IgnoreIdleSlots = false,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
     ///         });
     ///     }
     /// 

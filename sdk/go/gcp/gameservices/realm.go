@@ -36,7 +36,7 @@ import (
 // 			TimeZone:    pulumi.String("EST"),
 // 			Location:    pulumi.String("global"),
 // 			Description: pulumi.String("one of the nine"),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}

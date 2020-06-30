@@ -41,10 +41,10 @@ import (
 // 				Username: pulumi.String(""),
 // 			},
 // 			NodeConfig: &container.ClusterNodeConfigArgs{
-// 				Labels: pulumi.Map{
+// 				Labels: pulumi.StringMap{
 // 					"foo": pulumi.String("bar"),
 // 				},
-// 				Metadata: pulumi.Map{
+// 				Metadata: pulumi.StringMap{
 // 					"disable-legacy-endpoints": pulumi.String("true"),
 // 				},
 // 				OauthScopes: pulumi.StringArray{

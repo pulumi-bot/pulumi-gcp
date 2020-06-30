@@ -35,7 +35,7 @@ import (
 // 			Location:        pulumi.String("asia-northeast1"),
 // 			SlotCapacity:    pulumi.Int(0),
 // 			IgnoreIdleSlots: pulumi.Bool(false),
-// 		})
+// 		}, pulumi.Provider(google-beta))
 // 		if err != nil {
 // 			return err
 // 		}
