@@ -50,7 +50,7 @@ import * as utilities from "../utilities";
  * const ap = new gcp.bigquery.AppProfile("ap", {
  *     instance: instance.name,
  *     appProfileId: "bt-profile",
- *     single_cluster_routing: {
+ *     singleClusterRouting: {
  *         clusterId: "bt-instance",
  *         allowTransactionalWrites: true,
  *     },

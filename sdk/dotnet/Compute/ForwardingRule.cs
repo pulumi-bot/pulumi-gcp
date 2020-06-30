@@ -21,6 +21,58 @@ namespace Pulumi.Gcp.Compute
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/network/forwarding-rules)
     /// 
     /// ## Example Usage
+    /// ### Forwarding Rule Global Internallb
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var hc = new Gcp.Compute.HealthCheck("hc", new Gcp.Compute.HealthCheckArgs
+    ///         {
+    ///             CheckIntervalSec = 1,
+    ///             TimeoutSec = 1,
+    ///             TcpHealthCheck = new Gcp.Compute.Inputs.HealthCheckTcpHealthCheckArgs
+    ///             {
+    ///                 Port = 80,
+    ///             },
+    ///         });
+    ///         var backend = new Gcp.Compute.RegionBackendService("backend", new Gcp.Compute.RegionBackendServiceArgs
+    ///         {
+    ///             Region = "us-central1",
+    ///             HealthChecks = 
+    ///             {
+    ///                 hc.Id,
+    ///             },
+    ///         });
+    ///         var defaultNetwork = new Gcp.Compute.Network("defaultNetwork", new Gcp.Compute.NetworkArgs
+    ///         {
+    ///             AutoCreateSubnetworks = false,
+    ///         });
+    ///         var defaultSubnetwork = new Gcp.Compute.Subnetwork("defaultSubnetwork", new Gcp.Compute.SubnetworkArgs
+    ///         {
+    ///             IpCidrRange = "10.0.0.0/16",
+    ///             Region = "us-central1",
+    ///             Network = defaultNetwork.Id,
+    ///         });
+    ///         // Forwarding rule for Internal Load Balancing
+    ///         var defaultForwardingRule = new Gcp.Compute.ForwardingRule("defaultForwardingRule", new Gcp.Compute.ForwardingRuleArgs
+    ///         {
+    ///             Region = "us-central1",
+    ///             LoadBalancingScheme = "INTERNAL",
+    ///             BackendService = backend.Id,
+    ///             AllPorts = true,
+    ///             AllowGlobalAccess = true,
+    ///             Network = defaultNetwork.Name,
+    ///             Subnetwork = defaultSubnetwork.Name,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// ### Forwarding Rule Basic
     /// 
     /// ```csharp
@@ -38,6 +90,57 @@ namespace Pulumi.Gcp.Compute
     ///         {
     ///             Target = defaultTargetPool.Id,
     ///             PortRange = "80",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Forwarding Rule Internallb
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var hc = new Gcp.Compute.HealthCheck("hc", new Gcp.Compute.HealthCheckArgs
+    ///         {
+    ///             CheckIntervalSec = 1,
+    ///             TimeoutSec = 1,
+    ///             TcpHealthCheck = new Gcp.Compute.Inputs.HealthCheckTcpHealthCheckArgs
+    ///             {
+    ///                 Port = 80,
+    ///             },
+    ///         });
+    ///         var backend = new Gcp.Compute.RegionBackendService("backend", new Gcp.Compute.RegionBackendServiceArgs
+    ///         {
+    ///             Region = "us-central1",
+    ///             HealthChecks = 
+    ///             {
+    ///                 hc.Id,
+    ///             },
+    ///         });
+    ///         var defaultNetwork = new Gcp.Compute.Network("defaultNetwork", new Gcp.Compute.NetworkArgs
+    ///         {
+    ///             AutoCreateSubnetworks = false,
+    ///         });
+    ///         var defaultSubnetwork = new Gcp.Compute.Subnetwork("defaultSubnetwork", new Gcp.Compute.SubnetworkArgs
+    ///         {
+    ///             IpCidrRange = "10.0.0.0/16",
+    ///             Region = "us-central1",
+    ///             Network = defaultNetwork.Id,
+    ///         });
+    ///         // Forwarding rule for Internal Load Balancing
+    ///         var defaultForwardingRule = new Gcp.Compute.ForwardingRule("defaultForwardingRule", new Gcp.Compute.ForwardingRuleArgs
+    ///         {
+    ///             Region = "us-central1",
+    ///             LoadBalancingScheme = "INTERNAL",
+    ///             BackendService = backend.Id,
+    ///             AllPorts = true,
+    ///             Network = defaultNetwork.Name,
+    ///             Subnetwork = defaultSubnetwork.Name,
     ///         });
     ///     }
     /// 

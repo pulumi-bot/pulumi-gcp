@@ -273,14 +273,14 @@ class Job(pulumi.CustomResource):
             },
             query={
                 "query": "SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
-                "destination_table": {
+                "destinationTable": {
                     "project_id": foo.project,
                     "dataset_id": foo.dataset_id,
                     "table_id": foo.table_id,
                 },
                 "allowLargeResults": True,
                 "flattenResults": True,
-                "script_options": {
+                "scriptOptions": {
                     "keyResultStatement": "LAST",
                 },
             })
@@ -306,15 +306,15 @@ class Job(pulumi.CustomResource):
             },
             query={
                 "query": "SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
-                "destination_table": {
+                "destinationTable": {
                     "table_id": foo.id,
                 },
-                "default_dataset": {
+                "defaultDataset": {
                     "dataset_id": bar.id,
                 },
                 "allowLargeResults": True,
                 "flattenResults": True,
-                "script_options": {
+                "scriptOptions": {
                     "keyResultStatement": "LAST",
                 },
             })
@@ -340,7 +340,7 @@ class Job(pulumi.CustomResource):
             },
             load={
                 "sourceUris": ["gs://cloud-samples-data/bigquery/us-states/us-states-by-date.csv"],
-                "destination_table": {
+                "destinationTable": {
                     "project_id": foo.project,
                     "dataset_id": foo.dataset_id,
                     "table_id": foo.table_id,
@@ -391,7 +391,7 @@ class Job(pulumi.CustomResource):
             job_id="job_extract",
             extract={
                 "destinationUris": [dest.url.apply(lambda url: f"{url}/extract")],
-                "source_table": {
+                "sourceTable": {
                     "project_id": source_one_table.project,
                     "dataset_id": source_one_table.dataset_id,
                     "table_id": source_one_table.table_id,

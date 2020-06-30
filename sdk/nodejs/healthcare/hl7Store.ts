@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  * const dataset = new gcp.healthcare.Dataset("dataset", {location: "us-central1"});
  * const _default = new gcp.healthcare.Hl7Store("default", {
  *     dataset: dataset.id,
- *     notification_configs: [{
+ *     notificationConfigs: [{
  *         pubsubTopic: topic.id,
  *     }],
  *     labels: {
@@ -44,7 +44,7 @@ import * as utilities from "../utilities";
  * const dataset = new gcp.healthcare.Dataset("dataset", {location: "us-central1"});
  * const _default = new gcp.healthcare.Hl7Store("default", {
  *     dataset: dataset.id,
- *     parser_config: {
+ *     parserConfig: {
  *         allowNullHeader: false,
  *         segmentTerminator: "Jw==",
  *         schema: `{

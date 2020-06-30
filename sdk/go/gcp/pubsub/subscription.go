@@ -20,6 +20,77 @@ import (
 //     * [Managing Subscriptions](https://cloud.google.com/pubsub/docs/admin#managing_subscriptions)
 //
 // ## Example Usage
+// ### Pubsub Subscription Push
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/pubsub"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		exampleTopic, err := pubsub.NewTopic(ctx, "exampleTopic", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = pubsub.NewSubscription(ctx, "exampleSubscription", &pubsub.SubscriptionArgs{
+// 			Topic:              exampleTopic.Name,
+// 			AckDeadlineSeconds: pulumi.Int(20),
+// 			Labels: pulumi.Map{
+// 				"foo": pulumi.String("bar"),
+// 			},
+// 			PushConfig: &pubsub.SubscriptionPushConfigArgs{
+// 				PushEndpoint: pulumi.String("https://example.com/push"),
+// 				Attributes: pulumi.Map{
+// 					"x-goog-version": pulumi.String("v1"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Pubsub Subscription Pull
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/pubsub"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		exampleTopic, err := pubsub.NewTopic(ctx, "exampleTopic", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = pubsub.NewSubscription(ctx, "exampleSubscription", &pubsub.SubscriptionArgs{
+// 			Topic: exampleTopic.Name,
+// 			Labels: pulumi.Map{
+// 				"foo": pulumi.String("bar"),
+// 			},
+// 			MessageRetentionDuration: pulumi.String("1200s"),
+// 			RetainAckedMessages:      pulumi.Bool(true),
+// 			AckDeadlineSeconds:       pulumi.Int(20),
+// 			ExpirationPolicy: &pubsub.SubscriptionExpirationPolicyArgs{
+// 				Ttl: pulumi.String("300000.5s"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 // ### Pubsub Subscription Different Project
 //
 // ```go
@@ -41,6 +112,40 @@ import (
 // 		_, err = pubsub.NewSubscription(ctx, "exampleSubscription", &pubsub.SubscriptionArgs{
 // 			Project: pulumi.String("subscription-project"),
 // 			Topic:   exampleTopic.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Pubsub Subscription Dead Letter
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/pubsub"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		exampleTopic, err := pubsub.NewTopic(ctx, "exampleTopic", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleDeadLetter, err := pubsub.NewTopic(ctx, "exampleDeadLetter", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = pubsub.NewSubscription(ctx, "exampleSubscription", &pubsub.SubscriptionArgs{
+// 			Topic: exampleTopic.Name,
+// 			DeadLetterPolicy: &pubsub.SubscriptionDeadLetterPolicyArgs{
+// 				DeadLetterTopic:     exampleDeadLetter.ID(),
+// 				MaxDeliveryAttempts: pulumi.Int(10),
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err

@@ -174,9 +174,9 @@ class FhirStore(pulumi.CustomResource):
             },
             stream_configs=[{
                 "resourceTypes": ["Observation"],
-                "bigquery_destination": {
+                "bigqueryDestination": {
                     "datasetUri": pulumi.Output.all(bq_dataset.project, bq_dataset.dataset_id).apply(lambda project, dataset_id: f"bq://{project}.{dataset_id}"),
-                    "schema_config": {
+                    "schemaConfig": {
                         "recursiveStructureDepth": 3,
                     },
                 },

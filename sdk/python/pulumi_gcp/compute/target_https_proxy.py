@@ -107,7 +107,7 @@ class TargetHttpsProxy(pulumi.CustomResource):
             path_matcher=[{
                 "name": "allpaths",
                 "default_service": default_backend_service.id,
-                "path_rule": [{
+                "pathRule": [{
                     "paths": ["/*"],
                     "service": default_backend_service.id,
                 }],

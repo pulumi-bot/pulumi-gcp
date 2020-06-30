@@ -41,6 +41,36 @@ namespace Pulumi.Gcp.Compute
     ///     * [Cloud Networking](https://cloud.google.com/vpc/docs/using-vpc)
     /// 
     /// ## Example Usage
+    /// ### Subnetwork Logging Config
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var custom_test = new Gcp.Compute.Network("custom-test", new Gcp.Compute.NetworkArgs
+    ///         {
+    ///             AutoCreateSubnetworks = false,
+    ///         });
+    ///         var subnet_with_logging = new Gcp.Compute.Subnetwork("subnet-with-logging", new Gcp.Compute.SubnetworkArgs
+    ///         {
+    ///             IpCidrRange = "10.2.0.0/16",
+    ///             Region = "us-central1",
+    ///             Network = custom_test.Id,
+    ///             LogConfig = new Gcp.Compute.Inputs.SubnetworkLogConfigArgs
+    ///             {
+    ///                 AggregationInterval = "INTERVAL_10_MIN",
+    ///                 FlowSampling = 0.5,
+    ///                 Metadata = "INCLUDE_ALL_METADATA",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// ### Subnetwork Internal L7lb
     /// 
     /// ```csharp

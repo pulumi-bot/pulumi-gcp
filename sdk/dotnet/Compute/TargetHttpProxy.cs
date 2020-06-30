@@ -20,6 +20,32 @@ namespace Pulumi.Gcp.Compute
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
     /// 
     /// ## Example Usage
+    /// ### Target Http Proxy Https Redirect
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var defaultURLMap = new Gcp.Compute.URLMap("defaultURLMap", new Gcp.Compute.URLMapArgs
+    ///         {
+    ///             DefaultUrlRedirect = new Gcp.Compute.Inputs.URLMapDefaultUrlRedirectArgs
+    ///             {
+    ///                 HttpsRedirect = true,
+    ///                 StripQuery = false,
+    ///             },
+    ///         });
+    ///         var defaultTargetHttpProxy = new Gcp.Compute.TargetHttpProxy("defaultTargetHttpProxy", new Gcp.Compute.TargetHttpProxyArgs
+    ///         {
+    ///             UrlMap = defaultURLMap.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class TargetHttpProxy : Pulumi.CustomResource
     {

@@ -19,11 +19,11 @@ import * as utilities from "../utilities";
  * const asp = new gcp.dataproc.AutoscalingPolicy("asp", {
  *     policyId: "dataproc-policy",
  *     location: "us-central1",
- *     worker_config: {
+ *     workerConfig: {
  *         maxInstances: 3,
  *     },
- *     basic_algorithm: {
- *         yarn_config: {
+ *     basicAlgorithm: {
+ *         yarnConfig: {
  *             gracefulDecommissionTimeout: "30s",
  *             scaleUpFactor: 0.5,
  *             scaleDownFactor: 0.5,
@@ -32,8 +32,8 @@ import * as utilities from "../utilities";
  * });
  * const basic = new gcp.dataproc.Cluster("basic", {
  *     region: "us-central1",
- *     cluster_config: {
- *         autoscaling_config: {
+ *     clusterConfig: {
+ *         autoscalingConfig: {
  *             policyUri: asp.name,
  *         },
  *     },

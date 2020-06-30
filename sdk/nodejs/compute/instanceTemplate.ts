@@ -56,13 +56,13 @@ import * as utilities from "../utilities";
  *             boot: false,
  *         },
  *     ],
- *     network_interface: [{
+ *     networkInterface: [{
  *         network: "default",
  *     }],
  *     metadata: {
  *         foo: "bar",
  *     },
- *     service_account: {
+ *     serviceAccount: {
  *         scopes: [
  *             "userinfo-email",
  *             "compute-ro",
@@ -89,7 +89,7 @@ import * as utilities from "../utilities";
  *     machineType: "n1-standard-1",
  *     region: "us-central1",
  *     disk: [{}],
- *     network_interface: [{}],
+ *     networkInterface: [{}],
  * });
  * const instanceGroupManager = new gcp.compute.InstanceGroupManager("instanceGroupManager", {
  *     instanceTemplate: instanceTemplate.id,

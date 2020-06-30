@@ -19,6 +19,48 @@ import (
 //     * [Datasets Intro](https://cloud.google.com/bigquery/docs/datasets-intro)
 //
 // ## Example Usage
+// ### Bigquery Dataset Cmek
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/bigquery"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/kms"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		keyRing, err := kms.NewKeyRing(ctx, "keyRing", &kms.KeyRingArgs{
+// 			Location: pulumi.String("us"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		cryptoKey, err := kms.NewCryptoKey(ctx, "cryptoKey", &kms.CryptoKeyArgs{
+// 			KeyRing: keyRing.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = bigquery.NewDataset(ctx, "dataset", &bigquery.DatasetArgs{
+// 			DatasetId:                pulumi.String("example_dataset"),
+// 			FriendlyName:             pulumi.String("test"),
+// 			Description:              pulumi.String("This is a test description"),
+// 			Location:                 pulumi.String("US"),
+// 			DefaultTableExpirationMs: pulumi.Int(3600000),
+// 			DefaultEncryptionConfiguration: &bigquery.DatasetDefaultEncryptionConfigurationArgs{
+// 				KmsKeyName: cryptoKey.ID(),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Dataset struct {
 	pulumi.CustomResourceState
 

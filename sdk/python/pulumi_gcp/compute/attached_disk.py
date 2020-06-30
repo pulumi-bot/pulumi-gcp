@@ -72,7 +72,7 @@ class AttachedDisk(pulumi.CustomResource):
             machine_type="n1-standard-1",
             zone="us-west1-a",
             boot_disk={
-                "initialize_params": {
+                "initializeParams": {
                     "image": "debian-cloud/debian-9",
                 },
             },

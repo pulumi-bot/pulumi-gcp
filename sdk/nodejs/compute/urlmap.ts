@@ -46,7 +46,7 @@ import * as utilities from "../utilities";
  * const urlmap = new gcp.compute.URLMap("urlmap", {
  *     description: "a description",
  *     defaultService: home.id,
- *     host_rule: [
+ *     hostRule: [
  *         {
  *             hosts: ["mysite.com"],
  *             pathMatcher: "mysite",
@@ -56,11 +56,11 @@ import * as utilities from "../utilities";
  *             pathMatcher: "otherpaths",
  *         },
  *     ],
- *     path_matcher: [
+ *     pathMatcher: [
  *         {
  *             name: "mysite",
  *             defaultService: home.id,
- *             path_rule: [
+ *             pathRule: [
  *                 {
  *                     paths: ["/home"],
  *                     service: home.id,
@@ -93,7 +93,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const _default = new gcp.compute.HealthCheck("default", {http_health_check: {
+ * const _default = new gcp.compute.HealthCheck("default", {httpHealthCheck: {
  *     port: 80,
  * }});
  * const home = new gcp.compute.BackendService("home", {
@@ -106,50 +106,50 @@ import * as utilities from "../utilities";
  * const urlmap = new gcp.compute.URLMap("urlmap", {
  *     description: "a description",
  *     defaultService: home.id,
- *     host_rule: [{
+ *     hostRule: [{
  *         hosts: ["mysite.com"],
  *         pathMatcher: "allpaths",
  *     }],
- *     path_matcher: [{
+ *     pathMatcher: [{
  *         name: "allpaths",
  *         defaultService: home.id,
- *         route_rules: [{
+ *         routeRules: [{
  *             priority: 1,
- *             header_action: {
+ *             headerAction: {
  *                 requestHeadersToRemoves: ["RemoveMe2"],
- *                 request_headers_to_add: [{
+ *                 requestHeadersToAdd: [{
  *                     headerName: "AddSomethingElse",
  *                     headerValue: "MyOtherValue",
  *                     replace: true,
  *                 }],
  *                 responseHeadersToRemoves: ["RemoveMe3"],
- *                 response_headers_to_add: [{
+ *                 responseHeadersToAdd: [{
  *                     headerName: "AddMe",
  *                     headerValue: "MyValue",
  *                     replace: false,
  *                 }],
  *             },
- *             match_rules: [{
+ *             matchRules: [{
  *                 fullPathMatch: "a full path",
- *                 header_matches: [{
+ *                 headerMatches: [{
  *                     headerName: "someheader",
  *                     exactMatch: "match this exactly",
  *                     invertMatch: true,
  *                 }],
  *                 ignoreCase: true,
- *                 metadata_filters: [{
+ *                 metadataFilters: [{
  *                     filterMatchCriteria: "MATCH_ANY",
- *                     filter_labels: [{
+ *                     filterLabels: [{
  *                         name: "PLANET",
  *                         value: "MARS",
  *                     }],
  *                 }],
- *                 query_parameter_matches: [{
+ *                 queryParameterMatches: [{
  *                     name: "a query parameter",
  *                     presentMatch: true,
  *                 }],
  *             }],
- *             url_redirect: {
+ *             urlRedirect: {
  *                 hostRedirect: "A host",
  *                 httpsRedirect: false,
  *                 pathRedirect: "some/path",
@@ -171,7 +171,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const _default = new gcp.compute.HealthCheck("default", {http_health_check: {
+ * const _default = new gcp.compute.HealthCheck("default", {httpHealthCheck: {
  *     port: 80,
  * }});
  * const home = new gcp.compute.BackendService("home", {
@@ -184,24 +184,24 @@ import * as utilities from "../utilities";
  * const urlmap = new gcp.compute.URLMap("urlmap", {
  *     description: "a description",
  *     defaultService: home.id,
- *     host_rule: [{
+ *     hostRule: [{
  *         hosts: ["mysite.com"],
  *         pathMatcher: "allpaths",
  *     }],
- *     path_matcher: [{
+ *     pathMatcher: [{
  *         name: "allpaths",
  *         defaultService: home.id,
- *         route_rules: [{
+ *         routeRules: [{
  *             priority: 1,
- *             match_rules: [{
+ *             matchRules: [{
  *                 prefixMatch: "/someprefix",
- *                 header_matches: [{
+ *                 headerMatches: [{
  *                     headerName: "someheader",
  *                     exactMatch: "match this exactly",
  *                     invertMatch: true,
  *                 }],
  *             }],
- *             url_redirect: {
+ *             urlRedirect: {
  *                 pathRedirect: "some/path",
  *                 redirectResponseCode: "TEMPORARY_REDIRECT",
  *             },
@@ -220,7 +220,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const _default = new gcp.compute.HealthCheck("default", {http_health_check: {
+ * const _default = new gcp.compute.HealthCheck("default", {httpHealthCheck: {
  *     port: 80,
  * }});
  * const home = new gcp.compute.BackendService("home", {
@@ -233,17 +233,17 @@ import * as utilities from "../utilities";
  * const urlmap = new gcp.compute.URLMap("urlmap", {
  *     description: "a description",
  *     defaultService: home.id,
- *     host_rule: [{
+ *     hostRule: [{
  *         hosts: ["mysite.com"],
  *         pathMatcher: "allpaths",
  *     }],
- *     path_matcher: [{
+ *     pathMatcher: [{
  *         name: "allpaths",
  *         defaultService: home.id,
- *         path_rule: [{
+ *         pathRule: [{
  *             paths: ["/home"],
- *             route_action: {
- *                 cors_policy: {
+ *             routeAction: {
+ *                 corsPolicy: {
  *                     allowCredentials: true,
  *                     allowHeaders: ["Allowed content"],
  *                     allowMethods: ["GET"],
@@ -253,25 +253,25 @@ import * as utilities from "../utilities";
  *                     maxAge: 30,
  *                     disabled: false,
  *                 },
- *                 fault_injection_policy: {
+ *                 faultInjectionPolicy: {
  *                     abort: {
  *                         httpStatus: 234,
  *                         percentage: 5.6,
  *                     },
  *                     delay: {
- *                         fixed_delay: {
+ *                         fixedDelay: {
  *                             seconds: 0,
  *                             nanos: 50000,
  *                         },
  *                         percentage: 7.8,
  *                     },
  *                 },
- *                 request_mirror_policy: {
+ *                 requestMirrorPolicy: {
  *                     backendService: home.id,
  *                 },
- *                 retry_policy: {
+ *                 retryPolicy: {
  *                     numRetries: 4,
- *                     per_try_timeout: {
+ *                     perTryTimeout: {
  *                         seconds: 30,
  *                     },
  *                     retryConditions: [
@@ -283,22 +283,22 @@ import * as utilities from "../utilities";
  *                     seconds: 20,
  *                     nanos: 750000000,
  *                 },
- *                 url_rewrite: {
+ *                 urlRewrite: {
  *                     hostRewrite: "A replacement header",
  *                     pathPrefixRewrite: "A replacement path",
  *                 },
- *                 weighted_backend_services: [{
+ *                 weightedBackendServices: [{
  *                     backendService: home.id,
  *                     weight: 400,
- *                     header_action: {
+ *                     headerAction: {
  *                         requestHeadersToRemoves: ["RemoveMe"],
- *                         request_headers_to_add: [{
+ *                         requestHeadersToAdd: [{
  *                             headerName: "AddMe",
  *                             headerValue: "MyValue",
  *                             replace: true,
  *                         }],
  *                         responseHeadersToRemoves: ["RemoveMe"],
- *                         response_headers_to_add: [{
+ *                         responseHeadersToAdd: [{
  *                             headerName: "AddMe",
  *                             headerValue: "MyValue",
  *                             replace: false,
@@ -321,7 +321,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const _default = new gcp.compute.HealthCheck("default", {http_health_check: {
+ * const _default = new gcp.compute.HealthCheck("default", {httpHealthCheck: {
  *     port: 80,
  * }});
  * const home = new gcp.compute.BackendService("home", {
@@ -334,17 +334,17 @@ import * as utilities from "../utilities";
  * const urlmap = new gcp.compute.URLMap("urlmap", {
  *     description: "a description",
  *     defaultService: home.id,
- *     host_rule: [{
+ *     hostRule: [{
  *         hosts: ["mysite.com"],
  *         pathMatcher: "allpaths",
  *     }],
- *     path_matcher: [{
+ *     pathMatcher: [{
  *         name: "allpaths",
  *         defaultService: home.id,
- *         path_rule: [{
+ *         pathRule: [{
  *             paths: ["/home"],
- *             route_action: {
- *                 cors_policy: {
+ *             routeAction: {
+ *                 corsPolicy: {
  *                     allowCredentials: true,
  *                     allowHeaders: ["Allowed content"],
  *                     allowMethods: ["GET"],
@@ -354,18 +354,18 @@ import * as utilities from "../utilities";
  *                     maxAge: 30,
  *                     disabled: false,
  *                 },
- *                 weighted_backend_services: [{
+ *                 weightedBackendServices: [{
  *                     backendService: home.id,
  *                     weight: 400,
- *                     header_action: {
+ *                     headerAction: {
  *                         requestHeadersToRemoves: ["RemoveMe"],
- *                         request_headers_to_add: [{
+ *                         requestHeadersToAdd: [{
  *                             headerName: "AddMe",
  *                             headerValue: "MyValue",
  *                             replace: true,
  *                         }],
  *                         responseHeadersToRemoves: ["RemoveMe"],
- *                         response_headers_to_add: [{
+ *                         responseHeadersToAdd: [{
  *                             headerName: "AddMe",
  *                             headerValue: "MyValue",
  *                             replace: false,

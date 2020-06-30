@@ -33,9 +33,9 @@ import * as utilities from "../utilities";
  * });
  * const policy = new gcp.compute.ResourcePolicy("policy", {
  *     region: "us-central1",
- *     snapshot_schedule_policy: {
+ *     snapshotSchedulePolicy: {
  *         schedule: {
- *             daily_schedule: {
+ *             dailySchedule: {
  *                 daysInCycle: 1,
  *                 startTime: "04:00",
  *             },

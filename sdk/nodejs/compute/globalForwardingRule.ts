@@ -36,14 +36,14 @@ import * as utilities from "../utilities";
  * const defaultURLMap = new gcp.compute.URLMap("defaultURLMap", {
  *     description: "a description",
  *     defaultService: defaultBackendService.id,
- *     host_rule: [{
+ *     hostRule: [{
  *         hosts: ["mysite.com"],
  *         pathMatcher: "allpaths",
  *     }],
- *     path_matcher: [{
+ *     pathMatcher: [{
  *         name: "allpaths",
  *         defaultService: defaultBackendService.id,
- *         path_rule: [{
+ *         pathRule: [{
  *             paths: ["/*"],
  *             service: defaultBackendService.id,
  *         }],
@@ -70,7 +70,7 @@ import * as utilities from "../utilities";
  * });
  * const instanceTemplate = new gcp.compute.InstanceTemplate("instanceTemplate", {
  *     machineType: "n1-standard-1",
- *     network_interface: [{
+ *     networkInterface: [{
  *         network: "default",
  *     }],
  *     disk: [{
@@ -91,7 +91,7 @@ import * as utilities from "../utilities";
  * const defaultHealthCheck = new gcp.compute.HealthCheck("defaultHealthCheck", {
  *     checkIntervalSec: 1,
  *     timeoutSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "80",
  *     },
  * });
@@ -111,14 +111,14 @@ import * as utilities from "../utilities";
  * const defaultURLMap = new gcp.compute.URLMap("defaultURLMap", {
  *     description: "a description",
  *     defaultService: defaultBackendService.id,
- *     host_rule: [{
+ *     hostRule: [{
  *         hosts: ["mysite.com"],
  *         pathMatcher: "allpaths",
  *     }],
- *     path_matcher: [{
+ *     pathMatcher: [{
  *         name: "allpaths",
  *         defaultService: defaultBackendService.id,
- *         path_rule: [{
+ *         pathRule: [{
  *             paths: ["/*"],
  *             service: defaultBackendService.id,
  *         }],
@@ -133,9 +133,9 @@ import * as utilities from "../utilities";
  *     portRange: "80",
  *     loadBalancingScheme: "INTERNAL_SELF_MANAGED",
  *     ipAddress: "0.0.0.0",
- *     metadata_filters: [{
+ *     metadataFilters: [{
  *         filterMatchCriteria: "MATCH_ANY",
- *         filter_labels: [{
+ *         filterLabels: [{
  *             name: "PLANET",
  *             value: "MARS",
  *         }],

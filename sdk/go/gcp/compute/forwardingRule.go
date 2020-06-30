@@ -20,6 +20,67 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/network/forwarding-rules)
 //
 // ## Example Usage
+// ### Forwarding Rule Global Internallb
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		hc, err := compute.NewHealthCheck(ctx, "hc", &compute.HealthCheckArgs{
+// 			CheckIntervalSec: pulumi.Int(1),
+// 			TimeoutSec:       pulumi.Int(1),
+// 			TcpHealthCheck: &compute.HealthCheckTcpHealthCheckArgs{
+// 				Port: pulumi.Int(80),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		backend, err := compute.NewRegionBackendService(ctx, "backend", &compute.RegionBackendServiceArgs{
+// 			Region: pulumi.String("us-central1"),
+// 			HealthChecks: pulumi.String(pulumi.String{
+// 				hc.ID(),
+// 			}),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		defaultNetwork, err := compute.NewNetwork(ctx, "defaultNetwork", &compute.NetworkArgs{
+// 			AutoCreateSubnetworks: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		defaultSubnetwork, err := compute.NewSubnetwork(ctx, "defaultSubnetwork", &compute.SubnetworkArgs{
+// 			IpCidrRange: pulumi.String("10.0.0.0/16"),
+// 			Region:      pulumi.String("us-central1"),
+// 			Network:     defaultNetwork.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewForwardingRule(ctx, "defaultForwardingRule", &compute.ForwardingRuleArgs{
+// 			Region:              pulumi.String("us-central1"),
+// 			LoadBalancingScheme: pulumi.String("INTERNAL"),
+// 			BackendService:      backend.ID(),
+// 			AllPorts:            pulumi.Bool(true),
+// 			AllowGlobalAccess:   pulumi.Bool(true),
+// 			Network:             defaultNetwork.Name,
+// 			Subnetwork:          defaultSubnetwork.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 // ### Forwarding Rule Basic
 //
 // ```go
@@ -39,6 +100,66 @@ import (
 // 		_, err = compute.NewForwardingRule(ctx, "defaultForwardingRule", &compute.ForwardingRuleArgs{
 // 			Target:    defaultTargetPool.ID(),
 // 			PortRange: pulumi.String("80"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Forwarding Rule Internallb
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		hc, err := compute.NewHealthCheck(ctx, "hc", &compute.HealthCheckArgs{
+// 			CheckIntervalSec: pulumi.Int(1),
+// 			TimeoutSec:       pulumi.Int(1),
+// 			TcpHealthCheck: &compute.HealthCheckTcpHealthCheckArgs{
+// 				Port: pulumi.Int(80),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		backend, err := compute.NewRegionBackendService(ctx, "backend", &compute.RegionBackendServiceArgs{
+// 			Region: pulumi.String("us-central1"),
+// 			HealthChecks: pulumi.String(pulumi.String{
+// 				hc.ID(),
+// 			}),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		defaultNetwork, err := compute.NewNetwork(ctx, "defaultNetwork", &compute.NetworkArgs{
+// 			AutoCreateSubnetworks: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		defaultSubnetwork, err := compute.NewSubnetwork(ctx, "defaultSubnetwork", &compute.SubnetworkArgs{
+// 			IpCidrRange: pulumi.String("10.0.0.0/16"),
+// 			Region:      pulumi.String("us-central1"),
+// 			Network:     defaultNetwork.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewForwardingRule(ctx, "defaultForwardingRule", &compute.ForwardingRuleArgs{
+// 			Region:              pulumi.String("us-central1"),
+// 			LoadBalancingScheme: pulumi.String("INTERNAL"),
+// 			BackendService:      backend.ID(),
+// 			AllPorts:            pulumi.Bool(true),
+// 			Network:             defaultNetwork.Name,
+// 			Subnetwork:          defaultSubnetwork.Name,
 // 		})
 // 		if err != nil {
 // 			return err

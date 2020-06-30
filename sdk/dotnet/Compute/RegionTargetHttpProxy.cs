@@ -20,6 +20,34 @@ namespace Pulumi.Gcp.Compute
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
     /// 
     /// ## Example Usage
+    /// ### Region Target Http Proxy Https Redirect
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var defaultRegionUrlMap = new Gcp.Compute.RegionUrlMap("defaultRegionUrlMap", new Gcp.Compute.RegionUrlMapArgs
+    ///         {
+    ///             Region = "us-central1",
+    ///             DefaultUrlRedirect = new Gcp.Compute.Inputs.RegionUrlMapDefaultUrlRedirectArgs
+    ///             {
+    ///                 HttpsRedirect = true,
+    ///                 StripQuery = false,
+    ///             },
+    ///         });
+    ///         var defaultRegionTargetHttpProxy = new Gcp.Compute.RegionTargetHttpProxy("defaultRegionTargetHttpProxy", new Gcp.Compute.RegionTargetHttpProxyArgs
+    ///         {
+    ///             Region = "us-central1",
+    ///             UrlMap = defaultRegionUrlMap.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class RegionTargetHttpProxy : Pulumi.CustomResource
     {

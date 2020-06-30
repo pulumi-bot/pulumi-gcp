@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  * const test = new gcp.composer.Environment("test", {
  *     region: "us-central1",
  *     config: {
- *         software_config: {
+ *         softwareConfig: {
  *             imageVersion: all.then(all => all.imageVersions[0].imageVersionId),
  *         },
  *     },

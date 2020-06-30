@@ -58,7 +58,7 @@ import * as utilities from "../utilities";
  * });
  * const defaultRegionHealthCheck = new gcp.compute.RegionHealthCheck("defaultRegionHealthCheck", {
  *     region: "us-central1",
- *     http_health_check: {
+ *     httpHealthCheck: {
  *         port: 80,
  *     },
  * });
@@ -72,14 +72,14 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  *     description: "a description",
  *     defaultService: defaultRegionBackendService.id,
- *     host_rule: [{
+ *     hostRule: [{
  *         hosts: ["mysite.com"],
  *         pathMatcher: "allpaths",
  *     }],
- *     path_matcher: [{
+ *     pathMatcher: [{
  *         name: "allpaths",
  *         defaultService: defaultRegionBackendService.id,
- *         path_rule: [{
+ *         pathRule: [{
  *             paths: ["/*"],
  *             service: defaultRegionBackendService.id,
  *         }],

@@ -79,7 +79,7 @@ class Policy(pulumi.CustomResource):
             enable_inbound_forwarding=True,
             enable_logging=True,
             alternative_name_server_config={
-                "target_name_servers": [
+                "targetNameServers": [
                     {
                         "ipv4Address": "172.16.1.10",
                     },

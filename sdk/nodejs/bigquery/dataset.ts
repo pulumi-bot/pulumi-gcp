@@ -58,7 +58,7 @@ import * as utilities from "../utilities";
  *     description: "This is a test description",
  *     location: "US",
  *     defaultTableExpirationMs: 3600000,
- *     default_encryption_configuration: {
+ *     defaultEncryptionConfiguration: {
  *         kmsKeyName: cryptoKey.id,
  *     },
  * });

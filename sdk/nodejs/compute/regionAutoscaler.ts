@@ -40,13 +40,13 @@ import * as utilities from "../utilities";
  *     disk: [{
  *         sourceImage: debian9.then(debian9 => debian9.selfLink),
  *     }],
- *     network_interface: [{
+ *     networkInterface: [{
  *         network: "default",
  *     }],
  *     metadata: {
  *         foo: "bar",
  *     },
- *     service_account: {
+ *     serviceAccount: {
  *         scopes: [
  *             "userinfo-email",
  *             "compute-ro",
@@ -67,11 +67,11 @@ import * as utilities from "../utilities";
  * const foobarRegionAutoscaler = new gcp.compute.RegionAutoscaler("foobarRegionAutoscaler", {
  *     region: "us-central1",
  *     target: foobarRegionInstanceGroupManager.id,
- *     autoscaling_policy: {
+ *     autoscalingPolicy: {
  *         maxReplicas: 5,
  *         minReplicas: 1,
  *         cooldownPeriod: 60,
- *         cpu_utilization: {
+ *         cpuUtilization: {
  *             target: 0.5,
  *         },
  *     },

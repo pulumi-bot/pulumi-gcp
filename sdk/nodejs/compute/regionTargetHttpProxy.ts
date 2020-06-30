@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  *
  * const defaultRegionHealthCheck = new gcp.compute.RegionHealthCheck("defaultRegionHealthCheck", {
  *     region: "us-central1",
- *     http_health_check: {
+ *     httpHealthCheck: {
  *         port: 80,
  *     },
  * });
@@ -36,14 +36,14 @@ import * as utilities from "../utilities";
  * const defaultRegionUrlMap = new gcp.compute.RegionUrlMap("defaultRegionUrlMap", {
  *     region: "us-central1",
  *     defaultService: defaultRegionBackendService.id,
- *     host_rule: [{
+ *     hostRule: [{
  *         hosts: ["mysite.com"],
  *         pathMatcher: "allpaths",
  *     }],
- *     path_matcher: [{
+ *     pathMatcher: [{
  *         name: "allpaths",
  *         defaultService: defaultRegionBackendService.id,
- *         path_rule: [{
+ *         pathRule: [{
  *             paths: ["/*"],
  *             service: defaultRegionBackendService.id,
  *         }],
@@ -62,7 +62,7 @@ import * as utilities from "../utilities";
  *
  * const defaultRegionUrlMap = new gcp.compute.RegionUrlMap("defaultRegionUrlMap", {
  *     region: "us-central1",
- *     default_url_redirect: {
+ *     defaultUrlRedirect: {
  *         httpsRedirect: true,
  *         stripQuery: false,
  *     },

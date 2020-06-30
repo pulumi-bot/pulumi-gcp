@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  *
  * const webserver = new gcp.compute.InstanceTemplate("webserver", {
  *     machineType: "n1-standard-1",
- *     network_interface: [{
+ *     networkInterface: [{
  *         network: "default",
  *     }],
  *     disk: [{

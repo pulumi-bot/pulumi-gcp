@@ -40,7 +40,7 @@ import * as utilities from "../utilities";
  *     region: router.region,
  *     natIpAllocateOption: "AUTO_ONLY",
  *     sourceSubnetworkIpRangesToNat: "ALL_SUBNETWORKS_ALL_IP_RANGES",
- *     log_config: {
+ *     logConfig: {
  *         enable: true,
  *         filter: "ERRORS_ONLY",
  *     },

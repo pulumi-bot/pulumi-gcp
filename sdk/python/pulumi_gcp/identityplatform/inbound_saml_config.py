@@ -76,7 +76,7 @@ class InboundSamlConfig(pulumi.CustomResource):
                 "idpEntityId": "tf-idp",
                 "signRequest": True,
                 "ssoUrl": "https://example.com",
-                "idp_certificates": [{
+                "idpCertificates": [{
                     "x509Certificate": (lambda path: open(path).read())("test-fixtures/rsa_cert.pem"),
                 }],
             },

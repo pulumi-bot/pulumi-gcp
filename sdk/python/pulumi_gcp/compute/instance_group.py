@@ -115,7 +115,7 @@ class InstanceGroup(pulumi.CustomResource):
             machine_type="n1-standard-1",
             zone="us-central1-c",
             boot_disk={
-                "initialize_params": {
+                "initializeParams": {
                     "image": debian_image.self_link,
                 },
             },

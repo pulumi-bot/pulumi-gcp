@@ -19,6 +19,40 @@ namespace Pulumi.Gcp.BigQuery
     ///     * [Datasets Intro](https://cloud.google.com/bigquery/docs/datasets-intro)
     /// 
     /// ## Example Usage
+    /// ### Bigquery Dataset Cmek
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var keyRing = new Gcp.Kms.KeyRing("keyRing", new Gcp.Kms.KeyRingArgs
+    ///         {
+    ///             Location = "us",
+    ///         });
+    ///         var cryptoKey = new Gcp.Kms.CryptoKey("cryptoKey", new Gcp.Kms.CryptoKeyArgs
+    ///         {
+    ///             KeyRing = keyRing.Id,
+    ///         });
+    ///         var dataset = new Gcp.BigQuery.Dataset("dataset", new Gcp.BigQuery.DatasetArgs
+    ///         {
+    ///             DatasetId = "example_dataset",
+    ///             FriendlyName = "test",
+    ///             Description = "This is a test description",
+    ///             Location = "US",
+    ///             DefaultTableExpirationMs = 3600000,
+    ///             DefaultEncryptionConfiguration = new Gcp.BigQuery.Inputs.DatasetDefaultEncryptionConfigurationArgs
+    ///             {
+    ///                 KmsKeyName = cryptoKey.Id,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Dataset : Pulumi.CustomResource
     {

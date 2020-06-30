@@ -20,6 +20,131 @@ import (
 //     * [Internal TCP/UDP Load Balancing](https://cloud.google.com/compute/docs/load-balancing/internal/)
 //
 // ## Example Usage
+// ### Region Backend Service Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		defaultHealthCheck, err := compute.NewHealthCheck(ctx, "defaultHealthCheck", &compute.HealthCheckArgs{
+// 			CheckIntervalSec: pulumi.Int(1),
+// 			TimeoutSec:       pulumi.Int(1),
+// 			TcpHealthCheck: &compute.HealthCheckTcpHealthCheckArgs{
+// 				Port: pulumi.Int(80),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewRegionBackendService(ctx, "defaultRegionBackendService", &compute.RegionBackendServiceArgs{
+// 			Region: pulumi.String("us-central1"),
+// 			HealthChecks: pulumi.String(pulumi.String{
+// 				defaultHealthCheck.ID(),
+// 			}),
+// 			ConnectionDrainingTimeoutSec: pulumi.Int(10),
+// 			SessionAffinity:              pulumi.String("CLIENT_IP"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Region Backend Service Ilb Round Robin
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		healthCheck, err := compute.NewHealthCheck(ctx, "healthCheck", &compute.HealthCheckArgs{
+// 			HttpHealthCheck: &compute.HealthCheckHttpHealthCheckArgs{
+// 				Port: pulumi.Int(80),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewRegionBackendService(ctx, "default", &compute.RegionBackendServiceArgs{
+// 			Region: pulumi.String("us-central1"),
+// 			HealthChecks: pulumi.String(pulumi.String{
+// 				healthCheck.ID(),
+// 			}),
+// 			Protocol:            pulumi.String("HTTP"),
+// 			LoadBalancingScheme: pulumi.String("INTERNAL_MANAGED"),
+// 			LocalityLbPolicy:    pulumi.String("ROUND_ROBIN"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Region Backend Service Ilb Ring Hash
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		healthCheck, err := compute.NewHealthCheck(ctx, "healthCheck", &compute.HealthCheckArgs{
+// 			HttpHealthCheck: &compute.HealthCheckHttpHealthCheckArgs{
+// 				Port: pulumi.Int(80),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewRegionBackendService(ctx, "default", &compute.RegionBackendServiceArgs{
+// 			Region: pulumi.String("us-central1"),
+// 			HealthChecks: pulumi.String(pulumi.String{
+// 				healthCheck.ID(),
+// 			}),
+// 			LoadBalancingScheme: pulumi.String("INTERNAL_MANAGED"),
+// 			LocalityLbPolicy:    pulumi.String("RING_HASH"),
+// 			SessionAffinity:     pulumi.String("HTTP_COOKIE"),
+// 			Protocol:            pulumi.String("HTTP"),
+// 			CircuitBreakers: &compute.RegionBackendServiceCircuitBreakersArgs{
+// 				MaxConnections: pulumi.Int(10),
+// 			},
+// 			ConsistentHash: &compute.RegionBackendServiceConsistentHashArgs{
+// 				HttpCookie: &compute.RegionBackendServiceConsistentHashHttpCookieArgs{
+// 					Ttl: &compute.RegionBackendServiceConsistentHashHttpCookieTtlArgs{
+// 						Seconds: pulumi.Int(11),
+// 						Nanos:   pulumi.Int(1111),
+// 					},
+// 					Name: pulumi.String("mycookie"),
+// 				},
+// 			},
+// 			OutlierDetection: &compute.RegionBackendServiceOutlierDetectionArgs{
+// 				ConsecutiveErrors: pulumi.Int(2),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type RegionBackendService struct {
 	pulumi.CustomResourceState
 

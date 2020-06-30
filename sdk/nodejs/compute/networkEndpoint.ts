@@ -36,14 +36,14 @@ import * as utilities from "../utilities";
  * });
  * const endpoint_instance = new gcp.compute.Instance("endpoint-instance", {
  *     machineType: "n1-standard-1",
- *     boot_disk: {
- *         initialize_params: {
+ *     bootDisk: {
+ *         initializeParams: {
  *             image: myImage.then(myImage => myImage.selfLink),
  *         },
  *     },
- *     network_interface: [{
+ *     networkInterface: [{
  *         subnetwork: defaultSubnetwork.id,
- *         access_config: [{}],
+ *         accessConfig: [{}],
  *     }],
  * });
  * const default_endpoint = new gcp.compute.NetworkEndpoint("default-endpoint", {

@@ -42,7 +42,7 @@ import * as utilities from "../utilities";
  *     },
  *     noopOnDestroy: true,
  * });
- * const webService = new gcp.appengine.ApplicationUrlDispatchRules("webService", {dispatch_rules: [
+ * const webService = new gcp.appengine.ApplicationUrlDispatchRules("webService", {dispatchRules: [
  *     {
  *         domain: "*",
  *         path: "/*",

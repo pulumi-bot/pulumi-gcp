@@ -182,7 +182,7 @@ class GlobalForwardingRule(pulumi.CustomResource):
             path_matcher=[{
                 "name": "allpaths",
                 "default_service": default_backend_service.id,
-                "path_rule": [{
+                "pathRule": [{
                     "paths": ["/*"],
                     "service": default_backend_service.id,
                 }],
@@ -248,7 +248,7 @@ class GlobalForwardingRule(pulumi.CustomResource):
             path_matcher=[{
                 "name": "allpaths",
                 "default_service": default_backend_service.id,
-                "path_rule": [{
+                "pathRule": [{
                     "paths": ["/*"],
                     "service": default_backend_service.id,
                 }],
@@ -263,7 +263,7 @@ class GlobalForwardingRule(pulumi.CustomResource):
             ip_address="0.0.0.0",
             metadata_filters=[{
                 "filterMatchCriteria": "MATCH_ANY",
-                "filter_labels": [{
+                "filterLabels": [{
                     "name": "PLANET",
                     "value": "MARS",
                 }],

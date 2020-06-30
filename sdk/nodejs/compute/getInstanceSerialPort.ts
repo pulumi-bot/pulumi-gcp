@@ -33,14 +33,14 @@ import * as utilities from "../utilities";
  * const windows = new gcp.compute.Instance("windows", {
  *     machineType: "n1-standard-1",
  *     zone: "us-central1-a",
- *     boot_disk: {
- *         initialize_params: {
+ *     bootDisk: {
+ *         initializeParams: {
  *             image: "gce-uefi-images/windows-2019",
  *         },
  *     },
- *     network_interface: [{
+ *     networkInterface: [{
  *         network: "default",
- *         access_config: [{}],
+ *         accessConfig: [{}],
  *     }],
  *     metadata: {
  *         "serial-port-logging-enable": "TRUE",
@@ -52,7 +52,7 @@ import * as utilities from "../utilities";
  *             userName: "example-user",
  *         }),
  *     },
- *     service_account: {
+ *     serviceAccount: {
  *         scopes: [
  *             "userinfo-email",
  *             "compute-ro",

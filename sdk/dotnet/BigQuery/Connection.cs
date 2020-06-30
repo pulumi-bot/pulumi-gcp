@@ -22,6 +22,116 @@ namespace Pulumi.Gcp.BigQuery
     /// state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
     /// 
     /// ## Example Usage
+    /// ### Bigquery Connection Basic
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var instance = new Gcp.Sql.DatabaseInstance("instance", new Gcp.Sql.DatabaseInstanceArgs
+    ///         {
+    ///             DatabaseVersion = "POSTGRES_11",
+    ///             Region = "us-central1",
+    ///             Settings = new Gcp.Sql.Inputs.DatabaseInstanceSettingsArgs
+    ///             {
+    ///                 Tier = "db-f1-micro",
+    ///             },
+    ///         });
+    ///         var db = new Gcp.Sql.Database("db", new Gcp.Sql.DatabaseArgs
+    ///         {
+    ///             Instance = instance.Name,
+    ///         });
+    ///         var pwd = new Random.RandomPassword("pwd", new Random.RandomPasswordArgs
+    ///         {
+    ///             Length = 16,
+    ///             Special = false,
+    ///         });
+    ///         var user = new Gcp.Sql.User("user", new Gcp.Sql.UserArgs
+    ///         {
+    ///             Instance = instance.Name,
+    ///             Password = pwd.Result,
+    ///         });
+    ///         var connection = new Gcp.BigQuery.Connection("connection", new Gcp.BigQuery.ConnectionArgs
+    ///         {
+    ///             FriendlyName = "👋",
+    ///             Description = "a riveting description",
+    ///             CloudSql = new Gcp.BigQuery.Inputs.ConnectionCloudSqlArgs
+    ///             {
+    ///                 InstanceId = instance.ConnectionName,
+    ///                 Database = db.Name,
+    ///                 Type = "POSTGRES",
+    ///                 Credential = new Gcp.BigQuery.Inputs.ConnectionCloudSqlCredentialArgs
+    ///                 {
+    ///                     Username = user.Name,
+    ///                     Password = user.Password,
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Bigquery Connection Full
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// using Random = Pulumi.Random;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var instance = new Gcp.Sql.DatabaseInstance("instance", new Gcp.Sql.DatabaseInstanceArgs
+    ///         {
+    ///             DatabaseVersion = "POSTGRES_11",
+    ///             Region = "us-central1",
+    ///             Settings = new Gcp.Sql.Inputs.DatabaseInstanceSettingsArgs
+    ///             {
+    ///                 Tier = "db-f1-micro",
+    ///             },
+    ///         });
+    ///         var db = new Gcp.Sql.Database("db", new Gcp.Sql.DatabaseArgs
+    ///         {
+    ///             Instance = instance.Name,
+    ///         });
+    ///         var pwd = new Random.RandomPassword("pwd", new Random.RandomPasswordArgs
+    ///         {
+    ///             Length = 16,
+    ///             Special = false,
+    ///         });
+    ///         var user = new Gcp.Sql.User("user", new Gcp.Sql.UserArgs
+    ///         {
+    ///             Instance = instance.Name,
+    ///             Password = pwd.Result,
+    ///         });
+    ///         var connection = new Gcp.BigQuery.Connection("connection", new Gcp.BigQuery.ConnectionArgs
+    ///         {
+    ///             ConnectionId = "my-connection",
+    ///             Location = "US",
+    ///             FriendlyName = "👋",
+    ///             Description = "a riveting description",
+    ///             CloudSql = new Gcp.BigQuery.Inputs.ConnectionCloudSqlArgs
+    ///             {
+    ///                 InstanceId = instance.ConnectionName,
+    ///                 Database = db.Name,
+    ///                 Type = "POSTGRES",
+    ///                 Credential = new Gcp.BigQuery.Inputs.ConnectionCloudSqlCredentialArgs
+    ///                 {
+    ///                     Username = user.Name,
+    ///                     Password = user.Password,
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Connection : Pulumi.CustomResource
     {

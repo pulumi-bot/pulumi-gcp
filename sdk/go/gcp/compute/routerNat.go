@@ -19,6 +19,57 @@ import (
 //     * [Google Cloud Router](https://cloud.google.com/router/docs/)
 //
 // ## Example Usage
+// ### Router Nat Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		net, err := compute.NewNetwork(ctx, "net", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		subnet, err := compute.NewSubnetwork(ctx, "subnet", &compute.SubnetworkArgs{
+// 			Network:     net.ID(),
+// 			IpCidrRange: pulumi.String("10.0.0.0/16"),
+// 			Region:      pulumi.String("us-central1"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		router, err := compute.NewRouter(ctx, "router", &compute.RouterArgs{
+// 			Region:  subnet.Region,
+// 			Network: net.ID(),
+// 			Bgp: &compute.RouterBgpArgs{
+// 				Asn: pulumi.Int(64514),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewRouterNat(ctx, "nat", &compute.RouterNatArgs{
+// 			Router:                        router.Name,
+// 			Region:                        router.Region,
+// 			NatIpAllocateOption:           pulumi.String("AUTO_ONLY"),
+// 			SourceSubnetworkIpRangesToNat: pulumi.String("ALL_SUBNETWORKS_ALL_IP_RANGES"),
+// 			LogConfig: &compute.RouterNatLogConfigArgs{
+// 				Enable: pulumi.Bool(true),
+// 				Filter: pulumi.String("ERRORS_ONLY"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type RouterNat struct {
 	pulumi.CustomResourceState
 

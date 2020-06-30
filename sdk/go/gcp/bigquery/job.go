@@ -49,15 +49,15 @@ import (
 // 			},
 // 			Query: &bigquery.JobQueryArgs{
 // 				Query: pulumi.String("SELECT state FROM [lookerdata:cdc.project_tycho_reports]"),
-// 				Destination_table: pulumi.Map{
-// 					"projectId": foo.Project,
-// 					"datasetId": foo.DatasetId,
-// 					"tableId":   foo.TableId,
+// 				DestinationTable: &bigquery.JobQueryDestinationTableArgs{
+// 					ProjectId: foo.Project,
+// 					DatasetId: foo.DatasetId,
+// 					TableId:   foo.TableId,
 // 				},
 // 				AllowLargeResults: pulumi.Bool(true),
 // 				FlattenResults:    pulumi.Bool(true),
-// 				Script_options: pulumi.Map{
-// 					"keyResultStatement": pulumi.String("LAST"),
+// 				ScriptOptions: &bigquery.JobQueryScriptOptionsArgs{
+// 					KeyResultStatement: pulumi.String("LAST"),
 // 				},
 // 			},
 // 		})
@@ -103,16 +103,16 @@ import (
 // 			},
 // 			Query: &bigquery.JobQueryArgs{
 // 				Query: pulumi.String("SELECT state FROM [lookerdata:cdc.project_tycho_reports]"),
-// 				Destination_table: pulumi.Map{
-// 					"tableId": foo.ID(),
+// 				DestinationTable: &bigquery.JobQueryDestinationTableArgs{
+// 					TableId: foo.ID(),
 // 				},
-// 				Default_dataset: pulumi.Map{
-// 					"datasetId": bar.ID(),
+// 				DefaultDataset: &bigquery.JobQueryDefaultDatasetArgs{
+// 					DatasetId: bar.ID(),
 // 				},
 // 				AllowLargeResults: pulumi.Bool(true),
 // 				FlattenResults:    pulumi.Bool(true),
-// 				Script_options: pulumi.Map{
-// 					"keyResultStatement": pulumi.String("LAST"),
+// 				ScriptOptions: &bigquery.JobQueryScriptOptionsArgs{
+// 					KeyResultStatement: pulumi.String("LAST"),
 // 				},
 // 			},
 // 		})
@@ -160,10 +160,10 @@ import (
 // 				SourceUris: pulumi.StringArray{
 // 					pulumi.String("gs://cloud-samples-data/bigquery/us-states/us-states-by-date.csv"),
 // 				},
-// 				Destination_table: pulumi.Map{
-// 					"projectId": foo.Project,
-// 					"datasetId": foo.DatasetId,
-// 					"tableId":   foo.TableId,
+// 				DestinationTable: &bigquery.JobLoadDestinationTableArgs{
+// 					ProjectId: foo.Project,
+// 					DatasetId: foo.DatasetId,
+// 					TableId:   foo.TableId,
 // 				},
 // 				SkipLeadingRows: pulumi.Int(1),
 // 				SchemaUpdateOptions: pulumi.StringArray{

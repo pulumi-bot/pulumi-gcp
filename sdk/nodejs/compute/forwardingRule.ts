@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * const hc = new gcp.compute.HealthCheck("hc", {
  *     checkIntervalSec: 1,
  *     timeoutSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "80",
  *     },
  * });
@@ -71,7 +71,7 @@ import * as utilities from "../utilities";
  * const hc = new gcp.compute.HealthCheck("hc", {
  *     checkIntervalSec: 1,
  *     timeoutSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "80",
  *     },
  * });
@@ -116,7 +116,7 @@ import * as utilities from "../utilities";
  * });
  * const instanceTemplate = new gcp.compute.InstanceTemplate("instanceTemplate", {
  *     machineType: "n1-standard-1",
- *     network_interface: [{
+ *     networkInterface: [{
  *         network: defaultNetwork.id,
  *         subnetwork: defaultSubnetwork.id,
  *     }],
@@ -199,7 +199,7 @@ import * as utilities from "../utilities";
  * });
  * const defaultRegionHealthCheck = new gcp.compute.RegionHealthCheck("defaultRegionHealthCheck", {
  *     region: "us-central1",
- *     http_health_check: {
+ *     httpHealthCheck: {
  *         portSpecification: "USE_SERVING_PORT",
  *     },
  * });

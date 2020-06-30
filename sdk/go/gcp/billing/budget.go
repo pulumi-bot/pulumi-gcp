@@ -19,6 +19,103 @@ import (
 //     * [Creating a budget](https://cloud.google.com/billing/docs/how-to/budgets)
 //
 // ## Example Usage
+// ### Billing Budget Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/billing"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "000000-0000000-0000000-000000"
+// 		account, err := organizations.GetBillingAccount(ctx, &organizations.GetBillingAccountArgs{
+// 			BillingAccount: &opt0,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = billing.NewBudget(ctx, "budget", &billing.BudgetArgs{
+// 			BillingAccount: pulumi.String(account.Id),
+// 			DisplayName:    pulumi.String("Example Billing Budget"),
+// 			Amount: &billing.BudgetAmountArgs{
+// 				SpecifiedAmount: &billing.BudgetAmountSpecifiedAmountArgs{
+// 					CurrencyCode: pulumi.String("USD"),
+// 					Units:        pulumi.String("100000"),
+// 				},
+// 			},
+// 			ThresholdRules: billing.BudgetThresholdRuleArray{
+// 				&billing.BudgetThresholdRuleArgs{
+// 					ThresholdPercent: pulumi.Float64(0.5),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Billing Budget Filter
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/billing"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "000000-0000000-0000000-000000"
+// 		account, err := organizations.GetBillingAccount(ctx, &organizations.GetBillingAccountArgs{
+// 			BillingAccount: &opt0,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = billing.NewBudget(ctx, "budget", &billing.BudgetArgs{
+// 			BillingAccount: pulumi.String(account.Id),
+// 			DisplayName:    pulumi.String("Example Billing Budget"),
+// 			BudgetFilter: &billing.BudgetBudgetFilterArgs{
+// 				Projects: pulumi.StringArray{
+// 					pulumi.String("projects/my-project-name"),
+// 				},
+// 				CreditTypesTreatment: pulumi.String("EXCLUDE_ALL_CREDITS"),
+// 				Services: pulumi.StringArray{
+// 					pulumi.String("services/24E6-581D-38E5"),
+// 				},
+// 			},
+// 			Amount: &billing.BudgetAmountArgs{
+// 				SpecifiedAmount: &billing.BudgetAmountSpecifiedAmountArgs{
+// 					CurrencyCode: pulumi.String("USD"),
+// 					Units:        pulumi.String("100000"),
+// 				},
+// 			},
+// 			ThresholdRules: billing.BudgetThresholdRuleArray{
+// 				&billing.BudgetThresholdRuleArgs{
+// 					ThresholdPercent: pulumi.Float64(0.5),
+// 				},
+// 				&billing.BudgetThresholdRuleArgs{
+// 					ThresholdPercent: pulumi.Float64(0.9),
+// 					SpendBasis:       pulumi.String("FORECASTED_SPEND"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Budget struct {
 	pulumi.CustomResourceState
 

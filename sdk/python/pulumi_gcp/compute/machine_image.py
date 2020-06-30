@@ -54,7 +54,7 @@ class MachineImage(pulumi.CustomResource):
         vm = gcp.compute.Instance("vm",
             machine_type="n1-standard-1",
             boot_disk={
-                "initialize_params": {
+                "initializeParams": {
                     "image": "debian-cloud/debian-9",
                 },
             },

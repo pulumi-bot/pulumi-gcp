@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * }]});
  * const table = new gcp.bigtable.Table("table", {
  *     instanceName: instance.name,
- *     column_family: [{
+ *     columnFamily: [{
  *         family: "name",
  *     }],
  * });
@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *     instanceName: instance.name,
  *     table: table.name,
  *     columnFamily: "name",
- *     max_age: [{
+ *     maxAge: [{
  *         days: 7,
  *     }],
  * });
@@ -50,10 +50,10 @@ import * as utilities from "../utilities";
  *     table: google_bigtable_table.table.name,
  *     columnFamily: "name",
  *     mode: "UNION",
- *     max_age: [{
+ *     maxAge: [{
  *         days: 7,
  *     }],
- *     max_version: [{
+ *     maxVersion: [{
  *         number: 10,
  *     }],
  * });

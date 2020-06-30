@@ -36,7 +36,7 @@ import * as utilities from "../utilities";
  *         google_compute_instance.test.id,
  *         google_compute_instance.test2.id,
  *     ],
- *     named_port: [
+ *     namedPort: [
  *         {
  *             name: "http",
  *             port: "8080",
@@ -65,19 +65,19 @@ import * as utilities from "../utilities";
  * const stagingVm = new gcp.compute.Instance("stagingVm", {
  *     machineType: "n1-standard-1",
  *     zone: "us-central1-c",
- *     boot_disk: {
- *         initialize_params: {
+ *     bootDisk: {
+ *         initializeParams: {
  *             image: debianImage.then(debianImage => debianImage.selfLink),
  *         },
  *     },
- *     network_interface: [{
+ *     networkInterface: [{
  *         network: "default",
  *     }],
  * });
  * const stagingGroup = new gcp.compute.InstanceGroup("stagingGroup", {
  *     zone: "us-central1-c",
  *     instances: [stagingVm.id],
- *     named_port: [
+ *     namedPort: [
  *         {
  *             name: "http",
  *             port: "8080",

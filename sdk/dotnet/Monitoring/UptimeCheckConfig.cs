@@ -104,6 +104,39 @@ namespace Pulumi.Gcp.Monitoring
     /// 
     /// }
     /// ```
+    /// ### Uptime Check Tcp
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var check = new Gcp.Monitoring.Group("check", new Gcp.Monitoring.GroupArgs
+    ///         {
+    ///             DisplayName = "uptime-check-group",
+    ///             Filter = "resource.metadata.name=has_substring(\"foo\")",
+    ///         });
+    ///         var tcpGroup = new Gcp.Monitoring.UptimeCheckConfig("tcpGroup", new Gcp.Monitoring.UptimeCheckConfigArgs
+    ///         {
+    ///             DisplayName = "tcp-uptime-check",
+    ///             Timeout = "60s",
+    ///             TcpCheck = new Gcp.Monitoring.Inputs.UptimeCheckConfigTcpCheckArgs
+    ///             {
+    ///                 Port = 888,
+    ///             },
+    ///             ResourceGroup = new Gcp.Monitoring.Inputs.UptimeCheckConfigResourceGroupArgs
+    ///             {
+    ///                 ResourceType = "INSTANCE",
+    ///                 GroupId = check.Name,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class UptimeCheckConfig : Pulumi.CustomResource
     {

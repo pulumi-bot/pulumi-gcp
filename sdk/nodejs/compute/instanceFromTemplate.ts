@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  *         diskSizeGb: 100,
  *         boot: true,
  *     }],
- *     network_interface: [{
+ *     networkInterface: [{
  *         network: "default",
  *     }],
  *     metadata: {

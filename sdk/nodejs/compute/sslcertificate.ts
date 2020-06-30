@@ -64,14 +64,14 @@ import * as utilities from "../utilities";
  * const defaultURLMap = new gcp.compute.URLMap("defaultURLMap", {
  *     description: "a description",
  *     defaultService: defaultBackendService.id,
- *     host_rule: [{
+ *     hostRule: [{
  *         hosts: ["mysite.com"],
  *         pathMatcher: "allpaths",
  *     }],
- *     path_matcher: [{
+ *     pathMatcher: [{
  *         name: "allpaths",
  *         defaultService: defaultBackendService.id,
- *         path_rule: [{
+ *         pathRule: [{
  *             paths: ["/*"],
  *             service: defaultBackendService.id,
  *         }],

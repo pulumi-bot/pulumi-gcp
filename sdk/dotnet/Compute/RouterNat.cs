@@ -19,6 +19,50 @@ namespace Pulumi.Gcp.Compute
     ///     * [Google Cloud Router](https://cloud.google.com/router/docs/)
     /// 
     /// ## Example Usage
+    /// ### Router Nat Basic
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var net = new Gcp.Compute.Network("net", new Gcp.Compute.NetworkArgs
+    ///         {
+    ///         });
+    ///         var subnet = new Gcp.Compute.Subnetwork("subnet", new Gcp.Compute.SubnetworkArgs
+    ///         {
+    ///             Network = net.Id,
+    ///             IpCidrRange = "10.0.0.0/16",
+    ///             Region = "us-central1",
+    ///         });
+    ///         var router = new Gcp.Compute.Router("router", new Gcp.Compute.RouterArgs
+    ///         {
+    ///             Region = subnet.Region,
+    ///             Network = net.Id,
+    ///             Bgp = new Gcp.Compute.Inputs.RouterBgpArgs
+    ///             {
+    ///                 Asn = 64514,
+    ///             },
+    ///         });
+    ///         var nat = new Gcp.Compute.RouterNat("nat", new Gcp.Compute.RouterNatArgs
+    ///         {
+    ///             Router = router.Name,
+    ///             Region = router.Region,
+    ///             NatIpAllocateOption = "AUTO_ONLY",
+    ///             SourceSubnetworkIpRangesToNat = "ALL_SUBNETWORKS_ALL_IP_RANGES",
+    ///             LogConfig = new Gcp.Compute.Inputs.RouterNatLogConfigArgs
+    ///             {
+    ///                 Enable = true,
+    ///                 Filter = "ERRORS_ONLY",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class RouterNat : Pulumi.CustomResource
     {

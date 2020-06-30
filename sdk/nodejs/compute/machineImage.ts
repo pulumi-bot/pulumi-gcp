@@ -24,12 +24,12 @@ import * as utilities from "../utilities";
  *
  * const vm = new gcp.compute.Instance("vm", {
  *     machineType: "n1-standard-1",
- *     boot_disk: {
- *         initialize_params: {
+ *     bootDisk: {
+ *         initializeParams: {
  *             image: "debian-cloud/debian-9",
  *         },
  *     },
- *     network_interface: [{
+ *     networkInterface: [{
  *         network: "default",
  *     }],
  * });

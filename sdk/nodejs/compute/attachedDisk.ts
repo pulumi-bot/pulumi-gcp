@@ -28,12 +28,12 @@ import * as utilities from "../utilities";
  * const defaultInstance = new gcp.compute.Instance("defaultInstance", {
  *     machineType: "n1-standard-1",
  *     zone: "us-west1-a",
- *     boot_disk: {
- *         initialize_params: {
+ *     bootDisk: {
+ *         initializeParams: {
  *             image: "debian-cloud/debian-9",
  *         },
  *     },
- *     network_interface: [{
+ *     networkInterface: [{
  *         network: "default",
  *     }],
  * });

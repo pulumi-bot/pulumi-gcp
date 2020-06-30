@@ -40,13 +40,13 @@ import * as utilities from "../utilities";
  *     disk: [{
  *         sourceImage: debian9.then(debian9 => debian9.selfLink),
  *     }],
- *     network_interface: [{
+ *     networkInterface: [{
  *         network: "default",
  *     }],
  *     metadata: {
  *         foo: "bar",
  *     },
- *     service_account: {
+ *     serviceAccount: {
  *         scopes: [
  *             "userinfo-email",
  *             "compute-ro",
@@ -67,7 +67,7 @@ import * as utilities from "../utilities";
  * const defaultAutoscaler = new gcp.compute.Autoscaler("defaultAutoscaler", {
  *     zone: "us-central1-f",
  *     target: defaultInstanceGroupManager.id,
- *     autoscaling_policy: {
+ *     autoscalingPolicy: {
  *         maxReplicas: 5,
  *         minReplicas: 1,
  *         cooldownPeriod: 60,
@@ -99,13 +99,13 @@ import * as utilities from "../utilities";
  *     disk: [{
  *         sourceImage: debian9.then(debian9 => debian9.selfLink),
  *     }],
- *     network_interface: [{
+ *     networkInterface: [{
  *         network: "default",
  *     }],
  *     metadata: {
  *         foo: "bar",
  *     },
- *     service_account: {
+ *     serviceAccount: {
  *         scopes: [
  *             "userinfo-email",
  *             "compute-ro",
@@ -126,11 +126,11 @@ import * as utilities from "../utilities";
  * const foobarAutoscaler = new gcp.compute.Autoscaler("foobarAutoscaler", {
  *     zone: "us-central1-f",
  *     target: foobarInstanceGroupManager.id,
- *     autoscaling_policy: {
+ *     autoscalingPolicy: {
  *         maxReplicas: 5,
  *         minReplicas: 1,
  *         cooldownPeriod: 60,
- *         cpu_utilization: {
+ *         cpuUtilization: {
  *             target: 0.5,
  *         },
  *     },

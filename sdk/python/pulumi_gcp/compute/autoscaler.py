@@ -259,7 +259,7 @@ class Autoscaler(pulumi.CustomResource):
                 "maxReplicas": 5,
                 "minReplicas": 1,
                 "cooldownPeriod": 60,
-                "cpu_utilization": {
+                "cpuUtilization": {
                     "target": 0.5,
                 },
             })
