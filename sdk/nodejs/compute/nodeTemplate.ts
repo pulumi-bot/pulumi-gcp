@@ -44,7 +44,7 @@ import * as utilities from "../utilities";
  *     nodeAffinityLabels: {
  *         foo: "baz",
  *     },
- *     server_binding: {
+ *     serverBinding: {
  *         type: "RESTART_NODE_ON_MINIMAL_SERVERS",
  *     },
  * });

@@ -326,6 +326,35 @@ import (
 // 	})
 // }
 // ```
+// ### Health Check With Logging
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = compute.NewHealthCheck(ctx, "health-check-with-logging", &compute.HealthCheckArgs{
+// 			TimeoutSec:       pulumi.Int(1),
+// 			CheckIntervalSec: pulumi.Int(1),
+// 			TcpHealthCheck: &compute.HealthCheckTcpHealthCheckArgs{
+// 				Port: pulumi.Int(22),
+// 			},
+// 			LogConfig: &compute.HealthCheckLogConfigArgs{
+// 				Enable: pulumi.Bool(true),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type HealthCheck struct {
 	pulumi.CustomResourceState
 

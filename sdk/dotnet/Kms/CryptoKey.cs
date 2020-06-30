@@ -50,6 +50,33 @@ namespace Pulumi.Gcp.Kms
     /// 
     /// }
     /// ```
+    /// ### Kms Crypto Key Asymmetric Sign
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var keyring = new Gcp.Kms.KeyRing("keyring", new Gcp.Kms.KeyRingArgs
+    ///         {
+    ///             Location = "global",
+    ///         });
+    ///         var example_asymmetric_sign_key = new Gcp.Kms.CryptoKey("example-asymmetric-sign-key", new Gcp.Kms.CryptoKeyArgs
+    ///         {
+    ///             KeyRing = keyring.Id,
+    ///             Purpose = "ASYMMETRIC_SIGN",
+    ///             VersionTemplate = new Gcp.Kms.Inputs.CryptoKeyVersionTemplateArgs
+    ///             {
+    ///                 Algorithm = "EC_SIGN_P384_SHA384",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class CryptoKey : Pulumi.CustomResource
     {

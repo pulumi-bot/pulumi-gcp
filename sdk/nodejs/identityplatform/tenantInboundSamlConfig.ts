@@ -25,15 +25,15 @@ import * as utilities from "../utilities";
  * const tenantSamlConfig = new gcp.identityplatform.TenantInboundSamlConfig("tenantSamlConfig", {
  *     displayName: "Display Name",
  *     tenant: tenant.name,
- *     idp_config: {
+ *     idpConfig: {
  *         idpEntityId: "tf-idp",
  *         signRequest: true,
  *         ssoUrl: "https://example.com",
- *         idp_certificates: [{
+ *         idpCertificates: [{
  *             x509Certificate: fs.readFileSync("test-fixtures/rsa_cert.pem"),
  *         }],
  *     },
- *     sp_config: {
+ *     spConfig: {
  *         spEntityId: "tf-sp",
  *         callbackUri: "https://example.com",
  *     },

@@ -200,7 +200,7 @@ class StandardAppVersion(pulumi.CustomResource):
                 "maxIdleInstances": 3,
                 "minPendingLatency": "1s",
                 "maxPendingLatency": "5s",
-                "standard_scheduler_settings": {
+                "standardSchedulerSettings": {
                     "targetCpuUtilization": 0.5,
                     "targetThroughputUtilization": 0.75,
                     "minInstances": 2,

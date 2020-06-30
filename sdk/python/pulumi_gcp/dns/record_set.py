@@ -59,13 +59,13 @@ class RecordSet(pulumi.CustomResource):
             machine_type="g1-small",
             zone="us-central1-b",
             boot_disk={
-                "initialize_params": {
+                "initializeParams": {
                     "image": "debian-cloud/debian-9",
                 },
             },
-            network_interface=[{
+            network_interfaces=[{
                 "network": "default",
-                "access_config": [{}],
+                "accessConfigs": [{}],
             }])
         prod = gcp.dns.ManagedZone("prod", dns_name="prod.mydomain.com.")
         frontend_record_set = gcp.dns.RecordSet("frontendRecordSet",

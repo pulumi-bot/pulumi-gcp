@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  *     labels: {
  *         foo: "bar",
  *     },
- *     push_config: {
+ *     pushConfig: {
  *         pushEndpoint: "https://example.com/push",
  *         attributes: {
  *             "x-goog-version": "v1",
@@ -53,7 +53,7 @@ import * as utilities from "../utilities";
  *     messageRetentionDuration: "1200s",
  *     retainAckedMessages: true,
  *     ackDeadlineSeconds: 20,
- *     expiration_policy: {
+ *     expirationPolicy: {
  *         ttl: "300000.5s",
  *     },
  * });
@@ -80,7 +80,7 @@ import * as utilities from "../utilities";
  * const exampleDeadLetter = new gcp.pubsub.Topic("exampleDeadLetter", {});
  * const exampleSubscription = new gcp.pubsub.Subscription("exampleSubscription", {
  *     topic: exampleTopic.name,
- *     dead_letter_policy: {
+ *     deadLetterPolicy: {
  *         deadLetterTopic: exampleDeadLetter.id,
  *         maxDeliveryAttempts: 10,
  *     },

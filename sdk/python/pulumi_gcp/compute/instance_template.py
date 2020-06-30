@@ -268,7 +268,7 @@ class InstanceTemplate(pulumi.CustomResource):
                 "automaticRestart": True,
                 "onHostMaintenance": "MIGRATE",
             },
-            disk=[
+            disks=[
                 {
                     "sourceImage": "debian-cloud/debian-9",
                     "autoDelete": True,
@@ -280,7 +280,7 @@ class InstanceTemplate(pulumi.CustomResource):
                     "boot": False,
                 },
             ],
-            network_interface=[{
+            network_interfaces=[{
                 "network": "default",
             }],
             metadata={
@@ -311,8 +311,8 @@ class InstanceTemplate(pulumi.CustomResource):
             name_prefix="instance-template-",
             machine_type="n1-standard-1",
             region="us-central1",
-            disk=[{}],
-            network_interface=[{}])
+            disks=[{}],
+            network_interfaces=[{}])
         instance_group_manager = gcp.compute.InstanceGroupManager("instanceGroupManager",
             instance_template=instance_template.id,
             base_instance_name="instance-group-manager",
@@ -351,7 +351,7 @@ class InstanceTemplate(pulumi.CustomResource):
             name_prefix="instance-template-",
             machine_type="n1-standard-1",
             region="us-central1",
-            disk=[{
+            disks=[{
                 "sourceImage": google_compute_image["my_image"]["self_link"],
             }])
         ```

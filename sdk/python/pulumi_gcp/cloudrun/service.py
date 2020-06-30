@@ -314,7 +314,7 @@ class Service(pulumi.CustomResource):
                     }],
                 },
             })
-        noauth_iam_policy = gcp.organizations.get_iam_policy(binding=[{
+        noauth_iam_policy = gcp.organizations.get_iam_policy(bindings=[{
             "role": "roles/run.invoker",
             "members": ["allUsers"],
         }])

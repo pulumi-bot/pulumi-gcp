@@ -76,7 +76,7 @@ class ExternalVpnGateway(pulumi.CustomResource):
         external_gateway = gcp.compute.ExternalVpnGateway("externalGateway",
             redundancy_type="SINGLE_IP_INTERNALLY_REDUNDANT",
             description="An externally managed VPN gateway",
-            interface=[{
+            interfaces=[{
                 "id": 0,
                 "ip_address": "8.8.8.8",
             }])

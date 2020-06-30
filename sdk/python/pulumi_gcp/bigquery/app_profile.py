@@ -63,7 +63,7 @@ class AppProfile(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         instance = gcp.bigtable.Instance("instance",
-            cluster=[{
+            clusters=[{
                 "cluster_id": "bt-instance",
                 "zone": "us-central1-b",
                 "num_nodes": 3,
@@ -83,7 +83,7 @@ class AppProfile(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         instance = gcp.bigtable.Instance("instance",
-            cluster=[{
+            clusters=[{
                 "cluster_id": "bt-instance",
                 "zone": "us-central1-b",
                 "num_nodes": 3,

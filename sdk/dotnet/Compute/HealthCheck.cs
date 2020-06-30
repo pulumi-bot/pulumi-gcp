@@ -297,6 +297,33 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// ### Health Check With Logging
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var health_check_with_logging = new Gcp.Compute.HealthCheck("health-check-with-logging", new Gcp.Compute.HealthCheckArgs
+    ///         {
+    ///             TimeoutSec = 1,
+    ///             CheckIntervalSec = 1,
+    ///             TcpHealthCheck = new Gcp.Compute.Inputs.HealthCheckTcpHealthCheckArgs
+    ///             {
+    ///                 Port = 22,
+    ///             },
+    ///             LogConfig = new Gcp.Compute.Inputs.HealthCheckLogConfigArgs
+    ///             {
+    ///                 Enable = true,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class HealthCheck : Pulumi.CustomResource
     {

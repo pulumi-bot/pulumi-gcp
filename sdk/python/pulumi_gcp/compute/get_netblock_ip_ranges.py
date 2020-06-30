@@ -79,7 +79,7 @@ def get_netblock_ip_ranges(range_type=None,opts=None):
     default = gcp.compute.Network("default")
     allow_hcs = gcp.compute.Firewall("allow-hcs",
         network=default.name,
-        allow=[{
+        allows=[{
             "protocol": "tcp",
             "ports": ["80"],
         }],

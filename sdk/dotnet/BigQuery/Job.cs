@@ -46,17 +46,17 @@ namespace Pulumi.Gcp.BigQuery
     ///             Query = new Gcp.BigQuery.Inputs.JobQueryArgs
     ///             {
     ///                 Query = "SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
-    ///                 Destination_table = 
+    ///                 DestinationTable = new Gcp.BigQuery.Inputs.JobQueryDestinationTableArgs
     ///                 {
-    ///                     { "projectId", foo.Project },
-    ///                     { "datasetId", foo.DatasetId },
-    ///                     { "tableId", foo.TableId },
+    ///                     ProjectId = foo.Project,
+    ///                     DatasetId = foo.DatasetId,
+    ///                     TableId = foo.TableId,
     ///                 },
     ///                 AllowLargeResults = true,
     ///                 FlattenResults = true,
-    ///                 Script_options = 
+    ///                 ScriptOptions = new Gcp.BigQuery.Inputs.JobQueryScriptOptionsArgs
     ///                 {
-    ///                     { "keyResultStatement", "LAST" },
+    ///                     KeyResultStatement = "LAST",
     ///                 },
     ///             },
     ///         });
@@ -96,19 +96,19 @@ namespace Pulumi.Gcp.BigQuery
     ///             Query = new Gcp.BigQuery.Inputs.JobQueryArgs
     ///             {
     ///                 Query = "SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
-    ///                 Destination_table = 
+    ///                 DestinationTable = new Gcp.BigQuery.Inputs.JobQueryDestinationTableArgs
     ///                 {
-    ///                     { "tableId", foo.Id },
+    ///                     TableId = foo.Id,
     ///                 },
-    ///                 Default_dataset = 
+    ///                 DefaultDataset = new Gcp.BigQuery.Inputs.JobQueryDefaultDatasetArgs
     ///                 {
-    ///                     { "datasetId", bar.Id },
+    ///                     DatasetId = bar.Id,
     ///                 },
     ///                 AllowLargeResults = true,
     ///                 FlattenResults = true,
-    ///                 Script_options = 
+    ///                 ScriptOptions = new Gcp.BigQuery.Inputs.JobQueryScriptOptionsArgs
     ///                 {
-    ///                     { "keyResultStatement", "LAST" },
+    ///                     KeyResultStatement = "LAST",
     ///                 },
     ///             },
     ///         });
@@ -151,11 +151,11 @@ namespace Pulumi.Gcp.BigQuery
     ///                 {
     ///                     "gs://cloud-samples-data/bigquery/us-states/us-states-by-date.csv",
     ///                 },
-    ///                 Destination_table = 
+    ///                 DestinationTable = new Gcp.BigQuery.Inputs.JobLoadDestinationTableArgs
     ///                 {
-    ///                     { "projectId", foo.Project },
-    ///                     { "datasetId", foo.DatasetId },
-    ///                     { "tableId", foo.TableId },
+    ///                     ProjectId = foo.Project,
+    ///                     DatasetId = foo.DatasetId,
+    ///                     TableId = foo.TableId,
     ///                 },
     ///                 SkipLeadingRows = 1,
     ///                 SchemaUpdateOptions = 
@@ -224,11 +224,11 @@ namespace Pulumi.Gcp.BigQuery
     ///                 {
     ///                     dest.Url.Apply(url =&gt; $"{url}/extract"),
     ///                 },
-    ///                 Source_table = 
+    ///                 SourceTable = new Gcp.BigQuery.Inputs.JobExtractSourceTableArgs
     ///                 {
-    ///                     { "projectId", source_oneTable.Project },
-    ///                     { "datasetId", source_oneTable.DatasetId },
-    ///                     { "tableId", source_oneTable.TableId },
+    ///                     ProjectId = source_oneTable.Project,
+    ///                     DatasetId = source_oneTable.DatasetId,
+    ///                     TableId = source_oneTable.TableId,
     ///                 },
     ///                 DestinationFormat = "NEWLINE_DELIMITED_JSON",
     ///                 Compression = "GZIP",

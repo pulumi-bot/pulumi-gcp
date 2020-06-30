@@ -45,13 +45,13 @@ import * as utilities from "../utilities";
  *     envVariables: {
  *         port: "8080",
  *     },
- *     automatic_scaling: {
+ *     automaticScaling: {
  *         maxConcurrentRequests: 10,
  *         minIdleInstances: 1,
  *         maxIdleInstances: 3,
  *         minPendingLatency: "1s",
  *         maxPendingLatency: "5s",
- *         standard_scheduler_settings: {
+ *         standardSchedulerSettings: {
  *             targetCpuUtilization: 0.5,
  *             targetThroughputUtilization: 0.75,
  *             minInstances: 2,
@@ -75,7 +75,7 @@ import * as utilities from "../utilities";
  *     envVariables: {
  *         port: "8080",
  *     },
- *     basic_scaling: {
+ *     basicScaling: {
  *         maxInstances: 5,
  *     },
  *     noopOnDestroy: true,

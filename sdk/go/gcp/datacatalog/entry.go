@@ -55,6 +55,41 @@ import (
 // 	})
 // }
 // ```
+// ### Data Catalog Entry Fileset
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/datacatalog"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		entryGroup, err := datacatalog.NewEntryGroup(ctx, "entryGroup", &datacatalog.EntryGroupArgs{
+// 			EntryGroupId: pulumi.String("my_group"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = datacatalog.NewEntry(ctx, "basicEntry", &datacatalog.EntryArgs{
+// 			EntryGroup: entryGroup.ID(),
+// 			EntryId:    pulumi.String("my_entry"),
+// 			Type:       pulumi.String("FILESET"),
+// 			GcsFilesetSpec: &datacatalog.EntryGcsFilesetSpecArgs{
+// 				FilePatterns: pulumi.StringArray{
+// 					pulumi.String("gs://fake_bucket/dir/*"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 // ### Data Catalog Entry Full
 //
 // ```go

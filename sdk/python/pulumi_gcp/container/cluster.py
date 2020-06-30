@@ -710,7 +710,7 @@ class Cluster(pulumi.CustomResource):
             master_auth={
                 "username": "",
                 "password": "",
-                "client_certificate_config": {
+                "clientCertificateConfig": {
                     "issueClientCertificate": False,
                 },
             })

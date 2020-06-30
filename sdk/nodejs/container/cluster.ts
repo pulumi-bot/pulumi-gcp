@@ -26,10 +26,10 @@ import * as utilities from "../utilities";
  *     location: "us-central1",
  *     removeDefaultNodePool: true,
  *     initialNodeCount: 1,
- *     master_auth: {
+ *     masterAuth: {
  *         username: "",
  *         password: "",
- *         client_certificate_config: {
+ *         clientCertificateConfig: {
  *             issueClientCertificate: false,
  *         },
  *     },
@@ -38,7 +38,7 @@ import * as utilities from "../utilities";
  *     location: "us-central1",
  *     cluster: primary.name,
  *     nodeCount: 1,
- *     node_config: {
+ *     nodeConfig: {
  *         preemptible: true,
  *         machineType: "n1-standard-1",
  *         metadata: {

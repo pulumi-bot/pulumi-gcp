@@ -38,6 +38,91 @@ import (
 // 	})
 // }
 // ```
+// ### Example Usage - Recreating an instance group in use
+// Recreating an instance group that's in use by another resource will give a
+// `resourceInUseByAnotherResource` error. Use `lifecycle.create_before_destroy`
+// as shown in this example to avoid this type of error.
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "debian-9"
+// 		opt1 := "debian-cloud"
+// 		debianImage, err := compute.LookupImage(ctx, &compute.LookupImageArgs{
+// 			Family:  &opt0,
+// 			Project: &opt1,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		stagingVm, err := compute.NewInstance(ctx, "stagingVm", &compute.InstanceArgs{
+// 			MachineType: pulumi.String("n1-standard-1"),
+// 			Zone:        pulumi.String("us-central1-c"),
+// 			BootDisk: &compute.InstanceBootDiskArgs{
+// 				InitializeParams: &compute.InstanceBootDiskInitializeParamsArgs{
+// 					Image: pulumi.String(debianImage.SelfLink),
+// 				},
+// 			},
+// 			NetworkInterfaces: compute.InstanceNetworkInterfaceArray{
+// 				&compute.InstanceNetworkInterfaceArgs{
+// 					Network: pulumi.String("default"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		stagingGroup, err := compute.NewInstanceGroup(ctx, "stagingGroup", &compute.InstanceGroupArgs{
+// 			Zone: pulumi.String("us-central1-c"),
+// 			Instances: pulumi.StringArray{
+// 				stagingVm.ID(),
+// 			},
+// 			NamedPorts: compute.InstanceGroupNamedPortArray{
+// 				&compute.InstanceGroupNamedPortArgs{
+// 					Name: pulumi.String("http"),
+// 					Port: pulumi.Int(8080),
+// 				},
+// 				&compute.InstanceGroupNamedPortArgs{
+// 					Name: pulumi.String("https"),
+// 					Port: pulumi.Int(8443),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		stagingHealth, err := compute.NewHttpsHealthCheck(ctx, "stagingHealth", &compute.HttpsHealthCheckArgs{
+// 			RequestPath: pulumi.String("/health_check"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewBackendService(ctx, "stagingService", &compute.BackendServiceArgs{
+// 			PortName: pulumi.String("https"),
+// 			Protocol: pulumi.String("HTTPS"),
+// 			Backends: compute.BackendServiceBackendArray{
+// 				&compute.BackendServiceBackendArgs{
+// 					Group: stagingGroup.ID(),
+// 				},
+// 			},
+// 			HealthChecks: pulumi.String(pulumi.String{
+// 				stagingHealth.ID(),
+// 			}),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type InstanceGroup struct {
 	pulumi.CustomResourceState
 

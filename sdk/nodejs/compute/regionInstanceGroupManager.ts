@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  *     timeoutSec: 5,
  *     healthyThreshold: 2,
  *     unhealthyThreshold: 10,
- *     http_health_check: {
+ *     httpHealthCheck: {
  *         requestPath: "/healthz",
  *         port: "8080",
  *     },
@@ -38,16 +38,16 @@ import * as utilities from "../utilities";
  *         "us-central1-a",
  *         "us-central1-f",
  *     ],
- *     version: [{
+ *     versions: [{
  *         instanceTemplate: google_compute_instance_template.appserver.id,
  *     }],
  *     targetPools: [google_compute_target_pool.appserver.id],
  *     targetSize: 2,
- *     named_port: [{
+ *     namedPorts: [{
  *         name: "custom",
  *         port: 8888,
  *     }],
- *     auto_healing_policies: {
+ *     autoHealingPolicies: {
  *         healthCheck: autohealing.id,
  *         initialDelaySec: 300,
  *     },
@@ -62,13 +62,13 @@ import * as utilities from "../utilities";
  *     baseInstanceName: "app",
  *     region: "us-central1",
  *     targetSize: 5,
- *     version: [
+ *     versions: [
  *         {
  *             instanceTemplate: google_compute_instance_template.appserver.id,
  *         },
  *         {
  *             instanceTemplate: google_compute_instance_template["appserver-canary"].id,
- *             target_size: {
+ *             targetSize: {
  *                 fixed: 1,
  *             },
  *         },

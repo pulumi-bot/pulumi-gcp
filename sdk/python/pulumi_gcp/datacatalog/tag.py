@@ -107,8 +107,8 @@ class Tag(pulumi.CustomResource):
                     "fieldId": "pii_type",
                     "display_name": "PII type",
                     "type": {
-                        "enum_type": {
-                            "allowed_values": [
+                        "enumType": {
+                            "allowedValues": [
                                 {
                                     "display_name": "EMAIL",
                                 },
@@ -173,8 +173,8 @@ class Tag(pulumi.CustomResource):
                     "fieldId": "pii_type",
                     "display_name": "PII type",
                     "type": {
-                        "enum_type": {
-                            "allowed_values": [
+                        "enumType": {
+                            "allowedValues": [
                                 {
                                     "display_name": "EMAIL",
                                 },
@@ -271,8 +271,8 @@ class Tag(pulumi.CustomResource):
                     "fieldId": "pii_type",
                     "display_name": "PII type",
                     "type": {
-                        "enum_type": {
-                            "allowed_values": [
+                        "enumType": {
+                            "allowedValues": [
                                 {
                                     "display_name": "EMAIL",
                                 },

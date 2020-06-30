@@ -93,6 +93,68 @@ namespace Pulumi.Gcp.CloudScheduler
     /// 
     /// }
     /// ```
+    /// ### Scheduler Job Oauth
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var @default = Output.Create(Gcp.Compute.GetDefaultServiceAccount.InvokeAsync());
+    ///         var job = new Gcp.CloudScheduler.Job("job", new Gcp.CloudScheduler.JobArgs
+    ///         {
+    ///             Description = "test http job",
+    ///             Schedule = "*/8 * * * *",
+    ///             TimeZone = "America/New_York",
+    ///             AttemptDeadline = "320s",
+    ///             HttpTarget = new Gcp.CloudScheduler.Inputs.JobHttpTargetArgs
+    ///             {
+    ///                 HttpMethod = "GET",
+    ///                 Uri = "https://cloudscheduler.googleapis.com/v1/projects/my-project-name/locations/us-west1/jobs",
+    ///                 OauthToken = new Gcp.CloudScheduler.Inputs.JobHttpTargetOauthTokenArgs
+    ///                 {
+    ///                     ServiceAccountEmail = @default.Apply(@default =&gt; @default.Email),
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Scheduler Job Oidc
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var @default = Output.Create(Gcp.Compute.GetDefaultServiceAccount.InvokeAsync());
+    ///         var job = new Gcp.CloudScheduler.Job("job", new Gcp.CloudScheduler.JobArgs
+    ///         {
+    ///             Description = "test http job",
+    ///             Schedule = "*/8 * * * *",
+    ///             TimeZone = "America/New_York",
+    ///             AttemptDeadline = "320s",
+    ///             HttpTarget = new Gcp.CloudScheduler.Inputs.JobHttpTargetArgs
+    ///             {
+    ///                 HttpMethod = "GET",
+    ///                 Uri = "https://example.com/ping",
+    ///                 OidcToken = new Gcp.CloudScheduler.Inputs.JobHttpTargetOidcTokenArgs
+    ///                 {
+    ///                     ServiceAccountEmail = @default.Apply(@default =&gt; @default.Email),
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Job : Pulumi.CustomResource
     {

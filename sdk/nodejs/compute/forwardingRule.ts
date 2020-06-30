@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * const hc = new gcp.compute.HealthCheck("hc", {
  *     checkIntervalSec: 1,
  *     timeoutSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "80",
  *     },
  * });
@@ -71,7 +71,7 @@ import * as utilities from "../utilities";
  * const hc = new gcp.compute.HealthCheck("hc", {
  *     checkIntervalSec: 1,
  *     timeoutSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "80",
  *     },
  * });
@@ -116,11 +116,11 @@ import * as utilities from "../utilities";
  * });
  * const instanceTemplate = new gcp.compute.InstanceTemplate("instanceTemplate", {
  *     machineType: "n1-standard-1",
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: defaultNetwork.id,
  *         subnetwork: defaultSubnetwork.id,
  *     }],
- *     disk: [{
+ *     disks: [{
  *         sourceImage: debianImage.then(debianImage => debianImage.selfLink),
  *         autoDelete: true,
  *         boot: true,
@@ -132,7 +132,7 @@ import * as utilities from "../utilities";
  * });
  * const rigm = new gcp.compute.RegionInstanceGroupManager("rigm", {
  *     region: "us-central1",
- *     version: [{
+ *     versions: [{
  *         instanceTemplate: instanceTemplate.id,
  *         name: "primary",
  *     }],
@@ -142,7 +142,7 @@ import * as utilities from "../utilities";
  * const fw1 = new gcp.compute.Firewall("fw1", {
  *     network: defaultNetwork.id,
  *     sourceRanges: ["10.1.2.0/24"],
- *     allow: [
+ *     allows: [
  *         {
  *             protocol: "tcp",
  *         },
@@ -158,7 +158,7 @@ import * as utilities from "../utilities";
  * const fw2 = new gcp.compute.Firewall("fw2", {
  *     network: defaultNetwork.id,
  *     sourceRanges: ["0.0.0.0/0"],
- *     allow: [{
+ *     allows: [{
  *         protocol: "tcp",
  *         ports: ["22"],
  *     }],
@@ -171,7 +171,7 @@ import * as utilities from "../utilities";
  *         "130.211.0.0/22",
  *         "35.191.0.0/16",
  *     ],
- *     allow: [{
+ *     allows: [{
  *         protocol: "tcp",
  *     }],
  *     targetTags: ["load-balanced-backend"],
@@ -181,7 +181,7 @@ import * as utilities from "../utilities";
  *     network: defaultNetwork.id,
  *     sourceRanges: ["10.129.0.0/26"],
  *     targetTags: ["load-balanced-backend"],
- *     allow: [
+ *     allows: [
  *         {
  *             protocol: "tcp",
  *             ports: ["80"],
@@ -199,13 +199,13 @@ import * as utilities from "../utilities";
  * });
  * const defaultRegionHealthCheck = new gcp.compute.RegionHealthCheck("defaultRegionHealthCheck", {
  *     region: "us-central1",
- *     http_health_check: {
+ *     httpHealthCheck: {
  *         portSpecification: "USE_SERVING_PORT",
  *     },
  * });
  * const defaultRegionBackendService = new gcp.compute.RegionBackendService("defaultRegionBackendService", {
  *     loadBalancingScheme: "INTERNAL_MANAGED",
- *     backend: [{
+ *     backends: [{
  *         group: rigm.instanceGroup,
  *         balancingMode: "UTILIZATION",
  *         capacityScaler: 1,

@@ -100,7 +100,7 @@ import * as utilities from "../utilities";
  *     },
  * });
  * const noauthIAMPolicy = gcp.organizations.getIAMPolicy({
- *     binding: [{
+ *     bindings: [{
  *         role: "roles/run.invoker",
  *         members: ["allUsers"],
  *     }],

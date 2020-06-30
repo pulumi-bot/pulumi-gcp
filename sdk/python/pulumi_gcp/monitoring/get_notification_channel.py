@@ -96,7 +96,7 @@ def get_notification_channel(display_name=None,labels=None,project=None,type=Non
         combiner="OR",
         conditions=[{
             "display_name": "test condition",
-            "condition_threshold": {
+            "conditionThreshold": {
                 "filter": "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\"",
                 "duration": "60s",
                 "comparison": "COMPARISON_GT",

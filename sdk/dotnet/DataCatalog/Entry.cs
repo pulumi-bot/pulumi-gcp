@@ -49,6 +49,37 @@ namespace Pulumi.Gcp.DataCatalog
     /// 
     /// }
     /// ```
+    /// ### Data Catalog Entry Fileset
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var entryGroup = new Gcp.DataCatalog.EntryGroup("entryGroup", new Gcp.DataCatalog.EntryGroupArgs
+    ///         {
+    ///             EntryGroupId = "my_group",
+    ///         });
+    ///         var basicEntry = new Gcp.DataCatalog.Entry("basicEntry", new Gcp.DataCatalog.EntryArgs
+    ///         {
+    ///             EntryGroup = entryGroup.Id,
+    ///             EntryId = "my_entry",
+    ///             Type = "FILESET",
+    ///             GcsFilesetSpec = new Gcp.DataCatalog.Inputs.EntryGcsFilesetSpecArgs
+    ///             {
+    ///                 FilePatterns = 
+    ///                 {
+    ///                     "gs://fake_bucket/dir/*",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// ### Data Catalog Entry Full
     /// 
     /// ```csharp

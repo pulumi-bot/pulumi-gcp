@@ -48,14 +48,14 @@ import (
 // 			Conditions: monitoring.AlertPolicyConditionArray{
 // 				&monitoring.AlertPolicyConditionArgs{
 // 					DisplayName: pulumi.String("test condition"),
-// 					Condition_threshold: pulumi.Map{
-// 						"filter":     pulumi.String("metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""),
-// 						"duration":   pulumi.String("60s"),
-// 						"comparison": pulumi.String("COMPARISON_GT"),
-// 						"aggregations": pulumi.MapArray{
-// 							pulumi.Map{
-// 								"alignmentPeriod":  pulumi.String("60s"),
-// 								"perSeriesAligner": pulumi.String("ALIGN_RATE"),
+// 					ConditionThreshold: &monitoring.AlertPolicyConditionConditionThresholdArgs{
+// 						Filter:     pulumi.String("metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""),
+// 						Duration:   pulumi.String("60s"),
+// 						Comparison: pulumi.String("COMPARISON_GT"),
+// 						Aggregations: monitoring.AlertPolicyConditionConditionThresholdAggregationArray{
+// 							&monitoring.AlertPolicyConditionConditionThresholdAggregationArgs{
+// 								AlignmentPeriod:  pulumi.String("60s"),
+// 								PerSeriesAligner: pulumi.String("ALIGN_RATE"),
 // 							},
 // 						},
 // 					},

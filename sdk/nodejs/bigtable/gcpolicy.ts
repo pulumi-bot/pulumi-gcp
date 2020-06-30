@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const instance = new gcp.bigtable.Instance("instance", {cluster: [{
+ * const instance = new gcp.bigtable.Instance("instance", {clusters: [{
  *     clusterId: "tf-instance-cluster",
  *     zone: "us-central1-b",
  *     numNodes: 3,
@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * }]});
  * const table = new gcp.bigtable.Table("table", {
  *     instanceName: instance.name,
- *     column_family: [{
+ *     columnFamilies: [{
  *         family: "name",
  *     }],
  * });
@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *     instanceName: instance.name,
  *     table: table.name,
  *     columnFamily: "name",
- *     max_age: [{
+ *     maxAges: [{
  *         days: 7,
  *     }],
  * });
@@ -50,10 +50,10 @@ import * as utilities from "../utilities";
  *     table: google_bigtable_table.table.name,
  *     columnFamily: "name",
  *     mode: "UNION",
- *     max_age: [{
+ *     maxAges: [{
  *         days: 7,
  *     }],
- *     max_version: [{
+ *     maxVersions: [{
  *         number: 10,
  *     }],
  * });
