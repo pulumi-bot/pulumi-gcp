@@ -27,7 +27,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		foobar, err := compute.NewRouter(ctx, "foobar", &compute.RouterArgs{
-// 			Network: pulumi.String(google_compute_network.Foobar.Name),
+// 			Network: pulumi.Any(google_compute_network.Foobar.Name),
 // 		})
 // 		if err != nil {
 // 			return err

@@ -31,12 +31,12 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = gameservices.NewRealm(ctx, "default", &gameservices.RealmArgs{
+// 		_, err := gameservices.NewRealm(ctx, "_default", &gameservices.RealmArgs{
 // 			RealmId:     pulumi.String("tf-test-realm"),
 // 			TimeZone:    pulumi.String("EST"),
 // 			Location:    pulumi.String("global"),
 // 			Description: pulumi.String("one of the nine"),
-// 		})
+// 		}, pulumi.Provider(google_beta))
 // 		if err != nil {
 // 			return err
 // 		}

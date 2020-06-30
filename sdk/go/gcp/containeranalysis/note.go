@@ -33,7 +33,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = containeranalysis.NewNote(ctx, "note", &containeranalysis.NoteArgs{
+// 		_, err := containeranalysis.NewNote(ctx, "note", &containeranalysis.NoteArgs{
 // 			AttestationAuthority: &containeranalysis.NoteAttestationAuthorityArgs{
 // 				Hint: &containeranalysis.NoteAttestationAuthorityHintArgs{
 // 					HumanReadableName: pulumi.String("Attestor Note"),
@@ -59,7 +59,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = containeranalysis.NewNote(ctx, "note", &containeranalysis.NoteArgs{
+// 		_, err := containeranalysis.NewNote(ctx, "note", &containeranalysis.NoteArgs{
 // 			AttestationAuthority: &containeranalysis.NoteAttestationAuthorityArgs{
 // 				Hint: &containeranalysis.NoteAttestationAuthorityHintArgs{
 // 					HumanReadableName: pulumi.String("Attestor Note"),

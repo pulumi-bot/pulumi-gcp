@@ -32,8 +32,12 @@ import * as utilities from "../utilities";
  *     settings: {
  *         tier: "db-f1-micro",
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
- * const db = new gcp.sql.Database("db", {instance: instance.name});
+ * const db = new gcp.sql.Database("db", {instance: instance.name}, {
+ *     provider: google_beta,
+ * });
  * const pwd = new random.RandomPassword("pwd", {
  *     length: 16,
  *     special: false,
@@ -41,6 +45,8 @@ import * as utilities from "../utilities";
  * const user = new gcp.sql.User("user", {
  *     instance: instance.name,
  *     password: pwd.result,
+ * }, {
+ *     provider: google_beta,
  * });
  * const connection = new gcp.bigquery.Connection("connection", {
  *     friendlyName: "👋",
@@ -54,6 +60,8 @@ import * as utilities from "../utilities";
  *             password: user.password,
  *         },
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  * ### Bigquery Connection Full
@@ -69,8 +77,12 @@ import * as utilities from "../utilities";
  *     settings: {
  *         tier: "db-f1-micro",
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
- * const db = new gcp.sql.Database("db", {instance: instance.name});
+ * const db = new gcp.sql.Database("db", {instance: instance.name}, {
+ *     provider: google_beta,
+ * });
  * const pwd = new random.RandomPassword("pwd", {
  *     length: 16,
  *     special: false,
@@ -78,6 +90,8 @@ import * as utilities from "../utilities";
  * const user = new gcp.sql.User("user", {
  *     instance: instance.name,
  *     password: pwd.result,
+ * }, {
+ *     provider: google_beta,
  * });
  * const connection = new gcp.bigquery.Connection("connection", {
  *     connectionId: "my-connection",
@@ -93,6 +107,8 @@ import * as utilities from "../utilities";
  *             password: user.password,
  *         },
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

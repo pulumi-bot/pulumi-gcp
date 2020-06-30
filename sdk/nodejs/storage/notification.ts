@@ -46,6 +46,8 @@ import * as utilities from "../utilities";
  *     customAttributes: {
  *         "new-attribute": "new-attribute-value",
  *     },
+ * }, {
+ *     dependsOn: [binding],
  * });
  * // Enable notifications by giving the correct IAM permission to the unique service account.
  * ```

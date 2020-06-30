@@ -25,6 +25,8 @@ import * as utilities from "../utilities";
  * const myProject = new gcp.organizations.Project("myProject", {
  *     projectId: "quota",
  *     orgId: "123456789",
+ * }, {
+ *     provider: google_beta,
  * });
  * const override = new gcp.serviceusage.ConsumerQuotaOverride("override", {
  *     project: myProject.projectId,
@@ -33,6 +35,8 @@ import * as utilities from "../utilities";
  *     limit: `%2Fmin%2Fproject`,
  *     overrideValue: "95",
  *     force: true,
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

@@ -24,7 +24,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewResourcePolicy(ctx, "foo", &compute.ResourcePolicyArgs{
+// 		_, err := compute.NewResourcePolicy(ctx, "foo", &compute.ResourcePolicyArgs{
 // 			Region: pulumi.String("us-central1"),
 // 			SnapshotSchedulePolicy: &compute.ResourcePolicySnapshotSchedulePolicyArgs{
 // 				Schedule: &compute.ResourcePolicySnapshotSchedulePolicyScheduleArgs{
@@ -54,7 +54,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewResourcePolicy(ctx, "bar", &compute.ResourcePolicyArgs{
+// 		_, err := compute.NewResourcePolicy(ctx, "bar", &compute.ResourcePolicyArgs{
 // 			Region: pulumi.String("us-central1"),
 // 			SnapshotSchedulePolicy: &compute.ResourcePolicySnapshotSchedulePolicyArgs{
 // 				RetentionPolicy: &compute.ResourcePolicySnapshotSchedulePolicyRetentionPolicyArgs{
@@ -69,7 +69,7 @@ import (
 // 				},
 // 				SnapshotProperties: &compute.ResourcePolicySnapshotSchedulePolicySnapshotPropertiesArgs{
 // 					GuestFlush: pulumi.Bool(true),
-// 					Labels: pulumi.Map{
+// 					Labels: pulumi.StringMap{
 // 						"myLabel": pulumi.String("value"),
 // 					},
 // 					StorageLocations: pulumi.String("us"),
@@ -95,7 +95,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewResourcePolicy(ctx, "baz", &compute.ResourcePolicyArgs{
+// 		_, err := compute.NewResourcePolicy(ctx, "baz", &compute.ResourcePolicyArgs{
 // 			GroupPlacementPolicy: &compute.ResourcePolicyGroupPlacementPolicyArgs{
 // 				Collocation: pulumi.String("COLLOCATED"),
 // 				VmCount:     pulumi.Int(2),
