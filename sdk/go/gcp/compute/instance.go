@@ -27,14 +27,14 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewInstance(ctx, "default", &compute.InstanceArgs{
+// 		_, err := compute.NewInstance(ctx, "_default", &compute.InstanceArgs{
 // 			BootDisk: &compute.InstanceBootDiskArgs{
 // 				InitializeParams: &compute.InstanceBootDiskInitializeParamsArgs{
 // 					Image: pulumi.String("debian-cloud/debian-9"),
 // 				},
 // 			},
 // 			MachineType: pulumi.String("n1-standard-1"),
-// 			Metadata: pulumi.Map{
+// 			Metadata: pulumi.StringMap{
 // 				"foo": pulumi.String("bar"),
 // 			},
 // 			MetadataStartupScript: pulumi.String("echo hi > /test.txt"),

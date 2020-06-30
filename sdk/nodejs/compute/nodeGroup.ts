@@ -47,6 +47,8 @@ import * as utilities from "../utilities";
  * const soletenant_tmpl = new gcp.compute.NodeTemplate("soletenant-tmpl", {
  *     region: "us-central1",
  *     nodeType: "n1-node-96-624",
+ * }, {
+ *     provider: google_beta,
  * });
  * const nodes = new gcp.compute.NodeGroup("nodes", {
  *     zone: "us-central1-a",
@@ -58,6 +60,8 @@ import * as utilities from "../utilities";
  *         minNodes: 1,
  *         maxNodes: 10,
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

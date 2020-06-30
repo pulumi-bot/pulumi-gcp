@@ -52,8 +52,8 @@ import (
 // 						"filter":     pulumi.String("metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""),
 // 						"duration":   pulumi.String("60s"),
 // 						"comparison": pulumi.String("COMPARISON_GT"),
-// 						"aggregations": pulumi.MapArray{
-// 							pulumi.Map{
+// 						"aggregations": pulumi.StringMapArray{
+// 							pulumi.StringMap{
 // 								"alignmentPeriod":  pulumi.String("60s"),
 // 								"perSeriesAligner": pulumi.String("ALIGN_RATE"),
 // 							},

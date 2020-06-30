@@ -39,7 +39,7 @@ import (
 // 		myProject, err := organizations.NewProject(ctx, "myProject", &organizations.ProjectArgs{
 // 			ProjectId: pulumi.String("quota"),
 // 			OrgId:     pulumi.String("123456789"),
-// 		})
+// 		}, pulumi.Provider(google_beta))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -50,7 +50,7 @@ import (
 // 			Limit:         pulumi.String(fmt.Sprintf("%v%v%v%v", "%", "2Fmin", "%", "2Fproject")),
 // 			OverrideValue: pulumi.String("95"),
 // 			Force:         pulumi.Bool(true),
-// 		})
+// 		}, pulumi.Provider(google_beta))
 // 		if err != nil {
 // 			return err
 // 		}
