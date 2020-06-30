@@ -30,7 +30,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewNetwork(ctx, "vpcNetwork", nil)
+// 		_, err := compute.NewNetwork(ctx, "vpcNetwork", nil)
 // 		if err != nil {
 // 			return err
 // 		}

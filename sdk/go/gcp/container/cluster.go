@@ -30,7 +30,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = container.NewCluster(ctx, "primary", &container.ClusterArgs{
+// 		_, err := container.NewCluster(ctx, "primary", &container.ClusterArgs{
 // 			InitialNodeCount: pulumi.Int(3),
 // 			Location:         pulumi.String("us-central1-a"),
 // 			MasterAuth: &container.ClusterMasterAuthArgs{
@@ -41,10 +41,10 @@ import (
 // 				Username: pulumi.String(""),
 // 			},
 // 			NodeConfig: &container.ClusterNodeConfigArgs{
-// 				Labels: pulumi.Map{
+// 				Labels: pulumi.StringMap{
 // 					"foo": pulumi.String("bar"),
 // 				},
-// 				Metadata: pulumi.Map{
+// 				Metadata: pulumi.StringMap{
 // 					"disable-legacy-endpoints": pulumi.String("true"),
 // 				},
 // 				OauthScopes: pulumi.StringArray{

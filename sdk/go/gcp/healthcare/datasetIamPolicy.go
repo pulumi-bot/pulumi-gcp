@@ -70,7 +70,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = healthcare.NewDatasetIamBinding(ctx, "dataset", &healthcare.DatasetIamBindingArgs{
+// 		_, err := healthcare.NewDatasetIamBinding(ctx, "dataset", &healthcare.DatasetIamBindingArgs{
 // 			DatasetId: pulumi.String("your-dataset-id"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -97,7 +97,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = healthcare.NewDatasetIamMember(ctx, "dataset", &healthcare.DatasetIamMemberArgs{
+// 		_, err := healthcare.NewDatasetIamMember(ctx, "dataset", &healthcare.DatasetIamMemberArgs{
 // 			DatasetId: pulumi.String("your-dataset-id"),
 // 			Member:    pulumi.String("user:jane@example.com"),
 // 			Role:      pulumi.String("roles/editor"),

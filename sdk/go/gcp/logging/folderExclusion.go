@@ -18,6 +18,37 @@ import (
 // granted to the credentials used with this provider.
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/logging"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := organizations.NewFolder(ctx, "my_folder", &organizations.FolderArgs{
+// 			DisplayName: pulumi.String("My folder"),
+// 			Parent:      pulumi.String("organizations/123456"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = logging.NewFolderExclusion(ctx, "my_exclusion", &logging.FolderExclusionArgs{
+// 			Folder:      my_folder.Name,
+// 			Description: pulumi.String("Exclude GCE instance debug logs"),
+// 			Filter:      pulumi.String("resource.type = gce_instance AND severity <= DEBUG"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type FolderExclusion struct {
 	pulumi.CustomResourceState
 
