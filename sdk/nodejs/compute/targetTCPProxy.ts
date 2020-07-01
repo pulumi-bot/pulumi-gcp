@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * const defaultHealthCheck = new gcp.compute.HealthCheck("defaultHealthCheck", {
  *     timeoutSec: 1,
  *     checkIntervalSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "443",
  *     },
  * });

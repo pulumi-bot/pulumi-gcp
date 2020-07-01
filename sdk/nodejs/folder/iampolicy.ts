@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  *     parent: "organizations/1234567",
  * });
  * const admin = gcp.organizations.getIAMPolicy({
- *     binding: [{
+ *     bindings: [{
  *         role: "roles/editor",
  *         members: ["user:jane@example.com"],
  *     }],

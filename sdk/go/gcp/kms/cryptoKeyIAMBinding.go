@@ -45,10 +45,10 @@ import (
 // 			return err
 // 		}
 // 		admin, err := organizations.LookupIAMPolicy(ctx, &organizations.LookupIAMPolicyArgs{
-// 			Binding: []map[string]interface{}{
-// 				map[string]interface{}{
-// 					"role": "roles/cloudkms.cryptoKeyEncrypter",
-// 					"members": []string{
+// 			Bindings: []organizations.GetIAMPolicyBinding{
+// 				organizations.GetIAMPolicyBinding{
+// 					Role: "roles/cloudkms.cryptoKeyEncrypter",
+// 					Members: []string{
 // 						"user:jane@example.com",
 // 					},
 // 				},

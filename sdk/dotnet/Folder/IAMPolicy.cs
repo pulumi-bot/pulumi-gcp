@@ -30,15 +30,15 @@ namespace Pulumi.Gcp.Folder
     ///         });
     ///         var admin = Output.Create(Gcp.Organizations.GetIAMPolicy.InvokeAsync(new Gcp.Organizations.GetIAMPolicyArgs
     ///         {
-    ///             Binding = 
+    ///             Bindings = 
     ///             {
-    ///                 
+    ///                 new Gcp.Organizations.Inputs.GetIAMPolicyBindingArgs
     ///                 {
-    ///                     { "role", "roles/editor" },
-    ///                     { "members", 
+    ///                     Role = "roles/editor",
+    ///                     Members = 
     ///                     {
     ///                         "user:jane@example.com",
-    ///                     } },
+    ///                     },
     ///                 },
     ///             },
     ///         }));

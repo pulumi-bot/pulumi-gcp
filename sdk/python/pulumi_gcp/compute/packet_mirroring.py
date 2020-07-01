@@ -95,13 +95,13 @@ class PacketMirroring(pulumi.CustomResource):
         mirror = gcp.compute.Instance("mirror",
             machine_type="n1-standard-1",
             boot_disk={
-                "initialize_params": {
+                "initializeParams": {
                     "image": "debian-cloud/debian-9",
                 },
             },
-            network_interface=[{
+            network_interfaces=[{
                 "network": default_network.id,
-                "access_config": [{}],
+                "accessConfigs": [{}],
             }])
         default_subnetwork = gcp.compute.Subnetwork("defaultSubnetwork",
             network=default_network.id,

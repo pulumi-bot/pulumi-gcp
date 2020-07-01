@@ -55,7 +55,7 @@ class GCPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        instance = gcp.bigtable.Instance("instance", cluster=[{
+        instance = gcp.bigtable.Instance("instance", clusters=[{
             "cluster_id": "tf-instance-cluster",
             "zone": "us-central1-b",
             "num_nodes": 3,
@@ -63,14 +63,14 @@ class GCPolicy(pulumi.CustomResource):
         }])
         table = gcp.bigtable.Table("table",
             instance_name=instance.name,
-            column_family=[{
+            column_families=[{
                 "family": "name",
             }])
         policy = gcp.bigtable.GCPolicy("policy",
             instance_name=instance.name,
             table=table.name,
             column_family="name",
-            max_age=[{
+            max_ages=[{
                 "days": 7,
             }])
         ```
@@ -86,10 +86,10 @@ class GCPolicy(pulumi.CustomResource):
             table=google_bigtable_table["table"]["name"],
             column_family="name",
             mode="UNION",
-            max_age=[{
+            max_ages=[{
                 "days": 7,
             }],
-            max_version=[{
+            max_versions=[{
                 "number": 10,
             }])
         ```

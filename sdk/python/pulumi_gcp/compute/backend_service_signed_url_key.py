@@ -51,16 +51,16 @@ class BackendServiceSignedUrlKey(pulumi.CustomResource):
 
         webserver = gcp.compute.InstanceTemplate("webserver",
             machine_type="n1-standard-1",
-            network_interface=[{
+            network_interfaces=[{
                 "network": "default",
             }],
-            disk=[{
+            disks=[{
                 "sourceImage": "debian-cloud/debian-9",
                 "autoDelete": True,
                 "boot": True,
             }])
         webservers = gcp.compute.InstanceGroupManager("webservers",
-            version=[{
+            versions=[{
                 "instanceTemplate": webserver.id,
                 "name": "primary",
             }],
@@ -77,7 +77,7 @@ class BackendServiceSignedUrlKey(pulumi.CustomResource):
             protocol="HTTP",
             timeout_sec=10,
             enable_cdn=True,
-            backend=[{
+            backends=[{
                 "group": webservers.instance_group,
             }],
             health_checks=[default.id])

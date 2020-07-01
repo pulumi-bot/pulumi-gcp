@@ -156,13 +156,13 @@ class Address(pulumi.CustomResource):
             machine_type="f1-micro",
             zone="us-central1-a",
             boot_disk={
-                "initialize_params": {
+                "initializeParams": {
                     "image": debian_image.self_link,
                 },
             },
-            network_interface=[{
+            network_interfaces=[{
                 "network": "default",
-                "access_config": [{
+                "accessConfigs": [{
                     "natIp": static.address,
                 }],
             }])

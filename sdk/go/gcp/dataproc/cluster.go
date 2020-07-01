@@ -65,10 +65,10 @@ import (
 // 						pulumi.String("bar"),
 // 					},
 // 				},
-// 				InitializationAction: pulumi.MapArray{
-// 					pulumi.Map{
-// 						"script":     pulumi.String("gs://dataproc-initialization-actions/stackdriver/stackdriver.sh"),
-// 						"timeoutSec": pulumi.Float64(500),
+// 				InitializationActions: dataproc.ClusterClusterConfigInitializationActionArray{
+// 					&dataproc.ClusterClusterConfigInitializationActionArgs{
+// 						Script:     pulumi.String("gs://dataproc-initialization-actions/stackdriver/stackdriver.sh"),
+// 						TimeoutSec: pulumi.Int(500),
 // 					},
 // 				},
 // 				MasterConfig: &dataproc.ClusterClusterConfigMasterConfigArgs{

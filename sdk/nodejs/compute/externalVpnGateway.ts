@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  * const externalGateway = new gcp.compute.ExternalVpnGateway("externalGateway", {
  *     redundancyType: "SINGLE_IP_INTERNALLY_REDUNDANT",
  *     description: "An externally managed VPN gateway",
- *     "interface": [{
+ *     interfaces: [{
  *         id: 0,
  *         ipAddress: "8.8.8.8",
  *     }],

@@ -173,10 +173,10 @@ class Autoscaler(pulumi.CustomResource):
                 "foo",
                 "bar",
             ],
-            disk=[{
+            disks=[{
                 "sourceImage": debian9.self_link,
             }],
-            network_interface=[{
+            network_interfaces=[{
                 "network": "default",
             }],
             metadata={
@@ -192,7 +192,7 @@ class Autoscaler(pulumi.CustomResource):
         default_target_pool = gcp.compute.TargetPool("defaultTargetPool")
         default_instance_group_manager = gcp.compute.InstanceGroupManager("defaultInstanceGroupManager",
             zone="us-central1-f",
-            version=[{
+            versions=[{
                 "instanceTemplate": default_instance_template.id,
                 "name": "primary",
             }],
@@ -205,7 +205,7 @@ class Autoscaler(pulumi.CustomResource):
                 "maxReplicas": 5,
                 "minReplicas": 1,
                 "cooldownPeriod": 60,
-                "metric": [{
+                "metrics": [{
                     "name": "pubsub.googleapis.com/subscription/num_undelivered_messages",
                     "filter": "resource.type = pubsub_subscription AND resource.label.subscription_id = our-subscription",
                     "singleInstanceAssignment": 65535,
@@ -227,10 +227,10 @@ class Autoscaler(pulumi.CustomResource):
                 "foo",
                 "bar",
             ],
-            disk=[{
+            disks=[{
                 "sourceImage": debian9.self_link,
             }],
-            network_interface=[{
+            network_interfaces=[{
                 "network": "default",
             }],
             metadata={
@@ -246,7 +246,7 @@ class Autoscaler(pulumi.CustomResource):
         foobar_target_pool = gcp.compute.TargetPool("foobarTargetPool")
         foobar_instance_group_manager = gcp.compute.InstanceGroupManager("foobarInstanceGroupManager",
             zone="us-central1-f",
-            version=[{
+            versions=[{
                 "instanceTemplate": foobar_instance_template.id,
                 "name": "primary",
             }],
@@ -259,7 +259,7 @@ class Autoscaler(pulumi.CustomResource):
                 "maxReplicas": 5,
                 "minReplicas": 1,
                 "cooldownPeriod": 60,
-                "cpu_utilization": {
+                "cpuUtilization": {
                     "target": 0.5,
                 },
             })

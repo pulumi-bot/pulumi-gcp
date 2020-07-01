@@ -151,15 +151,15 @@ namespace Pulumi.Gcp.CloudRun
     ///         });
     ///         var noauthIAMPolicy = Output.Create(Gcp.Organizations.GetIAMPolicy.InvokeAsync(new Gcp.Organizations.GetIAMPolicyArgs
     ///         {
-    ///             Binding = 
+    ///             Bindings = 
     ///             {
-    ///                 
+    ///                 new Gcp.Organizations.Inputs.GetIAMPolicyBindingArgs
     ///                 {
-    ///                     { "role", "roles/run.invoker" },
-    ///                     { "members", 
+    ///                     Role = "roles/run.invoker",
+    ///                     Members = 
     ///                     {
     ///                         "allUsers",
-    ///                     } },
+    ///                     },
     ///                 },
     ///             },
     ///         }));

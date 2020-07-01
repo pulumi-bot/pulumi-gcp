@@ -112,14 +112,14 @@ class SSLCertificate(pulumi.CustomResource):
         default_url_map = gcp.compute.URLMap("defaultURLMap",
             description="a description",
             default_service=default_backend_service.id,
-            host_rule=[{
+            host_rules=[{
                 "hosts": ["mysite.com"],
                 "pathMatcher": "allpaths",
             }],
-            path_matcher=[{
+            path_matchers=[{
                 "name": "allpaths",
                 "default_service": default_backend_service.id,
-                "path_rule": [{
+                "pathRules": [{
                     "paths": ["/*"],
                     "service": default_backend_service.id,
                 }],

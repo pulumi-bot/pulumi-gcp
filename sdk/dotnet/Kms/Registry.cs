@@ -36,6 +36,98 @@ namespace Pulumi.Gcp.Kms
     /// 
     /// }
     /// ```
+    /// ### Cloudiot Device Registry Single Event Notification Configs
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var default_telemetry = new Gcp.PubSub.Topic("default-telemetry", new Gcp.PubSub.TopicArgs
+    ///         {
+    ///         });
+    ///         var test_registry = new Gcp.Iot.Registry("test-registry", new Gcp.Iot.RegistryArgs
+    ///         {
+    ///             EventNotificationConfigs = 
+    ///             {
+    ///                 new Gcp.Iot.Inputs.RegistryEventNotificationConfigItemArgs
+    ///                 {
+    ///                     PubsubTopicName = default_telemetry.Id,
+    ///                     SubfolderMatches = "",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Cloudiot Device Registry Full
+    /// 
+    /// ```csharp
+    /// using System.IO;
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var default_devicestatus = new Gcp.PubSub.Topic("default-devicestatus", new Gcp.PubSub.TopicArgs
+    ///         {
+    ///         });
+    ///         var default_telemetry = new Gcp.PubSub.Topic("default-telemetry", new Gcp.PubSub.TopicArgs
+    ///         {
+    ///         });
+    ///         var additional_telemetry = new Gcp.PubSub.Topic("additional-telemetry", new Gcp.PubSub.TopicArgs
+    ///         {
+    ///         });
+    ///         var test_registry = new Gcp.Iot.Registry("test-registry", new Gcp.Iot.RegistryArgs
+    ///         {
+    ///             EventNotificationConfigs = 
+    ///             {
+    ///                 new Gcp.Iot.Inputs.RegistryEventNotificationConfigItemArgs
+    ///                 {
+    ///                     PubsubTopicName = additional_telemetry.Id,
+    ///                     SubfolderMatches = "test/path",
+    ///                 },
+    ///                 new Gcp.Iot.Inputs.RegistryEventNotificationConfigItemArgs
+    ///                 {
+    ///                     PubsubTopicName = default_telemetry.Id,
+    ///                     SubfolderMatches = "",
+    ///                 },
+    ///             },
+    ///             StateNotificationConfig = new Gcp.Iot.Inputs.RegistryStateNotificationConfigArgs
+    ///             {
+    ///                 Pubsub_topic_name = default_devicestatus.Id,
+    ///             },
+    ///             MqttConfig = new Gcp.Iot.Inputs.RegistryMqttConfigArgs
+    ///             {
+    ///                 Mqtt_enabled_state = "MQTT_ENABLED",
+    ///             },
+    ///             HttpConfig = new Gcp.Iot.Inputs.RegistryHttpConfigArgs
+    ///             {
+    ///                 Http_enabled_state = "HTTP_ENABLED",
+    ///             },
+    ///             LogLevel = "INFO",
+    ///             Credentials = 
+    ///             {
+    ///                 new Gcp.Iot.Inputs.RegistryCredentialArgs
+    ///                 {
+    ///                     PublicKeyCertificate = new Gcp.Iot.Inputs.RegistryCredentialPublicKeyCertificateArgs
+    ///                     {
+    ///                         Format = "X509_CERTIFICATE_PEM",
+    ///                         Certificate = File.ReadAllText("test-fixtures/rsa_cert.pem"),
+    ///                     },
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     [Obsolete(@"gcp.kms.Registry has been deprecated in favor of gcp.iot.Registry")]
     public partial class Registry : Pulumi.CustomResource

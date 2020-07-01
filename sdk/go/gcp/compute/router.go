@@ -45,12 +45,12 @@ import (
 // 				AdvertisedGroups: pulumi.StringArray{
 // 					pulumi.String("ALL_SUBNETS"),
 // 				},
-// 				Advertised_ip_ranges: pulumi.MapArray{
-// 					pulumi.Map{
-// 						"range": pulumi.String("1.2.3.4"),
+// 				AdvertisedIpRanges: compute.RouterBgpAdvertisedIpRangeArray{
+// 					&compute.RouterBgpAdvertisedIpRangeArgs{
+// 						Range: pulumi.String("1.2.3.4"),
 // 					},
-// 					pulumi.Map{
-// 						"range": pulumi.String("6.7.0.0/16"),
+// 					&compute.RouterBgpAdvertisedIpRangeArgs{
+// 						Range: pulumi.String("6.7.0.0/16"),
 // 					},
 // 				},
 // 			},

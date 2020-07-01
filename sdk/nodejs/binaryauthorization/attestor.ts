@@ -22,14 +22,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const note = new gcp.containeranalysis.Note("note", {attestation_authority: {
+ * const note = new gcp.containeranalysis.Note("note", {attestationAuthority: {
  *     hint: {
  *         humanReadableName: "Attestor Note",
  *     },
  * }});
- * const attestor = new gcp.binaryauthorization.Attestor("attestor", {attestation_authority_note: {
+ * const attestor = new gcp.binaryauthorization.Attestor("attestor", {attestationAuthorityNote: {
  *     noteReference: note.name,
- *     public_keys: [{
+ *     publicKeys: [{
  *         asciiArmoredPgpPublicKey: `mQENBFtP0doBCADF+joTiXWKVuP8kJt3fgpBSjT9h8ezMfKA4aXZctYLx5wslWQl
  * bB7Iu2ezkECNzoEeU7WxUe8a61pMCh9cisS9H5mB2K2uM4Jnf8tgFeXn3akJDVo0
  * oR1IC+Dp9mXbRSK3MAvKkOwWlG99sx3uEdvmeBRHBOO+grchLx24EThXFOyP9Fk6

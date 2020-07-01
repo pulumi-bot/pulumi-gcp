@@ -65,7 +65,7 @@ class SubnetworkIAMBinding(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(binding=[{
+        admin = gcp.organizations.get_iam_policy(bindings=[{
             "role": "roles/compute.networkUser",
             "members": ["user:jane@example.com"],
         }])
@@ -82,7 +82,7 @@ class SubnetworkIAMBinding(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(binding=[{
+        admin = gcp.organizations.get_iam_policy(bindings=[{
             "role": "roles/compute.networkUser",
             "members": ["user:jane@example.com"],
             "condition": {

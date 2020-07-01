@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  * const defaultTable = new gcp.bigquery.Table("defaultTable", {
  *     datasetId: defaultDataset.datasetId,
  *     tableId: "bar",
- *     time_partitioning: {
+ *     timePartitioning: {
  *         type: "DAY",
  *     },
  *     labels: {
@@ -55,10 +55,10 @@ import * as utilities from "../utilities";
  * const sheet = new gcp.bigquery.Table("sheet", {
  *     datasetId: defaultDataset.datasetId,
  *     tableId: "sheet",
- *     external_data_configuration: {
+ *     externalDataConfiguration: {
  *         autodetect: true,
  *         sourceFormat: "GOOGLE_SHEETS",
- *         google_sheets_options: {
+ *         googleSheetsOptions: {
  *             skipLeadingRows: 1,
  *         },
  *         sourceUris: ["https://docs.google.com/spreadsheets/d/123456789012345"],

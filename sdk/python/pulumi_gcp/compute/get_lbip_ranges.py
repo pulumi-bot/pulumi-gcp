@@ -57,7 +57,7 @@ def get_lbip_ranges(opts=None):
     ranges = gcp.compute.get_lbip_ranges()
     lb = gcp.compute.Firewall("lb",
         network=google_compute_network["main"]["name"],
-        allow=[{
+        allows=[{
             "protocol": "tcp",
             "ports": ["80"],
         }],

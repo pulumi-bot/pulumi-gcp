@@ -21,8 +21,8 @@ import * as utilities from "../utilities";
  *     project: "debian-cloud",
  * });
  * // ...
- * const _default = new gcp.compute.Instance("default", {boot_disk: {
- *     initialize_params: {
+ * const _default = new gcp.compute.Instance("default", {bootDisk: {
+ *     initializeParams: {
  *         image: myImage.then(myImage => myImage.selfLink),
  *     },
  * }});

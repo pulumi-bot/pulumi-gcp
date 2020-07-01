@@ -47,8 +47,8 @@ import (
 // 			},
 // 			MonitoredResource: &monitoring.UptimeCheckConfigMonitoredResourceArgs{
 // 				Labels: pulumi.Map{
-// 					"host":       pulumi.String("192.168.1.1"),
-// 					"project_id": pulumi.String("my-project-name"),
+// 					"host":      pulumi.String("192.168.1.1"),
+// 					"projectId": pulumi.String("my-project-name"),
 // 				},
 // 				Type: pulumi.String("uptime_url"),
 // 			},
@@ -88,12 +88,49 @@ import (
 // 			},
 // 			MonitoredResource: &monitoring.UptimeCheckConfigMonitoredResourceArgs{
 // 				Labels: pulumi.Map{
-// 					"host":       pulumi.String("192.168.1.1"),
-// 					"project_id": pulumi.String("my-project-name"),
+// 					"host":      pulumi.String("192.168.1.1"),
+// 					"projectId": pulumi.String("my-project-name"),
 // 				},
 // 				Type: pulumi.String("uptime_url"),
 // 			},
 // 			Timeout: pulumi.String("60s"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Uptime Check Tcp
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/monitoring"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		check, err := monitoring.NewGroup(ctx, "check", &monitoring.GroupArgs{
+// 			DisplayName: pulumi.String("uptime-check-group"),
+// 			Filter:      pulumi.String("resource.metadata.name=has_substring(\"foo\")"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = monitoring.NewUptimeCheckConfig(ctx, "tcpGroup", &monitoring.UptimeCheckConfigArgs{
+// 			DisplayName: pulumi.String("tcp-uptime-check"),
+// 			Timeout:     pulumi.String("60s"),
+// 			TcpCheck: &monitoring.UptimeCheckConfigTcpCheckArgs{
+// 				Port: pulumi.Int(888),
+// 			},
+// 			ResourceGroup: &monitoring.UptimeCheckConfigResourceGroupArgs{
+// 				ResourceType: pulumi.String("INSTANCE"),
+// 				GroupId:      check.Name,
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err

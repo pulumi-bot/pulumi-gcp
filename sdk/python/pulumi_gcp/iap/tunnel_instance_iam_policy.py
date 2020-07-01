@@ -48,7 +48,7 @@ class TunnelInstanceIAMPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(binding=[{
+        admin = gcp.organizations.get_iam_policy(bindings=[{
             "role": "roles/iap.tunnelResourceAccessor",
             "members": ["user:jane@example.com"],
         }])
@@ -65,7 +65,7 @@ class TunnelInstanceIAMPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(binding=[{
+        admin = gcp.organizations.get_iam_policy(bindings=[{
             "role": "roles/iap.tunnelResourceAccessor",
             "members": ["user:jane@example.com"],
             "condition": {

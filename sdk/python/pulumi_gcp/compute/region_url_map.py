@@ -693,14 +693,14 @@ class RegionUrlMap(pulumi.CustomResource):
             region="us-central1",
             description="a description",
             default_service=home.id,
-            host_rule=[{
+            host_rules=[{
                 "hosts": ["mysite.com"],
                 "pathMatcher": "allpaths",
             }],
-            path_matcher=[{
+            path_matchers=[{
                 "name": "allpaths",
                 "default_service": home.id,
-                "path_rule": [
+                "pathRules": [
                     {
                         "paths": ["/home"],
                         "service": home.id,
@@ -711,7 +711,7 @@ class RegionUrlMap(pulumi.CustomResource):
                     },
                 ],
             }],
-            test=[{
+            tests=[{
                 "service": home.id,
                 "host": "hi.com",
                 "path": "/home",
@@ -734,17 +734,17 @@ class RegionUrlMap(pulumi.CustomResource):
         regionurlmap = gcp.compute.RegionUrlMap("regionurlmap",
             description="a description",
             default_service=home.id,
-            host_rule=[{
+            host_rules=[{
                 "hosts": ["mysite.com"],
                 "pathMatcher": "allpaths",
             }],
-            path_matcher=[{
+            path_matchers=[{
                 "name": "allpaths",
                 "default_service": home.id,
-                "path_rule": [{
+                "pathRules": [{
                     "paths": ["/home"],
-                    "route_action": {
-                        "cors_policy": {
+                    "routeAction": {
+                        "corsPolicy": {
                             "allowCredentials": True,
                             "allowHeaders": ["Allowed content"],
                             "allowMethods": ["GET"],
@@ -753,25 +753,25 @@ class RegionUrlMap(pulumi.CustomResource):
                             "maxAge": 30,
                             "disabled": False,
                         },
-                        "fault_injection_policy": {
+                        "faultInjectionPolicy": {
                             "abort": {
                                 "httpStatus": 234,
                                 "percentage": 5.6,
                             },
                             "delay": {
-                                "fixed_delay": {
+                                "fixedDelay": {
                                     "seconds": 0,
                                     "nanos": 50000,
                                 },
                                 "percentage": 7.8,
                             },
                         },
-                        "request_mirror_policy": {
+                        "requestMirrorPolicy": {
                             "backend_service": home.id,
                         },
-                        "retry_policy": {
+                        "retryPolicy": {
                             "numRetries": 4,
-                            "per_try_timeout": {
+                            "perTryTimeout": {
                                 "seconds": 30,
                             },
                             "retryConditions": [
@@ -783,22 +783,22 @@ class RegionUrlMap(pulumi.CustomResource):
                             "seconds": 20,
                             "nanos": 750000000,
                         },
-                        "url_rewrite": {
+                        "urlRewrite": {
                             "hostRewrite": "A replacement header",
                             "pathPrefixRewrite": "A replacement path",
                         },
-                        "weighted_backend_services": [{
+                        "weightedBackendServices": [{
                             "backend_service": home.id,
                             "weight": 400,
                             "header_action": {
                                 "requestHeadersToRemoves": ["RemoveMe"],
-                                "request_headers_to_add": [{
+                                "requestHeadersToAdds": [{
                                     "headerName": "AddMe",
                                     "headerValue": "MyValue",
                                     "replace": True,
                                 }],
                                 "responseHeadersToRemoves": ["RemoveMe"],
-                                "response_headers_to_add": [{
+                                "responseHeadersToAdds": [{
                                     "headerName": "AddMe",
                                     "headerValue": "MyValue",
                                     "replace": False,
@@ -808,7 +808,7 @@ class RegionUrlMap(pulumi.CustomResource):
                     },
                 }],
             }],
-            test=[{
+            tests=[{
                 "service": home.id,
                 "host": "hi.com",
                 "path": "/home",
@@ -831,19 +831,19 @@ class RegionUrlMap(pulumi.CustomResource):
         regionurlmap = gcp.compute.RegionUrlMap("regionurlmap",
             description="a description",
             default_service=home.id,
-            host_rule=[{
+            host_rules=[{
                 "hosts": ["mysite.com"],
                 "pathMatcher": "allpaths",
             }],
-            path_matcher=[{
+            path_matchers=[{
                 "name": "allpaths",
                 "default_service": home.id,
-                "path_rule": [{
+                "pathRules": [{
                     "paths": ["/home"],
-                    "route_action": {
-                        "retry_policy": {
+                    "routeAction": {
+                        "retryPolicy": {
                             "numRetries": 4,
-                            "per_try_timeout": {
+                            "perTryTimeout": {
                                 "seconds": 30,
                             },
                             "retryConditions": [
@@ -855,15 +855,15 @@ class RegionUrlMap(pulumi.CustomResource):
                             "seconds": 20,
                             "nanos": 750000000,
                         },
-                        "url_rewrite": {
+                        "urlRewrite": {
                             "hostRewrite": "A replacement header",
                             "pathPrefixRewrite": "A replacement path",
                         },
-                        "weighted_backend_services": [{
+                        "weightedBackendServices": [{
                             "backend_service": home.id,
                             "weight": 400,
                             "header_action": {
-                                "response_headers_to_add": [{
+                                "responseHeadersToAdds": [{
                                     "headerName": "AddMe",
                                     "headerValue": "MyValue",
                                     "replace": False,
@@ -873,7 +873,7 @@ class RegionUrlMap(pulumi.CustomResource):
                     },
                 }],
             }],
-            test=[{
+            tests=[{
                 "service": home.id,
                 "host": "hi.com",
                 "path": "/home",
@@ -896,32 +896,32 @@ class RegionUrlMap(pulumi.CustomResource):
         regionurlmap = gcp.compute.RegionUrlMap("regionurlmap",
             description="a description",
             default_service=home.id,
-            host_rule=[{
+            host_rules=[{
                 "hosts": ["mysite.com"],
                 "pathMatcher": "allpaths",
             }],
-            path_matcher=[{
+            path_matchers=[{
                 "name": "allpaths",
                 "default_service": home.id,
-                "route_rules": [{
+                "routeRules": [{
                     "priority": 1,
                     "header_action": {
                         "requestHeadersToRemoves": ["RemoveMe2"],
-                        "request_headers_to_add": [{
+                        "requestHeadersToAdds": [{
                             "headerName": "AddSomethingElse",
                             "headerValue": "MyOtherValue",
                             "replace": True,
                         }],
                         "responseHeadersToRemoves": ["RemoveMe3"],
-                        "response_headers_to_add": [{
+                        "responseHeadersToAdds": [{
                             "headerName": "AddMe",
                             "headerValue": "MyValue",
                             "replace": False,
                         }],
                     },
-                    "match_rules": [{
+                    "matchRules": [{
                         "fullPathMatch": "a full path",
-                        "header_matches": [{
+                        "headerMatches": [{
                             "headerName": "someheader",
                             "exactMatch": "match this exactly",
                             "invertMatch": True,
@@ -929,17 +929,17 @@ class RegionUrlMap(pulumi.CustomResource):
                         "ignoreCase": True,
                         "metadata_filters": [{
                             "filterMatchCriteria": "MATCH_ANY",
-                            "filter_labels": [{
+                            "filterLabels": [{
                                 "name": "PLANET",
                                 "value": "MARS",
                             }],
                         }],
-                        "query_parameter_matches": [{
+                        "queryParameterMatches": [{
                             "name": "a query parameter",
                             "presentMatch": True,
                         }],
                     }],
-                    "url_redirect": {
+                    "urlRedirect": {
                         "hostRedirect": "A host",
                         "httpsRedirect": False,
                         "pathRedirect": "some/path",
@@ -948,7 +948,7 @@ class RegionUrlMap(pulumi.CustomResource):
                     },
                 }],
             }],
-            test=[{
+            tests=[{
                 "service": home.id,
                 "host": "hi.com",
                 "path": "/home",
@@ -971,34 +971,34 @@ class RegionUrlMap(pulumi.CustomResource):
         regionurlmap = gcp.compute.RegionUrlMap("regionurlmap",
             description="a description",
             default_service=home.id,
-            host_rule=[{
+            host_rules=[{
                 "hosts": ["mysite.com"],
                 "pathMatcher": "allpaths",
             }],
-            path_matcher=[{
+            path_matchers=[{
                 "name": "allpaths",
                 "default_service": home.id,
-                "route_rules": [{
+                "routeRules": [{
                     "priority": 1,
                     "service": home.id,
                     "header_action": {
                         "requestHeadersToRemoves": ["RemoveMe2"],
                     },
-                    "match_rules": [{
+                    "matchRules": [{
                         "fullPathMatch": "a full path",
-                        "header_matches": [{
+                        "headerMatches": [{
                             "headerName": "someheader",
                             "exactMatch": "match this exactly",
                             "invertMatch": True,
                         }],
-                        "query_parameter_matches": [{
+                        "queryParameterMatches": [{
                             "name": "a query parameter",
                             "presentMatch": True,
                         }],
                     }],
                 }],
             }],
-            test=[{
+            tests=[{
                 "service": home.id,
                 "host": "hi.com",
                 "path": "/home",

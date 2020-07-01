@@ -412,7 +412,7 @@ class BackendService(pulumi.CustomResource):
                 "maxConnections": 10,
             },
             consistent_hash={
-                "http_cookie": {
+                "httpCookie": {
                     "ttl": {
                         "seconds": 11,
                         "nanos": 1111,

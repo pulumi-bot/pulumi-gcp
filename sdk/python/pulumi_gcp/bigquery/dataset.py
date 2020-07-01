@@ -134,7 +134,7 @@ class Dataset(pulumi.CustomResource):
             labels={
                 "env": "default",
             },
-            access=[
+            accesses=[
                 {
                     "role": "OWNER",
                     "user_by_email": bqowner.email,

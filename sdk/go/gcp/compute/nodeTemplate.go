@@ -43,6 +43,42 @@ import (
 // 	})
 // }
 // ```
+// ### Node Template Server Binding
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "us-central1-a"
+// 		_, err := compute.GetNodeTypes(ctx, &compute.GetNodeTypesArgs{
+// 			Zone: &opt0,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewNodeTemplate(ctx, "template", &compute.NodeTemplateArgs{
+// 			Region:   pulumi.String("us-central1"),
+// 			NodeType: pulumi.String("n1-node-96-624"),
+// 			NodeAffinityLabels: pulumi.Map{
+// 				"foo": pulumi.String("baz"),
+// 			},
+// 			ServerBinding: &compute.NodeTemplateServerBindingArgs{
+// 				Type: pulumi.String("RESTART_NODE_ON_MINIMAL_SERVERS"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type NodeTemplate struct {
 	pulumi.CustomResourceState
 

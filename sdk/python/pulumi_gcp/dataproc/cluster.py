@@ -281,7 +281,7 @@ class Cluster(pulumi.CustomResource):
                         "bar",
                     ],
                 },
-                "initializationAction": [{
+                "initializationActions": [{
                     "script": "gs://dataproc-initialization-actions/stackdriver/stackdriver.sh",
                     "timeout_sec": 500,
                 }],

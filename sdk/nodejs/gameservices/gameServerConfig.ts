@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  *     configId: "tf-test-config",
  *     deploymentId: defaultGameServerDeployment.deploymentId,
  *     description: "a config description",
- *     fleet_configs: [{
+ *     fleetConfigs: [{
  *         name: "something-unique",
  *         fleetSpec: JSON.stringify({
  *             replicas: 1,
@@ -52,7 +52,7 @@ import * as utilities from "../utilities";
  *             },
  *         }),
  *     }],
- *     scaling_configs: [{
+ *     scalingConfigs: [{
  *         name: "scaling-config-name",
  *         fleetAutoscalerSpec: JSON.stringify({
  *             policy: {

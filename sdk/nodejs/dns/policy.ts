@@ -28,8 +28,8 @@ import * as utilities from "../utilities";
  * const example_policy = new gcp.dns.Policy("example-policy", {
  *     enableInboundForwarding: true,
  *     enableLogging: true,
- *     alternative_name_server_config: {
- *         target_name_servers: [
+ *     alternativeNameServerConfig: {
+ *         targetNameServers: [
  *             {
  *                 ipv4Address: "172.16.1.10",
  *             },

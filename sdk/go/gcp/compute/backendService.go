@@ -56,6 +56,90 @@ import (
 // 	})
 // }
 // ```
+// ### Backend Service Traffic Director Round Robin
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		healthCheck, err := compute.NewHealthCheck(ctx, "healthCheck", &compute.HealthCheckArgs{
+// 			HttpHealthCheck: &compute.HealthCheckHttpHealthCheckArgs{
+// 				Port: pulumi.Int(80),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewBackendService(ctx, "default", &compute.BackendServiceArgs{
+// 			HealthChecks: pulumi.String(pulumi.String{
+// 				healthCheck.ID(),
+// 			}),
+// 			LoadBalancingScheme: pulumi.String("INTERNAL_SELF_MANAGED"),
+// 			LocalityLbPolicy:    pulumi.String("ROUND_ROBIN"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Backend Service Traffic Director Ring Hash
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		healthCheck, err := compute.NewHealthCheck(ctx, "healthCheck", &compute.HealthCheckArgs{
+// 			HttpHealthCheck: &compute.HealthCheckHttpHealthCheckArgs{
+// 				Port: pulumi.Int(80),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewBackendService(ctx, "default", &compute.BackendServiceArgs{
+// 			HealthChecks: pulumi.String(pulumi.String{
+// 				healthCheck.ID(),
+// 			}),
+// 			LoadBalancingScheme: pulumi.String("INTERNAL_SELF_MANAGED"),
+// 			LocalityLbPolicy:    pulumi.String("RING_HASH"),
+// 			SessionAffinity:     pulumi.String("HTTP_COOKIE"),
+// 			CircuitBreakers: &compute.BackendServiceCircuitBreakersArgs{
+// 				MaxConnections: pulumi.Int(10),
+// 			},
+// 			ConsistentHash: &compute.BackendServiceConsistentHashArgs{
+// 				HttpCookie: &compute.BackendServiceConsistentHashHttpCookieArgs{
+// 					Ttl: &compute.BackendServiceConsistentHashHttpCookieTtlArgs{
+// 						Seconds: pulumi.Int(11),
+// 						Nanos:   pulumi.Int(1111),
+// 					},
+// 					Name: pulumi.String("mycookie"),
+// 				},
+// 			},
+// 			OutlierDetection: &compute.BackendServiceOutlierDetectionArgs{
+// 				ConsecutiveErrors: pulumi.Int(2),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type BackendService struct {
 	pulumi.CustomResourceState
 

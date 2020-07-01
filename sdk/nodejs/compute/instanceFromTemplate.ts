@@ -24,13 +24,13 @@ import * as utilities from "../utilities";
  *
  * const tplInstanceTemplate = new gcp.compute.InstanceTemplate("tplInstanceTemplate", {
  *     machineType: "n1-standard-1",
- *     disk: [{
+ *     disks: [{
  *         sourceImage: "debian-cloud/debian-9",
  *         autoDelete: true,
  *         diskSizeGb: 100,
  *         boot: true,
  *     }],
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: "default",
  *     }],
  *     metadata: {

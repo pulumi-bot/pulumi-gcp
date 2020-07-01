@@ -40,17 +40,17 @@ import (
 // 			Cors: storage.BucketCorArray{
 // 				&storage.BucketCorArgs{
 // 					MaxAgeSeconds: pulumi.Int(3600),
-// 					Method: pulumi.StringArray{
+// 					Methods: pulumi.StringArray{
 // 						pulumi.String("GET"),
 // 						pulumi.String("HEAD"),
 // 						pulumi.String("PUT"),
 // 						pulumi.String("POST"),
 // 						pulumi.String("DELETE"),
 // 					},
-// 					Origin: pulumi.StringArray{
+// 					Origins: pulumi.StringArray{
 // 						pulumi.String("http://image-store.com"),
 // 					},
-// 					ResponseHeader: pulumi.StringArray{
+// 					ResponseHeaders: pulumi.StringArray{
 // 						pulumi.String("*"),
 // 					},
 // 				},

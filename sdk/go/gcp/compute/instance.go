@@ -40,7 +40,7 @@ import (
 // 			MetadataStartupScript: pulumi.String("echo hi > /test.txt"),
 // 			NetworkInterfaces: compute.InstanceNetworkInterfaceArray{
 // 				&compute.InstanceNetworkInterfaceArgs{
-// 					AccessConfig: pulumi.MapArray{
+// 					AccessConfigs: compute.InstanceNetworkInterfaceAccessConfigArray{
 // 						nil,
 // 					},
 // 					Network: pulumi.String("default"),

@@ -111,6 +111,57 @@ import (
 // 	})
 // }
 // ```
+// ### Instance With Ip
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		static, err := compute.NewAddress(ctx, "static", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		opt0 := "debian-9"
+// 		opt1 := "debian-cloud"
+// 		debianImage, err := compute.LookupImage(ctx, &compute.LookupImageArgs{
+// 			Family:  &opt0,
+// 			Project: &opt1,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewInstance(ctx, "instanceWithIp", &compute.InstanceArgs{
+// 			MachineType: pulumi.String("f1-micro"),
+// 			Zone:        pulumi.String("us-central1-a"),
+// 			BootDisk: &compute.InstanceBootDiskArgs{
+// 				InitializeParams: &compute.InstanceBootDiskInitializeParamsArgs{
+// 					Image: pulumi.String(debianImage.SelfLink),
+// 				},
+// 			},
+// 			NetworkInterfaces: compute.InstanceNetworkInterfaceArray{
+// 				&compute.InstanceNetworkInterfaceArgs{
+// 					Network: pulumi.String("default"),
+// 					AccessConfigs: compute.InstanceNetworkInterfaceAccessConfigArray{
+// 						&compute.InstanceNetworkInterfaceAccessConfigArgs{
+// 							NatIp: static.Address,
+// 						},
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Address struct {
 	pulumi.CustomResourceState
 

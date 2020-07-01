@@ -46,7 +46,7 @@ class KeyRingIAMPolicy(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         keyring = gcp.kms.KeyRing("keyring", location="global")
-        admin = gcp.organizations.get_iam_policy(binding=[{
+        admin = gcp.organizations.get_iam_policy(bindings=[{
             "role": "roles/editor",
             "members": ["user:jane@example.com"],
         }])
@@ -62,7 +62,7 @@ class KeyRingIAMPolicy(pulumi.CustomResource):
         import pulumi_gcp as gcp
 
         keyring = gcp.kms.KeyRing("keyring", location="global")
-        admin = gcp.organizations.get_iam_policy(binding=[{
+        admin = gcp.organizations.get_iam_policy(bindings=[{
             "role": "roles/editor",
             "members": ["user:jane@example.com"],
             "condition": {

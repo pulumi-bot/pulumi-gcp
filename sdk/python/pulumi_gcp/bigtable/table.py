@@ -48,7 +48,7 @@ class Table(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        instance = gcp.bigtable.Instance("instance", cluster=[{
+        instance = gcp.bigtable.Instance("instance", clusters=[{
             "cluster_id": "tf-instance-cluster",
             "zone": "us-central1-b",
             "num_nodes": 3,

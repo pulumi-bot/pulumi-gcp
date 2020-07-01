@@ -23,14 +23,14 @@ import * as utilities from "../utilities";
  * const frontendInstance = new gcp.compute.Instance("frontendInstance", {
  *     machineType: "g1-small",
  *     zone: "us-central1-b",
- *     boot_disk: {
- *         initialize_params: {
+ *     bootDisk: {
+ *         initializeParams: {
  *             image: "debian-cloud/debian-9",
  *         },
  *     },
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: "default",
- *         access_config: [{}],
+ *         accessConfigs: [{}],
  *     }],
  * });
  * const prod = new gcp.dns.ManagedZone("prod", {dnsName: "prod.mydomain.com."});

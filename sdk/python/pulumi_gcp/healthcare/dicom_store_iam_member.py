@@ -48,7 +48,7 @@ class DicomStoreIamMember(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        admin = gcp.organizations.get_iam_policy(binding=[{
+        admin = gcp.organizations.get_iam_policy(bindings=[{
             "role": "roles/editor",
             "members": ["user:jane@example.com"],
         }])

@@ -342,14 +342,14 @@ class FlexibleAppVersion(pulumi.CustomResource):
                 "securityLevel": "SECURE_ALWAYS",
                 "login": "LOGIN_REQUIRED",
                 "authFailAction": "AUTH_FAIL_ACTION_REDIRECT",
-                "static_files": {
+                "staticFiles": {
                     "path": "my-other-path",
                     "uploadPathRegex": ".*\\/my-path\\/*",
                 },
             }],
             automatic_scaling={
                 "coolDownPeriod": "120s",
-                "cpu_utilization": {
+                "cpuUtilization": {
                     "targetUtilization": 0.5,
                 },
             },
