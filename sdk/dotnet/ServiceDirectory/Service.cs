@@ -33,6 +33,9 @@ namespace Pulumi.Gcp.ServiceDirectory
     ///         {
     ///             NamespaceId = "example-namespace",
     ///             Location = "us-central1",
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
     ///         });
     ///         var exampleService = new Gcp.ServiceDirectory.Service("exampleService", new Gcp.ServiceDirectory.ServiceArgs
     ///         {
@@ -43,6 +46,9 @@ namespace Pulumi.Gcp.ServiceDirectory
     ///                 { "stage", "prod" },
     ///                 { "region", "us-central1" },
     ///             },
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
     ///         });
     ///     }
     /// 

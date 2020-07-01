@@ -33,14 +33,14 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err := kms.GetKMSCryptoKey(ctx, &kms.GetKMSCryptoKeyArgs{
+// 		_, err = kms.GetKMSCryptoKey(ctx, &kms.GetKMSCryptoKeyArgs{
 // 			Name:    "my-crypto-key",
 // 			KeyRing: myKeyRing.SelfLink,
 // 		}, nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err := kms.GetKMSCryptoKeyVersion(ctx, &kms.GetKMSCryptoKeyVersionArgs{
+// 		_, err = kms.GetKMSCryptoKeyVersion(ctx, &kms.GetKMSCryptoKeyVersionArgs{
 // 			CryptoKey: data.Google_kms_key.My_key.Self_link,
 // 		}, nil)
 // 		if err != nil {

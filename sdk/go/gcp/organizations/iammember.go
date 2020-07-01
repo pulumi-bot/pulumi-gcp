@@ -29,7 +29,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = organizations.NewIAMMember(ctx, "binding", &organizations.IAMMemberArgs{
+// 		_, err := organizations.NewIAMMember(ctx, "binding", &organizations.IAMMemberArgs{
 // 			Member: pulumi.String("user:alice@gmail.com"),
 // 			OrgId:  pulumi.String("0123456789"),
 // 			Role:   pulumi.String("roles/editor"),

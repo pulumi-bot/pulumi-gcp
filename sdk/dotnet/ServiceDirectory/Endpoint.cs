@@ -33,11 +33,17 @@ namespace Pulumi.Gcp.ServiceDirectory
     ///         {
     ///             NamespaceId = "example-namespace",
     ///             Location = "us-central1",
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
     ///         });
     ///         var exampleService = new Gcp.ServiceDirectory.Service("exampleService", new Gcp.ServiceDirectory.ServiceArgs
     ///         {
     ///             ServiceId = "example-service",
     ///             Namespace = exampleNamespace.Id,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
     ///         });
     ///         var exampleEndpoint = new Gcp.ServiceDirectory.Endpoint("exampleEndpoint", new Gcp.ServiceDirectory.EndpointArgs
     ///         {
@@ -50,6 +56,9 @@ namespace Pulumi.Gcp.ServiceDirectory
     ///             },
     ///             Address = "1.2.3.4",
     ///             Port = 5353,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
     ///         });
     ///     }
     /// 

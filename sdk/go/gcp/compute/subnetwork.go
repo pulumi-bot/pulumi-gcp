@@ -41,6 +41,38 @@ import (
 //     * [Cloud Networking](https://cloud.google.com/vpc/docs/using-vpc)
 //
 // ## Example Usage
+// ### Subnetwork Internal L7lb
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := compute.NewNetwork(ctx, "custom_test", &compute.NetworkArgs{
+// 			AutoCreateSubnetworks: pulumi.Bool(false),
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewSubnetwork(ctx, "network_for_l7lb", &compute.SubnetworkArgs{
+// 			IpCidrRange: pulumi.String("10.0.0.0/22"),
+// 			Region:      pulumi.String("us-central1"),
+// 			Purpose:     pulumi.String("INTERNAL_HTTPS_LOAD_BALANCER"),
+// 			Role:        pulumi.String("ACTIVE"),
+// 			Network:     custom_test.ID(),
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Subnetwork struct {
 	pulumi.CustomResourceState
 

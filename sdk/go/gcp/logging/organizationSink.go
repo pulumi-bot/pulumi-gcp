@@ -18,6 +18,46 @@ import (
 // granted to the credentials used with this provider.
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/logging"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/projects"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/storage"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := storage.NewBucket(ctx, "log_bucket", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = logging.NewOrganizationSink(ctx, "my_sink", &logging.OrganizationSinkArgs{
+// 			OrgId: pulumi.String("123456789"),
+// 			Destination: log_bucket.Name.ApplyT(func(name string) (string, error) {
+// 				return fmt.Sprintf("%v%v", "storage.googleapis.com/", name), nil
+// 			}).(pulumi.StringOutput),
+// 			Filter: pulumi.String("resource.type = gce_instance AND severity >= WARN"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = projects.NewIAMMember(ctx, "log_writer", &projects.IAMMemberArgs{
+// 			Role:   pulumi.String("roles/storage.objectCreator"),
+// 			Member: my_sink.WriterIdentity,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type OrganizationSink struct {
 	pulumi.CustomResourceState
 

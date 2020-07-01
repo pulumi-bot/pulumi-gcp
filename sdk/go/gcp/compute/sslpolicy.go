@@ -31,20 +31,20 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewSSLPolicy(ctx, "prod-ssl-policy", &compute.SSLPolicyArgs{
+// 		_, err := compute.NewSSLPolicy(ctx, "prod_ssl_policy", &compute.SSLPolicyArgs{
 // 			Profile: pulumi.String("MODERN"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewSSLPolicy(ctx, "nonprod-ssl-policy", &compute.SSLPolicyArgs{
+// 		_, err = compute.NewSSLPolicy(ctx, "nonprod_ssl_policy", &compute.SSLPolicyArgs{
 // 			MinTlsVersion: pulumi.String("TLS_1_2"),
 // 			Profile:       pulumi.String("MODERN"),
 // 		})
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = compute.NewSSLPolicy(ctx, "custom-ssl-policy", &compute.SSLPolicyArgs{
+// 		_, err = compute.NewSSLPolicy(ctx, "custom_ssl_policy", &compute.SSLPolicyArgs{
 // 			CustomFeatures: pulumi.StringArray{
 // 				pulumi.String("TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384"),
 // 				pulumi.String("TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"),
