@@ -41,7 +41,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const dataset = new gcp.healthcare.Dataset("dataset", {location: "us-central1"});
+ * const dataset = new gcp.healthcare.Dataset("dataset", {location: "us-central1"}, {
+ *     provider: google_beta,
+ * });
  * const _default = new gcp.healthcare.Hl7Store("default", {
  *     dataset: dataset.id,
  *     parser_config: {
@@ -127,6 +129,8 @@ import * as utilities from "../utilities";
  * }
  * `,
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

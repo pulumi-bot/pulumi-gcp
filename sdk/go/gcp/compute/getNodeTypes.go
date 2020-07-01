@@ -31,7 +31,7 @@ import (
 // 		}
 // 		_, err = compute.NewNodeTemplate(ctx, "tmpl", &compute.NodeTemplateArgs{
 // 			Region:   pulumi.String("us-central1"),
-// 			NodeType: pulumi.String(data.Google_compute_node_types.Types.Names[0]),
+// 			NodeType: pulumi.Any(data.Google_compute_node_types.Types.Names[0]),
 // 		})
 // 		if err != nil {
 // 			return err

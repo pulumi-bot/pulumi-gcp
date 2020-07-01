@@ -24,7 +24,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = organizations.NewIamAuditConfig(ctx, "config", &organizations.IamAuditConfigArgs{
+// 		_, err := organizations.NewIamAuditConfig(ctx, "config", &organizations.IamAuditConfigArgs{
 // 			AuditLogConfigs: organizations.IamAuditConfigAuditLogConfigArray{
 // 				&organizations.IamAuditConfigAuditLogConfigArgs{
 // 					ExemptedMembers: pulumi.StringArray{

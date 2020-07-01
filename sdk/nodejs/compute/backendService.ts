@@ -42,11 +42,15 @@ import * as utilities from "../utilities";
  *
  * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {http_health_check: {
  *     port: 80,
- * }});
+ * }}, {
+ *     provider: google_beta,
+ * });
  * const _default = new gcp.compute.BackendService("default", {
  *     healthChecks: [healthCheck.id],
  *     loadBalancingScheme: "INTERNAL_SELF_MANAGED",
  *     localityLbPolicy: "ROUND_ROBIN",
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  * ### Backend Service Traffic Director Ring Hash
@@ -57,7 +61,9 @@ import * as utilities from "../utilities";
  *
  * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {http_health_check: {
  *     port: 80,
- * }});
+ * }}, {
+ *     provider: google_beta,
+ * });
  * const _default = new gcp.compute.BackendService("default", {
  *     healthChecks: [healthCheck.id],
  *     loadBalancingScheme: "INTERNAL_SELF_MANAGED",
@@ -78,6 +84,8 @@ import * as utilities from "../utilities";
  *     outlier_detection: {
  *         consecutiveErrors: 2,
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

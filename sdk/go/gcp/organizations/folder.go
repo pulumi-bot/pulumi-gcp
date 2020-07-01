@@ -43,7 +43,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = organizations.NewFolder(ctx, "team-abc", &organizations.FolderArgs{
+// 		_, err = organizations.NewFolder(ctx, "team_abc", &organizations.FolderArgs{
 // 			DisplayName: pulumi.String("Team ABC"),
 // 			Parent:      department1.Name,
 // 		})

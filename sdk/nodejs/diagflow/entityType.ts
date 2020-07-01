@@ -46,6 +46,8 @@ import * as utilities from "../utilities";
  *             ],
  *         },
  *     ],
+ * }, {
+ *     dependsOn: [basicAgent],
  * });
  * ```
  */
