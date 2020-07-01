@@ -21,6 +21,44 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/machine-images)
 //
 // ## Example Usage
+// ### Machine Image Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		vm, err := compute.NewInstance(ctx, "vm", &compute.InstanceArgs{
+// 			MachineType: pulumi.String("n1-standard-1"),
+// 			BootDisk: &compute.InstanceBootDiskArgs{
+// 				InitializeParams: &compute.InstanceBootDiskInitializeParamsArgs{
+// 					Image: pulumi.String("debian-cloud/debian-9"),
+// 				},
+// 			},
+// 			NetworkInterfaces: compute.InstanceNetworkInterfaceArray{
+// 				&compute.InstanceNetworkInterfaceArgs{
+// 					Network: pulumi.String("default"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewMachineImage(ctx, "image", &compute.MachineImageArgs{
+// 			SourceInstance: vm.SelfLink,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type MachineImage struct {
 	pulumi.CustomResourceState
 

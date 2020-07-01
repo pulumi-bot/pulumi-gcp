@@ -55,8 +55,8 @@ import * as utilities from "../utilities";
  *             fieldId: "pii_type",
  *             displayName: "PII type",
  *             type: {
- *                 enum_type: {
- *                     allowed_values: [
+ *                 enumType: {
+ *                     allowedValues: [
  *                         {
  *                             displayName: "EMAIL",
  *                         },
@@ -125,8 +125,8 @@ import * as utilities from "../utilities";
  *             fieldId: "pii_type",
  *             displayName: "PII type",
  *             type: {
- *                 enum_type: {
- *                     allowed_values: [
+ *                 enumType: {
+ *                     allowedValues: [
  *                         {
  *                             displayName: "EMAIL",
  *                         },
@@ -226,8 +226,8 @@ import * as utilities from "../utilities";
  *             fieldId: "pii_type",
  *             displayName: "PII type",
  *             type: {
- *                 enum_type: {
- *                     allowed_values: [
+ *                 enumType: {
+ *                     allowedValues: [
  *                         {
  *                             displayName: "EMAIL",
  *                         },

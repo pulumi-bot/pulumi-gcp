@@ -162,7 +162,7 @@ class RouterNat(pulumi.CustomResource):
             nat_ip_allocate_option="MANUAL_ONLY",
             nat_ips=[__item.id for __item in address],
             source_subnetwork_ip_ranges_to_nat="LIST_OF_SUBNETWORKS",
-            subnetwork=[{
+            subnetworks=[{
                 "name": subnet.id,
                 "sourceIpRangesToNats": ["ALL_IP_RANGES"],
             }])

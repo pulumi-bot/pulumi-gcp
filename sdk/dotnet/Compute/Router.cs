@@ -44,15 +44,15 @@ namespace Pulumi.Gcp.Compute
     ///                 {
     ///                     "ALL_SUBNETS",
     ///                 },
-    ///                 Advertised_ip_ranges = 
+    ///                 AdvertisedIpRanges = 
     ///                 {
-    ///                     
+    ///                     new Gcp.Compute.Inputs.RouterBgpAdvertisedIpRangeArgs
     ///                     {
-    ///                         { "range", "1.2.3.4" },
+    ///                         Range = "1.2.3.4",
     ///                     },
-    ///                     
+    ///                     new Gcp.Compute.Inputs.RouterBgpAdvertisedIpRangeArgs
     ///                     {
-    ///                         { "range", "6.7.0.0/16" },
+    ///                         Range = "6.7.0.0/16",
     ///                     },
     ///                 },
     ///             },

@@ -34,7 +34,7 @@ import * as utilities from "../utilities";
  *     initialNodeCount: 1,
  *     network: containerNetwork.name,
  *     subnetwork: containerSubnetwork.name,
- *     ip_allocation_policy: {
+ *     ipAllocationPolicy: {
  *         clusterIpv4CidrBlock: "/19",
  *         servicesIpv4CidrBlock: "/22",
  *     },

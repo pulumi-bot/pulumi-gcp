@@ -32,7 +32,7 @@ import * as utilities from "../utilities";
  *     disableReferentialIntegrity: false,
  *     disableResourceVersioning: false,
  *     enableHistoryImport: false,
- *     notification_config: {
+ *     notificationConfig: {
  *         pubsubTopic: topic.id,
  *     },
  *     labels: {
@@ -64,11 +64,11 @@ import * as utilities from "../utilities";
  *     labels: {
  *         label1: "labelvalue1",
  *     },
- *     stream_configs: [{
+ *     streamConfigs: [{
  *         resourceTypes: ["Observation"],
- *         bigquery_destination: {
+ *         bigqueryDestination: {
  *             datasetUri: pulumi.interpolate`bq://${bqDataset.project}.${bqDataset.datasetId}`,
- *             schema_config: {
+ *             schemaConfig: {
  *                 recursiveStructureDepth: 3,
  *             },
  *         },

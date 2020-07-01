@@ -67,7 +67,7 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
             region="us-central1",
             snapshot_schedule_policy={
                 "schedule": {
-                    "daily_schedule": {
+                    "dailySchedule": {
                         "daysInCycle": 1,
                         "startTime": "04:00",
                     },

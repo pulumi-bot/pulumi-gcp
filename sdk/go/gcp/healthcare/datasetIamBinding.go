@@ -34,10 +34,10 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		admin, err := organizations.LookupIAMPolicy(ctx, &organizations.LookupIAMPolicyArgs{
-// 			Binding: []map[string]interface{}{
-// 				map[string]interface{}{
-// 					"role": "roles/editor",
-// 					"members": []string{
+// 			Bindings: []organizations.GetIAMPolicyBinding{
+// 				organizations.GetIAMPolicyBinding{
+// 					Role: "roles/editor",
+// 					Members: []string{
 // 						"user:jane@example.com",
 // 					},
 // 				},

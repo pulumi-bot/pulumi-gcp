@@ -79,13 +79,13 @@ def get_instance_serial_port(instance=None,port=None,project=None,zone=None,opts
         machine_type="n1-standard-1",
         zone="us-central1-a",
         boot_disk={
-            "initialize_params": {
+            "initializeParams": {
                 "image": "gce-uefi-images/windows-2019",
             },
         },
-        network_interface=[{
+        network_interfaces=[{
             "network": "default",
-            "access_config": [{}],
+            "accessConfigs": [{}],
         }],
         metadata={
             "serial-port-logging-enable": "TRUE",

@@ -27,14 +27,14 @@ import * as utilities from "../utilities";
  * const defaultNetwork = new gcp.compute.Network("defaultNetwork", {});
  * const mirror = new gcp.compute.Instance("mirror", {
  *     machineType: "n1-standard-1",
- *     boot_disk: {
- *         initialize_params: {
+ *     bootDisk: {
+ *         initializeParams: {
  *             image: "debian-cloud/debian-9",
  *         },
  *     },
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: defaultNetwork.id,
- *         access_config: [{}],
+ *         accessConfigs: [{}],
  *     }],
  * });
  * const defaultSubnetwork = new gcp.compute.Subnetwork("defaultSubnetwork", {
@@ -44,7 +44,7 @@ import * as utilities from "../utilities";
  * const defaultHealthCheck = new gcp.compute.HealthCheck("defaultHealthCheck", {
  *     checkIntervalSec: 1,
  *     timeoutSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "80",
  *     },
  * });
@@ -64,10 +64,10 @@ import * as utilities from "../utilities";
  *     network: {
  *         url: defaultNetwork.id,
  *     },
- *     collector_ilb: {
+ *     collectorIlb: {
  *         url: defaultForwardingRule.id,
  *     },
- *     mirrored_resources: {
+ *     mirroredResources: {
  *         tags: ["foo"],
  *         instances: [{
  *             url: mirror.id,

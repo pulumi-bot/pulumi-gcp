@@ -36,14 +36,14 @@ import * as utilities from "../utilities";
  * const defaultURLMap = new gcp.compute.URLMap("defaultURLMap", {
  *     description: "a description",
  *     defaultService: defaultBackendService.id,
- *     host_rule: [{
+ *     hostRules: [{
  *         hosts: ["mysite.com"],
  *         pathMatcher: "allpaths",
  *     }],
- *     path_matcher: [{
+ *     pathMatchers: [{
  *         name: "allpaths",
  *         defaultService: defaultBackendService.id,
- *         path_rule: [{
+ *         pathRules: [{
  *             paths: ["/*"],
  *             service: defaultBackendService.id,
  *         }],
@@ -70,17 +70,17 @@ import * as utilities from "../utilities";
  * });
  * const instanceTemplate = new gcp.compute.InstanceTemplate("instanceTemplate", {
  *     machineType: "n1-standard-1",
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: "default",
  *     }],
- *     disk: [{
+ *     disks: [{
  *         sourceImage: debianImage.then(debianImage => debianImage.selfLink),
  *         autoDelete: true,
  *         boot: true,
  *     }],
  * });
  * const igm = new gcp.compute.InstanceGroupManager("igm", {
- *     version: [{
+ *     versions: [{
  *         instanceTemplate: instanceTemplate.id,
  *         name: "primary",
  *     }],
@@ -91,7 +91,7 @@ import * as utilities from "../utilities";
  * const defaultHealthCheck = new gcp.compute.HealthCheck("defaultHealthCheck", {
  *     checkIntervalSec: 1,
  *     timeoutSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "80",
  *     },
  * });
@@ -100,7 +100,7 @@ import * as utilities from "../utilities";
  *     protocol: "HTTP",
  *     timeoutSec: 10,
  *     loadBalancingScheme: "INTERNAL_SELF_MANAGED",
- *     backend: [{
+ *     backends: [{
  *         group: igm.instanceGroup,
  *         balancingMode: "RATE",
  *         capacityScaler: 0.4,
@@ -111,14 +111,14 @@ import * as utilities from "../utilities";
  * const defaultURLMap = new gcp.compute.URLMap("defaultURLMap", {
  *     description: "a description",
  *     defaultService: defaultBackendService.id,
- *     host_rule: [{
+ *     hostRules: [{
  *         hosts: ["mysite.com"],
  *         pathMatcher: "allpaths",
  *     }],
- *     path_matcher: [{
+ *     pathMatchers: [{
  *         name: "allpaths",
  *         defaultService: defaultBackendService.id,
- *         path_rule: [{
+ *         pathRules: [{
  *             paths: ["/*"],
  *             service: defaultBackendService.id,
  *         }],
@@ -133,9 +133,9 @@ import * as utilities from "../utilities";
  *     portRange: "80",
  *     loadBalancingScheme: "INTERNAL_SELF_MANAGED",
  *     ipAddress: "0.0.0.0",
- *     metadata_filters: [{
+ *     metadataFilters: [{
  *         filterMatchCriteria: "MATCH_ANY",
- *         filter_labels: [{
+ *         filterLabels: [{
  *             name: "PLANET",
  *             value: "MARS",
  *         }],

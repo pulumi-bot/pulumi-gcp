@@ -47,6 +47,50 @@ import (
 // 	})
 // }
 // ```
+// ### Dns Managed Zone Service Directory
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/dns"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/servicedirectory"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		example, err := servicedirectory.NewNamespace(ctx, "example", &servicedirectory.NamespaceArgs{
+// 			NamespaceId: pulumi.String("example"),
+// 			Location:    pulumi.String("us-central1"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = dns.NewManagedZone(ctx, "sd-zone", &dns.ManagedZoneArgs{
+// 			DnsName:     pulumi.String("services.example.com."),
+// 			Description: pulumi.String("Example private DNS Service Directory zone"),
+// 			Visibility:  pulumi.String("private"),
+// 			ServiceDirectoryConfig: &dns.ManagedZoneServiceDirectoryConfigArgs{
+// 				Namespace: &dns.ManagedZoneServiceDirectoryConfigNamespaceArgs{
+// 					NamespaceUrl: example.ID(),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewNetwork(ctx, "network", &compute.NetworkArgs{
+// 			AutoCreateSubnetworks: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type ManagedZone struct {
 	pulumi.CustomResourceState
 

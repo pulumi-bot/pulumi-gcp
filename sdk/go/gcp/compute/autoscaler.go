@@ -23,6 +23,192 @@ import (
 //     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
 //
 // ## Example Usage
+// ### Autoscaler Single Instance
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "debian-9"
+// 		opt1 := "debian-cloud"
+// 		debian9, err := compute.LookupImage(ctx, &compute.LookupImageArgs{
+// 			Family:  &opt0,
+// 			Project: &opt1,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		defaultInstanceTemplate, err := compute.NewInstanceTemplate(ctx, "defaultInstanceTemplate", &compute.InstanceTemplateArgs{
+// 			MachineType:  pulumi.String("n1-standard-1"),
+// 			CanIpForward: pulumi.Bool(false),
+// 			Tags: pulumi.StringArray{
+// 				pulumi.String("foo"),
+// 				pulumi.String("bar"),
+// 			},
+// 			Disks: compute.InstanceTemplateDiskArray{
+// 				&compute.InstanceTemplateDiskArgs{
+// 					SourceImage: pulumi.String(debian9.SelfLink),
+// 				},
+// 			},
+// 			NetworkInterfaces: compute.InstanceTemplateNetworkInterfaceArray{
+// 				&compute.InstanceTemplateNetworkInterfaceArgs{
+// 					Network: pulumi.String("default"),
+// 				},
+// 			},
+// 			Metadata: pulumi.Map{
+// 				"foo": pulumi.String("bar"),
+// 			},
+// 			ServiceAccount: &compute.InstanceTemplateServiceAccountArgs{
+// 				Scopes: pulumi.StringArray{
+// 					pulumi.String("userinfo-email"),
+// 					pulumi.String("compute-ro"),
+// 					pulumi.String("storage-ro"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		defaultTargetPool, err := compute.NewTargetPool(ctx, "defaultTargetPool", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		defaultInstanceGroupManager, err := compute.NewInstanceGroupManager(ctx, "defaultInstanceGroupManager", &compute.InstanceGroupManagerArgs{
+// 			Zone: pulumi.String("us-central1-f"),
+// 			Versions: compute.InstanceGroupManagerVersionArray{
+// 				&compute.InstanceGroupManagerVersionArgs{
+// 					InstanceTemplate: defaultInstanceTemplate.ID(),
+// 					Name:             pulumi.String("primary"),
+// 				},
+// 			},
+// 			TargetPools: pulumi.StringArray{
+// 				defaultTargetPool.ID(),
+// 			},
+// 			BaseInstanceName: pulumi.String("autoscaler-sample"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewAutoscaler(ctx, "defaultAutoscaler", &compute.AutoscalerArgs{
+// 			Zone:   pulumi.String("us-central1-f"),
+// 			Target: defaultInstanceGroupManager.ID(),
+// 			AutoscalingPolicy: &compute.AutoscalerAutoscalingPolicyArgs{
+// 				MaxReplicas:    pulumi.Int(5),
+// 				MinReplicas:    pulumi.Int(1),
+// 				CooldownPeriod: pulumi.Int(60),
+// 				Metrics: compute.AutoscalerAutoscalingPolicyMetricArray{
+// 					&compute.AutoscalerAutoscalingPolicyMetricArgs{
+// 						Name:                     pulumi.String("pubsub.googleapis.com/subscription/num_undelivered_messages"),
+// 						Filter:                   pulumi.String("resource.type = pubsub_subscription AND resource.label.subscription_id = our-subscription"),
+// 						SingleInstanceAssignment: pulumi.Float64(65535),
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Autoscaler Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "debian-9"
+// 		opt1 := "debian-cloud"
+// 		debian9, err := compute.LookupImage(ctx, &compute.LookupImageArgs{
+// 			Family:  &opt0,
+// 			Project: &opt1,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		foobarInstanceTemplate, err := compute.NewInstanceTemplate(ctx, "foobarInstanceTemplate", &compute.InstanceTemplateArgs{
+// 			MachineType:  pulumi.String("n1-standard-1"),
+// 			CanIpForward: pulumi.Bool(false),
+// 			Tags: pulumi.StringArray{
+// 				pulumi.String("foo"),
+// 				pulumi.String("bar"),
+// 			},
+// 			Disks: compute.InstanceTemplateDiskArray{
+// 				&compute.InstanceTemplateDiskArgs{
+// 					SourceImage: pulumi.String(debian9.SelfLink),
+// 				},
+// 			},
+// 			NetworkInterfaces: compute.InstanceTemplateNetworkInterfaceArray{
+// 				&compute.InstanceTemplateNetworkInterfaceArgs{
+// 					Network: pulumi.String("default"),
+// 				},
+// 			},
+// 			Metadata: pulumi.Map{
+// 				"foo": pulumi.String("bar"),
+// 			},
+// 			ServiceAccount: &compute.InstanceTemplateServiceAccountArgs{
+// 				Scopes: pulumi.StringArray{
+// 					pulumi.String("userinfo-email"),
+// 					pulumi.String("compute-ro"),
+// 					pulumi.String("storage-ro"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		foobarTargetPool, err := compute.NewTargetPool(ctx, "foobarTargetPool", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		foobarInstanceGroupManager, err := compute.NewInstanceGroupManager(ctx, "foobarInstanceGroupManager", &compute.InstanceGroupManagerArgs{
+// 			Zone: pulumi.String("us-central1-f"),
+// 			Versions: compute.InstanceGroupManagerVersionArray{
+// 				&compute.InstanceGroupManagerVersionArgs{
+// 					InstanceTemplate: foobarInstanceTemplate.ID(),
+// 					Name:             pulumi.String("primary"),
+// 				},
+// 			},
+// 			TargetPools: pulumi.StringArray{
+// 				foobarTargetPool.ID(),
+// 			},
+// 			BaseInstanceName: pulumi.String("foobar"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewAutoscaler(ctx, "foobarAutoscaler", &compute.AutoscalerArgs{
+// 			Zone:   pulumi.String("us-central1-f"),
+// 			Target: foobarInstanceGroupManager.ID(),
+// 			AutoscalingPolicy: &compute.AutoscalerAutoscalingPolicyArgs{
+// 				MaxReplicas:    pulumi.Int(5),
+// 				MinReplicas:    pulumi.Int(1),
+// 				CooldownPeriod: pulumi.Int(60),
+// 				CpuUtilization: &compute.AutoscalerAutoscalingPolicyCpuUtilizationArgs{
+// 					Target: pulumi.Float64(0.5),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Autoscaler struct {
 	pulumi.CustomResourceState
 

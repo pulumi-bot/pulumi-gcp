@@ -53,7 +53,7 @@ import * as utilities from "../utilities";
  *     description: "example google_compute_node_group for the Google Provider",
  *     size: 1,
  *     nodeTemplate: soletenant_tmpl.id,
- *     autoscaling_policy: {
+ *     autoscalingPolicy: {
  *         mode: "ON",
  *         minNodes: 1,
  *         maxNodes: 10,

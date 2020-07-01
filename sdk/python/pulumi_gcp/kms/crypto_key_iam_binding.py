@@ -57,7 +57,7 @@ class CryptoKeyIAMBinding(pulumi.CustomResource):
         key = gcp.kms.CryptoKey("key",
             key_ring=keyring.id,
             rotation_period="100000s")
-        admin = gcp.organizations.get_iam_policy(binding=[{
+        admin = gcp.organizations.get_iam_policy(bindings=[{
             "role": "roles/cloudkms.cryptoKeyEncrypter",
             "members": ["user:jane@example.com"],
         }])

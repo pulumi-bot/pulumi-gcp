@@ -229,13 +229,13 @@ class InstanceFromTemplate(pulumi.CustomResource):
 
         tpl_instance_template = gcp.compute.InstanceTemplate("tplInstanceTemplate",
             machine_type="n1-standard-1",
-            disk=[{
+            disks=[{
                 "sourceImage": "debian-cloud/debian-9",
                 "autoDelete": True,
                 "disk_size_gb": 100,
                 "boot": True,
             }],
-            network_interface=[{
+            network_interfaces=[{
                 "network": "default",
             }],
             metadata={

@@ -57,19 +57,19 @@ namespace Pulumi.Gcp.Monitoring
         ///                 new Gcp.Monitoring.Inputs.AlertPolicyConditionArgs
         ///                 {
         ///                     DisplayName = "test condition",
-        ///                     Condition_threshold = 
+        ///                     ConditionThreshold = new Gcp.Monitoring.Inputs.AlertPolicyConditionConditionThresholdArgs
         ///                     {
-        ///                         { "filter", "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\"" },
-        ///                         { "duration", "60s" },
-        ///                         { "comparison", "COMPARISON_GT" },
-        ///                         { "aggregations", 
+        ///                         Filter = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\"",
+        ///                         Duration = "60s",
+        ///                         Comparison = "COMPARISON_GT",
+        ///                         Aggregations = 
         ///                         {
-        ///                             
+        ///                             new Gcp.Monitoring.Inputs.AlertPolicyConditionConditionThresholdAggregationArgs
         ///                             {
-        ///                                 { "alignmentPeriod", "60s" },
-        ///                                 { "perSeriesAligner", "ALIGN_RATE" },
+        ///                                 AlignmentPeriod = "60s",
+        ///                                 PerSeriesAligner = "ALIGN_RATE",
         ///                             },
-        ///                         } },
+        ///                         },
         ///                     },
         ///                 },
         ///             },

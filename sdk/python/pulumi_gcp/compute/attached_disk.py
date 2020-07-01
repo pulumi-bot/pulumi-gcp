@@ -72,11 +72,11 @@ class AttachedDisk(pulumi.CustomResource):
             machine_type="n1-standard-1",
             zone="us-west1-a",
             boot_disk={
-                "initialize_params": {
+                "initializeParams": {
                     "image": "debian-cloud/debian-9",
                 },
             },
-            network_interface=[{
+            network_interfaces=[{
                 "network": "default",
             }])
         default_attached_disk = gcp.compute.AttachedDisk("defaultAttachedDisk",

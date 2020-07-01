@@ -88,7 +88,7 @@ class InstanceGroup(pulumi.CustomResource):
                 google_compute_instance["test"]["id"],
                 google_compute_instance["test2"]["id"],
             ],
-            named_port=[
+            named_ports=[
                 {
                     "name": "http",
                     "port": "8080",
@@ -115,17 +115,17 @@ class InstanceGroup(pulumi.CustomResource):
             machine_type="n1-standard-1",
             zone="us-central1-c",
             boot_disk={
-                "initialize_params": {
+                "initializeParams": {
                     "image": debian_image.self_link,
                 },
             },
-            network_interface=[{
+            network_interfaces=[{
                 "network": "default",
             }])
         staging_group = gcp.compute.InstanceGroup("stagingGroup",
             zone="us-central1-c",
             instances=[staging_vm.id],
-            named_port=[
+            named_ports=[
                 {
                     "name": "http",
                     "port": "8080",
@@ -139,7 +139,7 @@ class InstanceGroup(pulumi.CustomResource):
         staging_service = gcp.compute.BackendService("stagingService",
             port_name="https",
             protocol="HTTPS",
-            backend=[{
+            backends=[{
                 "group": staging_group.id,
             }],
             health_checks=[staging_health.id])

@@ -56,6 +56,38 @@ import (
 // 	})
 // }
 // ```
+// ### Kms Crypto Key Asymmetric Sign
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/kms"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		keyring, err := kms.NewKeyRing(ctx, "keyring", &kms.KeyRingArgs{
+// 			Location: pulumi.String("global"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = kms.NewCryptoKey(ctx, "example-asymmetric-sign-key", &kms.CryptoKeyArgs{
+// 			KeyRing: keyring.ID(),
+// 			Purpose: pulumi.String("ASYMMETRIC_SIGN"),
+// 			VersionTemplate: &kms.CryptoKeyVersionTemplateArgs{
+// 				Algorithm: pulumi.String("EC_SIGN_P384_SHA384"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type CryptoKey struct {
 	pulumi.CustomResourceState
 
