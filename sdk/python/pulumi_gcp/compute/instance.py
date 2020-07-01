@@ -326,7 +326,7 @@ class Instance(pulumi.CustomResource):
             },
             metadata_startup_script="echo hi > /test.txt",
             network_interfaces=[{
-                "accessConfig": [{}],
+                "accessConfigs": [{}],
                 "network": "default",
             }],
             scratch_disks=[{

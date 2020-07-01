@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  *
  * const instance = new gcp.bigtable.Instance("instance", {
- *     cluster: [{
+ *     clusters: [{
  *         clusterId: "bt-instance",
  *         zone: "us-central1-b",
  *         numNodes: 3,
@@ -39,7 +39,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  *
  * const instance = new gcp.bigtable.Instance("instance", {
- *     cluster: [{
+ *     clusters: [{
  *         clusterId: "bt-instance",
  *         zone: "us-central1-b",
  *         numNodes: 3,
@@ -50,7 +50,7 @@ import * as utilities from "../utilities";
  * const ap = new gcp.bigquery.AppProfile("ap", {
  *     instance: instance.name,
  *     appProfileId: "bt-profile",
- *     single_cluster_routing: {
+ *     singleClusterRouting: {
  *         clusterId: "bt-instance",
  *         allowTransactionalWrites: true,
  *     },

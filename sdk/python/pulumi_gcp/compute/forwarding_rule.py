@@ -291,11 +291,11 @@ class ForwardingRule(pulumi.CustomResource):
             network=default_network.id)
         instance_template = gcp.compute.InstanceTemplate("instanceTemplate",
             machine_type="n1-standard-1",
-            network_interface=[{
+            network_interfaces=[{
                 "network": default_network.id,
                 "subnetwork": default_subnetwork.id,
             }],
-            disk=[{
+            disks=[{
                 "sourceImage": debian_image.self_link,
                 "autoDelete": True,
                 "boot": True,
@@ -306,7 +306,7 @@ class ForwardingRule(pulumi.CustomResource):
             ])
         rigm = gcp.compute.RegionInstanceGroupManager("rigm",
             region="us-central1",
-            version=[{
+            versions=[{
                 "instanceTemplate": instance_template.id,
                 "name": "primary",
             }],
@@ -315,7 +315,7 @@ class ForwardingRule(pulumi.CustomResource):
         fw1 = gcp.compute.Firewall("fw1",
             network=default_network.id,
             source_ranges=["10.1.2.0/24"],
-            allow=[
+            allows=[
                 {
                     "protocol": "tcp",
                 },
@@ -330,7 +330,7 @@ class ForwardingRule(pulumi.CustomResource):
         fw2 = gcp.compute.Firewall("fw2",
             network=default_network.id,
             source_ranges=["0.0.0.0/0"],
-            allow=[{
+            allows=[{
                 "protocol": "tcp",
                 "ports": ["22"],
             }],
@@ -342,7 +342,7 @@ class ForwardingRule(pulumi.CustomResource):
                 "130.211.0.0/22",
                 "35.191.0.0/16",
             ],
-            allow=[{
+            allows=[{
                 "protocol": "tcp",
             }],
             target_tags=["load-balanced-backend"],
@@ -351,7 +351,7 @@ class ForwardingRule(pulumi.CustomResource):
             network=default_network.id,
             source_ranges=["10.129.0.0/26"],
             target_tags=["load-balanced-backend"],
-            allow=[
+            allows=[
                 {
                     "protocol": "tcp",
                     "ports": ["80"],
@@ -373,7 +373,7 @@ class ForwardingRule(pulumi.CustomResource):
             })
         default_region_backend_service = gcp.compute.RegionBackendService("defaultRegionBackendService",
             load_balancing_scheme="INTERNAL_MANAGED",
-            backend=[{
+            backends=[{
                 "group": rigm.instance_group,
                 "balancingMode": "UTILIZATION",
                 "capacityScaler": 1,

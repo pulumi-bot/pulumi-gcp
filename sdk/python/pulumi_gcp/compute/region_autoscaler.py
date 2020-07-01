@@ -163,10 +163,10 @@ class RegionAutoscaler(pulumi.CustomResource):
                 "foo",
                 "bar",
             ],
-            disk=[{
+            disks=[{
                 "sourceImage": debian9.self_link,
             }],
-            network_interface=[{
+            network_interfaces=[{
                 "network": "default",
             }],
             metadata={
@@ -182,7 +182,7 @@ class RegionAutoscaler(pulumi.CustomResource):
         foobar_target_pool = gcp.compute.TargetPool("foobarTargetPool")
         foobar_region_instance_group_manager = gcp.compute.RegionInstanceGroupManager("foobarRegionInstanceGroupManager",
             region="us-central1",
-            version=[{
+            versions=[{
                 "instanceTemplate": foobar_instance_template.id,
                 "name": "primary",
             }],
@@ -195,7 +195,7 @@ class RegionAutoscaler(pulumi.CustomResource):
                 "maxReplicas": 5,
                 "minReplicas": 1,
                 "cooldownPeriod": 60,
-                "cpu_utilization": {
+                "cpuUtilization": {
                     "target": 0.5,
                 },
             })

@@ -46,7 +46,7 @@ import * as utilities from "../utilities";
  * const example_asymmetric_sign_key = new gcp.kms.CryptoKey("example-asymmetric-sign-key", {
  *     keyRing: keyring.id,
  *     purpose: "ASYMMETRIC_SIGN",
- *     version_template: {
+ *     versionTemplate: {
  *         algorithm: "EC_SIGN_P384_SHA384",
  *     },
  * });

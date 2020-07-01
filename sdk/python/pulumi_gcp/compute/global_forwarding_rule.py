@@ -175,14 +175,14 @@ class GlobalForwardingRule(pulumi.CustomResource):
         default_url_map = gcp.compute.URLMap("defaultURLMap",
             description="a description",
             default_service=default_backend_service.id,
-            host_rule=[{
+            host_rules=[{
                 "hosts": ["mysite.com"],
                 "pathMatcher": "allpaths",
             }],
-            path_matcher=[{
+            path_matchers=[{
                 "name": "allpaths",
                 "default_service": default_backend_service.id,
-                "path_rule": [{
+                "pathRules": [{
                     "paths": ["/*"],
                     "service": default_backend_service.id,
                 }],
@@ -204,16 +204,16 @@ class GlobalForwardingRule(pulumi.CustomResource):
             project="debian-cloud")
         instance_template = gcp.compute.InstanceTemplate("instanceTemplate",
             machine_type="n1-standard-1",
-            network_interface=[{
+            network_interfaces=[{
                 "network": "default",
             }],
-            disk=[{
+            disks=[{
                 "sourceImage": debian_image.self_link,
                 "autoDelete": True,
                 "boot": True,
             }])
         igm = gcp.compute.InstanceGroupManager("igm",
-            version=[{
+            versions=[{
                 "instanceTemplate": instance_template.id,
                 "name": "primary",
             }],
@@ -231,7 +231,7 @@ class GlobalForwardingRule(pulumi.CustomResource):
             protocol="HTTP",
             timeout_sec=10,
             load_balancing_scheme="INTERNAL_SELF_MANAGED",
-            backend=[{
+            backends=[{
                 "group": igm.instance_group,
                 "balancingMode": "RATE",
                 "capacityScaler": 0.4,
@@ -241,14 +241,14 @@ class GlobalForwardingRule(pulumi.CustomResource):
         default_url_map = gcp.compute.URLMap("defaultURLMap",
             description="a description",
             default_service=default_backend_service.id,
-            host_rule=[{
+            host_rules=[{
                 "hosts": ["mysite.com"],
                 "pathMatcher": "allpaths",
             }],
-            path_matcher=[{
+            path_matchers=[{
                 "name": "allpaths",
                 "default_service": default_backend_service.id,
-                "path_rule": [{
+                "pathRules": [{
                     "paths": ["/*"],
                     "service": default_backend_service.id,
                 }],
@@ -263,7 +263,7 @@ class GlobalForwardingRule(pulumi.CustomResource):
             ip_address="0.0.0.0",
             metadata_filters=[{
                 "filterMatchCriteria": "MATCH_ANY",
-                "filter_labels": [{
+                "filterLabels": [{
                     "name": "PLANET",
                     "value": "MARS",
                 }],

@@ -38,7 +38,7 @@ import * as utilities from "../utilities";
  *     displayName: "Test SLO for App Engine",
  *     goal: 0.9,
  *     calendarPeriod: "DAY",
- *     basic_sli: {
+ *     basicSli: {
  *         latency: {
  *             threshold: "1s",
  *         },

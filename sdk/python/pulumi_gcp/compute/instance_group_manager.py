@@ -147,12 +147,12 @@ class InstanceGroupManager(pulumi.CustomResource):
         appserver = gcp.compute.InstanceGroupManager("appserver",
             base_instance_name="app",
             zone="us-central1-a",
-            version=[{
+            versions=[{
                 "instanceTemplate": google_compute_instance_template["appserver"]["id"],
             }],
             target_pools=[google_compute_target_pool["appserver"]["id"]],
             target_size=2,
-            named_port=[{
+            named_ports=[{
                 "name": "customHTTP",
                 "port": 8888,
             }],
@@ -170,7 +170,7 @@ class InstanceGroupManager(pulumi.CustomResource):
             base_instance_name="app",
             zone="us-central1-a",
             target_size=5,
-            version=[
+            versions=[
                 {
                     "name": "appserver",
                     "instanceTemplate": google_compute_instance_template["appserver"]["id"],

@@ -156,12 +156,12 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
                 "us-central1-a",
                 "us-central1-f",
             ],
-            version=[{
+            versions=[{
                 "instanceTemplate": google_compute_instance_template["appserver"]["id"],
             }],
             target_pools=[google_compute_target_pool["appserver"]["id"]],
             target_size=2,
-            named_port=[{
+            named_ports=[{
                 "name": "custom",
                 "port": 8888,
             }],
@@ -179,7 +179,7 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
             base_instance_name="app",
             region="us-central1",
             target_size=5,
-            version=[
+            versions=[
                 {
                     "instanceTemplate": google_compute_instance_template["appserver"]["id"],
                 },

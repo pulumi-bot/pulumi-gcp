@@ -105,10 +105,10 @@ namespace Pulumi.Gcp.Sql
     ///             Settings = new Gcp.Sql.Inputs.DatabaseInstanceSettingsArgs
     ///             {
     ///                 Tier = "db-f1-micro",
-    ///                 Ip_configuration = 
+    ///                 IpConfiguration = new Gcp.Sql.Inputs.DatabaseInstanceSettingsIpConfigurationArgs
     ///                 {
-    ///                     { "ipv4Enabled", false },
-    ///                     { "privateNetwork", privateNetwork.Id },
+    ///                     Ipv4Enabled = false,
+    ///                     PrivateNetwork = privateNetwork.Id,
     ///                 },
     ///             },
     ///         });

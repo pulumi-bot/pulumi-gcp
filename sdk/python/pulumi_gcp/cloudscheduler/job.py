@@ -215,7 +215,7 @@ class Job(pulumi.CustomResource):
             http_target={
                 "httpMethod": "GET",
                 "uri": "https://cloudscheduler.googleapis.com/v1/projects/my-project-name/locations/us-west1/jobs",
-                "oauth_token": {
+                "oauthToken": {
                     "service_account_email": default.email,
                 },
             })
@@ -235,7 +235,7 @@ class Job(pulumi.CustomResource):
             http_target={
                 "httpMethod": "GET",
                 "uri": "https://example.com/ping",
-                "oidc_token": {
+                "oidcToken": {
                     "service_account_email": default.email,
                 },
             })

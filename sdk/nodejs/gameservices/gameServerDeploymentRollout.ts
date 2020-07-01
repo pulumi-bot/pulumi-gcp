@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  *     configId: "tf-test-config",
  *     deploymentId: defaultGameServerDeployment.deploymentId,
  *     description: "a config description",
- *     fleet_configs: [{
+ *     fleetConfigs: [{
  *         name: "some-non-guid",
  *         fleetSpec: JSON.stringify({
  *             replicas: 1,

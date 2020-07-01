@@ -280,7 +280,7 @@ class Table(pulumi.CustomResource):
             external_data_configuration={
                 "autodetect": True,
                 "sourceFormat": "GOOGLE_SHEETS",
-                "google_sheets_options": {
+                "googleSheetsOptions": {
                     "skipLeadingRows": 1,
                 },
                 "sourceUris": ["https://docs.google.com/spreadsheets/d/123456789012345"],

@@ -141,15 +141,15 @@ class Bucket(pulumi.CustomResource):
             bucket_policy_only=True,
             cors=[{
                 "maxAgeSeconds": 3600,
-                "method": [
+                "methods": [
                     "GET",
                     "HEAD",
                     "PUT",
                     "POST",
                     "DELETE",
                 ],
-                "origin": ["http://image-store.com"],
-                "responseHeader": ["*"],
+                "origins": ["http://image-store.com"],
+                "responseHeaders": ["*"],
             }],
             force_destroy=True,
             location="EU",

@@ -84,11 +84,11 @@ class TargetInstance(pulumi.CustomResource):
             machine_type="n1-standard-1",
             zone="us-central1-a",
             boot_disk={
-                "initialize_params": {
+                "initializeParams": {
                     "image": vmimage.self_link,
                 },
             },
-            network_interface=[{
+            network_interfaces=[{
                 "network": "default",
             }])
         default = gcp.compute.TargetInstance("default", instance=target_vm.id)

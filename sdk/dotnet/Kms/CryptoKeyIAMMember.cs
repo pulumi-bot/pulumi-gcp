@@ -39,15 +39,15 @@ namespace Pulumi.Gcp.Kms
     ///         });
     ///         var admin = Output.Create(Gcp.Organizations.GetIAMPolicy.InvokeAsync(new Gcp.Organizations.GetIAMPolicyArgs
     ///         {
-    ///             Binding = 
+    ///             Bindings = 
     ///             {
-    ///                 
+    ///                 new Gcp.Organizations.Inputs.GetIAMPolicyBindingArgs
     ///                 {
-    ///                     { "role", "roles/cloudkms.cryptoKeyEncrypter" },
-    ///                     { "members", 
+    ///                     Role = "roles/cloudkms.cryptoKeyEncrypter",
+    ///                     Members = 
     ///                     {
     ///                         "user:jane@example.com",
-    ///                     } },
+    ///                     },
     ///                 },
     ///             },
     ///         }));

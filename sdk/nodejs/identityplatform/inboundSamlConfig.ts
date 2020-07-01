@@ -23,15 +23,15 @@ import * as utilities from "../utilities";
  *
  * const samlConfig = new gcp.identityplatform.InboundSamlConfig("samlConfig", {
  *     displayName: "Display Name",
- *     idp_config: {
+ *     idpConfig: {
  *         idpEntityId: "tf-idp",
  *         signRequest: true,
  *         ssoUrl: "https://example.com",
- *         idp_certificates: [{
+ *         idpCertificates: [{
  *             x509Certificate: fs.readFileSync("test-fixtures/rsa_cert.pem"),
  *         }],
  *     },
- *     sp_config: {
+ *     spConfig: {
  *         spEntityId: "tf-sp",
  *         callbackUri: "https://example.com",
  *     },

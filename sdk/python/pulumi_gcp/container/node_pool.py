@@ -183,7 +183,7 @@ class NodePool(pulumi.CustomResource):
             master_auth={
                 "username": "",
                 "password": "",
-                "client_certificate_config": {
+                "clientCertificateConfig": {
                     "issueClientCertificate": False,
                 },
             },
@@ -195,7 +195,7 @@ class NodePool(pulumi.CustomResource):
                 "metadata": {
                     "disable-legacy-endpoints": "true",
                 },
-                "guest_accelerator": [{
+                "guest_accelerators": [{
                     "type": "nvidia-tesla-k80",
                     "count": 1,
                 }],

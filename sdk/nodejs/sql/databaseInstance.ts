@@ -79,7 +79,7 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  *     settings: {
  *         tier: "db-f1-micro",
- *         ip_configuration: {
+ *         ipConfiguration: {
  *             ipv4Enabled: false,
  *             privateNetwork: privateNetwork.id,
  *         },

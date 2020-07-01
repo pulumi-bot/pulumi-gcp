@@ -54,7 +54,7 @@ class DatasetIamBinding(pulumi.CustomResource):
         import pulumi
         import pulumi_gcp as gcp
 
-        owner = gcp.organizations.get_iam_policy(binding=[{
+        owner = gcp.organizations.get_iam_policy(bindings=[{
             "role": "roles/dataOwner",
             "members": ["user:jane@example.com"],
         }])

@@ -72,16 +72,16 @@ import (
 // 					FieldId:     pulumi.String("pii_type"),
 // 					DisplayName: pulumi.String("PII type"),
 // 					Type: &datacatalog.TagTemplateFieldTypeArgs{
-// 						Enum_type: pulumi.Map{
-// 							"allowed_values": pulumi.MapArray{
-// 								pulumi.Map{
-// 									"displayName": pulumi.String("EMAIL"),
+// 						EnumType: &datacatalog.TagTemplateFieldTypeEnumTypeArgs{
+// 							AllowedValues: datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArray{
+// 								&datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArgs{
+// 									DisplayName: pulumi.String("EMAIL"),
 // 								},
-// 								pulumi.Map{
-// 									"displayName": pulumi.String("SOCIAL SECURITY NUMBER"),
+// 								&datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArgs{
+// 									DisplayName: pulumi.String("SOCIAL SECURITY NUMBER"),
 // 								},
-// 								pulumi.Map{
-// 									"displayName": pulumi.String("NONE"),
+// 								&datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArgs{
+// 									DisplayName: pulumi.String("NONE"),
 // 								},
 // 							},
 // 						},
@@ -170,16 +170,16 @@ import (
 // 					FieldId:     pulumi.String("pii_type"),
 // 					DisplayName: pulumi.String("PII type"),
 // 					Type: &datacatalog.TagTemplateFieldTypeArgs{
-// 						Enum_type: pulumi.Map{
-// 							"allowed_values": pulumi.MapArray{
-// 								pulumi.Map{
-// 									"displayName": pulumi.String("EMAIL"),
+// 						EnumType: &datacatalog.TagTemplateFieldTypeEnumTypeArgs{
+// 							AllowedValues: datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArray{
+// 								&datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArgs{
+// 									DisplayName: pulumi.String("EMAIL"),
 // 								},
-// 								pulumi.Map{
-// 									"displayName": pulumi.String("SOCIAL SECURITY NUMBER"),
+// 								&datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArgs{
+// 									DisplayName: pulumi.String("SOCIAL SECURITY NUMBER"),
 // 								},
-// 								pulumi.Map{
-// 									"displayName": pulumi.String("NONE"),
+// 								&datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArgs{
+// 									DisplayName: pulumi.String("NONE"),
 // 								},
 // 							},
 // 						},
@@ -262,16 +262,16 @@ import (
 // 					FieldId:     pulumi.String("pii_type"),
 // 					DisplayName: pulumi.String("PII type"),
 // 					Type: &datacatalog.TagTemplateFieldTypeArgs{
-// 						Enum_type: pulumi.Map{
-// 							"allowed_values": pulumi.MapArray{
-// 								pulumi.Map{
-// 									"displayName": pulumi.String("EMAIL"),
+// 						EnumType: &datacatalog.TagTemplateFieldTypeEnumTypeArgs{
+// 							AllowedValues: datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArray{
+// 								&datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArgs{
+// 									DisplayName: pulumi.String("EMAIL"),
 // 								},
-// 								pulumi.Map{
-// 									"displayName": pulumi.String("SOCIAL SECURITY NUMBER"),
+// 								&datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArgs{
+// 									DisplayName: pulumi.String("SOCIAL SECURITY NUMBER"),
 // 								},
-// 								pulumi.Map{
-// 									"displayName": pulumi.String("NONE"),
+// 								&datacatalog.TagTemplateFieldTypeEnumTypeAllowedValueArgs{
+// 									DisplayName: pulumi.String("NONE"),
 // 								},
 // 							},
 // 						},

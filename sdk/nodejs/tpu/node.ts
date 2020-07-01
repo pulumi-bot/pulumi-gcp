@@ -47,7 +47,7 @@ import * as utilities from "../utilities";
  *     labels: {
  *         foo: "bar",
  *     },
- *     scheduling_config: {
+ *     schedulingConfig: {
  *         preemptible: true,
  *     },
  * });

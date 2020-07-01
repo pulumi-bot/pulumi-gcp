@@ -83,14 +83,14 @@ class RegionTargetHttpProxy(pulumi.CustomResource):
         default_region_url_map = gcp.compute.RegionUrlMap("defaultRegionUrlMap",
             region="us-central1",
             default_service=default_region_backend_service.id,
-            host_rule=[{
+            host_rules=[{
                 "hosts": ["mysite.com"],
                 "pathMatcher": "allpaths",
             }],
-            path_matcher=[{
+            path_matchers=[{
                 "name": "allpaths",
                 "default_service": default_region_backend_service.id,
-                "path_rule": [{
+                "pathRules": [{
                     "paths": ["/*"],
                     "service": default_region_backend_service.id,
                 }],

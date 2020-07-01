@@ -34,14 +34,14 @@ import * as utilities from "../utilities";
  *     },
  *     query: {
  *         query: "SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
- *         destination_table: {
+ *         destinationTable: {
  *             projectId: foo.project,
  *             datasetId: foo.datasetId,
  *             tableId: foo.tableId,
  *         },
  *         allowLargeResults: true,
  *         flattenResults: true,
- *         script_options: {
+ *         scriptOptions: {
  *             keyResultStatement: "LAST",
  *         },
  *     },
@@ -70,15 +70,15 @@ import * as utilities from "../utilities";
  *     },
  *     query: {
  *         query: "SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
- *         destination_table: {
+ *         destinationTable: {
  *             tableId: foo.id,
  *         },
- *         default_dataset: {
+ *         defaultDataset: {
  *             datasetId: bar.id,
  *         },
  *         allowLargeResults: true,
  *         flattenResults: true,
- *         script_options: {
+ *         scriptOptions: {
  *             keyResultStatement: "LAST",
  *         },
  *     },
@@ -107,7 +107,7 @@ import * as utilities from "../utilities";
  *     },
  *     load: {
  *         sourceUris: ["gs://cloud-samples-data/bigquery/us-states/us-states-by-date.csv"],
- *         destination_table: {
+ *         destinationTable: {
  *             projectId: foo.project,
  *             datasetId: foo.datasetId,
  *             tableId: foo.tableId,
@@ -161,7 +161,7 @@ import * as utilities from "../utilities";
  *     jobId: "job_extract",
  *     extract: {
  *         destinationUris: [pulumi.interpolate`${dest.url}/extract`],
- *         source_table: {
+ *         sourceTable: {
  *             projectId: source_oneTable.project,
  *             datasetId: source_oneTable.datasetId,
  *             tableId: source_oneTable.tableId,

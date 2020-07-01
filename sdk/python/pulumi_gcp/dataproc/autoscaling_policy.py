@@ -126,7 +126,7 @@ class AutoscalingPolicy(pulumi.CustomResource):
                 "max_instances": 3,
             },
             basic_algorithm={
-                "yarn_config": {
+                "yarnConfig": {
                     "gracefulDecommissionTimeout": "30s",
                     "scaleUpFactor": 0.5,
                     "scaleDownFactor": 0.5,
@@ -135,7 +135,7 @@ class AutoscalingPolicy(pulumi.CustomResource):
         basic = gcp.dataproc.Cluster("basic",
             region="us-central1",
             cluster_config={
-                "autoscaling_config": {
+                "autoscalingConfig": {
                     "policyUri": asp.name,
                 },
             })

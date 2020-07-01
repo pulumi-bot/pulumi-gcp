@@ -46,14 +46,14 @@ import * as utilities from "../utilities";
  * const my_logged_instance = new gcp.compute.Instance("my-logged-instance", {
  *     machineType: "n1-standard-1",
  *     zone: "us-central1-a",
- *     boot_disk: {
- *         initialize_params: {
+ *     bootDisk: {
+ *         initializeParams: {
  *             image: "debian-cloud/debian-9",
  *         },
  *     },
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: "default",
- *         access_config: [{}],
+ *         accessConfigs: [{}],
  *     }],
  * });
  * // A bucket to store logs in

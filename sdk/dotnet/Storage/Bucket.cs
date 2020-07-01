@@ -42,7 +42,7 @@ namespace Pulumi.Gcp.Storage
     ///                 new Gcp.Storage.Inputs.BucketCorArgs
     ///                 {
     ///                     MaxAgeSeconds = 3600,
-    ///                     Method = 
+    ///                     Methods = 
     ///                     {
     ///                         "GET",
     ///                         "HEAD",
@@ -50,11 +50,11 @@ namespace Pulumi.Gcp.Storage
     ///                         "POST",
     ///                         "DELETE",
     ///                     },
-    ///                     Origin = 
+    ///                     Origins = 
     ///                     {
     ///                         "http://image-store.com",
     ///                     },
-    ///                     ResponseHeader = 
+    ///                     ResponseHeaders = 
     ///                     {
     ///                         "*",
     ///                     },

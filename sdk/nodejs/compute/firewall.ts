@@ -36,7 +36,7 @@ import * as utilities from "../utilities";
  * const defaultNetwork = new gcp.compute.Network("defaultNetwork", {});
  * const defaultFirewall = new gcp.compute.Firewall("defaultFirewall", {
  *     network: defaultNetwork.name,
- *     allow: [
+ *     allows: [
  *         {
  *             protocol: "icmp",
  *         },

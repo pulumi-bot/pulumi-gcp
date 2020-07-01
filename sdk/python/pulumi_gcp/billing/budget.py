@@ -109,7 +109,7 @@ class Budget(pulumi.CustomResource):
             billing_account=account.id,
             display_name="Example Billing Budget",
             amount={
-                "specified_amount": {
+                "specifiedAmount": {
                     "currencyCode": "USD",
                     "units": "100000",
                 },
@@ -134,7 +134,7 @@ class Budget(pulumi.CustomResource):
                 "services": ["services/24E6-581D-38E5"],
             },
             amount={
-                "specified_amount": {
+                "specifiedAmount": {
                     "currencyCode": "USD",
                     "units": "100000",
                 },

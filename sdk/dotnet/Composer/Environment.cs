@@ -91,13 +91,13 @@ namespace Pulumi.Gcp.Composer
     ///             Config = new Gcp.Composer.Inputs.EnvironmentConfigArgs
     ///             {
     ///                 NodeCount = 4,
-    ///                 Node_config = 
+    ///                 NodeConfig = new Gcp.Composer.Inputs.EnvironmentConfigNodeConfigArgs
     ///                 {
-    ///                     { "zone", "us-central1-a" },
-    ///                     { "machineType", "n1-standard-1" },
-    ///                     { "network", testNetwork.Id },
-    ///                     { "subnetwork", testSubnetwork.Id },
-    ///                     { "serviceAccount", testAccount.Name },
+    ///                     Zone = "us-central1-a",
+    ///                     MachineType = "n1-standard-1",
+    ///                     Network = testNetwork.Id,
+    ///                     Subnetwork = testSubnetwork.Id,
+    ///                     ServiceAccount = testAccount.Name,
     ///                 },
     ///             },
     ///         });

@@ -45,7 +45,7 @@ import * as utilities from "../utilities";
  * const connection = new gcp.bigquery.Connection("connection", {
  *     friendlyName: "👋",
  *     description: "a riveting description",
- *     cloud_sql: {
+ *     cloudSql: {
  *         instanceId: instance.connectionName,
  *         database: db.name,
  *         type: "POSTGRES",
@@ -84,7 +84,7 @@ import * as utilities from "../utilities";
  *     location: "US",
  *     friendlyName: "👋",
  *     description: "a riveting description",
- *     cloud_sql: {
+ *     cloudSql: {
  *         instanceId: instance.connectionName,
  *         database: db.name,
  *         type: "POSTGRES",

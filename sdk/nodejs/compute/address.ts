@@ -79,14 +79,14 @@ import * as utilities from "../utilities";
  * const instanceWithIp = new gcp.compute.Instance("instanceWithIp", {
  *     machineType: "f1-micro",
  *     zone: "us-central1-a",
- *     boot_disk: {
- *         initialize_params: {
+ *     bootDisk: {
+ *         initializeParams: {
  *             image: debianImage.then(debianImage => debianImage.selfLink),
  *         },
  *     },
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: "default",
- *         access_config: [{
+ *         accessConfigs: [{
  *             natIp: static.address,
  *         }],
  *     }],

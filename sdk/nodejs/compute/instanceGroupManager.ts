@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  *     timeoutSec: 5,
  *     healthyThreshold: 2,
  *     unhealthyThreshold: 10,
- *     http_health_check: {
+ *     httpHealthCheck: {
  *         requestPath: "/healthz",
  *         port: "8080",
  *     },
@@ -34,16 +34,16 @@ import * as utilities from "../utilities";
  * const appserver = new gcp.compute.InstanceGroupManager("appserver", {
  *     baseInstanceName: "app",
  *     zone: "us-central1-a",
- *     version: [{
+ *     versions: [{
  *         instanceTemplate: google_compute_instance_template.appserver.id,
  *     }],
  *     targetPools: [google_compute_target_pool.appserver.id],
  *     targetSize: 2,
- *     named_port: [{
+ *     namedPorts: [{
  *         name: "customHTTP",
  *         port: 8888,
  *     }],
- *     auto_healing_policies: {
+ *     autoHealingPolicies: {
  *         healthCheck: autohealing.id,
  *         initialDelaySec: 300,
  *     },
@@ -58,7 +58,7 @@ import * as utilities from "../utilities";
  *     baseInstanceName: "app",
  *     zone: "us-central1-a",
  *     targetSize: 5,
- *     version: [
+ *     versions: [
  *         {
  *             name: "appserver",
  *             instanceTemplate: google_compute_instance_template.appserver.id,
@@ -66,7 +66,7 @@ import * as utilities from "../utilities";
  *         {
  *             name: "appserver-canary",
  *             instanceTemplate: google_compute_instance_template["appserver-canary"].id,
- *             target_size: {
+ *             targetSize: {
  *                 fixed: 1,
  *             },
  *         },

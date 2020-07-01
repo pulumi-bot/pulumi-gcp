@@ -194,7 +194,7 @@ class ManagedZone(pulumi.CustomResource):
                 ],
             },
             forwarding_config={
-                "target_name_servers": [
+                "targetNameServers": [
                     {
                         "ipv4Address": "172.16.1.10",
                     },
@@ -222,7 +222,7 @@ class ManagedZone(pulumi.CustomResource):
                 }],
             },
             peering_config={
-                "target_network": {
+                "targetNetwork": {
                     "networkUrl": network_target.id,
                 },
             })

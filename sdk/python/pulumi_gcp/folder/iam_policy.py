@@ -39,7 +39,7 @@ class IAMPolicy(pulumi.CustomResource):
         department1 = gcp.organizations.Folder("department1",
             display_name="Department 1",
             parent="organizations/1234567")
-        admin = gcp.organizations.get_iam_policy(binding=[{
+        admin = gcp.organizations.get_iam_policy(bindings=[{
             "role": "roles/editor",
             "members": ["user:jane@example.com"],
         }])
