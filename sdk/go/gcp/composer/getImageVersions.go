@@ -28,7 +28,7 @@ import (
 // 		_, err = composer.NewEnvironment(ctx, "test", &composer.EnvironmentArgs{
 // 			Region: pulumi.String("us-central1"),
 // 			Config: &composer.EnvironmentConfigArgs{
-// 				Software_config: pulumi.Map{
+// 				Software_config: pulumi.StringMap{
 // 					"imageVersion": pulumi.String(all.ImageVersions[0].ImageVersionId),
 // 				},
 // 			},

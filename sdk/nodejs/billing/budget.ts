@@ -37,6 +37,8 @@ import * as utilities from "../utilities";
  *     threshold_rules: [{
  *         thresholdPercent: 0.5,
  *     }],
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  * ### Billing Budget Filter
@@ -71,6 +73,8 @@ import * as utilities from "../utilities";
  *             spendBasis: "FORECASTED_SPEND",
  *         },
  *     ],
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

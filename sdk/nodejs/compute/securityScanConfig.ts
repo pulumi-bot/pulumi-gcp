@@ -25,11 +25,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const scannerStaticIp = new gcp.compute.Address("scannerStaticIp", {});
+ * const scannerStaticIp = new gcp.compute.Address("scannerStaticIp", {}, {
+ *     provider: google_beta,
+ * });
  * const scan_config = new gcp.compute.SecurityScanConfig("scan-config", {
  *     displayName: "scan-config",
  *     startingUrls: [pulumi.interpolate`http://${scannerStaticIp.address}`],
  *     targetPlatforms: ["COMPUTE"],
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

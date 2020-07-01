@@ -25,7 +25,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewSecurityPolicy(ctx, "policy", &compute.SecurityPolicyArgs{
+// 		_, err := compute.NewSecurityPolicy(ctx, "policy", &compute.SecurityPolicyArgs{
 // 			Rules: compute.SecurityPolicyRuleArray{
 // 				&compute.SecurityPolicyRuleArgs{
 // 					Action:      pulumi.String("deny(403)"),

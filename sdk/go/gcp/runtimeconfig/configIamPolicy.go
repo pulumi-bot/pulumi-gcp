@@ -47,8 +47,8 @@ import (
 // 			return err
 // 		}
 // 		_, err = runtimeconfig.NewConfigIamPolicy(ctx, "policy", &runtimeconfig.ConfigIamPolicyArgs{
-// 			Project:    pulumi.String(google_runtimeconfig_config.Config.Project),
-// 			Config:     pulumi.String(google_runtimeconfig_config.Config.Name),
+// 			Project:    pulumi.Any(google_runtimeconfig_config.Config.Project),
+// 			Config:     pulumi.Any(google_runtimeconfig_config.Config.Name),
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})
 // 		if err != nil {
@@ -71,9 +71,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = runtimeconfig.NewConfigIamBinding(ctx, "binding", &runtimeconfig.ConfigIamBindingArgs{
-// 			Project: pulumi.String(google_runtimeconfig_config.Config.Project),
-// 			Config:  pulumi.String(google_runtimeconfig_config.Config.Name),
+// 		_, err := runtimeconfig.NewConfigIamBinding(ctx, "binding", &runtimeconfig.ConfigIamBindingArgs{
+// 			Project: pulumi.Any(google_runtimeconfig_config.Config.Project),
+// 			Config:  pulumi.Any(google_runtimeconfig_config.Config.Name),
 // 			Role:    pulumi.String("roles/viewer"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -99,9 +99,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = runtimeconfig.NewConfigIamMember(ctx, "member", &runtimeconfig.ConfigIamMemberArgs{
-// 			Project: pulumi.String(google_runtimeconfig_config.Config.Project),
-// 			Config:  pulumi.String(google_runtimeconfig_config.Config.Name),
+// 		_, err := runtimeconfig.NewConfigIamMember(ctx, "member", &runtimeconfig.ConfigIamMemberArgs{
+// 			Project: pulumi.Any(google_runtimeconfig_config.Config.Project),
+// 			Config:  pulumi.Any(google_runtimeconfig_config.Config.Name),
 // 			Role:    pulumi.String("roles/viewer"),
 // 			Member:  pulumi.String("user:jane@example.com"),
 // 		})

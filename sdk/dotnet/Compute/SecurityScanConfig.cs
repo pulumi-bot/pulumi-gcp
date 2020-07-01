@@ -34,6 +34,9 @@ namespace Pulumi.Gcp.Compute
     ///     {
     ///         var scannerStaticIp = new Gcp.Compute.Address("scannerStaticIp", new Gcp.Compute.AddressArgs
     ///         {
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
     ///         });
     ///         var scan_config = new Gcp.Compute.SecurityScanConfig("scan-config", new Gcp.Compute.SecurityScanConfigArgs
     ///         {
@@ -46,6 +49,9 @@ namespace Pulumi.Gcp.Compute
     ///             {
     ///                 "COMPUTE",
     ///             },
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
     ///         });
     ///     }
     /// 

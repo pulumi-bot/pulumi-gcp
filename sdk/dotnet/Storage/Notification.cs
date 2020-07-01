@@ -66,6 +66,12 @@ namespace Pulumi.Gcp.Storage
     ///             {
     ///                 { "new-attribute", "new-attribute-value" },
     ///             },
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 binding,
+    ///             },
     ///         });
     ///         // Enable notifications by giving the correct IAM permission to the unique service account.
     ///     }
