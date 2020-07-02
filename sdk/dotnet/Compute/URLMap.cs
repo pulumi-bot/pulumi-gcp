@@ -18,6 +18,696 @@ namespace Pulumi.Gcp.Compute
     /// * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/urlMaps)
     /// 
     /// ## Example Usage
+    /// ### Url Map Basic
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var @default = new Gcp.Compute.HttpHealthCheck("default", new Gcp.Compute.HttpHealthCheckArgs
+    ///         {
+    ///             RequestPath = "/",
+    ///             CheckIntervalSec = 1,
+    ///             TimeoutSec = 1,
+    ///         });
+    ///         var login = new Gcp.Compute.BackendService("login", new Gcp.Compute.BackendServiceArgs
+    ///         {
+    ///             PortName = "http",
+    ///             Protocol = "HTTP",
+    ///             TimeoutSec = 10,
+    ///             HealthChecks = 
+    ///             {
+    ///                 @default.Id,
+    ///             },
+    ///         });
+    ///         var home = new Gcp.Compute.BackendService("home", new Gcp.Compute.BackendServiceArgs
+    ///         {
+    ///             PortName = "http",
+    ///             Protocol = "HTTP",
+    ///             TimeoutSec = 10,
+    ///             HealthChecks = 
+    ///             {
+    ///                 @default.Id,
+    ///             },
+    ///         });
+    ///         var staticBucket = new Gcp.Storage.Bucket("staticBucket", new Gcp.Storage.BucketArgs
+    ///         {
+    ///             Location = "US",
+    ///         });
+    ///         var staticBackendBucket = new Gcp.Compute.BackendBucket("staticBackendBucket", new Gcp.Compute.BackendBucketArgs
+    ///         {
+    ///             BucketName = staticBucket.Name,
+    ///             EnableCdn = true,
+    ///         });
+    ///         var urlmap = new Gcp.Compute.URLMap("urlmap", new Gcp.Compute.URLMapArgs
+    ///         {
+    ///             Description = "a description",
+    ///             DefaultService = home.Id,
+    ///             HostRules = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapHostRuleArgs
+    ///                 {
+    ///                     Hosts = 
+    ///                     {
+    ///                         "mysite.com",
+    ///                     },
+    ///                     PathMatcher = "mysite",
+    ///                 },
+    ///                 new Gcp.Compute.Inputs.URLMapHostRuleArgs
+    ///                 {
+    ///                     Hosts = 
+    ///                     {
+    ///                         "myothersite.com",
+    ///                     },
+    ///                     PathMatcher = "otherpaths",
+    ///                 },
+    ///             },
+    ///             PathMatchers = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapPathMatcherArgs
+    ///                 {
+    ///                     Name = "mysite",
+    ///                     DefaultService = home.Id,
+    ///                     PathRules = 
+    ///                     {
+    ///                         new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleArgs
+    ///                         {
+    ///                             Paths = 
+    ///                             {
+    ///                                 "/home",
+    ///                             },
+    ///                             Service = home.Id,
+    ///                         },
+    ///                         new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleArgs
+    ///                         {
+    ///                             Paths = 
+    ///                             {
+    ///                                 "/login",
+    ///                             },
+    ///                             Service = login.Id,
+    ///                         },
+    ///                         new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleArgs
+    ///                         {
+    ///                             Paths = 
+    ///                             {
+    ///                                 "/static",
+    ///                             },
+    ///                             Service = staticBackendBucket.Id,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 new Gcp.Compute.Inputs.URLMapPathMatcherArgs
+    ///                 {
+    ///                     Name = "otherpaths",
+    ///                     DefaultService = home.Id,
+    ///                 },
+    ///             },
+    ///             Tests = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapTestArgs
+    ///                 {
+    ///                     Service = home.Id,
+    ///                     Host = "hi.com",
+    ///                     Path = "/home",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Url Map Traffic Director Route
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var @default = new Gcp.Compute.HealthCheck("default", new Gcp.Compute.HealthCheckArgs
+    ///         {
+    ///             HttpHealthCheck = new Gcp.Compute.Inputs.HealthCheckHttpHealthCheckArgs
+    ///             {
+    ///                 Port = 80,
+    ///             },
+    ///         });
+    ///         var home = new Gcp.Compute.BackendService("home", new Gcp.Compute.BackendServiceArgs
+    ///         {
+    ///             PortName = "http",
+    ///             Protocol = "HTTP",
+    ///             TimeoutSec = 10,
+    ///             HealthChecks = 
+    ///             {
+    ///                 @default.Id,
+    ///             },
+    ///             LoadBalancingScheme = "INTERNAL_SELF_MANAGED",
+    ///         });
+    ///         var urlmap = new Gcp.Compute.URLMap("urlmap", new Gcp.Compute.URLMapArgs
+    ///         {
+    ///             Description = "a description",
+    ///             DefaultService = home.Id,
+    ///             HostRules = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapHostRuleArgs
+    ///                 {
+    ///                     Hosts = 
+    ///                     {
+    ///                         "mysite.com",
+    ///                     },
+    ///                     PathMatcher = "allpaths",
+    ///                 },
+    ///             },
+    ///             PathMatchers = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapPathMatcherArgs
+    ///                 {
+    ///                     Name = "allpaths",
+    ///                     DefaultService = home.Id,
+    ///                     RouteRules = 
+    ///                     {
+    ///                         new Gcp.Compute.Inputs.URLMapPathMatcherRouteRuleArgs
+    ///                         {
+    ///                             Priority = 1,
+    ///                             HeaderAction = new Gcp.Compute.Inputs.URLMapPathMatcherRouteRuleHeaderActionArgs
+    ///                             {
+    ///                                 RequestHeadersToRemoves = 
+    ///                                 {
+    ///                                     "RemoveMe2",
+    ///                                 },
+    ///                                 RequestHeadersToAdds = 
+    ///                                 {
+    ///                                     new Gcp.Compute.Inputs.URLMapPathMatcherRouteRuleHeaderActionRequestHeadersToAddArgs
+    ///                                     {
+    ///                                         HeaderName = "AddSomethingElse",
+    ///                                         HeaderValue = "MyOtherValue",
+    ///                                         Replace = true,
+    ///                                     },
+    ///                                 },
+    ///                                 ResponseHeadersToRemoves = 
+    ///                                 {
+    ///                                     "RemoveMe3",
+    ///                                 },
+    ///                                 ResponseHeadersToAdds = 
+    ///                                 {
+    ///                                     new Gcp.Compute.Inputs.URLMapPathMatcherRouteRuleHeaderActionResponseHeadersToAddArgs
+    ///                                     {
+    ///                                         HeaderName = "AddMe",
+    ///                                         HeaderValue = "MyValue",
+    ///                                         Replace = false,
+    ///                                     },
+    ///                                 },
+    ///                             },
+    ///                             MatchRules = 
+    ///                             {
+    ///                                 new Gcp.Compute.Inputs.URLMapPathMatcherRouteRuleMatchRuleArgs
+    ///                                 {
+    ///                                     FullPathMatch = "a full path",
+    ///                                     HeaderMatches = 
+    ///                                     {
+    ///                                         new Gcp.Compute.Inputs.URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs
+    ///                                         {
+    ///                                             HeaderName = "someheader",
+    ///                                             ExactMatch = "match this exactly",
+    ///                                             InvertMatch = true,
+    ///                                         },
+    ///                                     },
+    ///                                     IgnoreCase = true,
+    ///                                     MetadataFilters = 
+    ///                                     {
+    ///                                         new Gcp.Compute.Inputs.URLMapPathMatcherRouteRuleMatchRuleMetadataFilterArgs
+    ///                                         {
+    ///                                             FilterMatchCriteria = "MATCH_ANY",
+    ///                                             FilterLabels = 
+    ///                                             {
+    ///                                                 new Gcp.Compute.Inputs.URLMapPathMatcherRouteRuleMatchRuleMetadataFilterFilterLabelArgs
+    ///                                                 {
+    ///                                                     Name = "PLANET",
+    ///                                                     Value = "MARS",
+    ///                                                 },
+    ///                                             },
+    ///                                         },
+    ///                                     },
+    ///                                     QueryParameterMatches = 
+    ///                                     {
+    ///                                         new Gcp.Compute.Inputs.URLMapPathMatcherRouteRuleMatchRuleQueryParameterMatchArgs
+    ///                                         {
+    ///                                             Name = "a query parameter",
+    ///                                             PresentMatch = true,
+    ///                                         },
+    ///                                     },
+    ///                                 },
+    ///                             },
+    ///                             UrlRedirect = new Gcp.Compute.Inputs.URLMapPathMatcherRouteRuleUrlRedirectArgs
+    ///                             {
+    ///                                 HostRedirect = "A host",
+    ///                                 HttpsRedirect = false,
+    ///                                 PathRedirect = "some/path",
+    ///                                 RedirectResponseCode = "TEMPORARY_REDIRECT",
+    ///                                 StripQuery = true,
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///             Tests = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapTestArgs
+    ///                 {
+    ///                     Service = home.Id,
+    ///                     Host = "hi.com",
+    ///                     Path = "/home",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Url Map Traffic Director Route Partial
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var @default = new Gcp.Compute.HealthCheck("default", new Gcp.Compute.HealthCheckArgs
+    ///         {
+    ///             HttpHealthCheck = new Gcp.Compute.Inputs.HealthCheckHttpHealthCheckArgs
+    ///             {
+    ///                 Port = 80,
+    ///             },
+    ///         });
+    ///         var home = new Gcp.Compute.BackendService("home", new Gcp.Compute.BackendServiceArgs
+    ///         {
+    ///             PortName = "http",
+    ///             Protocol = "HTTP",
+    ///             TimeoutSec = 10,
+    ///             HealthChecks = 
+    ///             {
+    ///                 @default.Id,
+    ///             },
+    ///             LoadBalancingScheme = "INTERNAL_SELF_MANAGED",
+    ///         });
+    ///         var urlmap = new Gcp.Compute.URLMap("urlmap", new Gcp.Compute.URLMapArgs
+    ///         {
+    ///             Description = "a description",
+    ///             DefaultService = home.Id,
+    ///             HostRules = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapHostRuleArgs
+    ///                 {
+    ///                     Hosts = 
+    ///                     {
+    ///                         "mysite.com",
+    ///                     },
+    ///                     PathMatcher = "allpaths",
+    ///                 },
+    ///             },
+    ///             PathMatchers = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapPathMatcherArgs
+    ///                 {
+    ///                     Name = "allpaths",
+    ///                     DefaultService = home.Id,
+    ///                     RouteRules = 
+    ///                     {
+    ///                         new Gcp.Compute.Inputs.URLMapPathMatcherRouteRuleArgs
+    ///                         {
+    ///                             Priority = 1,
+    ///                             MatchRules = 
+    ///                             {
+    ///                                 new Gcp.Compute.Inputs.URLMapPathMatcherRouteRuleMatchRuleArgs
+    ///                                 {
+    ///                                     PrefixMatch = "/someprefix",
+    ///                                     HeaderMatches = 
+    ///                                     {
+    ///                                         new Gcp.Compute.Inputs.URLMapPathMatcherRouteRuleMatchRuleHeaderMatchArgs
+    ///                                         {
+    ///                                             HeaderName = "someheader",
+    ///                                             ExactMatch = "match this exactly",
+    ///                                             InvertMatch = true,
+    ///                                         },
+    ///                                     },
+    ///                                 },
+    ///                             },
+    ///                             UrlRedirect = new Gcp.Compute.Inputs.URLMapPathMatcherRouteRuleUrlRedirectArgs
+    ///                             {
+    ///                                 PathRedirect = "some/path",
+    ///                                 RedirectResponseCode = "TEMPORARY_REDIRECT",
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///             Tests = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapTestArgs
+    ///                 {
+    ///                     Service = home.Id,
+    ///                     Host = "hi.com",
+    ///                     Path = "/home",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Url Map Traffic Director Path
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var @default = new Gcp.Compute.HealthCheck("default", new Gcp.Compute.HealthCheckArgs
+    ///         {
+    ///             HttpHealthCheck = new Gcp.Compute.Inputs.HealthCheckHttpHealthCheckArgs
+    ///             {
+    ///                 Port = 80,
+    ///             },
+    ///         });
+    ///         var home = new Gcp.Compute.BackendService("home", new Gcp.Compute.BackendServiceArgs
+    ///         {
+    ///             PortName = "http",
+    ///             Protocol = "HTTP",
+    ///             TimeoutSec = 10,
+    ///             HealthChecks = 
+    ///             {
+    ///                 @default.Id,
+    ///             },
+    ///             LoadBalancingScheme = "INTERNAL_SELF_MANAGED",
+    ///         });
+    ///         var urlmap = new Gcp.Compute.URLMap("urlmap", new Gcp.Compute.URLMapArgs
+    ///         {
+    ///             Description = "a description",
+    ///             DefaultService = home.Id,
+    ///             HostRules = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapHostRuleArgs
+    ///                 {
+    ///                     Hosts = 
+    ///                     {
+    ///                         "mysite.com",
+    ///                     },
+    ///                     PathMatcher = "allpaths",
+    ///                 },
+    ///             },
+    ///             PathMatchers = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapPathMatcherArgs
+    ///                 {
+    ///                     Name = "allpaths",
+    ///                     DefaultService = home.Id,
+    ///                     PathRules = 
+    ///                     {
+    ///                         new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleArgs
+    ///                         {
+    ///                             Paths = 
+    ///                             {
+    ///                                 "/home",
+    ///                             },
+    ///                             RouteAction = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionArgs
+    ///                             {
+    ///                                 CorsPolicy = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs
+    ///                                 {
+    ///                                     AllowCredentials = true,
+    ///                                     AllowHeaders = 
+    ///                                     {
+    ///                                         "Allowed content",
+    ///                                     },
+    ///                                     AllowMethods = 
+    ///                                     {
+    ///                                         "GET",
+    ///                                     },
+    ///                                     AllowOriginRegexes = 
+    ///                                     {
+    ///                                         "abc.*",
+    ///                                     },
+    ///                                     AllowOrigins = 
+    ///                                     {
+    ///                                         "Allowed origin",
+    ///                                     },
+    ///                                     ExposeHeaders = 
+    ///                                     {
+    ///                                         "Exposed header",
+    ///                                     },
+    ///                                     MaxAge = 30,
+    ///                                     Disabled = false,
+    ///                                 },
+    ///                                 FaultInjectionPolicy = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyArgs
+    ///                                 {
+    ///                                     Abort = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbortArgs
+    ///                                     {
+    ///                                         HttpStatus = 234,
+    ///                                         Percentage = 5.6,
+    ///                                     },
+    ///                                     Delay = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayArgs
+    ///                                     {
+    ///                                         FixedDelay = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelayArgs
+    ///                                         {
+    ///                                             Seconds = "0",
+    ///                                             Nanos = 50000,
+    ///                                         },
+    ///                                         Percentage = 7.8,
+    ///                                     },
+    ///                                 },
+    ///                                 RequestMirrorPolicy = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionRequestMirrorPolicyArgs
+    ///                                 {
+    ///                                     BackendService = home.Id,
+    ///                                 },
+    ///                                 RetryPolicy = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionRetryPolicyArgs
+    ///                                 {
+    ///                                     NumRetries = 4,
+    ///                                     PerTryTimeout = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeoutArgs
+    ///                                     {
+    ///                                         Seconds = "30",
+    ///                                     },
+    ///                                     RetryConditions = 
+    ///                                     {
+    ///                                         "5xx",
+    ///                                         "deadline-exceeded",
+    ///                                     },
+    ///                                 },
+    ///                                 Timeout = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionTimeoutArgs
+    ///                                 {
+    ///                                     Seconds = "20",
+    ///                                     Nanos = 750000000,
+    ///                                 },
+    ///                                 UrlRewrite = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionUrlRewriteArgs
+    ///                                 {
+    ///                                     HostRewrite = "A replacement header",
+    ///                                     PathPrefixRewrite = "A replacement path",
+    ///                                 },
+    ///                                 WeightedBackendServices = 
+    ///                                 {
+    ///                                     new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs
+    ///                                     {
+    ///                                         BackendService = home.Id,
+    ///                                         Weight = 400,
+    ///                                         HeaderAction = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs
+    ///                                         {
+    ///                                             RequestHeadersToRemoves = 
+    ///                                             {
+    ///                                                 "RemoveMe",
+    ///                                             },
+    ///                                             RequestHeadersToAdds = 
+    ///                                             {
+    ///                                                 new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs
+    ///                                                 {
+    ///                                                     HeaderName = "AddMe",
+    ///                                                     HeaderValue = "MyValue",
+    ///                                                     Replace = true,
+    ///                                                 },
+    ///                                             },
+    ///                                             ResponseHeadersToRemoves = 
+    ///                                             {
+    ///                                                 "RemoveMe",
+    ///                                             },
+    ///                                             ResponseHeadersToAdds = 
+    ///                                             {
+    ///                                                 new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs
+    ///                                                 {
+    ///                                                     HeaderName = "AddMe",
+    ///                                                     HeaderValue = "MyValue",
+    ///                                                     Replace = false,
+    ///                                                 },
+    ///                                             },
+    ///                                         },
+    ///                                     },
+    ///                                 },
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///             Tests = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapTestArgs
+    ///                 {
+    ///                     Service = home.Id,
+    ///                     Host = "hi.com",
+    ///                     Path = "/home",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Url Map Traffic Director Path Partial
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var @default = new Gcp.Compute.HealthCheck("default", new Gcp.Compute.HealthCheckArgs
+    ///         {
+    ///             HttpHealthCheck = new Gcp.Compute.Inputs.HealthCheckHttpHealthCheckArgs
+    ///             {
+    ///                 Port = 80,
+    ///             },
+    ///         });
+    ///         var home = new Gcp.Compute.BackendService("home", new Gcp.Compute.BackendServiceArgs
+    ///         {
+    ///             PortName = "http",
+    ///             Protocol = "HTTP",
+    ///             TimeoutSec = 10,
+    ///             HealthChecks = 
+    ///             {
+    ///                 @default.Id,
+    ///             },
+    ///             LoadBalancingScheme = "INTERNAL_SELF_MANAGED",
+    ///         });
+    ///         var urlmap = new Gcp.Compute.URLMap("urlmap", new Gcp.Compute.URLMapArgs
+    ///         {
+    ///             Description = "a description",
+    ///             DefaultService = home.Id,
+    ///             HostRules = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapHostRuleArgs
+    ///                 {
+    ///                     Hosts = 
+    ///                     {
+    ///                         "mysite.com",
+    ///                     },
+    ///                     PathMatcher = "allpaths",
+    ///                 },
+    ///             },
+    ///             PathMatchers = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapPathMatcherArgs
+    ///                 {
+    ///                     Name = "allpaths",
+    ///                     DefaultService = home.Id,
+    ///                     PathRules = 
+    ///                     {
+    ///                         new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleArgs
+    ///                         {
+    ///                             Paths = 
+    ///                             {
+    ///                                 "/home",
+    ///                             },
+    ///                             RouteAction = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionArgs
+    ///                             {
+    ///                                 CorsPolicy = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionCorsPolicyArgs
+    ///                                 {
+    ///                                     AllowCredentials = true,
+    ///                                     AllowHeaders = 
+    ///                                     {
+    ///                                         "Allowed content",
+    ///                                     },
+    ///                                     AllowMethods = 
+    ///                                     {
+    ///                                         "GET",
+    ///                                     },
+    ///                                     AllowOriginRegexes = 
+    ///                                     {
+    ///                                         "abc.*",
+    ///                                     },
+    ///                                     AllowOrigins = 
+    ///                                     {
+    ///                                         "Allowed origin",
+    ///                                     },
+    ///                                     ExposeHeaders = 
+    ///                                     {
+    ///                                         "Exposed header",
+    ///                                     },
+    ///                                     MaxAge = 30,
+    ///                                     Disabled = false,
+    ///                                 },
+    ///                                 WeightedBackendServices = 
+    ///                                 {
+    ///                                     new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceArgs
+    ///                                     {
+    ///                                         BackendService = home.Id,
+    ///                                         Weight = 400,
+    ///                                         HeaderAction = new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionArgs
+    ///                                         {
+    ///                                             RequestHeadersToRemoves = 
+    ///                                             {
+    ///                                                 "RemoveMe",
+    ///                                             },
+    ///                                             RequestHeadersToAdds = 
+    ///                                             {
+    ///                                                 new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionRequestHeadersToAddArgs
+    ///                                                 {
+    ///                                                     HeaderName = "AddMe",
+    ///                                                     HeaderValue = "MyValue",
+    ///                                                     Replace = true,
+    ///                                                 },
+    ///                                             },
+    ///                                             ResponseHeadersToRemoves = 
+    ///                                             {
+    ///                                                 "RemoveMe",
+    ///                                             },
+    ///                                             ResponseHeadersToAdds = 
+    ///                                             {
+    ///                                                 new Gcp.Compute.Inputs.URLMapPathMatcherPathRuleRouteActionWeightedBackendServiceHeaderActionResponseHeadersToAddArgs
+    ///                                                 {
+    ///                                                     HeaderName = "AddMe",
+    ///                                                     HeaderValue = "MyValue",
+    ///                                                     Replace = false,
+    ///                                                 },
+    ///                                             },
+    ///                                         },
+    ///                                     },
+    ///                                 },
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///             Tests = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.URLMapTestArgs
+    ///                 {
+    ///                     Service = home.Id,
+    ///                     Host = "hi.com",
+    ///                     Path = "/home",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class URLMap : Pulumi.CustomResource
     {

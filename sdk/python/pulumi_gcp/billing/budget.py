@@ -97,6 +97,59 @@ class Budget(pulumi.CustomResource):
             * [Creating a budget](https://cloud.google.com/billing/docs/how-to/budgets)
 
         ## Example Usage
+        ### Billing Budget Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        account = gcp.organizations.get_billing_account(billing_account="000000-0000000-0000000-000000")
+        budget = gcp.billing.Budget("budget",
+            billing_account=account.id,
+            display_name="Example Billing Budget",
+            amount={
+                "specifiedAmount": {
+                    "currencyCode": "USD",
+                    "units": "100000",
+                },
+            },
+            threshold_rules=[{
+                "thresholdPercent": 0.5,
+            }],
+            opts=ResourceOptions(provider=google_beta))
+        ```
+        ### Billing Budget Filter
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        account = gcp.organizations.get_billing_account(billing_account="000000-0000000-0000000-000000")
+        budget = gcp.billing.Budget("budget",
+            billing_account=account.id,
+            display_name="Example Billing Budget",
+            budget_filter={
+                "projects": ["projects/my-project-name"],
+                "creditTypesTreatment": "EXCLUDE_ALL_CREDITS",
+                "services": ["services/24E6-581D-38E5"],
+            },
+            amount={
+                "specifiedAmount": {
+                    "currencyCode": "USD",
+                    "units": "100000",
+                },
+            },
+            threshold_rules=[
+                {
+                    "thresholdPercent": 0.5,
+                },
+                {
+                    "thresholdPercent": 0.9,
+                    "spendBasis": "FORECASTED_SPEND",
+                },
+            ],
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

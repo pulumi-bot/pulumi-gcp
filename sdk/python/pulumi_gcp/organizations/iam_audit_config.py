@@ -38,6 +38,21 @@ class IamAuditConfig(pulumi.CustomResource):
         """
         Allows management of audit logging config for a given service for a Google Cloud Platform Organization.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        config = gcp.organizations.IamAuditConfig("config",
+            audit_log_configs=[{
+                "exemptedMembers": ["user:joebloggs@hashicorp.com"],
+                "logType": "DATA_READ",
+            }],
+            org_id="your-organization-id",
+            service="allServices")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] audit_log_configs: The configuration for logging of each type of permission.  This can be specified multiple times.  Structure is documented below.
