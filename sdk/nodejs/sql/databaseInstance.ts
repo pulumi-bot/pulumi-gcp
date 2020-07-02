@@ -62,28 +62,37 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  * import * as random from "@pulumi/random";
  *
- * const privateNetwork = new gcp.compute.Network("privateNetwork", {});
+ * const privateNetwork = new gcp.compute.Network("privateNetwork", {}, {
+ *     provider: google_beta,
+ * });
  * const privateIpAddress = new gcp.compute.GlobalAddress("privateIpAddress", {
  *     purpose: "VPC_PEERING",
  *     addressType: "INTERNAL",
  *     prefixLength: 16,
  *     network: privateNetwork.id,
+ * }, {
+ *     provider: google_beta,
  * });
  * const privateVpcConnection = new gcp.servicenetworking.Connection("privateVpcConnection", {
  *     network: privateNetwork.id,
  *     service: "servicenetworking.googleapis.com",
  *     reservedPeeringRanges: [privateIpAddress.name],
+ * }, {
+ *     provider: google_beta,
  * });
  * const dbNameSuffix = new random.RandomId("dbNameSuffix", {byteLength: 4});
  * const instance = new gcp.sql.DatabaseInstance("instance", {
  *     region: "us-central1",
  *     settings: {
  *         tier: "db-f1-micro",
- *         ip_configuration: {
+ *         ipConfiguration: {
  *             ipv4Enabled: false,
  *             privateNetwork: privateNetwork.id,
  *         },
  *     },
+ * }, {
+ *     provider: google_beta,
+ *     dependsOn: [privateVpcConnection],
  * });
  * ```
  */

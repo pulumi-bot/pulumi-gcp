@@ -22,7 +22,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  *
  * const admin = gcp.organizations.getIAMPolicy({
- *     binding: [{
+ *     bindings: [{
  *         role: "roles/iap.httpsResourceAccessor",
  *         members: ["user:jane@example.com"],
  *     }],
@@ -41,7 +41,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  *
  * const admin = gcp.organizations.getIAMPolicy({
- *     binding: [{
+ *     bindings: [{
  *         role: "roles/iap.httpsResourceAccessor",
  *         members: ["user:jane@example.com"],
  *         condition: {

@@ -64,7 +64,7 @@ import * as utilities from "../utilities";
  * const hc = new gcp.compute.HealthCheck("hc", {
  *     checkIntervalSec: 1,
  *     timeoutSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "80",
  *     },
  * });

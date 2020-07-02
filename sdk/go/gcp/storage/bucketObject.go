@@ -31,7 +31,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = storage.NewBucketObject(ctx, "picture", &storage.BucketObjectArgs{
+// 		_, err := storage.NewBucketObject(ctx, "picture", &storage.BucketObjectArgs{
 // 			Bucket: pulumi.String("image-store"),
 // 			Source: pulumi.NewFileAsset("/images/nature/garden-tiger-moth.jpg"),
 // 		})

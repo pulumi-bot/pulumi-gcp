@@ -32,9 +32,9 @@ namespace Pulumi.Gcp.Composer
         ///             Region = "us-central1",
         ///             Config = new Gcp.Composer.Inputs.EnvironmentConfigArgs
         ///             {
-        ///                 Software_config = 
+        ///                 SoftwareConfig = new Gcp.Composer.Inputs.EnvironmentConfigSoftwareConfigArgs
         ///                 {
-        ///                     { "imageVersion", all.Apply(all =&gt; all.ImageVersions[0].ImageVersionId) },
+        ///                     ImageVersion = all.Apply(all =&gt; all.ImageVersions[0].ImageVersionId),
         ///                 },
         ///             },
         ///         });

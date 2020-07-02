@@ -29,7 +29,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = dataproc.NewCluster(ctx, "simplecluster", &dataproc.ClusterArgs{
+// 		_, err := dataproc.NewCluster(ctx, "simplecluster", &dataproc.ClusterArgs{
 // 			Region: pulumi.String("us-central1"),
 // 		})
 // 		if err != nil {
@@ -51,7 +51,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = dataproc.NewCluster(ctx, "mycluster", &dataproc.ClusterArgs{
+// 		_, err := dataproc.NewCluster(ctx, "mycluster", &dataproc.ClusterArgs{
 // 			ClusterConfig: &dataproc.ClusterClusterConfigArgs{
 // 				GceClusterConfig: &dataproc.ClusterClusterConfigGceClusterConfigArgs{
 // 					ServiceAccountScopes: pulumi.StringArray{
@@ -65,10 +65,10 @@ import (
 // 						pulumi.String("bar"),
 // 					},
 // 				},
-// 				InitializationAction: pulumi.MapArray{
-// 					pulumi.Map{
-// 						"script":     pulumi.String("gs://dataproc-initialization-actions/stackdriver/stackdriver.sh"),
-// 						"timeoutSec": pulumi.Float64(500),
+// 				InitializationActions: dataproc.ClusterClusterConfigInitializationActionArray{
+// 					&dataproc.ClusterClusterConfigInitializationActionArgs{
+// 						Script:     pulumi.String("gs://dataproc-initialization-actions/stackdriver/stackdriver.sh"),
+// 						TimeoutSec: pulumi.Int(500),
 // 					},
 // 				},
 // 				MasterConfig: &dataproc.ClusterClusterConfigMasterConfigArgs{
@@ -84,7 +84,7 @@ import (
 // 				},
 // 				SoftwareConfig: &dataproc.ClusterClusterConfigSoftwareConfigArgs{
 // 					ImageVersion: pulumi.String("1.3.7-deb9"),
-// 					OverrideProperties: pulumi.Map{
+// 					OverrideProperties: pulumi.StringMap{
 // 						"dataproc:dataproc.allow.zero.workers": pulumi.String("true"),
 // 					},
 // 				},
@@ -99,7 +99,7 @@ import (
 // 					NumInstances:   pulumi.Int(2),
 // 				},
 // 			},
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"foo": pulumi.String("bar"),
 // 			},
 // 			Region: pulumi.String("us-central1"),
@@ -123,7 +123,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = dataproc.NewCluster(ctx, "acceleratedCluster", &dataproc.ClusterArgs{
+// 		_, err := dataproc.NewCluster(ctx, "acceleratedCluster", &dataproc.ClusterArgs{
 // 			ClusterConfig: &dataproc.ClusterClusterConfigArgs{
 // 				GceClusterConfig: &dataproc.ClusterClusterConfigGceClusterConfigArgs{
 // 					Zone: pulumi.String("us-central1-a"),

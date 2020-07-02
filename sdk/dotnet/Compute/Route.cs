@@ -64,6 +64,63 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// ### Route Ilb
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var defaultNetwork = new Gcp.Compute.Network("defaultNetwork", new Gcp.Compute.NetworkArgs
+    ///         {
+    ///             AutoCreateSubnetworks = false,
+    ///         });
+    ///         var defaultSubnetwork = new Gcp.Compute.Subnetwork("defaultSubnetwork", new Gcp.Compute.SubnetworkArgs
+    ///         {
+    ///             IpCidrRange = "10.0.1.0/24",
+    ///             Region = "us-central1",
+    ///             Network = defaultNetwork.Id,
+    ///         });
+    ///         var hc = new Gcp.Compute.HealthCheck("hc", new Gcp.Compute.HealthCheckArgs
+    ///         {
+    ///             CheckIntervalSec = 1,
+    ///             TimeoutSec = 1,
+    ///             TcpHealthCheck = new Gcp.Compute.Inputs.HealthCheckTcpHealthCheckArgs
+    ///             {
+    ///                 Port = 80,
+    ///             },
+    ///         });
+    ///         var backend = new Gcp.Compute.RegionBackendService("backend", new Gcp.Compute.RegionBackendServiceArgs
+    ///         {
+    ///             Region = "us-central1",
+    ///             HealthChecks = 
+    ///             {
+    ///                 hc.Id,
+    ///             },
+    ///         });
+    ///         var defaultForwardingRule = new Gcp.Compute.ForwardingRule("defaultForwardingRule", new Gcp.Compute.ForwardingRuleArgs
+    ///         {
+    ///             Region = "us-central1",
+    ///             LoadBalancingScheme = "INTERNAL",
+    ///             BackendService = backend.Id,
+    ///             AllPorts = true,
+    ///             Network = defaultNetwork.Name,
+    ///             Subnetwork = defaultSubnetwork.Name,
+    ///         });
+    ///         var route_ilb = new Gcp.Compute.Route("route-ilb", new Gcp.Compute.RouteArgs
+    ///         {
+    ///             DestRange = "0.0.0.0/0",
+    ///             Network = defaultNetwork.Name,
+    ///             NextHopIlb = defaultForwardingRule.Id,
+    ///             Priority = 2000,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Route : Pulumi.CustomResource
     {

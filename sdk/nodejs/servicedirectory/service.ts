@@ -23,6 +23,8 @@ import * as utilities from "../utilities";
  * const exampleNamespace = new gcp.servicedirectory.Namespace("exampleNamespace", {
  *     namespaceId: "example-namespace",
  *     location: "us-central1",
+ * }, {
+ *     provider: google_beta,
  * });
  * const exampleService = new gcp.servicedirectory.Service("exampleService", {
  *     serviceId: "example-service",
@@ -31,6 +33,8 @@ import * as utilities from "../utilities";
  *         stage: "prod",
  *         region: "us-central1",
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

@@ -34,10 +34,10 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		admin, err := organizations.LookupIAMPolicy(ctx, &organizations.LookupIAMPolicyArgs{
-// 			Binding: []map[string]interface{}{
-// 				map[string]interface{}{
-// 					"role": "roles/viewer",
-// 					"members": []string{
+// 			Bindings: []organizations.GetIAMPolicyBinding{
+// 				organizations.GetIAMPolicyBinding{
+// 					Role: "roles/viewer",
+// 					Members: []string{
 // 						"user:jane@example.com",
 // 					},
 // 				},
@@ -47,8 +47,8 @@ import (
 // 			return err
 // 		}
 // 		_, err = secretmanager.NewSecretIamPolicy(ctx, "policy", &secretmanager.SecretIamPolicyArgs{
-// 			Project:    pulumi.String(google_secret_manager_secret.Secret - basic.Project),
-// 			SecretId:   pulumi.String(google_secret_manager_secret.Secret - basic.Secret_id),
+// 			Project:    pulumi.Any(google_secret_manager_secret.Secret - basic.Project),
+// 			SecretId:   pulumi.Any(google_secret_manager_secret.Secret - basic.Secret_id),
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})
 // 		if err != nil {
@@ -71,9 +71,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = secretmanager.NewSecretIamBinding(ctx, "binding", &secretmanager.SecretIamBindingArgs{
-// 			Project:  pulumi.String(google_secret_manager_secret.Secret - basic.Project),
-// 			SecretId: pulumi.String(google_secret_manager_secret.Secret - basic.Secret_id),
+// 		_, err := secretmanager.NewSecretIamBinding(ctx, "binding", &secretmanager.SecretIamBindingArgs{
+// 			Project:  pulumi.Any(google_secret_manager_secret.Secret - basic.Project),
+// 			SecretId: pulumi.Any(google_secret_manager_secret.Secret - basic.Secret_id),
 // 			Role:     pulumi.String("roles/viewer"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -99,9 +99,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = secretmanager.NewSecretIamMember(ctx, "member", &secretmanager.SecretIamMemberArgs{
-// 			Project:  pulumi.String(google_secret_manager_secret.Secret - basic.Project),
-// 			SecretId: pulumi.String(google_secret_manager_secret.Secret - basic.Secret_id),
+// 		_, err := secretmanager.NewSecretIamMember(ctx, "member", &secretmanager.SecretIamMemberArgs{
+// 			Project:  pulumi.Any(google_secret_manager_secret.Secret - basic.Project),
+// 			SecretId: pulumi.Any(google_secret_manager_secret.Secret - basic.Secret_id),
 // 			Role:     pulumi.String("roles/viewer"),
 // 			Member:   pulumi.String("user:jane@example.com"),
 // 		})

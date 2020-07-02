@@ -25,12 +25,14 @@ import * as utilities from "../utilities";
  * const defaultGameServerDeployment = new gcp.gameservices.GameServerDeployment("defaultGameServerDeployment", {
  *     deploymentId: "tf-test-deployment",
  *     description: "a deployment description",
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultGameServerConfig = new gcp.gameservices.GameServerConfig("defaultGameServerConfig", {
  *     configId: "tf-test-config",
  *     deploymentId: defaultGameServerDeployment.deploymentId,
  *     description: "a config description",
- *     fleet_configs: [{
+ *     fleetConfigs: [{
  *         name: "something-unique",
  *         fleetSpec: JSON.stringify({
  *             replicas: 1,
@@ -52,7 +54,7 @@ import * as utilities from "../utilities";
  *             },
  *         }),
  *     }],
- *     scaling_configs: [{
+ *     scalingConfigs: [{
  *         name: "scaling-config-name",
  *         fleetAutoscalerSpec: JSON.stringify({
  *             policy: {
@@ -76,6 +78,8 @@ import * as utilities from "../utilities";
  *             cronSpec: "0 0 * * 0",
  *         }],
  *     }],
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

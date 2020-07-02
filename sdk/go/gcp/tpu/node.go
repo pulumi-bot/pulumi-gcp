@@ -48,6 +48,43 @@ import (
 // 	})
 // }
 // ```
+// ### TPU Node Full
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/tpu"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		available, err := tpu.GetTensorflowVersions(ctx, nil, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = tpu.NewNode(ctx, "tpu", &tpu.NodeArgs{
+// 			Zone:              pulumi.String("us-central1-b"),
+// 			AcceleratorType:   pulumi.String("v3-8"),
+// 			CidrBlock:         pulumi.String("10.3.0.0/29"),
+// 			TensorflowVersion: pulumi.String(available.Versions[0]),
+// 			Description:       pulumi.String("Google Provider test TPU"),
+// 			Network:           pulumi.String("default"),
+// 			Labels: pulumi.StringMap{
+// 				"foo": pulumi.String("bar"),
+// 			},
+// 			SchedulingConfig: &tpu.NodeSchedulingConfigArgs{
+// 				Preemptible: pulumi.Bool(true),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Node struct {
 	pulumi.CustomResourceState
 

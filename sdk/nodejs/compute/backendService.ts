@@ -40,13 +40,17 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {http_health_check: {
+ * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {httpHealthCheck: {
  *     port: 80,
- * }});
+ * }}, {
+ *     provider: google_beta,
+ * });
  * const _default = new gcp.compute.BackendService("default", {
  *     healthChecks: [healthCheck.id],
  *     loadBalancingScheme: "INTERNAL_SELF_MANAGED",
  *     localityLbPolicy: "ROUND_ROBIN",
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  * ### Backend Service Traffic Director Ring Hash
@@ -55,19 +59,21 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {http_health_check: {
+ * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {httpHealthCheck: {
  *     port: 80,
- * }});
+ * }}, {
+ *     provider: google_beta,
+ * });
  * const _default = new gcp.compute.BackendService("default", {
  *     healthChecks: [healthCheck.id],
  *     loadBalancingScheme: "INTERNAL_SELF_MANAGED",
  *     localityLbPolicy: "RING_HASH",
  *     sessionAffinity: "HTTP_COOKIE",
- *     circuit_breakers: {
+ *     circuitBreakers: {
  *         maxConnections: 10,
  *     },
- *     consistent_hash: {
- *         http_cookie: {
+ *     consistentHash: {
+ *         httpCookie: {
  *             ttl: {
  *                 seconds: 11,
  *                 nanos: 1111,
@@ -75,9 +81,11 @@ import * as utilities from "../utilities";
  *             name: "mycookie",
  *         },
  *     },
- *     outlier_detection: {
+ *     outlierDetection: {
  *         consecutiveErrors: 2,
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

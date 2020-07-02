@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  *
  * const keyring = new gcp.kms.KeyRing("keyring", {location: "global"});
  * const admin = gcp.organizations.getIAMPolicy({
- *     binding: [{
+ *     bindings: [{
  *         role: "roles/editor",
  *         members: ["user:jane@example.com"],
  *     }],
@@ -42,7 +42,7 @@ import * as utilities from "../utilities";
  *
  * const keyring = new gcp.kms.KeyRing("keyring", {location: "global"});
  * const admin = gcp.organizations.getIAMPolicy({
- *     binding: [{
+ *     bindings: [{
  *         role: "roles/editor",
  *         members: ["user:jane@example.com"],
  *         condition: {

@@ -37,46 +37,54 @@ import * as utilities from "../utilities";
  *         "foo",
  *         "bar",
  *     ],
- *     disk: [{
+ *     disks: [{
  *         sourceImage: debian9.then(debian9 => debian9.selfLink),
  *     }],
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: "default",
  *     }],
  *     metadata: {
  *         foo: "bar",
  *     },
- *     service_account: {
+ *     serviceAccount: {
  *         scopes: [
  *             "userinfo-email",
  *             "compute-ro",
  *             "storage-ro",
  *         ],
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
- * const defaultTargetPool = new gcp.compute.TargetPool("defaultTargetPool", {});
+ * const defaultTargetPool = new gcp.compute.TargetPool("defaultTargetPool", {}, {
+ *     provider: google_beta,
+ * });
  * const defaultInstanceGroupManager = new gcp.compute.InstanceGroupManager("defaultInstanceGroupManager", {
  *     zone: "us-central1-f",
- *     version: [{
+ *     versions: [{
  *         instanceTemplate: defaultInstanceTemplate.id,
  *         name: "primary",
  *     }],
  *     targetPools: [defaultTargetPool.id],
  *     baseInstanceName: "autoscaler-sample",
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultAutoscaler = new gcp.compute.Autoscaler("defaultAutoscaler", {
  *     zone: "us-central1-f",
  *     target: defaultInstanceGroupManager.id,
- *     autoscaling_policy: {
+ *     autoscalingPolicy: {
  *         maxReplicas: 5,
  *         minReplicas: 1,
  *         cooldownPeriod: 60,
- *         metric: [{
+ *         metrics: [{
  *             name: "pubsub.googleapis.com/subscription/num_undelivered_messages",
  *             filter: "resource.type = pubsub_subscription AND resource.label.subscription_id = our-subscription",
  *             singleInstanceAssignment: 65535,
  *         }],
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  * ### Autoscaler Basic
@@ -96,16 +104,16 @@ import * as utilities from "../utilities";
  *         "foo",
  *         "bar",
  *     ],
- *     disk: [{
+ *     disks: [{
  *         sourceImage: debian9.then(debian9 => debian9.selfLink),
  *     }],
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: "default",
  *     }],
  *     metadata: {
  *         foo: "bar",
  *     },
- *     service_account: {
+ *     serviceAccount: {
  *         scopes: [
  *             "userinfo-email",
  *             "compute-ro",
@@ -116,7 +124,7 @@ import * as utilities from "../utilities";
  * const foobarTargetPool = new gcp.compute.TargetPool("foobarTargetPool", {});
  * const foobarInstanceGroupManager = new gcp.compute.InstanceGroupManager("foobarInstanceGroupManager", {
  *     zone: "us-central1-f",
- *     version: [{
+ *     versions: [{
  *         instanceTemplate: foobarInstanceTemplate.id,
  *         name: "primary",
  *     }],
@@ -126,11 +134,11 @@ import * as utilities from "../utilities";
  * const foobarAutoscaler = new gcp.compute.Autoscaler("foobarAutoscaler", {
  *     zone: "us-central1-f",
  *     target: foobarInstanceGroupManager.id,
- *     autoscaling_policy: {
+ *     autoscalingPolicy: {
  *         maxReplicas: 5,
  *         minReplicas: 1,
  *         cooldownPeriod: 60,
- *         cpu_utilization: {
+ *         cpuUtilization: {
  *             target: 0.5,
  *         },
  *     },

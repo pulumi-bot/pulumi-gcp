@@ -36,14 +36,14 @@ import * as utilities from "../utilities";
  * const defaultURLMap = new gcp.compute.URLMap("defaultURLMap", {
  *     description: "a description",
  *     defaultService: defaultBackendService.id,
- *     host_rule: [{
+ *     hostRules: [{
  *         hosts: ["mysite.com"],
  *         pathMatcher: "allpaths",
  *     }],
- *     path_matcher: [{
+ *     pathMatchers: [{
  *         name: "allpaths",
  *         defaultService: defaultBackendService.id,
- *         path_rule: [{
+ *         pathRules: [{
  *             paths: ["/*"],
  *             service: defaultBackendService.id,
  *         }],
@@ -70,76 +70,90 @@ import * as utilities from "../utilities";
  * });
  * const instanceTemplate = new gcp.compute.InstanceTemplate("instanceTemplate", {
  *     machineType: "n1-standard-1",
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: "default",
  *     }],
- *     disk: [{
+ *     disks: [{
  *         sourceImage: debianImage.then(debianImage => debianImage.selfLink),
  *         autoDelete: true,
  *         boot: true,
  *     }],
+ * }, {
+ *     provider: google_beta,
  * });
  * const igm = new gcp.compute.InstanceGroupManager("igm", {
- *     version: [{
+ *     versions: [{
  *         instanceTemplate: instanceTemplate.id,
  *         name: "primary",
  *     }],
  *     baseInstanceName: "internal-glb",
  *     zone: "us-central1-f",
  *     targetSize: 1,
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultHealthCheck = new gcp.compute.HealthCheck("defaultHealthCheck", {
  *     checkIntervalSec: 1,
  *     timeoutSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "80",
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultBackendService = new gcp.compute.BackendService("defaultBackendService", {
  *     portName: "http",
  *     protocol: "HTTP",
  *     timeoutSec: 10,
  *     loadBalancingScheme: "INTERNAL_SELF_MANAGED",
- *     backend: [{
+ *     backends: [{
  *         group: igm.instanceGroup,
  *         balancingMode: "RATE",
  *         capacityScaler: 0.4,
  *         maxRatePerInstance: 50,
  *     }],
  *     healthChecks: [defaultHealthCheck.id],
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultURLMap = new gcp.compute.URLMap("defaultURLMap", {
  *     description: "a description",
  *     defaultService: defaultBackendService.id,
- *     host_rule: [{
+ *     hostRules: [{
  *         hosts: ["mysite.com"],
  *         pathMatcher: "allpaths",
  *     }],
- *     path_matcher: [{
+ *     pathMatchers: [{
  *         name: "allpaths",
  *         defaultService: defaultBackendService.id,
- *         path_rule: [{
+ *         pathRules: [{
  *             paths: ["/*"],
  *             service: defaultBackendService.id,
  *         }],
  *     }],
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultTargetHttpProxy = new gcp.compute.TargetHttpProxy("defaultTargetHttpProxy", {
  *     description: "a description",
  *     urlMap: defaultURLMap.id,
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultGlobalForwardingRule = new gcp.compute.GlobalForwardingRule("defaultGlobalForwardingRule", {
  *     target: defaultTargetHttpProxy.id,
  *     portRange: "80",
  *     loadBalancingScheme: "INTERNAL_SELF_MANAGED",
  *     ipAddress: "0.0.0.0",
- *     metadata_filters: [{
+ *     metadataFilters: [{
  *         filterMatchCriteria: "MATCH_ANY",
- *         filter_labels: [{
+ *         filterLabels: [{
  *             name: "PLANET",
  *             value: "MARS",
  *         }],
  *     }],
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */
