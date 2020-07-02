@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetResourcePolicyResult:
     """
@@ -57,6 +57,14 @@ def get_resource_policy(name=None,project=None,region=None,opts=None):
     """
     Provide access to a Resource Policy's attributes. For more information see [the official documentation](https://cloud.google.com/compute/docs/disks/scheduled-snapshots) or the [API](https://cloud.google.com/compute/docs/reference/rest/beta/resourcePolicies).
 
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    daily = gcp.compute.get_resource_policy(name="daily",
+        region="us-central1")
+    ```
+
 
     :param str name: The name of the Resource Policy.
     :param str project: Project from which to list the Resource Policy. Defaults to project declared in the provider.
@@ -71,7 +79,7 @@ def get_resource_policy(name=None,project=None,region=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getResourcePolicy:getResourcePolicy', __args__, opts=opts).value
 
     return AwaitableGetResourcePolicyResult(

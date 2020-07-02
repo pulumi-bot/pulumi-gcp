@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Table(pulumi.CustomResource):
@@ -234,6 +234,58 @@ class Table(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/bigquery/docs/) and
         [API](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_dataset = gcp.bigquery.Dataset("defaultDataset",
+            dataset_id="foo",
+            friendly_name="test",
+            description="This is a test description",
+            location="EU",
+            default_table_expiration_ms=3600000,
+            labels={
+                "env": "default",
+            })
+        default_table = gcp.bigquery.Table("defaultTable",
+            dataset_id=default_dataset.dataset_id,
+            table_id="bar",
+            time_partitioning={
+                "type": "DAY",
+            },
+            labels={
+                "env": "default",
+            },
+            schema=\"\"\"[
+          {
+            "name": "permalink",
+            "type": "STRING",
+            "mode": "NULLABLE",
+            "description": "The Permalink"
+          },
+          {
+            "name": "state",
+            "type": "STRING",
+            "mode": "NULLABLE",
+            "description": "State where the head office is located"
+          }
+        ]
+        \"\"\")
+        sheet = gcp.bigquery.Table("sheet",
+            dataset_id=default_dataset.dataset_id,
+            table_id="sheet",
+            external_data_configuration={
+                "autodetect": True,
+                "sourceFormat": "GOOGLE_SHEETS",
+                "googleSheetsOptions": {
+                    "skipLeadingRows": 1,
+                },
+                "sourceUris": ["https://docs.google.com/spreadsheets/d/123456789012345"],
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] clusterings: Specifies column names to use for data clustering.
@@ -397,7 +449,7 @@ class Table(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -635,7 +687,7 @@ class Table(pulumi.CustomResource):
         return Table(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

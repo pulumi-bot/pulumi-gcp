@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetClientOpenIdUserInfoResult:
     """
@@ -49,6 +49,15 @@ def get_client_open_id_user_info(opts=None):
     receive an error otherwise.
 
     ## Example Usage
+    ### Exporting An Email
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    me = gcp.organizations.get_client_open_id_user_info()
+    pulumi.export("my-email", me.email)
+    ```
     """
     __args__ = dict()
 
@@ -56,7 +65,7 @@ def get_client_open_id_user_info(opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getClientOpenIdUserInfo:getClientOpenIdUserInfo', __args__, opts=opts).value
 
     return AwaitableGetClientOpenIdUserInfoResult(

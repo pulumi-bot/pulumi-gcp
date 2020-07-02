@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetSubnetworkResult:
     """
@@ -94,6 +94,16 @@ def get_subnetwork(name=None,project=None,region=None,self_link=None,opts=None):
     """
     Get a subnetwork within GCE from its name and region.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_subnetwork = gcp.compute.get_subnetwork(name="default-us-east1",
+        region="us-east1")
+    ```
+
 
     :param str name: The name of the subnetwork. One of `name` or `self_link`
            must be specified.
@@ -114,7 +124,7 @@ def get_subnetwork(name=None,project=None,region=None,self_link=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getSubnetwork:getSubnetwork', __args__, opts=opts).value
 
     return AwaitableGetSubnetworkResult(

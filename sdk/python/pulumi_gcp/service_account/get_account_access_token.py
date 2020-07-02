@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetAccountAccessTokenResult:
     """
@@ -73,7 +73,7 @@ def get_account_access_token(delegates=None,lifetime=None,scopes=None,target_ser
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:serviceAccount/getAccountAccessToken:getAccountAccessToken', __args__, opts=opts).value
 
     return AwaitableGetAccountAccessTokenResult(

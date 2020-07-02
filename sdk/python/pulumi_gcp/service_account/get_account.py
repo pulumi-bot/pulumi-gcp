@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetAccountResult:
     """
@@ -70,6 +70,15 @@ def get_account(account_id=None,project=None,opts=None):
     Get the service account from a project. For more information see
     the official [API](https://cloud.google.com/compute/docs/access/service-accounts) documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    object_viewer = gcp.serviceAccount.get_account(account_id="object-viewer")
+    ```
+
 
     :param str account_id: The Service account id.  (This is the part of the service account's email field that comes before the @ symbol.)
     :param str project: The ID of the project that the service account is present in.
@@ -83,7 +92,7 @@ def get_account(account_id=None,project=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:serviceAccount/getAccount:getAccount', __args__, opts=opts).value
 
     return AwaitableGetAccountResult(

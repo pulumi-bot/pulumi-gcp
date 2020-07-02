@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetIAMPolicyResult:
     """
@@ -51,6 +51,37 @@ def get_iam_policy(audit_configs=None,bindings=None,opts=None):
     **Note:** Several restrictions apply when setting IAM policies through this API.
     See the [setIamPolicy docs](https://cloud.google.com/resource-manager/reference/rest/v1/projects/setIamPolicy)
     for a list of these restrictions.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    admin = gcp.organizations.get_iam_policy(audit_configs=[{
+            "audit_log_configs": [
+                {
+                    "exemptedMembers": ["user:you@domain.com"],
+                    "logType": "DATA_READ",
+                },
+                {
+                    "logType": "DATA_WRITE",
+                },
+                {
+                    "logType": "ADMIN_READ",
+                },
+            ],
+            "service": "cloudkms.googleapis.com",
+        }],
+        bindings=[
+            {
+                "members": ["serviceAccount:your-custom-sa@your-project.iam.gserviceaccount.com"],
+                "role": "roles/compute.instanceAdmin",
+            },
+            {
+                "members": ["user:alice@gmail.com"],
+                "role": "roles/storage.objectViewer",
+            },
+        ])
+    ```
 
     This data source is used to define IAM policies to apply to other resources.
     Currently, defining a policy through a datasource and referencing that policy
@@ -97,7 +128,7 @@ def get_iam_policy(audit_configs=None,bindings=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getIAMPolicy:getIAMPolicy', __args__, opts=opts).value
 
     return AwaitableGetIAMPolicyResult(

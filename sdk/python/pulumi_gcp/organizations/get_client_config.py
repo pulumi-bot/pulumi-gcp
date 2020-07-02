@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetClientConfigResult:
     """
@@ -58,6 +58,16 @@ class AwaitableGetClientConfigResult(GetClientConfigResult):
 def get_client_config(opts=None):
     """
     Use this data source to access the configuration of the Google Cloud provider.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    current = gcp.organizations.get_client_config()
+    pulumi.export("project", current.project)
+    ```
     """
     __args__ = dict()
 
@@ -65,7 +75,7 @@ def get_client_config(opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getClientConfig:getClientConfig', __args__, opts=opts).value
 
     return AwaitableGetClientConfigResult(

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetFolderResult:
     """
@@ -81,6 +81,17 @@ def get_folder(folder=None,lookup_organization=None,opts=None):
     """
     Use this data source to get information about a Google Cloud Folder.
 
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_folder1 = gcp.organizations.get_folder(folder="folders/12345",
+        lookup_organization=True)
+    my_folder2 = gcp.organizations.get_folder(folder="folders/23456")
+    pulumi.export("myFolder1Organization", my_folder1.organization)
+    pulumi.export("myFolder2Parent", my_folder2.parent)
+    ```
+
 
     :param str folder: The name of the Folder in the form `{folder_id}` or `folders/{folder_id}`.
     :param bool lookup_organization: `true` to find the organization that the folder belongs, `false` to avoid the lookup. It searches up the tree. (defaults to `false`)
@@ -93,7 +104,7 @@ def get_folder(folder=None,lookup_organization=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getFolder:getFolder', __args__, opts=opts).value
 
     return AwaitableGetFolderResult(

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetRegistryRepositoryResult:
     """
@@ -44,6 +44,16 @@ def get_registry_repository(project=None,region=None,opts=None):
     This data source fetches the project name, and provides the appropriate URLs to use for container registry for this project.
 
     The URLs are computed entirely offline - as long as the project exists, they will be valid, but this data source does not contact Google Container Registry (GCR) at any point.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    foo = gcp.container.get_registry_repository()
+    pulumi.export("gcrLocation", foo.repository_url)
+    ```
     """
     __args__ = dict()
 
@@ -53,7 +63,7 @@ def get_registry_repository(project=None,region=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:container/getRegistryRepository:getRegistryRepository', __args__, opts=opts).value
 
     return AwaitableGetRegistryRepositoryResult(

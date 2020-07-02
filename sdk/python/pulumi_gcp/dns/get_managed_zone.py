@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetManagedZoneResult:
     """
@@ -74,6 +74,18 @@ def get_managed_zone(name=None,project=None,opts=None):
     and
     [API](https://cloud.google.com/dns/api/v1/managedZones).
 
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    env_dns_zone = gcp.dns.get_managed_zone(name="qa-zone")
+    dns = gcp.dns.RecordSet("dns",
+        type="TXT",
+        ttl=300,
+        managed_zone=env_dns_zone.name,
+        rrdatas=["test"])
+    ```
+
 
     :param str name: A unique name for the resource.
     :param str project: The ID of the project for the Google Cloud DNS zone.
@@ -86,7 +98,7 @@ def get_managed_zone(name=None,project=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:dns/getManagedZone:getManagedZone', __args__, opts=opts).value
 
     return AwaitableGetManagedZoneResult(

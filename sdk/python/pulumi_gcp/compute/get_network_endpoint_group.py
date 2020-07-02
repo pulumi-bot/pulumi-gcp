@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetNetworkEndpointGroupResult:
     """
@@ -91,6 +91,17 @@ def get_network_endpoint_group(name=None,self_link=None,zone=None,opts=None):
 
     The NEG may be found by providing either a `self_link`, or a `name` and a `zone`.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    neg1 = gcp.compute.get_network_endpoint_group(name="k8s1-abcdef01-myns-mysvc-8080-4b6bac43",
+        zone="us-central1-a")
+    neg2 = gcp.compute.get_network_endpoint_group(self_link="https://www.googleapis.com/compute/v1/projects/myproject/zones/us-central1-a/networkEndpointGroups/k8s1-abcdef01-myns-mysvc-8080-4b6bac43")
+    ```
+
 
     :param str name: The Network Endpoint Group name.
            Provide either this or a `self_link`.
@@ -106,7 +117,7 @@ def get_network_endpoint_group(name=None,self_link=None,zone=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getNetworkEndpointGroup:getNetworkEndpointGroup', __args__, opts=opts).value
 
     return AwaitableGetNetworkEndpointGroupResult(

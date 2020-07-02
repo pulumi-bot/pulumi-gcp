@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetForwardingRuleResult:
     """
@@ -123,6 +123,15 @@ def get_forwarding_rule(name=None,project=None,region=None,opts=None):
     """
     Get a forwarding rule within GCE from its name.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_forwarding_rule = gcp.compute.get_forwarding_rule(name="forwarding-rule-us-east1")
+    ```
+
 
     :param str name: The name of the forwarding rule.
     :param str project: The project in which the resource belongs. If it
@@ -139,7 +148,7 @@ def get_forwarding_rule(name=None,project=None,region=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getForwardingRule:getForwardingRule', __args__, opts=opts).value
 
     return AwaitableGetForwardingRuleResult(

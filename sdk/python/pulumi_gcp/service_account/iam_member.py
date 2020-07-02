@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class IAMMember(pulumi.CustomResource):
@@ -48,6 +48,100 @@ class IAMMember(pulumi.CustomResource):
 
         > **Note:** `serviceAccount.IAMBinding` resources **can be** used in conjunction with `serviceAccount.IAMMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_service\_account\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/iam.serviceAccountUser",
+            "members": ["user:jane@example.com"],
+        }])
+        sa = gcp.service_account.Account("sa",
+            account_id="my-service-account",
+            display_name="A service account that only Jane can interact with")
+        admin_account_iam = gcp.service_account.IAMPolicy("admin-account-iam",
+            service_account_id=sa.name,
+            policy_data=admin.policy_data)
+        ```
+
+        ## google\_service\_account\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        sa = gcp.service_account.Account("sa",
+            account_id="my-service-account",
+            display_name="A service account that only Jane can use")
+        admin_account_iam = gcp.service_account.IAMBinding("admin-account-iam",
+            service_account_id=sa.name,
+            role="roles/iam.serviceAccountUser",
+            members=["user:jane@example.com"])
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        sa = gcp.service_account.Account("sa",
+            account_id="my-service-account",
+            display_name="A service account that only Jane can use")
+        admin_account_iam = gcp.service_account.IAMBinding("admin-account-iam",
+            condition={
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
+            members=["user:jane@example.com"],
+            role="roles/iam.serviceAccountUser",
+            service_account_id=sa.name)
+        ```
+
+        ## google\_service\_account\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.compute.get_default_service_account()
+        sa = gcp.service_account.Account("sa",
+            account_id="my-service-account",
+            display_name="A service account that Jane can use")
+        admin_account_iam = gcp.service_account.IAMMember("admin-account-iam",
+            service_account_id=sa.name,
+            role="roles/iam.serviceAccountUser",
+            member="user:jane@example.com")
+        # Allow SA service account use the default GCE account
+        gce_default_account_iam = gcp.service_account.IAMMember("gce-default-account-iam",
+            service_account_id=default.name,
+            role="roles/iam.serviceAccountUser",
+            member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        sa = gcp.service_account.Account("sa",
+            account_id="my-service-account",
+            display_name="A service account that Jane can use")
+        admin_account_iam = gcp.service_account.IAMMember("admin-account-iam",
+            condition={
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
+            member="user:jane@example.com",
+            role="roles/iam.serviceAccountUser",
+            service_account_id=sa.name)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] condition: ) An [IAM Condition](https://cloud.google.com/iam/docs/conditions-overview) for a given binding.
@@ -74,7 +168,7 @@ class IAMMember(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -132,7 +226,7 @@ class IAMMember(pulumi.CustomResource):
         return IAMMember(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

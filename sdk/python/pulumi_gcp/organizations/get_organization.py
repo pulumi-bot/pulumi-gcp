@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetOrganizationResult:
     """
@@ -74,6 +74,16 @@ def get_organization(domain=None,organization=None,opts=None):
     """
     Use this data source to get information about a Google Cloud Organization.
 
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    org = gcp.organizations.get_organization(domain="example.com")
+    sales = gcp.organizations.Folder("sales",
+        display_name="Sales",
+        parent=org.name)
+    ```
+
 
     :param str domain: The domain name of the Organization.
     :param str organization: The name of the Organization in the form `{organization_id}` or `organizations/{organization_id}`.
@@ -86,7 +96,7 @@ def get_organization(domain=None,organization=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getOrganization:getOrganization', __args__, opts=opts).value
 
     return AwaitableGetOrganizationResult(

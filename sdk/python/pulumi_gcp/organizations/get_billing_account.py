@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetBillingAccountResult:
     """
@@ -57,6 +57,18 @@ def get_billing_account(billing_account=None,display_name=None,open=None,opts=No
     """
     Use this data source to get information about a Google Billing Account.
 
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    acct = gcp.organizations.get_billing_account(display_name="My Billing Account",
+        open=True)
+    my_project = gcp.organizations.Project("myProject",
+        project_id="your-project-id",
+        org_id="1234567",
+        billing_account=acct.id)
+    ```
+
 
     :param str billing_account: The name of the billing account in the form `{billing_account_id}` or `billingAccounts/{billing_account_id}`.
     :param str display_name: The display name of the billing account.
@@ -71,7 +83,7 @@ def get_billing_account(billing_account=None,display_name=None,open=None,opts=No
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getBillingAccount:getBillingAccount', __args__, opts=opts).value
 
     return AwaitableGetBillingAccountResult(

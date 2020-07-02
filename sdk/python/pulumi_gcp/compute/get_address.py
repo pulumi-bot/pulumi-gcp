@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetAddressResult:
     """
@@ -65,6 +65,21 @@ def get_address(name=None,project=None,region=None,opts=None):
     Get the IP address from a static address. For more information see
     the official [API](https://cloud.google.com/compute/docs/reference/latest/addresses/get) documentation.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_address = gcp.compute.get_address(name="foobar")
+    prod = gcp.dns.ManagedZone("prod", dns_name="prod.mydomain.com.")
+    frontend = gcp.dns.RecordSet("frontend",
+        type="A",
+        ttl=300,
+        managed_zone=prod.name,
+        rrdatas=[my_address.address])
+    ```
+
 
     :param str name: A unique name for the resource, required by GCE.
     :param str project: The project in which the resource belongs. If it
@@ -81,7 +96,7 @@ def get_address(name=None,project=None,region=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getAddress:getAddress', __args__, opts=opts).value
 
     return AwaitableGetAddressResult(

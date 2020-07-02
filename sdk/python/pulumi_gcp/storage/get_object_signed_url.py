@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetObjectSignedUrlResult:
     """
@@ -72,6 +72,33 @@ def get_object_signed_url(bucket=None,content_md5=None,content_type=None,credent
 
     For more info about signed URL's is available [here](https://cloud.google.com/storage/docs/access-control/signed-urls).
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    artifact = gcp.storage.get_object_signed_url(bucket="install_binaries",
+        path="path/to/install_file.bin")
+    vm = gcp.compute.Instance("vm")
+    ```
+    ## Full Example
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    get_url = gcp.storage.get_object_signed_url(bucket="fried_chicken",
+        path="path/to/file",
+        content_md5="pRviqwS4c4OTJRTe03FD1w==",
+        content_type="text/plain",
+        duration="2d",
+        credentials=(lambda path: open(path).read())("path/to/credentials.json"),
+        extension_headers={
+            "x-goog-if-generation-match": 1,
+        })
+    ```
+
 
     :param str bucket: The name of the bucket to read the object from
     :param str content_md5: The [MD5 digest](https://cloud.google.com/storage/docs/hashes-etags#_MD5) value in Base64.
@@ -101,7 +128,7 @@ def get_object_signed_url(bucket=None,content_md5=None,content_type=None,credent
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:storage/getObjectSignedUrl:getObjectSignedUrl', __args__, opts=opts).value
 
     return AwaitableGetObjectSignedUrlResult(

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetProjectResult:
     """
@@ -69,6 +69,16 @@ def get_project(project_id=None,opts=None):
     For more information see
     [API](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project)
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    project = gcp.organizations.get_project()
+    pulumi.export("projectNumber", project.number)
+    ```
+
 
     :param str project_id: The project ID. If it is not provided, the provider project is used.
     """
@@ -79,7 +89,7 @@ def get_project(project_id=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getProject:getProject', __args__, opts=opts).value
 
     return AwaitableGetProjectResult(

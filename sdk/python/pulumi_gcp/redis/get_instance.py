@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetInstanceResult:
     """
@@ -112,6 +112,15 @@ def get_instance(name=None,project=None,region=None,opts=None):
     the [official documentation](https://cloud.google.com/memorystore/docs/redis)
     and [API](https://cloud.google.com/memorystore/docs/redis/apis).
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    default = gcp.redis.get_instance(name="my-redis-instance")
+    ```
+
 
     :param str name: The name of a Redis instance.
     :param str project: The project in which the resource belongs. If it
@@ -128,7 +137,7 @@ def get_instance(name=None,project=None,region=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:redis/getInstance:getInstance', __args__, opts=opts).value
 
     return AwaitableGetInstanceResult(

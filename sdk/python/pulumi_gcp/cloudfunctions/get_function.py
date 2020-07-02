@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetFunctionResult:
     """
@@ -165,6 +165,15 @@ def get_function(name=None,project=None,region=None,opts=None):
     the [official documentation](https://cloud.google.com/functions/docs/)
     and [API](https://cloud.google.com/functions/docs/apis).
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_function = gcp.cloudfunctions.get_function(name="function")
+    ```
+
 
     :param str name: The name of a Cloud Function.
     :param str project: The project in which the resource belongs. If it
@@ -181,7 +190,7 @@ def get_function(name=None,project=None,region=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:cloudfunctions/getFunction:getFunction', __args__, opts=opts).value
 
     return AwaitableGetFunctionResult(

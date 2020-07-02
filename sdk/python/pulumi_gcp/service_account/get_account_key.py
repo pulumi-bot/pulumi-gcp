@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetAccountKeyResult:
     """
@@ -54,6 +54,18 @@ def get_account_key(name=None,project=None,public_key_type=None,opts=None):
     """
     Get service account public key. For more information, see [the official documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) and [API](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys/get).
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    myaccount = gcp.service_account.Account("myaccount", account_id="dev-foo-account")
+    mykey_key = gcp.service_account.Key("mykeyKey", service_account_id=myaccount.name)
+    mykey_account_key = mykey_key.name.apply(lambda name: gcp.serviceAccount.get_account_key(name=name,
+        public_key_type="TYPE_X509_PEM_FILE"))
+    ```
+
 
     :param str name: The name of the service account key. This must have format
            `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{KEYID}`, where `{ACCOUNT}`
@@ -71,7 +83,7 @@ def get_account_key(name=None,project=None,public_key_type=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:serviceAccount/getAccountKey:getAccountKey', __args__, opts=opts).value
 
     return AwaitableGetAccountKeyResult(

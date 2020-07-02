@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetInstanceResult:
     """
@@ -228,6 +228,16 @@ def get_instance(name=None,project=None,self_link=None,zone=None,opts=None):
     and
     [API](https://cloud.google.com/compute/docs/reference/latest/instances).
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    appserver = gcp.compute.get_instance(name="primary-application-server",
+        zone="us-central1-a")
+    ```
+
 
     :param str name: The name of the instance. One of `name` or `self_link` must be provided.
     :param str project: The ID of the project in which the resource belongs.
@@ -248,7 +258,7 @@ def get_instance(name=None,project=None,self_link=None,zone=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getInstance:getInstance', __args__, opts=opts).value
 
     return AwaitableGetInstanceResult(

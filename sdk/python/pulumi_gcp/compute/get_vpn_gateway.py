@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetVPNGatewayResult:
     """
@@ -67,6 +67,15 @@ def get_vpn_gateway(name=None,project=None,region=None,opts=None):
     """
     Get a VPN gateway within GCE from its name.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_vpn_gateway = gcp.compute.get_vpn_gateway(name="vpn-gateway-us-east1")
+    ```
+
 
     :param str name: The name of the VPN gateway.
     :param str project: The project in which the resource belongs. If it
@@ -83,7 +92,7 @@ def get_vpn_gateway(name=None,project=None,region=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getVPNGateway:getVPNGateway', __args__, opts=opts).value
 
     return AwaitableGetVPNGatewayResult(

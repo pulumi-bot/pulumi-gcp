@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetNetworkResult:
     """
@@ -67,6 +67,15 @@ def get_network(name=None,project=None,opts=None):
     """
     Get a network within GCE from its name.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_network = gcp.compute.get_network(name="default-us-east1")
+    ```
+
 
     :param str name: The name of the network.
     :param str project: The ID of the project in which the resource belongs. If it
@@ -80,7 +89,7 @@ def get_network(name=None,project=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getNetwork:getNetwork', __args__, opts=opts).value
 
     return AwaitableGetNetworkResult(

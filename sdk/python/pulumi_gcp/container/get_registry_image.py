@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetRegistryImageResult:
     """
@@ -56,6 +56,16 @@ def get_registry_image(digest=None,name=None,project=None,region=None,tag=None,o
     This data source fetches the project name, and provides the appropriate URLs to use for container registry for this project.
 
     The URLs are computed entirely offline - as long as the project exists, they will be valid, but this data source does not contact Google Container Registry (GCR) at any point.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    debian = gcp.container.get_registry_image(name="debian")
+    pulumi.export("gcrLocation", debian.image_url)
+    ```
     """
     __args__ = dict()
 
@@ -68,7 +78,7 @@ def get_registry_image(digest=None,name=None,project=None,region=None,tag=None,o
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:container/getRegistryImage:getRegistryImage', __args__, opts=opts).value
 
     return AwaitableGetRegistryImageResult(

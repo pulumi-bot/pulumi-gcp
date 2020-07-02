@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetDefaultServiceAccountResult:
     """
@@ -51,6 +51,19 @@ def get_default_service_account(project=None,opts=None):
     For more information see
     [the API reference](https://cloud.google.com/bigquery/docs/reference/rest/v2/projects/getServiceAccount).
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    bq_sa = gcp.bigquery.get_default_service_account()
+    key_sa_user = gcp.kms.CryptoKeyIAMMember("keySaUser",
+        crypto_key_id=google_kms_crypto_key["key"]["id"],
+        role="roles/cloudkms.cryptoKeyEncrypterDecrypter",
+        member=f"serviceAccount:{bq_sa.email}")
+    ```
+
 
     :param str project: The project the unique service account was created for. If it is not provided, the provider project is used.
     """
@@ -61,7 +74,7 @@ def get_default_service_account(project=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:bigquery/getDefaultServiceAccount:getDefaultServiceAccount', __args__, opts=opts).value
 
     return AwaitableGetDefaultServiceAccountResult(

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetActiveFolderResult:
     """
@@ -46,6 +46,16 @@ def get_active_folder(display_name=None,parent=None,opts=None):
     """
     Get an active folder within GCP by `display_name` and `parent`.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    department1 = gcp.organizations.get_active_folder(display_name="Department 1",
+        parent="organizations/1234567")
+    ```
+
 
     :param str display_name: The folder's display name.
     :param str parent: The resource name of the parent Folder or Organization.
@@ -58,7 +68,7 @@ def get_active_folder(display_name=None,parent=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getActiveFolder:getActiveFolder', __args__, opts=opts).value
 
     return AwaitableGetActiveFolderResult(

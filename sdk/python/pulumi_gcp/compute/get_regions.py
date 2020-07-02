@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetRegionsResult:
     """
@@ -47,6 +47,19 @@ def get_regions(project=None,status=None,opts=None):
     Provides access to available Google Compute regions for a given project.
     See more about [regions and zones](https://cloud.google.com/compute/docs/regions-zones/) in the upstream docs.
 
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    available = gcp.compute.get_regions()
+    cluster = []
+    for range in [{"value": i} for i in range(0, len(available.names))]:
+        cluster.append(gcp.compute.Subnetwork(f"cluster-{range['value']}",
+            ip_cidr_range=f"10.36.{range['value']}.0/24",
+            network="my-network",
+            region=available.names[range["value"]]))
+    ```
+
 
     :param str project: Project from which to list available regions. Defaults to project declared in the provider.
     :param str status: Allows to filter list of regions based on their current status. Status can be either `UP` or `DOWN`.
@@ -60,7 +73,7 @@ def get_regions(project=None,status=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getRegions:getRegions', __args__, opts=opts).value
 
     return AwaitableGetRegionsResult(

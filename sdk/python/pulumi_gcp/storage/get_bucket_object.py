@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetBucketObjectResult:
     """
@@ -128,6 +128,18 @@ def get_bucket_object(bucket=None,name=None,opts=None):
     and
     [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
 
+    ## Example Usage
+
+    Example picture stored within a folder.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    picture = gcp.storage.get_bucket_object(bucket="image-store",
+        name="folder/butterfly01.jpg")
+    ```
+
 
     :param str bucket: The name of the containing bucket.
     :param str name: The name of the object.
@@ -140,7 +152,7 @@ def get_bucket_object(bucket=None,name=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:storage/getBucketObject:getBucketObject', __args__, opts=opts).value
 
     return AwaitableGetBucketObjectResult(

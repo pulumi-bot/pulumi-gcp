@@ -19,6 +19,117 @@ namespace Pulumi.Gcp.GameServices
     ///     * [Official Documentation](https://cloud.google.com/game-servers/docs)
     /// 
     /// ## Example Usage
+    /// ### Game Service Config Basic
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var defaultGameServerDeployment = new Gcp.GameServices.GameServerDeployment("defaultGameServerDeployment", new Gcp.GameServices.GameServerDeploymentArgs
+    ///         {
+    ///             DeploymentId = "tf-test-deployment",
+    ///             Description = "a deployment description",
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
+    ///         });
+    ///         var defaultGameServerConfig = new Gcp.GameServices.GameServerConfig("defaultGameServerConfig", new Gcp.GameServices.GameServerConfigArgs
+    ///         {
+    ///             ConfigId = "tf-test-config",
+    ///             DeploymentId = defaultGameServerDeployment.DeploymentId,
+    ///             Description = "a config description",
+    ///             FleetConfigs = 
+    ///             {
+    ///                 new Gcp.GameServices.Inputs.GameServerConfigFleetConfigArgs
+    ///                 {
+    ///                     Name = "something-unique",
+    ///                     FleetSpec = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         { "replicas", 1 },
+    ///                         { "scheduling", "Packed" },
+    ///                         { "template", new Dictionary&lt;string, object?&gt;
+    ///                         {
+    ///                             { "metadata", new Dictionary&lt;string, object?&gt;
+    ///                             {
+    ///                                 { "name", "tf-test-game-server-template" },
+    ///                             } },
+    ///                             { "spec", new Dictionary&lt;string, object?&gt;
+    ///                             {
+    ///                                 { "template", new Dictionary&lt;string, object?&gt;
+    ///                                 {
+    ///                                     { "spec", new Dictionary&lt;string, object?&gt;
+    ///                                     {
+    ///                                         { "containers", new[]
+    ///                                             {
+    ///                                                 new Dictionary&lt;string, object?&gt;
+    ///                                                 {
+    ///                                                     { "name", "simple-udp-server" },
+    ///                                                     { "image", "gcr.io/agones-images/udp-server:0.14" },
+    ///                                                 },
+    ///                                             }
+    ///                                          },
+    ///                                     } },
+    ///                                 } },
+    ///                             } },
+    ///                         } },
+    ///                     }),
+    ///                 },
+    ///             },
+    ///             ScalingConfigs = 
+    ///             {
+    ///                 new Gcp.GameServices.Inputs.GameServerConfigScalingConfigArgs
+    ///                 {
+    ///                     Name = "scaling-config-name",
+    ///                     FleetAutoscalerSpec = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         { "policy", new Dictionary&lt;string, object?&gt;
+    ///                         {
+    ///                             { "type", "Webhook" },
+    ///                             { "webhook", new Dictionary&lt;string, object?&gt;
+    ///                             {
+    ///                                 { "service", new Dictionary&lt;string, object?&gt;
+    ///                                 {
+    ///                                     { "name", "autoscaler-webhook-service" },
+    ///                                     { "namespace", "default" },
+    ///                                     { "path", "scale" },
+    ///                                 } },
+    ///                             } },
+    ///                         } },
+    ///                     }),
+    ///                     Selectors = 
+    ///                     {
+    ///                         new Gcp.GameServices.Inputs.GameServerConfigScalingConfigSelectorArgs
+    ///                         {
+    ///                             Labels = 
+    ///                             {
+    ///                                 { "one", "two" },
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                     Schedules = 
+    ///                     {
+    ///                         new Gcp.GameServices.Inputs.GameServerConfigScalingConfigScheduleArgs
+    ///                         {
+    ///                             CronJobDuration = "3.500s",
+    ///                             CronSpec = "0 0 * * 0",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class GameServerConfig : Pulumi.CustomResource
     {

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetNotificationChannelResult:
     """
@@ -82,6 +82,30 @@ def get_notification_channel(display_name=None,labels=None,project=None,type=Non
         * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
     ## Example Usage
+    ### Notification Channel Basic
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    basic = gcp.monitoring.get_notification_channel(display_name="Test Notification Channel")
+    alert_policy = gcp.monitoring.AlertPolicy("alertPolicy",
+        display_name="My Alert Policy",
+        notification_channels=[basic.name],
+        combiner="OR",
+        conditions=[{
+            "display_name": "test condition",
+            "conditionThreshold": {
+                "filter": "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\"",
+                "duration": "60s",
+                "comparison": "COMPARISON_GT",
+                "aggregations": [{
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_RATE",
+                }],
+            },
+        }])
+    ```
 
 
     :param str display_name: The display name for this notification channel.
@@ -103,7 +127,7 @@ def get_notification_channel(display_name=None,labels=None,project=None,type=Non
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:monitoring/getNotificationChannel:getNotificationChannel', __args__, opts=opts).value
 
     return AwaitableGetNotificationChannelResult(

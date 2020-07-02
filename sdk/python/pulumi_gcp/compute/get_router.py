@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetRouterResult:
     """
@@ -63,6 +63,16 @@ def get_router(name=None,network=None,project=None,region=None,opts=None):
     """
     Get a router within GCE from its name and VPC.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_router = gcp.compute.get_router(name="myrouter-us-east1",
+        network="my-network")
+    ```
+
 
     :param str name: The name of the router.
     :param str network: The VPC network on which this router lives.
@@ -81,7 +91,7 @@ def get_router(name=None,network=None,project=None,region=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getRouter:getRouter', __args__, opts=opts).value
 
     return AwaitableGetRouterResult(

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetImageResult:
     """
@@ -159,6 +159,22 @@ def get_image(family=None,name=None,project=None,opts=None):
     Get information about a Google Compute Image. Check that your service account has the `compute.imageUser` role if you want to share [custom images](https://cloud.google.com/compute/docs/images/sharing-images-across-projects) from another project. If you want to use [public images][pubimg], do not forget to specify the dedicated project. For more information see
     [the official documentation](https://cloud.google.com/compute/docs/images) and its [API](https://cloud.google.com/compute/docs/reference/latest/images).
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_image = gcp.compute.get_image(family="debian-9",
+        project="debian-cloud")
+    # ...
+    default = gcp.compute.Instance("default", boot_disk={
+        "initializeParams": {
+            "image": my_image.self_link,
+        },
+    })
+    ```
+
 
     :param str family: The family name of the image.
     :param str name: or `family` - (Required) The name of a specific image or a family.
@@ -178,7 +194,7 @@ def get_image(family=None,name=None,project=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getImage:getImage', __args__, opts=opts).value
 
     return AwaitableGetImageResult(

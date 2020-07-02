@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetProjectServiceAccountResult:
     """
@@ -53,6 +53,19 @@ def get_project_service_account(project=None,user_project=None,opts=None):
     For more information see
     [the API reference](https://cloud.google.com/storage/docs/json_api/v1/projects/serviceAccount).
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    gcs_account = gcp.storage.get_project_service_account()
+    binding = gcp.pubsub.TopicIAMBinding("binding",
+        topic=google_pubsub_topic["topic"]["name"],
+        role="roles/pubsub.publisher",
+        members=[f"serviceAccount:{gcs_account.email_address}"])
+    ```
+
 
     :param str project: The project the unique service account was created for. If it is not provided, the provider project is used.
     :param str user_project: The project the lookup originates from. This field is used if you are making the request
@@ -66,7 +79,7 @@ def get_project_service_account(project=None,user_project=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:storage/getProjectServiceAccount:getProjectServiceAccount', __args__, opts=opts).value
 
     return AwaitableGetProjectServiceAccountResult(

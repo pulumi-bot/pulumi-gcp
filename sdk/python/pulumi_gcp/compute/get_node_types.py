@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetNodeTypesResult:
     """
@@ -47,6 +47,18 @@ def get_node_types(project=None,zone=None,opts=None):
     Provides available node types for Compute Engine sole-tenant nodes in a zone
     for a given project. For more information, see [the official documentation](https://cloud.google.com/compute/docs/nodes/#types) and [API](https://cloud.google.com/compute/docs/reference/rest/v1/nodeTypes).
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    central1b = gcp.compute.get_node_types(zone="us-central1-b")
+    tmpl = gcp.compute.NodeTemplate("tmpl",
+        region="us-central1",
+        node_type=data["google_compute_node_types"]["types"]["names"])
+    ```
+
 
     :param str project: ID of the project to list available node types for.
            Should match the project the nodes of this type will be deployed to.
@@ -62,7 +74,7 @@ def get_node_types(project=None,zone=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getNodeTypes:getNodeTypes', __args__, opts=opts).value
 
     return AwaitableGetNodeTypesResult(

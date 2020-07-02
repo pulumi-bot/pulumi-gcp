@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetBackendBucketResult:
     """
@@ -81,6 +81,15 @@ def get_backend_bucket(name=None,project=None,opts=None):
     """
     Get information about a BackendBucket.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_backend_bucket = gcp.compute.get_backend_bucket(name="my-backend")
+    ```
+
 
     :param str name: Name of the resource.
     :param str project: The ID of the project in which the resource belongs. If it
@@ -94,7 +103,7 @@ def get_backend_bucket(name=None,project=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getBackendBucket:getBackendBucket', __args__, opts=opts).value
 
     return AwaitableGetBackendBucketResult(

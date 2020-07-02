@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 class GetCertificateResult:
     """
@@ -67,6 +67,18 @@ def get_certificate(name=None,project=None,opts=None):
     """
     Get info about a Google Compute SSL Certificate from its name.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_cert = gcp.compute.get_certificate(name="my-cert")
+    pulumi.export("certificate", my_cert.certificate)
+    pulumi.export("certificateId", my_cert.certificate_id)
+    pulumi.export("selfLink", my_cert.self_link)
+    ```
+
 
     :param str name: The name of the certificate.
     :param str project: The project in which the resource belongs. If it
@@ -80,7 +92,7 @@ def get_certificate(name=None,project=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getCertificate:getCertificate', __args__, opts=opts).value
 
     return AwaitableGetCertificateResult(
