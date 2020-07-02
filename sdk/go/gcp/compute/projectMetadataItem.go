@@ -27,7 +27,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewProjectMetadataItem(ctx, "default", &compute.ProjectMetadataItemArgs{
+// 		_, err := compute.NewProjectMetadataItem(ctx, "_default", &compute.ProjectMetadataItemArgs{
 // 			Key:   pulumi.String("my_metadata"),
 // 			Value: pulumi.String("my_value"),
 // 		})

@@ -58,7 +58,9 @@ import (
 // 					},
 // 				},
 // 			},
-// 		})
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			basicAgent,
+// 		}))
 // 		if err != nil {
 // 			return err
 // 		}

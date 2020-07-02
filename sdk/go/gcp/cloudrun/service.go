@@ -43,7 +43,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = cloudrun.NewService(ctx, "default", &cloudrun.ServiceArgs{
+// 		_, err := cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
 // 			Location: pulumi.String("us-central1"),
 // 			Template: &cloudrun.ServiceTemplateArgs{
 // 				Spec: &cloudrun.ServiceTemplateSpecArgs{
@@ -94,12 +94,12 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = cloudrun.NewService(ctx, "default", &cloudrun.ServiceArgs{
+// 		_, err = cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
 // 			AutogenerateRevisionName: pulumi.Bool(true),
 // 			Location:                 pulumi.String("us-central1"),
 // 			Template: &cloudrun.ServiceTemplateArgs{
 // 				Metadata: &cloudrun.ServiceTemplateMetadataArgs{
-// 					Annotations: pulumi.Map{
+// 					Annotations: pulumi.StringMap{
 // 						"autoscaling.knative.dev/maxScale": pulumi.String("1000"),
 // 						"run.googleapis.com/client-name":   pulumi.String("demo"),
 // 						"run.googleapis.com/cloudsql-instances": instance.Name.ApplyT(func(name string) (string, error) {
@@ -125,6 +125,59 @@ import (
 // ```
 //
 // ###Cloud Run Service Noauth
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/cloudrun"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
+// 			Location: pulumi.String("us-central1"),
+// 			Template: &cloudrun.ServiceTemplateArgs{
+// 				Spec: &cloudrun.ServiceTemplateSpecArgs{
+// 					Containers: cloudrun.ServiceTemplateSpecContainerArray{
+// 						&cloudrun.ServiceTemplateSpecContainerArgs{
+// 							Image: pulumi.String("gcr.io/cloudrun/hello"),
+// 						},
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		noauthIAMPolicy, err := organizations.LookupIAMPolicy(ctx, &organizations.LookupIAMPolicyArgs{
+// 			Binding: []map[string]interface{}{
+// 				map[string]interface{}{
+// 					"role": "roles/run.invoker",
+// 					"members": []string{
+// 						"allUsers",
+// 					},
+// 				},
+// 			},
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = cloudrun.NewIamPolicy(ctx, "noauthIamPolicy", &cloudrun.IamPolicyArgs{
+// 			Location:   _default.Location,
+// 			Project:    _default.Project,
+// 			Service:    _default.Name,
+// 			PolicyData: pulumi.String(noauthIAMPolicy.PolicyData),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 // ### Cloud Run Service Multiple Environment Variables
 //
 // ```go
@@ -137,19 +190,19 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = cloudrun.NewService(ctx, "default", &cloudrun.ServiceArgs{
+// 		_, err := cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
 // 			AutogenerateRevisionName: pulumi.Bool(true),
 // 			Location:                 pulumi.String("us-central1"),
 // 			Template: &cloudrun.ServiceTemplateArgs{
 // 				Spec: &cloudrun.ServiceTemplateSpecArgs{
 // 					Containers: cloudrun.ServiceTemplateSpecContainerArray{
 // 						&cloudrun.ServiceTemplateSpecContainerArgs{
-// 							Env: pulumi.MapArray{
-// 								pulumi.Map{
+// 							Env: pulumi.StringMapArray{
+// 								pulumi.StringMap{
 // 									"name":  pulumi.String("SOURCE"),
 // 									"value": pulumi.String("remote"),
 // 								},
-// 								pulumi.Map{
+// 								pulumi.StringMap{
 // 									"name":  pulumi.String("TARGET"),
 // 									"value": pulumi.String("home"),
 // 								},
@@ -185,7 +238,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = cloudrun.NewService(ctx, "default", &cloudrun.ServiceArgs{
+// 		_, err := cloudrun.NewService(ctx, "_default", &cloudrun.ServiceArgs{
 // 			Location: pulumi.String("us-central1"),
 // 			Template: &cloudrun.ServiceTemplateArgs{
 // 				Metadata: &cloudrun.ServiceTemplateMetadataArgs{
