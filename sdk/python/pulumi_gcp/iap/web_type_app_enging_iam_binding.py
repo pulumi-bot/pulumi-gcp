@@ -51,6 +51,103 @@ class WebTypeAppEngingIamBinding(pulumi.CustomResource):
 
         > **Note:** `iap.WebTypeAppEngingIamBinding` resources **can be** used in conjunction with `iap.WebTypeAppEngingIamMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_iap\_web\_type\_app\_engine\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/iap.httpsResourceAccessor",
+            "members": ["user:jane@example.com"],
+        }])
+        policy = gcp.iap.WebTypeAppEngingIamPolicy("policy",
+            project=google_app_engine_application["app"]["project"],
+            app_id=google_app_engine_application["app"]["app_id"],
+            policy_data=admin.policy_data)
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/iap.httpsResourceAccessor",
+            "members": ["user:jane@example.com"],
+            "condition": {
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            },
+        }])
+        policy = gcp.iap.WebTypeAppEngingIamPolicy("policy",
+            project=google_app_engine_application["app"]["project"],
+            app_id=google_app_engine_application["app"]["app_id"],
+            policy_data=admin.policy_data)
+        ```
+        ## google\_iap\_web\_type\_app\_engine\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        binding = gcp.iap.WebTypeAppEngingIamBinding("binding",
+            project=google_app_engine_application["app"]["project"],
+            app_id=google_app_engine_application["app"]["app_id"],
+            role="roles/iap.httpsResourceAccessor",
+            members=["user:jane@example.com"])
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        binding = gcp.iap.WebTypeAppEngingIamBinding("binding",
+            project=google_app_engine_application["app"]["project"],
+            app_id=google_app_engine_application["app"]["app_id"],
+            role="roles/iap.httpsResourceAccessor",
+            members=["user:jane@example.com"],
+            condition={
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            })
+        ```
+        ## google\_iap\_web\_type\_app\_engine\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        member = gcp.iap.WebTypeAppEngingIamMember("member",
+            project=google_app_engine_application["app"]["project"],
+            app_id=google_app_engine_application["app"]["app_id"],
+            role="roles/iap.httpsResourceAccessor",
+            member="user:jane@example.com")
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        member = gcp.iap.WebTypeAppEngingIamMember("member",
+            project=google_app_engine_application["app"]["project"],
+            app_id=google_app_engine_application["app"]["app_id"],
+            role="roles/iap.httpsResourceAccessor",
+            member="user:jane@example.com",
+            condition={
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] app_id: Id of the App Engine application. Used to find the parent resource to bind the IAM policy to

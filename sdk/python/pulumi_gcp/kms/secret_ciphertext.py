@@ -46,6 +46,35 @@ class SecretCiphertext(pulumi.CustomResource):
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
         ## Example Usage
+        ### Kms Secret Ciphertext Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        keyring = gcp.kms.KeyRing("keyring", location="global")
+        cryptokey = gcp.kms.CryptoKey("cryptokey",
+            key_ring=keyring.id,
+            rotation_period="100000s")
+        my_password = gcp.kms.SecretCiphertext("myPassword",
+            crypto_key=cryptokey.id,
+            plaintext="my-secret-password")
+        instance = gcp.compute.Instance("instance",
+            machine_type="n1-standard-1",
+            zone="us-central1-a",
+            boot_disk={
+                "initializeParams": {
+                    "image": "debian-cloud/debian-9",
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+                "accessConfigs": [{}],
+            }],
+            metadata={
+                "password": my_password.ciphertext,
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

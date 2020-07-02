@@ -36,6 +36,18 @@ class AccountIamMember(pulumi.CustomResource):
            `billing.AccountIamBinding` for the __same role__ or they will fight over
            what your policy should be.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        binding = gcp.billing.AccountIamMember("binding",
+            billing_account_id="00AA00-000AAA-00AA0A",
+            member="user:alice@gmail.com",
+            role="roles/billing.viewer")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] billing_account_id: The billing account id.
