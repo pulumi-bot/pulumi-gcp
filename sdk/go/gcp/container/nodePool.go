@@ -15,6 +15,46 @@ import (
 // and [the API reference](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.nodePools).
 //
 // ## Example Usage
+// ### Using A Separately Managed Node Pool (Recommended)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/container"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		primary, err := container.NewCluster(ctx, "primary", &container.ClusterArgs{
+// 			Location:              pulumi.String("us-central1"),
+// 			RemoveDefaultNodePool: pulumi.Bool(true),
+// 			InitialNodeCount:      pulumi.Int(1),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = container.NewNodePool(ctx, "primaryPreemptibleNodes", &container.NodePoolArgs{
+// 			Location:  pulumi.String("us-central1"),
+// 			Cluster:   primary.Name,
+// 			NodeCount: pulumi.Int(1),
+// 			NodeConfig: &container.NodePoolNodeConfigArgs{
+// 				Preemptible: pulumi.Bool(true),
+// 				MachineType: pulumi.String("n1-standard-1"),
+// 				OauthScopes: pulumi.StringArray{
+// 					pulumi.String("https://www.googleapis.com/auth/logging.write"),
+// 					pulumi.String("https://www.googleapis.com/auth/monitoring"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type NodePool struct {
 	pulumi.CustomResourceState
 

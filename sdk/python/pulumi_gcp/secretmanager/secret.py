@@ -57,6 +57,30 @@ class Secret(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets)
 
         ## Example Usage
+        ### Secret Config Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        secret_basic = gcp.secretmanager.Secret("secret-basic",
+            labels={
+                "label": "my-label",
+            },
+            replication={
+                "userManaged": {
+                    "replicas": [
+                        {
+                            "location": "us-central1",
+                        },
+                        {
+                            "location": "us-east1",
+                        },
+                    ],
+                },
+            },
+            secret_id="secret")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

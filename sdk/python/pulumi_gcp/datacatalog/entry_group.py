@@ -48,6 +48,25 @@ class EntryGroup(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 
         ## Example Usage
+        ### Data Catalog Entry Group Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        basic_entry_group = gcp.datacatalog.EntryGroup("basicEntryGroup", entry_group_id="my_group")
+        ```
+        ### Data Catalog Entry Group Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        basic_entry_group = gcp.datacatalog.EntryGroup("basicEntryGroup",
+            description="entry group created by Terraform",
+            display_name="terraform entry group",
+            entry_group_id="my_group")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

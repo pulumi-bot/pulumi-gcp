@@ -211,6 +211,21 @@ class Disk(pulumi.CustomResource):
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
         ## Example Usage
+        ### Disk Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.compute.Disk("default",
+            image="debian-8-jessie-v20170523",
+            labels={
+                "environment": "dev",
+            },
+            physical_block_size_bytes=4096,
+            type="pd-ssd",
+            zone="us-central1-a")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

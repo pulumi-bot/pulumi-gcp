@@ -44,6 +44,26 @@ class MachineImage(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/compute/docs/machine-images)
 
         ## Example Usage
+        ### Machine Image Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        vm = gcp.compute.Instance("vm",
+            machine_type="n1-standard-1",
+            boot_disk={
+                "initializeParams": {
+                    "image": "debian-cloud/debian-9",
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+            }],
+            opts=ResourceOptions(provider=google_beta))
+        image = gcp.compute.MachineImage("image", source_instance=vm.self_link,
+        opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

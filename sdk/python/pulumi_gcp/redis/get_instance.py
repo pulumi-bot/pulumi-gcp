@@ -112,6 +112,15 @@ def get_instance(name=None,project=None,region=None,opts=None):
     the [official documentation](https://cloud.google.com/memorystore/docs/redis)
     and [API](https://cloud.google.com/memorystore/docs/redis/apis).
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    default = gcp.redis.get_instance(name="my-redis-instance")
+    ```
+
 
     :param str name: The name of a Redis instance.
     :param str project: The project in which the resource belongs. If it
