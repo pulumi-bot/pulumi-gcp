@@ -35,7 +35,7 @@ import * as utilities from "../utilities";
  *     displayName: "Test Service Account",
  * });
  * const topic = new gcp.pubsub.Topic("topic", {});
- * const my_repo = new gcp.sourcerepo.Repository("my-repo", {pubsub_configs: [{
+ * const my_repo = new gcp.sourcerepo.Repository("my-repo", {pubsubConfigs: [{
  *     topic: topic.id,
  *     messageFormat: "JSON",
  *     serviceAccountEmail: test_account.email,

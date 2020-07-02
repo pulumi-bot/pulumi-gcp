@@ -40,14 +40,14 @@ import * as utilities from "../utilities";
  * const instance = new gcp.compute.Instance("instance", {
  *     machineType: "n1-standard-1",
  *     zone: "us-central1-a",
- *     boot_disk: {
- *         initialize_params: {
+ *     bootDisk: {
+ *         initializeParams: {
  *             image: "debian-cloud/debian-9",
  *         },
  *     },
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: "default",
- *         access_config: [{}],
+ *         accessConfigs: [{}],
  *     }],
  *     metadata: {
  *         password: myPassword.ciphertext,

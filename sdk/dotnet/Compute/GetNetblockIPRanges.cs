@@ -43,6 +43,45 @@ namespace Pulumi.Gcp.Compute
         /// ```
         /// 
         /// {{% /example %}}
+        /// {{% example %}}
+        /// ### Allow Health Checks
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Gcp = Pulumi.Gcp;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var legacy_hcs = Output.Create(Gcp.Compute.GetNetblockIPRanges.InvokeAsync(new Gcp.Compute.GetNetblockIPRangesArgs
+        ///         {
+        ///             RangeType = "legacy-health-checkers",
+        ///         }));
+        ///         var @default = new Gcp.Compute.Network("default", new Gcp.Compute.NetworkArgs
+        ///         {
+        ///         });
+        ///         var allow_hcs = new Gcp.Compute.Firewall("allow-hcs", new Gcp.Compute.FirewallArgs
+        ///         {
+        ///             Network = @default.Name,
+        ///             Allows = 
+        ///             {
+        ///                 new Gcp.Compute.Inputs.FirewallAllowArgs
+        ///                 {
+        ///                     Protocol = "tcp",
+        ///                     Ports = 
+        ///                     {
+        ///                         "80",
+        ///                     },
+        ///                 },
+        ///             },
+        ///             SourceRanges = legacy_hcs.Apply(legacy_hcs =&gt; legacy_hcs.CidrBlocksIpv4s),
+        ///         });
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetNetblockIPRangesResult> InvokeAsync(GetNetblockIPRangesArgs? args = null, InvokeOptions? options = null)

@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  *
  * const default_telemetry = new gcp.pubsub.Topic("default-telemetry", {});
- * const test_registry = new gcp.iot.Registry("test-registry", {event_notification_configs: [{
+ * const test_registry = new gcp.iot.Registry("test-registry", {eventNotificationConfigs: [{
  *     pubsubTopicName: default_telemetry.id,
  *     subfolderMatches: "",
  * }]});
@@ -47,7 +47,7 @@ import * as utilities from "../utilities";
  * const default_telemetry = new gcp.pubsub.Topic("default-telemetry", {});
  * const additional_telemetry = new gcp.pubsub.Topic("additional-telemetry", {});
  * const test_registry = new gcp.iot.Registry("test-registry", {
- *     event_notification_configs: [
+ *     eventNotificationConfigs: [
  *         {
  *             pubsubTopicName: additional_telemetry.id,
  *             subfolderMatches: "test/path",

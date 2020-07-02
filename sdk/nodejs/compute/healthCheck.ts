@@ -213,12 +213,14 @@ import * as utilities from "../utilities";
  * const health_check_with_logging = new gcp.compute.HealthCheck("health-check-with-logging", {
  *     timeoutSec: 1,
  *     checkIntervalSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "22",
  *     },
- *     log_config: {
+ *     logConfig: {
  *         enable: true,
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

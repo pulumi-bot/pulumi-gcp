@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const defaultRedisInstance = pulumi.output(gcp.RedisInstance({
+ * const defaultInstance = pulumi.output(gcp.redis.getInstance({
  *     name: "my-redis-instance",
  * }, { async: true }));
  * ```

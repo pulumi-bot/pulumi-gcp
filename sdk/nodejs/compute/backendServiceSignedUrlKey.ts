@@ -25,17 +25,17 @@ import * as utilities from "../utilities";
  *
  * const webserver = new gcp.compute.InstanceTemplate("webserver", {
  *     machineType: "n1-standard-1",
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: "default",
  *     }],
- *     disk: [{
+ *     disks: [{
  *         sourceImage: "debian-cloud/debian-9",
  *         autoDelete: true,
  *         boot: true,
  *     }],
  * });
  * const webservers = new gcp.compute.InstanceGroupManager("webservers", {
- *     version: [{
+ *     versions: [{
  *         instanceTemplate: webserver.id,
  *         name: "primary",
  *     }],
@@ -54,7 +54,7 @@ import * as utilities from "../utilities";
  *     protocol: "HTTP",
  *     timeoutSec: 10,
  *     enableCdn: true,
- *     backend: [{
+ *     backends: [{
  *         group: webservers.instanceGroup,
  *     }],
  *     healthChecks: [_default.id],

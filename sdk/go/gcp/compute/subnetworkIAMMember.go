@@ -34,10 +34,10 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		admin, err := organizations.LookupIAMPolicy(ctx, &organizations.LookupIAMPolicyArgs{
-// 			Binding: []map[string]interface{}{
-// 				map[string]interface{}{
-// 					"role": "roles/compute.networkUser",
-// 					"members": []string{
+// 			Bindings: []organizations.GetIAMPolicyBinding{
+// 				organizations.GetIAMPolicyBinding{
+// 					Role: "roles/compute.networkUser",
+// 					Members: []string{
 // 						"user:jane@example.com",
 // 					},
 // 				},
@@ -47,9 +47,9 @@ import (
 // 			return err
 // 		}
 // 		_, err = compute.NewSubnetworkIAMPolicy(ctx, "policy", &compute.SubnetworkIAMPolicyArgs{
-// 			Project:    pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Project),
-// 			Region:     pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Region),
-// 			Subnetwork: pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Name),
+// 			Project:    pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Project),
+// 			Region:     pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Region),
+// 			Subnetwork: pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Name),
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})
 // 		if err != nil {
@@ -74,16 +74,16 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		admin, err := organizations.LookupIAMPolicy(ctx, &organizations.LookupIAMPolicyArgs{
-// 			Binding: []map[string]interface{}{
-// 				map[string]interface{}{
-// 					"role": "roles/compute.networkUser",
-// 					"members": []string{
+// 			Bindings: []organizations.GetIAMPolicyBinding{
+// 				organizations.GetIAMPolicyBinding{
+// 					Role: "roles/compute.networkUser",
+// 					Members: []string{
 // 						"user:jane@example.com",
 // 					},
-// 					"condition": map[string]interface{}{
-// 						"title":       "expires_after_2019_12_31",
-// 						"description": "Expiring at midnight of 2019-12-31",
-// 						"expression":  "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+// 					Condition: organizations.GetIAMPolicyBindingCondition{
+// 						Title:       "expires_after_2019_12_31",
+// 						Description: "Expiring at midnight of 2019-12-31",
+// 						Expression:  "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
 // 					},
 // 				},
 // 			},
@@ -92,9 +92,9 @@ import (
 // 			return err
 // 		}
 // 		_, err = compute.NewSubnetworkIAMPolicy(ctx, "policy", &compute.SubnetworkIAMPolicyArgs{
-// 			Project:    pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Project),
-// 			Region:     pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Region),
-// 			Subnetwork: pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Name),
+// 			Project:    pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Project),
+// 			Region:     pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Region),
+// 			Subnetwork: pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Name),
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})
 // 		if err != nil {
@@ -116,10 +116,10 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewSubnetworkIAMBinding(ctx, "binding", &compute.SubnetworkIAMBindingArgs{
-// 			Project:    pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Project),
-// 			Region:     pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Region),
-// 			Subnetwork: pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Name),
+// 		_, err := compute.NewSubnetworkIAMBinding(ctx, "binding", &compute.SubnetworkIAMBindingArgs{
+// 			Project:    pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Project),
+// 			Region:     pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Region),
+// 			Subnetwork: pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Name),
 // 			Role:       pulumi.String("roles/compute.networkUser"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -145,10 +145,10 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewSubnetworkIAMBinding(ctx, "binding", &compute.SubnetworkIAMBindingArgs{
-// 			Project:    pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Project),
-// 			Region:     pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Region),
-// 			Subnetwork: pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Name),
+// 		_, err := compute.NewSubnetworkIAMBinding(ctx, "binding", &compute.SubnetworkIAMBindingArgs{
+// 			Project:    pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Project),
+// 			Region:     pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Region),
+// 			Subnetwork: pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Name),
 // 			Role:       pulumi.String("roles/compute.networkUser"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -178,10 +178,10 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewSubnetworkIAMMember(ctx, "member", &compute.SubnetworkIAMMemberArgs{
-// 			Project:    pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Project),
-// 			Region:     pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Region),
-// 			Subnetwork: pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Name),
+// 		_, err := compute.NewSubnetworkIAMMember(ctx, "member", &compute.SubnetworkIAMMemberArgs{
+// 			Project:    pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Project),
+// 			Region:     pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Region),
+// 			Subnetwork: pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Name),
 // 			Role:       pulumi.String("roles/compute.networkUser"),
 // 			Member:     pulumi.String("user:jane@example.com"),
 // 		})
@@ -205,10 +205,10 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewSubnetworkIAMMember(ctx, "member", &compute.SubnetworkIAMMemberArgs{
-// 			Project:    pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Project),
-// 			Region:     pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Region),
-// 			Subnetwork: pulumi.String(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Name),
+// 		_, err := compute.NewSubnetworkIAMMember(ctx, "member", &compute.SubnetworkIAMMemberArgs{
+// 			Project:    pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Project),
+// 			Region:     pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Region),
+// 			Subnetwork: pulumi.Any(google_compute_subnetwork.Network - with - private - secondary - ip - ranges.Name),
 // 			Role:       pulumi.String("roles/compute.networkUser"),
 // 			Member:     pulumi.String("user:jane@example.com"),
 // 			Condition: &compute.SubnetworkIAMMemberConditionArgs{

@@ -70,10 +70,12 @@ import (
 // 				pulumi.String("OBJECT_FINALIZE"),
 // 				pulumi.String("OBJECT_METADATA_UPDATE"),
 // 			},
-// 			CustomAttributes: pulumi.Map{
+// 			CustomAttributes: pulumi.StringMap{
 // 				"new-attribute": pulumi.String("new-attribute-value"),
 // 			},
-// 		})
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			binding,
+// 		}))
 // 		if err != nil {
 // 			return err
 // 		}

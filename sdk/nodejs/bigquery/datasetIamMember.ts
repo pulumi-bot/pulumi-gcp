@@ -32,7 +32,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  *
  * const owner = gcp.organizations.getIAMPolicy({
- *     binding: [{
+ *     bindings: [{
  *         role: "roles/dataOwner",
  *         members: ["user:jane@example.com"],
  *     }],

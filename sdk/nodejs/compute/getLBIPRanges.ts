@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * const ranges = gcp.compute.getLBIPRanges({});
  * const lb = new gcp.compute.Firewall("lb", {
  *     network: google_compute_network.main.name,
- *     allow: [{
+ *     allows: [{
  *         protocol: "tcp",
  *         ports: ["80"],
  *     }],

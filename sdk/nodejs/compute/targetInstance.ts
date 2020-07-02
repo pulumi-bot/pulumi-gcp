@@ -32,12 +32,12 @@ import * as utilities from "../utilities";
  * const target_vm = new gcp.compute.Instance("target-vm", {
  *     machineType: "n1-standard-1",
  *     zone: "us-central1-a",
- *     boot_disk: {
- *         initialize_params: {
+ *     bootDisk: {
+ *         initializeParams: {
  *             image: vmimage.then(vmimage => vmimage.selfLink),
  *         },
  *     },
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: "default",
  *     }],
  * });

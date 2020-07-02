@@ -65,12 +65,12 @@ namespace Pulumi.Gcp.Dataproc
     ///                         "bar",
     ///                     },
     ///                 },
-    ///                 InitializationAction = 
+    ///                 InitializationActions = 
     ///                 {
-    ///                     
+    ///                     new Gcp.Dataproc.Inputs.ClusterClusterConfigInitializationActionArgs
     ///                     {
-    ///                         { "script", "gs://dataproc-initialization-actions/stackdriver/stackdriver.sh" },
-    ///                         { "timeoutSec", 500 },
+    ///                         Script = "gs://dataproc-initialization-actions/stackdriver/stackdriver.sh",
+    ///                         TimeoutSec = 500,
     ///                     },
     ///                 },
     ///                 MasterConfig = new Gcp.Dataproc.Inputs.ClusterClusterConfigMasterConfigArgs

@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  * const dataset = new gcp.healthcare.Dataset("dataset", {location: "us-central1"});
  * const _default = new gcp.healthcare.Hl7Store("default", {
  *     dataset: dataset.id,
- *     notification_configs: [{
+ *     notificationConfigs: [{
  *         pubsubTopic: topic.id,
  *     }],
  *     labels: {
@@ -41,10 +41,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const dataset = new gcp.healthcare.Dataset("dataset", {location: "us-central1"});
+ * const dataset = new gcp.healthcare.Dataset("dataset", {location: "us-central1"}, {
+ *     provider: google_beta,
+ * });
  * const _default = new gcp.healthcare.Hl7Store("default", {
  *     dataset: dataset.id,
- *     parser_config: {
+ *     parserConfig: {
  *         allowNullHeader: false,
  *         segmentTerminator: "Jw==",
  *         schema: `{
@@ -127,6 +129,8 @@ import * as utilities from "../utilities";
  * }
  * `,
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

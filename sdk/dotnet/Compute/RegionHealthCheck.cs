@@ -158,6 +158,36 @@ namespace Pulumi.Gcp.Compute
     /// 
     /// }
     /// ```
+    /// ### Region Health Check Http Logs
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var http_region_health_check = new Gcp.Compute.RegionHealthCheck("http-region-health-check", new Gcp.Compute.RegionHealthCheckArgs
+    ///         {
+    ///             TimeoutSec = 1,
+    ///             CheckIntervalSec = 1,
+    ///             HttpHealthCheck = new Gcp.Compute.Inputs.RegionHealthCheckHttpHealthCheckArgs
+    ///             {
+    ///                 Port = 80,
+    ///             },
+    ///             LogConfig = new Gcp.Compute.Inputs.RegionHealthCheckLogConfigArgs
+    ///             {
+    ///                 Enable = true,
+    ///             },
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// ### Region Health Check Http Full
     /// 
     /// ```csharp

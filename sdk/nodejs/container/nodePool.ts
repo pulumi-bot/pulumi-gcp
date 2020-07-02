@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  *     location: "us-central1",
  *     cluster: primary.name,
  *     nodeCount: 1,
- *     node_config: {
+ *     nodeConfig: {
  *         preemptible: true,
  *         machineType: "n1-standard-1",
  *         oauthScopes: [
@@ -47,14 +47,14 @@ import * as utilities from "../utilities";
  *     location: "us-central1-a",
  *     initialNodeCount: 3,
  *     nodeLocations: ["us-central1-c"],
- *     master_auth: {
+ *     masterAuth: {
  *         username: "",
  *         password: "",
- *         client_certificate_config: {
+ *         clientCertificateConfig: {
  *             issueClientCertificate: false,
  *         },
  *     },
- *     node_config: {
+ *     nodeConfig: {
  *         oauthScopes: [
  *             "https://www.googleapis.com/auth/logging.write",
  *             "https://www.googleapis.com/auth/monitoring",
@@ -62,7 +62,7 @@ import * as utilities from "../utilities";
  *         metadata: {
  *             "disable-legacy-endpoints": "true",
  *         },
- *         guest_accelerator: [{
+ *         guestAccelerators: [{
  *             type: "nvidia-tesla-k80",
  *             count: 1,
  *         }],

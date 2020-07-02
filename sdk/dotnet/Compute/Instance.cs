@@ -44,7 +44,7 @@ namespace Pulumi.Gcp.Compute
     ///             {
     ///                 new Gcp.Compute.Inputs.InstanceNetworkInterfaceArgs
     ///                 {
-    ///                     AccessConfig = 
+    ///                     AccessConfigs = 
     ///                     {
     ///                         ,
     ///                     },

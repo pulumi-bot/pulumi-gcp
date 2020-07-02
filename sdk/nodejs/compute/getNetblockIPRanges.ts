@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  * const _default = new gcp.compute.Network("default", {});
  * const allow_hcs = new gcp.compute.Firewall("allow-hcs", {
  *     network: _default.name,
- *     allow: [{
+ *     allows: [{
  *         protocol: "tcp",
  *         ports: ["80"],
  *     }],

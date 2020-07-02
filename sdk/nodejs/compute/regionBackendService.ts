@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  * const defaultHealthCheck = new gcp.compute.HealthCheck("defaultHealthCheck", {
  *     checkIntervalSec: 1,
  *     timeoutSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "80",
  *     },
  * });
@@ -43,7 +43,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {http_health_check: {
+ * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {httpHealthCheck: {
  *     port: 80,
  * }});
  * const _default = new gcp.compute.RegionBackendService("default", {
@@ -60,7 +60,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {http_health_check: {
+ * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {httpHealthCheck: {
  *     port: 80,
  * }});
  * const _default = new gcp.compute.RegionBackendService("default", {
@@ -70,11 +70,11 @@ import * as utilities from "../utilities";
  *     localityLbPolicy: "RING_HASH",
  *     sessionAffinity: "HTTP_COOKIE",
  *     protocol: "HTTP",
- *     circuit_breakers: {
+ *     circuitBreakers: {
  *         maxConnections: 10,
  *     },
- *     consistent_hash: {
- *         http_cookie: {
+ *     consistentHash: {
+ *         httpCookie: {
  *             ttl: {
  *                 seconds: 11,
  *                 nanos: 1111,
@@ -82,7 +82,7 @@ import * as utilities from "../utilities";
  *             name: "mycookie",
  *         },
  *     },
- *     outlier_detection: {
+ *     outlierDetection: {
  *         consecutiveErrors: 2,
  *     },
  * });
@@ -108,11 +108,11 @@ import * as utilities from "../utilities";
  * });
  * const instanceTemplate = new gcp.compute.InstanceTemplate("instanceTemplate", {
  *     machineType: "n1-standard-1",
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: defaultNetwork.id,
  *         subnetwork: defaultSubnetwork.id,
  *     }],
- *     disk: [{
+ *     disks: [{
  *         sourceImage: debianImage.then(debianImage => debianImage.selfLink),
  *         autoDelete: true,
  *         boot: true,
@@ -124,7 +124,7 @@ import * as utilities from "../utilities";
  * });
  * const rigm = new gcp.compute.RegionInstanceGroupManager("rigm", {
  *     region: "us-central1",
- *     version: [{
+ *     versions: [{
  *         instanceTemplate: instanceTemplate.id,
  *         name: "primary",
  *     }],
@@ -133,13 +133,13 @@ import * as utilities from "../utilities";
  * });
  * const defaultRegionHealthCheck = new gcp.compute.RegionHealthCheck("defaultRegionHealthCheck", {
  *     region: "us-central1",
- *     http_health_check: {
+ *     httpHealthCheck: {
  *         portSpecification: "USE_SERVING_PORT",
  *     },
  * });
  * const defaultRegionBackendService = new gcp.compute.RegionBackendService("defaultRegionBackendService", {
  *     loadBalancingScheme: "INTERNAL_MANAGED",
- *     backend: [{
+ *     backends: [{
  *         group: rigm.instanceGroup,
  *         balancingMode: "UTILIZATION",
  *         capacityScaler: 1,

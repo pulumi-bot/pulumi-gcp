@@ -34,14 +34,14 @@ import * as utilities from "../utilities";
  * });
  * const defaultURLMap = new gcp.compute.URLMap("defaultURLMap", {
  *     defaultService: defaultBackendService.id,
- *     host_rule: [{
+ *     hostRules: [{
  *         hosts: ["mysite.com"],
  *         pathMatcher: "allpaths",
  *     }],
- *     path_matcher: [{
+ *     pathMatchers: [{
  *         name: "allpaths",
  *         defaultService: defaultBackendService.id,
- *         path_rule: [{
+ *         pathRules: [{
  *             paths: ["/*"],
  *             service: defaultBackendService.id,
  *         }],
@@ -55,7 +55,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const defaultURLMap = new gcp.compute.URLMap("defaultURLMap", {default_url_redirect: {
+ * const defaultURLMap = new gcp.compute.URLMap("defaultURLMap", {defaultUrlRedirect: {
  *     httpsRedirect: true,
  *     stripQuery: false,
  * }});

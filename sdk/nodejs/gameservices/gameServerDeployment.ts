@@ -23,6 +23,8 @@ import * as utilities from "../utilities";
  * const _default = new gcp.gameservices.GameServerDeployment("default", {
  *     deploymentId: "tf-test-deployment",
  *     description: "a deployment description",
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

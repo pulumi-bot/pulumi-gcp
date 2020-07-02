@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  *     rotationPeriod: "100000s",
  * });
  * const admin = gcp.organizations.getIAMPolicy({
- *     binding: [{
+ *     bindings: [{
  *         role: "roles/cloudkms.cryptoKeyEncrypter",
  *         members: ["user:jane@example.com"],
  *     }],
