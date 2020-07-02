@@ -103,6 +103,23 @@ class Deployment(pulumi.CustomResource):
         `preview=false`).
 
         ## Example Usage
+        ### Deployment Manager Deployment Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        deployment = gcp.deploymentmanager.Deployment("deployment",
+            target={
+                "config": {
+                    "content": (lambda path: open(path).read())("path/to/config.yml"),
+                },
+            },
+            labels=[{
+                "key": "foo",
+                "value": "bar",
+            }])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

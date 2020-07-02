@@ -907,6 +907,360 @@ class URLMap(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/urlMaps)
 
         ## Example Usage
+        ### Url Map Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.compute.HttpHealthCheck("default",
+            request_path="/",
+            check_interval_sec=1,
+            timeout_sec=1)
+        login = gcp.compute.BackendService("login",
+            port_name="http",
+            protocol="HTTP",
+            timeout_sec=10,
+            health_checks=[default.id])
+        home = gcp.compute.BackendService("home",
+            port_name="http",
+            protocol="HTTP",
+            timeout_sec=10,
+            health_checks=[default.id])
+        static_bucket = gcp.storage.Bucket("staticBucket", location="US")
+        static_backend_bucket = gcp.compute.BackendBucket("staticBackendBucket",
+            bucket_name=static_bucket.name,
+            enable_cdn=True)
+        urlmap = gcp.compute.URLMap("urlmap",
+            description="a description",
+            default_service=home.id,
+            host_rules=[
+                {
+                    "hosts": ["mysite.com"],
+                    "pathMatcher": "mysite",
+                },
+                {
+                    "hosts": ["myothersite.com"],
+                    "pathMatcher": "otherpaths",
+                },
+            ],
+            path_matchers=[
+                {
+                    "name": "mysite",
+                    "default_service": home.id,
+                    "pathRules": [
+                        {
+                            "paths": ["/home"],
+                            "service": home.id,
+                        },
+                        {
+                            "paths": ["/login"],
+                            "service": login.id,
+                        },
+                        {
+                            "paths": ["/static"],
+                            "service": static_backend_bucket.id,
+                        },
+                    ],
+                },
+                {
+                    "name": "otherpaths",
+                    "default_service": home.id,
+                },
+            ],
+            tests=[{
+                "service": home.id,
+                "host": "hi.com",
+                "path": "/home",
+            }])
+        ```
+        ### Url Map Traffic Director Route
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.compute.HealthCheck("default", http_health_check={
+            "port": 80,
+        })
+        home = gcp.compute.BackendService("home",
+            port_name="http",
+            protocol="HTTP",
+            timeout_sec=10,
+            health_checks=[default.id],
+            load_balancing_scheme="INTERNAL_SELF_MANAGED")
+        urlmap = gcp.compute.URLMap("urlmap",
+            description="a description",
+            default_service=home.id,
+            host_rules=[{
+                "hosts": ["mysite.com"],
+                "pathMatcher": "allpaths",
+            }],
+            path_matchers=[{
+                "name": "allpaths",
+                "default_service": home.id,
+                "routeRules": [{
+                    "priority": 1,
+                    "header_action": {
+                        "requestHeadersToRemoves": ["RemoveMe2"],
+                        "requestHeadersToAdds": [{
+                            "headerName": "AddSomethingElse",
+                            "headerValue": "MyOtherValue",
+                            "replace": True,
+                        }],
+                        "responseHeadersToRemoves": ["RemoveMe3"],
+                        "responseHeadersToAdds": [{
+                            "headerName": "AddMe",
+                            "headerValue": "MyValue",
+                            "replace": False,
+                        }],
+                    },
+                    "matchRules": [{
+                        "fullPathMatch": "a full path",
+                        "headerMatches": [{
+                            "headerName": "someheader",
+                            "exactMatch": "match this exactly",
+                            "invertMatch": True,
+                        }],
+                        "ignoreCase": True,
+                        "metadata_filters": [{
+                            "filterMatchCriteria": "MATCH_ANY",
+                            "filterLabels": [{
+                                "name": "PLANET",
+                                "value": "MARS",
+                            }],
+                        }],
+                        "queryParameterMatches": [{
+                            "name": "a query parameter",
+                            "presentMatch": True,
+                        }],
+                    }],
+                    "urlRedirect": {
+                        "hostRedirect": "A host",
+                        "httpsRedirect": False,
+                        "pathRedirect": "some/path",
+                        "redirectResponseCode": "TEMPORARY_REDIRECT",
+                        "stripQuery": True,
+                    },
+                }],
+            }],
+            tests=[{
+                "service": home.id,
+                "host": "hi.com",
+                "path": "/home",
+            }])
+        ```
+        ### Url Map Traffic Director Route Partial
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.compute.HealthCheck("default", http_health_check={
+            "port": 80,
+        })
+        home = gcp.compute.BackendService("home",
+            port_name="http",
+            protocol="HTTP",
+            timeout_sec=10,
+            health_checks=[default.id],
+            load_balancing_scheme="INTERNAL_SELF_MANAGED")
+        urlmap = gcp.compute.URLMap("urlmap",
+            description="a description",
+            default_service=home.id,
+            host_rules=[{
+                "hosts": ["mysite.com"],
+                "pathMatcher": "allpaths",
+            }],
+            path_matchers=[{
+                "name": "allpaths",
+                "default_service": home.id,
+                "routeRules": [{
+                    "priority": 1,
+                    "matchRules": [{
+                        "prefixMatch": "/someprefix",
+                        "headerMatches": [{
+                            "headerName": "someheader",
+                            "exactMatch": "match this exactly",
+                            "invertMatch": True,
+                        }],
+                    }],
+                    "urlRedirect": {
+                        "pathRedirect": "some/path",
+                        "redirectResponseCode": "TEMPORARY_REDIRECT",
+                    },
+                }],
+            }],
+            tests=[{
+                "service": home.id,
+                "host": "hi.com",
+                "path": "/home",
+            }])
+        ```
+        ### Url Map Traffic Director Path
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.compute.HealthCheck("default", http_health_check={
+            "port": 80,
+        })
+        home = gcp.compute.BackendService("home",
+            port_name="http",
+            protocol="HTTP",
+            timeout_sec=10,
+            health_checks=[default.id],
+            load_balancing_scheme="INTERNAL_SELF_MANAGED")
+        urlmap = gcp.compute.URLMap("urlmap",
+            description="a description",
+            default_service=home.id,
+            host_rules=[{
+                "hosts": ["mysite.com"],
+                "pathMatcher": "allpaths",
+            }],
+            path_matchers=[{
+                "name": "allpaths",
+                "default_service": home.id,
+                "pathRules": [{
+                    "paths": ["/home"],
+                    "routeAction": {
+                        "corsPolicy": {
+                            "allowCredentials": True,
+                            "allowHeaders": ["Allowed content"],
+                            "allowMethods": ["GET"],
+                            "allowOriginRegexes": ["abc.*"],
+                            "allowOrigins": ["Allowed origin"],
+                            "exposeHeaders": ["Exposed header"],
+                            "maxAge": 30,
+                            "disabled": False,
+                        },
+                        "faultInjectionPolicy": {
+                            "abort": {
+                                "httpStatus": 234,
+                                "percentage": 5.6,
+                            },
+                            "delay": {
+                                "fixedDelay": {
+                                    "seconds": 0,
+                                    "nanos": 50000,
+                                },
+                                "percentage": 7.8,
+                            },
+                        },
+                        "requestMirrorPolicy": {
+                            "backend_service": home.id,
+                        },
+                        "retryPolicy": {
+                            "numRetries": 4,
+                            "perTryTimeout": {
+                                "seconds": 30,
+                            },
+                            "retryConditions": [
+                                "5xx",
+                                "deadline-exceeded",
+                            ],
+                        },
+                        "timeout": {
+                            "seconds": 20,
+                            "nanos": 750000000,
+                        },
+                        "urlRewrite": {
+                            "hostRewrite": "A replacement header",
+                            "pathPrefixRewrite": "A replacement path",
+                        },
+                        "weightedBackendServices": [{
+                            "backend_service": home.id,
+                            "weight": 400,
+                            "header_action": {
+                                "requestHeadersToRemoves": ["RemoveMe"],
+                                "requestHeadersToAdds": [{
+                                    "headerName": "AddMe",
+                                    "headerValue": "MyValue",
+                                    "replace": True,
+                                }],
+                                "responseHeadersToRemoves": ["RemoveMe"],
+                                "responseHeadersToAdds": [{
+                                    "headerName": "AddMe",
+                                    "headerValue": "MyValue",
+                                    "replace": False,
+                                }],
+                            },
+                        }],
+                    },
+                }],
+            }],
+            tests=[{
+                "service": home.id,
+                "host": "hi.com",
+                "path": "/home",
+            }])
+        ```
+        ### Url Map Traffic Director Path Partial
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.compute.HealthCheck("default", http_health_check={
+            "port": 80,
+        })
+        home = gcp.compute.BackendService("home",
+            port_name="http",
+            protocol="HTTP",
+            timeout_sec=10,
+            health_checks=[default.id],
+            load_balancing_scheme="INTERNAL_SELF_MANAGED")
+        urlmap = gcp.compute.URLMap("urlmap",
+            description="a description",
+            default_service=home.id,
+            host_rules=[{
+                "hosts": ["mysite.com"],
+                "pathMatcher": "allpaths",
+            }],
+            path_matchers=[{
+                "name": "allpaths",
+                "default_service": home.id,
+                "pathRules": [{
+                    "paths": ["/home"],
+                    "routeAction": {
+                        "corsPolicy": {
+                            "allowCredentials": True,
+                            "allowHeaders": ["Allowed content"],
+                            "allowMethods": ["GET"],
+                            "allowOriginRegexes": ["abc.*"],
+                            "allowOrigins": ["Allowed origin"],
+                            "exposeHeaders": ["Exposed header"],
+                            "maxAge": 30,
+                            "disabled": False,
+                        },
+                        "weightedBackendServices": [{
+                            "backend_service": home.id,
+                            "weight": 400,
+                            "header_action": {
+                                "requestHeadersToRemoves": ["RemoveMe"],
+                                "requestHeadersToAdds": [{
+                                    "headerName": "AddMe",
+                                    "headerValue": "MyValue",
+                                    "replace": True,
+                                }],
+                                "responseHeadersToRemoves": ["RemoveMe"],
+                                "responseHeadersToAdds": [{
+                                    "headerName": "AddMe",
+                                    "headerValue": "MyValue",
+                                    "replace": False,
+                                }],
+                            },
+                        }],
+                    },
+                }],
+            }],
+            tests=[{
+                "service": home.id,
+                "host": "hi.com",
+                "path": "/home",
+            }])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

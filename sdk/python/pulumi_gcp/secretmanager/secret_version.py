@@ -42,6 +42,24 @@ class SecretVersion(pulumi.CustomResource):
         state as plain-text.
 
         ## Example Usage
+        ### Secret Version Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        secret_basic = gcp.secretmanager.Secret("secret-basic",
+            secret_id="secret-version",
+            labels={
+                "label": "my-label",
+            },
+            replication={
+                "automatic": True,
+            })
+        secret_version_basic = gcp.secretmanager.SecretVersion("secret-version-basic",
+            secret=secret_basic.id,
+            secret_data="secret-data")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
