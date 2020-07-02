@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetResourcePolicyResult:
     """
     A collection of values returned by getResourcePolicy.
@@ -40,6 +41,8 @@ class GetResourcePolicyResult:
         """
         The URI of the resource.
         """
+
+
 class AwaitableGetResourcePolicyResult(GetResourcePolicyResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -53,9 +56,18 @@ class AwaitableGetResourcePolicyResult(GetResourcePolicyResult):
             region=self.region,
             self_link=self.self_link)
 
+
 def get_resource_policy(name=None,project=None,region=None,opts=None):
     """
     Provide access to a Resource Policy's attributes. For more information see [the official documentation](https://cloud.google.com/compute/docs/disks/scheduled-snapshots) or the [API](https://cloud.google.com/compute/docs/reference/rest/beta/resourcePolicies).
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    daily = gcp.compute.get_resource_policy(name="daily",
+        region="us-central1")
+    ```
 
 
     :param str name: The name of the Resource Policy.
@@ -63,7 +75,6 @@ def get_resource_policy(name=None,project=None,region=None,opts=None):
     :param str region: Region where the Resource Policy resides.
     """
     __args__ = dict()
-
 
     __args__['name'] = name
     __args__['project'] = project

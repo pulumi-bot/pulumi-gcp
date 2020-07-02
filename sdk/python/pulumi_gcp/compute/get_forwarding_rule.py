@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetForwardingRuleResult:
     """
     A collection of values returned by getForwardingRule.
@@ -97,6 +98,8 @@ class GetForwardingRuleResult:
         """
         URL of the target pool, if this forwarding rule has one.
         """
+
+
 class AwaitableGetForwardingRuleResult(GetForwardingRuleResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -119,9 +122,19 @@ class AwaitableGetForwardingRuleResult(GetForwardingRuleResult):
             subnetwork=self.subnetwork,
             target=self.target)
 
+
 def get_forwarding_rule(name=None,project=None,region=None,opts=None):
     """
     Get a forwarding rule within GCE from its name.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_forwarding_rule = gcp.compute.get_forwarding_rule(name="forwarding-rule-us-east1")
+    ```
 
 
     :param str name: The name of the forwarding rule.
@@ -131,7 +144,6 @@ def get_forwarding_rule(name=None,project=None,region=None,opts=None):
            is not provided, the project region is used.
     """
     __args__ = dict()
-
 
     __args__['name'] = name
     __args__['project'] = project

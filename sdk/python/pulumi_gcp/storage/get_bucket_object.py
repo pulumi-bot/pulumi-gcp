@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetBucketObjectResult:
     """
     A collection of values returned by getBucketObject.
@@ -97,6 +98,8 @@ class GetBucketObjectResult:
         Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`. If not provided, this defaults to the bucket's default
         storage class or to a [standard](https://cloud.google.com/storage/docs/storage-classes#standard) class.
         """
+
+
 class AwaitableGetBucketObjectResult(GetBucketObjectResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -121,6 +124,7 @@ class AwaitableGetBucketObjectResult(GetBucketObjectResult):
             source=self.source,
             storage_class=self.storage_class)
 
+
 def get_bucket_object(bucket=None,name=None,opts=None):
     """
     Gets an existing object inside an existing bucket in Google Cloud Storage service (GCS).
@@ -128,12 +132,23 @@ def get_bucket_object(bucket=None,name=None,opts=None):
     and
     [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
 
+    ## Example Usage
+
+    Example picture stored within a folder.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    picture = gcp.storage.get_bucket_object(bucket="image-store",
+        name="folder/butterfly01.jpg")
+    ```
+
 
     :param str bucket: The name of the containing bucket.
     :param str name: The name of the object.
     """
     __args__ = dict()
-
 
     __args__['bucket'] = bucket
     __args__['name'] = name

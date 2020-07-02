@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetIAMPolicyResult:
     """
     A collection of values returned by getIAMPolicy.
@@ -32,6 +33,8 @@ class GetIAMPolicyResult:
         The above bindings serialized in a format suitable for
         referencing from a resource that supports IAM.
         """
+
+
 class AwaitableGetIAMPolicyResult(GetIAMPolicyResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -43,6 +46,7 @@ class AwaitableGetIAMPolicyResult(GetIAMPolicyResult):
             id=self.id,
             policy_data=self.policy_data)
 
+
 def get_iam_policy(audit_configs=None,bindings=None,opts=None):
     """
     Generates an IAM policy document that may be referenced by and applied to
@@ -51,6 +55,37 @@ def get_iam_policy(audit_configs=None,bindings=None,opts=None):
     **Note:** Several restrictions apply when setting IAM policies through this API.
     See the [setIamPolicy docs](https://cloud.google.com/resource-manager/reference/rest/v1/projects/setIamPolicy)
     for a list of these restrictions.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    admin = gcp.organizations.get_iam_policy(audit_configs=[{
+            "audit_log_configs": [
+                {
+                    "exemptedMembers": ["user:you@domain.com"],
+                    "logType": "DATA_READ",
+                },
+                {
+                    "logType": "DATA_WRITE",
+                },
+                {
+                    "logType": "ADMIN_READ",
+                },
+            ],
+            "service": "cloudkms.googleapis.com",
+        }],
+        bindings=[
+            {
+                "members": ["serviceAccount:your-custom-sa@your-project.iam.gserviceaccount.com"],
+                "role": "roles/compute.instanceAdmin",
+            },
+            {
+                "members": ["user:alice@gmail.com"],
+                "role": "roles/storage.objectViewer",
+            },
+        ])
+    ```
 
     This data source is used to define IAM policies to apply to other resources.
     Currently, defining a policy through a datasource and referencing that policy
@@ -90,7 +125,6 @@ def get_iam_policy(audit_configs=None,bindings=None,opts=None):
         Note that custom roles must be of the format `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
     __args__ = dict()
-
 
     __args__['auditConfigs'] = audit_configs
     __args__['bindings'] = bindings

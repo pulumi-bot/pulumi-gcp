@@ -29,6 +29,20 @@ class SharedVPCServiceProject(pulumi.CustomResource):
         [the Project API documentation](https://cloud.google.com/compute/docs/reference/latest/projects),
         where the Shared VPC feature is referred to by its former name "XPN".
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        service1 = gcp.compute.SharedVPCServiceProject("service1",
+            host_project="host-project-id",
+            service_project="service-project-id-1")
+        ```
+
+        For a complete Shared VPC example with both host and service projects, see
+        [`compute.SharedVPCHostProject`](https://www.terraform.io/docs/providers/google/r/compute_shared_vpc_host_project.html).
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] host_project: The ID of a host project to associate.

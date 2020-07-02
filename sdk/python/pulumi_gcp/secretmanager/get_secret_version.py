@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetSecretVersionResult:
     """
     A collection of values returned by getSecretVersion.
@@ -59,6 +60,8 @@ class GetSecretVersionResult:
         if version and not isinstance(version, str):
             raise TypeError("Expected argument 'version' to be a str")
         __self__.version = version
+
+
 class AwaitableGetSecretVersionResult(GetSecretVersionResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -75,9 +78,19 @@ class AwaitableGetSecretVersionResult(GetSecretVersionResult):
             secret_data=self.secret_data,
             version=self.version)
 
+
 def get_secret_version(project=None,secret=None,version=None,opts=None):
     """
     Get a Secret Manager secret's version. For more information see the [official documentation](https://cloud.google.com/secret-manager/docs/) and [API](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets.versions).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    basic = gcp.secretmanager.get_secret_version(secret="my-secret")
+    ```
 
 
     :param str project: The project to get the secret version for. If it
@@ -87,7 +100,6 @@ def get_secret_version(project=None,secret=None,version=None,opts=None):
            is not provided, the latest version is retrieved.
     """
     __args__ = dict()
-
 
     __args__['project'] = project
     __args__['secret'] = secret

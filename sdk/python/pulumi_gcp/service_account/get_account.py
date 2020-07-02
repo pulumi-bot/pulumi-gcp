@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetAccountResult:
     """
     A collection of values returned by getAccount.
@@ -51,6 +52,8 @@ class GetAccountResult:
         """
         The unique id of the service account.
         """
+
+
 class AwaitableGetAccountResult(GetAccountResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -65,10 +68,20 @@ class AwaitableGetAccountResult(GetAccountResult):
             project=self.project,
             unique_id=self.unique_id)
 
+
 def get_account(account_id=None,project=None,opts=None):
     """
     Get the service account from a project. For more information see
     the official [API](https://cloud.google.com/compute/docs/access/service-accounts) documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    object_viewer = gcp.serviceAccount.get_account(account_id="object-viewer")
+    ```
 
 
     :param str account_id: The Service account id.  (This is the part of the service account's email field that comes before the @ symbol.)
@@ -76,7 +89,6 @@ def get_account(account_id=None,project=None,opts=None):
            Defaults to the provider project configuration.
     """
     __args__ = dict()
-
 
     __args__['accountId'] = account_id
     __args__['project'] = project

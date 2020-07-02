@@ -54,6 +54,41 @@ class NetworkEndpoint(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
 
         ## Example Usage
+        ### Network Endpoint
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_image = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        default_network = gcp.compute.Network("defaultNetwork", auto_create_subnetworks=False)
+        default_subnetwork = gcp.compute.Subnetwork("defaultSubnetwork",
+            ip_cidr_range="10.0.0.1/16",
+            region="us-central1",
+            network=default_network.id)
+        endpoint_instance = gcp.compute.Instance("endpoint-instance",
+            machine_type="n1-standard-1",
+            boot_disk={
+                "initializeParams": {
+                    "image": my_image.self_link,
+                },
+            },
+            network_interfaces=[{
+                "subnetwork": default_subnetwork.id,
+                "accessConfigs": [{}],
+            }])
+        default_endpoint = gcp.compute.NetworkEndpoint("default-endpoint",
+            network_endpoint_group=google_compute_network_endpoint_group["neg"]["name"],
+            instance=endpoint_instance.name,
+            port=google_compute_network_endpoint_group["neg"]["default_port"],
+            ip_address=endpoint_instance.network_interfaces[0]["networkIp"])
+        group = gcp.compute.NetworkEndpointGroup("group",
+            network=default_network.id,
+            subnetwork=default_subnetwork.id,
+            default_port="90",
+            zone="us-central1-a")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetClientConfigResult:
     """
     A collection of values returned by getClientConfig.
@@ -43,6 +44,8 @@ class GetClientConfigResult:
         """
         The zone to operate under.
         """
+
+
 class AwaitableGetClientConfigResult(GetClientConfigResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -55,12 +58,22 @@ class AwaitableGetClientConfigResult(GetClientConfigResult):
             region=self.region,
             zone=self.zone)
 
+
 def get_client_config(opts=None):
     """
     Use this data source to access the configuration of the Google Cloud provider.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    current = gcp.organizations.get_client_config()
+    pulumi.export("project", current.project)
+    ```
     """
     __args__ = dict()
-
 
     if opts is None:
         opts = pulumi.InvokeOptions()

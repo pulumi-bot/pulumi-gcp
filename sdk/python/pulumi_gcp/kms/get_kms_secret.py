@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetKMSSecretResult:
     """
     A collection of values returned by getKMSSecret.
@@ -34,6 +35,8 @@ class GetKMSSecretResult:
         """
         Contains the result of decrypting the provided ciphertext.
         """
+
+
 class AwaitableGetKMSSecretResult(GetKMSSecretResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -45,6 +48,7 @@ class AwaitableGetKMSSecretResult(GetKMSSecretResult):
             crypto_key=self.crypto_key,
             id=self.id,
             plaintext=self.plaintext)
+
 
 def get_kms_secret(additional_authenticated_data=None,ciphertext=None,crypto_key=None,opts=None):
     """
@@ -67,7 +71,6 @@ def get_kms_secret(additional_authenticated_data=None,ciphertext=None,crypto_key
            `{projectId}/{location}/{keyRingName}/{cryptoKeyName}`.
     """
     __args__ = dict()
-
 
     __args__['additionalAuthenticatedData'] = additional_authenticated_data
     __args__['ciphertext'] = ciphertext

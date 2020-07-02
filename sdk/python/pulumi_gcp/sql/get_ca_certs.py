@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetCaCertsResult:
     """
     A collection of values returned by getCaCerts.
@@ -37,6 +38,8 @@ class GetCaCertsResult:
         if project and not isinstance(project, str):
             raise TypeError("Expected argument 'project' to be a str")
         __self__.project = project
+
+
 class AwaitableGetCaCertsResult(GetCaCertsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -48,6 +51,7 @@ class AwaitableGetCaCertsResult(GetCaCertsResult):
             id=self.id,
             instance=self.instance,
             project=self.project)
+
 
 def get_ca_certs(instance=None,project=None,opts=None):
     """
@@ -61,7 +65,6 @@ def get_ca_certs(instance=None,project=None,opts=None):
     :param str project: The ID of the project in which the resource belongs. If `project` is not provided, the provider project is used.
     """
     __args__ = dict()
-
 
     __args__['instance'] = instance
     __args__['project'] = project

@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetKMSSecretCiphertextResult:
     """
     A collection of values returned by getKMSSecretCiphertext.
@@ -31,6 +32,8 @@ class GetKMSSecretCiphertextResult:
         if plaintext and not isinstance(plaintext, str):
             raise TypeError("Expected argument 'plaintext' to be a str")
         __self__.plaintext = plaintext
+
+
 class AwaitableGetKMSSecretCiphertextResult(GetKMSSecretCiphertextResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -41,6 +44,7 @@ class AwaitableGetKMSSecretCiphertextResult(GetKMSSecretCiphertextResult):
             crypto_key=self.crypto_key,
             id=self.id,
             plaintext=self.plaintext)
+
 
 def get_kms_secret_ciphertext(crypto_key=None,plaintext=None,opts=None):
     """
@@ -64,7 +68,6 @@ def get_kms_secret_ciphertext(crypto_key=None,plaintext=None,opts=None):
     :param str plaintext: The plaintext to be encrypted
     """
     __args__ = dict()
-
 
     __args__['cryptoKey'] = crypto_key
     __args__['plaintext'] = plaintext

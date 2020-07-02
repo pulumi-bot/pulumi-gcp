@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetSubnetworkResult:
     """
     A collection of values returned by getSubnetwork.
@@ -72,6 +73,8 @@ class GetSubnetworkResult:
         if self_link and not isinstance(self_link, str):
             raise TypeError("Expected argument 'self_link' to be a str")
         __self__.self_link = self_link
+
+
 class AwaitableGetSubnetworkResult(GetSubnetworkResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -90,9 +93,20 @@ class AwaitableGetSubnetworkResult(GetSubnetworkResult):
             secondary_ip_ranges=self.secondary_ip_ranges,
             self_link=self.self_link)
 
+
 def get_subnetwork(name=None,project=None,region=None,self_link=None,opts=None):
     """
     Get a subnetwork within GCE from its name and region.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_subnetwork = gcp.compute.get_subnetwork(name="default-us-east1",
+        region="us-east1")
+    ```
 
 
     :param str name: The name of the subnetwork. One of `name` or `self_link`
@@ -105,7 +119,6 @@ def get_subnetwork(name=None,project=None,region=None,self_link=None,opts=None):
            specified, `name`, `project`, and `region` are ignored.
     """
     __args__ = dict()
-
 
     __args__['name'] = name
     __args__['project'] = project

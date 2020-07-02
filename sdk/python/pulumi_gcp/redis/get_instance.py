@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetInstanceResult:
     """
     A collection of values returned by getInstance.
@@ -80,6 +81,8 @@ class GetInstanceResult:
         if tier and not isinstance(tier, str):
             raise TypeError("Expected argument 'tier' to be a str")
         __self__.tier = tier
+
+
 class AwaitableGetInstanceResult(GetInstanceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -106,11 +109,21 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             reserved_ip_range=self.reserved_ip_range,
             tier=self.tier)
 
+
 def get_instance(name=None,project=None,region=None,opts=None):
     """
     Get information about a Google Cloud Redis instance. For more information see
     the [official documentation](https://cloud.google.com/memorystore/docs/redis)
     and [API](https://cloud.google.com/memorystore/docs/redis/apis).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    default = gcp.redis.get_instance(name="my-redis-instance")
+    ```
 
 
     :param str name: The name of a Redis instance.
@@ -120,7 +133,6 @@ def get_instance(name=None,project=None,region=None,opts=None):
            is not provided, the provider region is used.
     """
     __args__ = dict()
-
 
     __args__['name'] = name
     __args__['project'] = project

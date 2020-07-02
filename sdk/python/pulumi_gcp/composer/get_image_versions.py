@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetImageVersionsResult:
     """
     A collection of values returned by getImageVersions.
@@ -31,6 +32,8 @@ class GetImageVersionsResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         __self__.region = region
+
+
 class AwaitableGetImageVersionsResult(GetImageVersionsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -42,9 +45,26 @@ class AwaitableGetImageVersionsResult(GetImageVersionsResult):
             project=self.project,
             region=self.region)
 
+
 def get_image_versions(project=None,region=None,opts=None):
     """
     Provides access to available Cloud Composer versions in a region for a given project.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    all = gcp.composer.get_image_versions()
+    test = gcp.composer.Environment("test",
+        region="us-central1",
+        config={
+            "softwareConfig": {
+                "imageVersion": all.image_versions[0]["imageVersionId"],
+            },
+        })
+    ```
 
 
     :param str project: The ID of the project to list versions in.
@@ -53,7 +73,6 @@ def get_image_versions(project=None,region=None,opts=None):
            If it is not provider, the provider region is used.
     """
     __args__ = dict()
-
 
     __args__['project'] = project
     __args__['region'] = region

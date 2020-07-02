@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetProjectServiceAccountResult:
     """
     A collection of values returned by getProjectServiceAccount.
@@ -32,6 +33,8 @@ class GetProjectServiceAccountResult:
         if user_project and not isinstance(user_project, str):
             raise TypeError("Expected argument 'user_project' to be a str")
         __self__.user_project = user_project
+
+
 class AwaitableGetProjectServiceAccountResult(GetProjectServiceAccountResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -43,6 +46,7 @@ class AwaitableGetProjectServiceAccountResult(GetProjectServiceAccountResult):
             project=self.project,
             user_project=self.user_project)
 
+
 def get_project_service_account(project=None,user_project=None,opts=None):
     """
     Get the email address of a project's unique Google Cloud Storage service account.
@@ -53,13 +57,25 @@ def get_project_service_account(project=None,user_project=None,opts=None):
     For more information see
     [the API reference](https://cloud.google.com/storage/docs/json_api/v1/projects/serviceAccount).
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    gcs_account = gcp.storage.get_project_service_account()
+    binding = gcp.pubsub.TopicIAMBinding("binding",
+        topic=google_pubsub_topic["topic"]["name"],
+        role="roles/pubsub.publisher",
+        members=[f"serviceAccount:{gcs_account.email_address}"])
+    ```
+
 
     :param str project: The project the unique service account was created for. If it is not provided, the provider project is used.
     :param str user_project: The project the lookup originates from. This field is used if you are making the request
            from a different account than the one you are finding the service account for.
     """
     __args__ = dict()
-
 
     __args__['project'] = project
     __args__['userProject'] = user_project

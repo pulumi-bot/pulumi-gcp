@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetActiveFolderResult:
     """
     A collection of values returned by getActiveFolder.
@@ -31,6 +32,8 @@ class GetActiveFolderResult:
         if parent and not isinstance(parent, str):
             raise TypeError("Expected argument 'parent' to be a str")
         __self__.parent = parent
+
+
 class AwaitableGetActiveFolderResult(GetActiveFolderResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -42,16 +45,26 @@ class AwaitableGetActiveFolderResult(GetActiveFolderResult):
             name=self.name,
             parent=self.parent)
 
+
 def get_active_folder(display_name=None,parent=None,opts=None):
     """
     Get an active folder within GCP by `display_name` and `parent`.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    department1 = gcp.organizations.get_active_folder(display_name="Department 1",
+        parent="organizations/1234567")
+    ```
 
 
     :param str display_name: The folder's display name.
     :param str parent: The resource name of the parent Folder or Organization.
     """
     __args__ = dict()
-
 
     __args__['displayName'] = display_name
     __args__['parent'] = parent

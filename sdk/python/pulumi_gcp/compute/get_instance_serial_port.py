@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetInstanceSerialPortResult:
     """
     A collection of values returned by getInstanceSerialPort.
@@ -37,6 +38,8 @@ class GetInstanceSerialPortResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         __self__.zone = zone
+
+
 class AwaitableGetInstanceSerialPortResult(GetInstanceSerialPortResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -50,10 +53,65 @@ class AwaitableGetInstanceSerialPortResult(GetInstanceSerialPortResult):
             project=self.project,
             zone=self.zone)
 
+
 def get_instance_serial_port(instance=None,port=None,project=None,zone=None,opts=None):
     """
     Get the serial port output from a Compute Instance. For more information see
     the official [API](https://cloud.google.com/compute/docs/instances/viewing-serial-port-output) documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    serial = gcp.compute.get_instance_serial_port(instance="my-instance",
+        zone="us-central1-a",
+        port=1)
+    pulumi.export("serialOut", serial.contents)
+    ```
+
+    Using the serial port output to generate a windows password, derived from the [official guide](https://cloud.google.com/compute/docs/instances/windows/automate-pw-generation):
+
+    ```python
+    import pulumi
+    import json
+    import pulumi_gcp as gcp
+
+    windows = gcp.compute.Instance("windows",
+        machine_type="n1-standard-1",
+        zone="us-central1-a",
+        boot_disk={
+            "initializeParams": {
+                "image": "gce-uefi-images/windows-2019",
+            },
+        },
+        network_interfaces=[{
+            "network": "default",
+            "accessConfigs": [{}],
+        }],
+        metadata={
+            "serial-port-logging-enable": "TRUE",
+            "windows-keys": json.dumps({
+                "email": "example.user@example.com",
+                "expireOn": "2020-04-14T01:37:19Z",
+                "exponent": "AQAB",
+                "modulus": "wgsquN4IBNPqIUnu+h/5Za1kujb2YRhX1vCQVQAkBwnWigcCqOBVfRa5JoZfx6KIvEXjWqa77jPvlsxM4WPqnDIM2qiK36up3SKkYwFjff6F2ni/ry8vrwXCX3sGZ1hbIHlK0O012HpA3ISeEswVZmX2X67naOvJXfY5v0hGPWqCADao+xVxrmxsZD4IWnKl1UaZzI5lhAzr8fw6utHwx1EZ/MSgsEki6tujcZfN+GUDRnmJGQSnPTXmsf7Q4DKreTZk49cuyB3prV91S0x3DYjCUpSXrkVy1Ha5XicGD/q+ystuFsJnrrhbNXJbpSjM6sjo/aduAkZJl4FmOt0R7Q==",
+                "userName": "example-user",
+            }),
+        },
+        service_account={
+            "scopes": [
+                "userinfo-email",
+                "compute-ro",
+                "storage-ro",
+            ],
+        })
+    serial = pulumi.Output.all(windows.name, windows.zone).apply(lambda name, zone: gcp.compute.get_instance_serial_port(instance=name,
+        zone=zone,
+        port=4))
+    pulumi.export("serialOut", serial.contents)
+    ```
 
 
     :param str instance: The name of the Compute Instance to read output from.
@@ -64,7 +122,6 @@ def get_instance_serial_port(instance=None,port=None,project=None,zone=None,opts
            If it is not provided, the provider zone is used.
     """
     __args__ = dict()
-
 
     __args__['instance'] = instance
     __args__['port'] = port

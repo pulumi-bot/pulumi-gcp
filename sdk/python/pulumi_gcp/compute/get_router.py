@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetRouterResult:
     """
     A collection of values returned by getRouter.
@@ -43,6 +44,8 @@ class GetRouterResult:
         if self_link and not isinstance(self_link, str):
             raise TypeError("Expected argument 'self_link' to be a str")
         __self__.self_link = self_link
+
+
 class AwaitableGetRouterResult(GetRouterResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -59,9 +62,20 @@ class AwaitableGetRouterResult(GetRouterResult):
             region=self.region,
             self_link=self.self_link)
 
+
 def get_router(name=None,network=None,project=None,region=None,opts=None):
     """
     Get a router within GCE from its name and VPC.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_router = gcp.compute.get_router(name="myrouter-us-east1",
+        network="my-network")
+    ```
 
 
     :param str name: The name of the router.
@@ -72,7 +86,6 @@ def get_router(name=None,network=None,project=None,region=None,opts=None):
            unspecified, this defaults to the region configured in the provider.
     """
     __args__ = dict()
-
 
     __args__['name'] = name
     __args__['network'] = network

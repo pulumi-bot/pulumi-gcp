@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetWebAppResult:
     """
     A collection of values returned by getWebApp.
@@ -31,6 +32,8 @@ class GetWebAppResult:
         if project and not isinstance(project, str):
             raise TypeError("Expected argument 'project' to be a str")
         __self__.project = project
+
+
 class AwaitableGetWebAppResult(GetWebAppResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -43,6 +46,7 @@ class AwaitableGetWebAppResult(GetWebAppResult):
             name=self.name,
             project=self.project)
 
+
 def get_web_app(app_id=None,opts=None):
     """
     A Google Cloud Firebase web application instance
@@ -51,7 +55,6 @@ def get_web_app(app_id=None,opts=None):
     :param str app_id: The app_ip of name of the Firebase webApp.
     """
     __args__ = dict()
-
 
     __args__['appId'] = app_id
     if opts is None:

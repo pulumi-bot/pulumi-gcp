@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetDefaultServiceAccountResult:
     """
     A collection of values returned by getDefaultServiceAccount.
@@ -46,6 +47,8 @@ class GetDefaultServiceAccountResult:
         """
         The unique id of the service account.
         """
+
+
 class AwaitableGetDefaultServiceAccountResult(GetDefaultServiceAccountResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -59,15 +62,25 @@ class AwaitableGetDefaultServiceAccountResult(GetDefaultServiceAccountResult):
             project=self.project,
             unique_id=self.unique_id)
 
+
 def get_default_service_account(project=None,opts=None):
     """
     Use this data source to retrieve default service account for this project
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    default = gcp.compute.get_default_service_account()
+    pulumi.export("defaultAccount", default.email)
+    ```
 
 
     :param str project: The project ID. If it is not provided, the provider project is used.
     """
     __args__ = dict()
-
 
     __args__['project'] = project
     if opts is None:

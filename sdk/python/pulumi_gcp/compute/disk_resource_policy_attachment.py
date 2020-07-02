@@ -36,6 +36,33 @@ class DiskResourcePolicyAttachment(pulumi.CustomResource):
         > **Note:** This resource does not support regional disks (`compute.RegionDisk`). For regional disks, please refer to the `compute.RegionDiskResourcePolicyAttachment` resource.
 
         ## Example Usage
+        ### Disk Resource Policy Attachment Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_image = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        ssd = gcp.compute.Disk("ssd",
+            image=my_image.self_link,
+            size=50,
+            type="pd-ssd",
+            zone="us-central1-a")
+        attachment = gcp.compute.DiskResourcePolicyAttachment("attachment",
+            disk=ssd.name,
+            zone="us-central1-a")
+        policy = gcp.compute.ResourcePolicy("policy",
+            region="us-central1",
+            snapshot_schedule_policy={
+                "schedule": {
+                    "dailySchedule": {
+                        "daysInCycle": 1,
+                        "startTime": "04:00",
+                    },
+                },
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

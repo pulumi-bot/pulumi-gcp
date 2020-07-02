@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetWebAppConfigResult:
     """
     A collection of values returned by getWebAppConfig.
@@ -46,6 +47,8 @@ class GetWebAppConfigResult:
         if web_app_id and not isinstance(web_app_id, str):
             raise TypeError("Expected argument 'web_app_id' to be a str")
         __self__.web_app_id = web_app_id
+
+
 class AwaitableGetWebAppConfigResult(GetWebAppConfigResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -63,6 +66,7 @@ class AwaitableGetWebAppConfigResult(GetWebAppConfigResult):
             storage_bucket=self.storage_bucket,
             web_app_id=self.web_app_id)
 
+
 def get_web_app_config(project=None,web_app_id=None,opts=None):
     """
     A Google Cloud Firebase web application configuration
@@ -79,7 +83,6 @@ def get_web_app_config(project=None,web_app_id=None,opts=None):
     :param str web_app_id: the id of the firebase web app
     """
     __args__ = dict()
-
 
     __args__['project'] = project
     __args__['webAppId'] = web_app_id

@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetOrganizationPolicyResult:
     """
     A collection of values returned by getOrganizationPolicy.
@@ -43,6 +44,8 @@ class GetOrganizationPolicyResult:
         if version and not isinstance(version, float):
             raise TypeError("Expected argument 'version' to be a float")
         __self__.version = version
+
+
 class AwaitableGetOrganizationPolicyResult(GetOrganizationPolicyResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -59,18 +62,29 @@ class AwaitableGetOrganizationPolicyResult(GetOrganizationPolicyResult):
             update_time=self.update_time,
             version=self.version)
 
+
 def get_organization_policy(constraint=None,project=None,opts=None):
     """
     Allows management of Organization policies for a Google Project. For more information see
     [the official
     documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview)
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    policy = gcp.projects.get_organization_policy(project="project-id",
+        constraint="constraints/serviceuser.services")
+    pulumi.export("version", policy.version)
+    ```
+
 
     :param str constraint: (Required) The name of the Constraint the Policy is configuring, for example, `serviceuser.services`. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints).
     :param str project: The project ID.
     """
     __args__ = dict()
-
 
     __args__['constraint'] = constraint
     __args__['project'] = project
