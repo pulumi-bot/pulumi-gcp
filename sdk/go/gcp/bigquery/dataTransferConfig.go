@@ -52,7 +52,9 @@ import (
 // 			FriendlyName: pulumi.String("foo"),
 // 			Description:  pulumi.String("bar"),
 // 			Location:     pulumi.String("asia-northeast1"),
-// 		})
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			permissions,
+// 		}))
 // 		if err != nil {
 // 			return err
 // 		}
@@ -62,12 +64,14 @@ import (
 // 			DataSourceId:         pulumi.String("scheduled_query"),
 // 			Schedule:             pulumi.String("first sunday of quarter 00:00"),
 // 			DestinationDatasetId: myDataset.DatasetId,
-// 			Params: pulumi.Map{
+// 			Params: pulumi.StringMap{
 // 				"destination_table_name_template": pulumi.String("my_table"),
 // 				"write_disposition":               pulumi.String("WRITE_APPEND"),
 // 				"query":                           pulumi.String("SELECT name FROM tabl WHERE x = 'y'"),
 // 			},
-// 		})
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			permissions,
+// 		}))
 // 		if err != nil {
 // 			return err
 // 		}

@@ -72,15 +72,15 @@ import (
 // 					FieldId:     pulumi.String("pii_type"),
 // 					DisplayName: pulumi.String("PII type"),
 // 					Type: &datacatalog.TagTemplateFieldTypeArgs{
-// 						Enum_type: pulumi.Map{
-// 							"allowed_values": pulumi.MapArray{
-// 								pulumi.Map{
+// 						Enum_type: pulumi.StringMapArrayMap{
+// 							"allowed_values": pulumi.StringMapArray{
+// 								pulumi.StringMap{
 // 									"displayName": pulumi.String("EMAIL"),
 // 								},
-// 								pulumi.Map{
+// 								pulumi.StringMap{
 // 									"displayName": pulumi.String("SOCIAL SECURITY NUMBER"),
 // 								},
-// 								pulumi.Map{
+// 								pulumi.StringMap{
 // 									"displayName": pulumi.String("NONE"),
 // 								},
 // 							},
@@ -170,15 +170,15 @@ import (
 // 					FieldId:     pulumi.String("pii_type"),
 // 					DisplayName: pulumi.String("PII type"),
 // 					Type: &datacatalog.TagTemplateFieldTypeArgs{
-// 						Enum_type: pulumi.Map{
-// 							"allowed_values": pulumi.MapArray{
-// 								pulumi.Map{
+// 						Enum_type: pulumi.StringMapArrayMap{
+// 							"allowed_values": pulumi.StringMapArray{
+// 								pulumi.StringMap{
 // 									"displayName": pulumi.String("EMAIL"),
 // 								},
-// 								pulumi.Map{
+// 								pulumi.StringMap{
 // 									"displayName": pulumi.String("SOCIAL SECURITY NUMBER"),
 // 								},
-// 								pulumi.Map{
+// 								pulumi.StringMap{
 // 									"displayName": pulumi.String("NONE"),
 // 								},
 // 							},
@@ -262,15 +262,15 @@ import (
 // 					FieldId:     pulumi.String("pii_type"),
 // 					DisplayName: pulumi.String("PII type"),
 // 					Type: &datacatalog.TagTemplateFieldTypeArgs{
-// 						Enum_type: pulumi.Map{
-// 							"allowed_values": pulumi.MapArray{
-// 								pulumi.Map{
+// 						Enum_type: pulumi.StringMapArrayMap{
+// 							"allowed_values": pulumi.StringMapArray{
+// 								pulumi.StringMap{
 // 									"displayName": pulumi.String("EMAIL"),
 // 								},
-// 								pulumi.Map{
+// 								pulumi.StringMap{
 // 									"displayName": pulumi.String("SOCIAL SECURITY NUMBER"),
 // 								},
-// 								pulumi.Map{
+// 								pulumi.StringMap{
 // 									"displayName": pulumi.String("NONE"),
 // 								},
 // 							},
@@ -305,7 +305,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = datacatalog.NewTag(ctx, "second-tag", &datacatalog.TagArgs{
+// 		_, err = datacatalog.NewTag(ctx, "second_tag", &datacatalog.TagArgs{
 // 			Parent:   entry.ID(),
 // 			Template: tagTemplate.ID(),
 // 			Fields: datacatalog.TagFieldArray{

@@ -47,8 +47,8 @@ import (
 // 			return err
 // 		}
 // 		_, err = pubsub.NewTopicIAMPolicy(ctx, "policy", &pubsub.TopicIAMPolicyArgs{
-// 			Project:    pulumi.String(google_pubsub_topic.Example.Project),
-// 			Topic:      pulumi.String(google_pubsub_topic.Example.Name),
+// 			Project:    pulumi.Any(google_pubsub_topic.Example.Project),
+// 			Topic:      pulumi.Any(google_pubsub_topic.Example.Name),
 // 			PolicyData: pulumi.String(admin.PolicyData),
 // 		})
 // 		if err != nil {
@@ -71,9 +71,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = pubsub.NewTopicIAMBinding(ctx, "binding", &pubsub.TopicIAMBindingArgs{
-// 			Project: pulumi.String(google_pubsub_topic.Example.Project),
-// 			Topic:   pulumi.String(google_pubsub_topic.Example.Name),
+// 		_, err := pubsub.NewTopicIAMBinding(ctx, "binding", &pubsub.TopicIAMBindingArgs{
+// 			Project: pulumi.Any(google_pubsub_topic.Example.Project),
+// 			Topic:   pulumi.Any(google_pubsub_topic.Example.Name),
 // 			Role:    pulumi.String("roles/viewer"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -99,9 +99,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = pubsub.NewTopicIAMMember(ctx, "member", &pubsub.TopicIAMMemberArgs{
-// 			Project: pulumi.String(google_pubsub_topic.Example.Project),
-// 			Topic:   pulumi.String(google_pubsub_topic.Example.Name),
+// 		_, err := pubsub.NewTopicIAMMember(ctx, "member", &pubsub.TopicIAMMemberArgs{
+// 			Project: pulumi.Any(google_pubsub_topic.Example.Project),
+// 			Topic:   pulumi.Any(google_pubsub_topic.Example.Name),
 // 			Role:    pulumi.String("roles/viewer"),
 // 			Member:  pulumi.String("user:jane@example.com"),
 // 		})

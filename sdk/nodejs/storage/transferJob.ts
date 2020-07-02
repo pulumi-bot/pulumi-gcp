@@ -35,6 +35,8 @@ import * as utilities from "../utilities";
  *     bucket: s3_backup_bucketBucket.name,
  *     role: "roles/storage.admin",
  *     member: _default.then(_default => `serviceAccount:${_default.email}`),
+ * }, {
+ *     dependsOn: [s3_backup_bucketBucket],
  * });
  * const s3_bucket_nightly_backup = new gcp.storage.TransferJob("s3-bucket-nightly-backup", {
  *     description: "Nightly backup of S3 bucket",
@@ -76,6 +78,8 @@ import * as utilities from "../utilities";
  *             nanos: 0,
  *         },
  *     },
+ * }, {
+ *     dependsOn: [s3_backup_bucketBucketIAMMember],
  * });
  * ```
  */

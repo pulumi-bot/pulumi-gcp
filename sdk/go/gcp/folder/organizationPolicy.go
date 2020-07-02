@@ -29,7 +29,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = folder.NewOrganizationPolicy(ctx, "serialPortPolicy", &folder.OrganizationPolicyArgs{
+// 		_, err := folder.NewOrganizationPolicy(ctx, "serialPortPolicy", &folder.OrganizationPolicyArgs{
 // 			BooleanPolicy: &folder.OrganizationPolicyBooleanPolicyArgs{
 // 				Enforced: pulumi.Bool(true),
 // 			},
@@ -56,7 +56,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = folder.NewOrganizationPolicy(ctx, "servicesPolicy", &folder.OrganizationPolicyArgs{
+// 		_, err := folder.NewOrganizationPolicy(ctx, "servicesPolicy", &folder.OrganizationPolicyArgs{
 // 			Constraint: pulumi.String("serviceuser.services"),
 // 			Folder:     pulumi.String("folders/123456789"),
 // 			ListPolicy: &folder.OrganizationPolicyListPolicyArgs{
@@ -85,7 +85,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = folder.NewOrganizationPolicy(ctx, "servicesPolicy", &folder.OrganizationPolicyArgs{
+// 		_, err := folder.NewOrganizationPolicy(ctx, "servicesPolicy", &folder.OrganizationPolicyArgs{
 // 			Constraint: pulumi.String("serviceuser.services"),
 // 			Folder:     pulumi.String("folders/123456789"),
 // 			ListPolicy: &folder.OrganizationPolicyListPolicyArgs{
@@ -117,7 +117,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = folder.NewOrganizationPolicy(ctx, "servicesPolicy", &folder.OrganizationPolicyArgs{
+// 		_, err := folder.NewOrganizationPolicy(ctx, "servicesPolicy", &folder.OrganizationPolicyArgs{
 // 			Constraint: pulumi.String("serviceuser.services"),
 // 			Folder:     pulumi.String("folders/123456789"),
 // 			RestorePolicy: &folder.OrganizationPolicyRestorePolicyArgs{

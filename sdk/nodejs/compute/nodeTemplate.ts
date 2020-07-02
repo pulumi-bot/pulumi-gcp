@@ -47,6 +47,8 @@ import * as utilities from "../utilities";
  *     server_binding: {
  *         type: "RESTART_NODE_ON_MINIMAL_SERVERS",
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

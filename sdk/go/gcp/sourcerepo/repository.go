@@ -30,7 +30,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = sourcerepo.NewRepository(ctx, "my-repo", nil)
+// 		_, err := sourcerepo.NewRepository(ctx, "my_repo", nil)
 // 		if err != nil {
 // 			return err
 // 		}

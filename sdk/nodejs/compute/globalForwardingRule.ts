@@ -78,6 +78,8 @@ import * as utilities from "../utilities";
  *         autoDelete: true,
  *         boot: true,
  *     }],
+ * }, {
+ *     provider: google_beta,
  * });
  * const igm = new gcp.compute.InstanceGroupManager("igm", {
  *     version: [{
@@ -87,6 +89,8 @@ import * as utilities from "../utilities";
  *     baseInstanceName: "internal-glb",
  *     zone: "us-central1-f",
  *     targetSize: 1,
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultHealthCheck = new gcp.compute.HealthCheck("defaultHealthCheck", {
  *     checkIntervalSec: 1,
@@ -94,6 +98,8 @@ import * as utilities from "../utilities";
  *     tcp_health_check: {
  *         port: "80",
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultBackendService = new gcp.compute.BackendService("defaultBackendService", {
  *     portName: "http",
@@ -107,6 +113,8 @@ import * as utilities from "../utilities";
  *         maxRatePerInstance: 50,
  *     }],
  *     healthChecks: [defaultHealthCheck.id],
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultURLMap = new gcp.compute.URLMap("defaultURLMap", {
  *     description: "a description",
@@ -123,10 +131,14 @@ import * as utilities from "../utilities";
  *             service: defaultBackendService.id,
  *         }],
  *     }],
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultTargetHttpProxy = new gcp.compute.TargetHttpProxy("defaultTargetHttpProxy", {
  *     description: "a description",
  *     urlMap: defaultURLMap.id,
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultGlobalForwardingRule = new gcp.compute.GlobalForwardingRule("defaultGlobalForwardingRule", {
  *     target: defaultTargetHttpProxy.id,
@@ -140,6 +152,8 @@ import * as utilities from "../utilities";
  *             value: "MARS",
  *         }],
  *     }],
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */
