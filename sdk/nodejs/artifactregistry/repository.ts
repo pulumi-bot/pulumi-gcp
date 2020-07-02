@@ -25,6 +25,8 @@ import * as utilities from "../utilities";
  *     repositoryId: "my-repository",
  *     description: "example docker repository",
  *     format: "DOCKER",
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  * ### Artifact Registry Repository Iam
@@ -38,16 +40,22 @@ import * as utilities from "../utilities";
  *     repositoryId: "my-repository",
  *     description: "example docker repository with iam",
  *     format: "DOCKER",
+ * }, {
+ *     provider: google_beta,
  * });
  * const test_account = new gcp.serviceAccount.Account("test-account", {
  *     accountId: "my-account",
  *     displayName: "Test Service Account",
+ * }, {
+ *     provider: google_beta,
  * });
  * const test_iam = new gcp.artifactregistry.RepositoryIamMember("test-iam", {
  *     location: my_repo.location,
  *     repository: my_repo.name,
  *     role: "roles/artifactregistry.reader",
  *     member: pulumi.interpolate`serviceAccount:${test_account.email}`,
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

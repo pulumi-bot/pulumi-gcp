@@ -32,7 +32,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = datacatalog.NewTagTemplate(ctx, "basicTagTemplate", &datacatalog.TagTemplateArgs{
+// 		_, err := datacatalog.NewTagTemplate(ctx, "basicTagTemplate", &datacatalog.TagTemplateArgs{
 // 			DisplayName: pulumi.String("Demo Tag Template"),
 // 			Fields: datacatalog.TagTemplateFieldArray{
 // 				&datacatalog.TagTemplateFieldArgs{

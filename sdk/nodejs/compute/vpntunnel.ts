@@ -48,6 +48,12 @@ import * as utilities from "../utilities";
  *     peerIp: "15.0.0.120",
  *     sharedSecret: "a secret message",
  *     targetVpnGateway: targetGateway.id,
+ * }, {
+ *     dependsOn: [
+ *         frEsp,
+ *         frUdp500,
+ *         frUdp4500,
+ *     ],
  * });
  * const route1 = new gcp.compute.Route("route1", {
  *     network: network1.name,
@@ -62,25 +68,37 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const network1 = new gcp.compute.Network("network1", {});
- * const targetGateway = new gcp.compute.VPNGateway("targetGateway", {network: network1.id});
- * const vpnStaticIp = new gcp.compute.Address("vpnStaticIp", {});
+ * const network1 = new gcp.compute.Network("network1", {}, {
+ *     provider: google_beta,
+ * });
+ * const targetGateway = new gcp.compute.VPNGateway("targetGateway", {network: network1.id}, {
+ *     provider: google_beta,
+ * });
+ * const vpnStaticIp = new gcp.compute.Address("vpnStaticIp", {}, {
+ *     provider: google_beta,
+ * });
  * const frEsp = new gcp.compute.ForwardingRule("frEsp", {
  *     ipProtocol: "ESP",
  *     ipAddress: vpnStaticIp.address,
  *     target: targetGateway.id,
+ * }, {
+ *     provider: google_beta,
  * });
  * const frUdp500 = new gcp.compute.ForwardingRule("frUdp500", {
  *     ipProtocol: "UDP",
  *     portRange: "500",
  *     ipAddress: vpnStaticIp.address,
  *     target: targetGateway.id,
+ * }, {
+ *     provider: google_beta,
  * });
  * const frUdp4500 = new gcp.compute.ForwardingRule("frUdp4500", {
  *     ipProtocol: "UDP",
  *     portRange: "4500",
  *     ipAddress: vpnStaticIp.address,
  *     target: targetGateway.id,
+ * }, {
+ *     provider: google_beta,
  * });
  * const tunnel1 = new gcp.compute.VPNTunnel("tunnel1", {
  *     peerIp: "15.0.0.120",
@@ -89,12 +107,21 @@ import * as utilities from "../utilities";
  *     labels: {
  *         foo: "bar",
  *     },
+ * }, {
+ *     provider: google_beta,
+ *     dependsOn: [
+ *         frEsp,
+ *         frUdp500,
+ *         frUdp4500,
+ *     ],
  * });
  * const route1 = new gcp.compute.Route("route1", {
  *     network: network1.name,
  *     destRange: "15.0.0.0/24",
  *     priority: 1000,
  *     nextHopVpnTunnel: tunnel1.id,
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

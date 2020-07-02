@@ -38,7 +38,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewReservation(ctx, "gceReservation", &compute.ReservationArgs{
+// 		_, err := compute.NewReservation(ctx, "gceReservation", &compute.ReservationArgs{
 // 			SpecificReservation: &compute.ReservationSpecificReservationArgs{
 // 				Count: pulumi.Int(1),
 // 				InstanceProperties: &compute.ReservationSpecificReservationInstancePropertiesArgs{

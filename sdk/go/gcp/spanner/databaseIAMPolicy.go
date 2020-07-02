@@ -74,7 +74,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = spanner.NewDatabaseIAMBinding(ctx, "database", &spanner.DatabaseIAMBindingArgs{
+// 		_, err := spanner.NewDatabaseIAMBinding(ctx, "database", &spanner.DatabaseIAMBindingArgs{
 // 			Database: pulumi.String("your-database-name"),
 // 			Instance: pulumi.String("your-instance-name"),
 // 			Members: pulumi.StringArray{
@@ -102,7 +102,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = spanner.NewDatabaseIAMMember(ctx, "database", &spanner.DatabaseIAMMemberArgs{
+// 		_, err := spanner.NewDatabaseIAMMember(ctx, "database", &spanner.DatabaseIAMMemberArgs{
 // 			Database: pulumi.String("your-database-name"),
 // 			Instance: pulumi.String("your-instance-name"),
 // 			Member:   pulumi.String("user:jane@example.com"),

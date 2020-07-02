@@ -31,10 +31,10 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = gameservices.NewGameServerDeployment(ctx, "default", &gameservices.GameServerDeploymentArgs{
+// 		_, err := gameservices.NewGameServerDeployment(ctx, "_default", &gameservices.GameServerDeploymentArgs{
 // 			DeploymentId: pulumi.String("tf-test-deployment"),
 // 			Description:  pulumi.String("a deployment description"),
-// 		})
+// 		}, pulumi.Provider(google_beta))
 // 		if err != nil {
 // 			return err
 // 		}

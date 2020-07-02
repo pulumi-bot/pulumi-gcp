@@ -70,7 +70,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = healthcare.NewDicomStoreIamBinding(ctx, "dicomStore", &healthcare.DicomStoreIamBindingArgs{
+// 		_, err := healthcare.NewDicomStoreIamBinding(ctx, "dicomStore", &healthcare.DicomStoreIamBindingArgs{
 // 			DicomStoreId: pulumi.String("your-dicom-store-id"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -97,7 +97,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = healthcare.NewDicomStoreIamMember(ctx, "dicomStore", &healthcare.DicomStoreIamMemberArgs{
+// 		_, err := healthcare.NewDicomStoreIamMember(ctx, "dicomStore", &healthcare.DicomStoreIamMemberArgs{
 // 			DicomStoreId: pulumi.String("your-dicom-store-id"),
 // 			Member:       pulumi.String("user:jane@example.com"),
 // 			Role:         pulumi.String("roles/editor"),
