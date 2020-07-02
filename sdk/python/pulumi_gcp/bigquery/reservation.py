@@ -46,6 +46,18 @@ class Reservation(pulumi.CustomResource):
             * [Introduction to Reservations](https://cloud.google.com/bigquery/docs/reservations-intro)
 
         ## Example Usage
+        ### Bigquery Reservation Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        reservation = gcp.bigquery.Reservation("reservation",
+            location="asia-northeast1",
+            slot_capacity=0,
+            ignore_idle_slots=False,
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

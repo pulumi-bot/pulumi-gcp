@@ -73,6 +73,54 @@ class TagTemplate(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 
         ## Example Usage
+        ### Data Catalog Tag Template Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        basic_tag_template = gcp.datacatalog.TagTemplate("basicTagTemplate",
+            display_name="Demo Tag Template",
+            fields=[
+                {
+                    "display_name": "Source of data asset",
+                    "fieldId": "source",
+                    "isRequired": True,
+                    "type": {
+                        "primitiveType": "STRING",
+                    },
+                },
+                {
+                    "display_name": "Number of rows in the data asset",
+                    "fieldId": "num_rows",
+                    "type": {
+                        "primitiveType": "DOUBLE",
+                    },
+                },
+                {
+                    "display_name": "PII type",
+                    "fieldId": "pii_type",
+                    "type": {
+                        "enumType": {
+                            "allowedValues": [
+                                {
+                                    "display_name": "EMAIL",
+                                },
+                                {
+                                    "display_name": "SOCIAL SECURITY NUMBER",
+                                },
+                                {
+                                    "display_name": "NONE",
+                                },
+                            ],
+                        },
+                    },
+                },
+            ],
+            force_delete="false",
+            region="us-central1",
+            tag_template_id="my_template")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

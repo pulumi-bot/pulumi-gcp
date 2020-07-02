@@ -68,6 +68,34 @@ def get_app_engine_service(module_id=None,project=None,opts=None):
         * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
     ## Example Usage
+    ### Monitoring App Engine Service
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    bucket = gcp.storage.Bucket("bucket")
+    object = gcp.storage.BucketObject("object",
+        bucket=bucket.name,
+        source=pulumi.FileAsset("./test-fixtures/appengine/hello-world.zip"))
+    myapp = gcp.appengine.StandardAppVersion("myapp",
+        version_id="v1",
+        service="myapp",
+        runtime="nodejs10",
+        entrypoint={
+            "shell": "node ./app.js",
+        },
+        deployment={
+            "zip": {
+                "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+            },
+        },
+        env_variables={
+            "port": "8080",
+        },
+        delete_service_on_destroy=False)
+    srv = myapp.service.apply(lambda service: gcp.monitoring.get_app_engine_service(module_id=service))
+    ```
 
 
     :param str module_id: The ID of the App Engine module underlying this

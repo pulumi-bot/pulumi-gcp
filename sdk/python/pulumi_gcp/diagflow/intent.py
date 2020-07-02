@@ -103,6 +103,19 @@ class Intent(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
 
         ## Example Usage
+        ### Dialogflow Intent Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        basic_agent = gcp.diagflow.Agent("basicAgent",
+            display_name="example_agent",
+            default_language_code="en",
+            time_zone="America/New_York")
+        basic_intent = gcp.diagflow.Intent("basicIntent", display_name="basic-intent",
+        opts=ResourceOptions(depends_on=[basic_agent]))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
