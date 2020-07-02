@@ -33,7 +33,7 @@ import (
 // 			return err
 // 		}
 // 		opt2 := "https://www.googleapis.com/compute/v1/projects/myproject/zones/us-central1-a/networkEndpointGroups/k8s1-abcdef01-myns-mysvc-8080-4b6bac43"
-// 		_, err := compute.LookupNetworkEndpointGroup(ctx, &compute.LookupNetworkEndpointGroupArgs{
+// 		_, err = compute.LookupNetworkEndpointGroup(ctx, &compute.LookupNetworkEndpointGroupArgs{
 // 			SelfLink: &opt2,
 // 		}, nil)
 // 		if err != nil {

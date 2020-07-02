@@ -65,10 +65,10 @@ import * as utilities from "../utilities";
  *             sourceUrl: pulumi.interpolate`https://storage.googleapis.com/${bucket.name}/${object.name}`,
  *         },
  *     },
- *     liveness_check: {
+ *     livenessCheck: {
  *         path: "/",
  *     },
- *     readiness_check: {
+ *     readinessCheck: {
  *         path: "/",
  *     },
  *     envVariables: {
@@ -79,14 +79,14 @@ import * as utilities from "../utilities";
  *         securityLevel: "SECURE_ALWAYS",
  *         login: "LOGIN_REQUIRED",
  *         authFailAction: "AUTH_FAIL_ACTION_REDIRECT",
- *         static_files: {
+ *         staticFiles: {
  *             path: "my-other-path",
  *             uploadPathRegex: ".*\\/my-path\\/*",
  *         },
  *     }],
- *     automatic_scaling: {
+ *     automaticScaling: {
  *         coolDownPeriod: "120s",
- *         cpu_utilization: {
+ *         cpuUtilization: {
  *             targetUtilization: 0.5,
  *         },
  *     },

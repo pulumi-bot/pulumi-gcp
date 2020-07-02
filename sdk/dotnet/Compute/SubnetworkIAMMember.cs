@@ -32,15 +32,15 @@ namespace Pulumi.Gcp.Compute
     ///     {
     ///         var admin = Output.Create(Gcp.Organizations.GetIAMPolicy.InvokeAsync(new Gcp.Organizations.GetIAMPolicyArgs
     ///         {
-    ///             Binding = 
+    ///             Bindings = 
     ///             {
-    ///                 
+    ///                 new Gcp.Organizations.Inputs.GetIAMPolicyBindingArgs
     ///                 {
-    ///                     { "role", "roles/compute.networkUser" },
-    ///                     { "members", 
+    ///                     Role = "roles/compute.networkUser",
+    ///                     Members = 
     ///                     {
     ///                         "user:jane@example.com",
-    ///                     } },
+    ///                     },
     ///                 },
     ///             },
     ///         }));
@@ -68,21 +68,21 @@ namespace Pulumi.Gcp.Compute
     ///     {
     ///         var admin = Output.Create(Gcp.Organizations.GetIAMPolicy.InvokeAsync(new Gcp.Organizations.GetIAMPolicyArgs
     ///         {
-    ///             Binding = 
+    ///             Bindings = 
     ///             {
-    ///                 
+    ///                 new Gcp.Organizations.Inputs.GetIAMPolicyBindingArgs
     ///                 {
-    ///                     { "role", "roles/compute.networkUser" },
-    ///                     { "members", 
+    ///                     Role = "roles/compute.networkUser",
+    ///                     Members = 
     ///                     {
     ///                         "user:jane@example.com",
-    ///                     } },
-    ///                     { "condition", 
+    ///                     },
+    ///                     Condition = new Gcp.Organizations.Inputs.GetIAMPolicyBindingConditionArgs
     ///                     {
-    ///                         { "title", "expires_after_2019_12_31" },
-    ///                         { "description", "Expiring at midnight of 2019-12-31" },
-    ///                         { "expression", "request.time &lt; timestamp(\"2020-01-01T00:00:00Z\")" },
-    ///                     } },
+    ///                         Title = "expires_after_2019_12_31",
+    ///                         Description = "Expiring at midnight of 2019-12-31",
+    ///                         Expression = "request.time &lt; timestamp(\"2020-01-01T00:00:00Z\")",
+    ///                     },
     ///                 },
     ///             },
     ///         }));

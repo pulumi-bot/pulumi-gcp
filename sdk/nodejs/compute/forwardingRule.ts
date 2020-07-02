@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * const hc = new gcp.compute.HealthCheck("hc", {
  *     checkIntervalSec: 1,
  *     timeoutSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "80",
  *     },
  * });
@@ -71,7 +71,7 @@ import * as utilities from "../utilities";
  * const hc = new gcp.compute.HealthCheck("hc", {
  *     checkIntervalSec: 1,
  *     timeoutSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "80",
  *     },
  * });
@@ -108,19 +108,23 @@ import * as utilities from "../utilities";
  * const defaultNetwork = new gcp.compute.Network("defaultNetwork", {
  *     autoCreateSubnetworks: false,
  *     routingMode: "REGIONAL",
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultSubnetwork = new gcp.compute.Subnetwork("defaultSubnetwork", {
  *     ipCidrRange: "10.1.2.0/24",
  *     region: "us-central1",
  *     network: defaultNetwork.id,
+ * }, {
+ *     provider: google_beta,
  * });
  * const instanceTemplate = new gcp.compute.InstanceTemplate("instanceTemplate", {
  *     machineType: "n1-standard-1",
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: defaultNetwork.id,
  *         subnetwork: defaultSubnetwork.id,
  *     }],
- *     disk: [{
+ *     disks: [{
  *         sourceImage: debianImage.then(debianImage => debianImage.selfLink),
  *         autoDelete: true,
  *         boot: true,
@@ -129,20 +133,24 @@ import * as utilities from "../utilities";
  *         "allow-ssh",
  *         "load-balanced-backend",
  *     ],
+ * }, {
+ *     provider: google_beta,
  * });
  * const rigm = new gcp.compute.RegionInstanceGroupManager("rigm", {
  *     region: "us-central1",
- *     version: [{
+ *     versions: [{
  *         instanceTemplate: instanceTemplate.id,
  *         name: "primary",
  *     }],
  *     baseInstanceName: "internal-glb",
  *     targetSize: 1,
+ * }, {
+ *     provider: google_beta,
  * });
  * const fw1 = new gcp.compute.Firewall("fw1", {
  *     network: defaultNetwork.id,
  *     sourceRanges: ["10.1.2.0/24"],
- *     allow: [
+ *     allows: [
  *         {
  *             protocol: "tcp",
  *         },
@@ -154,16 +162,21 @@ import * as utilities from "../utilities";
  *         },
  *     ],
  *     direction: "INGRESS",
+ * }, {
+ *     provider: google_beta,
  * });
  * const fw2 = new gcp.compute.Firewall("fw2", {
  *     network: defaultNetwork.id,
  *     sourceRanges: ["0.0.0.0/0"],
- *     allow: [{
+ *     allows: [{
  *         protocol: "tcp",
  *         ports: ["22"],
  *     }],
  *     targetTags: ["allow-ssh"],
  *     direction: "INGRESS",
+ * }, {
+ *     provider: google_beta,
+ *     dependsOn: [fw1],
  * });
  * const fw3 = new gcp.compute.Firewall("fw3", {
  *     network: defaultNetwork.id,
@@ -171,17 +184,20 @@ import * as utilities from "../utilities";
  *         "130.211.0.0/22",
  *         "35.191.0.0/16",
  *     ],
- *     allow: [{
+ *     allows: [{
  *         protocol: "tcp",
  *     }],
  *     targetTags: ["load-balanced-backend"],
  *     direction: "INGRESS",
+ * }, {
+ *     provider: google_beta,
+ *     dependsOn: [fw2],
  * });
  * const fw4 = new gcp.compute.Firewall("fw4", {
  *     network: defaultNetwork.id,
  *     sourceRanges: ["10.129.0.0/26"],
  *     targetTags: ["load-balanced-backend"],
- *     allow: [
+ *     allows: [
  *         {
  *             protocol: "tcp",
  *             ports: ["80"],
@@ -196,16 +212,22 @@ import * as utilities from "../utilities";
  *         },
  *     ],
  *     direction: "INGRESS",
+ * }, {
+ *     provider: google_beta,
+ *     dependsOn: [fw3],
  * });
  * const defaultRegionHealthCheck = new gcp.compute.RegionHealthCheck("defaultRegionHealthCheck", {
  *     region: "us-central1",
- *     http_health_check: {
+ *     httpHealthCheck: {
  *         portSpecification: "USE_SERVING_PORT",
  *     },
+ * }, {
+ *     provider: google_beta,
+ *     dependsOn: [fw4],
  * });
  * const defaultRegionBackendService = new gcp.compute.RegionBackendService("defaultRegionBackendService", {
  *     loadBalancingScheme: "INTERNAL_MANAGED",
- *     backend: [{
+ *     backends: [{
  *         group: rigm.instanceGroup,
  *         balancingMode: "UTILIZATION",
  *         capacityScaler: 1,
@@ -214,14 +236,20 @@ import * as utilities from "../utilities";
  *     protocol: "HTTP",
  *     timeoutSec: 10,
  *     healthChecks: [defaultRegionHealthCheck.id],
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultRegionUrlMap = new gcp.compute.RegionUrlMap("defaultRegionUrlMap", {
  *     region: "us-central1",
  *     defaultService: defaultRegionBackendService.id,
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultRegionTargetHttpProxy = new gcp.compute.RegionTargetHttpProxy("defaultRegionTargetHttpProxy", {
  *     region: "us-central1",
  *     urlMap: defaultRegionUrlMap.id,
+ * }, {
+ *     provider: google_beta,
  * });
  * const proxy = new gcp.compute.Subnetwork("proxy", {
  *     ipCidrRange: "10.129.0.0/26",
@@ -229,6 +257,8 @@ import * as utilities from "../utilities";
  *     network: defaultNetwork.id,
  *     purpose: "INTERNAL_HTTPS_LOAD_BALANCER",
  *     role: "ACTIVE",
+ * }, {
+ *     provider: google_beta,
  * });
  * // Forwarding rule for Internal Load Balancing
  * const defaultForwardingRule = new gcp.compute.ForwardingRule("defaultForwardingRule", {
@@ -240,6 +270,9 @@ import * as utilities from "../utilities";
  *     network: defaultNetwork.id,
  *     subnetwork: defaultSubnetwork.id,
  *     networkTier: "PREMIUM",
+ * }, {
+ *     provider: google_beta,
+ *     dependsOn: [proxy],
  * });
  * ```
  */

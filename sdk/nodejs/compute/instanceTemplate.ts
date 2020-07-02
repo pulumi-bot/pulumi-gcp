@@ -44,7 +44,7 @@ import * as utilities from "../utilities";
  *         automaticRestart: true,
  *         onHostMaintenance: "MIGRATE",
  *     },
- *     disk: [
+ *     disks: [
  *         {
  *             sourceImage: "debian-cloud/debian-9",
  *             autoDelete: true,
@@ -56,13 +56,13 @@ import * as utilities from "../utilities";
  *             boot: false,
  *         },
  *     ],
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: "default",
  *     }],
  *     metadata: {
  *         foo: "bar",
  *     },
- *     service_account: {
+ *     serviceAccount: {
  *         scopes: [
  *             "userinfo-email",
  *             "compute-ro",
@@ -88,8 +88,8 @@ import * as utilities from "../utilities";
  *     namePrefix: "instance-template-",
  *     machineType: "n1-standard-1",
  *     region: "us-central1",
- *     disk: [{}],
- *     network_interface: [{}],
+ *     disks: [{}],
+ *     networkInterfaces: [{}],
  * });
  * const instanceGroupManager = new gcp.compute.InstanceGroupManager("instanceGroupManager", {
  *     instanceTemplate: instanceTemplate.id,
@@ -132,7 +132,7 @@ import * as utilities from "../utilities";
  *     namePrefix: "instance-template-",
  *     machineType: "n1-standard-1",
  *     region: "us-central1",
- *     disk: [{
+ *     disks: [{
  *         sourceImage: google_compute_image.my_image.self_link,
  *     }],
  * });

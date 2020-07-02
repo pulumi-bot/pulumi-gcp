@@ -68,7 +68,7 @@ import * as utilities from "../utilities";
  *     region: "us-central1",
  *     config: {
  *         nodeCount: 4,
- *         node_config: {
+ *         nodeConfig: {
  *             zone: "us-central1-a",
  *             machineType: "n1-standard-1",
  *             network: testNetwork.id,
@@ -76,6 +76,8 @@ import * as utilities from "../utilities";
  *             serviceAccount: testAccount.name,
  *         },
  *     },
+ * }, {
+ *     dependsOn: [composer_worker],
  * });
  * ```
  * ### With Software (Airflow) Config

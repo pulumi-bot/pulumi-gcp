@@ -24,31 +24,41 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const defaultNetwork = new gcp.compute.Network("defaultNetwork", {});
+ * const defaultNetwork = new gcp.compute.Network("defaultNetwork", {}, {
+ *     provider: google_beta,
+ * });
  * const mirror = new gcp.compute.Instance("mirror", {
  *     machineType: "n1-standard-1",
- *     boot_disk: {
- *         initialize_params: {
+ *     bootDisk: {
+ *         initializeParams: {
  *             image: "debian-cloud/debian-9",
  *         },
  *     },
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: defaultNetwork.id,
- *         access_config: [{}],
+ *         accessConfigs: [{}],
  *     }],
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultSubnetwork = new gcp.compute.Subnetwork("defaultSubnetwork", {
  *     network: defaultNetwork.id,
  *     ipCidrRange: "10.2.0.0/16",
+ * }, {
+ *     provider: google_beta,
  * });
  * const defaultHealthCheck = new gcp.compute.HealthCheck("defaultHealthCheck", {
  *     checkIntervalSec: 1,
  *     timeoutSec: 1,
- *     tcp_health_check: {
+ *     tcpHealthCheck: {
  *         port: "80",
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
- * const defaultRegionBackendService = new gcp.compute.RegionBackendService("defaultRegionBackendService", {healthChecks: [defaultHealthCheck.id]});
+ * const defaultRegionBackendService = new gcp.compute.RegionBackendService("defaultRegionBackendService", {healthChecks: [defaultHealthCheck.id]}, {
+ *     provider: google_beta,
+ * });
  * const defaultForwardingRule = new gcp.compute.ForwardingRule("defaultForwardingRule", {
  *     isMirroringCollector: true,
  *     ipProtocol: "TCP",
@@ -58,16 +68,19 @@ import * as utilities from "../utilities";
  *     network: defaultNetwork.id,
  *     subnetwork: defaultSubnetwork.id,
  *     networkTier: "PREMIUM",
+ * }, {
+ *     provider: google_beta,
+ *     dependsOn: [defaultSubnetwork],
  * });
  * const foobar = new gcp.compute.PacketMirroring("foobar", {
  *     description: "bar",
  *     network: {
  *         url: defaultNetwork.id,
  *     },
- *     collector_ilb: {
+ *     collectorIlb: {
  *         url: defaultForwardingRule.id,
  *     },
- *     mirrored_resources: {
+ *     mirroredResources: {
  *         tags: ["foo"],
  *         instances: [{
  *             url: mirror.id,
@@ -77,6 +90,8 @@ import * as utilities from "../utilities";
  *         ipProtocols: ["tcp"],
  *         cidrRanges: ["0.0.0.0/0"],
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

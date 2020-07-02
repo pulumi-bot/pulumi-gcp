@@ -19,6 +19,57 @@ namespace Pulumi.Gcp.Dns
     /// will not actually remove NS records during destroy but will report that it did.
     /// 
     /// ## Example Usage
+    /// ### Binding a DNS name to the ephemeral IP of a new instance:
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var frontendInstance = new Gcp.Compute.Instance("frontendInstance", new Gcp.Compute.InstanceArgs
+    ///         {
+    ///             MachineType = "g1-small",
+    ///             Zone = "us-central1-b",
+    ///             BootDisk = new Gcp.Compute.Inputs.InstanceBootDiskArgs
+    ///             {
+    ///                 InitializeParams = new Gcp.Compute.Inputs.InstanceBootDiskInitializeParamsArgs
+    ///                 {
+    ///                     Image = "debian-cloud/debian-9",
+    ///                 },
+    ///             },
+    ///             NetworkInterfaces = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.InstanceNetworkInterfaceArgs
+    ///                 {
+    ///                     Network = "default",
+    ///                     AccessConfigs = 
+    ///                     {
+    ///                         ,
+    ///                     },
+    ///                 },
+    ///             },
+    ///         });
+    ///         var prod = new Gcp.Dns.ManagedZone("prod", new Gcp.Dns.ManagedZoneArgs
+    ///         {
+    ///             DnsName = "prod.mydomain.com.",
+    ///         });
+    ///         var frontendRecordSet = new Gcp.Dns.RecordSet("frontendRecordSet", new Gcp.Dns.RecordSetArgs
+    ///         {
+    ///             Type = "A",
+    ///             Ttl = 300,
+    ///             ManagedZone = prod.Name,
+    ///             Rrdatas = 
+    ///             {
+    ///                 frontendInstance.NetworkInterfaces.Apply(networkInterfaces =&gt; networkInterfaces[0].AccessConfigs?[0]?.NatIp),
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// ### Adding an A record
     /// 
     /// ```csharp

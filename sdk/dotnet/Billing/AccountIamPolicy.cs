@@ -34,15 +34,15 @@ namespace Pulumi.Gcp.Billing
     ///     {
     ///         var admin = Output.Create(Gcp.Organizations.GetIAMPolicy.InvokeAsync(new Gcp.Organizations.GetIAMPolicyArgs
     ///         {
-    ///             Binding = 
+    ///             Bindings = 
     ///             {
-    ///                 
+    ///                 new Gcp.Organizations.Inputs.GetIAMPolicyBindingArgs
     ///                 {
-    ///                     { "role", "roles/billing.viewer" },
-    ///                     { "members", 
+    ///                     Role = "roles/billing.viewer",
+    ///                     Members = 
     ///                     {
     ///                         "user:jane@example.com",
-    ///                     } },
+    ///                     },
     ///                 },
     ///             },
     ///         }));

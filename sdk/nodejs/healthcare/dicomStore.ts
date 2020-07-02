@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  * const dataset = new gcp.healthcare.Dataset("dataset", {location: "us-central1"});
  * const _default = new gcp.healthcare.DicomStore("default", {
  *     dataset: dataset.id,
- *     notification_config: {
+ *     notificationConfig: {
  *         pubsubTopic: topic.id,
  *     },
  *     labels: {

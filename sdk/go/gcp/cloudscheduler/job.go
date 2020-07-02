@@ -35,7 +35,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = cloudscheduler.NewJob(ctx, "job", &cloudscheduler.JobArgs{
+// 		_, err := cloudscheduler.NewJob(ctx, "job", &cloudscheduler.JobArgs{
 // 			AttemptDeadline: pulumi.String("320s"),
 // 			Description:     pulumi.String("test http job"),
 // 			HttpTarget: &cloudscheduler.JobHttpTargetArgs{
@@ -67,7 +67,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = cloudscheduler.NewJob(ctx, "job", &cloudscheduler.JobArgs{
+// 		_, err := cloudscheduler.NewJob(ctx, "job", &cloudscheduler.JobArgs{
 // 			AppEngineHttpTarget: &cloudscheduler.JobAppEngineHttpTargetArgs{
 // 				AppEngineRouting: &cloudscheduler.JobAppEngineHttpTargetAppEngineRoutingArgs{
 // 					Instance: pulumi.String("my-instance-001"),
@@ -87,6 +87,80 @@ import (
 // 			},
 // 			Schedule: pulumi.String("*/4 * * * *"),
 // 			TimeZone: pulumi.String("Europe/London"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Scheduler Job Oauth
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/cloudscheduler"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_default, err := compute.GetDefaultServiceAccount(ctx, nil, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = cloudscheduler.NewJob(ctx, "job", &cloudscheduler.JobArgs{
+// 			Description:     pulumi.String("test http job"),
+// 			Schedule:        pulumi.String("*/8 * * * *"),
+// 			TimeZone:        pulumi.String("America/New_York"),
+// 			AttemptDeadline: pulumi.String("320s"),
+// 			HttpTarget: &cloudscheduler.JobHttpTargetArgs{
+// 				HttpMethod: pulumi.String("GET"),
+// 				Uri:        pulumi.String("https://cloudscheduler.googleapis.com/v1/projects/my-project-name/locations/us-west1/jobs"),
+// 				OauthToken: &cloudscheduler.JobHttpTargetOauthTokenArgs{
+// 					ServiceAccountEmail: pulumi.String(_default.Email),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Scheduler Job Oidc
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/cloudscheduler"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_default, err := compute.GetDefaultServiceAccount(ctx, nil, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = cloudscheduler.NewJob(ctx, "job", &cloudscheduler.JobArgs{
+// 			Description:     pulumi.String("test http job"),
+// 			Schedule:        pulumi.String("*/8 * * * *"),
+// 			TimeZone:        pulumi.String("America/New_York"),
+// 			AttemptDeadline: pulumi.String("320s"),
+// 			HttpTarget: &cloudscheduler.JobHttpTargetArgs{
+// 				HttpMethod: pulumi.String("GET"),
+// 				Uri:        pulumi.String("https://example.com/ping"),
+// 				OidcToken: &cloudscheduler.JobHttpTargetOidcTokenArgs{
+// 					ServiceAccountEmail: pulumi.String(_default.Email),
+// 				},
+// 			},
 // 		})
 // 		if err != nil {
 // 			return err

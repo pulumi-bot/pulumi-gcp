@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  *
  * const foo = new gcp.dns.ManagedZone("foo", {
  *     dnsName: "foo.bar.",
- *     dnssec_config: {
+ *     dnssecConfig: {
  *         state: "on",
  *         nonExistence: "nsec3",
  *     },

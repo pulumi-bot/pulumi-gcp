@@ -35,7 +35,7 @@ import * as utilities from "../utilities";
  *     combiner: "OR",
  *     conditions: [{
  *         displayName: "test condition",
- *         condition_threshold: {
+ *         conditionThreshold: {
  *             filter: "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\"",
  *             duration: "60s",
  *             comparison: "COMPARISON_GT",

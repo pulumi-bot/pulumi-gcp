@@ -40,10 +40,10 @@ import (
 // 			return err
 // 		}
 // 		admin, err := organizations.LookupIAMPolicy(ctx, &organizations.LookupIAMPolicyArgs{
-// 			Binding: []map[string]interface{}{
-// 				map[string]interface{}{
-// 					"role": "roles/editor",
-// 					"members": []string{
+// 			Bindings: []organizations.GetIAMPolicyBinding{
+// 				organizations.GetIAMPolicyBinding{
+// 					Role: "roles/editor",
+// 					Members: []string{
 // 						"user:jane@example.com",
 // 					},
 // 				},
@@ -84,16 +84,16 @@ import (
 // 			return err
 // 		}
 // 		admin, err := organizations.LookupIAMPolicy(ctx, &organizations.LookupIAMPolicyArgs{
-// 			Binding: []map[string]interface{}{
-// 				map[string]interface{}{
-// 					"role": "roles/editor",
-// 					"members": []string{
+// 			Bindings: []organizations.GetIAMPolicyBinding{
+// 				organizations.GetIAMPolicyBinding{
+// 					Role: "roles/editor",
+// 					Members: []string{
 // 						"user:jane@example.com",
 // 					},
-// 					"condition": map[string]interface{}{
-// 						"title":       "expires_after_2019_12_31",
-// 						"description": "Expiring at midnight of 2019-12-31",
-// 						"expression":  "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+// 					Condition: organizations.GetIAMPolicyBindingCondition{
+// 						Title:       "expires_after_2019_12_31",
+// 						Description: "Expiring at midnight of 2019-12-31",
+// 						Expression:  "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
 // 					},
 // 				},
 // 			},
@@ -125,7 +125,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = kms.NewKeyRingIAMBinding(ctx, "keyRing", &kms.KeyRingIAMBindingArgs{
+// 		_, err := kms.NewKeyRingIAMBinding(ctx, "keyRing", &kms.KeyRingIAMBindingArgs{
 // 			KeyRingId: pulumi.String("your-key-ring-id"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -152,7 +152,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = kms.NewKeyRingIAMBinding(ctx, "keyRing", &kms.KeyRingIAMBindingArgs{
+// 		_, err := kms.NewKeyRingIAMBinding(ctx, "keyRing", &kms.KeyRingIAMBindingArgs{
 // 			Condition: &kms.KeyRingIAMBindingConditionArgs{
 // 				Description: pulumi.String("Expiring at midnight of 2019-12-31"),
 // 				Expression:  pulumi.String("request.time < timestamp(\"2020-01-01T00:00:00Z\")"),
@@ -184,7 +184,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = kms.NewKeyRingIAMMember(ctx, "keyRing", &kms.KeyRingIAMMemberArgs{
+// 		_, err := kms.NewKeyRingIAMMember(ctx, "keyRing", &kms.KeyRingIAMMemberArgs{
 // 			KeyRingId: pulumi.String("your-key-ring-id"),
 // 			Member:    pulumi.String("user:jane@example.com"),
 // 			Role:      pulumi.String("roles/editor"),
@@ -209,7 +209,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = kms.NewKeyRingIAMMember(ctx, "keyRing", &kms.KeyRingIAMMemberArgs{
+// 		_, err := kms.NewKeyRingIAMMember(ctx, "keyRing", &kms.KeyRingIAMMemberArgs{
 // 			Condition: &kms.KeyRingIAMMemberConditionArgs{
 // 				Description: pulumi.String("Expiring at midnight of 2019-12-31"),
 // 				Expression:  pulumi.String("request.time < timestamp(\"2020-01-01T00:00:00Z\")"),

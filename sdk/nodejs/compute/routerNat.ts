@@ -40,7 +40,7 @@ import * as utilities from "../utilities";
  *     region: router.region,
  *     natIpAllocateOption: "AUTO_ONLY",
  *     sourceSubnetworkIpRangesToNat: "ALL_SUBNETWORKS_ALL_IP_RANGES",
- *     log_config: {
+ *     logConfig: {
  *         enable: true,
  *         filter: "ERRORS_ONLY",
  *     },
@@ -72,7 +72,7 @@ import * as utilities from "../utilities";
  *     natIpAllocateOption: "MANUAL_ONLY",
  *     natIps: address.map(__item => __item.id),
  *     sourceSubnetworkIpRangesToNat: "LIST_OF_SUBNETWORKS",
- *     subnetwork: [{
+ *     subnetworks: [{
  *         name: subnet.id,
  *         sourceIpRangesToNats: ["ALL_IP_RANGES"],
  *     }],

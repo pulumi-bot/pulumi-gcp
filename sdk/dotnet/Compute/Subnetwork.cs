@@ -41,7 +41,7 @@ namespace Pulumi.Gcp.Compute
     ///     * [Cloud Networking](https://cloud.google.com/vpc/docs/using-vpc)
     /// 
     /// ## Example Usage
-    /// ### Subnetwork Internal L7lb
+    /// ### Subnetwork Basic
     /// 
     /// ```csharp
     /// using Pulumi;
@@ -55,6 +55,71 @@ namespace Pulumi.Gcp.Compute
     ///         {
     ///             AutoCreateSubnetworks = false,
     ///         });
+    ///         var network_with_private_secondary_ip_ranges = new Gcp.Compute.Subnetwork("network-with-private-secondary-ip-ranges", new Gcp.Compute.SubnetworkArgs
+    ///         {
+    ///             IpCidrRange = "10.2.0.0/16",
+    ///             Region = "us-central1",
+    ///             Network = custom_test.Id,
+    ///             SecondaryIpRanges = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.SubnetworkSecondaryIpRangeArgs
+    ///                 {
+    ///                     RangeName = "tf-test-secondary-range-update1",
+    ///                     IpCidrRange = "192.168.10.0/24",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Subnetwork Logging Config
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var custom_test = new Gcp.Compute.Network("custom-test", new Gcp.Compute.NetworkArgs
+    ///         {
+    ///             AutoCreateSubnetworks = false,
+    ///         });
+    ///         var subnet_with_logging = new Gcp.Compute.Subnetwork("subnet-with-logging", new Gcp.Compute.SubnetworkArgs
+    ///         {
+    ///             IpCidrRange = "10.2.0.0/16",
+    ///             Region = "us-central1",
+    ///             Network = custom_test.Id,
+    ///             LogConfig = new Gcp.Compute.Inputs.SubnetworkLogConfigArgs
+    ///             {
+    ///                 AggregationInterval = "INTERVAL_10_MIN",
+    ///                 FlowSampling = 0.5,
+    ///                 Metadata = "INCLUDE_ALL_METADATA",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Subnetwork Internal L7lb
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var custom_test = new Gcp.Compute.Network("custom-test", new Gcp.Compute.NetworkArgs
+    ///         {
+    ///             AutoCreateSubnetworks = false,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
+    ///         });
     ///         var network_for_l7lb = new Gcp.Compute.Subnetwork("network-for-l7lb", new Gcp.Compute.SubnetworkArgs
     ///         {
     ///             IpCidrRange = "10.0.0.0/22",
@@ -62,6 +127,9 @@ namespace Pulumi.Gcp.Compute
     ///             Purpose = "INTERNAL_HTTPS_LOAD_BALANCER",
     ///             Role = "ACTIVE",
     ///             Network = custom_test.Id,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
     ///         });
     ///     }
     /// 

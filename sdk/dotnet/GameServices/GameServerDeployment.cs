@@ -33,6 +33,9 @@ namespace Pulumi.Gcp.GameServices
     ///         {
     ///             DeploymentId = "tf-test-deployment",
     ///             Description = "a deployment description",
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
     ///         });
     ///     }
     /// 

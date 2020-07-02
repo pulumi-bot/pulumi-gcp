@@ -34,10 +34,10 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		admin, err := organizations.LookupIAMPolicy(ctx, &organizations.LookupIAMPolicyArgs{
-// 			Binding: []map[string]interface{}{
-// 				map[string]interface{}{
-// 					"role": "roles/editor",
-// 					"members": []string{
+// 			Bindings: []organizations.GetIAMPolicyBinding{
+// 				organizations.GetIAMPolicyBinding{
+// 					Role: "roles/editor",
+// 					Members: []string{
 // 						"user:jane@example.com",
 // 					},
 // 				},
@@ -72,7 +72,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = dataproc.NewJobIAMBinding(ctx, "editor", &dataproc.JobIAMBindingArgs{
+// 		_, err := dataproc.NewJobIAMBinding(ctx, "editor", &dataproc.JobIAMBindingArgs{
 // 			JobId: pulumi.String("your-dataproc-job"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -99,7 +99,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = dataproc.NewJobIAMMember(ctx, "editor", &dataproc.JobIAMMemberArgs{
+// 		_, err := dataproc.NewJobIAMMember(ctx, "editor", &dataproc.JobIAMMemberArgs{
 // 			JobId:  pulumi.String("your-dataproc-job"),
 // 			Member: pulumi.String("user:jane@example.com"),
 // 			Role:   pulumi.String("roles/editor"),

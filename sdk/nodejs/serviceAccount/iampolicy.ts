@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * import * as gcp from "@pulumi/gcp";
  *
  * const admin = gcp.organizations.getIAMPolicy({
- *     binding: [{
+ *     bindings: [{
  *         role: "roles/iam.serviceAccountUser",
  *         members: ["user:jane@example.com"],
  *     }],

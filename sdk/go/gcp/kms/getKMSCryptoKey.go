@@ -34,7 +34,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err := kms.GetKMSCryptoKey(ctx, &kms.GetKMSCryptoKeyArgs{
+// 		_, err = kms.GetKMSCryptoKey(ctx, &kms.GetKMSCryptoKeyArgs{
 // 			Name:    "my-crypto-key",
 // 			KeyRing: myKeyRing.SelfLink,
 // 		}, nil)

@@ -35,7 +35,7 @@ import (
 // 			return err
 // 		}
 // 		_, err = pubsub.NewTopicIAMBinding(ctx, "binding", &pubsub.TopicIAMBindingArgs{
-// 			Topic: pulumi.String(google_pubsub_topic.Topic.Name),
+// 			Topic: pulumi.Any(google_pubsub_topic.Topic.Name),
 // 			Role:  pulumi.String("roles/pubsub.publisher"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String(fmt.Sprintf("%v%v", "serviceAccount:", gcsAccount.EmailAddress)),

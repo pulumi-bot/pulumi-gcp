@@ -22,23 +22,23 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const note = new gcp.containeranalysis.Note("note", {attestation_authority: {
+ * const note = new gcp.containeranalysis.Note("note", {attestationAuthority: {
  *     hint: {
  *         humanReadableName: "My attestor",
  *     },
  * }});
- * const attestor = new gcp.binaryauthorization.Attestor("attestor", {attestation_authority_note: {
+ * const attestor = new gcp.binaryauthorization.Attestor("attestor", {attestationAuthorityNote: {
  *     noteReference: note.name,
  * }});
  * const policy = new gcp.binaryauthorization.Policy("policy", {
- *     admission_whitelist_patterns: [{
+ *     admissionWhitelistPatterns: [{
  *         namePattern: "gcr.io/google_containers/*",
  *     }],
- *     default_admission_rule: {
+ *     defaultAdmissionRule: {
  *         evaluationMode: "ALWAYS_ALLOW",
  *         enforcementMode: "ENFORCED_BLOCK_AND_AUDIT_LOG",
  *     },
- *     cluster_admission_rules: [{
+ *     clusterAdmissionRules: [{
  *         cluster: "us-central1-a.prod-cluster",
  *         evaluationMode: "REQUIRE_ATTESTATION",
  *         enforcementMode: "ENFORCED_BLOCK_AND_AUDIT_LOG",
@@ -52,16 +52,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as gcp from "@pulumi/gcp";
  *
- * const note = new gcp.containeranalysis.Note("note", {attestation_authority: {
+ * const note = new gcp.containeranalysis.Note("note", {attestationAuthority: {
  *     hint: {
  *         humanReadableName: "My attestor",
  *     },
  * }});
- * const attestor = new gcp.binaryauthorization.Attestor("attestor", {attestation_authority_note: {
+ * const attestor = new gcp.binaryauthorization.Attestor("attestor", {attestationAuthorityNote: {
  *     noteReference: note.name,
  * }});
  * const policy = new gcp.binaryauthorization.Policy("policy", {
- *     default_admission_rule: {
+ *     defaultAdmissionRule: {
  *         evaluationMode: "REQUIRE_ATTESTATION",
  *         enforcementMode: "ENFORCED_BLOCK_AND_AUDIT_LOG",
  *         requireAttestationsBies: [attestor.name],

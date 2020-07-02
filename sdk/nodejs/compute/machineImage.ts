@@ -24,16 +24,20 @@ import * as utilities from "../utilities";
  *
  * const vm = new gcp.compute.Instance("vm", {
  *     machineType: "n1-standard-1",
- *     boot_disk: {
- *         initialize_params: {
+ *     bootDisk: {
+ *         initializeParams: {
  *             image: "debian-cloud/debian-9",
  *         },
  *     },
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: "default",
  *     }],
+ * }, {
+ *     provider: google_beta,
  * });
- * const image = new gcp.compute.MachineImage("image", {sourceInstance: vm.selfLink});
+ * const image = new gcp.compute.MachineImage("image", {sourceInstance: vm.selfLink}, {
+ *     provider: google_beta,
+ * });
  * ```
  */
 export class MachineImage extends pulumi.CustomResource {

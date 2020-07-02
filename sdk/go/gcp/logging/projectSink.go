@@ -32,7 +32,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = logging.NewProjectSink(ctx, "my-sink", &logging.ProjectSinkArgs{
+// 		_, err := logging.NewProjectSink(ctx, "my_sink", &logging.ProjectSinkArgs{
 // 			Destination:          pulumi.String("pubsub.googleapis.com/projects/my-project/topics/instance-activity"),
 // 			Filter:               pulumi.String("resource.type = gce_instance AND severity >= WARN"),
 // 			UniqueWriterIdentity: pulumi.Bool(true),
@@ -49,6 +49,71 @@ import (
 // cloud storage bucket. Because we are using `uniqueWriterIdentity`, we must grant it access to the bucket. Note that
 // this grant requires the "Project IAM Admin" IAM role (`roles/resourcemanager.projectIamAdmin`) granted to the credentials
 // used with this provider.
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/logging"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/projects"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/storage"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := compute.NewInstance(ctx, "my_logged_instance", &compute.InstanceArgs{
+// 			MachineType: pulumi.String("n1-standard-1"),
+// 			Zone:        pulumi.String("us-central1-a"),
+// 			BootDisk: &compute.InstanceBootDiskArgs{
+// 				InitializeParams: &compute.InstanceBootDiskInitializeParamsArgs{
+// 					Image: pulumi.String("debian-cloud/debian-9"),
+// 				},
+// 			},
+// 			NetworkInterfaces: compute.InstanceNetworkInterfaceArray{
+// 				&compute.InstanceNetworkInterfaceArgs{
+// 					Network: pulumi.String("default"),
+// 					AccessConfigs: compute.InstanceNetworkInterfaceAccessConfigArray{
+// 						nil,
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = storage.NewBucket(ctx, "log_bucket", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = logging.NewProjectSink(ctx, "instance_sink", &logging.ProjectSinkArgs{
+// 			Destination: log_bucket.Name.ApplyT(func(name string) (string, error) {
+// 				return fmt.Sprintf("%v%v", "storage.googleapis.com/", name), nil
+// 			}).(pulumi.StringOutput),
+// 			Filter: my_logged_instance.InstanceId.ApplyT(func(instanceId string) (string, error) {
+// 				return fmt.Sprintf("%v%v%v", "resource.type = gce_instance AND resource.labels.instance_id = \"", instanceId, "\""), nil
+// 			}).(pulumi.StringOutput),
+// 			UniqueWriterIdentity: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = projects.NewIAMBinding(ctx, "log_writer", &projects.IAMBindingArgs{
+// 			Role: pulumi.String("roles/storage.objectCreator"),
+// 			Members: pulumi.StringArray{
+// 				instance_sink.WriterIdentity,
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type ProjectSink struct {
 	pulumi.CustomResourceState
 

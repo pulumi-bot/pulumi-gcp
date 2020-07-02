@@ -47,9 +47,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewDisk(ctx, "default", &compute.DiskArgs{
+// 		_, err := compute.NewDisk(ctx, "_default", &compute.DiskArgs{
 // 			Image: pulumi.String("debian-8-jessie-v20170523"),
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"environment": pulumi.String("dev"),
 // 			},
 // 			PhysicalBlockSizeBytes: pulumi.Int(4096),
