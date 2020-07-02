@@ -33,6 +33,55 @@ import (
 // 	})
 // }
 // ```
+// ### Allow Health Checks
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "legacy-health-checkers"
+// 		legacy_hcs, err := compute.GetNetblockIPRanges(ctx, &compute.GetNetblockIPRangesArgs{
+// 			RangeType: &opt0,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewNetwork(ctx, "_default", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewFirewall(ctx, "allow_hcs", &compute.FirewallArgs{
+// 			Network: _default.Name,
+// 			Allows: compute.FirewallAllowArray{
+// 				&compute.FirewallAllowArgs{
+// 					Protocol: pulumi.String("tcp"),
+// 					Ports: pulumi.StringArray{
+// 						pulumi.String("80"),
+// 					},
+// 				},
+// 			},
+// 			SourceRanges: toPulumiStringArray(legacy_hcs.CidrBlocksIpv4s),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// func toPulumiStringArray(arr []string) pulumi.StringArray {
+// 	var pulumiArr pulumi.StringArray
+// 	for _, v := range arr {
+// 		pulumiArr = append(pulumiArr, pulumi.String(v))
+// 	}
+// 	return pulumiArr
+// }
+// ```
 func GetNetblockIPRanges(ctx *pulumi.Context, args *GetNetblockIPRangesArgs, opts ...pulumi.InvokeOption) (*GetNetblockIPRangesResult, error) {
 	var rv GetNetblockIPRangesResult
 	err := ctx.Invoke("gcp:compute/getNetblockIPRanges:getNetblockIPRanges", args, &rv, opts...)

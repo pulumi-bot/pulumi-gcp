@@ -74,23 +74,23 @@ namespace Pulumi.Gcp.DataCatalog
     ///                     DisplayName = "PII type",
     ///                     Type = new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeArgs
     ///                     {
-    ///                         Enum_type = 
+    ///                         EnumType = new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeEnumTypeArgs
     ///                         {
-    ///                             { "allowed_values", 
+    ///                             AllowedValues = 
     ///                             {
-    ///                                 
+    ///                                 new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeEnumTypeAllowedValueArgs
     ///                                 {
-    ///                                     { "displayName", "EMAIL" },
+    ///                                     DisplayName = "EMAIL",
     ///                                 },
-    ///                                 
+    ///                                 new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeEnumTypeAllowedValueArgs
     ///                                 {
-    ///                                     { "displayName", "SOCIAL SECURITY NUMBER" },
+    ///                                     DisplayName = "SOCIAL SECURITY NUMBER",
     ///                                 },
-    ///                                 
+    ///                                 new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeEnumTypeAllowedValueArgs
     ///                                 {
-    ///                                     { "displayName", "NONE" },
+    ///                                     DisplayName = "NONE",
     ///                                 },
-    ///                             } },
+    ///                             },
     ///                         },
     ///                     },
     ///                 },
@@ -174,23 +174,23 @@ namespace Pulumi.Gcp.DataCatalog
     ///                     DisplayName = "PII type",
     ///                     Type = new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeArgs
     ///                     {
-    ///                         Enum_type = 
+    ///                         EnumType = new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeEnumTypeArgs
     ///                         {
-    ///                             { "allowed_values", 
+    ///                             AllowedValues = 
     ///                             {
-    ///                                 
+    ///                                 new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeEnumTypeAllowedValueArgs
     ///                                 {
-    ///                                     { "displayName", "EMAIL" },
+    ///                                     DisplayName = "EMAIL",
     ///                                 },
-    ///                                 
+    ///                                 new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeEnumTypeAllowedValueArgs
     ///                                 {
-    ///                                     { "displayName", "SOCIAL SECURITY NUMBER" },
+    ///                                     DisplayName = "SOCIAL SECURITY NUMBER",
     ///                                 },
-    ///                                 
+    ///                                 new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeEnumTypeAllowedValueArgs
     ///                                 {
-    ///                                     { "displayName", "NONE" },
+    ///                                     DisplayName = "NONE",
     ///                                 },
-    ///                             } },
+    ///                             },
     ///                         },
     ///                     },
     ///                 },
@@ -304,23 +304,23 @@ namespace Pulumi.Gcp.DataCatalog
     ///                     DisplayName = "PII type",
     ///                     Type = new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeArgs
     ///                     {
-    ///                         Enum_type = 
+    ///                         EnumType = new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeEnumTypeArgs
     ///                         {
-    ///                             { "allowed_values", 
+    ///                             AllowedValues = 
     ///                             {
-    ///                                 
+    ///                                 new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeEnumTypeAllowedValueArgs
     ///                                 {
-    ///                                     { "displayName", "EMAIL" },
+    ///                                     DisplayName = "EMAIL",
     ///                                 },
-    ///                                 
+    ///                                 new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeEnumTypeAllowedValueArgs
     ///                                 {
-    ///                                     { "displayName", "SOCIAL SECURITY NUMBER" },
+    ///                                     DisplayName = "SOCIAL SECURITY NUMBER",
     ///                                 },
-    ///                                 
+    ///                                 new Gcp.DataCatalog.Inputs.TagTemplateFieldTypeEnumTypeAllowedValueArgs
     ///                                 {
-    ///                                     { "displayName", "NONE" },
+    ///                                     DisplayName = "NONE",
     ///                                 },
-    ///                             } },
+    ///                             },
     ///                         },
     ///                     },
     ///                 },

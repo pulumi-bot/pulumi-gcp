@@ -29,14 +29,16 @@ import * as utilities from "../utilities";
  *     billingAccount: account.then(account => account.id),
  *     displayName: "Example Billing Budget",
  *     amount: {
- *         specified_amount: {
+ *         specifiedAmount: {
  *             currencyCode: "USD",
  *             units: "100000",
  *         },
  *     },
- *     threshold_rules: [{
+ *     thresholdRules: [{
  *         thresholdPercent: 0.5,
  *     }],
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  * ### Billing Budget Filter
@@ -51,18 +53,18 @@ import * as utilities from "../utilities";
  * const budget = new gcp.billing.Budget("budget", {
  *     billingAccount: account.then(account => account.id),
  *     displayName: "Example Billing Budget",
- *     budget_filter: {
+ *     budgetFilter: {
  *         projects: ["projects/my-project-name"],
  *         creditTypesTreatment: "EXCLUDE_ALL_CREDITS",
  *         services: ["services/24E6-581D-38E5"],
  *     },
  *     amount: {
- *         specified_amount: {
+ *         specifiedAmount: {
  *             currencyCode: "USD",
  *             units: "100000",
  *         },
  *     },
- *     threshold_rules: [
+ *     thresholdRules: [
  *         {
  *             thresholdPercent: 0.5,
  *         },
@@ -71,6 +73,8 @@ import * as utilities from "../utilities";
  *             spendBasis: "FORECASTED_SPEND",
  *         },
  *     ],
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  */

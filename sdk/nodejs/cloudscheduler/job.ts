@@ -81,10 +81,10 @@ import * as utilities from "../utilities";
  *     schedule: "*&#47;8 * * * *",
  *     timeZone: "America/New_York",
  *     attemptDeadline: "320s",
- *     http_target: {
+ *     httpTarget: {
  *         httpMethod: "GET",
  *         uri: "https://cloudscheduler.googleapis.com/v1/projects/my-project-name/locations/us-west1/jobs",
- *         oauth_token: {
+ *         oauthToken: {
  *             serviceAccountEmail: _default.then(_default => _default.email),
  *         },
  *     },
@@ -102,10 +102,10 @@ import * as utilities from "../utilities";
  *     schedule: "*&#47;8 * * * *",
  *     timeZone: "America/New_York",
  *     attemptDeadline: "320s",
- *     http_target: {
+ *     httpTarget: {
  *         httpMethod: "GET",
  *         uri: "https://example.com/ping",
- *         oidc_token: {
+ *         oidcToken: {
  *             serviceAccountEmail: _default.then(_default => _default.email),
  *         },
  *     },

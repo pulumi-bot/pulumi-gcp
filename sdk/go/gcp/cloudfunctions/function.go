@@ -105,10 +105,10 @@ import (
 // 			TriggerHttp:         pulumi.Bool(true),
 // 			Timeout:             pulumi.Int(60),
 // 			EntryPoint:          pulumi.String("helloGET"),
-// 			Labels: pulumi.Map{
+// 			Labels: pulumi.StringMap{
 // 				"my-label": pulumi.String("my-label-value"),
 // 			},
-// 			EnvironmentVariables: pulumi.Map{
+// 			EnvironmentVariables: pulumi.StringMap{
 // 				"MY_ENV_VAR": pulumi.String("my-env-var-value"),
 // 			},
 // 		})

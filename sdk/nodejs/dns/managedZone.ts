@@ -47,7 +47,7 @@ import * as utilities from "../utilities";
  *         foo: "bar",
  *     },
  *     visibility: "private",
- *     private_visibility_config: {
+ *     privateVisibilityConfig: {
  *         networks: [
  *             {
  *                 networkUrl: network_1.id,
@@ -74,7 +74,7 @@ import * as utilities from "../utilities";
  *         foo: "bar",
  *     },
  *     visibility: "private",
- *     private_visibility_config: {
+ *     privateVisibilityConfig: {
  *         networks: [
  *             {
  *                 networkUrl: network_1.id,
@@ -84,8 +84,8 @@ import * as utilities from "../utilities";
  *             },
  *         ],
  *     },
- *     forwarding_config: {
- *         target_name_servers: [
+ *     forwardingConfig: {
+ *         targetNameServers: [
  *             {
  *                 ipv4Address: "172.16.1.10",
  *             },
@@ -108,13 +108,13 @@ import * as utilities from "../utilities";
  *     dnsName: "peering.example.com.",
  *     description: "Example private DNS peering zone",
  *     visibility: "private",
- *     private_visibility_config: {
+ *     privateVisibilityConfig: {
  *         networks: [{
  *             networkUrl: network_source.id,
  *         }],
  *     },
- *     peering_config: {
- *         target_network: {
+ *     peeringConfig: {
+ *         targetNetwork: {
  *             networkUrl: network_target.id,
  *         },
  *     },
@@ -129,18 +129,24 @@ import * as utilities from "../utilities";
  * const example = new gcp.servicedirectory.Namespace("example", {
  *     namespaceId: "example",
  *     location: "us-central1",
+ * }, {
+ *     provider: google_beta,
  * });
  * const sd_zone = new gcp.dns.ManagedZone("sd-zone", {
  *     dnsName: "services.example.com.",
  *     description: "Example private DNS Service Directory zone",
  *     visibility: "private",
- *     service_directory_config: {
+ *     serviceDirectoryConfig: {
  *         namespace: {
  *             namespaceUrl: example.id,
  *         },
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
- * const network = new gcp.compute.Network("network", {autoCreateSubnetworks: false});
+ * const network = new gcp.compute.Network("network", {autoCreateSubnetworks: false}, {
+ *     provider: google_beta,
+ * });
  * ```
  */
 export class ManagedZone extends pulumi.CustomResource {

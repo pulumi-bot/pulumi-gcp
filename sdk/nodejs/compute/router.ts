@@ -29,7 +29,7 @@ import * as utilities from "../utilities";
  *         asn: 64514,
  *         advertiseMode: "CUSTOM",
  *         advertisedGroups: ["ALL_SUBNETS"],
- *         advertised_ip_ranges: [
+ *         advertisedIpRanges: [
  *             {
  *                 range: "1.2.3.4",
  *             },

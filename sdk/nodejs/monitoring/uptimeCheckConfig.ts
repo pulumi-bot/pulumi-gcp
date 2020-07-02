@@ -84,10 +84,10 @@ import * as utilities from "../utilities";
  * const tcpGroup = new gcp.monitoring.UptimeCheckConfig("tcpGroup", {
  *     displayName: "tcp-uptime-check",
  *     timeout: "60s",
- *     tcp_check: {
+ *     tcpCheck: {
  *         port: 888,
  *     },
- *     resource_group: {
+ *     resourceGroup: {
  *         resourceType: "INSTANCE",
  *         groupId: check.name,
  *     },

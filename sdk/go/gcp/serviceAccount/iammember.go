@@ -36,10 +36,10 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		admin, err := organizations.LookupIAMPolicy(ctx, &organizations.LookupIAMPolicyArgs{
-// 			Binding: []map[string]interface{}{
-// 				map[string]interface{}{
-// 					"role": "roles/iam.serviceAccountUser",
-// 					"members": []string{
+// 			Bindings: []organizations.GetIAMPolicyBinding{
+// 				organizations.GetIAMPolicyBinding{
+// 					Role: "roles/iam.serviceAccountUser",
+// 					Members: []string{
 // 						"user:jane@example.com",
 // 					},
 // 				},
@@ -55,7 +55,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = serviceAccount.NewIAMPolicy(ctx, "admin-account-iam", &serviceAccount.IAMPolicyArgs{
+// 		_, err = serviceAccount.NewIAMPolicy(ctx, "admin_account_iam", &serviceAccount.IAMPolicyArgs{
 // 			ServiceAccountId: sa.Name,
 // 			PolicyData:       pulumi.String(admin.PolicyData),
 // 		})
@@ -86,7 +86,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = serviceAccount.NewIAMBinding(ctx, "admin-account-iam", &serviceAccount.IAMBindingArgs{
+// 		_, err = serviceAccount.NewIAMBinding(ctx, "admin_account_iam", &serviceAccount.IAMBindingArgs{
 // 			ServiceAccountId: sa.Name,
 // 			Role:             pulumi.String("roles/iam.serviceAccountUser"),
 // 			Members: pulumi.StringArray{
@@ -120,7 +120,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = serviceAccount.NewIAMBinding(ctx, "admin-account-iam", &serviceAccount.IAMBindingArgs{
+// 		_, err = serviceAccount.NewIAMBinding(ctx, "admin_account_iam", &serviceAccount.IAMBindingArgs{
 // 			Condition: &serviceAccount.IAMBindingConditionArgs{
 // 				Description: pulumi.String("Expiring at midnight of 2019-12-31"),
 // 				Expression:  pulumi.String("request.time < timestamp(\"2020-01-01T00:00:00Z\")"),
@@ -142,6 +142,53 @@ import (
 //
 // ## google\_service\_account\_iam\_member
 //
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/serviceAccount"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_default, err := compute.GetDefaultServiceAccount(ctx, nil, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		sa, err := serviceAccount.NewAccount(ctx, "sa", &serviceAccount.AccountArgs{
+// 			AccountId:   pulumi.String("my-service-account"),
+// 			DisplayName: pulumi.String("A service account that Jane can use"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = serviceAccount.NewIAMMember(ctx, "admin_account_iam", &serviceAccount.IAMMemberArgs{
+// 			ServiceAccountId: sa.Name,
+// 			Role:             pulumi.String("roles/iam.serviceAccountUser"),
+// 			Member:           pulumi.String("user:jane@example.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = serviceAccount.NewIAMMember(ctx, "gce_default_account_iam", &serviceAccount.IAMMemberArgs{
+// 			ServiceAccountId: pulumi.String(_default.Name),
+// 			Role:             pulumi.String("roles/iam.serviceAccountUser"),
+// 			Member: sa.Email.ApplyT(func(email string) (string, error) {
+// 				return fmt.Sprintf("%v%v", "serviceAccount:", email), nil
+// 			}).(pulumi.StringOutput),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
 // With IAM Conditions:
 //
 // ```go
@@ -161,7 +208,7 @@ import (
 // 		if err != nil {
 // 			return err
 // 		}
-// 		_, err = serviceAccount.NewIAMMember(ctx, "admin-account-iam", &serviceAccount.IAMMemberArgs{
+// 		_, err = serviceAccount.NewIAMMember(ctx, "admin_account_iam", &serviceAccount.IAMMemberArgs{
 // 			Condition: &serviceAccount.IAMMemberConditionArgs{
 // 				Description: pulumi.String("Expiring at midnight of 2019-12-31"),
 // 				Expression:  pulumi.String("request.time < timestamp(\"2020-01-01T00:00:00Z\")"),

@@ -35,6 +35,9 @@ namespace Pulumi.Gcp.ServiceUsage
     ///         {
     ///             ProjectId = "quota",
     ///             OrgId = "123456789",
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
     ///         });
     ///         var @override = new Gcp.ServiceUsage.ConsumerQuotaOverride("override", new Gcp.ServiceUsage.ConsumerQuotaOverrideArgs
     ///         {
@@ -44,6 +47,9 @@ namespace Pulumi.Gcp.ServiceUsage
     ///             Limit = "%2Fmin%2Fproject",
     ///             OverrideValue = "95",
     ///             Force = true,
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
     ///         });
     ///     }
     /// 

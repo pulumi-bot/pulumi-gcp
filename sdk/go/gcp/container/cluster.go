@@ -18,6 +18,56 @@ import (
 // plaintext. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 //
 // ## Example Usage
+// ### With A Separately Managed Node Pool (Recommended)
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/container"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		primary, err := container.NewCluster(ctx, "primary", &container.ClusterArgs{
+// 			Location:              pulumi.String("us-central1"),
+// 			RemoveDefaultNodePool: pulumi.Bool(true),
+// 			InitialNodeCount:      pulumi.Int(1),
+// 			MasterAuth: &container.ClusterMasterAuthArgs{
+// 				Username: pulumi.String(""),
+// 				Password: pulumi.String(""),
+// 				ClientCertificateConfig: &container.ClusterMasterAuthClientCertificateConfigArgs{
+// 					IssueClientCertificate: pulumi.Bool(false),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = container.NewNodePool(ctx, "primaryPreemptibleNodes", &container.NodePoolArgs{
+// 			Location:  pulumi.String("us-central1"),
+// 			Cluster:   primary.Name,
+// 			NodeCount: pulumi.Int(1),
+// 			NodeConfig: &container.NodePoolNodeConfigArgs{
+// 				Preemptible: pulumi.Bool(true),
+// 				MachineType: pulumi.String("n1-standard-1"),
+// 				Metadata: pulumi.StringMap{
+// 					"disable-legacy-endpoints": pulumi.String("true"),
+// 				},
+// 				OauthScopes: pulumi.StringArray{
+// 					pulumi.String("https://www.googleapis.com/auth/logging.write"),
+// 					pulumi.String("https://www.googleapis.com/auth/monitoring"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 // ### With The Default Node Pool
 //
 // ```go
@@ -30,7 +80,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = container.NewCluster(ctx, "primary", &container.ClusterArgs{
+// 		_, err := container.NewCluster(ctx, "primary", &container.ClusterArgs{
 // 			InitialNodeCount: pulumi.Int(3),
 // 			Location:         pulumi.String("us-central1-a"),
 // 			MasterAuth: &container.ClusterMasterAuthArgs{
@@ -41,10 +91,10 @@ import (
 // 				Username: pulumi.String(""),
 // 			},
 // 			NodeConfig: &container.ClusterNodeConfigArgs{
-// 				Labels: pulumi.Map{
+// 				Labels: pulumi.StringMap{
 // 					"foo": pulumi.String("bar"),
 // 				},
-// 				Metadata: pulumi.Map{
+// 				Metadata: pulumi.StringMap{
 // 					"disable-legacy-endpoints": pulumi.String("true"),
 // 				},
 // 				OauthScopes: pulumi.StringArray{

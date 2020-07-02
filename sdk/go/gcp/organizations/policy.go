@@ -29,7 +29,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = organizations.NewPolicy(ctx, "serialPortPolicy", &organizations.PolicyArgs{
+// 		_, err := organizations.NewPolicy(ctx, "serialPortPolicy", &organizations.PolicyArgs{
 // 			BooleanPolicy: &organizations.PolicyBooleanPolicyArgs{
 // 				Enforced: pulumi.Bool(true),
 // 			},
@@ -56,7 +56,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = organizations.NewPolicy(ctx, "servicesPolicy", &organizations.PolicyArgs{
+// 		_, err := organizations.NewPolicy(ctx, "servicesPolicy", &organizations.PolicyArgs{
 // 			Constraint: pulumi.String("serviceuser.services"),
 // 			ListPolicy: &organizations.PolicyListPolicyArgs{
 // 				Allow: &organizations.PolicyListPolicyAllowArgs{
@@ -85,7 +85,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = organizations.NewPolicy(ctx, "servicesPolicy", &organizations.PolicyArgs{
+// 		_, err := organizations.NewPolicy(ctx, "servicesPolicy", &organizations.PolicyArgs{
 // 			Constraint: pulumi.String("serviceuser.services"),
 // 			ListPolicy: &organizations.PolicyListPolicyArgs{
 // 				Deny: &organizations.PolicyListPolicyDenyArgs{
@@ -117,7 +117,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = organizations.NewPolicy(ctx, "servicesPolicy", &organizations.PolicyArgs{
+// 		_, err := organizations.NewPolicy(ctx, "servicesPolicy", &organizations.PolicyArgs{
 // 			Constraint: pulumi.String("serviceuser.services"),
 // 			OrgId:      pulumi.String("123456789"),
 // 			RestorePolicy: &organizations.PolicyRestorePolicyArgs{

@@ -37,16 +37,16 @@ import * as utilities from "../utilities";
  *         "foo",
  *         "bar",
  *     ],
- *     disk: [{
+ *     disks: [{
  *         sourceImage: debian9.then(debian9 => debian9.selfLink),
  *     }],
- *     network_interface: [{
+ *     networkInterfaces: [{
  *         network: "default",
  *     }],
  *     metadata: {
  *         foo: "bar",
  *     },
- *     service_account: {
+ *     serviceAccount: {
  *         scopes: [
  *             "userinfo-email",
  *             "compute-ro",
@@ -57,7 +57,7 @@ import * as utilities from "../utilities";
  * const foobarTargetPool = new gcp.compute.TargetPool("foobarTargetPool", {});
  * const foobarRegionInstanceGroupManager = new gcp.compute.RegionInstanceGroupManager("foobarRegionInstanceGroupManager", {
  *     region: "us-central1",
- *     version: [{
+ *     versions: [{
  *         instanceTemplate: foobarInstanceTemplate.id,
  *         name: "primary",
  *     }],
@@ -67,11 +67,11 @@ import * as utilities from "../utilities";
  * const foobarRegionAutoscaler = new gcp.compute.RegionAutoscaler("foobarRegionAutoscaler", {
  *     region: "us-central1",
  *     target: foobarRegionInstanceGroupManager.id,
- *     autoscaling_policy: {
+ *     autoscalingPolicy: {
  *         maxReplicas: 5,
  *         minReplicas: 1,
  *         cooldownPeriod: 60,
- *         cpu_utilization: {
+ *         cpuUtilization: {
  *             target: 0.5,
  *         },
  *     },

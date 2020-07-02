@@ -35,47 +35,51 @@ import * as utilities from "../utilities";
  *     bucket: s3_backup_bucketBucket.name,
  *     role: "roles/storage.admin",
  *     member: _default.then(_default => `serviceAccount:${_default.email}`),
+ * }, {
+ *     dependsOn: [s3_backup_bucketBucket],
  * });
  * const s3_bucket_nightly_backup = new gcp.storage.TransferJob("s3-bucket-nightly-backup", {
  *     description: "Nightly backup of S3 bucket",
  *     project: _var.project,
- *     transfer_spec: {
- *         object_conditions: {
+ *     transferSpec: {
+ *         objectConditions: {
  *             maxTimeElapsedSinceLastModification: "600s",
  *             excludePrefixes: ["requests.gz"],
  *         },
- *         transfer_options: {
+ *         transferOptions: {
  *             deleteObjectsUniqueInSink: false,
  *         },
- *         aws_s3_data_source: {
+ *         awsS3DataSource: {
  *             bucketName: _var.aws_s3_bucket,
- *             aws_access_key: {
+ *             awsAccessKey: {
  *                 accessKeyId: _var.aws_access_key,
  *                 secretAccessKey: _var.aws_secret_key,
  *             },
  *         },
- *         gcs_data_sink: {
+ *         gcsDataSink: {
  *             bucketName: s3_backup_bucketBucket.name,
  *         },
  *     },
  *     schedule: {
- *         schedule_start_date: {
+ *         scheduleStartDate: {
  *             year: 2018,
  *             month: 10,
  *             day: 1,
  *         },
- *         schedule_end_date: {
+ *         scheduleEndDate: {
  *             year: 2019,
  *             month: 1,
  *             day: 15,
  *         },
- *         start_time_of_day: {
+ *         startTimeOfDay: {
  *             hours: 23,
  *             minutes: 30,
  *             seconds: 0,
  *             nanos: 0,
  *         },
  *     },
+ * }, {
+ *     dependsOn: [s3_backup_bucketBucketIAMMember],
  * });
  * ```
  */

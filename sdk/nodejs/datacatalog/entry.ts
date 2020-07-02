@@ -46,7 +46,7 @@ import * as utilities from "../utilities";
  *     entryGroup: entryGroup.id,
  *     entryId: "my_entry",
  *     type: "FILESET",
- *     gcs_fileset_spec: {
+ *     gcsFilesetSpec: {
  *         filePatterns: ["gs://fake_bucket/dir/*"],
  *     },
  * });

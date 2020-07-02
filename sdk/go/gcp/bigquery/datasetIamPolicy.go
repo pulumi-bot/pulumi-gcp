@@ -42,10 +42,10 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		owner, err := organizations.LookupIAMPolicy(ctx, &organizations.LookupIAMPolicyArgs{
-// 			Binding: []map[string]interface{}{
-// 				map[string]interface{}{
-// 					"role": "roles/dataOwner",
-// 					"members": []string{
+// 			Bindings: []organizations.GetIAMPolicyBinding{
+// 				organizations.GetIAMPolicyBinding{
+// 					Role: "roles/dataOwner",
+// 					Members: []string{
 // 						"user:jane@example.com",
 // 					},
 // 				},
@@ -78,7 +78,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = bigquery.NewDatasetIamBinding(ctx, "reader", &bigquery.DatasetIamBindingArgs{
+// 		_, err := bigquery.NewDatasetIamBinding(ctx, "reader", &bigquery.DatasetIamBindingArgs{
 // 			DatasetId: pulumi.String("your-dataset-id"),
 // 			Members: pulumi.StringArray{
 // 				pulumi.String("user:jane@example.com"),
@@ -105,7 +105,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = bigquery.NewDatasetIamMember(ctx, "editor", &bigquery.DatasetIamMemberArgs{
+// 		_, err := bigquery.NewDatasetIamMember(ctx, "editor", &bigquery.DatasetIamMemberArgs{
 // 			DatasetId: pulumi.String("your-dataset-id"),
 // 			Member:    pulumi.String("user:jane@example.com"),
 // 			Role:      pulumi.String("roles/bigquery.dataEditor"),

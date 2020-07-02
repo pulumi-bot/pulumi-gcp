@@ -119,12 +119,14 @@ import * as utilities from "../utilities";
  * const http_region_health_check = new gcp.compute.RegionHealthCheck("http-region-health-check", {
  *     timeoutSec: 1,
  *     checkIntervalSec: 1,
- *     http_health_check: {
+ *     httpHealthCheck: {
  *         port: "80",
  *     },
- *     log_config: {
+ *     logConfig: {
  *         enable: true,
  *     },
+ * }, {
+ *     provider: google_beta,
  * });
  * ```
  * ### Region Health Check Http Full

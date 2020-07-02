@@ -34,7 +34,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = monitoring.NewGroup(ctx, "basic", &monitoring.GroupArgs{
+// 		_, err := monitoring.NewGroup(ctx, "basic", &monitoring.GroupArgs{
 // 			DisplayName: pulumi.String("tf-test MonitoringGroup"),
 // 			Filter:      pulumi.String("resource.metadata.region=\"europe-west2\""),
 // 		})

@@ -40,7 +40,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewHealthCheck(ctx, "tcp-health-check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "tcp_health_check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			TcpHealthCheck: &compute.HealthCheckTcpHealthCheckArgs{
 // 				Port: pulumi.Int(80),
@@ -66,7 +66,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewHealthCheck(ctx, "tcp-health-check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "tcp_health_check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			Description:      pulumi.String("Health check via tcp"),
 // 			HealthyThreshold: pulumi.Int(4),
@@ -99,7 +99,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewHealthCheck(ctx, "ssl-health-check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "ssl_health_check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			SslHealthCheck: &compute.HealthCheckSslHealthCheckArgs{
 // 				Port: pulumi.Int(443),
@@ -125,7 +125,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewHealthCheck(ctx, "ssl-health-check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "ssl_health_check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			Description:      pulumi.String("Health check via ssl"),
 // 			HealthyThreshold: pulumi.Int(4),
@@ -158,7 +158,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewHealthCheck(ctx, "http-health-check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "http_health_check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			HttpHealthCheck: &compute.HealthCheckHttpHealthCheckArgs{
 // 				Port: pulumi.Int(80),
@@ -184,7 +184,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewHealthCheck(ctx, "http-health-check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "http_health_check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			Description:      pulumi.String("Health check via http"),
 // 			HealthyThreshold: pulumi.Int(4),
@@ -218,7 +218,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewHealthCheck(ctx, "https-health-check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "https_health_check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			HttpsHealthCheck: &compute.HealthCheckHttpsHealthCheckArgs{
 // 				Port: pulumi.Int(443),
@@ -244,7 +244,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewHealthCheck(ctx, "https-health-check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "https_health_check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			Description:      pulumi.String("Health check via https"),
 // 			HealthyThreshold: pulumi.Int(4),
@@ -278,7 +278,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewHealthCheck(ctx, "http2-health-check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "http2_health_check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			Http2HealthCheck: &compute.HealthCheckHttp2HealthCheckArgs{
 // 				Port: pulumi.Int(443),
@@ -304,7 +304,7 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = compute.NewHealthCheck(ctx, "http2-health-check", &compute.HealthCheckArgs{
+// 		_, err := compute.NewHealthCheck(ctx, "http2_health_check", &compute.HealthCheckArgs{
 // 			CheckIntervalSec: pulumi.Int(1),
 // 			Description:      pulumi.String("Health check via http2"),
 // 			HealthyThreshold: pulumi.Int(4),
@@ -319,6 +319,35 @@ import (
 // 			TimeoutSec:         pulumi.Int(1),
 // 			UnhealthyThreshold: pulumi.Int(5),
 // 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Health Check With Logging
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := compute.NewHealthCheck(ctx, "health_check_with_logging", &compute.HealthCheckArgs{
+// 			TimeoutSec:       pulumi.Int(1),
+// 			CheckIntervalSec: pulumi.Int(1),
+// 			TcpHealthCheck: &compute.HealthCheckTcpHealthCheckArgs{
+// 				Port: pulumi.Int(22),
+// 			},
+// 			LogConfig: &compute.HealthCheckLogConfigArgs{
+// 				Enable: pulumi.Bool(true),
+// 			},
+// 		}, pulumi.Provider(google_beta))
 // 		if err != nil {
 // 			return err
 // 		}

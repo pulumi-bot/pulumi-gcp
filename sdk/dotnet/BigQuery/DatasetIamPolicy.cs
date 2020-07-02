@@ -40,15 +40,15 @@ namespace Pulumi.Gcp.BigQuery
     ///     {
     ///         var owner = Output.Create(Gcp.Organizations.GetIAMPolicy.InvokeAsync(new Gcp.Organizations.GetIAMPolicyArgs
     ///         {
-    ///             Binding = 
+    ///             Bindings = 
     ///             {
-    ///                 
+    ///                 new Gcp.Organizations.Inputs.GetIAMPolicyBindingArgs
     ///                 {
-    ///                     { "role", "roles/dataOwner" },
-    ///                     { "members", 
+    ///                     Role = "roles/dataOwner",
+    ///                     Members = 
     ///                     {
     ///                         "user:jane@example.com",
-    ///                     } },
+    ///                     },
     ///                 },
     ///             },
     ///         }));
