@@ -128,6 +128,62 @@ class InstanceGroupManager(pulumi.CustomResource):
         > **Note:** Use [compute.RegionInstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_region_instance_group_manager.html) to create a regional (multi-zone) instance group manager.
 
         ## Example Usage
+        ### With Top Level Instance Template (`Google` Provider)
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        autohealing = gcp.compute.HealthCheck("autohealing",
+            check_interval_sec=5,
+            timeout_sec=5,
+            healthy_threshold=2,
+            unhealthy_threshold=10,
+            http_health_check={
+                "request_path": "/healthz",
+                "port": "8080",
+            })
+        appserver = gcp.compute.InstanceGroupManager("appserver",
+            base_instance_name="app",
+            zone="us-central1-a",
+            versions=[{
+                "instanceTemplate": google_compute_instance_template["appserver"]["id"],
+            }],
+            target_pools=[google_compute_target_pool["appserver"]["id"]],
+            target_size=2,
+            named_ports=[{
+                "name": "customHTTP",
+                "port": 8888,
+            }],
+            auto_healing_policies={
+                "healthCheck": autohealing.id,
+                "initialDelaySec": 300,
+            })
+        ```
+        ### With Multiple Versions (`Google-Beta` Provider)
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        appserver = gcp.compute.InstanceGroupManager("appserver",
+            base_instance_name="app",
+            zone="us-central1-a",
+            target_size=5,
+            versions=[
+                {
+                    "name": "appserver",
+                    "instanceTemplate": google_compute_instance_template["appserver"]["id"],
+                },
+                {
+                    "name": "appserver-canary",
+                    "instanceTemplate": google_compute_instance_template["appserver-canary"]["id"],
+                    "target_size": {
+                        "fixed": 1,
+                    },
+                },
+            ],
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

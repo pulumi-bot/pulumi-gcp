@@ -65,6 +65,69 @@ class Policy(pulumi.CustomResource):
         documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
         [API](https://cloud.google.com/resource-manager/reference/rest/v1/organizations/setOrgPolicy).
 
+        ## Example Usage
+
+        To set policy with a [boolean constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-boolean-constraints):
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        serial_port_policy = gcp.organizations.Policy("serialPortPolicy",
+            boolean_policy={
+                "enforced": True,
+            },
+            constraint="compute.disableSerialPortAccess",
+            org_id="123456789")
+        ```
+
+        To set a policy with a [list constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-list-constraints):
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        services_policy = gcp.organizations.Policy("servicesPolicy",
+            constraint="serviceuser.services",
+            list_policy={
+                "allow": {
+                    "all": True,
+                },
+            },
+            org_id="123456789")
+        ```
+
+        Or to deny some services, use the following instead:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        services_policy = gcp.organizations.Policy("servicesPolicy",
+            constraint="serviceuser.services",
+            list_policy={
+                "deny": {
+                    "values": ["cloudresourcemanager.googleapis.com"],
+                },
+                "suggestedValue": "compute.googleapis.com",
+            },
+            org_id="123456789")
+        ```
+
+        To restore the default organization policy, use the following instead:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        services_policy = gcp.organizations.Policy("servicesPolicy",
+            constraint="serviceuser.services",
+            org_id="123456789",
+            restore_policy={
+                "default": True,
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] boolean_policy: A boolean policy is a constraint that is either enforced or not. Structure is documented below.

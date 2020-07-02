@@ -53,6 +53,37 @@ class Instance(pulumi.CustomResource):
         [API](https://cloud.google.com/bigtable/docs/go/reference).
 
         ## Example Usage
+        ### Production Instance
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        production_instance = gcp.bigtable.Instance("production-instance",
+            clusters=[{
+                "cluster_id": "tf-instance-cluster",
+                "num_nodes": 1,
+                "storageType": "HDD",
+                "zone": "us-central1-b",
+            }],
+            lifecycle={
+                "preventDestroy": True,
+            })
+        ```
+        ### Development Instance
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        development_instance = gcp.bigtable.Instance("development-instance",
+            clusters=[{
+                "cluster_id": "tf-instance-cluster",
+                "storageType": "HDD",
+                "zone": "us-central1-b",
+            }],
+            instance_type="DEVELOPMENT")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
