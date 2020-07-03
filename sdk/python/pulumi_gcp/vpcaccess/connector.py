@@ -58,6 +58,17 @@ class Connector(pulumi.CustomResource):
             * [Configuring Serverless VPC Access](https://cloud.google.com/vpc/docs/configure-serverless-vpc-access)
 
         ## Example Usage
+        ### VPC Access Connector
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        connector = gcp.vpcaccess.Connector("connector",
+            ip_cidr_range="10.8.0.0/28",
+            network="default",
+            region="us-central1")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
