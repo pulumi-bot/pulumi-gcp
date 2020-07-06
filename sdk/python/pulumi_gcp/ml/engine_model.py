@@ -55,6 +55,31 @@ class EngineModel(pulumi.CustomResource):
         ready to receive prediction requests. The model itself is just a container.
 
         ## Example Usage
+        ### Ml Model Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.ml.EngineModel("default",
+            description="My model",
+            regions="us-central1")
+        ```
+        ### Ml Model Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.ml.EngineModel("default",
+            description="My model",
+            labels={
+                "my_model": "foo",
+            },
+            online_prediction_console_logging=True,
+            online_prediction_logging=True,
+            regions="us-central1")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

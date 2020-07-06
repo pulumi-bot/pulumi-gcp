@@ -220,6 +220,36 @@ class InstanceFromTemplate(pulumi.CustomResource):
         `source_instance_template`. To create an instance without a template, use the
         `compute.Instance` resource.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        tpl_instance_template = gcp.compute.InstanceTemplate("tplInstanceTemplate",
+            machine_type="n1-standard-1",
+            disks=[{
+                "sourceImage": "debian-cloud/debian-9",
+                "autoDelete": True,
+                "disk_size_gb": 100,
+                "boot": True,
+            }],
+            network_interfaces=[{
+                "network": "default",
+            }],
+            metadata={
+                "foo": "bar",
+            },
+            can_ip_forward=True)
+        tpl_instance_from_template = gcp.compute.InstanceFromTemplate("tplInstanceFromTemplate",
+            zone="us-central1-a",
+            source_instance_template=tpl_instance_template.id,
+            can_ip_forward=False,
+            labels={
+                "my_key": "my_value",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_stopping_for_update: If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires
