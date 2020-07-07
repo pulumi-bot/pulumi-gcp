@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetAccountKeyResult:
     """
     A collection of values returned by getAccountKey.
@@ -37,6 +38,8 @@ class GetAccountKeyResult:
         if public_key_type and not isinstance(public_key_type, str):
             raise TypeError("Expected argument 'public_key_type' to be a str")
         __self__.public_key_type = public_key_type
+
+
 class AwaitableGetAccountKeyResult(GetAccountKeyResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -50,9 +53,22 @@ class AwaitableGetAccountKeyResult(GetAccountKeyResult):
             public_key=self.public_key,
             public_key_type=self.public_key_type)
 
-def get_account_key(name=None,project=None,public_key_type=None,opts=None):
+
+def get_account_key(name=None, project=None, public_key_type=None, opts=None):
     """
     Get service account public key. For more information, see [the official documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) and [API](https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts.keys/get).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    myaccount = gcp.service_account.Account("myaccount", account_id="dev-foo-account")
+    mykey_key = gcp.service_account.Key("mykeyKey", service_account_id=myaccount.name)
+    mykey_account_key = mykey_key.name.apply(lambda name: gcp.serviceAccount.get_account_key(name=name,
+        public_key_type="TYPE_X509_PEM_FILE"))
+    ```
 
 
     :param str name: The name of the service account key. This must have format
@@ -63,8 +79,6 @@ def get_account_key(name=None,project=None,public_key_type=None,opts=None):
     :param str public_key_type: The output format of the public key requested. X509_PEM is the default output format.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['publicKeyType'] = public_key_type

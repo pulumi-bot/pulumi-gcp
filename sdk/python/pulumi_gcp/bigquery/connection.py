@@ -69,6 +69,82 @@ class Connection(pulumi.CustomResource):
         state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
 
         ## Example Usage
+        ### Bigquery Connection Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_random as random
+
+        instance = gcp.sql.DatabaseInstance("instance",
+            database_version="POSTGRES_11",
+            region="us-central1",
+            settings={
+                "tier": "db-f1-micro",
+            },
+            opts=ResourceOptions(provider=google_beta))
+        db = gcp.sql.Database("db", instance=instance.name,
+        opts=ResourceOptions(provider=google_beta))
+        pwd = random.RandomPassword("pwd",
+            length=16,
+            special=False)
+        user = gcp.sql.User("user",
+            instance=instance.name,
+            password=pwd.result,
+            opts=ResourceOptions(provider=google_beta))
+        connection = gcp.bigquery.Connection("connection",
+            friendly_name="👋",
+            description="a riveting description",
+            cloud_sql={
+                "instance_id": instance.connection_name,
+                "database": db.name,
+                "type": "POSTGRES",
+                "credential": {
+                    "username": user.name,
+                    "password": user.password,
+                },
+            },
+            opts=ResourceOptions(provider=google_beta))
+        ```
+        ### Bigquery Connection Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_random as random
+
+        instance = gcp.sql.DatabaseInstance("instance",
+            database_version="POSTGRES_11",
+            region="us-central1",
+            settings={
+                "tier": "db-f1-micro",
+            },
+            opts=ResourceOptions(provider=google_beta))
+        db = gcp.sql.Database("db", instance=instance.name,
+        opts=ResourceOptions(provider=google_beta))
+        pwd = random.RandomPassword("pwd",
+            length=16,
+            special=False)
+        user = gcp.sql.User("user",
+            instance=instance.name,
+            password=pwd.result,
+            opts=ResourceOptions(provider=google_beta))
+        connection = gcp.bigquery.Connection("connection",
+            connection_id="my-connection",
+            location="US",
+            friendly_name="👋",
+            description="a riveting description",
+            cloud_sql={
+                "instance_id": instance.connection_name,
+                "database": db.name,
+                "type": "POSTGRES",
+                "credential": {
+                    "username": user.name,
+                    "password": user.password,
+                },
+            },
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

@@ -56,6 +56,19 @@ class RouterInterface(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/routers).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        foobar = gcp.compute.RouterInterface("foobar",
+            ip_range="169.254.1.1/30",
+            region="us-central1",
+            router="router-1",
+            vpn_tunnel="tunnel-1")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] interconnect_attachment: The name or resource link to the

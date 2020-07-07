@@ -45,6 +45,51 @@ class RepositoryIamPolicy(pulumi.CustomResource):
 
         > **Note:** `artifactregistry.RepositoryIamBinding` resources **can be** used in conjunction with `artifactregistry.RepositoryIamMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_artifact\_registry\_repository\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/viewer",
+            "members": ["user:jane@example.com"],
+        }])
+        policy = gcp.artifactregistry.RepositoryIamPolicy("policy",
+            project=google_artifact_registry_repository["my-repo"]["project"],
+            location=google_artifact_registry_repository["my-repo"]["location"],
+            repository=google_artifact_registry_repository["my-repo"]["name"],
+            policy_data=admin.policy_data)
+        ```
+
+        ## google\_artifact\_registry\_repository\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        binding = gcp.artifactregistry.RepositoryIamBinding("binding",
+            project=google_artifact_registry_repository["my-repo"]["project"],
+            location=google_artifact_registry_repository["my-repo"]["location"],
+            repository=google_artifact_registry_repository["my-repo"]["name"],
+            role="roles/viewer",
+            members=["user:jane@example.com"])
+        ```
+
+        ## google\_artifact\_registry\_repository\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        member = gcp.artifactregistry.RepositoryIamMember("member",
+            project=google_artifact_registry_repository["my-repo"]["project"],
+            location=google_artifact_registry_repository["my-repo"]["location"],
+            repository=google_artifact_registry_repository["my-repo"]["name"],
+            role="roles/viewer",
+            member="user:jane@example.com")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] location: The name of the location this repository is located in.

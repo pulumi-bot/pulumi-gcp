@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetAccountAccessTokenResult:
     """
     A collection of values returned by getAccountAccessToken.
@@ -37,6 +38,8 @@ class GetAccountAccessTokenResult:
         if target_service_account and not isinstance(target_service_account, str):
             raise TypeError("Expected argument 'target_service_account' to be a str")
         __self__.target_service_account = target_service_account
+
+
 class AwaitableGetAccountAccessTokenResult(GetAccountAccessTokenResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -50,7 +53,8 @@ class AwaitableGetAccountAccessTokenResult(GetAccountAccessTokenResult):
             scopes=self.scopes,
             target_service_account=self.target_service_account)
 
-def get_account_access_token(delegates=None,lifetime=None,scopes=None,target_service_account=None,opts=None):
+
+def get_account_access_token(delegates=None, lifetime=None, scopes=None, target_service_account=None, opts=None):
     """
     This data source provides a google `oauth2` `access_token` for a different service account than the one initially running the script.
 
@@ -64,8 +68,6 @@ def get_account_access_token(delegates=None,lifetime=None,scopes=None,target_ser
     :param str target_service_account: The service account _to_ impersonate (e.g. `service_B@your-project-id.iam.gserviceaccount.com`)
     """
     __args__ = dict()
-
-
     __args__['delegates'] = delegates
     __args__['lifetime'] = lifetime
     __args__['scopes'] = scopes
