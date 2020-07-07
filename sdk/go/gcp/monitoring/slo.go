@@ -26,6 +26,43 @@ import (
 //     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 //
 // ## Example Usage
+// ### Monitoring Slo Appengine
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/monitoring"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_default, err := monitoring.GetAppEngineService(ctx, &monitoring.GetAppEngineServiceArgs{
+// 			ModuleId: "default",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = monitoring.NewSlo(ctx, "appengSlo", &monitoring.SloArgs{
+// 			Service:        pulumi.String(_default.ServiceId),
+// 			SloId:          pulumi.String("ae-slo"),
+// 			DisplayName:    pulumi.String("Test SLO for App Engine"),
+// 			Goal:           pulumi.Float64(0.9),
+// 			CalendarPeriod: pulumi.String("DAY"),
+// 			BasicSli: &monitoring.SloBasicSliArgs{
+// 				Latency: &monitoring.SloBasicSliLatencyArgs{
+// 					Threshold: pulumi.String("1s"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Slo struct {
 	pulumi.CustomResourceState
 
