@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetAppEngineServiceResult:
     """
     A collection of values returned by getAppEngineService.
@@ -37,6 +38,8 @@ class GetAppEngineServiceResult:
         if telemetries and not isinstance(telemetries, list):
             raise TypeError("Expected argument 'telemetries' to be a list")
         __self__.telemetries = telemetries
+
+
 class AwaitableGetAppEngineServiceResult(GetAppEngineServiceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -51,7 +54,8 @@ class AwaitableGetAppEngineServiceResult(GetAppEngineServiceResult):
             service_id=self.service_id,
             telemetries=self.telemetries)
 
-def get_app_engine_service(module_id=None,project=None,opts=None):
+
+def get_app_engine_service(module_id=None, project=None, opts=None):
     """
     A Monitoring Service is the root resource under which operational aspects of a
     generic service are accessible. A service is some discrete, autonomous, and
@@ -68,6 +72,34 @@ def get_app_engine_service(module_id=None,project=None,opts=None):
         * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
     ## Example Usage
+    ### Monitoring App Engine Service
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    bucket = gcp.storage.Bucket("bucket")
+    object = gcp.storage.BucketObject("object",
+        bucket=bucket.name,
+        source=pulumi.FileAsset("./test-fixtures/appengine/hello-world.zip"))
+    myapp = gcp.appengine.StandardAppVersion("myapp",
+        version_id="v1",
+        service="myapp",
+        runtime="nodejs10",
+        entrypoint={
+            "shell": "node ./app.js",
+        },
+        deployment={
+            "zip": {
+                "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+            },
+        },
+        env_variables={
+            "port": "8080",
+        },
+        delete_service_on_destroy=False)
+    srv = myapp.service.apply(lambda service: gcp.monitoring.get_app_engine_service(module_id=service))
+    ```
 
 
     :param str module_id: The ID of the App Engine module underlying this
@@ -76,8 +108,6 @@ def get_app_engine_service(module_id=None,project=None,opts=None):
            If it is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['moduleId'] = module_id
     __args__['project'] = project
     if opts is None:

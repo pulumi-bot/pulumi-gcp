@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetTestablePermissionsResult:
     """
     A collection of values returned by getTestablePermissions.
@@ -37,6 +38,8 @@ class GetTestablePermissionsResult:
         if stages and not isinstance(stages, list):
             raise TypeError("Expected argument 'stages' to be a list")
         __self__.stages = stages
+
+
 class AwaitableGetTestablePermissionsResult(GetTestablePermissionsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -49,9 +52,25 @@ class AwaitableGetTestablePermissionsResult(GetTestablePermissionsResult):
             permissions=self.permissions,
             stages=self.stages)
 
-def get_testable_permissions(custom_support_level=None,full_resource_name=None,stages=None,opts=None):
+
+def get_testable_permissions(custom_support_level=None, full_resource_name=None, stages=None, opts=None):
     """
     Retrieve a list of testable permissions for a resource. Testable permissions mean the permissions that user can add or remove in a role at a given resource. The resource can be referenced either via the full resource name or via a URI.
+
+    ## Example Usage
+
+    Retrieve all the supported permissions able to be set on `my-project` that are in either GA or BETA. This is useful for dynamically constructing custom roles.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    perms = gcp.iam.get_testable_permissions(full_resource_name="//cloudresourcemanager.googleapis.com/projects/my-project",
+        stages=[
+            "GA",
+            "BETA",
+        ])
+    ```
 
 
     :param str custom_support_level: The level of support for custom roles. Can be one of `"NOT_SUPPORTED"`, `"SUPPORTED"`, `"TESTING"`. Default is `"SUPPORTED"`
@@ -59,8 +78,6 @@ def get_testable_permissions(custom_support_level=None,full_resource_name=None,s
     :param list stages: The acceptable release stages of the permission in the output. Note that `BETA` does not include permissions in `GA`, but you can specify both with `["GA", "BETA"]` for example. Can be a list of `"ALPHA"`, `"BETA"`, `"GA"`, `"DEPRECATED"`. Default is `["GA"]`.
     """
     __args__ = dict()
-
-
     __args__['customSupportLevel'] = custom_support_level
     __args__['fullResourceName'] = full_resource_name
     __args__['stages'] = stages

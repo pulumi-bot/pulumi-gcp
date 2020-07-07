@@ -9,6 +9,40 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Gcp.Folder
 {
+    /// <summary>
+    /// ## google\_folder\_iam\_audit\_config
+    /// 
+    /// Allows management of audit logging config for a given service for a Google Cloud Platform folder.
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var config = new Gcp.Folder.IamAuditConfig("config", new Gcp.Folder.IamAuditConfigArgs
+    ///         {
+    ///             AuditLogConfigs = 
+    ///             {
+    ///                 new Gcp.Folder.Inputs.IamAuditConfigAuditLogConfigArgs
+    ///                 {
+    ///                     ExemptedMembers = 
+    ///                     {
+    ///                         "user:joebloggs@hashicorp.com",
+    ///                     },
+    ///                     LogType = "DATA_READ",
+    ///                 },
+    ///             },
+    ///             Folder = "folders/{folder_id}",
+    ///             Service = "allServices",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// </summary>
     public partial class IamAuditConfig : Pulumi.CustomResource
     {
         /// <summary>

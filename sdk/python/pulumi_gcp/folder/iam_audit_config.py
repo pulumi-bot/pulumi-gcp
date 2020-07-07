@@ -36,7 +36,23 @@ class IamAuditConfig(pulumi.CustomResource):
     """
     def __init__(__self__, resource_name, opts=None, audit_log_configs=None, folder=None, service=None, __props__=None, __name__=None, __opts__=None):
         """
-        Create a IamAuditConfig resource with the given unique name, props, and options.
+        ## google\_folder\_iam\_audit\_config
+
+        Allows management of audit logging config for a given service for a Google Cloud Platform folder.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        config = gcp.folder.IamAuditConfig("config",
+            audit_log_configs=[{
+                "exemptedMembers": ["user:joebloggs@hashicorp.com"],
+                "logType": "DATA_READ",
+            }],
+            folder="folders/{folder_id}",
+            service="allServices")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] audit_log_configs: The configuration for logging of each type of permission.  This can be specified multiple times.  Structure is documented below.
