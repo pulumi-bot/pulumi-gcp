@@ -102,6 +102,66 @@ class TransferJob(pulumi.CustomResource):
         * How-to Guides
             * [Configuring Access to Data Sources and Sinks](https://cloud.google.com/storage-transfer/docs/configure-access)
 
+        ## Example Usage
+
+        Example creating a nightly Transfer Job from an AWS S3 Bucket to a GCS bucket.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.storage.get_transfer_project_servie_account(project=var["project"])
+        s3_backup_bucket_bucket = gcp.storage.Bucket("s3-backup-bucketBucket",
+            storage_class="NEARLINE",
+            project=var["project"])
+        s3_backup_bucket_bucket_iam_member = gcp.storage.BucketIAMMember("s3-backup-bucketBucketIAMMember",
+            bucket=s3_backup_bucket_bucket.name,
+            role="roles/storage.admin",
+            member=f"serviceAccount:{default.email}",
+            opts=ResourceOptions(depends_on=[s3_backup_bucket_bucket]))
+        s3_bucket_nightly_backup = gcp.storage.TransferJob("s3-bucket-nightly-backup",
+            description="Nightly backup of S3 bucket",
+            project=var["project"],
+            transfer_spec={
+                "objectConditions": {
+                    "maxTimeElapsedSinceLastModification": "600s",
+                    "excludePrefixes": ["requests.gz"],
+                },
+                "transferOptions": {
+                    "deleteObjectsUniqueInSink": False,
+                },
+                "awsS3DataSource": {
+                    "bucket_name": var["aws_s3_bucket"],
+                    "awsAccessKey": {
+                        "accessKeyId": var["aws_access_key"],
+                        "secretAccessKey": var["aws_secret_key"],
+                    },
+                },
+                "gcsDataSink": {
+                    "bucket_name": s3_backup_bucket_bucket.name,
+                },
+            },
+            schedule={
+                "scheduleStartDate": {
+                    "year": 2018,
+                    "month": 10,
+                    "day": 1,
+                },
+                "scheduleEndDate": {
+                    "year": 2019,
+                    "month": 1,
+                    "day": 15,
+                },
+                "startTimeOfDay": {
+                    "hours": 23,
+                    "minutes": 30,
+                    "seconds": 0,
+                    "nanos": 0,
+                },
+            },
+            opts=ResourceOptions(depends_on=[s3_backup_bucket_bucket_iam_member]))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Unique description to identify the Transfer Job.

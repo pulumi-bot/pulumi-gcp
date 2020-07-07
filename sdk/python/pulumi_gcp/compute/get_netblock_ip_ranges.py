@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetNetblockIPRangesResult:
     """
     A collection of values returned by getNetblockIPRanges.
@@ -40,6 +41,8 @@ class GetNetblockIPRangesResult:
         if range_type and not isinstance(range_type, str):
             raise TypeError("Expected argument 'range_type' to be a str")
         __self__.range_type = range_type
+
+
 class AwaitableGetNetblockIPRangesResult(GetNetblockIPRangesResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -52,18 +55,44 @@ class AwaitableGetNetblockIPRangesResult(GetNetblockIPRangesResult):
             id=self.id,
             range_type=self.range_type)
 
-def get_netblock_ip_ranges(range_type=None,opts=None):
+
+def get_netblock_ip_ranges(range_type=None, opts=None):
     """
     Use this data source to get the IP addresses from different special IP ranges on Google Cloud Platform.
 
     ## Example Usage
+    ### Cloud Ranges
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    netblock = gcp.compute.get_netblock_ip_ranges()
+    pulumi.export("cidrBlocks", netblock.cidr_blocks)
+    pulumi.export("cidrBlocksIpv4", netblock.cidr_blocks_ipv4s)
+    pulumi.export("cidrBlocksIpv6", netblock.cidr_blocks_ipv6s)
+    ```
+    ### Allow Health Checks
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    legacy_hcs = gcp.compute.get_netblock_ip_ranges(range_type="legacy-health-checkers")
+    default = gcp.compute.Network("default")
+    allow_hcs = gcp.compute.Firewall("allow-hcs",
+        network=default.name,
+        allows=[{
+            "protocol": "tcp",
+            "ports": ["80"],
+        }],
+        source_ranges=legacy_hcs.cidr_blocks_ipv4s)
+    ```
 
 
     :param str range_type: The type of range for which to provide results.
     """
     __args__ = dict()
-
-
     __args__['rangeType'] = range_type
     if opts is None:
         opts = pulumi.InvokeOptions()
