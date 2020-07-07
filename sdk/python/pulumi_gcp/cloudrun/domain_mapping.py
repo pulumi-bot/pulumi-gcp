@@ -93,6 +93,33 @@ class DomainMapping(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/run/docs/mapping-custom-domains)
 
         ## Example Usage
+        ### Cloud Run Domain Mapping Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_service = gcp.cloudrun.Service("defaultService",
+            location="us-central1",
+            metadata={
+                "namespace": "my-project-name",
+            },
+            template={
+                "spec": {
+                    "containers": [{
+                        "image": "gcr.io/cloudrun/hello",
+                    }],
+                },
+            })
+        default_domain_mapping = gcp.cloudrun.DomainMapping("defaultDomainMapping",
+            location="us-central1",
+            metadata={
+                "namespace": "my-project-name",
+            },
+            spec={
+                "routeName": default_service.name,
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

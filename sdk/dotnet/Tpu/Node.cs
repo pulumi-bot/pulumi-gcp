@@ -19,6 +19,60 @@ namespace Pulumi.Gcp.Tpu
     ///     * [Official Documentation](https://cloud.google.com/tpu/docs/)
     /// 
     /// ## Example Usage
+    /// ### TPU Node Basic
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var available = Output.Create(Gcp.Tpu.GetTensorflowVersions.InvokeAsync());
+    ///         var tpu = new Gcp.Tpu.Node("tpu", new Gcp.Tpu.NodeArgs
+    ///         {
+    ///             Zone = "us-central1-b",
+    ///             AcceleratorType = "v3-8",
+    ///             TensorflowVersion = available.Apply(available =&gt; available.Versions[0]),
+    ///             CidrBlock = "10.2.0.0/29",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### TPU Node Full
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var available = Output.Create(Gcp.Tpu.GetTensorflowVersions.InvokeAsync());
+    ///         var tpu = new Gcp.Tpu.Node("tpu", new Gcp.Tpu.NodeArgs
+    ///         {
+    ///             Zone = "us-central1-b",
+    ///             AcceleratorType = "v3-8",
+    ///             CidrBlock = "10.3.0.0/29",
+    ///             TensorflowVersion = available.Apply(available =&gt; available.Versions[0]),
+    ///             Description = "Google Provider test TPU",
+    ///             Network = "default",
+    ///             Labels = 
+    ///             {
+    ///                 { "foo", "bar" },
+    ///             },
+    ///             SchedulingConfig = new Gcp.Tpu.Inputs.NodeSchedulingConfigArgs
+    ///             {
+    ///                 Preemptible = true,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Node : Pulumi.CustomResource
     {
