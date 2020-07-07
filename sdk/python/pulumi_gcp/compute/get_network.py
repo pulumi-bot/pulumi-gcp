@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetNetworkResult:
     """
     A collection of values returned by getNetwork.
@@ -49,6 +50,8 @@ class GetNetworkResult:
         """
         the list of subnetworks which belong to the network
         """
+
+
 class AwaitableGetNetworkResult(GetNetworkResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -63,9 +66,19 @@ class AwaitableGetNetworkResult(GetNetworkResult):
             self_link=self.self_link,
             subnetworks_self_links=self.subnetworks_self_links)
 
-def get_network(name=None,project=None,opts=None):
+
+def get_network(name=None, project=None, opts=None):
     """
     Get a network within GCE from its name.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_network = gcp.compute.get_network(name="default-us-east1")
+    ```
 
 
     :param str name: The name of the network.
@@ -73,8 +86,6 @@ def get_network(name=None,project=None,opts=None):
            is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:

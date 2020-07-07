@@ -41,6 +41,27 @@ class Table(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/bigtable/) and
         [API](https://cloud.google.com/bigtable/docs/go/reference).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.bigtable.Instance("instance", clusters=[{
+            "cluster_id": "tf-instance-cluster",
+            "zone": "us-central1-b",
+            "num_nodes": 3,
+            "storageType": "HDD",
+        }])
+        table = gcp.bigtable.Table("table",
+            instance_name=instance.name,
+            split_keys=[
+                "a",
+                "b",
+                "c",
+            ])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] column_families: A group of columns within a table which share a common configuration. This can be specified multiple times. Structure is documented below.

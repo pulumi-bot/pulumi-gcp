@@ -100,6 +100,22 @@ class Reservation(pulumi.CustomResource):
             * [Reserving zonal resources](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
 
         ## Example Usage
+        ### Reservation Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        gce_reservation = gcp.compute.Reservation("gceReservation",
+            specific_reservation={
+                "count": 1,
+                "instanceProperties": {
+                    "machine_type": "n2-standard-2",
+                    "min_cpu_platform": "Intel Cascade Lake",
+                },
+            },
+            zone="us-central1-a")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
