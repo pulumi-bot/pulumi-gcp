@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetOrganizationResult:
     """
     A collection of values returned by getOrganization.
@@ -55,6 +56,8 @@ class GetOrganizationResult:
         if organization and not isinstance(organization, str):
             raise TypeError("Expected argument 'organization' to be a str")
         __self__.organization = organization
+
+
 class AwaitableGetOrganizationResult(GetOrganizationResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -70,17 +73,26 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
             org_id=self.org_id,
             organization=self.organization)
 
-def get_organization(domain=None,organization=None,opts=None):
+
+def get_organization(domain=None, organization=None, opts=None):
     """
     Use this data source to get information about a Google Cloud Organization.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    org = gcp.organizations.get_organization(domain="example.com")
+    sales = gcp.organizations.Folder("sales",
+        display_name="Sales",
+        parent=org.name)
+    ```
 
 
     :param str domain: The domain name of the Organization.
     :param str organization: The name of the Organization in the form `{organization_id}` or `organizations/{organization_id}`.
     """
     __args__ = dict()
-
-
     __args__['domain'] = domain
     __args__['organization'] = organization
     if opts is None:

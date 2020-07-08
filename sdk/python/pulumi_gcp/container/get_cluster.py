@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetClusterResult:
     """
     A collection of values returned by getCluster.
@@ -172,6 +173,8 @@ class GetClusterResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         __self__.zone = zone
+
+
 class AwaitableGetClusterResult(GetClusterResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -231,9 +234,26 @@ class AwaitableGetClusterResult(GetClusterResult):
             workload_identity_configs=self.workload_identity_configs,
             zone=self.zone)
 
-def get_cluster(location=None,name=None,project=None,region=None,zone=None,opts=None):
+
+def get_cluster(location=None, name=None, project=None, region=None, zone=None, opts=None):
     """
     Get info about a GKE cluster from its name and location.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_cluster = gcp.container.get_cluster(name="my-cluster",
+        location="us-east1-a")
+    pulumi.export("clusterUsername", my_cluster.master_auths[0]["username"])
+    pulumi.export("clusterPassword", my_cluster.master_auths[0]["password"])
+    pulumi.export("endpoint", my_cluster.endpoint)
+    pulumi.export("instanceGroupUrls", my_cluster.instance_group_urls)
+    pulumi.export("nodeConfig", my_cluster.node_configs)
+    pulumi.export("nodePools", my_cluster.node_pools)
+    ```
 
 
     :param str location: The location (zone or region) this cluster has been
@@ -248,8 +268,6 @@ def get_cluster(location=None,name=None,project=None,region=None,zone=None,opts=
            favour of `location`.
     """
     __args__ = dict()
-
-
     __args__['location'] = location
     __args__['name'] = name
     __args__['project'] = project

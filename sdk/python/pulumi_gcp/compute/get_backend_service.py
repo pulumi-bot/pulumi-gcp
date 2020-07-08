@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetBackendServiceResult:
     """
     A collection of values returned by getBackendService.
@@ -127,6 +128,8 @@ class GetBackendServiceResult:
         """
         The number of seconds to wait for a backend to respond to a request before considering the request failed.
         """
+
+
 class AwaitableGetBackendServiceResult(GetBackendServiceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -160,7 +163,8 @@ class AwaitableGetBackendServiceResult(GetBackendServiceResult):
             session_affinity=self.session_affinity,
             timeout_sec=self.timeout_sec)
 
-def get_backend_service(name=None,project=None,opts=None):
+
+def get_backend_service(name=None, project=None, opts=None):
     """
     Provide access to a Backend Service's attribute. For more information
     see [the official documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
@@ -171,8 +175,6 @@ def get_backend_service(name=None,project=None,opts=None):
     :param str project: The project in which the resource belongs. If it is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
