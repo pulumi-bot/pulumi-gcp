@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetBackendBucketResult:
     """
     A collection of values returned by getBackendBucket.
@@ -61,6 +62,8 @@ class GetBackendBucketResult:
         """
         The URI of the created resource.
         """
+
+
 class AwaitableGetBackendBucketResult(GetBackendBucketResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -77,9 +80,19 @@ class AwaitableGetBackendBucketResult(GetBackendBucketResult):
             project=self.project,
             self_link=self.self_link)
 
-def get_backend_bucket(name=None,project=None,opts=None):
+
+def get_backend_bucket(name=None, project=None, opts=None):
     """
     Get information about a BackendBucket.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_backend_bucket = gcp.compute.get_backend_bucket(name="my-backend")
+    ```
 
 
     :param str name: Name of the resource.
@@ -87,8 +100,6 @@ def get_backend_bucket(name=None,project=None,opts=None):
            is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:

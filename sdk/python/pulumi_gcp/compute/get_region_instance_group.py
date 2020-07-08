@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetRegionInstanceGroupResult:
     """
     A collection of values returned by getRegionInstanceGroup.
@@ -46,6 +47,8 @@ class GetRegionInstanceGroupResult:
         """
         The number of instances in the group.
         """
+
+
 class AwaitableGetRegionInstanceGroupResult(GetRegionInstanceGroupResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -60,10 +63,18 @@ class AwaitableGetRegionInstanceGroupResult(GetRegionInstanceGroupResult):
             self_link=self.self_link,
             size=self.size)
 
-def get_region_instance_group(name=None,project=None,region=None,self_link=None,opts=None):
+
+def get_region_instance_group(name=None, project=None, region=None, self_link=None, opts=None):
     """
     Get a Compute Region Instance Group within GCE.
     For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/distributing-instances-with-regional-instance-groups) and [API](https://cloud.google.com/compute/docs/reference/latest/regionInstanceGroups).
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    group = gcp.compute.get_region_instance_group(name="instance-group-name")
+    ```
 
     The most common use of this datasource will be to fetch information about the instances inside regional managed instance groups, for instance:
 
@@ -78,8 +89,6 @@ def get_region_instance_group(name=None,project=None,region=None,self_link=None,
     :param str self_link: The link to the instance group.  One of `name` or `self_link` must be provided.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['region'] = region
