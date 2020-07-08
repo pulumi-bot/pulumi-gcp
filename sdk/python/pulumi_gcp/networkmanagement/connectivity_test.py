@@ -122,6 +122,81 @@ class ConnectivityTest(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/network-intelligence-center/docs)
 
         ## Example Usage
+        ### Network Management Connectivity Test Instances
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        vpc = gcp.compute.Network("vpc")
+        debian9 = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        source = gcp.compute.Instance("source",
+            machine_type="n1-standard-1",
+            boot_disk={
+                "initializeParams": {
+                    "image": debian9.self_link,
+                },
+            },
+            network_interfaces=[{
+                "network": vpc.id,
+                "accessConfigs": [{}],
+            }])
+        destination = gcp.compute.Instance("destination",
+            machine_type="n1-standard-1",
+            boot_disk={
+                "initializeParams": {
+                    "image": debian9.self_link,
+                },
+            },
+            network_interfaces=[{
+                "network": vpc.id,
+                "accessConfigs": [{}],
+            }])
+        instance_test = gcp.networkmanagement.ConnectivityTest("instance-test",
+            source={
+                "instance": source.id,
+            },
+            destination={
+                "instance": destination.id,
+            },
+            protocol="TCP")
+        ```
+        ### Network Management Connectivity Test Addresses
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        vpc = gcp.compute.Network("vpc")
+        subnet = gcp.compute.Subnetwork("subnet",
+            ip_cidr_range="10.0.0.0/16",
+            region="us-central1",
+            network=vpc.id)
+        source_addr = gcp.compute.Address("source-addr",
+            subnetwork=subnet.id,
+            address_type="INTERNAL",
+            address="10.0.42.42",
+            region="us-central1")
+        dest_addr = gcp.compute.Address("dest-addr",
+            subnetwork=subnet.id,
+            address_type="INTERNAL",
+            address="10.0.43.43",
+            region="us-central1")
+        address_test = gcp.networkmanagement.ConnectivityTest("address-test",
+            source={
+                "ip_address": source_addr.address,
+                "project_id": source_addr.project,
+                "network": vpc.id,
+                "networkType": "GCP_NETWORK",
+            },
+            destination={
+                "ip_address": dest_addr.address,
+                "project_id": dest_addr.project,
+                "network": vpc.id,
+            },
+            protocol="UDP")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
