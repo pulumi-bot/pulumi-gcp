@@ -48,6 +48,51 @@ class GCPolicy(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/bigtable/) and
         [API](https://cloud.google.com/bigtable/docs/go/reference).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.bigtable.Instance("instance", clusters=[{
+            "cluster_id": "tf-instance-cluster",
+            "zone": "us-central1-b",
+            "num_nodes": 3,
+            "storageType": "HDD",
+        }])
+        table = gcp.bigtable.Table("table",
+            instance_name=instance.name,
+            column_families=[{
+                "family": "name",
+            }])
+        policy = gcp.bigtable.GCPolicy("policy",
+            instance_name=instance.name,
+            table=table.name,
+            column_family="name",
+            max_ages=[{
+                "days": 7,
+            }])
+        ```
+
+        Multiple conditions is also supported. `UNION` when any of its sub-policies apply (OR). `INTERSECTION` when all its sub-policies apply (AND)
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        policy = gcp.bigtable.GCPolicy("policy",
+            instance_name=google_bigtable_instance["instance"]["name"],
+            table=google_bigtable_table["table"]["name"],
+            column_family="name",
+            mode="UNION",
+            max_ages=[{
+                "days": 7,
+            }],
+            max_versions=[{
+                "number": 10,
+            }])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] column_family: The name of the column family.

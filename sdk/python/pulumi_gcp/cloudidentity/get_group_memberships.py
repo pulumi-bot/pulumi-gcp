@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetGroupMembershipsResult:
     """
     A collection of values returned by getGroupMemberships.
@@ -28,6 +29,8 @@ class GetGroupMembershipsResult:
         """
         The list of memberships under the given group. Structure is documented below.
         """
+
+
 class AwaitableGetGroupMembershipsResult(GetGroupMembershipsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -38,18 +41,26 @@ class AwaitableGetGroupMembershipsResult(GetGroupMembershipsResult):
             id=self.id,
             memberships=self.memberships)
 
-def get_group_memberships(group=None,opts=None):
+
+def get_group_memberships(group=None, opts=None):
     """
     Use this data source to get list of the Cloud Identity Group Memberships within a given Group.
 
     https://cloud.google.com/identity/docs/concepts/overview#memberships
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    members = gcp.cloudidentity.get_group_memberships(group="groups/123eab45c6defghi")
+    ```
+
 
     :param str group: The parent Group resource under which to lookup the Membership names. Must be of the form groups/{group_id}.
     """
     __args__ = dict()
-
-
     __args__['group'] = group
     if opts is None:
         opts = pulumi.InvokeOptions()
