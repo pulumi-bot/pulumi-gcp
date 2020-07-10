@@ -26,6 +26,39 @@ namespace Pulumi.Gcp.Monitoring
     ///     * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
     /// 
     /// ## Example Usage
+    /// ### Monitoring Slo Appengine
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var @default = Output.Create(Gcp.Monitoring.GetAppEngineService.InvokeAsync(new Gcp.Monitoring.GetAppEngineServiceArgs
+    ///         {
+    ///             ModuleId = "default",
+    ///         }));
+    ///         var appengSlo = new Gcp.Monitoring.Slo("appengSlo", new Gcp.Monitoring.SloArgs
+    ///         {
+    ///             Service = @default.Apply(@default =&gt; @default.ServiceId),
+    ///             SloId = "ae-slo",
+    ///             DisplayName = "Test SLO for App Engine",
+    ///             Goal = 0.9,
+    ///             CalendarPeriod = "DAY",
+    ///             BasicSli = new Gcp.Monitoring.Inputs.SloBasicSliArgs
+    ///             {
+    ///                 Latency = new Gcp.Monitoring.Inputs.SloBasicSliLatencyArgs
+    ///                 {
+    ///                     Threshold = "1s",
+    ///                 },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Slo : Pulumi.CustomResource
     {

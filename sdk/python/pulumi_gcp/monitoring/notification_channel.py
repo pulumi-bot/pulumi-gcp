@@ -99,6 +99,35 @@ class NotificationChannel(pulumi.CustomResource):
             * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
         ## Example Usage
+        ### Notification Channel Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        basic = gcp.monitoring.NotificationChannel("basic",
+            display_name="Test Notification Channel",
+            labels={
+                "email_address": "fake_email@blahblah.com",
+            },
+            type="email")
+        ```
+        ### Notification Channel Sensitive
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.monitoring.NotificationChannel("default",
+            display_name="Test Slack Channel",
+            labels={
+                "channel_name": "#foobar",
+            },
+            sensitive_labels={
+                "authToken": "one",
+            },
+            type="slack")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
