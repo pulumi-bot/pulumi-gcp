@@ -22,6 +22,96 @@ import (
 // > **Note:** `spanner.InstanceIAMPolicy` **cannot** be used in conjunction with `spanner.InstanceIAMBinding` and `spanner.InstanceIAMMember` or they will fight over what your policy should be.
 //
 // > **Note:** `spanner.InstanceIAMBinding` resources **can be** used in conjunction with `spanner.InstanceIAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## google\_spanner\_instance\_iam\_policy
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/spanner"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		admin, err := organizations.LookupIAMPolicy(ctx, &organizations.LookupIAMPolicyArgs{
+// 			Bindings: []organizations.GetIAMPolicyBinding{
+// 				organizations.GetIAMPolicyBinding{
+// 					Role: "roles/editor",
+// 					Members: []string{
+// 						"user:jane@example.com",
+// 					},
+// 				},
+// 			},
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = spanner.NewInstanceIAMPolicy(ctx, "instance", &spanner.InstanceIAMPolicyArgs{
+// 			Instance:   pulumi.String("your-instance-name"),
+// 			PolicyData: pulumi.String(admin.PolicyData),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ## google\_spanner\_instance\_iam\_binding
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/spanner"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := spanner.NewInstanceIAMBinding(ctx, "instance", &spanner.InstanceIAMBindingArgs{
+// 			Instance: pulumi.String("your-instance-name"),
+// 			Members: pulumi.StringArray{
+// 				pulumi.String("user:jane@example.com"),
+// 			},
+// 			Role: pulumi.String("roles/compute.networkUser"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ## google\_spanner\_instance\_iam\_member
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/spanner"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := spanner.NewInstanceIAMMember(ctx, "instance", &spanner.InstanceIAMMemberArgs{
+// 			Instance: pulumi.String("your-instance-name"),
+// 			Member:   pulumi.String("user:jane@example.com"),
+// 			Role:     pulumi.String("roles/compute.networkUser"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type InstanceIAMPolicy struct {
 	pulumi.CustomResourceState
 

@@ -90,6 +90,43 @@ class Note(pulumi.CustomResource):
             * [Creating Attestations (Occurrences)](https://cloud.google.com/binary-authorization/docs/making-attestations)
 
         ## Example Usage
+        ### Container Analysis Note Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        note = gcp.containeranalysis.Note("note", attestation_authority={
+            "hint": {
+                "humanReadableName": "Attestor Note",
+            },
+        })
+        ```
+        ### Container Analysis Note Attestation Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        note = gcp.containeranalysis.Note("note",
+            attestation_authority={
+                "hint": {
+                    "humanReadableName": "Attestor Note",
+                },
+            },
+            expiration_time="2120-10-02T15:01:23.045123456Z",
+            long_description="a longer description of test note",
+            related_urls=[
+                {
+                    "label": "foo",
+                    "url": "some.url",
+                },
+                {
+                    "url": "google.com",
+                },
+            ],
+            short_description="test note")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

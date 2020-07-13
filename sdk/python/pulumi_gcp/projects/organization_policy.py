@@ -65,6 +65,69 @@ class OrganizationPolicy(pulumi.CustomResource):
         documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
         [API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/setOrgPolicy).
 
+        ## Example Usage
+
+        To set policy with a [boolean constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-boolean-constraints):
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        serial_port_policy = gcp.projects.OrganizationPolicy("serialPortPolicy",
+            boolean_policy={
+                "enforced": True,
+            },
+            constraint="compute.disableSerialPortAccess",
+            project="your-project-id")
+        ```
+
+        To set a policy with a [list constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-list-constraints):
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        services_policy = gcp.projects.OrganizationPolicy("servicesPolicy",
+            constraint="serviceuser.services",
+            list_policy={
+                "allow": {
+                    "all": True,
+                },
+            },
+            project="your-project-id")
+        ```
+
+        Or to deny some services, use the following instead:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        services_policy = gcp.projects.OrganizationPolicy("servicesPolicy",
+            constraint="serviceuser.services",
+            list_policy={
+                "deny": {
+                    "values": ["cloudresourcemanager.googleapis.com"],
+                },
+                "suggestedValue": "compute.googleapis.com",
+            },
+            project="your-project-id")
+        ```
+
+        To restore the default project organization policy, use the following instead:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        services_policy = gcp.projects.OrganizationPolicy("servicesPolicy",
+            constraint="serviceuser.services",
+            project="your-project-id",
+            restore_policy={
+                "default": True,
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] boolean_policy: A boolean policy is a constraint that is either enforced or not. Structure is documented below.

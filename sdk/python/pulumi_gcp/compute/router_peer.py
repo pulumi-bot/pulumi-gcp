@@ -103,6 +103,20 @@ class RouterPeer(pulumi.CustomResource):
             * [Google Cloud Router](https://cloud.google.com/router/docs/)
 
         ## Example Usage
+        ### Router Peer Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        peer = gcp.compute.RouterPeer("peer",
+            advertised_route_priority=100,
+            interface="interface-1",
+            peer_asn=65513,
+            peer_ip_address="169.254.1.2",
+            region="us-central1",
+            router="my-router")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
