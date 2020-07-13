@@ -59,6 +59,24 @@ class SslCert(pulumi.CustomResource):
         """
         Creates a new Google SQL SSL Cert on a Google SQL Instance. For more information, see the [official documentation](https://cloud.google.com/sql/), or the [JSON API](https://cloud.google.com/sql/docs/mysql/admin-api/v1beta4/sslCerts).
 
+        ## Example Usage
+
+        Example creating a SQL Client Certificate.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_random as random
+
+        db_name_suffix = random.RandomId("dbNameSuffix", byte_length=4)
+        master = gcp.sql.DatabaseInstance("master", settings={
+            "tier": "db-f1-micro",
+        })
+        client_cert = gcp.sql.SslCert("clientCert",
+            common_name="client-name",
+            instance=master.name)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] common_name: The common name to be used in the certificate to identify the
