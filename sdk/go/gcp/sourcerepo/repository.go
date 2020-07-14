@@ -18,6 +18,67 @@ import (
 //     * [Official Documentation](https://cloud.google.com/source-repositories/)
 //
 // ## Example Usage
+// ### Sourcerepo Repository Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/sourcerepo"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := sourcerepo.NewRepository(ctx, "my_repo", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Sourcerepo Repository Full
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/pubsub"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/serviceAccount"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/sourcerepo"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := serviceaccount.NewAccount(ctx, "test_account", &serviceaccount.AccountArgs{
+// 			AccountId:   pulumi.String("my-account"),
+// 			DisplayName: pulumi.String("Test Service Account"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		topic, err := pubsub.NewTopic(ctx, "topic", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = sourcerepo.NewRepository(ctx, "my_repo", &sourcerepo.RepositoryArgs{
+// 			PubsubConfigs: sourcerepo.RepositoryPubsubConfigArray{
+// 				&sourcerepo.RepositoryPubsubConfigArgs{
+// 					Topic:               topic.ID(),
+// 					MessageFormat:       pulumi.String("JSON"),
+// 					ServiceAccountEmail: test_account.Email,
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Repository struct {
 	pulumi.CustomResourceState
 

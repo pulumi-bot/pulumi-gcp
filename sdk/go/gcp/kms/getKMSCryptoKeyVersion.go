@@ -13,6 +13,43 @@ import (
 // [API](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions).
 //
 // A CryptoKeyVersion represents an individual cryptographic key, and the associated key material.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/kms"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myKeyRing, err := kms.GetKMSKeyRing(ctx, "gcp:kms:getKMSKeyRing", &kms.GetKMSKeyRingArgs{
+// 			Name:     "my-key-ring",
+// 			Location: "us-central1",
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = kms.GetKMSCryptoKey(ctx, "gcp:kms:getKMSCryptoKey", &kms.GetKMSCryptoKeyArgs{
+// 			Name:    "my-crypto-key",
+// 			KeyRing: myKeyRing.SelfLink,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = kms.GetKMSCryptoKeyVersion(ctx, "gcp:kms:getKMSCryptoKeyVersion", &kms.GetKMSCryptoKeyVersionArgs{
+// 			CryptoKey: data.Google_kms_key.My_key.Self_link,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func GetKMSCryptoKeyVersion(ctx *pulumi.Context, args *GetKMSCryptoKeyVersionArgs, opts ...pulumi.InvokeOption) (*GetKMSCryptoKeyVersionResult, error) {
 	var rv GetKMSCryptoKeyVersionResult
 	err := ctx.Invoke("gcp:kms/getKMSCryptoKeyVersion:getKMSCryptoKeyVersion", args, &rv, opts...)

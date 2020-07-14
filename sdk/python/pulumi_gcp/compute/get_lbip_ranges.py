@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetLBIPRangesResult:
     """
     A collection of values returned by getLBIPRanges.
@@ -31,6 +32,8 @@ class GetLBIPRangesResult:
         """
         The IP ranges used for health checks when **Network load balancing** is used
         """
+
+
 class AwaitableGetLBIPRangesResult(GetLBIPRangesResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -41,15 +44,31 @@ class AwaitableGetLBIPRangesResult(GetLBIPRangesResult):
             id=self.id,
             networks=self.networks)
 
+
 def get_lbip_ranges(opts=None):
     """
     Use this data source to access IP ranges in your firewall rules.
 
     https://cloud.google.com/compute/docs/load-balancing/health-checks#health_check_source_ips_and_firewall_rules
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    ranges = gcp.compute.get_lbip_ranges()
+    lb = gcp.compute.Firewall("lb",
+        network=google_compute_network["main"]["name"],
+        allows=[{
+            "protocol": "tcp",
+            "ports": ["80"],
+        }],
+        source_ranges=ranges.networks,
+        target_tags=["InstanceBehindLoadBalancer"])
+    ```
     """
     __args__ = dict()
-
-
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:

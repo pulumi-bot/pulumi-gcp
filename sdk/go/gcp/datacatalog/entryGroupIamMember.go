@@ -19,6 +19,96 @@ import (
 // > **Note:** `datacatalog.EntryGroupIamPolicy` **cannot** be used in conjunction with `datacatalog.EntryGroupIamBinding` and `datacatalog.EntryGroupIamMember` or they will fight over what your policy should be.
 //
 // > **Note:** `datacatalog.EntryGroupIamBinding` resources **can be** used in conjunction with `datacatalog.EntryGroupIamMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## google\_data\_catalog\_entry\_group\_iam\_policy
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/datacatalog"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		admin, err := organizations.LookupIAMPolicy(ctx, "gcp:organizations:getIAMPolicy", &organizations.LookupIAMPolicyArgs{
+// 			Bindings: []organizations.GetIAMPolicyBinding{
+// 				organizations.GetIAMPolicyBinding{
+// 					Role: "roles/viewer",
+// 					Members: []string{
+// 						"user:jane@example.com",
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = datacatalog.NewEntryGroupIamPolicy(ctx, "policy", &datacatalog.EntryGroupIamPolicyArgs{
+// 			EntryGroup: pulumi.Any(google_data_catalog_entry_group.Basic_entry_group.Name),
+// 			PolicyData: pulumi.String(admin.PolicyData),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ## google\_data\_catalog\_entry\_group\_iam\_binding
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/datacatalog"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := datacatalog.NewEntryGroupIamBinding(ctx, "binding", &datacatalog.EntryGroupIamBindingArgs{
+// 			EntryGroup: pulumi.Any(google_data_catalog_entry_group.Basic_entry_group.Name),
+// 			Role:       pulumi.String("roles/viewer"),
+// 			Members: pulumi.StringArray{
+// 				pulumi.String("user:jane@example.com"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// ## google\_data\_catalog\_entry\_group\_iam\_member
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/datacatalog"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := datacatalog.NewEntryGroupIamMember(ctx, "member", &datacatalog.EntryGroupIamMemberArgs{
+// 			EntryGroup: pulumi.Any(google_data_catalog_entry_group.Basic_entry_group.Name),
+// 			Role:       pulumi.String("roles/viewer"),
+// 			Member:     pulumi.String("user:jane@example.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type EntryGroupIamMember struct {
 	pulumi.CustomResourceState
 
