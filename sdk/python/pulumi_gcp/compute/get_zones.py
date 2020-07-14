@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetZonesResult:
     """
     A collection of values returned by getZones.
@@ -34,6 +35,8 @@ class GetZonesResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         __self__.status = status
+
+
 class AwaitableGetZonesResult(GetZonesResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -46,10 +49,25 @@ class AwaitableGetZonesResult(GetZonesResult):
             region=self.region,
             status=self.status)
 
-def get_zones(project=None,region=None,status=None,opts=None):
+
+def get_zones(project=None, region=None, status=None, opts=None):
     """
     Provides access to available Google Compute zones in a region for a given project.
     See more about [regions and zones](https://cloud.google.com/compute/docs/regions-zones/regions-zones) in the upstream docs.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    available = gcp.compute.get_zones()
+    foo = []
+    for range in [{"value": i} for i in range(0, len(available.names))]:
+        foo.append(gcp.compute.InstanceGroupManager(f"foo-{range['value']}",
+            instance_template=google_compute_instance_template["foobar"]["self_link"],
+            base_instance_name=f"foobar-{range['value']}",
+            zone=available.names[range["value"]],
+            target_size=1))
+    ```
 
 
     :param str project: Project from which to list available zones. Defaults to project declared in the provider.
@@ -58,8 +76,6 @@ def get_zones(project=None,region=None,status=None,opts=None):
            Defaults to no filtering (all available zones - both `UP` and `DOWN`).
     """
     __args__ = dict()
-
-
     __args__['project'] = project
     __args__['region'] = region
     __args__['status'] = status
