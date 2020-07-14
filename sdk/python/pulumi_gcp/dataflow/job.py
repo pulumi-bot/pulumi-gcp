@@ -95,6 +95,20 @@ class Job(pulumi.CustomResource):
         the official documentation for
         [Beam](https://beam.apache.org) and [Dataflow](https://cloud.google.com/dataflow/).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        big_data_job = gcp.dataflow.Job("bigDataJob",
+            parameters={
+                "baz": "qux",
+                "foo": "bar",
+            },
+            temp_gcs_location="gs://my-bucket/tmp_dir",
+            template_gcs_path="gs://my-bucket/templates/template_file")
+        ```
         ## Note on "destroy" / "apply"
 
         There are many types of Dataflow jobs.  Some Dataflow jobs run constantly, getting new data from (e.g.) a GCS bucket, and outputting data continuously.  Some jobs process a set amount of data then terminate.  All jobs can fail while running due to programming errors or other issues.  In this way, Dataflow jobs are different from most other Google resources.

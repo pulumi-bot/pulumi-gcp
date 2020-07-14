@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Union
 from .. import utilities, tables
 
+
 class GetCertificateResult:
     """
     A collection of values returned by getCertificate.
@@ -46,6 +47,8 @@ class GetCertificateResult:
         if self_link and not isinstance(self_link, str):
             raise TypeError("Expected argument 'self_link' to be a str")
         __self__.self_link = self_link
+
+
 class AwaitableGetCertificateResult(GetCertificateResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -63,9 +66,22 @@ class AwaitableGetCertificateResult(GetCertificateResult):
             project=self.project,
             self_link=self.self_link)
 
-def get_certificate(name=None,project=None,opts=None):
+
+def get_certificate(name=None, project=None, opts=None):
     """
     Get info about a Google Compute SSL Certificate from its name.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_cert = gcp.compute.get_certificate(name="my-cert")
+    pulumi.export("certificate", my_cert.certificate)
+    pulumi.export("certificateId", my_cert.certificate_id)
+    pulumi.export("selfLink", my_cert.self_link)
+    ```
 
 
     :param str name: The name of the certificate.
@@ -73,8 +89,6 @@ def get_certificate(name=None,project=None,opts=None):
            is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
