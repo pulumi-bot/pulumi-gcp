@@ -63,6 +63,42 @@ class Repository(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/artifact-registry/docs/overview)
 
         ## Example Usage
+        ### Artifact Registry Repository Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_repo = gcp.artifactregistry.Repository("my-repo",
+            location="us-central1",
+            repository_id="my-repository",
+            description="example docker repository",
+            format="DOCKER",
+            opts=ResourceOptions(provider=google_beta))
+        ```
+        ### Artifact Registry Repository Iam
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_repo = gcp.artifactregistry.Repository("my-repo",
+            location="us-central1",
+            repository_id="my-repository",
+            description="example docker repository with iam",
+            format="DOCKER",
+            opts=ResourceOptions(provider=google_beta))
+        test_account = gcp.serviceaccount.Account("test-account",
+            account_id="my-account",
+            display_name="Test Service Account",
+            opts=ResourceOptions(provider=google_beta))
+        test_iam = gcp.artifactregistry.RepositoryIamMember("test-iam",
+            location=my_repo.location,
+            repository=my_repo.name,
+            role="roles/artifactregistry.reader",
+            member=test_account.email.apply(lambda email: f"serviceAccount:{email}"),
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

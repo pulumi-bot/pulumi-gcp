@@ -19,6 +19,211 @@ import (
 // > **Note:** `compute.InstanceIAMPolicy` **cannot** be used in conjunction with `compute.InstanceIAMBinding` and `compute.InstanceIAMMember` or they will fight over what your policy should be.
 //
 // > **Note:** `compute.InstanceIAMBinding` resources **can be** used in conjunction with `compute.InstanceIAMMember` resources **only if** they do not grant privilege to the same role.
+//
+// ## google\_compute\_instance\_iam\_policy
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		admin, err := organizations.LookupIAMPolicy(ctx, "gcp:organizations:getIAMPolicy", &organizations.LookupIAMPolicyArgs{
+// 			Bindings: []organizations.GetIAMPolicyBinding{
+// 				organizations.GetIAMPolicyBinding{
+// 					Role: "roles/compute.osLogin",
+// 					Members: []string{
+// 						"user:jane@example.com",
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewInstanceIAMPolicy(ctx, "policy", &compute.InstanceIAMPolicyArgs{
+// 			Project:      pulumi.Any(google_compute_instance.Default.Project),
+// 			Zone:         pulumi.Any(google_compute_instance.Default.Zone),
+// 			InstanceName: pulumi.Any(google_compute_instance.Default.Name),
+// 			PolicyData:   pulumi.String(admin.PolicyData),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// With IAM Conditions:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		admin, err := organizations.LookupIAMPolicy(ctx, "gcp:organizations:getIAMPolicy", &organizations.LookupIAMPolicyArgs{
+// 			Bindings: []organizations.GetIAMPolicyBinding{
+// 				organizations.GetIAMPolicyBinding{
+// 					Role: "roles/compute.osLogin",
+// 					Members: []string{
+// 						"user:jane@example.com",
+// 					},
+// 					Condition: organizations.GetIAMPolicyBindingCondition{
+// 						Title:       "expires_after_2019_12_31",
+// 						Description: "Expiring at midnight of 2019-12-31",
+// 						Expression:  "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewInstanceIAMPolicy(ctx, "policy", &compute.InstanceIAMPolicyArgs{
+// 			Project:      pulumi.Any(google_compute_instance.Default.Project),
+// 			Zone:         pulumi.Any(google_compute_instance.Default.Zone),
+// 			InstanceName: pulumi.Any(google_compute_instance.Default.Name),
+// 			PolicyData:   pulumi.String(admin.PolicyData),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ## google\_compute\_instance\_iam\_binding
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := compute.NewInstanceIAMBinding(ctx, "binding", &compute.InstanceIAMBindingArgs{
+// 			Project:      pulumi.Any(google_compute_instance.Default.Project),
+// 			Zone:         pulumi.Any(google_compute_instance.Default.Zone),
+// 			InstanceName: pulumi.Any(google_compute_instance.Default.Name),
+// 			Role:         pulumi.String("roles/compute.osLogin"),
+// 			Members: pulumi.StringArray{
+// 				pulumi.String("user:jane@example.com"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// With IAM Conditions:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := compute.NewInstanceIAMBinding(ctx, "binding", &compute.InstanceIAMBindingArgs{
+// 			Project:      pulumi.Any(google_compute_instance.Default.Project),
+// 			Zone:         pulumi.Any(google_compute_instance.Default.Zone),
+// 			InstanceName: pulumi.Any(google_compute_instance.Default.Name),
+// 			Role:         pulumi.String("roles/compute.osLogin"),
+// 			Members: pulumi.StringArray{
+// 				pulumi.String("user:jane@example.com"),
+// 			},
+// 			Condition: &compute.InstanceIAMBindingConditionArgs{
+// 				Title:       pulumi.String("expires_after_2019_12_31"),
+// 				Description: pulumi.String("Expiring at midnight of 2019-12-31"),
+// 				Expression:  pulumi.String("request.time < timestamp(\"2020-01-01T00:00:00Z\")"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ## google\_compute\_instance\_iam\_member
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := compute.NewInstanceIAMMember(ctx, "member", &compute.InstanceIAMMemberArgs{
+// 			Project:      pulumi.Any(google_compute_instance.Default.Project),
+// 			Zone:         pulumi.Any(google_compute_instance.Default.Zone),
+// 			InstanceName: pulumi.Any(google_compute_instance.Default.Name),
+// 			Role:         pulumi.String("roles/compute.osLogin"),
+// 			Member:       pulumi.String("user:jane@example.com"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+//
+// With IAM Conditions:
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := compute.NewInstanceIAMMember(ctx, "member", &compute.InstanceIAMMemberArgs{
+// 			Project:      pulumi.Any(google_compute_instance.Default.Project),
+// 			Zone:         pulumi.Any(google_compute_instance.Default.Zone),
+// 			InstanceName: pulumi.Any(google_compute_instance.Default.Name),
+// 			Role:         pulumi.String("roles/compute.osLogin"),
+// 			Member:       pulumi.String("user:jane@example.com"),
+// 			Condition: &compute.InstanceIAMMemberConditionArgs{
+// 				Title:       pulumi.String("expires_after_2019_12_31"),
+// 				Description: pulumi.String("Expiring at midnight of 2019-12-31"),
+// 				Expression:  pulumi.String("request.time < timestamp(\"2020-01-01T00:00:00Z\")"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type InstanceIAMBinding struct {
 	pulumi.CustomResourceState
 

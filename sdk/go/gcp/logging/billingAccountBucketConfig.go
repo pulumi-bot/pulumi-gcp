@@ -15,6 +15,40 @@ import (
 // [Storing Logs](https://cloud.google.com/logging/docs/storage).
 //
 // > **Note:** Logging buckets are automatically created for a given folder, project, organization, billingAccount and cannot be deleted. Creating a resource of this type will acquire and update the resource that already exists at the desired location. These buckets cannot be removed so deleting this resource will remove the bucket config from your state but will leave the logging bucket unchanged. The buckets that are currently automatically created are "_Default" and "_Required".
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/logging"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "00AA00-000AAA-00AA0A"
+// 		_default, err := organizations.GetBillingAccount(ctx, "gcp:organizations:getBillingAccount", &organizations.GetBillingAccountArgs{
+// 			BillingAccount: &opt0,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = logging.NewBillingAccountBucketConfig(ctx, "basic", &logging.BillingAccountBucketConfigArgs{
+// 			BillingAccount: pulumi.String(_default.BillingAccount),
+// 			Location:       pulumi.String("global"),
+// 			RetentionDays:  pulumi.Int(30),
+// 			BucketId:       pulumi.String("_Default"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type BillingAccountBucketConfig struct {
 	pulumi.CustomResourceState
 
