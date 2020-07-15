@@ -24,6 +24,126 @@ namespace Pulumi.Gcp.Compute
     ///     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
     /// 
     /// ## Example Usage
+    /// ### Backend Service Basic
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var defaultHttpHealthCheck = new Gcp.Compute.HttpHealthCheck("defaultHttpHealthCheck", new Gcp.Compute.HttpHealthCheckArgs
+    ///         {
+    ///             RequestPath = "/",
+    ///             CheckIntervalSec = 1,
+    ///             TimeoutSec = 1,
+    ///         });
+    ///         var defaultBackendService = new Gcp.Compute.BackendService("defaultBackendService", new Gcp.Compute.BackendServiceArgs
+    ///         {
+    ///             HealthChecks = 
+    ///             {
+    ///                 defaultHttpHealthCheck.Id,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Backend Service Traffic Director Round Robin
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var healthCheck = new Gcp.Compute.HealthCheck("healthCheck", new Gcp.Compute.HealthCheckArgs
+    ///         {
+    ///             HttpHealthCheck = new Gcp.Compute.Inputs.HealthCheckHttpHealthCheckArgs
+    ///             {
+    ///                 Port = 80,
+    ///             },
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
+    ///         });
+    ///         var @default = new Gcp.Compute.BackendService("default", new Gcp.Compute.BackendServiceArgs
+    ///         {
+    ///             HealthChecks = 
+    ///             {
+    ///                 healthCheck.Id,
+    ///             },
+    ///             LoadBalancingScheme = "INTERNAL_SELF_MANAGED",
+    ///             LocalityLbPolicy = "ROUND_ROBIN",
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Backend Service Traffic Director Ring Hash
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var healthCheck = new Gcp.Compute.HealthCheck("healthCheck", new Gcp.Compute.HealthCheckArgs
+    ///         {
+    ///             HttpHealthCheck = new Gcp.Compute.Inputs.HealthCheckHttpHealthCheckArgs
+    ///             {
+    ///                 Port = 80,
+    ///             },
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
+    ///         });
+    ///         var @default = new Gcp.Compute.BackendService("default", new Gcp.Compute.BackendServiceArgs
+    ///         {
+    ///             HealthChecks = 
+    ///             {
+    ///                 healthCheck.Id,
+    ///             },
+    ///             LoadBalancingScheme = "INTERNAL_SELF_MANAGED",
+    ///             LocalityLbPolicy = "RING_HASH",
+    ///             SessionAffinity = "HTTP_COOKIE",
+    ///             CircuitBreakers = new Gcp.Compute.Inputs.BackendServiceCircuitBreakersArgs
+    ///             {
+    ///                 MaxConnections = 10,
+    ///             },
+    ///             ConsistentHash = new Gcp.Compute.Inputs.BackendServiceConsistentHashArgs
+    ///             {
+    ///                 HttpCookie = new Gcp.Compute.Inputs.BackendServiceConsistentHashHttpCookieArgs
+    ///                 {
+    ///                     Ttl = new Gcp.Compute.Inputs.BackendServiceConsistentHashHttpCookieTtlArgs
+    ///                     {
+    ///                         Seconds = 11,
+    ///                         Nanos = 1111,
+    ///                     },
+    ///                     Name = "mycookie",
+    ///                 },
+    ///             },
+    ///             OutlierDetection = new Gcp.Compute.Inputs.BackendServiceOutlierDetectionArgs
+    ///             {
+    ///                 ConsecutiveErrors = 2,
+    ///             },
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class BackendService : Pulumi.CustomResource
     {
