@@ -185,6 +185,30 @@ class Firewall(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/vpc/docs/firewalls)
 
         ## Example Usage
+        ### Firewall Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_network = gcp.compute.Network("defaultNetwork")
+        default_firewall = gcp.compute.Firewall("defaultFirewall",
+            network=default_network.name,
+            allows=[
+                {
+                    "protocol": "icmp",
+                },
+                {
+                    "protocol": "tcp",
+                    "ports": [
+                        "80",
+                        "8080",
+                        "1000-2000",
+                    ],
+                },
+            ],
+            source_tags=["web"])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.

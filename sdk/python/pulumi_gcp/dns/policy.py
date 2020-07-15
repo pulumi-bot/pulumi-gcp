@@ -66,6 +66,36 @@ class Policy(pulumi.CustomResource):
             * [Using DNS server policies](https://cloud.google.com/dns/zones/#using-dns-server-policies)
 
         ## Example Usage
+        ### Dns Policy Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network_1 = gcp.compute.Network("network-1", auto_create_subnetworks=False)
+        network_2 = gcp.compute.Network("network-2", auto_create_subnetworks=False)
+        example_policy = gcp.dns.Policy("example-policy",
+            enable_inbound_forwarding=True,
+            enable_logging=True,
+            alternative_name_server_config={
+                "targetNameServers": [
+                    {
+                        "ipv4Address": "172.16.1.10",
+                    },
+                    {
+                        "ipv4Address": "172.16.1.20",
+                    },
+                ],
+            },
+            networks=[
+                {
+                    "networkUrl": network_1.id,
+                },
+                {
+                    "networkUrl": network_2.id,
+                },
+            ])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
