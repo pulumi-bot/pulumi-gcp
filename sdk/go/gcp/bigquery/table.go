@@ -13,6 +13,69 @@ import (
 // Creates a table resource in a dataset for Google BigQuery. For more information see
 // [the official documentation](https://cloud.google.com/bigquery/docs/) and
 // [API](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/bigquery"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		defaultDataset, err := bigquery.NewDataset(ctx, "defaultDataset", &bigquery.DatasetArgs{
+// 			DatasetId:                pulumi.String("foo"),
+// 			FriendlyName:             pulumi.String("test"),
+// 			Description:              pulumi.String("This is a test description"),
+// 			Location:                 pulumi.String("EU"),
+// 			DefaultTableExpirationMs: pulumi.Int(3600000),
+// 			Labels: pulumi.StringMap{
+// 				"env": pulumi.String("default"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = bigquery.NewTable(ctx, "defaultTable", &bigquery.TableArgs{
+// 			DatasetId: defaultDataset.DatasetId,
+// 			TableId:   pulumi.String("bar"),
+// 			TimePartitioning: &bigquery.TableTimePartitioningArgs{
+// 				Type: pulumi.String("DAY"),
+// 			},
+// 			Labels: pulumi.StringMap{
+// 				"env": pulumi.String("default"),
+// 			},
+// 			Schema: pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v%v%v", "[\n", "  {\n", "    \"name\": \"permalink\",\n", "    \"type\": \"STRING\",\n", "    \"mode\": \"NULLABLE\",\n", "    \"description\": \"The Permalink\"\n", "  },\n", "  {\n", "    \"name\": \"state\",\n", "    \"type\": \"STRING\",\n", "    \"mode\": \"NULLABLE\",\n", "    \"description\": \"State where the head office is located\"\n", "  }\n", "]\n")),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = bigquery.NewTable(ctx, "sheet", &bigquery.TableArgs{
+// 			DatasetId: defaultDataset.DatasetId,
+// 			TableId:   pulumi.String("sheet"),
+// 			ExternalDataConfiguration: &bigquery.TableExternalDataConfigurationArgs{
+// 				Autodetect:   pulumi.Bool(true),
+// 				SourceFormat: pulumi.String("GOOGLE_SHEETS"),
+// 				GoogleSheetsOptions: &bigquery.TableExternalDataConfigurationGoogleSheetsOptionsArgs{
+// 					SkipLeadingRows: pulumi.Int(1),
+// 				},
+// 				SourceUris: pulumi.StringArray{
+// 					pulumi.String("https://docs.google.com/spreadsheets/d/123456789012345"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Table struct {
 	pulumi.CustomResourceState
 
