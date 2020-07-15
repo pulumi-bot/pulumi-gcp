@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Metric(pulumi.CustomResource):
@@ -107,6 +107,79 @@ class Metric(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/logging/docs/apis)
 
         ## Example Usage
+        ### Logging Metric Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        logging_metric = gcp.logging.Metric("loggingMetric",
+            bucket_options={
+                "linearBuckets": {
+                    "numFiniteBuckets": 3,
+                    "offset": 1,
+                    "width": 1,
+                },
+            },
+            filter="resource.type=gae_app AND severity>=ERROR",
+            label_extractors={
+                "mass": "EXTRACT(jsonPayload.request)",
+                "sku": "EXTRACT(jsonPayload.id)",
+            },
+            metric_descriptor={
+                "display_name": "My metric",
+                "labels": [
+                    {
+                        "description": "amount of matter",
+                        "key": "mass",
+                        "valueType": "STRING",
+                    },
+                    {
+                        "description": "Identifying number for item",
+                        "key": "sku",
+                        "valueType": "INT64",
+                    },
+                ],
+                "metricKind": "DELTA",
+                "unit": "1",
+                "valueType": "DISTRIBUTION",
+            },
+            value_extractor="EXTRACT(jsonPayload.request)")
+        ```
+        ### Logging Metric Counter Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        logging_metric = gcp.logging.Metric("loggingMetric",
+            filter="resource.type=gae_app AND severity>=ERROR",
+            metric_descriptor={
+                "metricKind": "DELTA",
+                "valueType": "INT64",
+            })
+        ```
+        ### Logging Metric Counter Labels
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        logging_metric = gcp.logging.Metric("loggingMetric",
+            filter="resource.type=gae_app AND severity>=ERROR",
+            label_extractors={
+                "mass": "EXTRACT(jsonPayload.request)",
+            },
+            metric_descriptor={
+                "labels": [{
+                    "description": "amount of matter",
+                    "key": "mass",
+                    "valueType": "STRING",
+                }],
+                "metricKind": "DELTA",
+                "valueType": "INT64",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -186,7 +259,7 @@ class Metric(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -299,7 +372,7 @@ class Metric(pulumi.CustomResource):
         return Metric(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
