@@ -18,6 +18,82 @@ import * as utilities from "../utilities";
  *     * [Using Packet Mirroring](https://cloud.google.com/vpc/docs/using-packet-mirroring#creating)
  *
  * ## Example Usage
+ * ### Compute Packet Mirroring Full
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const defaultNetwork = new gcp.compute.Network("defaultNetwork", {}, {
+ *     provider: google_beta,
+ * });
+ * const mirror = new gcp.compute.Instance("mirror", {
+ *     machineType: "n1-standard-1",
+ *     bootDisk: {
+ *         initializeParams: {
+ *             image: "debian-cloud/debian-9",
+ *         },
+ *     },
+ *     networkInterfaces: [{
+ *         network: defaultNetwork.id,
+ *         accessConfigs: [{}],
+ *     }],
+ * }, {
+ *     provider: google_beta,
+ * });
+ * const defaultSubnetwork = new gcp.compute.Subnetwork("defaultSubnetwork", {
+ *     network: defaultNetwork.id,
+ *     ipCidrRange: "10.2.0.0/16",
+ * }, {
+ *     provider: google_beta,
+ * });
+ * const defaultHealthCheck = new gcp.compute.HealthCheck("defaultHealthCheck", {
+ *     checkIntervalSec: 1,
+ *     timeoutSec: 1,
+ *     tcpHealthCheck: {
+ *         port: "80",
+ *     },
+ * }, {
+ *     provider: google_beta,
+ * });
+ * const defaultRegionBackendService = new gcp.compute.RegionBackendService("defaultRegionBackendService", {healthChecks: [defaultHealthCheck.id]}, {
+ *     provider: google_beta,
+ * });
+ * const defaultForwardingRule = new gcp.compute.ForwardingRule("defaultForwardingRule", {
+ *     isMirroringCollector: true,
+ *     ipProtocol: "TCP",
+ *     loadBalancingScheme: "INTERNAL",
+ *     backendService: defaultRegionBackendService.id,
+ *     allPorts: true,
+ *     network: defaultNetwork.id,
+ *     subnetwork: defaultSubnetwork.id,
+ *     networkTier: "PREMIUM",
+ * }, {
+ *     provider: google_beta,
+ *     dependsOn: [defaultSubnetwork],
+ * });
+ * const foobar = new gcp.compute.PacketMirroring("foobar", {
+ *     description: "bar",
+ *     network: {
+ *         url: defaultNetwork.id,
+ *     },
+ *     collectorIlb: {
+ *         url: defaultForwardingRule.id,
+ *     },
+ *     mirroredResources: {
+ *         tags: ["foo"],
+ *         instances: [{
+ *             url: mirror.id,
+ *         }],
+ *     },
+ *     filter: {
+ *         ipProtocols: ["tcp"],
+ *         cidrRanges: ["0.0.0.0/0"],
+ *     },
+ * }, {
+ *     provider: google_beta,
+ * });
+ * ```
  */
 export class PacketMirroring extends pulumi.CustomResource {
     /**
