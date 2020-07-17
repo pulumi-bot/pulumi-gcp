@@ -20,6 +20,63 @@ import * as utilities from "../utilities";
  *     * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
  *
  * ## Example Usage
+ * ### Region Autoscaler Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const debian9 = gcp.compute.getImage({
+ *     family: "debian-9",
+ *     project: "debian-cloud",
+ * });
+ * const foobarInstanceTemplate = new gcp.compute.InstanceTemplate("foobarInstanceTemplate", {
+ *     machineType: "n1-standard-1",
+ *     canIpForward: false,
+ *     tags: [
+ *         "foo",
+ *         "bar",
+ *     ],
+ *     disks: [{
+ *         sourceImage: debian9.then(debian9 => debian9.selfLink),
+ *     }],
+ *     networkInterfaces: [{
+ *         network: "default",
+ *     }],
+ *     metadata: {
+ *         foo: "bar",
+ *     },
+ *     serviceAccount: {
+ *         scopes: [
+ *             "userinfo-email",
+ *             "compute-ro",
+ *             "storage-ro",
+ *         ],
+ *     },
+ * });
+ * const foobarTargetPool = new gcp.compute.TargetPool("foobarTargetPool", {});
+ * const foobarRegionInstanceGroupManager = new gcp.compute.RegionInstanceGroupManager("foobarRegionInstanceGroupManager", {
+ *     region: "us-central1",
+ *     versions: [{
+ *         instanceTemplate: foobarInstanceTemplate.id,
+ *         name: "primary",
+ *     }],
+ *     targetPools: [foobarTargetPool.id],
+ *     baseInstanceName: "foobar",
+ * });
+ * const foobarRegionAutoscaler = new gcp.compute.RegionAutoscaler("foobarRegionAutoscaler", {
+ *     region: "us-central1",
+ *     target: foobarRegionInstanceGroupManager.id,
+ *     autoscalingPolicy: {
+ *         maxReplicas: 5,
+ *         minReplicas: 1,
+ *         cooldownPeriod: 60,
+ *         cpuUtilization: {
+ *             target: 0.5,
+ *         },
+ *     },
+ * });
+ * ```
  */
 export class RegionAutoscaler extends pulumi.CustomResource {
     /**
