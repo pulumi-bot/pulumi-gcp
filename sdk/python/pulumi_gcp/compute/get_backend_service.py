@@ -5,14 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
+
 
 class GetBackendServiceResult:
     """
     A collection of values returned by getBackendService.
     """
-    def __init__(__self__, affinity_cookie_ttl_sec=None, backends=None, cdn_policies=None, circuit_breakers=None, connection_draining_timeout_sec=None, consistent_hash=None, creation_timestamp=None, custom_request_headers=None, description=None, enable_cdn=None, fingerprint=None, health_checks=None, iaps=None, id=None, load_balancing_scheme=None, locality_lb_policy=None, log_configs=None, name=None, outlier_detections=None, port_name=None, project=None, protocol=None, security_policy=None, self_link=None, session_affinity=None, timeout_sec=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, affinity_cookie_ttl_sec=None, backends=None, cdn_policies=None, circuit_breakers=None, connection_draining_timeout_sec=None, consistent_hash=None, creation_timestamp=None, custom_request_headers=None, description=None, enable_cdn=None, fingerprint=None, health_checks=None, iaps=None, id=None, load_balancing_scheme=None, locality_lb_policy=None, log_configs=None, name=None, outlier_detections=None, port_name=None, project=None, protocol=None, security_policy=None, self_link=None, session_affinity=None, timeout_sec=None) -> None:
         if affinity_cookie_ttl_sec and not isinstance(affinity_cookie_ttl_sec, float):
             raise TypeError("Expected argument 'affinity_cookie_ttl_sec' to be a float")
         __self__.affinity_cookie_ttl_sec = affinity_cookie_ttl_sec
@@ -127,6 +131,8 @@ class GetBackendServiceResult:
         """
         The number of seconds to wait for a backend to respond to a request before considering the request failed.
         """
+
+
 class AwaitableGetBackendServiceResult(GetBackendServiceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -160,7 +166,8 @@ class AwaitableGetBackendServiceResult(GetBackendServiceResult):
             session_affinity=self.session_affinity,
             timeout_sec=self.timeout_sec)
 
-def get_backend_service(name=None,project=None,opts=None):
+
+def get_backend_service(name=None, project=None, opts=None):
     """
     Provide access to a Backend Service's attribute. For more information
     see [the official documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
@@ -171,14 +178,12 @@ def get_backend_service(name=None,project=None,opts=None):
     :param str project: The project in which the resource belongs. If it is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getBackendService:getBackendService', __args__, opts=opts).value
 
     return AwaitableGetBackendServiceResult(

@@ -5,14 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
+
 
 class GetRegistryImageResult:
     """
     A collection of values returned by getRegistryImage.
     """
-    def __init__(__self__, digest=None, id=None, image_url=None, name=None, project=None, region=None, tag=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, digest=None, id=None, image_url=None, name=None, project=None, region=None, tag=None) -> None:
         if digest and not isinstance(digest, str):
             raise TypeError("Expected argument 'digest' to be a str")
         __self__.digest = digest
@@ -37,6 +41,8 @@ class GetRegistryImageResult:
         if tag and not isinstance(tag, str):
             raise TypeError("Expected argument 'tag' to be a str")
         __self__.tag = tag
+
+
 class AwaitableGetRegistryImageResult(GetRegistryImageResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -51,15 +57,24 @@ class AwaitableGetRegistryImageResult(GetRegistryImageResult):
             region=self.region,
             tag=self.tag)
 
-def get_registry_image(digest=None,name=None,project=None,region=None,tag=None,opts=None):
+
+def get_registry_image(digest=None, name=None, project=None, region=None, tag=None, opts=None):
     """
     This data source fetches the project name, and provides the appropriate URLs to use for container registry for this project.
 
     The URLs are computed entirely offline - as long as the project exists, they will be valid, but this data source does not contact Google Container Registry (GCR) at any point.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    debian = gcp.container.get_registry_image(name="debian")
+    pulumi.export("gcrLocation", debian.image_url)
+    ```
     """
     __args__ = dict()
-
-
     __args__['digest'] = digest
     __args__['name'] = name
     __args__['project'] = project
@@ -68,7 +83,7 @@ def get_registry_image(digest=None,name=None,project=None,region=None,tag=None,o
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:container/getRegistryImage:getRegistryImage', __args__, opts=opts).value
 
     return AwaitableGetRegistryImageResult(

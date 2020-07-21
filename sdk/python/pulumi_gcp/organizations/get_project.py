@@ -5,14 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
+
 
 class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, auto_create_network=None, billing_account=None, folder_id=None, id=None, labels=None, name=None, number=None, org_id=None, project_id=None, skip_delete=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, auto_create_network=None, billing_account=None, folder_id=None, id=None, labels=None, name=None, number=None, org_id=None, project_id=None, skip_delete=None) -> None:
         if auto_create_network and not isinstance(auto_create_network, bool):
             raise TypeError("Expected argument 'auto_create_network' to be a bool")
         __self__.auto_create_network = auto_create_network
@@ -46,6 +50,8 @@ class GetProjectResult:
         if skip_delete and not isinstance(skip_delete, bool):
             raise TypeError("Expected argument 'skip_delete' to be a bool")
         __self__.skip_delete = skip_delete
+
+
 class AwaitableGetProjectResult(GetProjectResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -63,23 +69,32 @@ class AwaitableGetProjectResult(GetProjectResult):
             project_id=self.project_id,
             skip_delete=self.skip_delete)
 
-def get_project(project_id=None,opts=None):
+
+def get_project(project_id=None, opts=None):
     """
     Use this data source to get project details.
     For more information see
     [API](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project)
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    project = gcp.organizations.get_project()
+    pulumi.export("projectNumber", project.number)
+    ```
+
 
     :param str project_id: The project ID. If it is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['projectId'] = project_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getProject:getProject', __args__, opts=opts).value
 
     return AwaitableGetProjectResult(

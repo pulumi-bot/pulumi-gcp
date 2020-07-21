@@ -5,56 +5,72 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
 
 
 class RouterInterface(pulumi.CustomResource):
-    interconnect_attachment: pulumi.Output[str]
+    interconnect_attachment: pulumi.Output[Optional[str]] = pulumi.output_property("interconnectAttachment")
     """
     The name or resource link to the
     VLAN interconnect for this interface. Changing this forces a new interface to
     be created. Only one of `vpn_tunnel` and `interconnect_attachment` can be
     specified.
     """
-    ip_range: pulumi.Output[str]
+    ip_range: pulumi.Output[Optional[str]] = pulumi.output_property("ipRange")
     """
     IP address and range of the interface. The IP range must be
     in the RFC3927 link-local IP space. Changing this forces a new interface to be created.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     A unique name for the interface, required by GCE. Changing
     this forces a new interface to be created.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which this interface's router belongs. If it
     is not provided, the provider project is used. Changing this forces a new interface to be created.
     """
-    region: pulumi.Output[str]
+    region: pulumi.Output[str] = pulumi.output_property("region")
     """
     The region this interface's router sits in. If not specified,
     the project region will be used. Changing this forces a new interface to be
     created.
     """
-    router: pulumi.Output[str]
+    router: pulumi.Output[str] = pulumi.output_property("router")
     """
     The name of the router this interface will be attached to.
     Changing this forces a new interface to be created.
     """
-    vpn_tunnel: pulumi.Output[str]
+    vpn_tunnel: pulumi.Output[Optional[str]] = pulumi.output_property("vpnTunnel")
     """
     The name or resource link to the VPN tunnel this
     interface will be linked to. Changing this forces a new interface to be created. Only
     one of `vpn_tunnel` and `interconnect_attachment` can be specified.
     """
-    def __init__(__self__, resource_name, opts=None, interconnect_attachment=None, ip_range=None, name=None, project=None, region=None, router=None, vpn_tunnel=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, interconnect_attachment=None, ip_range=None, name=None, project=None, region=None, router=None, vpn_tunnel=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a Cloud Router interface. For more information see
         [the official documentation](https://cloud.google.com/compute/docs/cloudrouter)
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/routers).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        foobar = gcp.compute.RouterInterface("foobar",
+            ip_range="169.254.1.1/30",
+            region="us-central1",
+            router="router-1",
+            vpn_tunnel="tunnel-1")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -88,7 +104,7 @@ class RouterInterface(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -151,7 +167,8 @@ class RouterInterface(pulumi.CustomResource):
         return RouterInterface(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

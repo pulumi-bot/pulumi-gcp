@@ -5,58 +5,45 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
 
 
 class Subnetwork(pulumi.CustomResource):
-    creation_timestamp: pulumi.Output[str]
+    creation_timestamp: pulumi.Output[str] = pulumi.output_property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     An optional description of this resource. Provide this property when
     you create the resource. This field can be set only at resource
     creation time.
     """
-    fingerprint: pulumi.Output[str]
+    fingerprint: pulumi.Output[str] = pulumi.output_property("fingerprint")
     """
     Fingerprint of this resource. This field is used internally during updates of this resource.
     """
-    gateway_address: pulumi.Output[str]
+    gateway_address: pulumi.Output[str] = pulumi.output_property("gatewayAddress")
     """
     The gateway address for default routes to reach destination addresses outside this subnetwork.
     """
-    ip_cidr_range: pulumi.Output[str]
+    ip_cidr_range: pulumi.Output[str] = pulumi.output_property("ipCidrRange")
     """
     The range of IP addresses belonging to this subnetwork secondary
     range. Provide this property when you create the subnetwork.
     Ranges must be unique and non-overlapping with all primary and
     secondary IP ranges within a network. Only IPv4 is supported.
     """
-    log_config: pulumi.Output[dict]
+    log_config: pulumi.Output[Optional['outputs.SubnetworkLogConfig']] = pulumi.output_property("logConfig")
     """
     Denotes the logging options for the subnetwork flow logs. If logging is enabled
     logs will be exported to Stackdriver. This field cannot be set if the `purpose` of this
     subnetwork is `INTERNAL_HTTPS_LOAD_BALANCER`  Structure is documented below.
-
-      * `aggregationInterval` (`str`) - Can only be specified if VPC flow logging for this subnetwork is enabled.
-        Toggles the aggregation interval for collecting flow logs. Increasing the
-        interval time will reduce the amount of generated flow logs for long
-        lasting connections. Default is an interval of 5 seconds per connection.
-        Possible values are INTERVAL_5_SEC, INTERVAL_30_SEC, INTERVAL_1_MIN,
-        INTERVAL_5_MIN, INTERVAL_10_MIN, INTERVAL_15_MIN
-      * `flowSampling` (`float`) - Can only be specified if VPC flow logging for this subnetwork is enabled.
-        The value of the field must be in [0, 1]. Set the sampling rate of VPC
-        flow logs within the subnetwork where 1.0 means all collected logs are
-        reported and 0.0 means no logs are reported. Default is 0.5 which means
-        half of all collected logs are reported.
-      * `metadata` (`str`) - Can only be specified if VPC flow logging for this subnetwork is enabled.
-        Configures whether metadata fields should be added to the reported VPC
-        flow logs.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the resource, provided by the client when initially
     creating the resource. The name must be 1-63 characters long, and
@@ -66,22 +53,22 @@ class Subnetwork(pulumi.CustomResource):
     following characters must be a dash, lowercase letter, or digit,
     except the last character, which cannot be a dash.
     """
-    network: pulumi.Output[str]
+    network: pulumi.Output[str] = pulumi.output_property("network")
     """
     The network this subnet belongs to.
     Only networks that are in the distributed mode can have subnetworks.
     """
-    private_ip_google_access: pulumi.Output[bool]
+    private_ip_google_access: pulumi.Output[Optional[bool]] = pulumi.output_property("privateIpGoogleAccess")
     """
     When enabled, VMs in this subnetwork without external IP addresses can
     access Google APIs and services by using Private Google Access.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    purpose: pulumi.Output[str]
+    purpose: pulumi.Output[str] = pulumi.output_property("purpose")
     """
     The purpose of the resource. This field can be either PRIVATE
     or INTERNAL_HTTPS_LOAD_BALANCER. A subnetwork with purpose set to
@@ -90,11 +77,11 @@ class Subnetwork(pulumi.CustomResource):
     purpose defaults to PRIVATE.
     If set to INTERNAL_HTTPS_LOAD_BALANCER you must also set the role.
     """
-    region: pulumi.Output[str]
+    region: pulumi.Output[str] = pulumi.output_property("region")
     """
     The GCP region for this subnetwork.
     """
-    role: pulumi.Output[str]
+    role: pulumi.Output[Optional[str]] = pulumi.output_property("role")
     """
     The role of subnetwork. Currently, this field is only used when
     purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be set to ACTIVE
@@ -102,27 +89,19 @@ class Subnetwork(pulumi.CustomResource):
     for Internal HTTP(S) Load Balancing. A BACKUP subnetwork is one that
     is ready to be promoted to ACTIVE or is currently draining.
     """
-    secondary_ip_ranges: pulumi.Output[list]
+    secondary_ip_ranges: pulumi.Output[List['outputs.SubnetworkSecondaryIpRange']] = pulumi.output_property("secondaryIpRanges")
     """
     An array of configurations for secondary IP ranges for VM instances
     contained in this subnetwork. The primary IP of such VM must belong
     to the primary ipCidrRange of the subnetwork. The alias IPs may belong
     to either primary or secondary ranges. Structure is documented below.
-
-      * `ip_cidr_range` (`str`) - The range of IP addresses belonging to this subnetwork secondary
-        range. Provide this property when you create the subnetwork.
-        Ranges must be unique and non-overlapping with all primary and
-        secondary IP ranges within a network. Only IPv4 is supported.
-      * `rangeName` (`str`) - The name associated with this subnetwork secondary range, used
-        when adding an alias IP range to a VM instance. The name must
-        be 1-63 characters long, and comply with RFC1035. The name
-        must be unique within the subnetwork.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The URI of the created resource.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, ip_cidr_range=None, log_config=None, name=None, network=None, private_ip_google_access=None, project=None, purpose=None, region=None, role=None, secondary_ip_ranges=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, ip_cidr_range=None, log_config=None, name=None, network=None, private_ip_google_access=None, project=None, purpose=None, region=None, role=None, secondary_ip_ranges=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A VPC network is a virtual version of the traditional physical networks
         that exist within and between physical data centers. A VPC network
@@ -155,6 +134,55 @@ class Subnetwork(pulumi.CustomResource):
             * [Cloud Networking](https://cloud.google.com/vpc/docs/using-vpc)
 
         ## Example Usage
+        ### Subnetwork Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        custom_test = gcp.compute.Network("custom-test", auto_create_subnetworks=False)
+        network_with_private_secondary_ip_ranges = gcp.compute.Subnetwork("network-with-private-secondary-ip-ranges",
+            ip_cidr_range="10.2.0.0/16",
+            region="us-central1",
+            network=custom_test.id,
+            secondary_ip_ranges=[{
+                "rangeName": "tf-test-secondary-range-update1",
+                "ip_cidr_range": "192.168.10.0/24",
+            }])
+        ```
+        ### Subnetwork Logging Config
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        custom_test = gcp.compute.Network("custom-test", auto_create_subnetworks=False)
+        subnet_with_logging = gcp.compute.Subnetwork("subnet-with-logging",
+            ip_cidr_range="10.2.0.0/16",
+            region="us-central1",
+            network=custom_test.id,
+            log_config={
+                "aggregationInterval": "INTERVAL_10_MIN",
+                "flowSampling": 0.5,
+                "metadata": "INCLUDE_ALL_METADATA",
+            })
+        ```
+        ### Subnetwork Internal L7lb
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        custom_test = gcp.compute.Network("custom-test", auto_create_subnetworks=False,
+        opts=ResourceOptions(provider=google_beta))
+        network_for_l7lb = gcp.compute.Subnetwork("network-for-l7lb",
+            ip_cidr_range="10.0.0.0/22",
+            region="us-central1",
+            purpose="INTERNAL_HTTPS_LOAD_BALANCER",
+            role="ACTIVE",
+            network=custom_test.id,
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -165,7 +193,7 @@ class Subnetwork(pulumi.CustomResource):
                range. Provide this property when you create the subnetwork.
                Ranges must be unique and non-overlapping with all primary and
                secondary IP ranges within a network. Only IPv4 is supported.
-        :param pulumi.Input[dict] log_config: Denotes the logging options for the subnetwork flow logs. If logging is enabled
+        :param pulumi.Input['SubnetworkLogConfigArgs'] log_config: Denotes the logging options for the subnetwork flow logs. If logging is enabled
                logs will be exported to Stackdriver. This field cannot be set if the `purpose` of this
                subnetwork is `INTERNAL_HTTPS_LOAD_BALANCER`  Structure is documented below.
         :param pulumi.Input[str] name: The name of the resource, provided by the client when initially
@@ -193,38 +221,10 @@ class Subnetwork(pulumi.CustomResource):
                or BACKUP. An ACTIVE subnetwork is one that is currently being used
                for Internal HTTP(S) Load Balancing. A BACKUP subnetwork is one that
                is ready to be promoted to ACTIVE or is currently draining.
-        :param pulumi.Input[list] secondary_ip_ranges: An array of configurations for secondary IP ranges for VM instances
+        :param pulumi.Input[List[pulumi.Input['SubnetworkSecondaryIpRangeArgs']]] secondary_ip_ranges: An array of configurations for secondary IP ranges for VM instances
                contained in this subnetwork. The primary IP of such VM must belong
                to the primary ipCidrRange of the subnetwork. The alias IPs may belong
                to either primary or secondary ranges. Structure is documented below.
-
-        The **log_config** object supports the following:
-
-          * `aggregationInterval` (`pulumi.Input[str]`) - Can only be specified if VPC flow logging for this subnetwork is enabled.
-            Toggles the aggregation interval for collecting flow logs. Increasing the
-            interval time will reduce the amount of generated flow logs for long
-            lasting connections. Default is an interval of 5 seconds per connection.
-            Possible values are INTERVAL_5_SEC, INTERVAL_30_SEC, INTERVAL_1_MIN,
-            INTERVAL_5_MIN, INTERVAL_10_MIN, INTERVAL_15_MIN
-          * `flowSampling` (`pulumi.Input[float]`) - Can only be specified if VPC flow logging for this subnetwork is enabled.
-            The value of the field must be in [0, 1]. Set the sampling rate of VPC
-            flow logs within the subnetwork where 1.0 means all collected logs are
-            reported and 0.0 means no logs are reported. Default is 0.5 which means
-            half of all collected logs are reported.
-          * `metadata` (`pulumi.Input[str]`) - Can only be specified if VPC flow logging for this subnetwork is enabled.
-            Configures whether metadata fields should be added to the reported VPC
-            flow logs.
-
-        The **secondary_ip_ranges** object supports the following:
-
-          * `ip_cidr_range` (`pulumi.Input[str]`) - The range of IP addresses belonging to this subnetwork secondary
-            range. Provide this property when you create the subnetwork.
-            Ranges must be unique and non-overlapping with all primary and
-            secondary IP ranges within a network. Only IPv4 is supported.
-          * `rangeName` (`pulumi.Input[str]`) - The name associated with this subnetwork secondary range, used
-            when adding an alias IP range to a VM instance. The name must
-            be 1-63 characters long, and comply with RFC1035. The name
-            must be unique within the subnetwork.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -237,7 +237,7 @@ class Subnetwork(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -287,7 +287,7 @@ class Subnetwork(pulumi.CustomResource):
                range. Provide this property when you create the subnetwork.
                Ranges must be unique and non-overlapping with all primary and
                secondary IP ranges within a network. Only IPv4 is supported.
-        :param pulumi.Input[dict] log_config: Denotes the logging options for the subnetwork flow logs. If logging is enabled
+        :param pulumi.Input['SubnetworkLogConfigArgs'] log_config: Denotes the logging options for the subnetwork flow logs. If logging is enabled
                logs will be exported to Stackdriver. This field cannot be set if the `purpose` of this
                subnetwork is `INTERNAL_HTTPS_LOAD_BALANCER`  Structure is documented below.
         :param pulumi.Input[str] name: The name of the resource, provided by the client when initially
@@ -315,39 +315,11 @@ class Subnetwork(pulumi.CustomResource):
                or BACKUP. An ACTIVE subnetwork is one that is currently being used
                for Internal HTTP(S) Load Balancing. A BACKUP subnetwork is one that
                is ready to be promoted to ACTIVE or is currently draining.
-        :param pulumi.Input[list] secondary_ip_ranges: An array of configurations for secondary IP ranges for VM instances
+        :param pulumi.Input[List[pulumi.Input['SubnetworkSecondaryIpRangeArgs']]] secondary_ip_ranges: An array of configurations for secondary IP ranges for VM instances
                contained in this subnetwork. The primary IP of such VM must belong
                to the primary ipCidrRange of the subnetwork. The alias IPs may belong
                to either primary or secondary ranges. Structure is documented below.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-
-        The **log_config** object supports the following:
-
-          * `aggregationInterval` (`pulumi.Input[str]`) - Can only be specified if VPC flow logging for this subnetwork is enabled.
-            Toggles the aggregation interval for collecting flow logs. Increasing the
-            interval time will reduce the amount of generated flow logs for long
-            lasting connections. Default is an interval of 5 seconds per connection.
-            Possible values are INTERVAL_5_SEC, INTERVAL_30_SEC, INTERVAL_1_MIN,
-            INTERVAL_5_MIN, INTERVAL_10_MIN, INTERVAL_15_MIN
-          * `flowSampling` (`pulumi.Input[float]`) - Can only be specified if VPC flow logging for this subnetwork is enabled.
-            The value of the field must be in [0, 1]. Set the sampling rate of VPC
-            flow logs within the subnetwork where 1.0 means all collected logs are
-            reported and 0.0 means no logs are reported. Default is 0.5 which means
-            half of all collected logs are reported.
-          * `metadata` (`pulumi.Input[str]`) - Can only be specified if VPC flow logging for this subnetwork is enabled.
-            Configures whether metadata fields should be added to the reported VPC
-            flow logs.
-
-        The **secondary_ip_ranges** object supports the following:
-
-          * `ip_cidr_range` (`pulumi.Input[str]`) - The range of IP addresses belonging to this subnetwork secondary
-            range. Provide this property when you create the subnetwork.
-            Ranges must be unique and non-overlapping with all primary and
-            secondary IP ranges within a network. Only IPv4 is supported.
-          * `rangeName` (`pulumi.Input[str]`) - The name associated with this subnetwork secondary range, used
-            when adding an alias IP range to a VM instance. The name must
-            be 1-63 characters long, and comply with RFC1035. The name
-            must be unique within the subnetwork.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -371,7 +343,8 @@ class Subnetwork(pulumi.CustomResource):
         return Subnetwork(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

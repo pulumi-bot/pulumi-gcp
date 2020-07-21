@@ -5,14 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
+
 
 class GetClientConfigResult:
     """
     A collection of values returned by getClientConfig.
     """
-    def __init__(__self__, access_token=None, id=None, project=None, region=None, zone=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, access_token=None, id=None, project=None, region=None, zone=None) -> None:
         if access_token and not isinstance(access_token, str):
             raise TypeError("Expected argument 'access_token' to be a str")
         __self__.access_token = access_token
@@ -43,6 +47,8 @@ class GetClientConfigResult:
         """
         The zone to operate under.
         """
+
+
 class AwaitableGetClientConfigResult(GetClientConfigResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -55,17 +61,26 @@ class AwaitableGetClientConfigResult(GetClientConfigResult):
             region=self.region,
             zone=self.zone)
 
+
 def get_client_config(opts=None):
     """
     Use this data source to access the configuration of the Google Cloud provider.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    current = gcp.organizations.get_client_config()
+    pulumi.export("project", current.project)
+    ```
     """
     __args__ = dict()
-
-
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getClientConfig:getClientConfig', __args__, opts=opts).value
 
     return AwaitableGetClientConfigResult(

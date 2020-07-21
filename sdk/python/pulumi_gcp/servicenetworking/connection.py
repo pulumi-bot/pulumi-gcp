@@ -5,39 +5,58 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
 
 
 class Connection(pulumi.CustomResource):
-    network: pulumi.Output[str]
+    network: pulumi.Output[str] = pulumi.output_property("network")
     """
     Name of VPC network connected with service producers using VPC peering.
     """
-    peering: pulumi.Output[str]
-    reserved_peering_ranges: pulumi.Output[list]
+    peering: pulumi.Output[str] = pulumi.output_property("peering")
+    reserved_peering_ranges: pulumi.Output[List[str]] = pulumi.output_property("reservedPeeringRanges")
     """
     Named IP address range(s) of PEERING type reserved for
     this service provider. Note that invoking this method with a different range when connection
     is already established will not reallocate already provisioned service producer subnetworks.
     """
-    service: pulumi.Output[str]
+    service: pulumi.Output[str] = pulumi.output_property("service")
     """
     Provider peering service that is managing peering connectivity for a
     service provider organization. For Google services that support this functionality it is
     'servicenetworking.googleapis.com'.
     """
-    def __init__(__self__, resource_name, opts=None, network=None, reserved_peering_ranges=None, service=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, network=None, reserved_peering_ranges=None, service=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a private VPC connection with a GCP service provider. For more information see
         [the official documentation](https://cloud.google.com/vpc/docs/configure-private-services-access#creating-connection)
         and
         [API](https://cloud.google.com/service-infrastructure/docs/service-networking/reference/rest/v1/services.connections).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        peering_network = gcp.compute.Network("peeringNetwork")
+        private_ip_alloc = gcp.compute.GlobalAddress("privateIpAlloc",
+            purpose="VPC_PEERING",
+            address_type="INTERNAL",
+            prefix_length=16,
+            network=peering_network.id)
+        foobar = gcp.servicenetworking.Connection("foobar",
+            network=peering_network.id,
+            service="servicenetworking.googleapis.com",
+            reserved_peering_ranges=[private_ip_alloc.name])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] network: Name of VPC network connected with service producers using VPC peering.
-        :param pulumi.Input[list] reserved_peering_ranges: Named IP address range(s) of PEERING type reserved for
+        :param pulumi.Input[List[pulumi.Input[str]]] reserved_peering_ranges: Named IP address range(s) of PEERING type reserved for
                this service provider. Note that invoking this method with a different range when connection
                is already established will not reallocate already provisioned service producer subnetworks.
         :param pulumi.Input[str] service: Provider peering service that is managing peering connectivity for a
@@ -55,7 +74,7 @@ class Connection(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -87,7 +106,7 @@ class Connection(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] network: Name of VPC network connected with service producers using VPC peering.
-        :param pulumi.Input[list] reserved_peering_ranges: Named IP address range(s) of PEERING type reserved for
+        :param pulumi.Input[List[pulumi.Input[str]]] reserved_peering_ranges: Named IP address range(s) of PEERING type reserved for
                this service provider. Note that invoking this method with a different range when connection
                is already established will not reallocate already provisioned service producer subnetworks.
         :param pulumi.Input[str] service: Provider peering service that is managing peering connectivity for a
@@ -105,7 +124,8 @@ class Connection(pulumi.CustomResource):
         return Connection(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

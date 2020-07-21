@@ -5,3 +5,5 @@
 # Export this package's modules as members:
 from .get_rule import *
 from .get_testable_permissions import *
+from ._inputs import *
+from . import outputs

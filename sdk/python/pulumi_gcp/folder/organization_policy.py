@@ -5,98 +5,126 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
 
 
 class OrganizationPolicy(pulumi.CustomResource):
-    boolean_policy: pulumi.Output[dict]
+    boolean_policy: pulumi.Output[Optional['outputs.OrganizationPolicyBooleanPolicy']] = pulumi.output_property("booleanPolicy")
     """
     A boolean policy is a constraint that is either enforced or not. Structure is documented below.
-
-      * `enforced` (`bool`) - If true, then the Policy is enforced. If false, then any configuration is acceptable.
     """
-    constraint: pulumi.Output[str]
+    constraint: pulumi.Output[str] = pulumi.output_property("constraint")
     """
     The name of the Constraint the Policy is configuring, for example, `serviceuser.services`. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints).
     """
-    etag: pulumi.Output[str]
+    etag: pulumi.Output[str] = pulumi.output_property("etag")
     """
     (Computed) The etag of the organization policy. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other.
     """
-    folder: pulumi.Output[str]
+    folder: pulumi.Output[str] = pulumi.output_property("folder")
     """
     The resource name of the folder to set the policy for. Its format is folders/{folder_id}.
     """
-    list_policy: pulumi.Output[dict]
+    list_policy: pulumi.Output[Optional['outputs.OrganizationPolicyListPolicy']] = pulumi.output_property("listPolicy")
     """
     A policy that can define specific values that are allowed or denied for the given constraint. It
     can also be used to allow or deny all values. Structure is documented below.
-
-      * `allow` (`dict`) - or `deny` - (Optional) One or the other must be set.
-        * `all` (`bool`) - The policy allows or denies all values.
-        * `values` (`list`) - The policy can define specific values that are allowed or denied.
-
-      * `deny` (`dict`)
-        * `all` (`bool`) - The policy allows or denies all values.
-        * `values` (`list`) - The policy can define specific values that are allowed or denied.
-
-      * `inheritFromParent` (`bool`) - If set to true, the values from the effective Policy of the parent resource
-        are inherited, meaning the values set in this Policy are added to the values inherited up the hierarchy.
-      * `suggestedValue` (`str`) - The Google Cloud Console will try to default to a configuration that matches the value specified in this field.
     """
-    restore_policy: pulumi.Output[dict]
+    restore_policy: pulumi.Output[Optional['outputs.OrganizationPolicyRestorePolicy']] = pulumi.output_property("restorePolicy")
     """
     A restore policy is a constraint to restore the default policy. Structure is documented below.
-
-      * `default` (`bool`) - May only be set to true. If set, then the default Policy is restored.
     """
-    update_time: pulumi.Output[str]
+    update_time: pulumi.Output[str] = pulumi.output_property("updateTime")
     """
     (Computed) The timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds, representing when the variable was last updated. Example: "2016-10-09T12:33:37.578138407Z".
     """
-    version: pulumi.Output[float]
+    version: pulumi.Output[float] = pulumi.output_property("version")
     """
     Version of the Policy. Default version is 0.
     """
-    def __init__(__self__, resource_name, opts=None, boolean_policy=None, constraint=None, folder=None, list_policy=None, restore_policy=None, version=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, boolean_policy=None, constraint=None, folder=None, list_policy=None, restore_policy=None, version=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Allows management of Organization policies for a Google Folder. For more information see
         [the official
         documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview) and
         [API](https://cloud.google.com/resource-manager/reference/rest/v1/folders/setOrgPolicy).
 
+        ## Example Usage
+
+        To set policy with a [boolean constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-boolean-constraints):
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        serial_port_policy = gcp.folder.OrganizationPolicy("serialPortPolicy",
+            boolean_policy={
+                "enforced": True,
+            },
+            constraint="compute.disableSerialPortAccess",
+            folder="folders/123456789")
+        ```
+
+        To set a policy with a [list constraint](https://cloud.google.com/resource-manager/docs/organization-policy/quickstart-list-constraints):
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        services_policy = gcp.folder.OrganizationPolicy("servicesPolicy",
+            constraint="serviceuser.services",
+            folder="folders/123456789",
+            list_policy={
+                "allow": {
+                    "all": True,
+                },
+            })
+        ```
+
+        Or to deny some services, use the following instead:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        services_policy = gcp.folder.OrganizationPolicy("servicesPolicy",
+            constraint="serviceuser.services",
+            folder="folders/123456789",
+            list_policy={
+                "deny": {
+                    "values": ["cloudresourcemanager.googleapis.com"],
+                },
+                "suggestedValue": "compute.googleapis.com",
+            })
+        ```
+
+        To restore the default folder organization policy, use the following instead:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        services_policy = gcp.folder.OrganizationPolicy("servicesPolicy",
+            constraint="serviceuser.services",
+            folder="folders/123456789",
+            restore_policy={
+                "default": True,
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] boolean_policy: A boolean policy is a constraint that is either enforced or not. Structure is documented below.
+        :param pulumi.Input['OrganizationPolicyBooleanPolicyArgs'] boolean_policy: A boolean policy is a constraint that is either enforced or not. Structure is documented below.
         :param pulumi.Input[str] constraint: The name of the Constraint the Policy is configuring, for example, `serviceuser.services`. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints).
         :param pulumi.Input[str] folder: The resource name of the folder to set the policy for. Its format is folders/{folder_id}.
-        :param pulumi.Input[dict] list_policy: A policy that can define specific values that are allowed or denied for the given constraint. It
+        :param pulumi.Input['OrganizationPolicyListPolicyArgs'] list_policy: A policy that can define specific values that are allowed or denied for the given constraint. It
                can also be used to allow or deny all values. Structure is documented below.
-        :param pulumi.Input[dict] restore_policy: A restore policy is a constraint to restore the default policy. Structure is documented below.
+        :param pulumi.Input['OrganizationPolicyRestorePolicyArgs'] restore_policy: A restore policy is a constraint to restore the default policy. Structure is documented below.
         :param pulumi.Input[float] version: Version of the Policy. Default version is 0.
-
-        The **boolean_policy** object supports the following:
-
-          * `enforced` (`pulumi.Input[bool]`) - If true, then the Policy is enforced. If false, then any configuration is acceptable.
-
-        The **list_policy** object supports the following:
-
-          * `allow` (`pulumi.Input[dict]`) - or `deny` - (Optional) One or the other must be set.
-            * `all` (`pulumi.Input[bool]`) - The policy allows or denies all values.
-            * `values` (`pulumi.Input[list]`) - The policy can define specific values that are allowed or denied.
-
-          * `deny` (`pulumi.Input[dict]`)
-            * `all` (`pulumi.Input[bool]`) - The policy allows or denies all values.
-            * `values` (`pulumi.Input[list]`) - The policy can define specific values that are allowed or denied.
-
-          * `inheritFromParent` (`pulumi.Input[bool]`) - If set to true, the values from the effective Policy of the parent resource
-            are inherited, meaning the values set in this Policy are added to the values inherited up the hierarchy.
-          * `suggestedValue` (`pulumi.Input[str]`) - The Google Cloud Console will try to default to a configuration that matches the value specified in this field.
-
-        The **restore_policy** object supports the following:
-
-          * `default` (`pulumi.Input[bool]`) - May only be set to true. If set, then the default Policy is restored.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -109,7 +137,7 @@ class OrganizationPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -142,37 +170,15 @@ class OrganizationPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] boolean_policy: A boolean policy is a constraint that is either enforced or not. Structure is documented below.
+        :param pulumi.Input['OrganizationPolicyBooleanPolicyArgs'] boolean_policy: A boolean policy is a constraint that is either enforced or not. Structure is documented below.
         :param pulumi.Input[str] constraint: The name of the Constraint the Policy is configuring, for example, `serviceuser.services`. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints).
         :param pulumi.Input[str] etag: (Computed) The etag of the organization policy. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other.
         :param pulumi.Input[str] folder: The resource name of the folder to set the policy for. Its format is folders/{folder_id}.
-        :param pulumi.Input[dict] list_policy: A policy that can define specific values that are allowed or denied for the given constraint. It
+        :param pulumi.Input['OrganizationPolicyListPolicyArgs'] list_policy: A policy that can define specific values that are allowed or denied for the given constraint. It
                can also be used to allow or deny all values. Structure is documented below.
-        :param pulumi.Input[dict] restore_policy: A restore policy is a constraint to restore the default policy. Structure is documented below.
+        :param pulumi.Input['OrganizationPolicyRestorePolicyArgs'] restore_policy: A restore policy is a constraint to restore the default policy. Structure is documented below.
         :param pulumi.Input[str] update_time: (Computed) The timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds, representing when the variable was last updated. Example: "2016-10-09T12:33:37.578138407Z".
         :param pulumi.Input[float] version: Version of the Policy. Default version is 0.
-
-        The **boolean_policy** object supports the following:
-
-          * `enforced` (`pulumi.Input[bool]`) - If true, then the Policy is enforced. If false, then any configuration is acceptable.
-
-        The **list_policy** object supports the following:
-
-          * `allow` (`pulumi.Input[dict]`) - or `deny` - (Optional) One or the other must be set.
-            * `all` (`pulumi.Input[bool]`) - The policy allows or denies all values.
-            * `values` (`pulumi.Input[list]`) - The policy can define specific values that are allowed or denied.
-
-          * `deny` (`pulumi.Input[dict]`)
-            * `all` (`pulumi.Input[bool]`) - The policy allows or denies all values.
-            * `values` (`pulumi.Input[list]`) - The policy can define specific values that are allowed or denied.
-
-          * `inheritFromParent` (`pulumi.Input[bool]`) - If set to true, the values from the effective Policy of the parent resource
-            are inherited, meaning the values set in this Policy are added to the values inherited up the hierarchy.
-          * `suggestedValue` (`pulumi.Input[str]`) - The Google Cloud Console will try to default to a configuration that matches the value specified in this field.
-
-        The **restore_policy** object supports the following:
-
-          * `default` (`pulumi.Input[bool]`) - May only be set to true. If set, then the default Policy is restored.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -189,7 +195,8 @@ class OrganizationPolicy(pulumi.CustomResource):
         return OrganizationPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

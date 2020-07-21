@@ -5,12 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
 
 
 class Subscription(pulumi.CustomResource):
-    ack_deadline_seconds: pulumi.Output[float]
+    ack_deadline_seconds: pulumi.Output[float] = pulumi.output_property("ackDeadlineSeconds")
     """
     This value is the maximum time after a subscriber receives a message
     before the subscriber should acknowledge the message. After message
@@ -28,7 +30,7 @@ class Subscription(pulumi.CustomResource):
     If the subscriber never acknowledges the message, the Pub/Sub system
     will eventually redeliver the message.
     """
-    dead_letter_policy: pulumi.Output[dict]
+    dead_letter_policy: pulumi.Output[Optional['outputs.SubscriptionDeadLetterPolicy']] = pulumi.output_property("deadLetterPolicy")
     """
     A policy that specifies the conditions for dead lettering messages in
     this subscription. If dead_letter_policy is not set, dead lettering
@@ -37,26 +39,8 @@ class Subscription(pulumi.CustomResource):
     parent project (i.e.,
     service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have
     permission to Acknowledge() messages on this subscription.  Structure is documented below.
-
-      * `deadLetterTopic` (`str`) - The name of the topic to which dead letter messages should be published.
-        Format is `projects/{project}/topics/{topic}`.
-        The Cloud Pub/Sub service\naccount associated with the enclosing subscription's
-        parent project (i.e.,
-        service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have
-        permission to Publish() to this topic.
-        The operation will fail if the topic does not exist.
-        Users should ensure that there is a subscription attached to this topic
-        since messages published to a topic with no subscriptions are lost.
-      * `maxDeliveryAttempts` (`float`) - The maximum number of delivery attempts for any message. The value must be
-        between 5 and 100.
-        The number of delivery attempts is defined as 1 + (the sum of number of
-        NACKs and number of times the acknowledgement deadline has been exceeded for the message).
-        A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that
-        client libraries may automatically extend ack_deadlines.
-        This field will be honored on a best effort basis.
-        If this parameter is 0, a default value of 5 is used.
     """
-    expiration_policy: pulumi.Output[dict]
+    expiration_policy: pulumi.Output['outputs.SubscriptionExpirationPolicy'] = pulumi.output_property("expirationPolicy")
     """
     A policy that specifies the conditions for this subscription's expiration.
     A subscription is considered active as long as any connected subscriber
@@ -65,18 +49,12 @@ class Subscription(pulumi.CustomResource):
     policy with ttl of 31 days will be used.  If it is set but ttl is "", the
     resource never expires.  The minimum allowed value for expirationPolicy.ttl
     is 1 day.  Structure is documented below.
-
-      * `ttl` (`str`) - Specifies the "time-to-live" duration for an associated resource. The
-        resource expires if it is not active for a period of ttl.
-        If ttl is not set, the associated resource never expires.
-        A duration in seconds with up to nine fractional digits, terminated by 's'.
-        Example - "3.5s".
     """
-    labels: pulumi.Output[dict]
+    labels: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("labels")
     """
     A set of key/value label pairs to assign to this Subscription.
     """
-    message_retention_duration: pulumi.Output[str]
+    message_retention_duration: pulumi.Output[Optional[str]] = pulumi.output_property("messageRetentionDuration")
     """
     How long to retain unacknowledged messages in the subscription's
     backlog, from the moment a message is published. If
@@ -87,69 +65,35 @@ class Subscription(pulumi.CustomResource):
     A duration in seconds with up to nine fractional digits, terminated
     by 's'. Example: `"600.5s"`.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the subscription.
     """
-    path: pulumi.Output[str]
-    project: pulumi.Output[str]
+    path: pulumi.Output[str] = pulumi.output_property("path")
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    push_config: pulumi.Output[dict]
+    push_config: pulumi.Output[Optional['outputs.SubscriptionPushConfig']] = pulumi.output_property("pushConfig")
     """
     If push delivery is used with this subscription, this field is used to
     configure it. An empty pushConfig signifies that the subscriber will
     pull and ack messages using API methods.  Structure is documented below.
-
-      * `attributes` (`dict`) - Endpoint configuration attributes.
-        Every endpoint has a set of API supported attributes that can
-        be used to control different aspects of the message delivery.
-        The currently supported attribute is x-goog-version, which you
-        can use to change the format of the pushed message. This
-        attribute indicates the version of the data expected by
-        the endpoint. This controls the shape of the pushed message
-        (i.e., its fields and metadata). The endpoint version is
-        based on the version of the Pub/Sub API.
-        If not present during the subscriptions.create call,
-        it will default to the version of the API used to make
-        such call. If not present during a subscriptions.modifyPushConfig
-        call, its value will not be changed. subscriptions.get
-        calls will always return a valid version, even if the
-        subscription was created without this attribute.
-        The possible values for this attribute are:
-        - v1beta1: uses the push format defined in the v1beta1 Pub/Sub API.
-        - v1 or v1beta2: uses the push format defined in the v1 Pub/Sub API.
-      * `oidcToken` (`dict`) - If specified, Pub/Sub will generate and attach an OIDC JWT token as
-        an Authorization header in the HTTP request for every pushed message.  Structure is documented below.
-        * `audience` (`str`) - Audience to be used when generating OIDC token. The audience claim
-          identifies the recipients that the JWT is intended for. The audience
-          value is a single case-sensitive string. Having multiple values (array)
-          for the audience field is not supported. More info about the OIDC JWT
-          token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
-          Note: if not specified, the Push endpoint URL will be used.
-        * `service_account_email` (`str`) - Service account email to be used for generating the OIDC token.
-          The caller (for subscriptions.create, subscriptions.patch, and
-          subscriptions.modifyPushConfig RPCs) must have the
-          iam.serviceAccounts.actAs permission for the service account.
-
-      * `pushEndpoint` (`str`) - A URL locating the endpoint to which messages should be pushed.
-        For example, a Webhook endpoint might use
-        "https://example.com/push".
     """
-    retain_acked_messages: pulumi.Output[bool]
+    retain_acked_messages: pulumi.Output[Optional[bool]] = pulumi.output_property("retainAckedMessages")
     """
     Indicates whether to retain acknowledged messages. If `true`, then
     messages are not expunged from the subscription's backlog, even if
     they are acknowledged, until they fall out of the
     messageRetentionDuration window.
     """
-    topic: pulumi.Output[str]
+    topic: pulumi.Output[str] = pulumi.output_property("topic")
     """
     A reference to a Topic resource.
     """
-    def __init__(__self__, resource_name, opts=None, ack_deadline_seconds=None, dead_letter_policy=None, expiration_policy=None, labels=None, message_retention_duration=None, name=None, project=None, push_config=None, retain_acked_messages=None, topic=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, ack_deadline_seconds=None, dead_letter_policy=None, expiration_policy=None, labels=None, message_retention_duration=None, name=None, project=None, push_config=None, retain_acked_messages=None, topic=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A named resource representing the stream of messages from a single,
         specific topic, to be delivered to the subscribing application.
@@ -161,6 +105,71 @@ class Subscription(pulumi.CustomResource):
             * [Managing Subscriptions](https://cloud.google.com/pubsub/docs/admin#managing_subscriptions)
 
         ## Example Usage
+        ### Pubsub Subscription Push
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example_topic = gcp.pubsub.Topic("exampleTopic")
+        example_subscription = gcp.pubsub.Subscription("exampleSubscription",
+            topic=example_topic.name,
+            ack_deadline_seconds=20,
+            labels={
+                "foo": "bar",
+            },
+            push_config={
+                "pushEndpoint": "https://example.com/push",
+                "attributes": {
+                    "x-goog-version": "v1",
+                },
+            })
+        ```
+        ### Pubsub Subscription Pull
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example_topic = gcp.pubsub.Topic("exampleTopic")
+        example_subscription = gcp.pubsub.Subscription("exampleSubscription",
+            topic=example_topic.name,
+            labels={
+                "foo": "bar",
+            },
+            message_retention_duration="1200s",
+            retain_acked_messages=True,
+            ack_deadline_seconds=20,
+            expiration_policy={
+                "ttl": "300000.5s",
+            })
+        ```
+        ### Pubsub Subscription Different Project
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example_topic = gcp.pubsub.Topic("exampleTopic", project="topic-project")
+        example_subscription = gcp.pubsub.Subscription("exampleSubscription",
+            project="subscription-project",
+            topic=example_topic.name)
+        ```
+        ### Pubsub Subscription Dead Letter
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example_topic = gcp.pubsub.Topic("exampleTopic")
+        example_dead_letter = gcp.pubsub.Topic("exampleDeadLetter")
+        example_subscription = gcp.pubsub.Subscription("exampleSubscription",
+            topic=example_topic.name,
+            dead_letter_policy={
+                "deadLetterTopic": example_dead_letter.id,
+                "maxDeliveryAttempts": 10,
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -179,21 +188,21 @@ class Subscription(pulumi.CustomResource):
                for the call to the push endpoint.
                If the subscriber never acknowledges the message, the Pub/Sub system
                will eventually redeliver the message.
-        :param pulumi.Input[dict] dead_letter_policy: A policy that specifies the conditions for dead lettering messages in
+        :param pulumi.Input['SubscriptionDeadLetterPolicyArgs'] dead_letter_policy: A policy that specifies the conditions for dead lettering messages in
                this subscription. If dead_letter_policy is not set, dead lettering
                is disabled.
                The Cloud Pub/Sub service account associated with this subscriptions's
                parent project (i.e.,
                service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have
                permission to Acknowledge() messages on this subscription.  Structure is documented below.
-        :param pulumi.Input[dict] expiration_policy: A policy that specifies the conditions for this subscription's expiration.
+        :param pulumi.Input['SubscriptionExpirationPolicyArgs'] expiration_policy: A policy that specifies the conditions for this subscription's expiration.
                A subscription is considered active as long as any connected subscriber
                is successfully consuming messages from the subscription or is issuing
                operations on the subscription. If expirationPolicy is not set, a default
                policy with ttl of 31 days will be used.  If it is set but ttl is "", the
                resource never expires.  The minimum allowed value for expirationPolicy.ttl
                is 1 day.  Structure is documented below.
-        :param pulumi.Input[dict] labels: A set of key/value label pairs to assign to this Subscription.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to this Subscription.
         :param pulumi.Input[str] message_retention_duration: How long to retain unacknowledged messages in the subscription's
                backlog, from the moment a message is published. If
                retainAckedMessages is true, then this also configures the retention
@@ -205,7 +214,7 @@ class Subscription(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the subscription.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] push_config: If push delivery is used with this subscription, this field is used to
+        :param pulumi.Input['SubscriptionPushConfigArgs'] push_config: If push delivery is used with this subscription, this field is used to
                configure it. An empty pushConfig signifies that the subscriber will
                pull and ack messages using API methods.  Structure is documented below.
         :param pulumi.Input[bool] retain_acked_messages: Indicates whether to retain acknowledged messages. If `true`, then
@@ -213,71 +222,6 @@ class Subscription(pulumi.CustomResource):
                they are acknowledged, until they fall out of the
                messageRetentionDuration window.
         :param pulumi.Input[str] topic: A reference to a Topic resource.
-
-        The **dead_letter_policy** object supports the following:
-
-          * `deadLetterTopic` (`pulumi.Input[str]`) - The name of the topic to which dead letter messages should be published.
-            Format is `projects/{project}/topics/{topic}`.
-            The Cloud Pub/Sub service\naccount associated with the enclosing subscription's
-            parent project (i.e.,
-            service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have
-            permission to Publish() to this topic.
-            The operation will fail if the topic does not exist.
-            Users should ensure that there is a subscription attached to this topic
-            since messages published to a topic with no subscriptions are lost.
-          * `maxDeliveryAttempts` (`pulumi.Input[float]`) - The maximum number of delivery attempts for any message. The value must be
-            between 5 and 100.
-            The number of delivery attempts is defined as 1 + (the sum of number of
-            NACKs and number of times the acknowledgement deadline has been exceeded for the message).
-            A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that
-            client libraries may automatically extend ack_deadlines.
-            This field will be honored on a best effort basis.
-            If this parameter is 0, a default value of 5 is used.
-
-        The **expiration_policy** object supports the following:
-
-          * `ttl` (`pulumi.Input[str]`) - Specifies the "time-to-live" duration for an associated resource. The
-            resource expires if it is not active for a period of ttl.
-            If ttl is not set, the associated resource never expires.
-            A duration in seconds with up to nine fractional digits, terminated by 's'.
-            Example - "3.5s".
-
-        The **push_config** object supports the following:
-
-          * `attributes` (`pulumi.Input[dict]`) - Endpoint configuration attributes.
-            Every endpoint has a set of API supported attributes that can
-            be used to control different aspects of the message delivery.
-            The currently supported attribute is x-goog-version, which you
-            can use to change the format of the pushed message. This
-            attribute indicates the version of the data expected by
-            the endpoint. This controls the shape of the pushed message
-            (i.e., its fields and metadata). The endpoint version is
-            based on the version of the Pub/Sub API.
-            If not present during the subscriptions.create call,
-            it will default to the version of the API used to make
-            such call. If not present during a subscriptions.modifyPushConfig
-            call, its value will not be changed. subscriptions.get
-            calls will always return a valid version, even if the
-            subscription was created without this attribute.
-            The possible values for this attribute are:
-            - v1beta1: uses the push format defined in the v1beta1 Pub/Sub API.
-            - v1 or v1beta2: uses the push format defined in the v1 Pub/Sub API.
-          * `oidcToken` (`pulumi.Input[dict]`) - If specified, Pub/Sub will generate and attach an OIDC JWT token as
-            an Authorization header in the HTTP request for every pushed message.  Structure is documented below.
-            * `audience` (`pulumi.Input[str]`) - Audience to be used when generating OIDC token. The audience claim
-              identifies the recipients that the JWT is intended for. The audience
-              value is a single case-sensitive string. Having multiple values (array)
-              for the audience field is not supported. More info about the OIDC JWT
-              token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
-              Note: if not specified, the Push endpoint URL will be used.
-            * `service_account_email` (`pulumi.Input[str]`) - Service account email to be used for generating the OIDC token.
-              The caller (for subscriptions.create, subscriptions.patch, and
-              subscriptions.modifyPushConfig RPCs) must have the
-              iam.serviceAccounts.actAs permission for the service account.
-
-          * `pushEndpoint` (`pulumi.Input[str]`) - A URL locating the endpoint to which messages should be pushed.
-            For example, a Webhook endpoint might use
-            "https://example.com/push".
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -290,7 +234,7 @@ class Subscription(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -339,21 +283,21 @@ class Subscription(pulumi.CustomResource):
                for the call to the push endpoint.
                If the subscriber never acknowledges the message, the Pub/Sub system
                will eventually redeliver the message.
-        :param pulumi.Input[dict] dead_letter_policy: A policy that specifies the conditions for dead lettering messages in
+        :param pulumi.Input['SubscriptionDeadLetterPolicyArgs'] dead_letter_policy: A policy that specifies the conditions for dead lettering messages in
                this subscription. If dead_letter_policy is not set, dead lettering
                is disabled.
                The Cloud Pub/Sub service account associated with this subscriptions's
                parent project (i.e.,
                service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have
                permission to Acknowledge() messages on this subscription.  Structure is documented below.
-        :param pulumi.Input[dict] expiration_policy: A policy that specifies the conditions for this subscription's expiration.
+        :param pulumi.Input['SubscriptionExpirationPolicyArgs'] expiration_policy: A policy that specifies the conditions for this subscription's expiration.
                A subscription is considered active as long as any connected subscriber
                is successfully consuming messages from the subscription or is issuing
                operations on the subscription. If expirationPolicy is not set, a default
                policy with ttl of 31 days will be used.  If it is set but ttl is "", the
                resource never expires.  The minimum allowed value for expirationPolicy.ttl
                is 1 day.  Structure is documented below.
-        :param pulumi.Input[dict] labels: A set of key/value label pairs to assign to this Subscription.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to this Subscription.
         :param pulumi.Input[str] message_retention_duration: How long to retain unacknowledged messages in the subscription's
                backlog, from the moment a message is published. If
                retainAckedMessages is true, then this also configures the retention
@@ -365,7 +309,7 @@ class Subscription(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name of the subscription.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] push_config: If push delivery is used with this subscription, this field is used to
+        :param pulumi.Input['SubscriptionPushConfigArgs'] push_config: If push delivery is used with this subscription, this field is used to
                configure it. An empty pushConfig signifies that the subscriber will
                pull and ack messages using API methods.  Structure is documented below.
         :param pulumi.Input[bool] retain_acked_messages: Indicates whether to retain acknowledged messages. If `true`, then
@@ -373,71 +317,6 @@ class Subscription(pulumi.CustomResource):
                they are acknowledged, until they fall out of the
                messageRetentionDuration window.
         :param pulumi.Input[str] topic: A reference to a Topic resource.
-
-        The **dead_letter_policy** object supports the following:
-
-          * `deadLetterTopic` (`pulumi.Input[str]`) - The name of the topic to which dead letter messages should be published.
-            Format is `projects/{project}/topics/{topic}`.
-            The Cloud Pub/Sub service\naccount associated with the enclosing subscription's
-            parent project (i.e.,
-            service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have
-            permission to Publish() to this topic.
-            The operation will fail if the topic does not exist.
-            Users should ensure that there is a subscription attached to this topic
-            since messages published to a topic with no subscriptions are lost.
-          * `maxDeliveryAttempts` (`pulumi.Input[float]`) - The maximum number of delivery attempts for any message. The value must be
-            between 5 and 100.
-            The number of delivery attempts is defined as 1 + (the sum of number of
-            NACKs and number of times the acknowledgement deadline has been exceeded for the message).
-            A NACK is any call to ModifyAckDeadline with a 0 deadline. Note that
-            client libraries may automatically extend ack_deadlines.
-            This field will be honored on a best effort basis.
-            If this parameter is 0, a default value of 5 is used.
-
-        The **expiration_policy** object supports the following:
-
-          * `ttl` (`pulumi.Input[str]`) - Specifies the "time-to-live" duration for an associated resource. The
-            resource expires if it is not active for a period of ttl.
-            If ttl is not set, the associated resource never expires.
-            A duration in seconds with up to nine fractional digits, terminated by 's'.
-            Example - "3.5s".
-
-        The **push_config** object supports the following:
-
-          * `attributes` (`pulumi.Input[dict]`) - Endpoint configuration attributes.
-            Every endpoint has a set of API supported attributes that can
-            be used to control different aspects of the message delivery.
-            The currently supported attribute is x-goog-version, which you
-            can use to change the format of the pushed message. This
-            attribute indicates the version of the data expected by
-            the endpoint. This controls the shape of the pushed message
-            (i.e., its fields and metadata). The endpoint version is
-            based on the version of the Pub/Sub API.
-            If not present during the subscriptions.create call,
-            it will default to the version of the API used to make
-            such call. If not present during a subscriptions.modifyPushConfig
-            call, its value will not be changed. subscriptions.get
-            calls will always return a valid version, even if the
-            subscription was created without this attribute.
-            The possible values for this attribute are:
-            - v1beta1: uses the push format defined in the v1beta1 Pub/Sub API.
-            - v1 or v1beta2: uses the push format defined in the v1 Pub/Sub API.
-          * `oidcToken` (`pulumi.Input[dict]`) - If specified, Pub/Sub will generate and attach an OIDC JWT token as
-            an Authorization header in the HTTP request for every pushed message.  Structure is documented below.
-            * `audience` (`pulumi.Input[str]`) - Audience to be used when generating OIDC token. The audience claim
-              identifies the recipients that the JWT is intended for. The audience
-              value is a single case-sensitive string. Having multiple values (array)
-              for the audience field is not supported. More info about the OIDC JWT
-              token audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3
-              Note: if not specified, the Push endpoint URL will be used.
-            * `service_account_email` (`pulumi.Input[str]`) - Service account email to be used for generating the OIDC token.
-              The caller (for subscriptions.create, subscriptions.patch, and
-              subscriptions.modifyPushConfig RPCs) must have the
-              iam.serviceAccounts.actAs permission for the service account.
-
-          * `pushEndpoint` (`pulumi.Input[str]`) - A URL locating the endpoint to which messages should be pushed.
-            For example, a Webhook endpoint might use
-            "https://example.com/push".
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -457,7 +336,8 @@ class Subscription(pulumi.CustomResource):
         return Subscription(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

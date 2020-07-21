@@ -5,14 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
+
 
 class GetNodeTypesResult:
     """
     A collection of values returned by getNodeTypes.
     """
-    def __init__(__self__, id=None, names=None, project=None, zone=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, id=None, names=None, project=None, zone=None) -> None:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
@@ -31,6 +35,8 @@ class GetNodeTypesResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         __self__.zone = zone
+
+
 class AwaitableGetNodeTypesResult(GetNodeTypesResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -42,10 +48,23 @@ class AwaitableGetNodeTypesResult(GetNodeTypesResult):
             project=self.project,
             zone=self.zone)
 
-def get_node_types(project=None,zone=None,opts=None):
+
+def get_node_types(project=None, zone=None, opts=None):
     """
     Provides available node types for Compute Engine sole-tenant nodes in a zone
     for a given project. For more information, see [the official documentation](https://cloud.google.com/compute/docs/nodes/#types) and [API](https://cloud.google.com/compute/docs/reference/rest/v1/nodeTypes).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    central1b = gcp.compute.get_node_types(zone="us-central1-b")
+    tmpl = gcp.compute.NodeTemplate("tmpl",
+        region="us-central1",
+        node_type=data["google_compute_node_types"]["types"]["names"])
+    ```
 
 
     :param str project: ID of the project to list available node types for.
@@ -55,14 +74,12 @@ def get_node_types(project=None,zone=None,opts=None):
            instead.
     """
     __args__ = dict()
-
-
     __args__['project'] = project
     __args__['zone'] = zone
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getNodeTypes:getNodeTypes', __args__, opts=opts).value
 
     return AwaitableGetNodeTypesResult(

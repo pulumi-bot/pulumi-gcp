@@ -5,12 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
 
 
 class Note(pulumi.CustomResource):
-    attestation_authority: pulumi.Output[dict]
+    attestation_authority: pulumi.Output['outputs.NoteAttestationAuthority'] = pulumi.output_property("attestationAuthority")
     """
     Note kind that represents a logical attestation "role" or "authority".
     For example, an organization might have one AttestationAuthority for
@@ -21,63 +23,50 @@ class Note(pulumi.CustomResource):
     Note. It also provides a single point of lookup to find all attached
     Attestation Occurrences, even if they don't all live in the same
     project.  Structure is documented below.
-
-      * `hint` (`dict`) - This submessage provides human-readable hints about the purpose of
-        the AttestationAuthority. Because the name of a Note acts as its
-        resource reference, it is important to disambiguate the canonical
-        name of the Note (which might be a UUID for security purposes)
-        from "readable" names more suitable for debug output. Note that
-        these hints should NOT be used to look up AttestationAuthorities
-        in security sensitive contexts, such as when looking up
-        Attestations to verify.  Structure is documented below.
-        * `humanReadableName` (`str`) - The human readable name of this Attestation Authority, for
-          example "qa".
     """
-    create_time: pulumi.Output[str]
+    create_time: pulumi.Output[str] = pulumi.output_property("createTime")
     """
     The time this note was created.
     """
-    expiration_time: pulumi.Output[str]
+    expiration_time: pulumi.Output[Optional[str]] = pulumi.output_property("expirationTime")
     """
     Time of expiration for this note. Leave empty if note does not expire.
     """
-    kind: pulumi.Output[str]
+    kind: pulumi.Output[str] = pulumi.output_property("kind")
     """
     The type of analysis this note describes
     """
-    long_description: pulumi.Output[str]
+    long_description: pulumi.Output[Optional[str]] = pulumi.output_property("longDescription")
     """
     A detailed description of the note
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the note.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    related_note_names: pulumi.Output[list]
+    related_note_names: pulumi.Output[Optional[List[str]]] = pulumi.output_property("relatedNoteNames")
     """
     Names of other notes related to this note.
     """
-    related_urls: pulumi.Output[list]
+    related_urls: pulumi.Output[Optional[List['outputs.NoteRelatedUrl']]] = pulumi.output_property("relatedUrls")
     """
     URLs associated with this note and related metadata.  Structure is documented below.
-
-      * `label` (`str`) - Label to describe usage of the URL
-      * `url` (`str`) - Specific URL associated with the resource.
     """
-    short_description: pulumi.Output[str]
+    short_description: pulumi.Output[Optional[str]] = pulumi.output_property("shortDescription")
     """
     A one sentence description of the note.
     """
-    update_time: pulumi.Output[str]
+    update_time: pulumi.Output[str] = pulumi.output_property("updateTime")
     """
     The time this note was last updated.
     """
-    def __init__(__self__, resource_name, opts=None, attestation_authority=None, expiration_time=None, long_description=None, name=None, project=None, related_note_names=None, related_urls=None, short_description=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, attestation_authority=None, expiration_time=None, long_description=None, name=None, project=None, related_note_names=None, related_urls=None, short_description=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A Container Analysis note is a high-level piece of metadata that
         describes a type of analysis that can be done for a resource.
@@ -90,10 +79,47 @@ class Note(pulumi.CustomResource):
             * [Creating Attestations (Occurrences)](https://cloud.google.com/binary-authorization/docs/making-attestations)
 
         ## Example Usage
+        ### Container Analysis Note Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        note = gcp.containeranalysis.Note("note", attestation_authority={
+            "hint": {
+                "humanReadableName": "Attestor Note",
+            },
+        })
+        ```
+        ### Container Analysis Note Attestation Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        note = gcp.containeranalysis.Note("note",
+            attestation_authority={
+                "hint": {
+                    "humanReadableName": "Attestor Note",
+                },
+            },
+            expiration_time="2120-10-02T15:01:23.045123456Z",
+            long_description="a longer description of test note",
+            related_urls=[
+                {
+                    "label": "foo",
+                    "url": "some.url",
+                },
+                {
+                    "url": "google.com",
+                },
+            ],
+            short_description="test note")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] attestation_authority: Note kind that represents a logical attestation "role" or "authority".
+        :param pulumi.Input['NoteAttestationAuthorityArgs'] attestation_authority: Note kind that represents a logical attestation "role" or "authority".
                For example, an organization might have one AttestationAuthority for
                "QA" and one for "build". This Note is intended to act strictly as a
                grouping mechanism for the attached Occurrences (Attestations). This
@@ -107,27 +133,9 @@ class Note(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the note.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[list] related_note_names: Names of other notes related to this note.
-        :param pulumi.Input[list] related_urls: URLs associated with this note and related metadata.  Structure is documented below.
+        :param pulumi.Input[List[pulumi.Input[str]]] related_note_names: Names of other notes related to this note.
+        :param pulumi.Input[List[pulumi.Input['NoteRelatedUrlArgs']]] related_urls: URLs associated with this note and related metadata.  Structure is documented below.
         :param pulumi.Input[str] short_description: A one sentence description of the note.
-
-        The **attestation_authority** object supports the following:
-
-          * `hint` (`pulumi.Input[dict]`) - This submessage provides human-readable hints about the purpose of
-            the AttestationAuthority. Because the name of a Note acts as its
-            resource reference, it is important to disambiguate the canonical
-            name of the Note (which might be a UUID for security purposes)
-            from "readable" names more suitable for debug output. Note that
-            these hints should NOT be used to look up AttestationAuthorities
-            in security sensitive contexts, such as when looking up
-            Attestations to verify.  Structure is documented below.
-            * `humanReadableName` (`pulumi.Input[str]`) - The human readable name of this Attestation Authority, for
-              example "qa".
-
-        The **related_urls** object supports the following:
-
-          * `label` (`pulumi.Input[str]`) - Label to describe usage of the URL
-          * `url` (`pulumi.Input[str]`) - Specific URL associated with the resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -140,7 +148,7 @@ class Note(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -174,7 +182,7 @@ class Note(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] attestation_authority: Note kind that represents a logical attestation "role" or "authority".
+        :param pulumi.Input['NoteAttestationAuthorityArgs'] attestation_authority: Note kind that represents a logical attestation "role" or "authority".
                For example, an organization might have one AttestationAuthority for
                "QA" and one for "build". This Note is intended to act strictly as a
                grouping mechanism for the attached Occurrences (Attestations). This
@@ -190,28 +198,10 @@ class Note(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the note.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[list] related_note_names: Names of other notes related to this note.
-        :param pulumi.Input[list] related_urls: URLs associated with this note and related metadata.  Structure is documented below.
+        :param pulumi.Input[List[pulumi.Input[str]]] related_note_names: Names of other notes related to this note.
+        :param pulumi.Input[List[pulumi.Input['NoteRelatedUrlArgs']]] related_urls: URLs associated with this note and related metadata.  Structure is documented below.
         :param pulumi.Input[str] short_description: A one sentence description of the note.
         :param pulumi.Input[str] update_time: The time this note was last updated.
-
-        The **attestation_authority** object supports the following:
-
-          * `hint` (`pulumi.Input[dict]`) - This submessage provides human-readable hints about the purpose of
-            the AttestationAuthority. Because the name of a Note acts as its
-            resource reference, it is important to disambiguate the canonical
-            name of the Note (which might be a UUID for security purposes)
-            from "readable" names more suitable for debug output. Note that
-            these hints should NOT be used to look up AttestationAuthorities
-            in security sensitive contexts, such as when looking up
-            Attestations to verify.  Structure is documented below.
-            * `humanReadableName` (`pulumi.Input[str]`) - The human readable name of this Attestation Authority, for
-              example "qa".
-
-        The **related_urls** object supports the following:
-
-          * `label` (`pulumi.Input[str]`) - Label to describe usage of the URL
-          * `url` (`pulumi.Input[str]`) - Specific URL associated with the resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -231,7 +221,8 @@ class Note(pulumi.CustomResource):
         return Note(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

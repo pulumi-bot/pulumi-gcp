@@ -5,48 +5,51 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
 
 
 class Realm(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     Human readable description of the realm.
     """
-    etag: pulumi.Output[str]
+    etag: pulumi.Output[str] = pulumi.output_property("etag")
     """
     ETag of the resource.
     """
-    labels: pulumi.Output[dict]
+    labels: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("labels")
     """
     The labels associated with this realm. Each label is a key-value pair.
     """
-    location: pulumi.Output[str]
+    location: pulumi.Output[Optional[str]] = pulumi.output_property("location")
     """
     Location of the Realm.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The resource id of the realm, of the form: 'projects/{project_id}/locations/{location}/realms/{realm_id}'. For example,
     'projects/my-project/locations/{location}/realms/my-realm'.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    realm_id: pulumi.Output[str]
+    realm_id: pulumi.Output[str] = pulumi.output_property("realmId")
     """
     GCP region of the Realm.
     """
-    time_zone: pulumi.Output[str]
+    time_zone: pulumi.Output[str] = pulumi.output_property("timeZone")
     """
     Required. Time zone where all realm-specific policies are evaluated. The value of
     this field must be from the IANA time zone database:
     https://www.iana.org/time-zones.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, labels=None, location=None, project=None, realm_id=None, time_zone=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, labels=None, location=None, project=None, realm_id=None, time_zone=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A Realm resource.
 
@@ -57,11 +60,24 @@ class Realm(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/game-servers/docs)
 
         ## Example Usage
+        ### Game Service Realm Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.gameservices.Realm("default",
+            realm_id="tf-test-realm",
+            time_zone="EST",
+            location="global",
+            description="one of the nine",
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human readable description of the realm.
-        :param pulumi.Input[dict] labels: The labels associated with this realm. Each label is a key-value pair.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: The labels associated with this realm. Each label is a key-value pair.
         :param pulumi.Input[str] location: Location of the Realm.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
@@ -81,7 +97,7 @@ class Realm(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -116,7 +132,7 @@ class Realm(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Human readable description of the realm.
         :param pulumi.Input[str] etag: ETag of the resource.
-        :param pulumi.Input[dict] labels: The labels associated with this realm. Each label is a key-value pair.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: The labels associated with this realm. Each label is a key-value pair.
         :param pulumi.Input[str] location: Location of the Realm.
         :param pulumi.Input[str] name: The resource id of the realm, of the form: 'projects/{project_id}/locations/{location}/realms/{realm_id}'. For example,
                'projects/my-project/locations/{location}/realms/my-realm'.
@@ -142,7 +158,8 @@ class Realm(pulumi.CustomResource):
         return Realm(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

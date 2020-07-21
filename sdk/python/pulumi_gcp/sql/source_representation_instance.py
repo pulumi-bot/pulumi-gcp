@@ -5,39 +5,42 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
 
 
 class SourceRepresentationInstance(pulumi.CustomResource):
-    database_version: pulumi.Output[str]
+    database_version: pulumi.Output[str] = pulumi.output_property("databaseVersion")
     """
     The MySQL version running on your source database server.
     """
-    host: pulumi.Output[str]
+    host: pulumi.Output[str] = pulumi.output_property("host")
     """
     The externally accessible IPv4 address for the source database server.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the source representation instance. Use any valid Cloud SQL instance name.
     """
-    port: pulumi.Output[float]
+    port: pulumi.Output[Optional[float]] = pulumi.output_property("port")
     """
     The externally accessible port for the source database server.
     Defaults to 3306.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    region: pulumi.Output[str]
+    region: pulumi.Output[str] = pulumi.output_property("region")
     """
     The Region in which the created instance should reside.
     If it is not provided, the provider region is used.
     """
-    def __init__(__self__, resource_name, opts=None, database_version=None, host=None, name=None, port=None, project=None, region=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, database_version=None, host=None, name=None, port=None, project=None, region=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A source representation instance is a Cloud SQL instance that represents
         the source database server to the Cloud SQL replica. It is visible in the
@@ -46,6 +49,18 @@ class SourceRepresentationInstance(pulumi.CustomResource):
         affect billing. You cannot update the source representation instance.
 
         ## Example Usage
+        ### Sql Source Representation Instance Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.sql.SourceRepresentationInstance("instance",
+            database_version="MYSQL_5_7",
+            host="10.20.30.40",
+            port=3306,
+            region="us-central1")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -70,7 +85,7 @@ class SourceRepresentationInstance(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -124,7 +139,8 @@ class SourceRepresentationInstance(pulumi.CustomResource):
         return SourceRepresentationInstance(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

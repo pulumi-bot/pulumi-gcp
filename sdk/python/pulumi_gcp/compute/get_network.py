@@ -5,14 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
+
 
 class GetNetworkResult:
     """
     A collection of values returned by getNetwork.
     """
-    def __init__(__self__, description=None, gateway_ipv4=None, id=None, name=None, project=None, self_link=None, subnetworks_self_links=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, description=None, gateway_ipv4=None, id=None, name=None, project=None, self_link=None, subnetworks_self_links=None) -> None:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         __self__.description = description
@@ -49,6 +53,8 @@ class GetNetworkResult:
         """
         the list of subnetworks which belong to the network
         """
+
+
 class AwaitableGetNetworkResult(GetNetworkResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -63,9 +69,19 @@ class AwaitableGetNetworkResult(GetNetworkResult):
             self_link=self.self_link,
             subnetworks_self_links=self.subnetworks_self_links)
 
-def get_network(name=None,project=None,opts=None):
+
+def get_network(name=None, project=None, opts=None):
     """
     Get a network within GCE from its name.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_network = gcp.compute.get_network(name="default-us-east1")
+    ```
 
 
     :param str name: The name of the network.
@@ -73,14 +89,12 @@ def get_network(name=None,project=None,opts=None):
            is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getNetwork:getNetwork', __args__, opts=opts).value
 
     return AwaitableGetNetworkResult(

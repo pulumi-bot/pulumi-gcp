@@ -5,14 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
+
 
 class GetFunctionResult:
     """
     A collection of values returned by getFunction.
     """
-    def __init__(__self__, available_memory_mb=None, description=None, entry_point=None, environment_variables=None, event_triggers=None, https_trigger_url=None, id=None, ingress_settings=None, labels=None, max_instances=None, name=None, project=None, region=None, runtime=None, service_account_email=None, source_archive_bucket=None, source_archive_object=None, source_repositories=None, timeout=None, trigger_http=None, vpc_connector=None, vpc_connector_egress_settings=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, available_memory_mb=None, description=None, entry_point=None, environment_variables=None, event_triggers=None, https_trigger_url=None, id=None, ingress_settings=None, labels=None, max_instances=None, name=None, project=None, region=None, runtime=None, service_account_email=None, source_archive_bucket=None, source_archive_object=None, source_repositories=None, timeout=None, trigger_http=None, vpc_connector=None, vpc_connector_egress_settings=None) -> None:
         if available_memory_mb and not isinstance(available_memory_mb, float):
             raise TypeError("Expected argument 'available_memory_mb' to be a float")
         __self__.available_memory_mb = available_memory_mb
@@ -130,6 +134,8 @@ class GetFunctionResult:
         """
         The egress settings for the connector, controlling what traffic is diverted through it.
         """
+
+
 class AwaitableGetFunctionResult(GetFunctionResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -159,11 +165,21 @@ class AwaitableGetFunctionResult(GetFunctionResult):
             vpc_connector=self.vpc_connector,
             vpc_connector_egress_settings=self.vpc_connector_egress_settings)
 
-def get_function(name=None,project=None,region=None,opts=None):
+
+def get_function(name=None, project=None, region=None, opts=None):
     """
     Get information about a Google Cloud Function. For more information see
     the [official documentation](https://cloud.google.com/functions/docs/)
     and [API](https://cloud.google.com/functions/docs/apis).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_function = gcp.cloudfunctions.get_function(name="function")
+    ```
 
 
     :param str name: The name of a Cloud Function.
@@ -173,15 +189,13 @@ def get_function(name=None,project=None,region=None,opts=None):
            is not provided, the provider region is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:cloudfunctions/getFunction:getFunction', __args__, opts=opts).value
 
     return AwaitableGetFunctionResult(

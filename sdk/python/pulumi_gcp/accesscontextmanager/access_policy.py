@@ -5,33 +5,36 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
 
 
 class AccessPolicy(pulumi.CustomResource):
-    create_time: pulumi.Output[str]
+    create_time: pulumi.Output[str] = pulumi.output_property("createTime")
     """
     Time the AccessPolicy was created in UTC.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Resource name of the AccessPolicy. Format: {policy_id}
     """
-    parent: pulumi.Output[str]
+    parent: pulumi.Output[str] = pulumi.output_property("parent")
     """
     The parent of this AccessPolicy in the Cloud Resource Hierarchy.
     Format: organizations/{organization_id}
     """
-    title: pulumi.Output[str]
+    title: pulumi.Output[str] = pulumi.output_property("title")
     """
     Human readable title. Does not affect behavior.
     """
-    update_time: pulumi.Output[str]
+    update_time: pulumi.Output[str] = pulumi.output_property("updateTime")
     """
     Time the AccessPolicy was updated in UTC.
     """
-    def __init__(__self__, resource_name, opts=None, parent=None, title=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, parent=None, title=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         AccessPolicy is a container for AccessLevels (which define the necessary
         attributes to use GCP services) and ServicePerimeters (which define
@@ -46,6 +49,16 @@ class AccessPolicy(pulumi.CustomResource):
             * [Access Policy Quickstart](https://cloud.google.com/access-context-manager/docs/quickstart)
 
         ## Example Usage
+        ### Access Context Manager Access Policy Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        access_policy = gcp.accesscontextmanager.AccessPolicy("access-policy",
+            parent="organizations/123456789",
+            title="my policy")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -64,7 +77,7 @@ class AccessPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -113,7 +126,8 @@ class AccessPolicy(pulumi.CustomResource):
         return AccessPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

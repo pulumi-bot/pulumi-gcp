@@ -5,35 +5,38 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
 
 
 class Dataset(pulumi.CustomResource):
-    location: pulumi.Output[str]
+    location: pulumi.Output[str] = pulumi.output_property("location")
     """
     The location for the Dataset.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The resource name for the Dataset.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The fully qualified name of this dataset
     """
-    time_zone: pulumi.Output[str]
+    time_zone: pulumi.Output[str] = pulumi.output_property("timeZone")
     """
     The default timezone used by this dataset. Must be a either a valid IANA time zone name such as
     "America/New_York" or empty, which defaults to UTC. This is used for parsing times in resources
     (e.g., HL7 messages) where no explicit timezone is specified.
     """
-    def __init__(__self__, resource_name, opts=None, location=None, name=None, project=None, time_zone=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, location=None, name=None, project=None, time_zone=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A Healthcare `Dataset` is a toplevel logical grouping of `dicomStores`, `fhirStores` and `hl7V2Stores`.
 
@@ -44,6 +47,16 @@ class Dataset(pulumi.CustomResource):
             * [Creating a dataset](https://cloud.google.com/healthcare/docs/how-tos/datasets)
 
         ## Example Usage
+        ### Healthcare Dataset Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.healthcare.Dataset("default",
+            location="us-central1",
+            time_zone="UTC")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -66,7 +79,7 @@ class Dataset(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -115,7 +128,8 @@ class Dataset(pulumi.CustomResource):
         return Dataset(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

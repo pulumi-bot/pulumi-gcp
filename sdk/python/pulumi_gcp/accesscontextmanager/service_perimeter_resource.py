@@ -5,22 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
 
 
 class ServicePerimeterResource(pulumi.CustomResource):
-    perimeter_name: pulumi.Output[str]
+    perimeter_name: pulumi.Output[str] = pulumi.output_property("perimeterName")
     """
     The name of the Service Perimeter to add this resource to.
     """
-    resource: pulumi.Output[str]
+    resource: pulumi.Output[str] = pulumi.output_property("resource")
     """
     A GCP resource that is inside of the service perimeter.
     Currently only projects are allowed.
     Format: projects/{project_number}
     """
-    def __init__(__self__, resource_name, opts=None, perimeter_name=None, resource=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, perimeter_name=None, resource=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Allows configuring a single GCP resource that should be inside of a service perimeter.
         This resource is intended to be used in cases where it is not possible to compile a full list
@@ -38,6 +41,25 @@ class ServicePerimeterResource(pulumi.CustomResource):
             * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
 
         ## Example Usage
+        ### Access Context Manager Service Perimeter Resource Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        access_policy = gcp.accesscontextmanager.AccessPolicy("access-policy",
+            parent="organizations/123456789",
+            title="my policy")
+        service_perimeter_resource_service_perimeter = gcp.accesscontextmanager.ServicePerimeter("service-perimeter-resourceServicePerimeter",
+            parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"),
+            title="restrict_all",
+            status={
+                "restrictedServices": ["storage.googleapis.com"],
+            })
+        service_perimeter_resource_service_perimeter_resource = gcp.accesscontextmanager.ServicePerimeterResource("service-perimeter-resourceServicePerimeterResource",
+            perimeter_name=service_perimeter_resource_service_perimeter.name,
+            resource="projects/987654321")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -57,7 +79,7 @@ class ServicePerimeterResource(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -98,7 +120,8 @@ class ServicePerimeterResource(pulumi.CustomResource):
         return ServicePerimeterResource(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

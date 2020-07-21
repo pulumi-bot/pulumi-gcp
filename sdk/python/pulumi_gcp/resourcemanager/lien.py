@@ -5,38 +5,38 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
 
 
 class Lien(pulumi.CustomResource):
-    create_time: pulumi.Output[str]
+    create_time: pulumi.Output[str] = pulumi.output_property("createTime")
     """
     Time of creation
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     A system-generated unique identifier for this Lien.
     """
-    origin: pulumi.Output[str]
+    origin: pulumi.Output[str] = pulumi.output_property("origin")
     """
     A stable, user-visible/meaningful string identifying the origin
     of the Lien, intended to be inspected programmatically. Maximum length of
     200 characters.
     """
-    parent: pulumi.Output[str]
+    parent: pulumi.Output[str] = pulumi.output_property("parent")
     """
     A reference to the resource this Lien is attached to.
     The server will validate the parent against those for which Liens are supported.
     Since a variety of objects can have Liens against them, you must provide the type
     prefix (e.g. "projects/my-project-name").
     """
-    reason: pulumi.Output[str]
+    reason: pulumi.Output[str] = pulumi.output_property("reason")
     """
     Concise user-visible strings indicating why an action cannot be performed
     on a resource. Maximum length of 200 characters.
     """
-    restrictions: pulumi.Output[list]
+    restrictions: pulumi.Output[List[str]] = pulumi.output_property("restrictions")
     """
     The types of operations which should be blocked as a result of this Lien.
     Each value should correspond to an IAM permission. The server will validate
@@ -44,11 +44,25 @@ class Lien(pulumi.CustomResource):
     list is meaningless and will be rejected.
     e.g. ['resourcemanager.projects.delete']
     """
-    def __init__(__self__, resource_name, opts=None, origin=None, parent=None, reason=None, restrictions=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, origin=None, parent=None, reason=None, restrictions=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A Lien represents an encumbrance on the actions that can be performed on a resource.
 
         ## Example Usage
+        ### Resource Manager Lien
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.organizations.Project("project", project_id="staging-project")
+        lien = gcp.resourcemanager.Lien("lien",
+            origin="machine-readable-explanation",
+            parent=project.number.apply(lambda number: f"projects/{number}"),
+            reason="This project is an important environment",
+            restrictions=["resourcemanager.projects.delete"])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -61,7 +75,7 @@ class Lien(pulumi.CustomResource):
                prefix (e.g. "projects/my-project-name").
         :param pulumi.Input[str] reason: Concise user-visible strings indicating why an action cannot be performed
                on a resource. Maximum length of 200 characters.
-        :param pulumi.Input[list] restrictions: The types of operations which should be blocked as a result of this Lien.
+        :param pulumi.Input[List[pulumi.Input[str]]] restrictions: The types of operations which should be blocked as a result of this Lien.
                Each value should correspond to an IAM permission. The server will validate
                the permissions against those for which Liens are supported.  An empty
                list is meaningless and will be rejected.
@@ -78,7 +92,7 @@ class Lien(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -124,7 +138,7 @@ class Lien(pulumi.CustomResource):
                prefix (e.g. "projects/my-project-name").
         :param pulumi.Input[str] reason: Concise user-visible strings indicating why an action cannot be performed
                on a resource. Maximum length of 200 characters.
-        :param pulumi.Input[list] restrictions: The types of operations which should be blocked as a result of this Lien.
+        :param pulumi.Input[List[pulumi.Input[str]]] restrictions: The types of operations which should be blocked as a result of this Lien.
                Each value should correspond to an IAM permission. The server will validate
                the permissions against those for which Liens are supported.  An empty
                list is meaningless and will be rejected.
@@ -143,7 +157,8 @@ class Lien(pulumi.CustomResource):
         return Lien(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

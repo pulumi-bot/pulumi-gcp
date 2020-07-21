@@ -5,14 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
+
 
 class GetOrganizationPolicyResult:
     """
     A collection of values returned by getOrganizationPolicy.
     """
-    def __init__(__self__, boolean_policies=None, constraint=None, etag=None, folder=None, id=None, list_policies=None, restore_policies=None, update_time=None, version=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, boolean_policies=None, constraint=None, etag=None, folder=None, id=None, list_policies=None, restore_policies=None, update_time=None, version=None) -> None:
         if boolean_policies and not isinstance(boolean_policies, list):
             raise TypeError("Expected argument 'boolean_policies' to be a list")
         __self__.boolean_policies = boolean_policies
@@ -43,6 +47,8 @@ class GetOrganizationPolicyResult:
         if version and not isinstance(version, float):
             raise TypeError("Expected argument 'version' to be a float")
         __self__.version = version
+
+
 class AwaitableGetOrganizationPolicyResult(GetOrganizationPolicyResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -59,25 +65,35 @@ class AwaitableGetOrganizationPolicyResult(GetOrganizationPolicyResult):
             update_time=self.update_time,
             version=self.version)
 
-def get_organization_policy(constraint=None,folder=None,opts=None):
+
+def get_organization_policy(constraint=None, folder=None, opts=None):
     """
     Allows management of Organization policies for a Google Folder. For more information see
     [the official
     documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    policy = gcp.folder.get_organization_policy(folder="folders/folderid",
+        constraint="constraints/compute.trustedImageProjects")
+    pulumi.export("version", policy.version)
+    ```
 
 
     :param str constraint: (Required) The name of the Constraint the Policy is configuring, for example, `serviceuser.services`. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints).
     :param str folder: The resource name of the folder to set the policy for. Its format is folders/{folder_id}.
     """
     __args__ = dict()
-
-
     __args__['constraint'] = constraint
     __args__['folder'] = folder
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:folder/getOrganizationPolicy:getOrganizationPolicy', __args__, opts=opts).value
 
     return AwaitableGetOrganizationPolicyResult(

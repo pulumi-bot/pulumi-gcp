@@ -5,12 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from ._inputs import *
+from . import outputs
 
 
 class AttachedDisk(pulumi.CustomResource):
-    device_name: pulumi.Output[str]
+    device_name: pulumi.Output[str] = pulumi.output_property("deviceName")
     """
     Specifies a unique device name of your choice that is
     reflected into the /dev/disk/by-id/google-* tree of a Linux operating
@@ -18,34 +20,35 @@ class AttachedDisk(pulumi.CustomResource):
     reference the device for mounting, resizing, and so on, from within
     the instance.
     """
-    disk: pulumi.Output[str]
+    disk: pulumi.Output[str] = pulumi.output_property("disk")
     """
     `name` or `self_link` of the disk that will be attached.
     """
-    instance: pulumi.Output[str]
+    instance: pulumi.Output[str] = pulumi.output_property("instance")
     """
     `name` or `self_link` of the compute instance that the disk will be attached to.
     If the `self_link` is provided then `zone` and `project` are extracted from the
     self link. If only the name is used then `zone` and `project` must be defined
     as properties on the resource or provider.
     """
-    mode: pulumi.Output[str]
+    mode: pulumi.Output[Optional[str]] = pulumi.output_property("mode")
     """
     The mode in which to attach this disk, either READ_WRITE or
     READ_ONLY. If not specified, the default is to attach the disk in
     READ_WRITE mode.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The project that the referenced compute instance is a part of. If `instance` is referenced by its
     `self_link` the project defined in the link will take precedence.
     """
-    zone: pulumi.Output[str]
+    zone: pulumi.Output[str] = pulumi.output_property("zone")
     """
     The zone that the referenced compute instance is located within. If `instance` is referenced by its
     `self_link` the zone defined in the link will take precedence.
     """
-    def __init__(__self__, resource_name, opts=None, device_name=None, disk=None, instance=None, mode=None, project=None, zone=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, device_name=None, disk=None, instance=None, mode=None, project=None, zone=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Persistent disks can be attached to a compute instance using the `attached_disk`
         section within the compute instance configuration.
@@ -60,6 +63,28 @@ class AttachedDisk(pulumi.CustomResource):
             * [Adding a persistent disk](https://cloud.google.com/compute/docs/disks/add-persistent-disk)
 
         **Note:** When using `compute.AttachedDisk` you **must** use `lifecycle.ignore_changes = ["attached_disk"]` on the `compute.Instance` resource that has the disks attached. Otherwise the two resources will fight for control of the attached disk block.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_instance = gcp.compute.Instance("defaultInstance",
+            machine_type="n1-standard-1",
+            zone="us-west1-a",
+            boot_disk={
+                "initializeParams": {
+                    "image": "debian-cloud/debian-9",
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+            }])
+        default_attached_disk = gcp.compute.AttachedDisk("defaultAttachedDisk",
+            disk=google_compute_disk["default"]["id"],
+            instance=default_instance.id)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -92,7 +117,7 @@ class AttachedDisk(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -154,7 +179,8 @@ class AttachedDisk(pulumi.CustomResource):
         return AttachedDisk(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
