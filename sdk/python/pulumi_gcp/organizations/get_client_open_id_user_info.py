@@ -5,14 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
 
 class GetClientOpenIdUserInfoResult:
     """
     A collection of values returned by getClientOpenIdUserInfo.
     """
-    def __init__(__self__, email=None, id=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, email=None, id=None) -> None:
         if email and not isinstance(email, str):
             raise TypeError("Expected argument 'email' to be a str")
         __self__.email = email
@@ -25,6 +27,8 @@ class GetClientOpenIdUserInfoResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
+
+
 class AwaitableGetClientOpenIdUserInfoResult(GetClientOpenIdUserInfoResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -33,6 +37,7 @@ class AwaitableGetClientOpenIdUserInfoResult(GetClientOpenIdUserInfoResult):
         return GetClientOpenIdUserInfoResult(
             email=self.email,
             id=self.id)
+
 
 def get_client_open_id_user_info(opts=None):
     """
@@ -49,14 +54,21 @@ def get_client_open_id_user_info(opts=None):
     receive an error otherwise.
 
     ## Example Usage
+    ### Exporting An Email
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    me = gcp.organizations.get_client_open_id_user_info()
+    pulumi.export("my-email", me.email)
+    ```
     """
     __args__ = dict()
-
-
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getClientOpenIdUserInfo:getClientOpenIdUserInfo', __args__, opts=opts).value
 
     return AwaitableGetClientOpenIdUserInfoResult(

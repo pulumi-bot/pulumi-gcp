@@ -5,14 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
 
 class GetInstanceResult:
     """
     A collection of values returned by getInstance.
     """
-    def __init__(__self__, alternative_location_id=None, authorized_network=None, connect_mode=None, create_time=None, current_location_id=None, display_name=None, host=None, id=None, labels=None, location_id=None, memory_size_gb=None, name=None, port=None, project=None, redis_configs=None, redis_version=None, region=None, reserved_ip_range=None, tier=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, alternative_location_id=None, authorized_network=None, connect_mode=None, create_time=None, current_location_id=None, display_name=None, host=None, id=None, labels=None, location_id=None, memory_size_gb=None, name=None, port=None, project=None, redis_configs=None, redis_version=None, region=None, reserved_ip_range=None, tier=None) -> None:
         if alternative_location_id and not isinstance(alternative_location_id, str):
             raise TypeError("Expected argument 'alternative_location_id' to be a str")
         __self__.alternative_location_id = alternative_location_id
@@ -80,6 +82,8 @@ class GetInstanceResult:
         if tier and not isinstance(tier, str):
             raise TypeError("Expected argument 'tier' to be a str")
         __self__.tier = tier
+
+
 class AwaitableGetInstanceResult(GetInstanceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -106,11 +110,21 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             reserved_ip_range=self.reserved_ip_range,
             tier=self.tier)
 
-def get_instance(name=None,project=None,region=None,opts=None):
+
+def get_instance(name=None, project=None, region=None, opts=None):
     """
     Get information about a Google Cloud Redis instance. For more information see
     the [official documentation](https://cloud.google.com/memorystore/docs/redis)
     and [API](https://cloud.google.com/memorystore/docs/redis/apis).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    default = gcp.redis.get_instance(name="my-redis-instance")
+    ```
 
 
     :param str name: The name of a Redis instance.
@@ -120,15 +134,13 @@ def get_instance(name=None,project=None,region=None,opts=None):
            is not provided, the provider region is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:redis/getInstance:getInstance', __args__, opts=opts).value
 
     return AwaitableGetInstanceResult(

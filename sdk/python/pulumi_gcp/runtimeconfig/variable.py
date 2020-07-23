@@ -5,41 +5,42 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
 
 
 class Variable(pulumi.CustomResource):
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the variable to manage. Note that variable
     names can be hierarchical using slashes (e.g. "prod-variables/hostname").
     """
-    parent: pulumi.Output[str]
+    parent: pulumi.Output[str] = pulumi.output_property("parent")
     """
     The name of the RuntimeConfig resource containing this
     variable.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs. If it
     is not provided, the provider project is used.
     """
-    text: pulumi.Output[str]
+    text: pulumi.Output[Optional[str]] = pulumi.output_property("text")
     """
     or `value` - (Required) The content to associate with the variable.
     Exactly one of `text` or `variable` must be specified. If `text` is specified,
     it must be a valid UTF-8 string and less than 4096 bytes in length. If `value`
     is specified, it must be base64 encoded and less than 4096 bytes in length.
     """
-    update_time: pulumi.Output[str]
+    update_time: pulumi.Output[str] = pulumi.output_property("updateTime")
     """
     (Computed) The timestamp in RFC3339 UTC "Zulu" format,
     accurate to nanoseconds, representing when the variable was last updated.
     Example: "2016-10-09T12:33:37.578138407Z".
     """
-    value: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, name=None, parent=None, project=None, text=None, value=None, __props__=None, __name__=None, __opts__=None):
+    value: pulumi.Output[Optional[str]] = pulumi.output_property("value")
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name=None, parent=None, project=None, text=None, value=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a RuntimeConfig variable in Google Cloud. For more information, see the
         [official documentation](https://cloud.google.com/deployment-manager/runtime-configurator/),
@@ -70,7 +71,7 @@ class Variable(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -126,7 +127,8 @@ class Variable(pulumi.CustomResource):
         return Variable(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

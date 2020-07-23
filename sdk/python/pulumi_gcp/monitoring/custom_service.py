@@ -5,38 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class CustomService(pulumi.CustomResource):
-    display_name: pulumi.Output[str]
+    display_name: pulumi.Output[Optional[str]] = pulumi.output_property("displayName")
     """
     Name used for UI elements listing this Service.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The full resource name for this service. The syntax is: projects/[PROJECT_ID]/services/[SERVICE_ID].
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    service_id: pulumi.Output[str]
+    service_id: pulumi.Output[str] = pulumi.output_property("serviceId")
     """
     An optional service ID to use. If not given, the server will generate a
     service ID.
     """
-    telemetry: pulumi.Output[dict]
+    telemetry: pulumi.Output[Optional['outputs.CustomServiceTelemetry']] = pulumi.output_property("telemetry")
     """
     Configuration for how to query telemetry on a Service.  Structure is documented below.
-
-      * `resourceName` (`str`) - The full name of the resource that defines this service.
-        Formatted as described in
-        https://cloud.google.com/apis/design/resource_names.
     """
-    def __init__(__self__, resource_name, opts=None, display_name=None, project=None, service_id=None, telemetry=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, display_name=None, project=None, service_id=None, telemetry=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A Service is a discrete, autonomous, and network-accessible unit,
         designed to solve an individual concern (Wikipedia). In Cloud Monitoring,
@@ -51,6 +50,19 @@ class CustomService(pulumi.CustomResource):
             * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
         ## Example Usage
+        ### Monitoring Service Custom
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        custom = gcp.monitoring.CustomService("custom",
+            display_name="My Custom Service custom-srv",
+            service_id="custom-srv",
+            telemetry={
+                "resourceName": "//product.googleapis.com/foo/foo/services/test",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -59,13 +71,7 @@ class CustomService(pulumi.CustomResource):
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] service_id: An optional service ID to use. If not given, the server will generate a
                service ID.
-        :param pulumi.Input[dict] telemetry: Configuration for how to query telemetry on a Service.  Structure is documented below.
-
-        The **telemetry** object supports the following:
-
-          * `resourceName` (`pulumi.Input[str]`) - The full name of the resource that defines this service.
-            Formatted as described in
-            https://cloud.google.com/apis/design/resource_names.
+        :param pulumi.Input['CustomServiceTelemetryArgs'] telemetry: Configuration for how to query telemetry on a Service.  Structure is documented below.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -78,7 +84,7 @@ class CustomService(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -110,13 +116,7 @@ class CustomService(pulumi.CustomResource):
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] service_id: An optional service ID to use. If not given, the server will generate a
                service ID.
-        :param pulumi.Input[dict] telemetry: Configuration for how to query telemetry on a Service.  Structure is documented below.
-
-        The **telemetry** object supports the following:
-
-          * `resourceName` (`pulumi.Input[str]`) - The full name of the resource that defines this service.
-            Formatted as described in
-            https://cloud.google.com/apis/design/resource_names.
+        :param pulumi.Input['CustomServiceTelemetryArgs'] telemetry: Configuration for how to query telemetry on a Service.  Structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -130,7 +130,8 @@ class CustomService(pulumi.CustomResource):
         return CustomService(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

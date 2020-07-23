@@ -5,14 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
 
 class GetEngineVersionsResult:
     """
     A collection of values returned by getEngineVersions.
     """
-    def __init__(__self__, default_cluster_version=None, id=None, latest_master_version=None, latest_node_version=None, location=None, project=None, release_channel_default_version=None, valid_master_versions=None, valid_node_versions=None, version_prefix=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, default_cluster_version=None, id=None, latest_master_version=None, latest_node_version=None, location=None, project=None, release_channel_default_version=None, valid_master_versions=None, valid_node_versions=None, version_prefix=None) -> None:
         if default_cluster_version and not isinstance(default_cluster_version, str):
             raise TypeError("Expected argument 'default_cluster_version' to be a str")
         __self__.default_cluster_version = default_cluster_version
@@ -64,6 +66,8 @@ class GetEngineVersionsResult:
         if version_prefix and not isinstance(version_prefix, str):
             raise TypeError("Expected argument 'version_prefix' to be a str")
         __self__.version_prefix = version_prefix
+
+
 class AwaitableGetEngineVersionsResult(GetEngineVersionsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -81,7 +85,8 @@ class AwaitableGetEngineVersionsResult(GetEngineVersionsResult):
             valid_node_versions=self.valid_node_versions,
             version_prefix=self.version_prefix)
 
-def get_engine_versions(location=None,project=None,version_prefix=None,opts=None):
+
+def get_engine_versions(location=None, project=None, version_prefix=None, opts=None):
     """
     Provides access to available Google Kubernetes Engine versions in a zone or region for a given project.
 
@@ -90,6 +95,25 @@ def get_engine_versions(location=None,project=None,version_prefix=None,opts=None
     the datasource. A region can have a different set of supported versions than
     its component zones, and not all zones in a region are guaranteed to
     support the same version.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    central1b = gcp.container.get_engine_versions(location="us-central1-b",
+        version_prefix="1.12.")
+    foo = gcp.container.Cluster("foo",
+        location="us-central1-b",
+        node_version=central1b.latest_node_version,
+        initial_node_count=1,
+        master_auth={
+            "username": "mr.yoda",
+            "password": "adoy.rm",
+        })
+    pulumi.export("stableChannelVersion", central1b.release_channel_default_version["STABLE"])
+    ```
 
 
     :param str location: The location (region or zone) to list versions for.
@@ -106,15 +130,13 @@ def get_engine_versions(location=None,project=None,version_prefix=None,opts=None
            for full details on how version strings are formatted.
     """
     __args__ = dict()
-
-
     __args__['location'] = location
     __args__['project'] = project
     __args__['versionPrefix'] = version_prefix
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:container/getEngineVersions:getEngineVersions', __args__, opts=opts).value
 
     return AwaitableGetEngineVersionsResult(

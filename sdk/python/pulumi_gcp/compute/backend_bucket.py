@@ -5,42 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class BackendBucket(pulumi.CustomResource):
-    bucket_name: pulumi.Output[str]
+    bucket_name: pulumi.Output[str] = pulumi.output_property("bucketName")
     """
     Cloud Storage bucket name.
     """
-    cdn_policy: pulumi.Output[dict]
+    cdn_policy: pulumi.Output['outputs.BackendBucketCdnPolicy'] = pulumi.output_property("cdnPolicy")
     """
     Cloud CDN configuration for this Backend Bucket.  Structure is documented below.
-
-      * `signedUrlCacheMaxAgeSec` (`float`) - Maximum number of seconds the response to a signed URL request will
-        be considered fresh. After this time period,
-        the response will be revalidated before being served.
-        When serving responses to signed URL requests,
-        Cloud CDN will internally behave as though
-        all responses from this backend had a "Cache-Control: public,
-        max-age=[TTL]" header, regardless of any existing Cache-Control
-        header. The actual headers served in responses will not be altered.
     """
-    creation_timestamp: pulumi.Output[str]
+    creation_timestamp: pulumi.Output[str] = pulumi.output_property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     An optional textual description of the resource; provided by the
     client when the resource is created.
     """
-    enable_cdn: pulumi.Output[bool]
+    enable_cdn: pulumi.Output[Optional[bool]] = pulumi.output_property("enableCdn")
     """
     If true, enable Cloud CDN for this BackendBucket.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -50,16 +43,17 @@ class BackendBucket(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the
     last character, which cannot be a dash.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The URI of the created resource.
     """
-    def __init__(__self__, resource_name, opts=None, bucket_name=None, cdn_policy=None, description=None, enable_cdn=None, name=None, project=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, bucket_name=None, cdn_policy=None, description=None, enable_cdn=None, name=None, project=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Backend buckets allow you to use Google Cloud Storage buckets with HTTP(S)
         load balancing.
@@ -76,11 +70,23 @@ class BackendBucket(pulumi.CustomResource):
             * [Using a Cloud Storage bucket as a load balancer backend](https://cloud.google.com/compute/docs/load-balancing/http/backend-bucket)
 
         ## Example Usage
+        ### Backend Bucket Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        image_bucket = gcp.storage.Bucket("imageBucket", location="EU")
+        image_backend = gcp.compute.BackendBucket("imageBackend",
+            description="Contains beautiful images",
+            bucket_name=image_bucket.name,
+            enable_cdn=True)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket_name: Cloud Storage bucket name.
-        :param pulumi.Input[dict] cdn_policy: Cloud CDN configuration for this Backend Bucket.  Structure is documented below.
+        :param pulumi.Input['BackendBucketCdnPolicyArgs'] cdn_policy: Cloud CDN configuration for this Backend Bucket.  Structure is documented below.
         :param pulumi.Input[str] description: An optional textual description of the resource; provided by the
                client when the resource is created.
         :param pulumi.Input[bool] enable_cdn: If true, enable Cloud CDN for this BackendBucket.
@@ -93,17 +99,6 @@ class BackendBucket(pulumi.CustomResource):
                last character, which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-
-        The **cdn_policy** object supports the following:
-
-          * `signedUrlCacheMaxAgeSec` (`pulumi.Input[float]`) - Maximum number of seconds the response to a signed URL request will
-            be considered fresh. After this time period,
-            the response will be revalidated before being served.
-            When serving responses to signed URL requests,
-            Cloud CDN will internally behave as though
-            all responses from this backend had a "Cache-Control: public,
-            max-age=[TTL]" header, regardless of any existing Cache-Control
-            header. The actual headers served in responses will not be altered.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -116,7 +111,7 @@ class BackendBucket(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -148,7 +143,7 @@ class BackendBucket(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket_name: Cloud Storage bucket name.
-        :param pulumi.Input[dict] cdn_policy: Cloud CDN configuration for this Backend Bucket.  Structure is documented below.
+        :param pulumi.Input['BackendBucketCdnPolicyArgs'] cdn_policy: Cloud CDN configuration for this Backend Bucket.  Structure is documented below.
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
         :param pulumi.Input[str] description: An optional textual description of the resource; provided by the
                client when the resource is created.
@@ -163,17 +158,6 @@ class BackendBucket(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-
-        The **cdn_policy** object supports the following:
-
-          * `signedUrlCacheMaxAgeSec` (`pulumi.Input[float]`) - Maximum number of seconds the response to a signed URL request will
-            be considered fresh. After this time period,
-            the response will be revalidated before being served.
-            When serving responses to signed URL requests,
-            Cloud CDN will internally behave as though
-            all responses from this backend had a "Cache-Control: public,
-            max-age=[TTL]" header, regardless of any existing Cache-Control
-            header. The actual headers served in responses will not be altered.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -190,7 +174,8 @@ class BackendBucket(pulumi.CustomResource):
         return BackendBucket(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

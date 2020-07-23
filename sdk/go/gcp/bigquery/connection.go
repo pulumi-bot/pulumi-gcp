@@ -22,6 +22,136 @@ import (
 // state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
 //
 // ## Example Usage
+// ### Bigquery Connection Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/bigquery"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/sql"
+// 	"github.com/pulumi/pulumi-random/sdk/v2/go/random"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		instance, err := sql.NewDatabaseInstance(ctx, "instance", &sql.DatabaseInstanceArgs{
+// 			DatabaseVersion: pulumi.String("POSTGRES_11"),
+// 			Region:          pulumi.String("us-central1"),
+// 			Settings: &sql.DatabaseInstanceSettingsArgs{
+// 				Tier: pulumi.String("db-f1-micro"),
+// 			},
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		db, err := sql.NewDatabase(ctx, "db", &sql.DatabaseArgs{
+// 			Instance: instance.Name,
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		pwd, err := random.NewRandomPassword(ctx, "pwd", &random.RandomPasswordArgs{
+// 			Length:  pulumi.Int(16),
+// 			Special: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		user, err := sql.NewUser(ctx, "user", &sql.UserArgs{
+// 			Instance: instance.Name,
+// 			Password: pwd.Result,
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = bigquery.NewConnection(ctx, "connection", &bigquery.ConnectionArgs{
+// 			FriendlyName: pulumi.String("👋"),
+// 			Description:  pulumi.String("a riveting description"),
+// 			CloudSql: &bigquery.ConnectionCloudSqlArgs{
+// 				InstanceId: instance.ConnectionName,
+// 				Database:   db.Name,
+// 				Type:       pulumi.String("POSTGRES"),
+// 				Credential: &bigquery.ConnectionCloudSqlCredentialArgs{
+// 					Username: user.Name,
+// 					Password: user.Password,
+// 				},
+// 			},
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Bigquery Connection Full
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/bigquery"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/sql"
+// 	"github.com/pulumi/pulumi-random/sdk/v2/go/random"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		instance, err := sql.NewDatabaseInstance(ctx, "instance", &sql.DatabaseInstanceArgs{
+// 			DatabaseVersion: pulumi.String("POSTGRES_11"),
+// 			Region:          pulumi.String("us-central1"),
+// 			Settings: &sql.DatabaseInstanceSettingsArgs{
+// 				Tier: pulumi.String("db-f1-micro"),
+// 			},
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		db, err := sql.NewDatabase(ctx, "db", &sql.DatabaseArgs{
+// 			Instance: instance.Name,
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		pwd, err := random.NewRandomPassword(ctx, "pwd", &random.RandomPasswordArgs{
+// 			Length:  pulumi.Int(16),
+// 			Special: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		user, err := sql.NewUser(ctx, "user", &sql.UserArgs{
+// 			Instance: instance.Name,
+// 			Password: pwd.Result,
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = bigquery.NewConnection(ctx, "connection", &bigquery.ConnectionArgs{
+// 			ConnectionId: pulumi.String("my-connection"),
+// 			Location:     pulumi.String("US"),
+// 			FriendlyName: pulumi.String("👋"),
+// 			Description:  pulumi.String("a riveting description"),
+// 			CloudSql: &bigquery.ConnectionCloudSqlArgs{
+// 				InstanceId: instance.ConnectionName,
+// 				Database:   db.Name,
+// 				Type:       pulumi.String("POSTGRES"),
+// 				Credential: &bigquery.ConnectionCloudSqlCredentialArgs{
+// 					Username: user.Name,
+// 					Password: user.Password,
+// 				},
+// 			},
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Connection struct {
 	pulumi.CustomResourceState
 

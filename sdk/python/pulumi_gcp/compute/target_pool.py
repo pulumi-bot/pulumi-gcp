@@ -5,31 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
 
 
 class TargetPool(pulumi.CustomResource):
-    backup_pool: pulumi.Output[str]
+    backup_pool: pulumi.Output[Optional[str]] = pulumi.output_property("backupPool")
     """
     URL to the backup target pool. Must also set
     failover\_ratio.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     Textual description field.
     """
-    failover_ratio: pulumi.Output[float]
+    failover_ratio: pulumi.Output[Optional[float]] = pulumi.output_property("failoverRatio")
     """
     Ratio (0 to 1) of failed nodes before using the
     backup pool (which must also be set).
     """
-    health_checks: pulumi.Output[str]
+    health_checks: pulumi.Output[Optional[str]] = pulumi.output_property("healthChecks")
     """
     List of zero or one health check name or self_link. Only
     legacy `compute.HttpHealthCheck` is supported.
     """
-    instances: pulumi.Output[list]
+    instances: pulumi.Output[List[str]] = pulumi.output_property("instances")
     """
     List of instances in the pool. They can be given as
     URLs, or in the form of "zone/name". Note that the instances need not exist
@@ -37,38 +37,57 @@ class TargetPool(pulumi.CustomResource):
     interpolation to create a dependency on the instances from the
     target pool.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     A unique name for the resource, required by GCE. Changing
     this forces a new resource to be created.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs. If it
     is not provided, the provider project is used.
     """
-    region: pulumi.Output[str]
+    region: pulumi.Output[str] = pulumi.output_property("region")
     """
     Where the target pool resides. Defaults to project
     region.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The URI of the created resource.
     """
-    session_affinity: pulumi.Output[str]
+    session_affinity: pulumi.Output[Optional[str]] = pulumi.output_property("sessionAffinity")
     """
     How to distribute load. Options are "NONE" (no
     affinity). "CLIENT\_IP" (hash of the source/dest addresses / ports), and
     "CLIENT\_IP\_PROTO" also includes the protocol (default "NONE").
     """
-    def __init__(__self__, resource_name, opts=None, backup_pool=None, description=None, failover_ratio=None, health_checks=None, instances=None, name=None, project=None, region=None, session_affinity=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, backup_pool=None, description=None, failover_ratio=None, health_checks=None, instances=None, name=None, project=None, region=None, session_affinity=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a Target Pool within GCE. This is a collection of instances used as
         target of a network load balancer (Forwarding Rule). For more information see
         [the official
         documentation](https://cloud.google.com/compute/docs/load-balancing/network/target-pools)
         and [API](https://cloud.google.com/compute/docs/reference/latest/targetPools).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_http_health_check = gcp.compute.HttpHealthCheck("defaultHttpHealthCheck",
+            request_path="/",
+            check_interval_sec=1,
+            timeout_sec=1)
+        default_target_pool = gcp.compute.TargetPool("defaultTargetPool",
+            instances=[
+                "us-central1-a/myinstance1",
+                "us-central1-b/myinstance2",
+            ],
+            health_checks=[default_http_health_check.name])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -79,7 +98,7 @@ class TargetPool(pulumi.CustomResource):
                backup pool (which must also be set).
         :param pulumi.Input[str] health_checks: List of zero or one health check name or self_link. Only
                legacy `compute.HttpHealthCheck` is supported.
-        :param pulumi.Input[list] instances: List of instances in the pool. They can be given as
+        :param pulumi.Input[List[pulumi.Input[str]]] instances: List of instances in the pool. They can be given as
                URLs, or in the form of "zone/name". Note that the instances need not exist
                at the time of target pool creation, so there is no need to use the
                interpolation to create a dependency on the instances from the
@@ -105,7 +124,7 @@ class TargetPool(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -143,7 +162,7 @@ class TargetPool(pulumi.CustomResource):
                backup pool (which must also be set).
         :param pulumi.Input[str] health_checks: List of zero or one health check name or self_link. Only
                legacy `compute.HttpHealthCheck` is supported.
-        :param pulumi.Input[list] instances: List of instances in the pool. They can be given as
+        :param pulumi.Input[List[pulumi.Input[str]]] instances: List of instances in the pool. They can be given as
                URLs, or in the form of "zone/name". Note that the instances need not exist
                at the time of target pool creation, so there is no need to use the
                interpolation to create a dependency on the instances from the
@@ -176,7 +195,8 @@ class TargetPool(pulumi.CustomResource):
         return TargetPool(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

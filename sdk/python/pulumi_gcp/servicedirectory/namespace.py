@@ -5,38 +5,39 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
 
 
 class Namespace(pulumi.CustomResource):
-    labels: pulumi.Output[dict]
+    labels: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("labels")
     """
     Resource labels associated with this Namespace. No more than 64 user
     labels can be associated with a given resource. Label keys and values can
     be no longer than 63 characters.
     """
-    location: pulumi.Output[str]
+    location: pulumi.Output[str] = pulumi.output_property("location")
     """
     The location for the Namespace.
     A full list of valid locations can be found by running
     `gcloud beta service-directory locations list`.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The resource name for the namespace in the format 'projects/*/locations/*/namespaces/*'.
     """
-    namespace_id: pulumi.Output[str]
+    namespace_id: pulumi.Output[str] = pulumi.output_property("namespaceId")
     """
     The Resource ID must be 1-63 characters long, including digits,
     lowercase letters or the hyphen character.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    def __init__(__self__, resource_name, opts=None, labels=None, location=None, namespace_id=None, project=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, labels=None, location=None, namespace_id=None, project=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A container for `services`. Namespaces allow administrators to group services
         together and define permissions for a collection of services.
@@ -48,10 +49,25 @@ class Namespace(pulumi.CustomResource):
             * [Configuring a namespace](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_a_namespace)
 
         ## Example Usage
+        ### Service Directory Namespace Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example = gcp.servicedirectory.Namespace("example",
+            namespace_id="example-namespace",
+            location="us-central1",
+            labels={
+                "key": "value",
+                "foo": "bar",
+            },
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] labels: Resource labels associated with this Namespace. No more than 64 user
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: Resource labels associated with this Namespace. No more than 64 user
                labels can be associated with a given resource. Label keys and values can
                be no longer than 63 characters.
         :param pulumi.Input[str] location: The location for the Namespace.
@@ -73,7 +89,7 @@ class Namespace(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -103,7 +119,7 @@ class Namespace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] labels: Resource labels associated with this Namespace. No more than 64 user
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: Resource labels associated with this Namespace. No more than 64 user
                labels can be associated with a given resource. Label keys and values can
                be no longer than 63 characters.
         :param pulumi.Input[str] location: The location for the Namespace.
@@ -127,7 +143,8 @@ class Namespace(pulumi.CustomResource):
         return Namespace(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

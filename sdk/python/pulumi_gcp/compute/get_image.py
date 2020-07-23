@@ -5,14 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
 
 class GetImageResult:
     """
     A collection of values returned by getImage.
     """
-    def __init__(__self__, archive_size_bytes=None, creation_timestamp=None, description=None, disk_size_gb=None, family=None, id=None, image_encryption_key_sha256=None, image_id=None, label_fingerprint=None, labels=None, licenses=None, name=None, project=None, self_link=None, source_disk=None, source_disk_encryption_key_sha256=None, source_disk_id=None, source_image_id=None, status=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, archive_size_bytes=None, creation_timestamp=None, description=None, disk_size_gb=None, family=None, id=None, image_encryption_key_sha256=None, image_id=None, label_fingerprint=None, labels=None, licenses=None, name=None, project=None, self_link=None, source_disk=None, source_disk_encryption_key_sha256=None, source_disk_id=None, source_image_id=None, status=None) -> None:
         if archive_size_bytes and not isinstance(archive_size_bytes, float):
             raise TypeError("Expected argument 'archive_size_bytes' to be a float")
         __self__.archive_size_bytes = archive_size_bytes
@@ -128,6 +130,8 @@ class GetImageResult:
         """
         The status of the image. Possible values are **FAILED**, **PENDING**, or **READY**.
         """
+
+
 class AwaitableGetImageResult(GetImageResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -154,10 +158,27 @@ class AwaitableGetImageResult(GetImageResult):
             source_image_id=self.source_image_id,
             status=self.status)
 
-def get_image(family=None,name=None,project=None,opts=None):
+
+def get_image(family=None, name=None, project=None, opts=None):
     """
     Get information about a Google Compute Image. Check that your service account has the `compute.imageUser` role if you want to share [custom images](https://cloud.google.com/compute/docs/images/sharing-images-across-projects) from another project. If you want to use [public images][pubimg], do not forget to specify the dedicated project. For more information see
     [the official documentation](https://cloud.google.com/compute/docs/images) and its [API](https://cloud.google.com/compute/docs/reference/latest/images).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_image = gcp.compute.get_image(family="debian-9",
+        project="debian-cloud")
+    # ...
+    default = gcp.compute.Instance("default", boot_disk={
+        "initializeParams": {
+            "image": my_image.self_link,
+        },
+    })
+    ```
 
 
     :param str family: The family name of the image.
@@ -170,15 +191,13 @@ def get_image(family=None,name=None,project=None,opts=None):
            [public base image][pubimg], be sure to specify the correct Image Project.
     """
     __args__ = dict()
-
-
     __args__['family'] = family
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getImage:getImage', __args__, opts=opts).value
 
     return AwaitableGetImageResult(

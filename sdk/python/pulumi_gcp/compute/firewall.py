@@ -5,80 +5,60 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Firewall(pulumi.CustomResource):
-    allows: pulumi.Output[list]
+    allows: pulumi.Output[Optional[List['outputs.FirewallAllow']]] = pulumi.output_property("allows")
     """
     The list of ALLOW rules specified by this firewall. Each rule
     specifies a protocol and port-range tuple that describes a permitted
     connection.  Structure is documented below.
-
-      * `ports` (`list`) - An optional list of ports to which this rule applies. This field
-        is only applicable for UDP or TCP protocol. Each entry must be
-        either an integer or a range. If not specified, this rule
-        applies to connections through any port.
-        Example inputs include: ["22"], ["80","443"], and
-        ["12345-12349"].
-      * `protocol` (`str`) - The IP protocol to which this rule applies. The protocol type is
-        required when creating a firewall rule. This value can either be
-        one of the following well known protocol strings (tcp, udp,
-        icmp, esp, ah, sctp, ipip), or the IP protocol number.
     """
-    creation_timestamp: pulumi.Output[str]
+    creation_timestamp: pulumi.Output[str] = pulumi.output_property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    denies: pulumi.Output[list]
+    denies: pulumi.Output[Optional[List['outputs.FirewallDeny']]] = pulumi.output_property("denies")
     """
     The list of DENY rules specified by this firewall. Each rule specifies
     a protocol and port-range tuple that describes a denied connection.  Structure is documented below.
-
-      * `ports` (`list`) - An optional list of ports to which this rule applies. This field
-        is only applicable for UDP or TCP protocol. Each entry must be
-        either an integer or a range. If not specified, this rule
-        applies to connections through any port.
-        Example inputs include: ["22"], ["80","443"], and
-        ["12345-12349"].
-      * `protocol` (`str`) - The IP protocol to which this rule applies. The protocol type is
-        required when creating a firewall rule. This value can either be
-        one of the following well known protocol strings (tcp, udp,
-        icmp, esp, ah, sctp, ipip), or the IP protocol number.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     An optional description of this resource. Provide this property when
     you create the resource.
     """
-    destination_ranges: pulumi.Output[list]
+    destination_ranges: pulumi.Output[List[str]] = pulumi.output_property("destinationRanges")
     """
     If destination ranges are specified, the firewall will apply only to
     traffic that has destination IP address in these ranges. These ranges
     must be expressed in CIDR format. Only IPv4 is supported.
     """
-    direction: pulumi.Output[str]
+    direction: pulumi.Output[str] = pulumi.output_property("direction")
     """
     Direction of traffic to which this firewall applies; default is
     INGRESS. Note: For INGRESS traffic, it is NOT supported to specify
     destinationRanges; For EGRESS traffic, it is NOT supported to specify
     sourceRanges OR sourceTags.
     """
-    disabled: pulumi.Output[bool]
+    disabled: pulumi.Output[Optional[bool]] = pulumi.output_property("disabled")
     """
     Denotes whether the firewall rule is disabled, i.e not applied to the
     network it is associated with. When set to true, the firewall rule is
     not enforced and the network behaves as if it did not exist. If this
     is unspecified, the firewall rule will be enabled.
     """
-    enable_logging: pulumi.Output[bool]
+    enable_logging: pulumi.Output[Optional[bool]] = pulumi.output_property("enableLogging")
     """
     This field denotes whether to enable logging for a particular
     firewall rule. If logging is enabled, logs will be exported to
     Stackdriver.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -88,11 +68,11 @@ class Firewall(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the last
     character, which cannot be a dash.
     """
-    network: pulumi.Output[str]
+    network: pulumi.Output[str] = pulumi.output_property("network")
     """
     The name or self_link of the network to attach this firewall to.
     """
-    priority: pulumi.Output[float]
+    priority: pulumi.Output[Optional[float]] = pulumi.output_property("priority")
     """
     Priority for this rule. This is an integer between 0 and 65535, both
     inclusive. When not specified, the value assumed is 1000. Relative
@@ -101,16 +81,16 @@ class Firewall(pulumi.CustomResource):
     higher precedence than a rule with priority 1). DENY rules take
     precedence over ALLOW rules having equal priority.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The URI of the created resource.
     """
-    source_ranges: pulumi.Output[list]
+    source_ranges: pulumi.Output[List[str]] = pulumi.output_property("sourceRanges")
     """
     If source ranges are specified, the firewall will apply only to
     traffic that has source IP address in these ranges. These ranges must
@@ -121,7 +101,7 @@ class Firewall(pulumi.CustomResource):
     connection does not need to match both properties for the firewall to
     apply. Only IPv4 is supported.
     """
-    source_service_accounts: pulumi.Output[list]
+    source_service_accounts: pulumi.Output[Optional[List[str]]] = pulumi.output_property("sourceServiceAccounts")
     """
     If source service accounts are specified, the firewall will apply only
     to traffic originating from an instance with a service account in this
@@ -135,7 +115,7 @@ class Firewall(pulumi.CustomResource):
     properties for the firewall to apply. sourceServiceAccounts cannot be
     used at the same time as sourceTags or targetTags.
     """
-    source_tags: pulumi.Output[list]
+    source_tags: pulumi.Output[Optional[List[str]]] = pulumi.output_property("sourceTags")
     """
     If source tags are specified, the firewall will apply only to traffic
     with source IP that belongs to a tag listed in source tags. Source
@@ -147,7 +127,7 @@ class Firewall(pulumi.CustomResource):
     a tag listed in the sourceTags property. The connection does not need
     to match both properties for the firewall to apply.
     """
-    target_service_accounts: pulumi.Output[list]
+    target_service_accounts: pulumi.Output[Optional[List[str]]] = pulumi.output_property("targetServiceAccounts")
     """
     A list of service accounts indicating sets of instances located in the
     network that may make network connections as specified in allowed[].
@@ -156,14 +136,15 @@ class Firewall(pulumi.CustomResource):
     specified, the firewall rule applies to all instances on the specified
     network.
     """
-    target_tags: pulumi.Output[list]
+    target_tags: pulumi.Output[Optional[List[str]]] = pulumi.output_property("targetTags")
     """
     A list of instance tags indicating sets of instances located in the
     network that may make network connections as specified in allowed[].
     If no targetTags are specified, the firewall rule applies to all
     instances on the specified network.
     """
-    def __init__(__self__, resource_name, opts=None, allows=None, denies=None, description=None, destination_ranges=None, direction=None, disabled=None, enable_logging=None, name=None, network=None, priority=None, project=None, source_ranges=None, source_service_accounts=None, source_tags=None, target_service_accounts=None, target_tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allows=None, denies=None, description=None, destination_ranges=None, direction=None, disabled=None, enable_logging=None, name=None, network=None, priority=None, project=None, source_ranges=None, source_service_accounts=None, source_tags=None, target_service_accounts=None, target_tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Each network has its own firewall controlling access to and from the
         instances.
@@ -185,17 +166,41 @@ class Firewall(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/vpc/docs/firewalls)
 
         ## Example Usage
+        ### Firewall Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_network = gcp.compute.Network("defaultNetwork")
+        default_firewall = gcp.compute.Firewall("defaultFirewall",
+            network=default_network.name,
+            allows=[
+                {
+                    "protocol": "icmp",
+                },
+                {
+                    "protocol": "tcp",
+                    "ports": [
+                        "80",
+                        "8080",
+                        "1000-2000",
+                    ],
+                },
+            ],
+            source_tags=["web"])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] allows: The list of ALLOW rules specified by this firewall. Each rule
+        :param pulumi.Input[List[pulumi.Input['FirewallAllowArgs']]] allows: The list of ALLOW rules specified by this firewall. Each rule
                specifies a protocol and port-range tuple that describes a permitted
                connection.  Structure is documented below.
-        :param pulumi.Input[list] denies: The list of DENY rules specified by this firewall. Each rule specifies
+        :param pulumi.Input[List[pulumi.Input['FirewallDenyArgs']]] denies: The list of DENY rules specified by this firewall. Each rule specifies
                a protocol and port-range tuple that describes a denied connection.  Structure is documented below.
         :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
                you create the resource.
-        :param pulumi.Input[list] destination_ranges: If destination ranges are specified, the firewall will apply only to
+        :param pulumi.Input[List[pulumi.Input[str]]] destination_ranges: If destination ranges are specified, the firewall will apply only to
                traffic that has destination IP address in these ranges. These ranges
                must be expressed in CIDR format. Only IPv4 is supported.
         :param pulumi.Input[str] direction: Direction of traffic to which this firewall applies; default is
@@ -225,7 +230,7 @@ class Firewall(pulumi.CustomResource):
                precedence over ALLOW rules having equal priority.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[list] source_ranges: If source ranges are specified, the firewall will apply only to
+        :param pulumi.Input[List[pulumi.Input[str]]] source_ranges: If source ranges are specified, the firewall will apply only to
                traffic that has source IP address in these ranges. These ranges must
                be expressed in CIDR format. One or both of sourceRanges and
                sourceTags may be set. If both properties are set, the firewall will
@@ -233,7 +238,7 @@ class Firewall(pulumi.CustomResource):
                source IP that belongs to a tag listed in the sourceTags property. The
                connection does not need to match both properties for the firewall to
                apply. Only IPv4 is supported.
-        :param pulumi.Input[list] source_service_accounts: If source service accounts are specified, the firewall will apply only
+        :param pulumi.Input[List[pulumi.Input[str]]] source_service_accounts: If source service accounts are specified, the firewall will apply only
                to traffic originating from an instance with a service account in this
                list. Source service accounts cannot be used to control traffic to an
                instance's external IP address because service accounts are associated
@@ -244,7 +249,7 @@ class Firewall(pulumi.CustomResource):
                sourceServiceAccount. The connection does not need to match both
                properties for the firewall to apply. sourceServiceAccounts cannot be
                used at the same time as sourceTags or targetTags.
-        :param pulumi.Input[list] source_tags: If source tags are specified, the firewall will apply only to traffic
+        :param pulumi.Input[List[pulumi.Input[str]]] source_tags: If source tags are specified, the firewall will apply only to traffic
                with source IP that belongs to a tag listed in source tags. Source
                tags cannot be used to control traffic to an instance's external IP
                address. Because tags are associated with an instance, not an IP
@@ -253,42 +258,16 @@ class Firewall(pulumi.CustomResource):
                source IP address within sourceRanges OR the source IP that belongs to
                a tag listed in the sourceTags property. The connection does not need
                to match both properties for the firewall to apply.
-        :param pulumi.Input[list] target_service_accounts: A list of service accounts indicating sets of instances located in the
+        :param pulumi.Input[List[pulumi.Input[str]]] target_service_accounts: A list of service accounts indicating sets of instances located in the
                network that may make network connections as specified in allowed[].
                targetServiceAccounts cannot be used at the same time as targetTags or
                sourceTags. If neither targetServiceAccounts nor targetTags are
                specified, the firewall rule applies to all instances on the specified
                network.
-        :param pulumi.Input[list] target_tags: A list of instance tags indicating sets of instances located in the
+        :param pulumi.Input[List[pulumi.Input[str]]] target_tags: A list of instance tags indicating sets of instances located in the
                network that may make network connections as specified in allowed[].
                If no targetTags are specified, the firewall rule applies to all
                instances on the specified network.
-
-        The **allows** object supports the following:
-
-          * `ports` (`pulumi.Input[list]`) - An optional list of ports to which this rule applies. This field
-            is only applicable for UDP or TCP protocol. Each entry must be
-            either an integer or a range. If not specified, this rule
-            applies to connections through any port.
-            Example inputs include: ["22"], ["80","443"], and
-            ["12345-12349"].
-          * `protocol` (`pulumi.Input[str]`) - The IP protocol to which this rule applies. The protocol type is
-            required when creating a firewall rule. This value can either be
-            one of the following well known protocol strings (tcp, udp,
-            icmp, esp, ah, sctp, ipip), or the IP protocol number.
-
-        The **denies** object supports the following:
-
-          * `ports` (`pulumi.Input[list]`) - An optional list of ports to which this rule applies. This field
-            is only applicable for UDP or TCP protocol. Each entry must be
-            either an integer or a range. If not specified, this rule
-            applies to connections through any port.
-            Example inputs include: ["22"], ["80","443"], and
-            ["12345-12349"].
-          * `protocol` (`pulumi.Input[str]`) - The IP protocol to which this rule applies. The protocol type is
-            required when creating a firewall rule. This value can either be
-            one of the following well known protocol strings (tcp, udp,
-            icmp, esp, ah, sctp, ipip), or the IP protocol number.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -301,7 +280,7 @@ class Firewall(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -342,15 +321,15 @@ class Firewall(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] allows: The list of ALLOW rules specified by this firewall. Each rule
+        :param pulumi.Input[List[pulumi.Input['FirewallAllowArgs']]] allows: The list of ALLOW rules specified by this firewall. Each rule
                specifies a protocol and port-range tuple that describes a permitted
                connection.  Structure is documented below.
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
-        :param pulumi.Input[list] denies: The list of DENY rules specified by this firewall. Each rule specifies
+        :param pulumi.Input[List[pulumi.Input['FirewallDenyArgs']]] denies: The list of DENY rules specified by this firewall. Each rule specifies
                a protocol and port-range tuple that describes a denied connection.  Structure is documented below.
         :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
                you create the resource.
-        :param pulumi.Input[list] destination_ranges: If destination ranges are specified, the firewall will apply only to
+        :param pulumi.Input[List[pulumi.Input[str]]] destination_ranges: If destination ranges are specified, the firewall will apply only to
                traffic that has destination IP address in these ranges. These ranges
                must be expressed in CIDR format. Only IPv4 is supported.
         :param pulumi.Input[str] direction: Direction of traffic to which this firewall applies; default is
@@ -381,7 +360,7 @@ class Firewall(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[list] source_ranges: If source ranges are specified, the firewall will apply only to
+        :param pulumi.Input[List[pulumi.Input[str]]] source_ranges: If source ranges are specified, the firewall will apply only to
                traffic that has source IP address in these ranges. These ranges must
                be expressed in CIDR format. One or both of sourceRanges and
                sourceTags may be set. If both properties are set, the firewall will
@@ -389,7 +368,7 @@ class Firewall(pulumi.CustomResource):
                source IP that belongs to a tag listed in the sourceTags property. The
                connection does not need to match both properties for the firewall to
                apply. Only IPv4 is supported.
-        :param pulumi.Input[list] source_service_accounts: If source service accounts are specified, the firewall will apply only
+        :param pulumi.Input[List[pulumi.Input[str]]] source_service_accounts: If source service accounts are specified, the firewall will apply only
                to traffic originating from an instance with a service account in this
                list. Source service accounts cannot be used to control traffic to an
                instance's external IP address because service accounts are associated
@@ -400,7 +379,7 @@ class Firewall(pulumi.CustomResource):
                sourceServiceAccount. The connection does not need to match both
                properties for the firewall to apply. sourceServiceAccounts cannot be
                used at the same time as sourceTags or targetTags.
-        :param pulumi.Input[list] source_tags: If source tags are specified, the firewall will apply only to traffic
+        :param pulumi.Input[List[pulumi.Input[str]]] source_tags: If source tags are specified, the firewall will apply only to traffic
                with source IP that belongs to a tag listed in source tags. Source
                tags cannot be used to control traffic to an instance's external IP
                address. Because tags are associated with an instance, not an IP
@@ -409,42 +388,16 @@ class Firewall(pulumi.CustomResource):
                source IP address within sourceRanges OR the source IP that belongs to
                a tag listed in the sourceTags property. The connection does not need
                to match both properties for the firewall to apply.
-        :param pulumi.Input[list] target_service_accounts: A list of service accounts indicating sets of instances located in the
+        :param pulumi.Input[List[pulumi.Input[str]]] target_service_accounts: A list of service accounts indicating sets of instances located in the
                network that may make network connections as specified in allowed[].
                targetServiceAccounts cannot be used at the same time as targetTags or
                sourceTags. If neither targetServiceAccounts nor targetTags are
                specified, the firewall rule applies to all instances on the specified
                network.
-        :param pulumi.Input[list] target_tags: A list of instance tags indicating sets of instances located in the
+        :param pulumi.Input[List[pulumi.Input[str]]] target_tags: A list of instance tags indicating sets of instances located in the
                network that may make network connections as specified in allowed[].
                If no targetTags are specified, the firewall rule applies to all
                instances on the specified network.
-
-        The **allows** object supports the following:
-
-          * `ports` (`pulumi.Input[list]`) - An optional list of ports to which this rule applies. This field
-            is only applicable for UDP or TCP protocol. Each entry must be
-            either an integer or a range. If not specified, this rule
-            applies to connections through any port.
-            Example inputs include: ["22"], ["80","443"], and
-            ["12345-12349"].
-          * `protocol` (`pulumi.Input[str]`) - The IP protocol to which this rule applies. The protocol type is
-            required when creating a firewall rule. This value can either be
-            one of the following well known protocol strings (tcp, udp,
-            icmp, esp, ah, sctp, ipip), or the IP protocol number.
-
-        The **denies** object supports the following:
-
-          * `ports` (`pulumi.Input[list]`) - An optional list of ports to which this rule applies. This field
-            is only applicable for UDP or TCP protocol. Each entry must be
-            either an integer or a range. If not specified, this rule
-            applies to connections through any port.
-            Example inputs include: ["22"], ["80","443"], and
-            ["12345-12349"].
-          * `protocol` (`pulumi.Input[str]`) - The IP protocol to which this rule applies. The protocol type is
-            required when creating a firewall rule. This value can either be
-            one of the following well known protocol strings (tcp, udp,
-            icmp, esp, ah, sctp, ipip), or the IP protocol number.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -471,7 +424,8 @@ class Firewall(pulumi.CustomResource):
         return Firewall(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

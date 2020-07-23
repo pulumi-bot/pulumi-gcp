@@ -5,12 +5,12 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
 
 
 class Network(pulumi.CustomResource):
-    auto_create_subnetworks: pulumi.Output[bool]
+    auto_create_subnetworks: pulumi.Output[Optional[bool]] = pulumi.output_property("autoCreateSubnetworks")
     """
     When set to `true`, the network is created in "auto subnet mode" and
     it will create a subnet for each region automatically across the
@@ -18,21 +18,21 @@ class Network(pulumi.CustomResource):
     When set to `false`, the network is created in "custom subnet mode" so
     the user can explicitly connect subnetwork resources.
     """
-    delete_default_routes_on_create: pulumi.Output[bool]
+    delete_default_routes_on_create: pulumi.Output[Optional[bool]] = pulumi.output_property("deleteDefaultRoutesOnCreate")
     """
     If set to `true`, default routes (`0.0.0.0/0`) will be deleted
     immediately after network creation. Defaults to `false`.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     An optional description of this resource. The resource must be
     recreated to modify this field.
     """
-    gateway_ipv4: pulumi.Output[str]
+    gateway_ipv4: pulumi.Output[str] = pulumi.output_property("gatewayIpv4")
     """
     The gateway address for default routing out of the network. This value is selected by GCP.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -42,12 +42,12 @@ class Network(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the last
     character, which cannot be a dash.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    routing_mode: pulumi.Output[str]
+    routing_mode: pulumi.Output[str] = pulumi.output_property("routingMode")
     """
     The network-wide routing mode to use. If set to `REGIONAL`, this
     network's cloud routers will only advertise routes with subnetworks
@@ -55,11 +55,12 @@ class Network(pulumi.CustomResource):
     this network's cloud routers will advertise routes with all
     subnetworks of this network, across regions.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The URI of the created resource.
     """
-    def __init__(__self__, resource_name, opts=None, auto_create_subnetworks=None, delete_default_routes_on_create=None, description=None, name=None, project=None, routing_mode=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, auto_create_subnetworks=None, delete_default_routes_on_create=None, description=None, name=None, project=None, routing_mode=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a VPC network or legacy network resource on GCP.
 
@@ -70,6 +71,14 @@ class Network(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/vpc/docs/vpc)
 
         ## Example Usage
+        ### Network Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        vpc_network = gcp.compute.Network("vpcNetwork")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -108,7 +117,7 @@ class Network(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -178,7 +187,8 @@ class Network(pulumi.CustomResource):
         return Network(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

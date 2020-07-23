@@ -5,36 +5,36 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class DataStoreIndex(pulumi.CustomResource):
-    ancestor: pulumi.Output[str]
+    ancestor: pulumi.Output[Optional[str]] = pulumi.output_property("ancestor")
     """
     Policy for including ancestors in the index.
     """
-    index_id: pulumi.Output[str]
+    index_id: pulumi.Output[str] = pulumi.output_property("indexId")
     """
     The index id.
     """
-    kind: pulumi.Output[str]
+    kind: pulumi.Output[str] = pulumi.output_property("kind")
     """
     The entity kind which the index applies to.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    properties: pulumi.Output[list]
+    properties: pulumi.Output[Optional[List['outputs.DataStoreIndexProperty']]] = pulumi.output_property("properties")
     """
     An ordered list of properties to index on.  Structure is documented below.
-
-      * `direction` (`str`) - The direction the index should optimize for sorting.
-      * `name` (`str`) - The property name to index.
     """
-    def __init__(__self__, resource_name, opts=None, ancestor=None, kind=None, project=None, properties=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, ancestor=None, kind=None, project=None, properties=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Describes a composite index for Cloud Datastore.
 
@@ -45,6 +45,25 @@ class DataStoreIndex(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/datastore/docs/concepts/indexes)
 
         ## Example Usage
+        ### Datastore Index
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.datastore.DataStoreIndex("default",
+            kind="foo",
+            properties=[
+                {
+                    "direction": "ASCENDING",
+                    "name": "property_a",
+                },
+                {
+                    "direction": "ASCENDING",
+                    "name": "property_b",
+                },
+            ])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -52,12 +71,7 @@ class DataStoreIndex(pulumi.CustomResource):
         :param pulumi.Input[str] kind: The entity kind which the index applies to.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[list] properties: An ordered list of properties to index on.  Structure is documented below.
-
-        The **properties** object supports the following:
-
-          * `direction` (`pulumi.Input[str]`) - The direction the index should optimize for sorting.
-          * `name` (`pulumi.Input[str]`) - The property name to index.
+        :param pulumi.Input[List[pulumi.Input['DataStoreIndexPropertyArgs']]] properties: An ordered list of properties to index on.  Structure is documented below.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -70,7 +84,7 @@ class DataStoreIndex(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -103,12 +117,7 @@ class DataStoreIndex(pulumi.CustomResource):
         :param pulumi.Input[str] kind: The entity kind which the index applies to.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[list] properties: An ordered list of properties to index on.  Structure is documented below.
-
-        The **properties** object supports the following:
-
-          * `direction` (`pulumi.Input[str]`) - The direction the index should optimize for sorting.
-          * `name` (`pulumi.Input[str]`) - The property name to index.
+        :param pulumi.Input[List[pulumi.Input['DataStoreIndexPropertyArgs']]] properties: An ordered list of properties to index on.  Structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -122,7 +131,8 @@ class DataStoreIndex(pulumi.CustomResource):
         return DataStoreIndex(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

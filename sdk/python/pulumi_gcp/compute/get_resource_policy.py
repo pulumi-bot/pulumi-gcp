@@ -5,14 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
 
 class GetResourcePolicyResult:
     """
     A collection of values returned by getResourcePolicy.
     """
-    def __init__(__self__, description=None, id=None, name=None, project=None, region=None, self_link=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, description=None, id=None, name=None, project=None, region=None, self_link=None) -> None:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         __self__.description = description
@@ -40,6 +42,8 @@ class GetResourcePolicyResult:
         """
         The URI of the resource.
         """
+
+
 class AwaitableGetResourcePolicyResult(GetResourcePolicyResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -53,9 +57,18 @@ class AwaitableGetResourcePolicyResult(GetResourcePolicyResult):
             region=self.region,
             self_link=self.self_link)
 
-def get_resource_policy(name=None,project=None,region=None,opts=None):
+
+def get_resource_policy(name=None, project=None, region=None, opts=None):
     """
     Provide access to a Resource Policy's attributes. For more information see [the official documentation](https://cloud.google.com/compute/docs/disks/scheduled-snapshots) or the [API](https://cloud.google.com/compute/docs/reference/rest/beta/resourcePolicies).
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    daily = gcp.compute.get_resource_policy(name="daily",
+        region="us-central1")
+    ```
 
 
     :param str name: The name of the Resource Policy.
@@ -63,15 +76,13 @@ def get_resource_policy(name=None,project=None,region=None,opts=None):
     :param str region: Region where the Resource Policy resides.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getResourcePolicy:getResourcePolicy', __args__, opts=opts).value
 
     return AwaitableGetResourcePolicyResult(

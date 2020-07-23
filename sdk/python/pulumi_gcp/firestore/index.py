@@ -5,20 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Index(pulumi.CustomResource):
-    collection: pulumi.Output[str]
+    collection: pulumi.Output[str] = pulumi.output_property("collection")
     """
     The collection being indexed.
     """
-    database: pulumi.Output[str]
+    database: pulumi.Output[Optional[str]] = pulumi.output_property("database")
     """
     The Firestore database id. Defaults to `"(default)"`.
     """
-    fields: pulumi.Output[list]
+    fields: pulumi.Output[List['outputs.IndexField']] = pulumi.output_property("fields")
     """
     The fields supported by this index. The last field entry is always for
     the field path `__name__`. If, on creation, `__name__` was not
@@ -26,28 +28,23 @@ class Index(pulumi.CustomResource):
     same direction as that of the last field defined. If the final field
     in a composite index is not directional, the `__name__` will be
     ordered `"ASCENDING"` (unless explicitly specified otherwise).  Structure is documented below.
-
-      * `arrayConfig` (`str`) - Indicates that this field supports operations on arrayValues. Only one of `order` and `arrayConfig` can
-        be specified.
-      * `fieldPath` (`str`) - Name of the field.
-      * `order` (`str`) - Indicates that this field supports ordering by the specified order or comparing using =, <, <=, >, >=.
-        Only one of `order` and `arrayConfig` can be specified.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     A server defined name for this index. Format:
     'projects/{{project}}/databases/{{database}}/collectionGroups/{{collection}}/indexes/{{server_generated_id}}'
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    query_scope: pulumi.Output[str]
+    query_scope: pulumi.Output[Optional[str]] = pulumi.output_property("queryScope")
     """
     The scope at which a query is run.
     """
-    def __init__(__self__, resource_name, opts=None, collection=None, database=None, fields=None, project=None, query_scope=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, collection=None, database=None, fields=None, project=None, query_scope=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Cloud Firestore indexes enable simple and complex queries against documents in a database.
          This resource manages composite indexes and not single
@@ -60,12 +57,36 @@ class Index(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/firestore/docs/query-data/indexing)
 
         ## Example Usage
+        ### Firestore Index Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_index = gcp.firestore.Index("my-index",
+            collection="chatrooms",
+            fields=[
+                {
+                    "fieldPath": "name",
+                    "order": "ASCENDING",
+                },
+                {
+                    "fieldPath": "description",
+                    "order": "DESCENDING",
+                },
+                {
+                    "fieldPath": "__name__",
+                    "order": "DESCENDING",
+                },
+            ],
+            project="my-project-name")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] collection: The collection being indexed.
         :param pulumi.Input[str] database: The Firestore database id. Defaults to `"(default)"`.
-        :param pulumi.Input[list] fields: The fields supported by this index. The last field entry is always for
+        :param pulumi.Input[List[pulumi.Input['IndexFieldArgs']]] fields: The fields supported by this index. The last field entry is always for
                the field path `__name__`. If, on creation, `__name__` was not
                specified as the last field, it will be added automatically with the
                same direction as that of the last field defined. If the final field
@@ -74,14 +95,6 @@ class Index(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] query_scope: The scope at which a query is run.
-
-        The **fields** object supports the following:
-
-          * `arrayConfig` (`pulumi.Input[str]`) - Indicates that this field supports operations on arrayValues. Only one of `order` and `arrayConfig` can
-            be specified.
-          * `fieldPath` (`pulumi.Input[str]`) - Name of the field.
-          * `order` (`pulumi.Input[str]`) - Indicates that this field supports ordering by the specified order or comparing using =, <, <=, >, >=.
-            Only one of `order` and `arrayConfig` can be specified.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -94,7 +107,7 @@ class Index(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -127,7 +140,7 @@ class Index(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] collection: The collection being indexed.
         :param pulumi.Input[str] database: The Firestore database id. Defaults to `"(default)"`.
-        :param pulumi.Input[list] fields: The fields supported by this index. The last field entry is always for
+        :param pulumi.Input[List[pulumi.Input['IndexFieldArgs']]] fields: The fields supported by this index. The last field entry is always for
                the field path `__name__`. If, on creation, `__name__` was not
                specified as the last field, it will be added automatically with the
                same direction as that of the last field defined. If the final field
@@ -138,14 +151,6 @@ class Index(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] query_scope: The scope at which a query is run.
-
-        The **fields** object supports the following:
-
-          * `arrayConfig` (`pulumi.Input[str]`) - Indicates that this field supports operations on arrayValues. Only one of `order` and `arrayConfig` can
-            be specified.
-          * `fieldPath` (`pulumi.Input[str]`) - Name of the field.
-          * `order` (`pulumi.Input[str]`) - Indicates that this field supports ordering by the specified order or comparing using =, <, <=, >, >=.
-            Only one of `order` and `arrayConfig` can be specified.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -160,7 +165,8 @@ class Index(pulumi.CustomResource):
         return Index(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

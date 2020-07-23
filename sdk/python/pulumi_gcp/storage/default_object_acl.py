@@ -5,22 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
 
 
 class DefaultObjectACL(pulumi.CustomResource):
-    bucket: pulumi.Output[str]
+    bucket: pulumi.Output[str] = pulumi.output_property("bucket")
     """
     The name of the bucket it applies to.
     """
-    role_entities: pulumi.Output[list]
+    role_entities: pulumi.Output[List[str]] = pulumi.output_property("roleEntities")
     """
     List of role/entity pairs in the form `ROLE:entity`.
     See [GCS Object ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls) for more details.
     Omitting the field is the same as providing an empty list.
     """
-    def __init__(__self__, resource_name, opts=None, bucket=None, role_entities=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, bucket=None, role_entities=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Authoritatively manages the default object ACLs for a Google Cloud Storage bucket
         without managing the bucket itself.
@@ -36,10 +37,27 @@ class DefaultObjectACL(pulumi.CustomResource):
         > Want fine-grained control over default object ACLs? Use `storage.DefaultObjectAccessControl`
         to control individual role entity pairs.
 
+        ## Example Usage
+
+        Example creating a default object ACL on a bucket with one owner, and one reader.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        image_store = gcp.storage.Bucket("image-store", location="EU")
+        image_store_default_acl = gcp.storage.DefaultObjectACL("image-store-default-acl",
+            bucket=image_store.name,
+            role_entities=[
+                "OWNER:user-my.email@gmail.com",
+                "READER:group-mygroup",
+            ])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket it applies to.
-        :param pulumi.Input[list] role_entities: List of role/entity pairs in the form `ROLE:entity`.
+        :param pulumi.Input[List[pulumi.Input[str]]] role_entities: List of role/entity pairs in the form `ROLE:entity`.
                See [GCS Object ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls) for more details.
                Omitting the field is the same as providing an empty list.
         """
@@ -54,7 +72,7 @@ class DefaultObjectACL(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -80,7 +98,7 @@ class DefaultObjectACL(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket it applies to.
-        :param pulumi.Input[list] role_entities: List of role/entity pairs in the form `ROLE:entity`.
+        :param pulumi.Input[List[pulumi.Input[str]]] role_entities: List of role/entity pairs in the form `ROLE:entity`.
                See [GCS Object ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls) for more details.
                Omitting the field is the same as providing an empty list.
         """
@@ -93,7 +111,8 @@ class DefaultObjectACL(pulumi.CustomResource):
         return DefaultObjectACL(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

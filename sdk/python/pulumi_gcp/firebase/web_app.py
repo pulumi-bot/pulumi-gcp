@@ -5,30 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
 
 
 class WebApp(pulumi.CustomResource):
-    app_id: pulumi.Output[str]
+    app_id: pulumi.Output[str] = pulumi.output_property("appId")
     """
     Immutable. The globally unique, Firebase-assigned identifier of the App. This identifier should be treated as an opaque
     token, as the data format is not specified.
     """
-    display_name: pulumi.Output[str]
+    display_name: pulumi.Output[str] = pulumi.output_property("displayName")
     """
     The user-assigned display name of the App.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The fully qualified resource name of the App, for example: projects/projectId/webApps/appId
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    def __init__(__self__, resource_name, opts=None, display_name=None, project=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, display_name=None, project=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A Google Cloud Firebase web application instance
 
@@ -57,7 +58,7 @@ class WebApp(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -102,7 +103,8 @@ class WebApp(pulumi.CustomResource):
         return WebApp(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

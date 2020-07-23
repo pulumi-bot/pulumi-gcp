@@ -5,463 +5,226 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Job(pulumi.CustomResource):
-    copy: pulumi.Output[dict]
+    copy: pulumi.Output[Optional['outputs.JobCopy']] = pulumi.output_property("copy")
     """
     Copies a table.  Structure is documented below.
-
-      * `createDisposition` (`str`) - Specifies whether the job is allowed to create new tables. The following values are supported:
-        CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table.
-        CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result.
-        Creation, truncation and append actions occur as one atomic update upon job completion
-      * `destinationEncryptionConfiguration` (`dict`) - Custom encryption configuration (e.g., Cloud KMS keys)  Structure is documented below.
-        * `kms_key_name` (`str`) - Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table.
-          The BigQuery Service Account associated with your project requires access to this encryption key.
-
-      * `destinationTable` (`dict`) - The destination table.  Structure is documented below.
-        * `dataset_id` (`str`) - The ID of the dataset containing this model.
-        * `project_id` (`str`) - The ID of the project containing this model.
-        * `table_id` (`str`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-          or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-      * `sourceTables` (`list`) - Source tables to copy.  Structure is documented below.
-        * `dataset_id` (`str`) - The ID of the dataset containing this model.
-        * `project_id` (`str`) - The ID of the project containing this model.
-        * `table_id` (`str`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-          or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-      * `writeDisposition` (`str`) - Specifies the action that occurs if the destination table already exists. The following values are supported:
-        WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result.
-        WRITE_APPEND: If the table already exists, BigQuery appends the data to the table.
-        WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result.
-        Each action is atomic and only occurs if BigQuery is able to complete the job successfully.
-        Creation, truncation and append actions occur as one atomic update upon job completion.
     """
-    extract: pulumi.Output[dict]
+    extract: pulumi.Output[Optional['outputs.JobExtract']] = pulumi.output_property("extract")
     """
     Configures an extract job.  Structure is documented below.
-
-      * `compression` (`str`) - The compression type to use for exported files. Possible values include GZIP, DEFLATE, SNAPPY, and NONE.
-        The default value is NONE. DEFLATE and SNAPPY are only supported for Avro.
-      * `destinationFormat` (`str`) - The exported file format. Possible values include CSV, NEWLINE_DELIMITED_JSON and AVRO for tables and SAVED_MODEL for models.
-        The default value for tables is CSV. Tables with nested or repeated fields cannot be exported as CSV.
-        The default value for models is SAVED_MODEL.
-      * `destinationUris` (`list`) - A list of fully-qualified Google Cloud Storage URIs where the extracted table should be written.
-      * `fieldDelimiter` (`str`) - When extracting data in CSV format, this defines the delimiter to use between fields in the exported data.
-        Default is ','
-      * `printHeader` (`bool`) - Whether to print out a header row in the results. Default is true.
-      * `sourceModel` (`dict`) - A reference to the model being exported.  Structure is documented below.
-        * `dataset_id` (`str`) - The ID of the dataset containing this model.
-        * `modelId` (`str`) - The ID of the model.
-        * `project_id` (`str`) - The ID of the project containing this model.
-
-      * `sourceTable` (`dict`) - A reference to the table being exported.  Structure is documented below.
-        * `dataset_id` (`str`) - The ID of the dataset containing this model.
-        * `project_id` (`str`) - The ID of the project containing this model.
-        * `table_id` (`str`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-          or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-      * `useAvroLogicalTypes` (`bool`) - Whether to use logical types when extracting to AVRO format.
     """
-    job_id: pulumi.Output[str]
+    job_id: pulumi.Output[str] = pulumi.output_property("jobId")
     """
     The ID of the job. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or dashes (-). The maximum length is 1,024 characters.
     """
-    job_timeout_ms: pulumi.Output[str]
+    job_timeout_ms: pulumi.Output[Optional[str]] = pulumi.output_property("jobTimeoutMs")
     """
     Job timeout in milliseconds. If this time limit is exceeded, BigQuery may attempt to terminate the job.
     """
-    job_type: pulumi.Output[str]
+    job_type: pulumi.Output[str] = pulumi.output_property("jobType")
     """
     The type of the job.
     """
-    labels: pulumi.Output[dict]
+    labels: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("labels")
     """
     The labels associated with this job. You can use these to organize and group your jobs.
     """
-    load: pulumi.Output[dict]
+    load: pulumi.Output[Optional['outputs.JobLoad']] = pulumi.output_property("load")
     """
     Configures a load job.  Structure is documented below.
-
-      * `allowJaggedRows` (`bool`) - Accept rows that are missing trailing optional columns. The missing values are treated as nulls.
-        If false, records with missing trailing columns are treated as bad records, and if there are too many bad records,
-        an invalid error is returned in the job result. The default value is false. Only applicable to CSV, ignored for other formats.
-      * `allowQuotedNewlines` (`bool`) - Indicates if BigQuery should allow quoted data sections that contain newline characters in a CSV file.
-        The default value is false.
-      * `autodetect` (`bool`) - Indicates if we should automatically infer the options and schema for CSV and JSON sources.
-      * `createDisposition` (`str`) - Specifies whether the job is allowed to create new tables. The following values are supported:
-        CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table.
-        CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result.
-        Creation, truncation and append actions occur as one atomic update upon job completion
-      * `destinationEncryptionConfiguration` (`dict`) - Custom encryption configuration (e.g., Cloud KMS keys)  Structure is documented below.
-        * `kms_key_name` (`str`) - Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table.
-          The BigQuery Service Account associated with your project requires access to this encryption key.
-
-      * `destinationTable` (`dict`) - The destination table.  Structure is documented below.
-        * `dataset_id` (`str`) - The ID of the dataset containing this model.
-        * `project_id` (`str`) - The ID of the project containing this model.
-        * `table_id` (`str`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-          or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-      * `encoding` (`str`) - The character encoding of the data. The supported values are UTF-8 or ISO-8859-1.
-        The default value is UTF-8. BigQuery decodes the data after the raw, binary data
-        has been split using the values of the quote and fieldDelimiter properties.
-      * `fieldDelimiter` (`str`) - When extracting data in CSV format, this defines the delimiter to use between fields in the exported data.
-        Default is ','
-      * `ignoreUnknownValues` (`bool`) - Indicates if BigQuery should allow extra values that are not represented in the table schema.
-        If true, the extra values are ignored. If false, records with extra columns are treated as bad records,
-        and if there are too many bad records, an invalid error is returned in the job result.
-        The default value is false. The sourceFormat property determines what BigQuery treats as an extra value:
-        CSV: Trailing columns
-        JSON: Named values that don't match any column names
-      * `maxBadRecords` (`float`) - The maximum number of bad records that BigQuery can ignore when running the job. If the number of bad records exceeds this value,
-        an invalid error is returned in the job result. The default value is 0, which requires that all records are valid.
-      * `nullMarker` (`str`) - Specifies a string that represents a null value in a CSV file. The default value is the empty string. If you set this
-        property to a custom value, BigQuery throws an error if an
-        empty string is present for all data types except for STRING and BYTE. For STRING and BYTE columns, BigQuery interprets the empty string as
-        an empty value.
-      * `projectionFields` (`list`) - If sourceFormat is set to "DATASTORE_BACKUP", indicates which entity properties to load into BigQuery from a Cloud Datastore backup.
-        Property names are case sensitive and must be top-level properties. If no properties are specified, BigQuery loads all properties.
-        If any named property isn't found in the Cloud Datastore backup, an invalid error is returned in the job result.
-      * `quote` (`str`) - The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding,
-        and then uses the first byte of the encoded string to split the data in its raw, binary state.
-        The default value is a double-quote ('"'). If your data does not contain quoted sections, set the property value to an empty string.
-        If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
-      * `schemaUpdateOptions` (`list`) - Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or
-        supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND;
-        when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators.
-        For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified:
-        ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema.
-        ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
-      * `skipLeadingRows` (`float`) - The number of rows at the top of a CSV file that BigQuery will skip when loading the data.
-        The default value is 0. This property is useful if you have header rows in the file that should be skipped.
-        When autodetect is on, the behavior is the following:
-        skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected,
-        the row is read as data. Otherwise data is read starting from the second row.
-        skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row.
-        skipLeadingRows = N > 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected,
-        row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
-      * `sourceFormat` (`str`) - The format of the data files. For CSV files, specify "CSV". For datastore backups, specify "DATASTORE_BACKUP".
-        For newline-delimited JSON, specify "NEWLINE_DELIMITED_JSON". For Avro, specify "AVRO". For parquet, specify "PARQUET".
-        For orc, specify "ORC". The default value is CSV.
-      * `sourceUris` (`list`) - The fully-qualified URIs that point to your data in Google Cloud.
-        For Google Cloud Storage URIs: Each URI can contain one '*' wildcard character
-        and it must come after the 'bucket' name. Size limits related to load jobs apply
-        to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be
-        specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table.
-        For Google Cloud Datastore backups: Exactly one URI can be specified. Also, the '*' wildcard character is not allowed.
-      * `time_partitioning` (`dict`) - Time-based partitioning specification for the destination table.  Structure is documented below.
-        * `expirationMs` (`str`) - Number of milliseconds for which to keep the storage for a partition. A wrapper is used here because 0 is an invalid value.
-        * `field` (`str`) - If not set, the table is partitioned by pseudo column '_PARTITIONTIME'; if set, the table is partitioned by this field.
-          The field must be a top-level TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
-          A wrapper is used here because an empty string is an invalid value.
-        * `type` (`str`) - The only type supported is DAY, which will generate one partition per day. Providing an empty string used to cause an error,
-          but in OnePlatform the field will be treated as unset.
-
-      * `writeDisposition` (`str`) - Specifies the action that occurs if the destination table already exists. The following values are supported:
-        WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result.
-        WRITE_APPEND: If the table already exists, BigQuery appends the data to the table.
-        WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result.
-        Each action is atomic and only occurs if BigQuery is able to complete the job successfully.
-        Creation, truncation and append actions occur as one atomic update upon job completion.
     """
-    location: pulumi.Output[str]
+    location: pulumi.Output[Optional[str]] = pulumi.output_property("location")
     """
     The geographic location of the job. The default value is US.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    query: pulumi.Output[dict]
+    query: pulumi.Output[Optional['outputs.JobQuery']] = pulumi.output_property("query")
     """
     Configures a query job.  Structure is documented below.
-
-      * `allowLargeResults` (`bool`) - If true and query uses legacy SQL dialect, allows the query to produce arbitrarily large result tables at a slight cost in performance.
-        Requires destinationTable to be set. For standard SQL queries, this flag is ignored and large results are always allowed.
-        However, you must still set destinationTable when result size exceeds the allowed maximum response size.
-      * `createDisposition` (`str`) - Specifies whether the job is allowed to create new tables. The following values are supported:
-        CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table.
-        CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result.
-        Creation, truncation and append actions occur as one atomic update upon job completion
-      * `defaultDataset` (`dict`) - Specifies the default dataset to use for unqualified table names in the query. Note that this does not alter behavior of unqualified dataset names.  Structure is documented below.
-        * `dataset_id` (`str`) - The ID of the dataset containing this model.
-        * `project_id` (`str`) - The ID of the project containing this model.
-
-      * `destinationEncryptionConfiguration` (`dict`) - Custom encryption configuration (e.g., Cloud KMS keys)  Structure is documented below.
-        * `kms_key_name` (`str`) - Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table.
-          The BigQuery Service Account associated with your project requires access to this encryption key.
-
-      * `destinationTable` (`dict`) - The destination table.  Structure is documented below.
-        * `dataset_id` (`str`) - The ID of the dataset containing this model.
-        * `project_id` (`str`) - The ID of the project containing this model.
-        * `table_id` (`str`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-          or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-      * `flattenResults` (`bool`) - If true and query uses legacy SQL dialect, flattens all nested and repeated fields in the query results.
-        allowLargeResults must be true if this is set to false. For standard SQL queries, this flag is ignored and results are never flattened.
-      * `maximumBillingTier` (`float`) - Limits the billing tier for this job. Queries that have resource usage beyond this tier will fail (without incurring a charge).
-        If unspecified, this will be set to your project default.
-      * `maximumBytesBilled` (`str`) - Limits the bytes billed for this job. Queries that will have bytes billed beyond this limit will fail (without incurring a charge).
-        If unspecified, this will be set to your project default.
-      * `parameterMode` (`str`) - Standard SQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
-      * `priority` (`str`) - Specifies a priority for the query.
-      * `query` (`str`) - Configures a query job.  Structure is documented below.
-      * `schemaUpdateOptions` (`list`) - Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or
-        supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND;
-        when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators.
-        For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified:
-        ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema.
-        ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
-      * `scriptOptions` (`dict`) - Options controlling the execution of scripts.  Structure is documented below.
-        * `keyResultStatement` (`str`) - Determines which statement in the script represents the "key result",
-          used to populate the schema and query results of the script job.
-        * `statementByteBudget` (`str`) - Limit on the number of bytes billed per statement. Exceeding this budget results in an error.
-        * `statementTimeoutMs` (`str`) - Timeout period for each statement in a script.
-
-      * `useLegacySql` (`bool`) - Specifies whether to use BigQuery's legacy SQL dialect for this query. The default value is true.
-        If set to false, the query will use BigQuery's standard SQL.
-      * `useQueryCache` (`bool`) - Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever
-        tables in the query are modified. Moreover, the query cache is only available when a query does not have a destination table specified.
-        The default value is true.
-      * `userDefinedFunctionResources` (`list`) - Describes user-defined function resources used in the query.  Structure is documented below.
-        * `inlineCode` (`str`) - An inline resource that contains code for a user-defined function (UDF).
-          Providing a inline code resource is equivalent to providing a URI for a file containing the same code.
-        * `resource_uri` (`str`) - A code resource to load from a Google Cloud Storage URI (gs://bucket/path).
-
-      * `writeDisposition` (`str`) - Specifies the action that occurs if the destination table already exists. The following values are supported:
-        WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result.
-        WRITE_APPEND: If the table already exists, BigQuery appends the data to the table.
-        WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result.
-        Each action is atomic and only occurs if BigQuery is able to complete the job successfully.
-        Creation, truncation and append actions occur as one atomic update upon job completion.
     """
-    user_email: pulumi.Output[str]
+    user_email: pulumi.Output[str] = pulumi.output_property("userEmail")
     """
     Email address of the user who ran the job.
     """
-    def __init__(__self__, resource_name, opts=None, copy=None, extract=None, job_id=None, job_timeout_ms=None, labels=None, load=None, location=None, project=None, query=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, copy=None, extract=None, job_id=None, job_timeout_ms=None, labels=None, load=None, location=None, project=None, query=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Jobs are actions that BigQuery runs on your behalf to load data, export data, query data, or copy data.
         Once a BigQuery job is created, it cannot be changed or deleted.
 
         ## Example Usage
+        ### Bigquery Job Query
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bar = gcp.bigquery.Dataset("bar",
+            dataset_id="job_query_dataset",
+            friendly_name="test",
+            description="This is a test description",
+            location="US")
+        foo = gcp.bigquery.Table("foo",
+            dataset_id=bar.dataset_id,
+            table_id="job_query_table")
+        job = gcp.bigquery.Job("job",
+            job_id="job_query",
+            labels={
+                "example-label": "example-value",
+            },
+            query={
+                "query": "SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
+                "destinationTable": {
+                    "project_id": foo.project,
+                    "dataset_id": foo.dataset_id,
+                    "table_id": foo.table_id,
+                },
+                "allowLargeResults": True,
+                "flattenResults": True,
+                "scriptOptions": {
+                    "keyResultStatement": "LAST",
+                },
+            })
+        ```
+        ### Bigquery Job Query Table Reference
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bar = gcp.bigquery.Dataset("bar",
+            dataset_id="job_query_dataset",
+            friendly_name="test",
+            description="This is a test description",
+            location="US")
+        foo = gcp.bigquery.Table("foo",
+            dataset_id=bar.dataset_id,
+            table_id="job_query_table")
+        job = gcp.bigquery.Job("job",
+            job_id="job_query",
+            labels={
+                "example-label": "example-value",
+            },
+            query={
+                "query": "SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
+                "destinationTable": {
+                    "table_id": foo.id,
+                },
+                "defaultDataset": {
+                    "dataset_id": bar.id,
+                },
+                "allowLargeResults": True,
+                "flattenResults": True,
+                "scriptOptions": {
+                    "keyResultStatement": "LAST",
+                },
+            })
+        ```
+        ### Bigquery Job Load
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bar = gcp.bigquery.Dataset("bar",
+            dataset_id="job_load_dataset",
+            friendly_name="test",
+            description="This is a test description",
+            location="US")
+        foo = gcp.bigquery.Table("foo",
+            dataset_id=bar.dataset_id,
+            table_id="job_load_table")
+        job = gcp.bigquery.Job("job",
+            job_id="job_load",
+            labels={
+                "my_job": "load",
+            },
+            load={
+                "sourceUris": ["gs://cloud-samples-data/bigquery/us-states/us-states-by-date.csv"],
+                "destinationTable": {
+                    "project_id": foo.project,
+                    "dataset_id": foo.dataset_id,
+                    "table_id": foo.table_id,
+                },
+                "skipLeadingRows": 1,
+                "schemaUpdateOptions": [
+                    "ALLOW_FIELD_RELAXATION",
+                    "ALLOW_FIELD_ADDITION",
+                ],
+                "writeDisposition": "WRITE_APPEND",
+                "autodetect": True,
+            })
+        ```
+        ### Bigquery Job Extract
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        source_one_dataset = gcp.bigquery.Dataset("source-oneDataset",
+            dataset_id="job_extract_dataset",
+            friendly_name="test",
+            description="This is a test description",
+            location="US")
+        source_one_table = gcp.bigquery.Table("source-oneTable",
+            dataset_id=source_one_dataset.dataset_id,
+            table_id="job_extract_table",
+            schema=\"\"\"[
+          {
+            "name": "name",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "post_abbr",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "date",
+            "type": "DATE",
+            "mode": "NULLABLE"
+          }
+        ]
+        \"\"\")
+        dest = gcp.storage.Bucket("dest", force_destroy=True)
+        job = gcp.bigquery.Job("job",
+            job_id="job_extract",
+            extract={
+                "destinationUris": [dest.url.apply(lambda url: f"{url}/extract")],
+                "sourceTable": {
+                    "project_id": source_one_table.project,
+                    "dataset_id": source_one_table.dataset_id,
+                    "table_id": source_one_table.table_id,
+                },
+                "destinationFormat": "NEWLINE_DELIMITED_JSON",
+                "compression": "GZIP",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] copy: Copies a table.  Structure is documented below.
-        :param pulumi.Input[dict] extract: Configures an extract job.  Structure is documented below.
+        :param pulumi.Input['JobCopyArgs'] copy: Copies a table.  Structure is documented below.
+        :param pulumi.Input['JobExtractArgs'] extract: Configures an extract job.  Structure is documented below.
         :param pulumi.Input[str] job_id: The ID of the job. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or dashes (-). The maximum length is 1,024 characters.
         :param pulumi.Input[str] job_timeout_ms: Job timeout in milliseconds. If this time limit is exceeded, BigQuery may attempt to terminate the job.
-        :param pulumi.Input[dict] labels: The labels associated with this job. You can use these to organize and group your jobs.
-        :param pulumi.Input[dict] load: Configures a load job.  Structure is documented below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: The labels associated with this job. You can use these to organize and group your jobs.
+        :param pulumi.Input['JobLoadArgs'] load: Configures a load job.  Structure is documented below.
         :param pulumi.Input[str] location: The geographic location of the job. The default value is US.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] query: Configures a query job.  Structure is documented below.
-
-        The **copy** object supports the following:
-
-          * `createDisposition` (`pulumi.Input[str]`) - Specifies whether the job is allowed to create new tables. The following values are supported:
-            CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table.
-            CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result.
-            Creation, truncation and append actions occur as one atomic update upon job completion
-          * `destinationEncryptionConfiguration` (`pulumi.Input[dict]`) - Custom encryption configuration (e.g., Cloud KMS keys)  Structure is documented below.
-            * `kms_key_name` (`pulumi.Input[str]`) - Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table.
-              The BigQuery Service Account associated with your project requires access to this encryption key.
-
-          * `destinationTable` (`pulumi.Input[dict]`) - The destination table.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this model.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this model.
-            * `table_id` (`pulumi.Input[str]`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-              or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-          * `sourceTables` (`pulumi.Input[list]`) - Source tables to copy.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this model.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this model.
-            * `table_id` (`pulumi.Input[str]`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-              or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-          * `writeDisposition` (`pulumi.Input[str]`) - Specifies the action that occurs if the destination table already exists. The following values are supported:
-            WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result.
-            WRITE_APPEND: If the table already exists, BigQuery appends the data to the table.
-            WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result.
-            Each action is atomic and only occurs if BigQuery is able to complete the job successfully.
-            Creation, truncation and append actions occur as one atomic update upon job completion.
-
-        The **extract** object supports the following:
-
-          * `compression` (`pulumi.Input[str]`) - The compression type to use for exported files. Possible values include GZIP, DEFLATE, SNAPPY, and NONE.
-            The default value is NONE. DEFLATE and SNAPPY are only supported for Avro.
-          * `destinationFormat` (`pulumi.Input[str]`) - The exported file format. Possible values include CSV, NEWLINE_DELIMITED_JSON and AVRO for tables and SAVED_MODEL for models.
-            The default value for tables is CSV. Tables with nested or repeated fields cannot be exported as CSV.
-            The default value for models is SAVED_MODEL.
-          * `destinationUris` (`pulumi.Input[list]`) - A list of fully-qualified Google Cloud Storage URIs where the extracted table should be written.
-          * `fieldDelimiter` (`pulumi.Input[str]`) - When extracting data in CSV format, this defines the delimiter to use between fields in the exported data.
-            Default is ','
-          * `printHeader` (`pulumi.Input[bool]`) - Whether to print out a header row in the results. Default is true.
-          * `sourceModel` (`pulumi.Input[dict]`) - A reference to the model being exported.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this model.
-            * `modelId` (`pulumi.Input[str]`) - The ID of the model.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this model.
-
-          * `sourceTable` (`pulumi.Input[dict]`) - A reference to the table being exported.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this model.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this model.
-            * `table_id` (`pulumi.Input[str]`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-              or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-          * `useAvroLogicalTypes` (`pulumi.Input[bool]`) - Whether to use logical types when extracting to AVRO format.
-
-        The **load** object supports the following:
-
-          * `allowJaggedRows` (`pulumi.Input[bool]`) - Accept rows that are missing trailing optional columns. The missing values are treated as nulls.
-            If false, records with missing trailing columns are treated as bad records, and if there are too many bad records,
-            an invalid error is returned in the job result. The default value is false. Only applicable to CSV, ignored for other formats.
-          * `allowQuotedNewlines` (`pulumi.Input[bool]`) - Indicates if BigQuery should allow quoted data sections that contain newline characters in a CSV file.
-            The default value is false.
-          * `autodetect` (`pulumi.Input[bool]`) - Indicates if we should automatically infer the options and schema for CSV and JSON sources.
-          * `createDisposition` (`pulumi.Input[str]`) - Specifies whether the job is allowed to create new tables. The following values are supported:
-            CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table.
-            CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result.
-            Creation, truncation and append actions occur as one atomic update upon job completion
-          * `destinationEncryptionConfiguration` (`pulumi.Input[dict]`) - Custom encryption configuration (e.g., Cloud KMS keys)  Structure is documented below.
-            * `kms_key_name` (`pulumi.Input[str]`) - Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table.
-              The BigQuery Service Account associated with your project requires access to this encryption key.
-
-          * `destinationTable` (`pulumi.Input[dict]`) - The destination table.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this model.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this model.
-            * `table_id` (`pulumi.Input[str]`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-              or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-          * `encoding` (`pulumi.Input[str]`) - The character encoding of the data. The supported values are UTF-8 or ISO-8859-1.
-            The default value is UTF-8. BigQuery decodes the data after the raw, binary data
-            has been split using the values of the quote and fieldDelimiter properties.
-          * `fieldDelimiter` (`pulumi.Input[str]`) - When extracting data in CSV format, this defines the delimiter to use between fields in the exported data.
-            Default is ','
-          * `ignoreUnknownValues` (`pulumi.Input[bool]`) - Indicates if BigQuery should allow extra values that are not represented in the table schema.
-            If true, the extra values are ignored. If false, records with extra columns are treated as bad records,
-            and if there are too many bad records, an invalid error is returned in the job result.
-            The default value is false. The sourceFormat property determines what BigQuery treats as an extra value:
-            CSV: Trailing columns
-            JSON: Named values that don't match any column names
-          * `maxBadRecords` (`pulumi.Input[float]`) - The maximum number of bad records that BigQuery can ignore when running the job. If the number of bad records exceeds this value,
-            an invalid error is returned in the job result. The default value is 0, which requires that all records are valid.
-          * `nullMarker` (`pulumi.Input[str]`) - Specifies a string that represents a null value in a CSV file. The default value is the empty string. If you set this
-            property to a custom value, BigQuery throws an error if an
-            empty string is present for all data types except for STRING and BYTE. For STRING and BYTE columns, BigQuery interprets the empty string as
-            an empty value.
-          * `projectionFields` (`pulumi.Input[list]`) - If sourceFormat is set to "DATASTORE_BACKUP", indicates which entity properties to load into BigQuery from a Cloud Datastore backup.
-            Property names are case sensitive and must be top-level properties. If no properties are specified, BigQuery loads all properties.
-            If any named property isn't found in the Cloud Datastore backup, an invalid error is returned in the job result.
-          * `quote` (`pulumi.Input[str]`) - The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding,
-            and then uses the first byte of the encoded string to split the data in its raw, binary state.
-            The default value is a double-quote ('"'). If your data does not contain quoted sections, set the property value to an empty string.
-            If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
-          * `schemaUpdateOptions` (`pulumi.Input[list]`) - Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or
-            supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND;
-            when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators.
-            For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified:
-            ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema.
-            ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
-          * `skipLeadingRows` (`pulumi.Input[float]`) - The number of rows at the top of a CSV file that BigQuery will skip when loading the data.
-            The default value is 0. This property is useful if you have header rows in the file that should be skipped.
-            When autodetect is on, the behavior is the following:
-            skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected,
-            the row is read as data. Otherwise data is read starting from the second row.
-            skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row.
-            skipLeadingRows = N > 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected,
-            row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
-          * `sourceFormat` (`pulumi.Input[str]`) - The format of the data files. For CSV files, specify "CSV". For datastore backups, specify "DATASTORE_BACKUP".
-            For newline-delimited JSON, specify "NEWLINE_DELIMITED_JSON". For Avro, specify "AVRO". For parquet, specify "PARQUET".
-            For orc, specify "ORC". The default value is CSV.
-          * `sourceUris` (`pulumi.Input[list]`) - The fully-qualified URIs that point to your data in Google Cloud.
-            For Google Cloud Storage URIs: Each URI can contain one '*' wildcard character
-            and it must come after the 'bucket' name. Size limits related to load jobs apply
-            to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be
-            specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table.
-            For Google Cloud Datastore backups: Exactly one URI can be specified. Also, the '*' wildcard character is not allowed.
-          * `time_partitioning` (`pulumi.Input[dict]`) - Time-based partitioning specification for the destination table.  Structure is documented below.
-            * `expirationMs` (`pulumi.Input[str]`) - Number of milliseconds for which to keep the storage for a partition. A wrapper is used here because 0 is an invalid value.
-            * `field` (`pulumi.Input[str]`) - If not set, the table is partitioned by pseudo column '_PARTITIONTIME'; if set, the table is partitioned by this field.
-              The field must be a top-level TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
-              A wrapper is used here because an empty string is an invalid value.
-            * `type` (`pulumi.Input[str]`) - The only type supported is DAY, which will generate one partition per day. Providing an empty string used to cause an error,
-              but in OnePlatform the field will be treated as unset.
-
-          * `writeDisposition` (`pulumi.Input[str]`) - Specifies the action that occurs if the destination table already exists. The following values are supported:
-            WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result.
-            WRITE_APPEND: If the table already exists, BigQuery appends the data to the table.
-            WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result.
-            Each action is atomic and only occurs if BigQuery is able to complete the job successfully.
-            Creation, truncation and append actions occur as one atomic update upon job completion.
-
-        The **query** object supports the following:
-
-          * `allowLargeResults` (`pulumi.Input[bool]`) - If true and query uses legacy SQL dialect, allows the query to produce arbitrarily large result tables at a slight cost in performance.
-            Requires destinationTable to be set. For standard SQL queries, this flag is ignored and large results are always allowed.
-            However, you must still set destinationTable when result size exceeds the allowed maximum response size.
-          * `createDisposition` (`pulumi.Input[str]`) - Specifies whether the job is allowed to create new tables. The following values are supported:
-            CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table.
-            CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result.
-            Creation, truncation and append actions occur as one atomic update upon job completion
-          * `defaultDataset` (`pulumi.Input[dict]`) - Specifies the default dataset to use for unqualified table names in the query. Note that this does not alter behavior of unqualified dataset names.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this model.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this model.
-
-          * `destinationEncryptionConfiguration` (`pulumi.Input[dict]`) - Custom encryption configuration (e.g., Cloud KMS keys)  Structure is documented below.
-            * `kms_key_name` (`pulumi.Input[str]`) - Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table.
-              The BigQuery Service Account associated with your project requires access to this encryption key.
-
-          * `destinationTable` (`pulumi.Input[dict]`) - The destination table.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this model.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this model.
-            * `table_id` (`pulumi.Input[str]`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-              or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-          * `flattenResults` (`pulumi.Input[bool]`) - If true and query uses legacy SQL dialect, flattens all nested and repeated fields in the query results.
-            allowLargeResults must be true if this is set to false. For standard SQL queries, this flag is ignored and results are never flattened.
-          * `maximumBillingTier` (`pulumi.Input[float]`) - Limits the billing tier for this job. Queries that have resource usage beyond this tier will fail (without incurring a charge).
-            If unspecified, this will be set to your project default.
-          * `maximumBytesBilled` (`pulumi.Input[str]`) - Limits the bytes billed for this job. Queries that will have bytes billed beyond this limit will fail (without incurring a charge).
-            If unspecified, this will be set to your project default.
-          * `parameterMode` (`pulumi.Input[str]`) - Standard SQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
-          * `priority` (`pulumi.Input[str]`) - Specifies a priority for the query.
-          * `query` (`pulumi.Input[str]`) - Configures a query job.  Structure is documented below.
-          * `schemaUpdateOptions` (`pulumi.Input[list]`) - Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or
-            supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND;
-            when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators.
-            For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified:
-            ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema.
-            ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
-          * `scriptOptions` (`pulumi.Input[dict]`) - Options controlling the execution of scripts.  Structure is documented below.
-            * `keyResultStatement` (`pulumi.Input[str]`) - Determines which statement in the script represents the "key result",
-              used to populate the schema and query results of the script job.
-            * `statementByteBudget` (`pulumi.Input[str]`) - Limit on the number of bytes billed per statement. Exceeding this budget results in an error.
-            * `statementTimeoutMs` (`pulumi.Input[str]`) - Timeout period for each statement in a script.
-
-          * `useLegacySql` (`pulumi.Input[bool]`) - Specifies whether to use BigQuery's legacy SQL dialect for this query. The default value is true.
-            If set to false, the query will use BigQuery's standard SQL.
-          * `useQueryCache` (`pulumi.Input[bool]`) - Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever
-            tables in the query are modified. Moreover, the query cache is only available when a query does not have a destination table specified.
-            The default value is true.
-          * `userDefinedFunctionResources` (`pulumi.Input[list]`) - Describes user-defined function resources used in the query.  Structure is documented below.
-            * `inlineCode` (`pulumi.Input[str]`) - An inline resource that contains code for a user-defined function (UDF).
-              Providing a inline code resource is equivalent to providing a URI for a file containing the same code.
-            * `resource_uri` (`pulumi.Input[str]`) - A code resource to load from a Google Cloud Storage URI (gs://bucket/path).
-
-          * `writeDisposition` (`pulumi.Input[str]`) - Specifies the action that occurs if the destination table already exists. The following values are supported:
-            WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result.
-            WRITE_APPEND: If the table already exists, BigQuery appends the data to the table.
-            WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result.
-            Each action is atomic and only occurs if BigQuery is able to complete the job successfully.
-            Creation, truncation and append actions occur as one atomic update upon job completion.
+        :param pulumi.Input['JobQueryArgs'] query: Configures a query job.  Structure is documented below.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -474,7 +237,7 @@ class Job(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -508,216 +271,18 @@ class Job(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] copy: Copies a table.  Structure is documented below.
-        :param pulumi.Input[dict] extract: Configures an extract job.  Structure is documented below.
+        :param pulumi.Input['JobCopyArgs'] copy: Copies a table.  Structure is documented below.
+        :param pulumi.Input['JobExtractArgs'] extract: Configures an extract job.  Structure is documented below.
         :param pulumi.Input[str] job_id: The ID of the job. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or dashes (-). The maximum length is 1,024 characters.
         :param pulumi.Input[str] job_timeout_ms: Job timeout in milliseconds. If this time limit is exceeded, BigQuery may attempt to terminate the job.
         :param pulumi.Input[str] job_type: The type of the job.
-        :param pulumi.Input[dict] labels: The labels associated with this job. You can use these to organize and group your jobs.
-        :param pulumi.Input[dict] load: Configures a load job.  Structure is documented below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: The labels associated with this job. You can use these to organize and group your jobs.
+        :param pulumi.Input['JobLoadArgs'] load: Configures a load job.  Structure is documented below.
         :param pulumi.Input[str] location: The geographic location of the job. The default value is US.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] query: Configures a query job.  Structure is documented below.
+        :param pulumi.Input['JobQueryArgs'] query: Configures a query job.  Structure is documented below.
         :param pulumi.Input[str] user_email: Email address of the user who ran the job.
-
-        The **copy** object supports the following:
-
-          * `createDisposition` (`pulumi.Input[str]`) - Specifies whether the job is allowed to create new tables. The following values are supported:
-            CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table.
-            CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result.
-            Creation, truncation and append actions occur as one atomic update upon job completion
-          * `destinationEncryptionConfiguration` (`pulumi.Input[dict]`) - Custom encryption configuration (e.g., Cloud KMS keys)  Structure is documented below.
-            * `kms_key_name` (`pulumi.Input[str]`) - Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table.
-              The BigQuery Service Account associated with your project requires access to this encryption key.
-
-          * `destinationTable` (`pulumi.Input[dict]`) - The destination table.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this model.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this model.
-            * `table_id` (`pulumi.Input[str]`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-              or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-          * `sourceTables` (`pulumi.Input[list]`) - Source tables to copy.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this model.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this model.
-            * `table_id` (`pulumi.Input[str]`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-              or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-          * `writeDisposition` (`pulumi.Input[str]`) - Specifies the action that occurs if the destination table already exists. The following values are supported:
-            WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result.
-            WRITE_APPEND: If the table already exists, BigQuery appends the data to the table.
-            WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result.
-            Each action is atomic and only occurs if BigQuery is able to complete the job successfully.
-            Creation, truncation and append actions occur as one atomic update upon job completion.
-
-        The **extract** object supports the following:
-
-          * `compression` (`pulumi.Input[str]`) - The compression type to use for exported files. Possible values include GZIP, DEFLATE, SNAPPY, and NONE.
-            The default value is NONE. DEFLATE and SNAPPY are only supported for Avro.
-          * `destinationFormat` (`pulumi.Input[str]`) - The exported file format. Possible values include CSV, NEWLINE_DELIMITED_JSON and AVRO for tables and SAVED_MODEL for models.
-            The default value for tables is CSV. Tables with nested or repeated fields cannot be exported as CSV.
-            The default value for models is SAVED_MODEL.
-          * `destinationUris` (`pulumi.Input[list]`) - A list of fully-qualified Google Cloud Storage URIs where the extracted table should be written.
-          * `fieldDelimiter` (`pulumi.Input[str]`) - When extracting data in CSV format, this defines the delimiter to use between fields in the exported data.
-            Default is ','
-          * `printHeader` (`pulumi.Input[bool]`) - Whether to print out a header row in the results. Default is true.
-          * `sourceModel` (`pulumi.Input[dict]`) - A reference to the model being exported.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this model.
-            * `modelId` (`pulumi.Input[str]`) - The ID of the model.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this model.
-
-          * `sourceTable` (`pulumi.Input[dict]`) - A reference to the table being exported.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this model.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this model.
-            * `table_id` (`pulumi.Input[str]`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-              or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-          * `useAvroLogicalTypes` (`pulumi.Input[bool]`) - Whether to use logical types when extracting to AVRO format.
-
-        The **load** object supports the following:
-
-          * `allowJaggedRows` (`pulumi.Input[bool]`) - Accept rows that are missing trailing optional columns. The missing values are treated as nulls.
-            If false, records with missing trailing columns are treated as bad records, and if there are too many bad records,
-            an invalid error is returned in the job result. The default value is false. Only applicable to CSV, ignored for other formats.
-          * `allowQuotedNewlines` (`pulumi.Input[bool]`) - Indicates if BigQuery should allow quoted data sections that contain newline characters in a CSV file.
-            The default value is false.
-          * `autodetect` (`pulumi.Input[bool]`) - Indicates if we should automatically infer the options and schema for CSV and JSON sources.
-          * `createDisposition` (`pulumi.Input[str]`) - Specifies whether the job is allowed to create new tables. The following values are supported:
-            CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table.
-            CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result.
-            Creation, truncation and append actions occur as one atomic update upon job completion
-          * `destinationEncryptionConfiguration` (`pulumi.Input[dict]`) - Custom encryption configuration (e.g., Cloud KMS keys)  Structure is documented below.
-            * `kms_key_name` (`pulumi.Input[str]`) - Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table.
-              The BigQuery Service Account associated with your project requires access to this encryption key.
-
-          * `destinationTable` (`pulumi.Input[dict]`) - The destination table.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this model.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this model.
-            * `table_id` (`pulumi.Input[str]`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-              or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-          * `encoding` (`pulumi.Input[str]`) - The character encoding of the data. The supported values are UTF-8 or ISO-8859-1.
-            The default value is UTF-8. BigQuery decodes the data after the raw, binary data
-            has been split using the values of the quote and fieldDelimiter properties.
-          * `fieldDelimiter` (`pulumi.Input[str]`) - When extracting data in CSV format, this defines the delimiter to use between fields in the exported data.
-            Default is ','
-          * `ignoreUnknownValues` (`pulumi.Input[bool]`) - Indicates if BigQuery should allow extra values that are not represented in the table schema.
-            If true, the extra values are ignored. If false, records with extra columns are treated as bad records,
-            and if there are too many bad records, an invalid error is returned in the job result.
-            The default value is false. The sourceFormat property determines what BigQuery treats as an extra value:
-            CSV: Trailing columns
-            JSON: Named values that don't match any column names
-          * `maxBadRecords` (`pulumi.Input[float]`) - The maximum number of bad records that BigQuery can ignore when running the job. If the number of bad records exceeds this value,
-            an invalid error is returned in the job result. The default value is 0, which requires that all records are valid.
-          * `nullMarker` (`pulumi.Input[str]`) - Specifies a string that represents a null value in a CSV file. The default value is the empty string. If you set this
-            property to a custom value, BigQuery throws an error if an
-            empty string is present for all data types except for STRING and BYTE. For STRING and BYTE columns, BigQuery interprets the empty string as
-            an empty value.
-          * `projectionFields` (`pulumi.Input[list]`) - If sourceFormat is set to "DATASTORE_BACKUP", indicates which entity properties to load into BigQuery from a Cloud Datastore backup.
-            Property names are case sensitive and must be top-level properties. If no properties are specified, BigQuery loads all properties.
-            If any named property isn't found in the Cloud Datastore backup, an invalid error is returned in the job result.
-          * `quote` (`pulumi.Input[str]`) - The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding,
-            and then uses the first byte of the encoded string to split the data in its raw, binary state.
-            The default value is a double-quote ('"'). If your data does not contain quoted sections, set the property value to an empty string.
-            If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
-          * `schemaUpdateOptions` (`pulumi.Input[list]`) - Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or
-            supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND;
-            when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators.
-            For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified:
-            ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema.
-            ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
-          * `skipLeadingRows` (`pulumi.Input[float]`) - The number of rows at the top of a CSV file that BigQuery will skip when loading the data.
-            The default value is 0. This property is useful if you have header rows in the file that should be skipped.
-            When autodetect is on, the behavior is the following:
-            skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected,
-            the row is read as data. Otherwise data is read starting from the second row.
-            skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row.
-            skipLeadingRows = N > 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected,
-            row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
-          * `sourceFormat` (`pulumi.Input[str]`) - The format of the data files. For CSV files, specify "CSV". For datastore backups, specify "DATASTORE_BACKUP".
-            For newline-delimited JSON, specify "NEWLINE_DELIMITED_JSON". For Avro, specify "AVRO". For parquet, specify "PARQUET".
-            For orc, specify "ORC". The default value is CSV.
-          * `sourceUris` (`pulumi.Input[list]`) - The fully-qualified URIs that point to your data in Google Cloud.
-            For Google Cloud Storage URIs: Each URI can contain one '*' wildcard character
-            and it must come after the 'bucket' name. Size limits related to load jobs apply
-            to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be
-            specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table.
-            For Google Cloud Datastore backups: Exactly one URI can be specified. Also, the '*' wildcard character is not allowed.
-          * `time_partitioning` (`pulumi.Input[dict]`) - Time-based partitioning specification for the destination table.  Structure is documented below.
-            * `expirationMs` (`pulumi.Input[str]`) - Number of milliseconds for which to keep the storage for a partition. A wrapper is used here because 0 is an invalid value.
-            * `field` (`pulumi.Input[str]`) - If not set, the table is partitioned by pseudo column '_PARTITIONTIME'; if set, the table is partitioned by this field.
-              The field must be a top-level TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
-              A wrapper is used here because an empty string is an invalid value.
-            * `type` (`pulumi.Input[str]`) - The only type supported is DAY, which will generate one partition per day. Providing an empty string used to cause an error,
-              but in OnePlatform the field will be treated as unset.
-
-          * `writeDisposition` (`pulumi.Input[str]`) - Specifies the action that occurs if the destination table already exists. The following values are supported:
-            WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result.
-            WRITE_APPEND: If the table already exists, BigQuery appends the data to the table.
-            WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result.
-            Each action is atomic and only occurs if BigQuery is able to complete the job successfully.
-            Creation, truncation and append actions occur as one atomic update upon job completion.
-
-        The **query** object supports the following:
-
-          * `allowLargeResults` (`pulumi.Input[bool]`) - If true and query uses legacy SQL dialect, allows the query to produce arbitrarily large result tables at a slight cost in performance.
-            Requires destinationTable to be set. For standard SQL queries, this flag is ignored and large results are always allowed.
-            However, you must still set destinationTable when result size exceeds the allowed maximum response size.
-          * `createDisposition` (`pulumi.Input[str]`) - Specifies whether the job is allowed to create new tables. The following values are supported:
-            CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table.
-            CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result.
-            Creation, truncation and append actions occur as one atomic update upon job completion
-          * `defaultDataset` (`pulumi.Input[dict]`) - Specifies the default dataset to use for unqualified table names in the query. Note that this does not alter behavior of unqualified dataset names.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this model.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this model.
-
-          * `destinationEncryptionConfiguration` (`pulumi.Input[dict]`) - Custom encryption configuration (e.g., Cloud KMS keys)  Structure is documented below.
-            * `kms_key_name` (`pulumi.Input[str]`) - Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table.
-              The BigQuery Service Account associated with your project requires access to this encryption key.
-
-          * `destinationTable` (`pulumi.Input[dict]`) - The destination table.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this model.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this model.
-            * `table_id` (`pulumi.Input[str]`) - The table. Can be specified `{{table_id}}` if `project_id` and `dataset_id` are also set,
-              or of the form `projects/{{project}}/datasets/{{dataset_id}}/tables/{{table_id}}` if not.
-
-          * `flattenResults` (`pulumi.Input[bool]`) - If true and query uses legacy SQL dialect, flattens all nested and repeated fields in the query results.
-            allowLargeResults must be true if this is set to false. For standard SQL queries, this flag is ignored and results are never flattened.
-          * `maximumBillingTier` (`pulumi.Input[float]`) - Limits the billing tier for this job. Queries that have resource usage beyond this tier will fail (without incurring a charge).
-            If unspecified, this will be set to your project default.
-          * `maximumBytesBilled` (`pulumi.Input[str]`) - Limits the bytes billed for this job. Queries that will have bytes billed beyond this limit will fail (without incurring a charge).
-            If unspecified, this will be set to your project default.
-          * `parameterMode` (`pulumi.Input[str]`) - Standard SQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
-          * `priority` (`pulumi.Input[str]`) - Specifies a priority for the query.
-          * `query` (`pulumi.Input[str]`) - Configures a query job.  Structure is documented below.
-          * `schemaUpdateOptions` (`pulumi.Input[list]`) - Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or
-            supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND;
-            when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators.
-            For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified:
-            ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema.
-            ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.
-          * `scriptOptions` (`pulumi.Input[dict]`) - Options controlling the execution of scripts.  Structure is documented below.
-            * `keyResultStatement` (`pulumi.Input[str]`) - Determines which statement in the script represents the "key result",
-              used to populate the schema and query results of the script job.
-            * `statementByteBudget` (`pulumi.Input[str]`) - Limit on the number of bytes billed per statement. Exceeding this budget results in an error.
-            * `statementTimeoutMs` (`pulumi.Input[str]`) - Timeout period for each statement in a script.
-
-          * `useLegacySql` (`pulumi.Input[bool]`) - Specifies whether to use BigQuery's legacy SQL dialect for this query. The default value is true.
-            If set to false, the query will use BigQuery's standard SQL.
-          * `useQueryCache` (`pulumi.Input[bool]`) - Whether to look for the result in the query cache. The query cache is a best-effort cache that will be flushed whenever
-            tables in the query are modified. Moreover, the query cache is only available when a query does not have a destination table specified.
-            The default value is true.
-          * `userDefinedFunctionResources` (`pulumi.Input[list]`) - Describes user-defined function resources used in the query.  Structure is documented below.
-            * `inlineCode` (`pulumi.Input[str]`) - An inline resource that contains code for a user-defined function (UDF).
-              Providing a inline code resource is equivalent to providing a URI for a file containing the same code.
-            * `resource_uri` (`pulumi.Input[str]`) - A code resource to load from a Google Cloud Storage URI (gs://bucket/path).
-
-          * `writeDisposition` (`pulumi.Input[str]`) - Specifies the action that occurs if the destination table already exists. The following values are supported:
-            WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result.
-            WRITE_APPEND: If the table already exists, BigQuery appends the data to the table.
-            WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result.
-            Each action is atomic and only occurs if BigQuery is able to complete the job successfully.
-            Creation, truncation and append actions occur as one atomic update upon job completion.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -737,7 +302,8 @@ class Job(pulumi.CustomResource):
         return Job(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

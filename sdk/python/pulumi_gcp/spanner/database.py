@@ -5,37 +5,38 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
 
 
 class Database(pulumi.CustomResource):
-    ddls: pulumi.Output[list]
+    ddls: pulumi.Output[Optional[List[str]]] = pulumi.output_property("ddls")
     """
     An optional list of DDL statements to run inside the newly created
     database. Statements can create tables, indexes, etc. These statements
     execute atomically with the creation of the database: if there is an
     error in any statement, the database is not created.
     """
-    instance: pulumi.Output[str]
+    instance: pulumi.Output[str] = pulumi.output_property("instance")
     """
     The instance to create the database on.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     A unique identifier for the database, which cannot be changed after
     the instance is created. Values are of the form [a-z][-a-z0-9]*[a-z0-9].
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    state: pulumi.Output[str]
+    state: pulumi.Output[str] = pulumi.output_property("state")
     """
     An explanation of the status of the database.
     """
-    def __init__(__self__, resource_name, opts=None, ddls=None, instance=None, name=None, project=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, ddls=None, instance=None, name=None, project=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A Cloud Spanner Database which is hosted on a Spanner instance.
 
@@ -46,10 +47,26 @@ class Database(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/spanner/)
 
         ## Example Usage
+        ### Spanner Database Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        main = gcp.spanner.Instance("main",
+            config="regional-europe-west1",
+            display_name="main-instance")
+        database = gcp.spanner.Database("database",
+            instance=main.name,
+            ddls=[
+                "CREATE TABLE t1 (t1 INT64 NOT NULL,) PRIMARY KEY(t1)",
+                "CREATE TABLE t2 (t2 INT64 NOT NULL,) PRIMARY KEY(t2)",
+            ])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] ddls: An optional list of DDL statements to run inside the newly created
+        :param pulumi.Input[List[pulumi.Input[str]]] ddls: An optional list of DDL statements to run inside the newly created
                database. Statements can create tables, indexes, etc. These statements
                execute atomically with the creation of the database: if there is an
                error in any statement, the database is not created.
@@ -70,7 +87,7 @@ class Database(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -98,7 +115,7 @@ class Database(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] ddls: An optional list of DDL statements to run inside the newly created
+        :param pulumi.Input[List[pulumi.Input[str]]] ddls: An optional list of DDL statements to run inside the newly created
                database. Statements can create tables, indexes, etc. These statements
                execute atomically with the creation of the database: if there is an
                error in any statement, the database is not created.
@@ -121,7 +138,8 @@ class Database(pulumi.CustomResource):
         return Database(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

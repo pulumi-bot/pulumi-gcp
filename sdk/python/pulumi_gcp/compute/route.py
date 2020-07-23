@@ -5,22 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
 
 
 class Route(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     An optional description of this resource. Provide this property
     when you create the resource.
     """
-    dest_range: pulumi.Output[str]
+    dest_range: pulumi.Output[str] = pulumi.output_property("destRange")
     """
     The destination range of outgoing packets that this route applies to.
     Only IPv4 is supported.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -30,11 +30,11 @@ class Route(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the
     last character, which cannot be a dash.
     """
-    network: pulumi.Output[str]
+    network: pulumi.Output[str] = pulumi.output_property("network")
     """
     The network that this route applies to.
     """
-    next_hop_gateway: pulumi.Output[str]
+    next_hop_gateway: pulumi.Output[Optional[str]] = pulumi.output_property("nextHopGateway")
     """
     URL to a gateway that should handle matching packets.
     Currently, you can only specify the internet gateway, using a full or
@@ -44,7 +44,7 @@ class Route(pulumi.CustomResource):
     * `global/gateways/default-internet-gateway`
     * The string `default-internet-gateway`.
     """
-    next_hop_ilb: pulumi.Output[str]
+    next_hop_ilb: pulumi.Output[Optional[str]] = pulumi.output_property("nextHopIlb")
     """
     The URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets.
     You can only specify the forwarding rule as a partial or full URL. For example, the following are all valid URLs:
@@ -52,7 +52,7 @@ class Route(pulumi.CustomResource):
     regions/region/forwardingRules/forwardingRule
     Note that this can only be used when the destinationRange is a public (non-RFC 1918) IP CIDR range.
     """
-    next_hop_instance: pulumi.Output[str]
+    next_hop_instance: pulumi.Output[Optional[str]] = pulumi.output_property("nextHopInstance")
     """
     URL to an instance that should handle matching packets.
     You can specify this as a full or partial URL. For example:
@@ -61,26 +61,26 @@ class Route(pulumi.CustomResource):
     * `zones/zone/instances/instance`
     * Just the instance name, with the zone in `next_hop_instance_zone`.
     """
-    next_hop_instance_zone: pulumi.Output[str]
+    next_hop_instance_zone: pulumi.Output[Optional[str]] = pulumi.output_property("nextHopInstanceZone")
     """
     (Optional when `next_hop_instance` is
     specified)  The zone of the instance specified in
     `next_hop_instance`.  Omit if `next_hop_instance` is specified as
     a URL.
     """
-    next_hop_ip: pulumi.Output[str]
+    next_hop_ip: pulumi.Output[str] = pulumi.output_property("nextHopIp")
     """
     Network IP address of an instance that should handle matching packets.
     """
-    next_hop_network: pulumi.Output[str]
+    next_hop_network: pulumi.Output[str] = pulumi.output_property("nextHopNetwork")
     """
     URL to a Network that should handle matching packets.
     """
-    next_hop_vpn_tunnel: pulumi.Output[str]
+    next_hop_vpn_tunnel: pulumi.Output[Optional[str]] = pulumi.output_property("nextHopVpnTunnel")
     """
     URL to a VpnTunnel that should handle matching packets.
     """
-    priority: pulumi.Output[float]
+    priority: pulumi.Output[Optional[float]] = pulumi.output_property("priority")
     """
     The priority of this route. Priority is used to break ties in cases
     where there is more than one matching route of equal prefix length.
@@ -88,20 +88,21 @@ class Route(pulumi.CustomResource):
     lowest-numbered priority value wins.
     Default value is 1000. Valid range is 0 through 65535.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The URI of the created resource.
     """
-    tags: pulumi.Output[list]
+    tags: pulumi.Output[Optional[List[str]]] = pulumi.output_property("tags")
     """
     A list of instance tags to which this route applies.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, dest_range=None, name=None, network=None, next_hop_gateway=None, next_hop_ilb=None, next_hop_instance=None, next_hop_instance_zone=None, next_hop_ip=None, next_hop_vpn_tunnel=None, priority=None, project=None, tags=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, dest_range=None, name=None, network=None, next_hop_gateway=None, next_hop_ilb=None, next_hop_instance=None, next_hop_instance_zone=None, next_hop_ip=None, next_hop_vpn_tunnel=None, priority=None, project=None, tags=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Represents a Route resource.
 
@@ -133,6 +134,52 @@ class Route(pulumi.CustomResource):
             * [Using Routes](https://cloud.google.com/vpc/docs/using-routes)
 
         ## Example Usage
+        ### Route Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_network = gcp.compute.Network("defaultNetwork")
+        default_route = gcp.compute.Route("defaultRoute",
+            dest_range="15.0.0.0/24",
+            network=default_network.name,
+            next_hop_ip="10.132.1.5",
+            priority=100)
+        ```
+        ### Route Ilb
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_network = gcp.compute.Network("defaultNetwork", auto_create_subnetworks=False)
+        default_subnetwork = gcp.compute.Subnetwork("defaultSubnetwork",
+            ip_cidr_range="10.0.1.0/24",
+            region="us-central1",
+            network=default_network.id)
+        hc = gcp.compute.HealthCheck("hc",
+            check_interval_sec=1,
+            timeout_sec=1,
+            tcp_health_check={
+                "port": "80",
+            })
+        backend = gcp.compute.RegionBackendService("backend",
+            region="us-central1",
+            health_checks=[hc.id])
+        default_forwarding_rule = gcp.compute.ForwardingRule("defaultForwardingRule",
+            region="us-central1",
+            load_balancing_scheme="INTERNAL",
+            backend_service=backend.id,
+            all_ports=True,
+            network=default_network.name,
+            subnetwork=default_subnetwork.name)
+        route_ilb = gcp.compute.Route("route-ilb",
+            dest_range="0.0.0.0/0",
+            network=default_network.name,
+            next_hop_ilb=default_forwarding_rule.id,
+            priority=2000)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -179,7 +226,7 @@ class Route(pulumi.CustomResource):
                Default value is 1000. Valid range is 0 through 65535.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[list] tags: A list of instance tags to which this route applies.
+        :param pulumi.Input[List[pulumi.Input[str]]] tags: A list of instance tags to which this route applies.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -192,7 +239,7 @@ class Route(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -277,7 +324,7 @@ class Route(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[list] tags: A list of instance tags to which this route applies.
+        :param pulumi.Input[List[pulumi.Input[str]]] tags: A list of instance tags to which this route applies.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -301,7 +348,8 @@ class Route(pulumi.CustomResource):
         return Route(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

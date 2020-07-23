@@ -5,66 +5,102 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class GCPolicy(pulumi.CustomResource):
-    column_family: pulumi.Output[str]
+    column_family: pulumi.Output[str] = pulumi.output_property("columnFamily")
     """
     The name of the column family.
     """
-    instance_name: pulumi.Output[str]
+    instance_name: pulumi.Output[str] = pulumi.output_property("instanceName")
     """
     The name of the Bigtable instance.
     """
-    max_ages: pulumi.Output[list]
+    max_ages: pulumi.Output[Optional[List['outputs.GCPolicyMaxAge']]] = pulumi.output_property("maxAges")
     """
     GC policy that applies to all cells older than the given age.
-
-      * `days` (`float`) - Number of days before applying GC policy.
     """
-    max_versions: pulumi.Output[list]
+    max_versions: pulumi.Output[Optional[List['outputs.GCPolicyMaxVersion']]] = pulumi.output_property("maxVersions")
     """
     GC policy that applies to all versions of a cell except for the most recent.
-
-      * `number` (`float`) - Number of version before applying the GC policy.
     """
-    mode: pulumi.Output[str]
+    mode: pulumi.Output[Optional[str]] = pulumi.output_property("mode")
     """
     If multiple policies are set, you should choose between `UNION` OR `INTERSECTION`.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs. If it is not provided, the provider project is used.
     """
-    table: pulumi.Output[str]
+    table: pulumi.Output[str] = pulumi.output_property("table")
     """
     The name of the table.
     """
-    def __init__(__self__, resource_name, opts=None, column_family=None, instance_name=None, max_ages=None, max_versions=None, mode=None, project=None, table=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, column_family=None, instance_name=None, max_ages=None, max_versions=None, mode=None, project=None, table=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates a Google Cloud Bigtable GC Policy inside a family. For more information see
         [the official documentation](https://cloud.google.com/bigtable/) and
         [API](https://cloud.google.com/bigtable/docs/go/reference).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.bigtable.Instance("instance", clusters=[{
+            "cluster_id": "tf-instance-cluster",
+            "zone": "us-central1-b",
+            "num_nodes": 3,
+            "storageType": "HDD",
+        }])
+        table = gcp.bigtable.Table("table",
+            instance_name=instance.name,
+            column_families=[{
+                "family": "name",
+            }])
+        policy = gcp.bigtable.GCPolicy("policy",
+            instance_name=instance.name,
+            table=table.name,
+            column_family="name",
+            max_ages=[{
+                "days": 7,
+            }])
+        ```
+
+        Multiple conditions is also supported. `UNION` when any of its sub-policies apply (OR). `INTERSECTION` when all its sub-policies apply (AND)
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        policy = gcp.bigtable.GCPolicy("policy",
+            instance_name=google_bigtable_instance["instance"]["name"],
+            table=google_bigtable_table["table"]["name"],
+            column_family="name",
+            mode="UNION",
+            max_ages=[{
+                "days": 7,
+            }],
+            max_versions=[{
+                "number": 10,
+            }])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] column_family: The name of the column family.
         :param pulumi.Input[str] instance_name: The name of the Bigtable instance.
-        :param pulumi.Input[list] max_ages: GC policy that applies to all cells older than the given age.
-        :param pulumi.Input[list] max_versions: GC policy that applies to all versions of a cell except for the most recent.
+        :param pulumi.Input[List[pulumi.Input['GCPolicyMaxAgeArgs']]] max_ages: GC policy that applies to all cells older than the given age.
+        :param pulumi.Input[List[pulumi.Input['GCPolicyMaxVersionArgs']]] max_versions: GC policy that applies to all versions of a cell except for the most recent.
         :param pulumi.Input[str] mode: If multiple policies are set, you should choose between `UNION` OR `INTERSECTION`.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it is not provided, the provider project is used.
         :param pulumi.Input[str] table: The name of the table.
-
-        The **max_ages** object supports the following:
-
-          * `days` (`pulumi.Input[float]`) - Number of days before applying GC policy.
-
-        The **max_versions** object supports the following:
-
-          * `number` (`pulumi.Input[float]`) - Number of version before applying the GC policy.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -77,7 +113,7 @@ class GCPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -113,19 +149,11 @@ class GCPolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] column_family: The name of the column family.
         :param pulumi.Input[str] instance_name: The name of the Bigtable instance.
-        :param pulumi.Input[list] max_ages: GC policy that applies to all cells older than the given age.
-        :param pulumi.Input[list] max_versions: GC policy that applies to all versions of a cell except for the most recent.
+        :param pulumi.Input[List[pulumi.Input['GCPolicyMaxAgeArgs']]] max_ages: GC policy that applies to all cells older than the given age.
+        :param pulumi.Input[List[pulumi.Input['GCPolicyMaxVersionArgs']]] max_versions: GC policy that applies to all versions of a cell except for the most recent.
         :param pulumi.Input[str] mode: If multiple policies are set, you should choose between `UNION` OR `INTERSECTION`.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it is not provided, the provider project is used.
         :param pulumi.Input[str] table: The name of the table.
-
-        The **max_ages** object supports the following:
-
-          * `days` (`pulumi.Input[float]`) - Number of days before applying GC policy.
-
-        The **max_versions** object supports the following:
-
-          * `number` (`pulumi.Input[float]`) - Number of version before applying the GC policy.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -141,7 +169,8 @@ class GCPolicy(pulumi.CustomResource):
         return GCPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

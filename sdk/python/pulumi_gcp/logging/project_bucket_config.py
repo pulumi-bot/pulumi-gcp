@@ -5,46 +5,63 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
 
 
 class ProjectBucketConfig(pulumi.CustomResource):
-    bucket_id: pulumi.Output[str]
+    bucket_id: pulumi.Output[str] = pulumi.output_property("bucketId")
     """
     The name of the logging bucket. Logging automatically creates two log buckets: `_Required` and `_Default`.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[str] = pulumi.output_property("description")
     """
     Describes this bucket.
     """
-    lifecycle_state: pulumi.Output[str]
+    lifecycle_state: pulumi.Output[str] = pulumi.output_property("lifecycleState")
     """
     The bucket's lifecycle such as active or deleted. See [LifecycleState](https://cloud.google.com/logging/docs/reference/v2/rest/v2/billingAccounts.buckets#LogBucket.LifecycleState).
     """
-    location: pulumi.Output[str]
+    location: pulumi.Output[str] = pulumi.output_property("location")
     """
     The location of the bucket. The supported locations are: "global" "us-central1"
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The resource name of the bucket. For example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id"
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The parent resource that contains the logging bucket.
     """
-    retention_days: pulumi.Output[float]
+    retention_days: pulumi.Output[Optional[float]] = pulumi.output_property("retentionDays")
     """
     Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.
     """
-    def __init__(__self__, resource_name, opts=None, bucket_id=None, description=None, location=None, project=None, retention_days=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, bucket_id=None, description=None, location=None, project=None, retention_days=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a project-level logging bucket config. For more information see
         [the official logging documentation](https://cloud.google.com/logging/docs/) and
         [Storing Logs](https://cloud.google.com/logging/docs/storage).
 
         > **Note:** Logging buckets are automatically created for a given folder, project, organization, billingAccount and cannot be deleted. Creating a resource of this type will acquire and update the resource that already exists at the desired location. These buckets cannot be removed so deleting this resource will remove the bucket config from your state but will leave the logging bucket unchanged. The buckets that are currently automatically created are "_Default" and "_Required".
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.organizations.Project("default",
+            project_id="your-project-id",
+            org_id="123456789")
+        basic = gcp.logging.ProjectBucketConfig("basic",
+            project=default.name,
+            location="global",
+            retention_days=30,
+            bucket_id="_Default")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -65,7 +82,7 @@ class ProjectBucketConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -121,7 +138,8 @@ class ProjectBucketConfig(pulumi.CustomResource):
         return ProjectBucketConfig(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

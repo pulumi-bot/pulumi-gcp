@@ -5,14 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
 
 class GetBackendBucketResult:
     """
     A collection of values returned by getBackendBucket.
     """
-    def __init__(__self__, bucket_name=None, cdn_policies=None, creation_timestamp=None, description=None, enable_cdn=None, id=None, name=None, project=None, self_link=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, bucket_name=None, cdn_policies=None, creation_timestamp=None, description=None, enable_cdn=None, id=None, name=None, project=None, self_link=None) -> None:
         if bucket_name and not isinstance(bucket_name, str):
             raise TypeError("Expected argument 'bucket_name' to be a str")
         __self__.bucket_name = bucket_name
@@ -61,6 +64,8 @@ class GetBackendBucketResult:
         """
         The URI of the created resource.
         """
+
+
 class AwaitableGetBackendBucketResult(GetBackendBucketResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -77,9 +82,19 @@ class AwaitableGetBackendBucketResult(GetBackendBucketResult):
             project=self.project,
             self_link=self.self_link)
 
-def get_backend_bucket(name=None,project=None,opts=None):
+
+def get_backend_bucket(name=None, project=None, opts=None):
     """
     Get information about a BackendBucket.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_backend_bucket = gcp.compute.get_backend_bucket(name="my-backend")
+    ```
 
 
     :param str name: Name of the resource.
@@ -87,14 +102,12 @@ def get_backend_bucket(name=None,project=None,opts=None):
            is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getBackendBucket:getBackendBucket', __args__, opts=opts).value
 
     return AwaitableGetBackendBucketResult(

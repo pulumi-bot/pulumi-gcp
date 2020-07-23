@@ -5,43 +5,44 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
 
 
 class Group(pulumi.CustomResource):
-    display_name: pulumi.Output[str]
+    display_name: pulumi.Output[str] = pulumi.output_property("displayName")
     """
     A user-assigned name for this group, used only for display
     purposes.
     """
-    filter: pulumi.Output[str]
+    filter: pulumi.Output[str] = pulumi.output_property("filter")
     """
     The filter used to determine which monitored resources
     belong to this group.
     """
-    is_cluster: pulumi.Output[bool]
+    is_cluster: pulumi.Output[Optional[bool]] = pulumi.output_property("isCluster")
     """
     If true, the members of this group are considered to be a
     cluster. The system can perform additional analysis on
     groups that are clusters.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     A unique identifier for this group. The format is "projects/{project_id_or_number}/groups/{group_id}".
     """
-    parent_name: pulumi.Output[str]
+    parent_name: pulumi.Output[Optional[str]] = pulumi.output_property("parentName")
     """
     The name of the group's parent, if it has one. The format is
     "projects/{project_id_or_number}/groups/{group_id}". For
     groups with no parent, parentName is the empty string, "".
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    def __init__(__self__, resource_name, opts=None, display_name=None, filter=None, is_cluster=None, parent_name=None, project=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, display_name=None, filter=None, is_cluster=None, parent_name=None, project=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         The description of a dynamic collection of monitored resources. Each group
         has a filter that is matched against monitored resources and their
@@ -55,6 +56,30 @@ class Group(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/monitoring/groups/)
 
         ## Example Usage
+        ### Monitoring Group Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        basic = gcp.monitoring.Group("basic",
+            display_name="tf-test MonitoringGroup",
+            filter="resource.metadata.region=\"europe-west2\"")
+        ```
+        ### Monitoring Group Subgroup
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        parent = gcp.monitoring.Group("parent",
+            display_name="tf-test MonitoringParentGroup",
+            filter="resource.metadata.region=\"europe-west2\"")
+        subgroup = gcp.monitoring.Group("subgroup",
+            display_name="tf-test MonitoringSubGroup",
+            filter="resource.metadata.region=\"europe-west2\"",
+            parent_name=parent.name)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -82,7 +107,7 @@ class Group(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -140,7 +165,8 @@ class Group(pulumi.CustomResource):
         return Group(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

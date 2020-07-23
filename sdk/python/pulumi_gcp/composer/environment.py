@@ -5,123 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Environment(pulumi.CustomResource):
-    config: pulumi.Output[dict]
+    config: pulumi.Output['outputs.EnvironmentConfig'] = pulumi.output_property("config")
     """
     Configuration parameters for this environment  Structure is documented below.
-
-      * `airflowUri` (`str`)
-      * `dagGcsPrefix` (`str`)
-      * `gkeCluster` (`str`)
-      * `node_config` (`dict`) - The configuration used for the Kubernetes Engine cluster.  Structure is documented below.
-        * `disk_size_gb` (`float`) - The disk size in GB used for node VMs. Minimum size is 20GB.
-          If unspecified, defaults to 100GB. Cannot be updated.
-        * `ip_allocation_policy` (`dict`) - Configuration for controlling how IPs are allocated in the GKE cluster.
-          Structure is documented below.
-          Cannot be updated.
-          * `clusterIpv4CidrBlock` (`str`) - The IP address range used to allocate IP addresses to pods in the cluster.
-            Set to blank to have GKE choose a range with the default size.
-            Set to /netmask (e.g. /14) to have GKE choose a range with a specific netmask.
-            Set to a CIDR notation (e.g. 10.96.0.0/14) from the RFC-1918 private networks
-            (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
-            Specify either `cluster_secondary_range_name` or `cluster_ipv4_cidr_block` but not both.
-          * `clusterSecondaryRangeName` (`str`) - The name of the cluster's secondary range used to allocate IP addresses to pods.
-            Specify either `cluster_secondary_range_name` or `cluster_ipv4_cidr_block` but not both.
-            This field is applicable only when `use_ip_aliases` is true.
-          * `servicesIpv4CidrBlock` (`str`) - The IP address range used to allocate IP addresses in this cluster.
-            Set to blank to have GKE choose a range with the default size.
-            Set to /netmask (e.g. /14) to have GKE choose a range with a specific netmask.
-            Set to a CIDR notation (e.g. 10.96.0.0/14) from the RFC-1918 private networks
-            (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
-            Specify either `services_secondary_range_name` or `services_ipv4_cidr_block` but not both.
-          * `servicesSecondaryRangeName` (`str`) - The name of the services' secondary range used to allocate IP addresses to the cluster.
-            Specify either `services_secondary_range_name` or `services_ipv4_cidr_block` but not both.
-            This field is applicable only when `use_ip_aliases` is true.
-          * `useIpAliases` (`bool`) - Whether or not to enable Alias IPs in the GKE cluster. If true, a VPC-native cluster is created.
-            Defaults to true if the `ip_allocation_block` is present in config.
-
-        * `machine_type` (`str`) - The Compute Engine machine type used for cluster instances,
-          specified as a name or relative resource name. For example:
-          "projects/{project}/zones/{zone}/machineTypes/{machineType}". Must belong to the enclosing environment's project and
-          region/zone.
-        * `network` (`str`) - The Compute Engine network to be used for machine
-          communications, specified as a self-link, relative resource name
-          (e.g. "projects/{project}/global/networks/{network}"), by name.
-        * `oauthScopes` (`list`) - The set of Google API scopes to be made available on all node
-          VMs. Cannot be updated. If empty, defaults to
-          `["https://www.googleapis.com/auth/cloud-platform"]`
-        * `service_account` (`str`) - The Google Cloud Platform Service Account to be used by the
-          node VMs. If a service account is not specified, the "default"
-          Compute Engine service account is used. Cannot be updated. If given,
-          note that the service account must have `roles/composer.worker`
-          for any GCP resources created under the Cloud Composer Environment.
-        * `subnetwork` (`str`) - The Compute Engine subnetwork to be used for machine
-          communications, , specified as a self-link, relative resource name (e.g.
-          "projects/{project}/regions/{region}/subnetworks/{subnetwork}"), or by name. If subnetwork is provided,
-          network must also be provided and the subnetwork must belong to the enclosing environment's project and region.
-        * `tags` (`list`) - The list of instance tags applied to all node VMs. Tags are
-          used to identify valid sources or targets for network
-          firewalls. Each tag within the list must comply with RFC1035.
-          Cannot be updated.
-        * `zone` (`str`) - The Compute Engine zone in which to deploy the VMs running the
-          Apache Airflow software, specified as the zone name or
-          relative resource name (e.g. "projects/{project}/zones/{zone}"). Must belong to the enclosing environment's project
-          and region.
-
-      * `node_count` (`float`) - The number of nodes in the Kubernetes Engine cluster that
-        will be used to run this environment.
-      * `privateEnvironmentConfig` (`dict`) - The configuration used for the Private IP Cloud Composer environment. Structure is documented below.
-        * `cloudSqlIpv4CidrBlock` (`str`) - The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. Needs to be disjoint from `web_server_ipv4_cidr_block`
-        * `enablePrivateEndpoint` (`bool`) - -
-          If true, access to the public endpoint of the GKE cluster is denied.
-        * `masterIpv4CidrBlock` (`str`) - The IP range in CIDR notation to use for the hosted master network. This range is used
-          for assigning internal IP addresses to the cluster master or set of masters and to the
-          internal load balancer virtual IP. This range must not overlap with any other ranges
-          in use within the cluster's network.
-          If left blank, the default value of '172.16.0.0/28' is used.
-        * `webServerIpv4CidrBlock` (`str`) - The CIDR block from which IP range for web server will be reserved. Needs to be disjoint from `master_ipv4_cidr_block` and `cloud_sql_ipv4_cidr_block`.
-
-      * `softwareConfig` (`dict`) - The configuration settings for software inside the environment.  Structure is documented below.
-        * `airflowConfigOverrides` (`dict`) - -
-          (Optional) Apache Airflow configuration properties to override. Property keys contain the section and property names,
-          separated by a hyphen, for example "core-dags_are_paused_at_creation".
-        * `env_variables` (`dict`) - Additional environment variables to provide to the Apache Airflow scheduler, worker, and webserver processes.
-          Environment variable names must match the regular expression `[a-zA-Z_][a-zA-Z0-9_]*`.
-          They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression
-          `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names:
-          ```python
-          import pulumi
-          ```
-        * `imageVersion` (`str`) - -
-          The version of the software running in the environment. This encapsulates both the version of Cloud Composer
-          functionality and the version of Apache Airflow. It must match the regular expression
-          `composer-[0-9]+\.[0-9]+(\.[0-9]+)?-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`.
-          The Cloud Composer portion of the version is a semantic version.
-          The portion of the image version following 'airflow-' is an official Apache Airflow repository release name.
-          See [documentation](https://cloud.google.com/composer/docs/reference/rest/v1beta1/projects.locations.environments#softwareconfig)
-          for allowed release names.
-        * `pypiPackages` (`dict`) - Custom Python Package Index (PyPI) packages to be installed
-          in the environment. Keys refer to the lowercase package name (e.g. "numpy"). Values are the lowercase extras and
-          version specifier (e.g. "==1.12.0", "[devel,gcp_api]", "[devel]>=1.8.2, <1.9.2"). To specify a package without
-          pinning it to a version specifier, use the empty string as the value.
-        * `pythonVersion` (`str`) - -
-          The major version of Python used to run the Apache Airflow scheduler, worker, and webserver processes.
-          Can be set to '2' or '3'. If not specified, the default is '2'. Cannot be updated.
-
-      * `webServerNetworkAccessControl` (`dict`) - The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied.
-        * `allowedIpRanges` (`list`) - -
-          A collection of allowed IP ranges with descriptions. Structure is documented below.
-          * `description` (`str`) - A description of this ip range.
-          * `value` (`str`) - IP address or range, defined using CIDR notation, of requests that this rule applies to.
-            Examples: `192.168.1.1` or `192.168.0.0/16` or `2001:db8::/32` or `2001:0db8:0000:0042:0000:8a2e:0370:7334`.
-            IP range prefixes should be properly truncated. For example,
-            `1.2.3.4/24` should be truncated to `1.2.3.0/24`. Similarly, for IPv6, `2001:db8::1/32` should be truncated to `2001:db8::/32`.
     """
-    labels: pulumi.Output[dict]
+    labels: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("labels")
     """
     User-defined labels for this environment. The labels map can contain
     no more than 64 entries. Entries of the labels map are UTF8 strings
@@ -133,20 +28,21 @@ class Environment(pulumi.CustomResource):
     No more than 64 labels can be associated with a given environment.
     Both keys and values must be <= 128 bytes in size.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the environment
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    region: pulumi.Output[str]
+    region: pulumi.Output[Optional[str]] = pulumi.output_property("region")
     """
     The location or Compute Engine region for the environment.
     """
-    def __init__(__self__, resource_name, opts=None, config=None, labels=None, name=None, project=None, region=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, config=None, labels=None, name=None, project=None, region=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         An environment for running orchestration tasks.
 
@@ -172,11 +68,75 @@ class Environment(pulumi.CustomResource):
             deletion. [More about Composer's use of Cloud Storage](https://cloud.google.com/composer/docs/concepts/cloud-storage).
 
         ## Example Usage
+        ### Basic Usage
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        test = gcp.composer.Environment("test", region="us-central1")
+        ```
+        ### With GKE and Compute Resource Dependencies
+
+        **NOTE** To use service accounts, you need to give `role/composer.worker` to the service account on any resources that may be created for the environment
+        (i.e. at a project level). This will probably require an explicit dependency
+        on the IAM policy binding (see `projects.IAMMember` below).
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        test_network = gcp.compute.Network("testNetwork", auto_create_subnetworks=False)
+        test_subnetwork = gcp.compute.Subnetwork("testSubnetwork",
+            ip_cidr_range="10.2.0.0/16",
+            region="us-central1",
+            network=test_network.id)
+        test_account = gcp.service_account.Account("testAccount",
+            account_id="composer-env-account",
+            display_name="Test Service Account for Composer Environment")
+        composer_worker = gcp.projects.IAMMember("composer-worker",
+            role="roles/composer.worker",
+            member=test_account.email.apply(lambda email: f"serviceAccount:{email}"))
+        test_environment = gcp.composer.Environment("testEnvironment",
+            region="us-central1",
+            config={
+                "node_count": 4,
+                "node_config": {
+                    "zone": "us-central1-a",
+                    "machine_type": "n1-standard-1",
+                    "network": test_network.id,
+                    "subnetwork": test_subnetwork.id,
+                    "service_account": test_account.name,
+                },
+            },
+            opts=ResourceOptions(depends_on=[composer_worker]))
+        ```
+        ### With Software (Airflow) Config
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        test = gcp.composer.Environment("test",
+            config={
+                "softwareConfig": {
+                    "airflowConfigOverrides": {
+                        "core-loadExample": "True",
+                    },
+                    "env_variables": {
+                        "FOO": "bar",
+                    },
+                    "pypiPackages": {
+                        "numpy": "",
+                        "scipy": "==1.1.0",
+                    },
+                },
+            },
+            region="us-central1")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] config: Configuration parameters for this environment  Structure is documented below.
-        :param pulumi.Input[dict] labels: User-defined labels for this environment. The labels map can contain
+        :param pulumi.Input['EnvironmentConfigArgs'] config: Configuration parameters for this environment  Structure is documented below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: User-defined labels for this environment. The labels map can contain
                no more than 64 entries. Entries of the labels map are UTF8 strings
                that comply with the following restrictions:
                Label keys must be between 1 and 63 characters long and must conform
@@ -189,115 +149,6 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The location or Compute Engine region for the environment.
-
-        The **config** object supports the following:
-
-          * `airflowUri` (`pulumi.Input[str]`)
-          * `dagGcsPrefix` (`pulumi.Input[str]`)
-          * `gkeCluster` (`pulumi.Input[str]`)
-          * `node_config` (`pulumi.Input[dict]`) - The configuration used for the Kubernetes Engine cluster.  Structure is documented below.
-            * `disk_size_gb` (`pulumi.Input[float]`) - The disk size in GB used for node VMs. Minimum size is 20GB.
-              If unspecified, defaults to 100GB. Cannot be updated.
-            * `ip_allocation_policy` (`pulumi.Input[dict]`) - Configuration for controlling how IPs are allocated in the GKE cluster.
-              Structure is documented below.
-              Cannot be updated.
-              * `clusterIpv4CidrBlock` (`pulumi.Input[str]`) - The IP address range used to allocate IP addresses to pods in the cluster.
-                Set to blank to have GKE choose a range with the default size.
-                Set to /netmask (e.g. /14) to have GKE choose a range with a specific netmask.
-                Set to a CIDR notation (e.g. 10.96.0.0/14) from the RFC-1918 private networks
-                (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
-                Specify either `cluster_secondary_range_name` or `cluster_ipv4_cidr_block` but not both.
-              * `clusterSecondaryRangeName` (`pulumi.Input[str]`) - The name of the cluster's secondary range used to allocate IP addresses to pods.
-                Specify either `cluster_secondary_range_name` or `cluster_ipv4_cidr_block` but not both.
-                This field is applicable only when `use_ip_aliases` is true.
-              * `servicesIpv4CidrBlock` (`pulumi.Input[str]`) - The IP address range used to allocate IP addresses in this cluster.
-                Set to blank to have GKE choose a range with the default size.
-                Set to /netmask (e.g. /14) to have GKE choose a range with a specific netmask.
-                Set to a CIDR notation (e.g. 10.96.0.0/14) from the RFC-1918 private networks
-                (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
-                Specify either `services_secondary_range_name` or `services_ipv4_cidr_block` but not both.
-              * `servicesSecondaryRangeName` (`pulumi.Input[str]`) - The name of the services' secondary range used to allocate IP addresses to the cluster.
-                Specify either `services_secondary_range_name` or `services_ipv4_cidr_block` but not both.
-                This field is applicable only when `use_ip_aliases` is true.
-              * `useIpAliases` (`pulumi.Input[bool]`) - Whether or not to enable Alias IPs in the GKE cluster. If true, a VPC-native cluster is created.
-                Defaults to true if the `ip_allocation_block` is present in config.
-
-            * `machine_type` (`pulumi.Input[str]`) - The Compute Engine machine type used for cluster instances,
-              specified as a name or relative resource name. For example:
-              "projects/{project}/zones/{zone}/machineTypes/{machineType}". Must belong to the enclosing environment's project and
-              region/zone.
-            * `network` (`pulumi.Input[str]`) - The Compute Engine network to be used for machine
-              communications, specified as a self-link, relative resource name
-              (e.g. "projects/{project}/global/networks/{network}"), by name.
-            * `oauthScopes` (`pulumi.Input[list]`) - The set of Google API scopes to be made available on all node
-              VMs. Cannot be updated. If empty, defaults to
-              `["https://www.googleapis.com/auth/cloud-platform"]`
-            * `service_account` (`pulumi.Input[str]`) - The Google Cloud Platform Service Account to be used by the
-              node VMs. If a service account is not specified, the "default"
-              Compute Engine service account is used. Cannot be updated. If given,
-              note that the service account must have `roles/composer.worker`
-              for any GCP resources created under the Cloud Composer Environment.
-            * `subnetwork` (`pulumi.Input[str]`) - The Compute Engine subnetwork to be used for machine
-              communications, , specified as a self-link, relative resource name (e.g.
-              "projects/{project}/regions/{region}/subnetworks/{subnetwork}"), or by name. If subnetwork is provided,
-              network must also be provided and the subnetwork must belong to the enclosing environment's project and region.
-            * `tags` (`pulumi.Input[list]`) - The list of instance tags applied to all node VMs. Tags are
-              used to identify valid sources or targets for network
-              firewalls. Each tag within the list must comply with RFC1035.
-              Cannot be updated.
-            * `zone` (`pulumi.Input[str]`) - The Compute Engine zone in which to deploy the VMs running the
-              Apache Airflow software, specified as the zone name or
-              relative resource name (e.g. "projects/{project}/zones/{zone}"). Must belong to the enclosing environment's project
-              and region.
-
-          * `node_count` (`pulumi.Input[float]`) - The number of nodes in the Kubernetes Engine cluster that
-            will be used to run this environment.
-          * `privateEnvironmentConfig` (`pulumi.Input[dict]`) - The configuration used for the Private IP Cloud Composer environment. Structure is documented below.
-            * `cloudSqlIpv4CidrBlock` (`pulumi.Input[str]`) - The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. Needs to be disjoint from `web_server_ipv4_cidr_block`
-            * `enablePrivateEndpoint` (`pulumi.Input[bool]`) - -
-              If true, access to the public endpoint of the GKE cluster is denied.
-            * `masterIpv4CidrBlock` (`pulumi.Input[str]`) - The IP range in CIDR notation to use for the hosted master network. This range is used
-              for assigning internal IP addresses to the cluster master or set of masters and to the
-              internal load balancer virtual IP. This range must not overlap with any other ranges
-              in use within the cluster's network.
-              If left blank, the default value of '172.16.0.0/28' is used.
-            * `webServerIpv4CidrBlock` (`pulumi.Input[str]`) - The CIDR block from which IP range for web server will be reserved. Needs to be disjoint from `master_ipv4_cidr_block` and `cloud_sql_ipv4_cidr_block`.
-
-          * `softwareConfig` (`pulumi.Input[dict]`) - The configuration settings for software inside the environment.  Structure is documented below.
-            * `airflowConfigOverrides` (`pulumi.Input[dict]`) - -
-              (Optional) Apache Airflow configuration properties to override. Property keys contain the section and property names,
-              separated by a hyphen, for example "core-dags_are_paused_at_creation".
-            * `env_variables` (`pulumi.Input[dict]`) - Additional environment variables to provide to the Apache Airflow scheduler, worker, and webserver processes.
-              Environment variable names must match the regular expression `[a-zA-Z_][a-zA-Z0-9_]*`.
-              They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression
-              `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names:
-              ```python
-              import pulumi
-              ```
-            * `imageVersion` (`pulumi.Input[str]`) - -
-              The version of the software running in the environment. This encapsulates both the version of Cloud Composer
-              functionality and the version of Apache Airflow. It must match the regular expression
-              `composer-[0-9]+\.[0-9]+(\.[0-9]+)?-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`.
-              The Cloud Composer portion of the version is a semantic version.
-              The portion of the image version following 'airflow-' is an official Apache Airflow repository release name.
-              See [documentation](https://cloud.google.com/composer/docs/reference/rest/v1beta1/projects.locations.environments#softwareconfig)
-              for allowed release names.
-            * `pypiPackages` (`pulumi.Input[dict]`) - Custom Python Package Index (PyPI) packages to be installed
-              in the environment. Keys refer to the lowercase package name (e.g. "numpy"). Values are the lowercase extras and
-              version specifier (e.g. "==1.12.0", "[devel,gcp_api]", "[devel]>=1.8.2, <1.9.2"). To specify a package without
-              pinning it to a version specifier, use the empty string as the value.
-            * `pythonVersion` (`pulumi.Input[str]`) - -
-              The major version of Python used to run the Apache Airflow scheduler, worker, and webserver processes.
-              Can be set to '2' or '3'. If not specified, the default is '2'. Cannot be updated.
-
-          * `webServerNetworkAccessControl` (`pulumi.Input[dict]`) - The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied.
-            * `allowedIpRanges` (`pulumi.Input[list]`) - -
-              A collection of allowed IP ranges with descriptions. Structure is documented below.
-              * `description` (`pulumi.Input[str]`) - A description of this ip range.
-              * `value` (`pulumi.Input[str]`) - IP address or range, defined using CIDR notation, of requests that this rule applies to.
-                Examples: `192.168.1.1` or `192.168.0.0/16` or `2001:db8::/32` or `2001:0db8:0000:0042:0000:8a2e:0370:7334`.
-                IP range prefixes should be properly truncated. For example,
-                `1.2.3.4/24` should be truncated to `1.2.3.0/24`. Similarly, for IPv6, `2001:db8::1/32` should be truncated to `2001:db8::/32`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -310,7 +161,7 @@ class Environment(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -336,8 +187,8 @@ class Environment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] config: Configuration parameters for this environment  Structure is documented below.
-        :param pulumi.Input[dict] labels: User-defined labels for this environment. The labels map can contain
+        :param pulumi.Input['EnvironmentConfigArgs'] config: Configuration parameters for this environment  Structure is documented below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: User-defined labels for this environment. The labels map can contain
                no more than 64 entries. Entries of the labels map are UTF8 strings
                that comply with the following restrictions:
                Label keys must be between 1 and 63 characters long and must conform
@@ -350,115 +201,6 @@ class Environment(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The location or Compute Engine region for the environment.
-
-        The **config** object supports the following:
-
-          * `airflowUri` (`pulumi.Input[str]`)
-          * `dagGcsPrefix` (`pulumi.Input[str]`)
-          * `gkeCluster` (`pulumi.Input[str]`)
-          * `node_config` (`pulumi.Input[dict]`) - The configuration used for the Kubernetes Engine cluster.  Structure is documented below.
-            * `disk_size_gb` (`pulumi.Input[float]`) - The disk size in GB used for node VMs. Minimum size is 20GB.
-              If unspecified, defaults to 100GB. Cannot be updated.
-            * `ip_allocation_policy` (`pulumi.Input[dict]`) - Configuration for controlling how IPs are allocated in the GKE cluster.
-              Structure is documented below.
-              Cannot be updated.
-              * `clusterIpv4CidrBlock` (`pulumi.Input[str]`) - The IP address range used to allocate IP addresses to pods in the cluster.
-                Set to blank to have GKE choose a range with the default size.
-                Set to /netmask (e.g. /14) to have GKE choose a range with a specific netmask.
-                Set to a CIDR notation (e.g. 10.96.0.0/14) from the RFC-1918 private networks
-                (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
-                Specify either `cluster_secondary_range_name` or `cluster_ipv4_cidr_block` but not both.
-              * `clusterSecondaryRangeName` (`pulumi.Input[str]`) - The name of the cluster's secondary range used to allocate IP addresses to pods.
-                Specify either `cluster_secondary_range_name` or `cluster_ipv4_cidr_block` but not both.
-                This field is applicable only when `use_ip_aliases` is true.
-              * `servicesIpv4CidrBlock` (`pulumi.Input[str]`) - The IP address range used to allocate IP addresses in this cluster.
-                Set to blank to have GKE choose a range with the default size.
-                Set to /netmask (e.g. /14) to have GKE choose a range with a specific netmask.
-                Set to a CIDR notation (e.g. 10.96.0.0/14) from the RFC-1918 private networks
-                (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) to pick a specific range to use.
-                Specify either `services_secondary_range_name` or `services_ipv4_cidr_block` but not both.
-              * `servicesSecondaryRangeName` (`pulumi.Input[str]`) - The name of the services' secondary range used to allocate IP addresses to the cluster.
-                Specify either `services_secondary_range_name` or `services_ipv4_cidr_block` but not both.
-                This field is applicable only when `use_ip_aliases` is true.
-              * `useIpAliases` (`pulumi.Input[bool]`) - Whether or not to enable Alias IPs in the GKE cluster. If true, a VPC-native cluster is created.
-                Defaults to true if the `ip_allocation_block` is present in config.
-
-            * `machine_type` (`pulumi.Input[str]`) - The Compute Engine machine type used for cluster instances,
-              specified as a name or relative resource name. For example:
-              "projects/{project}/zones/{zone}/machineTypes/{machineType}". Must belong to the enclosing environment's project and
-              region/zone.
-            * `network` (`pulumi.Input[str]`) - The Compute Engine network to be used for machine
-              communications, specified as a self-link, relative resource name
-              (e.g. "projects/{project}/global/networks/{network}"), by name.
-            * `oauthScopes` (`pulumi.Input[list]`) - The set of Google API scopes to be made available on all node
-              VMs. Cannot be updated. If empty, defaults to
-              `["https://www.googleapis.com/auth/cloud-platform"]`
-            * `service_account` (`pulumi.Input[str]`) - The Google Cloud Platform Service Account to be used by the
-              node VMs. If a service account is not specified, the "default"
-              Compute Engine service account is used. Cannot be updated. If given,
-              note that the service account must have `roles/composer.worker`
-              for any GCP resources created under the Cloud Composer Environment.
-            * `subnetwork` (`pulumi.Input[str]`) - The Compute Engine subnetwork to be used for machine
-              communications, , specified as a self-link, relative resource name (e.g.
-              "projects/{project}/regions/{region}/subnetworks/{subnetwork}"), or by name. If subnetwork is provided,
-              network must also be provided and the subnetwork must belong to the enclosing environment's project and region.
-            * `tags` (`pulumi.Input[list]`) - The list of instance tags applied to all node VMs. Tags are
-              used to identify valid sources or targets for network
-              firewalls. Each tag within the list must comply with RFC1035.
-              Cannot be updated.
-            * `zone` (`pulumi.Input[str]`) - The Compute Engine zone in which to deploy the VMs running the
-              Apache Airflow software, specified as the zone name or
-              relative resource name (e.g. "projects/{project}/zones/{zone}"). Must belong to the enclosing environment's project
-              and region.
-
-          * `node_count` (`pulumi.Input[float]`) - The number of nodes in the Kubernetes Engine cluster that
-            will be used to run this environment.
-          * `privateEnvironmentConfig` (`pulumi.Input[dict]`) - The configuration used for the Private IP Cloud Composer environment. Structure is documented below.
-            * `cloudSqlIpv4CidrBlock` (`pulumi.Input[str]`) - The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. Needs to be disjoint from `web_server_ipv4_cidr_block`
-            * `enablePrivateEndpoint` (`pulumi.Input[bool]`) - -
-              If true, access to the public endpoint of the GKE cluster is denied.
-            * `masterIpv4CidrBlock` (`pulumi.Input[str]`) - The IP range in CIDR notation to use for the hosted master network. This range is used
-              for assigning internal IP addresses to the cluster master or set of masters and to the
-              internal load balancer virtual IP. This range must not overlap with any other ranges
-              in use within the cluster's network.
-              If left blank, the default value of '172.16.0.0/28' is used.
-            * `webServerIpv4CidrBlock` (`pulumi.Input[str]`) - The CIDR block from which IP range for web server will be reserved. Needs to be disjoint from `master_ipv4_cidr_block` and `cloud_sql_ipv4_cidr_block`.
-
-          * `softwareConfig` (`pulumi.Input[dict]`) - The configuration settings for software inside the environment.  Structure is documented below.
-            * `airflowConfigOverrides` (`pulumi.Input[dict]`) - -
-              (Optional) Apache Airflow configuration properties to override. Property keys contain the section and property names,
-              separated by a hyphen, for example "core-dags_are_paused_at_creation".
-            * `env_variables` (`pulumi.Input[dict]`) - Additional environment variables to provide to the Apache Airflow scheduler, worker, and webserver processes.
-              Environment variable names must match the regular expression `[a-zA-Z_][a-zA-Z0-9_]*`.
-              They cannot specify Apache Airflow software configuration overrides (they cannot match the regular expression
-              `AIRFLOW__[A-Z0-9_]+__[A-Z0-9_]+`), and they cannot match any of the following reserved names:
-              ```python
-              import pulumi
-              ```
-            * `imageVersion` (`pulumi.Input[str]`) - -
-              The version of the software running in the environment. This encapsulates both the version of Cloud Composer
-              functionality and the version of Apache Airflow. It must match the regular expression
-              `composer-[0-9]+\.[0-9]+(\.[0-9]+)?-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`.
-              The Cloud Composer portion of the version is a semantic version.
-              The portion of the image version following 'airflow-' is an official Apache Airflow repository release name.
-              See [documentation](https://cloud.google.com/composer/docs/reference/rest/v1beta1/projects.locations.environments#softwareconfig)
-              for allowed release names.
-            * `pypiPackages` (`pulumi.Input[dict]`) - Custom Python Package Index (PyPI) packages to be installed
-              in the environment. Keys refer to the lowercase package name (e.g. "numpy"). Values are the lowercase extras and
-              version specifier (e.g. "==1.12.0", "[devel,gcp_api]", "[devel]>=1.8.2, <1.9.2"). To specify a package without
-              pinning it to a version specifier, use the empty string as the value.
-            * `pythonVersion` (`pulumi.Input[str]`) - -
-              The major version of Python used to run the Apache Airflow scheduler, worker, and webserver processes.
-              Can be set to '2' or '3'. If not specified, the default is '2'. Cannot be updated.
-
-          * `webServerNetworkAccessControl` (`pulumi.Input[dict]`) - The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied.
-            * `allowedIpRanges` (`pulumi.Input[list]`) - -
-              A collection of allowed IP ranges with descriptions. Structure is documented below.
-              * `description` (`pulumi.Input[str]`) - A description of this ip range.
-              * `value` (`pulumi.Input[str]`) - IP address or range, defined using CIDR notation, of requests that this rule applies to.
-                Examples: `192.168.1.1` or `192.168.0.0/16` or `2001:db8::/32` or `2001:0db8:0000:0042:0000:8a2e:0370:7334`.
-                IP range prefixes should be properly truncated. For example,
-                `1.2.3.4/24` should be truncated to `1.2.3.0/24`. Similarly, for IPv6, `2001:db8::1/32` should be truncated to `2001:db8::/32`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -472,7 +214,8 @@ class Environment(pulumi.CustomResource):
         return Environment(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

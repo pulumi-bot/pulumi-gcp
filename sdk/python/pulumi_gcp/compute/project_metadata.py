@@ -5,21 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
 
 
 class ProjectMetadata(pulumi.CustomResource):
-    metadata: pulumi.Output[dict]
+    metadata: pulumi.Output[Dict[str, str]] = pulumi.output_property("metadata")
     """
     A series of key value pairs.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs. If it
     is not provided, the provider project is used.
     """
-    def __init__(__self__, resource_name, opts=None, metadata=None, project=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, metadata=None, project=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Authoritatively manages metadata common to all instances for a project in GCE. For more information see
         [the official documentation](https://cloud.google.com/compute/docs/storing-retrieving-metadata)
@@ -31,9 +32,22 @@ class ProjectMetadata(pulumi.CustomResource):
         key/value pairs within the project metadata rather than the entire set, then use
         google_compute_project_metadata_item.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.compute.ProjectMetadata("default", metadata={
+            "13": "42",
+            "fizz": "buzz",
+            "foo": "bar",
+        })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] metadata: A series of key value pairs.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] metadata: A series of key value pairs.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
         """
@@ -48,7 +62,7 @@ class ProjectMetadata(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -73,7 +87,7 @@ class ProjectMetadata(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] metadata: A series of key value pairs.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] metadata: A series of key value pairs.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
         """
@@ -86,7 +100,8 @@ class ProjectMetadata(pulumi.CustomResource):
         return ProjectMetadata(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

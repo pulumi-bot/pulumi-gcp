@@ -5,68 +5,58 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
 
 class Instance(pulumi.CustomResource):
-    create_time: pulumi.Output[str]
+    create_time: pulumi.Output[str] = pulumi.output_property("createTime")
     """
     Creation timestamp in RFC3339 text format.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     A description of the instance.
     """
-    etag: pulumi.Output[str]
+    etag: pulumi.Output[str] = pulumi.output_property("etag")
     """
     Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other.
     """
-    file_shares: pulumi.Output[dict]
+    file_shares: pulumi.Output['outputs.InstanceFileShares'] = pulumi.output_property("fileShares")
     """
     File system shares on the instance. For this version, only a
     single file share is supported.  Structure is documented below.
-
-      * `capacityGb` (`float`) - File share capacity in GiB. This must be at least 1024 GiB
-        for the standard tier, or 2560 GiB for the premium tier.
-      * `name` (`str`) - The name of the fileshare (16 characters or less)
     """
-    labels: pulumi.Output[dict]
+    labels: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("labels")
     """
     Resource labels to represent user-provided metadata.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the fileshare (16 characters or less)
     """
-    networks: pulumi.Output[list]
+    networks: pulumi.Output[List['outputs.InstanceNetwork']] = pulumi.output_property("networks")
     """
     VPC networks to which the instance is connected. For this version,
     only a single network is supported.  Structure is documented below.
-
-      * `ip_addresses` (`list`) - -
-        A list of IPv4 or IPv6 addresses.
-      * `modes` (`list`) - IP versions for which the instance has
-        IP addresses assigned.
-      * `network` (`str`) - The name of the GCE VPC network to which the
-        instance is connected.
-      * `reserved_ip_range` (`str`) - A /29 CIDR block that identifies the range of IP
-        addresses reserved for this instance.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    tier: pulumi.Output[str]
+    tier: pulumi.Output[str] = pulumi.output_property("tier")
     """
     The service tier of the instance.
     """
-    zone: pulumi.Output[str]
+    zone: pulumi.Output[str] = pulumi.output_property("zone")
     """
     The name of the Filestore zone of the instance.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, file_shares=None, labels=None, name=None, networks=None, project=None, tier=None, zone=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description=None, file_shares=None, labels=None, name=None, networks=None, project=None, tier=None, zone=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A Google Cloud Filestore instance.
 
@@ -79,37 +69,38 @@ class Instance(pulumi.CustomResource):
             * [Copying Data In/Out](https://cloud.google.com/filestore/docs/copying-data)
 
         ## Example Usage
+        ### Filestore Instance Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.filestore.Instance("instance",
+            file_shares={
+                "capacityGb": 2660,
+                "name": "share1",
+            },
+            networks=[{
+                "modes": ["MODE_IPV4"],
+                "network": "default",
+            }],
+            tier="PREMIUM",
+            zone="us-central1-b")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A description of the instance.
-        :param pulumi.Input[dict] file_shares: File system shares on the instance. For this version, only a
+        :param pulumi.Input['InstanceFileSharesArgs'] file_shares: File system shares on the instance. For this version, only a
                single file share is supported.  Structure is documented below.
-        :param pulumi.Input[dict] labels: Resource labels to represent user-provided metadata.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: Resource labels to represent user-provided metadata.
         :param pulumi.Input[str] name: The name of the fileshare (16 characters or less)
-        :param pulumi.Input[list] networks: VPC networks to which the instance is connected. For this version,
+        :param pulumi.Input[List[pulumi.Input['InstanceNetworkArgs']]] networks: VPC networks to which the instance is connected. For this version,
                only a single network is supported.  Structure is documented below.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] tier: The service tier of the instance.
         :param pulumi.Input[str] zone: The name of the Filestore zone of the instance.
-
-        The **file_shares** object supports the following:
-
-          * `capacityGb` (`pulumi.Input[float]`) - File share capacity in GiB. This must be at least 1024 GiB
-            for the standard tier, or 2560 GiB for the premium tier.
-          * `name` (`pulumi.Input[str]`) - The name of the fileshare (16 characters or less)
-
-        The **networks** object supports the following:
-
-          * `ip_addresses` (`pulumi.Input[list]`) - -
-            A list of IPv4 or IPv6 addresses.
-          * `modes` (`pulumi.Input[list]`) - IP versions for which the instance has
-            IP addresses assigned.
-          * `network` (`pulumi.Input[str]`) - The name of the GCE VPC network to which the
-            instance is connected.
-          * `reserved_ip_range` (`pulumi.Input[str]`) - A /29 CIDR block that identifies the range of IP
-            addresses reserved for this instance.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -122,7 +113,7 @@ class Instance(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -164,33 +155,16 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] create_time: Creation timestamp in RFC3339 text format.
         :param pulumi.Input[str] description: A description of the instance.
         :param pulumi.Input[str] etag: Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other.
-        :param pulumi.Input[dict] file_shares: File system shares on the instance. For this version, only a
+        :param pulumi.Input['InstanceFileSharesArgs'] file_shares: File system shares on the instance. For this version, only a
                single file share is supported.  Structure is documented below.
-        :param pulumi.Input[dict] labels: Resource labels to represent user-provided metadata.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: Resource labels to represent user-provided metadata.
         :param pulumi.Input[str] name: The name of the fileshare (16 characters or less)
-        :param pulumi.Input[list] networks: VPC networks to which the instance is connected. For this version,
+        :param pulumi.Input[List[pulumi.Input['InstanceNetworkArgs']]] networks: VPC networks to which the instance is connected. For this version,
                only a single network is supported.  Structure is documented below.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] tier: The service tier of the instance.
         :param pulumi.Input[str] zone: The name of the Filestore zone of the instance.
-
-        The **file_shares** object supports the following:
-
-          * `capacityGb` (`pulumi.Input[float]`) - File share capacity in GiB. This must be at least 1024 GiB
-            for the standard tier, or 2560 GiB for the premium tier.
-          * `name` (`pulumi.Input[str]`) - The name of the fileshare (16 characters or less)
-
-        The **networks** object supports the following:
-
-          * `ip_addresses` (`pulumi.Input[list]`) - -
-            A list of IPv4 or IPv6 addresses.
-          * `modes` (`pulumi.Input[list]`) - IP versions for which the instance has
-            IP addresses assigned.
-          * `network` (`pulumi.Input[str]`) - The name of the GCE VPC network to which the
-            instance is connected.
-          * `reserved_ip_range` (`pulumi.Input[str]`) - A /29 CIDR block that identifies the range of IP
-            addresses reserved for this instance.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -209,7 +183,8 @@ class Instance(pulumi.CustomResource):
         return Instance(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

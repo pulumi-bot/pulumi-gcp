@@ -5,33 +5,34 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
 
 
 class NetworkPeeringRoutesConfig(pulumi.CustomResource):
-    export_custom_routes: pulumi.Output[bool]
+    export_custom_routes: pulumi.Output[bool] = pulumi.output_property("exportCustomRoutes")
     """
     Whether to export the custom routes to the peer network.
     """
-    import_custom_routes: pulumi.Output[bool]
+    import_custom_routes: pulumi.Output[bool] = pulumi.output_property("importCustomRoutes")
     """
     Whether to import the custom routes to the peer network.
     """
-    network: pulumi.Output[str]
+    network: pulumi.Output[str] = pulumi.output_property("network")
     """
     The name of the primary network for the peering.
     """
-    peering: pulumi.Output[str]
+    peering: pulumi.Output[str] = pulumi.output_property("peering")
     """
     Name of the peering.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    def __init__(__self__, resource_name, opts=None, export_custom_routes=None, import_custom_routes=None, network=None, peering=None, project=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, export_custom_routes=None, import_custom_routes=None, network=None, peering=None, project=None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manage a network peering's route settings without managing the peering as
         a whole. This resource is primarily intended for use with GCP-generated
@@ -45,6 +46,28 @@ class NetworkPeeringRoutesConfig(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/vpc/docs/vpc-peering)
 
         ## Example Usage
+        ### Network Peering Routes Config Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network_primary = gcp.compute.Network("networkPrimary", auto_create_subnetworks="false")
+        network_secondary = gcp.compute.Network("networkSecondary", auto_create_subnetworks="false")
+        peering_primary = gcp.compute.NetworkPeering("peeringPrimary",
+            network=network_primary.id,
+            peer_network=network_secondary.id,
+            import_custom_routes=True,
+            export_custom_routes=True)
+        peering_primary_routes = gcp.compute.NetworkPeeringRoutesConfig("peeringPrimaryRoutes",
+            peering=peering_primary.name,
+            network=network_primary.name,
+            import_custom_routes=True,
+            export_custom_routes=True)
+        peering_secondary = gcp.compute.NetworkPeering("peeringSecondary",
+            network=network_secondary.id,
+            peer_network=network_primary.id)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -66,7 +89,7 @@ class NetworkPeeringRoutesConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -119,7 +142,8 @@ class NetworkPeeringRoutesConfig(pulumi.CustomResource):
         return NetworkPeeringRoutesConfig(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
