@@ -5,31 +5,36 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Hl7StoreIamMember']
 
 
 class Hl7StoreIamMember(pulumi.CustomResource):
-    condition: pulumi.Output[dict]
-    etag: pulumi.Output[str]
+    condition: pulumi.Output[Optional['outputs.Hl7StoreIamMemberCondition']] = pulumi.output_property("condition")
+    etag: pulumi.Output[str] = pulumi.output_property("etag")
     """
     (Computed) The etag of the HL7v2 store's IAM policy.
     """
-    hl7_v2_store_id: pulumi.Output[str]
+    hl7_v2_store_id: pulumi.Output[str] = pulumi.output_property("hl7V2StoreId")
     """
     The HL7v2 store ID, in the form
     `{project_id}/{location_name}/{dataset_name}/{hl7_v2_store_name}` or
     `{location_name}/{dataset_name}/{hl7_v2_store_name}`. In the second form, the provider's
     project setting will be used as a fallback.
     """
-    member: pulumi.Output[str]
-    role: pulumi.Output[str]
+    member: pulumi.Output[str] = pulumi.output_property("member")
+    role: pulumi.Output[str] = pulumi.output_property("role")
     """
     The role that should be applied. Only one
     `healthcare.Hl7StoreIamBinding` can be used per role. Note that custom roles must be of the format
     `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
-    def __init__(__self__, resource_name, opts=None, condition=None, hl7_v2_store_id=None, member=None, role=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, condition: Optional[pulumi.Input[pulumi.InputType['Hl7StoreIamMemberConditionArgs']]] = None, hl7_v2_store_id: Optional[pulumi.Input[str]] = None, member: Optional[pulumi.Input[str]] = None, role: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Three different resources help you manage your IAM policy for Healthcare HL7v2 store. Each of these resources serves a different use case:
 
@@ -41,6 +46,45 @@ class Hl7StoreIamMember(pulumi.CustomResource):
 
         > **Note:** `healthcare.Hl7StoreIamBinding` resources **can be** used in conjunction with `healthcare.Hl7StoreIamMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_healthcare\_hl7\_v2\_store\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+        }])
+        hl7_v2_store = gcp.healthcare.Hl7StoreIamPolicy("hl7V2Store",
+            hl7_v2_store_id="your-hl7-v2-store-id",
+            policy_data=admin.policy_data)
+        ```
+
+        ## google\_healthcare\_hl7\_v2\_store\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        hl7_v2_store = gcp.healthcare.Hl7StoreIamBinding("hl7V2Store",
+            hl7_v2_store_id="your-hl7-v2-store-id",
+            members=["user:jane@example.com"],
+            role="roles/editor")
+        ```
+
+        ## google\_healthcare\_hl7\_v2\_store\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        hl7_v2_store = gcp.healthcare.Hl7StoreIamMember("hl7V2Store",
+            hl7_v2_store_id="your-hl7-v2-store-id",
+            member="user:jane@example.com",
+            role="roles/editor")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] hl7_v2_store_id: The HL7v2 store ID, in the form
@@ -50,12 +94,6 @@ class Hl7StoreIamMember(pulumi.CustomResource):
         :param pulumi.Input[str] role: The role that should be applied. Only one
                `healthcare.Hl7StoreIamBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -68,7 +106,7 @@ class Hl7StoreIamMember(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -92,7 +130,7 @@ class Hl7StoreIamMember(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, condition=None, etag=None, hl7_v2_store_id=None, member=None, role=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, condition: Optional[pulumi.Input[pulumi.InputType['Hl7StoreIamMemberConditionArgs']]] = None, etag: Optional[pulumi.Input[str]] = None, hl7_v2_store_id: Optional[pulumi.Input[str]] = None, member: Optional[pulumi.Input[str]] = None, role: Optional[pulumi.Input[str]] = None) -> 'Hl7StoreIamMember':
         """
         Get an existing Hl7StoreIamMember resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -108,12 +146,6 @@ class Hl7StoreIamMember(pulumi.CustomResource):
         :param pulumi.Input[str] role: The role that should be applied. Only one
                `healthcare.Hl7StoreIamBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -127,7 +159,8 @@ class Hl7StoreIamMember(pulumi.CustomResource):
         return Hl7StoreIamMember(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

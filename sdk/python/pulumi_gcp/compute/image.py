@@ -5,29 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Image']
 
 
 class Image(pulumi.CustomResource):
-    archive_size_bytes: pulumi.Output[float]
+    archive_size_bytes: pulumi.Output[float] = pulumi.output_property("archiveSizeBytes")
     """
     Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
     """
-    creation_timestamp: pulumi.Output[str]
+    creation_timestamp: pulumi.Output[str] = pulumi.output_property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     An optional description of this resource. Provide this property when
     you create the resource.
     """
-    disk_size_gb: pulumi.Output[float]
+    disk_size_gb: pulumi.Output[float] = pulumi.output_property("diskSizeGb")
     """
     Size of the image when restored onto a persistent disk (in GB).
     """
-    family: pulumi.Output[str]
+    family: pulumi.Output[Optional[str]] = pulumi.output_property("family")
     """
     The name of the image family to which this image belongs. You can
     create disks by specifying an image family instead of a specific
@@ -35,26 +39,24 @@ class Image(pulumi.CustomResource):
     not deprecated. The name of the image family must comply with
     RFC1035.
     """
-    guest_os_features: pulumi.Output[list]
+    guest_os_features: pulumi.Output[List['outputs.ImageGuestOsFeature']] = pulumi.output_property("guestOsFeatures")
     """
     A list of features to enable on the guest operating system.
     Applicable only for bootable images.  Structure is documented below.
-
-      * `type` (`str`) - The type of supported feature. Read [Enabling guest operating system features](https://cloud.google.com/compute/docs/images/create-delete-deprecate-private-images#guest-os-features) to see a list of available options.
     """
-    label_fingerprint: pulumi.Output[str]
+    label_fingerprint: pulumi.Output[str] = pulumi.output_property("labelFingerprint")
     """
     The fingerprint used for optimistic locking of this resource. Used internally during updates.
     """
-    labels: pulumi.Output[dict]
+    labels: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("labels")
     """
     Labels to apply to this Image.
     """
-    licenses: pulumi.Output[list]
+    licenses: pulumi.Output[List[str]] = pulumi.output_property("licenses")
     """
     Any applicable license URI.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the resource; provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -64,36 +66,27 @@ class Image(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the
     last character, which cannot be a dash.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    raw_disk: pulumi.Output[dict]
+    raw_disk: pulumi.Output[Optional['outputs.ImageRawDisk']] = pulumi.output_property("rawDisk")
     """
     The parameters of the raw disk image.  Structure is documented below.
-
-      * `containerType` (`str`) - The format used to encode and transmit the block device, which
-        should be TAR. This is just a container and transmission format
-        and not a runtime format. Provided by the client when the disk
-        image is created.
-      * `sha1` (`str`) - An optional SHA1 checksum of the disk image before unpackaging.
-        This is provided by the client when the disk image is created.
-      * `source` (`str`) - The full Google Cloud Storage URL where disk storage is stored
-        You must provide either this property or the sourceDisk property
-        but not both.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The URI of the created resource.
     """
-    source_disk: pulumi.Output[str]
+    source_disk: pulumi.Output[Optional[str]] = pulumi.output_property("sourceDisk")
     """
     The source disk to create this image based on.
     You must provide either this property or the
     rawDisk.source property but not both to create an image.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, disk_size_gb=None, family=None, guest_os_features=None, labels=None, licenses=None, name=None, project=None, raw_disk=None, source_disk=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, disk_size_gb: Optional[pulumi.Input[float]] = None, family: Optional[pulumi.Input[str]] = None, guest_os_features: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ImageGuestOsFeatureArgs']]]]] = None, labels: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, licenses: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, raw_disk: Optional[pulumi.Input[pulumi.InputType['ImageRawDiskArgs']]] = None, source_disk: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Represents an Image resource.
 
@@ -119,6 +112,35 @@ class Image(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/compute/docs/images)
 
         ## Example Usage
+        ### Image Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example = gcp.compute.Image("example", raw_disk={
+            "source": "https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.4-google-kvm-ubuntu-trusty-go_agent-raw.tar.gz",
+        })
+        ```
+        ### Image Guest Os
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example = gcp.compute.Image("example",
+            guest_os_features=[
+                {
+                    "type": "SECURE_BOOT",
+                },
+                {
+                    "type": "MULTI_IP_SUBNET",
+                },
+            ],
+            raw_disk={
+                "source": "https://storage.googleapis.com/bosh-cpi-artifacts/bosh-stemcell-3262.4-google-kvm-ubuntu-trusty-go_agent-raw.tar.gz",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -130,10 +152,10 @@ class Image(pulumi.CustomResource):
                image name. The image family always returns its latest image that is
                not deprecated. The name of the image family must comply with
                RFC1035.
-        :param pulumi.Input[list] guest_os_features: A list of features to enable on the guest operating system.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ImageGuestOsFeatureArgs']]]] guest_os_features: A list of features to enable on the guest operating system.
                Applicable only for bootable images.  Structure is documented below.
-        :param pulumi.Input[dict] labels: Labels to apply to this Image.
-        :param pulumi.Input[list] licenses: Any applicable license URI.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: Labels to apply to this Image.
+        :param pulumi.Input[List[pulumi.Input[str]]] licenses: Any applicable license URI.
         :param pulumi.Input[str] name: Name of the resource; provided by the client when the resource is
                created. The name must be 1-63 characters long, and comply with
                RFC1035. Specifically, the name must be 1-63 characters long and
@@ -143,26 +165,10 @@ class Image(pulumi.CustomResource):
                last character, which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] raw_disk: The parameters of the raw disk image.  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['ImageRawDiskArgs']] raw_disk: The parameters of the raw disk image.  Structure is documented below.
         :param pulumi.Input[str] source_disk: The source disk to create this image based on.
                You must provide either this property or the
                rawDisk.source property but not both to create an image.
-
-        The **guest_os_features** object supports the following:
-
-          * `type` (`pulumi.Input[str]`) - The type of supported feature. Read [Enabling guest operating system features](https://cloud.google.com/compute/docs/images/create-delete-deprecate-private-images#guest-os-features) to see a list of available options.
-
-        The **raw_disk** object supports the following:
-
-          * `containerType` (`pulumi.Input[str]`) - The format used to encode and transmit the block device, which
-            should be TAR. This is just a container and transmission format
-            and not a runtime format. Provided by the client when the disk
-            image is created.
-          * `sha1` (`pulumi.Input[str]`) - An optional SHA1 checksum of the disk image before unpackaging.
-            This is provided by the client when the disk image is created.
-          * `source` (`pulumi.Input[str]`) - The full Google Cloud Storage URL where disk storage is stored
-            You must provide either this property or the sourceDisk property
-            but not both.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -175,7 +181,7 @@ class Image(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -202,7 +208,7 @@ class Image(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, archive_size_bytes=None, creation_timestamp=None, description=None, disk_size_gb=None, family=None, guest_os_features=None, label_fingerprint=None, labels=None, licenses=None, name=None, project=None, raw_disk=None, self_link=None, source_disk=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, archive_size_bytes: Optional[pulumi.Input[float]] = None, creation_timestamp: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, disk_size_gb: Optional[pulumi.Input[float]] = None, family: Optional[pulumi.Input[str]] = None, guest_os_features: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ImageGuestOsFeatureArgs']]]]] = None, label_fingerprint: Optional[pulumi.Input[str]] = None, labels: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, licenses: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, raw_disk: Optional[pulumi.Input[pulumi.InputType['ImageRawDiskArgs']]] = None, self_link: Optional[pulumi.Input[str]] = None, source_disk: Optional[pulumi.Input[str]] = None) -> 'Image':
         """
         Get an existing Image resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -220,11 +226,11 @@ class Image(pulumi.CustomResource):
                image name. The image family always returns its latest image that is
                not deprecated. The name of the image family must comply with
                RFC1035.
-        :param pulumi.Input[list] guest_os_features: A list of features to enable on the guest operating system.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ImageGuestOsFeatureArgs']]]] guest_os_features: A list of features to enable on the guest operating system.
                Applicable only for bootable images.  Structure is documented below.
         :param pulumi.Input[str] label_fingerprint: The fingerprint used for optimistic locking of this resource. Used internally during updates.
-        :param pulumi.Input[dict] labels: Labels to apply to this Image.
-        :param pulumi.Input[list] licenses: Any applicable license URI.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: Labels to apply to this Image.
+        :param pulumi.Input[List[pulumi.Input[str]]] licenses: Any applicable license URI.
         :param pulumi.Input[str] name: Name of the resource; provided by the client when the resource is
                created. The name must be 1-63 characters long, and comply with
                RFC1035. Specifically, the name must be 1-63 characters long and
@@ -234,27 +240,11 @@ class Image(pulumi.CustomResource):
                last character, which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] raw_disk: The parameters of the raw disk image.  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['ImageRawDiskArgs']] raw_disk: The parameters of the raw disk image.  Structure is documented below.
         :param pulumi.Input[str] self_link: The URI of the created resource.
         :param pulumi.Input[str] source_disk: The source disk to create this image based on.
                You must provide either this property or the
                rawDisk.source property but not both to create an image.
-
-        The **guest_os_features** object supports the following:
-
-          * `type` (`pulumi.Input[str]`) - The type of supported feature. Read [Enabling guest operating system features](https://cloud.google.com/compute/docs/images/create-delete-deprecate-private-images#guest-os-features) to see a list of available options.
-
-        The **raw_disk** object supports the following:
-
-          * `containerType` (`pulumi.Input[str]`) - The format used to encode and transmit the block device, which
-            should be TAR. This is just a container and transmission format
-            and not a runtime format. Provided by the client when the disk
-            image is created.
-          * `sha1` (`pulumi.Input[str]`) - An optional SHA1 checksum of the disk image before unpackaging.
-            This is provided by the client when the disk image is created.
-          * `source` (`pulumi.Input[str]`) - The full Google Cloud Storage URL where disk storage is stored
-            You must provide either this property or the sourceDisk property
-            but not both.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -277,7 +267,8 @@ class Image(pulumi.CustomResource):
         return Image(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

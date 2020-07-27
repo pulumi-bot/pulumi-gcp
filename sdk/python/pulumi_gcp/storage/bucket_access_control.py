@@ -5,24 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['BucketAccessControl']
 
 
 class BucketAccessControl(pulumi.CustomResource):
-    bucket: pulumi.Output[str]
+    bucket: pulumi.Output[str] = pulumi.output_property("bucket")
     """
     The name of the bucket.
     """
-    domain: pulumi.Output[str]
+    domain: pulumi.Output[str] = pulumi.output_property("domain")
     """
     The domain associated with the entity.
     """
-    email: pulumi.Output[str]
+    email: pulumi.Output[str] = pulumi.output_property("email")
     """
     The email address associated with the entity.
     """
-    entity: pulumi.Output[str]
+    entity: pulumi.Output[str] = pulumi.output_property("entity")
     """
     The entity holding the permission, in one of the following forms:
     user-userId
@@ -40,11 +42,12 @@ class BucketAccessControl(pulumi.CustomResource):
     To refer to all members of the Google Apps for Business domain
     example.com, the entity would be domain-example.com.
     """
-    role: pulumi.Output[str]
+    role: pulumi.Output[Optional[str]] = pulumi.output_property("role")
     """
     The access permission for the entity.
     """
-    def __init__(__self__, resource_name, opts=None, bucket=None, entity=None, role=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, bucket: Optional[pulumi.Input[str]] = None, entity: Optional[pulumi.Input[str]] = None, role: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Bucket ACLs can be managed authoritatively using the
         `storage_bucket_acl` resource. Do not use these two resources in conjunction to manage the same bucket.
@@ -70,6 +73,18 @@ class BucketAccessControl(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/storage/docs/access-control/lists)
 
         ## Example Usage
+        ### Storage Bucket Access Control Public Bucket
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bucket = gcp.storage.Bucket("bucket")
+        public_rule = gcp.storage.BucketAccessControl("publicRule",
+            bucket=bucket.name,
+            role="READER",
+            entity="allUsers")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -102,7 +117,7 @@ class BucketAccessControl(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -124,7 +139,7 @@ class BucketAccessControl(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bucket=None, domain=None, email=None, entity=None, role=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, bucket: Optional[pulumi.Input[str]] = None, domain: Optional[pulumi.Input[str]] = None, email: Optional[pulumi.Input[str]] = None, entity: Optional[pulumi.Input[str]] = None, role: Optional[pulumi.Input[str]] = None) -> 'BucketAccessControl':
         """
         Get an existing BucketAccessControl resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -164,7 +179,8 @@ class BucketAccessControl(pulumi.CustomResource):
         return BucketAccessControl(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

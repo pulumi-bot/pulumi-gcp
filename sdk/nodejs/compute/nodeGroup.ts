@@ -21,6 +21,49 @@ import * as utilities from "../utilities";
  * the provider to delete and recreate the node group.
  *
  * ## Example Usage
+ * ### Node Group Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const soletenant_tmpl = new gcp.compute.NodeTemplate("soletenant-tmpl", {
+ *     region: "us-central1",
+ *     nodeType: "n1-node-96-624",
+ * });
+ * const nodes = new gcp.compute.NodeGroup("nodes", {
+ *     zone: "us-central1-a",
+ *     description: "example google_compute_node_group for the Google Provider",
+ *     size: 1,
+ *     nodeTemplate: soletenant_tmpl.id,
+ * });
+ * ```
+ * ### Node Group Autoscaling Policy
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const soletenant_tmpl = new gcp.compute.NodeTemplate("soletenant-tmpl", {
+ *     region: "us-central1",
+ *     nodeType: "n1-node-96-624",
+ * }, {
+ *     provider: google_beta,
+ * });
+ * const nodes = new gcp.compute.NodeGroup("nodes", {
+ *     zone: "us-central1-a",
+ *     description: "example google_compute_node_group for the Google Provider",
+ *     size: 1,
+ *     nodeTemplate: soletenant_tmpl.id,
+ *     autoscalingPolicy: {
+ *         mode: "ON",
+ *         minNodes: 1,
+ *         maxNodes: 10,
+ *     },
+ * }, {
+ *     provider: google_beta,
+ * });
+ * ```
  */
 export class NodeGroup extends pulumi.CustomResource {
     /**

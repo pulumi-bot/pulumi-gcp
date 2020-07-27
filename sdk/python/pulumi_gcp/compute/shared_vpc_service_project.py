@@ -5,20 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['SharedVPCServiceProject']
 
 
 class SharedVPCServiceProject(pulumi.CustomResource):
-    host_project: pulumi.Output[str]
+    host_project: pulumi.Output[str] = pulumi.output_property("hostProject")
     """
     The ID of a host project to associate.
     """
-    service_project: pulumi.Output[str]
+    service_project: pulumi.Output[str] = pulumi.output_property("serviceProject")
     """
     The ID of the project that will serve as a Shared VPC service project.
     """
-    def __init__(__self__, resource_name, opts=None, host_project=None, service_project=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, host_project: Optional[pulumi.Input[str]] = None, service_project: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Enables the Google Compute Engine
         [Shared VPC](https://cloud.google.com/compute/docs/shared-vpc)
@@ -28,6 +31,20 @@ class SharedVPCServiceProject(pulumi.CustomResource):
         For more information, see,
         [the Project API documentation](https://cloud.google.com/compute/docs/reference/latest/projects),
         where the Shared VPC feature is referred to by its former name "XPN".
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        service1 = gcp.compute.SharedVPCServiceProject("service1",
+            host_project="host-project-id",
+            service_project="service-project-id-1")
+        ```
+
+        For a complete Shared VPC example with both host and service projects, see
+        [`compute.SharedVPCHostProject`](https://www.terraform.io/docs/providers/google/r/compute_shared_vpc_host_project.html).
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -45,7 +62,7 @@ class SharedVPCServiceProject(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -64,7 +81,7 @@ class SharedVPCServiceProject(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, host_project=None, service_project=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, host_project: Optional[pulumi.Input[str]] = None, service_project: Optional[pulumi.Input[str]] = None) -> 'SharedVPCServiceProject':
         """
         Get an existing SharedVPCServiceProject resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -84,7 +101,8 @@ class SharedVPCServiceProject(pulumi.CustomResource):
         return SharedVPCServiceProject(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

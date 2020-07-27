@@ -5,33 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['IAMAuditConfig']
 
 
 class IAMAuditConfig(pulumi.CustomResource):
-    audit_log_configs: pulumi.Output[list]
+    audit_log_configs: pulumi.Output[List['outputs.IAMAuditConfigAuditLogConfig']] = pulumi.output_property("auditLogConfigs")
     """
     The configuration for logging of each type of permission.  This can be specified multiple times.  Structure is documented below.
-
-      * `exemptedMembers` (`list`) - Identities that do not cause logging for this type of permission.  The format is the same as that for `members`.
-      * `logType` (`str`) - Permission type for which logging is to be configured.  Must be one of `DATA_READ`, `DATA_WRITE`, or `ADMIN_READ`.
     """
-    etag: pulumi.Output[str]
+    etag: pulumi.Output[str] = pulumi.output_property("etag")
     """
     (Computed) The etag of the project's IAM policy.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The project ID. If not specified for `projects.IAMBinding`, `projects.IAMMember`, or `projects.IAMAuditConfig`, uses the ID of the project configured with the provider.
     Required for `projects.IAMPolicy` - you must explicitly set the project, and it
     will not be inferred from the provider.
     """
-    service: pulumi.Output[str]
+    service: pulumi.Output[str] = pulumi.output_property("service")
     """
     Service which will be enabled for audit logging.  The special value `allServices` covers all services.  Note that if there are google\_project\_iam\_audit\_config resources covering both `allServices` and a specific service then the union of the two AuditConfigs is used for that service: the `log_types` specified in each `audit_log_config` are enabled, and the `exempted_members` in each `audit_log_config` are exempted.
     """
-    def __init__(__self__, resource_name, opts=None, audit_log_configs=None, project=None, service=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, audit_log_configs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['IAMAuditConfigAuditLogConfigArgs']]]]] = None, project: Optional[pulumi.Input[str]] = None, service: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Four different resources help you manage your IAM policy for a project. Each of these resources serves a different use case:
 
@@ -44,18 +46,136 @@ class IAMAuditConfig(pulumi.CustomResource):
 
         > **Note:** `projects.IAMBinding` resources **can be** used in conjunction with `projects.IAMMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_project\_iam\_policy
+
+        > **Be careful!** You can accidentally lock yourself out of your project
+           using this resource. Deleting a `projects.IAMPolicy` removes access
+           from anyone without organization-level access to the project. Proceed with caution.
+           It's not recommended to use `projects.IAMPolicy` with your provider project
+           to avoid locking yourself out, and it should generally only be used with projects
+           fully managed by this provider. If you do use this resource, it is recommended to **import** the policy before
+           applying the change.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+        }])
+        project = gcp.projects.IAMPolicy("project",
+            project="your-project-id",
+            policy_data=admin.policy_data)
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "condition": {
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
+            "members": ["user:jane@example.com"],
+            "role": "roles/editor",
+        }])
+        project = gcp.projects.IAMPolicy("project",
+            policy_data=admin.policy_data,
+            project="your-project-id")
+        ```
+
+        ## google\_project\_iam\_binding
+
+        > **Note:** If `role` is set to `roles/owner` and you don't specify a user or service account you have access to in `members`, you can lock yourself out of your project.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMBinding("project",
+            members=["user:jane@example.com"],
+            project="your-project-id",
+            role="roles/editor")
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMBinding("project",
+            condition={
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
+            members=["user:jane@example.com"],
+            project="your-project-id",
+            role="roles/editor")
+        ```
+
+        ## google\_project\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMMember("project",
+            member="user:jane@example.com",
+            project="your-project-id",
+            role="roles/editor")
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMMember("project",
+            condition={
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
+            member="user:jane@example.com",
+            project="your-project-id",
+            role="roles/editor")
+        ```
+
+        ## google\_project\_iam\_audit\_config
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMAuditConfig("project",
+            audit_log_configs=[
+                {
+                    "logType": "ADMIN_READ",
+                },
+                {
+                    "exemptedMembers": ["user:joebloggs@hashicorp.com"],
+                    "logType": "DATA_READ",
+                },
+            ],
+            project="your-project-id",
+            service="allServices")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] audit_log_configs: The configuration for logging of each type of permission.  This can be specified multiple times.  Structure is documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['IAMAuditConfigAuditLogConfigArgs']]]] audit_log_configs: The configuration for logging of each type of permission.  This can be specified multiple times.  Structure is documented below.
         :param pulumi.Input[str] project: The project ID. If not specified for `projects.IAMBinding`, `projects.IAMMember`, or `projects.IAMAuditConfig`, uses the ID of the project configured with the provider.
                Required for `projects.IAMPolicy` - you must explicitly set the project, and it
                will not be inferred from the provider.
         :param pulumi.Input[str] service: Service which will be enabled for audit logging.  The special value `allServices` covers all services.  Note that if there are google\_project\_iam\_audit\_config resources covering both `allServices` and a specific service then the union of the two AuditConfigs is used for that service: the `log_types` specified in each `audit_log_config` are enabled, and the `exempted_members` in each `audit_log_config` are exempted.
-
-        The **audit_log_configs** object supports the following:
-
-          * `exemptedMembers` (`pulumi.Input[list]`) - Identities that do not cause logging for this type of permission.  The format is the same as that for `members`.
-          * `logType` (`pulumi.Input[str]`) - Permission type for which logging is to be configured.  Must be one of `DATA_READ`, `DATA_WRITE`, or `ADMIN_READ`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -68,7 +188,7 @@ class IAMAuditConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -89,7 +209,7 @@ class IAMAuditConfig(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, audit_log_configs=None, etag=None, project=None, service=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, audit_log_configs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['IAMAuditConfigAuditLogConfigArgs']]]]] = None, etag: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, service: Optional[pulumi.Input[str]] = None) -> 'IAMAuditConfig':
         """
         Get an existing IAMAuditConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -97,17 +217,12 @@ class IAMAuditConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] audit_log_configs: The configuration for logging of each type of permission.  This can be specified multiple times.  Structure is documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['IAMAuditConfigAuditLogConfigArgs']]]] audit_log_configs: The configuration for logging of each type of permission.  This can be specified multiple times.  Structure is documented below.
         :param pulumi.Input[str] etag: (Computed) The etag of the project's IAM policy.
         :param pulumi.Input[str] project: The project ID. If not specified for `projects.IAMBinding`, `projects.IAMMember`, or `projects.IAMAuditConfig`, uses the ID of the project configured with the provider.
                Required for `projects.IAMPolicy` - you must explicitly set the project, and it
                will not be inferred from the provider.
         :param pulumi.Input[str] service: Service which will be enabled for audit logging.  The special value `allServices` covers all services.  Note that if there are google\_project\_iam\_audit\_config resources covering both `allServices` and a specific service then the union of the two AuditConfigs is used for that service: the `log_types` specified in each `audit_log_config` are enabled, and the `exempted_members` in each `audit_log_config` are exempted.
-
-        The **audit_log_configs** object supports the following:
-
-          * `exemptedMembers` (`pulumi.Input[list]`) - Identities that do not cause logging for this type of permission.  The format is the same as that for `members`.
-          * `logType` (`pulumi.Input[str]`) - Permission type for which logging is to be configured.  Must be one of `DATA_READ`, `DATA_WRITE`, or `ADMIN_READ`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -120,7 +235,8 @@ class IAMAuditConfig(pulumi.CustomResource):
         return IAMAuditConfig(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

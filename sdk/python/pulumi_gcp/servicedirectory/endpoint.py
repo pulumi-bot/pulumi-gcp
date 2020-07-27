@@ -5,41 +5,44 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Endpoint']
 
 
 class Endpoint(pulumi.CustomResource):
-    address: pulumi.Output[str]
+    address: pulumi.Output[Optional[str]] = pulumi.output_property("address")
     """
     IPv4 or IPv6 address of the endpoint.
     """
-    endpoint_id: pulumi.Output[str]
+    endpoint_id: pulumi.Output[str] = pulumi.output_property("endpointId")
     """
     The Resource ID must be 1-63 characters long, including digits,
     lowercase letters or the hyphen character.
     """
-    metadata: pulumi.Output[dict]
+    metadata: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("metadata")
     """
     Metadata for the endpoint. This data can be consumed
     by service clients. The entire metadata dictionary may contain
     up to 512 characters, spread across all key-value pairs.
     Metadata that goes beyond any these limits will be rejected.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The resource name for the endpoint in the format 'projects/*/locations/*/namespaces/*/services/*/endpoints/*'.
     """
-    port: pulumi.Output[float]
+    port: pulumi.Output[Optional[float]] = pulumi.output_property("port")
     """
     Port that the endpoint is running on, must be in the
     range of [0, 65535]. If unspecified, the default is 0.
     """
-    service: pulumi.Output[str]
+    service: pulumi.Output[str] = pulumi.output_property("service")
     """
     The resource name of the service that this endpoint provides.
     """
-    def __init__(__self__, resource_name, opts=None, address=None, endpoint_id=None, metadata=None, port=None, service=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, address: Optional[pulumi.Input[str]] = None, endpoint_id: Optional[pulumi.Input[str]] = None, metadata: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, port: Optional[pulumi.Input[float]] = None, service: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         An individual endpoint that provides a service.
 
@@ -50,13 +53,38 @@ class Endpoint(pulumi.CustomResource):
             * [Configuring an endpoint](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_an_endpoint)
 
         ## Example Usage
+        ### Service Directory Endpoint Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example_namespace = gcp.servicedirectory.Namespace("exampleNamespace",
+            namespace_id="example-namespace",
+            location="us-central1",
+            opts=ResourceOptions(provider=google_beta))
+        example_service = gcp.servicedirectory.Service("exampleService",
+            service_id="example-service",
+            namespace=example_namespace.id,
+            opts=ResourceOptions(provider=google_beta))
+        example_endpoint = gcp.servicedirectory.Endpoint("exampleEndpoint",
+            endpoint_id="example-endpoint",
+            service=example_service.id,
+            metadata={
+                "stage": "prod",
+                "region": "us-central1",
+            },
+            address="1.2.3.4",
+            port=5353,
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] address: IPv4 or IPv6 address of the endpoint.
         :param pulumi.Input[str] endpoint_id: The Resource ID must be 1-63 characters long, including digits,
                lowercase letters or the hyphen character.
-        :param pulumi.Input[dict] metadata: Metadata for the endpoint. This data can be consumed
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] metadata: Metadata for the endpoint. This data can be consumed
                by service clients. The entire metadata dictionary may contain
                up to 512 characters, spread across all key-value pairs.
                Metadata that goes beyond any these limits will be rejected.
@@ -75,7 +103,7 @@ class Endpoint(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -98,7 +126,7 @@ class Endpoint(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, address=None, endpoint_id=None, metadata=None, name=None, port=None, service=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, address: Optional[pulumi.Input[str]] = None, endpoint_id: Optional[pulumi.Input[str]] = None, metadata: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, port: Optional[pulumi.Input[float]] = None, service: Optional[pulumi.Input[str]] = None) -> 'Endpoint':
         """
         Get an existing Endpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -109,7 +137,7 @@ class Endpoint(pulumi.CustomResource):
         :param pulumi.Input[str] address: IPv4 or IPv6 address of the endpoint.
         :param pulumi.Input[str] endpoint_id: The Resource ID must be 1-63 characters long, including digits,
                lowercase letters or the hyphen character.
-        :param pulumi.Input[dict] metadata: Metadata for the endpoint. This data can be consumed
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] metadata: Metadata for the endpoint. This data can be consumed
                by service clients. The entire metadata dictionary may contain
                up to 512 characters, spread across all key-value pairs.
                Metadata that goes beyond any these limits will be rejected.
@@ -131,7 +159,8 @@ class Endpoint(pulumi.CustomResource):
         return Endpoint(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

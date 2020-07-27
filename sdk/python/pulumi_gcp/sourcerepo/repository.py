@@ -5,44 +5,40 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Repository']
 
 
 class Repository(pulumi.CustomResource):
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Resource name of the repository, of the form `{{repo}}`.
     The repo name may contain slashes. eg, `name/with/slash`
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    pubsub_configs: pulumi.Output[list]
+    pubsub_configs: pulumi.Output[Optional[List['outputs.RepositoryPubsubConfig']]] = pulumi.output_property("pubsubConfigs")
     """
     How this repository publishes a change in the repository through Cloud Pub/Sub.
     Keyed by the topic names.  Structure is documented below.
-
-      * `messageFormat` (`str`) - The format of the Cloud Pub/Sub messages.
-        - PROTOBUF: The message payload is a serialized protocol buffer of SourceRepoEvent.
-        - JSON: The message payload is a JSON string of SourceRepoEvent.
-      * `service_account_email` (`str`) - Email address of the service account used for publishing Cloud Pub/Sub messages.
-        This service account needs to be in the same project as the PubsubConfig. When added,
-        the caller needs to have iam.serviceAccounts.actAs permission on this service account.
-        If unspecified, it defaults to the compute engine default service account.
-      * `topic` (`str`) - The identifier for this object. Format specified above.
     """
-    size: pulumi.Output[float]
+    size: pulumi.Output[float] = pulumi.output_property("size")
     """
     The disk usage of the repo, in bytes.
     """
-    url: pulumi.Output[str]
+    url: pulumi.Output[str] = pulumi.output_property("url")
     """
     URL to clone the repository from Google Cloud Source Repositories.
     """
-    def __init__(__self__, resource_name, opts=None, name=None, project=None, pubsub_configs=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, name: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, pubsub_configs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RepositoryPubsubConfigArgs']]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A repository (or repo) is a Git repository storing versioned source content.
 
@@ -53,6 +49,30 @@ class Repository(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/source-repositories/)
 
         ## Example Usage
+        ### Sourcerepo Repository Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_repo = gcp.sourcerepo.Repository("my-repo")
+        ```
+        ### Sourcerepo Repository Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        test_account = gcp.service_account.Account("test-account",
+            account_id="my-account",
+            display_name="Test Service Account")
+        topic = gcp.pubsub.Topic("topic")
+        my_repo = gcp.sourcerepo.Repository("my-repo", pubsub_configs=[{
+            "topic": topic.id,
+            "messageFormat": "JSON",
+            "service_account_email": test_account.email,
+        }])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -60,19 +80,8 @@ class Repository(pulumi.CustomResource):
                The repo name may contain slashes. eg, `name/with/slash`
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[list] pubsub_configs: How this repository publishes a change in the repository through Cloud Pub/Sub.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RepositoryPubsubConfigArgs']]]] pubsub_configs: How this repository publishes a change in the repository through Cloud Pub/Sub.
                Keyed by the topic names.  Structure is documented below.
-
-        The **pubsub_configs** object supports the following:
-
-          * `messageFormat` (`pulumi.Input[str]`) - The format of the Cloud Pub/Sub messages.
-            - PROTOBUF: The message payload is a serialized protocol buffer of SourceRepoEvent.
-            - JSON: The message payload is a JSON string of SourceRepoEvent.
-          * `service_account_email` (`pulumi.Input[str]`) - Email address of the service account used for publishing Cloud Pub/Sub messages.
-            This service account needs to be in the same project as the PubsubConfig. When added,
-            the caller needs to have iam.serviceAccounts.actAs permission on this service account.
-            If unspecified, it defaults to the compute engine default service account.
-          * `topic` (`pulumi.Input[str]`) - The identifier for this object. Format specified above.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -85,7 +94,7 @@ class Repository(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -103,7 +112,7 @@ class Repository(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, name=None, project=None, pubsub_configs=None, size=None, url=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, name: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, pubsub_configs: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['RepositoryPubsubConfigArgs']]]]] = None, size: Optional[pulumi.Input[float]] = None, url: Optional[pulumi.Input[str]] = None) -> 'Repository':
         """
         Get an existing Repository resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -115,21 +124,10 @@ class Repository(pulumi.CustomResource):
                The repo name may contain slashes. eg, `name/with/slash`
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[list] pubsub_configs: How this repository publishes a change in the repository through Cloud Pub/Sub.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['RepositoryPubsubConfigArgs']]]] pubsub_configs: How this repository publishes a change in the repository through Cloud Pub/Sub.
                Keyed by the topic names.  Structure is documented below.
         :param pulumi.Input[float] size: The disk usage of the repo, in bytes.
         :param pulumi.Input[str] url: URL to clone the repository from Google Cloud Source Repositories.
-
-        The **pubsub_configs** object supports the following:
-
-          * `messageFormat` (`pulumi.Input[str]`) - The format of the Cloud Pub/Sub messages.
-            - PROTOBUF: The message payload is a serialized protocol buffer of SourceRepoEvent.
-            - JSON: The message payload is a JSON string of SourceRepoEvent.
-          * `service_account_email` (`pulumi.Input[str]`) - Email address of the service account used for publishing Cloud Pub/Sub messages.
-            This service account needs to be in the same project as the PubsubConfig. When added,
-            the caller needs to have iam.serviceAccounts.actAs permission on this service account.
-            If unspecified, it defaults to the compute engine default service account.
-          * `topic` (`pulumi.Input[str]`) - The identifier for this object. Format specified above.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -143,7 +141,8 @@ class Repository(pulumi.CustomResource):
         return Repository(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

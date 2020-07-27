@@ -5,16 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['SSLPolicy']
 
 
 class SSLPolicy(pulumi.CustomResource):
-    creation_timestamp: pulumi.Output[str]
+    creation_timestamp: pulumi.Output[str] = pulumi.output_property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    custom_features: pulumi.Output[list]
+    custom_features: pulumi.Output[Optional[List[str]]] = pulumi.output_property("customFeatures")
     """
     Profile specifies the set of SSL features that can be used by the
     load balancer when negotiating SSL with clients. This can be one of
@@ -26,24 +28,24 @@ class SSLPolicy(pulumi.CustomResource):
     *must* be present when using the `CUSTOM` profile. This argument
     *must not* be present when using any other profile.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     An optional description of this resource.
     """
-    enabled_features: pulumi.Output[list]
+    enabled_features: pulumi.Output[List[str]] = pulumi.output_property("enabledFeatures")
     """
     The list of features enabled in the SSL policy.
     """
-    fingerprint: pulumi.Output[str]
+    fingerprint: pulumi.Output[str] = pulumi.output_property("fingerprint")
     """
     Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking.
     """
-    min_tls_version: pulumi.Output[str]
+    min_tls_version: pulumi.Output[Optional[str]] = pulumi.output_property("minTlsVersion")
     """
     The minimum version of SSL protocol that can be used by the clients
     to establish a connection with the load balancer.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -53,7 +55,7 @@ class SSLPolicy(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the last
     character, which cannot be a dash.
     """
-    profile: pulumi.Output[str]
+    profile: pulumi.Output[Optional[str]] = pulumi.output_property("profile")
     """
     Profile specifies the set of SSL features that can be used by the
     load balancer when negotiating SSL with clients. If using `CUSTOM`,
@@ -63,16 +65,17 @@ class SSLPolicy(pulumi.CustomResource):
     for information on what cipher suites each profile provides. If
     `CUSTOM` is used, the `custom_features` attribute **must be set**.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The URI of the created resource.
     """
-    def __init__(__self__, resource_name, opts=None, custom_features=None, description=None, min_tls_version=None, name=None, profile=None, project=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, custom_features: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, description: Optional[pulumi.Input[str]] = None, min_tls_version: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, profile: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Represents a SSL policy. SSL policies give you the ability to control the
         features of SSL that your SSL proxy or HTTPS load balancer negotiates.
@@ -84,10 +87,28 @@ class SSLPolicy(pulumi.CustomResource):
             * [Using SSL Policies](https://cloud.google.com/compute/docs/load-balancing/ssl-policies)
 
         ## Example Usage
+        ### Ssl Policy Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        prod_ssl_policy = gcp.compute.SSLPolicy("prod-ssl-policy", profile="MODERN")
+        nonprod_ssl_policy = gcp.compute.SSLPolicy("nonprod-ssl-policy",
+            min_tls_version="TLS_1_2",
+            profile="MODERN")
+        custom_ssl_policy = gcp.compute.SSLPolicy("custom-ssl-policy",
+            custom_features=[
+                "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
+                "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
+            ],
+            min_tls_version="TLS_1_2",
+            profile="CUSTOM")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] custom_features: Profile specifies the set of SSL features that can be used by the
+        :param pulumi.Input[List[pulumi.Input[str]]] custom_features: Profile specifies the set of SSL features that can be used by the
                load balancer when negotiating SSL with clients. This can be one of
                `COMPATIBLE`, `MODERN`, `RESTRICTED`, or `CUSTOM`. If using `CUSTOM`,
                the set of SSL features to enable must be specified in the
@@ -127,7 +148,7 @@ class SSLPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -150,7 +171,7 @@ class SSLPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, creation_timestamp=None, custom_features=None, description=None, enabled_features=None, fingerprint=None, min_tls_version=None, name=None, profile=None, project=None, self_link=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, creation_timestamp: Optional[pulumi.Input[str]] = None, custom_features: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, description: Optional[pulumi.Input[str]] = None, enabled_features: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, fingerprint: Optional[pulumi.Input[str]] = None, min_tls_version: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, profile: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, self_link: Optional[pulumi.Input[str]] = None) -> 'SSLPolicy':
         """
         Get an existing SSLPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -159,7 +180,7 @@ class SSLPolicy(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
-        :param pulumi.Input[list] custom_features: Profile specifies the set of SSL features that can be used by the
+        :param pulumi.Input[List[pulumi.Input[str]]] custom_features: Profile specifies the set of SSL features that can be used by the
                load balancer when negotiating SSL with clients. This can be one of
                `COMPATIBLE`, `MODERN`, `RESTRICTED`, or `CUSTOM`. If using `CUSTOM`,
                the set of SSL features to enable must be specified in the
@@ -169,7 +190,7 @@ class SSLPolicy(pulumi.CustomResource):
                *must* be present when using the `CUSTOM` profile. This argument
                *must not* be present when using any other profile.
         :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[list] enabled_features: The list of features enabled in the SSL policy.
+        :param pulumi.Input[List[pulumi.Input[str]]] enabled_features: The list of features enabled in the SSL policy.
         :param pulumi.Input[str] fingerprint: Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking.
         :param pulumi.Input[str] min_tls_version: The minimum version of SSL protocol that can be used by the clients
                to establish a connection with the load balancer.
@@ -208,7 +229,8 @@ class SSLPolicy(pulumi.CustomResource):
         return SSLPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

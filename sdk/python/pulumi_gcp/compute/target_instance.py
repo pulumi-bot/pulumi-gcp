@@ -5,20 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['TargetInstance']
 
 
 class TargetInstance(pulumi.CustomResource):
-    creation_timestamp: pulumi.Output[str]
+    creation_timestamp: pulumi.Output[str] = pulumi.output_property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     An optional description of this resource.
     """
-    instance: pulumi.Output[str]
+    instance: pulumi.Output[str] = pulumi.output_property("instance")
     """
     The Compute instance VM handling traffic for this target instance.
     Accepts the instance self-link, relative path
@@ -27,7 +29,7 @@ class TargetInstance(pulumi.CustomResource):
     the provider-default zone and the project will default to the
     provider-level project.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -37,25 +39,26 @@ class TargetInstance(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the last
     character, which cannot be a dash.
     """
-    nat_policy: pulumi.Output[str]
+    nat_policy: pulumi.Output[Optional[str]] = pulumi.output_property("natPolicy")
     """
     NAT option controlling how IPs are NAT'ed to the instance.
     Currently only NO_NAT (default value) is supported.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The URI of the created resource.
     """
-    zone: pulumi.Output[str]
+    zone: pulumi.Output[str] = pulumi.output_property("zone")
     """
     URL of the zone where the target instance resides.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, instance=None, name=None, nat_policy=None, project=None, zone=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, instance: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, nat_policy: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, zone: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Represents a TargetInstance resource which defines an endpoint instance
         that terminates traffic of certain protocols. In particular, they are used
@@ -71,6 +74,27 @@ class TargetInstance(pulumi.CustomResource):
             * [Using Protocol Forwarding](https://cloud.google.com/compute/docs/protocol-forwarding)
 
         ## Example Usage
+        ### Target Instance Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        vmimage = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        target_vm = gcp.compute.Instance("target-vm",
+            machine_type="n1-standard-1",
+            zone="us-central1-a",
+            boot_disk={
+                "initializeParams": {
+                    "image": vmimage.self_link,
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+            }])
+        default = gcp.compute.TargetInstance("default", instance=target_vm.id)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -105,7 +129,7 @@ class TargetInstance(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -128,7 +152,7 @@ class TargetInstance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, creation_timestamp=None, description=None, instance=None, name=None, nat_policy=None, project=None, self_link=None, zone=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, creation_timestamp: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, instance: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, nat_policy: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, self_link: Optional[pulumi.Input[str]] = None, zone: Optional[pulumi.Input[str]] = None) -> 'TargetInstance':
         """
         Get an existing TargetInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -173,7 +197,8 @@ class TargetInstance(pulumi.CustomResource):
         return TargetInstance(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,71 +5,80 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['SecurityPolicy']
 
 
 class SecurityPolicy(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     An optional description of this rule. Max size is 64.
     """
-    fingerprint: pulumi.Output[str]
+    fingerprint: pulumi.Output[str] = pulumi.output_property("fingerprint")
     """
     Fingerprint of this resource.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the security policy.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The project in which the resource belongs. If it
     is not provided, the provider project is used.
     """
-    rules: pulumi.Output[list]
+    rules: pulumi.Output[List['outputs.SecurityPolicyRule']] = pulumi.output_property("rules")
     """
     The set of rules that belong to this policy. There must always be a default
     rule (rule with priority 2147483647 and match "\*"). If no rules are provided when creating a
     security policy, a default rule with action "allow" will be added. Structure is documented below.
-
-      * `action` (`str`) - Action to take when `match` matches the request. Valid values:
-        * "allow" : allow access to target
-        * "deny(status)" : deny access to target, returns the  HTTP response code specified (valid values are 403, 404 and 502)
-      * `description` (`str`) - An optional description of this rule. Max size is 64.
-      * `match` (`dict`) - A match condition that incoming traffic is evaluated against.
-        If it evaluates to true, the corresponding `action` is enforced. Structure is documented below.
-        * `config` (`dict`) - The configuration options available when specifying `versioned_expr`.
-          This field must be specified if `versioned_expr` is specified and cannot be specified if `versioned_expr` is not specified.
-          Structure is documented below.
-          * `srcIpRanges` (`list`) - Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
-            to match against inbound traffic. There is a limit of 5 IP ranges per rule. A value of '\*' matches all IPs
-            (can be used to override the default behavior).
-
-        * `expr` (`dict`) - User defined CEVAL expression. A CEVAL expression is used to specify match criteria
-          such as origin.ip, source.region_code and contents in the request header.
-          Structure is documented below.
-          * `expression` (`str`) - Textual representation of an expression in Common Expression Language syntax.
-            The application context of the containing message determines which well-known feature set of CEL is supported.
-
-        * `versionedExpr` (`str`) - Predefined rule expression. If this field is specified, `config` must also be specified.
-          Available options:
-          * SRC_IPS_V1: Must specify the corresponding `src_ip_ranges` field in `config`.
-
-      * `preview` (`bool`) - When set to true, the `action` specified above is not enforced.
-        Stackdriver logs for requests that trigger a preview action are annotated as such.
-      * `priority` (`float`) - An unique positive integer indicating the priority of evaluation for a rule.
-        Rules are evaluated from highest priority (lowest numerically) to lowest priority (highest numerically) in order.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The URI of the created resource.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, name=None, project=None, rules=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['SecurityPolicyRuleArgs']]]]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A Security Policy defines an IP blacklist or whitelist that protects load balanced Google Cloud services by denying or permitting traffic from specified IP ranges. For more information
         see the [official documentation](https://cloud.google.com/armor/docs/configure-security-policies)
         and the [API](https://cloud.google.com/compute/docs/reference/rest/beta/securityPolicies).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        policy = gcp.compute.SecurityPolicy("policy", rules=[
+            {
+                "action": "deny(403)",
+                "description": "Deny access to IPs in 9.9.9.0/24",
+                "match": {
+                    "config": {
+                        "srcIpRanges": ["9.9.9.0/24"],
+                    },
+                    "versionedExpr": "SRC_IPS_V1",
+                },
+                "priority": "1000",
+            },
+            {
+                "action": "allow",
+                "description": "default rule",
+                "match": {
+                    "config": {
+                        "srcIpRanges": ["*"],
+                    },
+                    "versionedExpr": "SRC_IPS_V1",
+                },
+                "priority": "2147483647",
+            },
+        ])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -77,39 +86,9 @@ class SecurityPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the security policy.
         :param pulumi.Input[str] project: The project in which the resource belongs. If it
                is not provided, the provider project is used.
-        :param pulumi.Input[list] rules: The set of rules that belong to this policy. There must always be a default
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['SecurityPolicyRuleArgs']]]] rules: The set of rules that belong to this policy. There must always be a default
                rule (rule with priority 2147483647 and match "\*"). If no rules are provided when creating a
                security policy, a default rule with action "allow" will be added. Structure is documented below.
-
-        The **rules** object supports the following:
-
-          * `action` (`pulumi.Input[str]`) - Action to take when `match` matches the request. Valid values:
-            * "allow" : allow access to target
-            * "deny(status)" : deny access to target, returns the  HTTP response code specified (valid values are 403, 404 and 502)
-          * `description` (`pulumi.Input[str]`) - An optional description of this rule. Max size is 64.
-          * `match` (`pulumi.Input[dict]`) - A match condition that incoming traffic is evaluated against.
-            If it evaluates to true, the corresponding `action` is enforced. Structure is documented below.
-            * `config` (`pulumi.Input[dict]`) - The configuration options available when specifying `versioned_expr`.
-              This field must be specified if `versioned_expr` is specified and cannot be specified if `versioned_expr` is not specified.
-              Structure is documented below.
-              * `srcIpRanges` (`pulumi.Input[list]`) - Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
-                to match against inbound traffic. There is a limit of 5 IP ranges per rule. A value of '\*' matches all IPs
-                (can be used to override the default behavior).
-
-            * `expr` (`pulumi.Input[dict]`) - User defined CEVAL expression. A CEVAL expression is used to specify match criteria
-              such as origin.ip, source.region_code and contents in the request header.
-              Structure is documented below.
-              * `expression` (`pulumi.Input[str]`) - Textual representation of an expression in Common Expression Language syntax.
-                The application context of the containing message determines which well-known feature set of CEL is supported.
-
-            * `versionedExpr` (`pulumi.Input[str]`) - Predefined rule expression. If this field is specified, `config` must also be specified.
-              Available options:
-              * SRC_IPS_V1: Must specify the corresponding `src_ip_ranges` field in `config`.
-
-          * `preview` (`pulumi.Input[bool]`) - When set to true, the `action` specified above is not enforced.
-            Stackdriver logs for requests that trigger a preview action are annotated as such.
-          * `priority` (`pulumi.Input[float]`) - An unique positive integer indicating the priority of evaluation for a rule.
-            Rules are evaluated from highest priority (lowest numerically) to lowest priority (highest numerically) in order.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -122,7 +101,7 @@ class SecurityPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -141,7 +120,7 @@ class SecurityPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, fingerprint=None, name=None, project=None, rules=None, self_link=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, fingerprint: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, rules: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['SecurityPolicyRuleArgs']]]]] = None, self_link: Optional[pulumi.Input[str]] = None) -> 'SecurityPolicy':
         """
         Get an existing SecurityPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -154,40 +133,10 @@ class SecurityPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the security policy.
         :param pulumi.Input[str] project: The project in which the resource belongs. If it
                is not provided, the provider project is used.
-        :param pulumi.Input[list] rules: The set of rules that belong to this policy. There must always be a default
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['SecurityPolicyRuleArgs']]]] rules: The set of rules that belong to this policy. There must always be a default
                rule (rule with priority 2147483647 and match "\*"). If no rules are provided when creating a
                security policy, a default rule with action "allow" will be added. Structure is documented below.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-
-        The **rules** object supports the following:
-
-          * `action` (`pulumi.Input[str]`) - Action to take when `match` matches the request. Valid values:
-            * "allow" : allow access to target
-            * "deny(status)" : deny access to target, returns the  HTTP response code specified (valid values are 403, 404 and 502)
-          * `description` (`pulumi.Input[str]`) - An optional description of this rule. Max size is 64.
-          * `match` (`pulumi.Input[dict]`) - A match condition that incoming traffic is evaluated against.
-            If it evaluates to true, the corresponding `action` is enforced. Structure is documented below.
-            * `config` (`pulumi.Input[dict]`) - The configuration options available when specifying `versioned_expr`.
-              This field must be specified if `versioned_expr` is specified and cannot be specified if `versioned_expr` is not specified.
-              Structure is documented below.
-              * `srcIpRanges` (`pulumi.Input[list]`) - Set of IP addresses or ranges (IPV4 or IPV6) in CIDR notation
-                to match against inbound traffic. There is a limit of 5 IP ranges per rule. A value of '\*' matches all IPs
-                (can be used to override the default behavior).
-
-            * `expr` (`pulumi.Input[dict]`) - User defined CEVAL expression. A CEVAL expression is used to specify match criteria
-              such as origin.ip, source.region_code and contents in the request header.
-              Structure is documented below.
-              * `expression` (`pulumi.Input[str]`) - Textual representation of an expression in Common Expression Language syntax.
-                The application context of the containing message determines which well-known feature set of CEL is supported.
-
-            * `versionedExpr` (`pulumi.Input[str]`) - Predefined rule expression. If this field is specified, `config` must also be specified.
-              Available options:
-              * SRC_IPS_V1: Must specify the corresponding `src_ip_ranges` field in `config`.
-
-          * `preview` (`pulumi.Input[bool]`) - When set to true, the `action` specified above is not enforced.
-            Stackdriver logs for requests that trigger a preview action are annotated as such.
-          * `priority` (`pulumi.Input[float]`) - An unique positive integer indicating the priority of evaluation for a rule.
-            Rules are evaluated from highest priority (lowest numerically) to lowest priority (highest numerically) in order.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -202,7 +151,8 @@ class SecurityPolicy(pulumi.CustomResource):
         return SecurityPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,32 +5,34 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['EngineSplitTraffic']
 
 
 class EngineSplitTraffic(pulumi.CustomResource):
-    migrate_traffic: pulumi.Output[bool]
+    migrate_traffic: pulumi.Output[Optional[bool]] = pulumi.output_property("migrateTraffic")
     """
     If set to true traffic will be migrated to this version.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    service: pulumi.Output[str]
+    service: pulumi.Output[str] = pulumi.output_property("service")
     """
     The name of the service these settings apply to.
     """
-    split: pulumi.Output[dict]
+    split: pulumi.Output['outputs.EngineSplitTrafficSplit'] = pulumi.output_property("split")
     """
     Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
-
-      * `allocations` (`dict`) - Mapping from version IDs within the service to fractional (0.000, 1] allocations of traffic for that version. Each version can be specified only once, but some versions in the service may not have any traffic allocation. Services that have traffic allocated cannot be deleted until either the service is deleted or their traffic allocation is removed. Allocations must sum to 1. Up to two decimal place precision is supported for IP-based splits and up to three decimal places is supported for cookie-based splits.
-      * `shardBy` (`str`) - Mechanism used to determine which version a request is sent to. The traffic selection algorithm will be stable for either type until allocations are changed.
     """
-    def __init__(__self__, resource_name, opts=None, migrate_traffic=None, project=None, service=None, split=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, migrate_traffic: Optional[pulumi.Input[bool]] = None, project: Optional[pulumi.Input[str]] = None, service: Optional[pulumi.Input[str]] = None, split: Optional[pulumi.Input[pulumi.InputType['EngineSplitTrafficSplitArgs']]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Traffic routing configuration for versions within a single service. Traffic splits define how traffic directed to the service is assigned to versions.
 
@@ -39,6 +41,59 @@ class EngineSplitTraffic(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services)
 
         ## Example Usage
+        ### App Engine Service Split Traffic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bucket = gcp.storage.Bucket("bucket")
+        object = gcp.storage.BucketObject("object",
+            bucket=bucket.name,
+            source=pulumi.FileAsset("./test-fixtures/appengine/hello-world.zip"))
+        liveapp_v1 = gcp.appengine.StandardAppVersion("liveappV1",
+            version_id="v1",
+            service="liveapp",
+            delete_service_on_destroy=True,
+            runtime="nodejs10",
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                },
+            },
+            env_variables={
+                "port": "8080",
+            })
+        liveapp_v2 = gcp.appengine.StandardAppVersion("liveappV2",
+            version_id="v2",
+            service="liveapp",
+            noop_on_destroy=True,
+            runtime="nodejs10",
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                },
+            },
+            env_variables={
+                "port": "8080",
+            })
+        liveapp = gcp.appengine.EngineSplitTraffic("liveapp",
+            service=liveapp_v2.service,
+            migrate_traffic=False,
+            split={
+                "shardBy": "IP",
+                "allocations": pulumi.Output.all(liveapp_v1.version_id, liveapp_v2.version_id).apply(lambda liveappV1Version_id, liveappV2Version_id: {
+                    liveapp_v1_version_id: 0.75,
+                    liveapp_v2_version_id: 0.25,
+                }),
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -46,12 +101,7 @@ class EngineSplitTraffic(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] service: The name of the service these settings apply to.
-        :param pulumi.Input[dict] split: Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
-
-        The **split** object supports the following:
-
-          * `allocations` (`pulumi.Input[dict]`) - Mapping from version IDs within the service to fractional (0.000, 1] allocations of traffic for that version. Each version can be specified only once, but some versions in the service may not have any traffic allocation. Services that have traffic allocated cannot be deleted until either the service is deleted or their traffic allocation is removed. Allocations must sum to 1. Up to two decimal place precision is supported for IP-based splits and up to three decimal places is supported for cookie-based splits.
-          * `shardBy` (`pulumi.Input[str]`) - Mechanism used to determine which version a request is sent to. The traffic selection algorithm will be stable for either type until allocations are changed.
+        :param pulumi.Input[pulumi.InputType['EngineSplitTrafficSplitArgs']] split: Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -64,7 +114,7 @@ class EngineSplitTraffic(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -85,7 +135,7 @@ class EngineSplitTraffic(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, migrate_traffic=None, project=None, service=None, split=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, migrate_traffic: Optional[pulumi.Input[bool]] = None, project: Optional[pulumi.Input[str]] = None, service: Optional[pulumi.Input[str]] = None, split: Optional[pulumi.Input[pulumi.InputType['EngineSplitTrafficSplitArgs']]] = None) -> 'EngineSplitTraffic':
         """
         Get an existing EngineSplitTraffic resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -97,12 +147,7 @@ class EngineSplitTraffic(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] service: The name of the service these settings apply to.
-        :param pulumi.Input[dict] split: Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
-
-        The **split** object supports the following:
-
-          * `allocations` (`pulumi.Input[dict]`) - Mapping from version IDs within the service to fractional (0.000, 1] allocations of traffic for that version. Each version can be specified only once, but some versions in the service may not have any traffic allocation. Services that have traffic allocated cannot be deleted until either the service is deleted or their traffic allocation is removed. Allocations must sum to 1. Up to two decimal place precision is supported for IP-based splits and up to three decimal places is supported for cookie-based splits.
-          * `shardBy` (`pulumi.Input[str]`) - Mechanism used to determine which version a request is sent to. The traffic selection algorithm will be stable for either type until allocations are changed.
+        :param pulumi.Input[pulumi.InputType['EngineSplitTrafficSplitArgs']] split: Mapping that defines fractional HTTP traffic diversion to different versions within the service.  Structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -115,7 +160,8 @@ class EngineSplitTraffic(pulumi.CustomResource):
         return EngineSplitTraffic(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

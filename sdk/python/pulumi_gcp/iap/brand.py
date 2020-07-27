@@ -5,30 +5,32 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Brand']
 
 
 class Brand(pulumi.CustomResource):
-    application_title: pulumi.Output[str]
+    application_title: pulumi.Output[str] = pulumi.output_property("applicationTitle")
     """
     Application name displayed on OAuth consent screen.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Output only. Identifier of the brand, in the format 'projects/{project_number}/brands/{brand_id}'. NOTE: The brand
     identification corresponds to the project number as only one brand per project can be created.
     """
-    org_internal_only: pulumi.Output[bool]
+    org_internal_only: pulumi.Output[bool] = pulumi.output_property("orgInternalOnly")
     """
     Whether the brand is only intended for usage inside the GSuite organization only.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    support_email: pulumi.Output[str]
+    support_email: pulumi.Output[str] = pulumi.output_property("supportEmail")
     """
     Support email displayed on the OAuth consent screen. Can be either a
     user or group email. When a user email is specified, the caller must
@@ -36,7 +38,8 @@ class Brand(pulumi.CustomResource):
     specified, the caller can be either a user or a service account which
     is an owner of the specified group in Cloud Identity.
     """
-    def __init__(__self__, resource_name, opts=None, application_title=None, project=None, support_email=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, application_title: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, support_email: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         OAuth brand data. Only "Organization Internal" brands can be created
         programatically via API. To convert it into an external brands
@@ -70,7 +73,7 @@ class Brand(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -92,7 +95,7 @@ class Brand(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, application_title=None, name=None, org_internal_only=None, project=None, support_email=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, application_title: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, org_internal_only: Optional[pulumi.Input[bool]] = None, project: Optional[pulumi.Input[str]] = None, support_email: Optional[pulumi.Input[str]] = None) -> 'Brand':
         """
         Get an existing Brand resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -124,7 +127,8 @@ class Brand(pulumi.CustomResource):
         return Brand(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

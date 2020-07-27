@@ -5,47 +5,50 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['IAMCustomRole']
 
 
 class IAMCustomRole(pulumi.CustomResource):
-    deleted: pulumi.Output[bool]
+    deleted: pulumi.Output[bool] = pulumi.output_property("deleted")
     """
     (Optional) The current deleted state of the role.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     A human-readable description for the role.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name of the role in the format `projects/{{project}}/roles/{{role_id}}`. Like `id`, this field can be used as a reference in other resources such as IAM role bindings.
     """
-    permissions: pulumi.Output[list]
+    permissions: pulumi.Output[List[str]] = pulumi.output_property("permissions")
     """
     The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The project that the service account will be created in.
     Defaults to the provider project configuration.
     """
-    role_id: pulumi.Output[str]
+    role_id: pulumi.Output[str] = pulumi.output_property("roleId")
     """
     The camel case role id to use for this role. Cannot contain `-` characters.
     """
-    stage: pulumi.Output[str]
+    stage: pulumi.Output[Optional[str]] = pulumi.output_property("stage")
     """
     The current launch stage of the role.
     Defaults to `GA`.
     List of possible stages is [here](https://cloud.google.com/iam/reference/rest/v1/organizations.roles#Role.RoleLaunchStage).
     """
-    title: pulumi.Output[str]
+    title: pulumi.Output[str] = pulumi.output_property("title")
     """
     A human-readable title for the role.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, permissions=None, project=None, role_id=None, stage=None, title=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, permissions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, project: Optional[pulumi.Input[str]] = None, role_id: Optional[pulumi.Input[str]] = None, stage: Optional[pulumi.Input[str]] = None, title: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Allows management of a customized Cloud IAM project role. For more information see
         [the official documentation](https://cloud.google.com/iam/docs/understanding-custom-roles)
@@ -59,10 +62,29 @@ class IAMCustomRole(pulumi.CustomResource):
          made available again. This means a deleted role that has been deleted for more than 7 days cannot be changed at all
          by the provider, and new roles cannot share that name.
 
+        ## Example Usage
+
+        This snippet creates a customized IAM role.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_custom_role = gcp.projects.IAMCustomRole("my-custom-role",
+            description="A description",
+            permissions=[
+                "iam.roles.list",
+                "iam.roles.create",
+                "iam.roles.delete",
+            ],
+            role_id="myCustomRole",
+            title="My Custom Role")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A human-readable description for the role.
-        :param pulumi.Input[list] permissions: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+        :param pulumi.Input[List[pulumi.Input[str]]] permissions: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
         :param pulumi.Input[str] project: The project that the service account will be created in.
                Defaults to the provider project configuration.
         :param pulumi.Input[str] role_id: The camel case role id to use for this role. Cannot contain `-` characters.
@@ -82,7 +104,7 @@ class IAMCustomRole(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -109,7 +131,7 @@ class IAMCustomRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, deleted=None, description=None, name=None, permissions=None, project=None, role_id=None, stage=None, title=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, deleted: Optional[pulumi.Input[bool]] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, permissions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, project: Optional[pulumi.Input[str]] = None, role_id: Optional[pulumi.Input[str]] = None, stage: Optional[pulumi.Input[str]] = None, title: Optional[pulumi.Input[str]] = None) -> 'IAMCustomRole':
         """
         Get an existing IAMCustomRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -120,7 +142,7 @@ class IAMCustomRole(pulumi.CustomResource):
         :param pulumi.Input[bool] deleted: (Optional) The current deleted state of the role.
         :param pulumi.Input[str] description: A human-readable description for the role.
         :param pulumi.Input[str] name: The name of the role in the format `projects/{{project}}/roles/{{role_id}}`. Like `id`, this field can be used as a reference in other resources such as IAM role bindings.
-        :param pulumi.Input[list] permissions: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+        :param pulumi.Input[List[pulumi.Input[str]]] permissions: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
         :param pulumi.Input[str] project: The project that the service account will be created in.
                Defaults to the provider project configuration.
         :param pulumi.Input[str] role_id: The camel case role id to use for this role. Cannot contain `-` characters.
@@ -144,7 +166,8 @@ class IAMCustomRole(pulumi.CustomResource):
         return IAMCustomRole(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

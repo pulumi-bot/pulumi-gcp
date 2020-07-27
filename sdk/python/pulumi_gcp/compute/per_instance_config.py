@@ -5,16 +5,20 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['PerInstanceConfig']
 
 
 class PerInstanceConfig(pulumi.CustomResource):
-    instance_group_manager: pulumi.Output[str]
+    instance_group_manager: pulumi.Output[str] = pulumi.output_property("instanceGroupManager")
     """
     The instance group manager this instance config is part of.
     """
-    minimal_action: pulumi.Output[str]
+    minimal_action: pulumi.Output[Optional[str]] = pulumi.output_property("minimalAction")
     """
     The minimal action to perform on the instance during an update.
     Default is `NONE`. Possible values are:
@@ -23,7 +27,7 @@ class PerInstanceConfig(pulumi.CustomResource):
     * REFRESH
     * NONE
     """
-    most_disruptive_allowed_action: pulumi.Output[str]
+    most_disruptive_allowed_action: pulumi.Output[Optional[str]] = pulumi.output_property("mostDisruptiveAllowedAction")
     """
     The most disruptive action to perform on the instance during an update.
     Default is `REPLACE`. Possible values are:
@@ -32,43 +36,31 @@ class PerInstanceConfig(pulumi.CustomResource):
     * REFRESH
     * NONE
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name for this per-instance config and its corresponding instance.
     """
-    preserved_state: pulumi.Output[dict]
+    preserved_state: pulumi.Output[Optional['outputs.PerInstanceConfigPreservedState']] = pulumi.output_property("preservedState")
     """
     The preserved state for this instance.  Structure is documented below.
-
-      * `disks` (`list`) - Stateful disks for the instance.  Structure is documented below.
-        * `deleteRule` (`str`) - A value that prescribes what should happen to the stateful disk when the VM instance is deleted.
-          The available options are `NEVER` and `ON_PERMANENT_INSTANCE_DELETION`.
-          `NEVER` detatch the disk when the VM is deleted, but not delete the disk.
-          `ON_PERMANENT_INSTANCE_DELETION` will delete the stateful disk when the VM is permanently
-          deleted from the instance group.
-        * `device_name` (`str`) - A unique device name that is reflected into the /dev/ tree of a Linux operating system running within the instance.
-        * `mode` (`str`) - The mode of the disk.
-        * `source` (`str`) - The URI of an existing persistent disk to attach under the specified device-name in the format
-          `projects/project-id/zones/zone/disks/disk-name`.
-
-      * `metadata` (`dict`) - Preserved metadata defined for this instance. This is a list of key->value pairs.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    remove_instance_state_on_destroy: pulumi.Output[bool]
+    remove_instance_state_on_destroy: pulumi.Output[Optional[bool]] = pulumi.output_property("removeInstanceStateOnDestroy")
     """
     When true, deleting this config will immediately remove any specified state from the underlying instance.
     When false, deleting this config will *not* immediately remove any state from the underlying instance.
     State will be removed on the next instance recreation or update.
     """
-    zone: pulumi.Output[str]
+    zone: pulumi.Output[str] = pulumi.output_property("zone")
     """
     Zone where the containing instance group manager is located
     """
-    def __init__(__self__, resource_name, opts=None, instance_group_manager=None, minimal_action=None, most_disruptive_allowed_action=None, name=None, preserved_state=None, project=None, remove_instance_state_on_destroy=None, zone=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, instance_group_manager: Optional[pulumi.Input[str]] = None, minimal_action: Optional[pulumi.Input[str]] = None, most_disruptive_allowed_action: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, preserved_state: Optional[pulumi.Input[pulumi.InputType['PerInstanceConfigPreservedStateArgs']]] = None, project: Optional[pulumi.Input[str]] = None, remove_instance_state_on_destroy: Optional[pulumi.Input[bool]] = None, zone: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A config defined for a single managed instance that belongs to an instance group manager. It preserves the instance name
         across instance group manager operations and can define stateful disks or metadata that are unique to the instance.
@@ -97,28 +89,13 @@ class PerInstanceConfig(pulumi.CustomResource):
                * REFRESH
                * NONE
         :param pulumi.Input[str] name: The name for this per-instance config and its corresponding instance.
-        :param pulumi.Input[dict] preserved_state: The preserved state for this instance.  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['PerInstanceConfigPreservedStateArgs']] preserved_state: The preserved state for this instance.  Structure is documented below.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[bool] remove_instance_state_on_destroy: When true, deleting this config will immediately remove any specified state from the underlying instance.
                When false, deleting this config will *not* immediately remove any state from the underlying instance.
                State will be removed on the next instance recreation or update.
         :param pulumi.Input[str] zone: Zone where the containing instance group manager is located
-
-        The **preserved_state** object supports the following:
-
-          * `disks` (`pulumi.Input[list]`) - Stateful disks for the instance.  Structure is documented below.
-            * `deleteRule` (`pulumi.Input[str]`) - A value that prescribes what should happen to the stateful disk when the VM instance is deleted.
-              The available options are `NEVER` and `ON_PERMANENT_INSTANCE_DELETION`.
-              `NEVER` detatch the disk when the VM is deleted, but not delete the disk.
-              `ON_PERMANENT_INSTANCE_DELETION` will delete the stateful disk when the VM is permanently
-              deleted from the instance group.
-            * `device_name` (`pulumi.Input[str]`) - A unique device name that is reflected into the /dev/ tree of a Linux operating system running within the instance.
-            * `mode` (`pulumi.Input[str]`) - The mode of the disk.
-            * `source` (`pulumi.Input[str]`) - The URI of an existing persistent disk to attach under the specified device-name in the format
-              `projects/project-id/zones/zone/disks/disk-name`.
-
-          * `metadata` (`pulumi.Input[dict]`) - Preserved metadata defined for this instance. This is a list of key->value pairs.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -131,7 +108,7 @@ class PerInstanceConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -156,7 +133,7 @@ class PerInstanceConfig(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, instance_group_manager=None, minimal_action=None, most_disruptive_allowed_action=None, name=None, preserved_state=None, project=None, remove_instance_state_on_destroy=None, zone=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, instance_group_manager: Optional[pulumi.Input[str]] = None, minimal_action: Optional[pulumi.Input[str]] = None, most_disruptive_allowed_action: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, preserved_state: Optional[pulumi.Input[pulumi.InputType['PerInstanceConfigPreservedStateArgs']]] = None, project: Optional[pulumi.Input[str]] = None, remove_instance_state_on_destroy: Optional[pulumi.Input[bool]] = None, zone: Optional[pulumi.Input[str]] = None) -> 'PerInstanceConfig':
         """
         Get an existing PerInstanceConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -178,28 +155,13 @@ class PerInstanceConfig(pulumi.CustomResource):
                * REFRESH
                * NONE
         :param pulumi.Input[str] name: The name for this per-instance config and its corresponding instance.
-        :param pulumi.Input[dict] preserved_state: The preserved state for this instance.  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['PerInstanceConfigPreservedStateArgs']] preserved_state: The preserved state for this instance.  Structure is documented below.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[bool] remove_instance_state_on_destroy: When true, deleting this config will immediately remove any specified state from the underlying instance.
                When false, deleting this config will *not* immediately remove any state from the underlying instance.
                State will be removed on the next instance recreation or update.
         :param pulumi.Input[str] zone: Zone where the containing instance group manager is located
-
-        The **preserved_state** object supports the following:
-
-          * `disks` (`pulumi.Input[list]`) - Stateful disks for the instance.  Structure is documented below.
-            * `deleteRule` (`pulumi.Input[str]`) - A value that prescribes what should happen to the stateful disk when the VM instance is deleted.
-              The available options are `NEVER` and `ON_PERMANENT_INSTANCE_DELETION`.
-              `NEVER` detatch the disk when the VM is deleted, but not delete the disk.
-              `ON_PERMANENT_INSTANCE_DELETION` will delete the stateful disk when the VM is permanently
-              deleted from the instance group.
-            * `device_name` (`pulumi.Input[str]`) - A unique device name that is reflected into the /dev/ tree of a Linux operating system running within the instance.
-            * `mode` (`pulumi.Input[str]`) - The mode of the disk.
-            * `source` (`pulumi.Input[str]`) - The URI of an existing persistent disk to attach under the specified device-name in the format
-              `projects/project-id/zones/zone/disks/disk-name`.
-
-          * `metadata` (`pulumi.Input[dict]`) - Preserved metadata defined for this instance. This is a list of key->value pairs.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -216,7 +178,8 @@ class PerInstanceConfig(pulumi.CustomResource):
         return PerInstanceConfig(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

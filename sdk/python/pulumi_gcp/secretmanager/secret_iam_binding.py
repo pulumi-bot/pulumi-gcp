@@ -5,30 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['SecretIamBinding']
 
 
 class SecretIamBinding(pulumi.CustomResource):
-    condition: pulumi.Output[dict]
-    etag: pulumi.Output[str]
+    condition: pulumi.Output[Optional['outputs.SecretIamBindingCondition']] = pulumi.output_property("condition")
+    etag: pulumi.Output[str] = pulumi.output_property("etag")
     """
     (Computed) The etag of the IAM policy.
     """
-    members: pulumi.Output[list]
-    project: pulumi.Output[str]
+    members: pulumi.Output[List[str]] = pulumi.output_property("members")
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
     """
-    role: pulumi.Output[str]
+    role: pulumi.Output[str] = pulumi.output_property("role")
     """
     The role that should be applied. Only one
     `secretmanager.SecretIamBinding` can be used per role. Note that custom roles must be of the format
     `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
-    secret_id: pulumi.Output[str]
-    def __init__(__self__, resource_name, opts=None, condition=None, members=None, project=None, role=None, secret_id=None, __props__=None, __name__=None, __opts__=None):
+    secret_id: pulumi.Output[str] = pulumi.output_property("secretId")
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, condition: Optional[pulumi.Input[pulumi.InputType['SecretIamBindingConditionArgs']]] = None, members: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, project: Optional[pulumi.Input[str]] = None, role: Optional[pulumi.Input[str]] = None, secret_id: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Three different resources help you manage your IAM policy for Secret Manager Secret. Each of these resources serves a different use case:
 
@@ -40,6 +45,48 @@ class SecretIamBinding(pulumi.CustomResource):
 
         > **Note:** `secretmanager.SecretIamBinding` resources **can be** used in conjunction with `secretmanager.SecretIamMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_secret\_manager\_secret\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/secretmanager.secretAccessor",
+            "members": ["user:jane@example.com"],
+        }])
+        policy = gcp.secretmanager.SecretIamPolicy("policy",
+            project=google_secret_manager_secret["secret-basic"]["project"],
+            secret_id=google_secret_manager_secret["secret-basic"]["secret_id"],
+            policy_data=admin.policy_data)
+        ```
+
+        ## google\_secret\_manager\_secret\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        binding = gcp.secretmanager.SecretIamBinding("binding",
+            project=google_secret_manager_secret["secret-basic"]["project"],
+            secret_id=google_secret_manager_secret["secret-basic"]["secret_id"],
+            role="roles/secretmanager.secretAccessor",
+            members=["user:jane@example.com"])
+        ```
+
+        ## google\_secret\_manager\_secret\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        member = gcp.secretmanager.SecretIamMember("member",
+            project=google_secret_manager_secret["secret-basic"]["project"],
+            secret_id=google_secret_manager_secret["secret-basic"]["secret_id"],
+            role="roles/secretmanager.secretAccessor",
+            member="user:jane@example.com")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
@@ -47,12 +94,6 @@ class SecretIamBinding(pulumi.CustomResource):
         :param pulumi.Input[str] role: The role that should be applied. Only one
                `secretmanager.SecretIamBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -65,7 +106,7 @@ class SecretIamBinding(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -90,7 +131,7 @@ class SecretIamBinding(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, condition=None, etag=None, members=None, project=None, role=None, secret_id=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, condition: Optional[pulumi.Input[pulumi.InputType['SecretIamBindingConditionArgs']]] = None, etag: Optional[pulumi.Input[str]] = None, members: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, project: Optional[pulumi.Input[str]] = None, role: Optional[pulumi.Input[str]] = None, secret_id: Optional[pulumi.Input[str]] = None) -> 'SecretIamBinding':
         """
         Get an existing SecretIamBinding resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -104,12 +145,6 @@ class SecretIamBinding(pulumi.CustomResource):
         :param pulumi.Input[str] role: The role that should be applied. Only one
                `secretmanager.SecretIamBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -124,7 +159,8 @@ class SecretIamBinding(pulumi.CustomResource):
         return SecretIamBinding(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

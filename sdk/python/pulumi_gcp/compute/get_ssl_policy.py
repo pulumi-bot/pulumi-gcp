@@ -5,14 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetSSLPolicyResult',
+    'AwaitableGetSSLPolicyResult',
+    'get_ssl_policy',
+]
+
 
 class GetSSLPolicyResult:
     """
     A collection of values returned by getSSLPolicy.
     """
-    def __init__(__self__, creation_timestamp=None, custom_features=None, description=None, enabled_features=None, fingerprint=None, id=None, min_tls_version=None, name=None, profile=None, project=None, self_link=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, creation_timestamp=None, custom_features=None, description=None, enabled_features=None, fingerprint=None, id=None, min_tls_version=None, name=None, profile=None, project=None, self_link=None) -> None:
         if creation_timestamp and not isinstance(creation_timestamp, str):
             raise TypeError("Expected argument 'creation_timestamp' to be a str")
         __self__.creation_timestamp = creation_timestamp
@@ -72,6 +80,8 @@ class GetSSLPolicyResult:
         """
         The URI of the created resource.
         """
+
+
 class AwaitableGetSSLPolicyResult(GetSSLPolicyResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -90,10 +100,20 @@ class AwaitableGetSSLPolicyResult(GetSSLPolicyResult):
             project=self.project,
             self_link=self.self_link)
 
-def get_ssl_policy(name=None,project=None,opts=None):
+
+def get_ssl_policy(name: Optional[str] = None, project: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSSLPolicyResult:
     """
     Gets an SSL Policy within GCE from its name, for use with Target HTTPS and Target SSL Proxies.
         For more information see [the official documentation](https://cloud.google.com/compute/docs/load-balancing/ssl-policies).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_ssl_policy = gcp.compute.get_ssl_policy(name="production-ssl-policy")
+    ```
 
 
     :param str name: The name of the SSL Policy.
@@ -101,14 +121,12 @@ def get_ssl_policy(name=None,project=None,opts=None):
            is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getSSLPolicy:getSSLPolicy', __args__, opts=opts).value
 
     return AwaitableGetSSLPolicyResult(

@@ -5,14 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetRouterResult',
+    'AwaitableGetRouterResult',
+    'get_router',
+]
+
 
 class GetRouterResult:
     """
     A collection of values returned by getRouter.
     """
-    def __init__(__self__, bgps=None, creation_timestamp=None, description=None, id=None, name=None, network=None, project=None, region=None, self_link=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, bgps=None, creation_timestamp=None, description=None, id=None, name=None, network=None, project=None, region=None, self_link=None) -> None:
         if bgps and not isinstance(bgps, list):
             raise TypeError("Expected argument 'bgps' to be a list")
         __self__.bgps = bgps
@@ -43,6 +52,8 @@ class GetRouterResult:
         if self_link and not isinstance(self_link, str):
             raise TypeError("Expected argument 'self_link' to be a str")
         __self__.self_link = self_link
+
+
 class AwaitableGetRouterResult(GetRouterResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -59,9 +70,20 @@ class AwaitableGetRouterResult(GetRouterResult):
             region=self.region,
             self_link=self.self_link)
 
-def get_router(name=None,network=None,project=None,region=None,opts=None):
+
+def get_router(name: Optional[str] = None, network: Optional[str] = None, project: Optional[str] = None, region: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRouterResult:
     """
     Get a router within GCE from its name and VPC.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_router = gcp.compute.get_router(name="myrouter-us-east1",
+        network="my-network")
+    ```
 
 
     :param str name: The name of the router.
@@ -72,8 +94,6 @@ def get_router(name=None,network=None,project=None,region=None,opts=None):
            unspecified, this defaults to the region configured in the provider.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['network'] = network
     __args__['project'] = project
@@ -81,7 +101,7 @@ def get_router(name=None,network=None,project=None,region=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getRouter:getRouter', __args__, opts=opts).value
 
     return AwaitableGetRouterResult(

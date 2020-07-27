@@ -5,211 +5,157 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['InstanceFromTemplate']
 
 
 class InstanceFromTemplate(pulumi.CustomResource):
-    allow_stopping_for_update: pulumi.Output[bool]
+    allow_stopping_for_update: pulumi.Output[bool] = pulumi.output_property("allowStoppingForUpdate")
     """
     If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires
     stopping the instance without setting this field, the update will fail.
     """
-    attached_disks: pulumi.Output[list]
+    attached_disks: pulumi.Output[List['outputs.InstanceFromTemplateAttachedDisk']] = pulumi.output_property("attachedDisks")
     """
     List of disks attached to the instance
-
-      * `device_name` (`str`)
-      * `diskEncryptionKeyRaw` (`str`)
-      * `diskEncryptionKeySha256` (`str`)
-      * `kmsKeySelfLink` (`str`)
-      * `mode` (`str`)
-      * `source` (`str`)
     """
-    boot_disk: pulumi.Output[dict]
+    boot_disk: pulumi.Output['outputs.InstanceFromTemplateBootDisk'] = pulumi.output_property("bootDisk")
     """
     The boot disk for the instance.
-
-      * `autoDelete` (`bool`)
-      * `device_name` (`str`)
-      * `diskEncryptionKeyRaw` (`str`)
-      * `diskEncryptionKeySha256` (`str`)
-      * `initializeParams` (`dict`)
-        * `image` (`str`)
-        * `labels` (`dict`)
-        * `size` (`float`)
-        * `type` (`str`)
-
-      * `kmsKeySelfLink` (`str`)
-      * `mode` (`str`)
-      * `source` (`str`)
     """
-    can_ip_forward: pulumi.Output[bool]
+    can_ip_forward: pulumi.Output[bool] = pulumi.output_property("canIpForward")
     """
     Whether sending and receiving of packets with non-matching source or destination IPs is allowed.
     """
-    cpu_platform: pulumi.Output[str]
+    cpu_platform: pulumi.Output[str] = pulumi.output_property("cpuPlatform")
     """
     The CPU platform used by this instance.
     """
-    current_status: pulumi.Output[str]
+    current_status: pulumi.Output[str] = pulumi.output_property("currentStatus")
     """
     Current status of the instance.
     """
-    deletion_protection: pulumi.Output[bool]
+    deletion_protection: pulumi.Output[bool] = pulumi.output_property("deletionProtection")
     """
     Whether deletion protection is enabled on this instance.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[str] = pulumi.output_property("description")
     """
     A brief description of the resource.
     """
-    desired_status: pulumi.Output[str]
+    desired_status: pulumi.Output[str] = pulumi.output_property("desiredStatus")
     """
     Desired status of the instance. Either "RUNNING" or "TERMINATED".
     """
-    enable_display: pulumi.Output[bool]
+    enable_display: pulumi.Output[bool] = pulumi.output_property("enableDisplay")
     """
     Whether the instance has virtual displays enabled.
     """
-    guest_accelerators: pulumi.Output[list]
+    guest_accelerators: pulumi.Output[List['outputs.InstanceFromTemplateGuestAccelerator']] = pulumi.output_property("guestAccelerators")
     """
     List of the type and count of accelerator cards attached to the instance.
-
-      * `count` (`float`)
-      * `type` (`str`)
     """
-    hostname: pulumi.Output[str]
+    hostname: pulumi.Output[str] = pulumi.output_property("hostname")
     """
     A custom hostname for the instance. Must be a fully qualified DNS name and RFC-1035-valid. Valid format is a series of
     labels 1-63 characters long matching the regular expression [a-z]([-a-z0-9]*[a-z0-9]), concatenated with periods. The
     entire hostname must not exceed 253 characters. Changing this forces a new resource to be created.
     """
-    instance_id: pulumi.Output[str]
+    instance_id: pulumi.Output[str] = pulumi.output_property("instanceId")
     """
     The server-assigned unique identifier of this instance.
     """
-    label_fingerprint: pulumi.Output[str]
+    label_fingerprint: pulumi.Output[str] = pulumi.output_property("labelFingerprint")
     """
     The unique fingerprint of the labels.
     """
-    labels: pulumi.Output[dict]
+    labels: pulumi.Output[Dict[str, str]] = pulumi.output_property("labels")
     """
     A set of key/value label pairs assigned to the instance.
     """
-    machine_type: pulumi.Output[str]
+    machine_type: pulumi.Output[str] = pulumi.output_property("machineType")
     """
     The machine type to create.
     """
-    metadata: pulumi.Output[dict]
+    metadata: pulumi.Output[Dict[str, str]] = pulumi.output_property("metadata")
     """
     Metadata key/value pairs made available within the instance.
     """
-    metadata_fingerprint: pulumi.Output[str]
+    metadata_fingerprint: pulumi.Output[str] = pulumi.output_property("metadataFingerprint")
     """
     The unique fingerprint of the metadata.
     """
-    metadata_startup_script: pulumi.Output[str]
+    metadata_startup_script: pulumi.Output[str] = pulumi.output_property("metadataStartupScript")
     """
     Metadata startup scripts made available within the instance.
     """
-    min_cpu_platform: pulumi.Output[str]
+    min_cpu_platform: pulumi.Output[str] = pulumi.output_property("minCpuPlatform")
     """
     The minimum CPU platform specified for the VM instance.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     A unique name for the resource, required by GCE.
     Changing this forces a new resource to be created.
     """
-    network_interfaces: pulumi.Output[list]
+    network_interfaces: pulumi.Output[List['outputs.InstanceFromTemplateNetworkInterface']] = pulumi.output_property("networkInterfaces")
     """
     The networks attached to the instance.
-
-      * `accessConfigs` (`list`)
-        * `natIp` (`str`)
-        * `network_tier` (`str`)
-        * `publicPtrDomainName` (`str`)
-
-      * `aliasIpRanges` (`list`)
-        * `ip_cidr_range` (`str`)
-        * `subnetworkRangeName` (`str`)
-
-      * `name` (`str`) - A unique name for the resource, required by GCE.
-        Changing this forces a new resource to be created.
-      * `network` (`str`)
-      * `networkIp` (`str`)
-      * `subnetwork` (`str`)
-      * `subnetworkProject` (`str`)
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs. If self_link is provided, this value is ignored. If neither
     self_link nor project are provided, the provider project is used.
     """
-    resource_policies: pulumi.Output[str]
+    resource_policies: pulumi.Output[str] = pulumi.output_property("resourcePolicies")
     """
     A list of short names or self_links of resource policies to attach to the instance. Modifying this list will cause the
     instance to recreate. Currently a max of 1 resource policy is supported.
     """
-    scheduling: pulumi.Output[dict]
+    scheduling: pulumi.Output['outputs.InstanceFromTemplateScheduling'] = pulumi.output_property("scheduling")
     """
     The scheduling strategy being used by the instance.
-
-      * `automaticRestart` (`bool`)
-      * `minNodeCpus` (`float`)
-      * `nodeAffinities` (`list`)
-        * `key` (`str`)
-        * `operator` (`str`)
-        * `values` (`list`)
-
-      * `onHostMaintenance` (`str`)
-      * `preemptible` (`bool`)
     """
-    scratch_disks: pulumi.Output[list]
+    scratch_disks: pulumi.Output[List['outputs.InstanceFromTemplateScratchDisk']] = pulumi.output_property("scratchDisks")
     """
     The scratch disks attached to the instance.
-
-      * `interface` (`str`)
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The URI of the created resource.
     """
-    service_account: pulumi.Output[dict]
+    service_account: pulumi.Output['outputs.InstanceFromTemplateServiceAccount'] = pulumi.output_property("serviceAccount")
     """
     The service account to attach to the instance.
-
-      * `email` (`str`)
-      * `scopes` (`list`)
     """
-    shielded_instance_config: pulumi.Output[dict]
+    shielded_instance_config: pulumi.Output['outputs.InstanceFromTemplateShieldedInstanceConfig'] = pulumi.output_property("shieldedInstanceConfig")
     """
     The shielded vm config being used by the instance.
-
-      * `enableIntegrityMonitoring` (`bool`)
-      * `enableSecureBoot` (`bool`)
-      * `enableVtpm` (`bool`)
     """
-    source_instance_template: pulumi.Output[str]
+    source_instance_template: pulumi.Output[str] = pulumi.output_property("sourceInstanceTemplate")
     """
     Name or self link of an instance
     template to create the instance based on.
     """
-    tags: pulumi.Output[list]
+    tags: pulumi.Output[List[str]] = pulumi.output_property("tags")
     """
     The list of tags attached to the instance.
     """
-    tags_fingerprint: pulumi.Output[str]
+    tags_fingerprint: pulumi.Output[str] = pulumi.output_property("tagsFingerprint")
     """
     The unique fingerprint of the tags.
     """
-    zone: pulumi.Output[str]
+    zone: pulumi.Output[str] = pulumi.output_property("zone")
     """
     The zone that the machine should be created in. If not
     set, the provider zone is used.
     """
-    def __init__(__self__, resource_name, opts=None, allow_stopping_for_update=None, attached_disks=None, boot_disk=None, can_ip_forward=None, deletion_protection=None, description=None, desired_status=None, enable_display=None, guest_accelerators=None, hostname=None, labels=None, machine_type=None, metadata=None, metadata_startup_script=None, min_cpu_platform=None, name=None, network_interfaces=None, project=None, resource_policies=None, scheduling=None, scratch_disks=None, service_account=None, shielded_instance_config=None, source_instance_template=None, tags=None, zone=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, allow_stopping_for_update: Optional[pulumi.Input[bool]] = None, attached_disks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateAttachedDiskArgs']]]]] = None, boot_disk: Optional[pulumi.Input[pulumi.InputType['InstanceFromTemplateBootDiskArgs']]] = None, can_ip_forward: Optional[pulumi.Input[bool]] = None, deletion_protection: Optional[pulumi.Input[bool]] = None, description: Optional[pulumi.Input[str]] = None, desired_status: Optional[pulumi.Input[str]] = None, enable_display: Optional[pulumi.Input[bool]] = None, guest_accelerators: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateGuestAcceleratorArgs']]]]] = None, hostname: Optional[pulumi.Input[str]] = None, labels: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, machine_type: Optional[pulumi.Input[str]] = None, metadata: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, metadata_startup_script: Optional[pulumi.Input[str]] = None, min_cpu_platform: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, network_interfaces: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateNetworkInterfaceArgs']]]]] = None, project: Optional[pulumi.Input[str]] = None, resource_policies: Optional[pulumi.Input[str]] = None, scheduling: Optional[pulumi.Input[pulumi.InputType['InstanceFromTemplateSchedulingArgs']]] = None, scratch_disks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateScratchDiskArgs']]]]] = None, service_account: Optional[pulumi.Input[pulumi.InputType['InstanceFromTemplateServiceAccountArgs']]] = None, shielded_instance_config: Optional[pulumi.Input[pulumi.InputType['InstanceFromTemplateShieldedInstanceConfigArgs']]] = None, source_instance_template: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, zone: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Manages a VM instance resource within GCE. For more information see
         [the official documentation](https://cloud.google.com/compute/docs/instances)
@@ -220,117 +166,72 @@ class InstanceFromTemplate(pulumi.CustomResource):
         `source_instance_template`. To create an instance without a template, use the
         `compute.Instance` resource.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        tpl_instance_template = gcp.compute.InstanceTemplate("tplInstanceTemplate",
+            machine_type="n1-standard-1",
+            disks=[{
+                "sourceImage": "debian-cloud/debian-9",
+                "autoDelete": True,
+                "disk_size_gb": 100,
+                "boot": True,
+            }],
+            network_interfaces=[{
+                "network": "default",
+            }],
+            metadata={
+                "foo": "bar",
+            },
+            can_ip_forward=True)
+        tpl_instance_from_template = gcp.compute.InstanceFromTemplate("tplInstanceFromTemplate",
+            zone="us-central1-a",
+            source_instance_template=tpl_instance_template.id,
+            can_ip_forward=False,
+            labels={
+                "my_key": "my_value",
+            })
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_stopping_for_update: If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires
                stopping the instance without setting this field, the update will fail.
-        :param pulumi.Input[list] attached_disks: List of disks attached to the instance
-        :param pulumi.Input[dict] boot_disk: The boot disk for the instance.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateAttachedDiskArgs']]]] attached_disks: List of disks attached to the instance
+        :param pulumi.Input[pulumi.InputType['InstanceFromTemplateBootDiskArgs']] boot_disk: The boot disk for the instance.
         :param pulumi.Input[bool] can_ip_forward: Whether sending and receiving of packets with non-matching source or destination IPs is allowed.
         :param pulumi.Input[bool] deletion_protection: Whether deletion protection is enabled on this instance.
         :param pulumi.Input[str] description: A brief description of the resource.
         :param pulumi.Input[str] desired_status: Desired status of the instance. Either "RUNNING" or "TERMINATED".
         :param pulumi.Input[bool] enable_display: Whether the instance has virtual displays enabled.
-        :param pulumi.Input[list] guest_accelerators: List of the type and count of accelerator cards attached to the instance.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateGuestAcceleratorArgs']]]] guest_accelerators: List of the type and count of accelerator cards attached to the instance.
         :param pulumi.Input[str] hostname: A custom hostname for the instance. Must be a fully qualified DNS name and RFC-1035-valid. Valid format is a series of
                labels 1-63 characters long matching the regular expression [a-z]([-a-z0-9]*[a-z0-9]), concatenated with periods. The
                entire hostname must not exceed 253 characters. Changing this forces a new resource to be created.
-        :param pulumi.Input[dict] labels: A set of key/value label pairs assigned to the instance.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: A set of key/value label pairs assigned to the instance.
         :param pulumi.Input[str] machine_type: The machine type to create.
-        :param pulumi.Input[dict] metadata: Metadata key/value pairs made available within the instance.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] metadata: Metadata key/value pairs made available within the instance.
         :param pulumi.Input[str] metadata_startup_script: Metadata startup scripts made available within the instance.
         :param pulumi.Input[str] min_cpu_platform: The minimum CPU platform specified for the VM instance.
         :param pulumi.Input[str] name: A unique name for the resource, required by GCE.
                Changing this forces a new resource to be created.
-        :param pulumi.Input[list] network_interfaces: The networks attached to the instance.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateNetworkInterfaceArgs']]]] network_interfaces: The networks attached to the instance.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If self_link is provided, this value is ignored. If neither
                self_link nor project are provided, the provider project is used.
         :param pulumi.Input[str] resource_policies: A list of short names or self_links of resource policies to attach to the instance. Modifying this list will cause the
                instance to recreate. Currently a max of 1 resource policy is supported.
-        :param pulumi.Input[dict] scheduling: The scheduling strategy being used by the instance.
-        :param pulumi.Input[list] scratch_disks: The scratch disks attached to the instance.
-        :param pulumi.Input[dict] service_account: The service account to attach to the instance.
-        :param pulumi.Input[dict] shielded_instance_config: The shielded vm config being used by the instance.
+        :param pulumi.Input[pulumi.InputType['InstanceFromTemplateSchedulingArgs']] scheduling: The scheduling strategy being used by the instance.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateScratchDiskArgs']]]] scratch_disks: The scratch disks attached to the instance.
+        :param pulumi.Input[pulumi.InputType['InstanceFromTemplateServiceAccountArgs']] service_account: The service account to attach to the instance.
+        :param pulumi.Input[pulumi.InputType['InstanceFromTemplateShieldedInstanceConfigArgs']] shielded_instance_config: The shielded vm config being used by the instance.
         :param pulumi.Input[str] source_instance_template: Name or self link of an instance
                template to create the instance based on.
-        :param pulumi.Input[list] tags: The list of tags attached to the instance.
+        :param pulumi.Input[List[pulumi.Input[str]]] tags: The list of tags attached to the instance.
         :param pulumi.Input[str] zone: The zone that the machine should be created in. If not
                set, the provider zone is used.
-
-        The **attached_disks** object supports the following:
-
-          * `device_name` (`pulumi.Input[str]`)
-          * `diskEncryptionKeyRaw` (`pulumi.Input[str]`)
-          * `diskEncryptionKeySha256` (`pulumi.Input[str]`)
-          * `kmsKeySelfLink` (`pulumi.Input[str]`)
-          * `mode` (`pulumi.Input[str]`)
-          * `source` (`pulumi.Input[str]`)
-
-        The **boot_disk** object supports the following:
-
-          * `autoDelete` (`pulumi.Input[bool]`)
-          * `device_name` (`pulumi.Input[str]`)
-          * `diskEncryptionKeyRaw` (`pulumi.Input[str]`)
-          * `diskEncryptionKeySha256` (`pulumi.Input[str]`)
-          * `initializeParams` (`pulumi.Input[dict]`)
-            * `image` (`pulumi.Input[str]`)
-            * `labels` (`pulumi.Input[dict]`)
-            * `size` (`pulumi.Input[float]`)
-            * `type` (`pulumi.Input[str]`)
-
-          * `kmsKeySelfLink` (`pulumi.Input[str]`)
-          * `mode` (`pulumi.Input[str]`)
-          * `source` (`pulumi.Input[str]`)
-
-        The **guest_accelerators** object supports the following:
-
-          * `count` (`pulumi.Input[float]`)
-          * `type` (`pulumi.Input[str]`)
-
-        The **network_interfaces** object supports the following:
-
-          * `accessConfigs` (`pulumi.Input[list]`)
-            * `natIp` (`pulumi.Input[str]`)
-            * `network_tier` (`pulumi.Input[str]`)
-            * `publicPtrDomainName` (`pulumi.Input[str]`)
-
-          * `aliasIpRanges` (`pulumi.Input[list]`)
-            * `ip_cidr_range` (`pulumi.Input[str]`)
-            * `subnetworkRangeName` (`pulumi.Input[str]`)
-
-          * `name` (`pulumi.Input[str]`) - A unique name for the resource, required by GCE.
-            Changing this forces a new resource to be created.
-          * `network` (`pulumi.Input[str]`)
-          * `networkIp` (`pulumi.Input[str]`)
-          * `subnetwork` (`pulumi.Input[str]`)
-          * `subnetworkProject` (`pulumi.Input[str]`)
-
-        The **scheduling** object supports the following:
-
-          * `automaticRestart` (`pulumi.Input[bool]`)
-          * `minNodeCpus` (`pulumi.Input[float]`)
-          * `nodeAffinities` (`pulumi.Input[list]`)
-            * `key` (`pulumi.Input[str]`)
-            * `operator` (`pulumi.Input[str]`)
-            * `values` (`pulumi.Input[list]`)
-
-          * `onHostMaintenance` (`pulumi.Input[str]`)
-          * `preemptible` (`pulumi.Input[bool]`)
-
-        The **scratch_disks** object supports the following:
-
-          * `interface` (`pulumi.Input[str]`)
-
-        The **service_account** object supports the following:
-
-          * `email` (`pulumi.Input[str]`)
-          * `scopes` (`pulumi.Input[list]`)
-
-        The **shielded_instance_config** object supports the following:
-
-          * `enableIntegrityMonitoring` (`pulumi.Input[bool]`)
-          * `enableSecureBoot` (`pulumi.Input[bool]`)
-          * `enableVtpm` (`pulumi.Input[bool]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -343,7 +244,7 @@ class InstanceFromTemplate(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -391,7 +292,7 @@ class InstanceFromTemplate(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, allow_stopping_for_update=None, attached_disks=None, boot_disk=None, can_ip_forward=None, cpu_platform=None, current_status=None, deletion_protection=None, description=None, desired_status=None, enable_display=None, guest_accelerators=None, hostname=None, instance_id=None, label_fingerprint=None, labels=None, machine_type=None, metadata=None, metadata_fingerprint=None, metadata_startup_script=None, min_cpu_platform=None, name=None, network_interfaces=None, project=None, resource_policies=None, scheduling=None, scratch_disks=None, self_link=None, service_account=None, shielded_instance_config=None, source_instance_template=None, tags=None, tags_fingerprint=None, zone=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, allow_stopping_for_update: Optional[pulumi.Input[bool]] = None, attached_disks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateAttachedDiskArgs']]]]] = None, boot_disk: Optional[pulumi.Input[pulumi.InputType['InstanceFromTemplateBootDiskArgs']]] = None, can_ip_forward: Optional[pulumi.Input[bool]] = None, cpu_platform: Optional[pulumi.Input[str]] = None, current_status: Optional[pulumi.Input[str]] = None, deletion_protection: Optional[pulumi.Input[bool]] = None, description: Optional[pulumi.Input[str]] = None, desired_status: Optional[pulumi.Input[str]] = None, enable_display: Optional[pulumi.Input[bool]] = None, guest_accelerators: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateGuestAcceleratorArgs']]]]] = None, hostname: Optional[pulumi.Input[str]] = None, instance_id: Optional[pulumi.Input[str]] = None, label_fingerprint: Optional[pulumi.Input[str]] = None, labels: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, machine_type: Optional[pulumi.Input[str]] = None, metadata: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, metadata_fingerprint: Optional[pulumi.Input[str]] = None, metadata_startup_script: Optional[pulumi.Input[str]] = None, min_cpu_platform: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, network_interfaces: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateNetworkInterfaceArgs']]]]] = None, project: Optional[pulumi.Input[str]] = None, resource_policies: Optional[pulumi.Input[str]] = None, scheduling: Optional[pulumi.Input[pulumi.InputType['InstanceFromTemplateSchedulingArgs']]] = None, scratch_disks: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateScratchDiskArgs']]]]] = None, self_link: Optional[pulumi.Input[str]] = None, service_account: Optional[pulumi.Input[pulumi.InputType['InstanceFromTemplateServiceAccountArgs']]] = None, shielded_instance_config: Optional[pulumi.Input[pulumi.InputType['InstanceFromTemplateShieldedInstanceConfigArgs']]] = None, source_instance_template: Optional[pulumi.Input[str]] = None, tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, tags_fingerprint: Optional[pulumi.Input[str]] = None, zone: Optional[pulumi.Input[str]] = None) -> 'InstanceFromTemplate':
         """
         Get an existing InstanceFromTemplate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -401,8 +302,8 @@ class InstanceFromTemplate(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_stopping_for_update: If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires
                stopping the instance without setting this field, the update will fail.
-        :param pulumi.Input[list] attached_disks: List of disks attached to the instance
-        :param pulumi.Input[dict] boot_disk: The boot disk for the instance.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateAttachedDiskArgs']]]] attached_disks: List of disks attached to the instance
+        :param pulumi.Input[pulumi.InputType['InstanceFromTemplateBootDiskArgs']] boot_disk: The boot disk for the instance.
         :param pulumi.Input[bool] can_ip_forward: Whether sending and receiving of packets with non-matching source or destination IPs is allowed.
         :param pulumi.Input[str] cpu_platform: The CPU platform used by this instance.
         :param pulumi.Input[str] current_status: Current status of the instance.
@@ -410,111 +311,36 @@ class InstanceFromTemplate(pulumi.CustomResource):
         :param pulumi.Input[str] description: A brief description of the resource.
         :param pulumi.Input[str] desired_status: Desired status of the instance. Either "RUNNING" or "TERMINATED".
         :param pulumi.Input[bool] enable_display: Whether the instance has virtual displays enabled.
-        :param pulumi.Input[list] guest_accelerators: List of the type and count of accelerator cards attached to the instance.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateGuestAcceleratorArgs']]]] guest_accelerators: List of the type and count of accelerator cards attached to the instance.
         :param pulumi.Input[str] hostname: A custom hostname for the instance. Must be a fully qualified DNS name and RFC-1035-valid. Valid format is a series of
                labels 1-63 characters long matching the regular expression [a-z]([-a-z0-9]*[a-z0-9]), concatenated with periods. The
                entire hostname must not exceed 253 characters. Changing this forces a new resource to be created.
         :param pulumi.Input[str] instance_id: The server-assigned unique identifier of this instance.
         :param pulumi.Input[str] label_fingerprint: The unique fingerprint of the labels.
-        :param pulumi.Input[dict] labels: A set of key/value label pairs assigned to the instance.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: A set of key/value label pairs assigned to the instance.
         :param pulumi.Input[str] machine_type: The machine type to create.
-        :param pulumi.Input[dict] metadata: Metadata key/value pairs made available within the instance.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] metadata: Metadata key/value pairs made available within the instance.
         :param pulumi.Input[str] metadata_fingerprint: The unique fingerprint of the metadata.
         :param pulumi.Input[str] metadata_startup_script: Metadata startup scripts made available within the instance.
         :param pulumi.Input[str] min_cpu_platform: The minimum CPU platform specified for the VM instance.
         :param pulumi.Input[str] name: A unique name for the resource, required by GCE.
                Changing this forces a new resource to be created.
-        :param pulumi.Input[list] network_interfaces: The networks attached to the instance.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateNetworkInterfaceArgs']]]] network_interfaces: The networks attached to the instance.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If self_link is provided, this value is ignored. If neither
                self_link nor project are provided, the provider project is used.
         :param pulumi.Input[str] resource_policies: A list of short names or self_links of resource policies to attach to the instance. Modifying this list will cause the
                instance to recreate. Currently a max of 1 resource policy is supported.
-        :param pulumi.Input[dict] scheduling: The scheduling strategy being used by the instance.
-        :param pulumi.Input[list] scratch_disks: The scratch disks attached to the instance.
+        :param pulumi.Input[pulumi.InputType['InstanceFromTemplateSchedulingArgs']] scheduling: The scheduling strategy being used by the instance.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceFromTemplateScratchDiskArgs']]]] scratch_disks: The scratch disks attached to the instance.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[dict] service_account: The service account to attach to the instance.
-        :param pulumi.Input[dict] shielded_instance_config: The shielded vm config being used by the instance.
+        :param pulumi.Input[pulumi.InputType['InstanceFromTemplateServiceAccountArgs']] service_account: The service account to attach to the instance.
+        :param pulumi.Input[pulumi.InputType['InstanceFromTemplateShieldedInstanceConfigArgs']] shielded_instance_config: The shielded vm config being used by the instance.
         :param pulumi.Input[str] source_instance_template: Name or self link of an instance
                template to create the instance based on.
-        :param pulumi.Input[list] tags: The list of tags attached to the instance.
+        :param pulumi.Input[List[pulumi.Input[str]]] tags: The list of tags attached to the instance.
         :param pulumi.Input[str] tags_fingerprint: The unique fingerprint of the tags.
         :param pulumi.Input[str] zone: The zone that the machine should be created in. If not
                set, the provider zone is used.
-
-        The **attached_disks** object supports the following:
-
-          * `device_name` (`pulumi.Input[str]`)
-          * `diskEncryptionKeyRaw` (`pulumi.Input[str]`)
-          * `diskEncryptionKeySha256` (`pulumi.Input[str]`)
-          * `kmsKeySelfLink` (`pulumi.Input[str]`)
-          * `mode` (`pulumi.Input[str]`)
-          * `source` (`pulumi.Input[str]`)
-
-        The **boot_disk** object supports the following:
-
-          * `autoDelete` (`pulumi.Input[bool]`)
-          * `device_name` (`pulumi.Input[str]`)
-          * `diskEncryptionKeyRaw` (`pulumi.Input[str]`)
-          * `diskEncryptionKeySha256` (`pulumi.Input[str]`)
-          * `initializeParams` (`pulumi.Input[dict]`)
-            * `image` (`pulumi.Input[str]`)
-            * `labels` (`pulumi.Input[dict]`)
-            * `size` (`pulumi.Input[float]`)
-            * `type` (`pulumi.Input[str]`)
-
-          * `kmsKeySelfLink` (`pulumi.Input[str]`)
-          * `mode` (`pulumi.Input[str]`)
-          * `source` (`pulumi.Input[str]`)
-
-        The **guest_accelerators** object supports the following:
-
-          * `count` (`pulumi.Input[float]`)
-          * `type` (`pulumi.Input[str]`)
-
-        The **network_interfaces** object supports the following:
-
-          * `accessConfigs` (`pulumi.Input[list]`)
-            * `natIp` (`pulumi.Input[str]`)
-            * `network_tier` (`pulumi.Input[str]`)
-            * `publicPtrDomainName` (`pulumi.Input[str]`)
-
-          * `aliasIpRanges` (`pulumi.Input[list]`)
-            * `ip_cidr_range` (`pulumi.Input[str]`)
-            * `subnetworkRangeName` (`pulumi.Input[str]`)
-
-          * `name` (`pulumi.Input[str]`) - A unique name for the resource, required by GCE.
-            Changing this forces a new resource to be created.
-          * `network` (`pulumi.Input[str]`)
-          * `networkIp` (`pulumi.Input[str]`)
-          * `subnetwork` (`pulumi.Input[str]`)
-          * `subnetworkProject` (`pulumi.Input[str]`)
-
-        The **scheduling** object supports the following:
-
-          * `automaticRestart` (`pulumi.Input[bool]`)
-          * `minNodeCpus` (`pulumi.Input[float]`)
-          * `nodeAffinities` (`pulumi.Input[list]`)
-            * `key` (`pulumi.Input[str]`)
-            * `operator` (`pulumi.Input[str]`)
-            * `values` (`pulumi.Input[list]`)
-
-          * `onHostMaintenance` (`pulumi.Input[str]`)
-          * `preemptible` (`pulumi.Input[bool]`)
-
-        The **scratch_disks** object supports the following:
-
-          * `interface` (`pulumi.Input[str]`)
-
-        The **service_account** object supports the following:
-
-          * `email` (`pulumi.Input[str]`)
-          * `scopes` (`pulumi.Input[list]`)
-
-        The **shielded_instance_config** object supports the following:
-
-          * `enableIntegrityMonitoring` (`pulumi.Input[bool]`)
-          * `enableSecureBoot` (`pulumi.Input[bool]`)
-          * `enableVtpm` (`pulumi.Input[bool]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -556,7 +382,8 @@ class InstanceFromTemplate(pulumi.CustomResource):
         return InstanceFromTemplate(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

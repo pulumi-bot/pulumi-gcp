@@ -5,12 +5,14 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['DataTransferConfig']
 
 
 class DataTransferConfig(pulumi.CustomResource):
-    data_refresh_window_days: pulumi.Output[float]
+    data_refresh_window_days: pulumi.Output[Optional[float]] = pulumi.output_property("dataRefreshWindowDays")
     """
     The number of days to look back to automatically refresh the data.
     For example, if dataRefreshWindowDays = 10, then every day BigQuery
@@ -18,43 +20,43 @@ class DataTransferConfig(pulumi.CustomResource):
     just [today-1]. Only valid if the data source supports the feature.
     Set the value to 0 to use the default value.
     """
-    data_source_id: pulumi.Output[str]
+    data_source_id: pulumi.Output[str] = pulumi.output_property("dataSourceId")
     """
     The data source id. Cannot be changed once the transfer config is created.
     """
-    destination_dataset_id: pulumi.Output[str]
+    destination_dataset_id: pulumi.Output[str] = pulumi.output_property("destinationDatasetId")
     """
     The BigQuery target dataset id.
     """
-    disabled: pulumi.Output[bool]
+    disabled: pulumi.Output[Optional[bool]] = pulumi.output_property("disabled")
     """
     When set to true, no runs are scheduled for a given transfer.
     """
-    display_name: pulumi.Output[str]
+    display_name: pulumi.Output[str] = pulumi.output_property("displayName")
     """
     The user specified display name for the transfer config.
     """
-    location: pulumi.Output[str]
+    location: pulumi.Output[Optional[str]] = pulumi.output_property("location")
     """
     The geographic location where the transfer config should reside.
     Examples: US, EU, asia-northeast1. The default value is US.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The resource name of the transfer config. Transfer config names have the form
     projects/{projectId}/locations/{location}/transferConfigs/{configId}. Where configId is usually a uuid, but this is not
     required. The name is ignored when creating a transfer config.
     """
-    params: pulumi.Output[dict]
+    params: pulumi.Output[Dict[str, str]] = pulumi.output_property("params")
     """
     These parameters are specific to each data source.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    schedule: pulumi.Output[str]
+    schedule: pulumi.Output[Optional[str]] = pulumi.output_property("schedule")
     """
     Data transfer schedule. If the data source does not support a custom
     schedule, this should be empty. If it is empty, the default value for
@@ -65,13 +67,14 @@ class DataTransferConfig(pulumi.CustomResource):
     https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format
     NOTE: the granularity should be at least 8 hours, or less frequent.
     """
-    service_account_name: pulumi.Output[str]
+    service_account_name: pulumi.Output[Optional[str]] = pulumi.output_property("serviceAccountName")
     """
     Optional service account name. If this field is set, transfer config will
     be created with this service account credentials. It requires that
     requesting user calling this API has permissions to act as this service account.
     """
-    def __init__(__self__, resource_name, opts=None, data_refresh_window_days=None, data_source_id=None, destination_dataset_id=None, disabled=None, display_name=None, location=None, params=None, project=None, schedule=None, service_account_name=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, data_refresh_window_days: Optional[pulumi.Input[float]] = None, data_source_id: Optional[pulumi.Input[str]] = None, destination_dataset_id: Optional[pulumi.Input[str]] = None, disabled: Optional[pulumi.Input[bool]] = None, display_name: Optional[pulumi.Input[str]] = None, location: Optional[pulumi.Input[str]] = None, params: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, project: Optional[pulumi.Input[str]] = None, schedule: Optional[pulumi.Input[str]] = None, service_account_name: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Represents a data transfer configuration. A transfer configuration
         contains all metadata needed to perform a data transfer.
@@ -83,6 +86,35 @@ class DataTransferConfig(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/bigquery/docs/reference/datatransfer/rest/)
 
         ## Example Usage
+        ### Bigquerydatatransfer Config Scheduled Query
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.organizations.get_project()
+        permissions = gcp.projects.IAMMember("permissions",
+            role="roles/iam.serviceAccountShortTermTokenMinter",
+            member=f"serviceAccount:service-{project.number}@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com")
+        my_dataset = gcp.bigquery.Dataset("myDataset",
+            dataset_id="my_dataset",
+            friendly_name="foo",
+            description="bar",
+            location="asia-northeast1",
+            opts=ResourceOptions(depends_on=[permissions]))
+        query_config = gcp.bigquery.DataTransferConfig("queryConfig",
+            display_name="my-query",
+            location="asia-northeast1",
+            data_source_id="scheduled_query",
+            schedule="first sunday of quarter 00:00",
+            destination_dataset_id=my_dataset.dataset_id,
+            params={
+                "destination_table_name_template": "my_table",
+                "write_disposition": "WRITE_APPEND",
+                "query": "SELECT name FROM tabl WHERE x = 'y'",
+            },
+            opts=ResourceOptions(depends_on=[permissions]))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -97,7 +129,7 @@ class DataTransferConfig(pulumi.CustomResource):
         :param pulumi.Input[str] display_name: The user specified display name for the transfer config.
         :param pulumi.Input[str] location: The geographic location where the transfer config should reside.
                Examples: US, EU, asia-northeast1. The default value is US.
-        :param pulumi.Input[dict] params: These parameters are specific to each data source.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] params: These parameters are specific to each data source.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] schedule: Data transfer schedule. If the data source does not support a custom
@@ -123,7 +155,7 @@ class DataTransferConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -155,7 +187,7 @@ class DataTransferConfig(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, data_refresh_window_days=None, data_source_id=None, destination_dataset_id=None, disabled=None, display_name=None, location=None, name=None, params=None, project=None, schedule=None, service_account_name=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, data_refresh_window_days: Optional[pulumi.Input[float]] = None, data_source_id: Optional[pulumi.Input[str]] = None, destination_dataset_id: Optional[pulumi.Input[str]] = None, disabled: Optional[pulumi.Input[bool]] = None, display_name: Optional[pulumi.Input[str]] = None, location: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, params: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, project: Optional[pulumi.Input[str]] = None, schedule: Optional[pulumi.Input[str]] = None, service_account_name: Optional[pulumi.Input[str]] = None) -> 'DataTransferConfig':
         """
         Get an existing DataTransferConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -177,7 +209,7 @@ class DataTransferConfig(pulumi.CustomResource):
         :param pulumi.Input[str] name: The resource name of the transfer config. Transfer config names have the form
                projects/{projectId}/locations/{location}/transferConfigs/{configId}. Where configId is usually a uuid, but this is not
                required. The name is ignored when creating a transfer config.
-        :param pulumi.Input[dict] params: These parameters are specific to each data source.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] params: These parameters are specific to each data source.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] schedule: Data transfer schedule. If the data source does not support a custom
@@ -210,7 +242,8 @@ class DataTransferConfig(pulumi.CustomResource):
         return DataTransferConfig(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
