@@ -21,6 +21,73 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
  *
  * ## Example Usage
+ * ### Backend Service Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const defaultHttpHealthCheck = new gcp.compute.HttpHealthCheck("defaultHttpHealthCheck", {
+ *     requestPath: "/",
+ *     checkIntervalSec: 1,
+ *     timeoutSec: 1,
+ * });
+ * const defaultBackendService = new gcp.compute.BackendService("defaultBackendService", {healthChecks: [defaultHttpHealthCheck.id]});
+ * ```
+ * ### Backend Service Traffic Director Round Robin
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {httpHealthCheck: {
+ *     port: 80,
+ * }}, {
+ *     provider: google_beta,
+ * });
+ * const _default = new gcp.compute.BackendService("default", {
+ *     healthChecks: [healthCheck.id],
+ *     loadBalancingScheme: "INTERNAL_SELF_MANAGED",
+ *     localityLbPolicy: "ROUND_ROBIN",
+ * }, {
+ *     provider: google_beta,
+ * });
+ * ```
+ * ### Backend Service Traffic Director Ring Hash
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const healthCheck = new gcp.compute.HealthCheck("healthCheck", {httpHealthCheck: {
+ *     port: 80,
+ * }}, {
+ *     provider: google_beta,
+ * });
+ * const _default = new gcp.compute.BackendService("default", {
+ *     healthChecks: [healthCheck.id],
+ *     loadBalancingScheme: "INTERNAL_SELF_MANAGED",
+ *     localityLbPolicy: "RING_HASH",
+ *     sessionAffinity: "HTTP_COOKIE",
+ *     circuitBreakers: {
+ *         maxConnections: 10,
+ *     },
+ *     consistentHash: {
+ *         httpCookie: {
+ *             ttl: {
+ *                 seconds: 11,
+ *                 nanos: 1111,
+ *             },
+ *             name: "mycookie",
+ *         },
+ *     },
+ *     outlierDetection: {
+ *         consecutiveErrors: 2,
+ *     },
+ * }, {
+ *     provider: google_beta,
+ * });
+ * ```
  */
 export class BackendService extends pulumi.CustomResource {
     /**

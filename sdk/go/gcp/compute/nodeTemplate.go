@@ -20,6 +20,65 @@ import (
 //     * [Sole-Tenant Nodes](https://cloud.google.com/compute/docs/nodes/)
 //
 // ## Example Usage
+// ### Node Template Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := compute.NewNodeTemplate(ctx, "template", &compute.NodeTemplateArgs{
+// 			NodeType: pulumi.String("n1-node-96-624"),
+// 			Region:   pulumi.String("us-central1"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Node Template Server Binding
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "us-central1-a"
+// 		_, err := compute.GetNodeTypes(ctx, &compute.GetNodeTypesArgs{
+// 			Zone: &opt0,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewNodeTemplate(ctx, "template", &compute.NodeTemplateArgs{
+// 			Region:   pulumi.String("us-central1"),
+// 			NodeType: pulumi.String("n1-node-96-624"),
+// 			NodeAffinityLabels: pulumi.StringMap{
+// 				"foo": pulumi.String("baz"),
+// 			},
+// 			ServerBinding: &compute.NodeTemplateServerBindingArgs{
+// 				Type: pulumi.String("RESTART_NODE_ON_MINIMAL_SERVERS"),
+// 			},
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type NodeTemplate struct {
 	pulumi.CustomResourceState
 
