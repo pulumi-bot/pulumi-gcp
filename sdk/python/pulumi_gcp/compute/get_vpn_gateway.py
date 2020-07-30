@@ -6,7 +6,8 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
+
 
 class GetVPNGatewayResult:
     """
@@ -49,6 +50,8 @@ class GetVPNGatewayResult:
         """
         The URI of the resource.
         """
+
+
 class AwaitableGetVPNGatewayResult(GetVPNGatewayResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -63,9 +66,21 @@ class AwaitableGetVPNGatewayResult(GetVPNGatewayResult):
             region=self.region,
             self_link=self.self_link)
 
-def get_vpn_gateway(name=None,project=None,region=None,opts=None):
+
+def get_vpn_gateway(name=None, project=None, region=None, opts=None):
     """
     Get a VPN gateway within GCE from its name.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_vpn_gateway = gcp.compute.get_vpn_gateway(gcp.compute.GetVPNGatewayArgsArgs(
+        name="vpn-gateway-us-east1",
+    ))
+    ```
 
 
     :param str name: The name of the VPN gateway.
@@ -75,15 +90,13 @@ def get_vpn_gateway(name=None,project=None,region=None,opts=None):
            is not provided, the project region is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getVPNGateway:getVPNGateway', __args__, opts=opts).value
 
     return AwaitableGetVPNGatewayResult(

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class RecordSet(pulumi.CustomResource):
@@ -48,6 +48,93 @@ class RecordSet(pulumi.CustomResource):
         will not actually remove NS records during destroy but will report that it did.
 
         ## Example Usage
+        ### Binding a DNS name to the ephemeral IP of a new instance:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        frontend_instance = gcp.compute.Instance("frontendInstance",
+            machine_type="g1-small",
+            zone="us-central1-b",
+            boot_disk=gcp.compute.InstanceBootDiskArgs(
+                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
+                    image="debian-cloud/debian-9",
+                ),
+            ),
+            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
+                network="default",
+                access_configs=[],
+            )])
+        prod = gcp.dns.ManagedZone("prod", dns_name="prod.mydomain.com.")
+        frontend_record_set = gcp.dns.RecordSet("frontendRecordSet",
+            type="A",
+            ttl=300,
+            managed_zone=prod.name,
+            rrdatas=[frontend_instance.network_interfaces[0].access_configs[0].nat_ip])
+        ```
+        ### Adding an A record
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        prod = gcp.dns.ManagedZone("prod", dns_name="prod.mydomain.com.")
+        record_set = gcp.dns.RecordSet("recordSet",
+            managed_zone=prod.name,
+            type="A",
+            ttl=300,
+            rrdatas=["8.8.8.8"])
+        ```
+        ### Adding an MX record
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        prod = gcp.dns.ManagedZone("prod", dns_name="prod.mydomain.com.")
+        mx = gcp.dns.RecordSet("mx",
+            managed_zone=prod.name,
+            type="MX",
+            ttl=3600,
+            rrdatas=[
+                "1 aspmx.l.google.com.",
+                "5 alt1.aspmx.l.google.com.",
+                "5 alt2.aspmx.l.google.com.",
+                "10 alt3.aspmx.l.google.com.",
+                "10 alt4.aspmx.l.google.com.",
+            ])
+        ```
+        ### Adding an SPF record
+
+        Quotes (`""`) must be added around your `rrdatas` for a SPF record. Otherwise `rrdatas` string gets split on spaces.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        prod = gcp.dns.ManagedZone("prod", dns_name="prod.mydomain.com.")
+        spf = gcp.dns.RecordSet("spf",
+            managed_zone=prod.name,
+            type="TXT",
+            ttl=300,
+            rrdatas=["\"v=spf1 ip4:111.111.111.111 include:backoff.email-example.com -all\""])
+        ```
+        ### Adding a CNAME record
+
+         The list of `rrdatas` should only contain a single string corresponding to the Canonical Name intended.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        prod = gcp.dns.ManagedZone("prod", dns_name="prod.mydomain.com.")
+        cname = gcp.dns.RecordSet("cname",
+            managed_zone=prod.name,
+            type="CNAME",
+            ttl=300,
+            rrdatas=["frontend.mydomain.com."])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -72,7 +159,7 @@ class RecordSet(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -130,7 +217,7 @@ class RecordSet(pulumi.CustomResource):
         return RecordSet(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Bucket(pulumi.CustomResource):
@@ -130,6 +130,51 @@ class Bucket(pulumi.CustomResource):
         determined which will require enabling the compute api.
 
         ## Example Usage
+        ### Creating A Private Bucket In Standard Storage, In The EU Region. Bucket Configured As Static Website And CORS Configurations
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        static_site = gcp.storage.Bucket("static-site",
+            bucket_policy_only=True,
+            cors=[gcp.storage.BucketCorArgs(
+                max_age_seconds=3600,
+                methods=[
+                    "GET",
+                    "HEAD",
+                    "PUT",
+                    "POST",
+                    "DELETE",
+                ],
+                origins=["http://image-store.com"],
+                response_headers=["*"],
+            )],
+            force_destroy=True,
+            location="EU",
+            website=gcp.storage.BucketWebsiteArgs(
+                main_page_suffix="index.html",
+                not_found_page="404.html",
+            ))
+        ```
+        ### Life Cycle Settings For Storage Bucket Objects
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        auto_expire = gcp.storage.Bucket("auto-expire",
+            force_destroy=True,
+            lifecycle_rules=[gcp.storage.BucketLifecycleRuleArgs(
+                action=gcp.storage.BucketLifecycleRuleActionArgs(
+                    type="Delete",
+                ),
+                condition=gcp.storage.BucketLifecycleRuleConditionArgs(
+                    age=3,
+                ),
+            )],
+            location="US")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -209,7 +254,7 @@ class Bucket(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -340,7 +385,7 @@ class Bucket(pulumi.CustomResource):
         return Bucket(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class ClusterIAMBinding(pulumi.CustomResource):
@@ -48,6 +48,49 @@ class ClusterIAMBinding(pulumi.CustomResource):
 
         > **Note:** `dataproc.ClusterIAMBinding` resources **can be** used in conjunction with `dataproc.ClusterIAMMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_pubsub\_subscription\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(gcp.organizations.GetIAMPolicyArgsArgs(
+            bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
+                role="roles/editor",
+                members=["user:jane@example.com"],
+            )],
+        ))
+        editor = gcp.dataproc.ClusterIAMPolicy("editor",
+            project="your-project",
+            region="your-region",
+            cluster="your-dataproc-cluster",
+            policy_data=admin.policy_data)
+        ```
+
+        ## google\_pubsub\_subscription\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        editor = gcp.dataproc.ClusterIAMBinding("editor",
+            cluster="your-dataproc-cluster",
+            members=["user:jane@example.com"],
+            role="roles/editor")
+        ```
+
+        ## google\_pubsub\_subscription\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        editor = gcp.dataproc.ClusterIAMMember("editor",
+            cluster="your-dataproc-cluster",
+            member="user:jane@example.com",
+            role="roles/editor")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster: The name or relative resource id of the cluster to manage IAM policies for.
@@ -76,7 +119,7 @@ class ClusterIAMBinding(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -140,7 +183,7 @@ class ClusterIAMBinding(pulumi.CustomResource):
         return ClusterIAMBinding(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class InstanceGroup(pulumi.CustomResource):
@@ -64,6 +64,87 @@ class InstanceGroup(pulumi.CustomResource):
         and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroups)
 
         ## Example Usage
+        ### Empty Instance Group
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        test = gcp.compute.InstanceGroup("test",
+            description="Test instance group",
+            zone="us-central1-a",
+            network=google_compute_network["default"]["id"])
+        ```
+        ### Example Usage - With instances and named ports
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        webservers = gcp.compute.InstanceGroup("webservers",
+            description="Test instance group",
+            instances=[
+                google_compute_instance["test"]["id"],
+                google_compute_instance["test2"]["id"],
+            ],
+            named_ports=[
+                gcp.compute.InstanceGroupNamedPortArgs(
+                    name="http",
+                    port=8080,
+                ),
+                gcp.compute.InstanceGroupNamedPortArgs(
+                    name="https",
+                    port=8443,
+                ),
+            ],
+            zone="us-central1-a")
+        ```
+        ### Example Usage - Recreating an instance group in use
+        Recreating an instance group that's in use by another resource will give a
+        `resourceInUseByAnotherResource` error. Use `lifecycle.create_before_destroy`
+        as shown in this example to avoid this type of error.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        debian_image = gcp.compute.get_image(gcp.compute.GetImageArgsArgs(
+            family="debian-9",
+            project="debian-cloud",
+        ))
+        staging_vm = gcp.compute.Instance("stagingVm",
+            machine_type="n1-standard-1",
+            zone="us-central1-c",
+            boot_disk=gcp.compute.InstanceBootDiskArgs(
+                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
+                    image=debian_image.self_link,
+                ),
+            ),
+            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
+                network="default",
+            )])
+        staging_group = gcp.compute.InstanceGroup("stagingGroup",
+            zone="us-central1-c",
+            instances=[staging_vm.id],
+            named_ports=[
+                gcp.compute.InstanceGroupNamedPortArgs(
+                    name="http",
+                    port=8080,
+                ),
+                gcp.compute.InstanceGroupNamedPortArgs(
+                    name="https",
+                    port=8443,
+                ),
+            ])
+        staging_health = gcp.compute.HttpsHealthCheck("stagingHealth", request_path="/health_check")
+        staging_service = gcp.compute.BackendService("stagingService",
+            port_name="https",
+            protocol="HTTPS",
+            backends=[gcp.compute.BackendServiceBackendArgs(
+                group=staging_group.id,
+            )],
+            health_checks=[staging_health.id])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -99,7 +180,7 @@ class InstanceGroup(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -168,7 +249,7 @@ class InstanceGroup(pulumi.CustomResource):
         return InstanceGroup(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

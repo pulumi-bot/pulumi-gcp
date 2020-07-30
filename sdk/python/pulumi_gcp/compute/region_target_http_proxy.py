@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class RegionTargetHttpProxy(pulumi.CustomResource):
@@ -63,6 +63,57 @@ class RegionTargetHttpProxy(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
 
         ## Example Usage
+        ### Region Target Http Proxy Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_region_health_check = gcp.compute.RegionHealthCheck("defaultRegionHealthCheck",
+            region="us-central1",
+            http_health_check=gcp.compute.RegionHealthCheckHttpHealthCheckArgs(
+                port=80,
+            ))
+        default_region_backend_service = gcp.compute.RegionBackendService("defaultRegionBackendService",
+            region="us-central1",
+            protocol="HTTP",
+            timeout_sec=10,
+            health_checks=[default_region_health_check.id])
+        default_region_url_map = gcp.compute.RegionUrlMap("defaultRegionUrlMap",
+            region="us-central1",
+            default_service=default_region_backend_service.id,
+            host_rules=[gcp.compute.RegionUrlMapHostRuleArgs(
+                hosts=["mysite.com"],
+                path_matcher="allpaths",
+            )],
+            path_matchers=[gcp.compute.RegionUrlMapPathMatcherArgs(
+                name="allpaths",
+                default_service=default_region_backend_service.id,
+                path_rules=[gcp.compute.RegionUrlMapPathMatcherPathRuleArgs(
+                    paths=["/*"],
+                    service=default_region_backend_service.id,
+                )],
+            )])
+        default_region_target_http_proxy = gcp.compute.RegionTargetHttpProxy("defaultRegionTargetHttpProxy",
+            region="us-central1",
+            url_map=default_region_url_map.id)
+        ```
+        ### Region Target Http Proxy Https Redirect
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_region_url_map = gcp.compute.RegionUrlMap("defaultRegionUrlMap",
+            region="us-central1",
+            default_url_redirect=gcp.compute.RegionUrlMapDefaultUrlRedirectArgs(
+                https_redirect=True,
+                strip_query=False,
+            ))
+        default_region_target_http_proxy = gcp.compute.RegionTargetHttpProxy("defaultRegionTargetHttpProxy",
+            region="us-central1",
+            url_map=default_region_url_map.id)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -92,7 +143,7 @@ class RegionTargetHttpProxy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -156,7 +207,7 @@ class RegionTargetHttpProxy(pulumi.CustomResource):
         return RegionTargetHttpProxy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

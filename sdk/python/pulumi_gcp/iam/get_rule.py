@@ -6,7 +6,8 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
+
 
 class GetRuleResult:
     """
@@ -40,6 +41,8 @@ class GetRuleResult:
         """
         is a friendly title for the role, such as "Role Viewer"
         """
+
+
 class AwaitableGetRuleResult(GetRuleResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -52,21 +55,30 @@ class AwaitableGetRuleResult(GetRuleResult):
             stage=self.stage,
             title=self.title)
 
-def get_rule(name=None,opts=None):
+
+def get_rule(name=None, opts=None):
     """
     Use this data source to get information about a Google IAM Role.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    roleinfo = gcp.iam.get_rule(gcp.iam.GetRuleArgsArgs(
+        name="roles/compute.viewer",
+    ))
+    pulumi.export("theRolePermissions", roleinfo.included_permissions)
+    ```
 
 
     :param str name: The name of the Role to lookup in the form `roles/{ROLE_NAME}`, `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}` or `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:iam/getRule:getRule', __args__, opts=opts).value
 
     return AwaitableGetRuleResult(

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class PatchDeployment(pulumi.CustomResource):
@@ -209,6 +209,180 @@ class PatchDeployment(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/compute/docs/os-patch-management)
 
         ## Example Usage
+        ### Os Config Patch Deployment Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        patch = gcp.osconfig.PatchDeployment("patch",
+            instance_filter=gcp.osconfig.PatchDeploymentInstanceFilterArgs(
+                all=True,
+            ),
+            patch_deployment_id="patch-deploy-inst",
+            recurring_schedule=gcp.osconfig.PatchDeploymentRecurringScheduleArgs(
+                time_of_day=gcp.osconfig.PatchDeploymentRecurringScheduleTimeOfDayArgs(
+                    hours=1,
+                ),
+                time_zone={
+                    "id": "America/New_York",
+                },
+                weekly=gcp.osconfig.PatchDeploymentRecurringScheduleWeeklyArgs(
+                    day_of_week="MONDAY",
+                ),
+            ))
+        ```
+        ### Os Config Patch Deployment Instance
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_image = gcp.compute.get_image(gcp.compute.GetImageArgsArgs(
+            family="debian-9",
+            project="debian-cloud",
+        ))
+        foobar = gcp.compute.Instance("foobar",
+            machine_type="n1-standard-1",
+            zone="us-central1-a",
+            can_ip_forward=False,
+            tags=[
+                "foo",
+                "bar",
+            ],
+            boot_disk=gcp.compute.InstanceBootDiskArgs(
+                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
+                    image=my_image.self_link,
+                ),
+            ),
+            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
+                network="default",
+            )],
+            metadata={
+                "foo": "bar",
+            })
+        patch = gcp.osconfig.PatchDeployment("patch",
+            patch_deployment_id="patch-deploy-inst",
+            instance_filter=gcp.osconfig.PatchDeploymentInstanceFilterArgs(
+                instances=[foobar.id],
+            ),
+            patch_config=gcp.osconfig.PatchDeploymentPatchConfigArgs(
+                yum=gcp.osconfig.PatchDeploymentPatchConfigYumArgs(
+                    security=True,
+                    minimal=True,
+                    excludes=["bash"],
+                ),
+            ),
+            recurring_schedule=gcp.osconfig.PatchDeploymentRecurringScheduleArgs(
+                time_zone={
+                    "id": "America/New_York",
+                },
+                time_of_day=gcp.osconfig.PatchDeploymentRecurringScheduleTimeOfDayArgs(
+                    hours=0,
+                    minutes=30,
+                    seconds=30,
+                    nanos=20,
+                ),
+                monthly=gcp.osconfig.PatchDeploymentRecurringScheduleMonthlyArgs(
+                    month_day=1,
+                ),
+            ))
+        ```
+        ### Os Config Patch Deployment Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        patch = gcp.osconfig.PatchDeployment("patch",
+            duration="10s",
+            instance_filter=gcp.osconfig.PatchDeploymentInstanceFilterArgs(
+                group_labels=[gcp.osconfig.PatchDeploymentInstanceFilterGroupLabelArgs(
+                    labels={
+                        "app": "web",
+                        "env": "dev",
+                    },
+                )],
+                instance_name_prefixes=["test-"],
+                zones=[
+                    "us-central1-a",
+                    "us-central-1c",
+                ],
+            ),
+            patch_config=gcp.osconfig.PatchDeploymentPatchConfigArgs(
+                apt=gcp.osconfig.PatchDeploymentPatchConfigAptArgs(
+                    excludes=["python"],
+                    type="DIST",
+                ),
+                goo=gcp.osconfig.PatchDeploymentPatchConfigGooArgs(
+                    enabled=True,
+                ),
+                post_step=gcp.osconfig.PatchDeploymentPatchConfigPostStepArgs(
+                    linux_exec_step_config=gcp.osconfig.PatchDeploymentPatchConfigPostStepLinuxExecStepConfigArgs(
+                        gcs_object=gcp.osconfig.PatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectArgs(
+                            bucket="my-patch-scripts",
+                            generation_number="1523477886880",
+                            object="linux/post_patch_script",
+                        ),
+                    ),
+                    windows_exec_step_config=gcp.osconfig.PatchDeploymentPatchConfigPostStepWindowsExecStepConfigArgs(
+                        gcs_object=gcp.osconfig.PatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectArgs(
+                            bucket="my-patch-scripts",
+                            generation_number="135920493447",
+                            object="windows/post_patch_script.ps1",
+                        ),
+                        interpreter="POWERSHELL",
+                    ),
+                ),
+                pre_step=gcp.osconfig.PatchDeploymentPatchConfigPreStepArgs(
+                    linux_exec_step_config=gcp.osconfig.PatchDeploymentPatchConfigPreStepLinuxExecStepConfigArgs(
+                        allowed_success_codes=[
+                            0,
+                            3,
+                        ],
+                        local_path="/tmp/pre_patch_script.sh",
+                    ),
+                    windows_exec_step_config=gcp.osconfig.PatchDeploymentPatchConfigPreStepWindowsExecStepConfigArgs(
+                        allowed_success_codes=[
+                            0,
+                            2,
+                        ],
+                        interpreter="SHELL",
+                        local_path="C:\\Users\\user\\pre-patch-script.cmd",
+                    ),
+                ),
+                reboot_config="ALWAYS",
+                windows_update=gcp.osconfig.PatchDeploymentPatchConfigWindowsUpdateArgs(
+                    exclusive_patches=["KB4339284"],
+                ),
+                yum=gcp.osconfig.PatchDeploymentPatchConfigYumArgs(
+                    excludes=["bash"],
+                    minimal=True,
+                    security=True,
+                ),
+                zypper=gcp.osconfig.PatchDeploymentPatchConfigZypperArgs(
+                    categories=["security"],
+                ),
+            ),
+            patch_deployment_id="patch-deploy-inst",
+            recurring_schedule=gcp.osconfig.PatchDeploymentRecurringScheduleArgs(
+                monthly=gcp.osconfig.PatchDeploymentRecurringScheduleMonthlyArgs(
+                    week_day_of_month=gcp.osconfig.PatchDeploymentRecurringScheduleMonthlyWeekDayOfMonthArgs(
+                        day_of_week="TUESDAY",
+                        week_ordinal=-1,
+                    ),
+                ),
+                time_of_day=gcp.osconfig.PatchDeploymentRecurringScheduleTimeOfDayArgs(
+                    hours=0,
+                    minutes=30,
+                    nanos=20,
+                    seconds=30,
+                ),
+                time_zone={
+                    "id": "America/New_York",
+                },
+            ))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -374,7 +548,7 @@ class PatchDeployment(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -590,7 +764,7 @@ class PatchDeployment(pulumi.CustomResource):
         return PatchDeployment(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

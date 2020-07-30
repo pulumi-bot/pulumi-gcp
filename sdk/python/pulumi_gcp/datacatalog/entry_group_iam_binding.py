@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class EntryGroupIamBinding(pulumi.CustomResource):
@@ -44,6 +44,47 @@ class EntryGroupIamBinding(pulumi.CustomResource):
 
         > **Note:** `datacatalog.EntryGroupIamBinding` resources **can be** used in conjunction with `datacatalog.EntryGroupIamMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_data\_catalog\_entry\_group\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(gcp.organizations.GetIAMPolicyArgsArgs(
+            bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
+                role="roles/viewer",
+                members=["user:jane@example.com"],
+            )],
+        ))
+        policy = gcp.datacatalog.EntryGroupIamPolicy("policy",
+            entry_group=google_data_catalog_entry_group["basic_entry_group"]["name"],
+            policy_data=admin.policy_data)
+        ```
+
+        ## google\_data\_catalog\_entry\_group\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        binding = gcp.datacatalog.EntryGroupIamBinding("binding",
+            entry_group=google_data_catalog_entry_group["basic_entry_group"]["name"],
+            role="roles/viewer",
+            members=["user:jane@example.com"])
+        ```
+
+        ## google\_data\_catalog\_entry\_group\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        member = gcp.datacatalog.EntryGroupIamMember("member",
+            entry_group=google_data_catalog_entry_group["basic_entry_group"]["name"],
+            role="roles/viewer",
+            member="user:jane@example.com")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] entry_group: Used to find the parent resource to bind the IAM policy to
@@ -70,7 +111,7 @@ class EntryGroupIamBinding(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -132,7 +173,7 @@ class EntryGroupIamBinding(pulumi.CustomResource):
         return EntryGroupIamBinding(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

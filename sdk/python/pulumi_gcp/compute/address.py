@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Address(pulumi.CustomResource):
@@ -107,6 +107,67 @@ class Address(pulumi.CustomResource):
             * [Reserving a Static Internal IP Address](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address)
 
         ## Example Usage
+        ### Address Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        ip_address = gcp.compute.Address("ipAddress")
+        ```
+        ### Address With Subnetwork
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_network = gcp.compute.Network("defaultNetwork")
+        default_subnetwork = gcp.compute.Subnetwork("defaultSubnetwork",
+            ip_cidr_range="10.0.0.0/16",
+            region="us-central1",
+            network=default_network.id)
+        internal_with_subnet_and_address = gcp.compute.Address("internalWithSubnetAndAddress",
+            subnetwork=default_subnetwork.id,
+            address_type="INTERNAL",
+            address="10.0.42.42",
+            region="us-central1")
+        ```
+        ### Address With Gce Endpoint
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        internal_with_gce_endpoint = gcp.compute.Address("internalWithGceEndpoint",
+            address_type="INTERNAL",
+            purpose="GCE_ENDPOINT")
+        ```
+        ### Instance With Ip
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        static = gcp.compute.Address("static")
+        debian_image = gcp.compute.get_image(gcp.compute.GetImageArgsArgs(
+            family="debian-9",
+            project="debian-cloud",
+        ))
+        instance_with_ip = gcp.compute.Instance("instanceWithIp",
+            machine_type="f1-micro",
+            zone="us-central1-a",
+            boot_disk=gcp.compute.InstanceBootDiskArgs(
+                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
+                    image=debian_image.self_link,
+                ),
+            ),
+            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
+                network="default",
+                access_configs=[gcp.compute.InstanceNetworkInterfaceAccessConfigArgs(
+                    nat_ip=static.address,
+                )],
+            )])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -149,7 +210,7 @@ class Address(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -237,7 +298,7 @@ class Address(pulumi.CustomResource):
         return Address(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

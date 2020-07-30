@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class DiskResourcePolicyAttachment(pulumi.CustomResource):
@@ -36,6 +36,35 @@ class DiskResourcePolicyAttachment(pulumi.CustomResource):
         > **Note:** This resource does not support regional disks (`compute.RegionDisk`). For regional disks, please refer to the `compute.RegionDiskResourcePolicyAttachment` resource.
 
         ## Example Usage
+        ### Disk Resource Policy Attachment Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_image = gcp.compute.get_image(gcp.compute.GetImageArgsArgs(
+            family="debian-9",
+            project="debian-cloud",
+        ))
+        ssd = gcp.compute.Disk("ssd",
+            image=my_image.self_link,
+            size=50,
+            type="pd-ssd",
+            zone="us-central1-a")
+        attachment = gcp.compute.DiskResourcePolicyAttachment("attachment",
+            disk=ssd.name,
+            zone="us-central1-a")
+        policy = gcp.compute.ResourcePolicy("policy",
+            region="us-central1",
+            snapshot_schedule_policy=gcp.compute.ResourcePolicySnapshotSchedulePolicyArgs(
+                schedule=gcp.compute.ResourcePolicySnapshotSchedulePolicyScheduleArgs(
+                    daily_schedule=gcp.compute.ResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleArgs(
+                        days_in_cycle=1,
+                        start_time="04:00",
+                    ),
+                ),
+            ))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -57,7 +86,7 @@ class DiskResourcePolicyAttachment(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -102,7 +131,7 @@ class DiskResourcePolicyAttachment(pulumi.CustomResource):
         return DiskResourcePolicyAttachment(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

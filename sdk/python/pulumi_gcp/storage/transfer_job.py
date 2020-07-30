@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class TransferJob(pulumi.CustomResource):
@@ -102,6 +102,68 @@ class TransferJob(pulumi.CustomResource):
         * How-to Guides
             * [Configuring Access to Data Sources and Sinks](https://cloud.google.com/storage-transfer/docs/configure-access)
 
+        ## Example Usage
+
+        Example creating a nightly Transfer Job from an AWS S3 Bucket to a GCS bucket.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.storage.get_transfer_project_servie_account(gcp.storage.GetTransferProjectServieAccountArgsArgs(
+            project=var["project"],
+        ))
+        s3_backup_bucket_bucket = gcp.storage.Bucket("s3-backup-bucketBucket",
+            storage_class="NEARLINE",
+            project=var["project"])
+        s3_backup_bucket_bucket_iam_member = gcp.storage.BucketIAMMember("s3-backup-bucketBucketIAMMember",
+            bucket=s3_backup_bucket_bucket.name,
+            role="roles/storage.admin",
+            member=f"serviceAccount:{default.email}",
+            opts=ResourceOptions(depends_on=[s3_backup_bucket_bucket]))
+        s3_bucket_nightly_backup = gcp.storage.TransferJob("s3-bucket-nightly-backup",
+            description="Nightly backup of S3 bucket",
+            project=var["project"],
+            transfer_spec=gcp.storage.TransferJobTransferSpecArgs(
+                object_conditions=gcp.storage.TransferJobTransferSpecObjectConditionsArgs(
+                    max_time_elapsed_since_last_modification="600s",
+                    exclude_prefixes=["requests.gz"],
+                ),
+                transfer_options=gcp.storage.TransferJobTransferSpecTransferOptionsArgs(
+                    delete_objects_unique_in_sink=False,
+                ),
+                aws_s3_data_source=gcp.storage.TransferJobTransferSpecAwsS3DataSourceArgs(
+                    bucket_name=var["aws_s3_bucket"],
+                    aws_access_key=gcp.storage.TransferJobTransferSpecAwsS3DataSourceAwsAccessKeyArgs(
+                        access_key_id=var["aws_access_key"],
+                        secret_access_key=var["aws_secret_key"],
+                    ),
+                ),
+                gcs_data_sink=gcp.storage.TransferJobTransferSpecGcsDataSinkArgs(
+                    bucket_name=s3_backup_bucket_bucket.name,
+                ),
+            ),
+            schedule=gcp.storage.TransferJobScheduleArgs(
+                schedule_start_date=gcp.storage.TransferJobScheduleScheduleStartDateArgs(
+                    year=2018,
+                    month=10,
+                    day=1,
+                ),
+                schedule_end_date=gcp.storage.TransferJobScheduleScheduleEndDateArgs(
+                    year=2019,
+                    month=1,
+                    day=15,
+                ),
+                start_time_of_day=gcp.storage.TransferJobScheduleStartTimeOfDayArgs(
+                    hours=23,
+                    minutes=30,
+                    seconds=0,
+                    nanos=0,
+                ),
+            ),
+            opts=ResourceOptions(depends_on=[s3_backup_bucket_bucket_iam_member]))
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Unique description to identify the Transfer Job.
@@ -170,7 +232,7 @@ class TransferJob(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -281,7 +343,7 @@ class TransferJob(pulumi.CustomResource):
         return TransferJob(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
