@@ -5,39 +5,42 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Folder']
 
 
 class Folder(pulumi.CustomResource):
-    create_time: pulumi.Output[str]
+    create_time: pulumi.Output[str] = pulumi.output_property("createTime")
     """
     Timestamp when the Folder was created. Assigned by the server.
     A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
     """
-    display_name: pulumi.Output[str]
+    display_name: pulumi.Output[str] = pulumi.output_property("displayName")
     """
     The folder’s display name.
     A folder’s display name must be unique amongst its siblings, e.g. no two folders with the same parent can share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters.
     """
-    folder_id: pulumi.Output[str]
+    folder_id: pulumi.Output[str] = pulumi.output_property("folderId")
     """
     The folder id from the name "folders/{folder_id}"
     """
-    lifecycle_state: pulumi.Output[str]
+    lifecycle_state: pulumi.Output[str] = pulumi.output_property("lifecycleState")
     """
     The lifecycle state of the folder such as `ACTIVE` or `DELETE_REQUESTED`.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The resource name of the Folder. Its format is folders/{folder_id}.
     """
-    parent: pulumi.Output[str]
+    parent: pulumi.Output[str] = pulumi.output_property("parent")
     """
     The resource name of the parent Folder or Organization.
     Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
     """
-    def __init__(__self__, resource_name, opts=None, display_name=None, parent=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, display_name: Optional[pulumi.Input[str]] = None, parent: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Allows management of a Google Cloud Platform folder. For more information see
         [the official documentation](https://cloud.google.com/resource-manager/docs/creating-managing-folders)
@@ -52,6 +55,22 @@ class Folder(pulumi.CustomResource):
         resource must have `roles/resourcemanager.folderCreator`. See the
         [Access Control for Folders Using IAM](https://cloud.google.com/resource-manager/docs/access-control-folders)
         doc for more information.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        # Top-level folder under an organization.
+        department1 = gcp.organizations.Folder("department1",
+            display_name="Department 1",
+            parent="organizations/1234567")
+        # Folder nested under another folder.
+        team_abc = gcp.organizations.Folder("team-abc",
+            display_name="Team ABC",
+            parent=department1.name)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -71,7 +90,7 @@ class Folder(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -94,7 +113,7 @@ class Folder(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, create_time=None, display_name=None, folder_id=None, lifecycle_state=None, name=None, parent=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, create_time: Optional[pulumi.Input[str]] = None, display_name: Optional[pulumi.Input[str]] = None, folder_id: Optional[pulumi.Input[str]] = None, lifecycle_state: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, parent: Optional[pulumi.Input[str]] = None) -> 'Folder':
         """
         Get an existing Folder resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -125,7 +144,8 @@ class Folder(pulumi.CustomResource):
         return Folder(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

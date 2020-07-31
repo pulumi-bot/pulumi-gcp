@@ -5,17 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['DicomStore']
 
 
 class DicomStore(pulumi.CustomResource):
-    dataset: pulumi.Output[str]
+    dataset: pulumi.Output[str] = pulumi.output_property("dataset")
     """
     Identifies the dataset addressed by this request. Must be in the format
     'projects/{project}/locations/{location}/datasets/{dataset}'
     """
-    labels: pulumi.Output[dict]
+    labels: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("labels")
     """
     User-supplied key-value pairs used to organize DICOM stores.
     Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must
@@ -26,27 +30,21 @@ class DicomStore(pulumi.CustomResource):
     An object containing a list of "key": value pairs.
     Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The resource name for the DicomStore.
     ** Changing this property may recreate the Dicom store (removing all data) **
     """
-    notification_config: pulumi.Output[dict]
+    notification_config: pulumi.Output[Optional['outputs.DicomStoreNotificationConfig']] = pulumi.output_property("notificationConfig")
     """
     A nested object resource  Structure is documented below.
-
-      * `pubsubTopic` (`str`) - The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
-        PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
-        It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
-        was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
-        project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
-        Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The fully qualified name of this dataset
     """
-    def __init__(__self__, resource_name, opts=None, dataset=None, labels=None, name=None, notification_config=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, dataset: Optional[pulumi.Input[str]] = None, labels: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, notification_config: Optional[pulumi.Input[pulumi.InputType['DicomStoreNotificationConfigArgs']]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A DicomStore is a datastore inside a Healthcare dataset that conforms to the DICOM
         (https://www.dicomstandard.org/about/) standard for Healthcare information exchange
@@ -58,12 +56,29 @@ class DicomStore(pulumi.CustomResource):
             * [Creating a DICOM store](https://cloud.google.com/healthcare/docs/how-tos/dicom)
 
         ## Example Usage
+        ### Healthcare Dicom Store Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        topic = gcp.pubsub.Topic("topic")
+        dataset = gcp.healthcare.Dataset("dataset", location="us-central1")
+        default = gcp.healthcare.DicomStore("default",
+            dataset=dataset.id,
+            notification_config={
+                "pubsubTopic": topic.id,
+            },
+            labels={
+                "label1": "labelvalue1",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dataset: Identifies the dataset addressed by this request. Must be in the format
                'projects/{project}/locations/{location}/datasets/{dataset}'
-        :param pulumi.Input[dict] labels: User-supplied key-value pairs used to organize DICOM stores.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: User-supplied key-value pairs used to organize DICOM stores.
                Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must
                conform to the following PCRE regular expression: [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
                Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128
@@ -73,16 +88,7 @@ class DicomStore(pulumi.CustomResource):
                Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         :param pulumi.Input[str] name: The resource name for the DicomStore.
                ** Changing this property may recreate the Dicom store (removing all data) **
-        :param pulumi.Input[dict] notification_config: A nested object resource  Structure is documented below.
-
-        The **notification_config** object supports the following:
-
-          * `pubsubTopic` (`pulumi.Input[str]`) - The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
-            PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
-            It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
-            was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
-            project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
-            Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
+        :param pulumi.Input[pulumi.InputType['DicomStoreNotificationConfigArgs']] notification_config: A nested object resource  Structure is documented below.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -95,7 +101,7 @@ class DicomStore(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -115,7 +121,7 @@ class DicomStore(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, dataset=None, labels=None, name=None, notification_config=None, self_link=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, dataset: Optional[pulumi.Input[str]] = None, labels: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, notification_config: Optional[pulumi.Input[pulumi.InputType['DicomStoreNotificationConfigArgs']]] = None, self_link: Optional[pulumi.Input[str]] = None) -> 'DicomStore':
         """
         Get an existing DicomStore resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -125,7 +131,7 @@ class DicomStore(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dataset: Identifies the dataset addressed by this request. Must be in the format
                'projects/{project}/locations/{location}/datasets/{dataset}'
-        :param pulumi.Input[dict] labels: User-supplied key-value pairs used to organize DICOM stores.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: User-supplied key-value pairs used to organize DICOM stores.
                Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must
                conform to the following PCRE regular expression: [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}
                Label values are optional, must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128
@@ -135,17 +141,8 @@ class DicomStore(pulumi.CustomResource):
                Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         :param pulumi.Input[str] name: The resource name for the DicomStore.
                ** Changing this property may recreate the Dicom store (removing all data) **
-        :param pulumi.Input[dict] notification_config: A nested object resource  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['DicomStoreNotificationConfigArgs']] notification_config: A nested object resource  Structure is documented below.
         :param pulumi.Input[str] self_link: The fully qualified name of this dataset
-
-        The **notification_config** object supports the following:
-
-          * `pubsubTopic` (`pulumi.Input[str]`) - The Cloud Pub/Sub topic that notifications of changes are published on. Supplied by the client.
-            PubsubMessage.Data will contain the resource name. PubsubMessage.MessageId is the ID of this message.
-            It is guaranteed to be unique within the topic. PubsubMessage.PublishTime is the time at which the message
-            was published. Notifications are only sent if the topic is non-empty. Topic names must be scoped to a
-            project. cloud-healthcare@system.gserviceaccount.com must have publisher permissions on the given
-            Cloud Pub/Sub topic. Not having adequate permissions will cause the calls that send notifications to fail.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -159,7 +156,8 @@ class DicomStore(pulumi.CustomResource):
         return DicomStore(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

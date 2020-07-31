@@ -5,14 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetUptimeCheckIPsResult',
+    'AwaitableGetUptimeCheckIPsResult',
+    'get_uptime_check_i_ps',
+]
+
 
 class GetUptimeCheckIPsResult:
     """
     A collection of values returned by getUptimeCheckIPs.
     """
-    def __init__(__self__, id=None, uptime_check_ips=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, id=None, uptime_check_ips=None) -> None:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         __self__.id = id
@@ -25,6 +34,8 @@ class GetUptimeCheckIPsResult:
         """
         A list of uptime check IPs used by Stackdriver Monitoring. Each `uptime_check_ip` contains:
         """
+
+
 class AwaitableGetUptimeCheckIPsResult(GetUptimeCheckIPsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -34,18 +45,27 @@ class AwaitableGetUptimeCheckIPsResult(GetUptimeCheckIPsResult):
             id=self.id,
             uptime_check_ips=self.uptime_check_ips)
 
-def get_uptime_check_i_ps(opts=None):
+
+def get_uptime_check_i_ps(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUptimeCheckIPsResult:
     """
     Returns the list of IP addresses that checkers run from. For more information see
     the [official documentation](https://cloud.google.com/monitoring/uptime-checks#get-ips).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    ips = gcp.monitoring.get_uptime_check_i_ps()
+    pulumi.export("ipList", ips.uptime_check_ips)
+    ```
     """
     __args__ = dict()
-
-
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:monitoring/getUptimeCheckIPs:getUptimeCheckIPs', __args__, opts=opts).value
 
     return AwaitableGetUptimeCheckIPsResult(

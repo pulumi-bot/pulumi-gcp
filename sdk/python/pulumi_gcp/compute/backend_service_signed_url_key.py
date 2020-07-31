@@ -5,30 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['BackendServiceSignedUrlKey']
 
 
 class BackendServiceSignedUrlKey(pulumi.CustomResource):
-    backend_service: pulumi.Output[str]
+    backend_service: pulumi.Output[str] = pulumi.output_property("backendService")
     """
     The backend service this signed URL key belongs.
     """
-    key_value: pulumi.Output[str]
+    key_value: pulumi.Output[str] = pulumi.output_property("keyValue")
     """
     128-bit key value used for signing the URL. The key value must be a
     valid RFC 4648 Section 5 base64url encoded string.  **Note**: This property is sensitive and will not be displayed in the plan.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the signed URL key.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    def __init__(__self__, resource_name, opts=None, backend_service=None, key_value=None, name=None, project=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, backend_service: Optional[pulumi.Input[str]] = None, key_value: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A key for signing Cloud CDN signed URLs for Backend Services.
 
@@ -42,6 +45,48 @@ class BackendServiceSignedUrlKey(pulumi.CustomResource):
         state as plain-text.
 
         ## Example Usage
+        ### Backend Service Signed Url Key
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        webserver = gcp.compute.InstanceTemplate("webserver",
+            machine_type="n1-standard-1",
+            network_interfaces=[{
+                "network": "default",
+            }],
+            disks=[{
+                "sourceImage": "debian-cloud/debian-9",
+                "autoDelete": True,
+                "boot": True,
+            }])
+        webservers = gcp.compute.InstanceGroupManager("webservers",
+            versions=[{
+                "instanceTemplate": webserver.id,
+                "name": "primary",
+            }],
+            base_instance_name="webserver",
+            zone="us-central1-f",
+            target_size=1)
+        default = gcp.compute.HttpHealthCheck("default",
+            request_path="/",
+            check_interval_sec=1,
+            timeout_sec=1)
+        example_backend = gcp.compute.BackendService("exampleBackend",
+            description="Our company website",
+            port_name="http",
+            protocol="HTTP",
+            timeout_sec=10,
+            enable_cdn=True,
+            backends=[{
+                "group": webservers.instance_group,
+            }],
+            health_checks=[default.id])
+        backend_key = gcp.compute.BackendServiceSignedUrlKey("backendKey",
+            key_value="pPsVemX8GM46QVeezid6Rw==",
+            backend_service=example_backend.name)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -63,7 +108,7 @@ class BackendServiceSignedUrlKey(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -84,7 +129,7 @@ class BackendServiceSignedUrlKey(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, backend_service=None, key_value=None, name=None, project=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, backend_service: Optional[pulumi.Input[str]] = None, key_value: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None) -> 'BackendServiceSignedUrlKey':
         """
         Get an existing BackendServiceSignedUrlKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -110,7 +155,8 @@ class BackendServiceSignedUrlKey(pulumi.CustomResource):
         return BackendServiceSignedUrlKey(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

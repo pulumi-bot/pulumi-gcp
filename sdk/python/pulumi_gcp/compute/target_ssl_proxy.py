@@ -5,24 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['TargetSSLProxy']
 
 
 class TargetSSLProxy(pulumi.CustomResource):
-    backend_service: pulumi.Output[str]
+    backend_service: pulumi.Output[str] = pulumi.output_property("backendService")
     """
     A reference to the BackendService resource.
     """
-    creation_timestamp: pulumi.Output[str]
+    creation_timestamp: pulumi.Output[str] = pulumi.output_property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     An optional description of this resource.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -32,37 +34,38 @@ class TargetSSLProxy(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the last
     character, which cannot be a dash.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    proxy_header: pulumi.Output[str]
+    proxy_header: pulumi.Output[Optional[str]] = pulumi.output_property("proxyHeader")
     """
     Specifies the type of proxy header to append before sending data to
     the backend.
     """
-    proxy_id: pulumi.Output[float]
+    proxy_id: pulumi.Output[float] = pulumi.output_property("proxyId")
     """
     The unique identifier for the resource.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The URI of the created resource.
     """
-    ssl_certificates: pulumi.Output[str]
+    ssl_certificates: pulumi.Output[str] = pulumi.output_property("sslCertificates")
     """
     A list of SslCertificate resources that are used to authenticate
     connections between users and the load balancer. Currently, exactly
     one SSL certificate must be specified.
     """
-    ssl_policy: pulumi.Output[str]
+    ssl_policy: pulumi.Output[Optional[str]] = pulumi.output_property("sslPolicy")
     """
     A reference to the SslPolicy resource that will be associated with
     the TargetSslProxy resource. If not set, the TargetSslProxy
     resource will not have any SSL policy configured.
     """
-    def __init__(__self__, resource_name, opts=None, backend_service=None, description=None, name=None, project=None, proxy_header=None, ssl_certificates=None, ssl_policy=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, backend_service: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, proxy_header: Optional[pulumi.Input[str]] = None, ssl_certificates: Optional[pulumi.Input[str]] = None, ssl_policy: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Represents a TargetSslProxy resource, which is used by one or more
         global forwarding rule to route incoming SSL requests to a backend
@@ -75,6 +78,28 @@ class TargetSSLProxy(pulumi.CustomResource):
             * [Setting Up SSL proxy for Google Cloud Load Balancing](https://cloud.google.com/compute/docs/load-balancing/tcp-ssl/)
 
         ## Example Usage
+        ### Target Ssl Proxy Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_ssl_certificate = gcp.compute.SSLCertificate("defaultSSLCertificate",
+            private_key=(lambda path: open(path).read())("path/to/private.key"),
+            certificate=(lambda path: open(path).read())("path/to/certificate.crt"))
+        default_health_check = gcp.compute.HealthCheck("defaultHealthCheck",
+            check_interval_sec=1,
+            timeout_sec=1,
+            tcp_health_check={
+                "port": "443",
+            })
+        default_backend_service = gcp.compute.BackendService("defaultBackendService",
+            protocol="SSL",
+            health_checks=[default_health_check.id])
+        default_target_ssl_proxy = gcp.compute.TargetSSLProxy("defaultTargetSSLProxy",
+            backend_service=default_backend_service.id,
+            ssl_certificates=[default_ssl_certificate.id])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -109,7 +134,7 @@ class TargetSSLProxy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -136,7 +161,7 @@ class TargetSSLProxy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, backend_service=None, creation_timestamp=None, description=None, name=None, project=None, proxy_header=None, proxy_id=None, self_link=None, ssl_certificates=None, ssl_policy=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, backend_service: Optional[pulumi.Input[str]] = None, creation_timestamp: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, proxy_header: Optional[pulumi.Input[str]] = None, proxy_id: Optional[pulumi.Input[float]] = None, self_link: Optional[pulumi.Input[str]] = None, ssl_certificates: Optional[pulumi.Input[str]] = None, ssl_policy: Optional[pulumi.Input[str]] = None) -> 'TargetSSLProxy':
         """
         Get an existing TargetSSLProxy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -184,7 +209,8 @@ class TargetSSLProxy(pulumi.CustomResource):
         return TargetSSLProxy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

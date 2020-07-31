@@ -5,14 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetDatabaseInstanceResult',
+    'AwaitableGetDatabaseInstanceResult',
+    'get_database_instance',
+]
+
 
 class GetDatabaseInstanceResult:
     """
     A collection of values returned by getDatabaseInstance.
     """
-    def __init__(__self__, connection_name=None, database_version=None, encryption_key_name=None, first_ip_address=None, id=None, ip_addresses=None, master_instance_name=None, name=None, private_ip_address=None, project=None, public_ip_address=None, region=None, replica_configurations=None, root_password=None, self_link=None, server_ca_certs=None, service_account_email_address=None, settings=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, connection_name=None, database_version=None, encryption_key_name=None, first_ip_address=None, id=None, ip_addresses=None, master_instance_name=None, name=None, private_ip_address=None, project=None, public_ip_address=None, region=None, replica_configurations=None, root_password=None, self_link=None, server_ca_certs=None, service_account_email_address=None, settings=None) -> None:
         if connection_name and not isinstance(connection_name, str):
             raise TypeError("Expected argument 'connection_name' to be a str")
         __self__.connection_name = connection_name
@@ -109,6 +118,8 @@ class GetDatabaseInstanceResult:
         The settings to use for the database. The
         configuration is detailed below.
         """
+
+
 class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -134,21 +145,29 @@ class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
             service_account_email_address=self.service_account_email_address,
             settings=self.settings)
 
-def get_database_instance(name=None,opts=None):
+
+def get_database_instance(name: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseInstanceResult:
     """
     Use this data source to get information about a Cloud SQL instance
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    qa = gcp.sql.get_database_instance(name=google_sql_database_instance["master"]["name"])
+    ```
 
 
     :param str name: The name of the instance.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:sql/getDatabaseInstance:getDatabaseInstance', __args__, opts=opts).value
 
     return AwaitableGetDatabaseInstanceResult(

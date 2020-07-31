@@ -5,28 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['IAMPolicy']
 
 
 class IAMPolicy(pulumi.CustomResource):
-    etag: pulumi.Output[str]
+    etag: pulumi.Output[str] = pulumi.output_property("etag")
     """
     (Computed) The etag of the project's IAM policy.
     """
-    policy_data: pulumi.Output[str]
+    policy_data: pulumi.Output[str] = pulumi.output_property("policyData")
     """
     The `organizations.getIAMPolicy` data source that represents
     the IAM policy that will be applied to the project. The policy will be
     merged with any existing policy applied to the project.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The project ID. If not specified for `projects.IAMBinding`, `projects.IAMMember`, or `projects.IAMAuditConfig`, uses the ID of the project configured with the provider.
     Required for `projects.IAMPolicy` - you must explicitly set the project, and it
     will not be inferred from the provider.
     """
-    def __init__(__self__, resource_name, opts=None, policy_data=None, project=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, policy_data: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Four different resources help you manage your IAM policy for a project. Each of these resources serves a different use case:
 
@@ -38,6 +41,129 @@ class IAMPolicy(pulumi.CustomResource):
         > **Note:** `projects.IAMPolicy` **cannot** be used in conjunction with `projects.IAMBinding`, `projects.IAMMember`, or `projects.IAMAuditConfig` or they will fight over what your policy should be.
 
         > **Note:** `projects.IAMBinding` resources **can be** used in conjunction with `projects.IAMMember` resources **only if** they do not grant privilege to the same role.
+
+        ## google\_project\_iam\_policy
+
+        > **Be careful!** You can accidentally lock yourself out of your project
+           using this resource. Deleting a `projects.IAMPolicy` removes access
+           from anyone without organization-level access to the project. Proceed with caution.
+           It's not recommended to use `projects.IAMPolicy` with your provider project
+           to avoid locking yourself out, and it should generally only be used with projects
+           fully managed by this provider. If you do use this resource, it is recommended to **import** the policy before
+           applying the change.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+        }])
+        project = gcp.projects.IAMPolicy("project",
+            project="your-project-id",
+            policy_data=admin.policy_data)
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "condition": {
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
+            "members": ["user:jane@example.com"],
+            "role": "roles/editor",
+        }])
+        project = gcp.projects.IAMPolicy("project",
+            policy_data=admin.policy_data,
+            project="your-project-id")
+        ```
+
+        ## google\_project\_iam\_binding
+
+        > **Note:** If `role` is set to `roles/owner` and you don't specify a user or service account you have access to in `members`, you can lock yourself out of your project.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMBinding("project",
+            members=["user:jane@example.com"],
+            project="your-project-id",
+            role="roles/editor")
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMBinding("project",
+            condition={
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
+            members=["user:jane@example.com"],
+            project="your-project-id",
+            role="roles/editor")
+        ```
+
+        ## google\_project\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMMember("project",
+            member="user:jane@example.com",
+            project="your-project-id",
+            role="roles/editor")
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMMember("project",
+            condition={
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
+            member="user:jane@example.com",
+            project="your-project-id",
+            role="roles/editor")
+        ```
+
+        ## google\_project\_iam\_audit\_config
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMAuditConfig("project",
+            audit_log_configs=[
+                {
+                    "logType": "ADMIN_READ",
+                },
+                {
+                    "exemptedMembers": ["user:joebloggs@hashicorp.com"],
+                    "logType": "DATA_READ",
+                },
+            ],
+            project="your-project-id",
+            service="allServices")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -59,7 +185,7 @@ class IAMPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -79,7 +205,7 @@ class IAMPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, etag=None, policy_data=None, project=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, etag: Optional[pulumi.Input[str]] = None, policy_data: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None) -> 'IAMPolicy':
         """
         Get an existing IAMPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -105,7 +231,8 @@ class IAMPolicy(pulumi.CustomResource):
         return IAMPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

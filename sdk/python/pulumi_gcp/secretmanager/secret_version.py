@@ -5,36 +5,39 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['SecretVersion']
 
 
 class SecretVersion(pulumi.CustomResource):
-    create_time: pulumi.Output[str]
+    create_time: pulumi.Output[str] = pulumi.output_property("createTime")
     """
     The time at which the Secret was created.
     """
-    destroy_time: pulumi.Output[str]
+    destroy_time: pulumi.Output[str] = pulumi.output_property("destroyTime")
     """
     The time at which the Secret was destroyed. Only present if state is DESTROYED.
     """
-    enabled: pulumi.Output[bool]
+    enabled: pulumi.Output[Optional[bool]] = pulumi.output_property("enabled")
     """
     The current state of the SecretVersion.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The resource name of the SecretVersion. Format: 'projects/{{project}}/secrets/{{secret_id}}/versions/{{version}}'
     """
-    secret: pulumi.Output[str]
+    secret: pulumi.Output[str] = pulumi.output_property("secret")
     """
     Secret Manager secret resource
     """
-    secret_data: pulumi.Output[str]
+    secret_data: pulumi.Output[Optional[str]] = pulumi.output_property("secretData")
     """
     The secret data. Must be no larger than 64KiB.  **Note**: This property is sensitive and will not be displayed in the plan.
     """
-    def __init__(__self__, resource_name, opts=None, enabled=None, secret=None, secret_data=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, enabled: Optional[pulumi.Input[bool]] = None, secret: Optional[pulumi.Input[str]] = None, secret_data: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A secret version resource.
 
@@ -42,6 +45,24 @@ class SecretVersion(pulumi.CustomResource):
         state as plain-text.
 
         ## Example Usage
+        ### Secret Version Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        secret_basic = gcp.secretmanager.Secret("secret-basic",
+            secret_id="secret-version",
+            labels={
+                "label": "my-label",
+            },
+            replication={
+                "automatic": True,
+            })
+        secret_version_basic = gcp.secretmanager.SecretVersion("secret-version-basic",
+            secret=secret_basic.id,
+            secret_data="secret-data")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -60,7 +81,7 @@ class SecretVersion(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -81,7 +102,7 @@ class SecretVersion(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, create_time=None, destroy_time=None, enabled=None, name=None, secret=None, secret_data=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, create_time: Optional[pulumi.Input[str]] = None, destroy_time: Optional[pulumi.Input[str]] = None, enabled: Optional[pulumi.Input[bool]] = None, name: Optional[pulumi.Input[str]] = None, secret: Optional[pulumi.Input[str]] = None, secret_data: Optional[pulumi.Input[str]] = None) -> 'SecretVersion':
         """
         Get an existing SecretVersion resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -109,7 +130,8 @@ class SecretVersion(pulumi.CustomResource):
         return SecretVersion(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

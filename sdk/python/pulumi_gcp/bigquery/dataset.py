@@ -5,108 +5,86 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Dataset']
 
 
 class Dataset(pulumi.CustomResource):
-    accesses: pulumi.Output[list]
+    accesses: pulumi.Output[List['outputs.DatasetAccess']] = pulumi.output_property("accesses")
     """
     An array of objects that define dataset access for one or more entities.  Structure is documented below.
-
-      * `domain` (`str`) - A domain to grant access to. Any users signed in with the
-        domain specified will be granted the specified access
-      * `group_by_email` (`str`) - An email address of a Google Group to grant access to.
-      * `role` (`str`) - Describes the rights granted to the user specified by the other
-        member of the access object. Primitive, Predefined and custom
-        roles are supported. Predefined roles that have equivalent
-        primitive roles are swapped by the API to their Primitive
-        counterparts. See
-        [official docs](https://cloud.google.com/bigquery/docs/access-control).
-      * `special_group` (`str`) - A special group to grant access to. Possible values include:
-      * `user_by_email` (`str`) - An email address of a user to grant access to. For example:
-        fred@example.com
-      * `view` (`dict`) - A view from a different dataset to grant access to. Queries
-        executed against that view will have read access to tables in
-        this dataset. The role field is not required when this field is
-        set. If that view is updated by any user, access to the view
-        needs to be granted again via an update operation.  Structure is documented below.
-        * `dataset_id` (`str`) - The ID of the dataset containing this table.
-        * `project_id` (`str`) - The ID of the project containing this table.
-        * `table_id` (`str`) - The ID of the table. The ID must contain only letters (a-z,
-          A-Z), numbers (0-9), or underscores (_). The maximum length
-          is 1,024 characters.
     """
-    creation_time: pulumi.Output[float]
+    creation_time: pulumi.Output[float] = pulumi.output_property("creationTime")
     """
     The time when this dataset was created, in milliseconds since the epoch.
     """
-    dataset_id: pulumi.Output[str]
+    dataset_id: pulumi.Output[str] = pulumi.output_property("datasetId")
     """
     The ID of the dataset containing this table.
     """
-    default_encryption_configuration: pulumi.Output[dict]
+    default_encryption_configuration: pulumi.Output[Optional['outputs.DatasetDefaultEncryptionConfiguration']] = pulumi.output_property("defaultEncryptionConfiguration")
     """
     The default encryption key for all tables in the dataset. Once this property is set,
     all newly-created partitioned tables in the dataset will have encryption key set to
     this value, unless table creation request (or query) overrides the key.  Structure is documented below.
-
-      * `kms_key_name` (`str`) - Describes the Cloud KMS encryption key that will be used to protect destination
-        BigQuery table. The BigQuery Service Account associated with your project requires
-        access to this encryption key.
     """
-    default_partition_expiration_ms: pulumi.Output[float]
+    default_partition_expiration_ms: pulumi.Output[Optional[float]] = pulumi.output_property("defaultPartitionExpirationMs")
     """
     The default partition expiration for all partitioned tables in
     the dataset, in milliseconds.
     """
-    default_table_expiration_ms: pulumi.Output[float]
+    default_table_expiration_ms: pulumi.Output[Optional[float]] = pulumi.output_property("defaultTableExpirationMs")
     """
     The default lifetime of all tables in the dataset, in milliseconds.
     The minimum value is 3600000 milliseconds (one hour).
     """
-    delete_contents_on_destroy: pulumi.Output[bool]
+    delete_contents_on_destroy: pulumi.Output[Optional[bool]] = pulumi.output_property("deleteContentsOnDestroy")
     """
     If set to `true`, delete all the tables in the
     dataset when destroying the resource; otherwise,
     destroying the resource will fail if tables are present.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     A user-friendly description of the dataset
     """
-    etag: pulumi.Output[str]
+    etag: pulumi.Output[str] = pulumi.output_property("etag")
     """
     A hash of the resource.
     """
-    friendly_name: pulumi.Output[str]
+    friendly_name: pulumi.Output[Optional[str]] = pulumi.output_property("friendlyName")
     """
     A descriptive name for the dataset
     """
-    labels: pulumi.Output[dict]
+    labels: pulumi.Output[Optional[Dict[str, str]]] = pulumi.output_property("labels")
     """
     The labels associated with this dataset. You can use these to
     organize and group your datasets
     """
-    last_modified_time: pulumi.Output[float]
+    last_modified_time: pulumi.Output[float] = pulumi.output_property("lastModifiedTime")
     """
     The date when this dataset or any of its tables was last modified, in milliseconds since the epoch.
     """
-    location: pulumi.Output[str]
+    location: pulumi.Output[Optional[str]] = pulumi.output_property("location")
     """
     The geographic location where the dataset should reside.
     See [official docs](https://cloud.google.com/bigquery/docs/dataset-locations).
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The URI of the created resource.
     """
-    def __init__(__self__, resource_name, opts=None, accesses=None, dataset_id=None, default_encryption_configuration=None, default_partition_expiration_ms=None, default_table_expiration_ms=None, delete_contents_on_destroy=None, description=None, friendly_name=None, labels=None, location=None, project=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, accesses: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DatasetAccessArgs']]]]] = None, dataset_id: Optional[pulumi.Input[str]] = None, default_encryption_configuration: Optional[pulumi.Input[pulumi.InputType['DatasetDefaultEncryptionConfigurationArgs']]] = None, default_partition_expiration_ms: Optional[pulumi.Input[float]] = None, default_table_expiration_ms: Optional[pulumi.Input[float]] = None, delete_contents_on_destroy: Optional[pulumi.Input[bool]] = None, description: Optional[pulumi.Input[str]] = None, friendly_name: Optional[pulumi.Input[str]] = None, labels: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, location: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Datasets allow you to organize and control access to your tables.
 
@@ -117,12 +95,57 @@ class Dataset(pulumi.CustomResource):
             * [Datasets Intro](https://cloud.google.com/bigquery/docs/datasets-intro)
 
         ## Example Usage
+        ### Bigquery Dataset Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bqowner = gcp.service_account.Account("bqowner", account_id="bqowner")
+        dataset = gcp.bigquery.Dataset("dataset",
+            dataset_id="example_dataset",
+            friendly_name="test",
+            description="This is a test description",
+            location="EU",
+            default_table_expiration_ms=3600000,
+            labels={
+                "env": "default",
+            },
+            accesses=[
+                {
+                    "role": "OWNER",
+                    "user_by_email": bqowner.email,
+                },
+                {
+                    "role": "READER",
+                    "domain": "hashicorp.com",
+                },
+            ])
+        ```
+        ### Bigquery Dataset Cmek
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        key_ring = gcp.kms.KeyRing("keyRing", location="us")
+        crypto_key = gcp.kms.CryptoKey("cryptoKey", key_ring=key_ring.id)
+        dataset = gcp.bigquery.Dataset("dataset",
+            dataset_id="example_dataset",
+            friendly_name="test",
+            description="This is a test description",
+            location="US",
+            default_table_expiration_ms=3600000,
+            default_encryption_configuration={
+                "kms_key_name": crypto_key.id,
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] accesses: An array of objects that define dataset access for one or more entities.  Structure is documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DatasetAccessArgs']]]] accesses: An array of objects that define dataset access for one or more entities.  Structure is documented below.
         :param pulumi.Input[str] dataset_id: The ID of the dataset containing this table.
-        :param pulumi.Input[dict] default_encryption_configuration: The default encryption key for all tables in the dataset. Once this property is set,
+        :param pulumi.Input[pulumi.InputType['DatasetDefaultEncryptionConfigurationArgs']] default_encryption_configuration: The default encryption key for all tables in the dataset. Once this property is set,
                all newly-created partitioned tables in the dataset will have encryption key set to
                this value, unless table creation request (or query) overrides the key.  Structure is documented below.
         :param pulumi.Input[float] default_partition_expiration_ms: The default partition expiration for all partitioned tables in
@@ -134,43 +157,12 @@ class Dataset(pulumi.CustomResource):
                destroying the resource will fail if tables are present.
         :param pulumi.Input[str] description: A user-friendly description of the dataset
         :param pulumi.Input[str] friendly_name: A descriptive name for the dataset
-        :param pulumi.Input[dict] labels: The labels associated with this dataset. You can use these to
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: The labels associated with this dataset. You can use these to
                organize and group your datasets
         :param pulumi.Input[str] location: The geographic location where the dataset should reside.
                See [official docs](https://cloud.google.com/bigquery/docs/dataset-locations).
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-
-        The **accesses** object supports the following:
-
-          * `domain` (`pulumi.Input[str]`) - A domain to grant access to. Any users signed in with the
-            domain specified will be granted the specified access
-          * `group_by_email` (`pulumi.Input[str]`) - An email address of a Google Group to grant access to.
-          * `role` (`pulumi.Input[str]`) - Describes the rights granted to the user specified by the other
-            member of the access object. Primitive, Predefined and custom
-            roles are supported. Predefined roles that have equivalent
-            primitive roles are swapped by the API to their Primitive
-            counterparts. See
-            [official docs](https://cloud.google.com/bigquery/docs/access-control).
-          * `special_group` (`pulumi.Input[str]`) - A special group to grant access to. Possible values include:
-          * `user_by_email` (`pulumi.Input[str]`) - An email address of a user to grant access to. For example:
-            fred@example.com
-          * `view` (`pulumi.Input[dict]`) - A view from a different dataset to grant access to. Queries
-            executed against that view will have read access to tables in
-            this dataset. The role field is not required when this field is
-            set. If that view is updated by any user, access to the view
-            needs to be granted again via an update operation.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this table.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this table.
-            * `table_id` (`pulumi.Input[str]`) - The ID of the table. The ID must contain only letters (a-z,
-              A-Z), numbers (0-9), or underscores (_). The maximum length
-              is 1,024 characters.
-
-        The **default_encryption_configuration** object supports the following:
-
-          * `kms_key_name` (`pulumi.Input[str]`) - Describes the Cloud KMS encryption key that will be used to protect destination
-            BigQuery table. The BigQuery Service Account associated with your project requires
-            access to this encryption key.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -183,7 +175,7 @@ class Dataset(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -213,7 +205,7 @@ class Dataset(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, accesses=None, creation_time=None, dataset_id=None, default_encryption_configuration=None, default_partition_expiration_ms=None, default_table_expiration_ms=None, delete_contents_on_destroy=None, description=None, etag=None, friendly_name=None, labels=None, last_modified_time=None, location=None, project=None, self_link=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, accesses: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['DatasetAccessArgs']]]]] = None, creation_time: Optional[pulumi.Input[float]] = None, dataset_id: Optional[pulumi.Input[str]] = None, default_encryption_configuration: Optional[pulumi.Input[pulumi.InputType['DatasetDefaultEncryptionConfigurationArgs']]] = None, default_partition_expiration_ms: Optional[pulumi.Input[float]] = None, default_table_expiration_ms: Optional[pulumi.Input[float]] = None, delete_contents_on_destroy: Optional[pulumi.Input[bool]] = None, description: Optional[pulumi.Input[str]] = None, etag: Optional[pulumi.Input[str]] = None, friendly_name: Optional[pulumi.Input[str]] = None, labels: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, last_modified_time: Optional[pulumi.Input[float]] = None, location: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, self_link: Optional[pulumi.Input[str]] = None) -> 'Dataset':
         """
         Get an existing Dataset resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -221,10 +213,10 @@ class Dataset(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] accesses: An array of objects that define dataset access for one or more entities.  Structure is documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['DatasetAccessArgs']]]] accesses: An array of objects that define dataset access for one or more entities.  Structure is documented below.
         :param pulumi.Input[float] creation_time: The time when this dataset was created, in milliseconds since the epoch.
         :param pulumi.Input[str] dataset_id: The ID of the dataset containing this table.
-        :param pulumi.Input[dict] default_encryption_configuration: The default encryption key for all tables in the dataset. Once this property is set,
+        :param pulumi.Input[pulumi.InputType['DatasetDefaultEncryptionConfigurationArgs']] default_encryption_configuration: The default encryption key for all tables in the dataset. Once this property is set,
                all newly-created partitioned tables in the dataset will have encryption key set to
                this value, unless table creation request (or query) overrides the key.  Structure is documented below.
         :param pulumi.Input[float] default_partition_expiration_ms: The default partition expiration for all partitioned tables in
@@ -237,7 +229,7 @@ class Dataset(pulumi.CustomResource):
         :param pulumi.Input[str] description: A user-friendly description of the dataset
         :param pulumi.Input[str] etag: A hash of the resource.
         :param pulumi.Input[str] friendly_name: A descriptive name for the dataset
-        :param pulumi.Input[dict] labels: The labels associated with this dataset. You can use these to
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: The labels associated with this dataset. You can use these to
                organize and group your datasets
         :param pulumi.Input[float] last_modified_time: The date when this dataset or any of its tables was last modified, in milliseconds since the epoch.
         :param pulumi.Input[str] location: The geographic location where the dataset should reside.
@@ -245,37 +237,6 @@ class Dataset(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-
-        The **accesses** object supports the following:
-
-          * `domain` (`pulumi.Input[str]`) - A domain to grant access to. Any users signed in with the
-            domain specified will be granted the specified access
-          * `group_by_email` (`pulumi.Input[str]`) - An email address of a Google Group to grant access to.
-          * `role` (`pulumi.Input[str]`) - Describes the rights granted to the user specified by the other
-            member of the access object. Primitive, Predefined and custom
-            roles are supported. Predefined roles that have equivalent
-            primitive roles are swapped by the API to their Primitive
-            counterparts. See
-            [official docs](https://cloud.google.com/bigquery/docs/access-control).
-          * `special_group` (`pulumi.Input[str]`) - A special group to grant access to. Possible values include:
-          * `user_by_email` (`pulumi.Input[str]`) - An email address of a user to grant access to. For example:
-            fred@example.com
-          * `view` (`pulumi.Input[dict]`) - A view from a different dataset to grant access to. Queries
-            executed against that view will have read access to tables in
-            this dataset. The role field is not required when this field is
-            set. If that view is updated by any user, access to the view
-            needs to be granted again via an update operation.  Structure is documented below.
-            * `dataset_id` (`pulumi.Input[str]`) - The ID of the dataset containing this table.
-            * `project_id` (`pulumi.Input[str]`) - The ID of the project containing this table.
-            * `table_id` (`pulumi.Input[str]`) - The ID of the table. The ID must contain only letters (a-z,
-              A-Z), numbers (0-9), or underscores (_). The maximum length
-              is 1,024 characters.
-
-        The **default_encryption_configuration** object supports the following:
-
-          * `kms_key_name` (`pulumi.Input[str]`) - Describes the Cloud KMS encryption key that will be used to protect destination
-            BigQuery table. The BigQuery Service Account associated with your project requires
-            access to this encryption key.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -299,7 +260,8 @@ class Dataset(pulumi.CustomResource):
         return Dataset(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

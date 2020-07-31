@@ -5,75 +5,156 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['InstanceGroup']
 
 
 class InstanceGroup(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     An optional textual description of the instance
     group.
     """
-    instances: pulumi.Output[list]
+    instances: pulumi.Output[List[str]] = pulumi.output_property("instances")
     """
     List of instances in the group. They should be given
     as either self_link or id. When adding instances they must all be in the same
     network and zone as the instance group.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The name which the port will be mapped to.
     """
-    named_ports: pulumi.Output[list]
+    named_ports: pulumi.Output[Optional[List['outputs.InstanceGroupNamedPort']]] = pulumi.output_property("namedPorts")
     """
     The named port configuration. See the section below
     for details on configuration.
-
-      * `name` (`str`) - The name which the port will be mapped to.
-      * `port` (`float`) - The port number to map the name to.
     """
-    network: pulumi.Output[str]
+    network: pulumi.Output[str] = pulumi.output_property("network")
     """
     The URL of the network the instance group is in. If
     this is different from the network where the instances are in, the creation
     fails. Defaults to the network where the instances are in (if neither
     `network` nor `instances` is specified, this field will be blank).
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs. If it
     is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+    self_link: pulumi.Output[str] = pulumi.output_property("selfLink")
     """
     The URI of the created resource.
     """
-    size: pulumi.Output[float]
+    size: pulumi.Output[float] = pulumi.output_property("size")
     """
     The number of instances in the group.
     """
-    zone: pulumi.Output[str]
+    zone: pulumi.Output[str] = pulumi.output_property("zone")
     """
     The zone that this instance group should be created in.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, instances=None, name=None, named_ports=None, network=None, project=None, zone=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, instances: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, named_ports: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceGroupNamedPortArgs']]]]] = None, network: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, zone: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Creates a group of dissimilar Compute Engine virtual machine instances.
         For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/#unmanaged_instance_groups)
         and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroups)
 
         ## Example Usage
+        ### Empty Instance Group
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        test = gcp.compute.InstanceGroup("test",
+            description="Test instance group",
+            zone="us-central1-a",
+            network=google_compute_network["default"]["id"])
+        ```
+        ### Example Usage - With instances and named ports
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        webservers = gcp.compute.InstanceGroup("webservers",
+            description="Test instance group",
+            instances=[
+                google_compute_instance["test"]["id"],
+                google_compute_instance["test2"]["id"],
+            ],
+            named_ports=[
+                {
+                    "name": "http",
+                    "port": "8080",
+                },
+                {
+                    "name": "https",
+                    "port": "8443",
+                },
+            ],
+            zone="us-central1-a")
+        ```
+        ### Example Usage - Recreating an instance group in use
+        Recreating an instance group that's in use by another resource will give a
+        `resourceInUseByAnotherResource` error. Use `lifecycle.create_before_destroy`
+        as shown in this example to avoid this type of error.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        debian_image = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        staging_vm = gcp.compute.Instance("stagingVm",
+            machine_type="n1-standard-1",
+            zone="us-central1-c",
+            boot_disk={
+                "initializeParams": {
+                    "image": debian_image.self_link,
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+            }])
+        staging_group = gcp.compute.InstanceGroup("stagingGroup",
+            zone="us-central1-c",
+            instances=[staging_vm.id],
+            named_ports=[
+                {
+                    "name": "http",
+                    "port": "8080",
+                },
+                {
+                    "name": "https",
+                    "port": "8443",
+                },
+            ])
+        staging_health = gcp.compute.HttpsHealthCheck("stagingHealth", request_path="/health_check")
+        staging_service = gcp.compute.BackendService("stagingService",
+            port_name="https",
+            protocol="HTTPS",
+            backends=[{
+                "group": staging_group.id,
+            }],
+            health_checks=[staging_health.id])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional textual description of the instance
                group.
-        :param pulumi.Input[list] instances: List of instances in the group. They should be given
+        :param pulumi.Input[List[pulumi.Input[str]]] instances: List of instances in the group. They should be given
                as either self_link or id. When adding instances they must all be in the same
                network and zone as the instance group.
         :param pulumi.Input[str] name: The name which the port will be mapped to.
-        :param pulumi.Input[list] named_ports: The named port configuration. See the section below
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceGroupNamedPortArgs']]]] named_ports: The named port configuration. See the section below
                for details on configuration.
         :param pulumi.Input[str] network: The URL of the network the instance group is in. If
                this is different from the network where the instances are in, the creation
@@ -82,11 +163,6 @@ class InstanceGroup(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs. If it
                is not provided, the provider project is used.
         :param pulumi.Input[str] zone: The zone that this instance group should be created in.
-
-        The **named_ports** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The name which the port will be mapped to.
-          * `port` (`pulumi.Input[float]`) - The port number to map the name to.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -99,7 +175,7 @@ class InstanceGroup(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -121,7 +197,7 @@ class InstanceGroup(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, instances=None, name=None, named_ports=None, network=None, project=None, self_link=None, size=None, zone=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, instances: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, named_ports: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceGroupNamedPortArgs']]]]] = None, network: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, self_link: Optional[pulumi.Input[str]] = None, size: Optional[pulumi.Input[float]] = None, zone: Optional[pulumi.Input[str]] = None) -> 'InstanceGroup':
         """
         Get an existing InstanceGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -131,11 +207,11 @@ class InstanceGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional textual description of the instance
                group.
-        :param pulumi.Input[list] instances: List of instances in the group. They should be given
+        :param pulumi.Input[List[pulumi.Input[str]]] instances: List of instances in the group. They should be given
                as either self_link or id. When adding instances they must all be in the same
                network and zone as the instance group.
         :param pulumi.Input[str] name: The name which the port will be mapped to.
-        :param pulumi.Input[list] named_ports: The named port configuration. See the section below
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['InstanceGroupNamedPortArgs']]]] named_ports: The named port configuration. See the section below
                for details on configuration.
         :param pulumi.Input[str] network: The URL of the network the instance group is in. If
                this is different from the network where the instances are in, the creation
@@ -146,11 +222,6 @@ class InstanceGroup(pulumi.CustomResource):
         :param pulumi.Input[str] self_link: The URI of the created resource.
         :param pulumi.Input[float] size: The number of instances in the group.
         :param pulumi.Input[str] zone: The zone that this instance group should be created in.
-
-        The **named_ports** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The name which the port will be mapped to.
-          * `port` (`pulumi.Input[float]`) - The port number to map the name to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -168,7 +239,8 @@ class InstanceGroup(pulumi.CustomResource):
         return InstanceGroup(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

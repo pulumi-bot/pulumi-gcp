@@ -5,30 +5,33 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['RegionDiskResourcePolicyAttachment']
 
 
 class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
-    disk: pulumi.Output[str]
+    disk: pulumi.Output[str] = pulumi.output_property("disk")
     """
     The name of the regional disk in which the resource policies are attached to.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The resource policy to be attached to the disk for scheduling snapshot
     creation. Do not specify the self link.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    region: pulumi.Output[str]
+    region: pulumi.Output[str] = pulumi.output_property("region")
     """
     A reference to the region where the disk resides.
     """
-    def __init__(__self__, resource_name, opts=None, disk=None, name=None, project=None, region=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, disk: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, region: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Adds existing resource policies to a disk. You can only add one policy
         which will be applied to this disk for scheduling snapshot creation.
@@ -36,6 +39,45 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
         > **Note:** This resource does not support zonal disks (`compute.Disk`). For zonal disks, please refer to the `compute.DiskResourcePolicyAttachment` resource.
 
         ## Example Usage
+        ### Region Disk Resource Policy Attachment Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        disk = gcp.compute.Disk("disk",
+            image="debian-cloud/debian-9",
+            size=50,
+            type="pd-ssd",
+            zone="us-central1-a")
+        snapdisk = gcp.compute.Snapshot("snapdisk",
+            source_disk=disk.name,
+            zone="us-central1-a")
+        ssd = gcp.compute.RegionDisk("ssd",
+            replica_zones=[
+                "us-central1-a",
+                "us-central1-f",
+            ],
+            snapshot=snapdisk.id,
+            size=50,
+            type="pd-ssd",
+            region="us-central1")
+        attachment = gcp.compute.RegionDiskResourcePolicyAttachment("attachment",
+            disk=ssd.name,
+            region="us-central1")
+        policy = gcp.compute.ResourcePolicy("policy",
+            region="us-central1",
+            snapshot_schedule_policy={
+                "schedule": {
+                    "dailySchedule": {
+                        "daysInCycle": 1,
+                        "startTime": "04:00",
+                    },
+                },
+            })
+        my_image = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -57,7 +99,7 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -76,7 +118,7 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, disk=None, name=None, project=None, region=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, disk: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, region: Optional[pulumi.Input[str]] = None) -> 'RegionDiskResourcePolicyAttachment':
         """
         Get an existing RegionDiskResourcePolicyAttachment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -102,7 +144,8 @@ class RegionDiskResourcePolicyAttachment(pulumi.CustomResource):
         return RegionDiskResourcePolicyAttachment(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

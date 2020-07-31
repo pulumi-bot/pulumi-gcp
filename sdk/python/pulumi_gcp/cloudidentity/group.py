@@ -5,64 +5,56 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Group']
 
 
 class Group(pulumi.CustomResource):
-    create_time: pulumi.Output[str]
+    create_time: pulumi.Output[str] = pulumi.output_property("createTime")
     """
     The time when the Group was created.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     An extended description to help users determine the purpose of a Group.
     Must not be longer than 4,096 characters.
     """
-    display_name: pulumi.Output[str]
+    display_name: pulumi.Output[Optional[str]] = pulumi.output_property("displayName")
     """
     The display name of the Group.
     """
-    group_key: pulumi.Output[dict]
+    group_key: pulumi.Output['outputs.GroupGroupKey'] = pulumi.output_property("groupKey")
     """
     EntityKey of the Group.  Structure is documented below.
-
-      * `id` (`str`) - The ID of the entity.
-        For Google-managed entities, the id must be the email address of an existing
-        group or user.
-        For external-identity-mapped entities, the id must be a string conforming
-        to the Identity Source's requirements.
-        Must be unique within a namespace.
-      * `namespace` (`str`) - The namespace in which the entity exists.
-        If not specified, the EntityKey represents a Google-managed entity
-        such as a Google user or a Google Group.
-        If specified, the EntityKey represents an external-identity-mapped group.
-        The namespace must correspond to an identity source created in Admin Console
-        and must be in the form of `identitysources/{identity_source_id}`.
     """
-    labels: pulumi.Output[dict]
+    labels: pulumi.Output[Dict[str, str]] = pulumi.output_property("labels")
     """
     The labels that apply to the Group.
     Must not contain more than one entry. Must contain the entry
     'cloudidentity.googleapis.com/groups.discussion_forum': '' if the Group is a Google Group or
     'system/groups/external': '' if the Group is an external-identity-mapped group.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Resource name of the Group in the format: groups/{group_id}, where group_id is the unique ID assigned to the Group.
     """
-    parent: pulumi.Output[str]
+    parent: pulumi.Output[str] = pulumi.output_property("parent")
     """
     The resource name of the entity under which this Group resides in the
     Cloud Identity resource hierarchy.
     Must be of the form identitysources/{identity_source_id} for external-identity-mapped
     groups or customers/{customer_id} for Google Groups.
     """
-    update_time: pulumi.Output[str]
+    update_time: pulumi.Output[str] = pulumi.output_property("updateTime")
     """
     The time when the Group was last updated.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, display_name=None, group_key=None, labels=None, parent=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, display_name: Optional[pulumi.Input[str]] = None, group_key: Optional[pulumi.Input[pulumi.InputType['GroupGroupKeyArgs']]] = None, labels: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, parent: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Create a Group resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -70,8 +62,8 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] description: An extended description to help users determine the purpose of a Group.
                Must not be longer than 4,096 characters.
         :param pulumi.Input[str] display_name: The display name of the Group.
-        :param pulumi.Input[dict] group_key: EntityKey of the Group.  Structure is documented below.
-        :param pulumi.Input[dict] labels: The labels that apply to the Group.
+        :param pulumi.Input[pulumi.InputType['GroupGroupKeyArgs']] group_key: EntityKey of the Group.  Structure is documented below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: The labels that apply to the Group.
                Must not contain more than one entry. Must contain the entry
                'cloudidentity.googleapis.com/groups.discussion_forum': '' if the Group is a Google Group or
                'system/groups/external': '' if the Group is an external-identity-mapped group.
@@ -79,21 +71,6 @@ class Group(pulumi.CustomResource):
                Cloud Identity resource hierarchy.
                Must be of the form identitysources/{identity_source_id} for external-identity-mapped
                groups or customers/{customer_id} for Google Groups.
-
-        The **group_key** object supports the following:
-
-          * `id` (`pulumi.Input[str]`) - The ID of the entity.
-            For Google-managed entities, the id must be the email address of an existing
-            group or user.
-            For external-identity-mapped entities, the id must be a string conforming
-            to the Identity Source's requirements.
-            Must be unique within a namespace.
-          * `namespace` (`pulumi.Input[str]`) - The namespace in which the entity exists.
-            If not specified, the EntityKey represents a Google-managed entity
-            such as a Google user or a Google Group.
-            If specified, the EntityKey represents an external-identity-mapped group.
-            The namespace must correspond to an identity source created in Admin Console
-            and must be in the form of `identitysources/{identity_source_id}`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -106,7 +83,7 @@ class Group(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -133,7 +110,7 @@ class Group(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, create_time=None, description=None, display_name=None, group_key=None, labels=None, name=None, parent=None, update_time=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, create_time: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, display_name: Optional[pulumi.Input[str]] = None, group_key: Optional[pulumi.Input[pulumi.InputType['GroupGroupKeyArgs']]] = None, labels: Optional[pulumi.Input[Dict[str, pulumi.Input[str]]]] = None, name: Optional[pulumi.Input[str]] = None, parent: Optional[pulumi.Input[str]] = None, update_time: Optional[pulumi.Input[str]] = None) -> 'Group':
         """
         Get an existing Group resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -145,8 +122,8 @@ class Group(pulumi.CustomResource):
         :param pulumi.Input[str] description: An extended description to help users determine the purpose of a Group.
                Must not be longer than 4,096 characters.
         :param pulumi.Input[str] display_name: The display name of the Group.
-        :param pulumi.Input[dict] group_key: EntityKey of the Group.  Structure is documented below.
-        :param pulumi.Input[dict] labels: The labels that apply to the Group.
+        :param pulumi.Input[pulumi.InputType['GroupGroupKeyArgs']] group_key: EntityKey of the Group.  Structure is documented below.
+        :param pulumi.Input[Dict[str, pulumi.Input[str]]] labels: The labels that apply to the Group.
                Must not contain more than one entry. Must contain the entry
                'cloudidentity.googleapis.com/groups.discussion_forum': '' if the Group is a Google Group or
                'system/groups/external': '' if the Group is an external-identity-mapped group.
@@ -156,21 +133,6 @@ class Group(pulumi.CustomResource):
                Must be of the form identitysources/{identity_source_id} for external-identity-mapped
                groups or customers/{customer_id} for Google Groups.
         :param pulumi.Input[str] update_time: The time when the Group was last updated.
-
-        The **group_key** object supports the following:
-
-          * `id` (`pulumi.Input[str]`) - The ID of the entity.
-            For Google-managed entities, the id must be the email address of an existing
-            group or user.
-            For external-identity-mapped entities, the id must be a string conforming
-            to the Identity Source's requirements.
-            Must be unique within a namespace.
-          * `namespace` (`pulumi.Input[str]`) - The namespace in which the entity exists.
-            If not specified, the EntityKey represents a Google-managed entity
-            such as a Google user or a Google Group.
-            If specified, the EntityKey represents an external-identity-mapped group.
-            The namespace must correspond to an identity source created in Admin Console
-            and must be in the form of `identitysources/{identity_source_id}`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -187,7 +149,8 @@ class Group(pulumi.CustomResource):
         return Group(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

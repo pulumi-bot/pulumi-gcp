@@ -5,29 +5,50 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['IAMPolicy']
 
 
 class IAMPolicy(pulumi.CustomResource):
-    etag: pulumi.Output[str]
+    etag: pulumi.Output[str] = pulumi.output_property("etag")
     """
     (Computed) The etag of the folder's IAM policy. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other.
     """
-    folder: pulumi.Output[str]
+    folder: pulumi.Output[str] = pulumi.output_property("folder")
     """
     The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
     """
-    policy_data: pulumi.Output[str]
+    policy_data: pulumi.Output[str] = pulumi.output_property("policyData")
     """
     The `organizations.getIAMPolicy` data source that represents
     the IAM policy that will be applied to the folder. This policy overrides any existing
     policy applied to the folder.
     """
-    def __init__(__self__, resource_name, opts=None, folder=None, policy_data=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, folder: Optional[pulumi.Input[str]] = None, policy_data: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Allows creation and management of the IAM policy for an existing Google Cloud
         Platform folder.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        department1 = gcp.organizations.Folder("department1",
+            display_name="Department 1",
+            parent="organizations/1234567")
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+        }])
+        folder_admin_policy = gcp.folder.IAMPolicy("folderAdminPolicy",
+            folder=department1.name,
+            policy_data=admin.policy_data)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -47,7 +68,7 @@ class IAMPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -67,7 +88,7 @@ class IAMPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, etag=None, folder=None, policy_data=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, etag: Optional[pulumi.Input[str]] = None, folder: Optional[pulumi.Input[str]] = None, policy_data: Optional[pulumi.Input[str]] = None) -> 'IAMPolicy':
         """
         Get an existing IAMPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -91,7 +112,8 @@ class IAMPolicy(pulumi.CustomResource):
         return IAMPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,32 +5,36 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['ServicePerimeter']
 
 
 class ServicePerimeter(pulumi.CustomResource):
-    create_time: pulumi.Output[str]
+    create_time: pulumi.Output[str] = pulumi.output_property("createTime")
     """
     Time the AccessPolicy was created in UTC.
     """
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.output_property("description")
     """
     Description of the ServicePerimeter and its use. Does not affect
     behavior.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     Resource name for the ServicePerimeter. The short_name component must
     begin with a letter and only include alphanumeric and '_'.
     Format: accessPolicies/{policy_id}/servicePerimeters/{short_name}
     """
-    parent: pulumi.Output[str]
+    parent: pulumi.Output[str] = pulumi.output_property("parent")
     """
     The AccessPolicy this ServicePerimeter lives in.
     Format: accessPolicies/{policy_id}
     """
-    perimeter_type: pulumi.Output[str]
+    perimeter_type: pulumi.Output[Optional[str]] = pulumi.output_property("perimeterType")
     """
     Specifies the type of the Perimeter. There are two types: regular and
     bridge. Regular Service Perimeter contains resources, access levels,
@@ -47,76 +51,28 @@ class ServicePerimeter(pulumi.CustomResource):
     with a common perimeter, but should not be able to share data among
     themselves.
     """
-    spec: pulumi.Output[dict]
+    spec: pulumi.Output[Optional['outputs.ServicePerimeterSpec']] = pulumi.output_property("spec")
     """
     Proposed (or dry run) ServicePerimeter configuration.
     This configuration allows to specify and test ServicePerimeter configuration
     without enforcing actual access restrictions. Only allowed to be set when
     the `useExplicitDryRunSpec` flag is set.  Structure is documented below.
-
-      * `accessLevels` (`list`) - A list of AccessLevel resource names that allow resources within
-        the ServicePerimeter to be accessed from the internet.
-        AccessLevels listed must be in the same policy as this
-        ServicePerimeter. Referencing a nonexistent AccessLevel is a
-        syntax error. If no AccessLevel names are listed, resources within
-        the perimeter can only be accessed via GCP calls with request
-        origins within the perimeter. For Service Perimeter Bridge, must
-        be empty.
-        Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
-      * `resources` (`list`) - A list of GCP resources that are inside of the service perimeter.
-        Currently only projects are allowed.
-        Format: projects/{project_number}
-      * `restrictedServices` (`list`) - GCP services that are subject to the Service Perimeter
-        restrictions. Must contain a list of services. For example, if
-        `storage.googleapis.com` is specified, access to the storage
-        buckets inside the perimeter must meet the perimeter's access
-        restrictions.
-      * `vpcAccessibleServices` (`dict`) - Specifies how APIs are allowed to communicate within the Service
-        Perimeter.  Structure is documented below.
-        * `allowedServices` (`list`) - The list of APIs usable within the Service Perimeter.
-          Must be empty unless `enableRestriction` is True.
-        * `enableRestriction` (`bool`) - Whether to restrict API calls within the Service Perimeter to the
-          list of APIs specified in 'allowedServices'.
     """
-    status: pulumi.Output[dict]
+    status: pulumi.Output[Optional['outputs.ServicePerimeterStatus']] = pulumi.output_property("status")
     """
     ServicePerimeter configuration. Specifies sets of resources,
     restricted services and access levels that determine
     perimeter content and boundaries.  Structure is documented below.
-
-      * `accessLevels` (`list`) - A list of AccessLevel resource names that allow resources within
-        the ServicePerimeter to be accessed from the internet.
-        AccessLevels listed must be in the same policy as this
-        ServicePerimeter. Referencing a nonexistent AccessLevel is a
-        syntax error. If no AccessLevel names are listed, resources within
-        the perimeter can only be accessed via GCP calls with request
-        origins within the perimeter. For Service Perimeter Bridge, must
-        be empty.
-        Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
-      * `resources` (`list`) - A list of GCP resources that are inside of the service perimeter.
-        Currently only projects are allowed.
-        Format: projects/{project_number}
-      * `restrictedServices` (`list`) - GCP services that are subject to the Service Perimeter
-        restrictions. Must contain a list of services. For example, if
-        `storage.googleapis.com` is specified, access to the storage
-        buckets inside the perimeter must meet the perimeter's access
-        restrictions.
-      * `vpcAccessibleServices` (`dict`) - Specifies how APIs are allowed to communicate within the Service
-        Perimeter.  Structure is documented below.
-        * `allowedServices` (`list`) - The list of APIs usable within the Service Perimeter.
-          Must be empty unless `enableRestriction` is True.
-        * `enableRestriction` (`bool`) - Whether to restrict API calls within the Service Perimeter to the
-          list of APIs specified in 'allowedServices'.
     """
-    title: pulumi.Output[str]
+    title: pulumi.Output[str] = pulumi.output_property("title")
     """
     Human readable title. Must be unique within the Policy.
     """
-    update_time: pulumi.Output[str]
+    update_time: pulumi.Output[str] = pulumi.output_property("updateTime")
     """
     Time the AccessPolicy was updated in UTC.
     """
-    use_explicit_dry_run_spec: pulumi.Output[bool]
+    use_explicit_dry_run_spec: pulumi.Output[Optional[bool]] = pulumi.output_property("useExplicitDryRunSpec")
     """
     Use explicit dry run spec flag. Ordinarily, a dry-run spec implicitly exists
     for all Service Perimeters, and that spec is identical to the status for those
@@ -128,7 +84,8 @@ class ServicePerimeter(pulumi.CustomResource):
     between currently enforced and suggested restrictions. useExplicitDryRunSpec must
     bet set to True if any of the fields in the spec are set to non-default values.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, name=None, parent=None, perimeter_type=None, spec=None, status=None, title=None, use_explicit_dry_run_spec=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, parent: Optional[pulumi.Input[str]] = None, perimeter_type: Optional[pulumi.Input[str]] = None, spec: Optional[pulumi.Input[pulumi.InputType['ServicePerimeterSpecArgs']]] = None, status: Optional[pulumi.Input[pulumi.InputType['ServicePerimeterStatusArgs']]] = None, title: Optional[pulumi.Input[str]] = None, use_explicit_dry_run_spec: Optional[pulumi.Input[bool]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         ServicePerimeter describes a set of GCP resources which can freely import
         and export data amongst themselves, but not export outside of the
@@ -147,6 +104,60 @@ class ServicePerimeter(pulumi.CustomResource):
             * [Service Perimeter Quickstart](https://cloud.google.com/vpc-service-controls/docs/quickstart)
 
         ## Example Usage
+        ### Access Context Manager Service Perimeter Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        access_policy = gcp.accesscontextmanager.AccessPolicy("access-policy",
+            parent="organizations/123456789",
+            title="my policy")
+        service_perimeter = gcp.accesscontextmanager.ServicePerimeter("service-perimeter",
+            parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"),
+            status={
+                "restrictedServices": ["storage.googleapis.com"],
+            },
+            title="restrict_storage")
+        access_level = gcp.accesscontextmanager.AccessLevel("access-level",
+            basic={
+                "conditions": [{
+                    "devicePolicy": {
+                        "osConstraints": [{
+                            "osType": "DESKTOP_CHROME_OS",
+                        }],
+                        "requireScreenLock": False,
+                    },
+                    "regions": [
+                        "CH",
+                        "IT",
+                        "US",
+                    ],
+                }],
+            },
+            parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"),
+            title="chromeos_no_lock")
+        ```
+        ### Access Context Manager Service Perimeter Dry Run
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        access_policy = gcp.accesscontextmanager.AccessPolicy("access-policy",
+            parent="organizations/123456789",
+            title="my policy")
+        service_perimeter = gcp.accesscontextmanager.ServicePerimeter("service-perimeter",
+            parent=access_policy.name.apply(lambda name: f"accessPolicies/{name}"),
+            spec={
+                "restrictedServices": ["storage.googleapis.com"],
+            },
+            status={
+                "restrictedServices": ["bigquery.googleapis.com"],
+            },
+            title="restrict_bigquery_dryrun_storage",
+            use_explicit_dry_run_spec=True)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -171,11 +182,11 @@ class ServicePerimeter(pulumi.CustomResource):
                topologies with many independent perimeters that need to share some data
                with a common perimeter, but should not be able to share data among
                themselves.
-        :param pulumi.Input[dict] spec: Proposed (or dry run) ServicePerimeter configuration.
+        :param pulumi.Input[pulumi.InputType['ServicePerimeterSpecArgs']] spec: Proposed (or dry run) ServicePerimeter configuration.
                This configuration allows to specify and test ServicePerimeter configuration
                without enforcing actual access restrictions. Only allowed to be set when
                the `useExplicitDryRunSpec` flag is set.  Structure is documented below.
-        :param pulumi.Input[dict] status: ServicePerimeter configuration. Specifies sets of resources,
+        :param pulumi.Input[pulumi.InputType['ServicePerimeterStatusArgs']] status: ServicePerimeter configuration. Specifies sets of resources,
                restricted services and access levels that determine
                perimeter content and boundaries.  Structure is documented below.
         :param pulumi.Input[str] title: Human readable title. Must be unique within the Policy.
@@ -188,58 +199,6 @@ class ServicePerimeter(pulumi.CustomResource):
                actually enforcing them. This testing is done through analyzing the differences
                between currently enforced and suggested restrictions. useExplicitDryRunSpec must
                bet set to True if any of the fields in the spec are set to non-default values.
-
-        The **spec** object supports the following:
-
-          * `accessLevels` (`pulumi.Input[list]`) - A list of AccessLevel resource names that allow resources within
-            the ServicePerimeter to be accessed from the internet.
-            AccessLevels listed must be in the same policy as this
-            ServicePerimeter. Referencing a nonexistent AccessLevel is a
-            syntax error. If no AccessLevel names are listed, resources within
-            the perimeter can only be accessed via GCP calls with request
-            origins within the perimeter. For Service Perimeter Bridge, must
-            be empty.
-            Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
-          * `resources` (`pulumi.Input[list]`) - A list of GCP resources that are inside of the service perimeter.
-            Currently only projects are allowed.
-            Format: projects/{project_number}
-          * `restrictedServices` (`pulumi.Input[list]`) - GCP services that are subject to the Service Perimeter
-            restrictions. Must contain a list of services. For example, if
-            `storage.googleapis.com` is specified, access to the storage
-            buckets inside the perimeter must meet the perimeter's access
-            restrictions.
-          * `vpcAccessibleServices` (`pulumi.Input[dict]`) - Specifies how APIs are allowed to communicate within the Service
-            Perimeter.  Structure is documented below.
-            * `allowedServices` (`pulumi.Input[list]`) - The list of APIs usable within the Service Perimeter.
-              Must be empty unless `enableRestriction` is True.
-            * `enableRestriction` (`pulumi.Input[bool]`) - Whether to restrict API calls within the Service Perimeter to the
-              list of APIs specified in 'allowedServices'.
-
-        The **status** object supports the following:
-
-          * `accessLevels` (`pulumi.Input[list]`) - A list of AccessLevel resource names that allow resources within
-            the ServicePerimeter to be accessed from the internet.
-            AccessLevels listed must be in the same policy as this
-            ServicePerimeter. Referencing a nonexistent AccessLevel is a
-            syntax error. If no AccessLevel names are listed, resources within
-            the perimeter can only be accessed via GCP calls with request
-            origins within the perimeter. For Service Perimeter Bridge, must
-            be empty.
-            Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
-          * `resources` (`pulumi.Input[list]`) - A list of GCP resources that are inside of the service perimeter.
-            Currently only projects are allowed.
-            Format: projects/{project_number}
-          * `restrictedServices` (`pulumi.Input[list]`) - GCP services that are subject to the Service Perimeter
-            restrictions. Must contain a list of services. For example, if
-            `storage.googleapis.com` is specified, access to the storage
-            buckets inside the perimeter must meet the perimeter's access
-            restrictions.
-          * `vpcAccessibleServices` (`pulumi.Input[dict]`) - Specifies how APIs are allowed to communicate within the Service
-            Perimeter.  Structure is documented below.
-            * `allowedServices` (`pulumi.Input[list]`) - The list of APIs usable within the Service Perimeter.
-              Must be empty unless `enableRestriction` is True.
-            * `enableRestriction` (`pulumi.Input[bool]`) - Whether to restrict API calls within the Service Perimeter to the
-              list of APIs specified in 'allowedServices'.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -252,7 +211,7 @@ class ServicePerimeter(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -279,7 +238,7 @@ class ServicePerimeter(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, create_time=None, description=None, name=None, parent=None, perimeter_type=None, spec=None, status=None, title=None, update_time=None, use_explicit_dry_run_spec=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, create_time: Optional[pulumi.Input[str]] = None, description: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, parent: Optional[pulumi.Input[str]] = None, perimeter_type: Optional[pulumi.Input[str]] = None, spec: Optional[pulumi.Input[pulumi.InputType['ServicePerimeterSpecArgs']]] = None, status: Optional[pulumi.Input[pulumi.InputType['ServicePerimeterStatusArgs']]] = None, title: Optional[pulumi.Input[str]] = None, update_time: Optional[pulumi.Input[str]] = None, use_explicit_dry_run_spec: Optional[pulumi.Input[bool]] = None) -> 'ServicePerimeter':
         """
         Get an existing ServicePerimeter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -309,11 +268,11 @@ class ServicePerimeter(pulumi.CustomResource):
                topologies with many independent perimeters that need to share some data
                with a common perimeter, but should not be able to share data among
                themselves.
-        :param pulumi.Input[dict] spec: Proposed (or dry run) ServicePerimeter configuration.
+        :param pulumi.Input[pulumi.InputType['ServicePerimeterSpecArgs']] spec: Proposed (or dry run) ServicePerimeter configuration.
                This configuration allows to specify and test ServicePerimeter configuration
                without enforcing actual access restrictions. Only allowed to be set when
                the `useExplicitDryRunSpec` flag is set.  Structure is documented below.
-        :param pulumi.Input[dict] status: ServicePerimeter configuration. Specifies sets of resources,
+        :param pulumi.Input[pulumi.InputType['ServicePerimeterStatusArgs']] status: ServicePerimeter configuration. Specifies sets of resources,
                restricted services and access levels that determine
                perimeter content and boundaries.  Structure is documented below.
         :param pulumi.Input[str] title: Human readable title. Must be unique within the Policy.
@@ -327,58 +286,6 @@ class ServicePerimeter(pulumi.CustomResource):
                actually enforcing them. This testing is done through analyzing the differences
                between currently enforced and suggested restrictions. useExplicitDryRunSpec must
                bet set to True if any of the fields in the spec are set to non-default values.
-
-        The **spec** object supports the following:
-
-          * `accessLevels` (`pulumi.Input[list]`) - A list of AccessLevel resource names that allow resources within
-            the ServicePerimeter to be accessed from the internet.
-            AccessLevels listed must be in the same policy as this
-            ServicePerimeter. Referencing a nonexistent AccessLevel is a
-            syntax error. If no AccessLevel names are listed, resources within
-            the perimeter can only be accessed via GCP calls with request
-            origins within the perimeter. For Service Perimeter Bridge, must
-            be empty.
-            Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
-          * `resources` (`pulumi.Input[list]`) - A list of GCP resources that are inside of the service perimeter.
-            Currently only projects are allowed.
-            Format: projects/{project_number}
-          * `restrictedServices` (`pulumi.Input[list]`) - GCP services that are subject to the Service Perimeter
-            restrictions. Must contain a list of services. For example, if
-            `storage.googleapis.com` is specified, access to the storage
-            buckets inside the perimeter must meet the perimeter's access
-            restrictions.
-          * `vpcAccessibleServices` (`pulumi.Input[dict]`) - Specifies how APIs are allowed to communicate within the Service
-            Perimeter.  Structure is documented below.
-            * `allowedServices` (`pulumi.Input[list]`) - The list of APIs usable within the Service Perimeter.
-              Must be empty unless `enableRestriction` is True.
-            * `enableRestriction` (`pulumi.Input[bool]`) - Whether to restrict API calls within the Service Perimeter to the
-              list of APIs specified in 'allowedServices'.
-
-        The **status** object supports the following:
-
-          * `accessLevels` (`pulumi.Input[list]`) - A list of AccessLevel resource names that allow resources within
-            the ServicePerimeter to be accessed from the internet.
-            AccessLevels listed must be in the same policy as this
-            ServicePerimeter. Referencing a nonexistent AccessLevel is a
-            syntax error. If no AccessLevel names are listed, resources within
-            the perimeter can only be accessed via GCP calls with request
-            origins within the perimeter. For Service Perimeter Bridge, must
-            be empty.
-            Format: accessPolicies/{policy_id}/accessLevels/{access_level_name}
-          * `resources` (`pulumi.Input[list]`) - A list of GCP resources that are inside of the service perimeter.
-            Currently only projects are allowed.
-            Format: projects/{project_number}
-          * `restrictedServices` (`pulumi.Input[list]`) - GCP services that are subject to the Service Perimeter
-            restrictions. Must contain a list of services. For example, if
-            `storage.googleapis.com` is specified, access to the storage
-            buckets inside the perimeter must meet the perimeter's access
-            restrictions.
-          * `vpcAccessibleServices` (`pulumi.Input[dict]`) - Specifies how APIs are allowed to communicate within the Service
-            Perimeter.  Structure is documented below.
-            * `allowedServices` (`pulumi.Input[list]`) - The list of APIs usable within the Service Perimeter.
-              Must be empty unless `enableRestriction` is True.
-            * `enableRestriction` (`pulumi.Input[bool]`) - Whether to restrict API calls within the Service Perimeter to the
-              list of APIs specified in 'allowedServices'.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -397,7 +304,8 @@ class ServicePerimeter(pulumi.CustomResource):
         return ServicePerimeter(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

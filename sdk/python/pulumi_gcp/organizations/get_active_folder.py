@@ -5,14 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetActiveFolderResult',
+    'AwaitableGetActiveFolderResult',
+    'get_active_folder',
+]
+
 
 class GetActiveFolderResult:
     """
     A collection of values returned by getActiveFolder.
     """
-    def __init__(__self__, display_name=None, id=None, name=None, parent=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, display_name=None, id=None, name=None, parent=None) -> None:
         if display_name and not isinstance(display_name, str):
             raise TypeError("Expected argument 'display_name' to be a str")
         __self__.display_name = display_name
@@ -31,6 +39,8 @@ class GetActiveFolderResult:
         if parent and not isinstance(parent, str):
             raise TypeError("Expected argument 'parent' to be a str")
         __self__.parent = parent
+
+
 class AwaitableGetActiveFolderResult(GetActiveFolderResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -42,23 +52,32 @@ class AwaitableGetActiveFolderResult(GetActiveFolderResult):
             name=self.name,
             parent=self.parent)
 
-def get_active_folder(display_name=None,parent=None,opts=None):
+
+def get_active_folder(display_name: Optional[str] = None, parent: Optional[str] = None, opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetActiveFolderResult:
     """
     Get an active folder within GCP by `display_name` and `parent`.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    department1 = gcp.organizations.get_active_folder(display_name="Department 1",
+        parent="organizations/1234567")
+    ```
 
 
     :param str display_name: The folder's display name.
     :param str parent: The resource name of the parent Folder or Organization.
     """
     __args__ = dict()
-
-
     __args__['displayName'] = display_name
     __args__['parent'] = parent
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getActiveFolder:getActiveFolder', __args__, opts=opts).value
 
     return AwaitableGetActiveFolderResult(

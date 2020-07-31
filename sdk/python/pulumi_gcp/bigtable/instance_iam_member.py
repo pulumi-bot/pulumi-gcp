@@ -5,33 +5,38 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['InstanceIamMember']
 
 
 class InstanceIamMember(pulumi.CustomResource):
-    condition: pulumi.Output[dict]
-    etag: pulumi.Output[str]
+    condition: pulumi.Output[Optional['outputs.InstanceIamMemberCondition']] = pulumi.output_property("condition")
+    etag: pulumi.Output[str] = pulumi.output_property("etag")
     """
     (Computed) The etag of the instances's IAM policy.
     """
-    instance: pulumi.Output[str]
+    instance: pulumi.Output[str] = pulumi.output_property("instance")
     """
     The name or relative resource id of the instance to manage IAM policies for.
     """
-    member: pulumi.Output[str]
-    project: pulumi.Output[str]
+    member: pulumi.Output[str] = pulumi.output_property("member")
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The project in which the instance belongs. If it
     is not provided, a default will be supplied.
     """
-    role: pulumi.Output[str]
+    role: pulumi.Output[str] = pulumi.output_property("role")
     """
     The role that should be applied. Only one
     `bigtable.InstanceIamBinding` can be used per role. Note that custom roles must be of the format
     `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
-    def __init__(__self__, resource_name, opts=None, condition=None, instance=None, member=None, project=None, role=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, condition: Optional[pulumi.Input[pulumi.InputType['InstanceIamMemberConditionArgs']]] = None, instance: Optional[pulumi.Input[str]] = None, member: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, role: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Three different resources help you manage IAM policies on bigtable instances. Each of these resources serves a different use case:
 
@@ -43,6 +48,46 @@ class InstanceIamMember(pulumi.CustomResource):
 
         > **Note:** `bigtable.InstanceIamBinding` resources **can be** used in conjunction with `bigtable.InstanceIamMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_bigtable\_instance\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+        }])
+        editor = gcp.bigtable.InstanceIamPolicy("editor",
+            project="your-project",
+            instance="your-bigtable-instance",
+            policy_data=admin.policy_data)
+        ```
+
+        ## google\_bigtable\_instance\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        editor = gcp.bigtable.InstanceIamBinding("editor",
+            instance="your-bigtable-instance",
+            members=["user:jane@example.com"],
+            role="roles/editor")
+        ```
+
+        ## google\_bigtable\_instance\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        editor = gcp.bigtable.InstanceIamMember("editor",
+            instance="your-bigtable-instance",
+            member="user:jane@example.com",
+            role="roles/editor")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance: The name or relative resource id of the instance to manage IAM policies for.
@@ -51,12 +96,6 @@ class InstanceIamMember(pulumi.CustomResource):
         :param pulumi.Input[str] role: The role that should be applied. Only one
                `bigtable.InstanceIamBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -69,7 +108,7 @@ class InstanceIamMember(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -94,7 +133,7 @@ class InstanceIamMember(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, condition=None, etag=None, instance=None, member=None, project=None, role=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, condition: Optional[pulumi.Input[pulumi.InputType['InstanceIamMemberConditionArgs']]] = None, etag: Optional[pulumi.Input[str]] = None, instance: Optional[pulumi.Input[str]] = None, member: Optional[pulumi.Input[str]] = None, project: Optional[pulumi.Input[str]] = None, role: Optional[pulumi.Input[str]] = None) -> 'InstanceIamMember':
         """
         Get an existing InstanceIamMember resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -109,12 +148,6 @@ class InstanceIamMember(pulumi.CustomResource):
         :param pulumi.Input[str] role: The role that should be applied. Only one
                `bigtable.InstanceIamBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -129,7 +162,8 @@ class InstanceIamMember(pulumi.CustomResource):
         return InstanceIamMember(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

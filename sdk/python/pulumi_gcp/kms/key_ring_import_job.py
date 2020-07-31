@@ -5,57 +5,57 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['KeyRingImportJob']
 
 
 class KeyRingImportJob(pulumi.CustomResource):
-    attestation: pulumi.Output[dict]
+    attestation: pulumi.Output['outputs.KeyRingImportJobAttestation'] = pulumi.output_property("attestation")
     """
     Statement that was generated and signed by the key creator (for example, an HSM) at key creation time. Use this
     statement to verify attributes of the key as stored on the HSM, independently of Google. Only present if the chosen
     ImportMethod is one with a protection level of HSM.
-
-      * `content` (`str`)
-      * `format` (`str`)
     """
-    expire_time: pulumi.Output[str]
+    expire_time: pulumi.Output[str] = pulumi.output_property("expireTime")
     """
     The time at which this resource is scheduled for expiration and can no longer be used. This is in RFC3339 text format.
     """
-    import_job_id: pulumi.Output[str]
+    import_job_id: pulumi.Output[str] = pulumi.output_property("importJobId")
     """
     It must be unique within a KeyRing and match the regular expression [a-zA-Z0-9_-]{1,63}
     """
-    import_method: pulumi.Output[str]
+    import_method: pulumi.Output[str] = pulumi.output_property("importMethod")
     """
     The wrapping method to be used for incoming key material.
     """
-    key_ring: pulumi.Output[str]
+    key_ring: pulumi.Output[str] = pulumi.output_property("keyRing")
     """
     The KeyRing that this import job belongs to.
     Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}'`.
     """
-    name: pulumi.Output[str]
+    name: pulumi.Output[str] = pulumi.output_property("name")
     """
     The resource name for this ImportJob in the format projects/*/locations/*/keyRings/*/importJobs/*.
     """
-    protection_level: pulumi.Output[str]
+    protection_level: pulumi.Output[str] = pulumi.output_property("protectionLevel")
     """
     The protection level of the ImportJob. This must match the protectionLevel of the
     versionTemplate on the CryptoKey you attempt to import into.
     """
-    public_key: pulumi.Output[dict]
+    public_key: pulumi.Output['outputs.KeyRingImportJobPublicKey'] = pulumi.output_property("publicKey")
     """
     The public key with which to wrap key material prior to import. Only returned if state is 'ACTIVE'.
-
-      * `pem` (`str`)
     """
-    state: pulumi.Output[str]
+    state: pulumi.Output[str] = pulumi.output_property("state")
     """
     The current state of the ImportJob, indicating if it can be used.
     """
-    def __init__(__self__, resource_name, opts=None, import_job_id=None, import_method=None, key_ring=None, protection_level=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, import_job_id: Optional[pulumi.Input[str]] = None, import_method: Optional[pulumi.Input[str]] = None, key_ring: Optional[pulumi.Input[str]] = None, protection_level: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         Create a KeyRingImportJob resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -78,7 +78,7 @@ class KeyRingImportJob(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -108,7 +108,7 @@ class KeyRingImportJob(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, attestation=None, expire_time=None, import_job_id=None, import_method=None, key_ring=None, name=None, protection_level=None, public_key=None, state=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, attestation: Optional[pulumi.Input[pulumi.InputType['KeyRingImportJobAttestationArgs']]] = None, expire_time: Optional[pulumi.Input[str]] = None, import_job_id: Optional[pulumi.Input[str]] = None, import_method: Optional[pulumi.Input[str]] = None, key_ring: Optional[pulumi.Input[str]] = None, name: Optional[pulumi.Input[str]] = None, protection_level: Optional[pulumi.Input[str]] = None, public_key: Optional[pulumi.Input[pulumi.InputType['KeyRingImportJobPublicKeyArgs']]] = None, state: Optional[pulumi.Input[str]] = None) -> 'KeyRingImportJob':
         """
         Get an existing KeyRingImportJob resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -116,7 +116,7 @@ class KeyRingImportJob(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] attestation: Statement that was generated and signed by the key creator (for example, an HSM) at key creation time. Use this
+        :param pulumi.Input[pulumi.InputType['KeyRingImportJobAttestationArgs']] attestation: Statement that was generated and signed by the key creator (for example, an HSM) at key creation time. Use this
                statement to verify attributes of the key as stored on the HSM, independently of Google. Only present if the chosen
                ImportMethod is one with a protection level of HSM.
         :param pulumi.Input[str] expire_time: The time at which this resource is scheduled for expiration and can no longer be used. This is in RFC3339 text format.
@@ -127,17 +127,8 @@ class KeyRingImportJob(pulumi.CustomResource):
         :param pulumi.Input[str] name: The resource name for this ImportJob in the format projects/*/locations/*/keyRings/*/importJobs/*.
         :param pulumi.Input[str] protection_level: The protection level of the ImportJob. This must match the protectionLevel of the
                versionTemplate on the CryptoKey you attempt to import into.
-        :param pulumi.Input[dict] public_key: The public key with which to wrap key material prior to import. Only returned if state is 'ACTIVE'.
+        :param pulumi.Input[pulumi.InputType['KeyRingImportJobPublicKeyArgs']] public_key: The public key with which to wrap key material prior to import. Only returned if state is 'ACTIVE'.
         :param pulumi.Input[str] state: The current state of the ImportJob, indicating if it can be used.
-
-        The **attestation** object supports the following:
-
-          * `content` (`pulumi.Input[str]`)
-          * `format` (`pulumi.Input[str]`)
-
-        The **public_key** object supports the following:
-
-          * `pem` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -155,7 +146,8 @@ class KeyRingImportJob(pulumi.CustomResource):
         return KeyRingImportJob(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

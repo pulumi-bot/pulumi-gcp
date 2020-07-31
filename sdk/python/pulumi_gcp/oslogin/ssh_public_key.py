@@ -5,28 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['SshPublicKey']
 
 
 class SshPublicKey(pulumi.CustomResource):
-    expiration_time_usec: pulumi.Output[str]
+    expiration_time_usec: pulumi.Output[Optional[str]] = pulumi.output_property("expirationTimeUsec")
     """
     An expiration time in microseconds since epoch.
     """
-    fingerprint: pulumi.Output[str]
+    fingerprint: pulumi.Output[str] = pulumi.output_property("fingerprint")
     """
     The SHA-256 fingerprint of the SSH public key.
     """
-    key: pulumi.Output[str]
+    key: pulumi.Output[str] = pulumi.output_property("key")
     """
     Public key text in SSH format, defined by RFC4253 section 6.6.
     """
-    user: pulumi.Output[str]
+    user: pulumi.Output[str] = pulumi.output_property("user")
     """
     The user email.
     """
-    def __init__(__self__, resource_name, opts=None, expiration_time_usec=None, key=None, user=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, expiration_time_usec: Optional[pulumi.Input[str]] = None, key: Optional[pulumi.Input[str]] = None, user: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         The SSH public key information associated with a Google account.
 
@@ -37,6 +40,17 @@ class SshPublicKey(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/compute/docs/oslogin)
 
         ## Example Usage
+        ### Os Login Ssh Key Provided User
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        me = gcp.organizations.get_client_open_id_user_info()
+        cache = gcp.oslogin.SshPublicKey("cache",
+            user=me.email,
+            key=(lambda path: open(path).read())("path/to/id_rsa.pub"))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -55,7 +69,7 @@ class SshPublicKey(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -76,7 +90,7 @@ class SshPublicKey(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, expiration_time_usec=None, fingerprint=None, key=None, user=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, expiration_time_usec: Optional[pulumi.Input[str]] = None, fingerprint: Optional[pulumi.Input[str]] = None, key: Optional[pulumi.Input[str]] = None, user: Optional[pulumi.Input[str]] = None) -> 'SshPublicKey':
         """
         Get an existing SshPublicKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -100,7 +114,8 @@ class SshPublicKey(pulumi.CustomResource):
         return SshPublicKey(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

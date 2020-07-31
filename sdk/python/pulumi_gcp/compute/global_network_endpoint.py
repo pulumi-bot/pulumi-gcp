@@ -5,34 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['GlobalNetworkEndpoint']
 
 
 class GlobalNetworkEndpoint(pulumi.CustomResource):
-    fqdn: pulumi.Output[str]
+    fqdn: pulumi.Output[Optional[str]] = pulumi.output_property("fqdn")
     """
     Fully qualified domain name of network endpoint.
     This can only be specified when network_endpoint_type of the NEG is INTERNET_FQDN_PORT.
     """
-    global_network_endpoint_group: pulumi.Output[str]
+    global_network_endpoint_group: pulumi.Output[str] = pulumi.output_property("globalNetworkEndpointGroup")
     """
     The global network endpoint group this endpoint is part of.
     """
-    ip_address: pulumi.Output[str]
+    ip_address: pulumi.Output[Optional[str]] = pulumi.output_property("ipAddress")
     """
     IPv4 address external endpoint.
     """
-    port: pulumi.Output[float]
+    port: pulumi.Output[float] = pulumi.output_property("port")
     """
     Port number of the external endpoint.
     """
-    project: pulumi.Output[str]
+    project: pulumi.Output[str] = pulumi.output_property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    def __init__(__self__, resource_name, opts=None, fqdn=None, global_network_endpoint_group=None, ip_address=None, port=None, project=None, __props__=None, __name__=None, __opts__=None):
+    # pylint: disable=no-self-argument
+    def __init__(__self__, resource_name, opts: Optional[pulumi.ResourceOptions] = None, fqdn: Optional[pulumi.Input[str]] = None, global_network_endpoint_group: Optional[pulumi.Input[str]] = None, ip_address: Optional[pulumi.Input[str]] = None, port: Optional[pulumi.Input[float]] = None, project: Optional[pulumi.Input[str]] = None, __props__=None, __name__=None, __opts__=None) -> None:
         """
         A Global Network endpoint represents a IP address and port combination that exists outside of GCP.
         **NOTE**: Global network endpoints cannot be created outside of a
@@ -45,6 +48,22 @@ class GlobalNetworkEndpoint(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
 
         ## Example Usage
+        ### Global Network Endpoint
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_endpoint = gcp.compute.GlobalNetworkEndpoint("default-endpoint",
+            global_network_endpoint_group=google_compute_network_endpoint_group["neg"]["name"],
+            fqdn="www.example.com",
+            port=google_compute_network_endpoint_group["neg"]["default_port"],
+            ip_address=google_compute_instance["endpoint-instance"]["network_interface"][0]["network_ip"])
+        default = gcp.compute.Network("default", auto_create_subnetworks=False)
+        group = gcp.compute.GlobalNetworkEndpointGroup("group",
+            network=default.id,
+            default_port="90")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -67,7 +86,7 @@ class GlobalNetworkEndpoint(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -89,7 +108,7 @@ class GlobalNetworkEndpoint(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, fqdn=None, global_network_endpoint_group=None, ip_address=None, port=None, project=None):
+    def get(resource_name: str, id: str, opts: Optional[pulumi.ResourceOptions] = None, fqdn: Optional[pulumi.Input[str]] = None, global_network_endpoint_group: Optional[pulumi.Input[str]] = None, ip_address: Optional[pulumi.Input[str]] = None, port: Optional[pulumi.Input[float]] = None, project: Optional[pulumi.Input[str]] = None) -> 'GlobalNetworkEndpoint':
         """
         Get an existing GlobalNetworkEndpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -117,7 +136,8 @@ class GlobalNetworkEndpoint(pulumi.CustomResource):
         return GlobalNetworkEndpoint(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
