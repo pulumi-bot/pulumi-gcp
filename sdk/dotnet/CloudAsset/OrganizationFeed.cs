@@ -19,6 +19,65 @@ namespace Pulumi.Gcp.CloudAsset
     ///     * [Official Documentation](https://cloud.google.com/asset-inventory/docs)
     /// 
     /// ## Example Usage
+    /// ### Cloud Asset Organization Feed
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // The topic where the resource change notifications will be sent.
+    ///         var feedOutput = new Gcp.PubSub.Topic("feedOutput", new Gcp.PubSub.TopicArgs
+    ///         {
+    ///             Project = "my-project-name",
+    ///         });
+    ///         var project = Output.Create(Gcp.Organizations.GetProject.InvokeAsync(new Gcp.Organizations.GetProjectArgs
+    ///         {
+    ///             ProjectId = "my-project-name",
+    ///         }));
+    ///         // Allow the publishing role to the Cloud Asset service account of the project that
+    ///         // was used for sending the notifications.
+    ///         var cloudAssetWriter = new Gcp.PubSub.TopicIAMMember("cloudAssetWriter", new Gcp.PubSub.TopicIAMMemberArgs
+    ///         {
+    ///             Project = "my-project-name",
+    ///             Topic = feedOutput.Id,
+    ///             Role = "roles/pubsub.publisher",
+    ///             Member = project.Apply(project =&gt; $"serviceAccount:service-{project.Number}@gcp-sa-cloudasset.iam.gserviceaccount.com"),
+    ///         });
+    ///         // Create a feed that sends notifications about network resource updates under a
+    ///         // particular organization.
+    ///         var organizationFeed = new Gcp.CloudAsset.OrganizationFeed("organizationFeed", new Gcp.CloudAsset.OrganizationFeedArgs
+    ///         {
+    ///             BillingProject = "my-project-name",
+    ///             OrgId = "123456789",
+    ///             FeedId = "network-updates",
+    ///             ContentType = "RESOURCE",
+    ///             AssetTypes = 
+    ///             {
+    ///                 "compute.googleapis.com/Subnetwork",
+    ///                 "compute.googleapis.com/Network",
+    ///             },
+    ///             FeedOutputConfig = new Gcp.CloudAsset.Inputs.OrganizationFeedFeedOutputConfigArgs
+    ///             {
+    ///                 PubsubDestination = new Gcp.CloudAsset.Inputs.OrganizationFeedFeedOutputConfigPubsubDestinationArgs
+    ///                 {
+    ///                     Topic = feedOutput.Id,
+    ///                 },
+    ///             },
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             DependsOn = 
+    ///             {
+    ///                 cloudAssetWriter,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class OrganizationFeed : Pulumi.CustomResource
     {

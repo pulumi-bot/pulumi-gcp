@@ -14,6 +14,20 @@ import * as utilities from "../utilities";
  *     * [Introduction to Reservations](https://cloud.google.com/bigquery/docs/reservations-intro)
  *
  * ## Example Usage
+ * ### Bigquery Reservation Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const reservation = new gcp.bigquery.Reservation("reservation", {
+ *     location: "asia-northeast1",
+ *     slotCapacity: 0,
+ *     ignoreIdleSlots: false,
+ * }, {
+ *     provider: google_beta,
+ * });
+ * ```
  */
 export class Reservation extends pulumi.CustomResource {
     /**
