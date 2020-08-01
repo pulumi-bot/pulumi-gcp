@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Instance(pulumi.CustomResource):
@@ -93,6 +93,56 @@ class Instance(pulumi.CustomResource):
             * [Copying Data In/Out](https://cloud.google.com/filestore/docs/copying-data)
 
         ## Example Usage
+        ### Filestore Instance Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.filestore.Instance("instance",
+            file_shares={
+                "capacityGb": 2660,
+                "name": "share1",
+            },
+            networks=[{
+                "modes": ["MODE_IPV4"],
+                "network": "default",
+            }],
+            tier="PREMIUM",
+            zone="us-central1-b")
+        ```
+        ### Filestore Instance Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.filestore.Instance("instance",
+            file_shares={
+                "capacityGb": 2660,
+                "name": "share1",
+                "nfsExportOptions": [
+                    {
+                        "accessMode": "READ_WRITE",
+                        "ipRanges": ["10.0.0.0/24"],
+                        "squashMode": "NO_ROOT_SQUASH",
+                    },
+                    {
+                        "accessMode": "READ_ONLY",
+                        "anonGid": 456,
+                        "anonUid": 123,
+                        "ipRanges": ["10.10.0.0/24"],
+                        "squashMode": "ROOT_SQUASH",
+                    },
+                ],
+            },
+            networks=[{
+                "modes": ["MODE_IPV4"],
+                "network": "default",
+            }],
+            tier="BASIC_SSD",
+            zone="us-central1-b")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -150,7 +200,7 @@ class Instance(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -251,7 +301,7 @@ class Instance(pulumi.CustomResource):
         return Instance(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
