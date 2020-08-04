@@ -18,6 +18,58 @@ import * as utilities from "../utilities";
  *     * [Copying Data In/Out](https://cloud.google.com/filestore/docs/copying-data)
  *
  * ## Example Usage
+ * ### Filestore Instance Basic
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const instance = new gcp.filestore.Instance("instance", {
+ *     fileShares: {
+ *         capacityGb: 2660,
+ *         name: "share1",
+ *     },
+ *     networks: [{
+ *         modes: ["MODE_IPV4"],
+ *         network: "default",
+ *     }],
+ *     tier: "PREMIUM",
+ *     zone: "us-central1-b",
+ * });
+ * ```
+ * ### Filestore Instance Full
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const instance = new gcp.filestore.Instance("instance", {
+ *     fileShares: {
+ *         capacityGb: 2660,
+ *         name: "share1",
+ *         nfsExportOptions: [
+ *             {
+ *                 accessMode: "READ_WRITE",
+ *                 ipRanges: ["10.0.0.0/24"],
+ *                 squashMode: "NO_ROOT_SQUASH",
+ *             },
+ *             {
+ *                 accessMode: "READ_ONLY",
+ *                 anonGid: 456,
+ *                 anonUid: 123,
+ *                 ipRanges: ["10.10.0.0/24"],
+ *                 squashMode: "ROOT_SQUASH",
+ *             },
+ *         ],
+ *     },
+ *     networks: [{
+ *         modes: ["MODE_IPV4"],
+ *         network: "default",
+ *     }],
+ *     tier: "BASIC_SSD",
+ *     zone: "us-central1-b",
+ * });
+ * ```
  */
 export class Instance extends pulumi.CustomResource {
     /**

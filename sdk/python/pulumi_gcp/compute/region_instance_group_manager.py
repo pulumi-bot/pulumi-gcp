@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class RegionInstanceGroupManager(pulumi.CustomResource):
@@ -133,6 +133,63 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         > **Note:** Use [compute.InstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_instance_group_manager.html) to create a single-zone instance group manager.
 
         ## Example Usage
+        ### With Top Level Instance Template (`Google` Provider)
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        autohealing = gcp.compute.HealthCheck("autohealing",
+            check_interval_sec=5,
+            timeout_sec=5,
+            healthy_threshold=2,
+            unhealthy_threshold=10,
+            http_health_check={
+                "request_path": "/healthz",
+                "port": "8080",
+            })
+        appserver = gcp.compute.RegionInstanceGroupManager("appserver",
+            base_instance_name="app",
+            region="us-central1",
+            distribution_policy_zones=[
+                "us-central1-a",
+                "us-central1-f",
+            ],
+            versions=[{
+                "instanceTemplate": google_compute_instance_template["appserver"]["id"],
+            }],
+            target_pools=[google_compute_target_pool["appserver"]["id"]],
+            target_size=2,
+            named_ports=[{
+                "name": "custom",
+                "port": 8888,
+            }],
+            auto_healing_policies={
+                "healthCheck": autohealing.id,
+                "initialDelaySec": 300,
+            })
+        ```
+        ### With Multiple Versions
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        appserver = gcp.compute.RegionInstanceGroupManager("appserver",
+            base_instance_name="app",
+            region="us-central1",
+            target_size=5,
+            versions=[
+                {
+                    "instanceTemplate": google_compute_instance_template["appserver"]["id"],
+                },
+                {
+                    "instanceTemplate": google_compute_instance_template["appserver-canary"]["id"],
+                    "target_size": {
+                        "fixed": 1,
+                    },
+                },
+            ])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -217,7 +274,7 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -358,7 +415,7 @@ class RegionInstanceGroupManager(pulumi.CustomResource):
         return RegionInstanceGroupManager(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
