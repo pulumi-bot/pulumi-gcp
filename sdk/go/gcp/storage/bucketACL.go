@@ -20,6 +20,41 @@ import (
 // Permissions can be granted either by ACLs or Cloud IAM policies. In general, permissions granted by Cloud IAM policies do not appear in ACLs, and permissions granted by ACLs do not appear in Cloud IAM policies. The only exception is for ACLs applied directly on a bucket and certain bucket-level Cloud IAM policies, as described in [Cloud IAM relation to ACLs](https://cloud.google.com/storage/docs/access-control/iam#acls).
 //
 // **NOTE** This resource will not remove the `project-owners-<project_id>` entity from the `OWNER` role.
+//
+// ## Example Usage
+//
+// Example creating an ACL on a bucket with one owner, and one reader.
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/storage"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := storage.NewBucket(ctx, "image_store", &storage.BucketArgs{
+// 			Location: pulumi.String("EU"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = storage.NewBucketACL(ctx, "image_store_acl", &storage.BucketACLArgs{
+// 			Bucket: image_store.Name,
+// 			RoleEntities: pulumi.StringArray{
+// 				pulumi.String("OWNER:user-my.email@gmail.com"),
+// 				pulumi.String("READER:group-mygroup"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type BucketACL struct {
 	pulumi.CustomResourceState
 

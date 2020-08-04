@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Dashboard(pulumi.CustomResource):
@@ -31,6 +31,94 @@ class Dashboard(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/monitoring/dashboards)
 
         ## Example Usage
+        ### Monitoring Dashboard Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        dashboard = gcp.monitoring.Dashboard("dashboard", dashboard_json=\"\"\"{
+          "displayName": "Demo Dashboard",
+          "gridLayout": {
+            "widgets": [
+              {
+                "blank": {}
+              }
+            ]
+          }
+        }
+
+
+        \"\"\")
+        ```
+        ### Monitoring Dashboard GridLayout
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        dashboard = gcp.monitoring.Dashboard("dashboard", dashboard_json=\"\"\"{
+          "displayName": "Grid Layout Example",
+          "gridLayout": {
+            "columns": "2",
+            "widgets": [
+              {
+                "title": "Widget 1",
+                "xyChart": {
+                  "dataSets": [{
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"agent.googleapis.com/nginx/connections/accepted_count\"",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_RATE"
+                        }
+                      },
+                      "unitOverride": "1"
+                    },
+                    "plotType": "LINE"
+                  }],
+                  "timeshiftDuration": "0s",
+                  "yAxis": {
+                    "label": "y1Axis",
+                    "scale": "LINEAR"
+                  }
+                }
+              },
+              {
+                "text": {
+                  "content": "Widget 2",
+                  "format": "MARKDOWN"
+                }
+              },
+              {
+                "title": "Widget 3",
+                "xyChart": {
+                  "dataSets": [{
+                    "timeSeriesQuery": {
+                      "timeSeriesFilter": {
+                        "filter": "metric.type=\"agent.googleapis.com/nginx/connections/accepted_count\"",
+                        "aggregation": {
+                          "perSeriesAligner": "ALIGN_RATE"
+                        }
+                      },
+                      "unitOverride": "1"
+                    },
+                    "plotType": "STACKED_BAR"
+                  }],
+                  "timeshiftDuration": "0s",
+                  "yAxis": {
+                    "label": "y1Axis",
+                    "scale": "LINEAR"
+                  }
+                }
+              }
+            ]
+          }
+        }
+
+
+        \"\"\")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -50,7 +138,7 @@ class Dashboard(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -89,7 +177,7 @@ class Dashboard(pulumi.CustomResource):
         return Dashboard(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
