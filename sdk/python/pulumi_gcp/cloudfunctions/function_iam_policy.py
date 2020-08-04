@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class FunctionIamPolicy(pulumi.CustomResource):
@@ -46,6 +46,51 @@ class FunctionIamPolicy(pulumi.CustomResource):
 
         > **Note:** `cloudfunctions.FunctionIamBinding` resources **can be** used in conjunction with `cloudfunctions.FunctionIamMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_cloudfunctions\_function\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/viewer",
+            "members": ["user:jane@example.com"],
+        }])
+        policy = gcp.cloudfunctions.FunctionIamPolicy("policy",
+            project=google_cloudfunctions_function["function"]["project"],
+            region=google_cloudfunctions_function["function"]["region"],
+            cloud_function=google_cloudfunctions_function["function"]["name"],
+            policy_data=admin.policy_data)
+        ```
+
+        ## google\_cloudfunctions\_function\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        binding = gcp.cloudfunctions.FunctionIamBinding("binding",
+            project=google_cloudfunctions_function["function"]["project"],
+            region=google_cloudfunctions_function["function"]["region"],
+            cloud_function=google_cloudfunctions_function["function"]["name"],
+            role="roles/viewer",
+            members=["user:jane@example.com"])
+        ```
+
+        ## google\_cloudfunctions\_function\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        member = gcp.cloudfunctions.FunctionIamMember("member",
+            project=google_cloudfunctions_function["function"]["project"],
+            region=google_cloudfunctions_function["function"]["region"],
+            cloud_function=google_cloudfunctions_function["function"]["name"],
+            role="roles/viewer",
+            member="user:jane@example.com")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cloud_function: Used to find the parent resource to bind the IAM policy to
@@ -68,7 +113,7 @@ class FunctionIamPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -120,7 +165,7 @@ class FunctionIamPolicy(pulumi.CustomResource):
         return FunctionIamPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
