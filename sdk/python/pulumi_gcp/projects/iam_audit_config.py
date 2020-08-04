@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class IAMAuditConfig(pulumi.CustomResource):
@@ -44,6 +44,129 @@ class IAMAuditConfig(pulumi.CustomResource):
 
         > **Note:** `projects.IAMBinding` resources **can be** used in conjunction with `projects.IAMMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_project\_iam\_policy
+
+        > **Be careful!** You can accidentally lock yourself out of your project
+           using this resource. Deleting a `projects.IAMPolicy` removes access
+           from anyone without organization-level access to the project. Proceed with caution.
+           It's not recommended to use `projects.IAMPolicy` with your provider project
+           to avoid locking yourself out, and it should generally only be used with projects
+           fully managed by this provider. If you do use this resource, it is recommended to **import** the policy before
+           applying the change.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
+            role="roles/editor",
+            members=["user:jane@example.com"],
+        )])
+        project = gcp.projects.IAMPolicy("project",
+            project="your-project-id",
+            policy_data=admin.policy_data)
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
+            condition=gcp.organizations.GetIAMPolicyBindingConditionArgs(
+                description="Expiring at midnight of 2019-12-31",
+                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                title="expires_after_2019_12_31",
+            ),
+            members=["user:jane@example.com"],
+            role="roles/editor",
+        )])
+        project = gcp.projects.IAMPolicy("project",
+            policy_data=admin.policy_data,
+            project="your-project-id")
+        ```
+
+        ## google\_project\_iam\_binding
+
+        > **Note:** If `role` is set to `roles/owner` and you don't specify a user or service account you have access to in `members`, you can lock yourself out of your project.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMBinding("project",
+            members=["user:jane@example.com"],
+            project="your-project-id",
+            role="roles/editor")
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMBinding("project",
+            condition=gcp.projects.IAMBindingConditionArgs(
+                description="Expiring at midnight of 2019-12-31",
+                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                title="expires_after_2019_12_31",
+            ),
+            members=["user:jane@example.com"],
+            project="your-project-id",
+            role="roles/editor")
+        ```
+
+        ## google\_project\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMMember("project",
+            member="user:jane@example.com",
+            project="your-project-id",
+            role="roles/editor")
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMMember("project",
+            condition=gcp.projects.IAMMemberConditionArgs(
+                description="Expiring at midnight of 2019-12-31",
+                expression="request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                title="expires_after_2019_12_31",
+            ),
+            member="user:jane@example.com",
+            project="your-project-id",
+            role="roles/editor")
+        ```
+
+        ## google\_project\_iam\_audit\_config
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.projects.IAMAuditConfig("project",
+            audit_log_configs=[
+                gcp.projects.IAMAuditConfigAuditLogConfigArgs(
+                    log_type="ADMIN_READ",
+                ),
+                gcp.projects.IAMAuditConfigAuditLogConfigArgs(
+                    exempted_members=["user:joebloggs@hashicorp.com"],
+                    log_type="DATA_READ",
+                ),
+            ],
+            project="your-project-id",
+            service="allServices")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] audit_log_configs: The configuration for logging of each type of permission.  This can be specified multiple times.  Structure is documented below.
@@ -68,7 +191,7 @@ class IAMAuditConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -120,7 +243,7 @@ class IAMAuditConfig(pulumi.CustomResource):
         return IAMAuditConfig(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

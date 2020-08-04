@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class ConnectivityTest(pulumi.CustomResource):
@@ -122,6 +122,81 @@ class ConnectivityTest(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/network-intelligence-center/docs)
 
         ## Example Usage
+        ### Network Management Connectivity Test Instances
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        vpc = gcp.compute.Network("vpc")
+        debian9 = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        source = gcp.compute.Instance("source",
+            machine_type="n1-standard-1",
+            boot_disk=gcp.compute.InstanceBootDiskArgs(
+                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
+                    image=debian9.id,
+                ),
+            ),
+            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
+                network=vpc.id,
+                access_configs=[],
+            )])
+        destination = gcp.compute.Instance("destination",
+            machine_type="n1-standard-1",
+            boot_disk=gcp.compute.InstanceBootDiskArgs(
+                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
+                    image=debian9.id,
+                ),
+            ),
+            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
+                network=vpc.id,
+                access_configs=[],
+            )])
+        instance_test = gcp.networkmanagement.ConnectivityTest("instance-test",
+            source=gcp.networkmanagement.ConnectivityTestSourceArgs(
+                instance=source.id,
+            ),
+            destination=gcp.networkmanagement.ConnectivityTestDestinationArgs(
+                instance=destination.id,
+            ),
+            protocol="TCP")
+        ```
+        ### Network Management Connectivity Test Addresses
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        vpc = gcp.compute.Network("vpc")
+        subnet = gcp.compute.Subnetwork("subnet",
+            ip_cidr_range="10.0.0.0/16",
+            region="us-central1",
+            network=vpc.id)
+        source_addr = gcp.compute.Address("source-addr",
+            subnetwork=subnet.id,
+            address_type="INTERNAL",
+            address="10.0.42.42",
+            region="us-central1")
+        dest_addr = gcp.compute.Address("dest-addr",
+            subnetwork=subnet.id,
+            address_type="INTERNAL",
+            address="10.0.43.43",
+            region="us-central1")
+        address_test = gcp.networkmanagement.ConnectivityTest("address-test",
+            source=gcp.networkmanagement.ConnectivityTestSourceArgs(
+                ip_address=source_addr.address,
+                project_id=source_addr.project,
+                network=vpc.id,
+                network_type="GCP_NETWORK",
+            ),
+            destination=gcp.networkmanagement.ConnectivityTestDestinationArgs(
+                ip_address=dest_addr.address,
+                project_id=dest_addr.project,
+                network=vpc.id,
+            ),
+            protocol="UDP")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -216,7 +291,7 @@ class ConnectivityTest(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -344,7 +419,7 @@ class ConnectivityTest(pulumi.CustomResource):
         return ConnectivityTest(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

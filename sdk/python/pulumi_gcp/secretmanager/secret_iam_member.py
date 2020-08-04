@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class SecretIamMember(pulumi.CustomResource):
@@ -40,6 +40,48 @@ class SecretIamMember(pulumi.CustomResource):
 
         > **Note:** `secretmanager.SecretIamBinding` resources **can be** used in conjunction with `secretmanager.SecretIamMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_secret\_manager\_secret\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[gcp.organizations.GetIAMPolicyBindingArgs(
+            role="roles/secretmanager.secretAccessor",
+            members=["user:jane@example.com"],
+        )])
+        policy = gcp.secretmanager.SecretIamPolicy("policy",
+            project=google_secret_manager_secret["secret-basic"]["project"],
+            secret_id=google_secret_manager_secret["secret-basic"]["secret_id"],
+            policy_data=admin.policy_data)
+        ```
+
+        ## google\_secret\_manager\_secret\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        binding = gcp.secretmanager.SecretIamBinding("binding",
+            project=google_secret_manager_secret["secret-basic"]["project"],
+            secret_id=google_secret_manager_secret["secret-basic"]["secret_id"],
+            role="roles/secretmanager.secretAccessor",
+            members=["user:jane@example.com"])
+        ```
+
+        ## google\_secret\_manager\_secret\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        member = gcp.secretmanager.SecretIamMember("member",
+            project=google_secret_manager_secret["secret-basic"]["project"],
+            secret_id=google_secret_manager_secret["secret-basic"]["secret_id"],
+            role="roles/secretmanager.secretAccessor",
+            member="user:jane@example.com")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
@@ -65,7 +107,7 @@ class SecretIamMember(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -124,7 +166,7 @@ class SecretIamMember(pulumi.CustomResource):
         return SecretIamMember(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
