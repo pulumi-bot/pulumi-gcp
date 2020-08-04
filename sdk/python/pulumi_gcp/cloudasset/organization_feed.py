@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class OrganizationFeed(pulumi.CustomResource):
@@ -65,6 +65,40 @@ class OrganizationFeed(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/asset-inventory/docs)
 
         ## Example Usage
+        ### Cloud Asset Organization Feed
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        # The topic where the resource change notifications will be sent.
+        feed_output = gcp.pubsub.Topic("feedOutput", project="my-project-name")
+        project = gcp.organizations.get_project(project_id="my-project-name")
+        # Allow the publishing role to the Cloud Asset service account of the project that
+        # was used for sending the notifications.
+        cloud_asset_writer = gcp.pubsub.TopicIAMMember("cloudAssetWriter",
+            project="my-project-name",
+            topic=feed_output.id,
+            role="roles/pubsub.publisher",
+            member=f"serviceAccount:service-{project.number}@gcp-sa-cloudasset.iam.gserviceaccount.com")
+        # Create a feed that sends notifications about network resource updates under a
+        # particular organization.
+        organization_feed = gcp.cloudasset.OrganizationFeed("organizationFeed",
+            billing_project="my-project-name",
+            org_id="123456789",
+            feed_id="network-updates",
+            content_type="RESOURCE",
+            asset_types=[
+                "compute.googleapis.com/Subnetwork",
+                "compute.googleapis.com/Network",
+            ],
+            feed_output_config=gcp.cloudasset.OrganizationFeedFeedOutputConfigArgs(
+                pubsub_destination=gcp.cloudasset.OrganizationFeedFeedOutputConfigPubsubDestinationArgs(
+                    topic=feed_output.id,
+                ),
+            ),
+            opts=ResourceOptions(depends_on=[cloud_asset_writer]))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -101,7 +135,7 @@ class OrganizationFeed(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -176,7 +210,7 @@ class OrganizationFeed(pulumi.CustomResource):
         return OrganizationFeed(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
