@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class ProjectSink(pulumi.CustomResource):
@@ -67,6 +67,53 @@ class ProjectSink(pulumi.CustomResource):
 
         > **Note** You must [enable the Cloud Resource Manager API](https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com)
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_sink = gcp.logging.ProjectSink("my-sink",
+            destination="pubsub.googleapis.com/projects/my-project/topics/instance-activity",
+            filter="resource.type = gce_instance AND severity >= WARN",
+            unique_writer_identity=True)
+        ```
+
+        A more complete example follows: this creates a compute instance, as well as a log sink that logs all activity to a
+        cloud storage bucket. Because we are using `unique_writer_identity`, we must grant it access to the bucket. Note that
+        this grant requires the "Project IAM Admin" IAM role (`roles/resourcemanager.projectIamAdmin`) granted to the credentials
+        used with this provider.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        # Our logged compute instance
+        my_logged_instance = gcp.compute.Instance("my-logged-instance",
+            machine_type="n1-standard-1",
+            zone="us-central1-a",
+            boot_disk=gcp.compute.InstanceBootDiskArgs(
+                initialize_params=gcp.compute.InstanceBootDiskInitializeParamsArgs(
+                    image="debian-cloud/debian-9",
+                ),
+            ),
+            network_interfaces=[gcp.compute.InstanceNetworkInterfaceArgs(
+                network="default",
+                access_configs=[gcp.compute.InstanceNetworkInterfaceAccessConfigArgs()],
+            )])
+        # A bucket to store logs in
+        log_bucket = gcp.storage.Bucket("log-bucket")
+        # Our sink; this logs all activity related to our "my-logged-instance" instance
+        instance_sink = gcp.logging.ProjectSink("instance-sink",
+            destination=log_bucket.name.apply(lambda name: f"storage.googleapis.com/{name}"),
+            filter=my_logged_instance.instance_id.apply(lambda instance_id: f"resource.type = gce_instance AND resource.labels.instance_id = \"{instance_id}\""),
+            unique_writer_identity=True)
+        # Because our sink uses a unique_writer, we must grant that writer access to the bucket.
+        log_writer = gcp.projects.IAMBinding("log-writer",
+            role="roles/storage.objectCreator",
+            members=[instance_sink.writer_identity])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] bigquery_options: Options that affect sinks exporting data to BigQuery. Structure documented below.
@@ -105,7 +152,7 @@ class ProjectSink(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -176,7 +223,7 @@ class ProjectSink(pulumi.CustomResource):
         return ProjectSink(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

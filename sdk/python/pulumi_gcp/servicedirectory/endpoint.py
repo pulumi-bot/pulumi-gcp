@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Endpoint(pulumi.CustomResource):
@@ -50,6 +50,31 @@ class Endpoint(pulumi.CustomResource):
             * [Configuring an endpoint](https://cloud.google.com/service-directory/docs/configuring-service-directory#configuring_an_endpoint)
 
         ## Example Usage
+        ### Service Directory Endpoint Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example_namespace = gcp.servicedirectory.Namespace("exampleNamespace",
+            namespace_id="example-namespace",
+            location="us-central1",
+            opts=ResourceOptions(provider=google_beta))
+        example_service = gcp.servicedirectory.Service("exampleService",
+            service_id="example-service",
+            namespace=example_namespace.id,
+            opts=ResourceOptions(provider=google_beta))
+        example_endpoint = gcp.servicedirectory.Endpoint("exampleEndpoint",
+            endpoint_id="example-endpoint",
+            service=example_service.id,
+            metadata={
+                "stage": "prod",
+                "region": "us-central1",
+            },
+            address="1.2.3.4",
+            port=5353,
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -75,7 +100,7 @@ class Endpoint(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -131,7 +156,7 @@ class Endpoint(pulumi.CustomResource):
         return Endpoint(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

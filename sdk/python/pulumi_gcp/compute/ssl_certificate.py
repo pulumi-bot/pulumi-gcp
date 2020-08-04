@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class SSLCertificate(pulumi.CustomResource):
@@ -72,6 +72,61 @@ class SSLCertificate(pulumi.CustomResource):
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
         ## Example Usage
+        ### Ssl Certificate Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.compute.SSLCertificate("default",
+            name_prefix="my-certificate-",
+            description="a description",
+            private_key=(lambda path: open(path).read())("path/to/private.key"),
+            certificate=(lambda path: open(path).read())("path/to/certificate.crt"))
+        ```
+        ### Ssl Certificate Target Https Proxies
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        # Using with Target HTTPS Proxies
+        #
+        # SSL certificates cannot be updated after creation. In order to apply
+        # the specified configuration, the provider will destroy the existing
+        # resource and create a replacement. Example:
+        default_ssl_certificate = gcp.compute.SSLCertificate("defaultSSLCertificate",
+            name_prefix="my-certificate-",
+            private_key=(lambda path: open(path).read())("path/to/private.key"),
+            certificate=(lambda path: open(path).read())("path/to/certificate.crt"))
+        default_http_health_check = gcp.compute.HttpHealthCheck("defaultHttpHealthCheck",
+            request_path="/",
+            check_interval_sec=1,
+            timeout_sec=1)
+        default_backend_service = gcp.compute.BackendService("defaultBackendService",
+            port_name="http",
+            protocol="HTTP",
+            timeout_sec=10,
+            health_checks=[default_http_health_check.id])
+        default_url_map = gcp.compute.URLMap("defaultURLMap",
+            description="a description",
+            default_service=default_backend_service.id,
+            host_rules=[gcp.compute.URLMapHostRuleArgs(
+                hosts=["mysite.com"],
+                path_matcher="allpaths",
+            )],
+            path_matchers=[gcp.compute.URLMapPathMatcherArgs(
+                name="allpaths",
+                default_service=default_backend_service.id,
+                path_rules=[gcp.compute.URLMapPathMatcherPathRuleArgs(
+                    paths=["/*"],
+                    service=default_backend_service.id,
+                )],
+            )])
+        default_target_https_proxy = gcp.compute.TargetHttpsProxy("defaultTargetHttpsProxy",
+            url_map=default_url_map.id,
+            ssl_certificates=[default_ssl_certificate.id])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -103,7 +158,7 @@ class SSLCertificate(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -173,7 +228,7 @@ class SSLCertificate(pulumi.CustomResource):
         return SSLCertificate(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

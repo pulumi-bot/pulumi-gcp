@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class HaVpnGateway(pulumi.CustomResource):
@@ -62,6 +62,162 @@ class HaVpnGateway(pulumi.CustomResource):
             * [Cloud VPN Overview](https://cloud.google.com/vpn/docs/concepts/overview)
 
         ## Example Usage
+        ### Ha Vpn Gateway Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network1 = gcp.compute.Network("network1", auto_create_subnetworks=False,
+        opts=ResourceOptions(provider=google_beta))
+        ha_gateway1 = gcp.compute.HaVpnGateway("haGateway1",
+            region="us-central1",
+            network=network1.id,
+            opts=ResourceOptions(provider=google_beta))
+        ```
+        ### Ha Vpn Gateway Gcp To Gcp
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network1 = gcp.compute.Network("network1",
+            routing_mode="GLOBAL",
+            auto_create_subnetworks=False,
+            opts=ResourceOptions(provider=google_beta))
+        ha_gateway1 = gcp.compute.HaVpnGateway("haGateway1",
+            region="us-central1",
+            network=network1.id,
+            opts=ResourceOptions(provider=google_beta))
+        network2 = gcp.compute.Network("network2",
+            routing_mode="GLOBAL",
+            auto_create_subnetworks=False,
+            opts=ResourceOptions(provider=google_beta))
+        ha_gateway2 = gcp.compute.HaVpnGateway("haGateway2",
+            region="us-central1",
+            network=network2.id,
+            opts=ResourceOptions(provider=google_beta))
+        network1_subnet1 = gcp.compute.Subnetwork("network1Subnet1",
+            ip_cidr_range="10.0.1.0/24",
+            region="us-central1",
+            network=network1.id,
+            opts=ResourceOptions(provider=google_beta))
+        network1_subnet2 = gcp.compute.Subnetwork("network1Subnet2",
+            ip_cidr_range="10.0.2.0/24",
+            region="us-west1",
+            network=network1.id,
+            opts=ResourceOptions(provider=google_beta))
+        network2_subnet1 = gcp.compute.Subnetwork("network2Subnet1",
+            ip_cidr_range="192.168.1.0/24",
+            region="us-central1",
+            network=network2.id,
+            opts=ResourceOptions(provider=google_beta))
+        network2_subnet2 = gcp.compute.Subnetwork("network2Subnet2",
+            ip_cidr_range="192.168.2.0/24",
+            region="us-east1",
+            network=network2.id,
+            opts=ResourceOptions(provider=google_beta))
+        router1 = gcp.compute.Router("router1",
+            network=network1.name,
+            bgp=gcp.compute.RouterBgpArgs(
+                asn=64514,
+            ),
+            opts=ResourceOptions(provider=google_beta))
+        router2 = gcp.compute.Router("router2",
+            network=network2.name,
+            bgp=gcp.compute.RouterBgpArgs(
+                asn=64515,
+            ),
+            opts=ResourceOptions(provider=google_beta))
+        tunnel1 = gcp.compute.VPNTunnel("tunnel1",
+            region="us-central1",
+            vpn_gateway=ha_gateway1.id,
+            peer_gcp_gateway=ha_gateway2.id,
+            shared_secret="a secret message",
+            router=router1.id,
+            vpn_gateway_interface=0,
+            opts=ResourceOptions(provider=google_beta))
+        tunnel2 = gcp.compute.VPNTunnel("tunnel2",
+            region="us-central1",
+            vpn_gateway=ha_gateway1.id,
+            peer_gcp_gateway=ha_gateway2.id,
+            shared_secret="a secret message",
+            router=router1.id,
+            vpn_gateway_interface=1,
+            opts=ResourceOptions(provider=google_beta))
+        tunnel3 = gcp.compute.VPNTunnel("tunnel3",
+            region="us-central1",
+            vpn_gateway=ha_gateway2.id,
+            peer_gcp_gateway=ha_gateway1.id,
+            shared_secret="a secret message",
+            router=router2.id,
+            vpn_gateway_interface=0,
+            opts=ResourceOptions(provider=google_beta))
+        tunnel4 = gcp.compute.VPNTunnel("tunnel4",
+            region="us-central1",
+            vpn_gateway=ha_gateway2.id,
+            peer_gcp_gateway=ha_gateway1.id,
+            shared_secret="a secret message",
+            router=router2.id,
+            vpn_gateway_interface=1,
+            opts=ResourceOptions(provider=google_beta))
+        router1_interface1 = gcp.compute.RouterInterface("router1Interface1",
+            router=router1.name,
+            region="us-central1",
+            ip_range="169.254.0.1/30",
+            vpn_tunnel=tunnel1.name,
+            opts=ResourceOptions(provider=google_beta))
+        router1_peer1 = gcp.compute.RouterPeer("router1Peer1",
+            router=router1.name,
+            region="us-central1",
+            peer_ip_address="169.254.0.2",
+            peer_asn=64515,
+            advertised_route_priority=100,
+            interface=router1_interface1.name,
+            opts=ResourceOptions(provider=google_beta))
+        router1_interface2 = gcp.compute.RouterInterface("router1Interface2",
+            router=router1.name,
+            region="us-central1",
+            ip_range="169.254.1.1/30",
+            vpn_tunnel=tunnel2.name,
+            opts=ResourceOptions(provider=google_beta))
+        router1_peer2 = gcp.compute.RouterPeer("router1Peer2",
+            router=router1.name,
+            region="us-central1",
+            peer_ip_address="169.254.1.2",
+            peer_asn=64515,
+            advertised_route_priority=100,
+            interface=router1_interface2.name,
+            opts=ResourceOptions(provider=google_beta))
+        router2_interface1 = gcp.compute.RouterInterface("router2Interface1",
+            router=router2.name,
+            region="us-central1",
+            ip_range="169.254.0.1/30",
+            vpn_tunnel=tunnel3.name,
+            opts=ResourceOptions(provider=google_beta))
+        router2_peer1 = gcp.compute.RouterPeer("router2Peer1",
+            router=router2.name,
+            region="us-central1",
+            peer_ip_address="169.254.0.2",
+            peer_asn=64514,
+            advertised_route_priority=100,
+            interface=router2_interface1.name,
+            opts=ResourceOptions(provider=google_beta))
+        router2_interface2 = gcp.compute.RouterInterface("router2Interface2",
+            router=router2.name,
+            region="us-central1",
+            ip_range="169.254.1.1/30",
+            vpn_tunnel=tunnel4.name,
+            opts=ResourceOptions(provider=google_beta))
+        router2_peer2 = gcp.compute.RouterPeer("router2Peer2",
+            router=router2.name,
+            region="us-central1",
+            peer_ip_address="169.254.1.2",
+            peer_asn=64514,
+            advertised_route_priority=100,
+            interface=router2_interface2.name,
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -89,7 +245,7 @@ class HaVpnGateway(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -153,7 +309,7 @@ class HaVpnGateway(pulumi.CustomResource):
         return HaVpnGateway(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

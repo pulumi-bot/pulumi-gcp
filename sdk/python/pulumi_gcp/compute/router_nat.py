@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class RouterNat(pulumi.CustomResource):
@@ -111,6 +111,61 @@ class RouterNat(pulumi.CustomResource):
             * [Google Cloud Router](https://cloud.google.com/router/docs/)
 
         ## Example Usage
+        ### Router Nat Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        net = gcp.compute.Network("net")
+        subnet = gcp.compute.Subnetwork("subnet",
+            network=net.id,
+            ip_cidr_range="10.0.0.0/16",
+            region="us-central1")
+        router = gcp.compute.Router("router",
+            region=subnet.region,
+            network=net.id,
+            bgp=gcp.compute.RouterBgpArgs(
+                asn=64514,
+            ))
+        nat = gcp.compute.RouterNat("nat",
+            router=router.name,
+            region=router.region,
+            nat_ip_allocate_option="AUTO_ONLY",
+            source_subnetwork_ip_ranges_to_nat="ALL_SUBNETWORKS_ALL_IP_RANGES",
+            log_config=gcp.compute.RouterNatLogConfigArgs(
+                enable=True,
+                filter="ERRORS_ONLY",
+            ))
+        ```
+        ### Router Nat Manual Ips
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        net = gcp.compute.Network("net")
+        subnet = gcp.compute.Subnetwork("subnet",
+            network=net.id,
+            ip_cidr_range="10.0.0.0/16",
+            region="us-central1")
+        router = gcp.compute.Router("router",
+            region=subnet.region,
+            network=net.id)
+        address = []
+        for range in [{"value": i} for i in range(0, 2)]:
+            address.append(gcp.compute.Address(f"address-{range['value']}", region=subnet.region))
+        nat_manual = gcp.compute.RouterNat("natManual",
+            router=router.name,
+            region=router.region,
+            nat_ip_allocate_option="MANUAL_ONLY",
+            nat_ips=[__item.self_link for __item in address],
+            source_subnetwork_ip_ranges_to_nat="LIST_OF_SUBNETWORKS",
+            subnetworks=[gcp.compute.RouterNatSubnetworkArgs(
+                name=subnet.id,
+                source_ip_ranges_to_nats=["ALL_IP_RANGES"],
+            )])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -175,7 +230,7 @@ class RouterNat(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -289,7 +344,7 @@ class RouterNat(pulumi.CustomResource):
         return RouterNat(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

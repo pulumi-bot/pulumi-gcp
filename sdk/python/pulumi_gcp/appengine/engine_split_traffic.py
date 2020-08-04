@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class EngineSplitTraffic(pulumi.CustomResource):
@@ -39,6 +39,59 @@ class EngineSplitTraffic(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services)
 
         ## Example Usage
+        ### App Engine Service Split Traffic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bucket = gcp.storage.Bucket("bucket")
+        object = gcp.storage.BucketObject("object",
+            bucket=bucket.name,
+            source=pulumi.FileAsset("./test-fixtures/appengine/hello-world.zip"))
+        liveapp_v1 = gcp.appengine.StandardAppVersion("liveappV1",
+            version_id="v1",
+            service="liveapp",
+            delete_service_on_destroy=True,
+            runtime="nodejs10",
+            entrypoint=gcp.appengine.StandardAppVersionEntrypointArgs(
+                shell="node ./app.js",
+            ),
+            deployment=gcp.appengine.StandardAppVersionDeploymentArgs(
+                zip=gcp.appengine.StandardAppVersionDeploymentZipArgs(
+                    source_url=pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                ),
+            ),
+            env_variables={
+                "port": "8080",
+            })
+        liveapp_v2 = gcp.appengine.StandardAppVersion("liveappV2",
+            version_id="v2",
+            service="liveapp",
+            noop_on_destroy=True,
+            runtime="nodejs10",
+            entrypoint=gcp.appengine.StandardAppVersionEntrypointArgs(
+                shell="node ./app.js",
+            ),
+            deployment=gcp.appengine.StandardAppVersionDeploymentArgs(
+                zip=gcp.appengine.StandardAppVersionDeploymentZipArgs(
+                    source_url=pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                ),
+            ),
+            env_variables={
+                "port": "8080",
+            })
+        liveapp = gcp.appengine.EngineSplitTraffic("liveapp",
+            service=liveapp_v2.service,
+            migrate_traffic=False,
+            split=gcp.appengine.EngineSplitTrafficSplitArgs(
+                shard_by="IP",
+                allocations=pulumi.Output.all(liveapp_v1.version_id, liveapp_v2.version_id).apply(lambda liveappV1Version_id, liveappV2Version_id: {
+                    liveapp_v1_version_id: 0.75,
+                    liveapp_v2_version_id: 0.25,
+                }),
+            ))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -64,7 +117,7 @@ class EngineSplitTraffic(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -115,7 +168,7 @@ class EngineSplitTraffic(pulumi.CustomResource):
         return EngineSplitTraffic(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

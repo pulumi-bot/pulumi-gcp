@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Budget(pulumi.CustomResource):
@@ -97,6 +97,59 @@ class Budget(pulumi.CustomResource):
             * [Creating a budget](https://cloud.google.com/billing/docs/how-to/budgets)
 
         ## Example Usage
+        ### Billing Budget Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        account = gcp.organizations.get_billing_account(billing_account="000000-0000000-0000000-000000")
+        budget = gcp.billing.Budget("budget",
+            billing_account=account.id,
+            display_name="Example Billing Budget",
+            amount=gcp.billing.BudgetAmountArgs(
+                specified_amount=gcp.billing.BudgetAmountSpecifiedAmountArgs(
+                    currency_code="USD",
+                    units="100000",
+                ),
+            ),
+            threshold_rules=[gcp.billing.BudgetThresholdRuleArgs(
+                threshold_percent=0.5,
+            )],
+            opts=ResourceOptions(provider=google_beta))
+        ```
+        ### Billing Budget Filter
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        account = gcp.organizations.get_billing_account(billing_account="000000-0000000-0000000-000000")
+        budget = gcp.billing.Budget("budget",
+            billing_account=account.id,
+            display_name="Example Billing Budget",
+            budget_filter=gcp.billing.BudgetBudgetFilterArgs(
+                projects=["projects/my-project-name"],
+                credit_types_treatment="EXCLUDE_ALL_CREDITS",
+                services=["services/24E6-581D-38E5"],
+            ),
+            amount=gcp.billing.BudgetAmountArgs(
+                specified_amount=gcp.billing.BudgetAmountSpecifiedAmountArgs(
+                    currency_code="USD",
+                    units="100000",
+                ),
+            ),
+            threshold_rules=[
+                gcp.billing.BudgetThresholdRuleArgs(
+                    threshold_percent=0.5,
+                ),
+                gcp.billing.BudgetThresholdRuleArgs(
+                    threshold_percent=0.9,
+                    spend_basis="FORECASTED_SPEND",
+                ),
+            ],
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -173,7 +226,7 @@ class Budget(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -285,7 +338,7 @@ class Budget(pulumi.CustomResource):
         return Budget(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

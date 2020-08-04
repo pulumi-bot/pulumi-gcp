@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class ManagedZone(pulumi.CustomResource):
@@ -128,6 +128,127 @@ class ManagedZone(pulumi.CustomResource):
             * [Managing Zones](https://cloud.google.com/dns/zones/)
 
         ## Example Usage
+        ### Dns Managed Zone Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example_zone = gcp.dns.ManagedZone("example-zone",
+            description="Example DNS zone",
+            dns_name="my-domain.com.",
+            labels={
+                "foo": "bar",
+            })
+        ```
+        ### Dns Managed Zone Private
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network_1 = gcp.compute.Network("network-1", auto_create_subnetworks=False)
+        network_2 = gcp.compute.Network("network-2", auto_create_subnetworks=False)
+        private_zone = gcp.dns.ManagedZone("private-zone",
+            dns_name="private.example.com.",
+            description="Example private DNS zone",
+            labels={
+                "foo": "bar",
+            },
+            visibility="private",
+            private_visibility_config=gcp.dns.ManagedZonePrivateVisibilityConfigArgs(
+                networks=[
+                    gcp.dns.ManagedZonePrivateVisibilityConfigNetworkArgs(
+                        network_url=network_1.id,
+                    ),
+                    gcp.dns.ManagedZonePrivateVisibilityConfigNetworkArgs(
+                        network_url=network_2.id,
+                    ),
+                ],
+            ))
+        ```
+        ### Dns Managed Zone Private Forwarding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network_1 = gcp.compute.Network("network-1", auto_create_subnetworks=False)
+        network_2 = gcp.compute.Network("network-2", auto_create_subnetworks=False)
+        private_zone = gcp.dns.ManagedZone("private-zone",
+            dns_name="private.example.com.",
+            description="Example private DNS zone",
+            labels={
+                "foo": "bar",
+            },
+            visibility="private",
+            private_visibility_config=gcp.dns.ManagedZonePrivateVisibilityConfigArgs(
+                networks=[
+                    gcp.dns.ManagedZonePrivateVisibilityConfigNetworkArgs(
+                        network_url=network_1.id,
+                    ),
+                    gcp.dns.ManagedZonePrivateVisibilityConfigNetworkArgs(
+                        network_url=network_2.id,
+                    ),
+                ],
+            ),
+            forwarding_config=gcp.dns.ManagedZoneForwardingConfigArgs(
+                target_name_servers=[
+                    gcp.dns.ManagedZoneForwardingConfigTargetNameServerArgs(
+                        ipv4_address="172.16.1.10",
+                    ),
+                    gcp.dns.ManagedZoneForwardingConfigTargetNameServerArgs(
+                        ipv4_address="172.16.1.20",
+                    ),
+                ],
+            ))
+        ```
+        ### Dns Managed Zone Private Peering
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network_source = gcp.compute.Network("network-source", auto_create_subnetworks=False)
+        network_target = gcp.compute.Network("network-target", auto_create_subnetworks=False)
+        peering_zone = gcp.dns.ManagedZone("peering-zone",
+            dns_name="peering.example.com.",
+            description="Example private DNS peering zone",
+            visibility="private",
+            private_visibility_config=gcp.dns.ManagedZonePrivateVisibilityConfigArgs(
+                networks=[gcp.dns.ManagedZonePrivateVisibilityConfigNetworkArgs(
+                    network_url=network_source.id,
+                )],
+            ),
+            peering_config=gcp.dns.ManagedZonePeeringConfigArgs(
+                target_network=gcp.dns.ManagedZonePeeringConfigTargetNetworkArgs(
+                    network_url=network_target.id,
+                ),
+            ))
+        ```
+        ### Dns Managed Zone Service Directory
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example = gcp.servicedirectory.Namespace("example",
+            namespace_id="example",
+            location="us-central1",
+            opts=ResourceOptions(provider=google_beta))
+        sd_zone = gcp.dns.ManagedZone("sd-zone",
+            dns_name="services.example.com.",
+            description="Example private DNS Service Directory zone",
+            visibility="private",
+            service_directory_config=gcp.dns.ManagedZoneServiceDirectoryConfigArgs(
+                namespace=gcp.dns.ManagedZoneServiceDirectoryConfigNamespaceArgs(
+                    namespace_url=example.id,
+                ),
+            ),
+            opts=ResourceOptions(provider=google_beta))
+        network = gcp.compute.Network("network", auto_create_subnetworks=False,
+        opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -218,7 +339,7 @@ class ManagedZone(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -353,7 +474,7 @@ class ManagedZone(pulumi.CustomResource):
         return ManagedZone(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
