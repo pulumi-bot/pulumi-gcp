@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class ExternalVpnGateway(pulumi.CustomResource):
@@ -60,6 +60,91 @@ class ExternalVpnGateway(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/externalVpnGateways)
 
         ## Example Usage
+        ### External Vpn Gateway
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network = gcp.compute.Network("network",
+            routing_mode="GLOBAL",
+            auto_create_subnetworks=False,
+            opts=ResourceOptions(provider=google_beta))
+        ha_gateway = gcp.compute.HaVpnGateway("haGateway",
+            region="us-central1",
+            network=network.id,
+            opts=ResourceOptions(provider=google_beta))
+        external_gateway = gcp.compute.ExternalVpnGateway("externalGateway",
+            redundancy_type="SINGLE_IP_INTERNALLY_REDUNDANT",
+            description="An externally managed VPN gateway",
+            interfaces=[gcp.compute.ExternalVpnGatewayInterfaceArgs(
+                id=0,
+                ip_address="8.8.8.8",
+            )],
+            opts=ResourceOptions(provider=google_beta))
+        network_subnet1 = gcp.compute.Subnetwork("networkSubnet1",
+            ip_cidr_range="10.0.1.0/24",
+            region="us-central1",
+            network=network.id,
+            opts=ResourceOptions(provider=google_beta))
+        network_subnet2 = gcp.compute.Subnetwork("networkSubnet2",
+            ip_cidr_range="10.0.2.0/24",
+            region="us-west1",
+            network=network.id,
+            opts=ResourceOptions(provider=google_beta))
+        router1 = gcp.compute.Router("router1",
+            network=network.name,
+            bgp=gcp.compute.RouterBgpArgs(
+                asn=64514,
+            ),
+            opts=ResourceOptions(provider=google_beta))
+        tunnel1 = gcp.compute.VPNTunnel("tunnel1",
+            region="us-central1",
+            vpn_gateway=ha_gateway.id,
+            peer_external_gateway=external_gateway.id,
+            peer_external_gateway_interface=0,
+            shared_secret="a secret message",
+            router=router1.id,
+            vpn_gateway_interface=0,
+            opts=ResourceOptions(provider=google_beta))
+        tunnel2 = gcp.compute.VPNTunnel("tunnel2",
+            region="us-central1",
+            vpn_gateway=ha_gateway.id,
+            peer_external_gateway=external_gateway.id,
+            peer_external_gateway_interface=0,
+            shared_secret="a secret message",
+            router=router1.id.apply(lambda id: f" {id}"),
+            vpn_gateway_interface=1,
+            opts=ResourceOptions(provider=google_beta))
+        router1_interface1 = gcp.compute.RouterInterface("router1Interface1",
+            router=router1.name,
+            region="us-central1",
+            ip_range="169.254.0.1/30",
+            vpn_tunnel=tunnel1.name,
+            opts=ResourceOptions(provider=google_beta))
+        router1_peer1 = gcp.compute.RouterPeer("router1Peer1",
+            router=router1.name,
+            region="us-central1",
+            peer_ip_address="169.254.0.2",
+            peer_asn=64515,
+            advertised_route_priority=100,
+            interface=router1_interface1.name,
+            opts=ResourceOptions(provider=google_beta))
+        router1_interface2 = gcp.compute.RouterInterface("router1Interface2",
+            router=router1.name,
+            region="us-central1",
+            ip_range="169.254.1.1/30",
+            vpn_tunnel=tunnel2.name,
+            opts=ResourceOptions(provider=google_beta))
+        router1_peer2 = gcp.compute.RouterPeer("router1Peer2",
+            router=router1.name,
+            region="us-central1",
+            peer_ip_address="169.254.1.2",
+            peer_asn=64515,
+            advertised_route_priority=100,
+            interface=router1_interface2.name,
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -99,7 +184,7 @@ class ExternalVpnGateway(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -165,7 +250,7 @@ class ExternalVpnGateway(pulumi.CustomResource):
         return ExternalVpnGateway(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class VPNGateway(pulumi.CustomResource):
@@ -59,6 +59,44 @@ class VPNGateway(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/targetVpnGateways)
 
         ## Example Usage
+        ### Target Vpn Gateway Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network1 = gcp.compute.Network("network1")
+        target_gateway = gcp.compute.VPNGateway("targetGateway", network=network1.id)
+        vpn_static_ip = gcp.compute.Address("vpnStaticIp")
+        fr_esp = gcp.compute.ForwardingRule("frEsp",
+            ip_protocol="ESP",
+            ip_address=vpn_static_ip.address,
+            target=target_gateway.id)
+        fr_udp500 = gcp.compute.ForwardingRule("frUdp500",
+            ip_protocol="UDP",
+            port_range="500",
+            ip_address=vpn_static_ip.address,
+            target=target_gateway.id)
+        fr_udp4500 = gcp.compute.ForwardingRule("frUdp4500",
+            ip_protocol="UDP",
+            port_range="4500",
+            ip_address=vpn_static_ip.address,
+            target=target_gateway.id)
+        tunnel1 = gcp.compute.VPNTunnel("tunnel1",
+            peer_ip="15.0.0.120",
+            shared_secret="a secret message",
+            target_vpn_gateway=target_gateway.id,
+            opts=ResourceOptions(depends_on=[
+                    fr_esp,
+                    fr_udp500,
+                    fr_udp4500,
+                ]))
+        route1 = gcp.compute.Route("route1",
+            network=network1.name,
+            dest_range="15.0.0.0/24",
+            priority=1000,
+            next_hop_vpn_tunnel=tunnel1.id)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -86,7 +124,7 @@ class VPNGateway(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -148,7 +186,7 @@ class VPNGateway(pulumi.CustomResource):
         return VPNGateway(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
