@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class SSLPolicy(pulumi.CustomResource):
@@ -84,6 +84,24 @@ class SSLPolicy(pulumi.CustomResource):
             * [Using SSL Policies](https://cloud.google.com/compute/docs/load-balancing/ssl-policies)
 
         ## Example Usage
+        ### Ssl Policy Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        prod_ssl_policy = gcp.compute.SSLPolicy("prod-ssl-policy", profile="MODERN")
+        nonprod_ssl_policy = gcp.compute.SSLPolicy("nonprod-ssl-policy",
+            min_tls_version="TLS_1_2",
+            profile="MODERN")
+        custom_ssl_policy = gcp.compute.SSLPolicy("custom-ssl-policy",
+            custom_features=[
+                "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
+                "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
+            ],
+            min_tls_version="TLS_1_2",
+            profile="CUSTOM")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -127,7 +145,7 @@ class SSLPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -208,7 +226,7 @@ class SSLPolicy(pulumi.CustomResource):
         return SSLPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

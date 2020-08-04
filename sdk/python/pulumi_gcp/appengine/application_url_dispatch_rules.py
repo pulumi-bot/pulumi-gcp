@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class ApplicationUrlDispatchRules(pulumi.CustomResource):
@@ -35,6 +35,45 @@ class ApplicationUrlDispatchRules(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps#UrlDispatchRule)
 
         ## Example Usage
+        ### App Engine Application Url Dispatch Rules Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bucket = gcp.storage.Bucket("bucket")
+        object = gcp.storage.BucketObject("object",
+            bucket=bucket.name,
+            source=pulumi.FileAsset("./test-fixtures/appengine/hello-world.zip"))
+        admin_v3 = gcp.appengine.StandardAppVersion("adminV3",
+            version_id="v3",
+            service="admin",
+            runtime="nodejs10",
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                },
+            },
+            env_variables={
+                "port": "8080",
+            },
+            noop_on_destroy=True)
+        web_service = gcp.appengine.ApplicationUrlDispatchRules("webService", dispatch_rules=[
+            {
+                "domain": "*",
+                "path": "/*",
+                "service": "default",
+            },
+            {
+                "domain": "*",
+                "path": "/admin/*",
+                "service": admin_v3.service,
+            },
+        ])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -62,7 +101,7 @@ class ApplicationUrlDispatchRules(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -109,7 +148,7 @@ class ApplicationUrlDispatchRules(pulumi.CustomResource):
         return ApplicationUrlDispatchRules(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
