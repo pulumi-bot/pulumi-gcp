@@ -21,6 +21,99 @@ namespace Pulumi.Gcp.Filestore
     ///     * [Copying Data In/Out](https://cloud.google.com/filestore/docs/copying-data)
     /// 
     /// ## Example Usage
+    /// ### Filestore Instance Basic
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var instance = new Gcp.Filestore.Instance("instance", new Gcp.Filestore.InstanceArgs
+    ///         {
+    ///             FileShares = new Gcp.Filestore.Inputs.InstanceFileSharesArgs
+    ///             {
+    ///                 CapacityGb = 2660,
+    ///                 Name = "share1",
+    ///             },
+    ///             Networks = 
+    ///             {
+    ///                 new Gcp.Filestore.Inputs.InstanceNetworkArgs
+    ///                 {
+    ///                     Modes = 
+    ///                     {
+    ///                         "MODE_IPV4",
+    ///                     },
+    ///                     Network = "default",
+    ///                 },
+    ///             },
+    ///             Tier = "PREMIUM",
+    ///             Zone = "us-central1-b",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Filestore Instance Full
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var instance = new Gcp.Filestore.Instance("instance", new Gcp.Filestore.InstanceArgs
+    ///         {
+    ///             FileShares = new Gcp.Filestore.Inputs.InstanceFileSharesArgs
+    ///             {
+    ///                 CapacityGb = 2660,
+    ///                 Name = "share1",
+    ///                 NfsExportOptions = 
+    ///                 {
+    ///                     new Gcp.Filestore.Inputs.InstanceFileSharesNfsExportOptionArgs
+    ///                     {
+    ///                         AccessMode = "READ_WRITE",
+    ///                         IpRanges = 
+    ///                         {
+    ///                             "10.0.0.0/24",
+    ///                         },
+    ///                         SquashMode = "NO_ROOT_SQUASH",
+    ///                     },
+    ///                     new Gcp.Filestore.Inputs.InstanceFileSharesNfsExportOptionArgs
+    ///                     {
+    ///                         AccessMode = "READ_ONLY",
+    ///                         AnonGid = 456,
+    ///                         AnonUid = 123,
+    ///                         IpRanges = 
+    ///                         {
+    ///                             "10.10.0.0/24",
+    ///                         },
+    ///                         SquashMode = "ROOT_SQUASH",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             Networks = 
+    ///             {
+    ///                 new Gcp.Filestore.Inputs.InstanceNetworkArgs
+    ///                 {
+    ///                     Modes = 
+    ///                     {
+    ///                         "MODE_IPV4",
+    ///                     },
+    ///                     Network = "default",
+    ///                 },
+    ///             },
+    ///             Tier = "BASIC_SSD",
+    ///             Zone = "us-central1-b",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Instance : Pulumi.CustomResource
     {

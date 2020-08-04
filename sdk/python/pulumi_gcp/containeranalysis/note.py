@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Note(pulumi.CustomResource):
@@ -90,6 +90,43 @@ class Note(pulumi.CustomResource):
             * [Creating Attestations (Occurrences)](https://cloud.google.com/binary-authorization/docs/making-attestations)
 
         ## Example Usage
+        ### Container Analysis Note Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        note = gcp.containeranalysis.Note("note", attestation_authority=gcp.containeranalysis.NoteAttestationAuthorityArgs(
+            hint=gcp.containeranalysis.NoteAttestationAuthorityHintArgs(
+                human_readable_name="Attestor Note",
+            ),
+        ))
+        ```
+        ### Container Analysis Note Attestation Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        note = gcp.containeranalysis.Note("note",
+            attestation_authority=gcp.containeranalysis.NoteAttestationAuthorityArgs(
+                hint=gcp.containeranalysis.NoteAttestationAuthorityHintArgs(
+                    human_readable_name="Attestor Note",
+                ),
+            ),
+            expiration_time="2120-10-02T15:01:23.045123456Z",
+            long_description="a longer description of test note",
+            related_urls=[
+                gcp.containeranalysis.NoteRelatedUrlArgs(
+                    label="foo",
+                    url="some.url",
+                ),
+                gcp.containeranalysis.NoteRelatedUrlArgs(
+                    url="google.com",
+                ),
+            ],
+            short_description="test note")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -140,7 +177,7 @@ class Note(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -231,7 +268,7 @@ class Note(pulumi.CustomResource):
         return Note(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Table(pulumi.CustomResource):
@@ -41,6 +41,27 @@ class Table(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/bigtable/) and
         [API](https://cloud.google.com/bigtable/docs/go/reference).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.bigtable.Instance("instance", clusters=[gcp.bigtable.InstanceClusterArgs(
+            cluster_id="tf-instance-cluster",
+            zone="us-central1-b",
+            num_nodes=3,
+            storage_type="HDD",
+        )])
+        table = gcp.bigtable.Table("table",
+            instance_name=instance.name,
+            split_keys=[
+                "a",
+                "b",
+                "c",
+            ])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[list] column_families: A group of columns within a table which share a common configuration. This can be specified multiple times. Structure is documented below.
@@ -67,7 +88,7 @@ class Table(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -120,7 +141,7 @@ class Table(pulumi.CustomResource):
         return Table(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

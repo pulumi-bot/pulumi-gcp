@@ -10,6 +10,39 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
+// ## google\_folder\_iam\_audit\_config
+//
+// Allows management of audit logging config for a given service for a Google Cloud Platform folder.
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/folder"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := folder.NewIamAuditConfig(ctx, "config", &folder.IamAuditConfigArgs{
+// 			AuditLogConfigs: folder.IamAuditConfigAuditLogConfigArray{
+// 				&folder.IamAuditConfigAuditLogConfigArgs{
+// 					ExemptedMembers: pulumi.StringArray{
+// 						pulumi.String("user:joebloggs@hashicorp.com"),
+// 					},
+// 					LogType: pulumi.String("DATA_READ"),
+// 				},
+// 			},
+// 			Folder:  pulumi.String("folders/{folder_id}"),
+// 			Service: pulumi.String("allServices"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type IamAuditConfig struct {
 	pulumi.CustomResourceState
 

@@ -6,7 +6,8 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
+
 
 class GetBillingAccountResult:
     """
@@ -40,6 +41,8 @@ class GetBillingAccountResult:
         """
         The IDs of any projects associated with the billing account.
         """
+
+
 class AwaitableGetBillingAccountResult(GetBillingAccountResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -53,9 +56,22 @@ class AwaitableGetBillingAccountResult(GetBillingAccountResult):
             open=self.open,
             project_ids=self.project_ids)
 
-def get_billing_account(billing_account=None,display_name=None,open=None,opts=None):
+
+def get_billing_account(billing_account=None, display_name=None, open=None, opts=None):
     """
     Use this data source to get information about a Google Billing Account.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    acct = gcp.organizations.get_billing_account(display_name="My Billing Account",
+        open=True)
+    my_project = gcp.organizations.Project("myProject",
+        project_id="your-project-id",
+        org_id="1234567",
+        billing_account=acct.id)
+    ```
 
 
     :param str billing_account: The name of the billing account in the form `{billing_account_id}` or `billingAccounts/{billing_account_id}`.
@@ -63,15 +79,13 @@ def get_billing_account(billing_account=None,display_name=None,open=None,opts=No
     :param bool open: `true` if the billing account is open, `false` if the billing account is closed.
     """
     __args__ = dict()
-
-
     __args__['billingAccount'] = billing_account
     __args__['displayName'] = display_name
     __args__['open'] = open
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getBillingAccount:getBillingAccount', __args__, opts=opts).value
 
     return AwaitableGetBillingAccountResult(
