@@ -19,6 +19,60 @@ import (
 //     * [Using DNS server policies](https://cloud.google.com/dns/zones/#using-dns-server-policies)
 //
 // ## Example Usage
+// ### Dns Policy Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/dns"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := compute.NewNetwork(ctx, "network_1", &compute.NetworkArgs{
+// 			AutoCreateSubnetworks: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewNetwork(ctx, "network_2", &compute.NetworkArgs{
+// 			AutoCreateSubnetworks: pulumi.Bool(false),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = dns.NewPolicy(ctx, "example_policy", &dns.PolicyArgs{
+// 			EnableInboundForwarding: pulumi.Bool(true),
+// 			EnableLogging:           pulumi.Bool(true),
+// 			AlternativeNameServerConfig: &dns.PolicyAlternativeNameServerConfigArgs{
+// 				TargetNameServers: dns.PolicyAlternativeNameServerConfigTargetNameServerArray{
+// 					&dns.PolicyAlternativeNameServerConfigTargetNameServerArgs{
+// 						Ipv4Address: pulumi.String("172.16.1.10"),
+// 					},
+// 					&dns.PolicyAlternativeNameServerConfigTargetNameServerArgs{
+// 						Ipv4Address: pulumi.String("172.16.1.20"),
+// 					},
+// 				},
+// 			},
+// 			Networks: dns.PolicyNetworkArray{
+// 				&dns.PolicyNetworkArgs{
+// 					NetworkUrl: network_1.ID(),
+// 				},
+// 				&dns.PolicyNetworkArgs{
+// 					NetworkUrl: network_2.ID(),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Policy struct {
 	pulumi.CustomResourceState
 
