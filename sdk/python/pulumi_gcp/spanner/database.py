@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Database(pulumi.CustomResource):
@@ -46,6 +46,22 @@ class Database(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/spanner/)
 
         ## Example Usage
+        ### Spanner Database Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        main = gcp.spanner.Instance("main",
+            config="regional-europe-west1",
+            display_name="main-instance")
+        database = gcp.spanner.Database("database",
+            instance=main.name,
+            ddls=[
+                "CREATE TABLE t1 (t1 INT64 NOT NULL,) PRIMARY KEY(t1)",
+                "CREATE TABLE t2 (t2 INT64 NOT NULL,) PRIMARY KEY(t2)",
+            ])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -70,7 +86,7 @@ class Database(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -121,7 +137,7 @@ class Database(pulumi.CustomResource):
         return Database(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
