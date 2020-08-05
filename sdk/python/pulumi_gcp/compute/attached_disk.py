@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class AttachedDisk(pulumi.CustomResource):
@@ -61,6 +61,28 @@ class AttachedDisk(pulumi.CustomResource):
 
         **Note:** When using `compute.AttachedDisk` you **must** use `lifecycle.ignore_changes = ["attached_disk"]` on the `compute.Instance` resource that has the disks attached. Otherwise the two resources will fight for control of the attached disk block.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_instance = gcp.compute.Instance("defaultInstance",
+            machine_type="n1-standard-1",
+            zone="us-west1-a",
+            boot_disk={
+                "initializeParams": {
+                    "image": "debian-cloud/debian-9",
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+            }])
+        default_attached_disk = gcp.compute.AttachedDisk("defaultAttachedDisk",
+            disk=google_compute_disk["default"]["id"],
+            instance=default_instance.id)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] device_name: Specifies a unique device name of your choice that is
@@ -92,7 +114,7 @@ class AttachedDisk(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -154,7 +176,7 @@ class AttachedDisk(pulumi.CustomResource):
         return AttachedDisk(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

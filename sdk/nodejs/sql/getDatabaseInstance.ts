@@ -8,6 +8,17 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to get information about a Cloud SQL instance
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const qa = gcp.sql.getDatabaseInstance({
+ *     name: google_sql_database_instance.master.name,
+ * });
+ * ```
  */
 export function getDatabaseInstance(args: GetDatabaseInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseInstanceResult> {
     if (!opts) {
