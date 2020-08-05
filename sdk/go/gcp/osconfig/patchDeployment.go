@@ -20,6 +20,127 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/os-patch-management)
 //
 // ## Example Usage
+// ### Os Config Patch Deployment Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/osconfig"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := osconfig.NewPatchDeployment(ctx, "patch", &osconfig.PatchDeploymentArgs{
+// 			InstanceFilter: &osconfig.PatchDeploymentInstanceFilterArgs{
+// 				All: pulumi.Bool(true),
+// 			},
+// 			PatchDeploymentId: pulumi.String("patch-deploy-inst"),
+// 			RecurringSchedule: &osconfig.PatchDeploymentRecurringScheduleArgs{
+// 				TimeOfDay: &osconfig.PatchDeploymentRecurringScheduleTimeOfDayArgs{
+// 					Hours: pulumi.Int(1),
+// 				},
+// 				TimeZone: &osconfig.PatchDeploymentRecurringScheduleTimeZoneArgs{
+// 					Id: pulumi.String("America/New_York"),
+// 				},
+// 				Weekly: &osconfig.PatchDeploymentRecurringScheduleWeeklyArgs{
+// 					DayOfWeek: pulumi.String("MONDAY"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Os Config Patch Deployment Instance
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/osconfig"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "debian-9"
+// 		opt1 := "debian-cloud"
+// 		myImage, err := compute.LookupImage(ctx, &compute.LookupImageArgs{
+// 			Family:  &opt0,
+// 			Project: &opt1,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		foobar, err := compute.NewInstance(ctx, "foobar", &compute.InstanceArgs{
+// 			MachineType:  pulumi.String("n1-standard-1"),
+// 			Zone:         pulumi.String("us-central1-a"),
+// 			CanIpForward: pulumi.Bool(false),
+// 			Tags: pulumi.StringArray{
+// 				pulumi.String("foo"),
+// 				pulumi.String("bar"),
+// 			},
+// 			BootDisk: &compute.InstanceBootDiskArgs{
+// 				InitializeParams: &compute.InstanceBootDiskInitializeParamsArgs{
+// 					Image: pulumi.String(myImage.SelfLink),
+// 				},
+// 			},
+// 			NetworkInterfaces: compute.InstanceNetworkInterfaceArray{
+// 				&compute.InstanceNetworkInterfaceArgs{
+// 					Network: pulumi.String("default"),
+// 				},
+// 			},
+// 			Metadata: pulumi.StringMap{
+// 				"foo": pulumi.String("bar"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = osconfig.NewPatchDeployment(ctx, "patch", &osconfig.PatchDeploymentArgs{
+// 			PatchDeploymentId: pulumi.String("patch-deploy-inst"),
+// 			InstanceFilter: &osconfig.PatchDeploymentInstanceFilterArgs{
+// 				Instances: pulumi.StringArray{
+// 					foobar.ID(),
+// 				},
+// 			},
+// 			PatchConfig: &osconfig.PatchDeploymentPatchConfigArgs{
+// 				Yum: &osconfig.PatchDeploymentPatchConfigYumArgs{
+// 					Security: pulumi.Bool(true),
+// 					Minimal:  pulumi.Bool(true),
+// 					Excludes: pulumi.StringArray{
+// 						pulumi.String("bash"),
+// 					},
+// 				},
+// 			},
+// 			RecurringSchedule: &osconfig.PatchDeploymentRecurringScheduleArgs{
+// 				TimeZone: &osconfig.PatchDeploymentRecurringScheduleTimeZoneArgs{
+// 					Id: pulumi.String("America/New_York"),
+// 				},
+// 				TimeOfDay: &osconfig.PatchDeploymentRecurringScheduleTimeOfDayArgs{
+// 					Hours:   pulumi.Int(0),
+// 					Minutes: pulumi.Int(30),
+// 					Seconds: pulumi.Int(30),
+// 					Nanos:   pulumi.Int(20),
+// 				},
+// 				Monthly: &osconfig.PatchDeploymentRecurringScheduleMonthlyArgs{
+// 					MonthDay: pulumi.Int(1),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type PatchDeployment struct {
 	pulumi.CustomResourceState
 
