@@ -22,6 +22,84 @@ namespace Pulumi.Gcp.Compute
     /// state as plain-text.
     /// 
     /// ## Example Usage
+    /// ### Backend Service Signed Url Key
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var webserver = new Gcp.Compute.InstanceTemplate("webserver", new Gcp.Compute.InstanceTemplateArgs
+    ///         {
+    ///             MachineType = "n1-standard-1",
+    ///             NetworkInterfaces = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.InstanceTemplateNetworkInterfaceArgs
+    ///                 {
+    ///                     Network = "default",
+    ///                 },
+    ///             },
+    ///             Disks = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.InstanceTemplateDiskArgs
+    ///                 {
+    ///                     SourceImage = "debian-cloud/debian-9",
+    ///                     AutoDelete = true,
+    ///                     Boot = true,
+    ///                 },
+    ///             },
+    ///         });
+    ///         var webservers = new Gcp.Compute.InstanceGroupManager("webservers", new Gcp.Compute.InstanceGroupManagerArgs
+    ///         {
+    ///             Versions = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.InstanceGroupManagerVersionArgs
+    ///                 {
+    ///                     InstanceTemplate = webserver.Id,
+    ///                     Name = "primary",
+    ///                 },
+    ///             },
+    ///             BaseInstanceName = "webserver",
+    ///             Zone = "us-central1-f",
+    ///             TargetSize = 1,
+    ///         });
+    ///         var @default = new Gcp.Compute.HttpHealthCheck("default", new Gcp.Compute.HttpHealthCheckArgs
+    ///         {
+    ///             RequestPath = "/",
+    ///             CheckIntervalSec = 1,
+    ///             TimeoutSec = 1,
+    ///         });
+    ///         var exampleBackend = new Gcp.Compute.BackendService("exampleBackend", new Gcp.Compute.BackendServiceArgs
+    ///         {
+    ///             Description = "Our company website",
+    ///             PortName = "http",
+    ///             Protocol = "HTTP",
+    ///             TimeoutSec = 10,
+    ///             EnableCdn = true,
+    ///             Backends = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.BackendServiceBackendArgs
+    ///                 {
+    ///                     Group = webservers.InstanceGroup,
+    ///                 },
+    ///             },
+    ///             HealthChecks = 
+    ///             {
+    ///                 @default.Id,
+    ///             },
+    ///         });
+    ///         var backendKey = new Gcp.Compute.BackendServiceSignedUrlKey("backendKey", new Gcp.Compute.BackendServiceSignedUrlKeyArgs
+    ///         {
+    ///             KeyValue = "pPsVemX8GM46QVeezid6Rw==",
+    ///             BackendService = exampleBackend.Name,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class BackendServiceSignedUrlKey : Pulumi.CustomResource
     {

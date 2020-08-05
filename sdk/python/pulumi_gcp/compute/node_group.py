@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class NodeGroup(pulumi.CustomResource):
@@ -76,6 +76,43 @@ class NodeGroup(pulumi.CustomResource):
         the provider to delete and recreate the node group.
 
         ## Example Usage
+        ### Node Group Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        soletenant_tmpl = gcp.compute.NodeTemplate("soletenant-tmpl",
+            region="us-central1",
+            node_type="n1-node-96-624")
+        nodes = gcp.compute.NodeGroup("nodes",
+            zone="us-central1-a",
+            description="example google_compute_node_group for the Google Provider",
+            size=1,
+            node_template=soletenant_tmpl.id)
+        ```
+        ### Node Group Autoscaling Policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        soletenant_tmpl = gcp.compute.NodeTemplate("soletenant-tmpl",
+            region="us-central1",
+            node_type="n1-node-96-624",
+            opts=ResourceOptions(provider=google_beta))
+        nodes = gcp.compute.NodeGroup("nodes",
+            zone="us-central1-a",
+            description="example google_compute_node_group for the Google Provider",
+            size=1,
+            node_template=soletenant_tmpl.id,
+            autoscaling_policy={
+                "mode": "ON",
+                "minNodes": 1,
+                "maxNodes": 10,
+            },
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -114,7 +151,7 @@ class NodeGroup(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -190,7 +227,7 @@ class NodeGroup(pulumi.CustomResource):
         return NodeGroup(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
