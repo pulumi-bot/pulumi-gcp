@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class FhirStore(pulumi.CustomResource):
@@ -126,6 +126,62 @@ class FhirStore(pulumi.CustomResource):
             * [Creating a FHIR store](https://cloud.google.com/healthcare/docs/how-tos/fhir)
 
         ## Example Usage
+        ### Healthcare Fhir Store Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        topic = gcp.pubsub.Topic("topic")
+        dataset = gcp.healthcare.Dataset("dataset", location="us-central1")
+        default = gcp.healthcare.FhirStore("default",
+            dataset=dataset.id,
+            version="R4",
+            enable_update_create=False,
+            disable_referential_integrity=False,
+            disable_resource_versioning=False,
+            enable_history_import=False,
+            notification_config={
+                "pubsubTopic": topic.id,
+            },
+            labels={
+                "label1": "labelvalue1",
+            })
+        ```
+        ### Healthcare Fhir Store Streaming Config
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        dataset = gcp.healthcare.Dataset("dataset", location="us-central1")
+        bq_dataset = gcp.bigquery.Dataset("bqDataset",
+            dataset_id="bq_example_dataset",
+            friendly_name="test",
+            description="This is a test description",
+            location="US",
+            delete_contents_on_destroy=True)
+        default = gcp.healthcare.FhirStore("default",
+            dataset=dataset.id,
+            version="R4",
+            enable_update_create=False,
+            disable_referential_integrity=False,
+            disable_resource_versioning=False,
+            enable_history_import=False,
+            labels={
+                "label1": "labelvalue1",
+            },
+            stream_configs=[{
+                "resourceTypes": ["Observation"],
+                "bigqueryDestination": {
+                    "datasetUri": pulumi.Output.all(bq_dataset.project, bq_dataset.dataset_id).apply(lambda project, dataset_id: f"bq://{project}.{dataset_id}"),
+                    "schemaConfig": {
+                        "recursiveStructureDepth": 3,
+                    },
+                },
+            }])
+        topic = gcp.pubsub.Topic("topic")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -215,7 +271,7 @@ class FhirStore(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -343,7 +399,7 @@ class FhirStore(pulumi.CustomResource):
         return FhirStore(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
