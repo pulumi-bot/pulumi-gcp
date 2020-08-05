@@ -16,6 +16,43 @@ import * as utilities from "../utilities";
  *     * [Official Documentation](https://cloud.google.com/asset-inventory/docs)
  *
  * ## Example Usage
+ * ### Cloud Asset Project Feed
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * // The topic where the resource change notifications will be sent.
+ * const feedOutput = new gcp.pubsub.Topic("feedOutput", {project: "my-project-name"});
+ * const project = gcp.organizations.getProject({
+ *     projectId: "my-project-name",
+ * });
+ * // Allow the publishing role to the Cloud Asset service account of the project that
+ * // was used for sending the notifications.
+ * const cloudAssetWriter = new gcp.pubsub.TopicIAMMember("cloudAssetWriter", {
+ *     project: "my-project-name",
+ *     topic: feedOutput.id,
+ *     role: "roles/pubsub.publisher",
+ *     member: project.then(project => `serviceAccount:service-${project.number}@gcp-sa-cloudasset.iam.gserviceaccount.com`),
+ * });
+ * // Create a feed that sends notifications about network resource updates.
+ * const projectFeed = new gcp.cloudasset.ProjectFeed("projectFeed", {
+ *     project: "my-project-name",
+ *     feedId: "network-updates",
+ *     contentType: "RESOURCE",
+ *     assetTypes: [
+ *         "compute.googleapis.com/Subnetwork",
+ *         "compute.googleapis.com/Network",
+ *     ],
+ *     feedOutputConfig: {
+ *         pubsubDestination: {
+ *             topic: feedOutput.id,
+ *         },
+ *     },
+ * }, {
+ *     dependsOn: [cloudAssetWriter],
+ * });
+ * ```
  */
 export class ProjectFeed extends pulumi.CustomResource {
     /**
