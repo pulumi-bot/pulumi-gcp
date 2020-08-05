@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class DataTransferConfig(pulumi.CustomResource):
@@ -83,6 +83,35 @@ class DataTransferConfig(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/bigquery/docs/reference/datatransfer/rest/)
 
         ## Example Usage
+        ### Bigquerydatatransfer Config Scheduled Query
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        project = gcp.organizations.get_project()
+        permissions = gcp.projects.IAMMember("permissions",
+            role="roles/iam.serviceAccountShortTermTokenMinter",
+            member=f"serviceAccount:service-{project.number}@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com")
+        my_dataset = gcp.bigquery.Dataset("myDataset",
+            dataset_id="my_dataset",
+            friendly_name="foo",
+            description="bar",
+            location="asia-northeast1",
+            opts=ResourceOptions(depends_on=[permissions]))
+        query_config = gcp.bigquery.DataTransferConfig("queryConfig",
+            display_name="my-query",
+            location="asia-northeast1",
+            data_source_id="scheduled_query",
+            schedule="first sunday of quarter 00:00",
+            destination_dataset_id=my_dataset.dataset_id,
+            params={
+                "destination_table_name_template": "my_table",
+                "write_disposition": "WRITE_APPEND",
+                "query": "SELECT name FROM tabl WHERE x = 'y'",
+            },
+            opts=ResourceOptions(depends_on=[permissions]))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -123,7 +152,7 @@ class DataTransferConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -210,7 +239,7 @@ class DataTransferConfig(pulumi.CustomResource):
         return DataTransferConfig(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
