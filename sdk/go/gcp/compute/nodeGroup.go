@@ -24,6 +24,75 @@ import (
 // the provider to delete and recreate the node group.
 //
 // ## Example Usage
+// ### Node Group Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := compute.NewNodeTemplate(ctx, "soletenant_tmpl", &compute.NodeTemplateArgs{
+// 			Region:   pulumi.String("us-central1"),
+// 			NodeType: pulumi.String("n1-node-96-624"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewNodeGroup(ctx, "nodes", &compute.NodeGroupArgs{
+// 			Zone:         pulumi.String("us-central1-a"),
+// 			Description:  pulumi.String("example google_compute_node_group for the Google Provider"),
+// 			Size:         pulumi.Int(1),
+// 			NodeTemplate: soletenant_tmpl.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Node Group Autoscaling Policy
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := compute.NewNodeTemplate(ctx, "soletenant_tmpl", &compute.NodeTemplateArgs{
+// 			Region:   pulumi.String("us-central1"),
+// 			NodeType: pulumi.String("n1-node-96-624"),
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewNodeGroup(ctx, "nodes", &compute.NodeGroupArgs{
+// 			Zone:         pulumi.String("us-central1-a"),
+// 			Description:  pulumi.String("example google_compute_node_group for the Google Provider"),
+// 			Size:         pulumi.Int(1),
+// 			NodeTemplate: soletenant_tmpl.ID(),
+// 			AutoscalingPolicy: &compute.NodeGroupAutoscalingPolicyArgs{
+// 				Mode:     pulumi.String("ON"),
+// 				MinNodes: pulumi.Int(1),
+// 				MaxNodes: pulumi.Int(10),
+// 			},
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type NodeGroup struct {
 	pulumi.CustomResourceState
 
