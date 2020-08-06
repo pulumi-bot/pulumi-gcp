@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class User(pulumi.CustomResource):
@@ -40,6 +40,25 @@ class User(pulumi.CustomResource):
         """
         Creates a new Google SQL User on a Google SQL User Instance. For more information, see the [official documentation](https://cloud.google.com/sql/), or the [JSON API](https://cloud.google.com/sql/docs/admin-api/v1beta4/users).
 
+        ## Example Usage
+
+        Example creating a SQL User.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_random as random
+
+        db_name_suffix = random.RandomId("dbNameSuffix", byte_length=4)
+        master = gcp.sql.DatabaseInstance("master", settings={
+            "tier": "db-f1-micro",
+        })
+        users = gcp.sql.User("users",
+            instance=master.name,
+            host="me.com",
+            password="changeme")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] host: The host the user can connect from. This is only supported
@@ -65,7 +84,7 @@ class User(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -117,7 +136,7 @@ class User(pulumi.CustomResource):
         return User(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

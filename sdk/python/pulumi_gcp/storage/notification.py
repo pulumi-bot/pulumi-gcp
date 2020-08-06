@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Notification(pulumi.CustomResource):
@@ -62,6 +62,35 @@ class Notification(pulumi.CustomResource):
         > **NOTE**: This resource can affect your storage IAM policy. If you are using this in the same config as your storage IAM policy resources, consider
         making this resource dependent on those IAM resources via `depends_on`. This will safeguard against errors due to IAM race conditions.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        gcs_account = gcp.storage.get_project_service_account()
+        topic = gcp.pubsub.Topic("topic")
+        binding = gcp.pubsub.TopicIAMBinding("binding",
+            topic=topic.id,
+            role="roles/pubsub.publisher",
+            members=[f"serviceAccount:{gcs_account.email_address}"])
+        # End enabling notifications
+        bucket = gcp.storage.Bucket("bucket")
+        notification = gcp.storage.Notification("notification",
+            bucket=bucket.name,
+            payload_format="JSON_API_V1",
+            topic=topic.id,
+            event_types=[
+                "OBJECT_FINALIZE",
+                "OBJECT_METADATA_UPDATE",
+            ],
+            custom_attributes={
+                "new-attribute": "new-attribute-value",
+            },
+            opts=ResourceOptions(depends_on=[binding]))
+        # Enable notifications by giving the correct IAM permission to the unique service account.
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket: The name of the bucket.
@@ -85,7 +114,7 @@ class Notification(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -147,7 +176,7 @@ class Notification(pulumi.CustomResource):
         return Notification(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
