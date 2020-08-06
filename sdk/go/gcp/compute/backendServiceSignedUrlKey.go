@@ -22,6 +22,87 @@ import (
 // state as plain-text.
 //
 // ## Example Usage
+// ### Backend Service Signed Url Key
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		webserver, err := compute.NewInstanceTemplate(ctx, "webserver", &compute.InstanceTemplateArgs{
+// 			MachineType: pulumi.String("n1-standard-1"),
+// 			NetworkInterfaces: compute.InstanceTemplateNetworkInterfaceArray{
+// 				&compute.InstanceTemplateNetworkInterfaceArgs{
+// 					Network: pulumi.String("default"),
+// 				},
+// 			},
+// 			Disks: compute.InstanceTemplateDiskArray{
+// 				&compute.InstanceTemplateDiskArgs{
+// 					SourceImage: pulumi.String("debian-cloud/debian-9"),
+// 					AutoDelete:  pulumi.Bool(true),
+// 					Boot:        pulumi.Bool(true),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		webservers, err := compute.NewInstanceGroupManager(ctx, "webservers", &compute.InstanceGroupManagerArgs{
+// 			Versions: compute.InstanceGroupManagerVersionArray{
+// 				&compute.InstanceGroupManagerVersionArgs{
+// 					InstanceTemplate: webserver.ID(),
+// 					Name:             pulumi.String("primary"),
+// 				},
+// 			},
+// 			BaseInstanceName: pulumi.String("webserver"),
+// 			Zone:             pulumi.String("us-central1-f"),
+// 			TargetSize:       pulumi.Int(1),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewHttpHealthCheck(ctx, "_default", &compute.HttpHealthCheckArgs{
+// 			RequestPath:      pulumi.String("/"),
+// 			CheckIntervalSec: pulumi.Int(1),
+// 			TimeoutSec:       pulumi.Int(1),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		exampleBackend, err := compute.NewBackendService(ctx, "exampleBackend", &compute.BackendServiceArgs{
+// 			Description: pulumi.String("Our company website"),
+// 			PortName:    pulumi.String("http"),
+// 			Protocol:    pulumi.String("HTTP"),
+// 			TimeoutSec:  pulumi.Int(10),
+// 			EnableCdn:   pulumi.Bool(true),
+// 			Backends: compute.BackendServiceBackendArray{
+// 				&compute.BackendServiceBackendArgs{
+// 					Group: webservers.InstanceGroup,
+// 				},
+// 			},
+// 			HealthChecks: pulumi.String(pulumi.String{
+// 				_default.ID(),
+// 			}),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewBackendServiceSignedUrlKey(ctx, "backendKey", &compute.BackendServiceSignedUrlKeyArgs{
+// 			KeyValue:       pulumi.String("pPsVemX8GM46QVeezid6Rw=="),
+// 			BackendService: exampleBackend.Name,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type BackendServiceSignedUrlKey struct {
 	pulumi.CustomResourceState
 
