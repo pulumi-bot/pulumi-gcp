@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Function(pulumi.CustomResource):
@@ -122,6 +122,65 @@ class Function(pulumi.CustomResource):
         for Cloud Functions.
 
         ## Example Usage
+        ### Public Function
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bucket = gcp.storage.Bucket("bucket")
+        archive = gcp.storage.BucketObject("archive",
+            bucket=bucket.name,
+            source=pulumi.FileAsset("./path/to/zip/file/which/contains/code"))
+        function = gcp.cloudfunctions.Function("function",
+            description="My function",
+            runtime="nodejs10",
+            available_memory_mb=128,
+            source_archive_bucket=bucket.name,
+            source_archive_object=archive.name,
+            trigger_http=True,
+            entry_point="helloGET")
+        # IAM entry for all users to invoke the function
+        invoker = gcp.cloudfunctions.FunctionIamMember("invoker",
+            project=function.project,
+            region=function.region,
+            cloud_function=function.name,
+            role="roles/cloudfunctions.invoker",
+            member="allUsers")
+        ```
+        ### Single User
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bucket = gcp.storage.Bucket("bucket")
+        archive = gcp.storage.BucketObject("archive",
+            bucket=bucket.name,
+            source=pulumi.FileAsset("./path/to/zip/file/which/contains/code"))
+        function = gcp.cloudfunctions.Function("function",
+            description="My function",
+            runtime="nodejs10",
+            available_memory_mb=128,
+            source_archive_bucket=bucket.name,
+            source_archive_object=archive.name,
+            trigger_http=True,
+            timeout=60,
+            entry_point="helloGET",
+            labels={
+                "my-label": "my-label-value",
+            },
+            environment_variables={
+                "MY_ENV_VAR": "my-env-var-value",
+            })
+        # IAM entry for a single user to invoke the function
+        invoker = gcp.cloudfunctions.FunctionIamMember("invoker",
+            project=function.project,
+            region=function.region,
+            cloud_function=function.name,
+            role="roles/cloudfunctions.invoker",
+            member="user:myFunctionInvoker@example.com")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -176,7 +235,7 @@ class Function(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -288,7 +347,7 @@ class Function(pulumi.CustomResource):
         return Function(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

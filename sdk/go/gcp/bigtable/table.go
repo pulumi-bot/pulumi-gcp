@@ -13,6 +13,47 @@ import (
 // Creates a Google Cloud Bigtable table inside an instance. For more information see
 // [the official documentation](https://cloud.google.com/bigtable/) and
 // [API](https://cloud.google.com/bigtable/docs/go/reference).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/bigtable"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		instance, err := bigtable.NewInstance(ctx, "instance", &bigtable.InstanceArgs{
+// 			Clusters: bigtable.InstanceClusterArray{
+// 				&bigtable.InstanceClusterArgs{
+// 					ClusterId:   pulumi.String("tf-instance-cluster"),
+// 					Zone:        pulumi.String("us-central1-b"),
+// 					NumNodes:    pulumi.Int(3),
+// 					StorageType: pulumi.String("HDD"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = bigtable.NewTable(ctx, "table", &bigtable.TableArgs{
+// 			InstanceName: instance.Name,
+// 			SplitKeys: pulumi.StringArray{
+// 				pulumi.String("a"),
+// 				pulumi.String("b"),
+// 				pulumi.String("c"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Table struct {
 	pulumi.CustomResourceState
 

@@ -10,6 +10,29 @@ import (
 // Get information about a Google Cloud Redis instance. For more information see
 // the [official documentation](https://cloud.google.com/memorystore/docs/redis)
 // and [API](https://cloud.google.com/memorystore/docs/redis/apis).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/redis"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := redis.LookupInstance(ctx, &redis.LookupInstanceArgs{
+// 			Name: "my-redis-instance",
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func LookupInstance(ctx *pulumi.Context, args *LookupInstanceArgs, opts ...pulumi.InvokeOption) (*LookupInstanceResult, error) {
 	var rv LookupInstanceResult
 	err := ctx.Invoke("gcp:redis/getInstance:getInstance", args, &rv, opts...)
