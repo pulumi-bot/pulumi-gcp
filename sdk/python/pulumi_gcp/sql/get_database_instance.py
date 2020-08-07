@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetDatabaseInstanceResult',
+    'AwaitableGetDatabaseInstanceResult',
+    'get_database_instance',
+]
+
 
 class GetDatabaseInstanceResult:
     """
@@ -109,6 +117,8 @@ class GetDatabaseInstanceResult:
         The settings to use for the database. The
         configuration is detailed below.
         """
+
+
 class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -134,21 +144,30 @@ class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
             service_account_email_address=self.service_account_email_address,
             settings=self.settings)
 
-def get_database_instance(name=None,opts=None):
+
+def get_database_instance(name: Optional[str] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseInstanceResult:
     """
     Use this data source to get information about a Cloud SQL instance
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    qa = gcp.sql.get_database_instance(name=google_sql_database_instance["master"]["name"])
+    ```
 
 
     :param str name: The name of the instance.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:sql/getDatabaseInstance:getDatabaseInstance', __args__, opts=opts).value
 
     return AwaitableGetDatabaseInstanceResult(

@@ -5,23 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['IAMPolicy']
 
 
 class IAMPolicy(pulumi.CustomResource):
-    etag: pulumi.Output[str]
-    org_id: pulumi.Output[str]
+    etag: pulumi.Output[str] = pulumi.property("etag")
+
+    org_id: pulumi.Output[str] = pulumi.property("orgId")
     """
     The numeric ID of the organization in which you want to create a custom role.
     """
-    policy_data: pulumi.Output[str]
+
+    policy_data: pulumi.Output[str] = pulumi.property("policyData")
     """
     The `organizations.getIAMPolicy` data source that represents
     the IAM policy that will be applied to the organization. This policy overrides any existing
     policy applied to the organization.
     """
-    def __init__(__self__, resource_name, opts=None, org_id=None, policy_data=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 policy_data: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Allows management of the entire IAM policy for an existing Google Cloud Platform Organization.
 
@@ -37,6 +49,21 @@ class IAMPolicy(pulumi.CustomResource):
         > **Note:** This resource __must not__ be used in conjunction with
            `organizations.IAMMember` or `organizations.IAMBinding`
            or they will fight over what your policy should be.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+        }])
+        policy = gcp.organizations.IAMPolicy("policy",
+            org_id="123456789",
+            policy_data=admin.policy_data)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -56,7 +83,7 @@ class IAMPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -76,7 +103,12 @@ class IAMPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, etag=None, org_id=None, policy_data=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            etag: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
+            policy_data: Optional[pulumi.Input[str]] = None) -> 'IAMPolicy':
         """
         Get an existing IAMPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -99,7 +131,8 @@ class IAMPolicy(pulumi.CustomResource):
         return IAMPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

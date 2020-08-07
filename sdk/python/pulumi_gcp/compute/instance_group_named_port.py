@@ -5,34 +5,51 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['InstanceGroupNamedPort']
 
 
 class InstanceGroupNamedPort(pulumi.CustomResource):
-    group: pulumi.Output[str]
+    group: pulumi.Output[str] = pulumi.property("group")
     """
     The name of the instance group.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name for this named port. The name must be 1-63 characters
     long, and comply with RFC1035.
     """
-    port: pulumi.Output[float]
+
+    port: pulumi.Output[float] = pulumi.property("port")
     """
     The port number, which can be a value between 1 and 65535.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    zone: pulumi.Output[str]
+
+    zone: pulumi.Output[str] = pulumi.property("zone")
     """
     The zone of the instance group.
     """
-    def __init__(__self__, resource_name, opts=None, group=None, name=None, port=None, project=None, zone=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 group: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[float]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 zone: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Mange the named ports setting for a managed instance group without
         managing the group as whole. This resource is primarily intended for use
@@ -46,6 +63,35 @@ class InstanceGroupNamedPort(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/compute/docs/instance-groups/)
 
         ## Example Usage
+        ### Instance Group Named Port Gke
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        container_network = gcp.compute.Network("containerNetwork", auto_create_subnetworks=False)
+        container_subnetwork = gcp.compute.Subnetwork("containerSubnetwork",
+            region="us-central1",
+            network=container_network.name,
+            ip_cidr_range="10.0.36.0/24")
+        my_cluster = gcp.container.Cluster("myCluster",
+            location="us-central1-a",
+            initial_node_count=1,
+            network=container_network.name,
+            subnetwork=container_subnetwork.name,
+            ip_allocation_policy={
+                "clusterIpv4CidrBlock": "/19",
+                "servicesIpv4CidrBlock": "/22",
+            })
+        my_port = gcp.compute.InstanceGroupNamedPort("myPort",
+            group=my_cluster.instance_group_urls[0],
+            zone="us-central1-a",
+            port=8080)
+        my_ports = gcp.compute.InstanceGroupNamedPort("myPorts",
+            group=my_cluster.instance_group_urls[0],
+            zone="us-central1-a",
+            port=4443)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -68,7 +114,7 @@ class InstanceGroupNamedPort(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -90,7 +136,14 @@ class InstanceGroupNamedPort(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, group=None, name=None, port=None, project=None, zone=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            group: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            port: Optional[pulumi.Input[float]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            zone: Optional[pulumi.Input[str]] = None) -> 'InstanceGroupNamedPort':
         """
         Get an existing InstanceGroupNamedPort resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -118,7 +171,8 @@ class InstanceGroupNamedPort(pulumi.CustomResource):
         return InstanceGroupNamedPort(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
