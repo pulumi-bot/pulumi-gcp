@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Route(pulumi.CustomResource):
@@ -133,6 +133,52 @@ class Route(pulumi.CustomResource):
             * [Using Routes](https://cloud.google.com/vpc/docs/using-routes)
 
         ## Example Usage
+        ### Route Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_network = gcp.compute.Network("defaultNetwork")
+        default_route = gcp.compute.Route("defaultRoute",
+            dest_range="15.0.0.0/24",
+            network=default_network.name,
+            next_hop_ip="10.132.1.5",
+            priority=100)
+        ```
+        ### Route Ilb
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_network = gcp.compute.Network("defaultNetwork", auto_create_subnetworks=False)
+        default_subnetwork = gcp.compute.Subnetwork("defaultSubnetwork",
+            ip_cidr_range="10.0.1.0/24",
+            region="us-central1",
+            network=default_network.id)
+        hc = gcp.compute.HealthCheck("hc",
+            check_interval_sec=1,
+            timeout_sec=1,
+            tcp_health_check={
+                "port": 80,
+            })
+        backend = gcp.compute.RegionBackendService("backend",
+            region="us-central1",
+            health_checks=[hc.id])
+        default_forwarding_rule = gcp.compute.ForwardingRule("defaultForwardingRule",
+            region="us-central1",
+            load_balancing_scheme="INTERNAL",
+            backend_service=backend.id,
+            all_ports=True,
+            network=default_network.name,
+            subnetwork=default_subnetwork.name)
+        route_ilb = gcp.compute.Route("route-ilb",
+            dest_range="0.0.0.0/0",
+            network=default_network.name,
+            next_hop_ilb=default_forwarding_rule.id,
+            priority=2000)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -192,7 +238,7 @@ class Route(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -301,7 +347,7 @@ class Route(pulumi.CustomResource):
         return Route(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

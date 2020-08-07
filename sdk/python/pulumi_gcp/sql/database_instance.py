@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class DatabaseInstance(pulumi.CustomResource):
@@ -227,6 +227,52 @@ class DatabaseInstance(pulumi.CustomResource):
         a restricted host and strong password.
 
         ## Example Usage
+        ### SQL Second Generation Instance
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        master = gcp.sql.DatabaseInstance("master",
+            database_version="POSTGRES_11",
+            region="us-central1",
+            settings={
+                "tier": "db-f1-micro",
+            })
+        ```
+        ### Private IP Instance
+        > **NOTE**: For private IP instance setup, note that the `sql.DatabaseInstance` does not actually interpolate values from `servicenetworking.Connection`. You must explicitly add a `depends_on`reference as shown below.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_random as random
+
+        private_network = gcp.compute.Network("privateNetwork", opts=ResourceOptions(provider=google_beta))
+        private_ip_address = gcp.compute.GlobalAddress("privateIpAddress",
+            purpose="VPC_PEERING",
+            address_type="INTERNAL",
+            prefix_length=16,
+            network=private_network.id,
+            opts=ResourceOptions(provider=google_beta))
+        private_vpc_connection = gcp.servicenetworking.Connection("privateVpcConnection",
+            network=private_network.id,
+            service="servicenetworking.googleapis.com",
+            reserved_peering_ranges=[private_ip_address.name],
+            opts=ResourceOptions(provider=google_beta))
+        db_name_suffix = random.RandomId("dbNameSuffix", byte_length=4)
+        instance = gcp.sql.DatabaseInstance("instance",
+            region="us-central1",
+            settings={
+                "tier": "db-f1-micro",
+                "ip_configuration": {
+                    "ipv4Enabled": False,
+                    "privateNetwork": private_network.id,
+                },
+            },
+            opts=ResourceOptions(provider=google_beta,
+                depends_on=[private_vpc_connection]))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -375,7 +421,7 @@ class DatabaseInstance(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -596,7 +642,7 @@ class DatabaseInstance(pulumi.CustomResource):
         return DatabaseInstance(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
