@@ -21,6 +21,38 @@ import (
 //     * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
 //
 // ## Example Usage
+// ### Global Network Endpoint
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		neg, err := compute.NewGlobalNetworkEndpointGroup(ctx, "neg", &compute.GlobalNetworkEndpointGroupArgs{
+// 			DefaultPort:         pulumi.Int(90),
+// 			NetworkEndpointType: pulumi.String("INTERNET_IP_PORT"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewGlobalNetworkEndpoint(ctx, "default_endpoint", &compute.GlobalNetworkEndpointArgs{
+// 			GlobalNetworkEndpointGroup: neg.Name,
+// 			Fqdn:                       pulumi.String("www.example.com"),
+// 			Port:                       pulumi.Int(90),
+// 			IpAddress:                  pulumi.String("8.8.8.8"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type GlobalNetworkEndpoint struct {
 	pulumi.CustomResourceState
 
