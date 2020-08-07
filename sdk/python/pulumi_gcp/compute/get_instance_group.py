@@ -6,7 +6,8 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
+
 
 class GetInstanceGroupResult:
     """
@@ -64,6 +65,8 @@ class GetInstanceGroupResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         __self__.zone = zone
+
+
 class AwaitableGetInstanceGroupResult(GetInstanceGroupResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -81,11 +84,20 @@ class AwaitableGetInstanceGroupResult(GetInstanceGroupResult):
             size=self.size,
             zone=self.zone)
 
-def get_instance_group(name=None,project=None,self_link=None,zone=None,opts=None):
+
+def get_instance_group(name=None, project=None, self_link=None, zone=None, opts=None):
     """
     Get a Compute Instance Group within GCE.
     For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/#unmanaged_instance_groups)
     and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroups)
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    all = gcp.compute.get_instance_group(name="instance-group-name",
+        zone="us-central1-a")
+    ```
 
 
     :param str name: The name of the instance group. Either `name` or `self_link` must be provided.
@@ -96,8 +108,6 @@ def get_instance_group(name=None,project=None,self_link=None,zone=None,opts=None
            and `zone` is not provided, the provider zone is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['selfLink'] = self_link
@@ -105,7 +115,7 @@ def get_instance_group(name=None,project=None,self_link=None,zone=None,opts=None
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getInstanceGroup:getInstanceGroup', __args__, opts=opts).value
 
     return AwaitableGetInstanceGroupResult(

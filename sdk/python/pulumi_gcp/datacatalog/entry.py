@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Entry(pulumi.CustomResource):
@@ -130,6 +130,87 @@ class Entry(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 
         ## Example Usage
+        ### Data Catalog Entry Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        entry_group = gcp.datacatalog.EntryGroup("entryGroup", entry_group_id="my_group")
+        basic_entry = gcp.datacatalog.Entry("basicEntry",
+            entry_group=entry_group.id,
+            entry_id="my_entry",
+            user_specified_type="my_custom_type",
+            user_specified_system="SomethingExternal")
+        ```
+        ### Data Catalog Entry Fileset
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        entry_group = gcp.datacatalog.EntryGroup("entryGroup", entry_group_id="my_group")
+        basic_entry = gcp.datacatalog.Entry("basicEntry",
+            entry_group=entry_group.id,
+            entry_id="my_entry",
+            type="FILESET",
+            gcs_fileset_spec={
+                "filePatterns": ["gs://fake_bucket/dir/*"],
+            })
+        ```
+        ### Data Catalog Entry Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        entry_group = gcp.datacatalog.EntryGroup("entryGroup", entry_group_id="my_group")
+        basic_entry = gcp.datacatalog.Entry("basicEntry",
+            entry_group=entry_group.id,
+            entry_id="my_entry",
+            user_specified_type="my_user_specified_type",
+            user_specified_system="Something_custom",
+            linked_resource="my/linked/resource",
+            display_name="my custom type entry",
+            description="a custom type entry for a user specified system",
+            schema=\"\"\"{
+          "columns": [
+            {
+              "column": "first_name",
+              "description": "First name",
+              "mode": "REQUIRED",
+              "type": "STRING"
+            },
+            {
+              "column": "last_name",
+              "description": "Last name",
+              "mode": "REQUIRED",
+              "type": "STRING"
+            },
+            {
+              "column": "address",
+              "description": "Address",
+              "mode": "REPEATED",
+              "subcolumns": [
+                {
+                  "column": "city",
+                  "description": "City",
+                  "mode": "NULLABLE",
+                  "type": "STRING"
+                },
+                {
+                  "column": "state",
+                  "description": "State",
+                  "mode": "NULLABLE",
+                  "type": "STRING"
+                }
+              ],
+              "type": "RECORD"
+            }
+          ]
+        }
+        \"\"\")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -191,7 +272,7 @@ class Entry(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -320,7 +401,7 @@ class Entry(pulumi.CustomResource):
         return Entry(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
