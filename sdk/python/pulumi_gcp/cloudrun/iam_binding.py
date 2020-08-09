@@ -5,37 +5,59 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['IamBinding']
 
 
 class IamBinding(pulumi.CustomResource):
-    condition: pulumi.Output[dict]
-    etag: pulumi.Output[str]
+    condition: pulumi.Output[Optional['outputs.IamBindingCondition']] = pulumi.property("condition")
+
+    etag: pulumi.Output[str] = pulumi.property("etag")
     """
     (Computed) The etag of the IAM policy.
     """
-    location: pulumi.Output[str]
+
+    location: pulumi.Output[str] = pulumi.property("location")
     """
     The location of the cloud run instance. eg us-central1 Used to find the parent resource to bind the IAM policy to
     """
-    members: pulumi.Output[list]
-    project: pulumi.Output[str]
+
+    members: pulumi.Output[List[str]] = pulumi.property("members")
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the project will be parsed from the identifier of the parent resource. If no project is provided in the parent identifier and no project is specified, the provider project is used.
     """
-    role: pulumi.Output[str]
+
+    role: pulumi.Output[str] = pulumi.property("role")
     """
     The role that should be applied. Only one
     `cloudrun.IamBinding` can be used per role. Note that custom roles must be of the format
     `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
-    service: pulumi.Output[str]
+
+    service: pulumi.Output[str] = pulumi.property("service")
     """
     Used to find the parent resource to bind the IAM policy to
     """
-    def __init__(__self__, resource_name, opts=None, condition=None, location=None, members=None, project=None, role=None, service=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 condition: Optional[pulumi.Input[pulumi.InputType['IamBindingConditionArgs']]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
+                 members: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 service: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Three different resources help you manage your IAM policy for Cloud Run Service. Each of these resources serves a different use case:
 
@@ -47,6 +69,51 @@ class IamBinding(pulumi.CustomResource):
 
         > **Note:** `cloudrun.IamBinding` resources **can be** used in conjunction with `cloudrun.IamMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_cloud\_run\_service\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/viewer",
+            "members": ["user:jane@example.com"],
+        }])
+        policy = gcp.cloudrun.IamPolicy("policy",
+            location=google_cloud_run_service["default"]["location"],
+            project=google_cloud_run_service["default"]["project"],
+            service=google_cloud_run_service["default"]["name"],
+            policy_data=admin.policy_data)
+        ```
+
+        ## google\_cloud\_run\_service\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        binding = gcp.cloudrun.IamBinding("binding",
+            location=google_cloud_run_service["default"]["location"],
+            project=google_cloud_run_service["default"]["project"],
+            service=google_cloud_run_service["default"]["name"],
+            role="roles/viewer",
+            members=["user:jane@example.com"])
+        ```
+
+        ## google\_cloud\_run\_service\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        member = gcp.cloudrun.IamMember("member",
+            location=google_cloud_run_service["default"]["location"],
+            project=google_cloud_run_service["default"]["project"],
+            service=google_cloud_run_service["default"]["name"],
+            role="roles/viewer",
+            member="user:jane@example.com")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] location: The location of the cloud run instance. eg us-central1 Used to find the parent resource to bind the IAM policy to
@@ -56,12 +123,6 @@ class IamBinding(pulumi.CustomResource):
                `cloudrun.IamBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
         :param pulumi.Input[str] service: Used to find the parent resource to bind the IAM policy to
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -74,7 +135,7 @@ class IamBinding(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -100,7 +161,16 @@ class IamBinding(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, condition=None, etag=None, location=None, members=None, project=None, role=None, service=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            condition: Optional[pulumi.Input[pulumi.InputType['IamBindingConditionArgs']]] = None,
+            etag: Optional[pulumi.Input[str]] = None,
+            location: Optional[pulumi.Input[str]] = None,
+            members: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            role: Optional[pulumi.Input[str]] = None,
+            service: Optional[pulumi.Input[str]] = None) -> 'IamBinding':
         """
         Get an existing IamBinding resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -116,12 +186,6 @@ class IamBinding(pulumi.CustomResource):
                `cloudrun.IamBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
         :param pulumi.Input[str] service: Used to find the parent resource to bind the IAM policy to
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -137,7 +201,8 @@ class IamBinding(pulumi.CustomResource):
         return IamBinding(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

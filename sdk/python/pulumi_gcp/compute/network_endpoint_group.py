@@ -5,22 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['NetworkEndpointGroup']
 
 
 class NetworkEndpointGroup(pulumi.CustomResource):
-    default_port: pulumi.Output[float]
+    default_port: pulumi.Output[Optional[float]] = pulumi.property("defaultPort")
     """
     The default port used if the port number is not specified in the
     network endpoint.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     An optional description of this resource. Provide this property when
     you create the resource.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the resource; provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -30,37 +34,58 @@ class NetworkEndpointGroup(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the last
     character, which cannot be a dash.
     """
-    network: pulumi.Output[str]
+
+    network: pulumi.Output[str] = pulumi.property("network")
     """
     The network to which all network endpoints in the NEG belong.
     Uses "default" project network if unspecified.
     """
-    network_endpoint_type: pulumi.Output[str]
+
+    network_endpoint_type: pulumi.Output[Optional[str]] = pulumi.property("networkEndpointType")
     """
     Type of network endpoints in this network endpoint group.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    size: pulumi.Output[float]
+
+    size: pulumi.Output[float] = pulumi.property("size")
     """
     Number of network endpoints in the network endpoint group.
     """
-    subnetwork: pulumi.Output[str]
+
+    subnetwork: pulumi.Output[Optional[str]] = pulumi.property("subnetwork")
     """
     Optional subnetwork to which all network endpoints in the NEG belong.
     """
-    zone: pulumi.Output[str]
+
+    zone: pulumi.Output[str] = pulumi.property("zone")
     """
     Zone where the network endpoint group is located.
     """
-    def __init__(__self__, resource_name, opts=None, default_port=None, description=None, name=None, network=None, network_endpoint_type=None, project=None, subnetwork=None, zone=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 default_port: Optional[pulumi.Input[float]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 network: Optional[pulumi.Input[str]] = None,
+                 network_endpoint_type: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 subnetwork: Optional[pulumi.Input[str]] = None,
+                 zone: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Network endpoint groups (NEGs) are zonal resources that represent
         collections of IP address and port combinations for GCP resources within a
@@ -80,6 +105,23 @@ class NetworkEndpointGroup(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/load-balancing/docs/negs/)
 
         ## Example Usage
+        ### Network Endpoint Group
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_network = gcp.compute.Network("defaultNetwork", auto_create_subnetworks=False)
+        default_subnetwork = gcp.compute.Subnetwork("defaultSubnetwork",
+            ip_cidr_range="10.0.0.0/16",
+            region="us-central1",
+            network=default_network.id)
+        neg = gcp.compute.NetworkEndpointGroup("neg",
+            network=default_network.id,
+            subnetwork=default_subnetwork.id,
+            default_port=90,
+            zone="us-central1-a")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -113,7 +155,7 @@ class NetworkEndpointGroup(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -138,7 +180,19 @@ class NetworkEndpointGroup(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, default_port=None, description=None, name=None, network=None, network_endpoint_type=None, project=None, self_link=None, size=None, subnetwork=None, zone=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            default_port: Optional[pulumi.Input[float]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            network: Optional[pulumi.Input[str]] = None,
+            network_endpoint_type: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            size: Optional[pulumi.Input[float]] = None,
+            subnetwork: Optional[pulumi.Input[str]] = None,
+            zone: Optional[pulumi.Input[str]] = None) -> 'NetworkEndpointGroup':
         """
         Get an existing NetworkEndpointGroup resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -184,7 +238,8 @@ class NetworkEndpointGroup(pulumi.CustomResource):
         return NetworkEndpointGroup(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

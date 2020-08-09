@@ -5,78 +5,113 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['BucketObject']
 
 
 class BucketObject(pulumi.CustomResource):
-    bucket: pulumi.Output[str]
+    bucket: pulumi.Output[str] = pulumi.property("bucket")
     """
     The name of the containing bucket.
     """
-    cache_control: pulumi.Output[str]
+
+    cache_control: pulumi.Output[Optional[str]] = pulumi.property("cacheControl")
     """
     [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2)
     directive to specify caching behavior of object data. If omitted and object is accessible to all anonymous users, the default will be public, max-age=3600
     """
-    content: pulumi.Output[str]
+
+    content: pulumi.Output[Optional[str]] = pulumi.property("content")
     """
     Data as `string` to be uploaded. Must be defined if `source` is not. **Note**: The `content` field is marked as sensitive.
     """
-    content_disposition: pulumi.Output[str]
+
+    content_disposition: pulumi.Output[Optional[str]] = pulumi.property("contentDisposition")
     """
     [Content-Disposition](https://tools.ietf.org/html/rfc6266) of the object data.
     """
-    content_encoding: pulumi.Output[str]
+
+    content_encoding: pulumi.Output[Optional[str]] = pulumi.property("contentEncoding")
     """
     [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2) of the object data.
     """
-    content_language: pulumi.Output[str]
+
+    content_language: pulumi.Output[Optional[str]] = pulumi.property("contentLanguage")
     """
     [Content-Language](https://tools.ietf.org/html/rfc7231#section-3.1.3.2) of the object data.
     """
-    content_type: pulumi.Output[str]
+
+    content_type: pulumi.Output[str] = pulumi.property("contentType")
     """
     [Content-Type](https://tools.ietf.org/html/rfc7231#section-3.1.1.5) of the object data. Defaults to "application/octet-stream" or "text/plain; charset=utf-8".
     """
-    crc32c: pulumi.Output[str]
+
+    crc32c: pulumi.Output[str] = pulumi.property("crc32c")
     """
     (Computed) Base 64 CRC32 hash of the uploaded data.
     """
-    detect_md5hash: pulumi.Output[str]
-    md5hash: pulumi.Output[str]
+
+    detect_md5hash: pulumi.Output[Optional[str]] = pulumi.property("detectMd5hash")
+
+    md5hash: pulumi.Output[str] = pulumi.property("md5hash")
     """
     (Computed) Base 64 MD5 hash of the uploaded data.
     """
-    metadata: pulumi.Output[dict]
+
+    metadata: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("metadata")
     """
     User-provided metadata, in key/value pairs.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the object. If you're interpolating the name of this object, see `output_name` instead.
     """
-    output_name: pulumi.Output[str]
+
+    output_name: pulumi.Output[str] = pulumi.property("outputName")
     """
     (Computed) The name of the object. Use this field in interpolations with `storage.ObjectACL` to recreate
     `storage.ObjectACL` resources when your `storage.BucketObject` is recreated.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     (Computed) A url reference to this object.
     """
-    source: pulumi.Output[Union[pulumi.Asset, pulumi.Archive]]
+
+    source: pulumi.Output[Optional[Union[pulumi.Asset, pulumi.Archive]]] = pulumi.property("source")
     """
     A path to the data you want to upload. Must be defined
     if `content` is not.
     """
-    storage_class: pulumi.Output[str]
+
+    storage_class: pulumi.Output[str] = pulumi.property("storageClass")
     """
     The [StorageClass](https://cloud.google.com/storage/docs/storage-classes) of the new bucket object.
     Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`. If not provided, this defaults to the bucket's default
     storage class or to a [standard](https://cloud.google.com/storage/docs/storage-classes#standard) class.
     """
-    def __init__(__self__, resource_name, opts=None, bucket=None, cache_control=None, content=None, content_disposition=None, content_encoding=None, content_language=None, content_type=None, detect_md5hash=None, metadata=None, name=None, source=None, storage_class=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 cache_control: Optional[pulumi.Input[str]] = None,
+                 content: Optional[pulumi.Input[str]] = None,
+                 content_disposition: Optional[pulumi.Input[str]] = None,
+                 content_encoding: Optional[pulumi.Input[str]] = None,
+                 content_language: Optional[pulumi.Input[str]] = None,
+                 content_type: Optional[pulumi.Input[str]] = None,
+                 detect_md5hash: Optional[pulumi.Input[str]] = None,
+                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 source: Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]] = None,
+                 storage_class: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Creates a new object inside an existing bucket in Google cloud storage service (GCS).
         [ACLs](https://cloud.google.com/storage/docs/access-control/lists) can be applied using the `storage.ObjectACL` resource.
@@ -84,6 +119,19 @@ class BucketObject(pulumi.CustomResource):
         [the official documentation](https://cloud.google.com/storage/docs/key-terms#objects)
         and
         [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
+
+        ## Example Usage
+
+        Example creating a public object in an existing `image-store` bucket.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        picture = gcp.storage.BucketObject("picture",
+            bucket="image-store",
+            source=pulumi.FileAsset("/images/nature/garden-tiger-moth.jpg"))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -95,7 +143,7 @@ class BucketObject(pulumi.CustomResource):
         :param pulumi.Input[str] content_encoding: [Content-Encoding](https://tools.ietf.org/html/rfc7231#section-3.1.2.2) of the object data.
         :param pulumi.Input[str] content_language: [Content-Language](https://tools.ietf.org/html/rfc7231#section-3.1.3.2) of the object data.
         :param pulumi.Input[str] content_type: [Content-Type](https://tools.ietf.org/html/rfc7231#section-3.1.1.5) of the object data. Defaults to "application/octet-stream" or "text/plain; charset=utf-8".
-        :param pulumi.Input[dict] metadata: User-provided metadata, in key/value pairs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: User-provided metadata, in key/value pairs.
         :param pulumi.Input[str] name: The name of the object. If you're interpolating the name of this object, see `output_name` instead.
         :param pulumi.Input[Union[pulumi.Asset, pulumi.Archive]] source: A path to the data you want to upload. Must be defined
                if `content` is not.
@@ -114,7 +162,7 @@ class BucketObject(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -145,7 +193,25 @@ class BucketObject(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bucket=None, cache_control=None, content=None, content_disposition=None, content_encoding=None, content_language=None, content_type=None, crc32c=None, detect_md5hash=None, md5hash=None, metadata=None, name=None, output_name=None, self_link=None, source=None, storage_class=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket: Optional[pulumi.Input[str]] = None,
+            cache_control: Optional[pulumi.Input[str]] = None,
+            content: Optional[pulumi.Input[str]] = None,
+            content_disposition: Optional[pulumi.Input[str]] = None,
+            content_encoding: Optional[pulumi.Input[str]] = None,
+            content_language: Optional[pulumi.Input[str]] = None,
+            content_type: Optional[pulumi.Input[str]] = None,
+            crc32c: Optional[pulumi.Input[str]] = None,
+            detect_md5hash: Optional[pulumi.Input[str]] = None,
+            md5hash: Optional[pulumi.Input[str]] = None,
+            metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            output_name: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            source: Optional[pulumi.Input[Union[pulumi.Asset, pulumi.Archive]]] = None,
+            storage_class: Optional[pulumi.Input[str]] = None) -> 'BucketObject':
         """
         Get an existing BucketObject resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -163,7 +229,7 @@ class BucketObject(pulumi.CustomResource):
         :param pulumi.Input[str] content_type: [Content-Type](https://tools.ietf.org/html/rfc7231#section-3.1.1.5) of the object data. Defaults to "application/octet-stream" or "text/plain; charset=utf-8".
         :param pulumi.Input[str] crc32c: (Computed) Base 64 CRC32 hash of the uploaded data.
         :param pulumi.Input[str] md5hash: (Computed) Base 64 MD5 hash of the uploaded data.
-        :param pulumi.Input[dict] metadata: User-provided metadata, in key/value pairs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: User-provided metadata, in key/value pairs.
         :param pulumi.Input[str] name: The name of the object. If you're interpolating the name of this object, see `output_name` instead.
         :param pulumi.Input[str] output_name: (Computed) The name of the object. Use this field in interpolations with `storage.ObjectACL` to recreate
                `storage.ObjectACL` resources when your `storage.BucketObject` is recreated.
@@ -197,7 +263,8 @@ class BucketObject(pulumi.CustomResource):
         return BucketObject(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

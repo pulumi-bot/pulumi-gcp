@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetNetworkEndpointGroupResult',
+    'AwaitableGetNetworkEndpointGroupResult',
+    'get_network_endpoint_group',
+]
+
 
 class GetNetworkEndpointGroupResult:
     """
@@ -67,6 +74,8 @@ class GetNetworkEndpointGroupResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         __self__.zone = zone
+
+
 class AwaitableGetNetworkEndpointGroupResult(GetNetworkEndpointGroupResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -85,11 +94,26 @@ class AwaitableGetNetworkEndpointGroupResult(GetNetworkEndpointGroupResult):
             subnetwork=self.subnetwork,
             zone=self.zone)
 
-def get_network_endpoint_group(name=None,self_link=None,zone=None,opts=None):
+
+def get_network_endpoint_group(name: Optional[str] = None,
+                               self_link: Optional[str] = None,
+                               zone: Optional[str] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkEndpointGroupResult:
     """
     Use this data source to access a Network Endpoint Group's attributes.
 
     The NEG may be found by providing either a `self_link`, or a `name` and a `zone`.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    neg1 = gcp.compute.get_network_endpoint_group(name="k8s1-abcdef01-myns-mysvc-8080-4b6bac43",
+        zone="us-central1-a")
+    neg2 = gcp.compute.get_network_endpoint_group(self_link="https://www.googleapis.com/compute/v1/projects/myproject/zones/us-central1-a/networkEndpointGroups/k8s1-abcdef01-myns-mysvc-8080-4b6bac43")
+    ```
 
 
     :param str name: The Network Endpoint Group name.
@@ -98,15 +122,13 @@ def get_network_endpoint_group(name=None,self_link=None,zone=None,opts=None):
     :param str zone: The Network Endpoint Group availability zone.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['selfLink'] = self_link
     __args__['zone'] = zone
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:compute/getNetworkEndpointGroup:getNetworkEndpointGroup', __args__, opts=opts).value
 
     return AwaitableGetNetworkEndpointGroupResult(
