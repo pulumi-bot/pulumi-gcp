@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetNotificationChannelResult',
+    'AwaitableGetNotificationChannelResult',
+    'get_notification_channel',
+]
+
 
 class GetNotificationChannelResult:
     """
@@ -49,6 +57,8 @@ class GetNotificationChannelResult:
         if verification_status and not isinstance(verification_status, str):
             raise TypeError("Expected argument 'verification_status' to be a str")
         __self__.verification_status = verification_status
+
+
 class AwaitableGetNotificationChannelResult(GetNotificationChannelResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -67,7 +77,13 @@ class AwaitableGetNotificationChannelResult(GetNotificationChannelResult):
             user_labels=self.user_labels,
             verification_status=self.verification_status)
 
-def get_notification_channel(display_name=None,labels=None,project=None,type=None,user_labels=None,opts=None):
+
+def get_notification_channel(display_name: Optional[str] = None,
+                             labels: Optional[Mapping[str, str]] = None,
+                             project: Optional[str] = None,
+                             type: Optional[str] = None,
+                             user_labels: Optional[Mapping[str, str]] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNotificationChannelResult:
     """
     A NotificationChannel is a medium through which an alert is delivered
     when a policy violation is detected. Examples of channels include email, SMS,
@@ -82,19 +98,41 @@ def get_notification_channel(display_name=None,labels=None,project=None,type=Non
         * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
     ## Example Usage
+    ### Notification Channel Basic
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    basic = gcp.monitoring.get_notification_channel(display_name="Test Notification Channel")
+    alert_policy = gcp.monitoring.AlertPolicy("alertPolicy",
+        display_name="My Alert Policy",
+        notification_channels=[basic.name],
+        combiner="OR",
+        conditions=[{
+            "display_name": "test condition",
+            "conditionThreshold": {
+                "filter": "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\"",
+                "duration": "60s",
+                "comparison": "COMPARISON_GT",
+                "aggregations": [{
+                    "alignmentPeriod": "60s",
+                    "perSeriesAligner": "ALIGN_RATE",
+                }],
+            },
+        }])
+    ```
 
 
     :param str display_name: The display name for this notification channel.
-    :param dict labels: Labels (corresponding to the
+    :param Mapping[str, str] labels: Labels (corresponding to the
            NotificationChannelDescriptor schema) to filter the notification channels by.
     :param str project: The ID of the project in which the resource belongs.
            If it is not provided, the provider project is used.
     :param str type: The type of the notification channel.
-    :param dict user_labels: User-provided key-value labels to filter by.
+    :param Mapping[str, str] user_labels: User-provided key-value labels to filter by.
     """
     __args__ = dict()
-
-
     __args__['displayName'] = display_name
     __args__['labels'] = labels
     __args__['project'] = project
@@ -103,7 +141,7 @@ def get_notification_channel(display_name=None,labels=None,project=None,type=Non
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:monitoring/getNotificationChannel:getNotificationChannel', __args__, opts=opts).value
 
     return AwaitableGetNotificationChannelResult(

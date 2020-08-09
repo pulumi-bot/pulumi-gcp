@@ -5,38 +5,60 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['ClusterIAMBinding']
 
 
 class ClusterIAMBinding(pulumi.CustomResource):
-    cluster: pulumi.Output[str]
+    cluster: pulumi.Output[str] = pulumi.property("cluster")
     """
     The name or relative resource id of the cluster to manage IAM policies for.
     """
-    condition: pulumi.Output[dict]
-    etag: pulumi.Output[str]
+
+    condition: pulumi.Output[Optional['outputs.ClusterIAMBindingCondition']] = pulumi.property("condition")
+
+    etag: pulumi.Output[str] = pulumi.property("etag")
     """
     (Computed) The etag of the clusters's IAM policy.
     """
-    members: pulumi.Output[list]
-    project: pulumi.Output[str]
+
+    members: pulumi.Output[List[str]] = pulumi.property("members")
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The project in which the cluster belongs. If it
     is not provided, the provider will use a default.
     """
-    region: pulumi.Output[str]
+
+    region: pulumi.Output[str] = pulumi.property("region")
     """
     The region in which the cluster belongs. If it
     is not provided, the provider will use a default.
     """
-    role: pulumi.Output[str]
+
+    role: pulumi.Output[str] = pulumi.property("role")
     """
     The role that should be applied. Only one
     `dataproc.ClusterIAMBinding` can be used per role. Note that custom roles must be of the format
     `[projects|organizations]/{parent-name}/roles/{role-name}`.
     """
-    def __init__(__self__, resource_name, opts=None, cluster=None, condition=None, members=None, project=None, region=None, role=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 cluster: Optional[pulumi.Input[str]] = None,
+                 condition: Optional[pulumi.Input[pulumi.InputType['ClusterIAMBindingConditionArgs']]] = None,
+                 members: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Three different resources help you manage IAM policies on dataproc clusters. Each of these resources serves a different use case:
 
@@ -48,6 +70,47 @@ class ClusterIAMBinding(pulumi.CustomResource):
 
         > **Note:** `dataproc.ClusterIAMBinding` resources **can be** used in conjunction with `dataproc.ClusterIAMMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_pubsub\_subscription\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+        }])
+        editor = gcp.dataproc.ClusterIAMPolicy("editor",
+            project="your-project",
+            region="your-region",
+            cluster="your-dataproc-cluster",
+            policy_data=admin.policy_data)
+        ```
+
+        ## google\_pubsub\_subscription\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        editor = gcp.dataproc.ClusterIAMBinding("editor",
+            cluster="your-dataproc-cluster",
+            members=["user:jane@example.com"],
+            role="roles/editor")
+        ```
+
+        ## google\_pubsub\_subscription\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        editor = gcp.dataproc.ClusterIAMMember("editor",
+            cluster="your-dataproc-cluster",
+            member="user:jane@example.com",
+            role="roles/editor")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster: The name or relative resource id of the cluster to manage IAM policies for.
@@ -58,12 +121,6 @@ class ClusterIAMBinding(pulumi.CustomResource):
         :param pulumi.Input[str] role: The role that should be applied. Only one
                `dataproc.ClusterIAMBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -76,7 +133,7 @@ class ClusterIAMBinding(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -102,7 +159,16 @@ class ClusterIAMBinding(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cluster=None, condition=None, etag=None, members=None, project=None, region=None, role=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cluster: Optional[pulumi.Input[str]] = None,
+            condition: Optional[pulumi.Input[pulumi.InputType['ClusterIAMBindingConditionArgs']]] = None,
+            etag: Optional[pulumi.Input[str]] = None,
+            members: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
+            role: Optional[pulumi.Input[str]] = None) -> 'ClusterIAMBinding':
         """
         Get an existing ClusterIAMBinding resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -119,12 +185,6 @@ class ClusterIAMBinding(pulumi.CustomResource):
         :param pulumi.Input[str] role: The role that should be applied. Only one
                `dataproc.ClusterIAMBinding` can be used per role. Note that custom roles must be of the format
                `[projects|organizations]/{parent-name}/roles/{role-name}`.
-
-        The **condition** object supports the following:
-
-          * `description` (`pulumi.Input[str]`)
-          * `expression` (`pulumi.Input[str]`)
-          * `title` (`pulumi.Input[str]`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -140,7 +200,8 @@ class ClusterIAMBinding(pulumi.CustomResource):
         return ClusterIAMBinding(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

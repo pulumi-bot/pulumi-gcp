@@ -5,49 +5,72 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Connector']
 
 
 class Connector(pulumi.CustomResource):
-    ip_cidr_range: pulumi.Output[str]
+    ip_cidr_range: pulumi.Output[str] = pulumi.property("ipCidrRange")
     """
     The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.
     """
-    max_throughput: pulumi.Output[float]
+
+    max_throughput: pulumi.Output[Optional[float]] = pulumi.property("maxThroughput")
     """
     Maximum throughput of the connector in Mbps, must be greater than `min_throughput`. Default is 1000.
     """
-    min_throughput: pulumi.Output[float]
+
+    min_throughput: pulumi.Output[Optional[float]] = pulumi.property("minThroughput")
     """
     Minimum throughput of the connector in Mbps. Default and min is 200.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the resource (Max 25 characters).
     """
-    network: pulumi.Output[str]
+
+    network: pulumi.Output[str] = pulumi.property("network")
     """
     Name of a VPC network.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    region: pulumi.Output[str]
+
+    region: pulumi.Output[str] = pulumi.property("region")
     """
     Region where the VPC Access connector resides
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The fully qualified name of this VPC connector
     """
-    state: pulumi.Output[str]
+
+    state: pulumi.Output[str] = pulumi.property("state")
     """
     State of the VPC access connector.
     """
-    def __init__(__self__, resource_name, opts=None, ip_cidr_range=None, max_throughput=None, min_throughput=None, name=None, network=None, project=None, region=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 ip_cidr_range: Optional[pulumi.Input[str]] = None,
+                 max_throughput: Optional[pulumi.Input[float]] = None,
+                 min_throughput: Optional[pulumi.Input[float]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 network: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Serverless VPC Access connector resource.
 
@@ -58,6 +81,17 @@ class Connector(pulumi.CustomResource):
             * [Configuring Serverless VPC Access](https://cloud.google.com/vpc/docs/configure-serverless-vpc-access)
 
         ## Example Usage
+        ### VPC Access Connector
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        connector = gcp.vpcaccess.Connector("connector",
+            ip_cidr_range="10.8.0.0/28",
+            network="default",
+            region="us-central1")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -81,7 +115,7 @@ class Connector(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -109,7 +143,18 @@ class Connector(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, ip_cidr_range=None, max_throughput=None, min_throughput=None, name=None, network=None, project=None, region=None, self_link=None, state=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ip_cidr_range: Optional[pulumi.Input[str]] = None,
+            max_throughput: Optional[pulumi.Input[float]] = None,
+            min_throughput: Optional[pulumi.Input[float]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            network: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            state: Optional[pulumi.Input[str]] = None) -> 'Connector':
         """
         Get an existing Connector resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -144,7 +189,8 @@ class Connector(pulumi.CustomResource):
         return Connector(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetOrganizationResult',
+    'AwaitableGetOrganizationResult',
+    'get_organization',
+]
+
 
 class GetOrganizationResult:
     """
@@ -55,6 +62,8 @@ class GetOrganizationResult:
         if organization and not isinstance(organization, str):
             raise TypeError("Expected argument 'organization' to be a str")
         __self__.organization = organization
+
+
 class AwaitableGetOrganizationResult(GetOrganizationResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -70,23 +79,34 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
             org_id=self.org_id,
             organization=self.organization)
 
-def get_organization(domain=None,organization=None,opts=None):
+
+def get_organization(domain: Optional[str] = None,
+                     organization: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
     """
     Use this data source to get information about a Google Cloud Organization.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    org = gcp.organizations.get_organization(domain="example.com")
+    sales = gcp.organizations.Folder("sales",
+        display_name="Sales",
+        parent=org.name)
+    ```
 
 
     :param str domain: The domain name of the Organization.
     :param str organization: The name of the Organization in the form `{organization_id}` or `organizations/{organization_id}`.
     """
     __args__ = dict()
-
-
     __args__['domain'] = domain
     __args__['organization'] = organization
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:organizations/getOrganization:getOrganization', __args__, opts=opts).value
 
     return AwaitableGetOrganizationResult(

@@ -5,29 +5,43 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['SecretCiphertext']
 
 
 class SecretCiphertext(pulumi.CustomResource):
-    additional_authenticated_data: pulumi.Output[str]
+    additional_authenticated_data: pulumi.Output[Optional[str]] = pulumi.property("additionalAuthenticatedData")
     """
     The additional authenticated data used for integrity checks during encryption and decryption.  **Note**: This property is sensitive and will not be displayed in the plan.
     """
-    ciphertext: pulumi.Output[str]
+
+    ciphertext: pulumi.Output[str] = pulumi.property("ciphertext")
     """
     Contains the result of encrypting the provided plaintext, encoded in base64.
     """
-    crypto_key: pulumi.Output[str]
+
+    crypto_key: pulumi.Output[str] = pulumi.property("cryptoKey")
     """
     The full name of the CryptoKey that will be used to encrypt the provided plaintext.
     Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}'`
     """
-    plaintext: pulumi.Output[str]
+
+    plaintext: pulumi.Output[str] = pulumi.property("plaintext")
     """
     The plaintext to be encrypted.  **Note**: This property is sensitive and will not be displayed in the plan.
     """
-    def __init__(__self__, resource_name, opts=None, additional_authenticated_data=None, crypto_key=None, plaintext=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 additional_authenticated_data: Optional[pulumi.Input[str]] = None,
+                 crypto_key: Optional[pulumi.Input[str]] = None,
+                 plaintext: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Encrypts secret data with Google Cloud KMS and provides access to the ciphertext.
 
@@ -46,6 +60,35 @@ class SecretCiphertext(pulumi.CustomResource):
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
         ## Example Usage
+        ### Kms Secret Ciphertext Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        keyring = gcp.kms.KeyRing("keyring", location="global")
+        cryptokey = gcp.kms.CryptoKey("cryptokey",
+            key_ring=keyring.id,
+            rotation_period="100000s")
+        my_password = gcp.kms.SecretCiphertext("myPassword",
+            crypto_key=cryptokey.id,
+            plaintext="my-secret-password")
+        instance = gcp.compute.Instance("instance",
+            machine_type="n1-standard-1",
+            zone="us-central1-a",
+            boot_disk={
+                "initializeParams": {
+                    "image": "debian-cloud/debian-9",
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+                "accessConfigs": [{}],
+            }],
+            metadata={
+                "password": my_password.ciphertext,
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -65,7 +108,7 @@ class SecretCiphertext(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -86,7 +129,13 @@ class SecretCiphertext(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, additional_authenticated_data=None, ciphertext=None, crypto_key=None, plaintext=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            additional_authenticated_data: Optional[pulumi.Input[str]] = None,
+            ciphertext: Optional[pulumi.Input[str]] = None,
+            crypto_key: Optional[pulumi.Input[str]] = None,
+            plaintext: Optional[pulumi.Input[str]] = None) -> 'SecretCiphertext':
         """
         Get an existing SecretCiphertext resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -111,7 +160,8 @@ class SecretCiphertext(pulumi.CustomResource):
         return SecretCiphertext(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
