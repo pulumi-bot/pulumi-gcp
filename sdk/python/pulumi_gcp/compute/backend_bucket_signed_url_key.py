@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class BackendBucketSignedUrlKey(pulumi.CustomResource):
@@ -42,6 +42,21 @@ class BackendBucketSignedUrlKey(pulumi.CustomResource):
         state as plain-text.
 
         ## Example Usage
+        ### Backend Bucket Signed Url Key
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bucket = gcp.storage.Bucket("bucket", location="EU")
+        test_backend = gcp.compute.BackendBucket("testBackend",
+            description="Contains beautiful images",
+            bucket_name=bucket.name,
+            enable_cdn=True)
+        backend_key = gcp.compute.BackendBucketSignedUrlKey("backendKey",
+            key_value="pPsVemX8GM46QVeezid6Rw==",
+            backend_bucket=test_backend.name)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -63,7 +78,7 @@ class BackendBucketSignedUrlKey(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -110,7 +125,7 @@ class BackendBucketSignedUrlKey(pulumi.CustomResource):
         return BackendBucketSignedUrlKey(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

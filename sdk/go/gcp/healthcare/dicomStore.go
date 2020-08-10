@@ -20,6 +20,45 @@ import (
 //     * [Creating a DICOM store](https://cloud.google.com/healthcare/docs/how-tos/dicom)
 //
 // ## Example Usage
+// ### Healthcare Dicom Store Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/healthcare"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/pubsub"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		topic, err := pubsub.NewTopic(ctx, "topic", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		dataset, err := healthcare.NewDataset(ctx, "dataset", &healthcare.DatasetArgs{
+// 			Location: pulumi.String("us-central1"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = healthcare.NewDicomStore(ctx, "_default", &healthcare.DicomStoreArgs{
+// 			Dataset: dataset.ID(),
+// 			NotificationConfig: &healthcare.DicomStoreNotificationConfigArgs{
+// 				PubsubTopic: topic.ID(),
+// 			},
+// 			Labels: pulumi.StringMap{
+// 				"label1": pulumi.String("labelvalue1"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type DicomStore struct {
 	pulumi.CustomResourceState
 
