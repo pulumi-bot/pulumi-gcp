@@ -6,6 +6,25 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
+/**
+ * ## google\_folder\_iam\_audit\_config
+ *
+ * Allows management of audit logging config for a given service for a Google Cloud Platform folder.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const config = new gcp.folder.IamAuditConfig("config", {
+ *     auditLogConfigs: [{
+ *         exemptedMembers: ["user:joebloggs@hashicorp.com"],
+ *         logType: "DATA_READ",
+ *     }],
+ *     folder: "folders/{folder_id}",
+ *     service: "allServices",
+ * });
+ * ```
+ */
 export class IamAuditConfig extends pulumi.CustomResource {
     /**
      * Get an existing IamAuditConfig resource's state with the given name, ID, and optional extra

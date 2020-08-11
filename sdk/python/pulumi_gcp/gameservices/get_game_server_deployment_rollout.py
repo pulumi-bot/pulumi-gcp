@@ -5,8 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetGameServerDeploymentRolloutResult',
+    'AwaitableGetGameServerDeploymentRolloutResult',
+    'get_game_server_deployment_rollout',
+]
+
 
 class GetGameServerDeploymentRolloutResult:
     """
@@ -38,6 +46,8 @@ class GetGameServerDeploymentRolloutResult:
         The ID of the project in which the resource belongs.
         If it is not provided, the provider project is used.
         """
+
+
 class AwaitableGetGameServerDeploymentRolloutResult(GetGameServerDeploymentRolloutResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -51,23 +61,32 @@ class AwaitableGetGameServerDeploymentRolloutResult(GetGameServerDeploymentRollo
             name=self.name,
             project=self.project)
 
-def get_game_server_deployment_rollout(deployment_id=None,opts=None):
+
+def get_game_server_deployment_rollout(deployment_id: Optional[str] = None,
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGameServerDeploymentRolloutResult:
     """
     Use this data source to get the rollout state.
 
     https://cloud.google.com/game-servers/docs/reference/rest/v1beta/GameServerDeploymentRollout
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    qa = gcp.gameservices.get_game_server_deployment_rollout(deployment_id="tf-test-deployment-s8sn12jt2c")
+    ```
+
 
     :param str deployment_id: The deployment to get the rollout state from. Only 1 rollout must be associated with each deployment.
     """
     __args__ = dict()
-
-
     __args__['deploymentId'] = deployment_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:gameservices/getGameServerDeploymentRollout:getGameServerDeploymentRollout', __args__, opts=opts).value
 
     return AwaitableGetGameServerDeploymentRolloutResult(

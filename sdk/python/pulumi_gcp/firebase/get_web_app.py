@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetWebAppResult',
+    'AwaitableGetWebAppResult',
+    'get_web_app',
+]
+
 
 class GetWebAppResult:
     """
@@ -31,6 +38,8 @@ class GetWebAppResult:
         if project and not isinstance(project, str):
             raise TypeError("Expected argument 'project' to be a str")
         __self__.project = project
+
+
 class AwaitableGetWebAppResult(GetWebAppResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -43,7 +52,9 @@ class AwaitableGetWebAppResult(GetWebAppResult):
             name=self.name,
             project=self.project)
 
-def get_web_app(app_id=None,opts=None):
+
+def get_web_app(app_id: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebAppResult:
     """
     A Google Cloud Firebase web application instance
 
@@ -51,13 +62,11 @@ def get_web_app(app_id=None,opts=None):
     :param str app_id: The app_ip of name of the Firebase webApp.
     """
     __args__ = dict()
-
-
     __args__['appId'] = app_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:firebase/getWebApp:getWebApp', __args__, opts=opts).value
 
     return AwaitableGetWebAppResult(

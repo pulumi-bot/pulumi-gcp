@@ -5,21 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['RegionDisk']
 
 
 class RegionDisk(pulumi.CustomResource):
-    creation_timestamp: pulumi.Output[str]
+    creation_timestamp: pulumi.Output[str] = pulumi.property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     An optional description of this resource. Provide this property when
     you create the resource.
     """
-    disk_encryption_key: pulumi.Output[dict]
+
+    disk_encryption_key: pulumi.Output[Optional['outputs.RegionDiskDiskEncryptionKey']] = pulumi.property("diskEncryptionKey")
     """
     Encrypts the disk using a customer-supplied encryption key.
     After you encrypt a disk with a customer-supplied key, you must
@@ -30,31 +36,29 @@ class RegionDisk(pulumi.CustomResource):
     If you do not provide an encryption key when creating the disk, then
     the disk will be encrypted using an automatically generated key and
     you do not need to provide a key to use the disk later.  Structure is documented below.
-
-      * `kms_key_name` (`str`) - The name of the encryption key that is stored in Google Cloud KMS.
-      * `rawKey` (`str`) - Specifies a 256-bit customer-supplied encryption key, encoded in
-        RFC 4648 base64 to either encrypt or decrypt this resource.
-      * `sha256` (`str`) - -
-        The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
-        encryption key that protects this resource.
     """
-    label_fingerprint: pulumi.Output[str]
+
+    label_fingerprint: pulumi.Output[str] = pulumi.property("labelFingerprint")
     """
     The fingerprint used for optimistic locking of this resource. Used internally during updates.
     """
-    labels: pulumi.Output[dict]
+
+    labels: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("labels")
     """
     Labels to apply to this disk.  A list of key->value pairs.
     """
-    last_attach_timestamp: pulumi.Output[str]
+
+    last_attach_timestamp: pulumi.Output[str] = pulumi.property("lastAttachTimestamp")
     """
     Last attach timestamp in RFC3339 text format.
     """
-    last_detach_timestamp: pulumi.Output[str]
+
+    last_detach_timestamp: pulumi.Output[str] = pulumi.property("lastDetachTimestamp")
     """
     Last detach timestamp in RFC3339 text format.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -64,7 +68,8 @@ class RegionDisk(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the last
     character, which cannot be a dash.
     """
-    physical_block_size_bytes: pulumi.Output[float]
+
+    physical_block_size_bytes: pulumi.Output[float] = pulumi.property("physicalBlockSizeBytes")
     """
     Physical block size of the persistent disk, in bytes. If not present
     in a request, a default value is used. Currently supported sizes
@@ -72,24 +77,29 @@ class RegionDisk(pulumi.CustomResource):
     If an unsupported value is requested, the error message will list
     the supported values for the caller's project.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    region: pulumi.Output[str]
+
+    region: pulumi.Output[str] = pulumi.property("region")
     """
     A reference to the region where the disk resides.
     """
-    replica_zones: pulumi.Output[list]
+
+    replica_zones: pulumi.Output[List[str]] = pulumi.property("replicaZones")
     """
     URLs of the zones where the disk should be replicated to.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    size: pulumi.Output[float]
+
+    size: pulumi.Output[float] = pulumi.property("size")
     """
     Size of the persistent disk, specified in GB. You can specify this
     field when creating a persistent disk using the sourceImage or
@@ -99,7 +109,8 @@ class RegionDisk(pulumi.CustomResource):
     the value of sizeGb must not be less than the size of the sourceImage
     or the size of the snapshot.
     """
-    snapshot: pulumi.Output[str]
+
+    snapshot: pulumi.Output[Optional[str]] = pulumi.property("snapshot")
     """
     The source snapshot used to create this disk. You can provide this as
     a partial or full URL to the resource. For example, the following are
@@ -109,35 +120,50 @@ class RegionDisk(pulumi.CustomResource):
     * `global/snapshots/snapshot`
     * `snapshot`
     """
-    source_snapshot_encryption_key: pulumi.Output[dict]
+
+    source_snapshot_encryption_key: pulumi.Output[Optional['outputs.RegionDiskSourceSnapshotEncryptionKey']] = pulumi.property("sourceSnapshotEncryptionKey")
     """
     The customer-supplied encryption key of the source snapshot. Required
     if the source snapshot is protected by a customer-supplied encryption
     key.  Structure is documented below.
-
-      * `kms_key_name` (`str`) - The name of the encryption key that is stored in Google Cloud KMS.
-      * `rawKey` (`str`) - Specifies a 256-bit customer-supplied encryption key, encoded in
-        RFC 4648 base64 to either encrypt or decrypt this resource.
-      * `sha256` (`str`) - -
-        The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
-        encryption key that protects this resource.
     """
-    source_snapshot_id: pulumi.Output[str]
+
+    source_snapshot_id: pulumi.Output[str] = pulumi.property("sourceSnapshotId")
     """
     The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create
     this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and
     recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
     """
-    type: pulumi.Output[str]
+
+    type: pulumi.Output[Optional[str]] = pulumi.property("type")
     """
     URL of the disk type resource describing which disk type to use to
     create the disk. Provide this when creating the disk.
     """
-    users: pulumi.Output[list]
+
+    users: pulumi.Output[List[str]] = pulumi.property("users")
     """
     Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
     """
-    def __init__(__self__, resource_name, opts=None, description=None, disk_encryption_key=None, labels=None, name=None, physical_block_size_bytes=None, project=None, region=None, replica_zones=None, size=None, snapshot=None, source_snapshot_encryption_key=None, type=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 disk_encryption_key: Optional[pulumi.Input[pulumi.InputType['RegionDiskDiskEncryptionKeyArgs']]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 physical_block_size_bytes: Optional[pulumi.Input[float]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 replica_zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 size: Optional[pulumi.Input[float]] = None,
+                 snapshot: Optional[pulumi.Input[str]] = None,
+                 source_snapshot_encryption_key: Optional[pulumi.Input[pulumi.InputType['RegionDiskSourceSnapshotEncryptionKeyArgs']]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Persistent disks are durable storage devices that function similarly to
         the physical disks in a desktop or a server. Compute Engine manages the
@@ -165,12 +191,36 @@ class RegionDisk(pulumi.CustomResource):
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
         ## Example Usage
+        ### Region Disk Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        disk = gcp.compute.Disk("disk",
+            image="debian-cloud/debian-9",
+            size=50,
+            type="pd-ssd",
+            zone="us-central1-a")
+        snapdisk = gcp.compute.Snapshot("snapdisk",
+            source_disk=disk.name,
+            zone="us-central1-a")
+        regiondisk = gcp.compute.RegionDisk("regiondisk",
+            snapshot=snapdisk.id,
+            type="pd-ssd",
+            region="us-central1",
+            physical_block_size_bytes=4096,
+            replica_zones=[
+                "us-central1-a",
+                "us-central1-f",
+            ])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
                you create the resource.
-        :param pulumi.Input[dict] disk_encryption_key: Encrypts the disk using a customer-supplied encryption key.
+        :param pulumi.Input[pulumi.InputType['RegionDiskDiskEncryptionKeyArgs']] disk_encryption_key: Encrypts the disk using a customer-supplied encryption key.
                After you encrypt a disk with a customer-supplied key, you must
                provide the same key if you use the disk later (e.g. to create a disk
                snapshot or an image, or to attach the disk to a virtual machine).
@@ -179,7 +229,7 @@ class RegionDisk(pulumi.CustomResource):
                If you do not provide an encryption key when creating the disk, then
                the disk will be encrypted using an automatically generated key and
                you do not need to provide a key to use the disk later.  Structure is documented below.
-        :param pulumi.Input[dict] labels: Labels to apply to this disk.  A list of key->value pairs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this disk.  A list of key->value pairs.
         :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is
                created. The name must be 1-63 characters long, and comply with
                RFC1035. Specifically, the name must be 1-63 characters long and match
@@ -195,7 +245,7 @@ class RegionDisk(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: A reference to the region where the disk resides.
-        :param pulumi.Input[list] replica_zones: URLs of the zones where the disk should be replicated to.
+        :param pulumi.Input[List[pulumi.Input[str]]] replica_zones: URLs of the zones where the disk should be replicated to.
         :param pulumi.Input[float] size: Size of the persistent disk, specified in GB. You can specify this
                field when creating a persistent disk using the sourceImage or
                sourceSnapshot parameter, or specify it alone to create an empty
@@ -210,29 +260,11 @@ class RegionDisk(pulumi.CustomResource):
                * `projects/project/global/snapshots/snapshot`
                * `global/snapshots/snapshot`
                * `snapshot`
-        :param pulumi.Input[dict] source_snapshot_encryption_key: The customer-supplied encryption key of the source snapshot. Required
+        :param pulumi.Input[pulumi.InputType['RegionDiskSourceSnapshotEncryptionKeyArgs']] source_snapshot_encryption_key: The customer-supplied encryption key of the source snapshot. Required
                if the source snapshot is protected by a customer-supplied encryption
                key.  Structure is documented below.
         :param pulumi.Input[str] type: URL of the disk type resource describing which disk type to use to
                create the disk. Provide this when creating the disk.
-
-        The **disk_encryption_key** object supports the following:
-
-          * `kms_key_name` (`pulumi.Input[str]`) - The name of the encryption key that is stored in Google Cloud KMS.
-          * `rawKey` (`pulumi.Input[str]`) - Specifies a 256-bit customer-supplied encryption key, encoded in
-            RFC 4648 base64 to either encrypt or decrypt this resource.
-          * `sha256` (`pulumi.Input[str]`) - -
-            The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
-            encryption key that protects this resource.
-
-        The **source_snapshot_encryption_key** object supports the following:
-
-          * `kms_key_name` (`pulumi.Input[str]`) - The name of the encryption key that is stored in Google Cloud KMS.
-          * `rawKey` (`pulumi.Input[str]`) - Specifies a 256-bit customer-supplied encryption key, encoded in
-            RFC 4648 base64 to either encrypt or decrypt this resource.
-          * `sha256` (`pulumi.Input[str]`) - -
-            The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
-            encryption key that protects this resource.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -245,7 +277,7 @@ class RegionDisk(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -279,7 +311,28 @@ class RegionDisk(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, creation_timestamp=None, description=None, disk_encryption_key=None, label_fingerprint=None, labels=None, last_attach_timestamp=None, last_detach_timestamp=None, name=None, physical_block_size_bytes=None, project=None, region=None, replica_zones=None, self_link=None, size=None, snapshot=None, source_snapshot_encryption_key=None, source_snapshot_id=None, type=None, users=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            creation_timestamp: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            disk_encryption_key: Optional[pulumi.Input[pulumi.InputType['RegionDiskDiskEncryptionKeyArgs']]] = None,
+            label_fingerprint: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            last_attach_timestamp: Optional[pulumi.Input[str]] = None,
+            last_detach_timestamp: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            physical_block_size_bytes: Optional[pulumi.Input[float]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
+            replica_zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            size: Optional[pulumi.Input[float]] = None,
+            snapshot: Optional[pulumi.Input[str]] = None,
+            source_snapshot_encryption_key: Optional[pulumi.Input[pulumi.InputType['RegionDiskSourceSnapshotEncryptionKeyArgs']]] = None,
+            source_snapshot_id: Optional[pulumi.Input[str]] = None,
+            type: Optional[pulumi.Input[str]] = None,
+            users: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'RegionDisk':
         """
         Get an existing RegionDisk resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -290,7 +343,7 @@ class RegionDisk(pulumi.CustomResource):
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
         :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
                you create the resource.
-        :param pulumi.Input[dict] disk_encryption_key: Encrypts the disk using a customer-supplied encryption key.
+        :param pulumi.Input[pulumi.InputType['RegionDiskDiskEncryptionKeyArgs']] disk_encryption_key: Encrypts the disk using a customer-supplied encryption key.
                After you encrypt a disk with a customer-supplied key, you must
                provide the same key if you use the disk later (e.g. to create a disk
                snapshot or an image, or to attach the disk to a virtual machine).
@@ -300,7 +353,7 @@ class RegionDisk(pulumi.CustomResource):
                the disk will be encrypted using an automatically generated key and
                you do not need to provide a key to use the disk later.  Structure is documented below.
         :param pulumi.Input[str] label_fingerprint: The fingerprint used for optimistic locking of this resource. Used internally during updates.
-        :param pulumi.Input[dict] labels: Labels to apply to this disk.  A list of key->value pairs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this disk.  A list of key->value pairs.
         :param pulumi.Input[str] last_attach_timestamp: Last attach timestamp in RFC3339 text format.
         :param pulumi.Input[str] last_detach_timestamp: Last detach timestamp in RFC3339 text format.
         :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is
@@ -318,7 +371,7 @@ class RegionDisk(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: A reference to the region where the disk resides.
-        :param pulumi.Input[list] replica_zones: URLs of the zones where the disk should be replicated to.
+        :param pulumi.Input[List[pulumi.Input[str]]] replica_zones: URLs of the zones where the disk should be replicated to.
         :param pulumi.Input[str] self_link: The URI of the created resource.
         :param pulumi.Input[float] size: Size of the persistent disk, specified in GB. You can specify this
                field when creating a persistent disk using the sourceImage or
@@ -334,7 +387,7 @@ class RegionDisk(pulumi.CustomResource):
                * `projects/project/global/snapshots/snapshot`
                * `global/snapshots/snapshot`
                * `snapshot`
-        :param pulumi.Input[dict] source_snapshot_encryption_key: The customer-supplied encryption key of the source snapshot. Required
+        :param pulumi.Input[pulumi.InputType['RegionDiskSourceSnapshotEncryptionKeyArgs']] source_snapshot_encryption_key: The customer-supplied encryption key of the source snapshot. Required
                if the source snapshot is protected by a customer-supplied encryption
                key.  Structure is documented below.
         :param pulumi.Input[str] source_snapshot_id: The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create
@@ -342,25 +395,7 @@ class RegionDisk(pulumi.CustomResource):
                recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.
         :param pulumi.Input[str] type: URL of the disk type resource describing which disk type to use to
                create the disk. Provide this when creating the disk.
-        :param pulumi.Input[list] users: Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
-
-        The **disk_encryption_key** object supports the following:
-
-          * `kms_key_name` (`pulumi.Input[str]`) - The name of the encryption key that is stored in Google Cloud KMS.
-          * `rawKey` (`pulumi.Input[str]`) - Specifies a 256-bit customer-supplied encryption key, encoded in
-            RFC 4648 base64 to either encrypt or decrypt this resource.
-          * `sha256` (`pulumi.Input[str]`) - -
-            The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
-            encryption key that protects this resource.
-
-        The **source_snapshot_encryption_key** object supports the following:
-
-          * `kms_key_name` (`pulumi.Input[str]`) - The name of the encryption key that is stored in Google Cloud KMS.
-          * `rawKey` (`pulumi.Input[str]`) - Specifies a 256-bit customer-supplied encryption key, encoded in
-            RFC 4648 base64 to either encrypt or decrypt this resource.
-          * `sha256` (`pulumi.Input[str]`) - -
-            The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
-            encryption key that protects this resource.
+        :param pulumi.Input[List[pulumi.Input[str]]] users: Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -388,7 +423,8 @@ class RegionDisk(pulumi.CustomResource):
         return RegionDisk(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
