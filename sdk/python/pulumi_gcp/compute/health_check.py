@@ -5,125 +5,59 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['HealthCheck']
 
 
 class HealthCheck(pulumi.CustomResource):
-    check_interval_sec: pulumi.Output[float]
+    check_interval_sec: pulumi.Output[Optional[float]] = pulumi.property("checkIntervalSec")
     """
     How often (in seconds) to send a health check. The default value is 5
     seconds.
     """
-    creation_timestamp: pulumi.Output[str]
+
+    creation_timestamp: pulumi.Output[str] = pulumi.property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     An optional description of this resource. Provide this property when
     you create the resource.
     """
-    healthy_threshold: pulumi.Output[float]
+
+    healthy_threshold: pulumi.Output[Optional[float]] = pulumi.property("healthyThreshold")
     """
     A so-far unhealthy instance will be marked healthy after this many
     consecutive successes. The default value is 2.
     """
-    http2_health_check: pulumi.Output[dict]
+
+    http2_health_check: pulumi.Output[Optional['outputs.HealthCheckHttp2HealthCheck']] = pulumi.property("http2HealthCheck")
     """
     A nested object resource  Structure is documented below.
-
-      * `host` (`str`) - The value of the host header in the HTTP2 health check request.
-        If left empty (default value), the public IP on behalf of which this health
-        check is performed will be used.
-      * `port` (`float`) - The TCP port number for the HTTP2 health check request.
-        The default value is 443.
-      * `port_name` (`str`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-        port_name are defined, port takes precedence.
-      * `portSpecification` (`str`) - Specifies how port is selected for health checking, can be one of the
-        following values:
-        * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-        * `USE_NAMED_PORT`: The `portName` is used for health checking.
-        * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-        network endpoint is used for health checking. For other backends, the
-        port or named port specified in the Backend Service is used for health
-        checking.
-        If not specified, HTTP2 health check follows behavior specified in `port` and
-        `portName` fields.
-      * `proxy_header` (`str`) - Specifies the type of proxy header to append before sending data to the
-        backend.
-      * `request_path` (`str`) - The request path of the HTTP2 health check request.
-        The default value is /.
-      * `response` (`str`) - The bytes to match against the beginning of the response data. If left empty
-        (the default value), any response will indicate health. The response data
-        can only be ASCII.
     """
-    http_health_check: pulumi.Output[dict]
+
+    http_health_check: pulumi.Output[Optional['outputs.HealthCheckHttpHealthCheck']] = pulumi.property("httpHealthCheck")
     """
     A nested object resource  Structure is documented below.
-
-      * `host` (`str`) - The value of the host header in the HTTP2 health check request.
-        If left empty (default value), the public IP on behalf of which this health
-        check is performed will be used.
-      * `port` (`float`) - The TCP port number for the HTTP2 health check request.
-        The default value is 443.
-      * `port_name` (`str`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-        port_name are defined, port takes precedence.
-      * `portSpecification` (`str`) - Specifies how port is selected for health checking, can be one of the
-        following values:
-        * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-        * `USE_NAMED_PORT`: The `portName` is used for health checking.
-        * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-        network endpoint is used for health checking. For other backends, the
-        port or named port specified in the Backend Service is used for health
-        checking.
-        If not specified, HTTP2 health check follows behavior specified in `port` and
-        `portName` fields.
-      * `proxy_header` (`str`) - Specifies the type of proxy header to append before sending data to the
-        backend.
-      * `request_path` (`str`) - The request path of the HTTP2 health check request.
-        The default value is /.
-      * `response` (`str`) - The bytes to match against the beginning of the response data. If left empty
-        (the default value), any response will indicate health. The response data
-        can only be ASCII.
     """
-    https_health_check: pulumi.Output[dict]
+
+    https_health_check: pulumi.Output[Optional['outputs.HealthCheckHttpsHealthCheck']] = pulumi.property("httpsHealthCheck")
     """
     A nested object resource  Structure is documented below.
-
-      * `host` (`str`) - The value of the host header in the HTTP2 health check request.
-        If left empty (default value), the public IP on behalf of which this health
-        check is performed will be used.
-      * `port` (`float`) - The TCP port number for the HTTP2 health check request.
-        The default value is 443.
-      * `port_name` (`str`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-        port_name are defined, port takes precedence.
-      * `portSpecification` (`str`) - Specifies how port is selected for health checking, can be one of the
-        following values:
-        * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-        * `USE_NAMED_PORT`: The `portName` is used for health checking.
-        * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-        network endpoint is used for health checking. For other backends, the
-        port or named port specified in the Backend Service is used for health
-        checking.
-        If not specified, HTTP2 health check follows behavior specified in `port` and
-        `portName` fields.
-      * `proxy_header` (`str`) - Specifies the type of proxy header to append before sending data to the
-        backend.
-      * `request_path` (`str`) - The request path of the HTTP2 health check request.
-        The default value is /.
-      * `response` (`str`) - The bytes to match against the beginning of the response data. If left empty
-        (the default value), any response will indicate health. The response data
-        can only be ASCII.
     """
-    log_config: pulumi.Output[dict]
+
+    log_config: pulumi.Output[Optional['outputs.HealthCheckLogConfig']] = pulumi.property("logConfig")
     """
     Configure logging on this health check.  Structure is documented below.
-
-      * `enable` (`bool`) - Indicates whether or not to export logs. This is false by default,
-        which means no health check logging will be done.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -133,87 +67,65 @@ class HealthCheck(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the
     last character, which cannot be a dash.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    ssl_health_check: pulumi.Output[dict]
+
+    ssl_health_check: pulumi.Output[Optional['outputs.HealthCheckSslHealthCheck']] = pulumi.property("sslHealthCheck")
     """
     A nested object resource  Structure is documented below.
-
-      * `port` (`float`) - The TCP port number for the HTTP2 health check request.
-        The default value is 443.
-      * `port_name` (`str`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-        port_name are defined, port takes precedence.
-      * `portSpecification` (`str`) - Specifies how port is selected for health checking, can be one of the
-        following values:
-        * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-        * `USE_NAMED_PORT`: The `portName` is used for health checking.
-        * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-        network endpoint is used for health checking. For other backends, the
-        port or named port specified in the Backend Service is used for health
-        checking.
-        If not specified, HTTP2 health check follows behavior specified in `port` and
-        `portName` fields.
-      * `proxy_header` (`str`) - Specifies the type of proxy header to append before sending data to the
-        backend.
-      * `request` (`str`) - The application data to send once the SSL connection has been
-        established (default value is empty). If both request and response are
-        empty, the connection establishment alone will indicate health. The request
-        data can only be ASCII.
-      * `response` (`str`) - The bytes to match against the beginning of the response data. If left empty
-        (the default value), any response will indicate health. The response data
-        can only be ASCII.
     """
-    tcp_health_check: pulumi.Output[dict]
+
+    tcp_health_check: pulumi.Output[Optional['outputs.HealthCheckTcpHealthCheck']] = pulumi.property("tcpHealthCheck")
     """
     A nested object resource  Structure is documented below.
-
-      * `port` (`float`) - The TCP port number for the HTTP2 health check request.
-        The default value is 443.
-      * `port_name` (`str`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-        port_name are defined, port takes precedence.
-      * `portSpecification` (`str`) - Specifies how port is selected for health checking, can be one of the
-        following values:
-        * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-        * `USE_NAMED_PORT`: The `portName` is used for health checking.
-        * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-        network endpoint is used for health checking. For other backends, the
-        port or named port specified in the Backend Service is used for health
-        checking.
-        If not specified, HTTP2 health check follows behavior specified in `port` and
-        `portName` fields.
-      * `proxy_header` (`str`) - Specifies the type of proxy header to append before sending data to the
-        backend.
-      * `request` (`str`) - The application data to send once the SSL connection has been
-        established (default value is empty). If both request and response are
-        empty, the connection establishment alone will indicate health. The request
-        data can only be ASCII.
-      * `response` (`str`) - The bytes to match against the beginning of the response data. If left empty
-        (the default value), any response will indicate health. The response data
-        can only be ASCII.
     """
-    timeout_sec: pulumi.Output[float]
+
+    timeout_sec: pulumi.Output[Optional[float]] = pulumi.property("timeoutSec")
     """
     How long (in seconds) to wait before claiming failure.
     The default value is 5 seconds.  It is invalid for timeoutSec to have
     greater value than checkIntervalSec.
     """
-    type: pulumi.Output[str]
+
+    type: pulumi.Output[str] = pulumi.property("type")
     """
     The type of the health check. One of HTTP, HTTPS, TCP, or SSL.
     """
-    unhealthy_threshold: pulumi.Output[float]
+
+    unhealthy_threshold: pulumi.Output[Optional[float]] = pulumi.property("unhealthyThreshold")
     """
     A so-far healthy instance will be marked unhealthy after this many
     consecutive failures. The default value is 2.
     """
-    def __init__(__self__, resource_name, opts=None, check_interval_sec=None, description=None, healthy_threshold=None, http2_health_check=None, http_health_check=None, https_health_check=None, log_config=None, name=None, project=None, ssl_health_check=None, tcp_health_check=None, timeout_sec=None, unhealthy_threshold=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 check_interval_sec: Optional[pulumi.Input[float]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 healthy_threshold: Optional[pulumi.Input[float]] = None,
+                 http2_health_check: Optional[pulumi.Input[pulumi.InputType['HealthCheckHttp2HealthCheckArgs']]] = None,
+                 http_health_check: Optional[pulumi.Input[pulumi.InputType['HealthCheckHttpHealthCheckArgs']]] = None,
+                 https_health_check: Optional[pulumi.Input[pulumi.InputType['HealthCheckHttpsHealthCheckArgs']]] = None,
+                 log_config: Optional[pulumi.Input[pulumi.InputType['HealthCheckLogConfigArgs']]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 ssl_health_check: Optional[pulumi.Input[pulumi.InputType['HealthCheckSslHealthCheckArgs']]] = None,
+                 tcp_health_check: Optional[pulumi.Input[pulumi.InputType['HealthCheckTcpHealthCheckArgs']]] = None,
+                 timeout_sec: Optional[pulumi.Input[float]] = None,
+                 unhealthy_threshold: Optional[pulumi.Input[float]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Health Checks determine whether instances are responsive and able to do work.
         They are an important part of a comprehensive load balancing configuration,
@@ -234,6 +146,191 @@ class HealthCheck(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/load-balancing/docs/health-checks)
 
         ## Example Usage
+        ### Health Check Tcp
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        tcp_health_check = gcp.compute.HealthCheck("tcp-health-check",
+            check_interval_sec=1,
+            tcp_health_check={
+                "port": 80,
+            },
+            timeout_sec=1)
+        ```
+        ### Health Check Tcp Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        tcp_health_check = gcp.compute.HealthCheck("tcp-health-check",
+            check_interval_sec=1,
+            description="Health check via tcp",
+            healthy_threshold=4,
+            tcp_health_check={
+                "port_name": "health-check-port",
+                "portSpecification": "USE_NAMED_PORT",
+                "proxy_header": "NONE",
+                "request": "ARE YOU HEALTHY?",
+                "response": "I AM HEALTHY",
+            },
+            timeout_sec=1,
+            unhealthy_threshold=5)
+        ```
+        ### Health Check Ssl
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        ssl_health_check = gcp.compute.HealthCheck("ssl-health-check",
+            check_interval_sec=1,
+            ssl_health_check={
+                "port": 443,
+            },
+            timeout_sec=1)
+        ```
+        ### Health Check Ssl Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        ssl_health_check = gcp.compute.HealthCheck("ssl-health-check",
+            check_interval_sec=1,
+            description="Health check via ssl",
+            healthy_threshold=4,
+            ssl_health_check={
+                "port_name": "health-check-port",
+                "portSpecification": "USE_NAMED_PORT",
+                "proxy_header": "NONE",
+                "request": "ARE YOU HEALTHY?",
+                "response": "I AM HEALTHY",
+            },
+            timeout_sec=1,
+            unhealthy_threshold=5)
+        ```
+        ### Health Check Http
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        http_health_check = gcp.compute.HealthCheck("http-health-check",
+            check_interval_sec=1,
+            http_health_check={
+                "port": 80,
+            },
+            timeout_sec=1)
+        ```
+        ### Health Check Http Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        http_health_check = gcp.compute.HealthCheck("http-health-check",
+            check_interval_sec=1,
+            description="Health check via http",
+            healthy_threshold=4,
+            http_health_check={
+                "host": "1.2.3.4",
+                "port_name": "health-check-port",
+                "portSpecification": "USE_NAMED_PORT",
+                "proxy_header": "NONE",
+                "request_path": "/mypath",
+                "response": "I AM HEALTHY",
+            },
+            timeout_sec=1,
+            unhealthy_threshold=5)
+        ```
+        ### Health Check Https
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        https_health_check = gcp.compute.HealthCheck("https-health-check",
+            check_interval_sec=1,
+            https_health_check={
+                "port": 443,
+            },
+            timeout_sec=1)
+        ```
+        ### Health Check Https Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        https_health_check = gcp.compute.HealthCheck("https-health-check",
+            check_interval_sec=1,
+            description="Health check via https",
+            healthy_threshold=4,
+            https_health_check={
+                "host": "1.2.3.4",
+                "port_name": "health-check-port",
+                "portSpecification": "USE_NAMED_PORT",
+                "proxy_header": "NONE",
+                "request_path": "/mypath",
+                "response": "I AM HEALTHY",
+            },
+            timeout_sec=1,
+            unhealthy_threshold=5)
+        ```
+        ### Health Check Http2
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        http2_health_check = gcp.compute.HealthCheck("http2-health-check",
+            check_interval_sec=1,
+            http2_health_check={
+                "port": 443,
+            },
+            timeout_sec=1)
+        ```
+        ### Health Check Http2 Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        http2_health_check = gcp.compute.HealthCheck("http2-health-check",
+            check_interval_sec=1,
+            description="Health check via http2",
+            healthy_threshold=4,
+            http2_health_check={
+                "host": "1.2.3.4",
+                "port_name": "health-check-port",
+                "portSpecification": "USE_NAMED_PORT",
+                "proxy_header": "NONE",
+                "request_path": "/mypath",
+                "response": "I AM HEALTHY",
+            },
+            timeout_sec=1,
+            unhealthy_threshold=5)
+        ```
+        ### Health Check With Logging
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        health_check_with_logging = gcp.compute.HealthCheck("health-check-with-logging",
+            timeout_sec=1,
+            check_interval_sec=1,
+            tcp_health_check={
+                "port": 22,
+            },
+            log_config={
+                "enable": True,
+            },
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -243,10 +340,10 @@ class HealthCheck(pulumi.CustomResource):
                you create the resource.
         :param pulumi.Input[float] healthy_threshold: A so-far unhealthy instance will be marked healthy after this many
                consecutive successes. The default value is 2.
-        :param pulumi.Input[dict] http2_health_check: A nested object resource  Structure is documented below.
-        :param pulumi.Input[dict] http_health_check: A nested object resource  Structure is documented below.
-        :param pulumi.Input[dict] https_health_check: A nested object resource  Structure is documented below.
-        :param pulumi.Input[dict] log_config: Configure logging on this health check.  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['HealthCheckHttp2HealthCheckArgs']] http2_health_check: A nested object resource  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['HealthCheckHttpHealthCheckArgs']] http_health_check: A nested object resource  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['HealthCheckHttpsHealthCheckArgs']] https_health_check: A nested object resource  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['HealthCheckLogConfigArgs']] log_config: Configure logging on this health check.  Structure is documented below.
         :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is
                created. The name must be 1-63 characters long, and comply with
                RFC1035.  Specifically, the name must be 1-63 characters long and
@@ -256,151 +353,13 @@ class HealthCheck(pulumi.CustomResource):
                last character, which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] ssl_health_check: A nested object resource  Structure is documented below.
-        :param pulumi.Input[dict] tcp_health_check: A nested object resource  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['HealthCheckSslHealthCheckArgs']] ssl_health_check: A nested object resource  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['HealthCheckTcpHealthCheckArgs']] tcp_health_check: A nested object resource  Structure is documented below.
         :param pulumi.Input[float] timeout_sec: How long (in seconds) to wait before claiming failure.
                The default value is 5 seconds.  It is invalid for timeoutSec to have
                greater value than checkIntervalSec.
         :param pulumi.Input[float] unhealthy_threshold: A so-far healthy instance will be marked unhealthy after this many
                consecutive failures. The default value is 2.
-
-        The **http2_health_check** object supports the following:
-
-          * `host` (`pulumi.Input[str]`) - The value of the host header in the HTTP2 health check request.
-            If left empty (default value), the public IP on behalf of which this health
-            check is performed will be used.
-          * `port` (`pulumi.Input[float]`) - The TCP port number for the HTTP2 health check request.
-            The default value is 443.
-          * `port_name` (`pulumi.Input[str]`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-            port_name are defined, port takes precedence.
-          * `portSpecification` (`pulumi.Input[str]`) - Specifies how port is selected for health checking, can be one of the
-            following values:
-            * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-            * `USE_NAMED_PORT`: The `portName` is used for health checking.
-            * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-            network endpoint is used for health checking. For other backends, the
-            port or named port specified in the Backend Service is used for health
-            checking.
-            If not specified, HTTP2 health check follows behavior specified in `port` and
-            `portName` fields.
-          * `proxy_header` (`pulumi.Input[str]`) - Specifies the type of proxy header to append before sending data to the
-            backend.
-          * `request_path` (`pulumi.Input[str]`) - The request path of the HTTP2 health check request.
-            The default value is /.
-          * `response` (`pulumi.Input[str]`) - The bytes to match against the beginning of the response data. If left empty
-            (the default value), any response will indicate health. The response data
-            can only be ASCII.
-
-        The **http_health_check** object supports the following:
-
-          * `host` (`pulumi.Input[str]`) - The value of the host header in the HTTP2 health check request.
-            If left empty (default value), the public IP on behalf of which this health
-            check is performed will be used.
-          * `port` (`pulumi.Input[float]`) - The TCP port number for the HTTP2 health check request.
-            The default value is 443.
-          * `port_name` (`pulumi.Input[str]`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-            port_name are defined, port takes precedence.
-          * `portSpecification` (`pulumi.Input[str]`) - Specifies how port is selected for health checking, can be one of the
-            following values:
-            * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-            * `USE_NAMED_PORT`: The `portName` is used for health checking.
-            * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-            network endpoint is used for health checking. For other backends, the
-            port or named port specified in the Backend Service is used for health
-            checking.
-            If not specified, HTTP2 health check follows behavior specified in `port` and
-            `portName` fields.
-          * `proxy_header` (`pulumi.Input[str]`) - Specifies the type of proxy header to append before sending data to the
-            backend.
-          * `request_path` (`pulumi.Input[str]`) - The request path of the HTTP2 health check request.
-            The default value is /.
-          * `response` (`pulumi.Input[str]`) - The bytes to match against the beginning of the response data. If left empty
-            (the default value), any response will indicate health. The response data
-            can only be ASCII.
-
-        The **https_health_check** object supports the following:
-
-          * `host` (`pulumi.Input[str]`) - The value of the host header in the HTTP2 health check request.
-            If left empty (default value), the public IP on behalf of which this health
-            check is performed will be used.
-          * `port` (`pulumi.Input[float]`) - The TCP port number for the HTTP2 health check request.
-            The default value is 443.
-          * `port_name` (`pulumi.Input[str]`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-            port_name are defined, port takes precedence.
-          * `portSpecification` (`pulumi.Input[str]`) - Specifies how port is selected for health checking, can be one of the
-            following values:
-            * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-            * `USE_NAMED_PORT`: The `portName` is used for health checking.
-            * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-            network endpoint is used for health checking. For other backends, the
-            port or named port specified in the Backend Service is used for health
-            checking.
-            If not specified, HTTP2 health check follows behavior specified in `port` and
-            `portName` fields.
-          * `proxy_header` (`pulumi.Input[str]`) - Specifies the type of proxy header to append before sending data to the
-            backend.
-          * `request_path` (`pulumi.Input[str]`) - The request path of the HTTP2 health check request.
-            The default value is /.
-          * `response` (`pulumi.Input[str]`) - The bytes to match against the beginning of the response data. If left empty
-            (the default value), any response will indicate health. The response data
-            can only be ASCII.
-
-        The **log_config** object supports the following:
-
-          * `enable` (`pulumi.Input[bool]`) - Indicates whether or not to export logs. This is false by default,
-            which means no health check logging will be done.
-
-        The **ssl_health_check** object supports the following:
-
-          * `port` (`pulumi.Input[float]`) - The TCP port number for the HTTP2 health check request.
-            The default value is 443.
-          * `port_name` (`pulumi.Input[str]`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-            port_name are defined, port takes precedence.
-          * `portSpecification` (`pulumi.Input[str]`) - Specifies how port is selected for health checking, can be one of the
-            following values:
-            * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-            * `USE_NAMED_PORT`: The `portName` is used for health checking.
-            * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-            network endpoint is used for health checking. For other backends, the
-            port or named port specified in the Backend Service is used for health
-            checking.
-            If not specified, HTTP2 health check follows behavior specified in `port` and
-            `portName` fields.
-          * `proxy_header` (`pulumi.Input[str]`) - Specifies the type of proxy header to append before sending data to the
-            backend.
-          * `request` (`pulumi.Input[str]`) - The application data to send once the SSL connection has been
-            established (default value is empty). If both request and response are
-            empty, the connection establishment alone will indicate health. The request
-            data can only be ASCII.
-          * `response` (`pulumi.Input[str]`) - The bytes to match against the beginning of the response data. If left empty
-            (the default value), any response will indicate health. The response data
-            can only be ASCII.
-
-        The **tcp_health_check** object supports the following:
-
-          * `port` (`pulumi.Input[float]`) - The TCP port number for the HTTP2 health check request.
-            The default value is 443.
-          * `port_name` (`pulumi.Input[str]`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-            port_name are defined, port takes precedence.
-          * `portSpecification` (`pulumi.Input[str]`) - Specifies how port is selected for health checking, can be one of the
-            following values:
-            * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-            * `USE_NAMED_PORT`: The `portName` is used for health checking.
-            * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-            network endpoint is used for health checking. For other backends, the
-            port or named port specified in the Backend Service is used for health
-            checking.
-            If not specified, HTTP2 health check follows behavior specified in `port` and
-            `portName` fields.
-          * `proxy_header` (`pulumi.Input[str]`) - Specifies the type of proxy header to append before sending data to the
-            backend.
-          * `request` (`pulumi.Input[str]`) - The application data to send once the SSL connection has been
-            established (default value is empty). If both request and response are
-            empty, the connection establishment alone will indicate health. The request
-            data can only be ASCII.
-          * `response` (`pulumi.Input[str]`) - The bytes to match against the beginning of the response data. If left empty
-            (the default value), any response will indicate health. The response data
-            can only be ASCII.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -413,7 +372,7 @@ class HealthCheck(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -442,7 +401,25 @@ class HealthCheck(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, check_interval_sec=None, creation_timestamp=None, description=None, healthy_threshold=None, http2_health_check=None, http_health_check=None, https_health_check=None, log_config=None, name=None, project=None, self_link=None, ssl_health_check=None, tcp_health_check=None, timeout_sec=None, type=None, unhealthy_threshold=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            check_interval_sec: Optional[pulumi.Input[float]] = None,
+            creation_timestamp: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            healthy_threshold: Optional[pulumi.Input[float]] = None,
+            http2_health_check: Optional[pulumi.Input[pulumi.InputType['HealthCheckHttp2HealthCheckArgs']]] = None,
+            http_health_check: Optional[pulumi.Input[pulumi.InputType['HealthCheckHttpHealthCheckArgs']]] = None,
+            https_health_check: Optional[pulumi.Input[pulumi.InputType['HealthCheckHttpsHealthCheckArgs']]] = None,
+            log_config: Optional[pulumi.Input[pulumi.InputType['HealthCheckLogConfigArgs']]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            ssl_health_check: Optional[pulumi.Input[pulumi.InputType['HealthCheckSslHealthCheckArgs']]] = None,
+            tcp_health_check: Optional[pulumi.Input[pulumi.InputType['HealthCheckTcpHealthCheckArgs']]] = None,
+            timeout_sec: Optional[pulumi.Input[float]] = None,
+            type: Optional[pulumi.Input[str]] = None,
+            unhealthy_threshold: Optional[pulumi.Input[float]] = None) -> 'HealthCheck':
         """
         Get an existing HealthCheck resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -457,10 +434,10 @@ class HealthCheck(pulumi.CustomResource):
                you create the resource.
         :param pulumi.Input[float] healthy_threshold: A so-far unhealthy instance will be marked healthy after this many
                consecutive successes. The default value is 2.
-        :param pulumi.Input[dict] http2_health_check: A nested object resource  Structure is documented below.
-        :param pulumi.Input[dict] http_health_check: A nested object resource  Structure is documented below.
-        :param pulumi.Input[dict] https_health_check: A nested object resource  Structure is documented below.
-        :param pulumi.Input[dict] log_config: Configure logging on this health check.  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['HealthCheckHttp2HealthCheckArgs']] http2_health_check: A nested object resource  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['HealthCheckHttpHealthCheckArgs']] http_health_check: A nested object resource  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['HealthCheckHttpsHealthCheckArgs']] https_health_check: A nested object resource  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['HealthCheckLogConfigArgs']] log_config: Configure logging on this health check.  Structure is documented below.
         :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is
                created. The name must be 1-63 characters long, and comply with
                RFC1035.  Specifically, the name must be 1-63 characters long and
@@ -471,152 +448,14 @@ class HealthCheck(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[dict] ssl_health_check: A nested object resource  Structure is documented below.
-        :param pulumi.Input[dict] tcp_health_check: A nested object resource  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['HealthCheckSslHealthCheckArgs']] ssl_health_check: A nested object resource  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['HealthCheckTcpHealthCheckArgs']] tcp_health_check: A nested object resource  Structure is documented below.
         :param pulumi.Input[float] timeout_sec: How long (in seconds) to wait before claiming failure.
                The default value is 5 seconds.  It is invalid for timeoutSec to have
                greater value than checkIntervalSec.
         :param pulumi.Input[str] type: The type of the health check. One of HTTP, HTTPS, TCP, or SSL.
         :param pulumi.Input[float] unhealthy_threshold: A so-far healthy instance will be marked unhealthy after this many
                consecutive failures. The default value is 2.
-
-        The **http2_health_check** object supports the following:
-
-          * `host` (`pulumi.Input[str]`) - The value of the host header in the HTTP2 health check request.
-            If left empty (default value), the public IP on behalf of which this health
-            check is performed will be used.
-          * `port` (`pulumi.Input[float]`) - The TCP port number for the HTTP2 health check request.
-            The default value is 443.
-          * `port_name` (`pulumi.Input[str]`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-            port_name are defined, port takes precedence.
-          * `portSpecification` (`pulumi.Input[str]`) - Specifies how port is selected for health checking, can be one of the
-            following values:
-            * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-            * `USE_NAMED_PORT`: The `portName` is used for health checking.
-            * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-            network endpoint is used for health checking. For other backends, the
-            port or named port specified in the Backend Service is used for health
-            checking.
-            If not specified, HTTP2 health check follows behavior specified in `port` and
-            `portName` fields.
-          * `proxy_header` (`pulumi.Input[str]`) - Specifies the type of proxy header to append before sending data to the
-            backend.
-          * `request_path` (`pulumi.Input[str]`) - The request path of the HTTP2 health check request.
-            The default value is /.
-          * `response` (`pulumi.Input[str]`) - The bytes to match against the beginning of the response data. If left empty
-            (the default value), any response will indicate health. The response data
-            can only be ASCII.
-
-        The **http_health_check** object supports the following:
-
-          * `host` (`pulumi.Input[str]`) - The value of the host header in the HTTP2 health check request.
-            If left empty (default value), the public IP on behalf of which this health
-            check is performed will be used.
-          * `port` (`pulumi.Input[float]`) - The TCP port number for the HTTP2 health check request.
-            The default value is 443.
-          * `port_name` (`pulumi.Input[str]`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-            port_name are defined, port takes precedence.
-          * `portSpecification` (`pulumi.Input[str]`) - Specifies how port is selected for health checking, can be one of the
-            following values:
-            * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-            * `USE_NAMED_PORT`: The `portName` is used for health checking.
-            * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-            network endpoint is used for health checking. For other backends, the
-            port or named port specified in the Backend Service is used for health
-            checking.
-            If not specified, HTTP2 health check follows behavior specified in `port` and
-            `portName` fields.
-          * `proxy_header` (`pulumi.Input[str]`) - Specifies the type of proxy header to append before sending data to the
-            backend.
-          * `request_path` (`pulumi.Input[str]`) - The request path of the HTTP2 health check request.
-            The default value is /.
-          * `response` (`pulumi.Input[str]`) - The bytes to match against the beginning of the response data. If left empty
-            (the default value), any response will indicate health. The response data
-            can only be ASCII.
-
-        The **https_health_check** object supports the following:
-
-          * `host` (`pulumi.Input[str]`) - The value of the host header in the HTTP2 health check request.
-            If left empty (default value), the public IP on behalf of which this health
-            check is performed will be used.
-          * `port` (`pulumi.Input[float]`) - The TCP port number for the HTTP2 health check request.
-            The default value is 443.
-          * `port_name` (`pulumi.Input[str]`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-            port_name are defined, port takes precedence.
-          * `portSpecification` (`pulumi.Input[str]`) - Specifies how port is selected for health checking, can be one of the
-            following values:
-            * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-            * `USE_NAMED_PORT`: The `portName` is used for health checking.
-            * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-            network endpoint is used for health checking. For other backends, the
-            port or named port specified in the Backend Service is used for health
-            checking.
-            If not specified, HTTP2 health check follows behavior specified in `port` and
-            `portName` fields.
-          * `proxy_header` (`pulumi.Input[str]`) - Specifies the type of proxy header to append before sending data to the
-            backend.
-          * `request_path` (`pulumi.Input[str]`) - The request path of the HTTP2 health check request.
-            The default value is /.
-          * `response` (`pulumi.Input[str]`) - The bytes to match against the beginning of the response data. If left empty
-            (the default value), any response will indicate health. The response data
-            can only be ASCII.
-
-        The **log_config** object supports the following:
-
-          * `enable` (`pulumi.Input[bool]`) - Indicates whether or not to export logs. This is false by default,
-            which means no health check logging will be done.
-
-        The **ssl_health_check** object supports the following:
-
-          * `port` (`pulumi.Input[float]`) - The TCP port number for the HTTP2 health check request.
-            The default value is 443.
-          * `port_name` (`pulumi.Input[str]`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-            port_name are defined, port takes precedence.
-          * `portSpecification` (`pulumi.Input[str]`) - Specifies how port is selected for health checking, can be one of the
-            following values:
-            * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-            * `USE_NAMED_PORT`: The `portName` is used for health checking.
-            * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-            network endpoint is used for health checking. For other backends, the
-            port or named port specified in the Backend Service is used for health
-            checking.
-            If not specified, HTTP2 health check follows behavior specified in `port` and
-            `portName` fields.
-          * `proxy_header` (`pulumi.Input[str]`) - Specifies the type of proxy header to append before sending data to the
-            backend.
-          * `request` (`pulumi.Input[str]`) - The application data to send once the SSL connection has been
-            established (default value is empty). If both request and response are
-            empty, the connection establishment alone will indicate health. The request
-            data can only be ASCII.
-          * `response` (`pulumi.Input[str]`) - The bytes to match against the beginning of the response data. If left empty
-            (the default value), any response will indicate health. The response data
-            can only be ASCII.
-
-        The **tcp_health_check** object supports the following:
-
-          * `port` (`pulumi.Input[float]`) - The TCP port number for the HTTP2 health check request.
-            The default value is 443.
-          * `port_name` (`pulumi.Input[str]`) - Port name as defined in InstanceGroup#NamedPort#name. If both port and
-            port_name are defined, port takes precedence.
-          * `portSpecification` (`pulumi.Input[str]`) - Specifies how port is selected for health checking, can be one of the
-            following values:
-            * `USE_FIXED_PORT`: The port number in `port` is used for health checking.
-            * `USE_NAMED_PORT`: The `portName` is used for health checking.
-            * `USE_SERVING_PORT`: For NetworkEndpointGroup, the port specified for each
-            network endpoint is used for health checking. For other backends, the
-            port or named port specified in the Backend Service is used for health
-            checking.
-            If not specified, HTTP2 health check follows behavior specified in `port` and
-            `portName` fields.
-          * `proxy_header` (`pulumi.Input[str]`) - Specifies the type of proxy header to append before sending data to the
-            backend.
-          * `request` (`pulumi.Input[str]`) - The application data to send once the SSL connection has been
-            established (default value is empty). If both request and response are
-            empty, the connection establishment alone will indicate health. The request
-            data can only be ASCII.
-          * `response` (`pulumi.Input[str]`) - The bytes to match against the beginning of the response data. If left empty
-            (the default value), any response will indicate health. The response data
-            can only be ASCII.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -641,7 +480,8 @@ class HealthCheck(pulumi.CustomResource):
         return HealthCheck(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

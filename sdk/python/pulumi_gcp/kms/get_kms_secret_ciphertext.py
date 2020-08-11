@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetKMSSecretCiphertextResult',
+    'AwaitableGetKMSSecretCiphertextResult',
+    'get_kms_secret_ciphertext',
+]
+
 
 class GetKMSSecretCiphertextResult:
     """
@@ -31,6 +38,8 @@ class GetKMSSecretCiphertextResult:
         if plaintext and not isinstance(plaintext, str):
             raise TypeError("Expected argument 'plaintext' to be a str")
         __self__.plaintext = plaintext
+
+
 class AwaitableGetKMSSecretCiphertextResult(GetKMSSecretCiphertextResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -42,7 +51,10 @@ class AwaitableGetKMSSecretCiphertextResult(GetKMSSecretCiphertextResult):
             id=self.id,
             plaintext=self.plaintext)
 
-def get_kms_secret_ciphertext(crypto_key=None,plaintext=None,opts=None):
+
+def get_kms_secret_ciphertext(crypto_key: Optional[str] = None,
+                              plaintext: Optional[str] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKMSSecretCiphertextResult:
     """
     !> **Warning:** This data source is deprecated. Use the `kms.SecretCiphertext` **resource** instead.
 
@@ -64,14 +76,12 @@ def get_kms_secret_ciphertext(crypto_key=None,plaintext=None,opts=None):
     :param str plaintext: The plaintext to be encrypted
     """
     __args__ = dict()
-
-
     __args__['cryptoKey'] = crypto_key
     __args__['plaintext'] = plaintext
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:kms/getKMSSecretCiphertext:getKMSSecretCiphertext', __args__, opts=opts).value
 
     return AwaitableGetKMSSecretCiphertextResult(

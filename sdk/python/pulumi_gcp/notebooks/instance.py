@@ -5,68 +5,75 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Instance']
 
 
 class Instance(pulumi.CustomResource):
-    accelerator_config: pulumi.Output[dict]
+    accelerator_config: pulumi.Output[Optional['outputs.InstanceAcceleratorConfig']] = pulumi.property("acceleratorConfig")
     """
     The hardware accelerator used on this instance. If you use accelerators,
     make sure that your configuration has enough vCPUs and memory to support the
     machineType you have selected.  Structure is documented below.
-
-      * `coreCount` (`float`) - Count of cores of this accelerator.
-      * `type` (`str`) - Type of this accelerator.
     """
-    boot_disk_size_gb: pulumi.Output[float]
+
+    boot_disk_size_gb: pulumi.Output[Optional[float]] = pulumi.property("bootDiskSizeGb")
     """
     The size of the boot disk in GB attached to this instance,
     up to a maximum of 64000 GB (64 TB). The minimum recommended value is 100 GB.
     If not specified, this defaults to 100.
     """
-    boot_disk_type: pulumi.Output[str]
+
+    boot_disk_type: pulumi.Output[Optional[str]] = pulumi.property("bootDiskType")
     """
     Possible disk types for notebook instances.
     """
-    container_image: pulumi.Output[dict]
+
+    container_image: pulumi.Output[Optional['outputs.InstanceContainerImage']] = pulumi.property("containerImage")
     """
     Use a container image to start the notebook instance.  Structure is documented below.
-
-      * `repository` (`str`) - The path to the container image repository.
-        For example: gcr.io/{project_id}/{imageName}
-      * `tag` (`str`) - The tag of the container image. If not specified, this defaults to the latest tag.
     """
-    create_time: pulumi.Output[str]
+
+    create_time: pulumi.Output[str] = pulumi.property("createTime")
     """
     Instance creation time
     """
-    custom_gpu_driver_path: pulumi.Output[str]
+
+    custom_gpu_driver_path: pulumi.Output[Optional[str]] = pulumi.property("customGpuDriverPath")
     """
     Specify a custom Cloud Storage path where the GPU driver is stored.
     If not specified, we'll automatically choose from official GPU drivers.
     """
-    data_disk_size_gb: pulumi.Output[float]
+
+    data_disk_size_gb: pulumi.Output[Optional[float]] = pulumi.property("dataDiskSizeGb")
     """
     The size of the data disk in GB attached to this instance,
     up to a maximum of 64000 GB (64 TB).
     You can choose the size of the data disk based on how big your notebooks and data are.
     If not specified, this defaults to 100.
     """
-    data_disk_type: pulumi.Output[str]
+
+    data_disk_type: pulumi.Output[Optional[str]] = pulumi.property("dataDiskType")
     """
     Possible disk types for notebook instances.
     """
-    disk_encryption: pulumi.Output[str]
+
+    disk_encryption: pulumi.Output[Optional[str]] = pulumi.property("diskEncryption")
     """
     Disk encryption method used on the boot and data disks, defaults to GMEK.
     """
-    install_gpu_driver: pulumi.Output[bool]
+
+    install_gpu_driver: pulumi.Output[Optional[bool]] = pulumi.property("installGpuDriver")
     """
     Indicates that this is a boot disk. The virtual machine will
     use the first partition of the disk for its root filesystem.
     """
-    instance_owners: pulumi.Output[str]
+
+    instance_owners: pulumi.Output[Optional[str]] = pulumi.property("instanceOwners")
     """
     The owner of this instance after creation.
     Format: alias@example.com.
@@ -74,66 +81,80 @@ class Instance(pulumi.CustomResource):
     If not specified, all of the service account users of
     your VM instance's service account can use the instance.
     """
-    kms_key: pulumi.Output[str]
+
+    kms_key: pulumi.Output[Optional[str]] = pulumi.property("kmsKey")
     """
     The KMS key used to encrypt the disks, only applicable if diskEncryption is CMEK.
     Format: projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}
     """
-    labels: pulumi.Output[dict]
+
+    labels: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("labels")
     """
     Labels to apply to this instance. These can be later modified by the setLabels method.
     An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
     """
-    location: pulumi.Output[str]
+
+    location: pulumi.Output[str] = pulumi.property("location")
     """
     A reference to the zone where the machine resides.
     """
-    machine_type: pulumi.Output[str]
+
+    machine_type: pulumi.Output[str] = pulumi.property("machineType")
     """
     A reference to a machine type which defines VM kind.
     """
-    metadata: pulumi.Output[dict]
+
+    metadata: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("metadata")
     """
     Custom metadata to apply to this instance.
     An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name specified for the Notebook instance.
     """
-    network: pulumi.Output[str]
+
+    network: pulumi.Output[str] = pulumi.property("network")
     """
     The name of the VPC that this instance is in.
     Format: projects/{project_id}/global/networks/{network_id}
     """
-    no_proxy_access: pulumi.Output[bool]
+
+    no_proxy_access: pulumi.Output[Optional[bool]] = pulumi.property("noProxyAccess")
     """
     the notebook instance will not register with the proxy..
     """
-    no_public_ip: pulumi.Output[bool]
+
+    no_public_ip: pulumi.Output[Optional[bool]] = pulumi.property("noPublicIp")
     """
     no public IP will be assigned to this instance.
     """
-    no_remove_data_disk: pulumi.Output[bool]
+
+    no_remove_data_disk: pulumi.Output[Optional[bool]] = pulumi.property("noRemoveDataDisk")
     """
     If true, the data disk will not be auto deleted when deleting the instance.
     """
-    post_startup_script: pulumi.Output[str]
+
+    post_startup_script: pulumi.Output[Optional[str]] = pulumi.property("postStartupScript")
     """
     Path to a Bash script that automatically runs after a
     notebook instance fully boots up. The path must be a URL
     or Cloud Storage path (gs://path-to-file/file-name).
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The name of the Google Cloud project that this VM image belongs to.
     Format: projects/{project_id}
     """
-    proxy_uri: pulumi.Output[str]
+
+    proxy_uri: pulumi.Output[str] = pulumi.property("proxyUri")
     """
     The proxy endpoint that is used to access the Jupyter notebook.
     """
-    service_account: pulumi.Output[str]
+
+    service_account: pulumi.Output[str] = pulumi.property("serviceAccount")
     """
     The service account on this instance, giving access to other
     Google Cloud services. You can use any service account within
@@ -141,41 +162,73 @@ class Instance(pulumi.CustomResource):
     permission to use the instance. If not specified,
     the Compute Engine default service account is used.
     """
-    state: pulumi.Output[str]
+
+    state: pulumi.Output[str] = pulumi.property("state")
     """
     The state of this instance.
     """
-    subnet: pulumi.Output[str]
+
+    subnet: pulumi.Output[str] = pulumi.property("subnet")
     """
     The name of the subnet that this instance is in.
     Format: projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}
     """
-    update_time: pulumi.Output[str]
+
+    update_time: pulumi.Output[str] = pulumi.property("updateTime")
     """
     Instance update time.
     """
-    vm_image: pulumi.Output[dict]
+
+    vm_image: pulumi.Output[Optional['outputs.InstanceVmImage']] = pulumi.property("vmImage")
     """
     Use a Compute Engine VM image to start the notebook instance.  Structure is documented below.
-
-      * `imageFamily` (`str`) - Use this VM image family to find the image; the newest image in this family will be used.
-      * `imageName` (`str`) - Use VM image name to find the image.
-      * `project` (`str`) - The name of the Google Cloud project that this VM image belongs to.
-        Format: projects/{project_id}
     """
-    def __init__(__self__, resource_name, opts=None, accelerator_config=None, boot_disk_size_gb=None, boot_disk_type=None, container_image=None, create_time=None, custom_gpu_driver_path=None, data_disk_size_gb=None, data_disk_type=None, disk_encryption=None, install_gpu_driver=None, instance_owners=None, kms_key=None, labels=None, location=None, machine_type=None, metadata=None, name=None, network=None, no_proxy_access=None, no_public_ip=None, no_remove_data_disk=None, post_startup_script=None, project=None, service_account=None, subnet=None, update_time=None, vm_image=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 accelerator_config: Optional[pulumi.Input[pulumi.InputType['InstanceAcceleratorConfigArgs']]] = None,
+                 boot_disk_size_gb: Optional[pulumi.Input[float]] = None,
+                 boot_disk_type: Optional[pulumi.Input[str]] = None,
+                 container_image: Optional[pulumi.Input[pulumi.InputType['InstanceContainerImageArgs']]] = None,
+                 create_time: Optional[pulumi.Input[str]] = None,
+                 custom_gpu_driver_path: Optional[pulumi.Input[str]] = None,
+                 data_disk_size_gb: Optional[pulumi.Input[float]] = None,
+                 data_disk_type: Optional[pulumi.Input[str]] = None,
+                 disk_encryption: Optional[pulumi.Input[str]] = None,
+                 install_gpu_driver: Optional[pulumi.Input[bool]] = None,
+                 instance_owners: Optional[pulumi.Input[str]] = None,
+                 kms_key: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
+                 machine_type: Optional[pulumi.Input[str]] = None,
+                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 network: Optional[pulumi.Input[str]] = None,
+                 no_proxy_access: Optional[pulumi.Input[bool]] = None,
+                 no_public_ip: Optional[pulumi.Input[bool]] = None,
+                 no_remove_data_disk: Optional[pulumi.Input[bool]] = None,
+                 post_startup_script: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 service_account: Optional[pulumi.Input[str]] = None,
+                 subnet: Optional[pulumi.Input[str]] = None,
+                 update_time: Optional[pulumi.Input[str]] = None,
+                 vm_image: Optional[pulumi.Input[pulumi.InputType['InstanceVmImageArgs']]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a Instance resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] accelerator_config: The hardware accelerator used on this instance. If you use accelerators,
+        :param pulumi.Input[pulumi.InputType['InstanceAcceleratorConfigArgs']] accelerator_config: The hardware accelerator used on this instance. If you use accelerators,
                make sure that your configuration has enough vCPUs and memory to support the
                machineType you have selected.  Structure is documented below.
         :param pulumi.Input[float] boot_disk_size_gb: The size of the boot disk in GB attached to this instance,
                up to a maximum of 64000 GB (64 TB). The minimum recommended value is 100 GB.
                If not specified, this defaults to 100.
         :param pulumi.Input[str] boot_disk_type: Possible disk types for notebook instances.
-        :param pulumi.Input[dict] container_image: Use a container image to start the notebook instance.  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['InstanceContainerImageArgs']] container_image: Use a container image to start the notebook instance.  Structure is documented below.
         :param pulumi.Input[str] create_time: Instance creation time
         :param pulumi.Input[str] custom_gpu_driver_path: Specify a custom Cloud Storage path where the GPU driver is stored.
                If not specified, we'll automatically choose from official GPU drivers.
@@ -194,11 +247,11 @@ class Instance(pulumi.CustomResource):
                your VM instance's service account can use the instance.
         :param pulumi.Input[str] kms_key: The KMS key used to encrypt the disks, only applicable if diskEncryption is CMEK.
                Format: projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}
-        :param pulumi.Input[dict] labels: Labels to apply to this instance. These can be later modified by the setLabels method.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this instance. These can be later modified by the setLabels method.
                An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         :param pulumi.Input[str] location: A reference to the zone where the machine resides.
         :param pulumi.Input[str] machine_type: A reference to a machine type which defines VM kind.
-        :param pulumi.Input[dict] metadata: Custom metadata to apply to this instance.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Custom metadata to apply to this instance.
                An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         :param pulumi.Input[str] name: The name specified for the Notebook instance.
         :param pulumi.Input[str] network: The name of the VPC that this instance is in.
@@ -219,25 +272,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] subnet: The name of the subnet that this instance is in.
                Format: projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}
         :param pulumi.Input[str] update_time: Instance update time.
-        :param pulumi.Input[dict] vm_image: Use a Compute Engine VM image to start the notebook instance.  Structure is documented below.
-
-        The **accelerator_config** object supports the following:
-
-          * `coreCount` (`pulumi.Input[float]`) - Count of cores of this accelerator.
-          * `type` (`pulumi.Input[str]`) - Type of this accelerator.
-
-        The **container_image** object supports the following:
-
-          * `repository` (`pulumi.Input[str]`) - The path to the container image repository.
-            For example: gcr.io/{project_id}/{imageName}
-          * `tag` (`pulumi.Input[str]`) - The tag of the container image. If not specified, this defaults to the latest tag.
-
-        The **vm_image** object supports the following:
-
-          * `imageFamily` (`pulumi.Input[str]`) - Use this VM image family to find the image; the newest image in this family will be used.
-          * `imageName` (`pulumi.Input[str]`) - Use VM image name to find the image.
-          * `project` (`pulumi.Input[str]`) - The name of the Google Cloud project that this VM image belongs to.
-            Format: projects/{project_id}
+        :param pulumi.Input[pulumi.InputType['InstanceVmImageArgs']] vm_image: Use a Compute Engine VM image to start the notebook instance.  Structure is documented below.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -250,7 +285,7 @@ class Instance(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -296,7 +331,38 @@ class Instance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, accelerator_config=None, boot_disk_size_gb=None, boot_disk_type=None, container_image=None, create_time=None, custom_gpu_driver_path=None, data_disk_size_gb=None, data_disk_type=None, disk_encryption=None, install_gpu_driver=None, instance_owners=None, kms_key=None, labels=None, location=None, machine_type=None, metadata=None, name=None, network=None, no_proxy_access=None, no_public_ip=None, no_remove_data_disk=None, post_startup_script=None, project=None, proxy_uri=None, service_account=None, state=None, subnet=None, update_time=None, vm_image=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accelerator_config: Optional[pulumi.Input[pulumi.InputType['InstanceAcceleratorConfigArgs']]] = None,
+            boot_disk_size_gb: Optional[pulumi.Input[float]] = None,
+            boot_disk_type: Optional[pulumi.Input[str]] = None,
+            container_image: Optional[pulumi.Input[pulumi.InputType['InstanceContainerImageArgs']]] = None,
+            create_time: Optional[pulumi.Input[str]] = None,
+            custom_gpu_driver_path: Optional[pulumi.Input[str]] = None,
+            data_disk_size_gb: Optional[pulumi.Input[float]] = None,
+            data_disk_type: Optional[pulumi.Input[str]] = None,
+            disk_encryption: Optional[pulumi.Input[str]] = None,
+            install_gpu_driver: Optional[pulumi.Input[bool]] = None,
+            instance_owners: Optional[pulumi.Input[str]] = None,
+            kms_key: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            location: Optional[pulumi.Input[str]] = None,
+            machine_type: Optional[pulumi.Input[str]] = None,
+            metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            network: Optional[pulumi.Input[str]] = None,
+            no_proxy_access: Optional[pulumi.Input[bool]] = None,
+            no_public_ip: Optional[pulumi.Input[bool]] = None,
+            no_remove_data_disk: Optional[pulumi.Input[bool]] = None,
+            post_startup_script: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            proxy_uri: Optional[pulumi.Input[str]] = None,
+            service_account: Optional[pulumi.Input[str]] = None,
+            state: Optional[pulumi.Input[str]] = None,
+            subnet: Optional[pulumi.Input[str]] = None,
+            update_time: Optional[pulumi.Input[str]] = None,
+            vm_image: Optional[pulumi.Input[pulumi.InputType['InstanceVmImageArgs']]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -304,14 +370,14 @@ class Instance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] accelerator_config: The hardware accelerator used on this instance. If you use accelerators,
+        :param pulumi.Input[pulumi.InputType['InstanceAcceleratorConfigArgs']] accelerator_config: The hardware accelerator used on this instance. If you use accelerators,
                make sure that your configuration has enough vCPUs and memory to support the
                machineType you have selected.  Structure is documented below.
         :param pulumi.Input[float] boot_disk_size_gb: The size of the boot disk in GB attached to this instance,
                up to a maximum of 64000 GB (64 TB). The minimum recommended value is 100 GB.
                If not specified, this defaults to 100.
         :param pulumi.Input[str] boot_disk_type: Possible disk types for notebook instances.
-        :param pulumi.Input[dict] container_image: Use a container image to start the notebook instance.  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['InstanceContainerImageArgs']] container_image: Use a container image to start the notebook instance.  Structure is documented below.
         :param pulumi.Input[str] create_time: Instance creation time
         :param pulumi.Input[str] custom_gpu_driver_path: Specify a custom Cloud Storage path where the GPU driver is stored.
                If not specified, we'll automatically choose from official GPU drivers.
@@ -330,11 +396,11 @@ class Instance(pulumi.CustomResource):
                your VM instance's service account can use the instance.
         :param pulumi.Input[str] kms_key: The KMS key used to encrypt the disks, only applicable if diskEncryption is CMEK.
                Format: projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}
-        :param pulumi.Input[dict] labels: Labels to apply to this instance. These can be later modified by the setLabels method.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this instance. These can be later modified by the setLabels method.
                An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         :param pulumi.Input[str] location: A reference to the zone where the machine resides.
         :param pulumi.Input[str] machine_type: A reference to a machine type which defines VM kind.
-        :param pulumi.Input[dict] metadata: Custom metadata to apply to this instance.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Custom metadata to apply to this instance.
                An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.
         :param pulumi.Input[str] name: The name specified for the Notebook instance.
         :param pulumi.Input[str] network: The name of the VPC that this instance is in.
@@ -357,25 +423,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] subnet: The name of the subnet that this instance is in.
                Format: projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}
         :param pulumi.Input[str] update_time: Instance update time.
-        :param pulumi.Input[dict] vm_image: Use a Compute Engine VM image to start the notebook instance.  Structure is documented below.
-
-        The **accelerator_config** object supports the following:
-
-          * `coreCount` (`pulumi.Input[float]`) - Count of cores of this accelerator.
-          * `type` (`pulumi.Input[str]`) - Type of this accelerator.
-
-        The **container_image** object supports the following:
-
-          * `repository` (`pulumi.Input[str]`) - The path to the container image repository.
-            For example: gcr.io/{project_id}/{imageName}
-          * `tag` (`pulumi.Input[str]`) - The tag of the container image. If not specified, this defaults to the latest tag.
-
-        The **vm_image** object supports the following:
-
-          * `imageFamily` (`pulumi.Input[str]`) - Use this VM image family to find the image; the newest image in this family will be used.
-          * `imageName` (`pulumi.Input[str]`) - Use VM image name to find the image.
-          * `project` (`pulumi.Input[str]`) - The name of the Google Cloud project that this VM image belongs to.
-            Format: projects/{project_id}
+        :param pulumi.Input[pulumi.InputType['InstanceVmImageArgs']] vm_image: Use a Compute Engine VM image to start the notebook instance.  Structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -413,7 +461,8 @@ class Instance(pulumi.CustomResource):
         return Instance(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

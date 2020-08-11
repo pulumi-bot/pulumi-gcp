@@ -5,116 +5,75 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['GroupMembership']
 
 
 class GroupMembership(pulumi.CustomResource):
-    create_time: pulumi.Output[str]
+    create_time: pulumi.Output[str] = pulumi.property("createTime")
     """
     The time when the Membership was created.
     """
-    group: pulumi.Output[str]
+
+    group: pulumi.Output[str] = pulumi.property("group")
     """
     The name of the Group to create this membership in.
     """
-    member_key: pulumi.Output[dict]
+
+    member_key: pulumi.Output['outputs.GroupMembershipMemberKey'] = pulumi.property("memberKey")
     """
     EntityKey of the member.  Structure is documented below.
-
-      * `id` (`str`) - The ID of the entity.
-        For Google-managed entities, the id must be the email address of an existing
-        group or user.
-        For external-identity-mapped entities, the id must be a string conforming
-        to the Identity Source's requirements.
-        Must be unique within a namespace.
-      * `namespace` (`str`) - The namespace in which the entity exists.
-        If not specified, the EntityKey represents a Google-managed entity
-        such as a Google user or a Google Group.
-        If specified, the EntityKey represents an external-identity-mapped group.
-        The namespace must correspond to an identity source created in Admin Console
-        and must be in the form of `identitysources/{identity_source_id}`.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the MembershipRole. Must be one of OWNER, MANAGER, MEMBER.
     """
-    preferred_member_key: pulumi.Output[dict]
+
+    preferred_member_key: pulumi.Output['outputs.GroupMembershipPreferredMemberKey'] = pulumi.property("preferredMemberKey")
     """
     EntityKey of the member.  Structure is documented below.
-
-      * `id` (`str`) - The ID of the entity.
-        For Google-managed entities, the id must be the email address of an existing
-        group or user.
-        For external-identity-mapped entities, the id must be a string conforming
-        to the Identity Source's requirements.
-        Must be unique within a namespace.
-      * `namespace` (`str`) - The namespace in which the entity exists.
-        If not specified, the EntityKey represents a Google-managed entity
-        such as a Google user or a Google Group.
-        If specified, the EntityKey represents an external-identity-mapped group.
-        The namespace must correspond to an identity source created in Admin Console
-        and must be in the form of `identitysources/{identity_source_id}`.
     """
-    roles: pulumi.Output[list]
+
+    roles: pulumi.Output[List['outputs.GroupMembershipRole']] = pulumi.property("roles")
     """
     The MembershipRoles that apply to the Membership.
     Must not contain duplicate MembershipRoles with the same name.  Structure is documented below.
-
-      * `name` (`str`) - The name of the MembershipRole. Must be one of OWNER, MANAGER, MEMBER.
     """
-    type: pulumi.Output[str]
+
+    type: pulumi.Output[str] = pulumi.property("type")
     """
     The type of the membership.
     """
-    update_time: pulumi.Output[str]
+
+    update_time: pulumi.Output[str] = pulumi.property("updateTime")
     """
     The time when the Membership was last updated.
     """
-    def __init__(__self__, resource_name, opts=None, group=None, member_key=None, preferred_member_key=None, roles=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 group: Optional[pulumi.Input[str]] = None,
+                 member_key: Optional[pulumi.Input[pulumi.InputType['GroupMembershipMemberKeyArgs']]] = None,
+                 preferred_member_key: Optional[pulumi.Input[pulumi.InputType['GroupMembershipPreferredMemberKeyArgs']]] = None,
+                 roles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['GroupMembershipRoleArgs']]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a GroupMembership resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] group: The name of the Group to create this membership in.
-        :param pulumi.Input[dict] member_key: EntityKey of the member.  Structure is documented below.
-        :param pulumi.Input[dict] preferred_member_key: EntityKey of the member.  Structure is documented below.
-        :param pulumi.Input[list] roles: The MembershipRoles that apply to the Membership.
+        :param pulumi.Input[pulumi.InputType['GroupMembershipMemberKeyArgs']] member_key: EntityKey of the member.  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['GroupMembershipPreferredMemberKeyArgs']] preferred_member_key: EntityKey of the member.  Structure is documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['GroupMembershipRoleArgs']]]] roles: The MembershipRoles that apply to the Membership.
                Must not contain duplicate MembershipRoles with the same name.  Structure is documented below.
-
-        The **member_key** object supports the following:
-
-          * `id` (`pulumi.Input[str]`) - The ID of the entity.
-            For Google-managed entities, the id must be the email address of an existing
-            group or user.
-            For external-identity-mapped entities, the id must be a string conforming
-            to the Identity Source's requirements.
-            Must be unique within a namespace.
-          * `namespace` (`pulumi.Input[str]`) - The namespace in which the entity exists.
-            If not specified, the EntityKey represents a Google-managed entity
-            such as a Google user or a Google Group.
-            If specified, the EntityKey represents an external-identity-mapped group.
-            The namespace must correspond to an identity source created in Admin Console
-            and must be in the form of `identitysources/{identity_source_id}`.
-
-        The **preferred_member_key** object supports the following:
-
-          * `id` (`pulumi.Input[str]`) - The ID of the entity.
-            For Google-managed entities, the id must be the email address of an existing
-            group or user.
-            For external-identity-mapped entities, the id must be a string conforming
-            to the Identity Source's requirements.
-            Must be unique within a namespace.
-          * `namespace` (`pulumi.Input[str]`) - The namespace in which the entity exists.
-            If not specified, the EntityKey represents a Google-managed entity
-            such as a Google user or a Google Group.
-            If specified, the EntityKey represents an external-identity-mapped group.
-            The namespace must correspond to an identity source created in Admin Console
-            and must be in the form of `identitysources/{identity_source_id}`.
-
-        The **roles** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The name of the MembershipRole. Must be one of OWNER, MANAGER, MEMBER.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -127,7 +86,7 @@ class GroupMembership(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -152,7 +111,17 @@ class GroupMembership(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, create_time=None, group=None, member_key=None, name=None, preferred_member_key=None, roles=None, type=None, update_time=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            create_time: Optional[pulumi.Input[str]] = None,
+            group: Optional[pulumi.Input[str]] = None,
+            member_key: Optional[pulumi.Input[pulumi.InputType['GroupMembershipMemberKeyArgs']]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            preferred_member_key: Optional[pulumi.Input[pulumi.InputType['GroupMembershipPreferredMemberKeyArgs']]] = None,
+            roles: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['GroupMembershipRoleArgs']]]]] = None,
+            type: Optional[pulumi.Input[str]] = None,
+            update_time: Optional[pulumi.Input[str]] = None) -> 'GroupMembership':
         """
         Get an existing GroupMembership resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -162,47 +131,13 @@ class GroupMembership(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] create_time: The time when the Membership was created.
         :param pulumi.Input[str] group: The name of the Group to create this membership in.
-        :param pulumi.Input[dict] member_key: EntityKey of the member.  Structure is documented below.
+        :param pulumi.Input[pulumi.InputType['GroupMembershipMemberKeyArgs']] member_key: EntityKey of the member.  Structure is documented below.
         :param pulumi.Input[str] name: The name of the MembershipRole. Must be one of OWNER, MANAGER, MEMBER.
-        :param pulumi.Input[dict] preferred_member_key: EntityKey of the member.  Structure is documented below.
-        :param pulumi.Input[list] roles: The MembershipRoles that apply to the Membership.
+        :param pulumi.Input[pulumi.InputType['GroupMembershipPreferredMemberKeyArgs']] preferred_member_key: EntityKey of the member.  Structure is documented below.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['GroupMembershipRoleArgs']]]] roles: The MembershipRoles that apply to the Membership.
                Must not contain duplicate MembershipRoles with the same name.  Structure is documented below.
         :param pulumi.Input[str] type: The type of the membership.
         :param pulumi.Input[str] update_time: The time when the Membership was last updated.
-
-        The **member_key** object supports the following:
-
-          * `id` (`pulumi.Input[str]`) - The ID of the entity.
-            For Google-managed entities, the id must be the email address of an existing
-            group or user.
-            For external-identity-mapped entities, the id must be a string conforming
-            to the Identity Source's requirements.
-            Must be unique within a namespace.
-          * `namespace` (`pulumi.Input[str]`) - The namespace in which the entity exists.
-            If not specified, the EntityKey represents a Google-managed entity
-            such as a Google user or a Google Group.
-            If specified, the EntityKey represents an external-identity-mapped group.
-            The namespace must correspond to an identity source created in Admin Console
-            and must be in the form of `identitysources/{identity_source_id}`.
-
-        The **preferred_member_key** object supports the following:
-
-          * `id` (`pulumi.Input[str]`) - The ID of the entity.
-            For Google-managed entities, the id must be the email address of an existing
-            group or user.
-            For external-identity-mapped entities, the id must be a string conforming
-            to the Identity Source's requirements.
-            Must be unique within a namespace.
-          * `namespace` (`pulumi.Input[str]`) - The namespace in which the entity exists.
-            If not specified, the EntityKey represents a Google-managed entity
-            such as a Google user or a Google Group.
-            If specified, the EntityKey represents an external-identity-mapped group.
-            The namespace must correspond to an identity source created in Admin Console
-            and must be in the form of `identitysources/{identity_source_id}`.
-
-        The **roles** object supports the following:
-
-          * `name` (`pulumi.Input[str]`) - The name of the MembershipRole. Must be one of OWNER, MANAGER, MEMBER.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -219,7 +154,8 @@ class GroupMembership(pulumi.CustomResource):
         return GroupMembership(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

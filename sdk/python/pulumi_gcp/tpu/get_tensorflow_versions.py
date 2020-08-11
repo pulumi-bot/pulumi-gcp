@@ -5,8 +5,15 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetTensorflowVersionsResult',
+    'AwaitableGetTensorflowVersionsResult',
+    'get_tensorflow_versions',
+]
+
 
 class GetTensorflowVersionsResult:
     """
@@ -31,6 +38,8 @@ class GetTensorflowVersionsResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         __self__.zone = zone
+
+
 class AwaitableGetTensorflowVersionsResult(GetTensorflowVersionsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -42,9 +51,34 @@ class AwaitableGetTensorflowVersionsResult(GetTensorflowVersionsResult):
             versions=self.versions,
             zone=self.zone)
 
-def get_tensorflow_versions(project=None,zone=None,opts=None):
+
+def get_tensorflow_versions(project: Optional[str] = None,
+                            zone: Optional[str] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTensorflowVersionsResult:
     """
     Get TensorFlow versions available for a project. For more information see the [official documentation](https://cloud.google.com/tpu/docs/) and [API](https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.tensorflowVersions).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    available = gcp.tpu.get_tensorflow_versions()
+    ```
+    ### Configure Basic TPU Node With Available Version
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    available = gcp.tpu.get_tensorflow_versions()
+    tpu = gcp.tpu.Node("tpu",
+        zone="us-central1-b",
+        accelerator_type="v3-8",
+        tensorflow_version=available.versions[0],
+        cidr_block="10.2.0.0/29")
+    ```
 
 
     :param str project: The project to list versions for. If it
@@ -53,14 +87,12 @@ def get_tensorflow_versions(project=None,zone=None,opts=None):
            is not provided, the provider zone is used.
     """
     __args__ = dict()
-
-
     __args__['project'] = project
     __args__['zone'] = zone
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:tpu/getTensorflowVersions:getTensorflowVersions', __args__, opts=opts).value
 
     return AwaitableGetTensorflowVersionsResult(
