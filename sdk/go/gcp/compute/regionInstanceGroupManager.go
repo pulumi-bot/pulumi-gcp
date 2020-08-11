@@ -18,6 +18,40 @@ import (
 // > **Note:** Use [compute.InstanceGroupManager](https://www.terraform.io/docs/providers/google/r/compute_instance_group_manager.html) to create a single-zone instance group manager.
 //
 // ## Example Usage
+// ### With Multiple Versions
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := compute.NewRegionInstanceGroupManager(ctx, "appserver", &compute.RegionInstanceGroupManagerArgs{
+// 			BaseInstanceName: pulumi.String("app"),
+// 			Region:           pulumi.String("us-central1"),
+// 			TargetSize:       pulumi.Int(5),
+// 			Versions: compute.RegionInstanceGroupManagerVersionArray{
+// 				&compute.RegionInstanceGroupManagerVersionArgs{
+// 					InstanceTemplate: pulumi.Any(google_compute_instance_template.Appserver.Id),
+// 				},
+// 				&compute.RegionInstanceGroupManagerVersionArgs{
+// 					InstanceTemplate: pulumi.Any(google_compute_instance_template.Appserver - canary.Id),
+// 					TargetSize: &compute.RegionInstanceGroupManagerVersionTargetSizeArgs{
+// 						Fixed: pulumi.Int(1),
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type RegionInstanceGroupManager struct {
 	pulumi.CustomResourceState
 
