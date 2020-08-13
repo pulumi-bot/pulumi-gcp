@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class FlexibleAppVersion(pulumi.CustomResource):
@@ -326,6 +326,71 @@ class FlexibleAppVersion(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/appengine/docs/flexible)
 
         ## Example Usage
+        ### App Engine Flexible App Version
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_project = gcp.organizations.Project("myProject",
+            project_id="appeng-flex",
+            org_id="123456789",
+            billing_account="000000-0000000-0000000-000000")
+        app = gcp.appengine.Application("app",
+            project=my_project.project_id,
+            location_id="us-central")
+        service = gcp.projects.Service("service",
+            project=my_project.project_id,
+            service="appengineflex.googleapis.com",
+            disable_dependent_services=False)
+        gae_api = gcp.projects.IAMMember("gaeApi",
+            project=service.project,
+            role="roles/compute.networkUser",
+            member=my_project.number.apply(lambda number: f"serviceAccount:service-{number}@gae-api-prod.google.com.iam.gserviceaccount.com"))
+        bucket = gcp.storage.Bucket("bucket", project=my_project.project_id)
+        object = gcp.storage.BucketObject("object",
+            bucket=bucket.name,
+            source=pulumi.FileAsset("./test-fixtures/appengine/hello-world.zip"))
+        myapp_v1 = gcp.appengine.FlexibleAppVersion("myappV1",
+            version_id="v1",
+            project=gae_api.project,
+            service="default",
+            runtime="nodejs",
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                },
+            },
+            liveness_check={
+                "path": "/",
+            },
+            readiness_check={
+                "path": "/",
+            },
+            env_variables={
+                "port": "8080",
+            },
+            handlers=[{
+                "urlRegex": ".*\\/my-path\\/*",
+                "securityLevel": "SECURE_ALWAYS",
+                "login": "LOGIN_REQUIRED",
+                "authFailAction": "AUTH_FAIL_ACTION_REDIRECT",
+                "staticFiles": {
+                    "path": "my-other-path",
+                    "uploadPathRegex": ".*\\/my-path\\/*",
+                },
+            }],
+            automatic_scaling={
+                "coolDownPeriod": "120s",
+                "cpuUtilization": {
+                    "targetUtilization": 0.5,
+                },
+            },
+            noop_on_destroy=True)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -576,48 +641,48 @@ class FlexibleAppVersion(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['api_config'] = api_config
-            __props__['automatic_scaling'] = automatic_scaling
-            __props__['beta_settings'] = beta_settings
-            __props__['default_expiration'] = default_expiration
-            __props__['delete_service_on_destroy'] = delete_service_on_destroy
+            __props__['apiConfig'] = api_config
+            __props__['automaticScaling'] = automatic_scaling
+            __props__['betaSettings'] = beta_settings
+            __props__['defaultExpiration'] = default_expiration
+            __props__['deleteServiceOnDestroy'] = delete_service_on_destroy
             __props__['deployment'] = deployment
-            __props__['endpoints_api_service'] = endpoints_api_service
+            __props__['endpointsApiService'] = endpoints_api_service
             __props__['entrypoint'] = entrypoint
-            __props__['env_variables'] = env_variables
+            __props__['envVariables'] = env_variables
             __props__['handlers'] = handlers
-            __props__['inbound_services'] = inbound_services
-            __props__['instance_class'] = instance_class
+            __props__['inboundServices'] = inbound_services
+            __props__['instanceClass'] = instance_class
             if liveness_check is None:
                 raise TypeError("Missing required property 'liveness_check'")
-            __props__['liveness_check'] = liveness_check
-            __props__['manual_scaling'] = manual_scaling
+            __props__['livenessCheck'] = liveness_check
+            __props__['manualScaling'] = manual_scaling
             __props__['network'] = network
-            __props__['nobuild_files_regex'] = nobuild_files_regex
-            __props__['noop_on_destroy'] = noop_on_destroy
+            __props__['nobuildFilesRegex'] = nobuild_files_regex
+            __props__['noopOnDestroy'] = noop_on_destroy
             __props__['project'] = project
             if readiness_check is None:
                 raise TypeError("Missing required property 'readiness_check'")
-            __props__['readiness_check'] = readiness_check
+            __props__['readinessCheck'] = readiness_check
             __props__['resources'] = resources
             if runtime is None:
                 raise TypeError("Missing required property 'runtime'")
             __props__['runtime'] = runtime
-            __props__['runtime_api_version'] = runtime_api_version
-            __props__['runtime_channel'] = runtime_channel
-            __props__['runtime_main_executable_path'] = runtime_main_executable_path
+            __props__['runtimeApiVersion'] = runtime_api_version
+            __props__['runtimeChannel'] = runtime_channel
+            __props__['runtimeMainExecutablePath'] = runtime_main_executable_path
             if service is None:
                 raise TypeError("Missing required property 'service'")
             __props__['service'] = service
-            __props__['serving_status'] = serving_status
-            __props__['version_id'] = version_id
-            __props__['vpc_access_connector'] = vpc_access_connector
+            __props__['servingStatus'] = serving_status
+            __props__['versionId'] = version_id
+            __props__['vpcAccessConnector'] = vpc_access_connector
             __props__['name'] = None
         super(FlexibleAppVersion, __self__).__init__(
             'gcp:appengine/flexibleAppVersion:FlexibleAppVersion',
@@ -907,7 +972,7 @@ class FlexibleAppVersion(pulumi.CustomResource):
         return FlexibleAppVersion(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

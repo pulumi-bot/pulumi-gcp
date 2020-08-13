@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class InterconnectAttachment(pulumi.CustomResource):
@@ -137,6 +137,17 @@ class InterconnectAttachment(pulumi.CustomResource):
         information, see Creating VLAN Attachments.
 
         ## Example Usage
+        ### Interconnect Attachment Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        foobar = gcp.compute.Router("foobar", network=google_compute_network["foobar"]["name"])
+        on_prem = gcp.compute.InterconnectAttachment("onPrem",
+            interconnect="my-interconnect-id",
+            router=foobar.id)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -195,17 +206,17 @@ class InterconnectAttachment(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['admin_enabled'] = admin_enabled
+            __props__['adminEnabled'] = admin_enabled
             __props__['bandwidth'] = bandwidth
-            __props__['candidate_subnets'] = candidate_subnets
+            __props__['candidateSubnets'] = candidate_subnets
             __props__['description'] = description
-            __props__['edge_availability_domain'] = edge_availability_domain
+            __props__['edgeAvailabilityDomain'] = edge_availability_domain
             __props__['interconnect'] = interconnect
             __props__['name'] = name
             __props__['project'] = project
@@ -214,7 +225,7 @@ class InterconnectAttachment(pulumi.CustomResource):
                 raise TypeError("Missing required property 'router'")
             __props__['router'] = router
             __props__['type'] = type
-            __props__['vlan_tag8021q'] = vlan_tag8021q
+            __props__['vlanTag8021q'] = vlan_tag8021q
             __props__['cloud_router_ip_address'] = None
             __props__['creation_timestamp'] = None
             __props__['customer_router_ip_address'] = None
@@ -328,7 +339,7 @@ class InterconnectAttachment(pulumi.CustomResource):
         return InterconnectAttachment(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

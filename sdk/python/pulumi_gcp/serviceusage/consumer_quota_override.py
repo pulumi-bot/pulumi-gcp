@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class ConsumerQuotaOverride(pulumi.CustomResource):
@@ -57,6 +57,25 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
             * [REST API documentation](https://cloud.google.com/service-usage/docs/reference/rest/v1beta1/services.consumerQuotaMetrics.limits.consumerOverrides)
 
         ## Example Usage
+        ### Consumer Quota Override
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_project = gcp.organizations.Project("myProject",
+            project_id="quota",
+            org_id="123456789",
+            opts=ResourceOptions(provider=google_beta))
+        override = gcp.serviceusage.ConsumerQuotaOverride("override",
+            project=my_project.project_id,
+            service="servicemanagement.googleapis.com",
+            metric="servicemanagement.googleapis.com%2Fdefault_requests",
+            limit="%2Fmin%2Fproject",
+            override_value="95",
+            force=True,
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -81,7 +100,7 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -97,7 +116,7 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
             __props__['metric'] = metric
             if override_value is None:
                 raise TypeError("Missing required property 'override_value'")
-            __props__['override_value'] = override_value
+            __props__['overrideValue'] = override_value
             __props__['project'] = project
             if service is None:
                 raise TypeError("Missing required property 'service'")
@@ -144,7 +163,7 @@ class ConsumerQuotaOverride(pulumi.CustomResource):
         return ConsumerQuotaOverride(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Job(pulumi.CustomResource):
@@ -283,27 +283,27 @@ class Job(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['force_delete'] = force_delete
-            __props__['hadoop_config'] = hadoop_config
-            __props__['hive_config'] = hive_config
+            __props__['forceDelete'] = force_delete
+            __props__['hadoopConfig'] = hadoop_config
+            __props__['hiveConfig'] = hive_config
             __props__['labels'] = labels
-            __props__['pig_config'] = pig_config
+            __props__['pigConfig'] = pig_config
             if placement is None:
                 raise TypeError("Missing required property 'placement'")
             __props__['placement'] = placement
             __props__['project'] = project
-            __props__['pyspark_config'] = pyspark_config
+            __props__['pysparkConfig'] = pyspark_config
             __props__['reference'] = reference
             __props__['region'] = region
             __props__['scheduling'] = scheduling
-            __props__['spark_config'] = spark_config
-            __props__['sparksql_config'] = sparksql_config
+            __props__['sparkConfig'] = spark_config
+            __props__['sparksqlConfig'] = sparksql_config
             __props__['driver_controls_files_uri'] = None
             __props__['driver_output_resource_uri'] = None
             __props__['status'] = None
@@ -463,7 +463,7 @@ class Job(pulumi.CustomResource):
         return Job(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

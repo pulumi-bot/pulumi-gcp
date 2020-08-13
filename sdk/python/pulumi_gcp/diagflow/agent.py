@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Agent(pulumi.CustomResource):
@@ -102,6 +102,29 @@ class Agent(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
 
         ## Example Usage
+        ### Dialogflow Agent Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        full_agent = gcp.diagflow.Agent("fullAgent",
+            api_version="API_VERSION_V2_BETA_1",
+            avatar_uri="https://cloud.google.com/_static/images/cloud/icons/favicons/onecloud/super_cloud.png",
+            classification_threshold=0.3,
+            default_language_code="en",
+            description="Example description.",
+            display_name="dialogflow-agent",
+            enable_logging=True,
+            match_mode="MATCH_MODE_ML_ONLY",
+            supported_language_codes=[
+                "fr",
+                "de",
+                "es",
+            ],
+            tier="TIER_STANDARD",
+            time_zone="America/New_York")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -154,30 +177,30 @@ class Agent(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['api_version'] = api_version
-            __props__['avatar_uri'] = avatar_uri
-            __props__['classification_threshold'] = classification_threshold
+            __props__['apiVersion'] = api_version
+            __props__['avatarUri'] = avatar_uri
+            __props__['classificationThreshold'] = classification_threshold
             if default_language_code is None:
                 raise TypeError("Missing required property 'default_language_code'")
-            __props__['default_language_code'] = default_language_code
+            __props__['defaultLanguageCode'] = default_language_code
             __props__['description'] = description
             if display_name is None:
                 raise TypeError("Missing required property 'display_name'")
-            __props__['display_name'] = display_name
-            __props__['enable_logging'] = enable_logging
-            __props__['match_mode'] = match_mode
+            __props__['displayName'] = display_name
+            __props__['enableLogging'] = enable_logging
+            __props__['matchMode'] = match_mode
             __props__['project'] = project
-            __props__['supported_language_codes'] = supported_language_codes
+            __props__['supportedLanguageCodes'] = supported_language_codes
             __props__['tier'] = tier
             if time_zone is None:
                 raise TypeError("Missing required property 'time_zone'")
-            __props__['time_zone'] = time_zone
+            __props__['timeZone'] = time_zone
             __props__['avatar_uri_backend'] = None
         super(Agent, __self__).__init__(
             'gcp:diagflow/agent:Agent',
@@ -254,7 +277,7 @@ class Agent(pulumi.CustomResource):
         return Agent(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

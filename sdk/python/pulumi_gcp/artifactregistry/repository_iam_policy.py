@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class RepositoryIamPolicy(pulumi.CustomResource):
@@ -45,6 +45,51 @@ class RepositoryIamPolicy(pulumi.CustomResource):
 
         > **Note:** `artifactregistry.RepositoryIamBinding` resources **can be** used in conjunction with `artifactregistry.RepositoryIamMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_artifact\_registry\_repository\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/viewer",
+            "members": ["user:jane@example.com"],
+        }])
+        policy = gcp.artifactregistry.RepositoryIamPolicy("policy",
+            project=google_artifact_registry_repository["my-repo"]["project"],
+            location=google_artifact_registry_repository["my-repo"]["location"],
+            repository=google_artifact_registry_repository["my-repo"]["name"],
+            policy_data=admin.policy_data)
+        ```
+
+        ## google\_artifact\_registry\_repository\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        binding = gcp.artifactregistry.RepositoryIamBinding("binding",
+            project=google_artifact_registry_repository["my-repo"]["project"],
+            location=google_artifact_registry_repository["my-repo"]["location"],
+            repository=google_artifact_registry_repository["my-repo"]["name"],
+            role="roles/viewer",
+            members=["user:jane@example.com"])
+        ```
+
+        ## google\_artifact\_registry\_repository\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        member = gcp.artifactregistry.RepositoryIamMember("member",
+            project=google_artifact_registry_repository["my-repo"]["project"],
+            location=google_artifact_registry_repository["my-repo"]["location"],
+            repository=google_artifact_registry_repository["my-repo"]["name"],
+            role="roles/viewer",
+            member="user:jane@example.com")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] location: The name of the location this repository is located in.
@@ -66,7 +111,7 @@ class RepositoryIamPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -75,7 +120,7 @@ class RepositoryIamPolicy(pulumi.CustomResource):
             __props__['location'] = location
             if policy_data is None:
                 raise TypeError("Missing required property 'policy_data'")
-            __props__['policy_data'] = policy_data
+            __props__['policyData'] = policy_data
             __props__['project'] = project
             if repository is None:
                 raise TypeError("Missing required property 'repository'")
@@ -117,7 +162,7 @@ class RepositoryIamPolicy(pulumi.CustomResource):
         return RepositoryIamPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

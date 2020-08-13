@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class RouterPeer(pulumi.CustomResource):
@@ -106,6 +106,20 @@ class RouterPeer(pulumi.CustomResource):
             * [Google Cloud Router](https://cloud.google.com/router/docs/)
 
         ## Example Usage
+        ### Router Peer Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        peer = gcp.compute.RouterPeer("peer",
+            advertised_route_priority=100,
+            interface="interface-1",
+            peer_asn=65513,
+            peer_ip_address="169.254.1.2",
+            region="us-central1",
+            router="my-router")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -161,26 +175,26 @@ class RouterPeer(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['advertise_mode'] = advertise_mode
-            __props__['advertised_groups'] = advertised_groups
-            __props__['advertised_ip_ranges'] = advertised_ip_ranges
-            __props__['advertised_route_priority'] = advertised_route_priority
+            __props__['advertiseMode'] = advertise_mode
+            __props__['advertisedGroups'] = advertised_groups
+            __props__['advertisedIpRanges'] = advertised_ip_ranges
+            __props__['advertisedRoutePriority'] = advertised_route_priority
             if interface is None:
                 raise TypeError("Missing required property 'interface'")
             __props__['interface'] = interface
             __props__['name'] = name
             if peer_asn is None:
                 raise TypeError("Missing required property 'peer_asn'")
-            __props__['peer_asn'] = peer_asn
+            __props__['peerAsn'] = peer_asn
             if peer_ip_address is None:
                 raise TypeError("Missing required property 'peer_ip_address'")
-            __props__['peer_ip_address'] = peer_ip_address
+            __props__['peerIpAddress'] = peer_ip_address
             __props__['project'] = project
             __props__['region'] = region
             if router is None:
@@ -269,7 +283,7 @@ class RouterPeer(pulumi.CustomResource):
         return RouterPeer(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

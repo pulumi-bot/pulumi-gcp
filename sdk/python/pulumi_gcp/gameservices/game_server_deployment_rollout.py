@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class GameServerDeploymentRollout(pulumi.CustomResource):
@@ -55,6 +55,49 @@ class GameServerDeploymentRollout(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/game-servers/docs)
 
         ## Example Usage
+        ### Game Service Deployment Rollout Basic
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_gcp as gcp
+
+        default_game_server_deployment = gcp.gameservices.GameServerDeployment("defaultGameServerDeployment",
+            deployment_id="tf-test-deployment",
+            description="a deployment description",
+            opts=ResourceOptions(provider=google_beta))
+        default_game_server_config = gcp.gameservices.GameServerConfig("defaultGameServerConfig",
+            config_id="tf-test-config",
+            deployment_id=default_game_server_deployment.deployment_id,
+            description="a config description",
+            fleet_configs=[{
+                "name": "some-non-guid",
+                "fleetSpec": json.dumps({
+                    "replicas": 1,
+                    "scheduling": "Packed",
+                    "template": {
+                        "metadata": {
+                            "name": "tf-test-game-server-template",
+                        },
+                        "spec": {
+                            "template": {
+                                "spec": {
+                                    "containers": [{
+                                        "name": "simple-udp-server",
+                                        "image": "gcr.io/agones-images/udp-server:0.14",
+                                    }],
+                                },
+                            },
+                        },
+                    },
+                }),
+            }],
+            opts=ResourceOptions(provider=google_beta))
+        default_game_server_deployment_rollout = gcp.gameservices.GameServerDeploymentRollout("defaultGameServerDeploymentRollout",
+            deployment_id=default_game_server_deployment.deployment_id,
+            default_game_server_config=default_game_server_config.name,
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -88,7 +131,7 @@ class GameServerDeploymentRollout(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -96,11 +139,11 @@ class GameServerDeploymentRollout(pulumi.CustomResource):
 
             if default_game_server_config is None:
                 raise TypeError("Missing required property 'default_game_server_config'")
-            __props__['default_game_server_config'] = default_game_server_config
+            __props__['defaultGameServerConfig'] = default_game_server_config
             if deployment_id is None:
                 raise TypeError("Missing required property 'deployment_id'")
-            __props__['deployment_id'] = deployment_id
-            __props__['game_server_config_overrides'] = game_server_config_overrides
+            __props__['deploymentId'] = deployment_id
+            __props__['gameServerConfigOverrides'] = game_server_config_overrides
             __props__['project'] = project
             __props__['name'] = None
         super(GameServerDeploymentRollout, __self__).__init__(
@@ -151,7 +194,7 @@ class GameServerDeploymentRollout(pulumi.CustomResource):
         return GameServerDeploymentRollout(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

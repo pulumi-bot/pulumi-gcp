@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class AlertPolicy(pulumi.CustomResource):
@@ -509,6 +509,31 @@ class AlertPolicy(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/monitoring/alerts/)
 
         ## Example Usage
+        ### Monitoring Alert Policy Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        alert_policy = gcp.monitoring.AlertPolicy("alertPolicy",
+            combiner="OR",
+            conditions=[{
+                "conditionThreshold": {
+                    "aggregations": [{
+                        "alignmentPeriod": "60s",
+                        "perSeriesAligner": "ALIGN_RATE",
+                    }],
+                    "comparison": "COMPARISON_GT",
+                    "duration": "60s",
+                    "filter": "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\"",
+                },
+                "display_name": "test condition",
+            }],
+            display_name="My Alert Policy",
+            user_labels={
+                "foo": "bar",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -972,7 +997,7 @@ class AlertPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -986,12 +1011,12 @@ class AlertPolicy(pulumi.CustomResource):
             __props__['conditions'] = conditions
             if display_name is None:
                 raise TypeError("Missing required property 'display_name'")
-            __props__['display_name'] = display_name
+            __props__['displayName'] = display_name
             __props__['documentation'] = documentation
             __props__['enabled'] = enabled
-            __props__['notification_channels'] = notification_channels
+            __props__['notificationChannels'] = notification_channels
             __props__['project'] = project
-            __props__['user_labels'] = user_labels
+            __props__['userLabels'] = user_labels
             __props__['creation_record'] = None
             __props__['name'] = None
         super(AlertPolicy, __self__).__init__(
@@ -1489,7 +1514,7 @@ class AlertPolicy(pulumi.CustomResource):
         return AlertPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

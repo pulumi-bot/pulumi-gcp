@@ -14,6 +14,38 @@ import (
 // [API](https://cloud.google.com/bigtable/docs/go/reference).
 //
 // ## Example Usage
+// ### Development Instance
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/bigtable"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := bigtable.NewInstance(ctx, "development_instance", &bigtable.InstanceArgs{
+// 			Clusters: bigtable.InstanceClusterArray{
+// 				&bigtable.InstanceClusterArgs{
+// 					ClusterId:   pulumi.String("tf-instance-cluster"),
+// 					StorageType: pulumi.String("HDD"),
+// 					Zone:        pulumi.String("us-central1-b"),
+// 				},
+// 			},
+// 			InstanceType: pulumi.String("DEVELOPMENT"),
+// 			Labels: pulumi.StringMap{
+// 				"my-label": pulumi.String("dev-label"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type Instance struct {
 	pulumi.CustomResourceState
 

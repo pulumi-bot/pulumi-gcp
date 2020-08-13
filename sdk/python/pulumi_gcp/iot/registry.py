@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Registry(pulumi.CustomResource):
@@ -88,6 +88,63 @@ class Registry(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/iot/docs/)
 
         ## Example Usage
+        ### Cloudiot Device Registry Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        test_registry = gcp.iot.Registry("test-registry")
+        ```
+        ### Cloudiot Device Registry Single Event Notification Configs
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_telemetry = gcp.pubsub.Topic("default-telemetry")
+        test_registry = gcp.iot.Registry("test-registry", event_notification_configs=[{
+            "pubsub_topic_name": default_telemetry.id,
+            "subfolderMatches": "",
+        }])
+        ```
+        ### Cloudiot Device Registry Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_devicestatus = gcp.pubsub.Topic("default-devicestatus")
+        default_telemetry = gcp.pubsub.Topic("default-telemetry")
+        additional_telemetry = gcp.pubsub.Topic("additional-telemetry")
+        test_registry = gcp.iot.Registry("test-registry",
+            event_notification_configs=[
+                {
+                    "pubsub_topic_name": additional_telemetry.id,
+                    "subfolderMatches": "test/path",
+                },
+                {
+                    "pubsub_topic_name": default_telemetry.id,
+                    "subfolderMatches": "",
+                },
+            ],
+            state_notification_config={
+                "pubsub_topic_name": default_devicestatus.id,
+            },
+            mqtt_config={
+                "mqtt_enabled_state": "MQTT_ENABLED",
+            },
+            http_config={
+                "http_enabled_state": "HTTP_ENABLED",
+            },
+            log_level="INFO",
+            credentials=[{
+                "publicKeyCertificate": {
+                    "format": "X509_CERTIFICATE_PEM",
+                    "certificate": (lambda path: open(path).read())("test-fixtures/rsa_cert.pem"),
+                },
+            }])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -153,21 +210,21 @@ class Registry(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
             __props__['credentials'] = credentials
-            __props__['event_notification_configs'] = event_notification_configs
-            __props__['http_config'] = http_config
-            __props__['log_level'] = log_level
-            __props__['mqtt_config'] = mqtt_config
+            __props__['eventNotificationConfigs'] = event_notification_configs
+            __props__['httpConfig'] = http_config
+            __props__['logLevel'] = log_level
+            __props__['mqttConfig'] = mqtt_config
             __props__['name'] = name
             __props__['project'] = project
             __props__['region'] = region
-            __props__['state_notification_config'] = state_notification_config
+            __props__['stateNotificationConfig'] = state_notification_config
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="gcp:kms/registry:Registry")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Registry, __self__).__init__(
@@ -252,7 +309,7 @@ class Registry(pulumi.CustomResource):
         return Registry(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

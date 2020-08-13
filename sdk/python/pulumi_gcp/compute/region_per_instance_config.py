@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class RegionPerInstanceConfig(pulumi.CustomResource):
@@ -144,24 +144,24 @@ class RegionPerInstanceConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['minimal_action'] = minimal_action
-            __props__['most_disruptive_allowed_action'] = most_disruptive_allowed_action
+            __props__['minimalAction'] = minimal_action
+            __props__['mostDisruptiveAllowedAction'] = most_disruptive_allowed_action
             __props__['name'] = name
-            __props__['preserved_state'] = preserved_state
+            __props__['preservedState'] = preserved_state
             __props__['project'] = project
             if region is None:
                 raise TypeError("Missing required property 'region'")
             __props__['region'] = region
             if region_instance_group_manager is None:
                 raise TypeError("Missing required property 'region_instance_group_manager'")
-            __props__['region_instance_group_manager'] = region_instance_group_manager
-            __props__['remove_instance_state_on_destroy'] = remove_instance_state_on_destroy
+            __props__['regionInstanceGroupManager'] = region_instance_group_manager
+            __props__['removeInstanceStateOnDestroy'] = remove_instance_state_on_destroy
         super(RegionPerInstanceConfig, __self__).__init__(
             'gcp:compute/regionPerInstanceConfig:RegionPerInstanceConfig',
             resource_name,
@@ -235,7 +235,7 @@ class RegionPerInstanceConfig(pulumi.CustomResource):
         return RegionPerInstanceConfig(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

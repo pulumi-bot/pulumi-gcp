@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class DatasetAccess(pulumi.CustomResource):
@@ -83,6 +83,42 @@ class DatasetAccess(pulumi.CustomResource):
             * [Controlling access to datasets](https://cloud.google.com/bigquery/docs/dataset-access-controls)
 
         ## Example Usage
+        ### Bigquery Dataset Access Basic User
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        dataset = gcp.bigquery.Dataset("dataset", dataset_id="example_dataset")
+        bqowner = gcp.service_account.Account("bqowner", account_id="bqowner")
+        access = gcp.bigquery.DatasetAccess("access",
+            dataset_id=dataset.dataset_id,
+            role="OWNER",
+            user_by_email=bqowner.email)
+        ```
+        ### Bigquery Dataset Access View
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        private = gcp.bigquery.Dataset("private", dataset_id="example_dataset")
+        public_dataset = gcp.bigquery.Dataset("publicDataset", dataset_id="example_dataset2")
+        public_table = gcp.bigquery.Table("publicTable",
+            dataset_id=public_dataset.dataset_id,
+            table_id="example_table",
+            view={
+                "query": "SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
+                "useLegacySql": False,
+            })
+        access = gcp.bigquery.DatasetAccess("access",
+            dataset_id=private.dataset_id,
+            view={
+                "project_id": public_table.project,
+                "dataset_id": public_dataset.dataset_id,
+                "table_id": public_table.table_id,
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -129,7 +165,7 @@ class DatasetAccess(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -137,14 +173,14 @@ class DatasetAccess(pulumi.CustomResource):
 
             if dataset_id is None:
                 raise TypeError("Missing required property 'dataset_id'")
-            __props__['dataset_id'] = dataset_id
+            __props__['datasetId'] = dataset_id
             __props__['domain'] = domain
-            __props__['group_by_email'] = group_by_email
-            __props__['iam_member'] = iam_member
+            __props__['groupByEmail'] = group_by_email
+            __props__['iamMember'] = iam_member
             __props__['project'] = project
             __props__['role'] = role
-            __props__['special_group'] = special_group
-            __props__['user_by_email'] = user_by_email
+            __props__['specialGroup'] = special_group
+            __props__['userByEmail'] = user_by_email
             __props__['view'] = view
         super(DatasetAccess, __self__).__init__(
             'gcp:bigquery/datasetAccess:DatasetAccess',
@@ -209,7 +245,7 @@ class DatasetAccess(pulumi.CustomResource):
         return DatasetAccess(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

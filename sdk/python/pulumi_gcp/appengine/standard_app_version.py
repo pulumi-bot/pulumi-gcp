@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class StandardAppVersion(pulumi.CustomResource):
@@ -184,6 +184,65 @@ class StandardAppVersion(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/appengine/docs/standard)
 
         ## Example Usage
+        ### App Engine Standard App Version
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bucket = gcp.storage.Bucket("bucket")
+        object = gcp.storage.BucketObject("object",
+            bucket=bucket.name,
+            source=pulumi.FileAsset("./test-fixtures/appengine/hello-world.zip"))
+        myapp_v1 = gcp.appengine.StandardAppVersion("myappV1",
+            version_id="v1",
+            service="myapp",
+            runtime="nodejs10",
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                },
+            },
+            env_variables={
+                "port": "8080",
+            },
+            automatic_scaling={
+                "maxConcurrentRequests": 10,
+                "minIdleInstances": 1,
+                "maxIdleInstances": 3,
+                "minPendingLatency": "1s",
+                "maxPendingLatency": "5s",
+                "standardSchedulerSettings": {
+                    "targetCpuUtilization": 0.5,
+                    "targetThroughputUtilization": 0.75,
+                    "minInstances": 2,
+                    "max_instances": 10,
+                },
+            },
+            delete_service_on_destroy=True)
+        myapp_v2 = gcp.appengine.StandardAppVersion("myappV2",
+            version_id="v2",
+            service="myapp",
+            runtime="nodejs10",
+            entrypoint={
+                "shell": "node ./app.js",
+            },
+            deployment={
+                "zip": {
+                    "sourceUrl": pulumi.Output.all(bucket.name, object.name).apply(lambda bucketName, objectName: f"https://storage.googleapis.com/{bucket_name}/{object_name}"),
+                },
+            },
+            env_variables={
+                "port": "8080",
+            },
+            basic_scaling={
+                "max_instances": 5,
+            },
+            noop_on_destroy=True)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -315,36 +374,36 @@ class StandardAppVersion(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['automatic_scaling'] = automatic_scaling
-            __props__['basic_scaling'] = basic_scaling
-            __props__['delete_service_on_destroy'] = delete_service_on_destroy
+            __props__['automaticScaling'] = automatic_scaling
+            __props__['basicScaling'] = basic_scaling
+            __props__['deleteServiceOnDestroy'] = delete_service_on_destroy
             if deployment is None:
                 raise TypeError("Missing required property 'deployment'")
             __props__['deployment'] = deployment
             __props__['entrypoint'] = entrypoint
-            __props__['env_variables'] = env_variables
+            __props__['envVariables'] = env_variables
             __props__['handlers'] = handlers
-            __props__['inbound_services'] = inbound_services
-            __props__['instance_class'] = instance_class
+            __props__['inboundServices'] = inbound_services
+            __props__['instanceClass'] = instance_class
             __props__['libraries'] = libraries
-            __props__['manual_scaling'] = manual_scaling
-            __props__['noop_on_destroy'] = noop_on_destroy
+            __props__['manualScaling'] = manual_scaling
+            __props__['noopOnDestroy'] = noop_on_destroy
             __props__['project'] = project
             if runtime is None:
                 raise TypeError("Missing required property 'runtime'")
             __props__['runtime'] = runtime
-            __props__['runtime_api_version'] = runtime_api_version
+            __props__['runtimeApiVersion'] = runtime_api_version
             if service is None:
                 raise TypeError("Missing required property 'service'")
             __props__['service'] = service
             __props__['threadsafe'] = threadsafe
-            __props__['version_id'] = version_id
+            __props__['versionId'] = version_id
             __props__['name'] = None
         super(StandardAppVersion, __self__).__init__(
             'gcp:appengine/standardAppVersion:StandardAppVersion',
@@ -505,7 +564,7 @@ class StandardAppVersion(pulumi.CustomResource):
         return StandardAppVersion(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

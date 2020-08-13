@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class ResourcePolicy(pulumi.CustomResource):
@@ -95,6 +95,64 @@ class ResourcePolicy(pulumi.CustomResource):
         A policy that can be attached to a resource to specify or schedule actions on that resource.
 
         ## Example Usage
+        ### Resource Policy Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        foo = gcp.compute.ResourcePolicy("foo",
+            region="us-central1",
+            snapshot_schedule_policy={
+                "schedule": {
+                    "dailySchedule": {
+                        "daysInCycle": 1,
+                        "startTime": "04:00",
+                    },
+                },
+            })
+        ```
+        ### Resource Policy Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bar = gcp.compute.ResourcePolicy("bar",
+            region="us-central1",
+            snapshot_schedule_policy={
+                "retention_policy": {
+                    "maxRetentionDays": 10,
+                    "onSourceDiskDelete": "KEEP_AUTO_SNAPSHOTS",
+                },
+                "schedule": {
+                    "hourlySchedule": {
+                        "hoursInCycle": 20,
+                        "startTime": "23:00",
+                    },
+                },
+                "snapshotProperties": {
+                    "guestFlush": True,
+                    "labels": {
+                        "myLabel": "value",
+                    },
+                    "storageLocations": "us",
+                },
+            })
+        ```
+        ### Resource Policy Placement Policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        baz = gcp.compute.ResourcePolicy("baz",
+            group_placement_policy={
+                "collocation": "COLLOCATED",
+                "vmCount": 2,
+            },
+            region="us-central1")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -175,17 +233,17 @@ class ResourcePolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['group_placement_policy'] = group_placement_policy
+            __props__['groupPlacementPolicy'] = group_placement_policy
             __props__['name'] = name
             __props__['project'] = project
             __props__['region'] = region
-            __props__['snapshot_schedule_policy'] = snapshot_schedule_policy
+            __props__['snapshotSchedulePolicy'] = snapshot_schedule_policy
             __props__['self_link'] = None
         super(ResourcePolicy, __self__).__init__(
             'gcp:compute/resourcePolicy:ResourcePolicy',
@@ -282,7 +340,7 @@ class ResourcePolicy(pulumi.CustomResource):
         return ResourcePolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

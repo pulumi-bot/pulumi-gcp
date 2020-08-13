@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class InboundSamlConfig(pulumi.CustomResource):
@@ -67,6 +67,27 @@ class InboundSamlConfig(pulumi.CustomResource):
         the marketplace prior to using this resource.
 
         ## Example Usage
+        ### Identity Platform Inbound Saml Config Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        saml_config = gcp.identityplatform.InboundSamlConfig("samlConfig",
+            display_name="Display Name",
+            idp_config={
+                "idpEntityId": "tf-idp",
+                "signRequest": True,
+                "ssoUrl": "https://example.com",
+                "idpCertificates": [{
+                    "x509Certificate": (lambda path: open(path).read())("test-fixtures/rsa_cert.pem"),
+                }],
+            },
+            sp_config={
+                "spEntityId": "tf-sp",
+                "callbackUri": "https://example.com",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -116,7 +137,7 @@ class InboundSamlConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -124,16 +145,16 @@ class InboundSamlConfig(pulumi.CustomResource):
 
             if display_name is None:
                 raise TypeError("Missing required property 'display_name'")
-            __props__['display_name'] = display_name
+            __props__['displayName'] = display_name
             __props__['enabled'] = enabled
             if idp_config is None:
                 raise TypeError("Missing required property 'idp_config'")
-            __props__['idp_config'] = idp_config
+            __props__['idpConfig'] = idp_config
             __props__['name'] = name
             __props__['project'] = project
             if sp_config is None:
                 raise TypeError("Missing required property 'sp_config'")
-            __props__['sp_config'] = sp_config
+            __props__['spConfig'] = sp_config
         super(InboundSamlConfig, __self__).__init__(
             'gcp:identityplatform/inboundSamlConfig:InboundSamlConfig',
             resource_name,
@@ -197,7 +218,7 @@ class InboundSamlConfig(pulumi.CustomResource):
         return InboundSamlConfig(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Topic(pulumi.CustomResource):
@@ -56,6 +56,36 @@ class Topic(pulumi.CustomResource):
             * [Managing Topics](https://cloud.google.com/pubsub/docs/admin#managing_topics)
 
         ## Example Usage
+        ### Pubsub Topic Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example = gcp.pubsub.Topic("example", labels={
+            "foo": "bar",
+        })
+        ```
+        ### Pubsub Topic Cmek
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        key_ring = gcp.kms.KeyRing("keyRing", location="global")
+        crypto_key = gcp.kms.CryptoKey("cryptoKey", key_ring=key_ring.id)
+        example = gcp.pubsub.Topic("example", kms_key_name=crypto_key.id)
+        ```
+        ### Pubsub Topic Geo Restricted
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example = gcp.pubsub.Topic("example", message_storage_policy={
+            "allowedPersistenceRegions": ["europe-west3"],
+        })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -93,15 +123,15 @@ class Topic(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['kms_key_name'] = kms_key_name
+            __props__['kmsKeyName'] = kms_key_name
             __props__['labels'] = labels
-            __props__['message_storage_policy'] = message_storage_policy
+            __props__['messageStoragePolicy'] = message_storage_policy
             __props__['name'] = name
             __props__['project'] = project
         super(Topic, __self__).__init__(
@@ -154,7 +184,7 @@ class Topic(pulumi.CustomResource):
         return Topic(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

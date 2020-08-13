@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Instance(pulumi.CustomResource):
@@ -127,6 +127,35 @@ class Instance(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/memorystore/docs/redis/)
 
         ## Example Usage
+        ### Redis Instance Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        cache = gcp.redis.Instance("cache", memory_size_gb=1)
+        ```
+        ### Redis Instance Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        redis_network = gcp.compute.get_network(name="redis-test-network")
+        cache = gcp.redis.Instance("cache",
+            tier="STANDARD_HA",
+            memory_size_gb=1,
+            location_id="us-central1-a",
+            alternative_location_id="us-central1-f",
+            authorized_network=redis_network.id,
+            redis_version="REDIS_4_0",
+            display_name="Test Instance",
+            reserved_ip_range="192.168.0.0/29",
+            labels={
+                "my_key": "my_val",
+                "other_key": "other_val",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -182,27 +211,27 @@ class Instance(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['alternative_location_id'] = alternative_location_id
-            __props__['authorized_network'] = authorized_network
-            __props__['connect_mode'] = connect_mode
-            __props__['display_name'] = display_name
+            __props__['alternativeLocationId'] = alternative_location_id
+            __props__['authorizedNetwork'] = authorized_network
+            __props__['connectMode'] = connect_mode
+            __props__['displayName'] = display_name
             __props__['labels'] = labels
-            __props__['location_id'] = location_id
+            __props__['locationId'] = location_id
             if memory_size_gb is None:
                 raise TypeError("Missing required property 'memory_size_gb'")
-            __props__['memory_size_gb'] = memory_size_gb
+            __props__['memorySizeGb'] = memory_size_gb
             __props__['name'] = name
             __props__['project'] = project
-            __props__['redis_configs'] = redis_configs
-            __props__['redis_version'] = redis_version
+            __props__['redisConfigs'] = redis_configs
+            __props__['redisVersion'] = redis_version
             __props__['region'] = region
-            __props__['reserved_ip_range'] = reserved_ip_range
+            __props__['reservedIpRange'] = reserved_ip_range
             __props__['tier'] = tier
             __props__['create_time'] = None
             __props__['current_location_id'] = None
@@ -300,7 +329,7 @@ class Instance(pulumi.CustomResource):
         return Instance(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

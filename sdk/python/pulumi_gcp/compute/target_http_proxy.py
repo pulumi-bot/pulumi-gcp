@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class TargetHttpProxy(pulumi.CustomResource):
@@ -58,6 +58,49 @@ class TargetHttpProxy(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/target-proxies)
 
         ## Example Usage
+        ### Target Http Proxy Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_http_health_check = gcp.compute.HttpHealthCheck("defaultHttpHealthCheck",
+            request_path="/",
+            check_interval_sec=1,
+            timeout_sec=1)
+        default_backend_service = gcp.compute.BackendService("defaultBackendService",
+            port_name="http",
+            protocol="HTTP",
+            timeout_sec=10,
+            health_checks=[default_http_health_check.id])
+        default_url_map = gcp.compute.URLMap("defaultURLMap",
+            default_service=default_backend_service.id,
+            host_rules=[{
+                "hosts": ["mysite.com"],
+                "pathMatcher": "allpaths",
+            }],
+            path_matchers=[{
+                "name": "allpaths",
+                "default_service": default_backend_service.id,
+                "pathRules": [{
+                    "paths": ["/*"],
+                    "service": default_backend_service.id,
+                }],
+            }])
+        default_target_http_proxy = gcp.compute.TargetHttpProxy("defaultTargetHttpProxy", url_map=default_url_map.id)
+        ```
+        ### Target Http Proxy Https Redirect
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_url_map = gcp.compute.URLMap("defaultURLMap", default_url_redirect={
+            "httpsRedirect": True,
+            "stripQuery": False,
+        })
+        default_target_http_proxy = gcp.compute.TargetHttpProxy("defaultTargetHttpProxy", url_map=default_url_map.id)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -85,7 +128,7 @@ class TargetHttpProxy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -96,7 +139,7 @@ class TargetHttpProxy(pulumi.CustomResource):
             __props__['project'] = project
             if url_map is None:
                 raise TypeError("Missing required property 'url_map'")
-            __props__['url_map'] = url_map
+            __props__['urlMap'] = url_map
             __props__['creation_timestamp'] = None
             __props__['proxy_id'] = None
             __props__['self_link'] = None
@@ -145,7 +188,7 @@ class TargetHttpProxy(pulumi.CustomResource):
         return TargetHttpProxy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

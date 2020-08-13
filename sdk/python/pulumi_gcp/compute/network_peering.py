@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class NetworkPeering(pulumi.CustomResource):
@@ -60,6 +60,22 @@ class NetworkPeering(pulumi.CustomResource):
 
         > Subnets IP ranges across peered VPC networks cannot overlap.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.compute.Network("default", auto_create_subnetworks=False)
+        other = gcp.compute.Network("other", auto_create_subnetworks=False)
+        peering1 = gcp.compute.NetworkPeering("peering1",
+            network=default.id,
+            peer_network=other.id)
+        peering2 = gcp.compute.NetworkPeering("peering2",
+            network=other.id,
+            peer_network=default.id)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] export_custom_routes: Whether to export the custom routes to the peer network. Defaults to `false`.
@@ -82,23 +98,23 @@ class NetworkPeering(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['export_custom_routes'] = export_custom_routes
-            __props__['export_subnet_routes_with_public_ip'] = export_subnet_routes_with_public_ip
-            __props__['import_custom_routes'] = import_custom_routes
-            __props__['import_subnet_routes_with_public_ip'] = import_subnet_routes_with_public_ip
+            __props__['exportCustomRoutes'] = export_custom_routes
+            __props__['exportSubnetRoutesWithPublicIp'] = export_subnet_routes_with_public_ip
+            __props__['importCustomRoutes'] = import_custom_routes
+            __props__['importSubnetRoutesWithPublicIp'] = import_subnet_routes_with_public_ip
             __props__['name'] = name
             if network is None:
                 raise TypeError("Missing required property 'network'")
             __props__['network'] = network
             if peer_network is None:
                 raise TypeError("Missing required property 'peer_network'")
-            __props__['peer_network'] = peer_network
+            __props__['peerNetwork'] = peer_network
             __props__['state'] = None
             __props__['state_details'] = None
         super(NetworkPeering, __self__).__init__(
@@ -144,7 +160,7 @@ class NetworkPeering(pulumi.CustomResource):
         return NetworkPeering(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

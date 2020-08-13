@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Snapshot(pulumi.CustomResource):
@@ -122,6 +122,26 @@ class Snapshot(pulumi.CustomResource):
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
         ## Example Usage
+        ### Snapshot Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        debian = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        persistent = gcp.compute.Disk("persistent",
+            image=debian.self_link,
+            size=10,
+            type="pd-ssd",
+            zone="us-central1-a")
+        snapshot = gcp.compute.Snapshot("snapshot",
+            source_disk=persistent.name,
+            zone="us-central1-a",
+            labels={
+                "my_label": "value",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -172,7 +192,7 @@ class Snapshot(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -182,11 +202,11 @@ class Snapshot(pulumi.CustomResource):
             __props__['labels'] = labels
             __props__['name'] = name
             __props__['project'] = project
-            __props__['snapshot_encryption_key'] = snapshot_encryption_key
+            __props__['snapshotEncryptionKey'] = snapshot_encryption_key
             if source_disk is None:
                 raise TypeError("Missing required property 'source_disk'")
-            __props__['source_disk'] = source_disk
-            __props__['source_disk_encryption_key'] = source_disk_encryption_key
+            __props__['sourceDisk'] = source_disk
+            __props__['sourceDiskEncryptionKey'] = source_disk_encryption_key
             __props__['zone'] = zone
             __props__['creation_timestamp'] = None
             __props__['disk_size_gb'] = None
@@ -280,7 +300,7 @@ class Snapshot(pulumi.CustomResource):
         return Snapshot(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

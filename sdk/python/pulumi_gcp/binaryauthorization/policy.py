@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Policy(pulumi.CustomResource):
@@ -90,6 +90,57 @@ class Policy(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/binary-authorization/)
 
         ## Example Usage
+        ### Binary Authorization Policy Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        note = gcp.containeranalysis.Note("note", attestation_authority={
+            "hint": {
+                "humanReadableName": "My attestor",
+            },
+        })
+        attestor = gcp.binaryauthorization.Attestor("attestor", attestation_authority_note={
+            "noteReference": note.name,
+        })
+        policy = gcp.binaryauthorization.Policy("policy",
+            admission_whitelist_patterns=[{
+                "namePattern": "gcr.io/google_containers/*",
+            }],
+            default_admission_rule={
+                "evaluationMode": "ALWAYS_ALLOW",
+                "enforcementMode": "ENFORCED_BLOCK_AND_AUDIT_LOG",
+            },
+            cluster_admission_rules=[{
+                "cluster": "us-central1-a.prod-cluster",
+                "evaluationMode": "REQUIRE_ATTESTATION",
+                "enforcementMode": "ENFORCED_BLOCK_AND_AUDIT_LOG",
+                "requireAttestationsBies": [attestor.name],
+            }])
+        ```
+        ### Binary Authorization Policy Global Evaluation
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        note = gcp.containeranalysis.Note("note", attestation_authority={
+            "hint": {
+                "humanReadableName": "My attestor",
+            },
+        })
+        attestor = gcp.binaryauthorization.Attestor("attestor", attestation_authority_note={
+            "noteReference": note.name,
+        })
+        policy = gcp.binaryauthorization.Policy("policy",
+            default_admission_rule={
+                "evaluationMode": "REQUIRE_ATTESTATION",
+                "enforcementMode": "ENFORCED_BLOCK_AND_AUDIT_LOG",
+                "requireAttestationsBies": [attestor.name],
+            },
+            global_policy_evaluation_mode="ENABLE")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -162,19 +213,19 @@ class Policy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['admission_whitelist_patterns'] = admission_whitelist_patterns
-            __props__['cluster_admission_rules'] = cluster_admission_rules
+            __props__['admissionWhitelistPatterns'] = admission_whitelist_patterns
+            __props__['clusterAdmissionRules'] = cluster_admission_rules
             if default_admission_rule is None:
                 raise TypeError("Missing required property 'default_admission_rule'")
-            __props__['default_admission_rule'] = default_admission_rule
+            __props__['defaultAdmissionRule'] = default_admission_rule
             __props__['description'] = description
-            __props__['global_policy_evaluation_mode'] = global_policy_evaluation_mode
+            __props__['globalPolicyEvaluationMode'] = global_policy_evaluation_mode
             __props__['project'] = project
         super(Policy, __self__).__init__(
             'gcp:binaryauthorization/policy:Policy',
@@ -262,7 +313,7 @@ class Policy(pulumi.CustomResource):
         return Policy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Slo(pulumi.CustomResource):
@@ -333,6 +333,25 @@ class Slo(pulumi.CustomResource):
             * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
         ## Example Usage
+        ### Monitoring Slo Appengine
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.monitoring.get_app_engine_service(module_id="default")
+        appeng_slo = gcp.monitoring.Slo("appengSlo",
+            service=default.service_id,
+            slo_id="ae-slo",
+            display_name="Test SLO for App Engine",
+            goal=0.9,
+            calendar_period="DAY",
+            basic_sli={
+                "latency": {
+                    "threshold": "1s",
+                },
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -624,26 +643,26 @@ class Slo(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['basic_sli'] = basic_sli
-            __props__['calendar_period'] = calendar_period
-            __props__['display_name'] = display_name
+            __props__['basicSli'] = basic_sli
+            __props__['calendarPeriod'] = calendar_period
+            __props__['displayName'] = display_name
             if goal is None:
                 raise TypeError("Missing required property 'goal'")
             __props__['goal'] = goal
             __props__['project'] = project
-            __props__['request_based_sli'] = request_based_sli
-            __props__['rolling_period_days'] = rolling_period_days
+            __props__['requestBasedSli'] = request_based_sli
+            __props__['rollingPeriodDays'] = rolling_period_days
             if service is None:
                 raise TypeError("Missing required property 'service'")
             __props__['service'] = service
-            __props__['slo_id'] = slo_id
-            __props__['windows_based_sli'] = windows_based_sli
+            __props__['sloId'] = slo_id
+            __props__['windowsBasedSli'] = windows_based_sli
             __props__['name'] = None
         super(Slo, __self__).__init__(
             'gcp:monitoring/slo:Slo',
@@ -957,7 +976,7 @@ class Slo(pulumi.CustomResource):
         return Slo(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

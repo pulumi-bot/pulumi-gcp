@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Autoscaler(pulumi.CustomResource):
@@ -165,6 +165,115 @@ class Autoscaler(pulumi.CustomResource):
             * [Autoscaling Groups of Instances](https://cloud.google.com/compute/docs/autoscaler/)
 
         ## Example Usage
+        ### Autoscaler Single Instance
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        debian9 = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        default_instance_template = gcp.compute.InstanceTemplate("defaultInstanceTemplate",
+            machine_type="n1-standard-1",
+            can_ip_forward=False,
+            tags=[
+                "foo",
+                "bar",
+            ],
+            disks=[{
+                "sourceImage": debian9.id,
+            }],
+            network_interfaces=[{
+                "network": "default",
+            }],
+            metadata={
+                "foo": "bar",
+            },
+            service_account={
+                "scopes": [
+                    "userinfo-email",
+                    "compute-ro",
+                    "storage-ro",
+                ],
+            },
+            opts=ResourceOptions(provider=google_beta))
+        default_target_pool = gcp.compute.TargetPool("defaultTargetPool", opts=ResourceOptions(provider=google_beta))
+        default_instance_group_manager = gcp.compute.InstanceGroupManager("defaultInstanceGroupManager",
+            zone="us-central1-f",
+            versions=[{
+                "instanceTemplate": default_instance_template.id,
+                "name": "primary",
+            }],
+            target_pools=[default_target_pool.id],
+            base_instance_name="autoscaler-sample",
+            opts=ResourceOptions(provider=google_beta))
+        default_autoscaler = gcp.compute.Autoscaler("defaultAutoscaler",
+            zone="us-central1-f",
+            target=default_instance_group_manager.id,
+            autoscaling_policy={
+                "maxReplicas": 5,
+                "minReplicas": 1,
+                "cooldownPeriod": 60,
+                "metrics": [{
+                    "name": "pubsub.googleapis.com/subscription/num_undelivered_messages",
+                    "filter": "resource.type = pubsub_subscription AND resource.label.subscription_id = our-subscription",
+                    "singleInstanceAssignment": 65535,
+                }],
+            },
+            opts=ResourceOptions(provider=google_beta))
+        ```
+        ### Autoscaler Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        debian9 = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        foobar_instance_template = gcp.compute.InstanceTemplate("foobarInstanceTemplate",
+            machine_type="n1-standard-1",
+            can_ip_forward=False,
+            tags=[
+                "foo",
+                "bar",
+            ],
+            disks=[{
+                "sourceImage": debian9.id,
+            }],
+            network_interfaces=[{
+                "network": "default",
+            }],
+            metadata={
+                "foo": "bar",
+            },
+            service_account={
+                "scopes": [
+                    "userinfo-email",
+                    "compute-ro",
+                    "storage-ro",
+                ],
+            })
+        foobar_target_pool = gcp.compute.TargetPool("foobarTargetPool")
+        foobar_instance_group_manager = gcp.compute.InstanceGroupManager("foobarInstanceGroupManager",
+            zone="us-central1-f",
+            versions=[{
+                "instanceTemplate": foobar_instance_template.id,
+                "name": "primary",
+            }],
+            target_pools=[foobar_target_pool.id],
+            base_instance_name="foobar")
+        foobar_autoscaler = gcp.compute.Autoscaler("foobarAutoscaler",
+            zone="us-central1-f",
+            target=foobar_instance_group_manager.id,
+            autoscaling_policy={
+                "maxReplicas": 5,
+                "minReplicas": 1,
+                "cooldownPeriod": 60,
+                "cpuUtilization": {
+                    "target": 0.5,
+                },
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -296,7 +405,7 @@ class Autoscaler(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -304,7 +413,7 @@ class Autoscaler(pulumi.CustomResource):
 
             if autoscaling_policy is None:
                 raise TypeError("Missing required property 'autoscaling_policy'")
-            __props__['autoscaling_policy'] = autoscaling_policy
+            __props__['autoscalingPolicy'] = autoscaling_policy
             __props__['description'] = description
             __props__['name'] = name
             __props__['project'] = project
@@ -465,7 +574,7 @@ class Autoscaler(pulumi.CustomResource):
         return Autoscaler(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

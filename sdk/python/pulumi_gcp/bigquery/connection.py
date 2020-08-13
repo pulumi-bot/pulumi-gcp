@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Connection(pulumi.CustomResource):
@@ -73,6 +73,82 @@ class Connection(pulumi.CustomResource):
         state as plain-text. [Read more about sensitive data in state](https://www.terraform.io/docs/state/sensitive-data.html).
 
         ## Example Usage
+        ### Bigquery Connection Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_random as random
+
+        instance = gcp.sql.DatabaseInstance("instance",
+            database_version="POSTGRES_11",
+            region="us-central1",
+            settings={
+                "tier": "db-f1-micro",
+            },
+            opts=ResourceOptions(provider=google_beta))
+        db = gcp.sql.Database("db", instance=instance.name,
+        opts=ResourceOptions(provider=google_beta))
+        pwd = random.RandomPassword("pwd",
+            length=16,
+            special=False)
+        user = gcp.sql.User("user",
+            instance=instance.name,
+            password=pwd.result,
+            opts=ResourceOptions(provider=google_beta))
+        connection = gcp.bigquery.Connection("connection",
+            friendly_name="👋",
+            description="a riveting description",
+            cloud_sql={
+                "instance_id": instance.connection_name,
+                "database": db.name,
+                "type": "POSTGRES",
+                "credential": {
+                    "username": user.name,
+                    "password": user.password,
+                },
+            },
+            opts=ResourceOptions(provider=google_beta))
+        ```
+        ### Bigquery Connection Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_random as random
+
+        instance = gcp.sql.DatabaseInstance("instance",
+            database_version="POSTGRES_11",
+            region="us-central1",
+            settings={
+                "tier": "db-f1-micro",
+            },
+            opts=ResourceOptions(provider=google_beta))
+        db = gcp.sql.Database("db", instance=instance.name,
+        opts=ResourceOptions(provider=google_beta))
+        pwd = random.RandomPassword("pwd",
+            length=16,
+            special=False)
+        user = gcp.sql.User("user",
+            instance=instance.name,
+            password=pwd.result,
+            opts=ResourceOptions(provider=google_beta))
+        connection = gcp.bigquery.Connection("connection",
+            connection_id="my-connection",
+            location="US",
+            friendly_name="👋",
+            description="a riveting description",
+            cloud_sql={
+                "instance_id": instance.connection_name,
+                "database": db.name,
+                "type": "POSTGRES",
+                "credential": {
+                    "username": user.name,
+                    "password": user.password,
+                },
+            },
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -112,7 +188,7 @@ class Connection(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -120,10 +196,10 @@ class Connection(pulumi.CustomResource):
 
             if cloud_sql is None:
                 raise TypeError("Missing required property 'cloud_sql'")
-            __props__['cloud_sql'] = cloud_sql
-            __props__['connection_id'] = connection_id
+            __props__['cloudSql'] = cloud_sql
+            __props__['connectionId'] = connection_id
             __props__['description'] = description
-            __props__['friendly_name'] = friendly_name
+            __props__['friendlyName'] = friendly_name
             __props__['location'] = location
             __props__['project'] = project
             __props__['has_credential'] = None
@@ -186,7 +262,7 @@ class Connection(pulumi.CustomResource):
         return Connection(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

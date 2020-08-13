@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class BackendBucket(pulumi.CustomResource):
@@ -77,6 +77,18 @@ class BackendBucket(pulumi.CustomResource):
             * [Using a Cloud Storage bucket as a load balancer backend](https://cloud.google.com/compute/docs/load-balancing/http/backend-bucket)
 
         ## Example Usage
+        ### Backend Bucket Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        image_bucket = gcp.storage.Bucket("imageBucket", location="EU")
+        image_backend = gcp.compute.BackendBucket("imageBackend",
+            description="Contains beautiful images",
+            bucket_name=image_bucket.name,
+            enable_cdn=True)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -118,7 +130,7 @@ class BackendBucket(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -126,10 +138,10 @@ class BackendBucket(pulumi.CustomResource):
 
             if bucket_name is None:
                 raise TypeError("Missing required property 'bucket_name'")
-            __props__['bucket_name'] = bucket_name
-            __props__['cdn_policy'] = cdn_policy
+            __props__['bucketName'] = bucket_name
+            __props__['cdnPolicy'] = cdn_policy
             __props__['description'] = description
-            __props__['enable_cdn'] = enable_cdn
+            __props__['enableCdn'] = enable_cdn
             __props__['name'] = name
             __props__['project'] = project
             __props__['creation_timestamp'] = None
@@ -193,7 +205,7 @@ class BackendBucket(pulumi.CustomResource):
         return BackendBucket(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

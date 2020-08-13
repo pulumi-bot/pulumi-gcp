@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class IAMCustomRole(pulumi.CustomResource):
@@ -58,6 +58,26 @@ class IAMCustomRole(pulumi.CustomResource):
          made available again. This means a deleted role that has been deleted for more than 7 days cannot be changed at all
          by the provider, and new roles cannot share that name.
 
+        ## Example Usage
+
+        This snippet creates a customized IAM organization role.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_custom_role = gcp.organizations.IAMCustomRole("my-custom-role",
+            description="A description",
+            org_id="123456789",
+            permissions=[
+                "iam.roles.list",
+                "iam.roles.create",
+                "iam.roles.delete",
+            ],
+            role_id="myCustomRole",
+            title="My Custom Role")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A human-readable description for the role.
@@ -80,7 +100,7 @@ class IAMCustomRole(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -89,13 +109,13 @@ class IAMCustomRole(pulumi.CustomResource):
             __props__['description'] = description
             if org_id is None:
                 raise TypeError("Missing required property 'org_id'")
-            __props__['org_id'] = org_id
+            __props__['orgId'] = org_id
             if permissions is None:
                 raise TypeError("Missing required property 'permissions'")
             __props__['permissions'] = permissions
             if role_id is None:
                 raise TypeError("Missing required property 'role_id'")
-            __props__['role_id'] = role_id
+            __props__['roleId'] = role_id
             __props__['stage'] = stage
             if title is None:
                 raise TypeError("Missing required property 'title'")
@@ -143,7 +163,7 @@ class IAMCustomRole(pulumi.CustomResource):
         return IAMCustomRole(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

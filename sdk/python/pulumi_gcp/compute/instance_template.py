@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class InstanceTemplate(pulumi.CustomResource):
@@ -238,6 +238,110 @@ class InstanceTemplate(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/instanceTemplates).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_image = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        foobar = gcp.compute.Disk("foobar",
+            image=my_image.self_link,
+            size=10,
+            type="pd-ssd",
+            zone="us-central1-a")
+        default = gcp.compute.InstanceTemplate("default",
+            description="This template is used to create app server instances.",
+            tags=[
+                "foo",
+                "bar",
+            ],
+            labels={
+                "environment": "dev",
+            },
+            instance_description="description assigned to instances",
+            machine_type="n1-standard-1",
+            can_ip_forward=False,
+            scheduling={
+                "automaticRestart": True,
+                "onHostMaintenance": "MIGRATE",
+            },
+            disks=[
+                {
+                    "sourceImage": "debian-cloud/debian-9",
+                    "autoDelete": True,
+                    "boot": True,
+                },
+                {
+                    "source": foobar.name,
+                    "autoDelete": False,
+                    "boot": False,
+                },
+            ],
+            network_interfaces=[{
+                "network": "default",
+            }],
+            metadata={
+                "foo": "bar",
+            },
+            service_account={
+                "scopes": [
+                    "userinfo-email",
+                    "compute-ro",
+                    "storage-ro",
+                ],
+            })
+        ```
+        ## Deploying the Latest Image
+
+        A common way to use instance templates and managed instance groups is to deploy the
+        latest image in a family, usually the latest build of your application. There are two
+        ways to do this in the provider, and they have their pros and cons. The difference ends
+        up being in how "latest" is interpreted. You can either deploy the latest image available
+        when the provider runs, or you can have each instance check what the latest image is when
+        it's being created, either as part of a scaling event or being rebuilt by the instance
+        group manager.
+
+        If you're not sure, we recommend deploying the latest image available when the provider runs,
+        because this means all the instances in your group will be based on the same image, always,
+        and means that no upgrades or changes to your instances happen outside of a `pulumi up`.
+        You can achieve this by using the `compute.Image`
+        data source, which will retrieve the latest image on every `pulumi apply`, and will update
+        the template to use that specific image:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_image = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        instance_template = gcp.compute.InstanceTemplate("instanceTemplate",
+            name_prefix="instance-template-",
+            machine_type="n1-standard-1",
+            region="us-central1",
+            disks=[{
+                "sourceImage": google_compute_image["my_image"]["self_link"],
+            }])
+        ```
+
+        To have instances update to the latest on every scaling event or instance re-creation,
+        use the family as the image for the disk, and it will use GCP's default behavior, setting
+        the image for the template to the family:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance_template = gcp.compute.InstanceTemplate("instanceTemplate",
+            disks=[{
+                "sourceImage": "debian-cloud/debian-9",
+            }],
+            machine_type="n1-standard-1",
+            name_prefix="instance-template-",
+            region="us-central1")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] can_ip_forward: Whether to allow sending and receiving of
@@ -413,35 +517,35 @@ class InstanceTemplate(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['can_ip_forward'] = can_ip_forward
+            __props__['canIpForward'] = can_ip_forward
             __props__['description'] = description
             if disks is None:
                 raise TypeError("Missing required property 'disks'")
             __props__['disks'] = disks
-            __props__['enable_display'] = enable_display
-            __props__['guest_accelerators'] = guest_accelerators
-            __props__['instance_description'] = instance_description
+            __props__['enableDisplay'] = enable_display
+            __props__['guestAccelerators'] = guest_accelerators
+            __props__['instanceDescription'] = instance_description
             __props__['labels'] = labels
             if machine_type is None:
                 raise TypeError("Missing required property 'machine_type'")
-            __props__['machine_type'] = machine_type
+            __props__['machineType'] = machine_type
             __props__['metadata'] = metadata
-            __props__['metadata_startup_script'] = metadata_startup_script
-            __props__['min_cpu_platform'] = min_cpu_platform
+            __props__['metadataStartupScript'] = metadata_startup_script
+            __props__['minCpuPlatform'] = min_cpu_platform
             __props__['name'] = name
-            __props__['name_prefix'] = name_prefix
-            __props__['network_interfaces'] = network_interfaces
+            __props__['namePrefix'] = name_prefix
+            __props__['networkInterfaces'] = network_interfaces
             __props__['project'] = project
             __props__['region'] = region
             __props__['scheduling'] = scheduling
-            __props__['service_account'] = service_account
-            __props__['shielded_instance_config'] = shielded_instance_config
+            __props__['serviceAccount'] = service_account
+            __props__['shieldedInstanceConfig'] = shielded_instance_config
             __props__['tags'] = tags
             __props__['metadata_fingerprint'] = None
             __props__['self_link'] = None
@@ -656,7 +760,7 @@ class InstanceTemplate(pulumi.CustomResource):
         return InstanceTemplate(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

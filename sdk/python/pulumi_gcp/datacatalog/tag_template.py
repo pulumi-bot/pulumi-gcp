@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class TagTemplate(pulumi.CustomResource):
@@ -78,6 +78,54 @@ class TagTemplate(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/data-catalog/docs)
 
         ## Example Usage
+        ### Data Catalog Tag Template Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        basic_tag_template = gcp.datacatalog.TagTemplate("basicTagTemplate",
+            display_name="Demo Tag Template",
+            fields=[
+                {
+                    "display_name": "Source of data asset",
+                    "fieldId": "source",
+                    "isRequired": True,
+                    "type": {
+                        "primitiveType": "STRING",
+                    },
+                },
+                {
+                    "display_name": "Number of rows in the data asset",
+                    "fieldId": "num_rows",
+                    "type": {
+                        "primitiveType": "DOUBLE",
+                    },
+                },
+                {
+                    "display_name": "PII type",
+                    "fieldId": "pii_type",
+                    "type": {
+                        "enumType": {
+                            "allowedValues": [
+                                {
+                                    "display_name": "EMAIL",
+                                },
+                                {
+                                    "display_name": "SOCIAL SECURITY NUMBER",
+                                },
+                                {
+                                    "display_name": "NONE",
+                                },
+                            ],
+                        },
+                    },
+                },
+            ],
+            force_delete=False,
+            region="us-central1",
+            tag_template_id="my_template")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -128,22 +176,22 @@ class TagTemplate(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['display_name'] = display_name
+            __props__['displayName'] = display_name
             if fields is None:
                 raise TypeError("Missing required property 'fields'")
             __props__['fields'] = fields
-            __props__['force_delete'] = force_delete
+            __props__['forceDelete'] = force_delete
             __props__['project'] = project
             __props__['region'] = region
             if tag_template_id is None:
                 raise TypeError("Missing required property 'tag_template_id'")
-            __props__['tag_template_id'] = tag_template_id
+            __props__['tagTemplateId'] = tag_template_id
             __props__['name'] = None
         super(TagTemplate, __self__).__init__(
             'gcp:datacatalog/tagTemplate:TagTemplate',
@@ -212,7 +260,7 @@ class TagTemplate(pulumi.CustomResource):
         return TagTemplate(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

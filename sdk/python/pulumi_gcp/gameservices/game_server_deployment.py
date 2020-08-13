@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class GameServerDeployment(pulumi.CustomResource):
@@ -49,6 +49,17 @@ class GameServerDeployment(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/game-servers/docs)
 
         ## Example Usage
+        ### Game Service Deployment Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.gameservices.GameServerDeployment("default",
+            deployment_id="tf-test-deployment",
+            description="a deployment description",
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -71,7 +82,7 @@ class GameServerDeployment(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -79,7 +90,7 @@ class GameServerDeployment(pulumi.CustomResource):
 
             if deployment_id is None:
                 raise TypeError("Missing required property 'deployment_id'")
-            __props__['deployment_id'] = deployment_id
+            __props__['deploymentId'] = deployment_id
             __props__['description'] = description
             __props__['labels'] = labels
             __props__['location'] = location
@@ -124,7 +135,7 @@ class GameServerDeployment(pulumi.CustomResource):
         return GameServerDeployment(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Job(pulumi.CustomResource):
@@ -284,6 +284,154 @@ class Job(pulumi.CustomResource):
         Once a BigQuery job is created, it cannot be changed or deleted.
 
         ## Example Usage
+        ### Bigquery Job Query
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bar = gcp.bigquery.Dataset("bar",
+            dataset_id="job_query_dataset",
+            friendly_name="test",
+            description="This is a test description",
+            location="US")
+        foo = gcp.bigquery.Table("foo",
+            dataset_id=bar.dataset_id,
+            table_id="job_query_table")
+        job = gcp.bigquery.Job("job",
+            job_id="job_query",
+            labels={
+                "example-label": "example-value",
+            },
+            query={
+                "query": "SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
+                "destinationTable": {
+                    "project_id": foo.project,
+                    "dataset_id": foo.dataset_id,
+                    "table_id": foo.table_id,
+                },
+                "allowLargeResults": True,
+                "flattenResults": True,
+                "scriptOptions": {
+                    "keyResultStatement": "LAST",
+                },
+            })
+        ```
+        ### Bigquery Job Query Table Reference
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bar = gcp.bigquery.Dataset("bar",
+            dataset_id="job_query_dataset",
+            friendly_name="test",
+            description="This is a test description",
+            location="US")
+        foo = gcp.bigquery.Table("foo",
+            dataset_id=bar.dataset_id,
+            table_id="job_query_table")
+        job = gcp.bigquery.Job("job",
+            job_id="job_query",
+            labels={
+                "example-label": "example-value",
+            },
+            query={
+                "query": "SELECT state FROM [lookerdata:cdc.project_tycho_reports]",
+                "destinationTable": {
+                    "table_id": foo.id,
+                },
+                "defaultDataset": {
+                    "dataset_id": bar.id,
+                },
+                "allowLargeResults": True,
+                "flattenResults": True,
+                "scriptOptions": {
+                    "keyResultStatement": "LAST",
+                },
+            })
+        ```
+        ### Bigquery Job Load
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bar = gcp.bigquery.Dataset("bar",
+            dataset_id="job_load_dataset",
+            friendly_name="test",
+            description="This is a test description",
+            location="US")
+        foo = gcp.bigquery.Table("foo",
+            dataset_id=bar.dataset_id,
+            table_id="job_load_table")
+        job = gcp.bigquery.Job("job",
+            job_id="job_load",
+            labels={
+                "my_job": "load",
+            },
+            load={
+                "sourceUris": ["gs://cloud-samples-data/bigquery/us-states/us-states-by-date.csv"],
+                "destinationTable": {
+                    "project_id": foo.project,
+                    "dataset_id": foo.dataset_id,
+                    "table_id": foo.table_id,
+                },
+                "skipLeadingRows": 1,
+                "schemaUpdateOptions": [
+                    "ALLOW_FIELD_RELAXATION",
+                    "ALLOW_FIELD_ADDITION",
+                ],
+                "writeDisposition": "WRITE_APPEND",
+                "autodetect": True,
+            })
+        ```
+        ### Bigquery Job Extract
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        source_one_dataset = gcp.bigquery.Dataset("source-oneDataset",
+            dataset_id="job_extract_dataset",
+            friendly_name="test",
+            description="This is a test description",
+            location="US")
+        source_one_table = gcp.bigquery.Table("source-oneTable",
+            dataset_id=source_one_dataset.dataset_id,
+            table_id="job_extract_table",
+            schema=\"\"\"[
+          {
+            "name": "name",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "post_abbr",
+            "type": "STRING",
+            "mode": "NULLABLE"
+          },
+          {
+            "name": "date",
+            "type": "DATE",
+            "mode": "NULLABLE"
+          }
+        ]
+        \"\"\")
+        dest = gcp.storage.Bucket("dest", force_destroy=True)
+        job = gcp.bigquery.Job("job",
+            job_id="job_extract",
+            extract={
+                "destinationUris": [dest.url.apply(lambda url: f"{url}/extract")],
+                "sourceTable": {
+                    "project_id": source_one_table.project,
+                    "dataset_id": source_one_table.dataset_id,
+                    "table_id": source_one_table.table_id,
+                },
+                "destinationFormat": "NEWLINE_DELIMITED_JSON",
+                "compression": "GZIP",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -540,7 +688,7 @@ class Job(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -550,8 +698,8 @@ class Job(pulumi.CustomResource):
             __props__['extract'] = extract
             if job_id is None:
                 raise TypeError("Missing required property 'job_id'")
-            __props__['job_id'] = job_id
-            __props__['job_timeout_ms'] = job_timeout_ms
+            __props__['jobId'] = job_id
+            __props__['jobTimeoutMs'] = job_timeout_ms
             __props__['labels'] = labels
             __props__['load'] = load
             __props__['location'] = location
@@ -836,7 +984,7 @@ class Job(pulumi.CustomResource):
         return Job(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

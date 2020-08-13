@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class TargetPool(pulumi.CustomResource):
@@ -70,6 +70,24 @@ class TargetPool(pulumi.CustomResource):
         documentation](https://cloud.google.com/compute/docs/load-balancing/network/target-pools)
         and [API](https://cloud.google.com/compute/docs/reference/latest/targetPools).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_http_health_check = gcp.compute.HttpHealthCheck("defaultHttpHealthCheck",
+            request_path="/",
+            check_interval_sec=1,
+            timeout_sec=1)
+        default_target_pool = gcp.compute.TargetPool("defaultTargetPool",
+            instances=[
+                "us-central1-a/myinstance1",
+                "us-central1-b/myinstance2",
+            ],
+            health_checks=[default_http_health_check.name])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backup_pool: URL to the backup target pool. Must also set
@@ -105,21 +123,21 @@ class TargetPool(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['backup_pool'] = backup_pool
+            __props__['backupPool'] = backup_pool
             __props__['description'] = description
-            __props__['failover_ratio'] = failover_ratio
-            __props__['health_checks'] = health_checks
+            __props__['failoverRatio'] = failover_ratio
+            __props__['healthChecks'] = health_checks
             __props__['instances'] = instances
             __props__['name'] = name
             __props__['project'] = project
             __props__['region'] = region
-            __props__['session_affinity'] = session_affinity
+            __props__['sessionAffinity'] = session_affinity
             __props__['self_link'] = None
         super(TargetPool, __self__).__init__(
             'gcp:compute/targetPool:TargetPool',
@@ -176,7 +194,7 @@ class TargetPool(pulumi.CustomResource):
         return TargetPool(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

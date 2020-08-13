@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Cluster(pulumi.CustomResource):
@@ -709,6 +709,72 @@ class Cluster(pulumi.CustomResource):
         plaintext. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
         ## Example Usage
+        ### With A Separately Managed Node Pool (Recommended)
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        primary = gcp.container.Cluster("primary",
+            location="us-central1",
+            remove_default_node_pool=True,
+            initial_node_count=1,
+            master_auth={
+                "username": "",
+                "password": "",
+                "clientCertificateConfig": {
+                    "issueClientCertificate": False,
+                },
+            })
+        primary_preemptible_nodes = gcp.container.NodePool("primaryPreemptibleNodes",
+            location="us-central1",
+            cluster=primary.name,
+            node_count=1,
+            node_config={
+                "preemptible": True,
+                "machine_type": "e2-medium",
+                "metadata": {
+                    "disable-legacy-endpoints": "true",
+                },
+                "oauthScopes": [
+                    "https://www.googleapis.com/auth/logging.write",
+                    "https://www.googleapis.com/auth/monitoring",
+                ],
+            })
+        ```
+        ### With The Default Node Pool
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        primary = gcp.container.Cluster("primary",
+            initial_node_count=3,
+            location="us-central1-a",
+            master_auth={
+                "clientCertificateConfig": {
+                    "issueClientCertificate": False,
+                },
+                "password": "",
+                "username": "",
+            },
+            node_config={
+                "labels": {
+                    "foo": "bar",
+                },
+                "metadata": {
+                    "disable-legacy-endpoints": "true",
+                },
+                "oauthScopes": [
+                    "https://www.googleapis.com/auth/logging.write",
+                    "https://www.googleapis.com/auth/monitoring",
+                ],
+                "tags": [
+                    "foo",
+                    "bar",
+                ],
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1291,54 +1357,54 @@ class Cluster(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['addons_config'] = addons_config
-            __props__['authenticator_groups_config'] = authenticator_groups_config
-            __props__['cluster_autoscaling'] = cluster_autoscaling
-            __props__['cluster_ipv4_cidr'] = cluster_ipv4_cidr
-            __props__['cluster_telemetry'] = cluster_telemetry
-            __props__['database_encryption'] = database_encryption
-            __props__['default_max_pods_per_node'] = default_max_pods_per_node
-            __props__['default_snat_status'] = default_snat_status
+            __props__['addonsConfig'] = addons_config
+            __props__['authenticatorGroupsConfig'] = authenticator_groups_config
+            __props__['clusterAutoscaling'] = cluster_autoscaling
+            __props__['clusterIpv4Cidr'] = cluster_ipv4_cidr
+            __props__['clusterTelemetry'] = cluster_telemetry
+            __props__['databaseEncryption'] = database_encryption
+            __props__['defaultMaxPodsPerNode'] = default_max_pods_per_node
+            __props__['defaultSnatStatus'] = default_snat_status
             __props__['description'] = description
-            __props__['enable_binary_authorization'] = enable_binary_authorization
-            __props__['enable_intranode_visibility'] = enable_intranode_visibility
-            __props__['enable_kubernetes_alpha'] = enable_kubernetes_alpha
-            __props__['enable_legacy_abac'] = enable_legacy_abac
-            __props__['enable_shielded_nodes'] = enable_shielded_nodes
-            __props__['enable_tpu'] = enable_tpu
-            __props__['initial_node_count'] = initial_node_count
-            __props__['ip_allocation_policy'] = ip_allocation_policy
+            __props__['enableBinaryAuthorization'] = enable_binary_authorization
+            __props__['enableIntranodeVisibility'] = enable_intranode_visibility
+            __props__['enableKubernetesAlpha'] = enable_kubernetes_alpha
+            __props__['enableLegacyAbac'] = enable_legacy_abac
+            __props__['enableShieldedNodes'] = enable_shielded_nodes
+            __props__['enableTpu'] = enable_tpu
+            __props__['initialNodeCount'] = initial_node_count
+            __props__['ipAllocationPolicy'] = ip_allocation_policy
             __props__['location'] = location
-            __props__['logging_service'] = logging_service
-            __props__['maintenance_policy'] = maintenance_policy
-            __props__['master_auth'] = master_auth
-            __props__['master_authorized_networks_config'] = master_authorized_networks_config
-            __props__['min_master_version'] = min_master_version
-            __props__['monitoring_service'] = monitoring_service
+            __props__['loggingService'] = logging_service
+            __props__['maintenancePolicy'] = maintenance_policy
+            __props__['masterAuth'] = master_auth
+            __props__['masterAuthorizedNetworksConfig'] = master_authorized_networks_config
+            __props__['minMasterVersion'] = min_master_version
+            __props__['monitoringService'] = monitoring_service
             __props__['name'] = name
             __props__['network'] = network
-            __props__['network_policy'] = network_policy
-            __props__['networking_mode'] = networking_mode
-            __props__['node_config'] = node_config
-            __props__['node_locations'] = node_locations
-            __props__['node_pools'] = node_pools
-            __props__['node_version'] = node_version
-            __props__['pod_security_policy_config'] = pod_security_policy_config
-            __props__['private_cluster_config'] = private_cluster_config
+            __props__['networkPolicy'] = network_policy
+            __props__['networkingMode'] = networking_mode
+            __props__['nodeConfig'] = node_config
+            __props__['nodeLocations'] = node_locations
+            __props__['nodePools'] = node_pools
+            __props__['nodeVersion'] = node_version
+            __props__['podSecurityPolicyConfig'] = pod_security_policy_config
+            __props__['privateClusterConfig'] = private_cluster_config
             __props__['project'] = project
-            __props__['release_channel'] = release_channel
-            __props__['remove_default_node_pool'] = remove_default_node_pool
-            __props__['resource_labels'] = resource_labels
-            __props__['resource_usage_export_config'] = resource_usage_export_config
+            __props__['releaseChannel'] = release_channel
+            __props__['removeDefaultNodePool'] = remove_default_node_pool
+            __props__['resourceLabels'] = resource_labels
+            __props__['resourceUsageExportConfig'] = resource_usage_export_config
             __props__['subnetwork'] = subnetwork
-            __props__['vertical_pod_autoscaling'] = vertical_pod_autoscaling
-            __props__['workload_identity_config'] = workload_identity_config
+            __props__['verticalPodAutoscaling'] = vertical_pod_autoscaling
+            __props__['workloadIdentityConfig'] = workload_identity_config
             __props__['endpoint'] = None
             __props__['instance_group_urls'] = None
             __props__['label_fingerprint'] = None
@@ -1999,7 +2065,7 @@ class Cluster(pulumi.CustomResource):
         return Cluster(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

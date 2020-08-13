@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class GameServerConfig(pulumi.CustomResource):
@@ -93,6 +93,69 @@ class GameServerConfig(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/game-servers/docs)
 
         ## Example Usage
+        ### Game Service Config Basic
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_gcp as gcp
+
+        default_game_server_deployment = gcp.gameservices.GameServerDeployment("defaultGameServerDeployment",
+            deployment_id="tf-test-deployment",
+            description="a deployment description",
+            opts=ResourceOptions(provider=google_beta))
+        default_game_server_config = gcp.gameservices.GameServerConfig("defaultGameServerConfig",
+            config_id="tf-test-config",
+            deployment_id=default_game_server_deployment.deployment_id,
+            description="a config description",
+            fleet_configs=[{
+                "name": "something-unique",
+                "fleetSpec": json.dumps({
+                    "replicas": 1,
+                    "scheduling": "Packed",
+                    "template": {
+                        "metadata": {
+                            "name": "tf-test-game-server-template",
+                        },
+                        "spec": {
+                            "template": {
+                                "spec": {
+                                    "containers": [{
+                                        "name": "simple-udp-server",
+                                        "image": "gcr.io/agones-images/udp-server:0.14",
+                                    }],
+                                },
+                            },
+                        },
+                    },
+                }),
+            }],
+            scaling_configs=[{
+                "name": "scaling-config-name",
+                "fleetAutoscalerSpec": json.dumps({
+                    "policy": {
+                        "type": "Webhook",
+                        "webhook": {
+                            "service": {
+                                "name": "autoscaler-webhook-service",
+                                "namespace": "default",
+                                "path": "scale",
+                            },
+                        },
+                    },
+                }),
+                "selectors": [{
+                    "labels": {
+                        "one": "two",
+                    },
+                }],
+                "schedules": [{
+                    "cronJobDuration": "3.500s",
+                    "cronSpec": "0 0 * * 0",
+                }],
+            }],
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -156,7 +219,7 @@ class GameServerConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -164,18 +227,18 @@ class GameServerConfig(pulumi.CustomResource):
 
             if config_id is None:
                 raise TypeError("Missing required property 'config_id'")
-            __props__['config_id'] = config_id
+            __props__['configId'] = config_id
             if deployment_id is None:
                 raise TypeError("Missing required property 'deployment_id'")
-            __props__['deployment_id'] = deployment_id
+            __props__['deploymentId'] = deployment_id
             __props__['description'] = description
             if fleet_configs is None:
                 raise TypeError("Missing required property 'fleet_configs'")
-            __props__['fleet_configs'] = fleet_configs
+            __props__['fleetConfigs'] = fleet_configs
             __props__['labels'] = labels
             __props__['location'] = location
             __props__['project'] = project
-            __props__['scaling_configs'] = scaling_configs
+            __props__['scalingConfigs'] = scaling_configs
             __props__['name'] = None
         super(GameServerConfig, __self__).__init__(
             'gcp:gameservices/gameServerConfig:GameServerConfig',
@@ -258,7 +321,7 @@ class GameServerConfig(pulumi.CustomResource):
         return GameServerConfig(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

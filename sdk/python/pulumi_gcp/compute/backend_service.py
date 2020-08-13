@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class BackendService(pulumi.CustomResource):
@@ -389,6 +389,88 @@ class BackendService(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
 
         ## Example Usage
+        ### Backend Service Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_http_health_check = gcp.compute.HttpHealthCheck("defaultHttpHealthCheck",
+            request_path="/",
+            check_interval_sec=1,
+            timeout_sec=1)
+        default_backend_service = gcp.compute.BackendService("defaultBackendService", health_checks=[default_http_health_check.id])
+        ```
+        ### Backend Service Traffic Director Round Robin
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        health_check = gcp.compute.HealthCheck("healthCheck", http_health_check={
+            "port": 80,
+        },
+        opts=ResourceOptions(provider=google_beta))
+        default = gcp.compute.BackendService("default",
+            health_checks=[health_check.id],
+            load_balancing_scheme="INTERNAL_SELF_MANAGED",
+            locality_lb_policy="ROUND_ROBIN",
+            opts=ResourceOptions(provider=google_beta))
+        ```
+        ### Backend Service Traffic Director Ring Hash
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        health_check = gcp.compute.HealthCheck("healthCheck", http_health_check={
+            "port": 80,
+        },
+        opts=ResourceOptions(provider=google_beta))
+        default = gcp.compute.BackendService("default",
+            health_checks=[health_check.id],
+            load_balancing_scheme="INTERNAL_SELF_MANAGED",
+            locality_lb_policy="RING_HASH",
+            session_affinity="HTTP_COOKIE",
+            circuit_breakers={
+                "maxConnections": 10,
+            },
+            consistent_hash={
+                "httpCookie": {
+                    "ttl": {
+                        "seconds": 11,
+                        "nanos": 1111,
+                    },
+                    "name": "mycookie",
+                },
+            },
+            outlier_detection={
+                "consecutiveErrors": 2,
+            },
+            opts=ResourceOptions(provider=google_beta))
+        ```
+        ### Backend Service Network Endpoint
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        external_proxy = gcp.compute.GlobalNetworkEndpointGroup("externalProxy",
+            network_endpoint_type="INTERNET_FQDN_PORT",
+            default_port=443)
+        proxy = gcp.compute.GlobalNetworkEndpoint("proxy",
+            global_network_endpoint_group=external_proxy.id,
+            fqdn="test.example.com",
+            port=external_proxy.default_port)
+        default = gcp.compute.BackendService("default",
+            enable_cdn=True,
+            timeout_sec=10,
+            connection_draining_timeout_sec=10,
+            custom_request_headers=[proxy.fqdn.apply(lambda fqdn: f"host: {fqdn}")],
+            backends=[{
+                "group": external_proxy.id,
+            }])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -703,34 +785,34 @@ class BackendService(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['affinity_cookie_ttl_sec'] = affinity_cookie_ttl_sec
+            __props__['affinityCookieTtlSec'] = affinity_cookie_ttl_sec
             __props__['backends'] = backends
-            __props__['cdn_policy'] = cdn_policy
-            __props__['circuit_breakers'] = circuit_breakers
-            __props__['connection_draining_timeout_sec'] = connection_draining_timeout_sec
-            __props__['consistent_hash'] = consistent_hash
-            __props__['custom_request_headers'] = custom_request_headers
+            __props__['cdnPolicy'] = cdn_policy
+            __props__['circuitBreakers'] = circuit_breakers
+            __props__['connectionDrainingTimeoutSec'] = connection_draining_timeout_sec
+            __props__['consistentHash'] = consistent_hash
+            __props__['customRequestHeaders'] = custom_request_headers
             __props__['description'] = description
-            __props__['enable_cdn'] = enable_cdn
-            __props__['health_checks'] = health_checks
+            __props__['enableCdn'] = enable_cdn
+            __props__['healthChecks'] = health_checks
             __props__['iap'] = iap
-            __props__['load_balancing_scheme'] = load_balancing_scheme
-            __props__['locality_lb_policy'] = locality_lb_policy
-            __props__['log_config'] = log_config
+            __props__['loadBalancingScheme'] = load_balancing_scheme
+            __props__['localityLbPolicy'] = locality_lb_policy
+            __props__['logConfig'] = log_config
             __props__['name'] = name
-            __props__['outlier_detection'] = outlier_detection
-            __props__['port_name'] = port_name
+            __props__['outlierDetection'] = outlier_detection
+            __props__['portName'] = port_name
             __props__['project'] = project
             __props__['protocol'] = protocol
-            __props__['security_policy'] = security_policy
-            __props__['session_affinity'] = session_affinity
-            __props__['timeout_sec'] = timeout_sec
+            __props__['securityPolicy'] = security_policy
+            __props__['sessionAffinity'] = session_affinity
+            __props__['timeoutSec'] = timeout_sec
             __props__['creation_timestamp'] = None
             __props__['fingerprint'] = None
             __props__['self_link'] = None
@@ -1084,7 +1166,7 @@ class BackendService(pulumi.CustomResource):
         return BackendService(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

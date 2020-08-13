@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Instance(pulumi.CustomResource):
@@ -264,43 +264,43 @@ class Instance(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['accelerator_config'] = accelerator_config
-            __props__['boot_disk_size_gb'] = boot_disk_size_gb
-            __props__['boot_disk_type'] = boot_disk_type
-            __props__['container_image'] = container_image
-            __props__['create_time'] = create_time
-            __props__['custom_gpu_driver_path'] = custom_gpu_driver_path
-            __props__['data_disk_size_gb'] = data_disk_size_gb
-            __props__['data_disk_type'] = data_disk_type
-            __props__['disk_encryption'] = disk_encryption
-            __props__['install_gpu_driver'] = install_gpu_driver
-            __props__['instance_owners'] = instance_owners
-            __props__['kms_key'] = kms_key
+            __props__['acceleratorConfig'] = accelerator_config
+            __props__['bootDiskSizeGb'] = boot_disk_size_gb
+            __props__['bootDiskType'] = boot_disk_type
+            __props__['containerImage'] = container_image
+            __props__['createTime'] = create_time
+            __props__['customGpuDriverPath'] = custom_gpu_driver_path
+            __props__['dataDiskSizeGb'] = data_disk_size_gb
+            __props__['dataDiskType'] = data_disk_type
+            __props__['diskEncryption'] = disk_encryption
+            __props__['installGpuDriver'] = install_gpu_driver
+            __props__['instanceOwners'] = instance_owners
+            __props__['kmsKey'] = kms_key
             __props__['labels'] = labels
             if location is None:
                 raise TypeError("Missing required property 'location'")
             __props__['location'] = location
             if machine_type is None:
                 raise TypeError("Missing required property 'machine_type'")
-            __props__['machine_type'] = machine_type
+            __props__['machineType'] = machine_type
             __props__['metadata'] = metadata
             __props__['name'] = name
             __props__['network'] = network
-            __props__['no_proxy_access'] = no_proxy_access
-            __props__['no_public_ip'] = no_public_ip
-            __props__['no_remove_data_disk'] = no_remove_data_disk
-            __props__['post_startup_script'] = post_startup_script
+            __props__['noProxyAccess'] = no_proxy_access
+            __props__['noPublicIp'] = no_public_ip
+            __props__['noRemoveDataDisk'] = no_remove_data_disk
+            __props__['postStartupScript'] = post_startup_script
             __props__['project'] = project
-            __props__['service_account'] = service_account
+            __props__['serviceAccount'] = service_account
             __props__['subnet'] = subnet
-            __props__['update_time'] = update_time
-            __props__['vm_image'] = vm_image
+            __props__['updateTime'] = update_time
+            __props__['vmImage'] = vm_image
             __props__['proxy_uri'] = None
             __props__['state'] = None
         super(Instance, __self__).__init__(
@@ -434,7 +434,7 @@ class Instance(pulumi.CustomResource):
         return Instance(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

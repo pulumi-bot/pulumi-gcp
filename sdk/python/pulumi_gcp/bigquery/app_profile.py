@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class AppProfile(pulumi.CustomResource):
@@ -56,6 +56,49 @@ class AppProfile(pulumi.CustomResource):
         App profile is a configuration object describing how Cloud Bigtable should treat traffic from a particular end user application.
 
         ## Example Usage
+        ### Bigtable App Profile Multicluster
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.bigtable.Instance("instance",
+            clusters=[{
+                "cluster_id": "bt-instance",
+                "zone": "us-central1-b",
+                "num_nodes": 3,
+                "storageType": "HDD",
+            }],
+            deletion_protection=True)
+        ap = gcp.bigquery.AppProfile("ap",
+            instance=instance.name,
+            app_profile_id="bt-profile",
+            multi_cluster_routing_use_any=True,
+            ignore_warnings=True)
+        ```
+        ### Bigtable App Profile Singlecluster
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.bigtable.Instance("instance",
+            clusters=[{
+                "cluster_id": "bt-instance",
+                "zone": "us-central1-b",
+                "num_nodes": 3,
+                "storageType": "HDD",
+            }],
+            deletion_protection=True)
+        ap = gcp.bigquery.AppProfile("ap",
+            instance=instance.name,
+            app_profile_id="bt-profile",
+            single_cluster_routing={
+                "cluster_id": "bt-instance",
+                "allowTransactionalWrites": True,
+            },
+            ignore_warnings=True)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -88,7 +131,7 @@ class AppProfile(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -96,13 +139,13 @@ class AppProfile(pulumi.CustomResource):
 
             if app_profile_id is None:
                 raise TypeError("Missing required property 'app_profile_id'")
-            __props__['app_profile_id'] = app_profile_id
+            __props__['appProfileId'] = app_profile_id
             __props__['description'] = description
-            __props__['ignore_warnings'] = ignore_warnings
+            __props__['ignoreWarnings'] = ignore_warnings
             __props__['instance'] = instance
-            __props__['multi_cluster_routing_use_any'] = multi_cluster_routing_use_any
+            __props__['multiClusterRoutingUseAny'] = multi_cluster_routing_use_any
             __props__['project'] = project
-            __props__['single_cluster_routing'] = single_cluster_routing
+            __props__['singleClusterRouting'] = single_cluster_routing
             __props__['name'] = None
         super(AppProfile, __self__).__init__(
             'gcp:bigquery/appProfile:AppProfile',
@@ -154,7 +197,7 @@ class AppProfile(pulumi.CustomResource):
         return AppProfile(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

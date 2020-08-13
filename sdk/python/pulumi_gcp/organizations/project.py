@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Project(pulumi.CustomResource):
@@ -75,6 +75,31 @@ class Project(pulumi.CustomResource):
         [Access Control for Organizations Using IAM](https://cloud.google.com/resource-manager/docs/access-control-org)
         doc for more information.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_project = gcp.organizations.Project("myProject",
+            org_id="1234567",
+            project_id="your-project-id")
+        ```
+
+        To create a project under a specific folder
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        department1 = gcp.organizations.Folder("department1",
+            display_name="Department 1",
+            parent="organizations/1234567")
+        my_project_in_a_folder = gcp.organizations.Project("myProject-in-a-folder",
+            project_id="your-project-id",
+            folder_id=department1.name)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_create_network: Create the 'default' network automatically.  Default `true`.
@@ -114,22 +139,22 @@ class Project(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['auto_create_network'] = auto_create_network
-            __props__['billing_account'] = billing_account
-            __props__['folder_id'] = folder_id
+            __props__['autoCreateNetwork'] = auto_create_network
+            __props__['billingAccount'] = billing_account
+            __props__['folderId'] = folder_id
             __props__['labels'] = labels
             __props__['name'] = name
-            __props__['org_id'] = org_id
+            __props__['orgId'] = org_id
             if project_id is None:
                 raise TypeError("Missing required property 'project_id'")
-            __props__['project_id'] = project_id
-            __props__['skip_delete'] = skip_delete
+            __props__['projectId'] = project_id
+            __props__['skipDelete'] = skip_delete
             __props__['number'] = None
         super(Project, __self__).__init__(
             'gcp:organizations/project:Project',
@@ -189,7 +214,7 @@ class Project(pulumi.CustomResource):
         return Project(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

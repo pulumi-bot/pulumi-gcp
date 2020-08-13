@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class EntityType(pulumi.CustomResource):
@@ -63,6 +63,37 @@ class EntityType(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
 
         ## Example Usage
+        ### Dialogflow Entity Type Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        basic_agent = gcp.diagflow.Agent("basicAgent",
+            display_name="example_agent",
+            default_language_code="en",
+            time_zone="America/New_York")
+        basic_entity_type = gcp.diagflow.EntityType("basicEntityType",
+            display_name="",
+            kind="KIND_MAP",
+            entities=[
+                {
+                    "value": "value1",
+                    "synonyms": [
+                        "synonym1",
+                        "synonym2",
+                    ],
+                },
+                {
+                    "value": "value2",
+                    "synonyms": [
+                        "synonym3",
+                        "synonym4",
+                    ],
+                },
+            ],
+            opts=ResourceOptions(depends_on=[basic_agent]))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -103,7 +134,7 @@ class EntityType(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -111,8 +142,8 @@ class EntityType(pulumi.CustomResource):
 
             if display_name is None:
                 raise TypeError("Missing required property 'display_name'")
-            __props__['display_name'] = display_name
-            __props__['enable_fuzzy_extraction'] = enable_fuzzy_extraction
+            __props__['displayName'] = display_name
+            __props__['enableFuzzyExtraction'] = enable_fuzzy_extraction
             __props__['entities'] = entities
             if kind is None:
                 raise TypeError("Missing required property 'kind'")
@@ -174,7 +205,7 @@ class EntityType(pulumi.CustomResource):
         return EntityType(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class RouterNat(pulumi.CustomResource):
@@ -116,6 +116,61 @@ class RouterNat(pulumi.CustomResource):
             * [Google Cloud Router](https://cloud.google.com/router/docs/)
 
         ## Example Usage
+        ### Router Nat Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        net = gcp.compute.Network("net")
+        subnet = gcp.compute.Subnetwork("subnet",
+            network=net.id,
+            ip_cidr_range="10.0.0.0/16",
+            region="us-central1")
+        router = gcp.compute.Router("router",
+            region=subnet.region,
+            network=net.id,
+            bgp={
+                "asn": 64514,
+            })
+        nat = gcp.compute.RouterNat("nat",
+            router=router.name,
+            region=router.region,
+            nat_ip_allocate_option="AUTO_ONLY",
+            source_subnetwork_ip_ranges_to_nat="ALL_SUBNETWORKS_ALL_IP_RANGES",
+            log_config={
+                "enable": True,
+                "filter": "ERRORS_ONLY",
+            })
+        ```
+        ### Router Nat Manual Ips
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        net = gcp.compute.Network("net")
+        subnet = gcp.compute.Subnetwork("subnet",
+            network=net.id,
+            ip_cidr_range="10.0.0.0/16",
+            region="us-central1")
+        router = gcp.compute.Router("router",
+            region=subnet.region,
+            network=net.id)
+        address = []
+        for range in [{"value": i} for i in range(0, 2)]:
+            address.append(gcp.compute.Address(f"address-{range['value']}", region=subnet.region))
+        nat_manual = gcp.compute.RouterNat("natManual",
+            router=router.name,
+            region=router.region,
+            nat_ip_allocate_option="MANUAL_ONLY",
+            nat_ips=[__item.self_link for __item in address],
+            source_subnetwork_ip_ranges_to_nat="LIST_OF_SUBNETWORKS",
+            subnetworks=[{
+                "name": subnet.id,
+                "sourceIpRangesToNats": ["ALL_IP_RANGES"],
+            }])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -185,21 +240,21 @@ class RouterNat(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['drain_nat_ips'] = drain_nat_ips
-            __props__['icmp_idle_timeout_sec'] = icmp_idle_timeout_sec
-            __props__['log_config'] = log_config
-            __props__['min_ports_per_vm'] = min_ports_per_vm
+            __props__['drainNatIps'] = drain_nat_ips
+            __props__['icmpIdleTimeoutSec'] = icmp_idle_timeout_sec
+            __props__['logConfig'] = log_config
+            __props__['minPortsPerVm'] = min_ports_per_vm
             __props__['name'] = name
             if nat_ip_allocate_option is None:
                 raise TypeError("Missing required property 'nat_ip_allocate_option'")
-            __props__['nat_ip_allocate_option'] = nat_ip_allocate_option
-            __props__['nat_ips'] = nat_ips
+            __props__['natIpAllocateOption'] = nat_ip_allocate_option
+            __props__['natIps'] = nat_ips
             __props__['project'] = project
             __props__['region'] = region
             if router is None:
@@ -207,11 +262,11 @@ class RouterNat(pulumi.CustomResource):
             __props__['router'] = router
             if source_subnetwork_ip_ranges_to_nat is None:
                 raise TypeError("Missing required property 'source_subnetwork_ip_ranges_to_nat'")
-            __props__['source_subnetwork_ip_ranges_to_nat'] = source_subnetwork_ip_ranges_to_nat
+            __props__['sourceSubnetworkIpRangesToNat'] = source_subnetwork_ip_ranges_to_nat
             __props__['subnetworks'] = subnetworks
-            __props__['tcp_established_idle_timeout_sec'] = tcp_established_idle_timeout_sec
-            __props__['tcp_transitory_idle_timeout_sec'] = tcp_transitory_idle_timeout_sec
-            __props__['udp_idle_timeout_sec'] = udp_idle_timeout_sec
+            __props__['tcpEstablishedIdleTimeoutSec'] = tcp_established_idle_timeout_sec
+            __props__['tcpTransitoryIdleTimeoutSec'] = tcp_transitory_idle_timeout_sec
+            __props__['udpIdleTimeoutSec'] = udp_idle_timeout_sec
         super(RouterNat, __self__).__init__(
             'gcp:compute/routerNat:RouterNat',
             resource_name,
@@ -304,7 +359,7 @@ class RouterNat(pulumi.CustomResource):
         return RouterNat(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class TenantOauthIdpConfig(pulumi.CustomResource):
@@ -52,6 +52,21 @@ class TenantOauthIdpConfig(pulumi.CustomResource):
         the marketplace prior to using this resource.
 
         ## Example Usage
+        ### Identity Platform Tenant Oauth Idp Config Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        tenant = gcp.identityplatform.Tenant("tenant", display_name="tenant")
+        tenant_oauth_idp_config = gcp.identityplatform.TenantOauthIdpConfig("tenantOauthIdpConfig",
+            tenant=tenant.name,
+            display_name="Display Name",
+            client_id="client-id",
+            issuer="issuer",
+            enabled=True,
+            client_secret="secret")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -76,7 +91,7 @@ class TenantOauthIdpConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -84,11 +99,11 @@ class TenantOauthIdpConfig(pulumi.CustomResource):
 
             if client_id is None:
                 raise TypeError("Missing required property 'client_id'")
-            __props__['client_id'] = client_id
-            __props__['client_secret'] = client_secret
+            __props__['clientId'] = client_id
+            __props__['clientSecret'] = client_secret
             if display_name is None:
                 raise TypeError("Missing required property 'display_name'")
-            __props__['display_name'] = display_name
+            __props__['displayName'] = display_name
             __props__['enabled'] = enabled
             if issuer is None:
                 raise TypeError("Missing required property 'issuer'")
@@ -138,7 +153,7 @@ class TenantOauthIdpConfig(pulumi.CustomResource):
         return TenantOauthIdpConfig(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

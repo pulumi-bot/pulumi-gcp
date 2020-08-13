@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class IAMPolicy(pulumi.CustomResource):
@@ -29,6 +29,24 @@ class IAMPolicy(pulumi.CustomResource):
         Allows creation and management of the IAM policy for an existing Google Cloud
         Platform folder.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        department1 = gcp.organizations.Folder("department1",
+            display_name="Department 1",
+            parent="organizations/1234567")
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+        }])
+        folder_admin_policy = gcp.folder.IAMPolicy("folderAdminPolicy",
+            folder=department1.name,
+            policy_data=admin.policy_data)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] folder: The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
@@ -47,7 +65,7 @@ class IAMPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -58,7 +76,7 @@ class IAMPolicy(pulumi.CustomResource):
             __props__['folder'] = folder
             if policy_data is None:
                 raise TypeError("Missing required property 'policy_data'")
-            __props__['policy_data'] = policy_data
+            __props__['policyData'] = policy_data
             __props__['etag'] = None
         super(IAMPolicy, __self__).__init__(
             'gcp:folder/iAMPolicy:IAMPolicy',
@@ -91,7 +109,7 @@ class IAMPolicy(pulumi.CustomResource):
         return IAMPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

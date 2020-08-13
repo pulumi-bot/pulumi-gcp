@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Service(pulumi.CustomResource):
@@ -267,6 +267,143 @@ class Service(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/run/docs/)
 
         ## Example Usage
+        ### Cloud Run Service Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.cloudrun.Service("default",
+            location="us-central1",
+            template={
+                "spec": {
+                    "containers": [{
+                        "image": "gcr.io/cloudrun/hello",
+                    }],
+                },
+            },
+            traffics=[{
+                "latestRevision": True,
+                "percent": 100,
+            }])
+        ```
+
+        {{% /example %}}
+        ### Cloud Run Service Sql
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.sql.DatabaseInstance("instance",
+            region="us-east1",
+            settings={
+                "tier": "db-f1-micro",
+            })
+        default = gcp.cloudrun.Service("default",
+            autogenerate_revision_name=True,
+            location="us-central1",
+            template={
+                "metadata": {
+                    "annotations": {
+                        "autoscaling.knative.dev/maxScale": "1000",
+                        "run.googleapis.com/client-name": "demo",
+                        "run.googleapis.com/cloudsql-instances": instance.name.apply(lambda name: f"my-project-name:us-central1:{name}"),
+                    },
+                },
+                "spec": {
+                    "containers": [{
+                        "image": "gcr.io/cloudrun/hello",
+                    }],
+                },
+            })
+        ```
+
+        ###Cloud Run Service Noauth
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.cloudrun.Service("default",
+            location="us-central1",
+            template={
+                "spec": {
+                    "containers": [{
+                        "image": "gcr.io/cloudrun/hello",
+                    }],
+                },
+            })
+        noauth_iam_policy = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/run.invoker",
+            "members": ["allUsers"],
+        }])
+        noauth_iam_policy = gcp.cloudrun.IamPolicy("noauthIamPolicy",
+            location=default.location,
+            project=default.project,
+            service=default.name,
+            policy_data=noauth_iam_policy.policy_data)
+        ```
+        ### Cloud Run Service Multiple Environment Variables
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.cloudrun.Service("default",
+            autogenerate_revision_name=True,
+            location="us-central1",
+            template={
+                "spec": {
+                    "containers": [{
+                        "env": [
+                            {
+                                "name": "SOURCE",
+                                "value": "remote",
+                            },
+                            {
+                                "name": "TARGET",
+                                "value": "home",
+                            },
+                        ],
+                        "image": "gcr.io/cloudrun/hello",
+                    }],
+                },
+            },
+            traffics=[{
+                "latestRevision": True,
+                "percent": 100,
+            }])
+        ```
+        ### Cloud Run Service Traffic Split
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.cloudrun.Service("default",
+            location="us-central1",
+            template={
+                "metadata": {
+                    "name": "cloudrun-srv-green",
+                },
+                "spec": {
+                    "containers": [{
+                        "image": "gcr.io/cloudrun/hello",
+                    }],
+                },
+            },
+            traffics=[
+                {
+                    "percent": 25,
+                    "revisionName": "cloudrun-srv-green",
+                },
+                {
+                    "percent": 75,
+                    "revisionName": "cloudrun-srv-blue",
+                },
+            ])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -486,13 +623,13 @@ class Service(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['autogenerate_revision_name'] = autogenerate_revision_name
+            __props__['autogenerateRevisionName'] = autogenerate_revision_name
             if location is None:
                 raise TypeError("Missing required property 'location'")
             __props__['location'] = location
@@ -751,7 +888,7 @@ class Service(pulumi.CustomResource):
         return Service(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

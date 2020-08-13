@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class MachineImage(pulumi.CustomResource):
@@ -44,6 +44,26 @@ class MachineImage(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/compute/docs/machine-images)
 
         ## Example Usage
+        ### Machine Image Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        vm = gcp.compute.Instance("vm",
+            machine_type="n1-standard-1",
+            boot_disk={
+                "initializeParams": {
+                    "image": "debian-cloud/debian-9",
+                },
+            },
+            network_interfaces=[{
+                "network": "default",
+            }],
+            opts=ResourceOptions(provider=google_beta))
+        image = gcp.compute.MachineImage("image", source_instance=vm.self_link,
+        opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -64,7 +84,7 @@ class MachineImage(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -75,7 +95,7 @@ class MachineImage(pulumi.CustomResource):
             __props__['project'] = project
             if source_instance is None:
                 raise TypeError("Missing required property 'source_instance'")
-            __props__['source_instance'] = source_instance
+            __props__['sourceInstance'] = source_instance
             __props__['self_link'] = None
         super(MachineImage, __self__).__init__(
             'gcp:compute/machineImage:MachineImage',
@@ -111,7 +131,7 @@ class MachineImage(pulumi.CustomResource):
         return MachineImage(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

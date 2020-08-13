@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class KeyRingIAMPolicy(pulumi.CustomResource):
@@ -38,6 +38,101 @@ class KeyRingIAMPolicy(pulumi.CustomResource):
 
         > **Note:** `kms.KeyRingIAMBinding` resources **can be** used in conjunction with `kms.KeyRingIAMMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_kms\_key\_ring\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        keyring = gcp.kms.KeyRing("keyring", location="global")
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+        }])
+        key_ring = gcp.kms.KeyRingIAMPolicy("keyRing",
+            key_ring_id=keyring.id,
+            policy_data=admin.policy_data)
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        keyring = gcp.kms.KeyRing("keyring", location="global")
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+            "condition": {
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            },
+        }])
+        key_ring = gcp.kms.KeyRingIAMPolicy("keyRing",
+            key_ring_id=keyring.id,
+            policy_data=admin.policy_data)
+        ```
+
+        ## google\_kms\_key\_ring\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        key_ring = gcp.kms.KeyRingIAMBinding("keyRing",
+            key_ring_id="your-key-ring-id",
+            members=["user:jane@example.com"],
+            role="roles/editor")
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        key_ring = gcp.kms.KeyRingIAMBinding("keyRing",
+            condition={
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
+            key_ring_id="your-key-ring-id",
+            members=["user:jane@example.com"],
+            role="roles/editor")
+        ```
+
+        ## google\_kms\_key\_ring\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        key_ring = gcp.kms.KeyRingIAMMember("keyRing",
+            key_ring_id="your-key-ring-id",
+            member="user:jane@example.com",
+            role="roles/editor")
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        key_ring = gcp.kms.KeyRingIAMMember("keyRing",
+            condition={
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
+            key_ring_id="your-key-ring-id",
+            member="user:jane@example.com",
+            role="roles/editor")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] key_ring_id: The key ring ID, in the form
@@ -58,7 +153,7 @@ class KeyRingIAMPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -66,10 +161,10 @@ class KeyRingIAMPolicy(pulumi.CustomResource):
 
             if key_ring_id is None:
                 raise TypeError("Missing required property 'key_ring_id'")
-            __props__['key_ring_id'] = key_ring_id
+            __props__['keyRingId'] = key_ring_id
             if policy_data is None:
                 raise TypeError("Missing required property 'policy_data'")
-            __props__['policy_data'] = policy_data
+            __props__['policyData'] = policy_data
             __props__['etag'] = None
         super(KeyRingIAMPolicy, __self__).__init__(
             'gcp:kms/keyRingIAMPolicy:KeyRingIAMPolicy',
@@ -104,7 +199,7 @@ class KeyRingIAMPolicy(pulumi.CustomResource):
         return KeyRingIAMPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

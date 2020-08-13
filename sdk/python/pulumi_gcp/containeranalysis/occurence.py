@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Occurence(pulumi.CustomResource):
@@ -159,7 +159,7 @@ class Occurence(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -170,12 +170,12 @@ class Occurence(pulumi.CustomResource):
             __props__['attestation'] = attestation
             if note_name is None:
                 raise TypeError("Missing required property 'note_name'")
-            __props__['note_name'] = note_name
+            __props__['noteName'] = note_name
             __props__['project'] = project
             __props__['remediation'] = remediation
             if resource_uri is None:
                 raise TypeError("Missing required property 'resource_uri'")
-            __props__['resource_uri'] = resource_uri
+            __props__['resourceUri'] = resource_uri
             __props__['create_time'] = None
             __props__['kind'] = None
             __props__['name'] = None
@@ -263,7 +263,7 @@ class Occurence(pulumi.CustomResource):
         return Occurence(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class FolderSink(pulumi.CustomResource):
@@ -62,6 +62,25 @@ class FolderSink(pulumi.CustomResource):
         Note that you must have the "Logs Configuration Writer" IAM role (`roles/logging.configWriter`)
         granted to the credentials used with this provider.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        log_bucket = gcp.storage.Bucket("log-bucket")
+        my_folder = gcp.organizations.Folder("my-folder",
+            display_name="My folder",
+            parent="organizations/123456")
+        my_sink = gcp.logging.FolderSink("my-sink",
+            folder=my_folder.name,
+            destination=log_bucket.name.apply(lambda name: f"storage.googleapis.com/{name}"),
+            filter="resource.type = gce_instance AND severity >= WARN")
+        log_writer = gcp.projects.IAMBinding("log-writer",
+            role="roles/storage.objectCreator",
+            members=[my_sink.writer_identity])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[dict] bigquery_options: Options that affect sinks exporting data to BigQuery. Structure documented below.
@@ -98,13 +117,13 @@ class FolderSink(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['bigquery_options'] = bigquery_options
+            __props__['bigqueryOptions'] = bigquery_options
             if destination is None:
                 raise TypeError("Missing required property 'destination'")
             __props__['destination'] = destination
@@ -112,7 +131,7 @@ class FolderSink(pulumi.CustomResource):
             if folder is None:
                 raise TypeError("Missing required property 'folder'")
             __props__['folder'] = folder
-            __props__['include_children'] = include_children
+            __props__['includeChildren'] = include_children
             __props__['name'] = name
             __props__['writer_identity'] = None
         super(FolderSink, __self__).__init__(
@@ -169,7 +188,7 @@ class FolderSink(pulumi.CustomResource):
         return FolderSink(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

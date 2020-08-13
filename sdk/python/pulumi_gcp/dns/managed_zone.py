@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class ManagedZone(pulumi.CustomResource):
@@ -143,6 +143,127 @@ class ManagedZone(pulumi.CustomResource):
             * [Managing Zones](https://cloud.google.com/dns/zones/)
 
         ## Example Usage
+        ### Dns Managed Zone Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example_zone = gcp.dns.ManagedZone("example-zone",
+            description="Example DNS zone",
+            dns_name="my-domain.com.",
+            labels={
+                "foo": "bar",
+            })
+        ```
+        ### Dns Managed Zone Private
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network_1 = gcp.compute.Network("network-1", auto_create_subnetworks=False)
+        network_2 = gcp.compute.Network("network-2", auto_create_subnetworks=False)
+        private_zone = gcp.dns.ManagedZone("private-zone",
+            dns_name="private.example.com.",
+            description="Example private DNS zone",
+            labels={
+                "foo": "bar",
+            },
+            visibility="private",
+            private_visibility_config={
+                "networks": [
+                    {
+                        "networkUrl": network_1.id,
+                    },
+                    {
+                        "networkUrl": network_2.id,
+                    },
+                ],
+            })
+        ```
+        ### Dns Managed Zone Private Forwarding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network_1 = gcp.compute.Network("network-1", auto_create_subnetworks=False)
+        network_2 = gcp.compute.Network("network-2", auto_create_subnetworks=False)
+        private_zone = gcp.dns.ManagedZone("private-zone",
+            dns_name="private.example.com.",
+            description="Example private DNS zone",
+            labels={
+                "foo": "bar",
+            },
+            visibility="private",
+            private_visibility_config={
+                "networks": [
+                    {
+                        "networkUrl": network_1.id,
+                    },
+                    {
+                        "networkUrl": network_2.id,
+                    },
+                ],
+            },
+            forwarding_config={
+                "targetNameServers": [
+                    {
+                        "ipv4Address": "172.16.1.10",
+                    },
+                    {
+                        "ipv4Address": "172.16.1.20",
+                    },
+                ],
+            })
+        ```
+        ### Dns Managed Zone Private Peering
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network_source = gcp.compute.Network("network-source", auto_create_subnetworks=False)
+        network_target = gcp.compute.Network("network-target", auto_create_subnetworks=False)
+        peering_zone = gcp.dns.ManagedZone("peering-zone",
+            dns_name="peering.example.com.",
+            description="Example private DNS peering zone",
+            visibility="private",
+            private_visibility_config={
+                "networks": [{
+                    "networkUrl": network_source.id,
+                }],
+            },
+            peering_config={
+                "targetNetwork": {
+                    "networkUrl": network_target.id,
+                },
+            })
+        ```
+        ### Dns Managed Zone Service Directory
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        example = gcp.servicedirectory.Namespace("example",
+            namespace_id="example",
+            location="us-central1",
+            opts=ResourceOptions(provider=google_beta))
+        sd_zone = gcp.dns.ManagedZone("sd-zone",
+            dns_name="services.example.com.",
+            description="Example private DNS Service Directory zone",
+            visibility="private",
+            service_directory_config={
+                "namespace": {
+                    "namespaceUrl": example.id,
+                },
+            },
+            opts=ResourceOptions(provider=google_beta))
+        network = gcp.compute.Network("network", auto_create_subnetworks=False,
+        opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -248,7 +369,7 @@ class ManagedZone(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -259,16 +380,16 @@ class ManagedZone(pulumi.CustomResource):
             __props__['description'] = description
             if dns_name is None:
                 raise TypeError("Missing required property 'dns_name'")
-            __props__['dns_name'] = dns_name
-            __props__['dnssec_config'] = dnssec_config
-            __props__['forwarding_config'] = forwarding_config
+            __props__['dnsName'] = dns_name
+            __props__['dnssecConfig'] = dnssec_config
+            __props__['forwardingConfig'] = forwarding_config
             __props__['labels'] = labels
             __props__['name'] = name
-            __props__['peering_config'] = peering_config
-            __props__['private_visibility_config'] = private_visibility_config
+            __props__['peeringConfig'] = peering_config
+            __props__['privateVisibilityConfig'] = private_visibility_config
             __props__['project'] = project
-            __props__['reverse_lookup'] = reverse_lookup
-            __props__['service_directory_config'] = service_directory_config
+            __props__['reverseLookup'] = reverse_lookup
+            __props__['serviceDirectoryConfig'] = service_directory_config
             __props__['visibility'] = visibility
             __props__['name_servers'] = None
         super(ManagedZone, __self__).__init__(
@@ -398,7 +519,7 @@ class ManagedZone(pulumi.CustomResource):
         return ManagedZone(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

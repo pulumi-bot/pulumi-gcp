@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class DefaultSupportedIdpConfig(pulumi.CustomResource):
@@ -54,6 +54,18 @@ class DefaultSupportedIdpConfig(pulumi.CustomResource):
         the marketplace prior to using this resource.
 
         ## Example Usage
+        ### Identity Platform Default Supported Idp Config Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        idp_config = gcp.identityplatform.DefaultSupportedIdpConfig("idpConfig",
+            client_id="client-id",
+            client_secret="secret",
+            enabled=True,
+            idp_id="playgames.google.com")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -85,7 +97,7 @@ class DefaultSupportedIdpConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -93,14 +105,14 @@ class DefaultSupportedIdpConfig(pulumi.CustomResource):
 
             if client_id is None:
                 raise TypeError("Missing required property 'client_id'")
-            __props__['client_id'] = client_id
+            __props__['clientId'] = client_id
             if client_secret is None:
                 raise TypeError("Missing required property 'client_secret'")
-            __props__['client_secret'] = client_secret
+            __props__['clientSecret'] = client_secret
             __props__['enabled'] = enabled
             if idp_id is None:
                 raise TypeError("Missing required property 'idp_id'")
-            __props__['idp_id'] = idp_id
+            __props__['idpId'] = idp_id
             __props__['project'] = project
             __props__['name'] = None
         super(DefaultSupportedIdpConfig, __self__).__init__(
@@ -149,7 +161,7 @@ class DefaultSupportedIdpConfig(pulumi.CustomResource):
         return DefaultSupportedIdpConfig(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

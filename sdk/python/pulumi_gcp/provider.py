@@ -7,7 +7,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from . import utilities, tables
+from . import _utilities, _tables
 
 
 class Provider(pulumi.ProviderResource):
@@ -37,102 +37,102 @@ class Provider(pulumi.ProviderResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['access_context_manager_custom_endpoint'] = access_context_manager_custom_endpoint
-            __props__['access_token'] = access_token
-            __props__['active_directory_custom_endpoint'] = active_directory_custom_endpoint
-            __props__['app_engine_custom_endpoint'] = app_engine_custom_endpoint
-            __props__['artifact_registry_custom_endpoint'] = artifact_registry_custom_endpoint
+            __props__['accessContextManagerCustomEndpoint'] = access_context_manager_custom_endpoint
+            __props__['accessToken'] = access_token
+            __props__['activeDirectoryCustomEndpoint'] = active_directory_custom_endpoint
+            __props__['appEngineCustomEndpoint'] = app_engine_custom_endpoint
+            __props__['artifactRegistryCustomEndpoint'] = artifact_registry_custom_endpoint
             __props__['batching'] = pulumi.Output.from_input(batching).apply(json.dumps) if batching is not None else None
-            __props__['big_query_custom_endpoint'] = big_query_custom_endpoint
-            __props__['bigquery_connection_custom_endpoint'] = bigquery_connection_custom_endpoint
-            __props__['bigquery_data_transfer_custom_endpoint'] = bigquery_data_transfer_custom_endpoint
-            __props__['bigquery_reservation_custom_endpoint'] = bigquery_reservation_custom_endpoint
-            __props__['bigtable_custom_endpoint'] = bigtable_custom_endpoint
-            __props__['billing_custom_endpoint'] = billing_custom_endpoint
-            __props__['binary_authorization_custom_endpoint'] = binary_authorization_custom_endpoint
-            __props__['cloud_asset_custom_endpoint'] = cloud_asset_custom_endpoint
-            __props__['cloud_billing_custom_endpoint'] = cloud_billing_custom_endpoint
-            __props__['cloud_build_custom_endpoint'] = cloud_build_custom_endpoint
-            __props__['cloud_functions_custom_endpoint'] = cloud_functions_custom_endpoint
-            __props__['cloud_identity_custom_endpoint'] = cloud_identity_custom_endpoint
-            __props__['cloud_iot_custom_endpoint'] = cloud_iot_custom_endpoint
-            __props__['cloud_run_custom_endpoint'] = cloud_run_custom_endpoint
-            __props__['cloud_scheduler_custom_endpoint'] = cloud_scheduler_custom_endpoint
-            __props__['cloud_tasks_custom_endpoint'] = cloud_tasks_custom_endpoint
-            __props__['composer_custom_endpoint'] = composer_custom_endpoint
-            __props__['compute_beta_custom_endpoint'] = compute_beta_custom_endpoint
-            __props__['compute_custom_endpoint'] = compute_custom_endpoint
-            __props__['container_analysis_custom_endpoint'] = container_analysis_custom_endpoint
-            __props__['container_beta_custom_endpoint'] = container_beta_custom_endpoint
-            __props__['container_custom_endpoint'] = container_custom_endpoint
+            __props__['bigQueryCustomEndpoint'] = big_query_custom_endpoint
+            __props__['bigqueryConnectionCustomEndpoint'] = bigquery_connection_custom_endpoint
+            __props__['bigqueryDataTransferCustomEndpoint'] = bigquery_data_transfer_custom_endpoint
+            __props__['bigqueryReservationCustomEndpoint'] = bigquery_reservation_custom_endpoint
+            __props__['bigtableCustomEndpoint'] = bigtable_custom_endpoint
+            __props__['billingCustomEndpoint'] = billing_custom_endpoint
+            __props__['binaryAuthorizationCustomEndpoint'] = binary_authorization_custom_endpoint
+            __props__['cloudAssetCustomEndpoint'] = cloud_asset_custom_endpoint
+            __props__['cloudBillingCustomEndpoint'] = cloud_billing_custom_endpoint
+            __props__['cloudBuildCustomEndpoint'] = cloud_build_custom_endpoint
+            __props__['cloudFunctionsCustomEndpoint'] = cloud_functions_custom_endpoint
+            __props__['cloudIdentityCustomEndpoint'] = cloud_identity_custom_endpoint
+            __props__['cloudIotCustomEndpoint'] = cloud_iot_custom_endpoint
+            __props__['cloudRunCustomEndpoint'] = cloud_run_custom_endpoint
+            __props__['cloudSchedulerCustomEndpoint'] = cloud_scheduler_custom_endpoint
+            __props__['cloudTasksCustomEndpoint'] = cloud_tasks_custom_endpoint
+            __props__['composerCustomEndpoint'] = composer_custom_endpoint
+            __props__['computeBetaCustomEndpoint'] = compute_beta_custom_endpoint
+            __props__['computeCustomEndpoint'] = compute_custom_endpoint
+            __props__['containerAnalysisCustomEndpoint'] = container_analysis_custom_endpoint
+            __props__['containerBetaCustomEndpoint'] = container_beta_custom_endpoint
+            __props__['containerCustomEndpoint'] = container_custom_endpoint
             if credentials is None:
-                credentials = utilities.get_env('GOOGLE_CREDENTIALS', 'GOOGLE_CLOUD_KEYFILE_JSON', 'GCLOUD_KEYFILE_JSON')
+                credentials = _utilities.get_env('GOOGLE_CREDENTIALS', 'GOOGLE_CLOUD_KEYFILE_JSON', 'GCLOUD_KEYFILE_JSON')
             __props__['credentials'] = credentials
-            __props__['data_catalog_custom_endpoint'] = data_catalog_custom_endpoint
-            __props__['data_fusion_custom_endpoint'] = data_fusion_custom_endpoint
-            __props__['dataflow_custom_endpoint'] = dataflow_custom_endpoint
-            __props__['dataproc_beta_custom_endpoint'] = dataproc_beta_custom_endpoint
-            __props__['dataproc_custom_endpoint'] = dataproc_custom_endpoint
-            __props__['datastore_custom_endpoint'] = datastore_custom_endpoint
-            __props__['deployment_manager_custom_endpoint'] = deployment_manager_custom_endpoint
-            __props__['dialogflow_custom_endpoint'] = dialogflow_custom_endpoint
-            __props__['dns_beta_custom_endpoint'] = dns_beta_custom_endpoint
-            __props__['dns_custom_endpoint'] = dns_custom_endpoint
-            __props__['filestore_custom_endpoint'] = filestore_custom_endpoint
-            __props__['firebase_custom_endpoint'] = firebase_custom_endpoint
-            __props__['firestore_custom_endpoint'] = firestore_custom_endpoint
-            __props__['game_services_custom_endpoint'] = game_services_custom_endpoint
-            __props__['healthcare_custom_endpoint'] = healthcare_custom_endpoint
-            __props__['iam_credentials_custom_endpoint'] = iam_credentials_custom_endpoint
-            __props__['iam_custom_endpoint'] = iam_custom_endpoint
-            __props__['iap_custom_endpoint'] = iap_custom_endpoint
-            __props__['identity_platform_custom_endpoint'] = identity_platform_custom_endpoint
-            __props__['kms_custom_endpoint'] = kms_custom_endpoint
-            __props__['logging_custom_endpoint'] = logging_custom_endpoint
-            __props__['memcache_custom_endpoint'] = memcache_custom_endpoint
-            __props__['ml_engine_custom_endpoint'] = ml_engine_custom_endpoint
-            __props__['monitoring_custom_endpoint'] = monitoring_custom_endpoint
-            __props__['network_management_custom_endpoint'] = network_management_custom_endpoint
-            __props__['notebooks_custom_endpoint'] = notebooks_custom_endpoint
-            __props__['os_config_custom_endpoint'] = os_config_custom_endpoint
-            __props__['os_login_custom_endpoint'] = os_login_custom_endpoint
+            __props__['dataCatalogCustomEndpoint'] = data_catalog_custom_endpoint
+            __props__['dataFusionCustomEndpoint'] = data_fusion_custom_endpoint
+            __props__['dataflowCustomEndpoint'] = dataflow_custom_endpoint
+            __props__['dataprocBetaCustomEndpoint'] = dataproc_beta_custom_endpoint
+            __props__['dataprocCustomEndpoint'] = dataproc_custom_endpoint
+            __props__['datastoreCustomEndpoint'] = datastore_custom_endpoint
+            __props__['deploymentManagerCustomEndpoint'] = deployment_manager_custom_endpoint
+            __props__['dialogflowCustomEndpoint'] = dialogflow_custom_endpoint
+            __props__['dnsBetaCustomEndpoint'] = dns_beta_custom_endpoint
+            __props__['dnsCustomEndpoint'] = dns_custom_endpoint
+            __props__['filestoreCustomEndpoint'] = filestore_custom_endpoint
+            __props__['firebaseCustomEndpoint'] = firebase_custom_endpoint
+            __props__['firestoreCustomEndpoint'] = firestore_custom_endpoint
+            __props__['gameServicesCustomEndpoint'] = game_services_custom_endpoint
+            __props__['healthcareCustomEndpoint'] = healthcare_custom_endpoint
+            __props__['iamCredentialsCustomEndpoint'] = iam_credentials_custom_endpoint
+            __props__['iamCustomEndpoint'] = iam_custom_endpoint
+            __props__['iapCustomEndpoint'] = iap_custom_endpoint
+            __props__['identityPlatformCustomEndpoint'] = identity_platform_custom_endpoint
+            __props__['kmsCustomEndpoint'] = kms_custom_endpoint
+            __props__['loggingCustomEndpoint'] = logging_custom_endpoint
+            __props__['memcacheCustomEndpoint'] = memcache_custom_endpoint
+            __props__['mlEngineCustomEndpoint'] = ml_engine_custom_endpoint
+            __props__['monitoringCustomEndpoint'] = monitoring_custom_endpoint
+            __props__['networkManagementCustomEndpoint'] = network_management_custom_endpoint
+            __props__['notebooksCustomEndpoint'] = notebooks_custom_endpoint
+            __props__['osConfigCustomEndpoint'] = os_config_custom_endpoint
+            __props__['osLoginCustomEndpoint'] = os_login_custom_endpoint
             if project is None:
-                project = utilities.get_env('GOOGLE_PROJECT', 'GOOGLE_CLOUD_PROJECT', 'GCLOUD_PROJECT', 'CLOUDSDK_CORE_PROJECT')
+                project = _utilities.get_env('GOOGLE_PROJECT', 'GOOGLE_CLOUD_PROJECT', 'GCLOUD_PROJECT', 'CLOUDSDK_CORE_PROJECT')
             __props__['project'] = project
-            __props__['pubsub_custom_endpoint'] = pubsub_custom_endpoint
-            __props__['redis_custom_endpoint'] = redis_custom_endpoint
+            __props__['pubsubCustomEndpoint'] = pubsub_custom_endpoint
+            __props__['redisCustomEndpoint'] = redis_custom_endpoint
             if region is None:
-                region = utilities.get_env('GOOGLE_REGION', 'GCLOUD_REGION', 'CLOUDSDK_COMPUTE_REGION')
+                region = _utilities.get_env('GOOGLE_REGION', 'GCLOUD_REGION', 'CLOUDSDK_COMPUTE_REGION')
             __props__['region'] = region
-            __props__['request_timeout'] = request_timeout
-            __props__['resource_manager_custom_endpoint'] = resource_manager_custom_endpoint
-            __props__['resource_manager_v2beta1_custom_endpoint'] = resource_manager_v2beta1_custom_endpoint
-            __props__['runtime_config_custom_endpoint'] = runtime_config_custom_endpoint
-            __props__['runtimeconfig_custom_endpoint'] = runtimeconfig_custom_endpoint
+            __props__['requestTimeout'] = request_timeout
+            __props__['resourceManagerCustomEndpoint'] = resource_manager_custom_endpoint
+            __props__['resourceManagerV2beta1CustomEndpoint'] = resource_manager_v2beta1_custom_endpoint
+            __props__['runtimeConfigCustomEndpoint'] = runtime_config_custom_endpoint
+            __props__['runtimeconfigCustomEndpoint'] = runtimeconfig_custom_endpoint
             __props__['scopes'] = pulumi.Output.from_input(scopes).apply(json.dumps) if scopes is not None else None
-            __props__['secret_manager_custom_endpoint'] = secret_manager_custom_endpoint
-            __props__['security_center_custom_endpoint'] = security_center_custom_endpoint
-            __props__['security_scanner_custom_endpoint'] = security_scanner_custom_endpoint
-            __props__['service_directory_custom_endpoint'] = service_directory_custom_endpoint
-            __props__['service_management_custom_endpoint'] = service_management_custom_endpoint
-            __props__['service_networking_custom_endpoint'] = service_networking_custom_endpoint
-            __props__['service_usage_custom_endpoint'] = service_usage_custom_endpoint
-            __props__['source_repo_custom_endpoint'] = source_repo_custom_endpoint
-            __props__['spanner_custom_endpoint'] = spanner_custom_endpoint
-            __props__['sql_custom_endpoint'] = sql_custom_endpoint
-            __props__['storage_custom_endpoint'] = storage_custom_endpoint
-            __props__['storage_transfer_custom_endpoint'] = storage_transfer_custom_endpoint
-            __props__['tpu_custom_endpoint'] = tpu_custom_endpoint
-            __props__['user_project_override'] = pulumi.Output.from_input(user_project_override).apply(json.dumps) if user_project_override is not None else None
-            __props__['vpc_access_custom_endpoint'] = vpc_access_custom_endpoint
+            __props__['secretManagerCustomEndpoint'] = secret_manager_custom_endpoint
+            __props__['securityCenterCustomEndpoint'] = security_center_custom_endpoint
+            __props__['securityScannerCustomEndpoint'] = security_scanner_custom_endpoint
+            __props__['serviceDirectoryCustomEndpoint'] = service_directory_custom_endpoint
+            __props__['serviceManagementCustomEndpoint'] = service_management_custom_endpoint
+            __props__['serviceNetworkingCustomEndpoint'] = service_networking_custom_endpoint
+            __props__['serviceUsageCustomEndpoint'] = service_usage_custom_endpoint
+            __props__['sourceRepoCustomEndpoint'] = source_repo_custom_endpoint
+            __props__['spannerCustomEndpoint'] = spanner_custom_endpoint
+            __props__['sqlCustomEndpoint'] = sql_custom_endpoint
+            __props__['storageCustomEndpoint'] = storage_custom_endpoint
+            __props__['storageTransferCustomEndpoint'] = storage_transfer_custom_endpoint
+            __props__['tpuCustomEndpoint'] = tpu_custom_endpoint
+            __props__['userProjectOverride'] = pulumi.Output.from_input(user_project_override).apply(json.dumps) if user_project_override is not None else None
+            __props__['vpcAccessCustomEndpoint'] = vpc_access_custom_endpoint
             if zone is None:
-                zone = utilities.get_env('GOOGLE_ZONE', 'GCLOUD_ZONE', 'CLOUDSDK_COMPUTE_ZONE')
+                zone = _utilities.get_env('GOOGLE_ZONE', 'GCLOUD_ZONE', 'CLOUDSDK_COMPUTE_ZONE')
             __props__['zone'] = zone
         super(Provider, __self__).__init__(
             'gcp',
@@ -141,7 +141,7 @@ class Provider(pulumi.ProviderResource):
             opts)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

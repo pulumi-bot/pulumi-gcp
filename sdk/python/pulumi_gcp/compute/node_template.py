@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class NodeTemplate(pulumi.CustomResource):
@@ -95,6 +95,34 @@ class NodeTemplate(pulumi.CustomResource):
             * [Sole-Tenant Nodes](https://cloud.google.com/compute/docs/nodes/)
 
         ## Example Usage
+        ### Node Template Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        template = gcp.compute.NodeTemplate("template",
+            node_type="n1-node-96-624",
+            region="us-central1")
+        ```
+        ### Node Template Server Binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        central1a = gcp.compute.get_node_types(zone="us-central1-a")
+        template = gcp.compute.NodeTemplate("template",
+            region="us-central1",
+            node_type="n1-node-96-624",
+            node_affinity_labels={
+                "foo": "baz",
+            },
+            server_binding={
+                "type": "RESTART_NODE_ON_MINIMAL_SERVERS",
+            },
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -151,21 +179,21 @@ class NodeTemplate(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['cpu_overcommit_type'] = cpu_overcommit_type
+            __props__['cpuOvercommitType'] = cpu_overcommit_type
             __props__['description'] = description
             __props__['name'] = name
-            __props__['node_affinity_labels'] = node_affinity_labels
-            __props__['node_type'] = node_type
-            __props__['node_type_flexibility'] = node_type_flexibility
+            __props__['nodeAffinityLabels'] = node_affinity_labels
+            __props__['nodeType'] = node_type
+            __props__['nodeTypeFlexibility'] = node_type_flexibility
             __props__['project'] = project
             __props__['region'] = region
-            __props__['server_binding'] = server_binding
+            __props__['serverBinding'] = server_binding
             __props__['creation_timestamp'] = None
             __props__['self_link'] = None
         super(NodeTemplate, __self__).__init__(
@@ -245,7 +273,7 @@ class NodeTemplate(pulumi.CustomResource):
         return NodeTemplate(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

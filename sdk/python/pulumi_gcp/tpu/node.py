@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Node(pulumi.CustomResource):
@@ -88,6 +88,40 @@ class Node(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/tpu/docs/)
 
         ## Example Usage
+        ### TPU Node Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        available = gcp.tpu.get_tensorflow_versions()
+        tpu = gcp.tpu.Node("tpu",
+            zone="us-central1-b",
+            accelerator_type="v3-8",
+            tensorflow_version=available.versions[0],
+            cidr_block="10.2.0.0/29")
+        ```
+        ### TPU Node Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        available = gcp.tpu.get_tensorflow_versions()
+        tpu = gcp.tpu.Node("tpu",
+            zone="us-central1-b",
+            accelerator_type="v3-8",
+            cidr_block="10.3.0.0/29",
+            tensorflow_version=available.versions[0],
+            description="Google Provider test TPU",
+            network="default",
+            labels={
+                "foo": "bar",
+            },
+            scheduling_config={
+                "preemptible": True,
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -129,7 +163,7 @@ class Node(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -137,19 +171,19 @@ class Node(pulumi.CustomResource):
 
             if accelerator_type is None:
                 raise TypeError("Missing required property 'accelerator_type'")
-            __props__['accelerator_type'] = accelerator_type
+            __props__['acceleratorType'] = accelerator_type
             if cidr_block is None:
                 raise TypeError("Missing required property 'cidr_block'")
-            __props__['cidr_block'] = cidr_block
+            __props__['cidrBlock'] = cidr_block
             __props__['description'] = description
             __props__['labels'] = labels
             __props__['name'] = name
             __props__['network'] = network
             __props__['project'] = project
-            __props__['scheduling_config'] = scheduling_config
+            __props__['schedulingConfig'] = scheduling_config
             if tensorflow_version is None:
                 raise TypeError("Missing required property 'tensorflow_version'")
-            __props__['tensorflow_version'] = tensorflow_version
+            __props__['tensorflowVersion'] = tensorflow_version
             if zone is None:
                 raise TypeError("Missing required property 'zone'")
             __props__['zone'] = zone
@@ -225,7 +259,7 @@ class Node(pulumi.CustomResource):
         return Node(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

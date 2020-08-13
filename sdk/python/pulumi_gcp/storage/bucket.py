@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Bucket(pulumi.CustomResource):
@@ -130,6 +130,51 @@ class Bucket(pulumi.CustomResource):
         determined which will require enabling the compute api.
 
         ## Example Usage
+        ### Creating A Private Bucket In Standard Storage, In The EU Region. Bucket Configured As Static Website And CORS Configurations
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        static_site = gcp.storage.Bucket("static-site",
+            bucket_policy_only=True,
+            cors=[{
+                "maxAgeSeconds": 3600,
+                "methods": [
+                    "GET",
+                    "HEAD",
+                    "PUT",
+                    "POST",
+                    "DELETE",
+                ],
+                "origins": ["http://image-store.com"],
+                "responseHeaders": ["*"],
+            }],
+            force_destroy=True,
+            location="EU",
+            website={
+                "mainPageSuffix": "index.html",
+                "notFoundPage": "404.html",
+            })
+        ```
+        ### Life Cycle Settings For Storage Bucket Objects
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        auto_expire = gcp.storage.Bucket("auto-expire",
+            force_destroy=True,
+            lifecycle_rules=[{
+                "action": {
+                    "type": "Delete",
+                },
+                "condition": {
+                    "age": 3,
+                },
+            }],
+            location="US")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -209,26 +254,26 @@ class Bucket(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['bucket_policy_only'] = bucket_policy_only
+            __props__['bucketPolicyOnly'] = bucket_policy_only
             __props__['cors'] = cors
-            __props__['default_event_based_hold'] = default_event_based_hold
+            __props__['defaultEventBasedHold'] = default_event_based_hold
             __props__['encryption'] = encryption
-            __props__['force_destroy'] = force_destroy
+            __props__['forceDestroy'] = force_destroy
             __props__['labels'] = labels
-            __props__['lifecycle_rules'] = lifecycle_rules
+            __props__['lifecycleRules'] = lifecycle_rules
             __props__['location'] = location
             __props__['logging'] = logging
             __props__['name'] = name
             __props__['project'] = project
-            __props__['requester_pays'] = requester_pays
-            __props__['retention_policy'] = retention_policy
-            __props__['storage_class'] = storage_class
+            __props__['requesterPays'] = requester_pays
+            __props__['retentionPolicy'] = retention_policy
+            __props__['storageClass'] = storage_class
             __props__['versioning'] = versioning
             __props__['website'] = website
             __props__['self_link'] = None
@@ -340,7 +385,7 @@ class Bucket(pulumi.CustomResource):
         return Bucket(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

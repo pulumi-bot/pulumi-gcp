@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Dataset(pulumi.CustomResource):
@@ -120,6 +120,51 @@ class Dataset(pulumi.CustomResource):
             * [Datasets Intro](https://cloud.google.com/bigquery/docs/datasets-intro)
 
         ## Example Usage
+        ### Bigquery Dataset Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        bqowner = gcp.service_account.Account("bqowner", account_id="bqowner")
+        dataset = gcp.bigquery.Dataset("dataset",
+            dataset_id="example_dataset",
+            friendly_name="test",
+            description="This is a test description",
+            location="EU",
+            default_table_expiration_ms=3600000,
+            labels={
+                "env": "default",
+            },
+            accesses=[
+                {
+                    "role": "OWNER",
+                    "user_by_email": bqowner.email,
+                },
+                {
+                    "role": "READER",
+                    "domain": "hashicorp.com",
+                },
+            ])
+        ```
+        ### Bigquery Dataset Cmek
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        key_ring = gcp.kms.KeyRing("keyRing", location="us")
+        crypto_key = gcp.kms.CryptoKey("cryptoKey", key_ring=key_ring.id)
+        dataset = gcp.bigquery.Dataset("dataset",
+            dataset_id="example_dataset",
+            friendly_name="test",
+            description="This is a test description",
+            location="US",
+            default_table_expiration_ms=3600000,
+            default_encryption_configuration={
+                "kms_key_name": crypto_key.id,
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -189,7 +234,7 @@ class Dataset(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -198,13 +243,13 @@ class Dataset(pulumi.CustomResource):
             __props__['accesses'] = accesses
             if dataset_id is None:
                 raise TypeError("Missing required property 'dataset_id'")
-            __props__['dataset_id'] = dataset_id
-            __props__['default_encryption_configuration'] = default_encryption_configuration
-            __props__['default_partition_expiration_ms'] = default_partition_expiration_ms
-            __props__['default_table_expiration_ms'] = default_table_expiration_ms
-            __props__['delete_contents_on_destroy'] = delete_contents_on_destroy
+            __props__['datasetId'] = dataset_id
+            __props__['defaultEncryptionConfiguration'] = default_encryption_configuration
+            __props__['defaultPartitionExpirationMs'] = default_partition_expiration_ms
+            __props__['defaultTableExpirationMs'] = default_table_expiration_ms
+            __props__['deleteContentsOnDestroy'] = delete_contents_on_destroy
             __props__['description'] = description
-            __props__['friendly_name'] = friendly_name
+            __props__['friendlyName'] = friendly_name
             __props__['labels'] = labels
             __props__['location'] = location
             __props__['project'] = project
@@ -308,7 +353,7 @@ class Dataset(pulumi.CustomResource):
         return Dataset(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

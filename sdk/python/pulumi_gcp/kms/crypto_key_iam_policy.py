@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class CryptoKeyIAMPolicy(pulumi.CustomResource):
@@ -38,11 +38,93 @@ class CryptoKeyIAMPolicy(pulumi.CustomResource):
 
         > **Note:** `kms.CryptoKeyIAMBinding` resources **can be** used in conjunction with `kms.CryptoKeyIAMMember` resources **only if** they do not grant privilege to the same role.
 
-        With IAM Conditions:
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        keyring = gcp.kms.KeyRing("keyring", location="global")
+        key = gcp.kms.CryptoKey("key",
+            key_ring=keyring.id,
+            rotation_period="100000s")
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/cloudkms.cryptoKeyEncrypter",
+            "members": ["user:jane@example.com"],
+        }])
+        crypto_key = gcp.kms.CryptoKeyIAMPolicy("cryptoKey",
+            crypto_key_id=key.id,
+            policy_data=admin.policy_data)
+        ```
 
         With IAM Conditions:
 
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "condition": {
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+                "title": "expires_after_2019_12_31",
+            },
+            "members": ["user:jane@example.com"],
+            "role": "roles/cloudkms.cryptoKeyEncrypter",
+        }])
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        crypto_key = gcp.kms.CryptoKeyIAMBinding("cryptoKey",
+            crypto_key_id=google_kms_crypto_key["key"]["id"],
+            role="roles/cloudkms.cryptoKeyEncrypter",
+            members=["user:jane@example.com"])
+        ```
+
         With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        crypto_key = gcp.kms.CryptoKeyIAMBinding("cryptoKey",
+            crypto_key_id=google_kms_crypto_key["key"]["id"],
+            role="roles/cloudkms.cryptoKeyEncrypter",
+            members=["user:jane@example.com"],
+            condition={
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            })
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        crypto_key = gcp.kms.CryptoKeyIAMMember("cryptoKey",
+            crypto_key_id=google_kms_crypto_key["key"]["id"],
+            role="roles/cloudkms.cryptoKeyEncrypter",
+            member="user:jane@example.com")
+        ```
+
+        With IAM Conditions:
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        crypto_key = gcp.kms.CryptoKeyIAMMember("cryptoKey",
+            crypto_key_id=google_kms_crypto_key["key"]["id"],
+            role="roles/cloudkms.cryptoKeyEncrypter",
+            member="user:jane@example.com",
+            condition={
+                "title": "expires_after_2019_12_31",
+                "description": "Expiring at midnight of 2019-12-31",
+                "expression": "request.time < timestamp(\"2020-01-01T00:00:00Z\")",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -64,7 +146,7 @@ class CryptoKeyIAMPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -72,10 +154,10 @@ class CryptoKeyIAMPolicy(pulumi.CustomResource):
 
             if crypto_key_id is None:
                 raise TypeError("Missing required property 'crypto_key_id'")
-            __props__['crypto_key_id'] = crypto_key_id
+            __props__['cryptoKeyId'] = crypto_key_id
             if policy_data is None:
                 raise TypeError("Missing required property 'policy_data'")
-            __props__['policy_data'] = policy_data
+            __props__['policyData'] = policy_data
             __props__['etag'] = None
         super(CryptoKeyIAMPolicy, __self__).__init__(
             'gcp:kms/cryptoKeyIAMPolicy:CryptoKeyIAMPolicy',
@@ -110,7 +192,7 @@ class CryptoKeyIAMPolicy(pulumi.CustomResource):
         return CryptoKeyIAMPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class VPNTunnel(pulumi.CustomResource):
@@ -140,6 +140,91 @@ class VPNTunnel(pulumi.CustomResource):
         state as plain-text.
 
         ## Example Usage
+        ### Vpn Tunnel Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network1 = gcp.compute.Network("network1")
+        target_gateway = gcp.compute.VPNGateway("targetGateway", network=network1.id)
+        vpn_static_ip = gcp.compute.Address("vpnStaticIp")
+        fr_esp = gcp.compute.ForwardingRule("frEsp",
+            ip_protocol="ESP",
+            ip_address=vpn_static_ip.address,
+            target=target_gateway.id)
+        fr_udp500 = gcp.compute.ForwardingRule("frUdp500",
+            ip_protocol="UDP",
+            port_range="500",
+            ip_address=vpn_static_ip.address,
+            target=target_gateway.id)
+        fr_udp4500 = gcp.compute.ForwardingRule("frUdp4500",
+            ip_protocol="UDP",
+            port_range="4500",
+            ip_address=vpn_static_ip.address,
+            target=target_gateway.id)
+        tunnel1 = gcp.compute.VPNTunnel("tunnel1",
+            peer_ip="15.0.0.120",
+            shared_secret="a secret message",
+            target_vpn_gateway=target_gateway.id,
+            opts=ResourceOptions(depends_on=[
+                    fr_esp,
+                    fr_udp500,
+                    fr_udp4500,
+                ]))
+        route1 = gcp.compute.Route("route1",
+            network=network1.name,
+            dest_range="15.0.0.0/24",
+            priority=1000,
+            next_hop_vpn_tunnel=tunnel1.id)
+        ```
+        ### Vpn Tunnel Beta
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network1 = gcp.compute.Network("network1", opts=ResourceOptions(provider=google_beta))
+        target_gateway = gcp.compute.VPNGateway("targetGateway", network=network1.id,
+        opts=ResourceOptions(provider=google_beta))
+        vpn_static_ip = gcp.compute.Address("vpnStaticIp", opts=ResourceOptions(provider=google_beta))
+        fr_esp = gcp.compute.ForwardingRule("frEsp",
+            ip_protocol="ESP",
+            ip_address=vpn_static_ip.address,
+            target=target_gateway.id,
+            opts=ResourceOptions(provider=google_beta))
+        fr_udp500 = gcp.compute.ForwardingRule("frUdp500",
+            ip_protocol="UDP",
+            port_range="500",
+            ip_address=vpn_static_ip.address,
+            target=target_gateway.id,
+            opts=ResourceOptions(provider=google_beta))
+        fr_udp4500 = gcp.compute.ForwardingRule("frUdp4500",
+            ip_protocol="UDP",
+            port_range="4500",
+            ip_address=vpn_static_ip.address,
+            target=target_gateway.id,
+            opts=ResourceOptions(provider=google_beta))
+        tunnel1 = gcp.compute.VPNTunnel("tunnel1",
+            peer_ip="15.0.0.120",
+            shared_secret="a secret message",
+            target_vpn_gateway=target_gateway.id,
+            labels={
+                "foo": "bar",
+            },
+            opts=ResourceOptions(provider=google_beta,
+                depends_on=[
+                    fr_esp,
+                    fr_udp500,
+                    fr_udp4500,
+                ]))
+        route1 = gcp.compute.Route("route1",
+            network=network1.name,
+            dest_range="15.0.0.0/24",
+            priority=1000,
+            next_hop_vpn_tunnel=tunnel1.id,
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -195,31 +280,31 @@ class VPNTunnel(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
             __props__['description'] = description
-            __props__['ike_version'] = ike_version
+            __props__['ikeVersion'] = ike_version
             __props__['labels'] = labels
-            __props__['local_traffic_selectors'] = local_traffic_selectors
+            __props__['localTrafficSelectors'] = local_traffic_selectors
             __props__['name'] = name
-            __props__['peer_external_gateway'] = peer_external_gateway
-            __props__['peer_external_gateway_interface'] = peer_external_gateway_interface
-            __props__['peer_gcp_gateway'] = peer_gcp_gateway
-            __props__['peer_ip'] = peer_ip
+            __props__['peerExternalGateway'] = peer_external_gateway
+            __props__['peerExternalGatewayInterface'] = peer_external_gateway_interface
+            __props__['peerGcpGateway'] = peer_gcp_gateway
+            __props__['peerIp'] = peer_ip
             __props__['project'] = project
             __props__['region'] = region
-            __props__['remote_traffic_selectors'] = remote_traffic_selectors
+            __props__['remoteTrafficSelectors'] = remote_traffic_selectors
             __props__['router'] = router
             if shared_secret is None:
                 raise TypeError("Missing required property 'shared_secret'")
-            __props__['shared_secret'] = shared_secret
-            __props__['target_vpn_gateway'] = target_vpn_gateway
-            __props__['vpn_gateway'] = vpn_gateway
-            __props__['vpn_gateway_interface'] = vpn_gateway_interface
+            __props__['sharedSecret'] = shared_secret
+            __props__['targetVpnGateway'] = target_vpn_gateway
+            __props__['vpnGateway'] = vpn_gateway
+            __props__['vpnGatewayInterface'] = vpn_gateway_interface
             __props__['creation_timestamp'] = None
             __props__['detailed_status'] = None
             __props__['label_fingerprint'] = None
@@ -318,7 +403,7 @@ class VPNTunnel(pulumi.CustomResource):
         return VPNTunnel(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

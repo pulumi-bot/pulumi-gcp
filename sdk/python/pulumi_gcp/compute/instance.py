@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Instance(pulumi.CustomResource):
@@ -307,6 +307,44 @@ class Instance(pulumi.CustomResource):
         and
         [API](https://cloud.google.com/compute/docs/reference/latest/instances).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.compute.Instance("default",
+            boot_disk={
+                "initializeParams": {
+                    "image": "debian-cloud/debian-9",
+                },
+            },
+            machine_type="n1-standard-1",
+            metadata={
+                "foo": "bar",
+            },
+            metadata_startup_script="echo hi > /test.txt",
+            network_interfaces=[{
+                "accessConfigs": [{}],
+                "network": "default",
+            }],
+            scratch_disks=[{
+                "interface": "SCSI",
+            }],
+            service_account={
+                "scopes": [
+                    "userinfo-email",
+                    "compute-ro",
+                    "storage-ro",
+                ],
+            },
+            tags=[
+                "foo",
+                "bar",
+            ],
+            zone="us-central1-a")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] allow_stopping_for_update: If true, allows this prvider to stop the instance to update its properties.
@@ -524,41 +562,41 @@ class Instance(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['allow_stopping_for_update'] = allow_stopping_for_update
-            __props__['attached_disks'] = attached_disks
+            __props__['allowStoppingForUpdate'] = allow_stopping_for_update
+            __props__['attachedDisks'] = attached_disks
             if boot_disk is None:
                 raise TypeError("Missing required property 'boot_disk'")
-            __props__['boot_disk'] = boot_disk
-            __props__['can_ip_forward'] = can_ip_forward
-            __props__['deletion_protection'] = deletion_protection
+            __props__['bootDisk'] = boot_disk
+            __props__['canIpForward'] = can_ip_forward
+            __props__['deletionProtection'] = deletion_protection
             __props__['description'] = description
-            __props__['desired_status'] = desired_status
-            __props__['enable_display'] = enable_display
-            __props__['guest_accelerators'] = guest_accelerators
+            __props__['desiredStatus'] = desired_status
+            __props__['enableDisplay'] = enable_display
+            __props__['guestAccelerators'] = guest_accelerators
             __props__['hostname'] = hostname
             __props__['labels'] = labels
             if machine_type is None:
                 raise TypeError("Missing required property 'machine_type'")
-            __props__['machine_type'] = machine_type
+            __props__['machineType'] = machine_type
             __props__['metadata'] = metadata
-            __props__['metadata_startup_script'] = metadata_startup_script
-            __props__['min_cpu_platform'] = min_cpu_platform
+            __props__['metadataStartupScript'] = metadata_startup_script
+            __props__['minCpuPlatform'] = min_cpu_platform
             __props__['name'] = name
             if network_interfaces is None:
                 raise TypeError("Missing required property 'network_interfaces'")
-            __props__['network_interfaces'] = network_interfaces
+            __props__['networkInterfaces'] = network_interfaces
             __props__['project'] = project
-            __props__['resource_policies'] = resource_policies
+            __props__['resourcePolicies'] = resource_policies
             __props__['scheduling'] = scheduling
-            __props__['scratch_disks'] = scratch_disks
-            __props__['service_account'] = service_account
-            __props__['shielded_instance_config'] = shielded_instance_config
+            __props__['scratchDisks'] = scratch_disks
+            __props__['serviceAccount'] = service_account
+            __props__['shieldedInstanceConfig'] = shielded_instance_config
             __props__['tags'] = tags
             __props__['zone'] = zone
             __props__['cpu_platform'] = None
@@ -833,7 +871,7 @@ class Instance(pulumi.CustomResource):
         return Instance(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

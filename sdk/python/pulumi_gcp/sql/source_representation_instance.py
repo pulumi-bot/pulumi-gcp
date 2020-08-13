@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class SourceRepresentationInstance(pulumi.CustomResource):
@@ -47,6 +47,18 @@ class SourceRepresentationInstance(pulumi.CustomResource):
         affect billing. You cannot update the source representation instance.
 
         ## Example Usage
+        ### Sql Source Representation Instance Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        instance = gcp.sql.SourceRepresentationInstance("instance",
+            database_version="MYSQL_5_7",
+            host="10.20.30.40",
+            port=3306,
+            region="us-central1")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -72,7 +84,7 @@ class SourceRepresentationInstance(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -80,7 +92,7 @@ class SourceRepresentationInstance(pulumi.CustomResource):
 
             if database_version is None:
                 raise TypeError("Missing required property 'database_version'")
-            __props__['database_version'] = database_version
+            __props__['databaseVersion'] = database_version
             if host is None:
                 raise TypeError("Missing required property 'host'")
             __props__['host'] = host
@@ -127,7 +139,7 @@ class SourceRepresentationInstance(pulumi.CustomResource):
         return SourceRepresentationInstance(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

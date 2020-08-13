@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class FirewallRule(pulumi.CustomResource):
@@ -48,6 +48,24 @@ class FirewallRule(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/creating-firewalls#creating_firewall_rules)
 
         ## Example Usage
+        ### App Engine Firewall Rule Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_project = gcp.organizations.Project("myProject",
+            project_id="ae-project",
+            org_id="123456789")
+        app = gcp.appengine.Application("app",
+            project=my_project.project_id,
+            location_id="us-central")
+        rule = gcp.appengine.FirewallRule("rule",
+            project=app.project,
+            priority=1000,
+            action="ALLOW",
+            source_range="*")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -74,7 +92,7 @@ class FirewallRule(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -88,7 +106,7 @@ class FirewallRule(pulumi.CustomResource):
             __props__['project'] = project
             if source_range is None:
                 raise TypeError("Missing required property 'source_range'")
-            __props__['source_range'] = source_range
+            __props__['sourceRange'] = source_range
         super(FirewallRule, __self__).__init__(
             'gcp:appengine/firewallRule:FirewallRule',
             resource_name,
@@ -128,7 +146,7 @@ class FirewallRule(pulumi.CustomResource):
         return FirewallRule(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

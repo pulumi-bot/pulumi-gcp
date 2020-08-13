@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class HttpHealthCheck(pulumi.CustomResource):
@@ -93,6 +93,17 @@ class HttpHealthCheck(pulumi.CustomResource):
             * [Adding Health Checks](https://cloud.google.com/compute/docs/load-balancing/health-checks#legacy_health_checks)
 
         ## Example Usage
+        ### Http Health Check Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.compute.HttpHealthCheck("default",
+            check_interval_sec=1,
+            request_path="/health_check",
+            timeout_sec=1)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -135,22 +146,22 @@ class HttpHealthCheck(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['check_interval_sec'] = check_interval_sec
+            __props__['checkIntervalSec'] = check_interval_sec
             __props__['description'] = description
-            __props__['healthy_threshold'] = healthy_threshold
+            __props__['healthyThreshold'] = healthy_threshold
             __props__['host'] = host
             __props__['name'] = name
             __props__['port'] = port
             __props__['project'] = project
-            __props__['request_path'] = request_path
-            __props__['timeout_sec'] = timeout_sec
-            __props__['unhealthy_threshold'] = unhealthy_threshold
+            __props__['requestPath'] = request_path
+            __props__['timeoutSec'] = timeout_sec
+            __props__['unhealthyThreshold'] = unhealthy_threshold
             __props__['creation_timestamp'] = None
             __props__['self_link'] = None
         super(HttpHealthCheck, __self__).__init__(
@@ -217,7 +228,7 @@ class HttpHealthCheck(pulumi.CustomResource):
         return HttpHealthCheck(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

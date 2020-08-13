@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Firewall(pulumi.CustomResource):
@@ -196,6 +196,30 @@ class Firewall(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/vpc/docs/firewalls)
 
         ## Example Usage
+        ### Firewall Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_network = gcp.compute.Network("defaultNetwork")
+        default_firewall = gcp.compute.Firewall("defaultFirewall",
+            network=default_network.name,
+            allows=[
+                {
+                    "protocol": "icmp",
+                },
+                {
+                    "protocol": "tcp",
+                    "ports": [
+                        "80",
+                        "8080",
+                        "1000-2000",
+                    ],
+                },
+            ],
+            source_tags=["web"])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -322,7 +346,7 @@ class Firewall(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -331,25 +355,25 @@ class Firewall(pulumi.CustomResource):
             __props__['allows'] = allows
             __props__['denies'] = denies
             __props__['description'] = description
-            __props__['destination_ranges'] = destination_ranges
+            __props__['destinationRanges'] = destination_ranges
             __props__['direction'] = direction
             __props__['disabled'] = disabled
             if enable_logging is not None:
                 warnings.warn("Deprecated in favor of log_config", DeprecationWarning)
                 pulumi.log.warn("enable_logging is deprecated: Deprecated in favor of log_config")
-            __props__['enable_logging'] = enable_logging
-            __props__['log_config'] = log_config
+            __props__['enableLogging'] = enable_logging
+            __props__['logConfig'] = log_config
             __props__['name'] = name
             if network is None:
                 raise TypeError("Missing required property 'network'")
             __props__['network'] = network
             __props__['priority'] = priority
             __props__['project'] = project
-            __props__['source_ranges'] = source_ranges
-            __props__['source_service_accounts'] = source_service_accounts
-            __props__['source_tags'] = source_tags
-            __props__['target_service_accounts'] = target_service_accounts
-            __props__['target_tags'] = target_tags
+            __props__['sourceRanges'] = source_ranges
+            __props__['sourceServiceAccounts'] = source_service_accounts
+            __props__['sourceTags'] = source_tags
+            __props__['targetServiceAccounts'] = target_service_accounts
+            __props__['targetTags'] = target_tags
             __props__['creation_timestamp'] = None
             __props__['self_link'] = None
         super(Firewall, __self__).__init__(
@@ -507,7 +531,7 @@ class Firewall(pulumi.CustomResource):
         return Firewall(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

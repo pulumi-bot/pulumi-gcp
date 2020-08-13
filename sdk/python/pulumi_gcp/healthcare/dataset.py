@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Dataset(pulumi.CustomResource):
@@ -44,6 +44,16 @@ class Dataset(pulumi.CustomResource):
             * [Creating a dataset](https://cloud.google.com/healthcare/docs/how-tos/datasets)
 
         ## Example Usage
+        ### Healthcare Dataset Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.healthcare.Dataset("default",
+            location="us-central1",
+            time_zone="UTC")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -66,7 +76,7 @@ class Dataset(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -77,7 +87,7 @@ class Dataset(pulumi.CustomResource):
             __props__['location'] = location
             __props__['name'] = name
             __props__['project'] = project
-            __props__['time_zone'] = time_zone
+            __props__['timeZone'] = time_zone
             __props__['self_link'] = None
         super(Dataset, __self__).__init__(
             'gcp:healthcare/dataset:Dataset',
@@ -115,7 +125,7 @@ class Dataset(pulumi.CustomResource):
         return Dataset(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Intent(pulumi.CustomResource):
@@ -104,6 +104,19 @@ class Intent(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
 
         ## Example Usage
+        ### Dialogflow Intent Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        basic_agent = gcp.diagflow.Agent("basicAgent",
+            display_name="example_agent",
+            default_language_code="en",
+            time_zone="America/New_York")
+        basic_intent = gcp.diagflow.Intent("basicIntent", display_name="basic-intent",
+        opts=ResourceOptions(depends_on=[basic_agent]))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -147,26 +160,26 @@ class Intent(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
             __props__['action'] = action
-            __props__['default_response_platforms'] = default_response_platforms
+            __props__['defaultResponsePlatforms'] = default_response_platforms
             if display_name is None:
                 raise TypeError("Missing required property 'display_name'")
-            __props__['display_name'] = display_name
+            __props__['displayName'] = display_name
             __props__['events'] = events
-            __props__['input_context_names'] = input_context_names
-            __props__['is_fallback'] = is_fallback
-            __props__['ml_disabled'] = ml_disabled
-            __props__['parent_followup_intent_name'] = parent_followup_intent_name
+            __props__['inputContextNames'] = input_context_names
+            __props__['isFallback'] = is_fallback
+            __props__['mlDisabled'] = ml_disabled
+            __props__['parentFollowupIntentName'] = parent_followup_intent_name
             __props__['priority'] = priority
             __props__['project'] = project
-            __props__['reset_contexts'] = reset_contexts
-            __props__['webhook_state'] = webhook_state
+            __props__['resetContexts'] = reset_contexts
+            __props__['webhookState'] = webhook_state
             __props__['followup_intent_infos'] = None
             __props__['name'] = None
             __props__['root_followup_intent_name'] = None
@@ -247,7 +260,7 @@ class Intent(pulumi.CustomResource):
         return Intent(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

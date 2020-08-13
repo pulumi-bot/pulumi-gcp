@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class SslCert(pulumi.CustomResource):
@@ -59,6 +59,24 @@ class SslCert(pulumi.CustomResource):
         """
         Creates a new Google SQL SSL Cert on a Google SQL Instance. For more information, see the [official documentation](https://cloud.google.com/sql/), or the [JSON API](https://cloud.google.com/sql/docs/mysql/admin-api/v1beta4/sslCerts).
 
+        ## Example Usage
+
+        Example creating a SQL Client Certificate.
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+        import pulumi_random as random
+
+        db_name_suffix = random.RandomId("dbNameSuffix", byte_length=4)
+        master = gcp.sql.DatabaseInstance("master", settings={
+            "tier": "db-f1-micro",
+        })
+        client_cert = gcp.sql.SslCert("clientCert",
+            common_name="client-name",
+            instance=master.name)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] common_name: The common name to be used in the certificate to identify the
@@ -79,7 +97,7 @@ class SslCert(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -87,7 +105,7 @@ class SslCert(pulumi.CustomResource):
 
             if common_name is None:
                 raise TypeError("Missing required property 'common_name'")
-            __props__['common_name'] = common_name
+            __props__['commonName'] = common_name
             if instance is None:
                 raise TypeError("Missing required property 'instance'")
             __props__['instance'] = instance
@@ -147,7 +165,7 @@ class SslCert(pulumi.CustomResource):
         return SslCert(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

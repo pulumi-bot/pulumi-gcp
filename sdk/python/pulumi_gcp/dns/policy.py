@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Policy(pulumi.CustomResource):
@@ -69,6 +69,36 @@ class Policy(pulumi.CustomResource):
             * [Using DNS server policies](https://cloud.google.com/dns/zones/#using-dns-server-policies)
 
         ## Example Usage
+        ### Dns Policy Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network_1 = gcp.compute.Network("network-1", auto_create_subnetworks=False)
+        network_2 = gcp.compute.Network("network-2", auto_create_subnetworks=False)
+        example_policy = gcp.dns.Policy("example-policy",
+            enable_inbound_forwarding=True,
+            enable_logging=True,
+            alternative_name_server_config={
+                "targetNameServers": [
+                    {
+                        "ipv4Address": "172.16.1.10",
+                    },
+                    {
+                        "ipv4Address": "172.16.1.20",
+                    },
+                ],
+            },
+            networks=[
+                {
+                    "networkUrl": network_1.id,
+                },
+                {
+                    "networkUrl": network_2.id,
+                },
+            ])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -114,16 +144,16 @@ class Policy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['alternative_name_server_config'] = alternative_name_server_config
+            __props__['alternativeNameServerConfig'] = alternative_name_server_config
             __props__['description'] = description
-            __props__['enable_inbound_forwarding'] = enable_inbound_forwarding
-            __props__['enable_logging'] = enable_logging
+            __props__['enableInboundForwarding'] = enable_inbound_forwarding
+            __props__['enableLogging'] = enable_logging
             __props__['name'] = name
             __props__['networks'] = networks
             __props__['project'] = project
@@ -187,7 +217,7 @@ class Policy(pulumi.CustomResource):
         return Policy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

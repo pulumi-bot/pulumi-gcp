@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class AutoscalingPolicy(pulumi.CustomResource):
@@ -116,6 +116,33 @@ class AutoscalingPolicy(pulumi.CustomResource):
         Describes an autoscaling policy for Dataproc cluster autoscaler.
 
         ## Example Usage
+        ### Dataproc Autoscaling Policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        asp = gcp.dataproc.AutoscalingPolicy("asp",
+            policy_id="dataproc-policy",
+            location="us-central1",
+            worker_config={
+                "max_instances": 3,
+            },
+            basic_algorithm={
+                "yarnConfig": {
+                    "gracefulDecommissionTimeout": "30s",
+                    "scaleUpFactor": 0.5,
+                    "scaleDownFactor": 0.5,
+                },
+            })
+        basic = gcp.dataproc.Cluster("basic",
+            region="us-central1",
+            cluster_config={
+                "autoscalingConfig": {
+                    "policyUri": asp.name,
+                },
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -216,20 +243,20 @@ class AutoscalingPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['basic_algorithm'] = basic_algorithm
+            __props__['basicAlgorithm'] = basic_algorithm
             __props__['location'] = location
             if policy_id is None:
                 raise TypeError("Missing required property 'policy_id'")
-            __props__['policy_id'] = policy_id
+            __props__['policyId'] = policy_id
             __props__['project'] = project
-            __props__['secondary_worker_config'] = secondary_worker_config
-            __props__['worker_config'] = worker_config
+            __props__['secondaryWorkerConfig'] = secondary_worker_config
+            __props__['workerConfig'] = worker_config
             __props__['name'] = None
         super(AutoscalingPolicy, __self__).__init__(
             'gcp:dataproc/autoscalingPolicy:AutoscalingPolicy',
@@ -347,7 +374,7 @@ class AutoscalingPolicy(pulumi.CustomResource):
         return AutoscalingPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

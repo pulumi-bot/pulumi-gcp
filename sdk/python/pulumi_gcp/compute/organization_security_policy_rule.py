@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class OrganizationSecurityPolicyRule(pulumi.CustomResource):
@@ -155,7 +155,7 @@ class OrganizationSecurityPolicyRule(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -166,19 +166,19 @@ class OrganizationSecurityPolicyRule(pulumi.CustomResource):
             __props__['action'] = action
             __props__['description'] = description
             __props__['direction'] = direction
-            __props__['enable_logging'] = enable_logging
+            __props__['enableLogging'] = enable_logging
             if match is None:
                 raise TypeError("Missing required property 'match'")
             __props__['match'] = match
             if policy_id is None:
                 raise TypeError("Missing required property 'policy_id'")
-            __props__['policy_id'] = policy_id
+            __props__['policyId'] = policy_id
             __props__['preview'] = preview
             if priority is None:
                 raise TypeError("Missing required property 'priority'")
             __props__['priority'] = priority
-            __props__['target_resources'] = target_resources
-            __props__['target_service_accounts'] = target_service_accounts
+            __props__['targetResources'] = target_resources
+            __props__['targetServiceAccounts'] = target_service_accounts
         super(OrganizationSecurityPolicyRule, __self__).__init__(
             'gcp:compute/organizationSecurityPolicyRule:OrganizationSecurityPolicyRule',
             resource_name,
@@ -262,7 +262,7 @@ class OrganizationSecurityPolicyRule(pulumi.CustomResource):
         return OrganizationSecurityPolicyRule(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class CustomService(pulumi.CustomResource):
@@ -52,6 +52,19 @@ class CustomService(pulumi.CustomResource):
             * [Monitoring API Documentation](https://cloud.google.com/monitoring/api/v3/)
 
         ## Example Usage
+        ### Monitoring Service Custom
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        custom = gcp.monitoring.CustomService("custom",
+            display_name="My Custom Service custom-srv",
+            service_id="custom-srv",
+            telemetry={
+                "resourceName": "//product.googleapis.com/foo/foo/services/test",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -80,15 +93,15 @@ class CustomService(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            __props__['display_name'] = display_name
+            __props__['displayName'] = display_name
             __props__['project'] = project
-            __props__['service_id'] = service_id
+            __props__['serviceId'] = service_id
             __props__['telemetry'] = telemetry
             __props__['name'] = None
         super(CustomService, __self__).__init__(
@@ -133,7 +146,7 @@ class CustomService(pulumi.CustomResource):
         return CustomService(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

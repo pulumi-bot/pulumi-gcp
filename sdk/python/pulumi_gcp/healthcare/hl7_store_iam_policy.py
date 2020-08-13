@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Hl7StoreIamPolicy(pulumi.CustomResource):
@@ -38,6 +38,45 @@ class Hl7StoreIamPolicy(pulumi.CustomResource):
 
         > **Note:** `healthcare.Hl7StoreIamBinding` resources **can be** used in conjunction with `healthcare.Hl7StoreIamMember` resources **only if** they do not grant privilege to the same role.
 
+        ## google\_healthcare\_hl7\_v2\_store\_iam\_policy
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        admin = gcp.organizations.get_iam_policy(bindings=[{
+            "role": "roles/editor",
+            "members": ["user:jane@example.com"],
+        }])
+        hl7_v2_store = gcp.healthcare.Hl7StoreIamPolicy("hl7V2Store",
+            hl7_v2_store_id="your-hl7-v2-store-id",
+            policy_data=admin.policy_data)
+        ```
+
+        ## google\_healthcare\_hl7\_v2\_store\_iam\_binding
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        hl7_v2_store = gcp.healthcare.Hl7StoreIamBinding("hl7V2Store",
+            hl7_v2_store_id="your-hl7-v2-store-id",
+            members=["user:jane@example.com"],
+            role="roles/editor")
+        ```
+
+        ## google\_healthcare\_hl7\_v2\_store\_iam\_member
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        hl7_v2_store = gcp.healthcare.Hl7StoreIamMember("hl7V2Store",
+            hl7_v2_store_id="your-hl7-v2-store-id",
+            member="user:jane@example.com",
+            role="roles/editor")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] hl7_v2_store_id: The HL7v2 store ID, in the form
@@ -58,7 +97,7 @@ class Hl7StoreIamPolicy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -66,10 +105,10 @@ class Hl7StoreIamPolicy(pulumi.CustomResource):
 
             if hl7_v2_store_id is None:
                 raise TypeError("Missing required property 'hl7_v2_store_id'")
-            __props__['hl7_v2_store_id'] = hl7_v2_store_id
+            __props__['hl7V2StoreId'] = hl7_v2_store_id
             if policy_data is None:
                 raise TypeError("Missing required property 'policy_data'")
-            __props__['policy_data'] = policy_data
+            __props__['policyData'] = policy_data
             __props__['etag'] = None
         super(Hl7StoreIamPolicy, __self__).__init__(
             'gcp:healthcare/hl7StoreIamPolicy:Hl7StoreIamPolicy',
@@ -104,7 +143,7 @@ class Hl7StoreIamPolicy(pulumi.CustomResource):
         return Hl7StoreIamPolicy(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
