@@ -19,6 +19,68 @@ import (
 //     * [Official Documentation](https://cloud.google.com/asset-inventory/docs)
 //
 // ## Example Usage
+// ### Cloud Asset Organization Feed
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/cloudasset"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/organizations"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/pubsub"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		feedOutput, err := pubsub.NewTopic(ctx, "feedOutput", &pubsub.TopicArgs{
+// 			Project: pulumi.String("my-project-name"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		opt0 := "my-project-name"
+// 		project, err := organizations.LookupProject(ctx, &organizations.LookupProjectArgs{
+// 			ProjectId: &opt0,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		cloudAssetWriter, err := pubsub.NewTopicIAMMember(ctx, "cloudAssetWriter", &pubsub.TopicIAMMemberArgs{
+// 			Project: pulumi.String("my-project-name"),
+// 			Topic:   feedOutput.ID(),
+// 			Role:    pulumi.String("roles/pubsub.publisher"),
+// 			Member:  pulumi.String(fmt.Sprintf("%v%v%v", "serviceAccount:service-", project.Number, "@gcp-sa-cloudasset.iam.gserviceaccount.com")),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = cloudasset.NewOrganizationFeed(ctx, "organizationFeed", &cloudasset.OrganizationFeedArgs{
+// 			BillingProject: pulumi.String("my-project-name"),
+// 			OrgId:          pulumi.String("123456789"),
+// 			FeedId:         pulumi.String("network-updates"),
+// 			ContentType:    pulumi.String("RESOURCE"),
+// 			AssetTypes: pulumi.StringArray{
+// 				pulumi.String("compute.googleapis.com/Subnetwork"),
+// 				pulumi.String("compute.googleapis.com/Network"),
+// 			},
+// 			FeedOutputConfig: &cloudasset.OrganizationFeedFeedOutputConfigArgs{
+// 				PubsubDestination: &cloudasset.OrganizationFeedFeedOutputConfigPubsubDestinationArgs{
+// 					Topic: feedOutput.ID(),
+// 				},
+// 			},
+// 		}, pulumi.DependsOn([]pulumi.Resource{
+// 			cloudAssetWriter,
+// 		}))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type OrganizationFeed struct {
 	pulumi.CustomResourceState
 

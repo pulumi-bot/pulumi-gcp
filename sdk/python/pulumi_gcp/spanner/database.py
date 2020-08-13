@@ -5,42 +5,58 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Database']
 
 
 class Database(pulumi.CustomResource):
-    ddls: pulumi.Output[list]
+    ddls: pulumi.Output[Optional[List[str]]] = pulumi.property("ddls")
     """
     An optional list of DDL statements to run inside the newly created
     database. Statements can create tables, indexes, etc. These statements
     execute atomically with the creation of the database: if there is an
     error in any statement, the database is not created.
     """
-    instance: pulumi.Output[str]
+
+    instance: pulumi.Output[str] = pulumi.property("instance")
     """
     The instance to create the database on.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     A unique identifier for the database, which cannot be changed after
     the instance is created. Values are of the form [a-z][-a-z0-9]*[a-z0-9].
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    state: pulumi.Output[str]
+
+    state: pulumi.Output[str] = pulumi.property("state")
     """
     An explanation of the status of the database.
     """
-    def __init__(__self__, resource_name, opts=None, ddls=None, instance=None, name=None, project=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 ddls: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 instance: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a Database resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] ddls: An optional list of DDL statements to run inside the newly created
+        :param pulumi.Input[List[pulumi.Input[str]]] ddls: An optional list of DDL statements to run inside the newly created
                database. Statements can create tables, indexes, etc. These statements
                execute atomically with the creation of the database: if there is an
                error in any statement, the database is not created.
@@ -61,7 +77,7 @@ class Database(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -81,7 +97,14 @@ class Database(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, ddls=None, instance=None, name=None, project=None, state=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ddls: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            instance: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            state: Optional[pulumi.Input[str]] = None) -> 'Database':
         """
         Get an existing Database resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -89,7 +112,7 @@ class Database(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] ddls: An optional list of DDL statements to run inside the newly created
+        :param pulumi.Input[List[pulumi.Input[str]]] ddls: An optional list of DDL statements to run inside the newly created
                database. Statements can create tables, indexes, etc. These statements
                execute atomically with the creation of the database: if there is an
                error in any statement, the database is not created.
@@ -112,7 +135,8 @@ class Database(pulumi.CustomResource):
         return Database(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -24,6 +24,70 @@ namespace Pulumi.Gcp.Compute
     /// the provider to delete and recreate the node group.
     /// 
     /// ## Example Usage
+    /// ### Node Group Basic
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var soletenant_tmpl = new Gcp.Compute.NodeTemplate("soletenant-tmpl", new Gcp.Compute.NodeTemplateArgs
+    ///         {
+    ///             Region = "us-central1",
+    ///             NodeType = "n1-node-96-624",
+    ///         });
+    ///         var nodes = new Gcp.Compute.NodeGroup("nodes", new Gcp.Compute.NodeGroupArgs
+    ///         {
+    ///             Zone = "us-central1-a",
+    ///             Description = "example google_compute_node_group for the Google Provider",
+    ///             Size = 1,
+    ///             NodeTemplate = soletenant_tmpl.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Node Group Autoscaling Policy
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var soletenant_tmpl = new Gcp.Compute.NodeTemplate("soletenant-tmpl", new Gcp.Compute.NodeTemplateArgs
+    ///         {
+    ///             Region = "us-central1",
+    ///             NodeType = "n1-node-96-624",
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
+    ///         });
+    ///         var nodes = new Gcp.Compute.NodeGroup("nodes", new Gcp.Compute.NodeGroupArgs
+    ///         {
+    ///             Zone = "us-central1-a",
+    ///             Description = "example google_compute_node_group for the Google Provider",
+    ///             Size = 1,
+    ///             NodeTemplate = soletenant_tmpl.Id,
+    ///             AutoscalingPolicy = new Gcp.Compute.Inputs.NodeGroupAutoscalingPolicyArgs
+    ///             {
+    ///                 Mode = "ON",
+    ///                 MinNodes = 1,
+    ///                 MaxNodes = 10,
+    ///             },
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class NodeGroup : Pulumi.CustomResource
     {

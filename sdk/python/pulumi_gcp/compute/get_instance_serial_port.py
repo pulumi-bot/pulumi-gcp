@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetInstanceSerialPortResult',
+    'AwaitableGetInstanceSerialPortResult',
+    'get_instance_serial_port',
+]
+
+
+@pulumi.output_type
+class _GetInstanceSerialPortResult(dict):
+    contents: str = pulumi.property("contents")
+    id: str = pulumi.property("id")
+    instance: str = pulumi.property("instance")
+    port: float = pulumi.property("port")
+    project: str = pulumi.property("project")
+    zone: str = pulumi.property("zone")
+
 
 class GetInstanceSerialPortResult:
     """
@@ -37,6 +54,8 @@ class GetInstanceSerialPortResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         __self__.zone = zone
+
+
 class AwaitableGetInstanceSerialPortResult(GetInstanceSerialPortResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -50,10 +69,69 @@ class AwaitableGetInstanceSerialPortResult(GetInstanceSerialPortResult):
             project=self.project,
             zone=self.zone)
 
-def get_instance_serial_port(instance=None,port=None,project=None,zone=None,opts=None):
+
+def get_instance_serial_port(instance: Optional[str] = None,
+                             port: Optional[float] = None,
+                             project: Optional[str] = None,
+                             zone: Optional[str] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceSerialPortResult:
     """
     Get the serial port output from a Compute Instance. For more information see
     the official [API](https://cloud.google.com/compute/docs/instances/viewing-serial-port-output) documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    serial = gcp.compute.get_instance_serial_port(instance="my-instance",
+        zone="us-central1-a",
+        port=1)
+    pulumi.export("serialOut", serial.contents)
+    ```
+
+    Using the serial port output to generate a windows password, derived from the [official guide](https://cloud.google.com/compute/docs/instances/windows/automate-pw-generation):
+
+    ```python
+    import pulumi
+    import json
+    import pulumi_gcp as gcp
+
+    windows = gcp.compute.Instance("windows",
+        machine_type="n1-standard-1",
+        zone="us-central1-a",
+        boot_disk={
+            "initializeParams": {
+                "image": "gce-uefi-images/windows-2019",
+            },
+        },
+        network_interfaces=[{
+            "network": "default",
+            "accessConfigs": [{}],
+        }],
+        metadata={
+            "serial-port-logging-enable": "TRUE",
+            "windows-keys": json.dumps({
+                "email": "example.user@example.com",
+                "expireOn": "2020-04-14T01:37:19Z",
+                "exponent": "AQAB",
+                "modulus": "wgsquN4IBNPqIUnu+h/5Za1kujb2YRhX1vCQVQAkBwnWigcCqOBVfRa5JoZfx6KIvEXjWqa77jPvlsxM4WPqnDIM2qiK36up3SKkYwFjff6F2ni/ry8vrwXCX3sGZ1hbIHlK0O012HpA3ISeEswVZmX2X67naOvJXfY5v0hGPWqCADao+xVxrmxsZD4IWnKl1UaZzI5lhAzr8fw6utHwx1EZ/MSgsEki6tujcZfN+GUDRnmJGQSnPTXmsf7Q4DKreTZk49cuyB3prV91S0x3DYjCUpSXrkVy1Ha5XicGD/q+ystuFsJnrrhbNXJbpSjM6sjo/aduAkZJl4FmOt0R7Q==",
+                "userName": "example-user",
+            }),
+        },
+        service_account={
+            "scopes": [
+                "userinfo-email",
+                "compute-ro",
+                "storage-ro",
+            ],
+        })
+    serial = pulumi.Output.all(windows.name, windows.zone).apply(lambda name, zone: gcp.compute.get_instance_serial_port(instance=name,
+        zone=zone,
+        port=4))
+    pulumi.export("serialOut", serial.contents)
+    ```
 
 
     :param str instance: The name of the Compute Instance to read output from.
@@ -64,8 +142,6 @@ def get_instance_serial_port(instance=None,port=None,project=None,zone=None,opts
            If it is not provided, the provider zone is used.
     """
     __args__ = dict()
-
-
     __args__['instance'] = instance
     __args__['port'] = port
     __args__['project'] = project
@@ -73,13 +149,13 @@ def get_instance_serial_port(instance=None,port=None,project=None,zone=None,opts
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getInstanceSerialPort:getInstanceSerialPort', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getInstanceSerialPort:getInstanceSerialPort', __args__, opts=opts, typ=_GetInstanceSerialPortResult).value
 
     return AwaitableGetInstanceSerialPortResult(
-        contents=__ret__.get('contents'),
-        id=__ret__.get('id'),
-        instance=__ret__.get('instance'),
-        port=__ret__.get('port'),
-        project=__ret__.get('project'),
-        zone=__ret__.get('zone'))
+        contents=_utilities.get_dict_value(__ret__, 'contents'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        instance=_utilities.get_dict_value(__ret__, 'instance'),
+        port=_utilities.get_dict_value(__ret__, 'port'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        zone=_utilities.get_dict_value(__ret__, 'zone'))

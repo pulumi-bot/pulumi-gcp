@@ -5,8 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetGroupMembershipsResult',
+    'AwaitableGetGroupMembershipsResult',
+    'get_group_memberships',
+]
+
+
+@pulumi.output_type
+class _GetGroupMembershipsResult(dict):
+    group: str = pulumi.property("group")
+    id: str = pulumi.property("id")
+    memberships: List['outputs.GetGroupMembershipsMembershipResult'] = pulumi.property("memberships")
+
 
 class GetGroupMembershipsResult:
     """
@@ -28,6 +43,8 @@ class GetGroupMembershipsResult:
         """
         The list of memberships under the given group. Structure is documented below.
         """
+
+
 class AwaitableGetGroupMembershipsResult(GetGroupMembershipsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -38,26 +55,35 @@ class AwaitableGetGroupMembershipsResult(GetGroupMembershipsResult):
             id=self.id,
             memberships=self.memberships)
 
-def get_group_memberships(group=None,opts=None):
+
+def get_group_memberships(group: Optional[str] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGroupMembershipsResult:
     """
     Use this data source to get list of the Cloud Identity Group Memberships within a given Group.
 
     https://cloud.google.com/identity/docs/concepts/overview#memberships
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    members = gcp.cloudidentity.get_group_memberships(group="groups/123eab45c6defghi")
+    ```
+
 
     :param str group: The parent Group resource under which to lookup the Membership names. Must be of the form groups/{group_id}.
     """
     __args__ = dict()
-
-
     __args__['group'] = group
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:cloudidentity/getGroupMemberships:getGroupMemberships', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:cloudidentity/getGroupMemberships:getGroupMemberships', __args__, opts=opts, typ=_GetGroupMembershipsResult).value
 
     return AwaitableGetGroupMembershipsResult(
-        group=__ret__.get('group'),
-        id=__ret__.get('id'),
-        memberships=__ret__.get('memberships'))
+        group=_utilities.get_dict_value(__ret__, 'group'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        memberships=_utilities.get_dict_value(__ret__, 'memberships'))

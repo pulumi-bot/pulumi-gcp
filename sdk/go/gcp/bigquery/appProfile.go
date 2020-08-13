@@ -13,6 +13,89 @@ import (
 // App profile is a configuration object describing how Cloud Bigtable should treat traffic from a particular end user application.
 //
 // ## Example Usage
+// ### Bigtable App Profile Multicluster
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/bigquery"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/bigtable"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		instance, err := bigtable.NewInstance(ctx, "instance", &bigtable.InstanceArgs{
+// 			Clusters: bigtable.InstanceClusterArray{
+// 				&bigtable.InstanceClusterArgs{
+// 					ClusterId:   pulumi.String("bt-instance"),
+// 					Zone:        pulumi.String("us-central1-b"),
+// 					NumNodes:    pulumi.Int(3),
+// 					StorageType: pulumi.String("HDD"),
+// 				},
+// 			},
+// 			DeletionProtection: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = bigquery.NewAppProfile(ctx, "ap", &bigquery.AppProfileArgs{
+// 			Instance:                  instance.Name,
+// 			AppProfileId:              pulumi.String("bt-profile"),
+// 			MultiClusterRoutingUseAny: pulumi.Bool(true),
+// 			IgnoreWarnings:            pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Bigtable App Profile Singlecluster
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/bigquery"
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/bigtable"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		instance, err := bigtable.NewInstance(ctx, "instance", &bigtable.InstanceArgs{
+// 			Clusters: bigtable.InstanceClusterArray{
+// 				&bigtable.InstanceClusterArgs{
+// 					ClusterId:   pulumi.String("bt-instance"),
+// 					Zone:        pulumi.String("us-central1-b"),
+// 					NumNodes:    pulumi.Int(3),
+// 					StorageType: pulumi.String("HDD"),
+// 				},
+// 			},
+// 			DeletionProtection: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = bigquery.NewAppProfile(ctx, "ap", &bigquery.AppProfileArgs{
+// 			Instance:     instance.Name,
+// 			AppProfileId: pulumi.String("bt-profile"),
+// 			SingleClusterRouting: &bigquery.AppProfileSingleClusterRoutingArgs{
+// 				ClusterId:                pulumi.String("bt-instance"),
+// 				AllowTransactionalWrites: pulumi.Bool(true),
+// 			},
+// 			IgnoreWarnings: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type AppProfile struct {
 	pulumi.CustomResourceState
 

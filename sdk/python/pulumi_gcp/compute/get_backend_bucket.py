@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetBackendBucketResult',
+    'AwaitableGetBackendBucketResult',
+    'get_backend_bucket',
+]
+
+
+@pulumi.output_type
+class _GetBackendBucketResult(dict):
+    bucket_name: str = pulumi.property("bucketName")
+    cdn_policies: List['outputs.GetBackendBucketCdnPolicyResult'] = pulumi.property("cdnPolicies")
+    creation_timestamp: str = pulumi.property("creationTimestamp")
+    description: str = pulumi.property("description")
+    enable_cdn: bool = pulumi.property("enableCdn")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    project: Optional[str] = pulumi.property("project")
+    self_link: str = pulumi.property("selfLink")
+
 
 class GetBackendBucketResult:
     """
@@ -61,6 +82,8 @@ class GetBackendBucketResult:
         """
         The URI of the created resource.
         """
+
+
 class AwaitableGetBackendBucketResult(GetBackendBucketResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -77,9 +100,21 @@ class AwaitableGetBackendBucketResult(GetBackendBucketResult):
             project=self.project,
             self_link=self.self_link)
 
-def get_backend_bucket(name=None,project=None,opts=None):
+
+def get_backend_bucket(name: Optional[str] = None,
+                       project: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBackendBucketResult:
     """
     Get information about a BackendBucket.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_backend_bucket = gcp.compute.get_backend_bucket(name="my-backend")
+    ```
 
 
     :param str name: Name of the resource.
@@ -87,23 +122,21 @@ def get_backend_bucket(name=None,project=None,opts=None):
            is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getBackendBucket:getBackendBucket', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getBackendBucket:getBackendBucket', __args__, opts=opts, typ=_GetBackendBucketResult).value
 
     return AwaitableGetBackendBucketResult(
-        bucket_name=__ret__.get('bucketName'),
-        cdn_policies=__ret__.get('cdnPolicies'),
-        creation_timestamp=__ret__.get('creationTimestamp'),
-        description=__ret__.get('description'),
-        enable_cdn=__ret__.get('enableCdn'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        project=__ret__.get('project'),
-        self_link=__ret__.get('selfLink'))
+        bucket_name=_utilities.get_dict_value(__ret__, 'bucketName'),
+        cdn_policies=_utilities.get_dict_value(__ret__, 'cdnPolicies'),
+        creation_timestamp=_utilities.get_dict_value(__ret__, 'creationTimestamp'),
+        description=_utilities.get_dict_value(__ret__, 'description'),
+        enable_cdn=_utilities.get_dict_value(__ret__, 'enableCdn'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        self_link=_utilities.get_dict_value(__ret__, 'selfLink'))

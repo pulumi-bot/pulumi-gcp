@@ -23,6 +23,173 @@ import (
 //     * [Official Documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
 //
 // ## Example Usage
+// ### Backend Service Basic
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		defaultHttpHealthCheck, err := compute.NewHttpHealthCheck(ctx, "defaultHttpHealthCheck", &compute.HttpHealthCheckArgs{
+// 			RequestPath:      pulumi.String("/"),
+// 			CheckIntervalSec: pulumi.Int(1),
+// 			TimeoutSec:       pulumi.Int(1),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewBackendService(ctx, "defaultBackendService", &compute.BackendServiceArgs{
+// 			HealthChecks: pulumi.String(pulumi.String{
+// 				defaultHttpHealthCheck.ID(),
+// 			}),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Backend Service Traffic Director Round Robin
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		healthCheck, err := compute.NewHealthCheck(ctx, "healthCheck", &compute.HealthCheckArgs{
+// 			HttpHealthCheck: &compute.HealthCheckHttpHealthCheckArgs{
+// 				Port: pulumi.Int(80),
+// 			},
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewBackendService(ctx, "_default", &compute.BackendServiceArgs{
+// 			HealthChecks: pulumi.String(pulumi.String{
+// 				healthCheck.ID(),
+// 			}),
+// 			LoadBalancingScheme: pulumi.String("INTERNAL_SELF_MANAGED"),
+// 			LocalityLbPolicy:    pulumi.String("ROUND_ROBIN"),
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Backend Service Traffic Director Ring Hash
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		healthCheck, err := compute.NewHealthCheck(ctx, "healthCheck", &compute.HealthCheckArgs{
+// 			HttpHealthCheck: &compute.HealthCheckHttpHealthCheckArgs{
+// 				Port: pulumi.Int(80),
+// 			},
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewBackendService(ctx, "_default", &compute.BackendServiceArgs{
+// 			HealthChecks: pulumi.String(pulumi.String{
+// 				healthCheck.ID(),
+// 			}),
+// 			LoadBalancingScheme: pulumi.String("INTERNAL_SELF_MANAGED"),
+// 			LocalityLbPolicy:    pulumi.String("RING_HASH"),
+// 			SessionAffinity:     pulumi.String("HTTP_COOKIE"),
+// 			CircuitBreakers: &compute.BackendServiceCircuitBreakersArgs{
+// 				MaxConnections: pulumi.Int(10),
+// 			},
+// 			ConsistentHash: &compute.BackendServiceConsistentHashArgs{
+// 				HttpCookie: &compute.BackendServiceConsistentHashHttpCookieArgs{
+// 					Ttl: &compute.BackendServiceConsistentHashHttpCookieTtlArgs{
+// 						Seconds: pulumi.Int(11),
+// 						Nanos:   pulumi.Int(1111),
+// 					},
+// 					Name: pulumi.String("mycookie"),
+// 				},
+// 			},
+// 			OutlierDetection: &compute.BackendServiceOutlierDetectionArgs{
+// 				ConsecutiveErrors: pulumi.Int(2),
+// 			},
+// 		}, pulumi.Provider(google_beta))
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### Backend Service Network Endpoint
+//
+// ```go
+// package main
+//
+// import (
+// 	"fmt"
+//
+// 	"github.com/pulumi/pulumi-gcp/sdk/v3/go/gcp/compute"
+// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		externalProxy, err := compute.NewGlobalNetworkEndpointGroup(ctx, "externalProxy", &compute.GlobalNetworkEndpointGroupArgs{
+// 			NetworkEndpointType: pulumi.String("INTERNET_FQDN_PORT"),
+// 			DefaultPort:         pulumi.Int(443),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		proxy, err := compute.NewGlobalNetworkEndpoint(ctx, "proxy", &compute.GlobalNetworkEndpointArgs{
+// 			GlobalNetworkEndpointGroup: externalProxy.ID(),
+// 			Fqdn:                       pulumi.String("test.example.com"),
+// 			Port:                       externalProxy.DefaultPort,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = compute.NewBackendService(ctx, "_default", &compute.BackendServiceArgs{
+// 			EnableCdn:                    pulumi.Bool(true),
+// 			TimeoutSec:                   pulumi.Int(10),
+// 			ConnectionDrainingTimeoutSec: pulumi.Int(10),
+// 			CustomRequestHeaders: pulumi.StringArray{
+// 				proxy.Fqdn.ApplyT(func(fqdn string) (string, error) {
+// 					return fmt.Sprintf("%v%v", "host: ", fqdn), nil
+// 				}).(pulumi.StringOutput),
+// 			},
+// 			Backends: compute.BackendServiceBackendArray{
+// 				&compute.BackendServiceBackendArgs{
+// 					Group: externalProxy.ID(),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 type BackendService struct {
 	pulumi.CustomResourceState
 

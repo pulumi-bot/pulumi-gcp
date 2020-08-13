@@ -5,31 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['ExternalVpnGateway']
 
 
 class ExternalVpnGateway(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     An optional description of this resource.
     """
-    interfaces: pulumi.Output[list]
+
+    interfaces: pulumi.Output[Optional[List['outputs.ExternalVpnGatewayInterface']]] = pulumi.property("interfaces")
     """
     A list of interfaces on this external VPN gateway.
     Structure is documented below.
-
-      * `id` (`float`) - The numberic ID for this interface. Allowed values are based on the redundancy type
-        of this external VPN gateway
-        * `0 - SINGLE_IP_INTERNALLY_REDUNDANT`
-        * `0, 1 - TWO_IPS_REDUNDANCY`
-        * `0, 1, 2, 3 - FOUR_IPS_REDUNDANCY`
-      * `ip_address` (`str`) - IP address of the interface in the external VPN gateway.
-        Only IPv4 is supported. This IP address can be either from
-        your on-premise gateway or another Cloud provider’s VPN gateway,
-        it cannot be an IP address from Google Compute Engine.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -39,21 +35,35 @@ class ExternalVpnGateway(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the last
     character, which cannot be a dash.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    redundancy_type: pulumi.Output[str]
+
+    redundancy_type: pulumi.Output[Optional[str]] = pulumi.property("redundancyType")
     """
     Indicates the redundancy type of this external VPN gateway
     Possible values are `FOUR_IPS_REDUNDANCY`, `SINGLE_IP_INTERNALLY_REDUNDANT`, and `TWO_IPS_REDUNDANCY`.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, interfaces=None, name=None, project=None, redundancy_type=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 interfaces: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ExternalVpnGatewayInterfaceArgs']]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 redundancy_type: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Represents a VPN gateway managed outside of GCP.
 
@@ -62,11 +72,96 @@ class ExternalVpnGateway(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/beta/externalVpnGateways)
 
         ## Example Usage
+        ### External Vpn Gateway
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network = gcp.compute.Network("network",
+            routing_mode="GLOBAL",
+            auto_create_subnetworks=False,
+            opts=ResourceOptions(provider=google_beta))
+        ha_gateway = gcp.compute.HaVpnGateway("haGateway",
+            region="us-central1",
+            network=network.id,
+            opts=ResourceOptions(provider=google_beta))
+        external_gateway = gcp.compute.ExternalVpnGateway("externalGateway",
+            redundancy_type="SINGLE_IP_INTERNALLY_REDUNDANT",
+            description="An externally managed VPN gateway",
+            interfaces=[{
+                "id": 0,
+                "ip_address": "8.8.8.8",
+            }],
+            opts=ResourceOptions(provider=google_beta))
+        network_subnet1 = gcp.compute.Subnetwork("networkSubnet1",
+            ip_cidr_range="10.0.1.0/24",
+            region="us-central1",
+            network=network.id,
+            opts=ResourceOptions(provider=google_beta))
+        network_subnet2 = gcp.compute.Subnetwork("networkSubnet2",
+            ip_cidr_range="10.0.2.0/24",
+            region="us-west1",
+            network=network.id,
+            opts=ResourceOptions(provider=google_beta))
+        router1 = gcp.compute.Router("router1",
+            network=network.name,
+            bgp={
+                "asn": 64514,
+            },
+            opts=ResourceOptions(provider=google_beta))
+        tunnel1 = gcp.compute.VPNTunnel("tunnel1",
+            region="us-central1",
+            vpn_gateway=ha_gateway.id,
+            peer_external_gateway=external_gateway.id,
+            peer_external_gateway_interface=0,
+            shared_secret="a secret message",
+            router=router1.id,
+            vpn_gateway_interface=0,
+            opts=ResourceOptions(provider=google_beta))
+        tunnel2 = gcp.compute.VPNTunnel("tunnel2",
+            region="us-central1",
+            vpn_gateway=ha_gateway.id,
+            peer_external_gateway=external_gateway.id,
+            peer_external_gateway_interface=0,
+            shared_secret="a secret message",
+            router=router1.id.apply(lambda id: f" {id}"),
+            vpn_gateway_interface=1,
+            opts=ResourceOptions(provider=google_beta))
+        router1_interface1 = gcp.compute.RouterInterface("router1Interface1",
+            router=router1.name,
+            region="us-central1",
+            ip_range="169.254.0.1/30",
+            vpn_tunnel=tunnel1.name,
+            opts=ResourceOptions(provider=google_beta))
+        router1_peer1 = gcp.compute.RouterPeer("router1Peer1",
+            router=router1.name,
+            region="us-central1",
+            peer_ip_address="169.254.0.2",
+            peer_asn=64515,
+            advertised_route_priority=100,
+            interface=router1_interface1.name,
+            opts=ResourceOptions(provider=google_beta))
+        router1_interface2 = gcp.compute.RouterInterface("router1Interface2",
+            router=router1.name,
+            region="us-central1",
+            ip_range="169.254.1.1/30",
+            vpn_tunnel=tunnel2.name,
+            opts=ResourceOptions(provider=google_beta))
+        router1_peer2 = gcp.compute.RouterPeer("router1Peer2",
+            router=router1.name,
+            region="us-central1",
+            peer_ip_address="169.254.1.2",
+            peer_asn=64515,
+            advertised_route_priority=100,
+            interface=router1_interface2.name,
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[list] interfaces: A list of interfaces on this external VPN gateway.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ExternalVpnGatewayInterfaceArgs']]]] interfaces: A list of interfaces on this external VPN gateway.
                Structure is documented below.
         :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is
                created. The name must be 1-63 characters long, and comply with
@@ -79,18 +174,6 @@ class ExternalVpnGateway(pulumi.CustomResource):
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] redundancy_type: Indicates the redundancy type of this external VPN gateway
                Possible values are `FOUR_IPS_REDUNDANCY`, `SINGLE_IP_INTERNALLY_REDUNDANT`, and `TWO_IPS_REDUNDANCY`.
-
-        The **interfaces** object supports the following:
-
-          * `id` (`pulumi.Input[float]`) - The numberic ID for this interface. Allowed values are based on the redundancy type
-            of this external VPN gateway
-            * `0 - SINGLE_IP_INTERNALLY_REDUNDANT`
-            * `0, 1 - TWO_IPS_REDUNDANCY`
-            * `0, 1, 2, 3 - FOUR_IPS_REDUNDANCY`
-          * `ip_address` (`pulumi.Input[str]`) - IP address of the interface in the external VPN gateway.
-            Only IPv4 is supported. This IP address can be either from
-            your on-premise gateway or another Cloud provider’s VPN gateway,
-            it cannot be an IP address from Google Compute Engine.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -103,7 +186,7 @@ class ExternalVpnGateway(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -122,7 +205,15 @@ class ExternalVpnGateway(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, interfaces=None, name=None, project=None, redundancy_type=None, self_link=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            interfaces: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['ExternalVpnGatewayInterfaceArgs']]]]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            redundancy_type: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None) -> 'ExternalVpnGateway':
         """
         Get an existing ExternalVpnGateway resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -131,7 +222,7 @@ class ExternalVpnGateway(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[list] interfaces: A list of interfaces on this external VPN gateway.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['ExternalVpnGatewayInterfaceArgs']]]] interfaces: A list of interfaces on this external VPN gateway.
                Structure is documented below.
         :param pulumi.Input[str] name: Name of the resource. Provided by the client when the resource is
                created. The name must be 1-63 characters long, and comply with
@@ -145,18 +236,6 @@ class ExternalVpnGateway(pulumi.CustomResource):
         :param pulumi.Input[str] redundancy_type: Indicates the redundancy type of this external VPN gateway
                Possible values are `FOUR_IPS_REDUNDANCY`, `SINGLE_IP_INTERNALLY_REDUNDANT`, and `TWO_IPS_REDUNDANCY`.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-
-        The **interfaces** object supports the following:
-
-          * `id` (`pulumi.Input[float]`) - The numberic ID for this interface. Allowed values are based on the redundancy type
-            of this external VPN gateway
-            * `0 - SINGLE_IP_INTERNALLY_REDUNDANT`
-            * `0, 1 - TWO_IPS_REDUNDANCY`
-            * `0, 1, 2, 3 - FOUR_IPS_REDUNDANCY`
-          * `ip_address` (`pulumi.Input[str]`) - IP address of the interface in the external VPN gateway.
-            Only IPv4 is supported. This IP address can be either from
-            your on-premise gateway or another Cloud provider’s VPN gateway,
-            it cannot be an IP address from Google Compute Engine.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -171,7 +250,8 @@ class ExternalVpnGateway(pulumi.CustomResource):
         return ExternalVpnGateway(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

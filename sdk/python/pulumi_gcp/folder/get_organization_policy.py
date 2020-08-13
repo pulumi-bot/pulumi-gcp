@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetOrganizationPolicyResult',
+    'AwaitableGetOrganizationPolicyResult',
+    'get_organization_policy',
+]
+
+
+@pulumi.output_type
+class _GetOrganizationPolicyResult(dict):
+    boolean_policies: List['outputs.GetOrganizationPolicyBooleanPolicyResult'] = pulumi.property("booleanPolicies")
+    constraint: str = pulumi.property("constraint")
+    etag: str = pulumi.property("etag")
+    folder: str = pulumi.property("folder")
+    id: str = pulumi.property("id")
+    list_policies: List['outputs.GetOrganizationPolicyListPolicyResult'] = pulumi.property("listPolicies")
+    restore_policies: List['outputs.GetOrganizationPolicyRestorePolicyResult'] = pulumi.property("restorePolicies")
+    update_time: str = pulumi.property("updateTime")
+    version: float = pulumi.property("version")
+
 
 class GetOrganizationPolicyResult:
     """
@@ -43,6 +64,8 @@ class GetOrganizationPolicyResult:
         if version and not isinstance(version, float):
             raise TypeError("Expected argument 'version' to be a float")
         __self__.version = version
+
+
 class AwaitableGetOrganizationPolicyResult(GetOrganizationPolicyResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -59,34 +82,46 @@ class AwaitableGetOrganizationPolicyResult(GetOrganizationPolicyResult):
             update_time=self.update_time,
             version=self.version)
 
-def get_organization_policy(constraint=None,folder=None,opts=None):
+
+def get_organization_policy(constraint: Optional[str] = None,
+                            folder: Optional[str] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationPolicyResult:
     """
     Allows management of Organization policies for a Google Folder. For more information see
     [the official
     documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    policy = gcp.folder.get_organization_policy(folder="folders/folderid",
+        constraint="constraints/compute.trustedImageProjects")
+    pulumi.export("version", policy.version)
+    ```
 
 
     :param str constraint: (Required) The name of the Constraint the Policy is configuring, for example, `serviceuser.services`. Check out the [complete list of available constraints](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints#available_constraints).
     :param str folder: The resource name of the folder to set the policy for. Its format is folders/{folder_id}.
     """
     __args__ = dict()
-
-
     __args__['constraint'] = constraint
     __args__['folder'] = folder
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:folder/getOrganizationPolicy:getOrganizationPolicy', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:folder/getOrganizationPolicy:getOrganizationPolicy', __args__, opts=opts, typ=_GetOrganizationPolicyResult).value
 
     return AwaitableGetOrganizationPolicyResult(
-        boolean_policies=__ret__.get('booleanPolicies'),
-        constraint=__ret__.get('constraint'),
-        etag=__ret__.get('etag'),
-        folder=__ret__.get('folder'),
-        id=__ret__.get('id'),
-        list_policies=__ret__.get('listPolicies'),
-        restore_policies=__ret__.get('restorePolicies'),
-        update_time=__ret__.get('updateTime'),
-        version=__ret__.get('version'))
+        boolean_policies=_utilities.get_dict_value(__ret__, 'booleanPolicies'),
+        constraint=_utilities.get_dict_value(__ret__, 'constraint'),
+        etag=_utilities.get_dict_value(__ret__, 'etag'),
+        folder=_utilities.get_dict_value(__ret__, 'folder'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        list_policies=_utilities.get_dict_value(__ret__, 'listPolicies'),
+        restore_policies=_utilities.get_dict_value(__ret__, 'restorePolicies'),
+        update_time=_utilities.get_dict_value(__ret__, 'updateTime'),
+        version=_utilities.get_dict_value(__ret__, 'version'))

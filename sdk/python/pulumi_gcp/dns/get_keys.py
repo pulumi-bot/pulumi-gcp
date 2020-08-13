@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetKeysResult',
+    'AwaitableGetKeysResult',
+    'get_keys',
+]
+
+
+@pulumi.output_type
+class _GetKeysResult(dict):
+    id: str = pulumi.property("id")
+    key_signing_keys: List['outputs.GetKeysKeySigningKeyResult'] = pulumi.property("keySigningKeys")
+    managed_zone: str = pulumi.property("managedZone")
+    project: str = pulumi.property("project")
+    zone_signing_keys: List['outputs.GetKeysZoneSigningKeyResult'] = pulumi.property("zoneSigningKeys")
+
 
 class GetKeysResult:
     """
@@ -37,6 +54,8 @@ class GetKeysResult:
         """
         A list of Zone-signing key (ZSK) records. Structure is documented below.
         """
+
+
 class AwaitableGetKeysResult(GetKeysResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -49,30 +68,47 @@ class AwaitableGetKeysResult(GetKeysResult):
             project=self.project,
             zone_signing_keys=self.zone_signing_keys)
 
-def get_keys(managed_zone=None,project=None,opts=None):
+
+def get_keys(managed_zone: Optional[str] = None,
+             project: Optional[str] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKeysResult:
     """
     Get the DNSKEY and DS records of DNSSEC-signed managed zones. For more information see the
     [official documentation](https://cloud.google.com/dns/docs/dnskeys/)
     and [API](https://cloud.google.com/dns/docs/reference/v1/dnsKeys).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    foo = gcp.dns.ManagedZone("foo",
+        dns_name="foo.bar.",
+        dnssec_config={
+            "state": "on",
+            "nonExistence": "nsec3",
+        })
+    foo_dns_keys = foo.id.apply(lambda id: gcp.dns.get_keys(managed_zone=id))
+    pulumi.export("fooDnsDsRecord", foo_dns_keys.key_signing_keys[0]["dsRecord"])
+    ```
 
 
     :param str managed_zone: The name or id of the Cloud DNS managed zone.
     :param str project: The ID of the project in which the resource belongs. If `project` is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['managedZone'] = managed_zone
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:dns/getKeys:getKeys', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:dns/getKeys:getKeys', __args__, opts=opts, typ=_GetKeysResult).value
 
     return AwaitableGetKeysResult(
-        id=__ret__.get('id'),
-        key_signing_keys=__ret__.get('keySigningKeys'),
-        managed_zone=__ret__.get('managedZone'),
-        project=__ret__.get('project'),
-        zone_signing_keys=__ret__.get('zoneSigningKeys'))
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        key_signing_keys=_utilities.get_dict_value(__ret__, 'keySigningKeys'),
+        managed_zone=_utilities.get_dict_value(__ret__, 'managedZone'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        zone_signing_keys=_utilities.get_dict_value(__ret__, 'zoneSigningKeys'))

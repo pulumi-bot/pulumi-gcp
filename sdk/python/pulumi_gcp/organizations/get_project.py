@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetProjectResult',
+    'AwaitableGetProjectResult',
+    'get_project',
+]
+
+
+@pulumi.output_type
+class _GetProjectResult(dict):
+    auto_create_network: bool = pulumi.property("autoCreateNetwork")
+    billing_account: str = pulumi.property("billingAccount")
+    folder_id: str = pulumi.property("folderId")
+    id: str = pulumi.property("id")
+    labels: Mapping[str, str] = pulumi.property("labels")
+    name: str = pulumi.property("name")
+    number: str = pulumi.property("number")
+    org_id: str = pulumi.property("orgId")
+    project_id: Optional[str] = pulumi.property("projectId")
+    skip_delete: bool = pulumi.property("skipDelete")
+
 
 class GetProjectResult:
     """
@@ -46,6 +67,8 @@ class GetProjectResult:
         if skip_delete and not isinstance(skip_delete, bool):
             raise TypeError("Expected argument 'skip_delete' to be a bool")
         __self__.skip_delete = skip_delete
+
+
 class AwaitableGetProjectResult(GetProjectResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -63,33 +86,43 @@ class AwaitableGetProjectResult(GetProjectResult):
             project_id=self.project_id,
             skip_delete=self.skip_delete)
 
-def get_project(project_id=None,opts=None):
+
+def get_project(project_id: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectResult:
     """
     Use this data source to get project details.
     For more information see
     [API](https://cloud.google.com/resource-manager/reference/rest/v1/projects#Project)
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    project = gcp.organizations.get_project()
+    pulumi.export("projectNumber", project.number)
+    ```
+
 
     :param str project_id: The project ID. If it is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['projectId'] = project_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:organizations/getProject:getProject', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:organizations/getProject:getProject', __args__, opts=opts, typ=_GetProjectResult).value
 
     return AwaitableGetProjectResult(
-        auto_create_network=__ret__.get('autoCreateNetwork'),
-        billing_account=__ret__.get('billingAccount'),
-        folder_id=__ret__.get('folderId'),
-        id=__ret__.get('id'),
-        labels=__ret__.get('labels'),
-        name=__ret__.get('name'),
-        number=__ret__.get('number'),
-        org_id=__ret__.get('orgId'),
-        project_id=__ret__.get('projectId'),
-        skip_delete=__ret__.get('skipDelete'))
+        auto_create_network=_utilities.get_dict_value(__ret__, 'autoCreateNetwork'),
+        billing_account=_utilities.get_dict_value(__ret__, 'billingAccount'),
+        folder_id=_utilities.get_dict_value(__ret__, 'folderId'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        labels=_utilities.get_dict_value(__ret__, 'labels'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        number=_utilities.get_dict_value(__ret__, 'number'),
+        org_id=_utilities.get_dict_value(__ret__, 'orgId'),
+        project_id=_utilities.get_dict_value(__ret__, 'projectId'),
+        skip_delete=_utilities.get_dict_value(__ret__, 'skipDelete'))

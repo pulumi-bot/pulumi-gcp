@@ -5,8 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetGameServerDeploymentRolloutResult',
+    'AwaitableGetGameServerDeploymentRolloutResult',
+    'get_game_server_deployment_rollout',
+]
+
+
+@pulumi.output_type
+class _GetGameServerDeploymentRolloutResult(dict):
+    default_game_server_config: str = pulumi.property("defaultGameServerConfig")
+    deployment_id: str = pulumi.property("deploymentId")
+    game_server_config_overrides: List['outputs.GetGameServerDeploymentRolloutGameServerConfigOverrideResult'] = pulumi.property("gameServerConfigOverrides")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    project: str = pulumi.property("project")
+
 
 class GetGameServerDeploymentRolloutResult:
     """
@@ -38,6 +56,8 @@ class GetGameServerDeploymentRolloutResult:
         The ID of the project in which the resource belongs.
         If it is not provided, the provider project is used.
         """
+
+
 class AwaitableGetGameServerDeploymentRolloutResult(GetGameServerDeploymentRolloutResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -51,29 +71,38 @@ class AwaitableGetGameServerDeploymentRolloutResult(GetGameServerDeploymentRollo
             name=self.name,
             project=self.project)
 
-def get_game_server_deployment_rollout(deployment_id=None,opts=None):
+
+def get_game_server_deployment_rollout(deployment_id: Optional[str] = None,
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGameServerDeploymentRolloutResult:
     """
     Use this data source to get the rollout state.
 
     https://cloud.google.com/game-servers/docs/reference/rest/v1beta/GameServerDeploymentRollout
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    qa = gcp.gameservices.get_game_server_deployment_rollout(deployment_id="tf-test-deployment-s8sn12jt2c")
+    ```
+
 
     :param str deployment_id: The deployment to get the rollout state from. Only 1 rollout must be associated with each deployment.
     """
     __args__ = dict()
-
-
     __args__['deploymentId'] = deployment_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:gameservices/getGameServerDeploymentRollout:getGameServerDeploymentRollout', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:gameservices/getGameServerDeploymentRollout:getGameServerDeploymentRollout', __args__, opts=opts, typ=_GetGameServerDeploymentRolloutResult).value
 
     return AwaitableGetGameServerDeploymentRolloutResult(
-        default_game_server_config=__ret__.get('defaultGameServerConfig'),
-        deployment_id=__ret__.get('deploymentId'),
-        game_server_config_overrides=__ret__.get('gameServerConfigOverrides'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        project=__ret__.get('project'))
+        default_game_server_config=_utilities.get_dict_value(__ret__, 'defaultGameServerConfig'),
+        deployment_id=_utilities.get_dict_value(__ret__, 'deploymentId'),
+        game_server_config_overrides=_utilities.get_dict_value(__ret__, 'gameServerConfigOverrides'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        project=_utilities.get_dict_value(__ret__, 'project'))

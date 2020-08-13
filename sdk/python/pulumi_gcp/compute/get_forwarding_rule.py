@@ -5,8 +5,34 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetForwardingRuleResult',
+    'AwaitableGetForwardingRuleResult',
+    'get_forwarding_rule',
+]
+
+
+@pulumi.output_type
+class _GetForwardingRuleResult(dict):
+    backend_service: str = pulumi.property("backendService")
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    ip_address: str = pulumi.property("ipAddress")
+    ip_protocol: str = pulumi.property("ipProtocol")
+    load_balancing_scheme: str = pulumi.property("loadBalancingScheme")
+    name: str = pulumi.property("name")
+    network: str = pulumi.property("network")
+    port_range: str = pulumi.property("portRange")
+    ports: List[str] = pulumi.property("ports")
+    project: str = pulumi.property("project")
+    region: str = pulumi.property("region")
+    self_link: str = pulumi.property("selfLink")
+    subnetwork: str = pulumi.property("subnetwork")
+    target: str = pulumi.property("target")
+
 
 class GetForwardingRuleResult:
     """
@@ -97,6 +123,8 @@ class GetForwardingRuleResult:
         """
         URL of the target pool, if this forwarding rule has one.
         """
+
+
 class AwaitableGetForwardingRuleResult(GetForwardingRuleResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -119,9 +147,22 @@ class AwaitableGetForwardingRuleResult(GetForwardingRuleResult):
             subnetwork=self.subnetwork,
             target=self.target)
 
-def get_forwarding_rule(name=None,project=None,region=None,opts=None):
+
+def get_forwarding_rule(name: Optional[str] = None,
+                        project: Optional[str] = None,
+                        region: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetForwardingRuleResult:
     """
     Get a forwarding rule within GCE from its name.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_forwarding_rule = gcp.compute.get_forwarding_rule(name="forwarding-rule-us-east1")
+    ```
 
 
     :param str name: The name of the forwarding rule.
@@ -131,30 +172,28 @@ def get_forwarding_rule(name=None,project=None,region=None,opts=None):
            is not provided, the project region is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getForwardingRule:getForwardingRule', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getForwardingRule:getForwardingRule', __args__, opts=opts, typ=_GetForwardingRuleResult).value
 
     return AwaitableGetForwardingRuleResult(
-        backend_service=__ret__.get('backendService'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        ip_address=__ret__.get('ipAddress'),
-        ip_protocol=__ret__.get('ipProtocol'),
-        load_balancing_scheme=__ret__.get('loadBalancingScheme'),
-        name=__ret__.get('name'),
-        network=__ret__.get('network'),
-        port_range=__ret__.get('portRange'),
-        ports=__ret__.get('ports'),
-        project=__ret__.get('project'),
-        region=__ret__.get('region'),
-        self_link=__ret__.get('selfLink'),
-        subnetwork=__ret__.get('subnetwork'),
-        target=__ret__.get('target'))
+        backend_service=_utilities.get_dict_value(__ret__, 'backendService'),
+        description=_utilities.get_dict_value(__ret__, 'description'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        ip_address=_utilities.get_dict_value(__ret__, 'ipAddress'),
+        ip_protocol=_utilities.get_dict_value(__ret__, 'ipProtocol'),
+        load_balancing_scheme=_utilities.get_dict_value(__ret__, 'loadBalancingScheme'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        network=_utilities.get_dict_value(__ret__, 'network'),
+        port_range=_utilities.get_dict_value(__ret__, 'portRange'),
+        ports=_utilities.get_dict_value(__ret__, 'ports'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        region=_utilities.get_dict_value(__ret__, 'region'),
+        self_link=_utilities.get_dict_value(__ret__, 'selfLink'),
+        subnetwork=_utilities.get_dict_value(__ret__, 'subnetwork'),
+        target=_utilities.get_dict_value(__ret__, 'target'))

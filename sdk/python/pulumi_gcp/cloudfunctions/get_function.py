@@ -5,8 +5,42 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetFunctionResult',
+    'AwaitableGetFunctionResult',
+    'get_function',
+]
+
+
+@pulumi.output_type
+class _GetFunctionResult(dict):
+    available_memory_mb: float = pulumi.property("availableMemoryMb")
+    description: str = pulumi.property("description")
+    entry_point: str = pulumi.property("entryPoint")
+    environment_variables: Mapping[str, Any] = pulumi.property("environmentVariables")
+    event_triggers: List['outputs.GetFunctionEventTriggerResult'] = pulumi.property("eventTriggers")
+    https_trigger_url: str = pulumi.property("httpsTriggerUrl")
+    id: str = pulumi.property("id")
+    ingress_settings: str = pulumi.property("ingressSettings")
+    labels: Mapping[str, Any] = pulumi.property("labels")
+    max_instances: float = pulumi.property("maxInstances")
+    name: str = pulumi.property("name")
+    project: Optional[str] = pulumi.property("project")
+    region: Optional[str] = pulumi.property("region")
+    runtime: str = pulumi.property("runtime")
+    service_account_email: str = pulumi.property("serviceAccountEmail")
+    source_archive_bucket: str = pulumi.property("sourceArchiveBucket")
+    source_archive_object: str = pulumi.property("sourceArchiveObject")
+    source_repositories: List['outputs.GetFunctionSourceRepositoryResult'] = pulumi.property("sourceRepositories")
+    timeout: float = pulumi.property("timeout")
+    trigger_http: bool = pulumi.property("triggerHttp")
+    vpc_connector: str = pulumi.property("vpcConnector")
+    vpc_connector_egress_settings: str = pulumi.property("vpcConnectorEgressSettings")
+
 
 class GetFunctionResult:
     """
@@ -136,6 +170,8 @@ class GetFunctionResult:
         """
         The egress settings for the connector, controlling what traffic is diverted through it.
         """
+
+
 class AwaitableGetFunctionResult(GetFunctionResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -165,11 +201,24 @@ class AwaitableGetFunctionResult(GetFunctionResult):
             vpc_connector=self.vpc_connector,
             vpc_connector_egress_settings=self.vpc_connector_egress_settings)
 
-def get_function(name=None,project=None,region=None,opts=None):
+
+def get_function(name: Optional[str] = None,
+                 project: Optional[str] = None,
+                 region: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFunctionResult:
     """
     Get information about a Google Cloud Function. For more information see
     the [official documentation](https://cloud.google.com/functions/docs/)
     and [API](https://cloud.google.com/functions/docs/apis).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_function = gcp.cloudfunctions.get_function(name="function")
+    ```
 
 
     :param str name: The name of a Cloud Function.
@@ -179,37 +228,35 @@ def get_function(name=None,project=None,region=None,opts=None):
            is not provided, the provider region is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:cloudfunctions/getFunction:getFunction', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:cloudfunctions/getFunction:getFunction', __args__, opts=opts, typ=_GetFunctionResult).value
 
     return AwaitableGetFunctionResult(
-        available_memory_mb=__ret__.get('availableMemoryMb'),
-        description=__ret__.get('description'),
-        entry_point=__ret__.get('entryPoint'),
-        environment_variables=__ret__.get('environmentVariables'),
-        event_triggers=__ret__.get('eventTriggers'),
-        https_trigger_url=__ret__.get('httpsTriggerUrl'),
-        id=__ret__.get('id'),
-        ingress_settings=__ret__.get('ingressSettings'),
-        labels=__ret__.get('labels'),
-        max_instances=__ret__.get('maxInstances'),
-        name=__ret__.get('name'),
-        project=__ret__.get('project'),
-        region=__ret__.get('region'),
-        runtime=__ret__.get('runtime'),
-        service_account_email=__ret__.get('serviceAccountEmail'),
-        source_archive_bucket=__ret__.get('sourceArchiveBucket'),
-        source_archive_object=__ret__.get('sourceArchiveObject'),
-        source_repositories=__ret__.get('sourceRepositories'),
-        timeout=__ret__.get('timeout'),
-        trigger_http=__ret__.get('triggerHttp'),
-        vpc_connector=__ret__.get('vpcConnector'),
-        vpc_connector_egress_settings=__ret__.get('vpcConnectorEgressSettings'))
+        available_memory_mb=_utilities.get_dict_value(__ret__, 'availableMemoryMb'),
+        description=_utilities.get_dict_value(__ret__, 'description'),
+        entry_point=_utilities.get_dict_value(__ret__, 'entryPoint'),
+        environment_variables=_utilities.get_dict_value(__ret__, 'environmentVariables'),
+        event_triggers=_utilities.get_dict_value(__ret__, 'eventTriggers'),
+        https_trigger_url=_utilities.get_dict_value(__ret__, 'httpsTriggerUrl'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        ingress_settings=_utilities.get_dict_value(__ret__, 'ingressSettings'),
+        labels=_utilities.get_dict_value(__ret__, 'labels'),
+        max_instances=_utilities.get_dict_value(__ret__, 'maxInstances'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        region=_utilities.get_dict_value(__ret__, 'region'),
+        runtime=_utilities.get_dict_value(__ret__, 'runtime'),
+        service_account_email=_utilities.get_dict_value(__ret__, 'serviceAccountEmail'),
+        source_archive_bucket=_utilities.get_dict_value(__ret__, 'sourceArchiveBucket'),
+        source_archive_object=_utilities.get_dict_value(__ret__, 'sourceArchiveObject'),
+        source_repositories=_utilities.get_dict_value(__ret__, 'sourceRepositories'),
+        timeout=_utilities.get_dict_value(__ret__, 'timeout'),
+        trigger_http=_utilities.get_dict_value(__ret__, 'triggerHttp'),
+        vpc_connector=_utilities.get_dict_value(__ret__, 'vpcConnector'),
+        vpc_connector_egress_settings=_utilities.get_dict_value(__ret__, 'vpcConnectorEgressSettings'))

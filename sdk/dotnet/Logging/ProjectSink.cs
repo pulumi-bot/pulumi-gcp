@@ -19,6 +19,89 @@ namespace Pulumi.Gcp.Logging
     /// &gt; **Note:** You must have [granted the "Logs Configuration Writer"](https://cloud.google.com/logging/docs/access-control) IAM role (`roles/logging.configWriter`) to the credentials used with this provider.
     /// 
     /// &gt; **Note** You must [enable the Cloud Resource Manager API](https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var my_sink = new Gcp.Logging.ProjectSink("my-sink", new Gcp.Logging.ProjectSinkArgs
+    ///         {
+    ///             Destination = "pubsub.googleapis.com/projects/my-project/topics/instance-activity",
+    ///             Filter = "resource.type = gce_instance AND severity &gt;= WARN",
+    ///             UniqueWriterIdentity = true,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// 
+    /// A more complete example follows: this creates a compute instance, as well as a log sink that logs all activity to a
+    /// cloud storage bucket. Because we are using `unique_writer_identity`, we must grant it access to the bucket. Note that
+    /// this grant requires the "Project IAM Admin" IAM role (`roles/resourcemanager.projectIamAdmin`) granted to the credentials
+    /// used with this provider.
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         // Our logged compute instance
+    ///         var my_logged_instance = new Gcp.Compute.Instance("my-logged-instance", new Gcp.Compute.InstanceArgs
+    ///         {
+    ///             MachineType = "n1-standard-1",
+    ///             Zone = "us-central1-a",
+    ///             BootDisk = new Gcp.Compute.Inputs.InstanceBootDiskArgs
+    ///             {
+    ///                 InitializeParams = new Gcp.Compute.Inputs.InstanceBootDiskInitializeParamsArgs
+    ///                 {
+    ///                     Image = "debian-cloud/debian-9",
+    ///                 },
+    ///             },
+    ///             NetworkInterfaces = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.InstanceNetworkInterfaceArgs
+    ///                 {
+    ///                     Network = "default",
+    ///                     AccessConfigs = 
+    ///                     {
+    ///                         ,
+    ///                     },
+    ///                 },
+    ///             },
+    ///         });
+    ///         // A bucket to store logs in
+    ///         var log_bucket = new Gcp.Storage.Bucket("log-bucket", new Gcp.Storage.BucketArgs
+    ///         {
+    ///         });
+    ///         // Our sink; this logs all activity related to our "my-logged-instance" instance
+    ///         var instance_sink = new Gcp.Logging.ProjectSink("instance-sink", new Gcp.Logging.ProjectSinkArgs
+    ///         {
+    ///             Destination = log_bucket.Name.Apply(name =&gt; $"storage.googleapis.com/{name}"),
+    ///             Filter = my_logged_instance.InstanceId.Apply(instanceId =&gt; $"resource.type = gce_instance AND resource.labels.instance_id = \"{instanceId}\""),
+    ///             UniqueWriterIdentity = true,
+    ///         });
+    ///         // Because our sink uses a unique_writer, we must grant that writer access to the bucket.
+    ///         var log_writer = new Gcp.Projects.IAMBinding("log-writer", new Gcp.Projects.IAMBindingArgs
+    ///         {
+    ///             Role = "roles/storage.objectCreator",
+    ///             Members = 
+    ///             {
+    ///                 instance_sink.WriterIdentity,
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class ProjectSink : Pulumi.CustomResource
     {

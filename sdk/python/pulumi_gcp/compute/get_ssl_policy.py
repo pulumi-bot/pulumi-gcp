@@ -5,8 +5,30 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetSSLPolicyResult',
+    'AwaitableGetSSLPolicyResult',
+    'get_ssl_policy',
+]
+
+
+@pulumi.output_type
+class _GetSSLPolicyResult(dict):
+    creation_timestamp: str = pulumi.property("creationTimestamp")
+    custom_features: List[str] = pulumi.property("customFeatures")
+    description: str = pulumi.property("description")
+    enabled_features: List[str] = pulumi.property("enabledFeatures")
+    fingerprint: str = pulumi.property("fingerprint")
+    id: str = pulumi.property("id")
+    min_tls_version: str = pulumi.property("minTlsVersion")
+    name: str = pulumi.property("name")
+    profile: str = pulumi.property("profile")
+    project: Optional[str] = pulumi.property("project")
+    self_link: str = pulumi.property("selfLink")
+
 
 class GetSSLPolicyResult:
     """
@@ -72,6 +94,8 @@ class GetSSLPolicyResult:
         """
         The URI of the created resource.
         """
+
+
 class AwaitableGetSSLPolicyResult(GetSSLPolicyResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -90,10 +114,22 @@ class AwaitableGetSSLPolicyResult(GetSSLPolicyResult):
             project=self.project,
             self_link=self.self_link)
 
-def get_ssl_policy(name=None,project=None,opts=None):
+
+def get_ssl_policy(name: Optional[str] = None,
+                   project: Optional[str] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSSLPolicyResult:
     """
     Gets an SSL Policy within GCE from its name, for use with Target HTTPS and Target SSL Proxies.
         For more information see [the official documentation](https://cloud.google.com/compute/docs/load-balancing/ssl-policies).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_ssl_policy = gcp.compute.get_ssl_policy(name="production-ssl-policy")
+    ```
 
 
     :param str name: The name of the SSL Policy.
@@ -101,25 +137,23 @@ def get_ssl_policy(name=None,project=None,opts=None):
            is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getSSLPolicy:getSSLPolicy', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getSSLPolicy:getSSLPolicy', __args__, opts=opts, typ=_GetSSLPolicyResult).value
 
     return AwaitableGetSSLPolicyResult(
-        creation_timestamp=__ret__.get('creationTimestamp'),
-        custom_features=__ret__.get('customFeatures'),
-        description=__ret__.get('description'),
-        enabled_features=__ret__.get('enabledFeatures'),
-        fingerprint=__ret__.get('fingerprint'),
-        id=__ret__.get('id'),
-        min_tls_version=__ret__.get('minTlsVersion'),
-        name=__ret__.get('name'),
-        profile=__ret__.get('profile'),
-        project=__ret__.get('project'),
-        self_link=__ret__.get('selfLink'))
+        creation_timestamp=_utilities.get_dict_value(__ret__, 'creationTimestamp'),
+        custom_features=_utilities.get_dict_value(__ret__, 'customFeatures'),
+        description=_utilities.get_dict_value(__ret__, 'description'),
+        enabled_features=_utilities.get_dict_value(__ret__, 'enabledFeatures'),
+        fingerprint=_utilities.get_dict_value(__ret__, 'fingerprint'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        min_tls_version=_utilities.get_dict_value(__ret__, 'minTlsVersion'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        profile=_utilities.get_dict_value(__ret__, 'profile'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        self_link=_utilities.get_dict_value(__ret__, 'selfLink'))

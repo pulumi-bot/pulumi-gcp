@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetCaCertsResult',
+    'AwaitableGetCaCertsResult',
+    'get_ca_certs',
+]
+
+
+@pulumi.output_type
+class _GetCaCertsResult(dict):
+    active_version: str = pulumi.property("activeVersion")
+    certs: List['outputs.GetCaCertsCertResult'] = pulumi.property("certs")
+    id: str = pulumi.property("id")
+    instance: str = pulumi.property("instance")
+    project: str = pulumi.property("project")
+
 
 class GetCaCertsResult:
     """
@@ -37,6 +54,8 @@ class GetCaCertsResult:
         if project and not isinstance(project, str):
             raise TypeError("Expected argument 'project' to be a str")
         __self__.project = project
+
+
 class AwaitableGetCaCertsResult(GetCaCertsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -49,7 +68,10 @@ class AwaitableGetCaCertsResult(GetCaCertsResult):
             instance=self.instance,
             project=self.project)
 
-def get_ca_certs(instance=None,project=None,opts=None):
+
+def get_ca_certs(instance: Optional[str] = None,
+                 project: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCaCertsResult:
     """
     Get all of the trusted Certificate Authorities (CAs) for the specified SQL database instance. For more information see the
     [official documentation](https://cloud.google.com/sql/)
@@ -61,19 +83,17 @@ def get_ca_certs(instance=None,project=None,opts=None):
     :param str project: The ID of the project in which the resource belongs. If `project` is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['instance'] = instance
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:sql/getCaCerts:getCaCerts', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:sql/getCaCerts:getCaCerts', __args__, opts=opts, typ=_GetCaCertsResult).value
 
     return AwaitableGetCaCertsResult(
-        active_version=__ret__.get('activeVersion'),
-        certs=__ret__.get('certs'),
-        id=__ret__.get('id'),
-        instance=__ret__.get('instance'),
-        project=__ret__.get('project'))
+        active_version=_utilities.get_dict_value(__ret__, 'activeVersion'),
+        certs=_utilities.get_dict_value(__ret__, 'certs'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        instance=_utilities.get_dict_value(__ret__, 'instance'),
+        project=_utilities.get_dict_value(__ret__, 'project'))

@@ -5,8 +5,28 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetSecretVersionResult',
+    'AwaitableGetSecretVersionResult',
+    'get_secret_version',
+]
+
+
+@pulumi.output_type
+class _GetSecretVersionResult(dict):
+    create_time: str = pulumi.property("createTime")
+    destroy_time: str = pulumi.property("destroyTime")
+    enabled: bool = pulumi.property("enabled")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    project: str = pulumi.property("project")
+    secret: str = pulumi.property("secret")
+    secret_data: str = pulumi.property("secretData")
+    version: str = pulumi.property("version")
+
 
 class GetSecretVersionResult:
     """
@@ -59,6 +79,8 @@ class GetSecretVersionResult:
         if version and not isinstance(version, str):
             raise TypeError("Expected argument 'version' to be a str")
         __self__.version = version
+
+
 class AwaitableGetSecretVersionResult(GetSecretVersionResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -75,9 +97,22 @@ class AwaitableGetSecretVersionResult(GetSecretVersionResult):
             secret_data=self.secret_data,
             version=self.version)
 
-def get_secret_version(project=None,secret=None,version=None,opts=None):
+
+def get_secret_version(project: Optional[str] = None,
+                       secret: Optional[str] = None,
+                       version: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretVersionResult:
     """
     Get a Secret Manager secret's version. For more information see the [official documentation](https://cloud.google.com/secret-manager/docs/) and [API](https://cloud.google.com/secret-manager/docs/reference/rest/v1/projects.secrets.versions).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    basic = gcp.secretmanager.get_secret_version(secret="my-secret")
+    ```
 
 
     :param str project: The project to get the secret version for. If it
@@ -87,24 +122,22 @@ def get_secret_version(project=None,secret=None,version=None,opts=None):
            is not provided, the latest version is retrieved.
     """
     __args__ = dict()
-
-
     __args__['project'] = project
     __args__['secret'] = secret
     __args__['version'] = version
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:secretmanager/getSecretVersion:getSecretVersion', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:secretmanager/getSecretVersion:getSecretVersion', __args__, opts=opts, typ=_GetSecretVersionResult).value
 
     return AwaitableGetSecretVersionResult(
-        create_time=__ret__.get('createTime'),
-        destroy_time=__ret__.get('destroyTime'),
-        enabled=__ret__.get('enabled'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        project=__ret__.get('project'),
-        secret=__ret__.get('secret'),
-        secret_data=__ret__.get('secretData'),
-        version=__ret__.get('version'))
+        create_time=_utilities.get_dict_value(__ret__, 'createTime'),
+        destroy_time=_utilities.get_dict_value(__ret__, 'destroyTime'),
+        enabled=_utilities.get_dict_value(__ret__, 'enabled'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        secret=_utilities.get_dict_value(__ret__, 'secret'),
+        secret_data=_utilities.get_dict_value(__ret__, 'secretData'),
+        version=_utilities.get_dict_value(__ret__, 'version'))

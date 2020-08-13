@@ -5,8 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetRegionInstanceGroupResult',
+    'AwaitableGetRegionInstanceGroupResult',
+    'get_region_instance_group',
+]
+
+
+@pulumi.output_type
+class _GetRegionInstanceGroupResult(dict):
+    id: str = pulumi.property("id")
+    instances: List['outputs.GetRegionInstanceGroupInstanceResult'] = pulumi.property("instances")
+    name: str = pulumi.property("name")
+    project: str = pulumi.property("project")
+    region: str = pulumi.property("region")
+    self_link: str = pulumi.property("selfLink")
+    size: float = pulumi.property("size")
+
 
 class GetRegionInstanceGroupResult:
     """
@@ -46,6 +65,8 @@ class GetRegionInstanceGroupResult:
         """
         The number of instances in the group.
         """
+
+
 class AwaitableGetRegionInstanceGroupResult(GetRegionInstanceGroupResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -60,10 +81,22 @@ class AwaitableGetRegionInstanceGroupResult(GetRegionInstanceGroupResult):
             self_link=self.self_link,
             size=self.size)
 
-def get_region_instance_group(name=None,project=None,region=None,self_link=None,opts=None):
+
+def get_region_instance_group(name: Optional[str] = None,
+                              project: Optional[str] = None,
+                              region: Optional[str] = None,
+                              self_link: Optional[str] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegionInstanceGroupResult:
     """
     Get a Compute Region Instance Group within GCE.
     For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/distributing-instances-with-regional-instance-groups) and [API](https://cloud.google.com/compute/docs/reference/latest/regionInstanceGroups).
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    group = gcp.compute.get_region_instance_group(name="instance-group-name")
+    ```
 
     The most common use of this datasource will be to fetch information about the instances inside regional managed instance groups, for instance:
 
@@ -78,8 +111,6 @@ def get_region_instance_group(name=None,project=None,region=None,self_link=None,
     :param str self_link: The link to the instance group.  One of `name` or `self_link` must be provided.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['region'] = region
@@ -87,14 +118,14 @@ def get_region_instance_group(name=None,project=None,region=None,self_link=None,
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getRegionInstanceGroup:getRegionInstanceGroup', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getRegionInstanceGroup:getRegionInstanceGroup', __args__, opts=opts, typ=_GetRegionInstanceGroupResult).value
 
     return AwaitableGetRegionInstanceGroupResult(
-        id=__ret__.get('id'),
-        instances=__ret__.get('instances'),
-        name=__ret__.get('name'),
-        project=__ret__.get('project'),
-        region=__ret__.get('region'),
-        self_link=__ret__.get('selfLink'),
-        size=__ret__.get('size'))
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        instances=_utilities.get_dict_value(__ret__, 'instances'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        region=_utilities.get_dict_value(__ret__, 'region'),
+        self_link=_utilities.get_dict_value(__ret__, 'selfLink'),
+        size=_utilities.get_dict_value(__ret__, 'size'))

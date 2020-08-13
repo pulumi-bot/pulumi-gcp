@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetZonesResult',
+    'AwaitableGetZonesResult',
+    'get_zones',
+]
+
+
+@pulumi.output_type
+class _GetZonesResult(dict):
+    id: str = pulumi.property("id")
+    names: List[str] = pulumi.property("names")
+    project: str = pulumi.property("project")
+    region: Optional[str] = pulumi.property("region")
+    status: Optional[str] = pulumi.property("status")
+
 
 class GetZonesResult:
     """
@@ -34,6 +50,8 @@ class GetZonesResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         __self__.status = status
+
+
 class AwaitableGetZonesResult(GetZonesResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -46,7 +64,11 @@ class AwaitableGetZonesResult(GetZonesResult):
             region=self.region,
             status=self.status)
 
-def get_zones(project=None,region=None,status=None,opts=None):
+
+def get_zones(project: Optional[str] = None,
+              region: Optional[str] = None,
+              status: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetZonesResult:
     """
     Provides access to available Google Compute zones in a region for a given project.
     See more about [regions and zones](https://cloud.google.com/compute/docs/regions-zones/regions-zones) in the upstream docs.
@@ -58,20 +80,18 @@ def get_zones(project=None,region=None,status=None,opts=None):
            Defaults to no filtering (all available zones - both `UP` and `DOWN`).
     """
     __args__ = dict()
-
-
     __args__['project'] = project
     __args__['region'] = region
     __args__['status'] = status
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getZones:getZones', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getZones:getZones', __args__, opts=opts, typ=_GetZonesResult).value
 
     return AwaitableGetZonesResult(
-        id=__ret__.get('id'),
-        names=__ret__.get('names'),
-        project=__ret__.get('project'),
-        region=__ret__.get('region'),
-        status=__ret__.get('status'))
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        names=_utilities.get_dict_value(__ret__, 'names'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        region=_utilities.get_dict_value(__ret__, 'region'),
+        status=_utilities.get_dict_value(__ret__, 'status'))

@@ -5,8 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetTransferProjectServieAccountResult',
+    'AwaitableGetTransferProjectServieAccountResult',
+    'get_transfer_project_servie_account',
+]
+
+
+@pulumi.output_type
+class _GetTransferProjectServieAccountResult(dict):
+    email: str = pulumi.property("email")
+    id: str = pulumi.property("id")
+    project: str = pulumi.property("project")
+
 
 class GetTransferProjectServieAccountResult:
     """
@@ -28,6 +42,8 @@ class GetTransferProjectServieAccountResult:
         if project and not isinstance(project, str):
             raise TypeError("Expected argument 'project' to be a str")
         __self__.project = project
+
+
 class AwaitableGetTransferProjectServieAccountResult(GetTransferProjectServieAccountResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -38,24 +54,34 @@ class AwaitableGetTransferProjectServieAccountResult(GetTransferProjectServieAcc
             id=self.id,
             project=self.project)
 
-def get_transfer_project_servie_account(project=None,opts=None):
+
+def get_transfer_project_servie_account(project: Optional[str] = None,
+                                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTransferProjectServieAccountResult:
     """
     Use this data source to retrieve Storage Transfer service account for this project
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    default = gcp.storage.get_transfer_project_servie_account()
+    pulumi.export("defaultAccount", default.email)
+    ```
 
 
     :param str project: The project ID. If it is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:storage/getTransferProjectServieAccount:getTransferProjectServieAccount', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:storage/getTransferProjectServieAccount:getTransferProjectServieAccount', __args__, opts=opts, typ=_GetTransferProjectServieAccountResult).value
 
     return AwaitableGetTransferProjectServieAccountResult(
-        email=__ret__.get('email'),
-        id=__ret__.get('id'),
-        project=__ret__.get('project'))
+        email=_utilities.get_dict_value(__ret__, 'email'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        project=_utilities.get_dict_value(__ret__, 'project'))

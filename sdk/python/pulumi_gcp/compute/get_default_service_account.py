@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetDefaultServiceAccountResult',
+    'AwaitableGetDefaultServiceAccountResult',
+    'get_default_service_account',
+]
+
+
+@pulumi.output_type
+class _GetDefaultServiceAccountResult(dict):
+    display_name: str = pulumi.property("displayName")
+    email: str = pulumi.property("email")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    project: str = pulumi.property("project")
+    unique_id: str = pulumi.property("uniqueId")
+
 
 class GetDefaultServiceAccountResult:
     """
@@ -46,6 +63,8 @@ class GetDefaultServiceAccountResult:
         """
         The unique id of the service account.
         """
+
+
 class AwaitableGetDefaultServiceAccountResult(GetDefaultServiceAccountResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -59,27 +78,37 @@ class AwaitableGetDefaultServiceAccountResult(GetDefaultServiceAccountResult):
             project=self.project,
             unique_id=self.unique_id)
 
-def get_default_service_account(project=None,opts=None):
+
+def get_default_service_account(project: Optional[str] = None,
+                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDefaultServiceAccountResult:
     """
     Use this data source to retrieve default service account for this project
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    default = gcp.compute.get_default_service_account()
+    pulumi.export("defaultAccount", default.email)
+    ```
 
 
     :param str project: The project ID. If it is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getDefaultServiceAccount:getDefaultServiceAccount', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getDefaultServiceAccount:getDefaultServiceAccount', __args__, opts=opts, typ=_GetDefaultServiceAccountResult).value
 
     return AwaitableGetDefaultServiceAccountResult(
-        display_name=__ret__.get('displayName'),
-        email=__ret__.get('email'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        project=__ret__.get('project'),
-        unique_id=__ret__.get('uniqueId'))
+        display_name=_utilities.get_dict_value(__ret__, 'displayName'),
+        email=_utilities.get_dict_value(__ret__, 'email'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        unique_id=_utilities.get_dict_value(__ret__, 'uniqueId'))

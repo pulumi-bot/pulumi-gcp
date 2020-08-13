@@ -5,45 +5,68 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['TenantOauthIdpConfig']
 
 
 class TenantOauthIdpConfig(pulumi.CustomResource):
-    client_id: pulumi.Output[str]
+    client_id: pulumi.Output[str] = pulumi.property("clientId")
     """
     The client id of an OAuth client.
     """
-    client_secret: pulumi.Output[str]
+
+    client_secret: pulumi.Output[Optional[str]] = pulumi.property("clientSecret")
     """
     The client secret of the OAuth client, to enable OIDC code flow.
     """
-    display_name: pulumi.Output[str]
+
+    display_name: pulumi.Output[str] = pulumi.property("displayName")
     """
     Human friendly display name.
     """
-    enabled: pulumi.Output[bool]
+
+    enabled: pulumi.Output[Optional[bool]] = pulumi.property("enabled")
     """
     If this config allows users to sign in with the provider.
     """
-    issuer: pulumi.Output[str]
+
+    issuer: pulumi.Output[str] = pulumi.property("issuer")
     """
     For OIDC Idps, the issuer identifier.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name of the OauthIdpConfig. Must start with `oidc.`.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    tenant: pulumi.Output[str]
+
+    tenant: pulumi.Output[str] = pulumi.property("tenant")
     """
     The name of the tenant where this OIDC IDP configuration resource exists
     """
-    def __init__(__self__, resource_name, opts=None, client_id=None, client_secret=None, display_name=None, enabled=None, issuer=None, name=None, project=None, tenant=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 client_id: Optional[pulumi.Input[str]] = None,
+                 client_secret: Optional[pulumi.Input[str]] = None,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 issuer: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 tenant: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         OIDC IdP configuration for a Identity Toolkit project within a tenant.
 
@@ -52,6 +75,21 @@ class TenantOauthIdpConfig(pulumi.CustomResource):
         the marketplace prior to using this resource.
 
         ## Example Usage
+        ### Identity Platform Tenant Oauth Idp Config Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        tenant = gcp.identityplatform.Tenant("tenant", display_name="tenant")
+        tenant_oauth_idp_config = gcp.identityplatform.TenantOauthIdpConfig("tenantOauthIdpConfig",
+            tenant=tenant.name,
+            display_name="Display Name",
+            client_id="client-id",
+            issuer="issuer",
+            enabled=True,
+            client_secret="secret")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -76,7 +114,7 @@ class TenantOauthIdpConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -105,7 +143,17 @@ class TenantOauthIdpConfig(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, client_id=None, client_secret=None, display_name=None, enabled=None, issuer=None, name=None, project=None, tenant=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            client_id: Optional[pulumi.Input[str]] = None,
+            client_secret: Optional[pulumi.Input[str]] = None,
+            display_name: Optional[pulumi.Input[str]] = None,
+            enabled: Optional[pulumi.Input[bool]] = None,
+            issuer: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            tenant: Optional[pulumi.Input[str]] = None) -> 'TenantOauthIdpConfig':
         """
         Get an existing TenantOauthIdpConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -138,7 +186,8 @@ class TenantOauthIdpConfig(pulumi.CustomResource):
         return TenantOauthIdpConfig(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,21 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['FirewallRule']
 
 
 class FirewallRule(pulumi.CustomResource):
-    action: pulumi.Output[str]
+    action: pulumi.Output[str] = pulumi.property("action")
     """
     The action to take if this rule matches.
     Possible values are `UNSPECIFIED_ACTION`, `ALLOW`, and `DENY`.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     An optional string description of this rule.
     """
-    priority: pulumi.Output[float]
+
+    priority: pulumi.Output[Optional[float]] = pulumi.property("priority")
     """
     A positive integer that defines the order of rule evaluation.
     Rules with the lowest priority are evaluated first.
@@ -27,16 +31,29 @@ class FirewallRule(pulumi.CustomResource):
     IPv6 traffic when no previous rule matches. Only the action of
     this rule can be modified by the user.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    source_range: pulumi.Output[str]
+
+    source_range: pulumi.Output[str] = pulumi.property("sourceRange")
     """
     IP address or range, defined using CIDR notation, of requests that this rule applies to.
     """
-    def __init__(__self__, resource_name, opts=None, action=None, description=None, priority=None, project=None, source_range=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 action: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[float]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 source_range: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         A single firewall rule that is evaluated against incoming traffic
         and provides an action to take on matched requests.
@@ -48,6 +65,24 @@ class FirewallRule(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/appengine/docs/standard/python/creating-firewalls#creating_firewall_rules)
 
         ## Example Usage
+        ### App Engine Firewall Rule Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        my_project = gcp.organizations.Project("myProject",
+            project_id="ae-project",
+            org_id="123456789")
+        app = gcp.appengine.Application("app",
+            project=my_project.project_id,
+            location_id="us-central")
+        rule = gcp.appengine.FirewallRule("rule",
+            project=app.project,
+            priority=1000,
+            action="ALLOW",
+            source_range="*")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -74,7 +109,7 @@ class FirewallRule(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -96,7 +131,14 @@ class FirewallRule(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, action=None, description=None, priority=None, project=None, source_range=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            action: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            priority: Optional[pulumi.Input[float]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            source_range: Optional[pulumi.Input[str]] = None) -> 'FirewallRule':
         """
         Get an existing FirewallRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -128,7 +170,8 @@ class FirewallRule(pulumi.CustomResource):
         return FirewallRule(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

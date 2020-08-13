@@ -5,8 +5,38 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetImageResult',
+    'AwaitableGetImageResult',
+    'get_image',
+]
+
+
+@pulumi.output_type
+class _GetImageResult(dict):
+    archive_size_bytes: float = pulumi.property("archiveSizeBytes")
+    creation_timestamp: str = pulumi.property("creationTimestamp")
+    description: str = pulumi.property("description")
+    disk_size_gb: float = pulumi.property("diskSizeGb")
+    family: str = pulumi.property("family")
+    id: str = pulumi.property("id")
+    image_encryption_key_sha256: str = pulumi.property("imageEncryptionKeySha256")
+    image_id: str = pulumi.property("imageId")
+    label_fingerprint: str = pulumi.property("labelFingerprint")
+    labels: Mapping[str, str] = pulumi.property("labels")
+    licenses: List[str] = pulumi.property("licenses")
+    name: str = pulumi.property("name")
+    project: str = pulumi.property("project")
+    self_link: str = pulumi.property("selfLink")
+    source_disk: str = pulumi.property("sourceDisk")
+    source_disk_encryption_key_sha256: str = pulumi.property("sourceDiskEncryptionKeySha256")
+    source_disk_id: str = pulumi.property("sourceDiskId")
+    source_image_id: str = pulumi.property("sourceImageId")
+    status: str = pulumi.property("status")
+
 
 class GetImageResult:
     """
@@ -128,6 +158,8 @@ class GetImageResult:
         """
         The status of the image. Possible values are **FAILED**, **PENDING**, or **READY**.
         """
+
+
 class AwaitableGetImageResult(GetImageResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -154,10 +186,30 @@ class AwaitableGetImageResult(GetImageResult):
             source_image_id=self.source_image_id,
             status=self.status)
 
-def get_image(family=None,name=None,project=None,opts=None):
+
+def get_image(family: Optional[str] = None,
+              name: Optional[str] = None,
+              project: Optional[str] = None,
+              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetImageResult:
     """
     Get information about a Google Compute Image. Check that your service account has the `compute.imageUser` role if you want to share [custom images](https://cloud.google.com/compute/docs/images/sharing-images-across-projects) from another project. If you want to use [public images][pubimg], do not forget to specify the dedicated project. For more information see
     [the official documentation](https://cloud.google.com/compute/docs/images) and its [API](https://cloud.google.com/compute/docs/reference/latest/images).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_image = gcp.compute.get_image(family="debian-9",
+        project="debian-cloud")
+    # ...
+    default = gcp.compute.Instance("default", boot_disk={
+        "initializeParams": {
+            "image": my_image.self_link,
+        },
+    })
+    ```
 
 
     :param str family: The family name of the image.
@@ -170,34 +222,32 @@ def get_image(family=None,name=None,project=None,opts=None):
            [public base image][pubimg], be sure to specify the correct Image Project.
     """
     __args__ = dict()
-
-
     __args__['family'] = family
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getImage:getImage', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getImage:getImage', __args__, opts=opts, typ=_GetImageResult).value
 
     return AwaitableGetImageResult(
-        archive_size_bytes=__ret__.get('archiveSizeBytes'),
-        creation_timestamp=__ret__.get('creationTimestamp'),
-        description=__ret__.get('description'),
-        disk_size_gb=__ret__.get('diskSizeGb'),
-        family=__ret__.get('family'),
-        id=__ret__.get('id'),
-        image_encryption_key_sha256=__ret__.get('imageEncryptionKeySha256'),
-        image_id=__ret__.get('imageId'),
-        label_fingerprint=__ret__.get('labelFingerprint'),
-        labels=__ret__.get('labels'),
-        licenses=__ret__.get('licenses'),
-        name=__ret__.get('name'),
-        project=__ret__.get('project'),
-        self_link=__ret__.get('selfLink'),
-        source_disk=__ret__.get('sourceDisk'),
-        source_disk_encryption_key_sha256=__ret__.get('sourceDiskEncryptionKeySha256'),
-        source_disk_id=__ret__.get('sourceDiskId'),
-        source_image_id=__ret__.get('sourceImageId'),
-        status=__ret__.get('status'))
+        archive_size_bytes=_utilities.get_dict_value(__ret__, 'archiveSizeBytes'),
+        creation_timestamp=_utilities.get_dict_value(__ret__, 'creationTimestamp'),
+        description=_utilities.get_dict_value(__ret__, 'description'),
+        disk_size_gb=_utilities.get_dict_value(__ret__, 'diskSizeGb'),
+        family=_utilities.get_dict_value(__ret__, 'family'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        image_encryption_key_sha256=_utilities.get_dict_value(__ret__, 'imageEncryptionKeySha256'),
+        image_id=_utilities.get_dict_value(__ret__, 'imageId'),
+        label_fingerprint=_utilities.get_dict_value(__ret__, 'labelFingerprint'),
+        labels=_utilities.get_dict_value(__ret__, 'labels'),
+        licenses=_utilities.get_dict_value(__ret__, 'licenses'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        self_link=_utilities.get_dict_value(__ret__, 'selfLink'),
+        source_disk=_utilities.get_dict_value(__ret__, 'sourceDisk'),
+        source_disk_encryption_key_sha256=_utilities.get_dict_value(__ret__, 'sourceDiskEncryptionKeySha256'),
+        source_disk_id=_utilities.get_dict_value(__ret__, 'sourceDiskId'),
+        source_image_id=_utilities.get_dict_value(__ret__, 'sourceImageId'),
+        status=_utilities.get_dict_value(__ret__, 'status'))

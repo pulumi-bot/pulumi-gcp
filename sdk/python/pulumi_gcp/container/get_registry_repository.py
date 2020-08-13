@@ -5,8 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetRegistryRepositoryResult',
+    'AwaitableGetRegistryRepositoryResult',
+    'get_registry_repository',
+]
+
+
+@pulumi.output_type
+class _GetRegistryRepositoryResult(dict):
+    id: str = pulumi.property("id")
+    project: str = pulumi.property("project")
+    region: Optional[str] = pulumi.property("region")
+    repository_url: str = pulumi.property("repositoryUrl")
+
 
 class GetRegistryRepositoryResult:
     """
@@ -28,6 +43,8 @@ class GetRegistryRepositoryResult:
         if repository_url and not isinstance(repository_url, str):
             raise TypeError("Expected argument 'repository_url' to be a str")
         __self__.repository_url = repository_url
+
+
 class AwaitableGetRegistryRepositoryResult(GetRegistryRepositoryResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -39,25 +56,36 @@ class AwaitableGetRegistryRepositoryResult(GetRegistryRepositoryResult):
             region=self.region,
             repository_url=self.repository_url)
 
-def get_registry_repository(project=None,region=None,opts=None):
+
+def get_registry_repository(project: Optional[str] = None,
+                            region: Optional[str] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistryRepositoryResult:
     """
     This data source fetches the project name, and provides the appropriate URLs to use for container registry for this project.
 
     The URLs are computed entirely offline - as long as the project exists, they will be valid, but this data source does not contact Google Container Registry (GCR) at any point.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    foo = gcp.container.get_registry_repository()
+    pulumi.export("gcrLocation", foo.repository_url)
+    ```
     """
     __args__ = dict()
-
-
     __args__['project'] = project
     __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:container/getRegistryRepository:getRegistryRepository', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:container/getRegistryRepository:getRegistryRepository', __args__, opts=opts, typ=_GetRegistryRepositoryResult).value
 
     return AwaitableGetRegistryRepositoryResult(
-        id=__ret__.get('id'),
-        project=__ret__.get('project'),
-        region=__ret__.get('region'),
-        repository_url=__ret__.get('repositoryUrl'))
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        region=_utilities.get_dict_value(__ret__, 'region'),
+        repository_url=_utilities.get_dict_value(__ret__, 'repositoryUrl'))

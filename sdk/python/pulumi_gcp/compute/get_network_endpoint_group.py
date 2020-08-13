@@ -5,8 +5,30 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetNetworkEndpointGroupResult',
+    'AwaitableGetNetworkEndpointGroupResult',
+    'get_network_endpoint_group',
+]
+
+
+@pulumi.output_type
+class _GetNetworkEndpointGroupResult(dict):
+    default_port: float = pulumi.property("defaultPort")
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    name: Optional[str] = pulumi.property("name")
+    network: str = pulumi.property("network")
+    network_endpoint_type: str = pulumi.property("networkEndpointType")
+    project: Optional[str] = pulumi.property("project")
+    self_link: Optional[str] = pulumi.property("selfLink")
+    size: float = pulumi.property("size")
+    subnetwork: str = pulumi.property("subnetwork")
+    zone: Optional[str] = pulumi.property("zone")
+
 
 class GetNetworkEndpointGroupResult:
     """
@@ -67,6 +89,8 @@ class GetNetworkEndpointGroupResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         __self__.zone = zone
+
+
 class AwaitableGetNetworkEndpointGroupResult(GetNetworkEndpointGroupResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -85,11 +109,27 @@ class AwaitableGetNetworkEndpointGroupResult(GetNetworkEndpointGroupResult):
             subnetwork=self.subnetwork,
             zone=self.zone)
 
-def get_network_endpoint_group(name=None,project=None,self_link=None,zone=None,opts=None):
+
+def get_network_endpoint_group(name: Optional[str] = None,
+                               project: Optional[str] = None,
+                               self_link: Optional[str] = None,
+                               zone: Optional[str] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkEndpointGroupResult:
     """
     Use this data source to access a Network Endpoint Group's attributes.
 
     The NEG may be found by providing either a `self_link`, or a `name` and a `zone`.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    neg1 = gcp.compute.get_network_endpoint_group(name="k8s1-abcdef01-myns-mysvc-8080-4b6bac43",
+        zone="us-central1-a")
+    neg2 = gcp.compute.get_network_endpoint_group(self_link="https://www.googleapis.com/compute/v1/projects/myproject/zones/us-central1-a/networkEndpointGroups/k8s1-abcdef01-myns-mysvc-8080-4b6bac43")
+    ```
 
 
     :param str name: The Network Endpoint Group name.
@@ -100,8 +140,6 @@ def get_network_endpoint_group(name=None,project=None,self_link=None,zone=None,o
     :param str zone: The Network Endpoint Group availability zone.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['selfLink'] = self_link
@@ -109,18 +147,18 @@ def get_network_endpoint_group(name=None,project=None,self_link=None,zone=None,o
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getNetworkEndpointGroup:getNetworkEndpointGroup', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getNetworkEndpointGroup:getNetworkEndpointGroup', __args__, opts=opts, typ=_GetNetworkEndpointGroupResult).value
 
     return AwaitableGetNetworkEndpointGroupResult(
-        default_port=__ret__.get('defaultPort'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        network=__ret__.get('network'),
-        network_endpoint_type=__ret__.get('networkEndpointType'),
-        project=__ret__.get('project'),
-        self_link=__ret__.get('selfLink'),
-        size=__ret__.get('size'),
-        subnetwork=__ret__.get('subnetwork'),
-        zone=__ret__.get('zone'))
+        default_port=_utilities.get_dict_value(__ret__, 'defaultPort'),
+        description=_utilities.get_dict_value(__ret__, 'description'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        network=_utilities.get_dict_value(__ret__, 'network'),
+        network_endpoint_type=_utilities.get_dict_value(__ret__, 'networkEndpointType'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        self_link=_utilities.get_dict_value(__ret__, 'selfLink'),
+        size=_utilities.get_dict_value(__ret__, 'size'),
+        subnetwork=_utilities.get_dict_value(__ret__, 'subnetwork'),
+        zone=_utilities.get_dict_value(__ret__, 'zone'))

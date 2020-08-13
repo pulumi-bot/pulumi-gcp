@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetBillingAccountResult',
+    'AwaitableGetBillingAccountResult',
+    'get_billing_account',
+]
+
+
+@pulumi.output_type
+class _GetBillingAccountResult(dict):
+    billing_account: Optional[str] = pulumi.property("billingAccount")
+    display_name: str = pulumi.property("displayName")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    open: bool = pulumi.property("open")
+    project_ids: List[str] = pulumi.property("projectIds")
+
 
 class GetBillingAccountResult:
     """
@@ -40,6 +57,8 @@ class GetBillingAccountResult:
         """
         The IDs of any projects associated with the billing account.
         """
+
+
 class AwaitableGetBillingAccountResult(GetBillingAccountResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -53,9 +72,25 @@ class AwaitableGetBillingAccountResult(GetBillingAccountResult):
             open=self.open,
             project_ids=self.project_ids)
 
-def get_billing_account(billing_account=None,display_name=None,open=None,opts=None):
+
+def get_billing_account(billing_account: Optional[str] = None,
+                        display_name: Optional[str] = None,
+                        open: Optional[bool] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBillingAccountResult:
     """
     Use this data source to get information about a Google Billing Account.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    acct = gcp.organizations.get_billing_account(display_name="My Billing Account",
+        open=True)
+    my_project = gcp.organizations.Project("myProject",
+        project_id="your-project-id",
+        org_id="1234567",
+        billing_account=acct.id)
+    ```
 
 
     :param str billing_account: The name of the billing account in the form `{billing_account_id}` or `billingAccounts/{billing_account_id}`.
@@ -63,21 +98,19 @@ def get_billing_account(billing_account=None,display_name=None,open=None,opts=No
     :param bool open: `true` if the billing account is open, `false` if the billing account is closed.
     """
     __args__ = dict()
-
-
     __args__['billingAccount'] = billing_account
     __args__['displayName'] = display_name
     __args__['open'] = open
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:organizations/getBillingAccount:getBillingAccount', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:organizations/getBillingAccount:getBillingAccount', __args__, opts=opts, typ=_GetBillingAccountResult).value
 
     return AwaitableGetBillingAccountResult(
-        billing_account=__ret__.get('billingAccount'),
-        display_name=__ret__.get('displayName'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        open=__ret__.get('open'),
-        project_ids=__ret__.get('projectIds'))
+        billing_account=_utilities.get_dict_value(__ret__, 'billingAccount'),
+        display_name=_utilities.get_dict_value(__ret__, 'displayName'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        open=_utilities.get_dict_value(__ret__, 'open'),
+        project_ids=_utilities.get_dict_value(__ret__, 'projectIds'))

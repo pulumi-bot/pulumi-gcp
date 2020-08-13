@@ -5,17 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['GlobalForwardingRule']
 
 
 class GlobalForwardingRule(pulumi.CustomResource):
-    description: pulumi.Output[str]
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     An optional description of this resource. Provide this property when
     you create the resource.
     """
-    ip_address: pulumi.Output[str]
+
+    ip_address: pulumi.Output[str] = pulumi.property("ipAddress")
     """
     The IP address that this forwarding rule is serving on behalf of.
     Addresses are restricted based on the forwarding rule's load balancing
@@ -38,26 +43,31 @@ class GlobalForwardingRule(pulumi.CustomResource):
     avoid needing to fetching the IP address from resource paths on refresh
     or unnecessary diffs.
     """
-    ip_protocol: pulumi.Output[str]
+
+    ip_protocol: pulumi.Output[str] = pulumi.property("ipProtocol")
     """
     The IP protocol to which this rule applies. When the load balancing scheme is
     INTERNAL_SELF_MANAGED, only TCP is valid.
     Possible values are `TCP`, `UDP`, `ESP`, `AH`, `SCTP`, and `ICMP`.
     """
-    ip_version: pulumi.Output[str]
+
+    ip_version: pulumi.Output[Optional[str]] = pulumi.property("ipVersion")
     """
     The IP Version that will be used by this global forwarding rule.
     Possible values are `IPV4` and `IPV6`.
     """
-    label_fingerprint: pulumi.Output[str]
+
+    label_fingerprint: pulumi.Output[str] = pulumi.property("labelFingerprint")
     """
     The fingerprint used for optimistic locking of this resource. Used internally during updates.
     """
-    labels: pulumi.Output[dict]
+
+    labels: pulumi.Output[Optional[Mapping[str, str]]] = pulumi.property("labels")
     """
     Labels to apply to this forwarding rule.  A list of key->value pairs.
     """
-    load_balancing_scheme: pulumi.Output[str]
+
+    load_balancing_scheme: pulumi.Output[Optional[str]] = pulumi.property("loadBalancingScheme")
     """
     This signifies what the GlobalForwardingRule will be used for.
     The value of INTERNAL_SELF_MANAGED means that this will be used for
@@ -69,7 +79,8 @@ class GlobalForwardingRule(pulumi.CustomResource):
     Default value is `EXTERNAL`.
     Possible values are `EXTERNAL` and `INTERNAL_SELF_MANAGED`.
     """
-    metadata_filters: pulumi.Output[list]
+
+    metadata_filters: pulumi.Output[Optional[List['outputs.GlobalForwardingRuleMetadataFilter']]] = pulumi.property("metadataFilters")
     """
     Opaque filter criteria used by Loadbalancer to restrict routing
     configuration to a limited set xDS compliant clients. In their xDS
@@ -86,30 +97,15 @@ class GlobalForwardingRule(pulumi.CustomResource):
     metadataFilters only applies to Loadbalancers that have their
     loadBalancingScheme set to INTERNAL_SELF_MANAGED.
     Structure is documented below.
-
-      * `filterLabels` (`list`) - The list of label value pairs that must match labels in the
-        provided metadata based on filterMatchCriteria
-        This list must not be empty and can have at the most 64 entries.
-        Structure is documented below.
-        * `name` (`str`) - Name of the metadata label. The length must be between
-          1 and 1024 characters, inclusive.
-        * `value` (`str`) - The value that the label must match. The value has a maximum
-          length of 1024 characters.
-
-      * `filterMatchCriteria` (`str`) - Specifies how individual filterLabel matches within the list of
-        filterLabels contribute towards the overall metadataFilter match.
-        MATCH_ANY - At least one of the filterLabels must have a matching
-        label in the provided metadata.
-        MATCH_ALL - All filterLabels must have matching labels in the
-        provided metadata.
-        Possible values are `MATCH_ANY` and `MATCH_ALL`.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the metadata label. The length must be between
     1 and 1024 characters, inclusive.
     """
-    network: pulumi.Output[str]
+
+    network: pulumi.Output[str] = pulumi.property("network")
     """
     This field is not used for external load balancing.
     For INTERNAL_SELF_MANAGED load balancing, this field
@@ -117,7 +113,8 @@ class GlobalForwardingRule(pulumi.CustomResource):
     for this global forwarding rule. If this field is not specified,
     the default network will be used.
     """
-    port_range: pulumi.Output[str]
+
+    port_range: pulumi.Output[Optional[str]] = pulumi.property("portRange")
     """
     This field is used along with the target field for TargetHttpProxy,
     TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetVpnGateway,
@@ -136,23 +133,44 @@ class GlobalForwardingRule(pulumi.CustomResource):
     1883, 5222
     * TargetVpnGateway: 500, 4500
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    target: pulumi.Output[str]
+
+    target: pulumi.Output[str] = pulumi.property("target")
     """
     The URL of the target resource to receive the matched traffic.
     The forwarded traffic must be of a type appropriate to the target object.
     For INTERNAL_SELF_MANAGED load balancing, only HTTP and HTTPS targets
     are valid.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, ip_address=None, ip_protocol=None, ip_version=None, labels=None, load_balancing_scheme=None, metadata_filters=None, name=None, network=None, port_range=None, project=None, target=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 ip_address: Optional[pulumi.Input[str]] = None,
+                 ip_protocol: Optional[pulumi.Input[str]] = None,
+                 ip_version: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 load_balancing_scheme: Optional[pulumi.Input[str]] = None,
+                 metadata_filters: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['GlobalForwardingRuleMetadataFilterArgs']]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 network: Optional[pulumi.Input[str]] = None,
+                 port_range: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 target: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Represents a GlobalForwardingRule resource. Global forwarding rules are
         used to forward traffic to the correct load balancer for HTTP load
@@ -163,6 +181,125 @@ class GlobalForwardingRule(pulumi.CustomResource):
         https://cloud.google.com/compute/docs/load-balancing/http/
 
         ## Example Usage
+        ### Global Forwarding Rule Http
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_http_health_check = gcp.compute.HttpHealthCheck("defaultHttpHealthCheck",
+            request_path="/",
+            check_interval_sec=1,
+            timeout_sec=1)
+        default_backend_service = gcp.compute.BackendService("defaultBackendService",
+            port_name="http",
+            protocol="HTTP",
+            timeout_sec=10,
+            health_checks=[default_http_health_check.id])
+        default_url_map = gcp.compute.URLMap("defaultURLMap",
+            description="a description",
+            default_service=default_backend_service.id,
+            host_rules=[{
+                "hosts": ["mysite.com"],
+                "pathMatcher": "allpaths",
+            }],
+            path_matchers=[{
+                "name": "allpaths",
+                "default_service": default_backend_service.id,
+                "pathRules": [{
+                    "paths": ["/*"],
+                    "service": default_backend_service.id,
+                }],
+            }])
+        default_target_http_proxy = gcp.compute.TargetHttpProxy("defaultTargetHttpProxy",
+            description="a description",
+            url_map=default_url_map.id)
+        default_global_forwarding_rule = gcp.compute.GlobalForwardingRule("defaultGlobalForwardingRule",
+            target=default_target_http_proxy.id,
+            port_range="80")
+        ```
+        ### Global Forwarding Rule Internal
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        debian_image = gcp.compute.get_image(family="debian-9",
+            project="debian-cloud")
+        instance_template = gcp.compute.InstanceTemplate("instanceTemplate",
+            machine_type="n1-standard-1",
+            network_interfaces=[{
+                "network": "default",
+            }],
+            disks=[{
+                "sourceImage": debian_image.self_link,
+                "autoDelete": True,
+                "boot": True,
+            }],
+            opts=ResourceOptions(provider=google_beta))
+        igm = gcp.compute.InstanceGroupManager("igm",
+            versions=[{
+                "instanceTemplate": instance_template.id,
+                "name": "primary",
+            }],
+            base_instance_name="internal-glb",
+            zone="us-central1-f",
+            target_size=1,
+            opts=ResourceOptions(provider=google_beta))
+        default_health_check = gcp.compute.HealthCheck("defaultHealthCheck",
+            check_interval_sec=1,
+            timeout_sec=1,
+            tcp_health_check={
+                "port": 80,
+            },
+            opts=ResourceOptions(provider=google_beta))
+        default_backend_service = gcp.compute.BackendService("defaultBackendService",
+            port_name="http",
+            protocol="HTTP",
+            timeout_sec=10,
+            load_balancing_scheme="INTERNAL_SELF_MANAGED",
+            backends=[{
+                "group": igm.instance_group,
+                "balancingMode": "RATE",
+                "capacityScaler": 0.4,
+                "maxRatePerInstance": 50,
+            }],
+            health_checks=[default_health_check.id],
+            opts=ResourceOptions(provider=google_beta))
+        default_url_map = gcp.compute.URLMap("defaultURLMap",
+            description="a description",
+            default_service=default_backend_service.id,
+            host_rules=[{
+                "hosts": ["mysite.com"],
+                "pathMatcher": "allpaths",
+            }],
+            path_matchers=[{
+                "name": "allpaths",
+                "default_service": default_backend_service.id,
+                "pathRules": [{
+                    "paths": ["/*"],
+                    "service": default_backend_service.id,
+                }],
+            }],
+            opts=ResourceOptions(provider=google_beta))
+        default_target_http_proxy = gcp.compute.TargetHttpProxy("defaultTargetHttpProxy",
+            description="a description",
+            url_map=default_url_map.id,
+            opts=ResourceOptions(provider=google_beta))
+        default_global_forwarding_rule = gcp.compute.GlobalForwardingRule("defaultGlobalForwardingRule",
+            target=default_target_http_proxy.id,
+            port_range="80",
+            load_balancing_scheme="INTERNAL_SELF_MANAGED",
+            ip_address="0.0.0.0",
+            metadata_filters=[{
+                "filterMatchCriteria": "MATCH_ANY",
+                "filterLabels": [{
+                    "name": "PLANET",
+                    "value": "MARS",
+                }],
+            }],
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -193,7 +330,7 @@ class GlobalForwardingRule(pulumi.CustomResource):
                Possible values are `TCP`, `UDP`, `ESP`, `AH`, `SCTP`, and `ICMP`.
         :param pulumi.Input[str] ip_version: The IP Version that will be used by this global forwarding rule.
                Possible values are `IPV4` and `IPV6`.
-        :param pulumi.Input[dict] labels: Labels to apply to this forwarding rule.  A list of key->value pairs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this forwarding rule.  A list of key->value pairs.
         :param pulumi.Input[str] load_balancing_scheme: This signifies what the GlobalForwardingRule will be used for.
                The value of INTERNAL_SELF_MANAGED means that this will be used for
                Internal Global HTTP(S) LB. The value of EXTERNAL means that this
@@ -203,7 +340,7 @@ class GlobalForwardingRule(pulumi.CustomResource):
                load balancing.
                Default value is `EXTERNAL`.
                Possible values are `EXTERNAL` and `INTERNAL_SELF_MANAGED`.
-        :param pulumi.Input[list] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['GlobalForwardingRuleMetadataFilterArgs']]]] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing
                configuration to a limited set xDS compliant clients. In their xDS
                requests to Loadbalancer, xDS clients present node metadata. If a
                match takes place, the relevant routing configuration is made available
@@ -247,25 +384,6 @@ class GlobalForwardingRule(pulumi.CustomResource):
                The forwarded traffic must be of a type appropriate to the target object.
                For INTERNAL_SELF_MANAGED load balancing, only HTTP and HTTPS targets
                are valid.
-
-        The **metadata_filters** object supports the following:
-
-          * `filterLabels` (`pulumi.Input[list]`) - The list of label value pairs that must match labels in the
-            provided metadata based on filterMatchCriteria
-            This list must not be empty and can have at the most 64 entries.
-            Structure is documented below.
-            * `name` (`pulumi.Input[str]`) - Name of the metadata label. The length must be between
-              1 and 1024 characters, inclusive.
-            * `value` (`pulumi.Input[str]`) - The value that the label must match. The value has a maximum
-              length of 1024 characters.
-
-          * `filterMatchCriteria` (`pulumi.Input[str]`) - Specifies how individual filterLabel matches within the list of
-            filterLabels contribute towards the overall metadataFilter match.
-            MATCH_ANY - At least one of the filterLabels must have a matching
-            label in the provided metadata.
-            MATCH_ALL - All filterLabels must have matching labels in the
-            provided metadata.
-            Possible values are `MATCH_ANY` and `MATCH_ALL`.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -278,7 +396,7 @@ class GlobalForwardingRule(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -307,7 +425,23 @@ class GlobalForwardingRule(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, description=None, ip_address=None, ip_protocol=None, ip_version=None, label_fingerprint=None, labels=None, load_balancing_scheme=None, metadata_filters=None, name=None, network=None, port_range=None, project=None, self_link=None, target=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            ip_address: Optional[pulumi.Input[str]] = None,
+            ip_protocol: Optional[pulumi.Input[str]] = None,
+            ip_version: Optional[pulumi.Input[str]] = None,
+            label_fingerprint: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            load_balancing_scheme: Optional[pulumi.Input[str]] = None,
+            metadata_filters: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['GlobalForwardingRuleMetadataFilterArgs']]]]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            network: Optional[pulumi.Input[str]] = None,
+            port_range: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            target: Optional[pulumi.Input[str]] = None) -> 'GlobalForwardingRule':
         """
         Get an existing GlobalForwardingRule resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -343,7 +477,7 @@ class GlobalForwardingRule(pulumi.CustomResource):
         :param pulumi.Input[str] ip_version: The IP Version that will be used by this global forwarding rule.
                Possible values are `IPV4` and `IPV6`.
         :param pulumi.Input[str] label_fingerprint: The fingerprint used for optimistic locking of this resource. Used internally during updates.
-        :param pulumi.Input[dict] labels: Labels to apply to this forwarding rule.  A list of key->value pairs.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this forwarding rule.  A list of key->value pairs.
         :param pulumi.Input[str] load_balancing_scheme: This signifies what the GlobalForwardingRule will be used for.
                The value of INTERNAL_SELF_MANAGED means that this will be used for
                Internal Global HTTP(S) LB. The value of EXTERNAL means that this
@@ -353,7 +487,7 @@ class GlobalForwardingRule(pulumi.CustomResource):
                load balancing.
                Default value is `EXTERNAL`.
                Possible values are `EXTERNAL` and `INTERNAL_SELF_MANAGED`.
-        :param pulumi.Input[list] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['GlobalForwardingRuleMetadataFilterArgs']]]] metadata_filters: Opaque filter criteria used by Loadbalancer to restrict routing
                configuration to a limited set xDS compliant clients. In their xDS
                requests to Loadbalancer, xDS clients present node metadata. If a
                match takes place, the relevant routing configuration is made available
@@ -398,25 +532,6 @@ class GlobalForwardingRule(pulumi.CustomResource):
                The forwarded traffic must be of a type appropriate to the target object.
                For INTERNAL_SELF_MANAGED load balancing, only HTTP and HTTPS targets
                are valid.
-
-        The **metadata_filters** object supports the following:
-
-          * `filterLabels` (`pulumi.Input[list]`) - The list of label value pairs that must match labels in the
-            provided metadata based on filterMatchCriteria
-            This list must not be empty and can have at the most 64 entries.
-            Structure is documented below.
-            * `name` (`pulumi.Input[str]`) - Name of the metadata label. The length must be between
-              1 and 1024 characters, inclusive.
-            * `value` (`pulumi.Input[str]`) - The value that the label must match. The value has a maximum
-              length of 1024 characters.
-
-          * `filterMatchCriteria` (`pulumi.Input[str]`) - Specifies how individual filterLabel matches within the list of
-            filterLabels contribute towards the overall metadataFilter match.
-            MATCH_ANY - At least one of the filterLabels must have a matching
-            label in the provided metadata.
-            MATCH_ALL - All filterLabels must have matching labels in the
-            provided metadata.
-            Possible values are `MATCH_ANY` and `MATCH_ALL`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -439,7 +554,8 @@ class GlobalForwardingRule(pulumi.CustomResource):
         return GlobalForwardingRule(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

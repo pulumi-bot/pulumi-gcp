@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetObjectSignedUrlResult',
+    'AwaitableGetObjectSignedUrlResult',
+    'get_object_signed_url',
+]
+
+
+@pulumi.output_type
+class _GetObjectSignedUrlResult(dict):
+    bucket: str = pulumi.property("bucket")
+    content_md5: Optional[str] = pulumi.property("contentMd5")
+    content_type: Optional[str] = pulumi.property("contentType")
+    credentials: Optional[str] = pulumi.property("credentials")
+    duration: Optional[str] = pulumi.property("duration")
+    extension_headers: Optional[Mapping[str, str]] = pulumi.property("extensionHeaders")
+    http_method: Optional[str] = pulumi.property("httpMethod")
+    id: str = pulumi.property("id")
+    path: str = pulumi.property("path")
+    signed_url: str = pulumi.property("signedUrl")
+
 
 class GetObjectSignedUrlResult:
     """
@@ -49,6 +70,8 @@ class GetObjectSignedUrlResult:
         """
         The signed URL that can be used to access the storage object without authentication.
         """
+
+
 class AwaitableGetObjectSignedUrlResult(GetObjectSignedUrlResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -66,11 +89,47 @@ class AwaitableGetObjectSignedUrlResult(GetObjectSignedUrlResult):
             path=self.path,
             signed_url=self.signed_url)
 
-def get_object_signed_url(bucket=None,content_md5=None,content_type=None,credentials=None,duration=None,extension_headers=None,http_method=None,path=None,opts=None):
+
+def get_object_signed_url(bucket: Optional[str] = None,
+                          content_md5: Optional[str] = None,
+                          content_type: Optional[str] = None,
+                          credentials: Optional[str] = None,
+                          duration: Optional[str] = None,
+                          extension_headers: Optional[Mapping[str, str]] = None,
+                          http_method: Optional[str] = None,
+                          path: Optional[str] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetObjectSignedUrlResult:
     """
     The Google Cloud storage signed URL data source generates a signed URL for a given storage object. Signed URLs provide a way to give time-limited read or write access to anyone in possession of the URL, regardless of whether they have a Google account.
 
     For more info about signed URL's is available [here](https://cloud.google.com/storage/docs/access-control/signed-urls).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    artifact = gcp.storage.get_object_signed_url(bucket="install_binaries",
+        path="path/to/install_file.bin")
+    vm = gcp.compute.Instance("vm")
+    ```
+    ## Full Example
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    get_url = gcp.storage.get_object_signed_url(bucket="fried_chicken",
+        path="path/to/file",
+        content_md5="pRviqwS4c4OTJRTe03FD1w==",
+        content_type="text/plain",
+        duration="2d",
+        credentials=(lambda path: open(path).read())("path/to/credentials.json"),
+        extension_headers={
+            "x-goog-if-generation-match": "1",
+        })
+    ```
 
 
     :param str bucket: The name of the bucket to read the object from
@@ -82,14 +141,12 @@ def get_object_signed_url(bucket=None,content_md5=None,content_type=None,credent
            This data source checks the following locations for credentials, in order of preference: data source `credentials` attribute, provider `credentials` attribute and finally the GOOGLE_APPLICATION_CREDENTIALS environment variable.
     :param str duration: For how long shall the signed URL be valid (defaults to 1 hour - i.e. `1h`).
            See [here](https://golang.org/pkg/time/#ParseDuration) for info on valid duration formats.
-    :param dict extension_headers: As needed. The server checks to make sure that the client provides matching values in requests using the signed URL.
+    :param Mapping[str, str] extension_headers: As needed. The server checks to make sure that the client provides matching values in requests using the signed URL.
            Any header starting with `x-goog-` is accepted but see the [Google Docs](https://cloud.google.com/storage/docs/xml-api/reference-headers) for list of headers that are supported by Google.
     :param str http_method: What HTTP Method will the signed URL allow (defaults to `GET`)
     :param str path: The full path to the object inside the bucket
     """
     __args__ = dict()
-
-
     __args__['bucket'] = bucket
     __args__['contentMd5'] = content_md5
     __args__['contentType'] = content_type
@@ -101,17 +158,17 @@ def get_object_signed_url(bucket=None,content_md5=None,content_type=None,credent
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:storage/getObjectSignedUrl:getObjectSignedUrl', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:storage/getObjectSignedUrl:getObjectSignedUrl', __args__, opts=opts, typ=_GetObjectSignedUrlResult).value
 
     return AwaitableGetObjectSignedUrlResult(
-        bucket=__ret__.get('bucket'),
-        content_md5=__ret__.get('contentMd5'),
-        content_type=__ret__.get('contentType'),
-        credentials=__ret__.get('credentials'),
-        duration=__ret__.get('duration'),
-        extension_headers=__ret__.get('extensionHeaders'),
-        http_method=__ret__.get('httpMethod'),
-        id=__ret__.get('id'),
-        path=__ret__.get('path'),
-        signed_url=__ret__.get('signedUrl'))
+        bucket=_utilities.get_dict_value(__ret__, 'bucket'),
+        content_md5=_utilities.get_dict_value(__ret__, 'contentMd5'),
+        content_type=_utilities.get_dict_value(__ret__, 'contentType'),
+        credentials=_utilities.get_dict_value(__ret__, 'credentials'),
+        duration=_utilities.get_dict_value(__ret__, 'duration'),
+        extension_headers=_utilities.get_dict_value(__ret__, 'extensionHeaders'),
+        http_method=_utilities.get_dict_value(__ret__, 'httpMethod'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        path=_utilities.get_dict_value(__ret__, 'path'),
+        signed_url=_utilities.get_dict_value(__ret__, 'signedUrl'))

@@ -5,8 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetDefaultServiceAccountResult',
+    'AwaitableGetDefaultServiceAccountResult',
+    'get_default_service_account',
+]
+
+
+@pulumi.output_type
+class _GetDefaultServiceAccountResult(dict):
+    email: str = pulumi.property("email")
+    id: str = pulumi.property("id")
+    project: str = pulumi.property("project")
+
 
 class GetDefaultServiceAccountResult:
     """
@@ -29,6 +43,8 @@ class GetDefaultServiceAccountResult:
         if project and not isinstance(project, str):
             raise TypeError("Expected argument 'project' to be a str")
         __self__.project = project
+
+
 class AwaitableGetDefaultServiceAccountResult(GetDefaultServiceAccountResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -39,7 +55,9 @@ class AwaitableGetDefaultServiceAccountResult(GetDefaultServiceAccountResult):
             id=self.id,
             project=self.project)
 
-def get_default_service_account(project=None,opts=None):
+
+def get_default_service_account(project: Optional[str] = None,
+                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDefaultServiceAccountResult:
     """
     Get the email address of a project's unique BigQuery service account.
 
@@ -51,20 +69,31 @@ def get_default_service_account(project=None,opts=None):
     For more information see
     [the API reference](https://cloud.google.com/bigquery/docs/reference/rest/v2/projects/getServiceAccount).
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    bq_sa = gcp.bigquery.get_default_service_account()
+    key_sa_user = gcp.kms.CryptoKeyIAMMember("keySaUser",
+        crypto_key_id=google_kms_crypto_key["key"]["id"],
+        role="roles/cloudkms.cryptoKeyEncrypterDecrypter",
+        member=f"serviceAccount:{bq_sa.email}")
+    ```
+
 
     :param str project: The project the unique service account was created for. If it is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:bigquery/getDefaultServiceAccount:getDefaultServiceAccount', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:bigquery/getDefaultServiceAccount:getDefaultServiceAccount', __args__, opts=opts, typ=_GetDefaultServiceAccountResult).value
 
     return AwaitableGetDefaultServiceAccountResult(
-        email=__ret__.get('email'),
-        id=__ret__.get('id'),
-        project=__ret__.get('project'))
+        email=_utilities.get_dict_value(__ret__, 'email'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        project=_utilities.get_dict_value(__ret__, 'project'))

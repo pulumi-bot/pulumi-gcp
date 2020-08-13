@@ -5,8 +5,53 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetInstanceResult',
+    'AwaitableGetInstanceResult',
+    'get_instance',
+]
+
+
+@pulumi.output_type
+class _GetInstanceResult(dict):
+    allow_stopping_for_update: bool = pulumi.property("allowStoppingForUpdate")
+    attached_disks: List['outputs.GetInstanceAttachedDiskResult'] = pulumi.property("attachedDisks")
+    boot_disks: List['outputs.GetInstanceBootDiskResult'] = pulumi.property("bootDisks")
+    can_ip_forward: bool = pulumi.property("canIpForward")
+    cpu_platform: str = pulumi.property("cpuPlatform")
+    current_status: str = pulumi.property("currentStatus")
+    deletion_protection: bool = pulumi.property("deletionProtection")
+    description: str = pulumi.property("description")
+    desired_status: str = pulumi.property("desiredStatus")
+    enable_display: bool = pulumi.property("enableDisplay")
+    guest_accelerators: List['outputs.GetInstanceGuestAcceleratorResult'] = pulumi.property("guestAccelerators")
+    hostname: str = pulumi.property("hostname")
+    id: str = pulumi.property("id")
+    instance_id: str = pulumi.property("instanceId")
+    label_fingerprint: str = pulumi.property("labelFingerprint")
+    labels: Mapping[str, str] = pulumi.property("labels")
+    machine_type: str = pulumi.property("machineType")
+    metadata: Mapping[str, str] = pulumi.property("metadata")
+    metadata_fingerprint: str = pulumi.property("metadataFingerprint")
+    metadata_startup_script: str = pulumi.property("metadataStartupScript")
+    min_cpu_platform: str = pulumi.property("minCpuPlatform")
+    name: Optional[str] = pulumi.property("name")
+    network_interfaces: List['outputs.GetInstanceNetworkInterfaceResult'] = pulumi.property("networkInterfaces")
+    project: Optional[str] = pulumi.property("project")
+    resource_policies: List[str] = pulumi.property("resourcePolicies")
+    schedulings: List['outputs.GetInstanceSchedulingResult'] = pulumi.property("schedulings")
+    scratch_disks: List['outputs.GetInstanceScratchDiskResult'] = pulumi.property("scratchDisks")
+    self_link: Optional[str] = pulumi.property("selfLink")
+    service_accounts: List['outputs.GetInstanceServiceAccountResult'] = pulumi.property("serviceAccounts")
+    shielded_instance_configs: List['outputs.GetInstanceShieldedInstanceConfigResult'] = pulumi.property("shieldedInstanceConfigs")
+    tags: List[str] = pulumi.property("tags")
+    tags_fingerprint: str = pulumi.property("tagsFingerprint")
+    zone: Optional[str] = pulumi.property("zone")
+
 
 class GetInstanceResult:
     """
@@ -181,6 +226,8 @@ class GetInstanceResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         __self__.zone = zone
+
+
 class AwaitableGetInstanceResult(GetInstanceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -221,12 +268,27 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             tags_fingerprint=self.tags_fingerprint,
             zone=self.zone)
 
-def get_instance(name=None,project=None,self_link=None,zone=None,opts=None):
+
+def get_instance(name: Optional[str] = None,
+                 project: Optional[str] = None,
+                 self_link: Optional[str] = None,
+                 zone: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceResult:
     """
     Get information about a VM instance resource within GCE. For more information see
     [the official documentation](https://cloud.google.com/compute/docs/instances)
     and
     [API](https://cloud.google.com/compute/docs/reference/latest/instances).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    appserver = gcp.compute.get_instance(name="primary-application-server",
+        zone="us-central1-a")
+    ```
 
 
     :param str name: The name of the instance. One of `name` or `self_link` must be provided.
@@ -239,8 +301,6 @@ def get_instance(name=None,project=None,self_link=None,zone=None,opts=None):
            provider zone is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['selfLink'] = self_link
@@ -248,40 +308,40 @@ def get_instance(name=None,project=None,self_link=None,zone=None,opts=None):
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getInstance:getInstance', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getInstance:getInstance', __args__, opts=opts, typ=_GetInstanceResult).value
 
     return AwaitableGetInstanceResult(
-        allow_stopping_for_update=__ret__.get('allowStoppingForUpdate'),
-        attached_disks=__ret__.get('attachedDisks'),
-        boot_disks=__ret__.get('bootDisks'),
-        can_ip_forward=__ret__.get('canIpForward'),
-        cpu_platform=__ret__.get('cpuPlatform'),
-        current_status=__ret__.get('currentStatus'),
-        deletion_protection=__ret__.get('deletionProtection'),
-        description=__ret__.get('description'),
-        desired_status=__ret__.get('desiredStatus'),
-        enable_display=__ret__.get('enableDisplay'),
-        guest_accelerators=__ret__.get('guestAccelerators'),
-        hostname=__ret__.get('hostname'),
-        id=__ret__.get('id'),
-        instance_id=__ret__.get('instanceId'),
-        label_fingerprint=__ret__.get('labelFingerprint'),
-        labels=__ret__.get('labels'),
-        machine_type=__ret__.get('machineType'),
-        metadata=__ret__.get('metadata'),
-        metadata_fingerprint=__ret__.get('metadataFingerprint'),
-        metadata_startup_script=__ret__.get('metadataStartupScript'),
-        min_cpu_platform=__ret__.get('minCpuPlatform'),
-        name=__ret__.get('name'),
-        network_interfaces=__ret__.get('networkInterfaces'),
-        project=__ret__.get('project'),
-        resource_policies=__ret__.get('resourcePolicies'),
-        schedulings=__ret__.get('schedulings'),
-        scratch_disks=__ret__.get('scratchDisks'),
-        self_link=__ret__.get('selfLink'),
-        service_accounts=__ret__.get('serviceAccounts'),
-        shielded_instance_configs=__ret__.get('shieldedInstanceConfigs'),
-        tags=__ret__.get('tags'),
-        tags_fingerprint=__ret__.get('tagsFingerprint'),
-        zone=__ret__.get('zone'))
+        allow_stopping_for_update=_utilities.get_dict_value(__ret__, 'allowStoppingForUpdate'),
+        attached_disks=_utilities.get_dict_value(__ret__, 'attachedDisks'),
+        boot_disks=_utilities.get_dict_value(__ret__, 'bootDisks'),
+        can_ip_forward=_utilities.get_dict_value(__ret__, 'canIpForward'),
+        cpu_platform=_utilities.get_dict_value(__ret__, 'cpuPlatform'),
+        current_status=_utilities.get_dict_value(__ret__, 'currentStatus'),
+        deletion_protection=_utilities.get_dict_value(__ret__, 'deletionProtection'),
+        description=_utilities.get_dict_value(__ret__, 'description'),
+        desired_status=_utilities.get_dict_value(__ret__, 'desiredStatus'),
+        enable_display=_utilities.get_dict_value(__ret__, 'enableDisplay'),
+        guest_accelerators=_utilities.get_dict_value(__ret__, 'guestAccelerators'),
+        hostname=_utilities.get_dict_value(__ret__, 'hostname'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        instance_id=_utilities.get_dict_value(__ret__, 'instanceId'),
+        label_fingerprint=_utilities.get_dict_value(__ret__, 'labelFingerprint'),
+        labels=_utilities.get_dict_value(__ret__, 'labels'),
+        machine_type=_utilities.get_dict_value(__ret__, 'machineType'),
+        metadata=_utilities.get_dict_value(__ret__, 'metadata'),
+        metadata_fingerprint=_utilities.get_dict_value(__ret__, 'metadataFingerprint'),
+        metadata_startup_script=_utilities.get_dict_value(__ret__, 'metadataStartupScript'),
+        min_cpu_platform=_utilities.get_dict_value(__ret__, 'minCpuPlatform'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        network_interfaces=_utilities.get_dict_value(__ret__, 'networkInterfaces'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        resource_policies=_utilities.get_dict_value(__ret__, 'resourcePolicies'),
+        schedulings=_utilities.get_dict_value(__ret__, 'schedulings'),
+        scratch_disks=_utilities.get_dict_value(__ret__, 'scratchDisks'),
+        self_link=_utilities.get_dict_value(__ret__, 'selfLink'),
+        service_accounts=_utilities.get_dict_value(__ret__, 'serviceAccounts'),
+        shielded_instance_configs=_utilities.get_dict_value(__ret__, 'shieldedInstanceConfigs'),
+        tags=_utilities.get_dict_value(__ret__, 'tags'),
+        tags_fingerprint=_utilities.get_dict_value(__ret__, 'tagsFingerprint'),
+        zone=_utilities.get_dict_value(__ret__, 'zone'))

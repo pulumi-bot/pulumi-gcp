@@ -5,8 +5,46 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetBackendServiceResult',
+    'AwaitableGetBackendServiceResult',
+    'get_backend_service',
+]
+
+
+@pulumi.output_type
+class _GetBackendServiceResult(dict):
+    affinity_cookie_ttl_sec: float = pulumi.property("affinityCookieTtlSec")
+    backends: List['outputs.GetBackendServiceBackendResult'] = pulumi.property("backends")
+    cdn_policies: List['outputs.GetBackendServiceCdnPolicyResult'] = pulumi.property("cdnPolicies")
+    circuit_breakers: List['outputs.GetBackendServiceCircuitBreakerResult'] = pulumi.property("circuitBreakers")
+    connection_draining_timeout_sec: float = pulumi.property("connectionDrainingTimeoutSec")
+    consistent_hash: List['outputs.GetBackendServiceConsistentHashResult'] = pulumi.property("consistentHash")
+    creation_timestamp: str = pulumi.property("creationTimestamp")
+    custom_request_headers: List[str] = pulumi.property("customRequestHeaders")
+    description: str = pulumi.property("description")
+    enable_cdn: bool = pulumi.property("enableCdn")
+    fingerprint: str = pulumi.property("fingerprint")
+    health_checks: List[str] = pulumi.property("healthChecks")
+    iaps: List['outputs.GetBackendServiceIapResult'] = pulumi.property("iaps")
+    id: str = pulumi.property("id")
+    load_balancing_scheme: str = pulumi.property("loadBalancingScheme")
+    locality_lb_policy: str = pulumi.property("localityLbPolicy")
+    log_configs: List['outputs.GetBackendServiceLogConfigResult'] = pulumi.property("logConfigs")
+    name: str = pulumi.property("name")
+    outlier_detections: List['outputs.GetBackendServiceOutlierDetectionResult'] = pulumi.property("outlierDetections")
+    port_name: str = pulumi.property("portName")
+    project: Optional[str] = pulumi.property("project")
+    protocol: str = pulumi.property("protocol")
+    security_policy: str = pulumi.property("securityPolicy")
+    self_link: str = pulumi.property("selfLink")
+    session_affinity: str = pulumi.property("sessionAffinity")
+    timeout_sec: float = pulumi.property("timeoutSec")
+
 
 class GetBackendServiceResult:
     """
@@ -127,6 +165,8 @@ class GetBackendServiceResult:
         """
         The number of seconds to wait for a backend to respond to a request before considering the request failed.
         """
+
+
 class AwaitableGetBackendServiceResult(GetBackendServiceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -160,7 +200,10 @@ class AwaitableGetBackendServiceResult(GetBackendServiceResult):
             session_affinity=self.session_affinity,
             timeout_sec=self.timeout_sec)
 
-def get_backend_service(name=None,project=None,opts=None):
+
+def get_backend_service(name: Optional[str] = None,
+                        project: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBackendServiceResult:
     """
     Provide access to a Backend Service's attribute. For more information
     see [the official documentation](https://cloud.google.com/compute/docs/load-balancing/http/backend-service)
@@ -171,40 +214,38 @@ def get_backend_service(name=None,project=None,opts=None):
     :param str project: The project in which the resource belongs. If it is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getBackendService:getBackendService', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getBackendService:getBackendService', __args__, opts=opts, typ=_GetBackendServiceResult).value
 
     return AwaitableGetBackendServiceResult(
-        affinity_cookie_ttl_sec=__ret__.get('affinityCookieTtlSec'),
-        backends=__ret__.get('backends'),
-        cdn_policies=__ret__.get('cdnPolicies'),
-        circuit_breakers=__ret__.get('circuitBreakers'),
-        connection_draining_timeout_sec=__ret__.get('connectionDrainingTimeoutSec'),
-        consistent_hash=__ret__.get('consistentHash'),
-        creation_timestamp=__ret__.get('creationTimestamp'),
-        custom_request_headers=__ret__.get('customRequestHeaders'),
-        description=__ret__.get('description'),
-        enable_cdn=__ret__.get('enableCdn'),
-        fingerprint=__ret__.get('fingerprint'),
-        health_checks=__ret__.get('healthChecks'),
-        iaps=__ret__.get('iaps'),
-        id=__ret__.get('id'),
-        load_balancing_scheme=__ret__.get('loadBalancingScheme'),
-        locality_lb_policy=__ret__.get('localityLbPolicy'),
-        log_configs=__ret__.get('logConfigs'),
-        name=__ret__.get('name'),
-        outlier_detections=__ret__.get('outlierDetections'),
-        port_name=__ret__.get('portName'),
-        project=__ret__.get('project'),
-        protocol=__ret__.get('protocol'),
-        security_policy=__ret__.get('securityPolicy'),
-        self_link=__ret__.get('selfLink'),
-        session_affinity=__ret__.get('sessionAffinity'),
-        timeout_sec=__ret__.get('timeoutSec'))
+        affinity_cookie_ttl_sec=_utilities.get_dict_value(__ret__, 'affinityCookieTtlSec'),
+        backends=_utilities.get_dict_value(__ret__, 'backends'),
+        cdn_policies=_utilities.get_dict_value(__ret__, 'cdnPolicies'),
+        circuit_breakers=_utilities.get_dict_value(__ret__, 'circuitBreakers'),
+        connection_draining_timeout_sec=_utilities.get_dict_value(__ret__, 'connectionDrainingTimeoutSec'),
+        consistent_hash=_utilities.get_dict_value(__ret__, 'consistentHash'),
+        creation_timestamp=_utilities.get_dict_value(__ret__, 'creationTimestamp'),
+        custom_request_headers=_utilities.get_dict_value(__ret__, 'customRequestHeaders'),
+        description=_utilities.get_dict_value(__ret__, 'description'),
+        enable_cdn=_utilities.get_dict_value(__ret__, 'enableCdn'),
+        fingerprint=_utilities.get_dict_value(__ret__, 'fingerprint'),
+        health_checks=_utilities.get_dict_value(__ret__, 'healthChecks'),
+        iaps=_utilities.get_dict_value(__ret__, 'iaps'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        load_balancing_scheme=_utilities.get_dict_value(__ret__, 'loadBalancingScheme'),
+        locality_lb_policy=_utilities.get_dict_value(__ret__, 'localityLbPolicy'),
+        log_configs=_utilities.get_dict_value(__ret__, 'logConfigs'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        outlier_detections=_utilities.get_dict_value(__ret__, 'outlierDetections'),
+        port_name=_utilities.get_dict_value(__ret__, 'portName'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        protocol=_utilities.get_dict_value(__ret__, 'protocol'),
+        security_policy=_utilities.get_dict_value(__ret__, 'securityPolicy'),
+        self_link=_utilities.get_dict_value(__ret__, 'selfLink'),
+        session_affinity=_utilities.get_dict_value(__ret__, 'sessionAffinity'),
+        timeout_sec=_utilities.get_dict_value(__ret__, 'timeoutSec'))

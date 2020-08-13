@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetCertificateResult',
+    'AwaitableGetCertificateResult',
+    'get_certificate',
+]
+
+
+@pulumi.output_type
+class _GetCertificateResult(dict):
+    certificate: str = pulumi.property("certificate")
+    certificate_id: float = pulumi.property("certificateId")
+    creation_timestamp: str = pulumi.property("creationTimestamp")
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    name_prefix: str = pulumi.property("namePrefix")
+    private_key: str = pulumi.property("privateKey")
+    project: Optional[str] = pulumi.property("project")
+    self_link: str = pulumi.property("selfLink")
+
 
 class GetCertificateResult:
     """
@@ -46,6 +67,8 @@ class GetCertificateResult:
         if self_link and not isinstance(self_link, str):
             raise TypeError("Expected argument 'self_link' to be a str")
         __self__.self_link = self_link
+
+
 class AwaitableGetCertificateResult(GetCertificateResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -63,9 +86,24 @@ class AwaitableGetCertificateResult(GetCertificateResult):
             project=self.project,
             self_link=self.self_link)
 
-def get_certificate(name=None,project=None,opts=None):
+
+def get_certificate(name: Optional[str] = None,
+                    project: Optional[str] = None,
+                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCertificateResult:
     """
     Get info about a Google Compute SSL Certificate from its name.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_cert = gcp.compute.get_certificate(name="my-cert")
+    pulumi.export("certificate", my_cert.certificate)
+    pulumi.export("certificateId", my_cert.certificate_id)
+    pulumi.export("selfLink", my_cert.self_link)
+    ```
 
 
     :param str name: The name of the certificate.
@@ -73,24 +111,22 @@ def get_certificate(name=None,project=None,opts=None):
            is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getCertificate:getCertificate', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getCertificate:getCertificate', __args__, opts=opts, typ=_GetCertificateResult).value
 
     return AwaitableGetCertificateResult(
-        certificate=__ret__.get('certificate'),
-        certificate_id=__ret__.get('certificateId'),
-        creation_timestamp=__ret__.get('creationTimestamp'),
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        name_prefix=__ret__.get('namePrefix'),
-        private_key=__ret__.get('privateKey'),
-        project=__ret__.get('project'),
-        self_link=__ret__.get('selfLink'))
+        certificate=_utilities.get_dict_value(__ret__, 'certificate'),
+        certificate_id=_utilities.get_dict_value(__ret__, 'certificateId'),
+        creation_timestamp=_utilities.get_dict_value(__ret__, 'creationTimestamp'),
+        description=_utilities.get_dict_value(__ret__, 'description'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        name_prefix=_utilities.get_dict_value(__ret__, 'namePrefix'),
+        private_key=_utilities.get_dict_value(__ret__, 'privateKey'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        self_link=_utilities.get_dict_value(__ret__, 'selfLink'))

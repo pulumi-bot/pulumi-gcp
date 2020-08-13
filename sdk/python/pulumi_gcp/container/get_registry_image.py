@@ -5,8 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetRegistryImageResult',
+    'AwaitableGetRegistryImageResult',
+    'get_registry_image',
+]
+
+
+@pulumi.output_type
+class _GetRegistryImageResult(dict):
+    digest: Optional[str] = pulumi.property("digest")
+    id: str = pulumi.property("id")
+    image_url: str = pulumi.property("imageUrl")
+    name: str = pulumi.property("name")
+    project: str = pulumi.property("project")
+    region: Optional[str] = pulumi.property("region")
+    tag: Optional[str] = pulumi.property("tag")
+
 
 class GetRegistryImageResult:
     """
@@ -37,6 +55,8 @@ class GetRegistryImageResult:
         if tag and not isinstance(tag, str):
             raise TypeError("Expected argument 'tag' to be a str")
         __self__.tag = tag
+
+
 class AwaitableGetRegistryImageResult(GetRegistryImageResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -51,15 +71,29 @@ class AwaitableGetRegistryImageResult(GetRegistryImageResult):
             region=self.region,
             tag=self.tag)
 
-def get_registry_image(digest=None,name=None,project=None,region=None,tag=None,opts=None):
+
+def get_registry_image(digest: Optional[str] = None,
+                       name: Optional[str] = None,
+                       project: Optional[str] = None,
+                       region: Optional[str] = None,
+                       tag: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegistryImageResult:
     """
     This data source fetches the project name, and provides the appropriate URLs to use for container registry for this project.
 
     The URLs are computed entirely offline - as long as the project exists, they will be valid, but this data source does not contact Google Container Registry (GCR) at any point.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    debian = gcp.container.get_registry_image(name="debian")
+    pulumi.export("gcrLocation", debian.image_url)
+    ```
     """
     __args__ = dict()
-
-
     __args__['digest'] = digest
     __args__['name'] = name
     __args__['project'] = project
@@ -68,14 +102,14 @@ def get_registry_image(digest=None,name=None,project=None,region=None,tag=None,o
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:container/getRegistryImage:getRegistryImage', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:container/getRegistryImage:getRegistryImage', __args__, opts=opts, typ=_GetRegistryImageResult).value
 
     return AwaitableGetRegistryImageResult(
-        digest=__ret__.get('digest'),
-        id=__ret__.get('id'),
-        image_url=__ret__.get('imageUrl'),
-        name=__ret__.get('name'),
-        project=__ret__.get('project'),
-        region=__ret__.get('region'),
-        tag=__ret__.get('tag'))
+        digest=_utilities.get_dict_value(__ret__, 'digest'),
+        id=_utilities.get_dict_value(__ret__, 'id'),
+        image_url=_utilities.get_dict_value(__ret__, 'imageUrl'),
+        name=_utilities.get_dict_value(__ret__, 'name'),
+        project=_utilities.get_dict_value(__ret__, 'project'),
+        region=_utilities.get_dict_value(__ret__, 'region'),
+        tag=_utilities.get_dict_value(__ret__, 'tag'))
