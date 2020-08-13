@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class UptimeCheckConfig(pulumi.CustomResource):
@@ -112,6 +112,79 @@ class UptimeCheckConfig(pulumi.CustomResource):
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
         ## Example Usage
+        ### Uptime Check Config Http
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        http = gcp.monitoring.UptimeCheckConfig("http",
+            content_matchers=[{
+                "content": "example",
+            }],
+            display_name="http-uptime-check",
+            http_check={
+                "body": "Zm9vJTI1M0RiYXI=",
+                "content_type": "URL_ENCODED",
+                "path": "/some-path",
+                "port": 8010,
+                "requestMethod": "POST",
+            },
+            monitored_resource={
+                "labels": {
+                    "host": "192.168.1.1",
+                    "project_id": "my-project-name",
+                },
+                "type": "uptime_url",
+            },
+            timeout="60s")
+        ```
+        ### Uptime Check Config Https
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        https = gcp.monitoring.UptimeCheckConfig("https",
+            content_matchers=[{
+                "content": "example",
+            }],
+            display_name="https-uptime-check",
+            http_check={
+                "path": "/some-path",
+                "port": 443,
+                "useSsl": True,
+                "validateSsl": True,
+            },
+            monitored_resource={
+                "labels": {
+                    "host": "192.168.1.1",
+                    "project_id": "my-project-name",
+                },
+                "type": "uptime_url",
+            },
+            timeout="60s")
+        ```
+        ### Uptime Check Tcp
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        check = gcp.monitoring.Group("check",
+            display_name="uptime-check-group",
+            filter="resource.metadata.name=has_substring(\"foo\")")
+        tcp_group = gcp.monitoring.UptimeCheckConfig("tcpGroup",
+            display_name="tcp-uptime-check",
+            timeout="60s",
+            tcp_check={
+                "port": 888,
+            },
+            resource_group={
+                "resourceType": "INSTANCE",
+                "groupId": check.name,
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -186,7 +259,7 @@ class UptimeCheckConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -305,7 +378,7 @@ class UptimeCheckConfig(pulumi.CustomResource):
         return UptimeCheckConfig(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

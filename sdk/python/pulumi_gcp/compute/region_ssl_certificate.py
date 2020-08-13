@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class RegionSslCertificate(pulumi.CustomResource):
@@ -79,6 +79,70 @@ class RegionSslCertificate(pulumi.CustomResource):
         state as plain-text. [Read more about secrets in state](https://www.pulumi.com/docs/intro/concepts/programming-model/#secrets).
 
         ## Example Usage
+        ### Region Ssl Certificate Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default = gcp.compute.RegionSslCertificate("default",
+            region="us-central1",
+            name_prefix="my-certificate-",
+            description="a description",
+            private_key=(lambda path: open(path).read())("path/to/private.key"),
+            certificate=(lambda path: open(path).read())("path/to/certificate.crt"))
+        ```
+        ### Region Ssl Certificate Target Https Proxies
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        # Using with Region Target HTTPS Proxies
+        #
+        # SSL certificates cannot be updated after creation. In order to apply
+        # the specified configuration, the provider will destroy the existing
+        # resource and create a replacement. To effectively use an SSL
+        # certificate resource with a Target HTTPS Proxy resource, it's
+        # recommended to specify create_before_destroy in a lifecycle block.
+        # Either omit the Instance Template name attribute, specify a partial
+        # name with name_prefix, or use random_id resource. Example:
+        default_region_ssl_certificate = gcp.compute.RegionSslCertificate("defaultRegionSslCertificate",
+            region="us-central1",
+            name_prefix="my-certificate-",
+            private_key=(lambda path: open(path).read())("path/to/private.key"),
+            certificate=(lambda path: open(path).read())("path/to/certificate.crt"))
+        default_region_health_check = gcp.compute.RegionHealthCheck("defaultRegionHealthCheck",
+            region="us-central1",
+            http_health_check={
+                "port": 80,
+            })
+        default_region_backend_service = gcp.compute.RegionBackendService("defaultRegionBackendService",
+            region="us-central1",
+            protocol="HTTP",
+            timeout_sec=10,
+            health_checks=[default_region_health_check.id])
+        default_region_url_map = gcp.compute.RegionUrlMap("defaultRegionUrlMap",
+            region="us-central1",
+            description="a description",
+            default_service=default_region_backend_service.id,
+            host_rules=[{
+                "hosts": ["mysite.com"],
+                "pathMatcher": "allpaths",
+            }],
+            path_matchers=[{
+                "name": "allpaths",
+                "default_service": default_region_backend_service.id,
+                "pathRules": [{
+                    "paths": ["/*"],
+                    "service": default_region_backend_service.id,
+                }],
+            }])
+        default_region_target_https_proxy = gcp.compute.RegionTargetHttpsProxy("defaultRegionTargetHttpsProxy",
+            region="us-central1",
+            url_map=default_region_url_map.id,
+            ssl_certificates=[default_region_ssl_certificate.id])
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -114,7 +178,7 @@ class RegionSslCertificate(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -190,7 +254,7 @@ class RegionSslCertificate(pulumi.CustomResource):
         return RegionSslCertificate(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

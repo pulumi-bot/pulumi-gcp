@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Subnetwork(pulumi.CustomResource):
@@ -162,6 +162,55 @@ class Subnetwork(pulumi.CustomResource):
             * [Cloud Networking](https://cloud.google.com/vpc/docs/using-vpc)
 
         ## Example Usage
+        ### Subnetwork Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        custom_test = gcp.compute.Network("custom-test", auto_create_subnetworks=False)
+        network_with_private_secondary_ip_ranges = gcp.compute.Subnetwork("network-with-private-secondary-ip-ranges",
+            ip_cidr_range="10.2.0.0/16",
+            region="us-central1",
+            network=custom_test.id,
+            secondary_ip_ranges=[{
+                "rangeName": "tf-test-secondary-range-update1",
+                "ip_cidr_range": "192.168.10.0/24",
+            }])
+        ```
+        ### Subnetwork Logging Config
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        custom_test = gcp.compute.Network("custom-test", auto_create_subnetworks=False)
+        subnet_with_logging = gcp.compute.Subnetwork("subnet-with-logging",
+            ip_cidr_range="10.2.0.0/16",
+            region="us-central1",
+            network=custom_test.id,
+            log_config={
+                "aggregationInterval": "INTERVAL_10_MIN",
+                "flowSampling": 0.5,
+                "metadata": "INCLUDE_ALL_METADATA",
+            })
+        ```
+        ### Subnetwork Internal L7lb
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        custom_test = gcp.compute.Network("custom-test", auto_create_subnetworks=False,
+        opts=ResourceOptions(provider=google_beta))
+        network_for_l7lb = gcp.compute.Subnetwork("network-for-l7lb",
+            ip_cidr_range="10.0.0.0/22",
+            region="us-central1",
+            purpose="INTERNAL_HTTPS_LOAD_BALANCER",
+            role="ACTIVE",
+            network=custom_test.id,
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -251,7 +300,7 @@ class Subnetwork(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -392,7 +441,7 @@ class Subnetwork(pulumi.CustomResource):
         return Subnetwork(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

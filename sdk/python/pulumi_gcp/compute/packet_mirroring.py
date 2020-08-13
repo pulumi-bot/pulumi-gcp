@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class PacketMirroring(pulumi.CustomResource):
@@ -90,6 +90,69 @@ class PacketMirroring(pulumi.CustomResource):
             * [Using Packet Mirroring](https://cloud.google.com/vpc/docs/using-packet-mirroring#creating)
 
         ## Example Usage
+        ### Compute Packet Mirroring Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        default_network = gcp.compute.Network("defaultNetwork", opts=ResourceOptions(provider=google_beta))
+        mirror = gcp.compute.Instance("mirror",
+            machine_type="n1-standard-1",
+            boot_disk={
+                "initializeParams": {
+                    "image": "debian-cloud/debian-9",
+                },
+            },
+            network_interfaces=[{
+                "network": default_network.id,
+                "accessConfigs": [{}],
+            }],
+            opts=ResourceOptions(provider=google_beta))
+        default_subnetwork = gcp.compute.Subnetwork("defaultSubnetwork",
+            network=default_network.id,
+            ip_cidr_range="10.2.0.0/16",
+            opts=ResourceOptions(provider=google_beta))
+        default_health_check = gcp.compute.HealthCheck("defaultHealthCheck",
+            check_interval_sec=1,
+            timeout_sec=1,
+            tcp_health_check={
+                "port": 80,
+            },
+            opts=ResourceOptions(provider=google_beta))
+        default_region_backend_service = gcp.compute.RegionBackendService("defaultRegionBackendService", health_checks=[default_health_check.id],
+        opts=ResourceOptions(provider=google_beta))
+        default_forwarding_rule = gcp.compute.ForwardingRule("defaultForwardingRule",
+            is_mirroring_collector=True,
+            ip_protocol="TCP",
+            load_balancing_scheme="INTERNAL",
+            backend_service=default_region_backend_service.id,
+            all_ports=True,
+            network=default_network.id,
+            subnetwork=default_subnetwork.id,
+            network_tier="PREMIUM",
+            opts=ResourceOptions(provider=google_beta,
+                depends_on=[default_subnetwork]))
+        foobar = gcp.compute.PacketMirroring("foobar",
+            description="bar",
+            network={
+                "url": default_network.id,
+            },
+            collector_ilb={
+                "url": default_forwarding_rule.id,
+            },
+            mirrored_resources={
+                "tags": ["foo"],
+                "instances": [{
+                    "url": mirror.id,
+                }],
+            },
+            filter={
+                "ipProtocols": ["tcp"],
+                "cidrRanges": ["0.0.0.0/0"],
+            },
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -153,7 +216,7 @@ class PacketMirroring(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -254,7 +317,7 @@ class PacketMirroring(pulumi.CustomResource):
         return PacketMirroring(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

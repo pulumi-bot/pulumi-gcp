@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Device(pulumi.CustomResource):
@@ -122,6 +122,39 @@ class Device(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/iot/docs/)
 
         ## Example Usage
+        ### Cloudiot Device Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        registry = gcp.iot.Registry("registry")
+        test_device = gcp.iot.Device("test-device", registry=registry.id)
+        ```
+        ### Cloudiot Device Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        registry = gcp.iot.Registry("registry")
+        test_device = gcp.iot.Device("test-device",
+            registry=registry.id,
+            credentials=[{
+                "public_key": {
+                    "format": "RSA_PEM",
+                    "key": (lambda path: open(path).read())("test-fixtures/rsa_public.pem"),
+                },
+            }],
+            blocked=False,
+            log_level="INFO",
+            metadata={
+                "test_key_1": "test_value_1",
+            },
+            gateway_config={
+                "gatewayType": "NON_GATEWAY",
+            })
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -168,7 +201,7 @@ class Device(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -293,7 +326,7 @@ class Device(pulumi.CustomResource):
         return Device(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

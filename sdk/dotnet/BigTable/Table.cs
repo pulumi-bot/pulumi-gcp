@@ -13,6 +13,44 @@ namespace Pulumi.Gcp.BigTable
     /// Creates a Google Cloud Bigtable table inside an instance. For more information see
     /// [the official documentation](https://cloud.google.com/bigtable/) and
     /// [API](https://cloud.google.com/bigtable/docs/go/reference).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var instance = new Gcp.BigTable.Instance("instance", new Gcp.BigTable.InstanceArgs
+    ///         {
+    ///             Clusters = 
+    ///             {
+    ///                 new Gcp.BigTable.Inputs.InstanceClusterArgs
+    ///                 {
+    ///                     ClusterId = "tf-instance-cluster",
+    ///                     Zone = "us-central1-b",
+    ///                     NumNodes = 3,
+    ///                     StorageType = "HDD",
+    ///                 },
+    ///             },
+    ///         });
+    ///         var table = new Gcp.BigTable.Table("table", new Gcp.BigTable.TableArgs
+    ///         {
+    ///             InstanceName = instance.Name,
+    ///             SplitKeys = 
+    ///             {
+    ///                 "a",
+    ///                 "b",
+    ///                 "c",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Table : Pulumi.CustomResource
     {

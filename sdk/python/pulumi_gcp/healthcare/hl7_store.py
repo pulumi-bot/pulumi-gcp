@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Hl7Store(pulumi.CustomResource):
@@ -95,6 +95,118 @@ class Hl7Store(pulumi.CustomResource):
             * [Creating a HL7v2 Store](https://cloud.google.com/healthcare/docs/how-tos/hl7v2)
 
         ## Example Usage
+        ### Healthcare Hl7 V2 Store Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        topic = gcp.pubsub.Topic("topic")
+        dataset = gcp.healthcare.Dataset("dataset", location="us-central1")
+        default = gcp.healthcare.Hl7Store("default",
+            dataset=dataset.id,
+            notification_configs=[{
+                "pubsubTopic": topic.id,
+            }],
+            labels={
+                "label1": "labelvalue1",
+            })
+        ```
+        ### Healthcare Hl7 V2 Store Parser Config
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        dataset = gcp.healthcare.Dataset("dataset", location="us-central1",
+        opts=ResourceOptions(provider=google_beta))
+        default = gcp.healthcare.Hl7Store("default",
+            dataset=dataset.id,
+            parser_config={
+                "allowNullHeader": False,
+                "segmentTerminator": "Jw==",
+                "schema": \"\"\"{
+          "schemas": [{
+            "messageSchemaConfigs": {
+              "ADT_A01": {
+                "name": "ADT_A01",
+                "minOccurs": 1,
+                "maxOccurs": 1,
+                "members": [{
+                    "segment": {
+                      "type": "MSH",
+                      "minOccurs": 1,
+                      "maxOccurs": 1
+                    }
+                  },
+                  {
+                    "segment": {
+                      "type": "EVN",
+                      "minOccurs": 1,
+                      "maxOccurs": 1
+                    }
+                  },
+                  {
+                    "segment": {
+                      "type": "PID",
+                      "minOccurs": 1,
+                      "maxOccurs": 1
+                    }
+                  },
+                  {
+                    "segment": {
+                      "type": "ZPD",
+                      "minOccurs": 1,
+                      "maxOccurs": 1
+                    }
+                  },
+                  {
+                    "segment": {
+                      "type": "OBX"
+                    }
+                  },
+                  {
+                    "group": {
+                      "name": "PROCEDURE",
+                      "members": [{
+                          "segment": {
+                            "type": "PR1",
+                            "minOccurs": 1,
+                            "maxOccurs": 1
+                          }
+                        },
+                        {
+                          "segment": {
+                            "type": "ROL"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "segment": {
+                      "type": "PDA",
+                      "maxOccurs": 1
+                    }
+                  }
+                ]
+              }
+            }
+          }],
+          "types": [{
+            "type": [{
+                "name": "ZPD",
+                "primitive": "VARIES"
+              }
+
+            ]
+          }],
+          "ignoreMinOccurs": true
+        }
+        \"\"\",
+            },
+            opts=ResourceOptions(provider=google_beta))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -167,7 +279,7 @@ class Hl7Store(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -273,7 +385,7 @@ class Hl7Store(pulumi.CustomResource):
         return Hl7Store(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

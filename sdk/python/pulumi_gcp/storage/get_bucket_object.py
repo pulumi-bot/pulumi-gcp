@@ -6,7 +6,8 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
+
 
 class GetBucketObjectResult:
     """
@@ -103,6 +104,8 @@ class GetBucketObjectResult:
         Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`. If not provided, this defaults to the bucket's default
         storage class or to a [standard](https://cloud.google.com/storage/docs/storage-classes#standard) class.
         """
+
+
 class AwaitableGetBucketObjectResult(GetBucketObjectResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -128,26 +131,37 @@ class AwaitableGetBucketObjectResult(GetBucketObjectResult):
             source=self.source,
             storage_class=self.storage_class)
 
-def get_bucket_object(bucket=None,name=None,opts=None):
+
+def get_bucket_object(bucket=None, name=None, opts=None):
     """
     Gets an existing object inside an existing bucket in Google Cloud Storage service (GCS).
     See [the official documentation](https://cloud.google.com/storage/docs/key-terms#objects)
     and
     [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
 
+    ## Example Usage
+
+    Example picture stored within a folder.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    picture = gcp.storage.get_bucket_object(bucket="image-store",
+        name="folder/butterfly01.jpg")
+    ```
+
 
     :param str bucket: The name of the containing bucket.
     :param str name: The name of the object.
     """
     __args__ = dict()
-
-
     __args__['bucket'] = bucket
     __args__['name'] = name
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
+        opts.version = _utilities.get_version()
     __ret__ = pulumi.runtime.invoke('gcp:storage/getBucketObject:getBucketObject', __args__, opts=opts).value
 
     return AwaitableGetBucketObjectResult(

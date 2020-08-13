@@ -10,6 +10,53 @@ import * as utilities from "../utilities";
  * App profile is a configuration object describing how Cloud Bigtable should treat traffic from a particular end user application.
  *
  * ## Example Usage
+ * ### Bigtable App Profile Multicluster
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const instance = new gcp.bigtable.Instance("instance", {
+ *     clusters: [{
+ *         clusterId: "bt-instance",
+ *         zone: "us-central1-b",
+ *         numNodes: 3,
+ *         storageType: "HDD",
+ *     }],
+ *     deletionProtection: "true",
+ * });
+ * const ap = new gcp.bigquery.AppProfile("ap", {
+ *     instance: instance.name,
+ *     appProfileId: "bt-profile",
+ *     multiClusterRoutingUseAny: true,
+ *     ignoreWarnings: true,
+ * });
+ * ```
+ * ### Bigtable App Profile Singlecluster
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gcp from "@pulumi/gcp";
+ *
+ * const instance = new gcp.bigtable.Instance("instance", {
+ *     clusters: [{
+ *         clusterId: "bt-instance",
+ *         zone: "us-central1-b",
+ *         numNodes: 3,
+ *         storageType: "HDD",
+ *     }],
+ *     deletionProtection: "true",
+ * });
+ * const ap = new gcp.bigquery.AppProfile("ap", {
+ *     instance: instance.name,
+ *     appProfileId: "bt-profile",
+ *     singleClusterRouting: {
+ *         clusterId: "bt-instance",
+ *         allowTransactionalWrites: true,
+ *     },
+ *     ignoreWarnings: true,
+ * });
+ * ```
  */
 export class AppProfile extends pulumi.CustomResource {
     /**

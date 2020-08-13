@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class MetricDescriptor(pulumi.CustomResource):
@@ -104,6 +104,55 @@ class MetricDescriptor(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/monitoring/custom-metrics/)
 
         ## Example Usage
+        ### Monitoring Metric Descriptor Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        basic = gcp.monitoring.MetricDescriptor("basic",
+            description="Daily sales records from all branch stores.",
+            display_name="metric-descriptor",
+            labels=[{
+                "description": "The ID of the store.",
+                "key": "store_id",
+                "value_type": "STRING",
+            }],
+            launch_stage="BETA",
+            metadata={
+                "ingestDelay": "30s",
+                "samplePeriod": "60s",
+            },
+            metric_kind="GAUGE",
+            type="custom.googleapis.com/stores/daily_sales",
+            unit="{USD}",
+            value_type="DOUBLE")
+        ```
+        ### Monitoring Metric Descriptor Alert
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        with_alert = gcp.monitoring.MetricDescriptor("withAlert",
+            description="Daily sales records from all branch stores.",
+            display_name="metric-descriptor",
+            metric_kind="GAUGE",
+            type="custom.googleapis.com/stores/daily_sales",
+            unit="{USD}",
+            value_type="DOUBLE")
+        alert_policy = gcp.monitoring.AlertPolicy("alertPolicy",
+            combiner="OR",
+            conditions=[{
+                "conditionThreshold": {
+                    "comparison": "COMPARISON_GT",
+                    "duration": "60s",
+                    "filter": with_alert.type.apply(lambda type: f"metric.type=\"{type}\" AND resource.type=\"gce_instance\""),
+                },
+                "display_name": "test condition",
+            }],
+            display_name="metric-descriptor")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -165,7 +214,7 @@ class MetricDescriptor(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -279,7 +328,7 @@ class MetricDescriptor(pulumi.CustomResource):
         return MetricDescriptor(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

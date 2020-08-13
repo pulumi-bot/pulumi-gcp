@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Union
-from .. import utilities, tables
+from .. import _utilities, _tables
 
 
 class Instance(pulumi.CustomResource):
@@ -113,6 +113,38 @@ class Instance(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/data-fusion/docs/)
 
         ## Example Usage
+        ### Data Fusion Instance Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        basic_instance = gcp.datafusion.Instance("basicInstance",
+            region="us-central1",
+            type="BASIC")
+        ```
+        ### Data Fusion Instance Full
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        extended_instance = gcp.datafusion.Instance("extendedInstance",
+            description="My Data Fusion instance",
+            enable_stackdriver_logging=True,
+            enable_stackdriver_monitoring=True,
+            labels={
+                "example_key": "example_value",
+            },
+            network_config={
+                "ipAllocation": "10.89.48.0/22",
+                "network": "default",
+            },
+            private_instance=True,
+            region="us-central1",
+            type="BASIC",
+            version="6.1.1")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -160,7 +192,7 @@ class Instance(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -267,7 +299,7 @@ class Instance(pulumi.CustomResource):
         return Instance(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop

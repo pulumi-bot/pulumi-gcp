@@ -30,6 +30,48 @@ namespace Pulumi.Gcp.Compute
     ///     * [Official Documentation](https://cloud.google.com/vpc/docs/firewalls)
     /// 
     /// ## Example Usage
+    /// ### Firewall Basic
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var defaultNetwork = new Gcp.Compute.Network("defaultNetwork", new Gcp.Compute.NetworkArgs
+    ///         {
+    ///         });
+    ///         var defaultFirewall = new Gcp.Compute.Firewall("defaultFirewall", new Gcp.Compute.FirewallArgs
+    ///         {
+    ///             Network = defaultNetwork.Name,
+    ///             Allows = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.FirewallAllowArgs
+    ///                 {
+    ///                     Protocol = "icmp",
+    ///                 },
+    ///                 new Gcp.Compute.Inputs.FirewallAllowArgs
+    ///                 {
+    ///                     Protocol = "tcp",
+    ///                     Ports = 
+    ///                     {
+    ///                         "80",
+    ///                         "8080",
+    ///                         "1000-2000",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             SourceTags = 
+    ///             {
+    ///                 "web",
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Firewall : Pulumi.CustomResource
     {
