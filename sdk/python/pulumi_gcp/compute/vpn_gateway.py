@@ -5,24 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['VPNGateway']
 
 
 class VPNGateway(pulumi.CustomResource):
-    creation_timestamp: pulumi.Output[str]
+    creation_timestamp: pulumi.Output[str] = pulumi.property("creationTimestamp")
     """
     Creation timestamp in RFC3339 text format.
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     An optional description of this resource.
     """
-    gateway_id: pulumi.Output[float]
+
+    gateway_id: pulumi.Output[float] = pulumi.property("gatewayId")
     """
     The unique identifier for the resource.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     Name of the resource. Provided by the client when the resource is
     created. The name must be 1-63 characters long, and comply with
@@ -32,24 +37,39 @@ class VPNGateway(pulumi.CustomResource):
     characters must be a dash, lowercase letter, or digit, except the last
     character, which cannot be a dash.
     """
-    network: pulumi.Output[str]
+
+    network: pulumi.Output[str] = pulumi.property("network")
     """
     The network this VPN gateway is accepting traffic for.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    region: pulumi.Output[str]
+
+    region: pulumi.Output[str] = pulumi.property("region")
     """
     The region this gateway should sit in.
     """
-    self_link: pulumi.Output[str]
+
+    self_link: pulumi.Output[str] = pulumi.property("selfLink")
     """
     The URI of the created resource.
     """
-    def __init__(__self__, resource_name, opts=None, description=None, name=None, network=None, project=None, region=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 network: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Represents a VPN gateway running in GCP. This virtual device is managed
         by Google, but used only by you.
@@ -59,6 +79,44 @@ class VPNGateway(pulumi.CustomResource):
         * [API documentation](https://cloud.google.com/compute/docs/reference/rest/v1/targetVpnGateways)
 
         ## Example Usage
+        ### Target Vpn Gateway Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        network1 = gcp.compute.Network("network1")
+        target_gateway = gcp.compute.VPNGateway("targetGateway", network=network1.id)
+        vpn_static_ip = gcp.compute.Address("vpnStaticIp")
+        fr_esp = gcp.compute.ForwardingRule("frEsp",
+            ip_protocol="ESP",
+            ip_address=vpn_static_ip.address,
+            target=target_gateway.id)
+        fr_udp500 = gcp.compute.ForwardingRule("frUdp500",
+            ip_protocol="UDP",
+            port_range="500",
+            ip_address=vpn_static_ip.address,
+            target=target_gateway.id)
+        fr_udp4500 = gcp.compute.ForwardingRule("frUdp4500",
+            ip_protocol="UDP",
+            port_range="4500",
+            ip_address=vpn_static_ip.address,
+            target=target_gateway.id)
+        tunnel1 = gcp.compute.VPNTunnel("tunnel1",
+            peer_ip="15.0.0.120",
+            shared_secret="a secret message",
+            target_vpn_gateway=target_gateway.id,
+            opts=ResourceOptions(depends_on=[
+                    fr_esp,
+                    fr_udp500,
+                    fr_udp4500,
+                ]))
+        route1 = gcp.compute.Route("route1",
+            network=network1.name,
+            dest_range="15.0.0.0/24",
+            priority=1000,
+            next_hop_vpn_tunnel=tunnel1.id)
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -86,7 +144,7 @@ class VPNGateway(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -109,7 +167,17 @@ class VPNGateway(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, creation_timestamp=None, description=None, gateway_id=None, name=None, network=None, project=None, region=None, self_link=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            creation_timestamp: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            gateway_id: Optional[pulumi.Input[float]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            network: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None) -> 'VPNGateway':
         """
         Get an existing VPNGateway resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -148,7 +216,8 @@ class VPNGateway(pulumi.CustomResource):
         return VPNGateway(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

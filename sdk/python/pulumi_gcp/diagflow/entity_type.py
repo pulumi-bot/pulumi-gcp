@@ -5,36 +5,32 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['EntityType']
 
 
 class EntityType(pulumi.CustomResource):
-    display_name: pulumi.Output[str]
+    display_name: pulumi.Output[str] = pulumi.property("displayName")
     """
     The name of this entity type to be displayed on the console.
     """
-    enable_fuzzy_extraction: pulumi.Output[bool]
+
+    enable_fuzzy_extraction: pulumi.Output[Optional[bool]] = pulumi.property("enableFuzzyExtraction")
     """
     Enables fuzzy entity extraction during classification.
     """
-    entities: pulumi.Output[list]
+
+    entities: pulumi.Output[Optional[List['outputs.EntityTypeEntity']]] = pulumi.property("entities")
     """
     The collection of entity entries associated with the entity type.
     Structure is documented below.
-
-      * `synonyms` (`list`) - A collection of value synonyms. For example, if the entity type is vegetable, and value is scallions, a synonym
-        could be green onions.
-        For KIND_LIST entity types:
-        * This collection must contain exactly one synonym equal to value.
-      * `value` (`str`) - The primary value associated with this entity entry. For example, if the entity type is vegetable, the value
-        could be scallions.
-        For KIND_MAP entity types:
-        * A reference value to be used in place of synonyms.
-        For KIND_LIST entity types:
-        * A string that can contain references to other entity types (with or without aliases).
     """
-    kind: pulumi.Output[str]
+
+    kind: pulumi.Output[str] = pulumi.property("kind")
     """
     Indicates the kind of entity type.
     * KIND_MAP: Map entity types allow mapping of a group of synonyms to a reference value.
@@ -43,16 +39,29 @@ class EntityType(pulumi.CustomResource):
     * KIND_REGEXP: Regexp entity types allow to specify regular expressions in entries values.
     Possible values are `KIND_MAP`, `KIND_LIST`, and `KIND_REGEXP`.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The unique identifier of the entity type. Format: projects/<Project ID>/agent/entityTypes/<Entity type ID>.
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The ID of the project in which the resource belongs.
     If it is not provided, the provider project is used.
     """
-    def __init__(__self__, resource_name, opts=None, display_name=None, enable_fuzzy_extraction=None, entities=None, kind=None, project=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 enable_fuzzy_extraction: Optional[pulumi.Input[bool]] = None,
+                 entities: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['EntityTypeEntityArgs']]]]] = None,
+                 kind: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Represents an entity type. Entity types serve as a tool for extracting parameter values from natural language queries.
 
@@ -63,12 +72,43 @@ class EntityType(pulumi.CustomResource):
             * [Official Documentation](https://cloud.google.com/dialogflow/docs/)
 
         ## Example Usage
+        ### Dialogflow Entity Type Basic
+
+        ```python
+        import pulumi
+        import pulumi_gcp as gcp
+
+        basic_agent = gcp.diagflow.Agent("basicAgent",
+            display_name="example_agent",
+            default_language_code="en",
+            time_zone="America/New_York")
+        basic_entity_type = gcp.diagflow.EntityType("basicEntityType",
+            display_name="",
+            kind="KIND_MAP",
+            entities=[
+                {
+                    "value": "value1",
+                    "synonyms": [
+                        "synonym1",
+                        "synonym2",
+                    ],
+                },
+                {
+                    "value": "value2",
+                    "synonyms": [
+                        "synonym3",
+                        "synonym4",
+                    ],
+                },
+            ],
+            opts=ResourceOptions(depends_on=[basic_agent]))
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] display_name: The name of this entity type to be displayed on the console.
         :param pulumi.Input[bool] enable_fuzzy_extraction: Enables fuzzy entity extraction during classification.
-        :param pulumi.Input[list] entities: The collection of entity entries associated with the entity type.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['EntityTypeEntityArgs']]]] entities: The collection of entity entries associated with the entity type.
                Structure is documented below.
         :param pulumi.Input[str] kind: Indicates the kind of entity type.
                * KIND_MAP: Map entity types allow mapping of a group of synonyms to a reference value.
@@ -78,19 +118,6 @@ class EntityType(pulumi.CustomResource):
                Possible values are `KIND_MAP`, `KIND_LIST`, and `KIND_REGEXP`.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-
-        The **entities** object supports the following:
-
-          * `synonyms` (`pulumi.Input[list]`) - A collection of value synonyms. For example, if the entity type is vegetable, and value is scallions, a synonym
-            could be green onions.
-            For KIND_LIST entity types:
-            * This collection must contain exactly one synonym equal to value.
-          * `value` (`pulumi.Input[str]`) - The primary value associated with this entity entry. For example, if the entity type is vegetable, the value
-            could be scallions.
-            For KIND_MAP entity types:
-            * A reference value to be used in place of synonyms.
-            For KIND_LIST entity types:
-            * A string that can contain references to other entity types (with or without aliases).
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -103,7 +130,7 @@ class EntityType(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -126,7 +153,15 @@ class EntityType(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, display_name=None, enable_fuzzy_extraction=None, entities=None, kind=None, name=None, project=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            display_name: Optional[pulumi.Input[str]] = None,
+            enable_fuzzy_extraction: Optional[pulumi.Input[bool]] = None,
+            entities: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['EntityTypeEntityArgs']]]]] = None,
+            kind: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None) -> 'EntityType':
         """
         Get an existing EntityType resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -136,7 +171,7 @@ class EntityType(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] display_name: The name of this entity type to be displayed on the console.
         :param pulumi.Input[bool] enable_fuzzy_extraction: Enables fuzzy entity extraction during classification.
-        :param pulumi.Input[list] entities: The collection of entity entries associated with the entity type.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['EntityTypeEntityArgs']]]] entities: The collection of entity entries associated with the entity type.
                Structure is documented below.
         :param pulumi.Input[str] kind: Indicates the kind of entity type.
                * KIND_MAP: Map entity types allow mapping of a group of synonyms to a reference value.
@@ -147,19 +182,6 @@ class EntityType(pulumi.CustomResource):
         :param pulumi.Input[str] name: The unique identifier of the entity type. Format: projects/<Project ID>/agent/entityTypes/<Entity type ID>.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-
-        The **entities** object supports the following:
-
-          * `synonyms` (`pulumi.Input[list]`) - A collection of value synonyms. For example, if the entity type is vegetable, and value is scallions, a synonym
-            could be green onions.
-            For KIND_LIST entity types:
-            * This collection must contain exactly one synonym equal to value.
-          * `value` (`pulumi.Input[str]`) - The primary value associated with this entity entry. For example, if the entity type is vegetable, the value
-            could be scallions.
-            For KIND_MAP entity types:
-            * A reference value to be used in place of synonyms.
-            For KIND_LIST entity types:
-            * A string that can contain references to other entity types (with or without aliases).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -174,7 +196,8 @@ class EntityType(pulumi.CustomResource):
         return EntityType(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

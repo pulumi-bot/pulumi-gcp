@@ -24,6 +24,48 @@ namespace Pulumi.Gcp.Compute
     ///     * [Using Protocol Forwarding](https://cloud.google.com/compute/docs/protocol-forwarding)
     /// 
     /// ## Example Usage
+    /// ### Target Instance Basic
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var vmimage = Output.Create(Gcp.Compute.GetImage.InvokeAsync(new Gcp.Compute.GetImageArgs
+    ///         {
+    ///             Family = "debian-9",
+    ///             Project = "debian-cloud",
+    ///         }));
+    ///         var target_vm = new Gcp.Compute.Instance("target-vm", new Gcp.Compute.InstanceArgs
+    ///         {
+    ///             MachineType = "n1-standard-1",
+    ///             Zone = "us-central1-a",
+    ///             BootDisk = new Gcp.Compute.Inputs.InstanceBootDiskArgs
+    ///             {
+    ///                 InitializeParams = new Gcp.Compute.Inputs.InstanceBootDiskInitializeParamsArgs
+    ///                 {
+    ///                     Image = vmimage.Apply(vmimage =&gt; vmimage.SelfLink),
+    ///                 },
+    ///             },
+    ///             NetworkInterfaces = 
+    ///             {
+    ///                 new Gcp.Compute.Inputs.InstanceNetworkInterfaceArgs
+    ///                 {
+    ///                     Network = "default",
+    ///                 },
+    ///             },
+    ///         });
+    ///         var @default = new Gcp.Compute.TargetInstance("default", new Gcp.Compute.TargetInstanceArgs
+    ///         {
+    ///             Instance = target_vm.Id,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class TargetInstance : Pulumi.CustomResource
     {

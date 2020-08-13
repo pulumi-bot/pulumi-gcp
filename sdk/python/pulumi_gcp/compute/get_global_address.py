@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetGlobalAddressResult',
+    'AwaitableGetGlobalAddressResult',
+    'get_global_address',
+]
+
+
+@pulumi.output_type
+class _GetGlobalAddressResult:
+    address: str = pulumi.property("address")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    project: str = pulumi.property("project")
+    self_link: str = pulumi.property("selfLink")
+    status: str = pulumi.property("status")
+
 
 class GetGlobalAddressResult:
     """
@@ -43,6 +60,8 @@ class GetGlobalAddressResult:
         """
         Indicates if the address is used. Possible values are: RESERVED or IN_USE.
         """
+
+
 class AwaitableGetGlobalAddressResult(GetGlobalAddressResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -56,10 +75,28 @@ class AwaitableGetGlobalAddressResult(GetGlobalAddressResult):
             self_link=self.self_link,
             status=self.status)
 
-def get_global_address(name=None,project=None,opts=None):
+
+def get_global_address(name: Optional[str] = None,
+                       project: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetGlobalAddressResult:
     """
     Get the IP address from a static address reserved for a Global Forwarding Rule which are only used for HTTP load balancing. For more information see
     the official [API](https://cloud.google.com/compute/docs/reference/latest/globalAddresses) documentation.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_address = gcp.compute.get_global_address(name="foobar")
+    prod = gcp.dns.ManagedZone("prod", dns_name="prod.mydomain.com.")
+    frontend = gcp.dns.RecordSet("frontend",
+        type="A",
+        ttl=300,
+        managed_zone=prod.name,
+        rrdatas=[my_address.address])
+    ```
 
 
     :param str name: A unique name for the resource, required by GCE.
@@ -67,20 +104,18 @@ def get_global_address(name=None,project=None,opts=None):
            is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getGlobalAddress:getGlobalAddress', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getGlobalAddress:getGlobalAddress', __args__, opts=opts, typ=_GetGlobalAddressResult).value
 
     return AwaitableGetGlobalAddressResult(
-        address=__ret__.get('address'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        project=__ret__.get('project'),
-        self_link=__ret__.get('selfLink'),
-        status=__ret__.get('status'))
+        address=__ret__.address,
+        id=__ret__.id,
+        name=__ret__.name,
+        project=__ret__.project,
+        self_link=__ret__.self_link,
+        status=__ret__.status)

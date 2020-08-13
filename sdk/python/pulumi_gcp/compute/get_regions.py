@@ -5,8 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetRegionsResult',
+    'AwaitableGetRegionsResult',
+    'get_regions',
+]
+
+
+@pulumi.output_type
+class _GetRegionsResult:
+    id: str = pulumi.property("id")
+    names: List[str] = pulumi.property("names")
+    project: str = pulumi.property("project")
+    status: Optional[str] = pulumi.property("status")
+
 
 class GetRegionsResult:
     """
@@ -31,6 +46,8 @@ class GetRegionsResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         __self__.status = status
+
+
 class AwaitableGetRegionsResult(GetRegionsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -42,10 +59,26 @@ class AwaitableGetRegionsResult(GetRegionsResult):
             project=self.project,
             status=self.status)
 
-def get_regions(project=None,status=None,opts=None):
+
+def get_regions(project: Optional[str] = None,
+                status: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegionsResult:
     """
     Provides access to available Google Compute regions for a given project.
     See more about [regions and zones](https://cloud.google.com/compute/docs/regions-zones/) in the upstream docs.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    available = gcp.compute.get_regions()
+    cluster = []
+    for range in [{"value": i} for i in range(0, len(available.names))]:
+        cluster.append(gcp.compute.Subnetwork(f"cluster-{range['value']}",
+            ip_cidr_range=f"10.36.{range['value']}.0/24",
+            network="my-network",
+            region=available.names[range["value"]]))
+    ```
 
 
     :param str project: Project from which to list available regions. Defaults to project declared in the provider.
@@ -53,18 +86,16 @@ def get_regions(project=None,status=None,opts=None):
            Defaults to no filtering (all available regions - both `UP` and `DOWN`).
     """
     __args__ = dict()
-
-
     __args__['project'] = project
     __args__['status'] = status
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getRegions:getRegions', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getRegions:getRegions', __args__, opts=opts, typ=_GetRegionsResult).value
 
     return AwaitableGetRegionsResult(
-        id=__ret__.get('id'),
-        names=__ret__.get('names'),
-        project=__ret__.get('project'),
-        status=__ret__.get('status'))
+        id=__ret__.id,
+        names=__ret__.names,
+        project=__ret__.project,
+        status=__ret__.status)

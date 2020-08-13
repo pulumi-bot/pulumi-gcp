@@ -20,6 +20,154 @@ namespace Pulumi.Gcp.Healthcare
     ///     * [Creating a HL7v2 Store](https://cloud.google.com/healthcare/docs/how-tos/hl7v2)
     /// 
     /// ## Example Usage
+    /// ### Healthcare Hl7 V2 Store Basic
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var topic = new Gcp.PubSub.Topic("topic", new Gcp.PubSub.TopicArgs
+    ///         {
+    ///         });
+    ///         var dataset = new Gcp.Healthcare.Dataset("dataset", new Gcp.Healthcare.DatasetArgs
+    ///         {
+    ///             Location = "us-central1",
+    ///         });
+    ///         var @default = new Gcp.Healthcare.Hl7Store("default", new Gcp.Healthcare.Hl7StoreArgs
+    ///         {
+    ///             Dataset = dataset.Id,
+    ///             NotificationConfigs = 
+    ///             {
+    ///                 new Gcp.Healthcare.Inputs.Hl7StoreNotificationConfigsArgs
+    ///                 {
+    ///                     PubsubTopic = topic.Id,
+    ///                 },
+    ///             },
+    ///             Labels = 
+    ///             {
+    ///                 { "label1", "labelvalue1" },
+    ///             },
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
+    /// ### Healthcare Hl7 V2 Store Parser Config
+    /// 
+    /// ```csharp
+    /// using Pulumi;
+    /// using Gcp = Pulumi.Gcp;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var dataset = new Gcp.Healthcare.Dataset("dataset", new Gcp.Healthcare.DatasetArgs
+    ///         {
+    ///             Location = "us-central1",
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
+    ///         });
+    ///         var @default = new Gcp.Healthcare.Hl7Store("default", new Gcp.Healthcare.Hl7StoreArgs
+    ///         {
+    ///             Dataset = dataset.Id,
+    ///             ParserConfig = new Gcp.Healthcare.Inputs.Hl7StoreParserConfigArgs
+    ///             {
+    ///                 AllowNullHeader = false,
+    ///                 SegmentTerminator = "Jw==",
+    ///                 Schema = @"{
+    ///   ""schemas"": [{
+    ///     ""messageSchemaConfigs"": {
+    ///       ""ADT_A01"": {
+    ///         ""name"": ""ADT_A01"",
+    ///         ""minOccurs"": 1,
+    ///         ""maxOccurs"": 1,
+    ///         ""members"": [{
+    ///             ""segment"": {
+    ///               ""type"": ""MSH"",
+    ///               ""minOccurs"": 1,
+    ///               ""maxOccurs"": 1
+    ///             }
+    ///           },
+    ///           {
+    ///             ""segment"": {
+    ///               ""type"": ""EVN"",
+    ///               ""minOccurs"": 1,
+    ///               ""maxOccurs"": 1
+    ///             }
+    ///           },
+    ///           {
+    ///             ""segment"": {
+    ///               ""type"": ""PID"",
+    ///               ""minOccurs"": 1,
+    ///               ""maxOccurs"": 1
+    ///             }
+    ///           },
+    ///           {
+    ///             ""segment"": {
+    ///               ""type"": ""ZPD"",
+    ///               ""minOccurs"": 1,
+    ///               ""maxOccurs"": 1
+    ///             }
+    ///           },
+    ///           {
+    ///             ""segment"": {
+    ///               ""type"": ""OBX""
+    ///             }
+    ///           },
+    ///           {
+    ///             ""group"": {
+    ///               ""name"": ""PROCEDURE"",
+    ///               ""members"": [{
+    ///                   ""segment"": {
+    ///                     ""type"": ""PR1"",
+    ///                     ""minOccurs"": 1,
+    ///                     ""maxOccurs"": 1
+    ///                   }
+    ///                 },
+    ///                 {
+    ///                   ""segment"": {
+    ///                     ""type"": ""ROL""
+    ///                   }
+    ///                 }
+    ///               ]
+    ///             }
+    ///           },
+    ///           {
+    ///             ""segment"": {
+    ///               ""type"": ""PDA"",
+    ///               ""maxOccurs"": 1
+    ///             }
+    ///           }
+    ///         ]
+    ///       }
+    ///     }
+    ///   }],
+    ///   ""types"": [{
+    ///     ""type"": [{
+    ///         ""name"": ""ZPD"",
+    ///         ""primitive"": ""VARIES""
+    ///       }
+    /// 
+    ///     ]
+    ///   }],
+    ///   ""ignoreMinOccurs"": true
+    /// }
+    /// ",
+    ///             },
+    ///         }, new CustomResourceOptions
+    ///         {
+    ///             Provider = google_beta,
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// </summary>
     public partial class Hl7Store : Pulumi.CustomResource
     {

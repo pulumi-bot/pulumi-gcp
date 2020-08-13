@@ -5,8 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetLBIPRangesResult',
+    'AwaitableGetLBIPRangesResult',
+    'get_lbip_ranges',
+]
+
+
+@pulumi.output_type
+class _GetLBIPRangesResult:
+    http_ssl_tcp_internals: List[str] = pulumi.property("httpSslTcpInternals")
+    id: str = pulumi.property("id")
+    networks: List[str] = pulumi.property("networks")
+
 
 class GetLBIPRangesResult:
     """
@@ -31,6 +45,8 @@ class GetLBIPRangesResult:
         """
         The IP ranges used for health checks when **Network load balancing** is used
         """
+
+
 class AwaitableGetLBIPRangesResult(GetLBIPRangesResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -41,22 +57,38 @@ class AwaitableGetLBIPRangesResult(GetLBIPRangesResult):
             id=self.id,
             networks=self.networks)
 
-def get_lbip_ranges(opts=None):
+
+def get_lbip_ranges(                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLBIPRangesResult:
     """
     Use this data source to access IP ranges in your firewall rules.
 
     https://cloud.google.com/compute/docs/load-balancing/health-checks#health_check_source_ips_and_firewall_rules
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    ranges = gcp.compute.get_lbip_ranges()
+    lb = gcp.compute.Firewall("lb",
+        network=google_compute_network["main"]["name"],
+        allows=[{
+            "protocol": "tcp",
+            "ports": ["80"],
+        }],
+        source_ranges=ranges.networks,
+        target_tags=["InstanceBehindLoadBalancer"])
+    ```
     """
     __args__ = dict()
-
-
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getLBIPRanges:getLBIPRanges', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getLBIPRanges:getLBIPRanges', __args__, opts=opts, typ=_GetLBIPRangesResult).value
 
     return AwaitableGetLBIPRangesResult(
-        http_ssl_tcp_internals=__ret__.get('httpSslTcpInternals'),
-        id=__ret__.get('id'),
-        networks=__ret__.get('networks'))
+        http_ssl_tcp_internals=__ret__.http_ssl_tcp_internals,
+        id=__ret__.id,
+        networks=__ret__.networks)

@@ -5,8 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetOrganizationResult',
+    'AwaitableGetOrganizationResult',
+    'get_organization',
+]
+
+
+@pulumi.output_type
+class _GetOrganizationResult:
+    create_time: str = pulumi.property("createTime")
+    directory_customer_id: str = pulumi.property("directoryCustomerId")
+    domain: str = pulumi.property("domain")
+    id: str = pulumi.property("id")
+    lifecycle_state: str = pulumi.property("lifecycleState")
+    name: str = pulumi.property("name")
+    org_id: str = pulumi.property("orgId")
+    organization: Optional[str] = pulumi.property("organization")
+
 
 class GetOrganizationResult:
     """
@@ -55,6 +74,8 @@ class GetOrganizationResult:
         if organization and not isinstance(organization, str):
             raise TypeError("Expected argument 'organization' to be a str")
         __self__.organization = organization
+
+
 class AwaitableGetOrganizationResult(GetOrganizationResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -70,31 +91,42 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
             org_id=self.org_id,
             organization=self.organization)
 
-def get_organization(domain=None,organization=None,opts=None):
+
+def get_organization(domain: Optional[str] = None,
+                     organization: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationResult:
     """
     Use this data source to get information about a Google Cloud Organization.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    org = gcp.organizations.get_organization(domain="example.com")
+    sales = gcp.organizations.Folder("sales",
+        display_name="Sales",
+        parent=org.name)
+    ```
 
 
     :param str domain: The domain name of the Organization.
     :param str organization: The name of the Organization in the form `{organization_id}` or `organizations/{organization_id}`.
     """
     __args__ = dict()
-
-
     __args__['domain'] = domain
     __args__['organization'] = organization
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:organizations/getOrganization:getOrganization', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:organizations/getOrganization:getOrganization', __args__, opts=opts, typ=_GetOrganizationResult).value
 
     return AwaitableGetOrganizationResult(
-        create_time=__ret__.get('createTime'),
-        directory_customer_id=__ret__.get('directoryCustomerId'),
-        domain=__ret__.get('domain'),
-        id=__ret__.get('id'),
-        lifecycle_state=__ret__.get('lifecycleState'),
-        name=__ret__.get('name'),
-        org_id=__ret__.get('orgId'),
-        organization=__ret__.get('organization'))
+        create_time=__ret__.create_time,
+        directory_customer_id=__ret__.directory_customer_id,
+        domain=__ret__.domain,
+        id=__ret__.id,
+        lifecycle_state=__ret__.lifecycle_state,
+        name=__ret__.name,
+        org_id=__ret__.org_id,
+        organization=__ret__.organization)

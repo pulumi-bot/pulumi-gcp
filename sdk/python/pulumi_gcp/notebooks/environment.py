@@ -5,67 +5,84 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Environment']
 
 
 class Environment(pulumi.CustomResource):
-    container_image: pulumi.Output[dict]
+    container_image: pulumi.Output[Optional['outputs.EnvironmentContainerImage']] = pulumi.property("containerImage")
     """
     Use a container image to start the notebook instance.
     Structure is documented below.
-
-      * `repository` (`str`) - The path to the container image repository.
-        For example: gcr.io/{project_id}/{imageName}
-      * `tag` (`str`) - The tag of the container image. If not specified, this defaults to the latest tag.
     """
-    create_time: pulumi.Output[str]
+
+    create_time: pulumi.Output[str] = pulumi.property("createTime")
     """
     Instance creation time
     """
-    description: pulumi.Output[str]
+
+    description: pulumi.Output[Optional[str]] = pulumi.property("description")
     """
     A brief description of this environment.
     """
-    display_name: pulumi.Output[str]
+
+    display_name: pulumi.Output[Optional[str]] = pulumi.property("displayName")
     """
     Display name of this environment for the UI.
     """
-    location: pulumi.Output[str]
+
+    location: pulumi.Output[str] = pulumi.property("location")
     """
     A reference to the zone where the machine resides.
     """
-    name: pulumi.Output[str]
+
+    name: pulumi.Output[str] = pulumi.property("name")
     """
     The name specified for the Environment instance.
     Format: projects/{project_id}/locations/{location}/environments/{environmentId}
     """
-    post_startup_script: pulumi.Output[str]
+
+    post_startup_script: pulumi.Output[Optional[str]] = pulumi.property("postStartupScript")
     """
     Path to a Bash script that automatically runs after a notebook instance fully boots up.
     The path must be a URL or Cloud Storage path. Example: "gs://path-to-file/file-name"
     """
-    project: pulumi.Output[str]
+
+    project: pulumi.Output[str] = pulumi.property("project")
     """
     The name of the Google Cloud project that this VM image belongs to.
     Format: projects/{project_id}
     """
-    vm_image: pulumi.Output[dict]
+
+    vm_image: pulumi.Output[Optional['outputs.EnvironmentVmImage']] = pulumi.property("vmImage")
     """
     Use a Compute Engine VM image to start the notebook instance.
     Structure is documented below.
-
-      * `imageFamily` (`str`) - Use this VM image family to find the image; the newest image in this family will be used.
-      * `imageName` (`str`) - Use VM image name to find the image.
-      * `project` (`str`) - The name of the Google Cloud project that this VM image belongs to.
-        Format: projects/{project_id}
     """
-    def __init__(__self__, resource_name, opts=None, container_image=None, description=None, display_name=None, location=None, name=None, post_startup_script=None, project=None, vm_image=None, __props__=None, __name__=None, __opts__=None):
+
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 container_image: Optional[pulumi.Input[pulumi.InputType['EnvironmentContainerImageArgs']]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 post_startup_script: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 vm_image: Optional[pulumi.Input[pulumi.InputType['EnvironmentVmImageArgs']]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a Environment resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] container_image: Use a container image to start the notebook instance.
+        :param pulumi.Input[pulumi.InputType['EnvironmentContainerImageArgs']] container_image: Use a container image to start the notebook instance.
                Structure is documented below.
         :param pulumi.Input[str] description: A brief description of this environment.
         :param pulumi.Input[str] display_name: Display name of this environment for the UI.
@@ -76,21 +93,8 @@ class Environment(pulumi.CustomResource):
                The path must be a URL or Cloud Storage path. Example: "gs://path-to-file/file-name"
         :param pulumi.Input[str] project: The name of the Google Cloud project that this VM image belongs to.
                Format: projects/{project_id}
-        :param pulumi.Input[dict] vm_image: Use a Compute Engine VM image to start the notebook instance.
+        :param pulumi.Input[pulumi.InputType['EnvironmentVmImageArgs']] vm_image: Use a Compute Engine VM image to start the notebook instance.
                Structure is documented below.
-
-        The **container_image** object supports the following:
-
-          * `repository` (`pulumi.Input[str]`) - The path to the container image repository.
-            For example: gcr.io/{project_id}/{imageName}
-          * `tag` (`pulumi.Input[str]`) - The tag of the container image. If not specified, this defaults to the latest tag.
-
-        The **vm_image** object supports the following:
-
-          * `imageFamily` (`pulumi.Input[str]`) - Use this VM image family to find the image; the newest image in this family will be used.
-          * `imageName` (`pulumi.Input[str]`) - Use VM image name to find the image.
-          * `project` (`pulumi.Input[str]`) - The name of the Google Cloud project that this VM image belongs to.
-            Format: projects/{project_id}
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -103,7 +107,7 @@ class Environment(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -127,7 +131,18 @@ class Environment(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, container_image=None, create_time=None, description=None, display_name=None, location=None, name=None, post_startup_script=None, project=None, vm_image=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            container_image: Optional[pulumi.Input[pulumi.InputType['EnvironmentContainerImageArgs']]] = None,
+            create_time: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            display_name: Optional[pulumi.Input[str]] = None,
+            location: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            post_startup_script: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            vm_image: Optional[pulumi.Input[pulumi.InputType['EnvironmentVmImageArgs']]] = None) -> 'Environment':
         """
         Get an existing Environment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -135,7 +150,7 @@ class Environment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] container_image: Use a container image to start the notebook instance.
+        :param pulumi.Input[pulumi.InputType['EnvironmentContainerImageArgs']] container_image: Use a container image to start the notebook instance.
                Structure is documented below.
         :param pulumi.Input[str] create_time: Instance creation time
         :param pulumi.Input[str] description: A brief description of this environment.
@@ -147,21 +162,8 @@ class Environment(pulumi.CustomResource):
                The path must be a URL or Cloud Storage path. Example: "gs://path-to-file/file-name"
         :param pulumi.Input[str] project: The name of the Google Cloud project that this VM image belongs to.
                Format: projects/{project_id}
-        :param pulumi.Input[dict] vm_image: Use a Compute Engine VM image to start the notebook instance.
+        :param pulumi.Input[pulumi.InputType['EnvironmentVmImageArgs']] vm_image: Use a Compute Engine VM image to start the notebook instance.
                Structure is documented below.
-
-        The **container_image** object supports the following:
-
-          * `repository` (`pulumi.Input[str]`) - The path to the container image repository.
-            For example: gcr.io/{project_id}/{imageName}
-          * `tag` (`pulumi.Input[str]`) - The tag of the container image. If not specified, this defaults to the latest tag.
-
-        The **vm_image** object supports the following:
-
-          * `imageFamily` (`pulumi.Input[str]`) - Use this VM image family to find the image; the newest image in this family will be used.
-          * `imageName` (`pulumi.Input[str]`) - Use VM image name to find the image.
-          * `project` (`pulumi.Input[str]`) - The name of the Google Cloud project that this VM image belongs to.
-            Format: projects/{project_id}
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -179,7 +181,8 @@ class Environment(pulumi.CustomResource):
         return Environment(resource_name, opts=opts, __props__=__props__)
 
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

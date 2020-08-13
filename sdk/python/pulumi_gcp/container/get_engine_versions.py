@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetEngineVersionsResult',
+    'AwaitableGetEngineVersionsResult',
+    'get_engine_versions',
+]
+
+
+@pulumi.output_type
+class _GetEngineVersionsResult:
+    default_cluster_version: str = pulumi.property("defaultClusterVersion")
+    id: str = pulumi.property("id")
+    latest_master_version: str = pulumi.property("latestMasterVersion")
+    latest_node_version: str = pulumi.property("latestNodeVersion")
+    location: Optional[str] = pulumi.property("location")
+    project: Optional[str] = pulumi.property("project")
+    release_channel_default_version: Mapping[str, str] = pulumi.property("releaseChannelDefaultVersion")
+    valid_master_versions: List[str] = pulumi.property("validMasterVersions")
+    valid_node_versions: List[str] = pulumi.property("validNodeVersions")
+    version_prefix: Optional[str] = pulumi.property("versionPrefix")
+
 
 class GetEngineVersionsResult:
     """
@@ -64,6 +85,8 @@ class GetEngineVersionsResult:
         if version_prefix and not isinstance(version_prefix, str):
             raise TypeError("Expected argument 'version_prefix' to be a str")
         __self__.version_prefix = version_prefix
+
+
 class AwaitableGetEngineVersionsResult(GetEngineVersionsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -81,7 +104,11 @@ class AwaitableGetEngineVersionsResult(GetEngineVersionsResult):
             valid_node_versions=self.valid_node_versions,
             version_prefix=self.version_prefix)
 
-def get_engine_versions(location=None,project=None,version_prefix=None,opts=None):
+
+def get_engine_versions(location: Optional[str] = None,
+                        project: Optional[str] = None,
+                        version_prefix: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEngineVersionsResult:
     """
     Provides access to available Google Kubernetes Engine versions in a zone or region for a given project.
 
@@ -90,6 +117,25 @@ def get_engine_versions(location=None,project=None,version_prefix=None,opts=None
     the datasource. A region can have a different set of supported versions than
     its component zones, and not all zones in a region are guaranteed to
     support the same version.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    central1b = gcp.container.get_engine_versions(location="us-central1-b",
+        version_prefix="1.12.")
+    foo = gcp.container.Cluster("foo",
+        location="us-central1-b",
+        node_version=central1b.latest_node_version,
+        initial_node_count=1,
+        master_auth={
+            "username": "mr.yoda",
+            "password": "adoy.rm",
+        })
+    pulumi.export("stableChannelVersion", central1b.release_channel_default_version["STABLE"])
+    ```
 
 
     :param str location: The location (region or zone) to list versions for.
@@ -106,25 +152,23 @@ def get_engine_versions(location=None,project=None,version_prefix=None,opts=None
            for full details on how version strings are formatted.
     """
     __args__ = dict()
-
-
     __args__['location'] = location
     __args__['project'] = project
     __args__['versionPrefix'] = version_prefix
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:container/getEngineVersions:getEngineVersions', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:container/getEngineVersions:getEngineVersions', __args__, opts=opts, typ=_GetEngineVersionsResult).value
 
     return AwaitableGetEngineVersionsResult(
-        default_cluster_version=__ret__.get('defaultClusterVersion'),
-        id=__ret__.get('id'),
-        latest_master_version=__ret__.get('latestMasterVersion'),
-        latest_node_version=__ret__.get('latestNodeVersion'),
-        location=__ret__.get('location'),
-        project=__ret__.get('project'),
-        release_channel_default_version=__ret__.get('releaseChannelDefaultVersion'),
-        valid_master_versions=__ret__.get('validMasterVersions'),
-        valid_node_versions=__ret__.get('validNodeVersions'),
-        version_prefix=__ret__.get('versionPrefix'))
+        default_cluster_version=__ret__.default_cluster_version,
+        id=__ret__.id,
+        latest_master_version=__ret__.latest_master_version,
+        latest_node_version=__ret__.latest_node_version,
+        location=__ret__.location,
+        project=__ret__.project,
+        release_channel_default_version=__ret__.release_channel_default_version,
+        valid_master_versions=__ret__.valid_master_versions,
+        valid_node_versions=__ret__.valid_node_versions,
+        version_prefix=__ret__.version_prefix)

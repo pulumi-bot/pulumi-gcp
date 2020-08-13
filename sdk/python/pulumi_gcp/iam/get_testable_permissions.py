@@ -5,8 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetTestablePermissionsResult',
+    'AwaitableGetTestablePermissionsResult',
+    'get_testable_permissions',
+]
+
+
+@pulumi.output_type
+class _GetTestablePermissionsResult:
+    custom_support_level: Optional[str] = pulumi.property("customSupportLevel")
+    full_resource_name: str = pulumi.property("fullResourceName")
+    id: str = pulumi.property("id")
+    permissions: List['outputs.GetTestablePermissionsPermissionResult'] = pulumi.property("permissions")
+    stages: Optional[List[str]] = pulumi.property("stages")
+
 
 class GetTestablePermissionsResult:
     """
@@ -37,6 +54,8 @@ class GetTestablePermissionsResult:
         if stages and not isinstance(stages, list):
             raise TypeError("Expected argument 'stages' to be a list")
         __self__.stages = stages
+
+
 class AwaitableGetTestablePermissionsResult(GetTestablePermissionsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -49,30 +68,47 @@ class AwaitableGetTestablePermissionsResult(GetTestablePermissionsResult):
             permissions=self.permissions,
             stages=self.stages)
 
-def get_testable_permissions(custom_support_level=None,full_resource_name=None,stages=None,opts=None):
+
+def get_testable_permissions(custom_support_level: Optional[str] = None,
+                             full_resource_name: Optional[str] = None,
+                             stages: Optional[List[str]] = None,
+                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTestablePermissionsResult:
     """
     Retrieve a list of testable permissions for a resource. Testable permissions mean the permissions that user can add or remove in a role at a given resource. The resource can be referenced either via the full resource name or via a URI.
+
+    ## Example Usage
+
+    Retrieve all the supported permissions able to be set on `my-project` that are in either GA or BETA. This is useful for dynamically constructing custom roles.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    perms = gcp.iam.get_testable_permissions(full_resource_name="//cloudresourcemanager.googleapis.com/projects/my-project",
+        stages=[
+            "GA",
+            "BETA",
+        ])
+    ```
 
 
     :param str custom_support_level: The level of support for custom roles. Can be one of `"NOT_SUPPORTED"`, `"SUPPORTED"`, `"TESTING"`. Default is `"SUPPORTED"`
     :param str full_resource_name: See [full resource name documentation](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more detail.
-    :param list stages: The acceptable release stages of the permission in the output. Note that `BETA` does not include permissions in `GA`, but you can specify both with `["GA", "BETA"]` for example. Can be a list of `"ALPHA"`, `"BETA"`, `"GA"`, `"DEPRECATED"`. Default is `["GA"]`.
+    :param List[str] stages: The acceptable release stages of the permission in the output. Note that `BETA` does not include permissions in `GA`, but you can specify both with `["GA", "BETA"]` for example. Can be a list of `"ALPHA"`, `"BETA"`, `"GA"`, `"DEPRECATED"`. Default is `["GA"]`.
     """
     __args__ = dict()
-
-
     __args__['customSupportLevel'] = custom_support_level
     __args__['fullResourceName'] = full_resource_name
     __args__['stages'] = stages
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:iam/getTestablePermissions:getTestablePermissions', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:iam/getTestablePermissions:getTestablePermissions', __args__, opts=opts, typ=_GetTestablePermissionsResult).value
 
     return AwaitableGetTestablePermissionsResult(
-        custom_support_level=__ret__.get('customSupportLevel'),
-        full_resource_name=__ret__.get('fullResourceName'),
-        id=__ret__.get('id'),
-        permissions=__ret__.get('permissions'),
-        stages=__ret__.get('stages'))
+        custom_support_level=__ret__.custom_support_level,
+        full_resource_name=__ret__.full_resource_name,
+        id=__ret__.id,
+        permissions=__ret__.permissions,
+        stages=__ret__.stages)

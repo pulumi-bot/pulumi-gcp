@@ -5,8 +5,38 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetDatabaseInstanceResult',
+    'AwaitableGetDatabaseInstanceResult',
+    'get_database_instance',
+]
+
+
+@pulumi.output_type
+class _GetDatabaseInstanceResult:
+    connection_name: str = pulumi.property("connectionName")
+    database_version: str = pulumi.property("databaseVersion")
+    encryption_key_name: str = pulumi.property("encryptionKeyName")
+    first_ip_address: str = pulumi.property("firstIpAddress")
+    id: str = pulumi.property("id")
+    ip_addresses: List['outputs.GetDatabaseInstanceIpAddressResult'] = pulumi.property("ipAddresses")
+    master_instance_name: str = pulumi.property("masterInstanceName")
+    name: str = pulumi.property("name")
+    private_ip_address: str = pulumi.property("privateIpAddress")
+    project: str = pulumi.property("project")
+    public_ip_address: str = pulumi.property("publicIpAddress")
+    region: str = pulumi.property("region")
+    replica_configurations: List['outputs.GetDatabaseInstanceReplicaConfigurationResult'] = pulumi.property("replicaConfigurations")
+    root_password: str = pulumi.property("rootPassword")
+    self_link: str = pulumi.property("selfLink")
+    server_ca_certs: List['outputs.GetDatabaseInstanceServerCaCertResult'] = pulumi.property("serverCaCerts")
+    service_account_email_address: str = pulumi.property("serviceAccountEmailAddress")
+    settings: List['outputs.GetDatabaseInstanceSettingResult'] = pulumi.property("settings")
+
 
 class GetDatabaseInstanceResult:
     """
@@ -109,6 +139,8 @@ class GetDatabaseInstanceResult:
         The settings to use for the database. The
         configuration is detailed below.
         """
+
+
 class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -134,39 +166,48 @@ class AwaitableGetDatabaseInstanceResult(GetDatabaseInstanceResult):
             service_account_email_address=self.service_account_email_address,
             settings=self.settings)
 
-def get_database_instance(name=None,opts=None):
+
+def get_database_instance(name: Optional[str] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseInstanceResult:
     """
     Use this data source to get information about a Cloud SQL instance
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    qa = gcp.sql.get_database_instance(name=google_sql_database_instance["master"]["name"])
+    ```
 
 
     :param str name: The name of the instance.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:sql/getDatabaseInstance:getDatabaseInstance', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:sql/getDatabaseInstance:getDatabaseInstance', __args__, opts=opts, typ=_GetDatabaseInstanceResult).value
 
     return AwaitableGetDatabaseInstanceResult(
-        connection_name=__ret__.get('connectionName'),
-        database_version=__ret__.get('databaseVersion'),
-        encryption_key_name=__ret__.get('encryptionKeyName'),
-        first_ip_address=__ret__.get('firstIpAddress'),
-        id=__ret__.get('id'),
-        ip_addresses=__ret__.get('ipAddresses'),
-        master_instance_name=__ret__.get('masterInstanceName'),
-        name=__ret__.get('name'),
-        private_ip_address=__ret__.get('privateIpAddress'),
-        project=__ret__.get('project'),
-        public_ip_address=__ret__.get('publicIpAddress'),
-        region=__ret__.get('region'),
-        replica_configurations=__ret__.get('replicaConfigurations'),
-        root_password=__ret__.get('rootPassword'),
-        self_link=__ret__.get('selfLink'),
-        server_ca_certs=__ret__.get('serverCaCerts'),
-        service_account_email_address=__ret__.get('serviceAccountEmailAddress'),
-        settings=__ret__.get('settings'))
+        connection_name=__ret__.connection_name,
+        database_version=__ret__.database_version,
+        encryption_key_name=__ret__.encryption_key_name,
+        first_ip_address=__ret__.first_ip_address,
+        id=__ret__.id,
+        ip_addresses=__ret__.ip_addresses,
+        master_instance_name=__ret__.master_instance_name,
+        name=__ret__.name,
+        private_ip_address=__ret__.private_ip_address,
+        project=__ret__.project,
+        public_ip_address=__ret__.public_ip_address,
+        region=__ret__.region,
+        replica_configurations=__ret__.replica_configurations,
+        root_password=__ret__.root_password,
+        self_link=__ret__.self_link,
+        server_ca_certs=__ret__.server_ca_certs,
+        service_account_email_address=__ret__.service_account_email_address,
+        settings=__ret__.settings)

@@ -5,8 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetNetworkResult',
+    'AwaitableGetNetworkResult',
+    'get_network',
+]
+
+
+@pulumi.output_type
+class _GetNetworkResult:
+    description: str = pulumi.property("description")
+    gateway_ipv4: str = pulumi.property("gatewayIpv4")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    project: Optional[str] = pulumi.property("project")
+    self_link: str = pulumi.property("selfLink")
+    subnetworks_self_links: List[str] = pulumi.property("subnetworksSelfLinks")
+
 
 class GetNetworkResult:
     """
@@ -49,6 +67,8 @@ class GetNetworkResult:
         """
         the list of subnetworks which belong to the network
         """
+
+
 class AwaitableGetNetworkResult(GetNetworkResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -63,9 +83,21 @@ class AwaitableGetNetworkResult(GetNetworkResult):
             self_link=self.self_link,
             subnetworks_self_links=self.subnetworks_self_links)
 
-def get_network(name=None,project=None,opts=None):
+
+def get_network(name: Optional[str] = None,
+                project: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkResult:
     """
     Get a network within GCE from its name.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_network = gcp.compute.get_network(name="default-us-east1")
+    ```
 
 
     :param str name: The name of the network.
@@ -73,21 +105,19 @@ def get_network(name=None,project=None,opts=None):
            is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getNetwork:getNetwork', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getNetwork:getNetwork', __args__, opts=opts, typ=_GetNetworkResult).value
 
     return AwaitableGetNetworkResult(
-        description=__ret__.get('description'),
-        gateway_ipv4=__ret__.get('gatewayIpv4'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        project=__ret__.get('project'),
-        self_link=__ret__.get('selfLink'),
-        subnetworks_self_links=__ret__.get('subnetworksSelfLinks'))
+        description=__ret__.description,
+        gateway_ipv4=__ret__.gateway_ipv4,
+        id=__ret__.id,
+        name=__ret__.name,
+        project=__ret__.project,
+        self_link=__ret__.self_link,
+        subnetworks_self_links=__ret__.subnetworks_self_links)

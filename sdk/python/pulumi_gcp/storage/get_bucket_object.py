@@ -5,8 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetBucketObjectResult',
+    'AwaitableGetBucketObjectResult',
+    'get_bucket_object',
+]
+
+
+@pulumi.output_type
+class _GetBucketObjectResult:
+    bucket: Optional[str] = pulumi.property("bucket")
+    cache_control: str = pulumi.property("cacheControl")
+    content: str = pulumi.property("content")
+    content_disposition: str = pulumi.property("contentDisposition")
+    content_encoding: str = pulumi.property("contentEncoding")
+    content_language: str = pulumi.property("contentLanguage")
+    content_type: str = pulumi.property("contentType")
+    crc32c: str = pulumi.property("crc32c")
+    detect_md5hash: str = pulumi.property("detectMd5hash")
+    id: str = pulumi.property("id")
+    md5hash: str = pulumi.property("md5hash")
+    media_link: str = pulumi.property("mediaLink")
+    metadata: Mapping[str, str] = pulumi.property("metadata")
+    name: Optional[str] = pulumi.property("name")
+    output_name: str = pulumi.property("outputName")
+    self_link: str = pulumi.property("selfLink")
+    source: str = pulumi.property("source")
+    storage_class: str = pulumi.property("storageClass")
+
 
 class GetBucketObjectResult:
     """
@@ -103,6 +132,8 @@ class GetBucketObjectResult:
         Supported values include: `MULTI_REGIONAL`, `REGIONAL`, `NEARLINE`, `COLDLINE`. If not provided, this defaults to the bucket's default
         storage class or to a [standard](https://cloud.google.com/storage/docs/storage-classes#standard) class.
         """
+
+
 class AwaitableGetBucketObjectResult(GetBucketObjectResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -128,44 +159,57 @@ class AwaitableGetBucketObjectResult(GetBucketObjectResult):
             source=self.source,
             storage_class=self.storage_class)
 
-def get_bucket_object(bucket=None,name=None,opts=None):
+
+def get_bucket_object(bucket: Optional[str] = None,
+                      name: Optional[str] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBucketObjectResult:
     """
     Gets an existing object inside an existing bucket in Google Cloud Storage service (GCS).
     See [the official documentation](https://cloud.google.com/storage/docs/key-terms#objects)
     and
     [API](https://cloud.google.com/storage/docs/json_api/v1/objects).
 
+    ## Example Usage
+
+    Example picture stored within a folder.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    picture = gcp.storage.get_bucket_object(bucket="image-store",
+        name="folder/butterfly01.jpg")
+    ```
+
 
     :param str bucket: The name of the containing bucket.
     :param str name: The name of the object.
     """
     __args__ = dict()
-
-
     __args__['bucket'] = bucket
     __args__['name'] = name
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:storage/getBucketObject:getBucketObject', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:storage/getBucketObject:getBucketObject', __args__, opts=opts, typ=_GetBucketObjectResult).value
 
     return AwaitableGetBucketObjectResult(
-        bucket=__ret__.get('bucket'),
-        cache_control=__ret__.get('cacheControl'),
-        content=__ret__.get('content'),
-        content_disposition=__ret__.get('contentDisposition'),
-        content_encoding=__ret__.get('contentEncoding'),
-        content_language=__ret__.get('contentLanguage'),
-        content_type=__ret__.get('contentType'),
-        crc32c=__ret__.get('crc32c'),
-        detect_md5hash=__ret__.get('detectMd5hash'),
-        id=__ret__.get('id'),
-        md5hash=__ret__.get('md5hash'),
-        media_link=__ret__.get('mediaLink'),
-        metadata=__ret__.get('metadata'),
-        name=__ret__.get('name'),
-        output_name=__ret__.get('outputName'),
-        self_link=__ret__.get('selfLink'),
-        source=__ret__.get('source'),
-        storage_class=__ret__.get('storageClass'))
+        bucket=__ret__.bucket,
+        cache_control=__ret__.cache_control,
+        content=__ret__.content,
+        content_disposition=__ret__.content_disposition,
+        content_encoding=__ret__.content_encoding,
+        content_language=__ret__.content_language,
+        content_type=__ret__.content_type,
+        crc32c=__ret__.crc32c,
+        detect_md5hash=__ret__.detect_md5hash,
+        id=__ret__.id,
+        md5hash=__ret__.md5hash,
+        media_link=__ret__.media_link,
+        metadata=__ret__.metadata,
+        name=__ret__.name,
+        output_name=__ret__.output_name,
+        self_link=__ret__.self_link,
+        source=__ret__.source,
+        storage_class=__ret__.storage_class)

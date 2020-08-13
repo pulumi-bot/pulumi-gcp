@@ -5,8 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetManagedZoneResult',
+    'AwaitableGetManagedZoneResult',
+    'get_managed_zone',
+]
+
+
+@pulumi.output_type
+class _GetManagedZoneResult:
+    description: str = pulumi.property("description")
+    dns_name: str = pulumi.property("dnsName")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    name_servers: List[str] = pulumi.property("nameServers")
+    project: Optional[str] = pulumi.property("project")
+    visibility: str = pulumi.property("visibility")
+
 
 class GetManagedZoneResult:
     """
@@ -52,6 +70,8 @@ class GetManagedZoneResult:
         The zone's visibility: public zones are exposed to the Internet,
         while private zones are visible only to Virtual Private Cloud resources.
         """
+
+
 class AwaitableGetManagedZoneResult(GetManagedZoneResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -66,7 +86,10 @@ class AwaitableGetManagedZoneResult(GetManagedZoneResult):
             project=self.project,
             visibility=self.visibility)
 
-def get_managed_zone(name=None,project=None,opts=None):
+
+def get_managed_zone(name: Optional[str] = None,
+                     project: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetManagedZoneResult:
     """
     Provides access to a zone's attributes within Google Cloud DNS.
     For more information see
@@ -74,26 +97,36 @@ def get_managed_zone(name=None,project=None,opts=None):
     and
     [API](https://cloud.google.com/dns/api/v1/managedZones).
 
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    env_dns_zone = gcp.dns.get_managed_zone(name="qa-zone")
+    dns = gcp.dns.RecordSet("dns",
+        type="TXT",
+        ttl=300,
+        managed_zone=env_dns_zone.name,
+        rrdatas=["test"])
+    ```
+
 
     :param str name: A unique name for the resource.
     :param str project: The ID of the project for the Google Cloud DNS zone.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:dns/getManagedZone:getManagedZone', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:dns/getManagedZone:getManagedZone', __args__, opts=opts, typ=_GetManagedZoneResult).value
 
     return AwaitableGetManagedZoneResult(
-        description=__ret__.get('description'),
-        dns_name=__ret__.get('dnsName'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        name_servers=__ret__.get('nameServers'),
-        project=__ret__.get('project'),
-        visibility=__ret__.get('visibility'))
+        description=__ret__.description,
+        dns_name=__ret__.dns_name,
+        id=__ret__.id,
+        name=__ret__.name,
+        name_servers=__ret__.name_servers,
+        project=__ret__.project,
+        visibility=__ret__.visibility)

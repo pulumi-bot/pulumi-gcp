@@ -5,8 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetClientOpenIdUserInfoResult',
+    'AwaitableGetClientOpenIdUserInfoResult',
+    'get_client_open_id_user_info',
+]
+
+
+@pulumi.output_type
+class _GetClientOpenIdUserInfoResult:
+    email: str = pulumi.property("email")
+    id: str = pulumi.property("id")
+
 
 class GetClientOpenIdUserInfoResult:
     """
@@ -25,6 +38,8 @@ class GetClientOpenIdUserInfoResult:
         """
         The provider-assigned unique ID for this managed resource.
         """
+
+
 class AwaitableGetClientOpenIdUserInfoResult(GetClientOpenIdUserInfoResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -34,7 +49,8 @@ class AwaitableGetClientOpenIdUserInfoResult(GetClientOpenIdUserInfoResult):
             email=self.email,
             id=self.id)
 
-def get_client_open_id_user_info(opts=None):
+
+def get_client_open_id_user_info(                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientOpenIdUserInfoResult:
     """
     Get OpenID userinfo about the credentials used with the Google provider,
     specifically the email.
@@ -49,16 +65,23 @@ def get_client_open_id_user_info(opts=None):
     receive an error otherwise.
 
     ## Example Usage
+    ### Exporting An Email
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    me = gcp.organizations.get_client_open_id_user_info()
+    pulumi.export("my-email", me.email)
+    ```
     """
     __args__ = dict()
-
-
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:organizations/getClientOpenIdUserInfo:getClientOpenIdUserInfo', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:organizations/getClientOpenIdUserInfo:getClientOpenIdUserInfo', __args__, opts=opts, typ=_GetClientOpenIdUserInfoResult).value
 
     return AwaitableGetClientOpenIdUserInfoResult(
-        email=__ret__.get('email'),
-        id=__ret__.get('id'))
+        email=__ret__.email,
+        id=__ret__.id)

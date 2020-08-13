@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetWebAppResult',
+    'AwaitableGetWebAppResult',
+    'get_web_app',
+]
+
+
+@pulumi.output_type
+class _GetWebAppResult:
+    app_id: str = pulumi.property("appId")
+    display_name: str = pulumi.property("displayName")
+    id: str = pulumi.property("id")
+    name: str = pulumi.property("name")
+    project: str = pulumi.property("project")
+
 
 class GetWebAppResult:
     """
@@ -31,6 +47,8 @@ class GetWebAppResult:
         if project and not isinstance(project, str):
             raise TypeError("Expected argument 'project' to be a str")
         __self__.project = project
+
+
 class AwaitableGetWebAppResult(GetWebAppResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -43,7 +61,9 @@ class AwaitableGetWebAppResult(GetWebAppResult):
             name=self.name,
             project=self.project)
 
-def get_web_app(app_id=None,opts=None):
+
+def get_web_app(app_id: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebAppResult:
     """
     A Google Cloud Firebase web application instance
 
@@ -51,18 +71,16 @@ def get_web_app(app_id=None,opts=None):
     :param str app_id: The app_ip of name of the Firebase webApp.
     """
     __args__ = dict()
-
-
     __args__['appId'] = app_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:firebase/getWebApp:getWebApp', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:firebase/getWebApp:getWebApp', __args__, opts=opts, typ=_GetWebAppResult).value
 
     return AwaitableGetWebAppResult(
-        app_id=__ret__.get('appId'),
-        display_name=__ret__.get('displayName'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        project=__ret__.get('project'))
+        app_id=__ret__.app_id,
+        display_name=__ret__.display_name,
+        id=__ret__.id,
+        name=__ret__.name,
+        project=__ret__.project)

@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetWebAppConfigResult',
+    'AwaitableGetWebAppConfigResult',
+    'get_web_app_config',
+]
+
+
+@pulumi.output_type
+class _GetWebAppConfigResult:
+    api_key: str = pulumi.property("apiKey")
+    auth_domain: str = pulumi.property("authDomain")
+    database_url: str = pulumi.property("databaseUrl")
+    id: str = pulumi.property("id")
+    location_id: str = pulumi.property("locationId")
+    measurement_id: str = pulumi.property("measurementId")
+    messaging_sender_id: str = pulumi.property("messagingSenderId")
+    project: Optional[str] = pulumi.property("project")
+    storage_bucket: str = pulumi.property("storageBucket")
+    web_app_id: str = pulumi.property("webAppId")
+
 
 class GetWebAppConfigResult:
     """
@@ -46,6 +67,8 @@ class GetWebAppConfigResult:
         if web_app_id and not isinstance(web_app_id, str):
             raise TypeError("Expected argument 'web_app_id' to be a str")
         __self__.web_app_id = web_app_id
+
+
 class AwaitableGetWebAppConfigResult(GetWebAppConfigResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -63,7 +86,10 @@ class AwaitableGetWebAppConfigResult(GetWebAppConfigResult):
             storage_bucket=self.storage_bucket,
             web_app_id=self.web_app_id)
 
-def get_web_app_config(project=None,web_app_id=None,opts=None):
+
+def get_web_app_config(project: Optional[str] = None,
+                       web_app_id: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetWebAppConfigResult:
     """
     A Google Cloud Firebase web application configuration
 
@@ -79,24 +105,22 @@ def get_web_app_config(project=None,web_app_id=None,opts=None):
     :param str web_app_id: the id of the firebase web app
     """
     __args__ = dict()
-
-
     __args__['project'] = project
     __args__['webAppId'] = web_app_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:firebase/getWebAppConfig:getWebAppConfig', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:firebase/getWebAppConfig:getWebAppConfig', __args__, opts=opts, typ=_GetWebAppConfigResult).value
 
     return AwaitableGetWebAppConfigResult(
-        api_key=__ret__.get('apiKey'),
-        auth_domain=__ret__.get('authDomain'),
-        database_url=__ret__.get('databaseUrl'),
-        id=__ret__.get('id'),
-        location_id=__ret__.get('locationId'),
-        measurement_id=__ret__.get('measurementId'),
-        messaging_sender_id=__ret__.get('messagingSenderId'),
-        project=__ret__.get('project'),
-        storage_bucket=__ret__.get('storageBucket'),
-        web_app_id=__ret__.get('webAppId'))
+        api_key=__ret__.api_key,
+        auth_domain=__ret__.auth_domain,
+        database_url=__ret__.database_url,
+        id=__ret__.id,
+        location_id=__ret__.location_id,
+        measurement_id=__ret__.measurement_id,
+        messaging_sender_id=__ret__.messaging_sender_id,
+        project=__ret__.project,
+        storage_bucket=__ret__.storage_bucket,
+        web_app_id=__ret__.web_app_id)

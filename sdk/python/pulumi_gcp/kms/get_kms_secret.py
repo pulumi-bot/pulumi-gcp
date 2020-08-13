@@ -5,8 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetKMSSecretResult',
+    'AwaitableGetKMSSecretResult',
+    'get_kms_secret',
+]
+
+
+@pulumi.output_type
+class _GetKMSSecretResult:
+    additional_authenticated_data: Optional[str] = pulumi.property("additionalAuthenticatedData")
+    ciphertext: str = pulumi.property("ciphertext")
+    crypto_key: str = pulumi.property("cryptoKey")
+    id: str = pulumi.property("id")
+    plaintext: str = pulumi.property("plaintext")
+
 
 class GetKMSSecretResult:
     """
@@ -34,6 +50,8 @@ class GetKMSSecretResult:
         """
         Contains the result of decrypting the provided ciphertext.
         """
+
+
 class AwaitableGetKMSSecretResult(GetKMSSecretResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -46,7 +64,11 @@ class AwaitableGetKMSSecretResult(GetKMSSecretResult):
             id=self.id,
             plaintext=self.plaintext)
 
-def get_kms_secret(additional_authenticated_data=None,ciphertext=None,crypto_key=None,opts=None):
+
+def get_kms_secret(additional_authenticated_data: Optional[str] = None,
+                   ciphertext: Optional[str] = None,
+                   crypto_key: Optional[str] = None,
+                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKMSSecretResult:
     """
     This data source allows you to use data encrypted with Google Cloud KMS
     within your resource definitions.
@@ -67,20 +89,18 @@ def get_kms_secret(additional_authenticated_data=None,ciphertext=None,crypto_key
            `{projectId}/{location}/{keyRingName}/{cryptoKeyName}`.
     """
     __args__ = dict()
-
-
     __args__['additionalAuthenticatedData'] = additional_authenticated_data
     __args__['ciphertext'] = ciphertext
     __args__['cryptoKey'] = crypto_key
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:kms/getKMSSecret:getKMSSecret', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:kms/getKMSSecret:getKMSSecret', __args__, opts=opts, typ=_GetKMSSecretResult).value
 
     return AwaitableGetKMSSecretResult(
-        additional_authenticated_data=__ret__.get('additionalAuthenticatedData'),
-        ciphertext=__ret__.get('ciphertext'),
-        crypto_key=__ret__.get('cryptoKey'),
-        id=__ret__.get('id'),
-        plaintext=__ret__.get('plaintext'))
+        additional_authenticated_data=__ret__.additional_authenticated_data,
+        ciphertext=__ret__.ciphertext,
+        crypto_key=__ret__.crypto_key,
+        id=__ret__.id,
+        plaintext=__ret__.plaintext)

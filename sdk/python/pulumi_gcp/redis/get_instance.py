@@ -5,8 +5,39 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetInstanceResult',
+    'AwaitableGetInstanceResult',
+    'get_instance',
+]
+
+
+@pulumi.output_type
+class _GetInstanceResult:
+    alternative_location_id: str = pulumi.property("alternativeLocationId")
+    authorized_network: str = pulumi.property("authorizedNetwork")
+    connect_mode: str = pulumi.property("connectMode")
+    create_time: str = pulumi.property("createTime")
+    current_location_id: str = pulumi.property("currentLocationId")
+    display_name: str = pulumi.property("displayName")
+    host: str = pulumi.property("host")
+    id: str = pulumi.property("id")
+    labels: Mapping[str, str] = pulumi.property("labels")
+    location_id: str = pulumi.property("locationId")
+    memory_size_gb: float = pulumi.property("memorySizeGb")
+    name: str = pulumi.property("name")
+    persistence_iam_identity: str = pulumi.property("persistenceIamIdentity")
+    port: float = pulumi.property("port")
+    project: Optional[str] = pulumi.property("project")
+    redis_configs: Mapping[str, str] = pulumi.property("redisConfigs")
+    redis_version: str = pulumi.property("redisVersion")
+    region: Optional[str] = pulumi.property("region")
+    reserved_ip_range: str = pulumi.property("reservedIpRange")
+    tier: str = pulumi.property("tier")
+
 
 class GetInstanceResult:
     """
@@ -83,6 +114,8 @@ class GetInstanceResult:
         if tier and not isinstance(tier, str):
             raise TypeError("Expected argument 'tier' to be a str")
         __self__.tier = tier
+
+
 class AwaitableGetInstanceResult(GetInstanceResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -110,11 +143,24 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             reserved_ip_range=self.reserved_ip_range,
             tier=self.tier)
 
-def get_instance(name=None,project=None,region=None,opts=None):
+
+def get_instance(name: Optional[str] = None,
+                 project: Optional[str] = None,
+                 region: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceResult:
     """
     Get information about a Google Cloud Redis instance. For more information see
     the [official documentation](https://cloud.google.com/memorystore/docs/redis)
     and [API](https://cloud.google.com/memorystore/docs/redis/apis).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    default = gcp.redis.get_instance(name="my-redis-instance")
+    ```
 
 
     :param str name: The name of a Redis instance.
@@ -124,35 +170,33 @@ def get_instance(name=None,project=None,region=None,opts=None):
            is not provided, the provider region is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:redis/getInstance:getInstance', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:redis/getInstance:getInstance', __args__, opts=opts, typ=_GetInstanceResult).value
 
     return AwaitableGetInstanceResult(
-        alternative_location_id=__ret__.get('alternativeLocationId'),
-        authorized_network=__ret__.get('authorizedNetwork'),
-        connect_mode=__ret__.get('connectMode'),
-        create_time=__ret__.get('createTime'),
-        current_location_id=__ret__.get('currentLocationId'),
-        display_name=__ret__.get('displayName'),
-        host=__ret__.get('host'),
-        id=__ret__.get('id'),
-        labels=__ret__.get('labels'),
-        location_id=__ret__.get('locationId'),
-        memory_size_gb=__ret__.get('memorySizeGb'),
-        name=__ret__.get('name'),
-        persistence_iam_identity=__ret__.get('persistenceIamIdentity'),
-        port=__ret__.get('port'),
-        project=__ret__.get('project'),
-        redis_configs=__ret__.get('redisConfigs'),
-        redis_version=__ret__.get('redisVersion'),
-        region=__ret__.get('region'),
-        reserved_ip_range=__ret__.get('reservedIpRange'),
-        tier=__ret__.get('tier'))
+        alternative_location_id=__ret__.alternative_location_id,
+        authorized_network=__ret__.authorized_network,
+        connect_mode=__ret__.connect_mode,
+        create_time=__ret__.create_time,
+        current_location_id=__ret__.current_location_id,
+        display_name=__ret__.display_name,
+        host=__ret__.host,
+        id=__ret__.id,
+        labels=__ret__.labels,
+        location_id=__ret__.location_id,
+        memory_size_gb=__ret__.memory_size_gb,
+        name=__ret__.name,
+        persistence_iam_identity=__ret__.persistence_iam_identity,
+        port=__ret__.port,
+        project=__ret__.project,
+        redis_configs=__ret__.redis_configs,
+        redis_version=__ret__.redis_version,
+        region=__ret__.region,
+        reserved_ip_range=__ret__.reserved_ip_range,
+        tier=__ret__.tier)

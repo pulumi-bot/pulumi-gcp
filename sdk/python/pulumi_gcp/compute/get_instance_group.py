@@ -5,8 +5,30 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetInstanceGroupResult',
+    'AwaitableGetInstanceGroupResult',
+    'get_instance_group',
+]
+
+
+@pulumi.output_type
+class _GetInstanceGroupResult:
+    description: str = pulumi.property("description")
+    id: str = pulumi.property("id")
+    instances: List[str] = pulumi.property("instances")
+    name: Optional[str] = pulumi.property("name")
+    named_ports: List['outputs.GetInstanceGroupNamedPortResult'] = pulumi.property("namedPorts")
+    network: str = pulumi.property("network")
+    project: str = pulumi.property("project")
+    self_link: str = pulumi.property("selfLink")
+    size: float = pulumi.property("size")
+    zone: str = pulumi.property("zone")
+
 
 class GetInstanceGroupResult:
     """
@@ -64,6 +86,8 @@ class GetInstanceGroupResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         __self__.zone = zone
+
+
 class AwaitableGetInstanceGroupResult(GetInstanceGroupResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -81,11 +105,24 @@ class AwaitableGetInstanceGroupResult(GetInstanceGroupResult):
             size=self.size,
             zone=self.zone)
 
-def get_instance_group(name=None,project=None,self_link=None,zone=None,opts=None):
+
+def get_instance_group(name: Optional[str] = None,
+                       project: Optional[str] = None,
+                       self_link: Optional[str] = None,
+                       zone: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceGroupResult:
     """
     Get a Compute Instance Group within GCE.
     For more information, see [the official documentation](https://cloud.google.com/compute/docs/instance-groups/#unmanaged_instance_groups)
     and [API](https://cloud.google.com/compute/docs/reference/latest/instanceGroups)
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    all = gcp.compute.get_instance_group(name="instance-group-name",
+        zone="us-central1-a")
+    ```
 
 
     :param str name: The name of the instance group. Either `name` or `self_link` must be provided.
@@ -96,8 +133,6 @@ def get_instance_group(name=None,project=None,self_link=None,zone=None,opts=None
            and `zone` is not provided, the provider zone is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['selfLink'] = self_link
@@ -105,17 +140,17 @@ def get_instance_group(name=None,project=None,self_link=None,zone=None,opts=None
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getInstanceGroup:getInstanceGroup', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getInstanceGroup:getInstanceGroup', __args__, opts=opts, typ=_GetInstanceGroupResult).value
 
     return AwaitableGetInstanceGroupResult(
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        instances=__ret__.get('instances'),
-        name=__ret__.get('name'),
-        named_ports=__ret__.get('namedPorts'),
-        network=__ret__.get('network'),
-        project=__ret__.get('project'),
-        self_link=__ret__.get('selfLink'),
-        size=__ret__.get('size'),
-        zone=__ret__.get('zone'))
+        description=__ret__.description,
+        id=__ret__.id,
+        instances=__ret__.instances,
+        name=__ret__.name,
+        named_ports=__ret__.named_ports,
+        network=__ret__.network,
+        project=__ret__.project,
+        self_link=__ret__.self_link,
+        size=__ret__.size,
+        zone=__ret__.zone)

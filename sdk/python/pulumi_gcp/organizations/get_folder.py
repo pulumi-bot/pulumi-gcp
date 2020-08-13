@@ -5,8 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = [
+    'GetFolderResult',
+    'AwaitableGetFolderResult',
+    'get_folder',
+]
+
+
+@pulumi.output_type
+class _GetFolderResult:
+    create_time: str = pulumi.property("createTime")
+    display_name: str = pulumi.property("displayName")
+    folder: str = pulumi.property("folder")
+    folder_id: str = pulumi.property("folderId")
+    id: str = pulumi.property("id")
+    lifecycle_state: str = pulumi.property("lifecycleState")
+    lookup_organization: Optional[bool] = pulumi.property("lookupOrganization")
+    name: str = pulumi.property("name")
+    organization: str = pulumi.property("organization")
+    parent: str = pulumi.property("parent")
+
 
 class GetFolderResult:
     """
@@ -64,6 +85,8 @@ class GetFolderResult:
         """
         The resource name of the parent Folder or Organization.
         """
+
+
 class AwaitableGetFolderResult(GetFolderResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -81,33 +104,45 @@ class AwaitableGetFolderResult(GetFolderResult):
             organization=self.organization,
             parent=self.parent)
 
-def get_folder(folder=None,lookup_organization=None,opts=None):
+
+def get_folder(folder: Optional[str] = None,
+               lookup_organization: Optional[bool] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFolderResult:
     """
     Use this data source to get information about a Google Cloud Folder.
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_folder1 = gcp.organizations.get_folder(folder="folders/12345",
+        lookup_organization=True)
+    my_folder2 = gcp.organizations.get_folder(folder="folders/23456")
+    pulumi.export("myFolder1Organization", my_folder1.organization)
+    pulumi.export("myFolder2Parent", my_folder2.parent)
+    ```
 
 
     :param str folder: The name of the Folder in the form `{folder_id}` or `folders/{folder_id}`.
     :param bool lookup_organization: `true` to find the organization that the folder belongs, `false` to avoid the lookup. It searches up the tree. (defaults to `false`)
     """
     __args__ = dict()
-
-
     __args__['folder'] = folder
     __args__['lookupOrganization'] = lookup_organization
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:organizations/getFolder:getFolder', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:organizations/getFolder:getFolder', __args__, opts=opts, typ=_GetFolderResult).value
 
     return AwaitableGetFolderResult(
-        create_time=__ret__.get('createTime'),
-        display_name=__ret__.get('displayName'),
-        folder=__ret__.get('folder'),
-        folder_id=__ret__.get('folderId'),
-        id=__ret__.get('id'),
-        lifecycle_state=__ret__.get('lifecycleState'),
-        lookup_organization=__ret__.get('lookupOrganization'),
-        name=__ret__.get('name'),
-        organization=__ret__.get('organization'),
-        parent=__ret__.get('parent'))
+        create_time=__ret__.create_time,
+        display_name=__ret__.display_name,
+        folder=__ret__.folder,
+        folder_id=__ret__.folder_id,
+        id=__ret__.id,
+        lifecycle_state=__ret__.lifecycle_state,
+        lookup_organization=__ret__.lookup_organization,
+        name=__ret__.name,
+        organization=__ret__.organization,
+        parent=__ret__.parent)

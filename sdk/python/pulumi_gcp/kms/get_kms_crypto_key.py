@@ -5,8 +5,28 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+
+__all__ = [
+    'GetKMSCryptoKeyResult',
+    'AwaitableGetKMSCryptoKeyResult',
+    'get_kms_crypto_key',
+]
+
+
+@pulumi.output_type
+class _GetKMSCryptoKeyResult:
+    id: str = pulumi.property("id")
+    key_ring: str = pulumi.property("keyRing")
+    labels: Mapping[str, str] = pulumi.property("labels")
+    name: str = pulumi.property("name")
+    purpose: str = pulumi.property("purpose")
+    rotation_period: str = pulumi.property("rotationPeriod")
+    self_link: str = pulumi.property("selfLink")
+    version_templates: List['outputs.GetKMSCryptoKeyVersionTemplateResult'] = pulumi.property("versionTemplates")
+
 
 class GetKMSCryptoKeyResult:
     """
@@ -51,6 +71,8 @@ class GetKMSCryptoKeyResult:
         if version_templates and not isinstance(version_templates, list):
             raise TypeError("Expected argument 'version_templates' to be a list")
         __self__.version_templates = version_templates
+
+
 class AwaitableGetKMSCryptoKeyResult(GetKMSCryptoKeyResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -66,7 +88,10 @@ class AwaitableGetKMSCryptoKeyResult(GetKMSCryptoKeyResult):
             self_link=self.self_link,
             version_templates=self.version_templates)
 
-def get_kms_crypto_key(key_ring=None,name=None,opts=None):
+
+def get_kms_crypto_key(key_ring: Optional[str] = None,
+                       name: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKMSCryptoKeyResult:
     """
     Provides access to a Google Cloud Platform KMS CryptoKey. For more information see
     [the official documentation](https://cloud.google.com/kms/docs/object-hierarchy#key)
@@ -76,28 +101,38 @@ def get_kms_crypto_key(key_ring=None,name=None,opts=None):
     A CryptoKey is an interface to key material which can be used to encrypt and decrypt data. A CryptoKey belongs to a
     Google Cloud KMS KeyRing.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_gcp as gcp
+
+    my_key_ring = gcp.kms.get_kms_key_ring(name="my-key-ring",
+        location="us-central1")
+    my_crypto_key = gcp.kms.get_kms_crypto_key(name="my-crypto-key",
+        key_ring=my_key_ring.self_link)
+    ```
+
 
     :param str key_ring: The `self_link` of the Google Cloud Platform KeyRing to which the key belongs.
     :param str name: The CryptoKey's name.
            A CryptoKey’s name belonging to the specified Google Cloud Platform KeyRing and match the regular expression `[a-zA-Z0-9_-]{1,63}`
     """
     __args__ = dict()
-
-
     __args__['keyRing'] = key_ring
     __args__['name'] = name
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:kms/getKMSCryptoKey:getKMSCryptoKey', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:kms/getKMSCryptoKey:getKMSCryptoKey', __args__, opts=opts, typ=_GetKMSCryptoKeyResult).value
 
     return AwaitableGetKMSCryptoKeyResult(
-        id=__ret__.get('id'),
-        key_ring=__ret__.get('keyRing'),
-        labels=__ret__.get('labels'),
-        name=__ret__.get('name'),
-        purpose=__ret__.get('purpose'),
-        rotation_period=__ret__.get('rotationPeriod'),
-        self_link=__ret__.get('selfLink'),
-        version_templates=__ret__.get('versionTemplates'))
+        id=__ret__.id,
+        key_ring=__ret__.key_ring,
+        labels=__ret__.labels,
+        name=__ret__.name,
+        purpose=__ret__.purpose,
+        rotation_period=__ret__.rotation_period,
+        self_link=__ret__.self_link,
+        version_templates=__ret__.version_templates)
