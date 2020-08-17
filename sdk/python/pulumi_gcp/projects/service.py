@@ -5,29 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Service']
 
 
 class Service(pulumi.CustomResource):
-    disable_dependent_services: pulumi.Output[bool]
-    """
-    If `true`, services that are enabled and which depend on this service should also be disabled when this service is destroyed.
-    If `false` or unset, an error will be generated if any enabled services depend on this service when destroying it.
-    """
-    disable_on_destroy: pulumi.Output[bool]
-    """
-    If true, disable the service when the resource is destroyed.  Defaults to true.  May be useful in the event that a project is long-lived but the infrastructure running in that project changes frequently.
-    """
-    project: pulumi.Output[str]
-    """
-    The project ID. If not provided, the provider project is used.
-    """
-    service: pulumi.Output[str]
-    """
-    The service to enable.
-    """
-    def __init__(__self__, resource_name, opts=None, disable_dependent_services=None, disable_on_destroy=None, project=None, service=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 disable_dependent_services: Optional[pulumi.Input[bool]] = None,
+                 disable_on_destroy: Optional[pulumi.Input[bool]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 service: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Allows management of a single API service for an existing Google Cloud Platform project.
 
@@ -53,7 +47,7 @@ class Service(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -72,7 +66,13 @@ class Service(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, disable_dependent_services=None, disable_on_destroy=None, project=None, service=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            disable_dependent_services: Optional[pulumi.Input[bool]] = None,
+            disable_on_destroy: Optional[pulumi.Input[bool]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            service: Optional[pulumi.Input[str]] = None) -> 'Service':
         """
         Get an existing Service resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -96,8 +96,42 @@ class Service(pulumi.CustomResource):
         __props__["service"] = service
         return Service(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="disableDependentServices")
+    def disable_dependent_services(self) -> Optional[bool]:
+        """
+        If `true`, services that are enabled and which depend on this service should also be disabled when this service is destroyed.
+        If `false` or unset, an error will be generated if any enabled services depend on this service when destroying it.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="disableOnDestroy")
+    def disable_on_destroy(self) -> Optional[bool]:
+        """
+        If true, disable the service when the resource is destroyed.  Defaults to true.  May be useful in the event that a project is long-lived but the infrastructure running in that project changes frequently.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        """
+        The project ID. If not provided, the provider project is used.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def service(self) -> str:
+        """
+        The service to enable.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

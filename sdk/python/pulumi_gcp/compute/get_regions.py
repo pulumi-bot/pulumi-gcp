@@ -5,9 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
 
+__all__ = [
+    'GetRegionsResult',
+    'AwaitableGetRegionsResult',
+    'get_regions',
+]
+
+
+
+@pulumi.output_type
 class GetRegionsResult:
     """
     A collection of values returned by getRegions.
@@ -15,22 +24,45 @@ class GetRegionsResult:
     def __init__(__self__, id=None, names=None, project=None, status=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if names and not isinstance(names, list):
+            raise TypeError("Expected argument 'names' to be a list")
+        pulumi.set(__self__, "names", names)
+        if project and not isinstance(project, str):
+            raise TypeError("Expected argument 'project' to be a str")
+        pulumi.set(__self__, "project", project)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if names and not isinstance(names, list):
-            raise TypeError("Expected argument 'names' to be a list")
-        __self__.names = names
+        ...
+
+    @property
+    @pulumi.getter
+    def names(self) -> List[str]:
         """
         A list of regions available in the given project
         """
-        if project and not isinstance(project, str):
-            raise TypeError("Expected argument 'project' to be a str")
-        __self__.project = project
-        if status and not isinstance(status, str):
-            raise TypeError("Expected argument 'status' to be a str")
-        __self__.status = status
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        ...
+
+
+
 class AwaitableGetRegionsResult(GetRegionsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -42,7 +74,10 @@ class AwaitableGetRegionsResult(GetRegionsResult):
             project=self.project,
             status=self.status)
 
-def get_regions(project=None,status=None,opts=None):
+
+def get_regions(project: Optional[str] = None,
+                status: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegionsResult:
     """
     Provides access to available Google Compute regions for a given project.
     See more about [regions and zones](https://cloud.google.com/compute/docs/regions-zones/) in the upstream docs.
@@ -53,18 +88,16 @@ def get_regions(project=None,status=None,opts=None):
            Defaults to no filtering (all available regions - both `UP` and `DOWN`).
     """
     __args__ = dict()
-
-
     __args__['project'] = project
     __args__['status'] = status
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getRegions:getRegions', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getRegions:getRegions', __args__, opts=opts, typ=GetRegionsResult).value
 
     return AwaitableGetRegionsResult(
-        id=__ret__.get('id'),
-        names=__ret__.get('names'),
-        project=__ret__.get('project'),
-        status=__ret__.get('status'))
+        id=__ret__.id,
+        names=__ret__.names,
+        project=__ret__.project,
+        status=__ret__.status)

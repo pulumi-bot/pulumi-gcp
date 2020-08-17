@@ -5,9 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
 
+__all__ = [
+    'GetLBIPRangesResult',
+    'AwaitableGetLBIPRangesResult',
+    'get_lbip_ranges',
+]
+
+
+
+@pulumi.output_type
 class GetLBIPRangesResult:
     """
     A collection of values returned by getLBIPRanges.
@@ -15,22 +24,40 @@ class GetLBIPRangesResult:
     def __init__(__self__, http_ssl_tcp_internals=None, id=None, networks=None):
         if http_ssl_tcp_internals and not isinstance(http_ssl_tcp_internals, list):
             raise TypeError("Expected argument 'http_ssl_tcp_internals' to be a list")
-        __self__.http_ssl_tcp_internals = http_ssl_tcp_internals
+        pulumi.set(__self__, "http_ssl_tcp_internals", http_ssl_tcp_internals)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if networks and not isinstance(networks, list):
+            raise TypeError("Expected argument 'networks' to be a list")
+        pulumi.set(__self__, "networks", networks)
+
+    @property
+    @pulumi.getter(name="httpSslTcpInternals")
+    def http_ssl_tcp_internals(self) -> List[str]:
         """
         The IP ranges used for health checks when **HTTP(S), SSL proxy, TCP proxy, and Internal load balancing** is used
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if networks and not isinstance(networks, list):
-            raise TypeError("Expected argument 'networks' to be a list")
-        __self__.networks = networks
+        ...
+
+    @property
+    @pulumi.getter
+    def networks(self) -> List[str]:
         """
         The IP ranges used for health checks when **Network load balancing** is used
         """
+        ...
+
+
+
 class AwaitableGetLBIPRangesResult(GetLBIPRangesResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -41,22 +68,21 @@ class AwaitableGetLBIPRangesResult(GetLBIPRangesResult):
             id=self.id,
             networks=self.networks)
 
-def get_lbip_ranges(opts=None):
+
+def get_lbip_ranges(                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLBIPRangesResult:
     """
     Use this data source to access IP ranges in your firewall rules.
 
     https://cloud.google.com/compute/docs/load-balancing/health-checks#health_check_source_ips_and_firewall_rules
     """
     __args__ = dict()
-
-
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getLBIPRanges:getLBIPRanges', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getLBIPRanges:getLBIPRanges', __args__, opts=opts, typ=GetLBIPRangesResult).value
 
     return AwaitableGetLBIPRangesResult(
-        http_ssl_tcp_internals=__ret__.get('httpSslTcpInternals'),
-        id=__ret__.get('id'),
-        networks=__ret__.get('networks'))
+        http_ssl_tcp_internals=__ret__.http_ssl_tcp_internals,
+        id=__ret__.id,
+        networks=__ret__.networks)

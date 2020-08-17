@@ -5,9 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
 
+__all__ = [
+    'GetTensorflowVersionsResult',
+    'AwaitableGetTensorflowVersionsResult',
+    'get_tensorflow_versions',
+]
+
+
+
+@pulumi.output_type
 class GetTensorflowVersionsResult:
     """
     A collection of values returned by getTensorflowVersions.
@@ -15,22 +24,45 @@ class GetTensorflowVersionsResult:
     def __init__(__self__, id=None, project=None, versions=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if project and not isinstance(project, str):
+            raise TypeError("Expected argument 'project' to be a str")
+        pulumi.set(__self__, "project", project)
+        if versions and not isinstance(versions, list):
+            raise TypeError("Expected argument 'versions' to be a list")
+        pulumi.set(__self__, "versions", versions)
+        if zone and not isinstance(zone, str):
+            raise TypeError("Expected argument 'zone' to be a str")
+        pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if project and not isinstance(project, str):
-            raise TypeError("Expected argument 'project' to be a str")
-        __self__.project = project
-        if versions and not isinstance(versions, list):
-            raise TypeError("Expected argument 'versions' to be a list")
-        __self__.versions = versions
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def versions(self) -> List[str]:
         """
         The list of TensorFlow versions available for the given project and zone.
         """
-        if zone and not isinstance(zone, str):
-            raise TypeError("Expected argument 'zone' to be a str")
-        __self__.zone = zone
+        ...
+
+    @property
+    @pulumi.getter
+    def zone(self) -> str:
+        ...
+
+
+
 class AwaitableGetTensorflowVersionsResult(GetTensorflowVersionsResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -42,7 +74,10 @@ class AwaitableGetTensorflowVersionsResult(GetTensorflowVersionsResult):
             versions=self.versions,
             zone=self.zone)
 
-def get_tensorflow_versions(project=None,zone=None,opts=None):
+
+def get_tensorflow_versions(project: Optional[str] = None,
+                            zone: Optional[str] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTensorflowVersionsResult:
     """
     Get TensorFlow versions available for a project. For more information see the [official documentation](https://cloud.google.com/tpu/docs/) and [API](https://cloud.google.com/tpu/docs/reference/rest/v1/projects.locations.tensorflowVersions).
 
@@ -53,18 +88,16 @@ def get_tensorflow_versions(project=None,zone=None,opts=None):
            is not provided, the provider zone is used.
     """
     __args__ = dict()
-
-
     __args__['project'] = project
     __args__['zone'] = zone
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:tpu/getTensorflowVersions:getTensorflowVersions', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:tpu/getTensorflowVersions:getTensorflowVersions', __args__, opts=opts, typ=GetTensorflowVersionsResult).value
 
     return AwaitableGetTensorflowVersionsResult(
-        id=__ret__.get('id'),
-        project=__ret__.get('project'),
-        versions=__ret__.get('versions'),
-        zone=__ret__.get('zone'))
+        id=__ret__.id,
+        project=__ret__.project,
+        versions=__ret__.versions,
+        zone=__ret__.zone)

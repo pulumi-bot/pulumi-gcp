@@ -5,31 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['SecretCiphertext']
 
 
 class SecretCiphertext(pulumi.CustomResource):
-    additional_authenticated_data: pulumi.Output[str]
-    """
-    The additional authenticated data used for integrity checks during encryption and decryption.
-    **Note**: This property is sensitive and will not be displayed in the plan.
-    """
-    ciphertext: pulumi.Output[str]
-    """
-    Contains the result of encrypting the provided plaintext, encoded in base64.
-    """
-    crypto_key: pulumi.Output[str]
-    """
-    The full name of the CryptoKey that will be used to encrypt the provided plaintext.
-    Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}'`
-    """
-    plaintext: pulumi.Output[str]
-    """
-    The plaintext to be encrypted.
-    **Note**: This property is sensitive and will not be displayed in the plan.
-    """
-    def __init__(__self__, resource_name, opts=None, additional_authenticated_data=None, crypto_key=None, plaintext=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 additional_authenticated_data: Optional[pulumi.Input[str]] = None,
+                 crypto_key: Optional[pulumi.Input[str]] = None,
+                 plaintext: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Encrypts secret data with Google Cloud KMS and provides access to the ciphertext.
 
@@ -69,7 +60,7 @@ class SecretCiphertext(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -90,7 +81,13 @@ class SecretCiphertext(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, additional_authenticated_data=None, ciphertext=None, crypto_key=None, plaintext=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            additional_authenticated_data: Optional[pulumi.Input[str]] = None,
+            ciphertext: Optional[pulumi.Input[str]] = None,
+            crypto_key: Optional[pulumi.Input[str]] = None,
+            plaintext: Optional[pulumi.Input[str]] = None) -> 'SecretCiphertext':
         """
         Get an existing SecretCiphertext resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -116,8 +113,44 @@ class SecretCiphertext(pulumi.CustomResource):
         __props__["plaintext"] = plaintext
         return SecretCiphertext(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="additionalAuthenticatedData")
+    def additional_authenticated_data(self) -> Optional[str]:
+        """
+        The additional authenticated data used for integrity checks during encryption and decryption.
+        **Note**: This property is sensitive and will not be displayed in the plan.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def ciphertext(self) -> str:
+        """
+        Contains the result of encrypting the provided plaintext, encoded in base64.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="cryptoKey")
+    def crypto_key(self) -> str:
+        """
+        The full name of the CryptoKey that will be used to encrypt the provided plaintext.
+        Format: `'projects/{{project}}/locations/{{location}}/keyRings/{{keyRing}}/cryptoKeys/{{cryptoKey}}'`
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def plaintext(self) -> str:
+        """
+        The plaintext to be encrypted.
+        **Note**: This property is sensitive and will not be displayed in the plan.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

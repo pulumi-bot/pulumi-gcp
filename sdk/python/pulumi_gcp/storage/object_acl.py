@@ -5,29 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['ObjectACL']
 
 
 class ObjectACL(pulumi.CustomResource):
-    bucket: pulumi.Output[str]
-    """
-    The name of the bucket the object is stored in.
-    """
-    object: pulumi.Output[str]
-    """
-    The name of the object to apply the acl to.
-    """
-    predefined_acl: pulumi.Output[str]
-    """
-    The "canned" [predefined ACL](https://cloud.google.com/storage/docs/access-control#predefined-acl) to apply. Must be set if `role_entity` is not.
-    """
-    role_entities: pulumi.Output[list]
-    """
-    List of role/entity pairs in the form `ROLE:entity`. See [GCS Object ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls) for more details.
-    Must be set if `predefined_acl` is not.
-    """
-    def __init__(__self__, resource_name, opts=None, bucket=None, object=None, predefined_acl=None, role_entities=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 object: Optional[pulumi.Input[str]] = None,
+                 predefined_acl: Optional[pulumi.Input[str]] = None,
+                 role_entities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Authoritatively manages the access control list (ACL) for an object in a Google
         Cloud Storage (GCS) bucket. Removing a `storage.ObjectACL` sets the
@@ -46,7 +40,7 @@ class ObjectACL(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The name of the bucket the object is stored in.
         :param pulumi.Input[str] object: The name of the object to apply the acl to.
         :param pulumi.Input[str] predefined_acl: The "canned" [predefined ACL](https://cloud.google.com/storage/docs/access-control#predefined-acl) to apply. Must be set if `role_entity` is not.
-        :param pulumi.Input[list] role_entities: List of role/entity pairs in the form `ROLE:entity`. See [GCS Object ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls) for more details.
+        :param pulumi.Input[List[pulumi.Input[str]]] role_entities: List of role/entity pairs in the form `ROLE:entity`. See [GCS Object ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls) for more details.
                Must be set if `predefined_acl` is not.
         """
         if __name__ is not None:
@@ -60,7 +54,7 @@ class ObjectACL(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -81,7 +75,13 @@ class ObjectACL(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bucket=None, object=None, predefined_acl=None, role_entities=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket: Optional[pulumi.Input[str]] = None,
+            object: Optional[pulumi.Input[str]] = None,
+            predefined_acl: Optional[pulumi.Input[str]] = None,
+            role_entities: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'ObjectACL':
         """
         Get an existing ObjectACL resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -92,7 +92,7 @@ class ObjectACL(pulumi.CustomResource):
         :param pulumi.Input[str] bucket: The name of the bucket the object is stored in.
         :param pulumi.Input[str] object: The name of the object to apply the acl to.
         :param pulumi.Input[str] predefined_acl: The "canned" [predefined ACL](https://cloud.google.com/storage/docs/access-control#predefined-acl) to apply. Must be set if `role_entity` is not.
-        :param pulumi.Input[list] role_entities: List of role/entity pairs in the form `ROLE:entity`. See [GCS Object ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls) for more details.
+        :param pulumi.Input[List[pulumi.Input[str]]] role_entities: List of role/entity pairs in the form `ROLE:entity`. See [GCS Object ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls) for more details.
                Must be set if `predefined_acl` is not.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -105,8 +105,42 @@ class ObjectACL(pulumi.CustomResource):
         __props__["role_entities"] = role_entities
         return ObjectACL(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        The name of the bucket the object is stored in.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def object(self) -> str:
+        """
+        The name of the object to apply the acl to.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="predefinedAcl")
+    def predefined_acl(self) -> Optional[str]:
+        """
+        The "canned" [predefined ACL](https://cloud.google.com/storage/docs/access-control#predefined-acl) to apply. Must be set if `role_entity` is not.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="roleEntities")
+    def role_entities(self) -> List[str]:
+        """
+        List of role/entity pairs in the form `ROLE:entity`. See [GCS Object ACL documentation](https://cloud.google.com/storage/docs/json_api/v1/objectAccessControls) for more details.
+        Must be set if `predefined_acl` is not.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

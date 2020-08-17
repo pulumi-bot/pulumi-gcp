@@ -5,91 +5,35 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Job']
 
 
 class Job(pulumi.CustomResource):
-    additional_experiments: pulumi.Output[list]
-    """
-    List of experiments that should be used by the job. An example value is `["enable_stackdriver_agent_metrics"]`.
-    """
-    ip_configuration: pulumi.Output[str]
-    """
-    The configuration for VM IPs.  Options are `"WORKER_IP_PUBLIC"` or `"WORKER_IP_PRIVATE"`.
-    """
-    job_id: pulumi.Output[str]
-    """
-    The unique ID of this job.
-    """
-    labels: pulumi.Output[dict]
-    """
-    User labels to be specified for the job. Keys and values should follow the restrictions
-    specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page.
-    **NOTE**: Google-provided Dataflow templates often provide default labels that begin with `goog-dataflow-provided`.
-    Unless explicitly set in config, these labels will be ignored to prevent diffs on re-apply.
-    """
-    machine_type: pulumi.Output[str]
-    """
-    The machine type to use for the job.
-    """
-    max_workers: pulumi.Output[float]
-    """
-    The number of workers permitted to work on the job.  More workers may improve processing speed at additional cost.
-    """
-    name: pulumi.Output[str]
-    """
-    A unique name for the resource, required by Dataflow.
-    """
-    network: pulumi.Output[str]
-    """
-    The network to which VMs will be assigned. If it is not provided, "default" will be used.
-    """
-    on_delete: pulumi.Output[str]
-    """
-    One of "drain" or "cancel".  Specifies behavior of deletion during `pulumi destroy`.  See above note.
-    """
-    parameters: pulumi.Output[dict]
-    """
-    Key/Value pairs to be passed to the Dataflow job (as used in the template).
-    """
-    project: pulumi.Output[str]
-    """
-    The project in which the resource belongs. If it is not provided, the provider project is used.
-    """
-    region: pulumi.Output[str]
-    """
-    The region in which the created job should run.
-    """
-    service_account_email: pulumi.Output[str]
-    """
-    The Service Account email used to create the job.
-    """
-    state: pulumi.Output[str]
-    """
-    The current state of the resource, selected from the [JobState enum](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#Job.JobState)
-    """
-    subnetwork: pulumi.Output[str]
-    """
-    The subnetwork to which VMs will be assigned. Should be of the form "regions/REGION/subnetworks/SUBNETWORK".
-    """
-    temp_gcs_location: pulumi.Output[str]
-    """
-    A writeable location on GCS for the Dataflow job to dump its temporary data.
-    """
-    template_gcs_path: pulumi.Output[str]
-    """
-    The GCS path to the Dataflow job template.
-    """
-    type: pulumi.Output[str]
-    """
-    The type of this job, selected from the [JobType enum](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#Job.JobType)
-    """
-    zone: pulumi.Output[str]
-    """
-    The zone in which the created job should run. If it is not provided, the provider zone is used.
-    """
-    def __init__(__self__, resource_name, opts=None, additional_experiments=None, ip_configuration=None, labels=None, machine_type=None, max_workers=None, name=None, network=None, on_delete=None, parameters=None, project=None, region=None, service_account_email=None, subnetwork=None, temp_gcs_location=None, template_gcs_path=None, zone=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 additional_experiments: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 ip_configuration: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 machine_type: Optional[pulumi.Input[str]] = None,
+                 max_workers: Optional[pulumi.Input[float]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 network: Optional[pulumi.Input[str]] = None,
+                 on_delete: Optional[pulumi.Input[str]] = None,
+                 parameters: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 service_account_email: Optional[pulumi.Input[str]] = None,
+                 subnetwork: Optional[pulumi.Input[str]] = None,
+                 temp_gcs_location: Optional[pulumi.Input[str]] = None,
+                 template_gcs_path: Optional[pulumi.Input[str]] = None,
+                 zone: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Creates a job on Dataflow, which is an implementation of Apache Beam running on Google Compute Engine. For more information see
         the official documentation for
@@ -105,9 +49,9 @@ class Job(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] additional_experiments: List of experiments that should be used by the job. An example value is `["enable_stackdriver_agent_metrics"]`.
+        :param pulumi.Input[List[pulumi.Input[str]]] additional_experiments: List of experiments that should be used by the job. An example value is `["enable_stackdriver_agent_metrics"]`.
         :param pulumi.Input[str] ip_configuration: The configuration for VM IPs.  Options are `"WORKER_IP_PUBLIC"` or `"WORKER_IP_PRIVATE"`.
-        :param pulumi.Input[dict] labels: User labels to be specified for the job. Keys and values should follow the restrictions
+        :param pulumi.Input[Mapping[str, Any]] labels: User labels to be specified for the job. Keys and values should follow the restrictions
                specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page.
                **NOTE**: Google-provided Dataflow templates often provide default labels that begin with `goog-dataflow-provided`.
                Unless explicitly set in config, these labels will be ignored to prevent diffs on re-apply.
@@ -116,7 +60,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[str] name: A unique name for the resource, required by Dataflow.
         :param pulumi.Input[str] network: The network to which VMs will be assigned. If it is not provided, "default" will be used.
         :param pulumi.Input[str] on_delete: One of "drain" or "cancel".  Specifies behavior of deletion during `pulumi destroy`.  See above note.
-        :param pulumi.Input[dict] parameters: Key/Value pairs to be passed to the Dataflow job (as used in the template).
+        :param pulumi.Input[Mapping[str, Any]] parameters: Key/Value pairs to be passed to the Dataflow job (as used in the template).
         :param pulumi.Input[str] project: The project in which the resource belongs. If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The region in which the created job should run.
         :param pulumi.Input[str] service_account_email: The Service Account email used to create the job.
@@ -136,7 +80,7 @@ class Job(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -172,7 +116,28 @@ class Job(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, additional_experiments=None, ip_configuration=None, job_id=None, labels=None, machine_type=None, max_workers=None, name=None, network=None, on_delete=None, parameters=None, project=None, region=None, service_account_email=None, state=None, subnetwork=None, temp_gcs_location=None, template_gcs_path=None, type=None, zone=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            additional_experiments: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            ip_configuration: Optional[pulumi.Input[str]] = None,
+            job_id: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            machine_type: Optional[pulumi.Input[str]] = None,
+            max_workers: Optional[pulumi.Input[float]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            network: Optional[pulumi.Input[str]] = None,
+            on_delete: Optional[pulumi.Input[str]] = None,
+            parameters: Optional[pulumi.Input[Mapping[str, Any]]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
+            service_account_email: Optional[pulumi.Input[str]] = None,
+            state: Optional[pulumi.Input[str]] = None,
+            subnetwork: Optional[pulumi.Input[str]] = None,
+            temp_gcs_location: Optional[pulumi.Input[str]] = None,
+            template_gcs_path: Optional[pulumi.Input[str]] = None,
+            type: Optional[pulumi.Input[str]] = None,
+            zone: Optional[pulumi.Input[str]] = None) -> 'Job':
         """
         Get an existing Job resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -180,10 +145,10 @@ class Job(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[list] additional_experiments: List of experiments that should be used by the job. An example value is `["enable_stackdriver_agent_metrics"]`.
+        :param pulumi.Input[List[pulumi.Input[str]]] additional_experiments: List of experiments that should be used by the job. An example value is `["enable_stackdriver_agent_metrics"]`.
         :param pulumi.Input[str] ip_configuration: The configuration for VM IPs.  Options are `"WORKER_IP_PUBLIC"` or `"WORKER_IP_PRIVATE"`.
         :param pulumi.Input[str] job_id: The unique ID of this job.
-        :param pulumi.Input[dict] labels: User labels to be specified for the job. Keys and values should follow the restrictions
+        :param pulumi.Input[Mapping[str, Any]] labels: User labels to be specified for the job. Keys and values should follow the restrictions
                specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page.
                **NOTE**: Google-provided Dataflow templates often provide default labels that begin with `goog-dataflow-provided`.
                Unless explicitly set in config, these labels will be ignored to prevent diffs on re-apply.
@@ -192,7 +157,7 @@ class Job(pulumi.CustomResource):
         :param pulumi.Input[str] name: A unique name for the resource, required by Dataflow.
         :param pulumi.Input[str] network: The network to which VMs will be assigned. If it is not provided, "default" will be used.
         :param pulumi.Input[str] on_delete: One of "drain" or "cancel".  Specifies behavior of deletion during `pulumi destroy`.  See above note.
-        :param pulumi.Input[dict] parameters: Key/Value pairs to be passed to the Dataflow job (as used in the template).
+        :param pulumi.Input[Mapping[str, Any]] parameters: Key/Value pairs to be passed to the Dataflow job (as used in the template).
         :param pulumi.Input[str] project: The project in which the resource belongs. If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The region in which the created job should run.
         :param pulumi.Input[str] service_account_email: The Service Account email used to create the job.
@@ -228,8 +193,164 @@ class Job(pulumi.CustomResource):
         __props__["zone"] = zone
         return Job(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="additionalExperiments")
+    def additional_experiments(self) -> Optional[List[str]]:
+        """
+        List of experiments that should be used by the job. An example value is `["enable_stackdriver_agent_metrics"]`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="ipConfiguration")
+    def ip_configuration(self) -> Optional[str]:
+        """
+        The configuration for VM IPs.  Options are `"WORKER_IP_PUBLIC"` or `"WORKER_IP_PRIVATE"`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> str:
+        """
+        The unique ID of this job.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, Any]]:
+        """
+        User labels to be specified for the job. Keys and values should follow the restrictions
+        specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page.
+        **NOTE**: Google-provided Dataflow templates often provide default labels that begin with `goog-dataflow-provided`.
+        Unless explicitly set in config, these labels will be ignored to prevent diffs on re-apply.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="machineType")
+    def machine_type(self) -> Optional[str]:
+        """
+        The machine type to use for the job.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="maxWorkers")
+    def max_workers(self) -> Optional[float]:
+        """
+        The number of workers permitted to work on the job.  More workers may improve processing speed at additional cost.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A unique name for the resource, required by Dataflow.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def network(self) -> Optional[str]:
+        """
+        The network to which VMs will be assigned. If it is not provided, "default" will be used.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="onDelete")
+    def on_delete(self) -> Optional[str]:
+        """
+        One of "drain" or "cancel".  Specifies behavior of deletion during `pulumi destroy`.  See above note.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[Mapping[str, Any]]:
+        """
+        Key/Value pairs to be passed to the Dataflow job (as used in the template).
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        """
+        The project in which the resource belongs. If it is not provided, the provider project is used.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        The region in which the created job should run.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="serviceAccountEmail")
+    def service_account_email(self) -> Optional[str]:
+        """
+        The Service Account email used to create the job.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
+        """
+        The current state of the resource, selected from the [JobState enum](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#Job.JobState)
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def subnetwork(self) -> Optional[str]:
+        """
+        The subnetwork to which VMs will be assigned. Should be of the form "regions/REGION/subnetworks/SUBNETWORK".
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="tempGcsLocation")
+    def temp_gcs_location(self) -> str:
+        """
+        A writeable location on GCS for the Dataflow job to dump its temporary data.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="templateGcsPath")
+    def template_gcs_path(self) -> str:
+        """
+        The GCS path to the Dataflow job template.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of this job, selected from the [JobType enum](https://cloud.google.com/dataflow/docs/reference/rest/v1b3/projects.jobs#Job.JobType)
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def zone(self) -> Optional[str]:
+        """
+        The zone in which the created job should run. If it is not provided, the provider zone is used.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

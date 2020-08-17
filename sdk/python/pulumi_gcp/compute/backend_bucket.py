@@ -5,62 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['BackendBucket']
 
 
 class BackendBucket(pulumi.CustomResource):
-    bucket_name: pulumi.Output[str]
-    """
-    Cloud Storage bucket name.
-    """
-    cdn_policy: pulumi.Output[dict]
-    """
-    Cloud CDN configuration for this Backend Bucket.
-    Structure is documented below.
-
-      * `signedUrlCacheMaxAgeSec` (`float`) - Maximum number of seconds the response to a signed URL request will
-        be considered fresh. After this time period,
-        the response will be revalidated before being served.
-        When serving responses to signed URL requests,
-        Cloud CDN will internally behave as though
-        all responses from this backend had a "Cache-Control: public,
-        max-age=[TTL]" header, regardless of any existing Cache-Control
-        header. The actual headers served in responses will not be altered.
-    """
-    creation_timestamp: pulumi.Output[str]
-    """
-    Creation timestamp in RFC3339 text format.
-    """
-    description: pulumi.Output[str]
-    """
-    An optional textual description of the resource; provided by the
-    client when the resource is created.
-    """
-    enable_cdn: pulumi.Output[bool]
-    """
-    If true, enable Cloud CDN for this BackendBucket.
-    """
-    name: pulumi.Output[str]
-    """
-    Name of the resource. Provided by the client when the resource is
-    created. The name must be 1-63 characters long, and comply with
-    RFC1035.  Specifically, the name must be 1-63 characters long and
-    match the regular expression `a-z?` which means
-    the first character must be a lowercase letter, and all following
-    characters must be a dash, lowercase letter, or digit, except the
-    last character, which cannot be a dash.
-    """
-    project: pulumi.Output[str]
-    """
-    The ID of the project in which the resource belongs.
-    If it is not provided, the provider project is used.
-    """
-    self_link: pulumi.Output[str]
-    """
-    The URI of the created resource.
-    """
-    def __init__(__self__, resource_name, opts=None, bucket_name=None, cdn_policy=None, description=None, enable_cdn=None, name=None, project=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket_name: Optional[pulumi.Input[str]] = None,
+                 cdn_policy: Optional[pulumi.Input[pulumi.InputType['BackendBucketCdnPolicyArgs']]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 enable_cdn: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Backend buckets allow you to use Google Cloud Storage buckets with HTTP(S)
         load balancing.
@@ -81,7 +46,7 @@ class BackendBucket(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket_name: Cloud Storage bucket name.
-        :param pulumi.Input[dict] cdn_policy: Cloud CDN configuration for this Backend Bucket.
+        :param pulumi.Input[pulumi.InputType['BackendBucketCdnPolicyArgs']] cdn_policy: Cloud CDN configuration for this Backend Bucket.
                Structure is documented below.
         :param pulumi.Input[str] description: An optional textual description of the resource; provided by the
                client when the resource is created.
@@ -95,17 +60,6 @@ class BackendBucket(pulumi.CustomResource):
                last character, which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-
-        The **cdn_policy** object supports the following:
-
-          * `signedUrlCacheMaxAgeSec` (`pulumi.Input[float]`) - Maximum number of seconds the response to a signed URL request will
-            be considered fresh. After this time period,
-            the response will be revalidated before being served.
-            When serving responses to signed URL requests,
-            Cloud CDN will internally behave as though
-            all responses from this backend had a "Cache-Control: public,
-            max-age=[TTL]" header, regardless of any existing Cache-Control
-            header. The actual headers served in responses will not be altered.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -118,7 +72,7 @@ class BackendBucket(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -141,7 +95,17 @@ class BackendBucket(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bucket_name=None, cdn_policy=None, creation_timestamp=None, description=None, enable_cdn=None, name=None, project=None, self_link=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket_name: Optional[pulumi.Input[str]] = None,
+            cdn_policy: Optional[pulumi.Input[pulumi.InputType['BackendBucketCdnPolicyArgs']]] = None,
+            creation_timestamp: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            enable_cdn: Optional[pulumi.Input[bool]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None) -> 'BackendBucket':
         """
         Get an existing BackendBucket resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -150,7 +114,7 @@ class BackendBucket(pulumi.CustomResource):
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] bucket_name: Cloud Storage bucket name.
-        :param pulumi.Input[dict] cdn_policy: Cloud CDN configuration for this Backend Bucket.
+        :param pulumi.Input[pulumi.InputType['BackendBucketCdnPolicyArgs']] cdn_policy: Cloud CDN configuration for this Backend Bucket.
                Structure is documented below.
         :param pulumi.Input[str] creation_timestamp: Creation timestamp in RFC3339 text format.
         :param pulumi.Input[str] description: An optional textual description of the resource; provided by the
@@ -166,17 +130,6 @@ class BackendBucket(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-
-        The **cdn_policy** object supports the following:
-
-          * `signedUrlCacheMaxAgeSec` (`pulumi.Input[float]`) - Maximum number of seconds the response to a signed URL request will
-            be considered fresh. After this time period,
-            the response will be revalidated before being served.
-            When serving responses to signed URL requests,
-            Cloud CDN will internally behave as though
-            all responses from this backend had a "Cache-Control: public,
-            max-age=[TTL]" header, regardless of any existing Cache-Control
-            header. The actual headers served in responses will not be altered.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -192,8 +145,82 @@ class BackendBucket(pulumi.CustomResource):
         __props__["self_link"] = self_link
         return BackendBucket(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        """
+        Cloud Storage bucket name.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="cdnPolicy")
+    def cdn_policy(self) -> 'outputs.BackendBucketCdnPolicy':
+        """
+        Cloud CDN configuration for this Backend Bucket.
+        Structure is documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="creationTimestamp")
+    def creation_timestamp(self) -> str:
+        """
+        Creation timestamp in RFC3339 text format.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        An optional textual description of the resource; provided by the
+        client when the resource is created.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="enableCdn")
+    def enable_cdn(self) -> Optional[bool]:
+        """
+        If true, enable Cloud CDN for this BackendBucket.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the resource. Provided by the client when the resource is
+        created. The name must be 1-63 characters long, and comply with
+        RFC1035.  Specifically, the name must be 1-63 characters long and
+        match the regular expression `a-z?` which means
+        the first character must be a lowercase letter, and all following
+        characters must be a dash, lowercase letter, or digit, except the
+        last character, which cannot be a dash.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        """
+        The ID of the project in which the resource belongs.
+        If it is not provided, the provider project is used.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="selfLink")
+    def self_link(self) -> str:
+        """
+        The URI of the created resource.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

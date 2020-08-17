@@ -5,9 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
 
+__all__ = [
+    'GetKMSKeyRingResult',
+    'AwaitableGetKMSKeyRingResult',
+    'get_kms_key_ring',
+]
+
+
+
+@pulumi.output_type
 class GetKMSKeyRingResult:
     """
     A collection of values returned by getKMSKeyRing.
@@ -15,25 +24,53 @@ class GetKMSKeyRingResult:
     def __init__(__self__, id=None, location=None, name=None, project=None, self_link=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if location and not isinstance(location, str):
+            raise TypeError("Expected argument 'location' to be a str")
+        pulumi.set(__self__, "location", location)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if project and not isinstance(project, str):
+            raise TypeError("Expected argument 'project' to be a str")
+        pulumi.set(__self__, "project", project)
+        if self_link and not isinstance(self_link, str):
+            raise TypeError("Expected argument 'self_link' to be a str")
+        pulumi.set(__self__, "self_link", self_link)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if location and not isinstance(location, str):
-            raise TypeError("Expected argument 'location' to be a str")
-        __self__.location = location
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if project and not isinstance(project, str):
-            raise TypeError("Expected argument 'project' to be a str")
-        __self__.project = project
-        if self_link and not isinstance(self_link, str):
-            raise TypeError("Expected argument 'self_link' to be a str")
-        __self__.self_link = self_link
+        ...
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="selfLink")
+    def self_link(self) -> str:
         """
         The self link of the created KeyRing. Its format is `projects/{projectId}/locations/{location}/keyRings/{keyRingName}`.
         """
+        ...
+
+
+
 class AwaitableGetKMSKeyRingResult(GetKMSKeyRingResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -46,7 +83,11 @@ class AwaitableGetKMSKeyRingResult(GetKMSKeyRingResult):
             project=self.project,
             self_link=self.self_link)
 
-def get_kms_key_ring(location=None,name=None,project=None,opts=None):
+
+def get_kms_key_ring(location: Optional[str] = None,
+                     name: Optional[str] = None,
+                     project: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKMSKeyRingResult:
     """
     Provides access to Google Cloud Platform KMS KeyRing. For more information see
     [the official documentation](https://cloud.google.com/kms/docs/object-hierarchy#key_ring)
@@ -65,20 +106,18 @@ def get_kms_key_ring(location=None,name=None,project=None,opts=None):
            is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['location'] = location
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:kms/getKMSKeyRing:getKMSKeyRing', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:kms/getKMSKeyRing:getKMSKeyRing', __args__, opts=opts, typ=GetKMSKeyRingResult).value
 
     return AwaitableGetKMSKeyRingResult(
-        id=__ret__.get('id'),
-        location=__ret__.get('location'),
-        name=__ret__.get('name'),
-        project=__ret__.get('project'),
-        self_link=__ret__.get('selfLink'))
+        id=__ret__.id,
+        location=__ret__.location,
+        name=__ret__.name,
+        project=__ret__.project,
+        self_link=__ret__.self_link)

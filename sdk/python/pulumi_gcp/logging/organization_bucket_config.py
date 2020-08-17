@@ -5,40 +5,24 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['OrganizationBucketConfig']
 
 
 class OrganizationBucketConfig(pulumi.CustomResource):
-    bucket_id: pulumi.Output[str]
-    """
-    The name of the logging bucket. Logging automatically creates two log buckets: `_Required` and `_Default`.
-    """
-    description: pulumi.Output[str]
-    """
-    Describes this bucket.
-    """
-    lifecycle_state: pulumi.Output[str]
-    """
-    The bucket's lifecycle such as active or deleted. See [LifecycleState](https://cloud.google.com/logging/docs/reference/v2/rest/v2/billingAccounts.buckets#LogBucket.LifecycleState).
-    """
-    location: pulumi.Output[str]
-    """
-    The location of the bucket. The supported locations are: "global" "us-central1"
-    """
-    name: pulumi.Output[str]
-    """
-    The resource name of the bucket. For example: "organizations/my-organization-id/locations/my-location/buckets/my-bucket-id"
-    """
-    organization: pulumi.Output[str]
-    """
-    The parent resource that contains the logging bucket.
-    """
-    retention_days: pulumi.Output[float]
-    """
-    Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.
-    """
-    def __init__(__self__, resource_name, opts=None, bucket_id=None, description=None, location=None, organization=None, retention_days=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket_id: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
+                 organization: Optional[pulumi.Input[str]] = None,
+                 retention_days: Optional[pulumi.Input[float]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Manages a organization-level logging bucket config. For more information see
         [the official logging documentation](https://cloud.google.com/logging/docs/) and
@@ -65,7 +49,7 @@ class OrganizationBucketConfig(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -91,7 +75,16 @@ class OrganizationBucketConfig(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bucket_id=None, description=None, lifecycle_state=None, location=None, name=None, organization=None, retention_days=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket_id: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            lifecycle_state: Optional[pulumi.Input[str]] = None,
+            location: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            organization: Optional[pulumi.Input[str]] = None,
+            retention_days: Optional[pulumi.Input[float]] = None) -> 'OrganizationBucketConfig':
         """
         Get an existing OrganizationBucketConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -120,8 +113,65 @@ class OrganizationBucketConfig(pulumi.CustomResource):
         __props__["retention_days"] = retention_days
         return OrganizationBucketConfig(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="bucketId")
+    def bucket_id(self) -> str:
+        """
+        The name of the logging bucket. Logging automatically creates two log buckets: `_Required` and `_Default`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Describes this bucket.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="lifecycleState")
+    def lifecycle_state(self) -> str:
+        """
+        The bucket's lifecycle such as active or deleted. See [LifecycleState](https://cloud.google.com/logging/docs/reference/v2/rest/v2/billingAccounts.buckets#LogBucket.LifecycleState).
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        The location of the bucket. The supported locations are: "global" "us-central1"
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The resource name of the bucket. For example: "organizations/my-organization-id/locations/my-location/buckets/my-bucket-id"
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def organization(self) -> str:
+        """
+        The parent resource that contains the logging bucket.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> Optional[float]:
+        """
+        Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

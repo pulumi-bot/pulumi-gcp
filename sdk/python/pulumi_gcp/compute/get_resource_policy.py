@@ -5,9 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
 
+__all__ = [
+    'GetResourcePolicyResult',
+    'AwaitableGetResourcePolicyResult',
+    'get_resource_policy',
+]
+
+
+
+@pulumi.output_type
 class GetResourcePolicyResult:
     """
     A collection of values returned by getResourcePolicy.
@@ -15,31 +24,64 @@ class GetResourcePolicyResult:
     def __init__(__self__, description=None, id=None, name=None, project=None, region=None, self_link=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        pulumi.set(__self__, "description", description)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if project and not isinstance(project, str):
+            raise TypeError("Expected argument 'project' to be a str")
+        pulumi.set(__self__, "project", project)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
+        if self_link and not isinstance(self_link, str):
+            raise TypeError("Expected argument 'self_link' to be a str")
+        pulumi.set(__self__, "self_link", self_link)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         Description of this Resource Policy.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if project and not isinstance(project, str):
-            raise TypeError("Expected argument 'project' to be a str")
-        __self__.project = project
-        if region and not isinstance(region, str):
-            raise TypeError("Expected argument 'region' to be a str")
-        __self__.region = region
-        if self_link and not isinstance(self_link, str):
-            raise TypeError("Expected argument 'self_link' to be a str")
-        __self__.self_link = self_link
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="selfLink")
+    def self_link(self) -> str:
         """
         The URI of the resource.
         """
+        ...
+
+
+
 class AwaitableGetResourcePolicyResult(GetResourcePolicyResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -53,7 +95,11 @@ class AwaitableGetResourcePolicyResult(GetResourcePolicyResult):
             region=self.region,
             self_link=self.self_link)
 
-def get_resource_policy(name=None,project=None,region=None,opts=None):
+
+def get_resource_policy(name: Optional[str] = None,
+                        project: Optional[str] = None,
+                        region: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResourcePolicyResult:
     """
     Provide access to a Resource Policy's attributes. For more information see [the official documentation](https://cloud.google.com/compute/docs/disks/scheduled-snapshots) or the [API](https://cloud.google.com/compute/docs/reference/rest/beta/resourcePolicies).
 
@@ -63,21 +109,19 @@ def get_resource_policy(name=None,project=None,region=None,opts=None):
     :param str region: Region where the Resource Policy resides.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getResourcePolicy:getResourcePolicy', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getResourcePolicy:getResourcePolicy', __args__, opts=opts, typ=GetResourcePolicyResult).value
 
     return AwaitableGetResourcePolicyResult(
-        description=__ret__.get('description'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        project=__ret__.get('project'),
-        region=__ret__.get('region'),
-        self_link=__ret__.get('selfLink'))
+        description=__ret__.description,
+        id=__ret__.id,
+        name=__ret__.name,
+        project=__ret__.project,
+        region=__ret__.region,
+        self_link=__ret__.self_link)

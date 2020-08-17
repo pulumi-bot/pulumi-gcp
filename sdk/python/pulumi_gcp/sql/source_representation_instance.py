@@ -5,40 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['SourceRepresentationInstance']
 
 
 class SourceRepresentationInstance(pulumi.CustomResource):
-    database_version: pulumi.Output[str]
-    """
-    The MySQL version running on your source database server.
-    Possible values are `MYSQL_5_6` and `MYSQL_5_7`.
-    """
-    host: pulumi.Output[str]
-    """
-    The externally accessible IPv4 address for the source database server.
-    """
-    name: pulumi.Output[str]
-    """
-    The name of the source representation instance. Use any valid Cloud SQL instance name.
-    """
-    port: pulumi.Output[float]
-    """
-    The externally accessible port for the source database server.
-    Defaults to 3306.
-    """
-    project: pulumi.Output[str]
-    """
-    The ID of the project in which the resource belongs.
-    If it is not provided, the provider project is used.
-    """
-    region: pulumi.Output[str]
-    """
-    The Region in which the created instance should reside.
-    If it is not provided, the provider region is used.
-    """
-    def __init__(__self__, resource_name, opts=None, database_version=None, host=None, name=None, port=None, project=None, region=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 database_version: Optional[pulumi.Input[str]] = None,
+                 host: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[float]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         A source representation instance is a Cloud SQL instance that represents
         the source database server to the Cloud SQL replica. It is visible in the
@@ -72,7 +57,7 @@ class SourceRepresentationInstance(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -95,7 +80,15 @@ class SourceRepresentationInstance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, database_version=None, host=None, name=None, port=None, project=None, region=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            database_version: Optional[pulumi.Input[str]] = None,
+            host: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            port: Optional[pulumi.Input[float]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None) -> 'SourceRepresentationInstance':
         """
         Get an existing SourceRepresentationInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -126,8 +119,61 @@ class SourceRepresentationInstance(pulumi.CustomResource):
         __props__["region"] = region
         return SourceRepresentationInstance(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="databaseVersion")
+    def database_version(self) -> str:
+        """
+        The MySQL version running on your source database server.
+        Possible values are `MYSQL_5_6` and `MYSQL_5_7`.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def host(self) -> str:
+        """
+        The externally accessible IPv4 address for the source database server.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the source representation instance. Use any valid Cloud SQL instance name.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[float]:
+        """
+        The externally accessible port for the source database server.
+        Defaults to 3306.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        """
+        The ID of the project in which the resource belongs.
+        If it is not provided, the provider project is used.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        The Region in which the created instance should reside.
+        If it is not provided, the provider region is used.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

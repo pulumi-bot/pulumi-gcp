@@ -5,32 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Service']
 
 
 class Service(pulumi.CustomResource):
-    metadata: pulumi.Output[dict]
-    """
-    Metadata for the service. This data can be consumed
-    by service clients. The entire metadata dictionary may contain
-    up to 2000 characters, spread across all key-value pairs.
-    Metadata that goes beyond any these limits will be rejected.
-    """
-    name: pulumi.Output[str]
-    """
-    The resource name for the service in the format 'projects/*/locations/*/namespaces/*/services/*'.
-    """
-    namespace: pulumi.Output[str]
-    """
-    The resource name of the namespace this service will belong to.
-    """
-    service_id: pulumi.Output[str]
-    """
-    The Resource ID must be 1-63 characters long, including digits,
-    lowercase letters or the hyphen character.
-    """
-    def __init__(__self__, resource_name, opts=None, metadata=None, namespace=None, service_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 namespace: Optional[pulumi.Input[str]] = None,
+                 service_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         An individual service. A service contains a name and optional metadata.
 
@@ -44,7 +34,7 @@ class Service(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] metadata: Metadata for the service. This data can be consumed
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata for the service. This data can be consumed
                by service clients. The entire metadata dictionary may contain
                up to 2000 characters, spread across all key-value pairs.
                Metadata that goes beyond any these limits will be rejected.
@@ -63,7 +53,7 @@ class Service(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -84,7 +74,13 @@ class Service(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, metadata=None, name=None, namespace=None, service_id=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            namespace: Optional[pulumi.Input[str]] = None,
+            service_id: Optional[pulumi.Input[str]] = None) -> 'Service':
         """
         Get an existing Service resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -92,7 +88,7 @@ class Service(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param str id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[dict] metadata: Metadata for the service. This data can be consumed
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata for the service. This data can be consumed
                by service clients. The entire metadata dictionary may contain
                up to 2000 characters, spread across all key-value pairs.
                Metadata that goes beyond any these limits will be rejected.
@@ -111,8 +107,45 @@ class Service(pulumi.CustomResource):
         __props__["service_id"] = service_id
         return Service(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def metadata(self) -> Optional[Mapping[str, str]]:
+        """
+        Metadata for the service. This data can be consumed
+        by service clients. The entire metadata dictionary may contain
+        up to 2000 characters, spread across all key-value pairs.
+        Metadata that goes beyond any these limits will be rejected.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The resource name for the service in the format 'projects/*/locations/*/namespaces/*/services/*'.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def namespace(self) -> str:
+        """
+        The resource name of the namespace this service will belong to.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="serviceId")
+    def service_id(self) -> str:
+        """
+        The Resource ID must be 1-63 characters long, including digits,
+        lowercase letters or the hyphen character.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

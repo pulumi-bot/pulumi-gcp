@@ -5,9 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
 
+__all__ = [
+    'GetFolderResult',
+    'AwaitableGetFolderResult',
+    'get_folder',
+]
+
+
+
+@pulumi.output_type
 class GetFolderResult:
     """
     A collection of values returned by getFolder.
@@ -15,55 +24,108 @@ class GetFolderResult:
     def __init__(__self__, create_time=None, display_name=None, folder=None, folder_id=None, id=None, lifecycle_state=None, lookup_organization=None, name=None, organization=None, parent=None):
         if create_time and not isinstance(create_time, str):
             raise TypeError("Expected argument 'create_time' to be a str")
-        __self__.create_time = create_time
+        pulumi.set(__self__, "create_time", create_time)
+        if display_name and not isinstance(display_name, str):
+            raise TypeError("Expected argument 'display_name' to be a str")
+        pulumi.set(__self__, "display_name", display_name)
+        if folder and not isinstance(folder, str):
+            raise TypeError("Expected argument 'folder' to be a str")
+        pulumi.set(__self__, "folder", folder)
+        if folder_id and not isinstance(folder_id, str):
+            raise TypeError("Expected argument 'folder_id' to be a str")
+        pulumi.set(__self__, "folder_id", folder_id)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if lifecycle_state and not isinstance(lifecycle_state, str):
+            raise TypeError("Expected argument 'lifecycle_state' to be a str")
+        pulumi.set(__self__, "lifecycle_state", lifecycle_state)
+        if lookup_organization and not isinstance(lookup_organization, bool):
+            raise TypeError("Expected argument 'lookup_organization' to be a bool")
+        pulumi.set(__self__, "lookup_organization", lookup_organization)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if organization and not isinstance(organization, str):
+            raise TypeError("Expected argument 'organization' to be a str")
+        pulumi.set(__self__, "organization", organization)
+        if parent and not isinstance(parent, str):
+            raise TypeError("Expected argument 'parent' to be a str")
+        pulumi.set(__self__, "parent", parent)
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
         """
         Timestamp when the Organization was created. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".
         """
-        if display_name and not isinstance(display_name, str):
-            raise TypeError("Expected argument 'display_name' to be a str")
-        __self__.display_name = display_name
+        ...
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
         """
         The folder's display name.
         """
-        if folder and not isinstance(folder, str):
-            raise TypeError("Expected argument 'folder' to be a str")
-        __self__.folder = folder
-        if folder_id and not isinstance(folder_id, str):
-            raise TypeError("Expected argument 'folder_id' to be a str")
-        __self__.folder_id = folder_id
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def folder(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="folderId")
+    def folder_id(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if lifecycle_state and not isinstance(lifecycle_state, str):
-            raise TypeError("Expected argument 'lifecycle_state' to be a str")
-        __self__.lifecycle_state = lifecycle_state
+        ...
+
+    @property
+    @pulumi.getter(name="lifecycleState")
+    def lifecycle_state(self) -> str:
         """
         The Folder's current lifecycle state.
         """
-        if lookup_organization and not isinstance(lookup_organization, bool):
-            raise TypeError("Expected argument 'lookup_organization' to be a bool")
-        __self__.lookup_organization = lookup_organization
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        ...
+
+    @property
+    @pulumi.getter(name="lookupOrganization")
+    def lookup_organization(self) -> Optional[bool]:
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
         """
         The resource name of the Folder in the form `folders/{folder_id}`.
         """
-        if organization and not isinstance(organization, str):
-            raise TypeError("Expected argument 'organization' to be a str")
-        __self__.organization = organization
+        ...
+
+    @property
+    @pulumi.getter
+    def organization(self) -> str:
         """
         If `lookup_organization` is enable, the resource name of the Organization that the folder belongs.
         """
-        if parent and not isinstance(parent, str):
-            raise TypeError("Expected argument 'parent' to be a str")
-        __self__.parent = parent
+        ...
+
+    @property
+    @pulumi.getter
+    def parent(self) -> str:
         """
         The resource name of the parent Folder or Organization.
         """
+        ...
+
+
+
 class AwaitableGetFolderResult(GetFolderResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -81,7 +143,10 @@ class AwaitableGetFolderResult(GetFolderResult):
             organization=self.organization,
             parent=self.parent)
 
-def get_folder(folder=None,lookup_organization=None,opts=None):
+
+def get_folder(folder: Optional[str] = None,
+               lookup_organization: Optional[bool] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFolderResult:
     """
     Use this data source to get information about a Google Cloud Folder.
 
@@ -90,24 +155,22 @@ def get_folder(folder=None,lookup_organization=None,opts=None):
     :param bool lookup_organization: `true` to find the organization that the folder belongs, `false` to avoid the lookup. It searches up the tree. (defaults to `false`)
     """
     __args__ = dict()
-
-
     __args__['folder'] = folder
     __args__['lookupOrganization'] = lookup_organization
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:organizations/getFolder:getFolder', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:organizations/getFolder:getFolder', __args__, opts=opts, typ=GetFolderResult).value
 
     return AwaitableGetFolderResult(
-        create_time=__ret__.get('createTime'),
-        display_name=__ret__.get('displayName'),
-        folder=__ret__.get('folder'),
-        folder_id=__ret__.get('folderId'),
-        id=__ret__.get('id'),
-        lifecycle_state=__ret__.get('lifecycleState'),
-        lookup_organization=__ret__.get('lookupOrganization'),
-        name=__ret__.get('name'),
-        organization=__ret__.get('organization'),
-        parent=__ret__.get('parent'))
+        create_time=__ret__.create_time,
+        display_name=__ret__.display_name,
+        folder=__ret__.folder,
+        folder_id=__ret__.folder_id,
+        id=__ret__.id,
+        lifecycle_state=__ret__.lifecycle_state,
+        lookup_organization=__ret__.lookup_organization,
+        name=__ret__.name,
+        organization=__ret__.organization,
+        parent=__ret__.parent)

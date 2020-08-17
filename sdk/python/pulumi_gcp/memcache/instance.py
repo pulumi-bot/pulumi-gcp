@@ -5,68 +5,31 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Instance']
 
 
 class Instance(pulumi.CustomResource):
-    authorized_network: pulumi.Output[str]
-    """
-    The full name of the GCE network to connect the instance to.  If not provided,
-    'default' will be used.
-    """
-    create_time: pulumi.Output[str]
-    """
-    Creation timestamp in RFC3339 text format.
-    """
-    display_name: pulumi.Output[str]
-    """
-    A user-visible name for the instance.
-    """
-    labels: pulumi.Output[dict]
-    """
-    Resource labels to represent user-provided metadata.
-    """
-    memcache_parameters: pulumi.Output[dict]
-    """
-    User-specified parameters for this memcache instance.
-    Structure is documented below.
-
-      * `id` (`str`) - -
-        This is a unique ID associated with this set of parameters.
-      * `params` (`dict`) - User-defined set of parameters to use in the memcache process.
-    """
-    name: pulumi.Output[str]
-    """
-    The resource name of the instance.
-    """
-    node_config: pulumi.Output[dict]
-    """
-    Configuration for memcache nodes.
-    Structure is documented below.
-
-      * `cpuCount` (`float`) - Number of CPUs per node.
-      * `memorySizeMb` (`float`) - Memory size in Mebibytes for each memcache node.
-    """
-    node_count: pulumi.Output[float]
-    """
-    Number of nodes in the memcache instance.
-    """
-    project: pulumi.Output[str]
-    """
-    The ID of the project in which the resource belongs.
-    If it is not provided, the provider project is used.
-    """
-    region: pulumi.Output[str]
-    """
-    The name of the Memcache region of the instance.
-    """
-    zones: pulumi.Output[list]
-    """
-    Zones where memcache nodes should be provisioned.  If not
-    provided, all zones will be used.
-    """
-    def __init__(__self__, resource_name, opts=None, authorized_network=None, display_name=None, labels=None, memcache_parameters=None, name=None, node_config=None, node_count=None, project=None, region=None, zones=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 authorized_network: Optional[pulumi.Input[str]] = None,
+                 display_name: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 memcache_parameters: Optional[pulumi.Input[pulumi.InputType['InstanceMemcacheParametersArgs']]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 node_config: Optional[pulumi.Input[pulumi.InputType['InstanceNodeConfigArgs']]] = None,
+                 node_count: Optional[pulumi.Input[float]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a Instance resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -74,29 +37,18 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] authorized_network: The full name of the GCE network to connect the instance to.  If not provided,
                'default' will be used.
         :param pulumi.Input[str] display_name: A user-visible name for the instance.
-        :param pulumi.Input[dict] labels: Resource labels to represent user-provided metadata.
-        :param pulumi.Input[dict] memcache_parameters: User-specified parameters for this memcache instance.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Resource labels to represent user-provided metadata.
+        :param pulumi.Input[pulumi.InputType['InstanceMemcacheParametersArgs']] memcache_parameters: User-specified parameters for this memcache instance.
                Structure is documented below.
         :param pulumi.Input[str] name: The resource name of the instance.
-        :param pulumi.Input[dict] node_config: Configuration for memcache nodes.
+        :param pulumi.Input[pulumi.InputType['InstanceNodeConfigArgs']] node_config: Configuration for memcache nodes.
                Structure is documented below.
         :param pulumi.Input[float] node_count: Number of nodes in the memcache instance.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The name of the Memcache region of the instance.
-        :param pulumi.Input[list] zones: Zones where memcache nodes should be provisioned.  If not
+        :param pulumi.Input[List[pulumi.Input[str]]] zones: Zones where memcache nodes should be provisioned.  If not
                provided, all zones will be used.
-
-        The **memcache_parameters** object supports the following:
-
-          * `id` (`pulumi.Input[str]`) - -
-            This is a unique ID associated with this set of parameters.
-          * `params` (`pulumi.Input[dict]`) - User-defined set of parameters to use in the memcache process.
-
-        The **node_config** object supports the following:
-
-          * `cpuCount` (`pulumi.Input[float]`) - Number of CPUs per node.
-          * `memorySizeMb` (`pulumi.Input[float]`) - Memory size in Mebibytes for each memcache node.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -109,7 +61,7 @@ class Instance(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -139,7 +91,20 @@ class Instance(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, authorized_network=None, create_time=None, display_name=None, labels=None, memcache_parameters=None, name=None, node_config=None, node_count=None, project=None, region=None, zones=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authorized_network: Optional[pulumi.Input[str]] = None,
+            create_time: Optional[pulumi.Input[str]] = None,
+            display_name: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            memcache_parameters: Optional[pulumi.Input[pulumi.InputType['InstanceMemcacheParametersArgs']]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            node_config: Optional[pulumi.Input[pulumi.InputType['InstanceNodeConfigArgs']]] = None,
+            node_count: Optional[pulumi.Input[float]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
+            zones: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -151,29 +116,18 @@ class Instance(pulumi.CustomResource):
                'default' will be used.
         :param pulumi.Input[str] create_time: Creation timestamp in RFC3339 text format.
         :param pulumi.Input[str] display_name: A user-visible name for the instance.
-        :param pulumi.Input[dict] labels: Resource labels to represent user-provided metadata.
-        :param pulumi.Input[dict] memcache_parameters: User-specified parameters for this memcache instance.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Resource labels to represent user-provided metadata.
+        :param pulumi.Input[pulumi.InputType['InstanceMemcacheParametersArgs']] memcache_parameters: User-specified parameters for this memcache instance.
                Structure is documented below.
         :param pulumi.Input[str] name: The resource name of the instance.
-        :param pulumi.Input[dict] node_config: Configuration for memcache nodes.
+        :param pulumi.Input[pulumi.InputType['InstanceNodeConfigArgs']] node_config: Configuration for memcache nodes.
                Structure is documented below.
         :param pulumi.Input[float] node_count: Number of nodes in the memcache instance.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The name of the Memcache region of the instance.
-        :param pulumi.Input[list] zones: Zones where memcache nodes should be provisioned.  If not
+        :param pulumi.Input[List[pulumi.Input[str]]] zones: Zones where memcache nodes should be provisioned.  If not
                provided, all zones will be used.
-
-        The **memcache_parameters** object supports the following:
-
-          * `id` (`pulumi.Input[str]`) - -
-            This is a unique ID associated with this set of parameters.
-          * `params` (`pulumi.Input[dict]`) - User-defined set of parameters to use in the memcache process.
-
-        The **node_config** object supports the following:
-
-          * `cpuCount` (`pulumi.Input[float]`) - Number of CPUs per node.
-          * `memorySizeMb` (`pulumi.Input[float]`) - Memory size in Mebibytes for each memcache node.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -192,8 +146,102 @@ class Instance(pulumi.CustomResource):
         __props__["zones"] = zones
         return Instance(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="authorizedNetwork")
+    def authorized_network(self) -> Optional[str]:
+        """
+        The full name of the GCE network to connect the instance to.  If not provided,
+        'default' will be used.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        Creation timestamp in RFC3339 text format.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        A user-visible name for the instance.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        Resource labels to represent user-provided metadata.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="memcacheParameters")
+    def memcache_parameters(self) -> Optional['outputs.InstanceMemcacheParameters']:
+        """
+        User-specified parameters for this memcache instance.
+        Structure is documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The resource name of the instance.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="nodeConfig")
+    def node_config(self) -> 'outputs.InstanceNodeConfig':
+        """
+        Configuration for memcache nodes.
+        Structure is documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> float:
+        """
+        Number of nodes in the memcache instance.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        """
+        The ID of the project in which the resource belongs.
+        If it is not provided, the provider project is used.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        The name of the Memcache region of the instance.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def zones(self) -> List[str]:
+        """
+        Zones where memcache nodes should be provisioned.  If not
+        provided, all zones will be used.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

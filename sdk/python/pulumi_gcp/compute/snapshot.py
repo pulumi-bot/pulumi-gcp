@@ -5,99 +5,29 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Snapshot']
 
 
 class Snapshot(pulumi.CustomResource):
-    creation_timestamp: pulumi.Output[str]
-    """
-    Creation timestamp in RFC3339 text format.
-    """
-    description: pulumi.Output[str]
-    """
-    An optional description of this resource.
-    """
-    disk_size_gb: pulumi.Output[float]
-    """
-    Size of the snapshot, specified in GB.
-    """
-    label_fingerprint: pulumi.Output[str]
-    """
-    The fingerprint used for optimistic locking of this resource. Used internally during updates.
-    """
-    labels: pulumi.Output[dict]
-    """
-    Labels to apply to this Snapshot.
-    """
-    licenses: pulumi.Output[list]
-    """
-    A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses
-    attached (such as a Windows image). snapshotEncryptionKey nested object Encrypts the snapshot using a customer-supplied
-    encryption key.
-    """
-    name: pulumi.Output[str]
-    """
-    Name of the resource; provided by the client when the resource is
-    created. The name must be 1-63 characters long, and comply with
-    RFC1035. Specifically, the name must be 1-63 characters long and match
-    the regular expression `a-z?` which means the
-    first character must be a lowercase letter, and all following
-    characters must be a dash, lowercase letter, or digit, except the last
-    character, which cannot be a dash.
-    """
-    project: pulumi.Output[str]
-    """
-    The ID of the project in which the resource belongs.
-    If it is not provided, the provider project is used.
-    """
-    self_link: pulumi.Output[str]
-    """
-    The URI of the created resource.
-    """
-    snapshot_encryption_key: pulumi.Output[dict]
-    """
-    The customer-supplied encryption key of the snapshot. Required if the
-    source snapshot is protected by a customer-supplied encryption key.
-    Structure is documented below.
-
-      * `rawKey` (`str`) - Specifies a 256-bit customer-supplied encryption key, encoded in
-        RFC 4648 base64 to either encrypt or decrypt this resource.
-        **Note**: This property is sensitive and will not be displayed in the plan.
-      * `sha256` (`str`) - -
-        The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
-        encryption key that protects this resource.
-    """
-    snapshot_id: pulumi.Output[float]
-    """
-    The unique identifier for the resource.
-    """
-    source_disk: pulumi.Output[str]
-    """
-    A reference to the disk used to create this snapshot.
-    """
-    source_disk_encryption_key: pulumi.Output[dict]
-    """
-    The customer-supplied encryption key of the source snapshot. Required
-    if the source snapshot is protected by a customer-supplied encryption
-    key.
-    Structure is documented below.
-
-      * `rawKey` (`str`) - Specifies a 256-bit customer-supplied encryption key, encoded in
-        RFC 4648 base64 to either encrypt or decrypt this resource.
-        **Note**: This property is sensitive and will not be displayed in the plan.
-    """
-    source_disk_link: pulumi.Output[str]
-    storage_bytes: pulumi.Output[float]
-    """
-    A size of the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot
-    creation/deletion.
-    """
-    zone: pulumi.Output[str]
-    """
-    A reference to the zone where the disk is hosted.
-    """
-    def __init__(__self__, resource_name, opts=None, description=None, labels=None, name=None, project=None, snapshot_encryption_key=None, source_disk=None, source_disk_encryption_key=None, zone=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 snapshot_encryption_key: Optional[pulumi.Input[pulumi.InputType['SnapshotSnapshotEncryptionKeyArgs']]] = None,
+                 source_disk: Optional[pulumi.Input[str]] = None,
+                 source_disk_encryption_key: Optional[pulumi.Input[pulumi.InputType['SnapshotSourceDiskEncryptionKeyArgs']]] = None,
+                 zone: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Represents a Persistent Disk Snapshot resource.
 
@@ -126,7 +56,7 @@ class Snapshot(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: An optional description of this resource.
-        :param pulumi.Input[dict] labels: Labels to apply to this Snapshot.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this Snapshot.
         :param pulumi.Input[str] name: Name of the resource; provided by the client when the resource is
                created. The name must be 1-63 characters long, and comply with
                RFC1035. Specifically, the name must be 1-63 characters long and match
@@ -136,30 +66,15 @@ class Snapshot(pulumi.CustomResource):
                character, which cannot be a dash.
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
-        :param pulumi.Input[dict] snapshot_encryption_key: The customer-supplied encryption key of the snapshot. Required if the
+        :param pulumi.Input[pulumi.InputType['SnapshotSnapshotEncryptionKeyArgs']] snapshot_encryption_key: The customer-supplied encryption key of the snapshot. Required if the
                source snapshot is protected by a customer-supplied encryption key.
                Structure is documented below.
         :param pulumi.Input[str] source_disk: A reference to the disk used to create this snapshot.
-        :param pulumi.Input[dict] source_disk_encryption_key: The customer-supplied encryption key of the source snapshot. Required
+        :param pulumi.Input[pulumi.InputType['SnapshotSourceDiskEncryptionKeyArgs']] source_disk_encryption_key: The customer-supplied encryption key of the source snapshot. Required
                if the source snapshot is protected by a customer-supplied encryption
                key.
                Structure is documented below.
         :param pulumi.Input[str] zone: A reference to the zone where the disk is hosted.
-
-        The **snapshot_encryption_key** object supports the following:
-
-          * `rawKey` (`pulumi.Input[str]`) - Specifies a 256-bit customer-supplied encryption key, encoded in
-            RFC 4648 base64 to either encrypt or decrypt this resource.
-            **Note**: This property is sensitive and will not be displayed in the plan.
-          * `sha256` (`pulumi.Input[str]`) - -
-            The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
-            encryption key that protects this resource.
-
-        The **source_disk_encryption_key** object supports the following:
-
-          * `rawKey` (`pulumi.Input[str]`) - Specifies a 256-bit customer-supplied encryption key, encoded in
-            RFC 4648 base64 to either encrypt or decrypt this resource.
-            **Note**: This property is sensitive and will not be displayed in the plan.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -172,7 +87,7 @@ class Snapshot(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -203,7 +118,25 @@ class Snapshot(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, creation_timestamp=None, description=None, disk_size_gb=None, label_fingerprint=None, labels=None, licenses=None, name=None, project=None, self_link=None, snapshot_encryption_key=None, snapshot_id=None, source_disk=None, source_disk_encryption_key=None, source_disk_link=None, storage_bytes=None, zone=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            creation_timestamp: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            disk_size_gb: Optional[pulumi.Input[float]] = None,
+            label_fingerprint: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            licenses: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            snapshot_encryption_key: Optional[pulumi.Input[pulumi.InputType['SnapshotSnapshotEncryptionKeyArgs']]] = None,
+            snapshot_id: Optional[pulumi.Input[float]] = None,
+            source_disk: Optional[pulumi.Input[str]] = None,
+            source_disk_encryption_key: Optional[pulumi.Input[pulumi.InputType['SnapshotSourceDiskEncryptionKeyArgs']]] = None,
+            source_disk_link: Optional[pulumi.Input[str]] = None,
+            storage_bytes: Optional[pulumi.Input[float]] = None,
+            zone: Optional[pulumi.Input[str]] = None) -> 'Snapshot':
         """
         Get an existing Snapshot resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -215,8 +148,8 @@ class Snapshot(pulumi.CustomResource):
         :param pulumi.Input[str] description: An optional description of this resource.
         :param pulumi.Input[float] disk_size_gb: Size of the snapshot, specified in GB.
         :param pulumi.Input[str] label_fingerprint: The fingerprint used for optimistic locking of this resource. Used internally during updates.
-        :param pulumi.Input[dict] labels: Labels to apply to this Snapshot.
-        :param pulumi.Input[list] licenses: A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this Snapshot.
+        :param pulumi.Input[List[pulumi.Input[str]]] licenses: A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses
                attached (such as a Windows image). snapshotEncryptionKey nested object Encrypts the snapshot using a customer-supplied
                encryption key.
         :param pulumi.Input[str] name: Name of the resource; provided by the client when the resource is
@@ -229,33 +162,18 @@ class Snapshot(pulumi.CustomResource):
         :param pulumi.Input[str] project: The ID of the project in which the resource belongs.
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[dict] snapshot_encryption_key: The customer-supplied encryption key of the snapshot. Required if the
+        :param pulumi.Input[pulumi.InputType['SnapshotSnapshotEncryptionKeyArgs']] snapshot_encryption_key: The customer-supplied encryption key of the snapshot. Required if the
                source snapshot is protected by a customer-supplied encryption key.
                Structure is documented below.
         :param pulumi.Input[float] snapshot_id: The unique identifier for the resource.
         :param pulumi.Input[str] source_disk: A reference to the disk used to create this snapshot.
-        :param pulumi.Input[dict] source_disk_encryption_key: The customer-supplied encryption key of the source snapshot. Required
+        :param pulumi.Input[pulumi.InputType['SnapshotSourceDiskEncryptionKeyArgs']] source_disk_encryption_key: The customer-supplied encryption key of the source snapshot. Required
                if the source snapshot is protected by a customer-supplied encryption
                key.
                Structure is documented below.
         :param pulumi.Input[float] storage_bytes: A size of the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot
                creation/deletion.
         :param pulumi.Input[str] zone: A reference to the zone where the disk is hosted.
-
-        The **snapshot_encryption_key** object supports the following:
-
-          * `rawKey` (`pulumi.Input[str]`) - Specifies a 256-bit customer-supplied encryption key, encoded in
-            RFC 4648 base64 to either encrypt or decrypt this resource.
-            **Note**: This property is sensitive and will not be displayed in the plan.
-          * `sha256` (`pulumi.Input[str]`) - -
-            The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied
-            encryption key that protects this resource.
-
-        The **source_disk_encryption_key** object supports the following:
-
-          * `rawKey` (`pulumi.Input[str]`) - Specifies a 256-bit customer-supplied encryption key, encoded in
-            RFC 4648 base64 to either encrypt or decrypt this resource.
-            **Note**: This property is sensitive and will not be displayed in the plan.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -279,8 +197,149 @@ class Snapshot(pulumi.CustomResource):
         __props__["zone"] = zone
         return Snapshot(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="creationTimestamp")
+    def creation_timestamp(self) -> str:
+        """
+        Creation timestamp in RFC3339 text format.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        An optional description of this resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="diskSizeGb")
+    def disk_size_gb(self) -> float:
+        """
+        Size of the snapshot, specified in GB.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="labelFingerprint")
+    def label_fingerprint(self) -> str:
+        """
+        The fingerprint used for optimistic locking of this resource. Used internally during updates.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        Labels to apply to this Snapshot.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def licenses(self) -> List[str]:
+        """
+        A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses
+        attached (such as a Windows image). snapshotEncryptionKey nested object Encrypts the snapshot using a customer-supplied
+        encryption key.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the resource; provided by the client when the resource is
+        created. The name must be 1-63 characters long, and comply with
+        RFC1035. Specifically, the name must be 1-63 characters long and match
+        the regular expression `a-z?` which means the
+        first character must be a lowercase letter, and all following
+        characters must be a dash, lowercase letter, or digit, except the last
+        character, which cannot be a dash.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        """
+        The ID of the project in which the resource belongs.
+        If it is not provided, the provider project is used.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="selfLink")
+    def self_link(self) -> str:
+        """
+        The URI of the created resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="snapshotEncryptionKey")
+    def snapshot_encryption_key(self) -> Optional['outputs.SnapshotSnapshotEncryptionKey']:
+        """
+        The customer-supplied encryption key of the snapshot. Required if the
+        source snapshot is protected by a customer-supplied encryption key.
+        Structure is documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> float:
+        """
+        The unique identifier for the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="sourceDisk")
+    def source_disk(self) -> str:
+        """
+        A reference to the disk used to create this snapshot.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="sourceDiskEncryptionKey")
+    def source_disk_encryption_key(self) -> Optional['outputs.SnapshotSourceDiskEncryptionKey']:
+        """
+        The customer-supplied encryption key of the source snapshot. Required
+        if the source snapshot is protected by a customer-supplied encryption
+        key.
+        Structure is documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="sourceDiskLink")
+    def source_disk_link(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="storageBytes")
+    def storage_bytes(self) -> float:
+        """
+        A size of the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot
+        creation/deletion.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def zone(self) -> str:
+        """
+        A reference to the zone where the disk is hosted.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

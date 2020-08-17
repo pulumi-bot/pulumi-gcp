@@ -5,9 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
 
+__all__ = [
+    'GetManagedZoneResult',
+    'AwaitableGetManagedZoneResult',
+    'get_managed_zone',
+]
+
+
+
+@pulumi.output_type
 class GetManagedZoneResult:
     """
     A collection of values returned by getManagedZone.
@@ -15,43 +24,81 @@ class GetManagedZoneResult:
     def __init__(__self__, description=None, dns_name=None, id=None, name=None, name_servers=None, project=None, visibility=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        pulumi.set(__self__, "description", description)
+        if dns_name and not isinstance(dns_name, str):
+            raise TypeError("Expected argument 'dns_name' to be a str")
+        pulumi.set(__self__, "dns_name", dns_name)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if name_servers and not isinstance(name_servers, list):
+            raise TypeError("Expected argument 'name_servers' to be a list")
+        pulumi.set(__self__, "name_servers", name_servers)
+        if project and not isinstance(project, str):
+            raise TypeError("Expected argument 'project' to be a str")
+        pulumi.set(__self__, "project", project)
+        if visibility and not isinstance(visibility, str):
+            raise TypeError("Expected argument 'visibility' to be a str")
+        pulumi.set(__self__, "visibility", visibility)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         A textual description field.
         """
-        if dns_name and not isinstance(dns_name, str):
-            raise TypeError("Expected argument 'dns_name' to be a str")
-        __self__.dns_name = dns_name
+        ...
+
+    @property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> str:
         """
         The fully qualified DNS name of this zone, e.g. `example.io.`.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if name_servers and not isinstance(name_servers, list):
-            raise TypeError("Expected argument 'name_servers' to be a list")
-        __self__.name_servers = name_servers
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="nameServers")
+    def name_servers(self) -> List[str]:
         """
         The list of nameservers that will be authoritative for this
         domain. Use NS records to redirect from your DNS provider to these names,
         thus making Google Cloud DNS authoritative for this zone.
         """
-        if project and not isinstance(project, str):
-            raise TypeError("Expected argument 'project' to be a str")
-        __self__.project = project
-        if visibility and not isinstance(visibility, str):
-            raise TypeError("Expected argument 'visibility' to be a str")
-        __self__.visibility = visibility
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter
+    def visibility(self) -> str:
         """
         The zone's visibility: public zones are exposed to the Internet,
         while private zones are visible only to Virtual Private Cloud resources.
         """
+        ...
+
+
+
 class AwaitableGetManagedZoneResult(GetManagedZoneResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -66,7 +113,10 @@ class AwaitableGetManagedZoneResult(GetManagedZoneResult):
             project=self.project,
             visibility=self.visibility)
 
-def get_managed_zone(name=None,project=None,opts=None):
+
+def get_managed_zone(name: Optional[str] = None,
+                     project: Optional[str] = None,
+                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetManagedZoneResult:
     """
     Provides access to a zone's attributes within Google Cloud DNS.
     For more information see
@@ -79,21 +129,19 @@ def get_managed_zone(name=None,project=None,opts=None):
     :param str project: The ID of the project for the Google Cloud DNS zone.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:dns/getManagedZone:getManagedZone', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:dns/getManagedZone:getManagedZone', __args__, opts=opts, typ=GetManagedZoneResult).value
 
     return AwaitableGetManagedZoneResult(
-        description=__ret__.get('description'),
-        dns_name=__ret__.get('dnsName'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        name_servers=__ret__.get('nameServers'),
-        project=__ret__.get('project'),
-        visibility=__ret__.get('visibility'))
+        description=__ret__.description,
+        dns_name=__ret__.dns_name,
+        id=__ret__.id,
+        name=__ret__.name,
+        name_servers=__ret__.name_servers,
+        project=__ret__.project,
+        visibility=__ret__.visibility)

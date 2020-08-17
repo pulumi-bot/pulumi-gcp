@@ -5,22 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['ServicePerimeterResource']
 
 
 class ServicePerimeterResource(pulumi.CustomResource):
-    perimeter_name: pulumi.Output[str]
-    """
-    The name of the Service Perimeter to add this resource to.
-    """
-    resource: pulumi.Output[str]
-    """
-    A GCP resource that is inside of the service perimeter.
-    Currently only projects are allowed.
-    Format: projects/{project_number}
-    """
-    def __init__(__self__, resource_name, opts=None, perimeter_name=None, resource=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 perimeter_name: Optional[pulumi.Input[str]] = None,
+                 resource: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Allows configuring a single GCP resource that should be inside of a service perimeter.
         This resource is intended to be used in cases where it is not possible to compile a full list
@@ -57,7 +56,7 @@ class ServicePerimeterResource(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -76,7 +75,11 @@ class ServicePerimeterResource(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, perimeter_name=None, resource=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            perimeter_name: Optional[pulumi.Input[str]] = None,
+            resource: Optional[pulumi.Input[str]] = None) -> 'ServicePerimeterResource':
         """
         Get an existing ServicePerimeterResource resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -97,8 +100,27 @@ class ServicePerimeterResource(pulumi.CustomResource):
         __props__["resource"] = resource
         return ServicePerimeterResource(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="perimeterName")
+    def perimeter_name(self) -> str:
+        """
+        The name of the Service Perimeter to add this resource to.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def resource(self) -> str:
+        """
+        A GCP resource that is inside of the service perimeter.
+        Currently only projects are allowed.
+        Format: projects/{project_number}
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

@@ -5,9 +5,19 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
 
+__all__ = [
+    'GetKeysResult',
+    'AwaitableGetKeysResult',
+    'get_keys',
+]
+
+
+
+@pulumi.output_type
 class GetKeysResult:
     """
     A collection of values returned by getKeys.
@@ -15,28 +25,56 @@ class GetKeysResult:
     def __init__(__self__, id=None, key_signing_keys=None, managed_zone=None, project=None, zone_signing_keys=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if key_signing_keys and not isinstance(key_signing_keys, list):
+            raise TypeError("Expected argument 'key_signing_keys' to be a list")
+        pulumi.set(__self__, "key_signing_keys", key_signing_keys)
+        if managed_zone and not isinstance(managed_zone, str):
+            raise TypeError("Expected argument 'managed_zone' to be a str")
+        pulumi.set(__self__, "managed_zone", managed_zone)
+        if project and not isinstance(project, str):
+            raise TypeError("Expected argument 'project' to be a str")
+        pulumi.set(__self__, "project", project)
+        if zone_signing_keys and not isinstance(zone_signing_keys, list):
+            raise TypeError("Expected argument 'zone_signing_keys' to be a list")
+        pulumi.set(__self__, "zone_signing_keys", zone_signing_keys)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if key_signing_keys and not isinstance(key_signing_keys, list):
-            raise TypeError("Expected argument 'key_signing_keys' to be a list")
-        __self__.key_signing_keys = key_signing_keys
+        ...
+
+    @property
+    @pulumi.getter(name="keySigningKeys")
+    def key_signing_keys(self) -> List['outputs.GetKeysKeySigningKeyResult']:
         """
         A list of Key-signing key (KSK) records. Structure is documented below. Additionally, the DS record is provided:
         """
-        if managed_zone and not isinstance(managed_zone, str):
-            raise TypeError("Expected argument 'managed_zone' to be a str")
-        __self__.managed_zone = managed_zone
-        if project and not isinstance(project, str):
-            raise TypeError("Expected argument 'project' to be a str")
-        __self__.project = project
-        if zone_signing_keys and not isinstance(zone_signing_keys, list):
-            raise TypeError("Expected argument 'zone_signing_keys' to be a list")
-        __self__.zone_signing_keys = zone_signing_keys
+        ...
+
+    @property
+    @pulumi.getter(name="managedZone")
+    def managed_zone(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter(name="zoneSigningKeys")
+    def zone_signing_keys(self) -> List['outputs.GetKeysZoneSigningKeyResult']:
         """
         A list of Zone-signing key (ZSK) records. Structure is documented below.
         """
+        ...
+
+
+
 class AwaitableGetKeysResult(GetKeysResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -49,7 +87,10 @@ class AwaitableGetKeysResult(GetKeysResult):
             project=self.project,
             zone_signing_keys=self.zone_signing_keys)
 
-def get_keys(managed_zone=None,project=None,opts=None):
+
+def get_keys(managed_zone: Optional[str] = None,
+             project: Optional[str] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKeysResult:
     """
     Get the DNSKEY and DS records of DNSSEC-signed managed zones. For more information see the
     [official documentation](https://cloud.google.com/dns/docs/dnskeys/)
@@ -60,19 +101,17 @@ def get_keys(managed_zone=None,project=None,opts=None):
     :param str project: The ID of the project in which the resource belongs. If `project` is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['managedZone'] = managed_zone
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:dns/getKeys:getKeys', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:dns/getKeys:getKeys', __args__, opts=opts, typ=GetKeysResult).value
 
     return AwaitableGetKeysResult(
-        id=__ret__.get('id'),
-        key_signing_keys=__ret__.get('keySigningKeys'),
-        managed_zone=__ret__.get('managedZone'),
-        project=__ret__.get('project'),
-        zone_signing_keys=__ret__.get('zoneSigningKeys'))
+        id=__ret__.id,
+        key_signing_keys=__ret__.key_signing_keys,
+        managed_zone=__ret__.managed_zone,
+        project=__ret__.project,
+        zone_signing_keys=__ret__.zone_signing_keys)

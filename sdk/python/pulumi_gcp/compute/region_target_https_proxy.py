@@ -5,59 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['RegionTargetHttpsProxy']
 
 
 class RegionTargetHttpsProxy(pulumi.CustomResource):
-    creation_timestamp: pulumi.Output[str]
-    """
-    Creation timestamp in RFC3339 text format.
-    """
-    description: pulumi.Output[str]
-    """
-    An optional description of this resource.
-    """
-    name: pulumi.Output[str]
-    """
-    Name of the resource. Provided by the client when the resource is
-    created. The name must be 1-63 characters long, and comply with
-    RFC1035. Specifically, the name must be 1-63 characters long and match
-    the regular expression `a-z?` which means the
-    first character must be a lowercase letter, and all following
-    characters must be a dash, lowercase letter, or digit, except the last
-    character, which cannot be a dash.
-    """
-    project: pulumi.Output[str]
-    """
-    The ID of the project in which the resource belongs.
-    If it is not provided, the provider project is used.
-    """
-    proxy_id: pulumi.Output[float]
-    """
-    The unique identifier for the resource.
-    """
-    region: pulumi.Output[str]
-    """
-    The Region in which the created target https proxy should reside.
-    If it is not provided, the provider region is used.
-    """
-    self_link: pulumi.Output[str]
-    """
-    The URI of the created resource.
-    """
-    ssl_certificates: pulumi.Output[list]
-    """
-    A list of RegionSslCertificate resources that are used to authenticate
-    connections between users and the load balancer. Currently, exactly
-    one SSL certificate must be specified.
-    """
-    url_map: pulumi.Output[str]
-    """
-    A reference to the RegionUrlMap resource that defines the mapping from URL
-    to the RegionBackendService.
-    """
-    def __init__(__self__, resource_name, opts=None, description=None, name=None, project=None, region=None, ssl_certificates=None, url_map=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 ssl_certificates: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 url_map: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Represents a RegionTargetHttpsProxy resource, which is used by one or more
         forwarding rules to route incoming HTTPS requests to a URL map.
@@ -84,7 +50,7 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
                If it is not provided, the provider project is used.
         :param pulumi.Input[str] region: The Region in which the created target https proxy should reside.
                If it is not provided, the provider region is used.
-        :param pulumi.Input[list] ssl_certificates: A list of RegionSslCertificate resources that are used to authenticate
+        :param pulumi.Input[List[pulumi.Input[str]]] ssl_certificates: A list of RegionSslCertificate resources that are used to authenticate
                connections between users and the load balancer. Currently, exactly
                one SSL certificate must be specified.
         :param pulumi.Input[str] url_map: A reference to the RegionUrlMap resource that defines the mapping from URL
@@ -101,7 +67,7 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -127,7 +93,18 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, creation_timestamp=None, description=None, name=None, project=None, proxy_id=None, region=None, self_link=None, ssl_certificates=None, url_map=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            creation_timestamp: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            proxy_id: Optional[pulumi.Input[float]] = None,
+            region: Optional[pulumi.Input[str]] = None,
+            self_link: Optional[pulumi.Input[str]] = None,
+            ssl_certificates: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            url_map: Optional[pulumi.Input[str]] = None) -> 'RegionTargetHttpsProxy':
         """
         Get an existing RegionTargetHttpsProxy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -150,7 +127,7 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
         :param pulumi.Input[str] region: The Region in which the created target https proxy should reside.
                If it is not provided, the provider region is used.
         :param pulumi.Input[str] self_link: The URI of the created resource.
-        :param pulumi.Input[list] ssl_certificates: A list of RegionSslCertificate resources that are used to authenticate
+        :param pulumi.Input[List[pulumi.Input[str]]] ssl_certificates: A list of RegionSslCertificate resources that are used to authenticate
                connections between users and the load balancer. Currently, exactly
                one SSL certificate must be specified.
         :param pulumi.Input[str] url_map: A reference to the RegionUrlMap resource that defines the mapping from URL
@@ -171,8 +148,92 @@ class RegionTargetHttpsProxy(pulumi.CustomResource):
         __props__["url_map"] = url_map
         return RegionTargetHttpsProxy(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="creationTimestamp")
+    def creation_timestamp(self) -> str:
+        """
+        Creation timestamp in RFC3339 text format.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        An optional description of this resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the resource. Provided by the client when the resource is
+        created. The name must be 1-63 characters long, and comply with
+        RFC1035. Specifically, the name must be 1-63 characters long and match
+        the regular expression `a-z?` which means the
+        first character must be a lowercase letter, and all following
+        characters must be a dash, lowercase letter, or digit, except the last
+        character, which cannot be a dash.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        """
+        The ID of the project in which the resource belongs.
+        If it is not provided, the provider project is used.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="proxyId")
+    def proxy_id(self) -> float:
+        """
+        The unique identifier for the resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        The Region in which the created target https proxy should reside.
+        If it is not provided, the provider region is used.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="selfLink")
+    def self_link(self) -> str:
+        """
+        The URI of the created resource.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="sslCertificates")
+    def ssl_certificates(self) -> List[str]:
+        """
+        A list of RegionSslCertificate resources that are used to authenticate
+        connections between users and the load balancer. Currently, exactly
+        one SSL certificate must be specified.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="urlMap")
+    def url_map(self) -> str:
+        """
+        A reference to the RegionUrlMap resource that defines the mapping from URL
+        to the RegionBackendService.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

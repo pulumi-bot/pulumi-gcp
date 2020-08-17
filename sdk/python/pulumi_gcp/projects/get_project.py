@@ -5,9 +5,19 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
 
+__all__ = [
+    'GetProjectResult',
+    'AwaitableGetProjectResult',
+    'get_project',
+]
+
+
+
+@pulumi.output_type
 class GetProjectResult:
     """
     A collection of values returned by getProject.
@@ -15,19 +25,37 @@ class GetProjectResult:
     def __init__(__self__, filter=None, id=None, projects=None):
         if filter and not isinstance(filter, str):
             raise TypeError("Expected argument 'filter' to be a str")
-        __self__.filter = filter
+        pulumi.set(__self__, "filter", filter)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if projects and not isinstance(projects, list):
+            raise TypeError("Expected argument 'projects' to be a list")
+        pulumi.set(__self__, "projects", projects)
+
+    @property
+    @pulumi.getter
+    def filter(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if projects and not isinstance(projects, list):
-            raise TypeError("Expected argument 'projects' to be a list")
-        __self__.projects = projects
+        ...
+
+    @property
+    @pulumi.getter
+    def projects(self) -> List['outputs.GetProjectProjectResult']:
         """
         A list of projects matching the provided filter. Structure is defined below.
         """
+        ...
+
+
+
 class AwaitableGetProjectResult(GetProjectResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -38,7 +66,9 @@ class AwaitableGetProjectResult(GetProjectResult):
             id=self.id,
             projects=self.projects)
 
-def get_project(filter=None,opts=None):
+
+def get_project(filter: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectResult:
     """
     Retrieve information about a set of projects based on a filter. See the
     [REST API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/list)
@@ -50,16 +80,14 @@ def get_project(filter=None,opts=None):
     :param str filter: A string filter as defined in the [REST API](https://cloud.google.com/resource-manager/reference/rest/v1/projects/list#query-parameters).
     """
     __args__ = dict()
-
-
     __args__['filter'] = filter
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:projects/getProject:getProject', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:projects/getProject:getProject', __args__, opts=opts, typ=GetProjectResult).value
 
     return AwaitableGetProjectResult(
-        filter=__ret__.get('filter'),
-        id=__ret__.get('id'),
-        projects=__ret__.get('projects'))
+        filter=__ret__.filter,
+        id=__ret__.id,
+        projects=__ret__.projects)

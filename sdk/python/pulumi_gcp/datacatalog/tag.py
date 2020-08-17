@@ -5,61 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['Tag']
 
 
 class Tag(pulumi.CustomResource):
-    column: pulumi.Output[str]
-    """
-    Resources like Entry can have schemas associated with them. This scope allows users to attach tags to an
-    individual column based on that schema.
-    For attaching a tag to a nested column, use `.` to separate the column names. Example:
-    `outer_column.inner_column`
-    """
-    fields: pulumi.Output[list]
-    """
-    This maps the ID of a tag field to the value of and additional information about that field.
-    Valid field IDs are defined by the tag's template. A tag must have at least 1 field and at most 500 fields.
-    Structure is documented below.
-
-      * `boolValue` (`bool`) - Holds the value for a tag field with boolean type.
-      * `display_name` (`str`) - -
-        The display name of this field
-      * `doubleValue` (`float`) - Holds the value for a tag field with double type.
-      * `enumValue` (`str`) - Holds the value for a tag field with enum type. This value must be one of the allowed values in the definition of this enum.
-        Structure is documented below.
-      * `fieldName` (`str`) - The identifier for this object. Format specified above.
-      * `order` (`float`) - -
-        The order of this field with respect to other fields in this tag. For example, a higher value can indicate
-        a more important field. The value can be negative. Multiple fields can have the same order, and field orders
-        within a tag do not have to be sequential.
-      * `stringValue` (`str`) - Holds the value for a tag field with string type.
-      * `timestampValue` (`str`) - Holds the value for a tag field with timestamp type.
-    """
-    name: pulumi.Output[str]
-    """
-    The resource name of the tag in URL format. Example:
-    projects/{project_id}/locations/{location}/entrygroups/{entryGroupId}/entries/{entryId}/tags/{tag_id} or
-    projects/{project_id}/locations/{location}/entrygroups/{entryGroupId}/tags/{tag_id} where tag_id is a system-generated
-    identifier. Note that this Tag may not actually be stored in the location in this name.
-    """
-    parent: pulumi.Output[str]
-    """
-    The name of the parent this tag is attached to. This can be the name of an entry or an entry group. If an entry group, the tag will be attached to
-    all entries in that group.
-    """
-    template: pulumi.Output[str]
-    """
-    The resource name of the tag template that this tag uses. Example:
-    projects/{project_id}/locations/{location}/tagTemplates/{tagTemplateId}
-    This field cannot be modified after creation.
-    """
-    template_displayname: pulumi.Output[str]
-    """
-    The display name of the tag template.
-    """
-    def __init__(__self__, resource_name, opts=None, column=None, fields=None, parent=None, template=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 column: Optional[pulumi.Input[str]] = None,
+                 fields: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TagFieldArgs']]]]] = None,
+                 parent: Optional[pulumi.Input[str]] = None,
+                 template: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Tags are used to attach custom metadata to Data Catalog resources. Tags conform to the specifications within their tag template.
 
@@ -79,7 +43,7 @@ class Tag(pulumi.CustomResource):
                individual column based on that schema.
                For attaching a tag to a nested column, use `.` to separate the column names. Example:
                `outer_column.inner_column`
-        :param pulumi.Input[list] fields: This maps the ID of a tag field to the value of and additional information about that field.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['TagFieldArgs']]]] fields: This maps the ID of a tag field to the value of and additional information about that field.
                Valid field IDs are defined by the tag's template. A tag must have at least 1 field and at most 500 fields.
                Structure is documented below.
         :param pulumi.Input[str] parent: The name of the parent this tag is attached to. This can be the name of an entry or an entry group. If an entry group, the tag will be attached to
@@ -87,22 +51,6 @@ class Tag(pulumi.CustomResource):
         :param pulumi.Input[str] template: The resource name of the tag template that this tag uses. Example:
                projects/{project_id}/locations/{location}/tagTemplates/{tagTemplateId}
                This field cannot be modified after creation.
-
-        The **fields** object supports the following:
-
-          * `boolValue` (`pulumi.Input[bool]`) - Holds the value for a tag field with boolean type.
-          * `display_name` (`pulumi.Input[str]`) - -
-            The display name of this field
-          * `doubleValue` (`pulumi.Input[float]`) - Holds the value for a tag field with double type.
-          * `enumValue` (`pulumi.Input[str]`) - Holds the value for a tag field with enum type. This value must be one of the allowed values in the definition of this enum.
-            Structure is documented below.
-          * `fieldName` (`pulumi.Input[str]`) - The identifier for this object. Format specified above.
-          * `order` (`pulumi.Input[float]`) - -
-            The order of this field with respect to other fields in this tag. For example, a higher value can indicate
-            a more important field. The value can be negative. Multiple fields can have the same order, and field orders
-            within a tag do not have to be sequential.
-          * `stringValue` (`pulumi.Input[str]`) - Holds the value for a tag field with string type.
-          * `timestampValue` (`pulumi.Input[str]`) - Holds the value for a tag field with timestamp type.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -115,7 +63,7 @@ class Tag(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -138,7 +86,15 @@ class Tag(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, column=None, fields=None, name=None, parent=None, template=None, template_displayname=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            column: Optional[pulumi.Input[str]] = None,
+            fields: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['TagFieldArgs']]]]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            parent: Optional[pulumi.Input[str]] = None,
+            template: Optional[pulumi.Input[str]] = None,
+            template_displayname: Optional[pulumi.Input[str]] = None) -> 'Tag':
         """
         Get an existing Tag resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -150,7 +106,7 @@ class Tag(pulumi.CustomResource):
                individual column based on that schema.
                For attaching a tag to a nested column, use `.` to separate the column names. Example:
                `outer_column.inner_column`
-        :param pulumi.Input[list] fields: This maps the ID of a tag field to the value of and additional information about that field.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['TagFieldArgs']]]] fields: This maps the ID of a tag field to the value of and additional information about that field.
                Valid field IDs are defined by the tag's template. A tag must have at least 1 field and at most 500 fields.
                Structure is documented below.
         :param pulumi.Input[str] name: The resource name of the tag in URL format. Example:
@@ -163,22 +119,6 @@ class Tag(pulumi.CustomResource):
                projects/{project_id}/locations/{location}/tagTemplates/{tagTemplateId}
                This field cannot be modified after creation.
         :param pulumi.Input[str] template_displayname: The display name of the tag template.
-
-        The **fields** object supports the following:
-
-          * `boolValue` (`pulumi.Input[bool]`) - Holds the value for a tag field with boolean type.
-          * `display_name` (`pulumi.Input[str]`) - -
-            The display name of this field
-          * `doubleValue` (`pulumi.Input[float]`) - Holds the value for a tag field with double type.
-          * `enumValue` (`pulumi.Input[str]`) - Holds the value for a tag field with enum type. This value must be one of the allowed values in the definition of this enum.
-            Structure is documented below.
-          * `fieldName` (`pulumi.Input[str]`) - The identifier for this object. Format specified above.
-          * `order` (`pulumi.Input[float]`) - -
-            The order of this field with respect to other fields in this tag. For example, a higher value can indicate
-            a more important field. The value can be negative. Multiple fields can have the same order, and field orders
-            within a tag do not have to be sequential.
-          * `stringValue` (`pulumi.Input[str]`) - Holds the value for a tag field with string type.
-          * `timestampValue` (`pulumi.Input[str]`) - Holds the value for a tag field with timestamp type.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -192,8 +132,68 @@ class Tag(pulumi.CustomResource):
         __props__["template_displayname"] = template_displayname
         return Tag(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def column(self) -> Optional[str]:
+        """
+        Resources like Entry can have schemas associated with them. This scope allows users to attach tags to an
+        individual column based on that schema.
+        For attaching a tag to a nested column, use `.` to separate the column names. Example:
+        `outer_column.inner_column`
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def fields(self) -> List['outputs.TagField']:
+        """
+        This maps the ID of a tag field to the value of and additional information about that field.
+        Valid field IDs are defined by the tag's template. A tag must have at least 1 field and at most 500 fields.
+        Structure is documented below.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The resource name of the tag in URL format. Example:
+        projects/{project_id}/locations/{location}/entrygroups/{entryGroupId}/entries/{entryId}/tags/{tag_id} or
+        projects/{project_id}/locations/{location}/entrygroups/{entryGroupId}/tags/{tag_id} where tag_id is a system-generated
+        identifier. Note that this Tag may not actually be stored in the location in this name.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def parent(self) -> Optional[str]:
+        """
+        The name of the parent this tag is attached to. This can be the name of an entry or an entry group. If an entry group, the tag will be attached to
+        all entries in that group.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def template(self) -> str:
+        """
+        The resource name of the tag template that this tag uses. Example:
+        projects/{project_id}/locations/{location}/tagTemplates/{tagTemplateId}
+        This field cannot be modified after creation.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="templateDisplayname")
+    def template_displayname(self) -> str:
+        """
+        The display name of the tag template.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

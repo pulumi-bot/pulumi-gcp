@@ -5,47 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['BucketAccessControl']
 
 
 class BucketAccessControl(pulumi.CustomResource):
-    bucket: pulumi.Output[str]
-    """
-    The name of the bucket.
-    """
-    domain: pulumi.Output[str]
-    """
-    The domain associated with the entity.
-    """
-    email: pulumi.Output[str]
-    """
-    The email address associated with the entity.
-    """
-    entity: pulumi.Output[str]
-    """
-    The entity holding the permission, in one of the following forms:
-    user-userId
-    user-email
-    group-groupId
-    group-email
-    domain-domain
-    project-team-projectId
-    allUsers
-    allAuthenticatedUsers
-    Examples:
-    The user liz@example.com would be user-liz@example.com.
-    The group example@googlegroups.com would be
-    group-example@googlegroups.com.
-    To refer to all members of the Google Apps for Business domain
-    example.com, the entity would be domain-example.com.
-    """
-    role: pulumi.Output[str]
-    """
-    The access permission for the entity.
-    Possible values are `OWNER`, `READER`, and `WRITER`.
-    """
-    def __init__(__self__, resource_name, opts=None, bucket=None, entity=None, role=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bucket: Optional[pulumi.Input[str]] = None,
+                 entity: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Bucket ACLs can be managed authoritatively using the
         `storage_bucket_acl` resource. Do not use these two resources in conjunction to manage the same bucket.
@@ -104,7 +79,7 @@ class BucketAccessControl(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -126,7 +101,14 @@ class BucketAccessControl(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bucket=None, domain=None, email=None, entity=None, role=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bucket: Optional[pulumi.Input[str]] = None,
+            domain: Optional[pulumi.Input[str]] = None,
+            email: Optional[pulumi.Input[str]] = None,
+            entity: Optional[pulumi.Input[str]] = None,
+            role: Optional[pulumi.Input[str]] = None) -> 'BucketAccessControl':
         """
         Get an existing BucketAccessControl resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -166,8 +148,64 @@ class BucketAccessControl(pulumi.CustomResource):
         __props__["role"] = role
         return BucketAccessControl(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        The name of the bucket.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        """
+        The domain associated with the entity.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        """
+        The email address associated with the entity.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def entity(self) -> str:
+        """
+        The entity holding the permission, in one of the following forms:
+        user-userId
+        user-email
+        group-groupId
+        group-email
+        domain-domain
+        project-team-projectId
+        allUsers
+        allAuthenticatedUsers
+        Examples:
+        The user liz@example.com would be user-liz@example.com.
+        The group example@googlegroups.com would be
+        group-example@googlegroups.com.
+        To refer to all members of the Google Apps for Business domain
+        example.com, the entity would be domain-example.com.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[str]:
+        """
+        The access permission for the entity.
+        Possible values are `OWNER`, `READER`, and `WRITER`.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

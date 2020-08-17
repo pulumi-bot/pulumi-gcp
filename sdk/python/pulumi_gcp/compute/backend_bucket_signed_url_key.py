@@ -5,31 +5,23 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['BackendBucketSignedUrlKey']
 
 
 class BackendBucketSignedUrlKey(pulumi.CustomResource):
-    backend_bucket: pulumi.Output[str]
-    """
-    The backend bucket this signed URL key belongs.
-    """
-    key_value: pulumi.Output[str]
-    """
-    128-bit key value used for signing the URL. The key value must be a
-    valid RFC 4648 Section 5 base64url encoded string.
-    **Note**: This property is sensitive and will not be displayed in the plan.
-    """
-    name: pulumi.Output[str]
-    """
-    Name of the signed URL key.
-    """
-    project: pulumi.Output[str]
-    """
-    The ID of the project in which the resource belongs.
-    If it is not provided, the provider project is used.
-    """
-    def __init__(__self__, resource_name, opts=None, backend_bucket=None, key_value=None, name=None, project=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 backend_bucket: Optional[pulumi.Input[str]] = None,
+                 key_value: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         A key for signing Cloud CDN signed URLs for BackendBuckets.
 
@@ -65,7 +57,7 @@ class BackendBucketSignedUrlKey(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -86,7 +78,13 @@ class BackendBucketSignedUrlKey(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, backend_bucket=None, key_value=None, name=None, project=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend_bucket: Optional[pulumi.Input[str]] = None,
+            key_value: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None) -> 'BackendBucketSignedUrlKey':
         """
         Get an existing BackendBucketSignedUrlKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -112,8 +110,44 @@ class BackendBucketSignedUrlKey(pulumi.CustomResource):
         __props__["project"] = project
         return BackendBucketSignedUrlKey(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="backendBucket")
+    def backend_bucket(self) -> str:
+        """
+        The backend bucket this signed URL key belongs.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="keyValue")
+    def key_value(self) -> str:
+        """
+        128-bit key value used for signing the URL. The key value must be a
+        valid RFC 4648 Section 5 base64url encoded string.
+        **Note**: This property is sensitive and will not be displayed in the plan.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the signed URL key.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        """
+        The ID of the project in which the resource belongs.
+        If it is not provided, the provider project is used.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

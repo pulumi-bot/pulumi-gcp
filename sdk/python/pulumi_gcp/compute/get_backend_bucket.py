@@ -5,9 +5,19 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+from . import outputs
 
+__all__ = [
+    'GetBackendBucketResult',
+    'AwaitableGetBackendBucketResult',
+    'get_backend_bucket',
+]
+
+
+
+@pulumi.output_type
 class GetBackendBucketResult:
     """
     A collection of values returned by getBackendBucket.
@@ -15,52 +25,100 @@ class GetBackendBucketResult:
     def __init__(__self__, bucket_name=None, cdn_policies=None, creation_timestamp=None, description=None, enable_cdn=None, id=None, name=None, project=None, self_link=None):
         if bucket_name and not isinstance(bucket_name, str):
             raise TypeError("Expected argument 'bucket_name' to be a str")
-        __self__.bucket_name = bucket_name
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        if cdn_policies and not isinstance(cdn_policies, list):
+            raise TypeError("Expected argument 'cdn_policies' to be a list")
+        pulumi.set(__self__, "cdn_policies", cdn_policies)
+        if creation_timestamp and not isinstance(creation_timestamp, str):
+            raise TypeError("Expected argument 'creation_timestamp' to be a str")
+        pulumi.set(__self__, "creation_timestamp", creation_timestamp)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
+        if enable_cdn and not isinstance(enable_cdn, bool):
+            raise TypeError("Expected argument 'enable_cdn' to be a bool")
+        pulumi.set(__self__, "enable_cdn", enable_cdn)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if project and not isinstance(project, str):
+            raise TypeError("Expected argument 'project' to be a str")
+        pulumi.set(__self__, "project", project)
+        if self_link and not isinstance(self_link, str):
+            raise TypeError("Expected argument 'self_link' to be a str")
+        pulumi.set(__self__, "self_link", self_link)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
         """
         Cloud Storage bucket name.
         """
-        if cdn_policies and not isinstance(cdn_policies, list):
-            raise TypeError("Expected argument 'cdn_policies' to be a list")
-        __self__.cdn_policies = cdn_policies
+        ...
+
+    @property
+    @pulumi.getter(name="cdnPolicies")
+    def cdn_policies(self) -> List['outputs.GetBackendBucketCdnPolicyResult']:
         """
         Cloud CDN configuration for this Backend Bucket. Structure is documented below.
         """
-        if creation_timestamp and not isinstance(creation_timestamp, str):
-            raise TypeError("Expected argument 'creation_timestamp' to be a str")
-        __self__.creation_timestamp = creation_timestamp
+        ...
+
+    @property
+    @pulumi.getter(name="creationTimestamp")
+    def creation_timestamp(self) -> str:
         """
         Creation timestamp in RFC3339 text format.
         """
-        if description and not isinstance(description, str):
-            raise TypeError("Expected argument 'description' to be a str")
-        __self__.description = description
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
         """
         An optional textual description of the resource; provided by the client when the resource is created.
         """
-        if enable_cdn and not isinstance(enable_cdn, bool):
-            raise TypeError("Expected argument 'enable_cdn' to be a bool")
-        __self__.enable_cdn = enable_cdn
+        ...
+
+    @property
+    @pulumi.getter(name="enableCdn")
+    def enable_cdn(self) -> bool:
         """
         Whether Cloud CDN is enabled for this BackendBucket.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        ...
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
-        if project and not isinstance(project, str):
-            raise TypeError("Expected argument 'project' to be a str")
-        __self__.project = project
-        if self_link and not isinstance(self_link, str):
-            raise TypeError("Expected argument 'self_link' to be a str")
-        __self__.self_link = self_link
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> Optional[str]:
+        ...
+
+    @property
+    @pulumi.getter(name="selfLink")
+    def self_link(self) -> str:
         """
         The URI of the created resource.
         """
+        ...
+
+
+
 class AwaitableGetBackendBucketResult(GetBackendBucketResult):
     # pylint: disable=using-constant-test
     def __await__(self):
@@ -77,7 +135,10 @@ class AwaitableGetBackendBucketResult(GetBackendBucketResult):
             project=self.project,
             self_link=self.self_link)
 
-def get_backend_bucket(name=None,project=None,opts=None):
+
+def get_backend_bucket(name: Optional[str] = None,
+                       project: Optional[str] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBackendBucketResult:
     """
     Get information about a BackendBucket.
 
@@ -87,23 +148,21 @@ def get_backend_bucket(name=None,project=None,opts=None):
            is not provided, the provider project is used.
     """
     __args__ = dict()
-
-
     __args__['name'] = name
     __args__['project'] = project
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
-        opts.version = utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('gcp:compute/getBackendBucket:getBackendBucket', __args__, opts=opts).value
+        opts.version = _utilities.get_version()
+    __ret__ = pulumi.runtime.invoke('gcp:compute/getBackendBucket:getBackendBucket', __args__, opts=opts, typ=GetBackendBucketResult).value
 
     return AwaitableGetBackendBucketResult(
-        bucket_name=__ret__.get('bucketName'),
-        cdn_policies=__ret__.get('cdnPolicies'),
-        creation_timestamp=__ret__.get('creationTimestamp'),
-        description=__ret__.get('description'),
-        enable_cdn=__ret__.get('enableCdn'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'),
-        project=__ret__.get('project'),
-        self_link=__ret__.get('selfLink'))
+        bucket_name=__ret__.bucket_name,
+        cdn_policies=__ret__.cdn_policies,
+        creation_timestamp=__ret__.creation_timestamp,
+        description=__ret__.description,
+        enable_cdn=__ret__.enable_cdn,
+        id=__ret__.id,
+        name=__ret__.name,
+        project=__ret__.project,
+        self_link=__ret__.self_link)

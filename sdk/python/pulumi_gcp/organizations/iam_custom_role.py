@@ -5,46 +5,25 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['IAMCustomRole']
 
 
 class IAMCustomRole(pulumi.CustomResource):
-    deleted: pulumi.Output[bool]
-    """
-    (Optional) The current deleted state of the role.
-    """
-    description: pulumi.Output[str]
-    """
-    A human-readable description for the role.
-    """
-    name: pulumi.Output[str]
-    """
-    The name of the role in the format `organizations/{{org_id}}/roles/{{role_id}}`. Like `id`, this field can be used as a reference in other resources such as IAM role bindings.
-    """
-    org_id: pulumi.Output[str]
-    """
-    The numeric ID of the organization in which you want to create a custom role.
-    """
-    permissions: pulumi.Output[list]
-    """
-    The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
-    """
-    role_id: pulumi.Output[str]
-    """
-    The role id to use for this role.
-    """
-    stage: pulumi.Output[str]
-    """
-    The current launch stage of the role.
-    Defaults to `GA`.
-    List of possible stages is [here](https://cloud.google.com/iam/reference/rest/v1/organizations.roles#Role.RoleLaunchStage).
-    """
-    title: pulumi.Output[str]
-    """
-    A human-readable title for the role.
-    """
-    def __init__(__self__, resource_name, opts=None, description=None, org_id=None, permissions=None, role_id=None, stage=None, title=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 org_id: Optional[pulumi.Input[str]] = None,
+                 permissions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 role_id: Optional[pulumi.Input[str]] = None,
+                 stage: Optional[pulumi.Input[str]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Allows management of a customized Cloud IAM organization role. For more information see
         [the official documentation](https://cloud.google.com/iam/docs/understanding-custom-roles)
@@ -62,7 +41,7 @@ class IAMCustomRole(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: A human-readable description for the role.
         :param pulumi.Input[str] org_id: The numeric ID of the organization in which you want to create a custom role.
-        :param pulumi.Input[list] permissions: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+        :param pulumi.Input[List[pulumi.Input[str]]] permissions: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
         :param pulumi.Input[str] role_id: The role id to use for this role.
         :param pulumi.Input[str] stage: The current launch stage of the role.
                Defaults to `GA`.
@@ -80,7 +59,7 @@ class IAMCustomRole(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -109,7 +88,17 @@ class IAMCustomRole(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, deleted=None, description=None, name=None, org_id=None, permissions=None, role_id=None, stage=None, title=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            deleted: Optional[pulumi.Input[bool]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            org_id: Optional[pulumi.Input[str]] = None,
+            permissions: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            role_id: Optional[pulumi.Input[str]] = None,
+            stage: Optional[pulumi.Input[str]] = None,
+            title: Optional[pulumi.Input[str]] = None) -> 'IAMCustomRole':
         """
         Get an existing IAMCustomRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -121,7 +110,7 @@ class IAMCustomRole(pulumi.CustomResource):
         :param pulumi.Input[str] description: A human-readable description for the role.
         :param pulumi.Input[str] name: The name of the role in the format `organizations/{{org_id}}/roles/{{role_id}}`. Like `id`, this field can be used as a reference in other resources such as IAM role bindings.
         :param pulumi.Input[str] org_id: The numeric ID of the organization in which you want to create a custom role.
-        :param pulumi.Input[list] permissions: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+        :param pulumi.Input[List[pulumi.Input[str]]] permissions: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
         :param pulumi.Input[str] role_id: The role id to use for this role.
         :param pulumi.Input[str] stage: The current launch stage of the role.
                Defaults to `GA`.
@@ -142,8 +131,75 @@ class IAMCustomRole(pulumi.CustomResource):
         __props__["title"] = title
         return IAMCustomRole(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def deleted(self) -> bool:
+        """
+        (Optional) The current deleted state of the role.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        A human-readable description for the role.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the role in the format `organizations/{{org_id}}/roles/{{role_id}}`. Like `id`, this field can be used as a reference in other resources such as IAM role bindings.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="orgId")
+    def org_id(self) -> str:
+        """
+        The numeric ID of the organization in which you want to create a custom role.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def permissions(self) -> List[str]:
+        """
+        The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> str:
+        """
+        The role id to use for this role.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def stage(self) -> Optional[str]:
+        """
+        The current launch stage of the role.
+        Defaults to `GA`.
+        List of possible stages is [here](https://cloud.google.com/iam/reference/rest/v1/organizations.roles#Role.RoleLaunchStage).
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        A human-readable title for the role.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

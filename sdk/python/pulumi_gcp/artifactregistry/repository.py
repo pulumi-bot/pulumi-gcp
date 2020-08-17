@@ -5,62 +5,26 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
-from .. import utilities, tables
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from .. import _utilities, _tables
+
+__all__ = ['Repository']
 
 
 class Repository(pulumi.CustomResource):
-    create_time: pulumi.Output[str]
-    """
-    The time when the repository was created.
-    """
-    description: pulumi.Output[str]
-    """
-    The user-provided description of the repository.
-    """
-    format: pulumi.Output[str]
-    """
-    The format of packages that are stored in the repoitory.
-    Possible values are `DOCKER`.
-    """
-    kms_key_name: pulumi.Output[str]
-    """
-    The Cloud KMS resource name of the customer managed encryption key that’s
-    used to encrypt the contents of the Repository. Has the form:
-    `projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key`.
-    This value may not be changed after the Repository has been created.
-    """
-    labels: pulumi.Output[dict]
-    """
-    Labels with user-defined metadata.
-    This field may contain up to 64 entries. Label keys and values may be no
-    longer than 63 characters. Label keys must begin with a lowercase letter
-    and may only contain lowercase letters, numeric characters, underscores,
-    and dashes.
-    """
-    location: pulumi.Output[str]
-    """
-    The name of the location this repository is located in.
-    """
-    name: pulumi.Output[str]
-    """
-    The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1"
-    """
-    project: pulumi.Output[str]
-    """
-    The ID of the project in which the resource belongs.
-    If it is not provided, the provider project is used.
-    """
-    repository_id: pulumi.Output[str]
-    """
-    The last part of the repository name, for example:
-    "repo1"
-    """
-    update_time: pulumi.Output[str]
-    """
-    The time when the repository was last updated.
-    """
-    def __init__(__self__, resource_name, opts=None, description=None, format=None, kms_key_name=None, labels=None, location=None, project=None, repository_id=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 format: Optional[pulumi.Input[str]] = None,
+                 kms_key_name: Optional[pulumi.Input[str]] = None,
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 location: Optional[pulumi.Input[str]] = None,
+                 project: Optional[pulumi.Input[str]] = None,
+                 repository_id: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         A repository for storing artifacts
 
@@ -81,7 +45,7 @@ class Repository(pulumi.CustomResource):
                used to encrypt the contents of the Repository. Has the form:
                `projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key`.
                This value may not be changed after the Repository has been created.
-        :param pulumi.Input[dict] labels: Labels with user-defined metadata.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels with user-defined metadata.
                This field may contain up to 64 entries. Label keys and values may be no
                longer than 63 characters. Label keys must begin with a lowercase letter
                and may only contain lowercase letters, numeric characters, underscores,
@@ -103,7 +67,7 @@ class Repository(pulumi.CustomResource):
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
-            opts.version = utilities.get_version()
+            opts.version = _utilities.get_version()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -130,7 +94,19 @@ class Repository(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, create_time=None, description=None, format=None, kms_key_name=None, labels=None, location=None, name=None, project=None, repository_id=None, update_time=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            create_time: Optional[pulumi.Input[str]] = None,
+            description: Optional[pulumi.Input[str]] = None,
+            format: Optional[pulumi.Input[str]] = None,
+            kms_key_name: Optional[pulumi.Input[str]] = None,
+            labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            location: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            project: Optional[pulumi.Input[str]] = None,
+            repository_id: Optional[pulumi.Input[str]] = None,
+            update_time: Optional[pulumi.Input[str]] = None) -> 'Repository':
         """
         Get an existing Repository resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -146,7 +122,7 @@ class Repository(pulumi.CustomResource):
                used to encrypt the contents of the Repository. Has the form:
                `projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key`.
                This value may not be changed after the Repository has been created.
-        :param pulumi.Input[dict] labels: Labels with user-defined metadata.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels with user-defined metadata.
                This field may contain up to 64 entries. Label keys and values may be no
                longer than 63 characters. Label keys must begin with a lowercase letter
                and may only contain lowercase letters, numeric characters, underscores,
@@ -175,8 +151,99 @@ class Repository(pulumi.CustomResource):
         __props__["update_time"] = update_time
         return Repository(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="createTime")
+    def create_time(self) -> str:
+        """
+        The time when the repository was created.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The user-provided description of the repository.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def format(self) -> str:
+        """
+        The format of packages that are stored in the repoitory.
+        Possible values are `DOCKER`.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="kmsKeyName")
+    def kms_key_name(self) -> Optional[str]:
+        """
+        The Cloud KMS resource name of the customer managed encryption key that’s
+        used to encrypt the contents of the Repository. Has the form:
+        `projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key`.
+        This value may not be changed after the Repository has been created.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        Labels with user-defined metadata.
+        This field may contain up to 64 entries. Label keys and values may be no
+        longer than 63 characters. Label keys must begin with a lowercase letter
+        and may only contain lowercase letters, numeric characters, underscores,
+        and dashes.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def location(self) -> str:
+        """
+        The name of the location this repository is located in.
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1"
+        """
+        ...
+
+    @property
+    @pulumi.getter
+    def project(self) -> str:
+        """
+        The ID of the project in which the resource belongs.
+        If it is not provided, the provider project is used.
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="repositoryId")
+    def repository_id(self) -> str:
+        """
+        The last part of the repository name, for example:
+        "repo1"
+        """
+        ...
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The time when the repository was last updated.
+        """
+        ...
+
     def translate_output_property(self, prop):
-        return tables._CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
+        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
-        return tables._SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
