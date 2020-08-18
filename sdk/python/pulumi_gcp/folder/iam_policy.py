@@ -5,26 +5,21 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from .. import _utilities, _tables
+
+__all__ = ['IAMPolicy']
 
 
 class IAMPolicy(pulumi.CustomResource):
-    etag: pulumi.Output[str]
-    """
-    (Computed) The etag of the folder's IAM policy. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other.
-    """
-    folder: pulumi.Output[str]
-    """
-    The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
-    """
-    policy_data: pulumi.Output[str]
-    """
-    The `organizations.getIAMPolicy` data source that represents
-    the IAM policy that will be applied to the folder. This policy overrides any existing
-    policy applied to the folder.
-    """
-    def __init__(__self__, resource_name, opts=None, folder=None, policy_data=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 folder: Optional[pulumi.Input[str]] = None,
+                 policy_data: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Allows creation and management of the IAM policy for an existing Google Cloud
         Platform folder.
@@ -67,7 +62,12 @@ class IAMPolicy(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, etag=None, folder=None, policy_data=None):
+    def get(resource_name: str,
+            id: str,
+            opts: Optional[pulumi.ResourceOptions] = None,
+            etag: Optional[pulumi.Input[str]] = None,
+            folder: Optional[pulumi.Input[str]] = None,
+            policy_data: Optional[pulumi.Input[str]] = None) -> 'IAMPolicy':
         """
         Get an existing IAMPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -90,8 +90,35 @@ class IAMPolicy(pulumi.CustomResource):
         __props__["policy_data"] = policy_data
         return IAMPolicy(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def etag(self) -> str:
+        """
+        (Computed) The etag of the folder's IAM policy. `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other.
+        """
+        return pulumi.get(self, "etag")
+
+    @property
+    @pulumi.getter
+    def folder(self) -> str:
+        """
+        The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.
+        """
+        return pulumi.get(self, "folder")
+
+    @property
+    @pulumi.getter(name="policyData")
+    def policy_data(self) -> str:
+        """
+        The `organizations.getIAMPolicy` data source that represents
+        the IAM policy that will be applied to the folder. This policy overrides any existing
+        policy applied to the folder.
+        """
+        return pulumi.get(self, "policy_data")
+
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+
